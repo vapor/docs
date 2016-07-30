@@ -17,4 +17,4 @@ sudo apt-get install clang libicu-dev binutils git
 
 ## Swift
 
-You can now move on to [Install Swift 3]({{baseUrl}}/getting-started/install-swift-3.html)
+You can now move on to [Install Swift 3](install-swift-3.html)
