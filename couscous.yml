@@ -1,0 +1,50 @@
+template:
+    url: https://github.com/CouscousPHP/Template-Dark
+
+title: Vapor Documentation
+subTitle: A web framework and server for Swift that works on macOS and Ubuntu.
+
+menu:
+    sections:
+        links:
+            name: Links
+            items:
+                website:
+                    text: Qutheory.io
+                    absoluteUrl: http://qutheory.io
+                example:
+                    text: Example
+                    absoluteUrl: http://example.qutheory.io
+                github:
+                    text: GitHub
+                    absoluteUrl: https://github.com/qutheory/vapor
+                twitter:
+                    text: Twitter
+                    absoluteUrl: https://twitter.com/@qutheory
+                slack:
+                    text: Slack
+                    absoluteUrl: http://slack.qutheory.io
+        getting-started:
+            name: Getting Started
+            items:
+                getting-started-install-swift-3-macos:
+                    text: Install Swift 3: macOS
+                    relativeUrl: getting-started/install-swift-3-macos.html
+                getting-started-install-swift-3-ubuntu:
+                    text: Install Swift 3: Ubuntu
+                    relativeUrl: getting-started/install-swift-3-ubuntu.html
+                getting-started-install-swift-3:
+                    text: Install Swift 3
+                    relativeUrl: getting-started/install-swift-3.html
+                getting-started-install-toolbox:
+                    text: Install Toolbox
+                    relativeUrl: getting-started/install-toolbox.html
+                getting-started-hello-world:
+                    text: Hello, World
+                    relativeUrl: getting-started/hello-world.html
+        guide:
+            name: Guide
+            items:
+                guide-routing:
+                    text: Routing
+                    relativeUrl: guide/routing.html
