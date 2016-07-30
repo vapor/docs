@@ -6,7 +6,7 @@ Vapor is the most used web framework for Swift. It provides a beautifully expres
 
 To view the framework's source code and code documentation, visit [Vapor's GitHub](https://github.com/qutheory/vapor).
 
-## ℹ️ Meta Information
+## ℹ️ How To Read
 
 You can read this guide by clicking through the folders and markdown files on [GitHub](https://github.com/qutheory/documentation) or through the rendered [GitHub Pages](https://qutheory.github.io/documentation/).
 
