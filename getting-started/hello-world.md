@@ -61,9 +61,9 @@ drop.get("hello") { request in
 
 This creates a new route on the `Droplet` that will match all `GET` requests to `/hello`.
 
-All route closures are passed an instance of [Request](/guide/request.html) that contains information such as the URI requested and data sent.
+All route closures are passed an instance of [Request]({{baseUrl}}/guide/request.html) that contains information such as the URI requested and data sent.
 
-This route simply returns a string, but anything that is [ResponseRepresentable](/guide/routing.html) can be returned. Learn more in the [Routing](/guide/routing.html) section of the guide.
+This route simply returns a string, but anything that is [ResponseRepresentable]({{baseUrl}}/guide/routing.html) can be returned. Learn more in the [Routing]({{baseUrl}}/guide/routing.html) section of the guide.
 
 ## Serving
 
