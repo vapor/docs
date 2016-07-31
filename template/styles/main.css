@@ -232,7 +232,7 @@ pre, code {
 	font-family: 'Source Code Pro', monospace;
 }
 
-p code {
+p code, li code {
 	background: #fbfbfb;
 	border-radius: 5px;
 	padding: 3px;
