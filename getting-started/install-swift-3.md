@@ -28,7 +28,7 @@ export PATH="$SWIFTENV_ROOT/bin:$PATH"
 eval "$(swiftenv init -)"
 ```
 
-Note: macOS uses `~/.bash_profile` and Ubuntu uses `~/.bashrc`
+> Note: macOS uses `~/.bash_profile` and Ubuntu uses `~/.bashrc`
 
 ### Verify
 

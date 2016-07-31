@@ -20,7 +20,7 @@ a:hover {
 }
 
 h1 {
-	font-size: 48px;
+	font-size: 42px;
 	font-weight: 200;
 }
 
@@ -112,7 +112,7 @@ nav {
 	left: 0;
 	top: 0;
 	bottom: 0;
-	width: 200px;
+	width: 216px;
 
 	z-index: 8;
 	padding-top: 96px;
@@ -127,6 +127,7 @@ nav a {
 	font-size: 14px;
 	display: block;
 	color: #777;
+	font-size: 12px;
 	height: 24px;
 }
 
@@ -141,9 +142,9 @@ nav .active a {
 
 nav h3 {
 	text-transform: uppercase;
-	color: #999;
+	color: #bbb;
 	font-size: 14px;
-	margin-bottom: 4px;
+	margin-bottom: 6px;
 	font-weight: 400;
 }
 
@@ -154,7 +155,7 @@ nav ul, nav ul li {
 }
 
 nav ul {
-	margin-bottom: 24px;
+	margin-bottom: 18px;
 }
 
 div.scroll {
@@ -169,7 +170,7 @@ main {
 	font-weight: 200;
 	padding: 22px;
 	padding-top: 110px;
-	padding-left: 222px;
+	padding-left: 240px;
 
 	position: absolute;
 	position: relative;
@@ -191,15 +192,39 @@ main a.edit {
 	border-bottom: none;
 }
 
+main h1 {
+	margin-bottom: 12px;
+}
+
 main h2 {
 	margin-top: 24px;
-	border-bottom: 1px dotted rgba(0, 0, 0, 0.10);
 	margin-bottom: 12px;
+	border-bottom: 1px dotted rgba(0, 0, 0, 0.10);
+}
+
+main h3 {
+	margin-top: 18px;
 }
 
 main p {
 	margin-top: 0;
-	margin-bottom: 6px;
+	margin-bottom: 12px;
+	line-height: 1.75;
+}
+
+main blockquote {
+	background: rgba(247, 202, 201, 0.2);
+	margin-top: 18px;
+	margin-bottom: 18px;
+	margin-left: 0;
+	padding: 6px;
+	padding-left: 12px;
+	border-left: 5px solid #f6cfcf;
+}
+
+main blockquote p {
+	margin: 0;
+	padding: 0;
 }
 
 pre, code {
@@ -209,10 +234,11 @@ pre, code {
 
 p code {
 	background: #fbfbfb;
-	border-radius: 10px;
+	border-radius: 5px;
 	padding: 3px;
 	display: inline-block;
 	color: #92a0b9;
+	box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.1);
 }
 
 pre {

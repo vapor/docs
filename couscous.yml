@@ -29,6 +29,12 @@ menu:
         guide:
             name: Guide
             items:
+                guide-droplet:
+                    text: Droplet
+                    relativeUrl: guide/droplet.html
+                guide-folder-structure:
+                    text: Folder Structure
+                    relativeUrl: guide/folder-structure.html
                 guide-routing:
                     text: Routing
                     relativeUrl: guide/routing.html

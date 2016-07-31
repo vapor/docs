@@ -14,7 +14,7 @@ Run the following script to install the [Toolbox](https://github.com/qutheory/to
 curl -sL toolbox.qutheory.io | bash
 ```
 
-Note: You must have the correct version of Swift 3 installed.
+> Note: You must have the correct version of Swift 3 installed.
 
 ## Verify
 
