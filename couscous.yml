@@ -8,24 +8,6 @@ baseUrl: https://qutheory.github.io/documentation
 
 menu:
     sections:
-        links:
-            name: Links
-            items:
-                website:
-                    text: Qutheory.io
-                    absoluteUrl: http://qutheory.io
-                example:
-                    text: Example
-                    absoluteUrl: http://example.qutheory.io
-                github:
-                    text: GitHub
-                    absoluteUrl: https://github.com/qutheory/vapor
-                twitter:
-                    text: Twitter
-                    absoluteUrl: https://twitter.com/@qutheory
-                slack:
-                    text: Slack
-                    absoluteUrl: http://slack.qutheory.io
         getting-started:
             name: Getting Started
             items:

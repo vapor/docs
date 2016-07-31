@@ -87,6 +87,26 @@ header {
 	border-bottom: 3px solid #94a9d1;
 }
 
+header ul {
+	position: absolute;
+	right: 24px;
+	top: 24px;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+header ul li {
+	display: inline-block;
+	line-height: 48px;
+}
+
+header ul li a {
+	padding: 0 6px;
+	display: block;
+	border-bottom: none;
+}
+
 nav {
 	position: absolute;
 	left: 0;
@@ -164,6 +184,13 @@ main {
 	height: 100%;
 }
 
+main a.edit {
+	position: absolute;
+	top: 122px;
+	right: 24px;
+	border-bottom: none;
+}
+
 main h2 {
 	margin-top: 24px;
 	border-bottom: 1px dotted rgba(0, 0, 0, 0.10);
@@ -190,7 +217,7 @@ p code {
 
 pre {
 	margin-top: 12px;
-	margin-bottom: 12px;
+	margin-bottom: 15px;
 	padding: 5px;
 	background: #fbfbfb;
 	border-radius: 10px;
