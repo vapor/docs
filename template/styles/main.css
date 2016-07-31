@@ -7,6 +7,7 @@ html, body {
 	font-size: 14px;
 	line-height: 1.5;
 	font-family: -webkit-system-font, sans-serif;
+	min-width: 850px;
 }
 
 a {
@@ -74,6 +75,7 @@ a.logo img {
 }
 
 header {
+	min-width: 850px;
 	height: 96px;
 	position: absolute;
 	left: 0;
@@ -183,6 +185,7 @@ main {
 
 	overflow-y: scroll;
 	height: 100%;
+	max-width: 1440px;
 }
 
 main a.edit {
