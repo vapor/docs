@@ -1,5 +1,5 @@
 template:
-    url: https://github.com/CouscousPHP/Template-Dark
+    directory: template
 
 title: Vapor Documentation
 subTitle: A web framework and server for Swift that works on macOS and Ubuntu.

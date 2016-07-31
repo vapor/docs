@@ -1,0 +1,202 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+
+	font-size: 14px;
+	line-height: 1.5;
+	font-family: -webkit-system-font, sans-serif;
+}
+
+a {
+	color: #94a9d1;
+	text-decoration: none;
+	border-bottom: 1px dotted;
+}
+
+a:hover {
+	color: #f6cfcf;
+}
+
+h1 {
+	font-size: 48px;
+	font-weight: 200;
+}
+
+h2 {
+	font-size: 30px;
+	font-weight: 400;
+}
+
+h3 {
+	font-size: 24px;
+	font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #333;
+	margin: 0;
+	font-family: 'Quicksand';
+	letter-spacing: -1px;
+}
+
+a.logo {
+	display: block;
+	position: relative;
+	border-bottom: none;
+	padding-left: 72px;
+	height: 100%;
+}
+
+a.logo h1 {
+	margin: 0;
+	font-size: 36px;
+	line-height: 96px;
+	text-transform: uppercase;
+}
+
+a.logo h1 em {
+	font-style: normal;
+	color: rgba(0, 0, 0, 0.4);
+	text-transform: none;
+}
+
+a.logo img {
+	left: 24px;
+	top: 24px;
+	position: absolute;
+	height: 48px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+header {
+	height: 96px;
+	position: absolute;
+	left: 0;
+	right: 0;
+
+	z-index: 10;
+	overflow: hidden;
+
+	background: rgba(255, 255, 255, 0.5);
+	-webkit-backdrop-filter: blur(10px);
+	border-bottom: 3px solid #94a9d1;
+}
+
+nav {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 200px;
+
+	z-index: 8;
+	padding-top: 96px;
+
+	font-size: 14px;
+	border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+nav a {
+	border-bottom: none;
+	font-weight: 200;
+	font-size: 14px;
+	display: block;
+	color: #777;
+	height: 24px;
+}
+
+nav a:hover {
+	color: #94a9d1;
+}
+
+nav .active a {
+	color: #94a9d1;
+	font-weight: 600;
+}
+
+nav h3 {
+	text-transform: uppercase;
+	color: #999;
+	font-size: 14px;
+	margin-bottom: 4px;
+	font-weight: 400;
+}
+
+nav ul, nav ul li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+nav ul {
+	margin-bottom: 24px;
+}
+
+div.scroll {
+	padding: 22px;
+	overflow-y: scroll;
+	height: 100%;
+	z-index: 10;
+}
+
+main {
+	color: #555;
+	font-weight: 200;
+	padding: 22px;
+	padding-top: 110px;
+	padding-left: 222px;
+
+	position: absolute;
+	position: relative;
+	z-index: 6;
+
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+
+	overflow-y: scroll;
+	height: 100%;
+}
+
+main h2 {
+	margin-top: 24px;
+	border-bottom: 1px dotted rgba(0, 0, 0, 0.10);
+	margin-bottom: 12px;
+}
+
+main p {
+	margin-top: 0;
+	margin-bottom: 6px;
+}
+
+pre, code {
+	font-size: 12px;
+	font-family: 'Source Code Pro', monospace;
+}
+
+p code {
+	background: #fbfbfb;
+	border-radius: 10px;
+	padding: 3px;
+	display: inline-block;
+	color: #92a0b9;
+}
+
+pre {
+	margin-top: 12px;
+	margin-bottom: 12px;
+	padding: 5px;
+	background: #fbfbfb;
+	border-radius: 10px;
+	box-shadow: 0 3px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+img {
+	max-width: 100%;
+}

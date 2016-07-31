@@ -10,7 +10,7 @@ To use Swift 3 on macOS, you need to have Xcode 8 installed and selected.
 
 To download Xcode 8, visit [Apple Developer Downloads](https://developer.apple.com/download/).
 
-[![Developer Downloads](https://cloud.githubusercontent.com/assets/1342803/17273384/12b603b0-5681-11e6-9034-d731efdf5a7b.png)](https://developer.apple.com/download/)
+![Developer Downloads](https://cloud.githubusercontent.com/assets/1342803/17273384/12b603b0-5681-11e6-9034-d731efdf5a7b.png)
 
 
 ## Install

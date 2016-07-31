@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{{ title }}</title>
+
+        <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
+        <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Quicksand:400,700,300">
+        <link rel="stylesheet" href="{{ baseUrl }}/styles/qutheory-code.css">
+        <link rel="stylesheet" href="{{ baseUrl }}/styles/main.css">
+    </head>
+    <body>
+
+        <header>
+            <a class="logo" href="{{ baseUrl }}/">
+                <img src="{{ baseUrl }}/images/droplet.svg" alt="Vapor">
+                <h1>Vapor <em>Docs</em></h1>
+            </a>
+        </header>
+
+        <nav>
+            <div class="scroll">
+            {% for section in menu.sections %}
+                <section>
+                    <h3>{{ section.name }}</h3>
+                    <ul>
+                    {% for itemId, item in section.items %}
+                        <li class="{{ itemId == currentMenu ? 'active' }}">
+                            <a href="{{ item.absoluteUrl|default(baseUrl ~ '/' ~ item.relativeUrl) }}">
+                                {{ item.text | raw }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </section>
+            {% endfor %}
+            </div>
+        </nav>
+
+        <main>
+            {{ content | raw }}
+        </main>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="{{ baseUrl}}/scripts/highlight.pack.js"></script>
+
+        <script>
+            $(function() {
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>
