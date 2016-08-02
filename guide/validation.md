@@ -42,7 +42,7 @@ Valid<Count<T>>
 
 ## Validators vs. ValidationSuites
 
-Validators, like Count or Contains can have multiple configurations. For example:
+Validators, like `Count` or `Contains` can have multiple configurations. For example:
 
 ```swift
 let name: Valid<Count<String>> = try "Vapor".validated(by: Count.max(5))
@@ -50,7 +50,7 @@ let name: Valid<Count<String>> = try "Vapor".validated(by: Count.max(5))
 
 Here we are validating that the `String` is at most 5 characters long. The type of `Valid<Count>` tells us that the string has been validated to be a certain count, but it does not tell us exactly what that count was. The string could have been validated to be less than three characters or more than one million.
 
-Because of this, `Validators` themselves are not as type safe as some applications might desire. ValidationSuites fix this. They combine multiple `Validators` and/or `ValidationSuites` together to represent exactly what type of data should be considered valid
+Because of this, `Validators` themselves are not as type safe as some applications might desire. `ValidationSuites` fix this. They combine multiple `Validators` and/or `ValidationSuites` together to represent exactly what type of data should be considered valid
 
 ## Custom Validator
 

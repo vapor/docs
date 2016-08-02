@@ -27,7 +27,7 @@ And an example of how this might look:
 }
 ```
 
-What that's saying, is that our application should start a single server named 'default' serving port `8080` on host `0.0.0.0`. This represents the following url: `http://localhost:8080`.
+What that's saying, is that our application should start a single server named 'http' serving port `8080` on host `0.0.0.0`. This represents the following url: `http://localhost:8080`.
 
 ### Custom Keys
 
@@ -45,7 +45,7 @@ Let's add a custom key to the `servers.json` file:
 
 This can be accessed from your application's config using the following.
 
-```Swift
+```swift
 let customValue = app.config["server", "http", "custom-key"].string
 ```
 
@@ -70,13 +70,13 @@ You can access your config directory with the following syntax. `app.config[<#fi
 
 We can access this file by making sure the first argument in our subscript is keys. To get the first name in our list:
 
-```Swift
+```swift
 let name = app.config["keys", "test-names", 0].string
 ```
 
 Or our mongo url:
 
-```Swift
+```swift
 let mongoUrl = app.config["keys", "mongo", "url"].string
 ```
 
@@ -145,7 +145,7 @@ Let's start with the following JSON files.
 
 Please notice that servers.json, and production/servers.json both declare the same keys. host, and port. In our application, we'll call:
 
-```Swift
+```swift
 // will load 0.0.0.0 or 127.0.0.1 based on above config
 let host = app.config["servers", "http", "host"].string
 // will load 9000, or environment variable port.
@@ -166,7 +166,7 @@ Arguments set through the command line can be accessed through config's cli file
 
 would be accessible within your application by using the following:
 
-```Swift
+```swift
 let mongoPassword = app.config["cli", "mongo-password"].string
 ```
 
@@ -180,6 +180,6 @@ If you want command line arguments set to a file besides "cli", you can use this
 
 would be accessible within your application by using the following:
 
-```Swift
+```swift
 let analyticsKey = app.config["keys", "analytics"].string
 ```
