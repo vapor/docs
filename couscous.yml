@@ -50,6 +50,9 @@ menu:
                 guide-views:
                     text: Views
                     relativeUrl: guide/views.html
+                guide-validation:
+                    text: Validation
+                    relativeUrl: guide/validation.html
         http:
             name: HTTP
             items:
