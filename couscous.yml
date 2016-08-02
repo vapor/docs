@@ -44,3 +44,6 @@ menu:
                 guide-routing:
                     text: Routing
                     relativeUrl: guide/routing.html
+                guide-config:
+                    text: Config
+                    relativeUrl: guide/config.html
