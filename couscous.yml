@@ -20,12 +20,18 @@ menu:
                 getting-started-install-swift-3:
                     text: Install Swift 3
                     relativeUrl: getting-started/install-swift-3.html
+                getting-started-quickstart:
+                    text: Manual QuickStart
+                    relativeUrl: getting-started/quickstart.html
                 getting-started-install-toolbox:
                     text: Install Toolbox
                     relativeUrl: getting-started/install-toolbox.html
                 getting-started-hello-world:
                     text: Hello, World
                     relativeUrl: getting-started/hello-world.html
+                getting-started-xcode:
+                    text: Xcode
+                    relativeUrl: getting-started/xcode.html
         guide:
             name: Guide
             items:
