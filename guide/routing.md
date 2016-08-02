@@ -6,19 +6,8 @@ currentMenu: guide-routing
 
 Routes in Vapor can be defined in any file that has access to your instance of `Droplet`. This is usually in the `main.swift` file.
 
-## Basic
 
-The most basic route includes a method, path, and closure.
 
-```swift
-drop.get("welcome") { request in 
-    return "Hello"
-}
-```
-
-The standard HTTP methods are available including `get`, `post`, `put`, `patch`, `delete`, and `options`.
-
-You can also use `any` to match all methods.
 
 ## Request
 
