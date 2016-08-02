@@ -47,3 +47,6 @@ menu:
                 guide-config:
                     text: Config
                     relativeUrl: guide/config.html
+                guide-validation:
+                    text: Validation
+                    relativeUrl: guide/validation.html
