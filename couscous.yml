@@ -38,3 +38,9 @@ menu:
                 guide-routing:
                     text: Routing
                     relativeUrl: guide/routing.html
+        http:
+            name: HTTP
+            items:
+                guide-droplet:
+                    text: Response
+                    relativeUrl: http/response.html
