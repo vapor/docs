@@ -12,7 +12,7 @@ Several useful convenience validators are included by default. You can use these
 
 Let's look at the most common way to validate data.
 
-```Swift
+```swift
 class Employee {
     var email: Valid<Email>
     var name: Valid<Name>
@@ -30,7 +30,7 @@ To store something in a `Valid<>` property, you must use the `.validated()` meth
 
 `Email` is a real `validator` included with Vapor, but `Name` is not. Let's take a look at how you can create a Validator.
 
-```Swift
+```swift
 Valid<OnlyAlphanumeric>
 Valid<Email>
 Valid<Unique<T>>
@@ -44,7 +44,7 @@ Valid<Count<T>>
 
 Validators, like Count or Contains can have multiple configurations. For example:
 
-```Swift
+```swift
 let name: Valid<Count<String>> = try "Vapor".validated(by: Count.max(5))
 ```
 
@@ -56,7 +56,7 @@ Because of this, `Validators` themselves are not as type safe as some applicatio
 
 Here is how to create a custom `ValidationSuite`.
 
-```Swift
+```swift
 class Name: ValidationSuite {
     static func validate(input value: String) throws {
         let evaluation = OnlyAlphanumeric.self
@@ -78,7 +78,7 @@ In the `Name` validator, you can see that `&&` is being used to combine validato
 
 You can also use `!` to invert the validator.
 
-```Swift
+```swift
 let symbols = input.validated(by: !OnlyAlphanumeric.self)
 ```
 
@@ -86,7 +86,7 @@ let symbols = input.validated(by: !OnlyAlphanumeric.self)
 
 While `validated() throw` is the most common method for validating, there are two others.
 
-```Swift
+```swift
 let passed = input.passes(Count.min(5))
 let valid = try input.tested(Count.min(5))
 ```
@@ -97,7 +97,7 @@ let valid = try input.tested(Count.min(5))
 
 Vapor will automatically catch validation failures in the `ValidationMiddleware`. But you can catch them on your own, or customize responses for certain types of failures.
 
-```Swift
+```swift
 do {
     //validation here
 } catch let error as ValidationErrorProtocol {
