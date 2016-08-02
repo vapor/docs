@@ -8,7 +8,7 @@ The first thing you'll probably notice about Vapor and SwiftPM projects in gener
 
 This means we don't have to worry about pbxproj conflicts, and it's easy for different platforms to utilize their own editors.
 
-# Generate Project
+## Generate Project
 
 ### Vapor Toolbox
 
