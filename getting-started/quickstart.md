@@ -48,7 +48,7 @@ And add Vapor as a dependency. Here's how your file will look.
 
 #### Package.swift
 
-```Swift
+```swift
 import PackageDescription
 
 let package = Package(
