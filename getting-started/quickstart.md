@@ -12,6 +12,8 @@ You can run the following to check compatibility:
 curl -sL check.qutheory.io | bash
 ```
 
+> If you'd prefer to use our built in tool, you can find information [here](install-toolbox.md)
+
 ## Make new project using SwiftPM
 
 Open your terminal
@@ -56,6 +58,8 @@ let package = Package(
     ]
 )
 ```
+
+> We try to keep this document up to date, however, you can view latest releases [here](https://github.com/qutheory/vapor/releases)
 
 ## Edit `main.swift`
 
