@@ -71,6 +71,9 @@ menu:
         http:
             name: HTTP
             items:
-                guide-droplet:
+                guide-request:
+                  text: Request
+                  relativeUrl: http/request.html
+                guide-response:
                     text: Response
                     relativeUrl: http/response.html
