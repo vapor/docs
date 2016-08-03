@@ -28,6 +28,18 @@ drop.post("form") { request in
 
 You can also use `any` to match all methods.
 
+## Nesting
+
+To nest paths (adding `/`s in the URL), simply add commas.
+
+```swift
+drop.get("foo", "bar", "baz") { request in
+    return "You requested /foo/bar/baz"
+}
+```
+
+You can also use `/`, but commas are often easier to type and work better with type safe route [parameters](parameters.md).
+
 ## Alternate
 
 An alternate syntax that accepts a `Method` as the first parameter is also available. 
