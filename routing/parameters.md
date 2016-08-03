@@ -28,11 +28,11 @@ drop.get("users", ":id") { request in
 }
 ```
 
-Here you can see that type safe routing saves ~3 lines of code and also prevents runtime errors, i.e. mispelling `:id`.
+Here you can see that type safe routing saves ~3 lines of code and also prevents runtime errors like mispelling `:id`.
 
 ## String Initializable
 
-Any type that conforms to `StringInitializable` can be used as a type-safe routing parameter. By default, the following types conform.
+Any type that conforms to `StringInitializable` can be used as a type-safe routing parameter. By default, the following types conform:
 
 - String
 - Int
@@ -40,7 +40,7 @@ Any type that conforms to `StringInitializable` can be used as a type-safe routi
 
 `String` is the most generic and always matches. `Int` only matches when the string supplied can be turned into an integer. `Model` only matches when the string, used as an identifier, can be used to find the model in the database. 
 
-Our previous example with "users" can be further simplified.
+Our previous example with users can be further simplified.
 
 ```swift
 drop.get("users", User.self) { request, user in
@@ -48,7 +48,7 @@ drop.get("users", User.self) { request, user in
 }
 ```
 
-Here the identifier supplied is automatically used to lookup a user. For example, if `users/5` is requested, the `User` model will be asked for a user with identifier `5`. If one is found, the request succeeds and the closure is called. If not, a not found error is thrown.
+Here the identifier supplied is automatically used to lookup a user. For example, if `/users/5` is requested, the `User` model will be asked for a user with identifier `5`. If one is found, the request succeeds and the closure is called. If not, a not found error is thrown.
 
 Here is what this would look like if model didn't conform to `StringInitializable`.
 
@@ -62,7 +62,7 @@ drop.get("users", Int.self) { request, userId in
 }
 ```
 
-Alltogether, type safe routing can remove as much as 6 lines of code from each route.
+Altogether, type safe routing can save around 6 lines of code from each route.
 
 ### Protocol
 
@@ -74,7 +74,7 @@ public protocol StringInitializable {
 }
 ```
 
-Here is what `Model`s conformance looks like for those who are curious.
+Here is what `Model`'s conformance looks like for those who are curious.
 
 ```swift
 extension Model {
@@ -88,7 +88,7 @@ extension Model {
 }
 ```
 
-The `init` method can _both_ `throw` and return `nil`. This allows you to `throw` your own errors. Or, if you want the default error and behavior, just return `nil`.
+The `init` method can both `throw` and return `nil`. This allows you to `throw` your own errors. Or, if you want the default error and behavior, just return `nil`.
 
 ### Limits
 
