@@ -242,7 +242,7 @@ pre, code {
 p code, li code {
 	background: #fbfbfb;
 	border-radius: 5px;
-	padding: 3px;
+	padding: 3px 5px;
 	display: inline-block;
 	color: #92a0b9;
 	box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.1);

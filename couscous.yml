@@ -4,7 +4,7 @@ template:
 title: Vapor Documentation
 subTitle: A web framework and server for Swift that works on macOS and Ubuntu.
 
-baseUrl: https://qutheory.github.io/documentation
+baseUrl: https://vapor.github.io/documentation
 
 menu:
     sections:
@@ -41,9 +41,9 @@ menu:
                 guide-folder-structure:
                     text: Folder Structure
                     relativeUrl: guide/folder-structure.html
-                guide-routing:
-                    text: Routing
-                    relativeUrl: guide/routing.html
+                guide-json:
+                    text: JSON
+                    relativeUrl: guide/json.html
                 guide-config:
                     text: Config
                     relativeUrl: guide/config.html
@@ -53,6 +53,21 @@ menu:
                 guide-validation:
                     text: Validation
                     relativeUrl: guide/validation.html
+        routing:
+            name: Routing
+            items:
+                routing-basic:
+                    text: Basic
+                    relativeUrl: routing/basic.html
+                routing-parameters:
+                    text: Parameters
+                    relativeUrl: routing/parameters.html
+                routing-group:
+                    text: Group
+                    relativeUrl: routing/group.html
+                routing-collection:
+                    text: Collection
+                    relativeUrl: routing/collection.html
         http:
             name: HTTP
             items:
