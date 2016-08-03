@@ -46,7 +46,7 @@ An alternate syntax that accepts a `Method` as the first parameter is also avail
 
 ```swift
 drop.add(.trace, "welcome") { request in
-	return "Hello"
+    return "Hello"
 }
 ```
 
@@ -70,7 +70,7 @@ A custom [Response](../http/response.md) can be returned.
 
 ```swift
 drop.get("vapor") { request in
-	return Response(redirect: "http://vapor.codes")
+    return Response(redirect: "http://vapor.codes")
 }
 ```
 
@@ -88,7 +88,7 @@ A lot of types in Vapor conform to this protocol by default:
 
 ```swift
 drop.get("json") { request in
-	return try JSON(node: [
+    return try JSON(node: [
         "number": 123,
         "text": "unicorns",
         "bool": false
@@ -104,7 +104,7 @@ If you are unable to return a response, you may `throw` any object that conforms
 
 ```swift
 drop.get("404") { request in
-	throw Abort.notFound
+    throw Abort.notFound
 }
 ```
 
@@ -112,7 +112,7 @@ You can customize the message of these errors by using `Abort`
 
 ```swift
 drop.get("error") { request in
-	throw Abort.custom(status: .badRequest, message: "Sorry 😱")
+    throw Abort.custom(status: .badRequest, message: "Sorry 😱")
 }
 ```
 
@@ -120,9 +120,27 @@ These errors are caught by default in the `AbortMiddleware` where they are turne
 
 ```json
 {
-	error: true,
-	message: "<the message>"
+    error: true,
+    message: "<the message>"
 }
 ```
 
 If you want to override this behavior, remove the `AbortMiddleware` from the `Droplet`'s middleware and add your own.
+
+## Fallback
+
+Fallback routes allow you to match multiple layers of nesting slashes.
+
+```swift
+app.get("anything", "*") { request in 
+    return "Matches anything after /anything"
+}
+```
+
+For example, the above route matches all of the following and more:
+
+- /anything
+- /anything/foo
+- /anything/foo/bar
+- /anything/foo/bar/baz
+- ...

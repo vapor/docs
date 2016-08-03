@@ -26,7 +26,7 @@ This will return a greeting for any HTTP method or content type that the `name` 
 
 To specifically target JSON, use the `request.json` property.
 
-```
+```swift
 drop.post("json") { request in
 	guard let name = request.json["name"].string else {
 		throw Abort.badRequest
@@ -44,8 +44,8 @@ To respond with JSON, simply wrap your data structure with `JSON(node: )`
 ```swift
 drop.get("version") { request in
     return try JSON(node: [
-    	"version": "1.0
-    "])
+    	"version": "1.0"
+    ])
 }
 ```
 

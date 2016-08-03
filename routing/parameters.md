@@ -119,3 +119,14 @@ drop.get("v1", "users", ":userId", "posts", ":postId", "comments": ":commentId")
 ```
 
 Request parameters can be accessed either as a dictionary or using the `extract` syntax which throws instead of returning an optional.
+
+### Groups
+
+Manual request parameters also work with [groups](group.md).
+
+```swift
+let userGroup = drop.grouped("users", ":userId")
+userGroup.get("messages") { req in 
+    let user = try req.parameters.extract("userId") as User
+}
+```
