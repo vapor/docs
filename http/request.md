@@ -15,11 +15,11 @@ public var body: Body
 public var data: Content
 ```
 
-#### Method
+### Method
 
 The HTTP `Method` associated with the `Request`, ie: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`.
 
-#### URI
+### URI
 
 The associated `URI` of the request. We will use this to access attributes about the `uri` the request was sent to.
 
@@ -34,7 +34,7 @@ let query = request.uri.query // query=hi
 let fragment = request.uri.fragment // fragments-too
 ```
 
-#### Parameters
+### Parameters
 
 The url parameters associated with the request. For example, if we have a path registered as `hello/:name/age/:age`, we would be able to access those in our request, like so:
 
@@ -54,7 +54,7 @@ These extract functions can cast to any `NodeInitializable` type, including your
 
 > Note: Vapor also provides type safe routing in the routing section of our docs.
 
-#### Headers
+### Headers
 
 These are the headers associated with the request. If you are preparing an outgoing request, this can be used to add your own keys.
 
@@ -70,7 +70,7 @@ request.headers["Content-Type"] = "application/json"
 request.headers["Authorization"] = ... my auth token
 ```
 
-##### Extending Headers
+#### Extending Headers
 
 We generally seek to improve code bases by removing stringly typed code where possible. We can add variables to the headers using generic extensions.
 
@@ -98,7 +98,7 @@ let request = ...
 request.headers.customKey = "my custom value"
 ```
 
-#### Body
+### Body
 
 This is the body associated with the request and represents the general data payload. You can view more about body in the associated [docs](./body.md)
 
@@ -120,7 +120,7 @@ let world = request.data["hello"].string
 
 This same code will work if I receive a JSON request, for example:
 
-```
+```json
 {
   "hello": "world"
 }
@@ -175,7 +175,7 @@ Key paths work on most Vapor types that can have nested key value objects. Here'
 
 We could access the data in the following ways:
 
-##### Metadata
+### Metadata
 
 Access top level values
 
@@ -183,7 +183,7 @@ Access top level values
 let type = request.data["metadata"].string // "some metadata"
 ```
 
-##### Items
+### Items
 
 Access nested values
 
@@ -191,7 +191,7 @@ Access nested values
 let items = request.data["artists", "items"] // [["name": "Van Gogh"], ["name": "Mozart"]]
 ```
 
-##### Mixing Arrays and Objects
+### Mixing Arrays and Objects
 
 Get first artists
 
@@ -199,7 +199,7 @@ Get first artists
 let first = request.data["artists", "items", 0] // ["name": "Van Gogh"]
 ```
 
-##### Array Item
+### Array Item
 
 Get key from array item
 
@@ -207,7 +207,7 @@ Get key from array item
 let firstName = request.data["artists", "items", 0, "name"] // "Van Gogh"
 ```
 
-##### Array Comprehension
+### Array Comprehension
 
 We can also smartly map an array of keys, for example, to just get the names of all of the artists, we could use the following
 
