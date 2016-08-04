@@ -89,3 +89,6 @@ menu:
                 guide-responder:
                     text: Responder
                     relativeUrl: http/responder.html
+                guide-client:
+                    text: Client
+                    relativeUrl: http/client.html
