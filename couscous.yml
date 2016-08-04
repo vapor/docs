@@ -59,6 +59,15 @@ menu:
                 guide-hash:
                     text: Hash
                     relativeUrl: guide/hash.html
+        fluent:
+            name: Fluent
+            items:
+                fluent-driver:
+                    text: Driver
+                    relativeUrl: fluent/driver.html
+                fluent-model:
+                    text: Model
+                    relativeUrl: fluent/model.html
         routing:
             name: Routing
             items:
