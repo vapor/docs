@@ -80,6 +80,12 @@ menu:
                 guide-response:
                     text: Response
                     relativeUrl: http/response.html
+                guide-response-body:
+                    text: Body
+                    relativeUrl: http/body.html
                 guide-response-representable:
                     text: ResponseRepresentable
                     relativeUrl: http/response-representable.html
+                guide-responder:
+                    text: Responder
+                    relativeUrl: http/responder.html
