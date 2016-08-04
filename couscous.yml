@@ -56,6 +56,9 @@ menu:
                 guide-validation:
                     text: Validation
                     relativeUrl: guide/validation.html
+                guide-hash:
+                    text: Hash
+                    relativeUrl: guide/hash.html
         routing:
             name: Routing
             items:
