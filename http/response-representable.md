@@ -2,6 +2,8 @@
 currentMenu: http-response-representable
 ---
 
+> Module: `import HTTP`
+
 # ResponseRepresentable
 
 Traditionally HTTP servers take a `Request` and return a `Response`. Vapor is no different, but we can take advantage of Swift's powerful protocols to be a bit more flexible to the user facing api.

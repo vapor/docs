@@ -2,6 +2,8 @@
 currentMenu: http-request
 ---
 
+> Module: `import HTTP`
+
 # Request
 
 The most common part of the `HTTP` library we'll be interacting with is the `Request` type. Here's a look at some of the most commonly used attributes in this type.
