@@ -2,6 +2,8 @@
 currentMenu: http-response
 ---
 
+> Module: `import HTTP`
+
 # Response
 
 When building endpoints, we'll often be returning responses for requests. If we're making outgoing requests, we'll be receiving them.
