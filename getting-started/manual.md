@@ -1,18 +1,22 @@
 ---
-currentMenu: getting-started-quick-start
+currentMenu: getting-started-manual
 ---
 
-# Vapor Quickstart
+# Manual Quickstart
 
-This document assumes that the appropriate version of Swift is installed for Vapor. Right now, this is visible on the [vapor](https://github.com/qutheory/vapor#-environment) section of the repository.
+Learn how to create a Vapor project without the Vapor Toolbox using just Swift 3 and the Swift Package Manager.
 
-You can run the following to check compatibility:
+> If you'd prefer to use the toolbox, learn how to install it [here](install-toolbox.md).
+
+This document assumes that the appropriate version of Swift is installed for Vapor 0.16.
+
+## Check
+
+To check that your environment is compatible, run the following script:
 
 ```bash
 curl -sL check.qutheory.io | bash
 ```
-
-> If you'd prefer to use our built in tool, you can find information [here](install-toolbox.md)
 
 ## Make new project using SwiftPM
 

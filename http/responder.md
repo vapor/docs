@@ -1,5 +1,5 @@
 ---
-currentMenu: http-response-representable
+currentMenu: http-responder
 ---
 
 > Module: `import HTTP`

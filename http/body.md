@@ -1,5 +1,5 @@
 ---
-currentMenu: http-request
+currentMenu: http-body
 ---
 
 > Module: `import HTTP`

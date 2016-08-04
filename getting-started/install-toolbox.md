@@ -6,6 +6,8 @@ currentMenu: getting-started-install-toolbox
 
 Vapor's command line interface provides shortcuts and assistance for commons tasks.
 
+> If you do not want to install the Toolbox, checkout the [Manual](manual.md) quickstart.
+
 ## Install
 
 Run the following script to install the [Toolbox](https://github.com/qutheory/toolbox).

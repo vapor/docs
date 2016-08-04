@@ -6,7 +6,7 @@ currentMenu: getting-started-install-swift-3
 
 This section assumes you have followed the operating system specific instructions for either [macOS](install-swift-3-macos.md) or [Ubuntu](install-swift-3-ubuntu.md).
 
-To use Vapor, you must have Swift 3 installed. Each version of Vapor relies on a single Development Snapshot of Swift 3. Vapor 0.15 relies on `DEVELOPMENT-SNAPSHOT-2016-07-25-a`.
+To use Vapor, you must have Swift 3 installed. Each version of Vapor relies on a single Development Snapshot of Swift 3. Vapor 0.16 relies on `DEVELOPMENT-SNAPSHOT-2016-07-25-a`.
 
 ## Swiftenv
 

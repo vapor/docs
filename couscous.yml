@@ -20,12 +20,12 @@ menu:
                 getting-started-install-swift-3:
                     text: Install Swift 3
                     relativeUrl: getting-started/install-swift-3.html
-                getting-started-quickstart:
-                    text: Manual QuickStart
-                    relativeUrl: getting-started/quickstart.html
                 getting-started-install-toolbox:
                     text: Install Toolbox
                     relativeUrl: getting-started/install-toolbox.html
+                getting-started-manual:
+                    text: Manual
+                    relativeUrl: getting-started/manual.html
                 getting-started-hello-world:
                     text: Hello, World
                     relativeUrl: getting-started/hello-world.html
@@ -74,21 +74,21 @@ menu:
         http:
             name: HTTP
             items:
-                guide-request:
+                http-request:
                   text: Request
                   relativeUrl: http/request.html
-                guide-response:
+                http-response:
                     text: Response
                     relativeUrl: http/response.html
-                guide-response-body:
+                http-body:
                     text: Body
                     relativeUrl: http/body.html
-                guide-response-representable:
+                http-response-representable:
                     text: ResponseRepresentable
                     relativeUrl: http/response-representable.html
-                guide-responder:
+                http-responder:
                     text: Responder
                     relativeUrl: http/responder.html
-                guide-client:
+                http-client:
                     text: Client
                     relativeUrl: http/client.html
