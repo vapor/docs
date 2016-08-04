@@ -202,8 +202,6 @@ extension Pokemon: ResponseRepresentable {
 Now your route closures are greatly simplified and you don't need to `import HTTP`.
 
 ```swift
-import HTTP
-
 drop.get("pokemon", Pokemon.self) { request, pokemon in
     return pokemon
 }
