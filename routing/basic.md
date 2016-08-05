@@ -96,7 +96,7 @@ drop.get("json") { request in
 }
 ```
 
-> If you are curious about what `node:` means, read more about [Node](../node/node.md)
+> If you are curious about what `node:` means, read more about [Node](https://github.com/vapor/node)
 
 ### Throwing
 
