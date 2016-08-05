@@ -72,6 +72,17 @@
                 if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
                     $('body').addClass('safari');
                 }
+
+                $('h1, h2, h3, h4, h5, h6').each(function(key, item) {
+                    var $item = $(item);
+                    var id = $item.attr('id');
+                    if (id) {
+                        var link = $('<a>');
+                        link.attr('href', '#' + id);
+                        console.log(link)
+                        $item.wrap(link);
+                    }
+                })
             });
         </script>
 
