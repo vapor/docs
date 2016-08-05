@@ -56,24 +56,12 @@ menu:
                 guide-validation:
                     text: Validation
                     relativeUrl: guide/validation.html
+                guide-provider:
+                    text: Provider
+                    relativeUrl: guide/provider.html
                 guide-hash:
                     text: Hash
                     relativeUrl: guide/hash.html
-        fluent:
-            name: Fluent
-            items:
-                fluent-driver:
-                    text: Driver
-                    relativeUrl: fluent/driver.html
-                fluent-model:
-                    text: Model
-                    relativeUrl: fluent/model.html
-                fluent-query:
-                    text: Query
-                    relativeUrl: fluent/query.html
-                fluent-relation:
-                    text: Relation
-                    relativeUrl: fluent/relation.html
         routing:
             name: Routing
             items:
@@ -89,6 +77,21 @@ menu:
                 routing-collection:
                     text: Collection
                     relativeUrl: routing/collection.html
+        fluent:
+            name: Fluent
+            items:
+                fluent-driver:
+                    text: Driver
+                    relativeUrl: fluent/driver.html
+                fluent-model:
+                    text: Model
+                    relativeUrl: fluent/model.html
+                fluent-query:
+                    text: Query
+                    relativeUrl: fluent/query.html
+                fluent-relation:
+                    text: Relation
+                    relativeUrl: fluent/relation.html
         http:
             name: HTTP
             items:
