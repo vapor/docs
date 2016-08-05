@@ -15,7 +15,7 @@ This document assumes that the appropriate version of Swift is installed for Vap
 To check that your environment is compatible, run the following script:
 
 ```bash
-curl -sL check.qutheory.io | bash
+curl -sL check.vapor.sh | bash
 ```
 
 ## Make new project using SwiftPM
@@ -58,12 +58,12 @@ import PackageDescription
 let package = Package(
     name: "HelloVapor",
     dependencies: [
-        .Package(url: "https://github.com/qutheory/vapor.git", majorVersion: 0, minor: 15)
+        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 0, minor: 16)
     ]
 )
 ```
 
-> We try to keep this document up to date, however, you can view latest releases [here](https://github.com/qutheory/vapor/releases)
+> We try to keep this document up to date, however, you can view latest releases [here](https://github.com/vapor/vapor/releases)
 
 ## Edit `main.swift`
 

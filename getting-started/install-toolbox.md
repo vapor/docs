@@ -10,10 +10,10 @@ Vapor's command line interface provides shortcuts and assistance for commons tas
 
 ## Install
 
-Run the following script to install the [Toolbox](https://github.com/qutheory/toolbox).
+Run the following script to install the [Toolbox](https://github.com/vapor/toolbox).
 
 ```sh
-curl -sL toolbox.qutheory.io | bash
+curl -sL toolbox.vapor.sh | bash
 ```
 
 > Note: You must have the correct version of Swift 3 installed.

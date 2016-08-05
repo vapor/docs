@@ -67,5 +67,5 @@ $ swiftenv versions
 To ensure that your environment has been correctly configured, run the check script.
 
 ```sh
-curl -sL check.qutheory.io | bash
+curl -sL check.vapor.sh | bash
 ```

@@ -48,9 +48,9 @@ drop.group(AuthMiddleware()) { authorized in
 You can limit the host for a group of routes.
 
 ```
-drop.group(host: "qutheory.io") { qt
-    qt.get { request in
-        // only responds to requests to qutheory.io
+drop.group(host: "vapor.codes") { vapor
+    vapor.get { request in
+        // only responds to requests to vapor.codes
     }
 }
 ```
@@ -60,7 +60,7 @@ drop.group(host: "qutheory.io") { qt
 Groups can be chained together.
 
 ```swift
-drop.grouped(host: "qutheory.io").grouped(AuthMiddleware()).group("v1") { authedSecureV1 in
+drop.grouped(host: "vapor.codes").grouped(AuthMiddleware()).group("v1") { authedSecureV1 in
     // add routes here
 }
 ```
