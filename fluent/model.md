@@ -121,6 +121,14 @@ final class User {
 
 Here we are deleting the table named `users`.
 
+### Droplet
+
+To run these prepations when the applications boots, you must add the Model to the `Droplet`.
+
+```swift
+let drop = Droplet(preparations: [User.self])
+```
+
 ## Full Model
 
 This is what our final `User` model looks like:
@@ -183,6 +191,14 @@ Newly created models can be saved to the database.
 var user = User(name: "Vapor")
 try user.save()
 print(user.id) // prints the new id
+```
+
+### Delete
+
+Persisted models with identifiers can be deleted.
+
+```swift
+try user.delete()
 ```
 
 ## Model vs. Entity

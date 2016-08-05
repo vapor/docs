@@ -68,6 +68,12 @@ menu:
                 fluent-model:
                     text: Model
                     relativeUrl: fluent/model.html
+                fluent-query:
+                    text: Query
+                    relativeUrl: fluent/query.html
+                fluent-relation:
+                    text: Relation
+                    relativeUrl: fluent/relation.html
         routing:
             name: Routing
             items:
