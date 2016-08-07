@@ -13,6 +13,7 @@ Here is an example of a route collection for the `v1` portion of an API.
 ```swift
 import Vapor
 import HTTP
+import Routing
 
 class V1Collection: RouteCollection {
     typealias Wrapped = HTTP.Responder
