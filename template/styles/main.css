@@ -48,8 +48,7 @@ a.logo {
   height: 100%;
   width: 280px;
   margin: 0 auto;
-  padding-left: 52px;
-  z-index: 9; }
+  padding-left: 52px; }
   @media screen and (min-width: 720px) {
     a.logo {
       padding-left: 72px;
@@ -102,8 +101,7 @@ header {
     padding: 0;
     bottom: 5px;
     right: 0;
-    text-align: center;
-    z-index: 8; }
+    text-align: center; }
     @media screen and (max-width: 720px) {
       header ul {
         left: 0; } }
