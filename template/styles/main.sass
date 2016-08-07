@@ -1,0 +1,341 @@
+$tablet: 720px
+$blue: #94a9d1
+
+html, body
+    margin: 0
+    padding: 0
+    font-size: 14px
+    line-height: 1.5
+    font-family: -webkit-system-font, sans-serif
+
+    @media screen and (min-width: $tablet)
+        width: 100%
+        height: 100%
+
+a
+    color: #94a9d1
+    text-decoration: none
+    border-bottom: 1px dotted
+
+a:hover
+    color: #f6cfcf
+
+h1
+    font-size: 38px
+    @media screen and (min-width: $tablet)
+        font-size: 42px
+    font-weight: 200
+
+h2
+    font-size: 30px
+    font-weight: 400
+
+h3
+    font-size: 24px
+    font-weight: 400
+
+h1, h2, h3, h4, h5, h6
+    color: #333
+    margin: 0
+    font-family: 'Quicksand'
+    letter-spacing: -1px
+
+\:target
+    background: #ffff99
+
+a.logo
+    display: block
+    position: relative
+    border-bottom: none
+    height: 100%
+    width: 280px
+    margin: 0 auto
+    padding-left: 52px
+
+    @media screen and (min-width: $tablet)
+        padding-left: 72px
+        width: 100%
+
+    h1
+        margin: 0
+        font-size: 36px
+        line-height: 96px
+        text-transform: uppercase
+
+        @media screen and (min-width: $tablet)
+            font-size: 36px
+
+        em
+            font-style: normal
+            color: rgba(0, 0, 0, 0.4)
+            text-transform: none
+
+    img
+        left: 6px
+        top: 24px
+        position: absolute
+        height: 48px
+
+        @media screen and (min-width: $tablet)
+            left: 24px
+            top: 24px
+            height: 48px
+
+*
+    box-sizing: border-box
+
+header
+    overflow: hidden
+    border-bottom: 3px solid #94a9d1
+    height: 132px
+    position: relative
+
+    @media screen and (min-width: $tablet)
+        height: 96px
+        position: absolute
+        left: 0
+        right: 0
+        z-index: 10
+
+        background: rgba(255, 255, 255, 0.95)
+
+        .safari &
+            background: rgba(255, 255, 255, 0.5)
+            -webkit-backdrop-filter: blur(10px)
+            
+
+
+    ul
+        position: absolute
+        margin: 0
+        padding: 0
+        bottom: 5px
+        left: 0
+        right: 0
+        text-align: center
+
+        @media screen and (min-width: $tablet)
+            text-align: right
+            right: 24px
+            top: 24px
+            height: 100%
+
+        li
+            display: inline-block
+            line-height: 48px
+
+            a
+                padding: 0 6px
+                display: block
+                border-bottom: none
+
+a.toggle
+    @media screen and (min-width: $tablet)
+        display: none
+
+    position: absolute
+
+    &.close
+        top: 12px
+        right: 0
+        z-index: 20
+        color: white
+        font-size: 48px
+        line-height: 48px
+        height: 72px
+        width: 72px
+        padding: 12px
+        border-bottom: none
+        text-align: center
+
+    &.show
+        text-align: center
+        border-bottom: none
+        background: $blue
+        color: white
+        right: -36px
+        top: 50%
+        height: 48px
+        width: 36px
+        margin-top: -24px
+        line-height: 48px
+        border-bottom-right-radius: 5px
+        border-top-right-radius: 5px
+        z-index: 15
+
+        transition: right 0.25s
+
+        &.hide
+            right: -12px
+
+        body.toggled &
+            right: -36px
+
+
+nav
+    font-size: 14px
+    border-right: 1px solid rgba(0, 0, 0, 0.05)
+    width: 100%
+    position: fixed
+    left: -100%
+    transition: left 0.25s
+
+    top: 0
+    right: 0
+    bottom: 0
+    display: block
+    background: $blue
+
+    a
+        border-bottom: none
+        color: white
+        font-size: 16px
+        line-height: 32px
+        height: 32px
+
+    h3
+        text-transform: uppercase
+        margin-top: 12px
+        font-size: 18px
+        color: white
+        font-weight: 600
+
+    body.toggled &
+        left: 0
+
+    @media screen and (min-width: $tablet)
+        background: white
+        display: block
+        position: absolute
+        left: 0
+        top: 0
+        bottom: 0
+        width: 216px
+        z-index: 8
+        padding-top: 96px
+
+        h3
+            color: #bbb
+            font-size: 14px
+            margin-bottom: 6px
+            font-weight: 400
+
+
+        a
+            border-bottom: none
+            font-weight: 200
+            font-size: 14px
+            display: block
+            color: #777
+            font-size: 12px
+            height: 24px
+
+            &:hover
+                color: #94a9d1
+
+
+
+
+
+    ul, ul li
+        list-style: none
+        padding: 0
+        margin: 0
+
+        &.active a
+            @media screen and (min-width: $tablet)
+                color: #94a9d1
+            font-weight: 600
+
+    ul
+        margin-bottom: 18px
+
+div.scroll
+    padding: 22px
+    overflow-y: scroll
+    height: 100%
+    z-index: 10
+    -webkit-overflow-scrolling: touch
+
+main
+    color: #555
+    font-weight: 200
+    width: 100%
+    padding: 24px
+
+    @media screen and (min-width: $tablet)
+        height: 100%
+        position: absolute
+        position: relative
+        z-index: 6
+
+        top: 0
+        bottom: 0
+        right: 0
+        left: 0
+
+        padding: 22px
+        padding-top: 110px
+        padding-left: 240px
+        overflow-y: scroll
+        max-width: 1440px
+
+    a.edit
+        position: absolute
+        top: 146px
+        @media screen and (min-width: $tablet)
+            top: 122px
+        right: 24px
+        border-bottom: none
+
+    h1
+        margin-bottom: 12px
+
+    h2
+        margin-top: 24px
+        margin-bottom: 12px
+        border-bottom: 1px dotted rgba(0, 0, 0, 0.10)
+
+    h3
+        margin-top: 18px
+
+    p
+        margin-top: 0
+        margin-bottom: 12px
+        line-height: 1.75
+
+    blockquote
+        background: rgba(247, 202, 201, 0.2)
+        margin-top: 18px
+        margin-bottom: 18px
+        margin-left: 0
+        padding: 6px
+        padding-left: 12px
+        border-left: 5px solid #f6cfcf
+
+        p
+            margin: 0
+            padding: 0
+
+pre, code
+    font-size: 12px
+    font-family: 'Source Code Pro', monospace
+
+p code, li code
+    background: #fbfbfb
+    border-radius: 5px
+    padding: 3px 5px
+    display: inline-block
+    color: #92a0b9
+    box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.1)
+
+pre
+    margin-top: 12px
+    margin-bottom: 15px
+    padding: 5px
+    background: #fbfbfb
+    border-radius: 10px
+    box-shadow: 0 3px 0px 0px rgba(0, 0, 0, 0.1)
+
+img
+    max-width: 100%

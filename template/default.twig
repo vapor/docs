@@ -37,7 +37,12 @@
             </ul>
         </header>
 
+
+
         <nav>
+            <a href="#" class="toggle show">☰</a>
+            <a href="#" class="toggle close">&times;</a>
+
             <div class="scroll">
             {% for section in menu.sections %}
                 <section>
@@ -79,10 +84,59 @@
                     if (id) {
                         var link = $('<a>');
                         link.attr('href', '#' + id);
-                        console.log(link)
                         $item.wrap(link);
                     }
                 })
+
+                $('a.toggle').on('click', function(e){
+                    e.preventDefault();
+                    console.log('hi');
+                    var body = $('body');
+                    if (body.hasClass('toggled')) {
+                        body.removeClass('toggled');
+                    } else {
+                        body.addClass('toggled');
+                    }
+                })
+
+                var lastScroll = 0;
+                var isUp = false;
+                var win = $(window);
+
+                win.on('scroll', function(){
+                    var scrollTop = win.scrollTop();
+                    var scrollBottom = win.scrollTop() + win.height();
+                    var docHeight = $(document).height();
+
+                    if ( scrollTop < 0 || scrollBottom >= docHeight ){
+                        return;
+                    }
+
+                    if (scrollTop > (lastScroll + 0) && scrollTop >= 0) {
+                        if (!isUp) {
+                            $('a.toggle.show').addClass('hide')
+                        }
+                        isUp = true;
+                        lastScroll = scrollTop;
+                    } else if (scrollTop < (lastScroll - 0)) {
+                        if (isUp) {
+                            $('a.toggle.show').removeClass('hide')
+                        }
+                        isUp = false;
+                        lastScroll = scrollTop;
+                    }
+                });
+
+                // var lastScrollTop = 0;
+                // $(window).scroll(function(event){
+                //    var st = $(this).scrollTop();
+                //    if (st > lastScrollTop){
+                //         $('a.toggle.show').addClass('hide')
+                //    } else {
+                //         $('a.toggle.show').removeClass('hide')
+                //    }
+                //    lastScrollTop = st;
+                // });
             });
         </script>
 
