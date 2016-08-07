@@ -167,7 +167,8 @@ nav {
   right: 0;
   bottom: 0;
   display: block;
-  background: #94a9d1; }
+  background: #94a9d1;
+  z-index: 10; }
   nav a {
     border-bottom: none;
     color: white;
