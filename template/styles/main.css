@@ -173,7 +173,8 @@ nav {
     color: white;
     font-size: 16px;
     line-height: 32px;
-    height: 32px; }
+    height: 32px;
+    display: block; }
   nav h3 {
     text-transform: uppercase;
     margin-top: 12px;
@@ -202,7 +203,6 @@ nav {
         border-bottom: none;
         font-weight: 200;
         font-size: 14px;
-        display: block;
         color: #777;
         font-size: 12px;
         height: 24px; }
