@@ -171,7 +171,7 @@ nav {
   z-index: 10; }
   nav a {
     border-bottom: none;
-    color: white;
+    color: rgba(255, 255, 255, 0.9);
     font-size: 16px;
     line-height: 32px;
     height: 32px;
