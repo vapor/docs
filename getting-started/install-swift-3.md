@@ -43,8 +43,19 @@ swiftenv 1.1.0
 
 Now that Swiftenv has been installed, the development snapshot of Swift 3 can be downloaded.
 
+for mac it is
 ```sh
-swiftenv install DEVELOPMENT-SNAPSHOT-2016-07-25-a
+swiftenv install https://swift.org/builds/development/xcode/swift-DEVELOPMENT-SNAPSHOT-2016-07-25-a/swift-DEVELOPMENT-SNAPSHOT-2016-07-25-a-osx.pkg
+```
+
+for ubuntu 15.10 it is
+```
+swiftenv install https://swift.org/builds/development/ubuntu1510/swift-DEVELOPMENT-SNAPSHOT-2016-07-25-a/swift-DEVELOPMENT-SNAPSHOT-2016-07-25-a-ubuntu15.10.tar.gz
+```
+
+for ubuntu 14 it is
+```
+swiftenv install https://swift.org/builds/development/ubuntu1404/swift-DEVELOPMENT-SNAPSHOT-2016-07-25-a/swift-DEVELOPMENT-SNAPSHOT-2016-07-25-a-ubuntu14.04.tar.gz
 ```
 
 This will download and install the snapshot. You can then make that snapshot globally available as `swift`.
