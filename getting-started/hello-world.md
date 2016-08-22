@@ -99,7 +99,7 @@ Boot up the server by running the following command.
 vapor run serve
 ```
 
-You should see a message `Server starting...`. You can now visit `http://localhost:8080/plaintext` in your browser.
+You should see a message `Server starting...`. You can now visit `http://localhost:8080/hello` in your browser.
 
 Note: Certain port numbers require super user access to bind. Simply run `sudo vapor run` to allow access. If you decide to run on a port besides `80`, make sure to direct your browser accordingly.
 
