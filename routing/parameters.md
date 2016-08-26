@@ -8,7 +8,7 @@ Traditional web frameworks leave room for error in routing by using strings for 
 
 ## Type Safe
 
-To create a type safe route simply replace one of the parts of your path with a `Type`. 
+To create a type safe route simply replace one of the parts of your path with a `Type`.
 
 ```swift
 drop.get("users", Int.self) { request, userId in
@@ -19,7 +19,7 @@ drop.get("users", Int.self) { request, userId in
 This creates a route that matches `users/:id` where the `:id` is an `Int`. Here's what it would look like using manual route parameters.
 
 ```swift
-drop.get("users", ":id") { request in 
+drop.get("users", ":id") { request in
 	guard let userId = request.parameters["id"].int else {
 		throw Abort.badRequest
 	}
@@ -28,7 +28,7 @@ drop.get("users", ":id") { request in
 }
 ```
 
-Here you can see that type safe routing saves ~3 lines of code and also prevents runtime errors like mispelling `:id`.
+Here you can see that type safe routing saves ~3 lines of code and also prevents runtime errors like misspelling `:id`.
 
 ## String Initializable
 
@@ -38,7 +38,7 @@ Any type that conforms to `StringInitializable` can be used as a type-safe routi
 - Int
 - Model
 
-`String` is the most generic and always matches. `Int` only matches when the string supplied can be turned into an integer. `Model` only matches when the string, used as an identifier, can be used to find the model in the database. 
+`String` is the most generic and always matches. `Int` only matches when the string supplied can be turned into an integer. `Model` only matches when the string, used as an identifier, can be used to find the model in the database.
 
 Our previous example with users can be further simplified.
 
@@ -126,7 +126,7 @@ Manual request parameters also work with [groups](group.md).
 
 ```swift
 let userGroup = drop.grouped("users", ":userId")
-userGroup.get("messages") { req in 
+userGroup.get("messages") { req in
     let user = try req.parameters.extract("userId") as User
 }
 ```

@@ -97,7 +97,7 @@ extension VPRFile: HTTP.BodyRepresentable {
 }
 ```
 
-> You may have noticed above, that the protocol throws, but our implementation does not. This is compeletely valid in Swift and will allow you to not throw if you're ever calling the function manually.
+> You may have noticed above, that the protocol throws, but our implementation does not. This is completely valid in Swift and will allow you to not throw if you're ever calling the function manually.
 
 Now we're able to include our `VPR` file directly in our `Responses`.
 

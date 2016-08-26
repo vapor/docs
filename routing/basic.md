@@ -13,7 +13,7 @@ Vapor has a plethora of functionality for routing including route builders, grou
 The most basic route includes a method, path, and closure.
 
 ```swift
-drop.get("welcome") { request in 
+drop.get("welcome") { request in
     return "Hello"
 }
 ```
@@ -21,7 +21,7 @@ drop.get("welcome") { request in
 The standard HTTP methods are available including `get`, `post`, `put`, `patch`, `delete`, and `options`.
 
 ```swift
-drop.post("form") { request in 
+drop.post("form") { request in
     return "Submitted with a POST request"
 }
 ```
@@ -42,7 +42,7 @@ You can also use `/`, but commas are often easier to type and work better with t
 
 ## Alternate
 
-An alternate syntax that accepts a `Method` as the first parameter is also available. 
+An alternate syntax that accepts a `Method` as the first parameter is also available.
 
 ```swift
 drop.add(.trace, "welcome") { request in
@@ -54,7 +54,7 @@ This may be useful if you want to register routes dynamically or use a less comm
 
 ## Request
 
-Each route closure is given a single [Request](../http/request.md). This contains all of the data associated with the request that led to your route closure being called. 
+Each route closure is given a single [Request](../http/request.md). This contains all of the data associated with the request that led to your route closure being called.
 
 ## Response Representable
 
@@ -132,7 +132,7 @@ If you want to override this behavior, remove the `AbortMiddleware` from the `Dr
 Fallback routes allow you to match multiple layers of nesting slashes.
 
 ```swift
-app.get("anything", "*") { request in 
+app.get("anything", "*") { request in
     return "Matches anything after /anything"
 }
 ```
