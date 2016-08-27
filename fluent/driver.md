@@ -20,7 +20,7 @@ Not all drivers have providers yet, and not all drivers or providers are up to d
 
 ## Creating a Driver
 
-Fluent is a power, database agnostic package for persisting your models. It was designed from the beginnign to work with both SQL and NoSQL databases alike.
+Fluent is a powerful, database agnostic package for persisting your models. It was designed from the beginning to work with both SQL and NoSQL databases alike.
 
 Any database that conforms to `Fluent.Driver` will be able to power the models in Fluent and Vapor.
 
@@ -29,7 +29,7 @@ The protocol itself is fairly simple:
 ```swift
 public protocol Driver {
     var idKey: String { get }
-	func query<T: Entity>(_ query: Query<T>) throws -> Node
+    func query<T: Entity>(_ query: Query<T>) throws -> Node
     func schema(_ schema: Schema) throws
     func raw(_ raw: String, _ values: [Node]) throws -> Node
 }

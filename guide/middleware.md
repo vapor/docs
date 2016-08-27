@@ -59,7 +59,7 @@ The response is returned and will chain back up any remaining middleware and bac
 
 ## Request
 
-The middleware can also modify or intereact with the request.
+The middleware can also modify or interact with the request.
 
 ```swift
 func respond(to request: Request, chainingTo next: Responder) throws -> Response {
@@ -98,7 +98,7 @@ app.get("foo") { request in
 }
 ```
 
-This solution works, but it would get repetative if repeated throughout multiple routes. It can also easily lead to code duplication. Luckily, this error could be caught in a middleware instead.
+This solution works, but it would get repetitive if repeated throughout multiple routes. It can also easily lead to code duplication. Luckily, this error could be caught in a middleware instead.
 
 ```swift
 final class FooErrorMiddleware: Middleware {
@@ -146,7 +146,7 @@ final class PokemonMiddleware: Middleware {
 
     func respond(to request: Request, chainingTo next: Responder) throws -> Response {
         let response = try next.respond(to: request)
-        
+
         if let pokemon = response.pokemon {
             request.accept.prefers("html") {
                 response.view = try drop.view("pokemon.mustache", context: pokemon)
@@ -210,4 +210,3 @@ drop.get("pokemon", Pokemon.self) { request, pokemon in
 Middleware is incredibly powerful. Combined with extensions, it allows you to add functionality that feels native to the framework.
 
 For those that are curious, this is how Vapor manages JSON internally. Whenever you return JSON in a closure, it sets the `json: JSON?` property on `Response`. The `JSONMiddleware` then detects this property and serializes the JSON into the body of the response.
-
