@@ -44,13 +44,13 @@ swiftenv 1.1.0
 Now that Swiftenv has been installed, the development snapshot of Swift 3 can be downloaded.
 
 ```sh
-swiftenv install DEVELOPMENT-SNAPSHOT-2016-07-25-a
+swiftenv install DEVELOPMENT-SNAPSHOT-2016-08-18-a
 ```
 
 This will download and install the snapshot. You can then make that snapshot globally available as `swift`.
 
 ```sh
-swiftenv global DEVELOPMENT-SNAPSHOT-2016-07-25-a
+swiftenv global DEVELOPMENT-SNAPSHOT-2016-08-18-a
 ```
 
 ### Verify
@@ -59,7 +59,7 @@ Run `swiftenv versions` to list the versions of Swift 3 installed.
 
 ```sh
 $ swiftenv versions
-* DEVELOPMENT-SNAPSHOT-2016-07-25-a (set by /Users/vapor/.swiftenv/version)
+* DEVELOPMENT-SNAPSHOT-2016-08-18-a (set by /Users/vapor/.swiftenv/version)
 ```
 
 ## Check
