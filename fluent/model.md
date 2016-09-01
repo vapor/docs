@@ -211,6 +211,10 @@ public protocol Model: Entity, JSONRepresentable, StringInitializable, ResponseR
 
 As can be seen in the protocol, Vapor models can automatically convert to `JSON`, `Response`, and even be used in type-safe routing.
 
+## Options
 
-
+Change the table/collection name 
+```swift
+static var entity = "new_name"
+```
 
