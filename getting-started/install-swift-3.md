@@ -6,7 +6,7 @@ currentMenu: getting-started-install-swift-3
 
 This section assumes you have followed the operating system specific instructions for either [macOS](install-swift-3-macos.md) or [Ubuntu](install-swift-3-ubuntu.md).
 
-To use Vapor, you must have Swift 3 installed. Each version of Vapor relies on a single Development Snapshot of Swift 3. Vapor 0.16 relies on `DEVELOPMENT-SNAPSHOT-2016-07-25-a`.
+To use Vapor, you must have Swift 3 installed. Each version of Vapor relies on a single Development Snapshot of Swift 3. Vapor 0.18 relies on `DEVELOPMENT-SNAPSHOT-2016-09-06-a`.
 
 ## Swiftenv
 
@@ -44,13 +44,13 @@ swiftenv 1.1.0
 Now that Swiftenv has been installed, the development snapshot of Swift 3 can be downloaded.
 
 ```sh
-swiftenv install DEVELOPMENT-SNAPSHOT-2016-07-25-a
+swiftenv install DEVELOPMENT-SNAPSHOT-2016-09-06-a
 ```
 
 This will download and install the snapshot. You can then make that snapshot globally available as `swift`.
 
 ```sh
-swiftenv global DEVELOPMENT-SNAPSHOT-2016-07-25-a
+swiftenv global DEVELOPMENT-SNAPSHOT-2016-09-06-a
 ```
 
 ### Verify
@@ -59,7 +59,7 @@ Run `swiftenv versions` to list the versions of Swift 3 installed.
 
 ```sh
 $ swiftenv versions
-* DEVELOPMENT-SNAPSHOT-2016-07-25-a (set by /Users/vapor/.swiftenv/version)
+* DEVELOPMENT-SNAPSHOT-2016-09-06-a (set by /Users/vapor/.swiftenv/version)
 ```
 
 ## Check

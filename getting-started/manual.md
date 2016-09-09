@@ -8,7 +8,7 @@ Learn how to create a Vapor project without the Vapor Toolbox using just Swift 3
 
 > If you'd prefer to use the toolbox, learn how to install it [here](install-toolbox.md).
 
-This document assumes that the appropriate version of Swift is installed for Vapor 0.16.
+This document assumes that the appropriate version of Swift is installed for Vapor 0.18.
 
 ## Check
 

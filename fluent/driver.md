@@ -16,7 +16,7 @@ Search GitHub for:
 - [Fluent Drivers](https://github.com/vapor?utf8=✓&query=-driver)
 - [Vapor Providers](https://github.com/vapor?utf8=✓&query=-provider)
 
-Not all drivers have providers yet, and not all drivers or providers are up to date with the latest Vapor 0.16. This is a great way to contribute!
+Not all drivers have providers yet, and not all drivers or providers are up to date with the latest Vapor 0.18. This is a great way to contribute!
 
 ## Creating a Driver
 
