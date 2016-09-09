@@ -76,4 +76,4 @@ This can be used as a jumping off point for applications looking to implement fe
 
 ## Client
 
-The `HTTP.Client` is itself a `Responder` although, instead of handling the `Request` itsself, it passes it on to the underlying uri. 
+The `HTTP.Client` is itself a `Responder` although, instead of handling the `Request` itself, it passes it on to the underlying uri. 

@@ -36,7 +36,7 @@ let owner = try pet.parent(pet.ownerId, Owner.self).get()
 
 The parent method requires the foreign key for the parent as well as the type.
 
-### Convenience 
+### Convenience
 
 To make requesting a parent easier, a method can be added to the model.
 
@@ -50,7 +50,7 @@ extension Pet {
 
 Since we are extending `Pet`, we no longer need to use `pet.` before the `ownerId`. Furthermore, because we are providing the type information about `Owner` in the return type of the method, we no longer need to pass that as an argument.
 
-The `Parent<T>` type is a queryable object, meaning you could `delete()` the parent, `filter()`, etc. 
+The `Parent<T>` type is a queryable object, meaning you could `delete()` the parent, `filter()`, etc.
 
 ```swift
 try pet.owner().delete()
@@ -64,7 +64,7 @@ let owner = try pet.owner().get()
 
 ## Children
 
-`Children` are the opposite side of the `Parent` relationship. Assuming the schema from the previous example, the pets could be retreived from an owner like so:
+`Children` are the opposite side of the `Parent` relationship. Assuming the schema from the previous example, the pets could be retrieved from an owner like so:
 
 ```swift
 let owner: Owner = ...
@@ -95,7 +95,7 @@ let coolPets = try owner.pets().filter("type", .in, ["Dog", "Ferret"]).all()
 
 ## Siblings
 
-`Sibilings` work differently from `Children` or `Parent` since they require a `Pivot`. 
+`Siblings` work differently from `Children` or `Parent` since they require a `Pivot`.
 
 For an example, let's say we want to allow our pets to have multiple toys. But we also want the toys to be shared by multiple pets. We need a pivot entity for this.
 
@@ -139,7 +139,7 @@ extension Toy {
 }
 ```
 
-Now you are free to query pets and toys simiarly to children.
+Now you are free to query pets and toys similarly to children.
 
 ```swift
 let pet: Pet = ...

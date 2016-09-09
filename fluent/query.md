@@ -4,7 +4,7 @@ currentMenu: fluent-query
 
 # Query
 
-The `Query` class is what powers every interaction with Fluent. Whether you're fetching a model with `.find()` or saving to the database, there is a `Query` involved somewhere. 
+The `Query` class is what powers every interaction with Fluent. Whether you're fetching a model with `.find()` or saving to the database, there is a `Query` involved somewhere.
 
 ## Querying Models
 
@@ -14,7 +14,7 @@ Every type that conforms to [Model](model.md) gets a static `.query()` method.
 let query = try User.query()
 ```
 
-This is how you can create a `Query<User>`. 
+This is how you can create a `Query<User>`.
 
 ### No Database
 
@@ -24,11 +24,11 @@ The `.query()` method is marked with `try` because it can throw an error if the 
 User.database = drop.database
 ```
 
-This property is set automatically when you pass the Model as a preparation. 
+This property is set automatically when you pass the Model as a preparation.
 
 ## Filter
 
-The most common types of queries involve filtering data. 
+The most common types of queries involve filtering data.
 
 ```swift
 let smithsQuery = try User.query().filter("last_name", "Smith")
@@ -61,7 +61,7 @@ Partially matching filters can also be applied.
 let statesWithNew = try State.query().filter("name", contains: "New")
 ```
 
-## Retrieving 
+## Retrieving
 
 There are two methods for running a query.
 
@@ -75,7 +75,7 @@ let usersOver21 = try User.query().filter("age", .greaterThanOrEquals, 21).all()
 
 ### First
 
-The first matching entity can be fetch. This returns an optional `Model?`, in this case a user.
+The first matching entity can be fetched. This returns an optional `Model?`, in this case a user.
 
 ```swift
 let firstSmith = try User.query().filter("last_name", "Smith").first()
@@ -111,7 +111,7 @@ Custom foreign keys can be provided through overloads to `union`.
 
 ## Raw Queries
 
-Since Fluent is focused on interacting with models, each Query requires a model type. If you want to do raw database queries that aren't based on a model, you should use the underlying Fluent Driver to do so. 
+Since Fluent is focused on interacting with models, each Query requires a model type. If you want to do raw database queries that aren't based on a model, you should use the underlying Fluent Driver to do so.
 
 ```swift
 if let mysql = drop.database?.driver as? MySQLDriver {
