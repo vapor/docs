@@ -58,7 +58,7 @@ import PackageDescription
 let package = Package(
     name: "HelloVapor",
     dependencies: [
-        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 0, minor: 16)
+        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 0, minor: 18)
     ]
 )
 ```
