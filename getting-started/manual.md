@@ -94,4 +94,4 @@ swift build
 
 ## View
 
-Go to your favorite browser and visit `http://localhost:8000/hello`
+Go to your favorite browser and visit `http://localhost:8080/hello`
