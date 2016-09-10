@@ -78,7 +78,7 @@ drop.get("/hello") { _ in
   return "Hello Vapor"
 }
 
-try drop.serve()
+drop.serve()
 ```
 
 ## Build and Run
