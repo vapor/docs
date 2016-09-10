@@ -58,7 +58,7 @@ import PackageDescription
 let package = Package(
     name: "HelloVapor",
     dependencies: [
-        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 0, minor: 16)
+        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 0, minor: 18)
     ]
 )
 ```
@@ -78,7 +78,7 @@ drop.get("/hello") { _ in
   return "Hello Vapor"
 }
 
-try drop.serve()
+drop.serve()
 ```
 
 ## Build and Run
@@ -94,4 +94,4 @@ swift build
 
 ## View
 
-Go to your favorite browser and visit `http://localhost:8000/hello`
+Go to your favorite browser and visit `http://localhost:8080/hello`
