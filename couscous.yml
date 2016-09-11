@@ -69,8 +69,11 @@ menu:
                     text: Basic
                     relativeUrl: routing/basic.html
                 routing-parameters:
-                    text: Parameters
+                    text: Route Parameters
                     relativeUrl: routing/parameters.html
+                routing-query-parameters:
+                    text: Query Parameters
+                    relativeUrl: routing/query-parameters.html
                 routing-group:
                     text: Group
                     relativeUrl: routing/group.html
