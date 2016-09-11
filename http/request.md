@@ -36,7 +36,7 @@ let query = request.uri.query // query=hi
 let fragment = request.uri.fragment // fragments-too
 ```
 
-### Parameters
+### Route Parameters
 
 The url parameters associated with the request. For example, if we have a path registered as `hello/:name/age/:age`, we would be able to access those in our request, like so:
 
@@ -55,6 +55,7 @@ let age = try request.parameters.extract("age") as Int
 These extract functions can cast to any `NodeInitializable` type, including your own custom types. Make sure to check out [Node](https://github.com/vapor/node) for more info.
 
 > Note: Vapor also provides type safe routing in the routing section of our docs.
+
 
 ### Headers
 
@@ -146,12 +147,15 @@ To access JSON directly on a given request, use the following:
 let json = request.json["hello"]
 ```
 
-## Query
+## Query Parameters
 
 The same applies to query convenience:
 
 ```swift
-let query = request.query["hello"]
+let query = request.query?["hello"]  // String?
+let name = request.query?["name"]?.string // String?
+let age = request.query?["age"]?.int // Int?
+let rating = request.query?["rating"]?.double // Double?
 ```
 
 ## Key Paths
