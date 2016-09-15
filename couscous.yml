@@ -17,9 +17,6 @@ menu:
                 getting-started-install-swift-3-ubuntu:
                     text: Install Swift 3: Ubuntu
                     relativeUrl: getting-started/install-swift-3-ubuntu.html
-                getting-started-install-swift-3:
-                    text: Install Swift 3
-                    relativeUrl: getting-started/install-swift-3.html
                 getting-started-install-toolbox:
                     text: Install Toolbox
                     relativeUrl: getting-started/install-toolbox.html

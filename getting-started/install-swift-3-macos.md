@@ -4,29 +4,30 @@ currentMenu: getting-started-install-swift-3-macos
 
 # Install Swift 3: macOS
 
-To use Swift 3 on macOS, you need to have Xcode 8 installed and selected.
+To use Swift 3 on macOS, you just need to have Xcode 8 installed.
 
-## Download
+## Install Xcode
 
-To download Xcode 8, visit [Apple Developer Downloads](https://developer.apple.com/download/).
+Install [Xcode 8](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) from the Mac App Store.
 
-![Developer Downloads](https://cloud.githubusercontent.com/assets/1342803/17273384/12b603b0-5681-11e6-9034-d731efdf5a7b.png)
+[![Xcode 8](https://cloud.githubusercontent.com/assets/1342803/18537674/2ddd8e9c-7ad5-11e6-9bc2-7155d57d20ec.png)](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
 
+### Open Xcode
 
-## Install
+After Xcode 8 has been downloaded, you must open it to finish the installation.
 
-After Xcode 8 has downloaded, drag it into your Applications folder and open it. It may take a while to verify the download.
+## Check
 
-## Select
+Double check the installation was successful by running:
 
-Select Xcode 8 for your Command Line Tools.
+```sh
+curl -sL check.vapor.sh | bash
+```
 
-- Open Xcode 8 and go to Preferences (`cmd`+`,`)
-- Select the Locations tab
-- Under Command Line Tools choose `Xcode 8.0 (xxxxx)`
+## Toolbox
 
-![Xcode Preferences](https://cloud.githubusercontent.com/assets/1342803/17273391/51d2e1ee-5681-11e6-8460-982ccc55f758.png)
+You can now move on to [Install Toolbox](install-toolbox.md)
 
-## Swift
+## Swift.org
 
-You can now move on to [Install Swift 3](install-swift-3.md)
+Check out [Swift.org](https://swift.org)'s extensive guides if you need more detailed instructions for installing Swift 3.0.
