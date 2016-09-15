@@ -4,11 +4,13 @@ currentMenu: getting-started-manual
 
 # Manual Quickstart
 
-Learn how to create a Vapor project without the Vapor Toolbox using just Swift 3 and the Swift Package Manager.
+Learn how to create a Vapor project _without_ the Toolbox using just Swift 3 and the Swift Package Manager.
 
-> If you'd prefer to use the toolbox, learn how to install it [here](install-toolbox.md).
+> If you'd prefer to use the Toolbox, learn how to install it [here](install-toolbox.md).
 
-This document assumes that the appropriate version of Swift is installed for Vapor 0.18.
+This document assumes that you have Swift 3 installed.
+
+> Note: If you've installed the Toolbox, follow the toolbox guide [here](hello-world.md).
 
 ## Check
 

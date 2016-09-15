@@ -24,10 +24,26 @@ final class VersionMiddleware: Middleware {
 }
 ```
 
-We then add this middleware to our `Droplet`.
+We then supply this middleware to our `Droplet`.
 
 ```swift
-drop.middleware.append(VersionMiddleware())
+let drop = Droplet(availableMiddleware: [
+    "version": VersionMiddleware()
+])
+```
+
+## Middleware.json
+
+Once the middleware has been supplied, enable it in your `Config/middleware.json` file.
+
+```json
+{
+    "server": [
+        ...
+        "version"
+    ],
+    ...
+}
 ```
 
 You can imagine our `VersionMiddleware` sitting in the middle of a chain that connects the client and our server. Every request and response that hits our server must go through this chain of middleware.

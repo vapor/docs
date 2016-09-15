@@ -6,6 +6,8 @@ currentMenu: getting-started-hello-world
 
 This section assumes you have installed Swift 3 and the Vapor Toolbox and have verified they are working.
 
+> Note: If you don't want to use the Toolbox, follow the [manual guide](manual.md).
+
 ## New Project
 
 Let's start by creating a new project called Hello, World

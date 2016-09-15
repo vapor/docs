@@ -10,7 +10,7 @@ Vapor's command line interface provides shortcuts and assistance for commons tas
 
 > If you do not want to install the Toolbox, checkout the [Manual](manual.md) quickstart.
 
-## Install
+### Install
 
 Run the following script to install the [Toolbox](https://github.com/vapor/toolbox).
 
@@ -20,7 +20,7 @@ curl -sL toolbox.vapor.sh | bash
 
 > Note: You must have the correct version of Swift 3 installed.
 
-## Verify
+### Verify
 
 Make sure the Toolbox installed successfully by running the help query. You should see a print out of the available commands. You can run the `--help` option on any Toolbox command.
 
@@ -28,10 +28,14 @@ Make sure the Toolbox installed successfully by running the help query. You shou
 vapor --help
 ```
 
-## Updating
+### Updating
 
 The toolbox can update itself. This may be useful if you experience any issues in the future.
 
 ```sh
 vapor self update
 ```
+
+## Create A Project
+
+Now that you have installed the Toolbox, you can create your first Vapor project following the [Hello, World guide](hello-world.md).
