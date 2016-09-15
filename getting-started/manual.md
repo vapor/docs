@@ -26,8 +26,8 @@ Open your terminal
 
 ```bash
 cd ~/Desktop
-mkdir HelloVapor
-cd HelloVapor
+mkdir Hello
+cd Hello
 swift package init --type executable
 ```
 
@@ -56,7 +56,7 @@ And add Vapor as a dependency. Here's how your file will look.
 import PackageDescription
 
 let package = Package(
-    name: "HelloVapor",
+    name: "Hello",
     dependencies: [
         .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 0, minor: 18)
     ]
@@ -78,7 +78,7 @@ drop.get("/hello") { _ in
   return "Hello Vapor"
 }
 
-drop.serve()
+drop.run()
 ```
 
 ## Build and Run
@@ -87,10 +87,10 @@ The first `build` command can take a while to fetch dependencies.
 
 ```
 swift build
-.build/debug/HelloVapor
+.build/debug/Hello
 ```
 
-> If different, replace `HelloVapor` above with the name of your executable.
+> If different, replace `Hello` above with the name of your executable.
 
 ## View
 

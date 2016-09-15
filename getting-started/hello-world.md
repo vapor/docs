@@ -65,12 +65,12 @@ All route closures are passed an instance of [Request](../guide/request.html) th
 
 This route simply returns a string, but anything that is [ResponseRepresentable](../guide/routing.html) can be returned. Learn more in the [Routing]({../guide/routing.html) section of the guide.
 
-## Serving
+## Running
 
 At the bottom of the main file, make sure to serve your `Droplet`.
 
 ```swift
-drop.serve()
+drop.run()
 ```
 
 Save the file, and switch back to the terminal.

@@ -42,7 +42,7 @@ let drop = Droplet(providers: [VaporMySQL.Provider.self])
 
 // ...
 
-drop.serve()
+drop.run()
 ```
 
 Every provider comes with a class named `Provider`. Append the `Type` of this class to your `providers` array in the `Droplet`'s init method.
@@ -76,7 +76,7 @@ let drop = Droplet(initializedProviders: [mysql])
 
 ...
 
-drop.serve()
+drop.run()
 ```
 
 ## Create a Provider
