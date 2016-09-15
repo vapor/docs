@@ -14,7 +14,7 @@ Don't want to type? Run the following script to quickly install Swift 3.0.
 curl -sL swift.vapor.sh/ubuntu | bash
 ```
 
-> Note: The install script adds Swift to your ~/.bashrc profile automatically.
+> Note: The install script adds Swift to your `~/.bashrc` profile automatically.
 
 ## Manual
 
@@ -67,13 +67,13 @@ mv swift-3.0-RELEASE-ubuntu15.10 /swift-3.0
 
 ### Export
 
-Edit your bash profile using your editor of choice.
+Edit your bash profile using your text editor of choice.
 
 ```sh
 vim ~/.bashrc
 ```
 
-Add the following line.
+Add the following line:
 
 ```sh
 export PATH=/swift-3.0/usr/bin:"${PATH}"

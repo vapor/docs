@@ -21,7 +21,7 @@ public protocol Responder {
 Of course, Vapor provides some conveniences for this, and in practice, we will often call:
 
 ```swift
-try drop.serve()
+try drop.run()
 ```
 
 ## Manual

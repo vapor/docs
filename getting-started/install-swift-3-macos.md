@@ -14,7 +14,7 @@ Install [Xcode 8](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) from 
 
 ### Open Xcode
 
-After Xcode 8 has been downloaded, you must open it to finish the installation.
+After Xcode 8 has been downloaded, you must open it to finish the installation. This may take a while.
 
 ## Check
 
@@ -26,7 +26,7 @@ curl -sL check.vapor.sh | bash
 
 ## Toolbox
 
-You can now move on to [Install Toolbox](install-toolbox.md)
+You can now move on to [Install Toolbox](install-toolbox.md).
 
 ## Swift.org
 
