@@ -229,6 +229,7 @@ div.scroll {
   -webkit-overflow-scrolling: touch; }
 
 main {
+  -webkit-overflow-scrolling: touch;
   color: #555;
   font-weight: 200;
   width: 100%;
@@ -256,7 +257,7 @@ main {
     border-bottom: none; }
     @media screen and (min-width: 720px) {
       main a.edit {
-        top: 122px; } }
+        top: 102px; } }
   main h1 {
     margin-bottom: 12px; }
   main h2 {
