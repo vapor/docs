@@ -16,7 +16,7 @@ Returning HTML, or any other non-rendered document, is simple. Just use the path
 
 ```swift
 drop.get("html") { request in
-    return try drop.view("index.html")
+    return try drop.view.make("index.html")
 }
 ```
 
@@ -26,7 +26,7 @@ Templated documents like mustache or stencil templates can take a `Context`.
 
 ```swift
 drop.get("template") { request in
-	return try drop.view("index.template", [
+	return try drop.view.make("index.template", [
 		"message": "Hello, world!"
 	])
 }
