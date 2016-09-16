@@ -13,7 +13,7 @@ For Vapor applications, configuration files are expected to be nested under a to
 ```bash
 ./
 ├── Config/
-│   ├── server.json
+│   ├── servers.json
 ```
 
 And an example of how this might look:
