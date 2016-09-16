@@ -17,7 +17,7 @@ let drop = Droplet()
 
 // your magic here
 
-drop.start()
+drop.run()
 ```
 
 Creation of the `Droplet` normally happens in the `main.swift` file.

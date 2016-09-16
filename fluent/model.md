@@ -72,7 +72,7 @@ Now that we have covered initializing the model, we need to show it how to save 
 
 ```swift
 final class User: Model {
-    func makeNode() throws -> Node {
+    func makeNode(context: Context) throws -> Node {
         return try Node(node: [
             "id": id,
             "name": name
