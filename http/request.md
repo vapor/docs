@@ -118,7 +118,7 @@ Generally when we're sending or receiving requests, we're using them as a way to
 For example, say I receive a request to `http://vapor.codes?hello=world`.
 
 ```swift
-let world = request.data["hello"].string
+let world = request.data["hello"]?.string
 ```
 
 This same code will work if I receive a JSON request, for example:
@@ -132,8 +132,9 @@ This same code will work if I receive a JSON request, for example:
 Will still be accessible through data.
 
 ```swift
-let world = request.data["hello"].string
+let world = request.data["hello"]?.string
 ```
+> Note: Force unwrap should never be used.
 
 This also applies to multi-part requests and can even be extended to new types such as XML or YAML through middleware.
 
