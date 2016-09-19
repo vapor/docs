@@ -63,7 +63,7 @@ The `Views` folder in `Resources` is where Vapor will look when you render views
 The following code would load the `user.html` file.
 
 ```swift
-drop.view("user.html")
+drop.view.make("user.html")
 ```
 
 ## Config
