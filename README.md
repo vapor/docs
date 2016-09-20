@@ -27,6 +27,7 @@ Here are a list of all the Swift 3, linux-ready packages and modules provided op
 	- WebSockets: Full-duplex communication channels over a single TCP connection.
 	- SMTP: Send email using Sendgrid and Gmail.
 	- Transport: Streams and transfer protocols.
+- [Leaf](https://github.com/vapor/leaf): An extensible templating language built for Vapor.
 - [JSON](https://github.com/vapor/json): Maps Foundation JSON to Swifty enum.
 - [Console](https://github.com/vapor/console): Swift wrapper for console IO and commands.
 - [Node](https://github.com/vapor/node): A formatted data encapsulation meant to facilitate the object conversions.

@@ -47,6 +47,9 @@ menu:
                 guide-views:
                     text: Views
                     relativeUrl: guide/views.html
+                guide-leaf:
+                    text: Leaf
+                    relativeUrl: guide/leaf.html
                 guide-middleware:
                     text: Middleware
                     relativeUrl: guide/middleware.html
