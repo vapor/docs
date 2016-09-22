@@ -61,19 +61,13 @@ drop.get("hello") { request in
 }
 ```
 
-Also add to the top of the file
-
-```swift
-import HTTP
-```
-
 This creates a new route on the `Droplet` that will match all `GET` requests to `/hello`.
 
 All route closures are passed an instance of [Request](../guide/request.html) that contains information such as the URI requested and data sent.
 
 This route simply returns a string, but anything that is [ResponseRepresentable](../guide/routing.html) can be returned. Learn more in the [Routing]({../guide/routing.html) section of the guide.
 
-Importing HTTP exposes the [ResponseRepresentable](../guide/routing.html) and [Request](../guide/request.html) classes
+Note: Xcode autocomplete may add extraneous type information to your closure's input arguments. This can be deleted to keep the code clean. If you'd like to keep the type information add `import HTTP` to the top of the file. 
 
 ## Running
 
