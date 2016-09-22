@@ -53,7 +53,8 @@ static func authenticate(credentials: Credentials) throws -> Auth.User {
 
 		return user
 	} else {
-		throw Abort.custom(status: .forbidden, message: "Unsupported credentials.")
+		let type = type(of: credentials)
+		throw Abort.custom(status: .forbidden, message: "Unsupported credential type: \(type).")
 	}
 }
 ```
@@ -63,6 +64,10 @@ The first step is to cast the credentials to the type we want to support--in thi
 Once we have the access token, we will use it to query the `User` model for an entry with a matching access token. This is assuming the `users` table or collection has the access tokens stored on it. You may opt to store them somewhere else.
 
 Once we have found the user associated with the supplied access token, we simply return it.
+
+#### Identifier
+
+Vapor uses the `Identifier` credential type internally to lookup users from sessions. You can read more in the [Request](request.md) section.
 
 ### Register
 

@@ -101,6 +101,9 @@ menu:
                 auth-middleware:
                     text: Middleware
                     relativeUrl: auth/middleware.html
+                auth-request:
+                    text: Request
+                    relativeUrl: auth/request.html
                 auth-protect:
                     text: Protect
                     relativeUrl: auth/protect.html
