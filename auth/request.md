@@ -69,6 +69,21 @@ Both Basic and Bearer return something that conforms to `Credentials`. You can a
 let key = AccessToken(string: "apikey123")
 ```
 
+### Form
+
+You can also create credentials from form or JSON data.
+
+```swift
+guard 
+	let username = req.data["username"]?.string,
+	let password = req.data["password"]?.string
+else {
+	throw Abort.badRequest
+}
+
+let key = APIKey(id: username, secret: password)
+```
+
 ## Login
 
 Once you have some object that conforms to `Credentials`, you can try to login the user.

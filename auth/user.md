@@ -4,7 +4,9 @@ currentMenu: auth-user
 
 # Auth
 
-Authorization and authentication is focused around a the `Auth.User` protocol. Authorization is analagous with asking: "Who is this?", while authentication is analagous with asking: "What can they do?". Vapor includes an extensible authorization system that you can use as a base for more sophisticated authentication.
+Authentication and authorization is focused around the `Auth.User` protocol. Authentication is analagous to asking: "Who is this?", while authorization is analagous to asking: "What can they do?". Vapor includes an extensible authentication system that you can use as a base for more sophisticated authorization.
+
+> Note: An [auth-example](https://github.com/vapor/auth-example) project is available on GitHub.
 
 ## User Protocol
 
@@ -14,12 +16,14 @@ Any type can conform to the `Auth.User` protocol, but they are commonly added on
 import Vapor
 import Auth
 
-final class User: Model, Auth.User {
+final class User: Model {
     var id: Node?
     var name: String
 
 	...
+}
 
+extension User: Auth.User {
     static func authenticate(credentials: Credentials) throws -> Auth.User {
 
     }
@@ -34,7 +38,13 @@ Here is an example `User` class with the `Auth.User` protocol requirements stubb
 
 ### Authenticate
 
+A user is authenticated when a set of credentials is passed to the static `authenticate` method and the matching user is returned.
+
 #### Credentials
+
+```swift
+protocol Credentials { }
+```
 
 The credentials protocol is an empty protocol that any type can conform to. This gives great flexibility to your authorization model, but also requires that you properly handle the case of unsupported credential types.
 
@@ -46,13 +56,14 @@ Let's look at how we might support the access token type.
 
 ```swift
 static func authenticate(credentials: Credentials) throws -> Auth.User {
-	if let accessToken = credentials as? AccessToken {
+	switch credentials {
+	case let accessToken as AccessToken:
 		guard let user = try User.query().filter("access_token", accessToken.string).first() else {
 			throw Abort.custom(status: .forbidden, message: "Invalid access token.")	
 		}
 
 		return user
-	} else {
+	default:
 		let type = type(of: credentials)
 		throw Abort.custom(status: .forbidden, message: "Unsupported credential type: \(type).")
 	}
@@ -68,6 +79,41 @@ Once we have found the user associated with the supplied access token, we simply
 #### Identifier
 
 Vapor uses the `Identifier` credential type internally to lookup users from sessions. You can read more in the [Request](request.md) section.
+
+### Many Credentials
+
+Here is an example of a User that supports multiple credentials.
+
+```swift
+extension User: Auth.User {
+    static func authenticate(credentials: Credentials) throws -> Auth.User {
+        let user: User?
+
+        switch credentials {
+        case let id as Identifier:
+            user = try User.find(id.id)
+        case let accessToken as AccessToken:
+            user = try User.query().filter("access_token", accessToken.string).first()
+        case let apiKey as APIKey:
+            user = try User.query().filter("email", apiKey.id).filter("password", apiKey.secret).first()
+        default:
+            throw Abort.custom(status: .badRequest, message: "Invalid credentials.")
+        }
+
+        guard let u = user else {
+            throw Abort.custom(status: .badRequest, message: "User not found.")
+        }
+
+        return u
+    }
+
+    static func register(credentials: Credentials) throws -> Auth.User {
+		...
+    }
+}
+```
+
+> Note: Try not to store passwords. If you must, hash and salt them.
 
 ### Register
 
