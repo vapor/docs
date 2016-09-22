@@ -67,6 +67,8 @@ All route closures are passed an instance of [Request](../guide/request.html) th
 
 This route simply returns a string, but anything that is [ResponseRepresentable](../guide/routing.html) can be returned. Learn more in the [Routing]({../guide/routing.html) section of the guide.
 
+Note: Xcode autocomplete may add extraneous type information to your closure's input arguments. This can be deleted to keep the code clean. If you'd like to keep the type information add `import HTTP` to the top of the file. 
+
 ## Running
 
 At the bottom of the main file, make sure to serve your `Droplet`.
