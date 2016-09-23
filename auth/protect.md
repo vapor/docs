@@ -30,4 +30,4 @@ drop.grouped(protect).group("secure") { secure in
 }
 ```
 
-Visiting `GET secure/about` will return the authorized user, or an error if no user is authorized.
+Visiting `GET /secure/about` will return the authorized user, or an error if no user is authorized.

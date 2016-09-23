@@ -24,7 +24,9 @@ Basic authorization consists of a username and password concatenated into a stri
 Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l
 ```
 
-Here is what an example header looks like. You can read more about basic auth on [wikipedia](https://en.wikipedia.org/wiki/Basic_access_authentication).
+This is what an example header looks like. You can read more about basic auth on [wikipedia](https://en.wikipedia.org/wiki/Basic_access_authentication).
+
+Below is how you access this header using `req.auth`.
 
 ```swift
 guard let credentials = req.auth.header?.basic else {
@@ -63,13 +65,13 @@ To access the raw authorization header, use `req.auth.header?.header`.
 
 ## Credentials
 
-Both Basic and Bearer return something that conforms to `Credentials`. You can always create a custom `Credentials` object for authorization by conforming your own class to `Credentials` or by manually creating an `APIKey` or `AccessToken`.
+Both Basic and Bearer return something that conforms to `Credentials`. You can always create a custom `Credentials` object for authentication by conforming your own class to `Credentials` or by manually creating an `APIKey`, `AccessToken`, or `Identifier`.
 
 ```swift
 let key = AccessToken(string: "apikey123")
 ```
 
-### Form
+### Input
 
 You can also create credentials from form or JSON data.
 
@@ -96,26 +98,25 @@ If this call succeeds, the user is logged in and a session has been started. The
 
 ### Authenticate
 
-Logging in calls the `authenticate` method on the `Realm`. If you have simply passed an `Auth.User` conformer to the `AuthMiddleware`, then this will call the `authenticate` method on that type.
+Logging in calls the `authenticate` method on `Auth.User` model you supplied to the `AuthMiddleware`. Make sure you add support for all the credential types you may want to use.
 
-The method will be passed whichever credentials you are trying to login with, so make sure you add support for all the credential types you may want to use on your `Auth.User`.
+> Note: If you used a custom Realm, it will be called instead.
 
 ### Identifier
 
-One important credential type is the `Identifier` type. This is used by Vapor when fetching the `User` object from the authorization cookie. It is also a convenient way to log a user in manually.
+Another important credential type is the `Identifier` type. This is used by Vapor when fetching the `User` object from the `vapor-auth` cookie. It is also a convenient way to log a user in manually.
 
 ```swift
 static func authenticate(credentials: Credentials) throws -> Auth.User {
-	if ... {
-		...
-	} else if let id = credentials as? Identifier {
+	switch credentials {
+	...
+	case id as Identifier:
 		guard let user = try User.find(id.id) else {
 			throw Abort.custom(status: .badRequest, message: "Invalid identifier.")
 		}
 
 		return user
-	} else {
-		...
+	...
 	}
 }
 ```
@@ -137,9 +138,11 @@ If you just want to log the user in for a single request, disable persistance.
 req.auth.login(credentials, persist: false)
 ```
 
+> Note: Supporting `Identifier` credentials is required for persisted authentication to work properly.
+
 ## User
 
-By default, `request.auth.user()` returns the authorized `Auth.User`. This will need to be casted to your internal user type if you want to access its values.
+By default, `request.auth.user()` returns the authorized `Auth.User`. This will need to be casted to your internal `User` type for use.
 
 Adding a convenience method on `Request` is a great way to simplify this.
 
@@ -155,4 +158,4 @@ extension Request {
 }
 ```
 
-Now you can get access to your `User` type with `try req.user()`.
+Now you can access your `User` type with `try req.user()`.

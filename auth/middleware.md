@@ -38,7 +38,7 @@ let auth = AuthMiddleware(user: User.self) { value in
 
 ### Cache
 
-A custom `CacheProtocol` can be passed as well. The `MemoryCache()` used by default is not persisted between server restarts and does not allow for sharing between multiple running instances.
+A custom `CacheProtocol` can be passed as well. The `MemoryCache` used by default is not persisted between server restarts and does not allow for sharing between multiple running instances.
 
 ```swift
 import VaporRedis

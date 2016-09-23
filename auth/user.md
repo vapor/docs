@@ -46,9 +46,9 @@ A user is authenticated when a set of credentials is passed to the static `authe
 protocol Credentials { }
 ```
 
-The credentials protocol is an empty protocol that any type can conform to. This gives great flexibility to your authorization model, but also requires that you properly handle the case of unsupported credential types.
+The credentials protocol is an empty protocol that any type can conform to. This gives great flexibility to your authentication model, but also requires that you properly handle the case of unsupported credential types.
 
-#### AccessToken
+#### Access Token
 
 One of the simplest credential types included is `AccessToken`. It carries a `String` based token that will be used to authenticate the user.
 
@@ -80,7 +80,11 @@ Once we have found the user associated with the supplied access token, we simply
 
 Vapor uses the `Identifier` credential type internally to lookup users from sessions. You can read more in the [Request](request.md) section.
 
-### Many Credentials
+### Register
+
+Similar to the authenticate method, the register method takes credentials. But instead of fetching the user from the data store, it provides a convenient way to create the user. You are not required to register your users through this method.
+
+## Example
 
 Here is an example of a User that supports multiple credentials.
 
@@ -114,7 +118,3 @@ extension User: Auth.User {
 ```
 
 > Note: Try not to store passwords. If you must, hash and salt them.
-
-### Register
-
-Similar to the authenticate method, the register method takes credentials. But instead of fetching the user from the data store, it provides a convenient way to create the user. You are not required to register your users through this method.
