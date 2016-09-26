@@ -62,6 +62,9 @@ menu:
                 guide-hash:
                     text: Hash
                     relativeUrl: guide/hash.html
+                guide-commands:
+                    text: Commands
+                    relativeUrl: guide/commands.html
         routing:
             name: Routing
             items:
