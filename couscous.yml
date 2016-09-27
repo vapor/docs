@@ -59,6 +59,9 @@ menu:
                 guide-provider:
                     text: Provider
                     relativeUrl: guide/provider.html
+                guide-sessions:
+                    text: Sessions
+                    relativeUrl: guide/sessions.html
                 guide-hash:
                     text: Hash
                     relativeUrl: guide/hash.html
