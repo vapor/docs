@@ -125,7 +125,7 @@ Adding the `Identifier` case for `Credentials` is easy, just look up the user by
 
 ```swift
 let id = Identifier(id: 42)
-try req.auth.log(id)
+try req.auth.login(id)
 ```
 
 Now you can manually log users in with just their identifiers.
