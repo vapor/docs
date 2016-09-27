@@ -84,6 +84,8 @@ final class User: Model {
 
 When a `User` is saved, the `makeNode()` method will be called and the resulting `Node` will be saved to the database. The keys `id` and `name` are what we expect the columns or fields in the database to be named.
 
+> In most of the cases you do not need to be concerned about `context` argument of the `makeNode(context:)` method. It’s a part of the protocol that allows extensibility in more advanced or specific scenarios.
+
 ## Preparations
 
 Some databases, like MySQL, need to be prepared for a new schema. In MySQL, this means creating a new table. 
