@@ -72,7 +72,7 @@ Once you've added the `AuthMiddleware` to the available middleware dictionary, m
 
 ### Sharing Cache
 
-If you'd like the `Droplet` and the `AuthMiddleware` to share the same `CacheProtocol`, initialize it earlier and pass it to both.
+If you'd like the `Droplet` and the `AuthMiddleware` to share the same `CacheProtocol`, pass the same instance to both.
 
 ```
 import VaporRedis
