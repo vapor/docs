@@ -23,7 +23,7 @@ Then add to the `Droplet`.
 let drop = Droplet(availableMiddleware: ["sessions": sessions])
 ```
 
-Once you've added the `AuthMiddleware` to the available middleware dictionary, make sure to enable it in your [middleware.json](../guide/middleware.md) configuration file.
+Once you've added the `SessionsMiddleware` to the available middleware dictionary, make sure to enable it in your [middleware.json](../guide/middleware.md) configuration file.
 
 ## Request
 
