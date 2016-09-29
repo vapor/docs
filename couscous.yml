@@ -134,3 +134,6 @@ menu:
                 http-client:
                     text: Client
                     relativeUrl: http/client.html
+                http-server:
+                    text: Server
+                    relativeUrl: http/server.html
