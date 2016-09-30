@@ -56,9 +56,43 @@ You can override the working directory through the `Droplet`'s initializer, or b
 vapor run serve --workdir="/var/www/my-project"
 ```
 
+## Modifying Properties
+
+The `Droplet`'s properties can be changed programmatically or through configuration.
+
+### Programmatic 
+
+Properties on the `Droplet` can be changed after it is initialized.
+
+```swift
+let drop = Droplet()
+
+drop.server = MyServerType.self
+```
+
+Here the type of server the `Droplet` uses is changed to a custom type. When the `Droplet` is run, this custom server type will be booted instead of the default server.
+
+### Configurable
+
+If you want to modify a property of the `Droplet` only in certain cases, you can use `addConfigurable`. Say for example you want to email error logs to yourself in production, but you don't want to spam your inbox while developing.
+
+```swift
+let drop = Droplet()
+
+drop.addConfigurable(log: MyEmailLogger.self, name: "email")
+```
+
+The `Droplet` will continue to use the default logger until you modify the `Config/droplet.json` file to point to your email logger. If this is done in `Config/production/droplet.json`, then your logger will only be used in production.
+
+```json
+{
+    "log": "email"
+}
+```
+
 ## Initialization
 
-The `Droplet` has several customizable properties.
+The `Droplet` init method is fairly simple since most properties are variable and can be changed after initialization.
 
 Most plugins for Vapor come with a [Provider](providers.md), these take care of configuration details for you.
 
@@ -68,15 +102,5 @@ Droplet(
     workDir workDirProvided: String?,
     config configProvided: Config?,
     localization localizationProvided: Localization?,
-    server: ServerProtocol.Type?,
-    sessions: Sessions?,
-    hash: Hash?,
-    console: ConsoleProtocol?,
-    log: Log?,
-    client: ClientProtocol.Type?,
-    database: Database?,
-    preparations: [Preparation.Type],
-    providers: [Provider.Type],
-    initializedProviders: [Provider]
 )
 ```

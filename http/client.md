@@ -72,6 +72,18 @@ Host and certificate verification can be disabled.
 }
 ```
 
+### Mozilla
+
+The Mozilla certificates are included by default to make fetching content from secure sites easy.
+
+```json
+{
+    "tls": {
+        "certificates": "mozilla"
+    }
+}
+```
+
 ## Advanced
 
 In addition to our Droplet, we can also use and interact with the `Client` manually. Here's how our default implementation in Vapor looks:
