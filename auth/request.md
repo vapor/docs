@@ -110,7 +110,7 @@ Another important credential type is the `Identifier` type. This is used by Vapo
 static func authenticate(credentials: Credentials) throws -> Auth.User {
 	switch credentials {
 	...
-	case id as Identifier:
+	case let id as Identifier:
 		guard let user = try User.find(id.id) else {
 			throw Abort.custom(status: .badRequest, message: "Invalid identifier.")
 		}
