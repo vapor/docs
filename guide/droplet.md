@@ -27,7 +27,7 @@ Creation of the `Droplet` normally happens in the `main.swift` file.
 The `environment` property contains the current environment your application is running in. Usually development, testing, or production.
 
 ```swift
-if drop.config.environment == .production {
+if drop.environment == .production {
     ...
 }
 ```
