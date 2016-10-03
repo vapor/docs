@@ -25,7 +25,7 @@ Simple controllers don't need to conform to any protocols. You are free to desig
 
 ### Registering
 
-The only required structure is the signature of each method in the controller. In order to register this method into the router, it must have a signature like `(Request) throws -> ResponseRepresentable`.
+The only required structure is the signature of each method in the controller. In order to register this method into the router, it must have a signature like `(Request) throws -> ResponseRepresentable`. `Request` and `ResponseRepresentable` are made available by importing the `HTTP` module.
 
 ```swift
 let hc = HelloController()
