@@ -11,12 +11,11 @@ JSON is an integral part of Vapor. It powers Vapor's [Config](config.md) and is 
 JSON is automatically available in `request.data` alongside form-urlencoded data and query data. This allows you to focus on making a great API, not worrying about what content types data will be sent in.
 
 ```swift
-drop.any("hello") { request in
-	guard let name = request.data["name"].string else {
-		throw Abort.badRequest
-	}
-
-	return "Hello, \(name)!"
+drop.get("hello") { request in
+    guard let name = request.data["name"]?.string else {
+        throw Abort.badRequest
+    }
+    return "Hello, \(name)!"
 }
 ```
 
