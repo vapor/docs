@@ -53,6 +53,37 @@ For example:
 try drop.client.request(.other(method: "CUSTOM"), "http://some-domain", headers: ["My": "Header"], query: ["key": "value"], body: [])
 ```
 
+## Config
+
+The `Config/clients.json` file can be used to modify the client's settings.
+
+### TLS
+
+Host and certificate verification can be disabled.
+
+> Note: Use extreme caution when modifying these settings.
+
+```json
+{
+    "tls": {
+        "verifyHost": false,
+        "verifyCertificates": false
+    }
+}
+```
+
+### Mozilla
+
+The Mozilla certificates are included by default to make fetching content from secure sites easy.
+
+```json
+{
+    "tls": {
+        "certificates": "mozilla"
+    }
+}
+```
+
 ## Advanced
 
 In addition to our Droplet, we can also use and interact with the `Client` manually. Here's how our default implementation in Vapor looks:
@@ -116,15 +147,3 @@ Going forward, all of your calls to `drop.client` will use `MyCustomClient.self`
 ```swift
 drop.client.get(... // uses `MyCustomClient`
 ```
-
-### Provider
-
-We can also use Providers to inherit behavior in our application. For example, to add Linux compatible TLS to our application's `Client`, we might use this:
-
-```swift
-import VaporTLS
-
-let drop = Droplet(initializedProviders: [VaporTLS.Provider(.client)])
-```
-
-In the same way as above, this will now apply to all `drop.client` calls within our application.
