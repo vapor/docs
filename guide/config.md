@@ -147,9 +147,9 @@ Please notice that servers.json, and production/servers.json both declare the sa
 
 ```swift
 // will load 0.0.0.0 or 127.0.0.1 based on above config
-let host = drop.config["servers", "http", "host"].string
+let host = drop.config["servers", "http", "host"]?.string ?? "0.0.0.0"
 // will load 9000, or environment variable port.
-let port = drop.config["servers", "http", "port"].int
+let port = drop.config["servers", "http", "port"]?.int ?? 9000
 ```
 
 ## COMMAND LINE
@@ -167,7 +167,7 @@ Arguments set through the command line can be accessed through config's cli file
 would be accessible within your application by using the following:
 
 ```swift
-let mongoPassword = drop.config["cli", "mongo-password"].string
+let mongoPassword = drop.config["cli", "mongo-password"]?.string
 ```
 
 #### 2. --CONFIG:FILE-NAME.KEY=CUSTOM-VALUE
@@ -181,5 +181,5 @@ If you want command line arguments set to a file besides "cli", you can use this
 would be accessible within your application by using the following:
 
 ```swift
-let analyticsKey = drop.config["keys", "analytics"].string
+let analyticsKey = drop.config["keys", "analytics"]?.string
 ```

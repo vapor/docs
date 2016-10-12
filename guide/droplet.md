@@ -104,3 +104,6 @@ Droplet(
     localization localizationProvided: Localization?,
 )
 ```
+
+> Note: Remember that the Droplet's properties are initialized with usable defaults. This means that if you change a property, you must be sure to change it _before_ other parts of your code use it. Otherwise, you may end up with confusing results as the defaults are used sometimes, and your overrides are used other times.
+
