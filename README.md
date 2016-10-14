@@ -60,6 +60,8 @@ Here are a list of providers and third party packages that work great with Vapor
 	- [Mongo Provider](https://github.com/vapor/mongo-provider): MongoKitten provider for Vapor.
 - [Redbird](https://github.com/vapor/redbird): Pure-Swift Redis client implemented from the original protocol spec..
 	- [Redis Provider](https://github.com/vapor/redis-provider): Redis cache provider for Vapor.
+- [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver): Convenient logging to Xcode Console, file system & cloud
+	- [SwiftyBeaver Provider](https://github.com/vapor/redis-provider): SwiftyBeaver logging provider for Vapor.
 
 ## Authors
 
