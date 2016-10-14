@@ -60,6 +60,7 @@ Here are a list of providers and third party packages that work great with Vapor
 	- [Mongo Provider](https://github.com/vapor/mongo-provider): MongoKitten provider for Vapor.
 - [Redbird](https://github.com/vapor/redbird): Pure-Swift Redis client implemented from the original protocol spec..
 	- [Redis Provider](https://github.com/vapor/redis-provider): Redis cache provider for Vapor.
+- [Kitura Provider](https://github.com/vapor/kitura-provider): Use IBM's Kitura HTTP server in Vapor.
 
 ## Authors
 
