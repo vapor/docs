@@ -42,7 +42,7 @@ Here are a list of all the packages and modules included with Vapor (also useabl
 - [Core](https://github.com/vapor/core): Core extensions, type-aliases, and functions that facilitate common tasks.
 - [Socks](https://github.com/vapor/socks): Swift C Socket API wrapper.
 
-## Providers
+## Providers & Other
 
 Here are a list of providers and third party packages that work great with Vapor.
 
@@ -61,6 +61,10 @@ Here are a list of providers and third party packages that work great with Vapor
 - [Redbird](https://github.com/vapor/redbird): Pure-Swift Redis client implemented from the original protocol spec..
 	- [Redis Provider](https://github.com/vapor/redis-provider): Redis cache provider for Vapor.
 - [Kitura Provider](https://github.com/vapor/kitura-provider): Use IBM's Kitura HTTP server in Vapor.
+- [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver-Vapor): Adds the powerful logging of SwiftyBeaver to Vapor.
+- [APNS](https://github.com/matthijs2704/vapor-apns): Simple APNS Library for Vapor (Swift).
+- [JWT](https://github.com/siemensikkema/vapor-jwt): JWT implementation for Vapor.
+
 
 ## Authors
 
