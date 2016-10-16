@@ -53,4 +53,3 @@ View.renderers[".mustache"] = MustacheRenderer()
 These renderers can be added to your application through Providers.
 
 - [Mustache](https://github.com/vapor/mustache-provider)
-- [Stencil](https://github.com/vapor/stencil-provider)
