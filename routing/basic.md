@@ -78,7 +78,7 @@ This is useful for creating special responses like redirects. It is also useful 
 
 ### Response Representable
 
-As you have seen in the previous examples, `String`s can be returned in route closures. This is because they conform to [ResponseRepresentable](../http/responserepresentable.md)
+As you have seen in the previous examples, `String`s can be returned in route closures. This is because they conform to [ResponseRepresentable](../http/response-representable.md)
 
 A lot of types in Vapor conform to this protocol by default:
 - String
