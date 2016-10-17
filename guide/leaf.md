@@ -9,7 +9,7 @@ Welcome to Leaf. Leaf's goal is to be a simple templating language that can make
 - Small set of strictly enforced rules
 - Consistency
 - Parser first mentality
-- Extensibility.
+- Extensibility
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Leaf syntax is based around a single token, in this case, the hashtag: `#`.
 
 >It's important to note that _all_ hashtags will be parsed, there is no escaping. Use `#()` to render a plain `#`. `#()Leaf` => `#Leaf`. Or, for larger sections, use the `raw` tag. `#raw() { #Do #whatever #you #want #to #in #here!. }`
 
-#### Structure
+### Structure
 
 Here we see all the components of a Leaf tag.
 
@@ -33,11 +33,11 @@ Here we see all the components of a Leaf tag.
 
 ##### Name
 
->In above example, it would be `someTag`. While not strictly enforced, it is HIGHLY encouraged that users only use alphanumeric characters in names. This may be enforced in future versions.
+>In above example, it would be `someTag`. While not strictly enforced, it is **highly** encouraged that users only use alphanumeric characters in names. This may be enforced in future versions.
 
 ##### Parameter List
 
-> Var(parameter, list), Var(goes), Const("here")
+`Var(parameter, list), Var(goes), Const("here")`
 
 ##### Body
 
@@ -98,7 +98,7 @@ Loop a variable
 The double token, `##` indicates a chain. If the previous tag fails, this tag will be given an opportunity to run. It can be applied to any standard tag, for example, above we chain to else, but we could also chain to loops.
 
 ```
-#ifEmpty(friends) {
+#empty(friends) {
     Try adding some friends!
 } ##loop(friends, "friend") {
     <li> #(friend.name) </li>
