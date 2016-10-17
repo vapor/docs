@@ -29,7 +29,7 @@ The only required structure is the signature of each method in the controller. I
 
 ```swift
 let hc = HelloController()
-drop.get("hello", hc.sayHello)
+drop.get("hello", handler: hc.sayHello)
 ```
 
 Since the signature of our `sayHello` method matches the signature of the closure for the `drop.get` method, we can pass it directly.
@@ -52,7 +52,7 @@ We add a new method called `sayHelloAlternate` to the `HelloController` that acc
 
 ```swift
 let hc = HelloController()
-drop.get("hello", String.self, hc.sayHelloAlternate)
+drop.get("hello", String.self, handler: hc.sayHelloAlternate)
 ```
 
 Since this type-safe `drop.get` accepts a signature `(Request, String) throws -> ResponseRepresentable`, our method can now be used as the closure for this route. 
@@ -79,8 +79,8 @@ We _could_ register the controller like so:
 
 ```swift
 let users = UserController()
-drop.get("users", users.index)
-drop.get("users", User.self, users.show)
+drop.get("users", handler: users.index)
+drop.get("users", User.self, handler: users.show)
 ```
 
 But `ResourceRepresentable` makes this standard RESTful structure easy.
