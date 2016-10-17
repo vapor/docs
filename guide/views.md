@@ -22,11 +22,11 @@ drop.get("html") { request in
 
 ## Templating
 
-Templated documents like mustache or stencil templates can take a `Context`.
+Templated documents like [Leaf](./leaf.html), Mustache, or Stencil can take a `Context`.
 
 ```swift
 drop.get("template") { request in
-	return try drop.view.make("index.template", [
+	return try drop.view.make("welcome", [
 		"message": "Hello, world!"
 	])
 }
@@ -38,18 +38,11 @@ Any resources that your views need, such as images, styles, and scripts, should 
 
 ## View Renderer
 
-Any class that conforms to `ViewRenderer` can be set to render views with a given context.
-
-```swift
-class MustacheRenderer: RenderDriver {
-    ...
-}
-
-View.renderers[".mustache"] = MustacheRenderer()
-```
+Any class that conforms to `ViewRenderer` can be added to our droplet. `Droplet(view: LeafRenderer())``
 
 ## Available Renderers
 
 These renderers can be added to your application through Providers.
 
+- [Leaf](https://github.com/vapor/leaf)
 - [Mustache](https://github.com/vapor/mustache-provider)

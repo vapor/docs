@@ -2,7 +2,7 @@
 
 [![Stack Overflow](https://img.shields.io/stackexchange/stackoverflow/t/vapor.svg)](http://stackoverflow.com/questions/tagged/vapor)
 
-This is the documentation for Vapor, a Web Framework for Swift that works on iOS, macOS, and Ubuntu; and all of the packages that Vapor offers. 
+This is the documentation for Vapor, a Web Framework for Swift that works on iOS, macOS, and Ubuntu; and all of the packages that Vapor offers.
 
 Vapor is the most used web framework for Swift. It provides a beautifully expressive and easy to use foundation for your next website or API.
 
@@ -17,7 +17,7 @@ You can read this guide by clicking through the folders and markdown files on [G
 Here are a list of all the packages and modules included with Vapor (also useable individually).
 
 - [Vapor](https://github.com/vapor/vapor): Swift's most used web framework.
-	- Auth: User authentication and persistance. 
+	- Auth: User authentication and persistance.
 	- Sessions: Secure, ephemeral cookie based data storage.
 	- Cookies: HTTP cookies.
 	- Routing: Advanced router with type-safe parameterization.
