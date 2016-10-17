@@ -20,11 +20,12 @@ Vapor's folder structure will probably look familiar to you if you have worked w
 
 ```
 .
-├── App
-│   └── Controllers
-│   └── Middleware
-│   └── Models
-│   └── main.swift
+├── Sources
+│   └── App
+│       └── Controllers
+│       └── Middleware
+│       └── Models
+│       └── main.swift
 ├── Public
 ├── Resources
 │   └── Views
@@ -35,8 +36,9 @@ For our Hello, World project, we will be focusing on the `main.swift` file.
 
 ```
 .
-└── App
-    └── main.swift
+└── Sources
+    └── App
+        └── main.swift
 ```
 
 Note: The `vapor new` command creates a new project with examples and comments about how to use the framework. You can delete these if you want.
