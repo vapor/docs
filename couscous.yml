@@ -50,6 +50,9 @@ menu:
                 guide-leaf:
                     text: Leaf
                     relativeUrl: guide/leaf.html
+                guide-controllers:
+                    text: Controllers
+                    relativeUrl: guide/controllers.html
                 guide-middleware:
                     text: Middleware
                     relativeUrl: guide/middleware.html
@@ -59,9 +62,15 @@ menu:
                 guide-provider:
                     text: Provider
                     relativeUrl: guide/provider.html
+                guide-sessions:
+                    text: Sessions
+                    relativeUrl: guide/sessions.html
                 guide-hash:
                     text: Hash
                     relativeUrl: guide/hash.html
+                guide-commands:
+                    text: Commands
+                    relativeUrl: guide/commands.html
         routing:
             name: Routing
             items:
@@ -92,6 +101,21 @@ menu:
                 fluent-relation:
                     text: Relation
                     relativeUrl: fluent/relation.html
+        auth:
+            name: Auth
+            items:
+                auth-user:
+                    text: User
+                    relativeUrl: auth/user.html
+                auth-middleware:
+                    text: Middleware
+                    relativeUrl: auth/middleware.html
+                auth-request:
+                    text: Request
+                    relativeUrl: auth/request.html
+                auth-protect:
+                    text: Protect
+                    relativeUrl: auth/protect.html
         http:
             name: HTTP
             items:
@@ -113,3 +137,6 @@ menu:
                 http-client:
                     text: Client
                     relativeUrl: http/client.html
+                http-server:
+                    text: Server
+                    relativeUrl: http/server.html

@@ -46,4 +46,3 @@ These renderers can be added to your application through Providers.
 
 - [Leaf](https://github.com/vapor/leaf)
 - [Mustache](https://github.com/vapor/mustache-provider)
-- [Stencil](https://github.com/vapor/stencil-provider)

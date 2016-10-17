@@ -4,7 +4,7 @@ currentMenu: fluent-model
 
 # Model
 
-`Model` is the base protocol for any of your application's models, especially those you want to persist. 
+`Model` is the base protocol for any of your application's models, especially those you want to persist.
 
 > `Model` is only available in Vapor, the Fluent equivalent is `Entity`
 
@@ -32,7 +32,7 @@ import Fluent
 Then add the conformance to your class.
 
 ```swift
-final class User: Model { 
+final class User: Model {
     ...
 }
 ```
@@ -64,7 +64,7 @@ final class User: Model {
 }
 ```
 
-The keys `id` and `name` are what we expect the columns or fields in the database to be named. The `extract` call is marked with a `try` because it will throw an error if the value is not present or is the wrong type. 
+The keys `id` and `name` are what we expect the columns or fields in the database to be named. The `extract` call is marked with a `try` because it will throw an error if the value is not present or is the wrong type.
 
 ### Node Representable
 
@@ -84,9 +84,11 @@ final class User: Model {
 
 When a `User` is saved, the `makeNode()` method will be called and the resulting `Node` will be saved to the database. The keys `id` and `name` are what we expect the columns or fields in the database to be named.
 
+> In most of the cases you do not need to be concerned about `context` argument of the `makeNode(context:)` method. It’s a part of the protocol that allows extensibility in more advanced or specific scenarios.
+
 ## Preparations
 
-Some databases, like MySQL, need to be prepared for a new schema. In MySQL, this means creating a new table. 
+Some databases, like MySQL, need to be prepared for a new schema. In MySQL, this means creating a new table.
 
 ### Prepare
 
@@ -106,9 +108,9 @@ final class User {
 
 Here we create a table named `users` that has an identifier field and a string field with the key `name`. This matches both our `init(node: Node)` and `makeNode() -> Node` methods.
 
-### Revert    
+### Revert
 
-An optional preparation reversion can be created. This will be run if `vapor run prepare --revert` is called. 
+An optional preparation reversion can be created. This will be run if `vapor run prepare --revert` is called.
 
 ```swift
 final class User {
@@ -151,7 +153,7 @@ final class User: Model {
         name = try node.extract("name")
     }
 
-    func makeNode() throws -> Node {
+    func makeNode(context: Context) throws -> Node {
         return try Node(node: [
             "id": id,
             "name": name
@@ -213,7 +215,7 @@ As can be seen in the protocol, Vapor models can automatically convert to `JSON`
 
 ## Options
 
-Change the table/collection name 
+Change the table/collection name
 ```swift
 static var entity = "new_name"
 ```

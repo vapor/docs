@@ -20,11 +20,12 @@ Vapor's folder structure will probably look familiar to you if you have worked w
 
 ```
 .
-├── App
-│   └── Controllers
-│   └── Middleware
-│   └── Models
-│   └── main.swift
+├── Sources
+│   └── App
+│       └── Controllers
+│       └── Middleware
+│       └── Models
+│       └── main.swift
 ├── Public
 ├── Resources
 │   └── Views
@@ -35,8 +36,9 @@ For our Hello, World project, we will be focusing on the `main.swift` file.
 
 ```
 .
-└── App
-    └── main.swift
+└── Sources
+    └── App
+        └── main.swift
 ```
 
 Note: The `vapor new` command creates a new project with examples and comments about how to use the framework. You can delete these if you want.
@@ -63,9 +65,11 @@ drop.get("hello") { request in
 
 This creates a new route on the `Droplet` that will match all `GET` requests to `/hello`.
 
-All route closures are passed an instance of [Request](../guide/request.html) that contains information such as the URI requested and data sent.
+All route closures are passed an instance of [Request](../http/request.md) that contains information such as the URI requested and data sent.
 
-This route simply returns a string, but anything that is [ResponseRepresentable](../guide/routing.html) can be returned. Learn more in the [Routing]({../guide/routing.html) section of the guide.
+This route simply returns a string, but anything that is [ResponseRepresentable](../http/response-representable.md) can be returned. Learn more in the [Routing](../routing/basic.md) section of the guide.
+
+Note: Xcode autocomplete may add extraneous type information to your closure's input arguments. This can be deleted to keep the code clean. If you'd like to keep the type information add `import HTTP` to the top of the file. 
 
 ## Running
 
