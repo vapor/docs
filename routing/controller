@@ -6,7 +6,7 @@ currentMenu: routing-controller
 
 Instead of defining all of your request handling logic as Closures in route files, you may wish to organize this behavior
 using Controller classes. Controllers can group related request handling logic into a single class. Controllers are stored 
-in the Sources/App/Controllers directory.
+in the `Sources/App/Controllers` directory.
 
 # Basic Controller
 
