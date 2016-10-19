@@ -98,7 +98,7 @@ extension UserController: ResourceRepresentable {
 
 Conforming `UserController` to `ResourceRepresentable` requires that the signatures of the `index` and `show` methods match what the `Resource<User>` is expecting.
 
-Here is a peak into the `Resource` class.
+Here is a peek into the `Resource` class.
 
 ```swift
 final class Resource<Model: StringInitializable> {
