@@ -58,6 +58,7 @@ Here are a list of providers and third party packages that work great with Vapor
 - [MongoKitten*](https://github.com/OpenKitten/MongoKitten): Native MongoDB driver for Swift, written in Swift
 	- [Mongo Driver](https://github.com/vapor/mongo-driver): MongoKitten driver for Fluent.
 	- [Mongo Provider](https://github.com/vapor/mongo-provider): MongoKitten provider for Vapor.
+	- [MainecoonVapor](https://github.com/OpenKitten/MainecoonVapor): MongoKitten ORM for Vapor.
 - [Redbird](https://github.com/vapor/redbird): Pure-Swift Redis client implemented from the original protocol spec..
 	- [Redis Provider](https://github.com/vapor/redis-provider): Redis cache provider for Vapor.
 - [Kitura Provider](https://github.com/vapor/kitura-provider): Use IBM's Kitura HTTP server in Vapor.
