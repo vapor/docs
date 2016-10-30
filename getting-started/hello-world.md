@@ -69,7 +69,7 @@ All route closures are passed an instance of [Request](../http/request.md) that 
 
 This route simply returns a string, but anything that is [ResponseRepresentable](../http/response-representable.md) can be returned. Learn more in the [Routing](../routing/basic.md) section of the guide.
 
-Note: Xcode autocomplete may add extraneous type information to your closure's input arguments. This can be deleted to keep the code clean. If you'd like to keep the type information add `import HTTP` to the top of the file. 
+Note: Xcode autocomplete may add extraneous type information to your closure's input arguments. This can be deleted to keep the code clean. If you'd like to keep the type information add `import HTTP` to the top of the file.
 
 ## Running
 
@@ -108,6 +108,24 @@ vapor run serve
 You should see a message `Server starting...`. You can now visit `http://localhost:8080/hello` in your browser.
 
 Note: Certain port numbers require super user access to bind. Simply run `sudo vapor run` to allow access. If you decide to run on a port besides `80`, make sure to direct your browser accordingly.
+
+## Note for sudo usage
+
+In some linux based system, you might get error while using sudo. In that case, if you need to run the server as root, at first switch the user using this command:
+
+```
+sudo -i
+```
+Then either add the previously installed path of swift to the root users $PATH variable.
+
+```
+PATH=$PATH:/your_path_to_swift
+# Example command can be like this
+# PATH=$PATH:/swift-3.0/usr/bin
+# In this case /swift-3.0/usr/bin is the location of my swift installation.
+
+```
+
 
 ## Hello, World
 
