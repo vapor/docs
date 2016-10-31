@@ -131,7 +131,7 @@ extension Pet {
 
 And the opposite for `Toy`.
 
-```
+```swift
 extension Toy {
     func pets() throws -> Siblings<Pet> {
         return try siblings()
@@ -144,6 +144,22 @@ Now you are free to query pets and toys similarly to children.
 ```swift
 let pet: Pet = ...
 let toys = pet.toys().all()
+```
+
+To create a new many-to-many relationship you can do the following.
+
+```swift
+
+var toy: Toy = ...                      // Create a new toy
+try toy.save()                          // Save the toy to the db
+
+
+var pet: Pet = ...                      // Create a new pet
+try pet.save()                          // Save the pet to the db
+
+// Link them together in the db
+var pivot = Pivot<Toy, Pet>(toy, pet)   // Create the relationship
+try pivot.save()                        // Save the relationship to the db
 ```
 
 ### Preparation
