@@ -12,10 +12,10 @@ menu:
             name: Getting Started
             items:
                 getting-started-install-swift-3-macos:
-                    text: Install Swift 3: macOS
+                    text: "Install Swift 3: macOS"
                     relativeUrl: getting-started/install-swift-3-macos.html
                 getting-started-install-swift-3-ubuntu:
-                    text: Install Swift 3: Ubuntu
+                    text: "Install Swift 3: Ubuntu"
                     relativeUrl: getting-started/install-swift-3-ubuntu.html
                 getting-started-install-toolbox:
                     text: Install Toolbox
