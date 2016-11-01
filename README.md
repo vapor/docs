@@ -65,6 +65,7 @@ Here are a list of providers and third party packages that work great with Vapor
 - [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver-Vapor): Adds the powerful logging of SwiftyBeaver to Vapor.
 - [APNS](https://github.com/matthijs2704/vapor-apns): Simple APNS Library for Vapor (Swift).
 - [JWT](https://github.com/siemensikkema/vapor-jwt): JWT implementation for Vapor.
+- [VaporS3Signer](https://github.com/JustinM1/VaporS3Signer): Generate V4 Auth Header/Pre-Signed URL for AWS S3 REST API
 
 
 ## Authors
