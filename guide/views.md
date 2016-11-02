@@ -43,7 +43,7 @@ Any class that conforms to `ViewRenderer` can be added to our droplet.
 ```swift
 let drop = Droplet()
 
-drop.view = LeafRenderer()
+drop.view = LeafRenderer(viewsDir: drop.viewsDir)
 ```
 
 ## Available Renderers
