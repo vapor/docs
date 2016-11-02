@@ -139,7 +139,9 @@ If we've introduced a custom conformance to `HTTP.ClientProtocol`, we can pass t
 For example:
 
 ```swift
-let drop = Droplet(client: MyCustomClient.self)
+let drop = Droplet()
+
+drop.client = MyCustomClient.self
 ```
 
 Going forward, all of your calls to `drop.client` will use `MyCustomClient.self`:

@@ -167,9 +167,10 @@ try pivot.save()                        // Save the relationship to the db
 To prepare for a relationship with a `Pivot`, simply add the pivot to the `Droplet`'s preparations.
 
 ```swift
-let drop = Droplet(preparations: [
+let drop = Droplet()
+drop.preparations += [
     Toy.self,
     Pet.self,
     Pivot<Toy, Pet>.self
-])
+]
 ```

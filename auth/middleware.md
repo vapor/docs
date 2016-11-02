@@ -65,19 +65,25 @@ let auth = AuthMiddleware(user: User.self, realm: facebook)
 Once you've created the `AuthMiddleware`, you can add it to the `Droplet`.
 
 ```swift
-let drop = Droplet(availableMiddleware: ["auth": auth])
+let drop = Droplet()
+drop.middleware.append(auth)
 ```
 
-Once you've added the `AuthMiddleware` to the available middleware dictionary, make sure to enable it in your [middleware.json](../guide/middleware.md) configuration file.
+> Note: If you'd like to enable or disable the middleware based on config files, check out [middleware](../guide/middleware.md).
 
 ### Sharing Cache
 
 If you'd like the `Droplet` and the `AuthMiddleware` to share the same `CacheProtocol`, pass the same instance to both.
 
 ```
+import Vapor
 import VaporRedis
 
 let redis = RedisCache()
 let auth = AuthMiddleware(user: User.self, cache: redis)
-let drop = Droplet(cache: redis, availableMiddleware: ["auth": auth])
+
+let drop = Droplet()
+
+drop.cache = redis
+drop.middleware.append(auth)
 ```

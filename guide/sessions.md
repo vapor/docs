@@ -20,10 +20,11 @@ let sessions = SessionsMiddleware(sessions: memory)
 Then add to the `Droplet`.
 
 ```
-let drop = Droplet(availableMiddleware: ["sessions": sessions])
+let drop = Droplet()
+drop.middleware.append(sessions)
 ```
 
-Once you've added the `SessionsMiddleware` to the available middleware dictionary, make sure to enable it in your [middleware.json](../guide/middleware.md) configuration file.
+> Note: If you'd like to enable or disable the middleware based on config files, check out [middleware](../guide/middleware.md).
 
 ## Request
 
