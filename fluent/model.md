@@ -128,8 +128,12 @@ Here we are deleting the table named `users`.
 To run these prepations when the applications boots, you must add the Model to the `Droplet`.
 
 ```swift
-let drop = Droplet(preparations: [User.self])
+let drop = Droplet()
+
+drop.preparations.append(User.self)
 ```
+
+> Note: Preparations must be appended before the Droplet is run.
 
 ## Full Model
 

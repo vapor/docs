@@ -134,6 +134,44 @@ app.get("foo") { request in
 
 Interestingly, this is how `Abort` itself is implemented in Vapor. `AbortMiddleware` catches any `Abort` errors and returns a JSON response. Should you want to customize how `Abort` errors appear, you can remove this middleware and add your own.
 
+## Configuration
+
+Appending middleware ot the `drop.middleware` array is the simplest way to add middleware--it will be used every time the application starts.
+
+You can also use the [configuration](config.md) files to enabled or disable middleware for more control. This is especially useful if you have middleware that should, for example, run only in production.
+
+Appending configurable middleware looks like the following:
+
+```swift
+let drop = Droplet()
+drop.addConfigurable(middleware: myMiddleware, name: "my-middleware")
+```
+
+Then, in the `Config/droplet.json` file, add `my-middleware` to the appropriate `middleware` array.
+
+```json
+{
+    ...
+    "middleware": {
+        "server": [
+            ...
+            "my-middleware",
+            ...
+        ],
+        "client": [
+            ...
+        ]
+    },
+    ...
+}
+```
+
+If the name of the added middleware appears in the `server` array for the loaded configuration, it will be added to the server's middleware when the application boots.
+
+Likewise, if the middleware appears in the `client` array for the loaded configuration, it will be added to the client's middleware.
+
+One middleware can be appended to both the Client and the Server, and can be added multiple times. The ordering of middleware is respected.
+
 ## Extensions (Advanced)
 
 Middleware pairs great with request/response extensions and storage.

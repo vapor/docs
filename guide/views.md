@@ -38,7 +38,13 @@ Any resources that your views need, such as images, styles, and scripts, should 
 
 ## View Renderer
 
-Any class that conforms to `ViewRenderer` can be added to our droplet. `Droplet(view: LeafRenderer())``
+Any class that conforms to `ViewRenderer` can be added to our droplet. 
+
+```swift
+let drop = Droplet()
+
+drop.view = LeafRenderer()
+```
 
 ## Available Renderers
 

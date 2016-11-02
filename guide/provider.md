@@ -38,7 +38,9 @@ Here is what importing the MySQL provider looks like:
 import Vapor
 import VaporMySQL
 
-let drop = Droplet(providers: [VaporMySQL.Provider.self])
+let drop = Droplet()
+
+try drop.addProvider(VaporMySQL.Provider.self)
 
 // ...
 
@@ -64,15 +66,16 @@ You will receive an error during the `Droplet`'s initialization if a configurati
 
 ## Advanced
 
-You may choose to initialize the provider yourself. If you do, simply use the `initializedProvider` array instead.
+You may choose to initialize the provider yourself. 
 
 ```swift
 import Vapor
 import VaporMySQL
 
-let mysql = VaporMySQL.Provider(host: "localhost", user: "root")
+let drop = Droplet()
 
-let drop = Droplet(initializedProviders: [mysql])
+let mysql = VaporMySQL.Provider(host: "localhost", user: "root")
+try drop.addProvider(mysql)
 
 ...
 
