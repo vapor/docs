@@ -166,11 +166,11 @@ Then, in the `Config/droplet.json` file, add `my-middleware` to the appropriate 
 }
 ```
 
-If the name of the added middleware exists in the `server` array for the loaded configuration, it will be added to the server's middleware when the application boots.
+If the name of the added middleware appears in the `server` array for the loaded configuration, it will be added to the server's middleware when the application boots.
 
 Likewise, if the middleware appears in the `client` array for the loaded configuration, it will be added to the client's middleware.
 
-One middleware can be appended to both the Client and the Server, and can be added multiple times. The ordering of middleware is repsected.
+One middleware can be appended to both the Client and the Server, and can be added multiple times. The ordering of middleware is respected.
 
 ## Extensions (Advanced)
 
