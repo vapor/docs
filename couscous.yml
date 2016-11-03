@@ -144,6 +144,9 @@ menu:
         web-sockets:
             name: WebSockets
             items:
-                websockets-example:
-                    text: Example
-                    relativeUrl: websockets/example.html
+                websockets-droplet:
+                    text: Droplet
+                    relativeUrl: websockets/droplet.html
+                websockets-custom:
+                    text: Custom
+                    relativeUrl: websockets/custom.html
