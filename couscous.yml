@@ -140,3 +140,10 @@ menu:
                 http-server:
                     text: Server
                     relativeUrl: http/server.html
+
+        web-sockets:
+            name: WebSockets
+            items:
+                websockets-example:
+                    text: Example
+                    relativeUrl: websockets/example.html
