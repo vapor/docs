@@ -29,6 +29,7 @@ try WebSocket.connect(to: url) { ws in
 ```Swift
 import HTTP
 import WebSockets
+import Transport
 
 final class MyResponder: Responder {
     func respond(to request: Request) throws -> Response {
@@ -47,6 +48,7 @@ final class MyResponder: Responder {
     }
 }
 
+let port = 8080
 let server = try Server<TCPServerStream, Parser<Request>, Serializer<Response>>(port: port)
 
 print("Connect websocket to http://localhost:\(port)/")
