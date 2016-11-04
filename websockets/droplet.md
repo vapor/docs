@@ -18,7 +18,7 @@ drop.socket("ws") { req, ws in
 
     // ping the socket to keep it open
     try background {
-        if ws.state == .open {
+        while ws.state == .open {
             try? ws.ping()
             drop.console.wait(seconds: 10) // every 10 seconds
         }
