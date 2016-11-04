@@ -150,3 +150,10 @@ menu:
                 websockets-custom:
                     text: Custom
                     relativeUrl: websockets/custom.html
+
+        testing:
+          name: testing
+          items:
+              testing-basic:
+                  text: Basic
+                  relativeUrl: testing/basic.html
