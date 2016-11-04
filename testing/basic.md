@@ -29,14 +29,14 @@ func load(_ drop: Droplet) throws {
 }
 ```
 
-> [WARNING] Do **not** call `run()` anywhere within the `load` function as this is a blocking call and will create problems later
+> [WARNING] Do **not** call `run()` anywhere within the `load` function as `run()` is a blocking call.
 
 ## Updated `main.swift`
 
 Now that we've abstracted our loading logic, we'll need to update our `main.swift` to reflect those changes. Here's how it should look after:
 
 ```swift
-let drop = Droplet(...
+let drop = Droplet(...)
 try load(drop)
 drop.run()
 ```
@@ -45,13 +45,13 @@ drop.run()
 
 ## Testable Droplet
 
-The first thing I like to do is in my testing target, add a file called `Droplet+Test.swift`. It will look like this:
+The first thing we'll do is in my testing target, add a file called `Droplet+Test.swift`. It will look like this:
 
 ```swift
 import Vapor
 
 func makeTestDroplet() throws -> Droplet {
-    let drop = Droplet(arguments: ["dummy/path/", "prepare"], ...
+    let drop = Droplet(arguments: ["dummy/path/", "prepare"], ...)
     try load(drop)
     try drop.runCommands()
     return drop
