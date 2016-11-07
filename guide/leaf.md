@@ -120,7 +120,7 @@ The double token, `##` indicates a chain. If the previous tag fails, this tag wi
 }
 ```
 
-Leaf renders this as:
+Leaf renders `html.leaf` as:
 
 ```html
 <!DOCTYPE html>
@@ -144,7 +144,7 @@ Leaf renders this as:
 /// body.leaf
 <body></body>
 ```
-Leaf renders this as:
+Leaf renders `html.leaf` as:
 
 ```html
 <!DOCTYPE html>
