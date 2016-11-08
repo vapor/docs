@@ -29,7 +29,7 @@ drop.socket("ws") { req, ws in
 
         // reverse the characters and send back
         let rev = String(text.characters.reversed())
-        try ws.send(rev.bytes)
+        try ws.send(rev)
     }
 
     ws.onClose = { ws, code, reason, clean in
@@ -51,7 +51,9 @@ ws.onmessage = function(msg) {
     console.log(msg)
 }
 
-ws.send("test")
+ws.onopen = function(event) {
+    ws.send("test")
+}
 ```
 
 The above will log `tset` (`test` reversed).
