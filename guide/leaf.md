@@ -105,6 +105,52 @@ The double token, `##` indicates a chain. If the previous tag fails, this tag wi
 }
 ```
 
+#### Extending
+
+```swift
+/// base.leaf
+<!DOCTYPE html>
+#import("html")
+
+/// html.leaf
+#extend("base")
+
+#export("html") {
+  <html></html>
+}
+```
+
+Leaf renders `html.leaf` as:
+
+```html
+<!DOCTYPE html>
+<html></html>
+```
+
+#### Embedding
+
+```swift
+/// base.leaf
+<!DOCTYPE html>
+#import("html")
+
+/// html.leaf
+#extend("base")
+
+#export("html") {
+  <html>#embed("body")</html>
+}
+
+/// body.leaf
+<body></body>
+```
+Leaf renders `html.leaf` as:
+
+```html
+<!DOCTYPE html>
+<html><body></body></html>
+```
+
 ### Custom Tags
 
 Look at the existing tags for advanced scenarios, let's look at a basic example by creating `Index` together. This tag will take two arguments, an array, and an index to access.
