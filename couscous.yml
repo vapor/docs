@@ -152,8 +152,19 @@ menu:
                     relativeUrl: websockets/custom.html
 
         testing:
-          name: testing
+          name: Testing
           items:
               testing-basic:
                   text: Basic
                   relativeUrl: testing/basic.html
+
+
+        deploy:
+          name: Deploy
+          items:
+              deploy-nginx:
+                  text: Nginx
+                  relativeUrl: deploy/nginx.html
+              deploy-supervisor:
+                  text: Supervisor
+                  relativeUrl: deploy/supervisor.html
