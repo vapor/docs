@@ -29,7 +29,7 @@ stderr_logfile=/var/log/supervisor/%(program_name)-stderr.log
 
 This assume the `Hello` project is located in the home folder for the user `vapor`. Make sure `directory` points to the root directory of your project where the `Config/` folder is.
 
-The `--env=production` flag is important as it will disable verbose logging and choose the `Config/production` sub folder of your configuration files.
+The `--env=production` flag will disable verbose logging and prioritize the `Config/production` sub folder of your configuration files.
 
 ### Environment
 
