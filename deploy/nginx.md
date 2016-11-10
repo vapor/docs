@@ -1,3 +1,7 @@
+---
+currentMenu: deploy-nginx
+---
+
 # Deploying with Nginx
 
 Nginx is an extremely fast, battle tested, and easy-to-configure HTTP server and proxy. While Vapor supports directly serving HTTP requests with or without TLS, proxying behind Nginx can provide increased performance, security, and ease-of-use. 
@@ -9,6 +13,8 @@ Nginx is an extremely fast, battle tested, and easy-to-configure HTTP server and
 What does it mean to proxy an HTTP server? In short, a proxy acts as a middleman between the public internet and your HTTP server. Requests come to the proxy and then it sends them to Vapor. 
 
 An important feature of this middleman proxy is that it can alter or even redirect the requests. For instance, the proxy can require that the client use TLS (https), rate limit requests, or even serve public files without talking to your Vapor application.
+
+![nginx-proxy](https://cloud.githubusercontent.com/assets/1342803/20184965/5d9d588a-a738-11e6-91fe-28c3a4f7e46b.png)
 
 ### More Detail
 
@@ -70,7 +76,7 @@ Create a new file or copy the example template from `/etc/nginx/sites-available/
 
 Here is an example configuration file for a Vapor project called `Hello` in the home directory.
 
-```conf
+```sh
 server {
     server_name hello.com;
     listen 80;
@@ -96,7 +102,7 @@ This configuration file assumes the `Hello` project binds to port `8080` when st
 
 Nginx can also serve public files without asking your Vapor app. This can improve performance by freeing up the Vapor process for other tasks under heavy load.
 
-```conf
+```sh
 server {
 	...
 
@@ -113,7 +119,7 @@ server {
 
 Adding TLS is relatively straightforward as long as the certificates have been properly generated. To generate TLS certificates for free, check out [Let's Encrypt](https://letsencrypt.org/getting-started/).
 
-```conf
+```sh
 server {
     ...
 

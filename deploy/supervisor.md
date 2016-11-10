@@ -1,3 +1,8 @@
+---
+currentMenu: deploy-supervisor
+---
+
+
 # Supervisor
 
 [Supervisor](http://supervisord.org) is a process control system that makes it easy to start, stop, and restart your Vapor app.
@@ -13,7 +18,7 @@ sudo apt-get install supervisor
 
 Each Vapor app on your server should have its own configuration file. For an example `Hello` project, the configuration file would be located at `/etc/supervisor/conf.d/hello.conf`
 
-```conf
+```sh
 [program:hello]
 command=/home/vapor/hello/.build/release/App serve --env=production
 directory=/home/vapor/hello/
