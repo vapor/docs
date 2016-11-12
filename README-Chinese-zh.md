@@ -28,47 +28,47 @@ Vapor 是一個在 Swift 上很受歡迎的 Web framework。它提供了清楚�
 	- SMTP: 透過 Sendgrid 及 Gmail 發送郵件。
 - [Leaf](https://github.com/vapor/leaf): 一種可擴張的樣本語言(extensible templating language)。(譯註: 這可以用來建立使用者介面。)
 - [JSON](https://github.com/vapor/json): 將 [Jay](https://github.com/dantoml/jay) JSON 物件生成對應的 Vapor types 的工具。
-- [Console](https://github.com/vapor/console): Swift wrapper for console IO and commands.
-- [TLS](https://github.com/vapor/tls): Swift wrapper for CLibreSSL's new TLS.
-- [Crypto](https://github.com/vapor/crypto): Cryptography from LibreSSL and Swift.
-	- Digests: Hashing with and without authentication.
-	- Ciphers: Encryption and decryption
-	- Random: Psuedo and cryptographically secure randomness.
-	- BCrypt: Pure Swift implementation.
-- [Node](https://github.com/vapor/node): Data structure for easy type conversions.
-	- [Polymorphic](https://github.com/vapor/polymorphic): Syntax for easily accessing values from common types like JSON.
-	- [Path Indexable](https://github.com/vapor/path-indexable): A protocol for powerful subscript access of common types like JSON.
-- [Core](https://github.com/vapor/core): Core extensions, type-aliases, and functions that facilitate common tasks.
-- [Socks](https://github.com/vapor/socks): Swift C Socket API wrapper.
+- [Console](https://github.com/vapor/console): 用來處理 console 的輸入、輸出及指令的 Swift 工具。
+- [TLS](https://github.com/vapor/tls): 用來處理 CLibreSSL 的新型 TLS 的 Swift 工具。
+- [Crypto](https://github.com/vapor/crypto): 在 LibreSSL 及 Swift 上進行加密的工具。
+	- Digests: 無論有沒有認證(authentication)都可以進行雜湊(hash)。
+	- Ciphers: 編碼及解碼。
+	- Random: 安全的隨機性。
+	- BCrypt: 完全用 Swift 實作。
+- [Node](https://github.com/vapor/node): 可以輕易地進行類型轉換的資料結構。
+	- [Polymorphic](https://github.com/vapor/polymorphic): 如同 JSON 一般可以輕易取用資料的語法。
+	- [Path Indexable](https://github.com/vapor/path-indexable): 如同 JSON 一樣可以用來處理複雜的資料結構。
+- [Core](https://github.com/vapor/core): 主要的 extension 群，例如: 變數類型的重新命名、在許多地方都會被使用的 function 等。
+- [Socks](https://github.com/vapor/socks): 將 C 語言的 Socket API 包裝成 Swift 語言。
 
-## Providers & Other
+## 可合併使用的套件及提供者
 
-Here are a list of providers and third party packages that work great with Vapor.
+以下是可以和 Vapor 合併運用的套件列表。
 
-- [MySQL](https://github.com/vapor/mysql): Robust MySQL interface for Swift.
-	- [MySQL Driver](https://github.com/vapor/mysql-driver): MySQL driver for Fluent.
-	- [MySQL Provider](https://github.com/vapor/mysql-provider): MySQL provider for Vapor.
-- [SQLite](https://github.com/vapor/sqlite): SQLite 3 wrapper for Swift
-	- [SQLite Driver](https://github.com/vapor/sqlite-driver): SQLite driver for Fluent.
-	- [SQLite Provider](https://github.com/vapor/sqlite-provider): SQLite provider for Vapor.
-- [PostgreSQL](https://github.com/vapor/postgresql): Robust PostgreSQL interface for Swift.
-	- [PostgreSQL Driver](https://github.com/vapor/postgresql-driver): PostgreSQL driver for Fluent.
-	- [PostgreSQL Provider](https://github.com/vapor/postgresql-provider): PostgreSQL provider for Vapor.
-- [MongoKitten*](https://github.com/OpenKitten/MongoKitten): Native MongoDB driver for Swift, written in Swift
-	- [Mongo Driver](https://github.com/vapor/mongo-driver): MongoKitten driver for Fluent.
-	- [Mongo Provider](https://github.com/vapor/mongo-provider): MongoKitten provider for Vapor.
-	- [MainecoonVapor](https://github.com/OpenKitten/MainecoonVapor): MongoKitten ORM for Vapor.
-- [Redbird](https://github.com/vapor/redbird): Pure-Swift Redis client implemented from the original protocol spec..
-	- [Redis Provider](https://github.com/vapor/redis-provider): Redis cache provider for Vapor.
-- [Kitura Provider](https://github.com/vapor/kitura-provider): Use IBM's Kitura HTTP server in Vapor.
-- [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver-Vapor): Adds the powerful logging of SwiftyBeaver to Vapor.
-- [APNS](https://github.com/matthijs2704/vapor-apns): Simple APNS Library for Vapor (Swift).
-- [JWT](https://github.com/siemensikkema/vapor-jwt): JWT implementation for Vapor.
-- [VaporS3Signer](https://github.com/JustinM1/VaporS3Signer): Generate V4 Auth Header/Pre-Signed URL for AWS S3 REST API
-- [Flock](https://github.com/jakeheis/Flock): Automated deployment of Swift projects to servers
-	- [VaporFlock](https://github.com/jakeheis/VaporFlock): Use Flock to deploy Vapor applications
+- [MySQL](https://github.com/vapor/mysql): 可透過 Swift 操作 MySQL 的套件。
+	- [MySQL Driver](https://github.com/vapor/mysql-driver): 透過 Fluent 操作 MySQL 的套件。
+	- [MySQL Provider](https://github.com/vapor/mysql-provider): 讓 MySQL 可以在 Vapor 上運作的 provider。
+- [SQLite](https://github.com/vapor/sqlite): 可透過 Swift 操作 SQLite 3 的套件。
+	- [SQLite Driver](https://github.com/vapor/sqlite-driver): 透迥 Fluent 操作 SQLite 的工具。
+	- [SQLite Provider](https://github.com/vapor/sqlite-provider): 讓 SQLite 可以在 Vapor 上運作的 provider。
+- [PostgreSQL](https://github.com/vapor/postgresql): 用 Swift 操作 PostgreSQL 的工具。
+	- [PostgreSQL Driver](https://github.com/vapor/postgresql-driver): 用 Fluent 操作 PostgreSQL 的套件。
+	- [PostgreSQL Provider](https://github.com/vapor/postgresql-provider): 讓 PostgreSQL 可以運作在 Vapor 上的 provider。
+- [MongoKitten*](https://github.com/OpenKitten/MongoKitten): 用 Swift 寫的 MongoDB driver。
+	- [Mongo Driver](https://github.com/vapor/mongo-driver): Fluent 用的 MongoKitten driver。
+	- [Mongo Provider](https://github.com/vapor/mongo-provider): Vapor 用的 MongoKitten provider.
+	- [MainecoonVapor](https://github.com/OpenKitten/MainecoonVapor): Vapor 的 MongoKitten 物件關聯管理。
+- [Redbird](https://github.com/vapor/redbird): 遵循原原協定的規格實作出來的 Swift Redis client 端。
+	- [Redis Provider](https://github.com/vapor/redis-provider): Vapor 的 Redis cache provider。
+- [Kitura Provider](https://github.com/vapor/kitura-provider): 在 Vapor 中使用 IBM 的 Kitura HTTP Server。
+- [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver-Vapor): 在 Vapor 中使用 SwiftBeaver 的套件。(譯註: 就像強化版的 NSLog() 或 print())
+- [APNS](https://github.com/matthijs2704/vapor-apns): 用來操作 Apple 推播的工具。
+- [JWT](https://github.com/siemensikkema/vapor-jwt): 讓我們可以設定一些規則以取得特定資源的工具。
+- [VaporS3Signer](https://github.com/JustinM1/VaporS3Signer): 用來產生 HTTP request 的 headers 及已經簽證過的 URL，用來 request AWS S3 的 REST API。
+- [Flock](https://github.com/jakeheis/Flock): 自動將 Swift 專案發佈上主機。
+	- [VaporFlock](https://github.com/jakeheis/VaporFlock): 利用 Flock 發佈 Vapor applications。
 
 
-## Authors
+## 作者大大
 
-[Tanner Nelson](mailto:tanner@qutheory.io), [Logan Wright](mailto:logan@qutheory.io), and the hundreds of members of Vapor.
+[Tanner Nelson](mailto:tanner@qutheory.io), [Logan Wright](mailto:logan@qutheory.io)，以及其他上百位 Vapor 的貢獻者們。
