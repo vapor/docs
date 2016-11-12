@@ -8,23 +8,22 @@ Vapor 是一個在 Swift 上很受歡迎的 Web framework。它提供了清楚�
 
 您可以在 [Vapor's GitHub](https://github.com/vapor/vapor) 查看原始碼及說明文件。
 
-## How To Read
+## 如何閱讀說明文件
 
-You can read this guide by clicking through the folders and markdown files on [GitHub](https://github.com/vapor/documentation) or through the rendered [GitHub Pages](https://vapor.github.io/documentation/).
+在 [GitHub](https://github.com/vapor/documentation) 上瀏覽每個資料夾，特別是 markdown 檔(副檔名為 .md 的檔案)。或是看 [GitHub Pages](https://vapor.github.io/documentation/)。
 
-## Packages
+## 套件
+以下是 Vapor 提供的套件及模組(您也可以不透過 Vapor 而直接使用它們)
 
-Here are a list of all the packages and modules included with Vapor (also useable individually).
-
-- [Vapor](https://github.com/vapor/vapor): Swift's most used web framework.
-	- Auth: User authentication and persistance.
-	- Sessions: Secure, ephemeral cookie based data storage.
+- [Vapor](https://github.com/vapor/vapor): Swift 上最常被使用到的 web framework。
+	- Auth: 使用者的認證及存續控制(persistance)。
+	- Sessions: 建立在 cookie 上的安全、短暫的資料儲存。
 	- Cookies: HTTP cookies.
-	- Routing: Advanced router with type-safe parameterization.
-- [Fluent](https://github.com/vapor/fluent): Models, relationships, and querying for NoSQL and SQL databases.
-- [Engine](https://github.com/vapor/engine): Core transport layers.
-	- HTTP: Pure Swift HTTP client and server.
-	- URI: Pure Swift URI parsing and serializing.
+	- Routing: 可透過變數類型確定(type-safe)的參數來設定路徑。
+- [Fluent](https://github.com/vapor/fluent): 用來操作 SQL 或 NoSQL 資料庫。
+- [Engine](https://github.com/vapor/engine): 傳輸的核心層。
+	- HTTP: HTTP 用戶端及主機端。
+	- URI: URI 的分解及組成。
 	- WebSockets: Full-duplex communication channels over a single TCP connection.
 	- SMTP: Send email using Sendgrid and Gmail.
 - [Leaf](https://github.com/vapor/leaf): An extensible templating language.
