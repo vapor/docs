@@ -13,7 +13,7 @@ Vapor 是一個在 Swift 上很受歡迎的 Web framework。它提供了清楚�
 在 [GitHub](https://github.com/vapor/documentation) 上瀏覽每個資料夾，特別是 markdown 檔(副檔名為 .md 的檔案)。或是看 [GitHub Pages](https://vapor.github.io/documentation/) 上的文件。
 
 ## 套件
-以下是 Vapor 提供的套件及模組(您也可以直接使用它們，不透過 Vapor。)
+以下是 Vapor 提供的套件及模組(我們也可以直接使用它們，不透過 Vapor。)
 
 - [Vapor](https://github.com/vapor/vapor): Swift 上最常被使用到的 web framework。
 	- Auth: 使用者的認證及存續控制(persistance)。
