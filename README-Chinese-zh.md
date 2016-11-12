@@ -41,9 +41,9 @@ Vapor 是一個在 Swift 上很受歡迎的 Web framework。它提供了清楚�
 - [Core](https://github.com/vapor/core): 主要的 extension 群，例如: 變數類型的重新命名、在許多地方都會被使用的 function 等。
 - [Socks](https://github.com/vapor/socks): 將 C 語言的 Socket API 包裝成 Swift 語言。
 
-## 可合併使用的套件及提供者
+## 可合併使用的套件
 
-以下是可以和 Vapor 合併運用的套件列表。
+以下是可以和 Vapor 合併運用的套件列表。(譯註：原文裡這裡還有個東西叫 Provider，那是一種 protocol，讓我們可以掛到 Vapor 中如同第三方元件一樣使用。)
 
 - [MySQL](https://github.com/vapor/mysql): 可透過 Swift 操作 MySQL 的套件。
 	- [MySQL Driver](https://github.com/vapor/mysql-driver): 透過 Fluent 操作 MySQL 的套件。
