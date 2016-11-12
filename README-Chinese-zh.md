@@ -2,24 +2,24 @@
 
 [![Stack Overflow](https://img.shields.io/stackexchange/stackoverflow/t/vapor.svg)](http://stackoverflow.com/questions/tagged/vapor)
 
-這是 Vapor 的說明文件, Vapor 是一個可以在 iOS, macOS 及 Ubuntu 上執行的 Web framework； 以及其他由 Vapor 所提供的套件。
+這是 Vapor 的說明文件, Vapor 是一個可以在 iOS, macOS 及 Ubuntu 上執行的 Web framework，以及其他相關的套件。
 
-Vapor 是一個在 Swift 上很受歡迎的 Web framework。它提供了清楚的 API 及許多方便的基礎功能，您可以用它建立網站或是後台。
+Vapor 是一個在 Swift 上很受歡迎的 Web framework。它提供了清楚易用的 API 及許多方便的基礎功能，方便我們用它建立網站或是後台。
 
-您可以在 [Vapor's GitHub](https://github.com/vapor/vapor) 查看原始碼及說明文件。
+我們可以在 [Vapor's GitHub](https://github.com/vapor/vapor) 查看原始碼及說明文件。
 
 ## 如何閱讀說明文件
 
-在 [GitHub](https://github.com/vapor/documentation) 上瀏覽每個資料夾，特別是 markdown 檔(副檔名為 .md 的檔案)。或是看 [GitHub Pages](https://vapor.github.io/documentation/)。
+在 [GitHub](https://github.com/vapor/documentation) 上瀏覽每個資料夾，特別是 markdown 檔(副檔名為 .md 的檔案)。或是看 [GitHub Pages](https://vapor.github.io/documentation/) 上的文件。
 
 ## 套件
-以下是 Vapor 提供的套件及模組(您也可以不透過 Vapor 而直接使用它們)
+以下是 Vapor 提供的套件及模組(您也可以直接使用它們，不透過 Vapor。)
 
 - [Vapor](https://github.com/vapor/vapor): Swift 上最常被使用到的 web framework。
 	- Auth: 使用者的認證及存續控制(persistance)。
-	- Sessions: 建立在 cookie 上的安全、短暫的資料儲存。
+	- Sessions: 建立在 cookie 機制上安全、短暫的資料儲存。
 	- Cookies: HTTP cookies.
-	- Routing: 可透過變數類型確定(type-safe)的參數來設定路徑。
+	- Routing: 可透過變數類型確定(type-safe)的參數設定來設定路徑。
 - [Fluent](https://github.com/vapor/fluent): 用來操作 SQL 或 NoSQL 資料庫。
 - [Engine](https://github.com/vapor/engine): 傳輸的核心層。
 	- HTTP: HTTP 用戶端及主機端。
@@ -27,7 +27,7 @@ Vapor 是一個在 Swift 上很受歡迎的 Web framework。它提供了清楚�
 	- WebSockets: 在一個 TCB 連線中進行雙向的溝通管道。
 	- SMTP: 透過 Sendgrid 及 Gmail 發送郵件。
 - [Leaf](https://github.com/vapor/leaf): 一種可擴張的樣本語言(extensible templating language)。(譯註: 這可以用來建立使用者介面。)
-- [JSON](https://github.com/vapor/json): 將 [Jay](https://github.com/dantoml/jay) JSON 物件生成對應的 Vapor types 的工具。
+- [JSON](https://github.com/vapor/json): 將 [Jay](https://github.com/dantoml/jay) 將 JSON 物件生成對應的 Vapor types 的工具。
 - [Console](https://github.com/vapor/console): 用來處理 console 的輸入、輸出及指令的 Swift 工具。
 - [TLS](https://github.com/vapor/tls): 用來處理 CLibreSSL 的新型 TLS 的 Swift 工具。
 - [Crypto](https://github.com/vapor/crypto): 在 LibreSSL 及 Swift 上進行加密的工具。
