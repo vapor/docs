@@ -48,7 +48,7 @@ drop.run()
 The first thing we'll do is in my testing target, add a file called `Droplet+Test.swift`. It will look like this:
 
 ```swift
-import Vapor
+@testable import Vapor
 
 func makeTestDroplet() throws -> Droplet {
     let drop = Droplet(arguments: ["dummy/path/", "prepare"], ...)
@@ -58,7 +58,7 @@ func makeTestDroplet() throws -> Droplet {
 }
 ```
 
-This looks a lot like our initializer in `main.swift`, but there are 2 very key differences.
+This looks a lot like our initializer in `main.swift`, but there are 3 very key differences.
 
 ### Droplet(arguments: ["dummy/path/", "prepare"], ...
 
@@ -67,6 +67,10 @@ The `arguments:` parameter in our `Droplet` creation. This is rarely used except
 ### try drop.runCommands()
 
 You'll notice here that we're calling `runCommands()` instead of `run()`. This allows the `Droplet` to do all the setup it would normally do before booting without actually binding to a socket or exiting.
+
+### `@testable import Vapor`
+
+We'll need to import the testable compilation of Vapor to access the `runCommands` function. This is currently not public as a protection against accidental bugs in live apps.
 
 ## Test Our Droplet
 
