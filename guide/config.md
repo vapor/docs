@@ -46,7 +46,7 @@ Let's add a custom key to the `servers.json` file:
 This can be accessed from your application's config using the following.
 
 ```swift
-let customValue = app.config["server", "http", "custom-key"].string
+let customValue = drop.config["server", "http", "custom-key"]?.string ?? "default"
 ```
 
 That's it, feel free to add and utilize keys as necessary to make your application configuration easier.
@@ -71,13 +71,13 @@ You can access your config directory with the following syntax. `app.config[<#fi
 We can access this file by making sure the first argument in our subscript is keys. To get the first name in our list:
 
 ```swift
-let name = app.config["keys", "test-names", 0].string
+let name = drop.config["keys", "test-names", 0]?.string ?? "default"
 ```
 
 Or our mongo url:
 
 ```swift
-let mongoUrl = app.config["keys", "mongo", "url"].string
+let mongoUrl = drop.config["keys", "mongo", "url"].?string ?? "default"
 ```
 
 ## Advanced Configurations
