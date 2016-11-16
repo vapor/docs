@@ -27,7 +27,7 @@ Vapor 是一個在 Swift 上很受歡迎的 Web framework。它提供了清楚�
 	- WebSockets: 在一個 TCB 連線中進行雙向的溝通管道。
 	- SMTP: 透過 Sendgrid 及 Gmail 發送郵件。
 - [Leaf](https://github.com/vapor/leaf): 一種可擴張的樣本語言(extensible templating language)。(譯註: 這可以用來建立使用者介面。)
-- [JSON](https://github.com/vapor/json): 將 [Jay](https://github.com/dantoml/jay) 將 JSON 物件生成對應的 Vapor types 的工具。
+- [JSON](https://github.com/vapor/json): 用 [Jay JSON]((https://github.com/dantoml/jay)) 解析工具產生Vapor物件。
 - [Console](https://github.com/vapor/console): 用來處理 console 的輸入、輸出及指令的 Swift 工具。
 - [TLS](https://github.com/vapor/tls): 用來處理 CLibreSSL 的新型 TLS 的 Swift 工具。
 - [Crypto](https://github.com/vapor/crypto): 在 LibreSSL 及 Swift 上進行加密的工具。
