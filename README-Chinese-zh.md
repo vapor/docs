@@ -58,7 +58,7 @@ Vapor 是一個在 Swift 上很受歡迎的 Web framework。它提供了清楚�
 	- [Mongo Driver](https://github.com/vapor/mongo-driver): Fluent 用的 MongoKitten driver。
 	- [Mongo Provider](https://github.com/vapor/mongo-provider): Vapor 用的 MongoKitten provider.
 	- [MainecoonVapor](https://github.com/OpenKitten/MainecoonVapor): Vapor 的 MongoKitten 物件關聯管理。
-- [Redbird](https://github.com/vapor/redbird): 遵循原原協定的規格實作出來的 Swift Redis client 端。
+- [Redbird](https://github.com/vapor/redbird): 遵循原始協定的規格實作出來的 Swift Redis client 端。
 	- [Redis Provider](https://github.com/vapor/redis-provider): Vapor 的 Redis cache provider。
 - [Kitura Provider](https://github.com/vapor/kitura-provider): 在 Vapor 中使用 IBM 的 Kitura HTTP Server。
 - [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver-Vapor): 在 Vapor 中使用 SwiftBeaver 的套件。(譯註: 就像強化版的 NSLog() 或 print())
@@ -69,6 +69,6 @@ Vapor 是一個在 Swift 上很受歡迎的 Web framework。它提供了清楚�
 	- [VaporFlock](https://github.com/jakeheis/VaporFlock): 利用 Flock 發佈 Vapor applications。
 
 
-## 作者大大
+## 作者們
 
 [Tanner Nelson](mailto:tanner@qutheory.io), [Logan Wright](mailto:logan@qutheory.io)，以及其他上百位 Vapor 的貢獻者們。
