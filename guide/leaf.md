@@ -26,6 +26,7 @@ Here we see all the components of a Leaf tag.
   This is an optional body here
 }
 ```
+Note that there must be one whitespace between `)` and `{`.
 
 ##### Token
 
@@ -60,6 +61,10 @@ If you need # to appear alone in your html, simply using `#()` will render as #.
 ### Atom
 
 [language-leaf](https://atom.io/packages/language-leaf) by ButkiewiczP
+
+### Highlight.js
+
+[language-leaf](https://github.com/isagalaev/highlight.js/pull/1352) by Hale Chan
 
 ## Examples
 
@@ -97,7 +102,7 @@ Loop a variable
 
 The double token, `##` indicates a chain. If the previous tag fails, this tag will be given an opportunity to run. It can be applied to any standard tag, for example, above we chain to else, but we could also chain to loops.
 
-```
+```leaf
 #empty(friends) {
     Try adding some friends!
 } ##loop(friends, "friend") {
@@ -107,7 +112,7 @@ The double token, `##` indicates a chain. If the previous tag fails, this tag wi
 
 #### Extending
 
-```swift
+```leaf
 /// base.leaf
 <!DOCTYPE html>
 #import("html")
@@ -129,7 +134,7 @@ Leaf renders `html.leaf` as:
 
 #### Embedding
 
-```swift
+```leaf
 /// base.leaf
 <!DOCTYPE html>
 #import("html")
@@ -155,7 +160,7 @@ Leaf renders `html.leaf` as:
 
 Look at the existing tags for advanced scenarios, let's look at a basic example by creating `Index` together. This tag will take two arguments, an array, and an index to access.
 
-```
+```swift
 class Index: BasicTag {
     let name = "index"
 
@@ -173,19 +178,19 @@ class Index: BasicTag {
 
 Now, after creating our `Stem`, we can register the tag:
 
-```
+```swift
 stem.register(Index())
 ```
 
 And use it like so:
 
-```
+```leaf
 Hello, #index(friends, "0")!
 ```
 
 We can also chain `else` to this like we did earlier if we want to check existence first:
 
-```
+```leaf
 #index(friends, "0") {
     Hello, #(self)!
 } ##else() {
