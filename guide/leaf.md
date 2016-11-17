@@ -97,7 +97,7 @@ Loop a variable
 
 The double token, `##` indicates a chain. If the previous tag fails, this tag will be given an opportunity to run. It can be applied to any standard tag, for example, above we chain to else, but we could also chain to loops.
 
-```
+```leaf
 #empty(friends) {
     Try adding some friends!
 } ##loop(friends, "friend") {
@@ -129,7 +129,7 @@ Leaf renders `html.leaf` as:
 
 #### Embedding
 
-```swift
+```leaf
 /// base.leaf
 <!DOCTYPE html>
 #import("html")
