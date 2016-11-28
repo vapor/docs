@@ -34,7 +34,7 @@ Here are a list of all the packages and modules included with Vapor (also useabl
 - [Crypto](https://github.com/vapor/crypto): Cryptography from LibreSSL and Swift.
 	- Digests: Hashing with and without authentication.
 	- Ciphers: Encryption and decryption
-	- Random: Psuedo and cryptographically secure randomness.
+	- Random: Pseudo and cryptographically secure randomness.
 	- BCrypt: Pure Swift implementation.
 - [Node](https://github.com/vapor/node): Data structure for easy type conversions.
 	- [Polymorphic](https://github.com/vapor/polymorphic): Syntax for easily accessing values from common types like JSON.
