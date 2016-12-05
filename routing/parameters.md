@@ -20,7 +20,7 @@ This creates a route that matches `users/:id` where the `:id` is an `Int`. Here'
 
 ```swift
 drop.get("users", ":id") { request in
-  guard let userId = request.parameters["id"].int else {
+  guard let userId = request.parameters["id"]?.int else {
     throw Abort.badRequest
   }
 
