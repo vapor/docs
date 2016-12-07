@@ -12,6 +12,10 @@ To view the framework's source code and code documentation, visit [Vapor's GitHu
 
 You can read this guide by clicking through the folders and markdown files on [GitHub](https://github.com/vapor/documentation) or through the rendered [GitHub Pages](https://vapor.github.io/documentation/).
 
+## API 
+
+Auto-generated API documentation is located at [api.vapor.codes](http://api.vapor.codes).
+
 ## Packages
 
 Here are a list of all the packages and modules included with Vapor (also useable individually).
