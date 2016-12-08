@@ -33,7 +33,7 @@ The `--env=production` flag will disable verbose logging and prioritize the `Con
 
 ### Environment
 
-You can export variables to your Vapor app with sueprvisor.
+You can export variables to your Vapor app with supervisor.
 
 ```sh
 environment=PORT=8123
