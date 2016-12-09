@@ -8,9 +8,15 @@ Vapor is the most used web framework for Swift. It provides a beautifully expres
 
 To view the framework's source code and code documentation, visit [Vapor's GitHub](https://github.com/vapor/vapor).
 
+Read this in [正體中文](https://github.com/vapor/documentation/blob/master/README.zh-hant.md)
+
 ## How To Read
 
 You can read this guide by clicking through the folders and markdown files on [GitHub](https://github.com/vapor/documentation) or through the rendered [GitHub Pages](https://vapor.github.io/documentation/).
+
+## API 
+
+Auto-generated API documentation is located at [api.vapor.codes](http://api.vapor.codes).
 
 ## Packages
 
@@ -69,6 +75,7 @@ Here are a list of providers and third party packages that work great with Vapor
 - [Flock](https://github.com/jakeheis/Flock): Automated deployment of Swift projects to servers
 	- [VaporFlock](https://github.com/jakeheis/VaporFlock): Use Flock to deploy Vapor applications
 - [VaporForms](https://github.com/bygri/vapor-forms): Brings simple, dynamic and re-usable web form handling to Vapor.
+- [Jobs](https://github.com/BrettRToomey/Jobs): A minimalistic job/background-task system for Swift.
 
 
 ## Authors
