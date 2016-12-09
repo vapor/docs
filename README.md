@@ -74,6 +74,7 @@ Here are a list of providers and third party packages that work great with Vapor
 - [VaporS3Signer](https://github.com/JustinM1/VaporS3Signer): Generate V4 Auth Header/Pre-Signed URL for AWS S3 REST API
 - [Flock](https://github.com/jakeheis/Flock): Automated deployment of Swift projects to servers
 	- [VaporFlock](https://github.com/jakeheis/VaporFlock): Use Flock to deploy Vapor applications
+- [Jobs](https://github.com/BrettRToomey/Jobs): A minimalistic job/background-task system for Swift.
 
 
 ## Authors
