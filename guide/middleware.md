@@ -84,7 +84,7 @@ enum FooError: Error {
 }
 ```
 
-Say there is a custom error that either you defined or one of the APIs you are using `throw`s. This error must be caught when thrown, or else it will end up as a server error which may be unexpected to a user. The most obvious solution is to catch the error in the route closure.
+Say there is a custom error that either you defined or one of the APIs you are using `throws`. This error must be caught when thrown, or else it will end up as a server error which may be unexpected to a user. The most obvious solution is to catch the error in the route closure.
 
 ```swift
 app.get("foo") { request in
