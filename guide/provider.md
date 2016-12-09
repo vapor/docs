@@ -74,8 +74,8 @@ import VaporMySQL
 
 let drop = Droplet()
 
-let mysql = VaporMySQL.Provider(host: "localhost", user: "root")
-try drop.addProvider(mysql)
+let mysql = try VaporMySQL.Provider(host: "localhost", user: "root", password: "", database: "vapor")
+drop.addProvider(mysql)
 
 ...
 
