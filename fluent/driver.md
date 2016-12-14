@@ -13,8 +13,8 @@ This graphic shows the relation between Drivers and Providers using MySQL as an 
 If you want to use Fluent without Vapor, you will import Drivers into your package. If you are using Vapor, you will import Providers.
 
 Search GitHub for:
-- [Fluent Drivers](https://github.com/vapor?utf8=✓&query=-driver)
-- [Vapor Providers](https://github.com/vapor?utf8=✓&query=-provider)
+- [Fluent Drivers](https://github.com/vapor?utf8=✓&q=-driver)
+- [Vapor Providers](https://github.com/vapor?utf8=✓&q=-provider)
 
 Not all drivers have providers yet, and not all drivers or providers are up to date with the latest Vapor 1.0. This is a great way to contribute!
 

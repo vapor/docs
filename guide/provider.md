@@ -12,7 +12,7 @@ Adding a provider to your application takes 2-3 steps.
 
 ### Add Package
 
-All of Vapor's providers end with the `-provider` syntax. You can see a list of [available providers](https://github.com/vapor?utf8=✓&query=-provider) by searching on our GitHub.
+All of Vapor's providers end with the `-provider` syntax. You can see a list of [available providers](https://github.com/vapor?utf8=✓&q=-provider) by searching on our GitHub.
 
 To add the provider to your package, add it as a dependency in your `Package.swift` file.
 
