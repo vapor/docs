@@ -180,14 +180,14 @@ Middleware pairs great with request/response extensions and storage.
 final class PokemonMiddleware: Middleware {
     let drop: Droplet
     init(drop: Droplet) {
-        self.drop = dropt
+        self.drop = drop
     }
 
     func respond(to request: Request, chainingTo next: Responder) throws -> Response {
         let response = try next.respond(to: request)
 
         if let pokemon = response.pokemon {
-            request.accept.prefers("html") {
+            if request.accept.prefers("html") {
                 response.view = try drop.view("pokemon.mustache", context: pokemon)
             } else {
                 response.json = try pokemon.makeJSON()
