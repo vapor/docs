@@ -76,6 +76,7 @@ Here are a list of providers and third party packages that work great with Vapor
 	- [VaporFlock](https://github.com/jakeheis/VaporFlock): Use Flock to deploy Vapor applications
 - [VaporForms](https://github.com/bygri/vapor-forms): Brings simple, dynamic and re-usable web form handling to Vapor.
 - [Jobs](https://github.com/BrettRToomey/Jobs): A minimalistic job/background-task system for Swift.
+- [Heimdall](https://github.com/himani93/heimdall): An easy to use HTTP request logger.
 
 
 ## Authors
