@@ -67,8 +67,9 @@ Vapor 是一個在 Swift 上很受歡迎的 Web framework。它提供了清楚�
 - [VaporS3Signer](https://github.com/JustinM1/VaporS3Signer): 用來產生 HTTP request 的 headers 及已經簽證過的 URL，用來 request AWS S3 的 REST API。
 - [Flock](https://github.com/jakeheis/Flock): 自動將 Swift 專案發佈上主機。
 	- [VaporFlock](https://github.com/jakeheis/VaporFlock): 利用 Flock 發佈 Vapor applications。
-- [VaporForms](https://github.com/bygri/vapor-forms)。
-- [Jobs](https://github.com/BrettRToomey/Jobs)。
+- [VaporForms](https://github.com/bygri/vapor-forms): 讓我們在處理前端送來的 form request 時可以輕鬆一點的套件。
+- [Jobs](https://github.com/BrettRToomey/Jobs): 在某個特定的時間點執行某些程式碼的套件。
+- [Heimdall](https://github.com/himani93/heimdall): 用來將收到的 http request 記錄到某個檔案的套件，且這個寫好的檔可以用試算表類型(ex: excel, google sheets)的軟體開啟。
 
 
 ## 作者們
