@@ -94,7 +94,7 @@ The `Droplet` will continue to use the default logger until you modify the `Conf
 
 The `Droplet` init method is fairly simple since most properties are variable and can be changed after initialization.
 
-Most plugins for Vapor come with a [Provider](providers.md), these take care of configuration details for you.
+Most plugins for Vapor come with a [Provider](provider.md), these take care of configuration details for you.
 
 ```swift
 Droplet(

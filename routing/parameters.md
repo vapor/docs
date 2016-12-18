@@ -20,7 +20,7 @@ This creates a route that matches `users/:id` where the `:id` is an `Int`. Here'
 
 ```swift
 drop.get("users", ":id") { request in
-  guard let userId = request.parameters["id"].int else {
+  guard let userId = request.parameters["id"]?.int else {
     throw Abort.badRequest
   }
 
@@ -109,7 +109,7 @@ The resulting path for the above example is `/v1/users/:userId/posts/:postId`. I
 As shown briefly above, you are still free to do traditional routing. This can be useful for especially complex situations.
 
 ```swift
-drop.get("v1", "users", ":userId", "posts", ":postId", "comments": ":commentId") { request in
+drop.get("v1", "users", ":userId", "posts", ":postId", "comments", ":commentId") { request in
   let userId = try request.parameters.extract("userId") as Int
   let postId = try request.parameters.extract("postId") as Int
   let commentId = try request.parameters.extract("commentId") as Int

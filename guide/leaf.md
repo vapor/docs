@@ -4,7 +4,7 @@ currentMenu: guide-leaf
 
 # Leaf
 
-Welcome to Leaf. Leaf's goal is to be a simple templating language that can make generating views easier. There's a lot of great templating languages, use what's best for you, maybe that's leaf! The goals of leaf are as follows:
+Welcome to Leaf. Leaf's goal is to be a simple templating language that can make generating views easier. There's a lot of great templating languages, use what's best for you, maybe that's Leaf! The goals of Leaf are as follows:
 
 - Small set of strictly enforced rules
 - Consistency
@@ -12,78 +12,88 @@ Welcome to Leaf. Leaf's goal is to be a simple templating language that can make
 - Extensibility
 
 ## Syntax
-
-Leaf syntax is based around a single token, in this case, the hashtag: `#`.
-
->It's important to note that _all_ hashtags will be parsed, there is no escaping. Use `#()` to render a plain `#`. `#()Leaf` => `#Leaf`. Or, for larger sections, use the `raw` tag. `#raw() { #Do #whatever #you #want #to #in #here!. }`
-
 ### Structure
 
-Here we see all the components of a Leaf tag.
+Leaf Tags are made up of 4 Elements:
+  - Token: `#` is the Token
+  - Name: A `string` that identifies the tag
+  - Parameter List: `()` May accept 0 or more arguments
+  - Body(optional): `{}` Must be separated from the Parameter List by a space
 
-```leaf
-#someTag(parameter.list, goes, "here") {
-  This is an optional body here
-}
+There can be many different usages of these 4 elements depending on the Tag's implementation. Let's look at a few examples of how Leaf's built-in Tags might be used:
+
+  - `#()`
+  - `#(variable)`
+  - `#import("template")`
+  - `#export("link") { <a href="#()"></a> }`
+  - `#index(friends, "0")`
+  - `#loop(friends, "friend") { <li>#(friend.name)</li> }`
+  - `#raw() { <a href="#raw">Anything goes!@#$%^&*</a> }`
+
+### Using the `#` token in HTML
+
+The token cannot be escaped. Use the `#()` or `#raw() {}` Tag to output a `#` in a Leaf Template. `#()` => `#`
+
+### Raw HTML
+
+All Leaf output is escaped by default. Use the `#raw() {}` Tag for unescaped output.
+`#raw() { <a href="#link">Link</a> }` => `<a href="#link">Link</a>`
+> IMPORTANT!  Make sure you are not using the `#raw() {}` Tag with user input.
+
+### Chaining
+
+The double token: `##` indicates a chain. It can be applied to any standard Tag. If the previous Tag fails, the chained Tag will be given an opportunity to run.
+
+```
+#if(hasFriends) ##embed("getFriends")
 ```
 
-##### Token
+### Leaf's built-in Tags
 
->The `#` token will define we're a tag
+#### Token: `#()`
 
-##### Name
+```
+#() #()hashtags #()FTW => # #Hashtags #FTW
+```
 
->In above example, it would be `someTag`. While not strictly enforced, it is **highly** encouraged that users only use alphanumeric characters in names. This may be enforced in future versions.
+#### Raw: `#raw() {}`
 
-##### Parameter List
-
-`Var(parameter, list), Var(goes), Const("here")`
-
-##### Body
-
-> This is an optional body here indicated w/ open and closed curly brackets.
-
-#### Using # in html with Leaf
-
-If you need # to appear alone in your html, simply using `#()` will render as #. Alternatively, the raw tag is available for larger sections of code:
-
-```leaf
+```
 #raw() {
-   Do whatever w/ #'s here, this code
-   won't be rendered as leaf document.
-   It's a great place for things like Javascript or large HTML sections.
+    Do whatever w/ #'s here, this code won't be rendered as leaf document and is not escaped.
+    It's a great place for things like Javascript or large HTML sections.
 }
 ```
 
-## Syntax Highlighting
+#### Equal: `#equal(lhs, rhs) {}`
 
-### Atom
+```
+#equal(leaf, leaf) { Leaf == Leaf } => Leaf == Leaf
+#equal(leaf, mustache) { Leaf == Mustache } =>
+```
 
-[language-leaf](https://atom.io/packages/language-leaf) by ButkiewiczP
+#### Variable: `#(variable)`
 
-## Examples
-
-#### Variable
-
-Variables are added w/ just a number sign.
-
-```leaf
+```
 Hello, #(name)!
 ```
 
-#### Loop
+#### Loop: `#loop(object, "index")`
 
-Loop a variable
-
-```leaf
+```
 #loop(friends, "friend") {
   Hello, #(friend.name)!
 }
 ```
+#### Index: `#loop(object, "index")`
 
-#### If - Else
+```
+Hello, #index(friends, "0")!
+```
 
-```leaf
+#### If - Else: `#if(bool) ##else() { this }`
+
+```
 #if(entering) {
   Hello, there!
 } ##if(leaving) {
@@ -93,21 +103,14 @@ Loop a variable
 }
 ```
 
-#### Chaining
+#### Import: `#import("template")`
+#### Export: `#export("template") { Leaf/HTML }`
+#### Extend: `#extend("template")`
+#### Embed: `#embed("template")`
 
-The double token, `##` indicates a chain. If the previous tag fails, this tag will be given an opportunity to run. It can be applied to any standard tag, for example, above we chain to else, but we could also chain to loops.
+> When using these Layout Tags, omit the template file's .leaf extension.
 
 ```
-#empty(friends) {
-    Try adding some friends!
-} ##loop(friends, "friend") {
-    <li> #(friend.name) </li>
-}
-```
-
-#### Extending
-
-```swift
 /// base.leaf
 <!DOCTYPE html>
 #import("html")
@@ -115,38 +118,15 @@ The double token, `##` indicates a chain. If the previous tag fails, this tag wi
 /// html.leaf
 #extend("base")
 
-#export("html") {
-  <html></html>
-}
-```
-
-Leaf renders `html.leaf` as:
-
-```html
-<!DOCTYPE html>
-<html></html>
-```
-
-#### Embedding
-
-```swift
-/// base.leaf
-<!DOCTYPE html>
-#import("html")
-
-/// html.leaf
-#extend("base")
-
-#export("html") {
-  <html>#embed("body")</html>
-}
+#export("html") { <html>#embed("body")</html> }
 
 /// body.leaf
 <body></body>
 ```
+
 Leaf renders `html.leaf` as:
 
-```html
+```
 <!DOCTYPE html>
 <html><body></body></html>
 ```
@@ -155,40 +135,45 @@ Leaf renders `html.leaf` as:
 
 Look at the existing tags for advanced scenarios, let's look at a basic example by creating `Index` together. This tag will take two arguments, an array, and an index to access.
 
-```
+```swift
 class Index: BasicTag {
-    let name = "index"
+  let name = "index"
 
-    func run(arguments: [Argument]) throws -> Node? {
-        guard
-            arguments.count == 2,
-            let array = arguments[0].value?.nodeArray,
-            let index = arguments[1].value?.int,
-            index < array.count
-            else { return nil }
+  func run(arguments: [Argument]) throws -> Node? {
+    guard
+      arguments.count == 2,
+      let array = arguments[0].value?.nodeArray,
+      let index = arguments[1].value?.int,
+      index < array.count
+    else { return nil }
         return array[index]
     }
 }
 ```
 
-Now, after creating our `Stem`, we can register the tag:
+We can now register this Tag in our `main.swift` file with:
 
-```
-stem.register(Index())
-```
-
-And use it like so:
-
-```
-Hello, #index(friends, "0")!
-```
-
-We can also chain `else` to this like we did earlier if we want to check existence first:
-
-```
-#index(friends, "0") {
-    Hello, #(self)!
-} ##else() {
-    Nobody's there!
+```swift
+if let leaf = drop.view as? LeafRenderer {
+    leaf.stem.register(Version())
 }
 ```
+
+And use it just like we did [above](#index).
+
+> Note: Use of non-alphanumeric characters in Tag Names is **strongly discouraged** and may be disallowed in future versions of Leaf.
+
+## Syntax Highlighting
+
+### Atom
+
+[language-leaf](https://atom.io/packages/language-leaf) by ButkiewiczP
+
+### Xcode
+It is not currently possible to implement Leaf Syntax Highlighting in Xcode, however, using Xcode's HTML Syntax Coloring can help a bit. Select one or more Leaf files and then choose Editor > Syntax Coloring > HTML.  Your selected Leaf files will now use Xcode's HTML Syntax Coloring.  Unfortunately the usefulness of this is limited because this association will be removed when `vapor xcode` is run.
+
+There appears to be a way to [make Xcode file associations persist](http://stackoverflow.com/questions/9050035/how-to-make-xcode-recognize-a-custom-file-extension-as-objective-c-for-syntax-hi) but that requires a bit more kung-fu.
+
+### CLion & AppCode
+
+Some preliminary work has been done to implement a Leaf Plugin for CLion & AppCode but lack of skill and interest in Java has slowed progress! If you have IntelliJ SDK experience and want to help with this, message Tom Holland on [Vapor Slack](http://vapor.team)

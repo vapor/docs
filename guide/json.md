@@ -27,11 +27,11 @@ To specifically target JSON, use the `request.json` property.
 
 ```swift
 drop.post("json") { request in
-	guard let name = request.json["name"].string else {
-		throw Abort.badRequest
-	}
+    guard let name = request.json?["name"]?.string else {
+        throw Abort.badRequest
+    }
 
-	return "Hello, \(name)!"
+    return "Hello, \(name)!"
 }
 ```
 The above snippet will only work if the request is sent with JSON data.

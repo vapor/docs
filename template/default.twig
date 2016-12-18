@@ -70,6 +70,46 @@
         <script src="{{ baseUrl}}/scripts/highlight.pack.js"></script>
 
         <script>
+            hljs.registerLanguage("leaf", function (hljs) {
+                /* Author: Hale Chan <halechan@qq.com> */
+                return {
+                    c: [
+                        {
+                            cN: 'function',
+                            b: '#+',
+                            e: '[)] ',
+                            rB: true,
+                            eE: false,
+                            c : [
+                                {
+                                    b: '[(]', 
+                                    e: '[)]',
+                                    eE: true,
+                                    c: [
+                                        {
+                                            cN: 'string',
+                                            b: '"',
+                                            e: '"'
+                                        },
+                                        {
+                                            cN: 'title',
+                                            b: '[A-Za-z_][A-Za-z_0-9]*'
+                                        }
+                                    ]
+                                },
+                                {
+                                    cN: 'keyword',
+                                    b: '#+([A-Za-z$_][0-9A-Za-z$_]*)?',
+                                    eP: true
+                                },
+                            ]
+                        }
+                    ]
+                };
+            });
+        </script>
+
+        <script>
             $(function() {
                 // Syntax highlighting
                 hljs.initHighlightingOnLoad();

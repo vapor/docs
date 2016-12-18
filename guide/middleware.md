@@ -84,7 +84,7 @@ enum FooError: Error {
 }
 ```
 
-Say there is a custom error that either you defined or one of the APIs you are using `throw`s. This error must be caught when thrown, or else it will end up as a server error which may be unexpected to a user. The most obvious solution is to catch the error in the route closure.
+Say there is a custom error that either you defined or one of the APIs you are using `throws`. This error must be caught when thrown, or else it will end up as a server error which may be unexpected to a user. The most obvious solution is to catch the error in the route closure.
 
 ```swift
 app.get("foo") { request in
@@ -180,14 +180,14 @@ Middleware pairs great with request/response extensions and storage.
 final class PokemonMiddleware: Middleware {
     let drop: Droplet
     init(drop: Droplet) {
-        self.drop = dropt
+        self.drop = drop
     }
 
     func respond(to request: Request, chainingTo next: Responder) throws -> Response {
         let response = try next.respond(to: request)
 
         if let pokemon = response.pokemon {
-            request.accept.prefers("html") {
+            if request.accept.prefers("html") {
                 response.view = try drop.view("pokemon.mustache", context: pokemon)
             } else {
                 response.json = try pokemon.makeJSON()
