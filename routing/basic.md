@@ -42,7 +42,7 @@ You can also use `/`, but commas are often easier to type and work better with t
 
 ## Alternate
 
-An alternate syntax that accepts a `Method` as the first parameter is also available.
+An alternate syntax that accepts a [`Method`](../http/response.md) as the first parameter is also available.
 
 ```swift
 drop.add(.trace, "welcome") { request in
