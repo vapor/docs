@@ -24,7 +24,7 @@ Depending on your version of Ubuntu, you may need some additional tools for the 
 
 ```sh
 sudo apt-get update
-sudo apt-get install clang libicu-dev binutils git
+sudo apt-get install clang libicu-dev binutils git libpython2.7-dev libcurl3
 ```
 
 ### Download
