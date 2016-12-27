@@ -85,7 +85,7 @@ Hello, #(name)!
   Hello, #(friend.name)!
 }
 ```
-#### Index: `#index(object, Int|String)`
+#### Index: `#index(object, _ index: Int|String)`
 
 ```
 Hello, #index(friends, 0)!
