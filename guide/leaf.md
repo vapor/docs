@@ -85,10 +85,11 @@ Hello, #(name)!
   Hello, #(friend.name)!
 }
 ```
-#### Index: `#loop(object, "index")`
+#### Index: `#index(object, Int|String)`
 
 ```
-Hello, #index(friends, "0")!
+Hello, #index(friends, 0)!
+Hello, #index(friends, "best")!
 ```
 
 #### If - Else: `#if(bool) ##else() { this }`
