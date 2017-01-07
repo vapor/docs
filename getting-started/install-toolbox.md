@@ -4,7 +4,7 @@ currentMenu: getting-started-install-toolbox
 
 # Install Toolbox
 
-Vapor's command line interface provides shortcuts and assistance for commons tasks.
+Vapor's command line interface provides shortcuts and assistance for common tasks.
 
 ![Vapor Toolbox](https://cloud.githubusercontent.com/assets/1342803/17454691/97e549e2-5b6d-11e6-979a-f0cd6b6f1b0a.png)
 
