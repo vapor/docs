@@ -8,9 +8,9 @@ Vapor es el _framework web_  más utilizado para Swift. Proporciona una base mar
 
 Para ver el código fuente y la documentación del código visita [Vapor's GitHub](https://github.com/vapor/vapor).
 
-Para leer esto en chino [正體中文](https://github.com/vapor/documentation/blob/master/README.zh-hant.md)
+Para leer esto en [正體中文](https://github.com/vapor/documentation/blob/master/README.zh-hant.md)
 
-Para leer esto en [inglés](https://github.com/vapor/documentation/blob/master/README.md)
+Para leer esto en [english](https://github.com/vapor/documentation/blob/master/README.md)
 
 ## Cómo leer esta documentación.
 
@@ -54,31 +54,31 @@ Aquí hay una lista de todos los paquetes y módulos incluidos con Vapor (tambi�
 
 Aquí hay una lista de proveedores y paquetes de terceros que funcionan muy bien con Vapor.
 
-- [MySQL](https://github.com/vapor/mysql): Robust MySQL interface for Swift.
-	- [MySQL Driver](https://github.com/vapor/mysql-driver): MySQL driver for Fluent.
-	- [MySQL Provider](https://github.com/vapor/mysql-provider): MySQL provider for Vapor.
-- [SQLite](https://github.com/vapor/sqlite): SQLite 3 wrapper for Swift
-	- [SQLite Driver](https://github.com/vapor/sqlite-driver): SQLite driver for Fluent.
-	- [SQLite Provider](https://github.com/vapor/sqlite-provider): SQLite provider for Vapor.
-- [PostgreSQL](https://github.com/vapor/postgresql): Robust PostgreSQL interface for Swift.
-	- [PostgreSQL Driver](https://github.com/vapor/postgresql-driver): PostgreSQL driver for Fluent.
-	- [PostgreSQL Provider](https://github.com/vapor/postgresql-provider): PostgreSQL provider for Vapor.
-- [MongoKitten*](https://github.com/OpenKitten/MongoKitten): Native MongoDB driver for Swift, written in Swift
-	- [Mongo Driver](https://github.com/vapor/mongo-driver): MongoKitten driver for Fluent.
-	- [Mongo Provider](https://github.com/vapor/mongo-provider): MongoKitten provider for Vapor.
-	- [MainecoonVapor](https://github.com/OpenKitten/MainecoonVapor): MongoKitten ORM for Vapor.
-- [Redbird](https://github.com/vapor/redbird): Pure-Swift Redis client implemented from the original protocol spec..
-	- [Redis Provider](https://github.com/vapor/redis-provider): Redis cache provider for Vapor.
-- [Kitura Provider](https://github.com/vapor/kitura-provider): Use IBM's Kitura HTTP server in Vapor.
-- [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver-Vapor): Adds the powerful logging of SwiftyBeaver to Vapor.
-- [APNS](https://github.com/matthijs2704/vapor-apns): Simple APNS Library for Vapor (Swift).
-- [JWT](https://github.com/siemensikkema/vapor-jwt): JWT implementation for Vapor.
-- [VaporS3Signer](https://github.com/JustinM1/VaporS3Signer): Generate V4 Auth Header/Pre-Signed URL for AWS S3 REST API
-- [Flock](https://github.com/jakeheis/Flock): Automated deployment of Swift projects to servers
-	- [VaporFlock](https://github.com/jakeheis/VaporFlock): Use Flock to deploy Vapor applications
-- [VaporForms](https://github.com/bygri/vapor-forms): Brings simple, dynamic and re-usable web form handling to Vapor.
-- [Jobs](https://github.com/BrettRToomey/Jobs): A minimalistic job/background-task system for Swift.
-- [Heimdall](https://github.com/himani93/heimdall): An easy to use HTTP request logger.
+- [MySQL](https://github.com/vapor/mysql): Interface robusta MySQL para Swift.
+	- [MySQL Driver](https://github.com/vapor/mysql-driver): _Driver_ MySQL  para Fluent.
+	- [MySQL Provider](https://github.com/vapor/mysql-provider): Proveedor MySQL para Vapor.
+- [SQLite](https://github.com/vapor/sqlite): _Wrapper_ SQLite 3  para Swift
+	- [SQLite Driver](https://github.com/vapor/sqlite-driver): _Driver_ SQLite  para Fluent.
+	- [SQLite Provider](https://github.com/vapor/sqlite-provider): Proveedor SQLite provider para Vapor.
+- [PostgreSQL](https://github.com/vapor/postgresql): Interface PostgreSQL robusta  para Swift.
+	- [PostgreSQL Driver](https://github.com/vapor/postgresql-driver): _Driver_  PostgreSQL para Fluent.
+	- [PostgreSQL Provider](https://github.com/vapor/postgresql-provider): Proveedor  PostgreSQL para Vapor.
+- [MongoKitten*](https://github.com/OpenKitten/MongoKitten): _Driver_ nativo  MongoDB, escrito en Swift
+	- [Mongo Driver](https://github.com/vapor/mongo-driver): _Driver_ MongoKitten para Fluent.
+	- [Mongo Provider](https://github.com/vapor/mongo-provider): Proveedor MongoKitten para Vapor.
+	- [MainecoonVapor](https://github.com/OpenKitten/MainecoonVapor): MongoKitten ORM para Vapor.
+- [Redbird](https://github.com/vapor/redbird): Un cliente Redis completamente en Swift implementado directamente desde la especificación del protocolo.
+	- [Redis Provider](https://github.com/vapor/redis-provider): Proveedor del _cache_ de Redis para Vapor.
+- [Kitura Provider](https://github.com/vapor/kitura-provider): Permite usar el servidor HTTP de IBM (Kitura) en Vapor.
+- [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver-Vapor): Agrega el potente _logging_ de SwiftyBeaver a Vapor.
+- [APNS](https://github.com/matthijs2704/vapor-apns): Sencilla biblioteca APNS para Vapor (Swift).
+- [JWT](https://github.com/siemensikkema/vapor-jwt): Implementación JWT para Vapor.
+- [VaporS3Signer](https://github.com/JustinM1/VaporS3Signer): Gerera _V4 Auth Header/Pre-Signed URL_ para _AWS S3 REST API_.
+- [Flock](https://github.com/jakeheis/Flock): _Despliegue_ automatizado de proyectos Swift en servidores.
+	- [VaporFlock](https://github.com/jakeheis/VaporFlock): Utiliza Flock para _desplegar_ aplicaciones de vapor
+- [VaporForms](https://github.com/bygri/vapor-forms): Brinda a Vapor un manejo de formularios web simple, dinámico y _reutilizable_.
+- [Jobs](https://github.com/BrettRToomey/Jobs): Un sistema minimalista para ejecutar _jobs_/tareas en _2o plano_ para Swift.
+- [Heimdall](https://github.com/himani93/heimdall): Un _logger_ de _requet's_ HTTP fácil de usar.
 
 
 ## Autores
