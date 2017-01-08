@@ -1,26 +1,30 @@
-# Vapor Documentation
+# Documentación de Vapor 
 
 [![Stack Overflow](https://img.shields.io/stackexchange/stackoverflow/t/vapor.svg)](http://stackoverflow.com/questions/tagged/vapor)
 
-This is the documentation for Vapor, a Web Framework for Swift that works on iOS, macOS, and Ubuntu; and all of the packages that Vapor offers.
+Esta es la documentación de Vapor, el _framework web_ para Swift que funciona sobre iOS, macOS y ubuntu; y sobre todos los _paquetes_ que Vapor ofrece.
 
-Vapor is the most used web framework for Swift. It provides a beautifully expressive and easy to use foundation for your next website or API.
+Vapor es el _framework web_  más utilizado para Swift. 
 
-To view the framework's source code and code documentation, visit [Vapor's GitHub](https://github.com/vapor/vapor).
+Vapor is the most used web framework for Swift. Proporciona una base maravillosamente expresiva y fácil de usar para tu próximo sitio web o API.
 
-Read this in [正體中文](https://github.com/vapor/documentation/blob/master/README.zh-hant.md)
+Para ver el código fuente y la documentación del código visita [Vapor's GitHub](https://github.com/vapor/vapor).
 
-## How To Read
+Para leer esto en chino [正體中文](https://github.com/vapor/documentation/blob/master/README.zh-hant.md)
 
-You can read this guide by clicking through the folders and markdown files on [GitHub](https://github.com/vapor/documentation) or through the rendered [GitHub Pages](https://vapor.github.io/documentation/).
+Para leer esto en [inglés](https://github.com/vapor/documentation/blob/master/README.md)
+
+## Cómo leer esta documentación.
+
+Puede leer esta guía haciendo clic en las carpetas y los archivos de [GitHub](https://github.com/vapor/documentation) o a través de las páginas generadas [GitHub Pages](https://vapor.github.io/documentation/).
 
 ## API 
 
-Auto-generated API documentation is located at [api.vapor.codes](http://api.vapor.codes).
+La documentación de la API generada automáticamente se encuentra en [api.vapor.codes](http://api.vapor.codes).
 
-## Packages
+## Paquetes
 
-Here are a list of all the packages and modules included with Vapor (also useable individually).
+Aquí hay una lista de todos los paquetes y módulos incluidos con Vapor (también _utilizables_ individualmente).
 
 - [Vapor](https://github.com/vapor/vapor): Swift's most used web framework.
 	- Auth: User authentication and persistance.
@@ -48,9 +52,9 @@ Here are a list of all the packages and modules included with Vapor (also useabl
 - [Core](https://github.com/vapor/core): Core extensions, type-aliases, and functions that facilitate common tasks.
 - [Socks](https://github.com/vapor/socks): Swift C Socket API wrapper.
 
-## Providers & Other
+## Proveedores y otros.
 
-Here are a list of providers and third party packages that work great with Vapor.
+Aquí hay una lista de proveedores y paquetes de terceros que funcionan muy bien con Vapor.
 
 - [MySQL](https://github.com/vapor/mysql): Robust MySQL interface for Swift.
 	- [MySQL Driver](https://github.com/vapor/mysql-driver): MySQL driver for Fluent.
@@ -79,6 +83,6 @@ Here are a list of providers and third party packages that work great with Vapor
 - [Heimdall](https://github.com/himani93/heimdall): An easy to use HTTP request logger.
 
 
-## Authors
+## Autores
 
-[Tanner Nelson](mailto:tanner@qutheory.io), [Logan Wright](mailto:logan@qutheory.io), and the hundreds of members of Vapor.
+[Tanner Nelson](mailto:tanner@qutheory.io), [Logan Wright](mailto:logan@qutheory.io), y los cientos de miembros de Vapor.
