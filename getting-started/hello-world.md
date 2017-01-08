@@ -19,7 +19,7 @@ vapor new Hello
 Vapor's folder structure will probably look familiar to you if you have worked with other web frameworks.
 
 ```
-.
+Hello
 ├── Sources
 │   └── App
 │       └── Controllers
@@ -35,7 +35,7 @@ Vapor's folder structure will probably look familiar to you if you have worked w
 For our Hello, World project, we will be focusing on the `main.swift` file.
 
 ```
-.
+Hello
 └── Sources
     └── App
         └── main.swift
