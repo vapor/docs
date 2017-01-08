@@ -14,7 +14,7 @@ Para leer esto en [english](https://github.com/vapor/documentation/blob/master/R
 
 ## Cómo leer esta documentación.
 
-Puede leer esta guía haciendo clic en las carpetas y los archivos de [GitHub](https://github.com/vapor/documentation) o a través de las páginas generadas [GitHub Pages](https://vapor.github.io/documentation/).
+Puedes leer esta guía haciendo clic en las carpetas y los archivos de [GitHub](https://github.com/vapor/documentation) o a través de las páginas generadas [GitHub Pages](https://vapor.github.io/documentation/).
 
 ## API 
 
@@ -47,7 +47,7 @@ Aquí hay una lista de todos los paquetes y módulos incluidos con Vapor (tambi�
 - [Node](https://github.com/vapor/node): Estructura de datos para fáciles conversiones de tipo.
 	- [Polymorphic](https://github.com/vapor/polymorphic): Sintaxis para acceder fácilmente a valores de tipos comunes como JSON.
 	- [Path Indexable](https://github.com/vapor/path-indexable): Un protocolo para un acceso poderoso via _subscript_ a tipos comunes como JSON.
-- [Core](https://github.com/vapor/core): Extensions básicas, alias de tipos, y funciones que facilitan tareas comunes.
+- [Core](https://github.com/vapor/core): Extensiones básicas, _alias_ de tipos, y funciones que facilitan tareas comunes.
 - [Socks](https://github.com/vapor/socks): _API Wrapper_ para acceder a sockets en C.
 
 ## Proveedores y otros.
