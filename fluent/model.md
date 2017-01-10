@@ -88,7 +88,7 @@ When a `User` is saved, the `makeNode()` method will be called and the resulting
 
 ## Preparations
 
-Some databases, like MySQL, need to be prepared for a new schema. In MySQL, this means creating a new table.
+Some databases, like MySQL, need to be prepared for a new schema. In MySQL, this means creating a new table. Preparations are also equatable to migrations, as they can be used to alter schemes after they've already been created.
 
 ### Prepare
 
@@ -122,6 +122,27 @@ final class User {
 ```
 
 Here we are deleting the table named `users`.
+
+### Preparations as Migrations
+
+If you want to add a field to your table after you've already created the initial schema, you can create a struct or class that inherits from `Preparation` like so:
+
+```swift
+
+struct AddFooToBar: Preparation {
+    static func prepare(_ database: Database) throws {
+        try database.modify("bars", closure: { bar in
+            bar.string("foo", length: 150, optional: false, unique: false, default: nil)
+        })
+    }
+
+    static func revert(_ database: Database) throws {
+        
+    }
+}
+```
+
+Then, in your Droplet setup, add this line: `drop.preparations.append(AddFooToBar.self)`
 
 ### Droplet
 
@@ -223,4 +244,3 @@ Change the table/collection name
 ```swift
 static var entity = "new_name"
 ```
-
