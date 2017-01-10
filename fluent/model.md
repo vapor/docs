@@ -88,7 +88,7 @@ When a `User` is saved, the `makeNode()` method will be called and the resulting
 
 ## Preparations
 
-Some databases, like MySQL, need to be prepared for a new schema. In MySQL, this means creating a new table. Preparations are also equatable to migrations, as they can be used to alter schemes after they've already been created.
+Some databases, like MySQL, need to be prepared for a new schema. In MySQL, this means creating a new table. Preparations are also equatable to migrations, as they can be used to alter schemas after they've already been created.
 
 ### Prepare
 
@@ -125,7 +125,7 @@ Here we are deleting the table named `users`.
 
 ### Preparations as Migrations
 
-If you want to add a field to your table after you've already created the initial schema, you can create a struct or class that inherits from `Preparation` like so:
+If you want to add a field to your table after you've already created the initial schema, you can create a struct or class that conforms to `Preparation` like so:
 
 ```swift
 
@@ -137,7 +137,7 @@ struct AddFooToBar: Preparation {
     }
 
     static func revert(_ database: Database) throws {
-        
+
     }
 }
 ```
