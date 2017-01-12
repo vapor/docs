@@ -35,6 +35,17 @@ let bytes = myJSON.makeBytes()
 try drop.client.post("http://some-endpoint/json", headers: ["Auth": "Token my-auth-token"], body: .data(jsonBytes))
 ```
 
+### Post as form-data
+```swift
+let result = try drop.client.post("http://some-endpoint", headers: [
+                    "Content-Type": "application/x-www-form-urlencoded"
+                ], body: Body.data( Node([
+                    "email": "mymail@vapor.codes"
+                ]).formURLEncoded()))
+               
+```
+
+
 ### Full Request
 
 To access additional functionality or custom methods, use the underlying `request` function directly.
