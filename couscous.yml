@@ -143,6 +143,9 @@ menu:
                 http-server:
                     text: Server
                     relativeUrl: http/server.html
+                http-cors:
+                    text: CORS
+                    relativeUrl: http/cors.html
 
         web-sockets:
             name: WebSockets
