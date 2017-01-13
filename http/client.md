@@ -39,13 +39,11 @@ try drop.client.post("http://some-endpoint/json", headers: ["Auth": "Token my-au
 ### POST as x-www-form-urlencoded
 ```swift
 try drop.client.post("http://some-endpoint", headers: [
-                    "Content-Type": "application/x-www-form-urlencoded"
-                ], body: Body.data( Node([
-                    "email": "mymail@vapor.codes"
-                ]).formURLEncoded()))
-               
+  "Content-Type": "application/x-www-form-urlencoded"
+], body: Body.data( Node([
+  "email": "mymail@vapor.codes"
+]).formURLEncoded()))               
 ```
-
 
 ### Full Request
 
