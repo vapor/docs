@@ -30,14 +30,15 @@ try drop.client.get("https://api.spotify.com/v1/search", query: ["type": "artist
 
 In addition to `GET` requests, Vapor's client provides support for most common HTTP functions. `GET`, `POST`, `PUT`, `PATCH`, `DELETE`
 
+### POST as json
 ```swift
 let bytes = myJSON.makeBytes()
 try drop.client.post("http://some-endpoint/json", headers: ["Auth": "Token my-auth-token"], body: .data(jsonBytes))
 ```
 
-### Post as form-data
+### POST as x-www-form-urlencoded
 ```swift
-let result = try drop.client.post("http://some-endpoint", headers: [
+try drop.client.post("http://some-endpoint", headers: [
                     "Content-Type": "application/x-www-form-urlencoded"
                 ], body: Body.data( Node([
                     "email": "mymail@vapor.codes"
