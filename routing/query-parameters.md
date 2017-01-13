@@ -26,10 +26,9 @@ To use this syntax first we need to ensure the query object is present with a `g
 
 ```swift
 drop.get("comments") { request in
-  guard let query = request.query else {
-    throw Abort.badRequest
-  }
-  let rating = try query.extract("rating") as Int
+        guard let rating = request.query?["rating"]?.int else {
+            throw Abort.custom(status: .preconditionFailed, message: "Please include a rating")
+        }
   return "You requested comments with rating greater than #\(rating)"
 }
 ```
