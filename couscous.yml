@@ -157,6 +157,9 @@ menu:
         testing:
           name: Testing
           items:
+              testing-modules:
+                  text: Modules
+                  relativeUrl: testing/modules.html
               testing-basic:
                   text: Basic
                   relativeUrl: testing/basic.html
