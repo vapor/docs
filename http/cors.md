@@ -35,7 +35,7 @@ drop.middleware.insert(CORSMiddleware(), at: 0)
 
 ## Advanced
 
-All settings and presets can be customized by advanced users. There's two wasy of doing this, either you programatically create and configure a `CORSConfiguration` object or you can put your configuration into a Vapor's JSON config file.
+All settings and presets can be customized by advanced users. There's two ways of doing this, either you programatically create and configure a `CORSConfiguration` object or you can put your configuration into a Vapor's JSON config file.
 
 See below for how to set up both and what are the options.
 
