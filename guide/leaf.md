@@ -85,7 +85,7 @@ Hello, #(name)!
   Hello, #(friend.name)!
 }
 ```
-#### Index: `#loop(object, "index")`
+#### Index: `#index(object, "index")`
 
 ```
 Hello, #index(friends, "0")!
