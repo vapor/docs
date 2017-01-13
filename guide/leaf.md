@@ -85,10 +85,11 @@ Hello, #(name)!
   Hello, #(friend.name)!
 }
 ```
-#### Index: `#loop(object, "index")`
+#### Index: `#index(object, _ index: Int|String)`
 
 ```
-Hello, #index(friends, "0")!
+Hello, #index(friends, 0)!
+Hello, #index(friends, "best")!
 ```
 
 #### If - Else: `#if(bool) ##else() { this }`
@@ -155,7 +156,7 @@ We can now register this Tag in our `main.swift` file with:
 
 ```swift
 if let leaf = drop.view as? LeafRenderer {
-    leaf.stem.register(Version())
+    leaf.stem.register(Index())
 }
 ```
 
@@ -182,3 +183,7 @@ There appears to be a way to [make Xcode file associations persist](http://stack
 ### CLion & AppCode
 
 Some preliminary work has been done to implement a Leaf Plugin for CLion & AppCode but lack of skill and interest in Java has slowed progress! If you have IntelliJ SDK experience and want to help with this, message Tom Holland on [Vapor Slack](http://vapor.team)
+
+### VS Code
+
+[html-leaf](https://marketplace.visualstudio.com/items?itemName=Francisco.html-leaf) by FranciscoAmado
