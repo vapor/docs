@@ -33,6 +33,9 @@ Here are a list of all the packages and modules included with Vapor (also useabl
 	- URI: Pure Swift URI parsing and serializing.
 	- WebSockets: Full-duplex communication channels over a single TCP connection.
 	- SMTP: Send email using Sendgrid and Gmail.
+- [Multipart](https://github.com/vapor/multipart): Fast, streaming, non-blocking multipart parser and serializer.
+	- Multipart: Parses and serializes `multipart/mixed`.
+	- FormData: Parses and serializes `multipart/form-data`.
 - [Leaf](https://github.com/vapor/leaf): An extensible templating language.
 - [JSON](https://github.com/vapor/json): Maps Jay JSON to Vapor types.
 - [Console](https://github.com/vapor/console): Swift wrapper for console IO and commands.
