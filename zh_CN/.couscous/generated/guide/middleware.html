@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Vapor Documentation</title>
+
+        <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
+        <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Quicksand:400,700,300">
+        <link rel="stylesheet" href="/styles/vapor-code.css">
+        <link rel="stylesheet" href="/styles/main.css">
+    </head>
+    <body>
+
+        <header>
+            <a class="logo" href="/">
+                <img src="/images/droplet.svg" alt="Vapor">
+                <h1>Vapor <em>Docs</em></h1>
+            </a>
+            <ul>
+                <li>
+                    <a href="http://vapor.codes">Home</a>
+                </li>
+                <li>
+                    <a href="http://example.vapor.codes">Example</a>
+                </li>
+                <li>
+                    <a href="https://github.com/vapor/vapor">GitHub</a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/@codevapor">Twitter</a>
+                </li>
+                <li>
+                    <a href="http://vapor.team">Slack</a>
+                </li>
+            </ul>
+        </header>
+
+
+
+        <nav>
+            <a href="#" class="toggle show">☰</a>
+            <a href="#" class="toggle close">&times;</a>
+
+            <div class="scroll">
+                            <section>
+                    <h3>Getting Started</h3>
+                    <ul>
+                                            <li class="">
+                            <a href="/getting-started/install-swift-3-macos.html">
+                                Install Swift 3: macOS
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/getting-started/install-swift-3-ubuntu.html">
+                                Install Swift 3: Ubuntu
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/getting-started/install-toolbox.html">
+                                Install Toolbox
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/getting-started/hello-world.html">
+                                Hello, World
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/getting-started/manual.html">
+                                Manual
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/getting-started/xcode.html">
+                                Xcode
+                            </a>
+                        </li>
+                                        </ul>
+                </section>
+                            <section>
+                    <h3>Guide</h3>
+                    <ul>
+                                            <li class="">
+                            <a href="/guide/droplet.html">
+                                Droplet
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/guide/folder-structure.html">
+                                Folder Structure
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/guide/json.html">
+                                JSON
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/guide/config.html">
+                                Config
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/guide/views.html">
+                                Views
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/guide/leaf.html">
+                                Leaf
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/guide/controllers.html">
+                                Controllers
+                            </a>
+                        </li>
+                                            <li class="active">
+                            <a href="/guide/middleware.html">
+                                Middleware
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/guide/validation.html">
+                                Validation
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/guide/provider.html">
+                                Provider
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/guide/sessions.html">
+                                Sessions
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/guide/hash.html">
+                                Hash
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/guide/commands.html">
+                                Commands
+                            </a>
+                        </li>
+                                        </ul>
+                </section>
+                            <section>
+                    <h3>Routing</h3>
+                    <ul>
+                                            <li class="">
+                            <a href="/routing/basic.html">
+                                Basic
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/routing/parameters.html">
+                                Route Parameters
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/routing/query-parameters.html">
+                                Query Parameters
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/routing/group.html">
+                                Group
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/routing/collection.html">
+                                Collection
+                            </a>
+                        </li>
+                                        </ul>
+                </section>
+                            <section>
+                    <h3>Fluent</h3>
+                    <ul>
+                                            <li class="">
+                            <a href="/fluent/driver.html">
+                                Driver
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/fluent/model.html">
+                                Model
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/fluent/query.html">
+                                Query
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/fluent/relation.html">
+                                Relation
+                            </a>
+                        </li>
+                                        </ul>
+                </section>
+                            <section>
+                    <h3>Auth</h3>
+                    <ul>
+                                            <li class="">
+                            <a href="/auth/user.html">
+                                User
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/auth/middleware.html">
+                                Middleware
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/auth/request.html">
+                                Request
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/auth/protect.html">
+                                Protect
+                            </a>
+                        </li>
+                                        </ul>
+                </section>
+                            <section>
+                    <h3>HTTP</h3>
+                    <ul>
+                                            <li class="">
+                            <a href="/http/request.html">
+                                Request
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/http/response.html">
+                                Response
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/http/body.html">
+                                Body
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/http/response-representable.html">
+                                ResponseRepresentable
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/http/responder.html">
+                                Responder
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/http/client.html">
+                                Client
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/http/server.html">
+                                Server
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/http/cors.html">
+                                CORS
+                            </a>
+                        </li>
+                                        </ul>
+                </section>
+                            <section>
+                    <h3>WebSockets</h3>
+                    <ul>
+                                            <li class="">
+                            <a href="/websockets/droplet.html">
+                                Droplet
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/websockets/custom.html">
+                                Custom
+                            </a>
+                        </li>
+                                        </ul>
+                </section>
+                            <section>
+                    <h3>Testing</h3>
+                    <ul>
+                                            <li class="">
+                            <a href="/testing/modules.html">
+                                Modules
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/testing/basic.html">
+                                Basic
+                            </a>
+                        </li>
+                                        </ul>
+                </section>
+                            <section>
+                    <h3>Deploy</h3>
+                    <ul>
+                                            <li class="">
+                            <a href="/deploy/nginx.html">
+                                Nginx
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="/deploy/supervisor.html">
+                                Supervisor
+                            </a>
+                        </li>
+                                        </ul>
+                </section>
+                        </div>
+        </nav>
+
+        <main>
+            <a href="https://github.com/vapor/documentation/blob/master/CONTRIBUTING.md" class="edit">✎ Edit on GitHub</a>
+            <h1 id="-middleware">中间件 （Middleware）</h1>
+<blockquote>
+<p>翻译：<a href="http://weibo.com/u/1750643861">@孟祥月_iOS</a></p>
+</blockquote>
+<p>中间件是任何一个现代 web 框架基本的组成部分。它允许你在客户端和服务器之间传输时修改 request 和 response。</p>
+<p>You can imagine middleware as a chain of logic connection your server to the client requesting your web app.
+你可以把中间件想象成为连接你的服务器到请求你的 web app 的客户端的一系列的逻辑。</p>
+<h2 id="basic">Basic</h2>
+<p>下面一个例子，创建一个中间件，将会为每个 response 添加 version。这个中间件看起来类似这样：</p>
+<pre><code class="language-swift">final class VersionMiddleware: Middleware {
+    func respond(to request: Request, chainingTo next: Responder) throws -&gt; Response {
+        let response = try next.respond(to: request)
+
+        response.headers["Version"] = "API v1.0"
+
+        return response
+    }
+}</code></pre>
+<p>然后我们将这个中间件应用于 <code>Droplet</code>。</p>
+<pre><code class="language-swift">let drop = Droplet()
+drop.middleware.append(VersionMiddleware())</code></pre>
+<p>你可以认为我们的 <code>VersionMiddleware</code> 位于连接客户端到我们 server 的链 （chain）的中间。</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1342803/17382676/0b51d6d6-59a0-11e6-9cbb-7585b9ab9803.png" alt="Middleware" /></p>
+<h2 id="-breakdown">分解 （Breakdown）</h2>
+<p>让我们一行一行代码的分解中间件。</p>
+<pre><code class="language-swift">let response = try next.respond(to: request)</code></pre>
+<p>在我们的例子中，由于 <code>VersionMiddleware</code> 不关注修改 request，我们直接交给在 chain 中的下一个中间件响应这个请求。这将沿着 chain 到达 <code>Droplet</code>，然后返回需要发送给客户端的 response。</p>
+<pre><code class="language-swift">response.headers["Version"] = "API v1.0"</code></pre>
+<p>然后我们 <em>修改</em> 了 response，使其包含了 Version 头信息。</p>
+<pre><code class="language-swift">return response</code></pre>
+<p>这个 response 将会被返回，并且向上进入剩下的中间件，并最终返回给客户端。</p>
+<h2 id="request">Request</h2>
+<p>中间件也可以修改或者影响 request。</p>
+<pre><code class="language-swift">func respond(to request: Request, chainingTo next: Responder) throws -&gt; Response {
+    guard request.cookies["token"] == "secret" else {
+        throw Abort.badRequest
+    }
+
+    return try next.respond(to: request)
+}</code></pre>
+<p>这个中间件要求 request 有一个名字为 <code>token</code> 的cookie，并且等于 <code>secret</code>，否则将会抛弃这个请求。</p>
+<h2 id="errors">Errors</h2>
+<p>中间件最好的地方是用来捕获从程序任何地方抛出的错误。当你让中间件捕获错误，你可以从你的 route 闭包中移除好多重复的逻辑。下面有一个例子：</p>
+<pre><code class="language-swift">enum FooError: Error {
+    case fooServiceUnavailable
+}</code></pre>
+<p>这是一个自定义的 error，它可以是你定义的或者是你使用的 API <code>throws</code> 的。当这个 error 抛出的时候必须被捕获，否则这个将会作为一个意外的服务器错误返回给用户。最明显的解决方式就是在 route 的闭包里捕获这类错误。</p>
+<pre><code class="language-swift">app.get("foo") { request in
+    let foo: Foo
+    do {
+        foo = try getFooFromService()
+    } catch {
+        throw Abort.badRequest
+    }
+
+    // continue with Foo object
+}</code></pre>
+<p>这个解决方式可以正常工作，但是如果在多个 route 中重复逻辑，这个代码将会被到处重复。幸运的是，这个错误可以在中间件中捕获。</p>
+<pre><code class="language-swift">final class FooErrorMiddleware: Middleware {
+    func respond(to request: Request, chainingTo next: Responder) throws -&gt; Response {
+        do {
+            return try next.respond(to: request)
+        } catch FooError.fooServiceUnavailable {
+            throw Abort.custom(
+                status: .badRequest,
+                message: "Sorry, we were unable to query the Foo service."
+            )
+        }
+    }
+}</code></pre>
+<p>我们仅仅需要添加这个中间件到 <code>Droplet</code>。</p>
+<pre><code class="language-swift">drop.middleware.append(FooErrorMiddleware())</code></pre>
+<p>现在我们的 route 闭包看起来更好了，并且我们也不用担心代码重复了。</p>
+<pre><code class="language-swift">app.get("foo") { request in
+    let foo = try getFooFromService()
+
+    // continue with Foo object
+}</code></pre>
+<p>有趣的是，如果 <code>抛弃（Abort）</code> 它自己是 Vapor 实现的。<code>AbortMiddleware</code> 捕获任何 <code>Abort</code> 错误，并且返回一个 JSON response。如果你想自定义 <code>Abort</code> 错误出现时候的处理方式，你能够移除它并添加你自己的中间件。</p>
+<h2 id="configuration">Configuration</h2>
+<p>添加中间件到 <code>drop.middleware</code> 数组是添加中间件最简单的方式，它将在每次应用程序启动时使用。</p>
+<p>你也能够使用 <a href="config.html">configuration</a> 文件来启用或者禁用中间件以进行更多控制。例如，如果你有中间件只会运营在生产环境，这个将会非常有用。</p>
+<p>可以像下面一样添加可配置的中间件：</p>
+<pre><code class="language-swift">let drop = Droplet()
+drop.addConfigurable(middleware: myMiddleware, name: "my-middleware")</code></pre>
+<p>然后，在 <code>Config/droplet.json</code> 文件，添加 <code>my-middleware</code> 到合适的 <code>middleware</code> 数组。</p>
+<pre><code class="language-json">{
+    ...
+    "middleware": {
+        "server": [
+            ...
+            "my-middleware",
+            ...
+        ],
+        "client": [
+            ...
+        ]
+    },
+    ...
+}</code></pre>
+<p>如果在加载配置的时候，被添加的中间件的名字出现在了 <code>server</code> 数组中，当程序启动的时候，它将会被添加到 server 的中间件中。</p>
+<p>如果在加载配置的时候，被添加的中间件的名字出现在了 <code>client</code> 数组中，当程序启动的时候，它将会被添加到 client 的中间件中。</p>
+<p>一个中间件可以同时出现在 client 和 server 中，并且可以被添加多次。添加的顺序是有影响的。</p>
+<h2 id="extensions-advanced">Extensions (Advanced)</h2>
+<p>Middleware pairs great with request/response extensions and storage.
+中间件可以和 request/response、存储搭配使用</p>
+<pre><code class="language-swift">final class PokemonMiddleware: Middleware {
+    let drop: Droplet
+    init(drop: Droplet) {
+        self.drop = drop
+    }
+
+    func respond(to request: Request, chainingTo next: Responder) throws -&gt; Response {
+        let response = try next.respond(to: request)
+
+        if let pokemon = response.pokemon {
+            if request.accept.prefers("html") {
+                response.view = try drop.view("pokemon.mustache", context: pokemon)
+            } else {
+                response.json = try pokemon.makeJSON()
+            }
+        }
+
+        return response
+    }
+}</code></pre>
+<p>为 <code>Response</code> 添加扩展。</p>
+<pre><code class="language-swift">extension Response {
+    var pokemon: Pokemon? {
+        get { return storage["pokemon"] as? Pokemon }
+        set { storage["pokemon"] = newValue }
+    }
+}</code></pre>
+<p>在这个例子中，我们为 response 添加了一个新的属性，能够持有一个 Pokémon 对象。如果中间件发现一个带有 Pokémon 对象的 response，它将动态的检查客户端是否想要 HTML。如果客户端是类似 Safari 的浏览器，并且想要 HTML，它将返回一个 Mustache 视图。如果客户端不想要 HTML，它将返回 JSON。</p>
+<p>现在你的闭包可以像下面一样了：</p>
+<pre><code class="language-swift">import HTTP
+
+drop.get("pokemon", Pokemon.self) { request, pokemon in
+    let response = Response()
+    response.pokemon = pokemon
+    return response
+}</code></pre>
+<p>或者，如果你想更加深入，你可以使 <code>Pokemon</code> 实现 <code>ResponseRepresentable</code> 协议。</p>
+<pre><code class="language-swift">import HTTP
+
+extension Pokemon: ResponseRepresentable {
+    func makeResponse() throws -&gt; Response {
+        let response = Response()
+        response.pokemon = self
+        return response
+    }
+}</code></pre>
+<p>现在你的闭包会更加的简单，并且不需要 <code>import HTTP</code> 了。</p>
+<pre><code class="language-swift">drop.get("pokemon", Pokemon.self) { request, pokemon in
+    return pokemon
+}</code></pre>
+<p>中间件非常的强大。结合扩展，它允许您添加感觉框架本身的功能。</p>
+<p>对于那些好奇的人，这就是 Vapor 如果在内部管理 JSON 的。无论何时你在闭包中返回 JSON，它将设置在 <code>Response</code> 设置 <code>json: JSON?</code> 属性。<code>JSONMiddleware</code> 中间件将会获得这个属性，并且序列化该 JSON 到 response body 中。</p>
+        </main>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="/scripts/highlight.pack.js"></script>
+
+        <script>
+            hljs.registerLanguage("leaf", function (hljs) {
+                /* Author: Hale Chan <halechan@qq.com> */
+                return {
+                    c: [
+                        {
+                            cN: 'function',
+                            b: '#+',
+                            e: '[)] ',
+                            rB: true,
+                            eE: false,
+                            c : [
+                                {
+                                    b: '[(]', 
+                                    e: '[)]',
+                                    eE: true,
+                                    c: [
+                                        {
+                                            cN: 'string',
+                                            b: '"',
+                                            e: '"'
+                                        },
+                                        {
+                                            cN: 'title',
+                                            b: '[A-Za-z_][A-Za-z_0-9]*'
+                                        }
+                                    ]
+                                },
+                                {
+                                    cN: 'keyword',
+                                    b: '#+([A-Za-z$_][0-9A-Za-z$_]*)?',
+                                    eP: true
+                                },
+                            ]
+                        }
+                    ]
+                };
+            });
+        </script>
+
+        <script>
+            $(function() {
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+
+                if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+                    $('body').addClass('safari');
+                }
+
+                $('h1, h2, h3, h4, h5, h6').each(function(key, item) {
+                    var $item = $(item);
+                    var id = $item.attr('id');
+                    if (id) {
+                        var link = $('<a>');
+                        link.attr('href', '#' + id);
+                        $item.wrap(link);
+                    }
+                })
+
+                $('a.toggle').on('click', function(e){
+                    e.preventDefault();
+                    console.log('hi');
+                    var body = $('body');
+                    if (body.hasClass('toggled')) {
+                        body.removeClass('toggled');
+                    } else {
+                        body.addClass('toggled');
+                    }
+                })
+
+                var lastScroll = 0;
+                var isUp = false;
+                var win = $(window);
+
+                win.on('scroll', function(){
+                    var scrollTop = win.scrollTop();
+                    var scrollBottom = win.scrollTop() + win.height();
+                    var docHeight = $(document).height();
+
+                    if ( scrollTop < 0 || scrollBottom >= docHeight ){
+                        return;
+                    }
+
+                    if (scrollTop > (lastScroll + 0) && scrollTop >= 0) {
+                        if (!isUp) {
+                            $('a.toggle.show').addClass('hide')
+                        }
+                        isUp = true;
+                        lastScroll = scrollTop;
+                    } else if (scrollTop < (lastScroll - 0)) {
+                        if (isUp) {
+                            $('a.toggle.show').removeClass('hide')
+                        }
+                        isUp = false;
+                        lastScroll = scrollTop;
+                    }
+                });
+
+                // scroll to the active nav item
+                $("nav .scroll").animate({ 
+                    scrollTop: $("nav .active").offset().top - 157
+                }, 0);
+
+                // var lastScrollTop = 0;
+                // $(window).scroll(function(event){
+                //    var st = $(this).scrollTop();
+                //    if (st > lastScrollTop){
+                //         $('a.toggle.show').addClass('hide')
+                //    } else {
+                //         $('a.toggle.show').removeClass('hide')
+                //    }
+                //    lastScrollTop = st;
+                // });
+            });
+        </script>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-76177358-4', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <!-- Livereload -->
+        <script>
+            document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+                    ':35729/livereload.js?snipver=1"></' + 'script>')
+        </script>
+        <!-- End Livereload -->
+    </body>
+</html>
