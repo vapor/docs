@@ -46,7 +46,7 @@ Let's add a custom key to the `servers.json` file:
 This can be accessed from your application's config using the following.
 
 ```swift
-let customValue = drop.config["server", "http", "custom-key"]?.string ?? "default"
+let customValue = drop.config["servers", "http", "custom-key"]?.string ?? "default"
 ```
 
 That's it, feel free to add and utilize keys as necessary to make your application configuration easier.
