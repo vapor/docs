@@ -78,7 +78,7 @@ request.headers["Authorization"] = ... my auth token
 We generally seek to improve code bases by removing stringly typed code where possible. We can add variables to the headers using generic extensions.
 
 ```swift
-extension KeyAccessible where Key == HeaderKey, Value == String {
+extension HTTP.KeyAccessible where Key == HeaderKey, Value == String {
     var customKey: String? {
       get {
         return self["Custom-Key"]
