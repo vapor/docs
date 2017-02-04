@@ -21,7 +21,7 @@ After Xcode 8 has been downloaded, you must open it to finish the installation. 
 Double check the installation was successful by running:
 
 ```sh
-curl -sL check.vapor.sh | bash
+curl -sL https://check.vapor.sh | bash
 ```
 
 ## Toolbox
