@@ -11,7 +11,7 @@ Installing Swift 3 on Ubuntu only takes a couple of minutes.
 Don't want to type? Run the following script to quickly install Swift 3.0.
 
 ```sh
-curl -sL swift.vapor.sh/ubuntu | bash
+curl -sL https://swift.vapor.sh/ubuntu | bash
 ```
 
 > Note: The install script adds Swift to your `~/.bashrc` profile automatically.
@@ -86,7 +86,7 @@ export PATH=/swift-3.0/usr/bin:"${PATH}"
 Double check the installation was successful by running:
 
 ```sh
-curl -sL check.vapor.sh | bash
+curl -sL https://check.vapor.sh | bash
 ```
 
 ## Toolbox

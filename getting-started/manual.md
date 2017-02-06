@@ -17,7 +17,7 @@ This document assumes that you have Swift 3 installed.
 To check that your environment is compatible, run the following script:
 
 ```bash
-curl -sL check.vapor.sh | bash
+curl -sL https://check.vapor.sh | bash
 ```
 
 ## Make new project using SwiftPM
