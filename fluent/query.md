@@ -102,9 +102,9 @@ The above example with users and pets assumes the following schema.
 ```
 users
 - id
-- pet_id
 pets
 - id
+- user_id
 ```
 
 Custom foreign keys can be provided through overloads to `union`.
