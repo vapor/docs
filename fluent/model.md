@@ -244,3 +244,30 @@ Change the table/collection name
 ```swift
 static var entity = "new_name"
 ```
+
+## Fields
+
+Fields can have the folling base types:
+* Text
+* Int
+* Date
+* TBD...
+
+
+
+### Text
+Properties containing fields can have different types...
+
+* `model.string("username")` creates a `varchar(255)` field in `MySQL`
+* `model.text("username")`is a `TEXT`field in `MySQL`
+* `model.string("username", length: 100)` is a `varchar(100)`in `MySQL
+
+### Int
+TBD. Stuff about Int-fields
+
+### Date
+TBD
+
+
+
+
