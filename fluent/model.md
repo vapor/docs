@@ -288,7 +288,7 @@ is a `TEXT` field in `MySQL` allowing 64 Kilobytes or 65,535 characters.
 ```swift
 model.string("username", length: 100)
 ```
-is a `varchar(100)`in `MySQL`
+is a `varchar(100)` in `MySQL`
 
 
 ### id
@@ -301,7 +301,8 @@ Theres is no configuration for integers. In `MySQL` a field with type `int(11)` 
 ### double
 Creates a `double` in `MySQL`
 
-double can be usefull to map a `Date` in a Swift Model to the database.
+`double` can be usefull to map a `Date` in a Swift Model to the database, if your datase provider does not support types like `DATETIME`
+
 
 ```swift
 func makeNode(context: Context) throws -> Node {
