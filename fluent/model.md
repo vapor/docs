@@ -131,7 +131,7 @@ If you want to add a field to your table after you've already created the initia
 
 struct AddFooToBar: Preparation {
     static func prepare(_ database: Database) throws {
-        try database.modify("bars", closure: { bar in
+        try database.modify("bars") { bar in
             bar.string("foo", length: 150, optional: false, unique: false, default: nil)
         })
     }
@@ -245,28 +245,87 @@ Change the table/collection name
 static var entity = "new_name"
 ```
 
-## Fields
+## Fluent Fields
 
-Fields can have the folling base types:
-* Text
-* Int
-* Date
-* TBD...
+Properties of a Model can essentially be of any type you want. As long as you can convert them to and from a `Node`.
+
+But you must specify what field type in the database each property in your 
+model corresponds to in the `prepare` in the `Preparation` protocol.
+`Fluent` support as a minimum the following backing field types:
+* string 
+* id
+* int
+* double 
+* bool
+* data
+
+Each database provider can extend with more types that are specific to that database.
+
+For each `Field` you can specify its `name`, `optional`, `unique` and a default value represented as a `Node.
+Fx.:
+```swift
+model.string("username", length: 150, optional: false, unique: true, default: nil)
+```
+Some field types can be configured with different properties, depending on which database you use, 
+this will change the properties of that field in the database.
+To see exactly what types your database provider supports, look at in the `extension Schema.Creater` of your provider.
+
+
+### String
+
+String-based fields can be configured in different ways.
+
+```swift
+model.string("username")
+```
+Will create a field of type `varchar(255)` in `MySQL` and `TBD` in `Postgres`
+
+```swift
+model.text("username")
+```
+is a `TEXT` field in `MySQL` allowing 64 Kilobytes or 65,535 characters.
+
+```swift
+model.string("username", length: 100)
+```
+is a `varchar(100)`in `MySQL`
+
+
+### id
+As of now, ids can only be incremental integers. In `MySQL` the type is `int(10) unsigned` with `auto-increment`.
+Support for UUIDs are in the works.
+
+### int
+Theres is no configuration for integers. In `MySQL` a field with type `int(11)` is created.
+
+### double
+Creates a `double` in `MySQL`
+
+double can be usefull to map a `Date` in a Swift Model to the database.
+
+```swift
+func makeNode(context: Context) throws -> Node {
+		return try Node(node: [
+			"id": id,
+			"title": title,
+			"content": content,
+			"updated": updated.timeIntervalSince1970,
+			"created": created.timeIntervalSince1970
+			])
+	}
+```
+
+You can specify the precision of the double, number of digits and wether it is signed or unsigned - in addition to the other option mentioned earlier.
+
+### bool
+In `MySQL` a `bool` is a `TINYINT(1) unsigned`
+
+### data
+Creates a `BLOP`field type in `MySQL`
 
 
 
-### Text
-Properties containing fields can have different types...
 
-* `model.string("username")` creates a `varchar(255)` field in `MySQL`
-* `model.text("username")`is a `TEXT`field in `MySQL`
-* `model.string("username", length: 100)` is a `varchar(100)`in `MySQL
-
-### Int
-TBD. Stuff about Int-fields
-
-### Date
-TBD
 
 
 
