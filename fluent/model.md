@@ -261,11 +261,11 @@ model corresponds to in the `prepare` in the `Preparation` protocol.
 
 Each database provider can extend with more types that are specific to that database.
 
-For each `Field` you can specify its `name`, `optional`, `unique` and a default value represented as a `Node.
-Fx.:
+For each `Field` you can specify its `name`, `optional`, `unique` and a default value represented as a `Node`.
+For example:
 ```swift
 model.string("username", length: 150, optional: false, unique: true, default: nil)
-```
+````
 Some field types can be configured with different properties, depending on which database you use, 
 this will change the properties of that field in the database.
 To see exactly what types your database provider supports, look at in the `extension Schema.Creater` of your provider.
@@ -278,7 +278,7 @@ String-based fields can be configured in different ways.
 ```swift
 model.string("username")
 ```
-Will create a field of type `varchar(255)` in `MySQL` and `TBD` in `Postgres`
+Will create a field of type `varchar(255)` in `MySQL`.
 
 ```swift
 model.text("username")
@@ -306,14 +306,14 @@ Creates a `double` in `MySQL`
 
 ```swift
 func makeNode(context: Context) throws -> Node {
-		return try Node(node: [
-			"id": id,
-			"title": title,
-			"content": content,
-			"updated": updated.timeIntervalSince1970,
-			"created": created.timeIntervalSince1970
-			])
-	}
+    return try Node(node: [
+	    "id": id,
+		"title": title,
+		"content": content,
+		"updated": updated.timeIntervalSince1970,
+		"created": created.timeIntervalSince1970
+		])
+    }
 ```
 
 You can specify the precision of the double, number of digits and wether it is signed or unsigned - in addition to the other option mentioned earlier.
@@ -322,7 +322,7 @@ You can specify the precision of the double, number of digits and wether it is s
 In `MySQL` a `bool` is a `TINYINT(1) unsigned`
 
 ### data
-Creates a `BLOP`field type in `MySQL`
+Creates a `BLOB`field type in `MySQL`
 
 
 
