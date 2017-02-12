@@ -6,7 +6,7 @@ currentMenu: routing-basic
 
 Routing is one of the most critical parts of a web framework. The router decides which requests get which responses.
 
-Vapor has a plethora of functionality for routing including route builders, groups, and collections. In this section, we will look at the basic of routing.
+Vapor has a plethora of functionality for routing including route builders, groups, and collections. In this section, we will look at the basics of routing.
 
 ## Register
 
