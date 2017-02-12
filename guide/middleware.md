@@ -6,7 +6,7 @@ currentMenu: guide-middleware
 
 Middleware is an essential part of any modern web framework. It allows you to modify requests and responses as they pass between the client and your server.
 
-You can imagine middleware as a chain of logic connection your server to the client requesting your web app.
+You can imagine middleware as a chain of logic connecting your server to the client requesting your web app.
 
 ## Basic
 
