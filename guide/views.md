@@ -48,7 +48,7 @@ drop.view = LeafRenderer(viewsDir: drop.viewsDir)
 
 ## Available Renderers
 
-These renderers can be added to your application through Providers.
+These renderers can be added to your application through [Providers](provider.md).
 
 - [Leaf](https://github.com/vapor/leaf)
 - [Mustache](https://github.com/vapor/mustache-provider)
