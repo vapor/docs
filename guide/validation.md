@@ -50,7 +50,7 @@ let name: Valid<Count<String>> = try "Vapor".validated(by: Count.max(5))
 
 Here we are validating that the `String` is at most 5 characters long. The type of `Valid<Count>` tells us that the string has been validated to be a certain count, but it does not tell us exactly what that count was. The string could have been validated to be less than three characters or more than one million.
 
-Because of this, `Validators` themselves are not as type safe as some applications might desire. `ValidationSuites` fix this. They combine multiple `Validators` and/or `ValidationSuites` together to represent exactly what type of data should be considered valid
+Because of this, `Validators` themselves are not as type safe as some applications might desire. `ValidationSuites` fix this. They combine multiple `Validators` and/or `ValidationSuites` together to represent exactly what type of data should be considered valid.
 
 ## Custom Validator
 
@@ -68,9 +68,9 @@ class Name: ValidationSuite {
 }
 ```
 
-You only have to implement one method. In this method, use any other validators or logic to create your custom validator. Here we are defining a Name as only accepting alphanumeric Strings that are between 5 and 20 characters.
+You only have to implement one method. In this method, use any other validators or logic to create your custom validator. Here we are defining a `Name` as only accepting alphanumeric Strings that are between 5 and 20 characters.
 
-Now we can be sure that anything of type Valid<Name> follows these rules.
+Now we can be sure that anything of type `Valid<Name>` follows these rules.
 
 ## Combining Validators
 
