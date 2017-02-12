@@ -41,7 +41,7 @@ The compiler will inform you that some methods need to be implemented to conform
 
 ### ID
 
-The first required property is an identifier. This property will contain the identifier when the model is fetched from the database. If it is nil, it will be set when the model is saved.
+The first required property is an identifier. This property will contain the identifier when the model is fetched from the database. If it is `nil`, it will be set when the model is saved.
 
 ```swift
 final class User: Model {
@@ -68,7 +68,7 @@ The keys `id` and `name` are what we expect the columns or fields in the databas
 
 ### Node Representable
 
-Now that we have covered initializing the model, we need to show it how to save back into the database. Model uses `NodeRepresentable` to achieve this.
+Now that we have covered initializing the model, we need to show how to save it back into the database. Model uses `NodeRepresentable` to achieve this.
 
 ```swift
 final class User: Model {
