@@ -6,7 +6,7 @@ currentMenu: http-responder
 
 # Responder
 
-The `Responder` is a simple protocol defining the behavior of objects that can accept a `Request` and return a `Response`. Most notably in Vapor, it is the core api endpoint that connects the `Droplet` to the `Server`. Let's look at the definition:
+The `Responder` is a simple protocol defining the behavior of objects that can accept a `Request` and return a `Response`. Most notably in Vapor, it is the core API endpoint that connects the `Droplet` to the `Server`. Let's look at the definition:
 
 ```swift
 public protocol Responder {
@@ -76,4 +76,4 @@ This can be used as a jumping off point for applications looking to implement fe
 
 ## Client
 
-The `HTTP.Client` is itself a `Responder` although, instead of handling the `Request` itself, it passes it on to the underlying uri. 
+The `HTTP.Client` is itself a `Responder` although, instead of handling the `Request` itself, it passes it on to the underlying URI. 
