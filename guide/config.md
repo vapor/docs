@@ -82,7 +82,7 @@ let mongoUrl = drop.config["keys", "mongo", "url"]?.string ?? "default"
 
 ## Advanced Configurations
 
-Having the default servers.json is great, but what about more complex scenarios. For example, what if we want a different host in production and in development? These complex scenarios can be achieved by adding additional folder structure to our Config/ directory. Here's an example of a folder structure that's setup for production and development environments.
+Having the default `servers.json` is great, but what about more complex scenarios. For example, what if we want a different host in production and in development? These complex scenarios can be achieved by adding additional folders to our `Config/` directory. Here's an example of a folder structure that's setup for production and development environments.
 
 ```bash
 WorkingDirectory/
@@ -111,7 +111,7 @@ Config files will be accessed in the following priority.
 3. Config/name-of-environment/
 4. Config/
 
-What this means is that if a user calls `app.config["servers", "host"]`, the key will be searched in the cli first, then the secrets directory, then the top level default configs.
+What this means is that if a user calls `app.config["servers", "host"]`, the key will be searched in the CLI first, then the `secrets/` directory, then the top level default configs.
 
 > `secrets/` directory should very likely be added to the gitignore.
 
@@ -119,7 +119,7 @@ What this means is that if a user calls `app.config["servers", "host"]`, the key
 
 Let's start with the following JSON files.
 
-#### servers.json
+#### `servers.json`
 
 ```JSON
 {
@@ -143,7 +143,7 @@ Let's start with the following JSON files.
 
 > The `"$NAME"` syntax is available for all values to access environment variables.
 
-Please notice that servers.json, and production/servers.json both declare the same keys. host, and port. In our application, we'll call:
+Please notice that `servers.json`, and `production/servers.json` both declare the same keys: `host`, and `port`. In our application, we'll call:
 
 ```swift
 // will load 0.0.0.0 or 127.0.0.1 based on above config
@@ -154,7 +154,7 @@ let port = drop.config["servers", "http", "port"]?.int ?? 9000
 
 ## COMMAND LINE
 
-In addition to json files nested within the Config/ directory, we can also use the command line to pass arguments into our config. By default, these values will be set as the "cli" file, but more complex options are also available.
+In addition to json files nested within the `Config/` directory, we can also use the command line to pass arguments into our config. By default, these values will be set as the "cli" file, but more complex options are also available.
 
 #### 1. `--KEY=VALUE`
 
@@ -170,7 +170,7 @@ would be accessible within your application by using the following:
 let mongoPassword = drop.config["cli", "mongo-password"]?.string
 ```
 
-#### 2. --CONFIG:FILE-NAME.KEY=CUSTOM-VALUE
+#### 2. `--CONFIG:FILE-NAME.KEY=CUSTOM-VALUE`
 
 If you want command line arguments set to a file besides "cli", you can use this more advanced specification. For example, the following CLI command:
 
