@@ -77,7 +77,7 @@ let name = drop.config["keys", "test-names", 0]?.string ?? "default"
 Or our mongo url:
 
 ```swift
-let mongoUrl = drop.config["keys", "mongo", "url"].?string ?? "default"
+let mongoUrl = drop.config["keys", "mongo", "url"]?.string ?? "default"
 ```
 
 ## Advanced Configurations
