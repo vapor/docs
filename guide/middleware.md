@@ -136,7 +136,7 @@ Interestingly, this is how `Abort` itself is implemented in Vapor. `AbortMiddlew
 
 ## Configuration
 
-Appending middleware to the `drop.middleware` array is the simplest way to add middleware - it will be used every time the application starts.
+Appending middleware to the `drop.middleware` array is the simplest way to add middleware--it will be used every time the application starts.
 
 You can also use the [configuration](config.md) files to enabled or disable middleware for more control. This is especially useful if you have middleware that should, for example, run only in production.
 
