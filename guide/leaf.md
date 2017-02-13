@@ -18,7 +18,7 @@ Leaf Tags are made up of 4 Elements:
   - Token: `#` is the Token
   - Name: A `string` that identifies the tag
   - Parameter List: `()` May accept 0 or more arguments
-  - Body(optional): `{}` Must be separated from the Parameter List by a space
+  - Body (optional): `{}` Must be separated from the Parameter List by a space
 
 There can be many different usages of these 4 elements depending on the Tag's implementation. Let's look at a few examples of how Leaf's built-in Tags might be used:
 
@@ -32,7 +32,7 @@ There can be many different usages of these 4 elements depending on the Tag's im
 
 ### Using the `#` token in HTML
 
-The token cannot be escaped. Use the `#()` or `#raw() {}` Tag to output a `#` in a Leaf Template. `#()` => `#`
+The `#` token cannot be escaped. Use the `#()` or `#raw() {}` Tag to output a `#` in a Leaf Template. `#()` => `#`
 
 ### Raw HTML
 

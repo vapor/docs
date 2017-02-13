@@ -47,7 +47,7 @@ drop.group(AuthMiddleware()) { authorized in
 
 You can limit the host for a group of routes.
 
-```
+```swift
 drop.group(host: "vapor.codes") { vapor
     vapor.get { request in
         // only responds to requests to vapor.codes

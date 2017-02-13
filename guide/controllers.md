@@ -132,8 +132,8 @@ drop.resource("users", users)
 
 ## Folder
 
-Controllers can go anywhere in your application, but they are most often stored in the `Controllers/*` directory. 
+Controllers can go anywhere in your application, but they are most often stored in the `Controllers/` directory. 
 
 ### Modules
 
-If you are building a large application, you may want to create your controllers in a separate module. This will allow you to perform unit tests on your controllers. For more information on creating modules, visit the documentation for the [Swift Package Manager](https://swift.org/package-manager/)
+If you are building a large application, you may want to create your controllers in a separate module. This will allow you to perform unit tests on your controllers. For more information on creating modules, visit the documentation for the [Swift Package Manager](https://swift.org/package-manager/).

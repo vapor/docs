@@ -67,7 +67,7 @@ From there you can create routes with the `builder` as usual. The `builder: B` w
 
 ## Empty Initializable
 
-You can even add `EmptyInitializable` to your route collection if it has an empty init method. This will allow you to add the route collection via its type name.
+You can even add `EmptyInitializable` to your route collection if it has an empty `init` method. This will allow you to add the route collection via its type name.
 
 ```swift
 class V1Collection: RouteCollection, EmptyInitializable {

@@ -111,12 +111,12 @@ Note: Certain port numbers require super user access to bind. Simply run `sudo v
 
 ## Note for sudo usage
 
-In some linux based system, you might get error while using sudo. In that case, if you need to run the server as root, at first switch the user using this command:
+On some Linux based systems, you might get an error while using sudo. In that case, if you need to run the server as root, at first switch the user using this command:
 
 ```
 sudo -i
 ```
-Then either add the previously installed path of swift to the root users $PATH variable.
+Then either add the previously installed path of Swift to the root users $PATH variable.
 
 ```
 PATH=$PATH:/your_path_to_swift

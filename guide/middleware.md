@@ -6,7 +6,7 @@ currentMenu: guide-middleware
 
 Middleware is an essential part of any modern web framework. It allows you to modify requests and responses as they pass between the client and your server.
 
-You can imagine middleware as a chain of logic connection your server to the client requesting your web app.
+You can imagine middleware as a chain of logic connecting your server to the client requesting your web app.
 
 ## Basic
 
@@ -136,7 +136,7 @@ Interestingly, this is how `Abort` itself is implemented in Vapor. `AbortMiddlew
 
 ## Configuration
 
-Appending middleware ot the `drop.middleware` array is the simplest way to add middleware--it will be used every time the application starts.
+Appending middleware to the `drop.middleware` array is the simplest way to add middleware--it will be used every time the application starts.
 
 You can also use the [configuration](config.md) files to enabled or disable middleware for more control. This is especially useful if you have middleware that should, for example, run only in production.
 
