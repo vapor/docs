@@ -4,7 +4,7 @@ currentMenu: auth-request
 
 # Request
 
-The `auth` property on `Request` let's you authenticate users and also provides some convenience methods for accessing common authorization headers.
+The `auth` property on `Request` lets you authenticate users and also provides some convenience methods for accessing common authorization headers.
 
 ## Authorization
 
