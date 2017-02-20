@@ -32,7 +32,7 @@ In addition to `GET` requests, Vapor's client provides support for most common H
 
 ### POST as json
 ```swift
-try drop.client.post("http://some-endpoint/json", headers: ["Auth": "Token my-auth-token"], body: myJSON.makeBody())
+try drop.client.post("http://some-endpoint/json", headers: ["Content-Type": "application/json"], body: myJSON.makeBody())
 ```
 
 ### POST as x-www-form-urlencoded
