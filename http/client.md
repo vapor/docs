@@ -39,7 +39,7 @@ try drop.client.post("http://some-endpoint/json", headers: ["Content-Type": "app
 ```swift
 try drop.client.post("http://some-endpoint", headers: [
   "Content-Type": "application/x-www-form-urlencoded"
-], body: Body.data( Node([
+], body: Body.data( Node(node: [
   "email": "mymail@vapor.codes"
 ]).formURLEncoded()))               
 ```
