@@ -1,6 +1,6 @@
 # Hash
 
-Hashes can be used to create file identifiers or store passwords.
+Hashing is a one way method of converting arbitrary data into a fixed size format. Unlike ciphers, data that is hashed cannot be retrieved from the resulting digest. Hashes can be used to create keys, file identifiers, or store credentials.
 
 !!! warning
     Avoid storing passwords if possible. If you must, please make sure to research the state of the art before continuing.
