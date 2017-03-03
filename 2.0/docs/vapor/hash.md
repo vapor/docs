@@ -96,13 +96,16 @@ let drop = try Droplet()
 drop.hash = CryptoHasher(
     hmac: .sha256,
     encoding: .hex,
-    key: "password".bytes
+    key: "password".makeBytes()
 )
 ```
 
 ## BCryptHasher
 
-BCrypt is a password hashing function that automatically incorporates salts to increase security. It also offers a configurable work factor that increases the amount of computational resources required to generate a hash ([key stretching](https://en.wikipedia.org/wiki/Key_stretching)).
+BCrypt is a password hashing function that automatically incorporates salts and offers a configurable work factor. The work factor can be used to increase the computation required to generate a hash 
+
+!!! seealso
+    Learn more about [key stretching](https://en.wikipedia.org/wiki/Key_stretching) on Wikipedia.
 
 ### Configuration
 
