@@ -1,6 +1,5 @@
----
-currentMenu: routing-controller
----
+!!! warning
+    This section may contain outdated information.
 
 # Introduction
 

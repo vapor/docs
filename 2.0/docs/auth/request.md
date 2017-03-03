@@ -1,6 +1,5 @@
----
-currentMenu: auth-request
----
+!!! warning
+    This section may contain outdated information.
 
 # Request
 

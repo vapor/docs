@@ -1,6 +1,5 @@
----
-currentMenu: http-server
----
+!!! warning
+    This section may contain outdated information.
 
 # Server
 

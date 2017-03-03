@@ -1,6 +1,5 @@
----
-currentMenu: routing-basic
----
+!!! warning
+    This section may contain outdated information.
 
 # Basic Routing
 

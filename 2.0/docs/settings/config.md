@@ -1,6 +1,5 @@
----
-currentMenu: guide-config
----
+!!! warning
+    This section may contain outdated information.
 
 # Config
 

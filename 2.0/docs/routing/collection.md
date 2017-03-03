@@ -1,6 +1,5 @@
----
-currentMenu: routing-collection
----
+!!! warning
+    This section may contain outdated information.
 
 # Route Collections
 

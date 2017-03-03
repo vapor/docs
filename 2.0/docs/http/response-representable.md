@@ -1,6 +1,5 @@
----
-currentMenu: http-response-representable
----
+!!! warning
+    This section may contain outdated information.
 
 > Module: `import HTTP`
 

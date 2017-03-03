@@ -1,6 +1,5 @@
----
-currentMenu: routing-parameters
----
+!!! warning
+    This section may contain outdated information.
 
 # Routing Parameters
 

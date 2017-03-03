@@ -1,6 +1,5 @@
----
-currentMenu: websockets-droplet
----
+!!! warning
+    This section may contain outdated information.
 
 # Droplet WebSockets
 

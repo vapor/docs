@@ -1,6 +1,5 @@
----
-currentMenu: routing-group
----
+!!! warning
+    This section may contain outdated information.
 
 # Route Groups
 

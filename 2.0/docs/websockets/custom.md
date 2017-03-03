@@ -1,6 +1,5 @@
----
-currentMenu: websockets-custom
----
+!!! warning
+    This section may contain outdated information.
 
 # Custom WebSockets
 

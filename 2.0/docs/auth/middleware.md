@@ -1,3 +1,6 @@
+!!! warning
+    This section may contain outdated information.
+    
 # Middleware
 
 `AuthMiddleware` is at the core of adding authorization to your project. It is responsible for initializing dependencies, checking credentials, and handling sessions.
@@ -65,7 +68,7 @@ let drop = Droplet()
 drop.middleware.append(auth)
 ```
 
-> Note: If you'd like to enable or disable the middleware based on config files, check out [middleware](../general/middleware.md).
+> Note: If you'd like to enable or disable the middleware based on config files, check out [middleware](../vapor/middleware.md).
 
 ### Sharing Cache
 

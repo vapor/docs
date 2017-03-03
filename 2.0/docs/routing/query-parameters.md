@@ -1,6 +1,5 @@
----
-currentMenu: routing-query-parameters
----
+!!! warning
+    This section may contain outdated information.
 
 # Query Parameters
 

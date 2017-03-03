@@ -1,6 +1,5 @@
----
-currentMenu: auth-user
----
+!!! warning
+    This section may contain outdated information.
 
 # Auth
 

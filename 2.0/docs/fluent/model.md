@@ -1,6 +1,5 @@
----
-currentMenu: fluent-model
----
+!!! warning
+    This section may contain outdated information.
 
 # Model
 

@@ -1,6 +1,5 @@
----
-currentMenu: http-responder
----
+!!! warning
+    This section may contain outdated information.
 
 > Module: `import HTTP`
 

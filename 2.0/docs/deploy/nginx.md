@@ -1,6 +1,5 @@
----
-currentMenu: deploy-nginx
----
+!!! warning
+    This section may contain outdated information.
 
 # Deploying with Nginx
 

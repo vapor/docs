@@ -1,6 +1,5 @@
----
-currentMenu: auth-protect
----
+!!! warning
+    This section may contain outdated information.
 
 # Protect
 

@@ -1,6 +1,5 @@
----
-currentMenu: fluent-relation
----
+!!! warning
+    This section may contain outdated information.
 
 # Relation
 

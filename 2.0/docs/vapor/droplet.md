@@ -34,7 +34,7 @@ if drop.environment == .production {
 }
 ```
 
-The environment affects [Config](config.md) and [Logging](log.md). The environment is `development` by default. To change it, pass the `--env=` flag as an argument.
+The environment affects [Config](../settings/config.md) and [Logging](log.md). The environment is `development` by default. To change it, pass the `--env=` flag as an argument.
 
 ```sh
 vapor run serve --env=production

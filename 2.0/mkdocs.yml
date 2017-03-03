@@ -11,16 +11,16 @@ pages:
     - 'Manual': 'getting-started/manual.md'
     - 'Xcode': 'getting-started/xcode.md'
 - Vapor:
-    - 'Folder Structure': 'general/folder-structure.md'
-    - 'Droplet': 'general/droplet.md'
-    - 'Views': 'general/views.md'
-    - 'Controllers': 'general/controllers.md'
-    - 'Middleware': 'general/middleware.md'
-    - 'Validation': 'general/validation.md'
-    - 'Provider': 'general/provider.md'
-    - 'Hash': 'general/hash.md'
-    - 'Log': 'general/log.md'
-    - 'Commands': 'general/commands.md'
+    - 'Folder Structure': 'vapor/folder-structure.md'
+    - 'Droplet': 'vapor/droplet.md'
+    - 'Views': 'vapor/views.md'
+    - 'Controllers': 'vapor/controllers.md'
+    - 'Middleware': 'vapor/middleware.md'
+    - 'Validation': 'vapor/validation.md'
+    - 'Provider': 'vapor/provider.md'
+    - 'Hash': 'vapor/hash.md'
+    - 'Log': 'vapor/log.md'
+    - 'Commands': 'vapor/commands.md'
 - Settings:
     - 'Config': 'settings/config.md'
 - JSON:
@@ -53,7 +53,9 @@ pages:
     - 'Server': 'http/server.md'
     - 'CORS': 'http/cors.md'
 - Leaf:
-    - 'Overview': 'leaf/overview.md'
+    - 'Overview': 'leaf/leaf.md'
+- Advanced:
+    - 'Modules': 'advanced/modules.md'
 
 markdown_extensions:
     - admonition

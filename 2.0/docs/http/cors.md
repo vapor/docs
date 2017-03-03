@@ -1,6 +1,5 @@
----
-currentMenu: http-cors
----
+!!! warning
+    This section may contain outdated information.
 
 # CORS
 

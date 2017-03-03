@@ -1,6 +1,5 @@
----
-currentMenu: http-client
----
+!!! warning
+    This section may contain outdated information.
 
 > Module: `import HTTP`
 

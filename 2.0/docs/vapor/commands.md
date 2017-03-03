@@ -1,6 +1,5 @@
----
-currentMenu: guide-commands
----
+!!! warning
+    This section may contain outdated information.
 
 # Commands
 Custom console commands on Vapor are a breeze.

@@ -1,7 +1,5 @@
----
-currentMenu: deploy-supervisor
----
-
+!!! warning
+    This section may contain outdated information.
 
 # Supervisor
 

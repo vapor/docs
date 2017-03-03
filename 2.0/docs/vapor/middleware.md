@@ -149,7 +149,7 @@ Anything added to the `authed` group must pass through `AuthMiddleware`. Because
 
 Appending middleware to the `drop.middleware` array is the simplest way to add middleware--it will be used every time the application starts.
 
-You can also use the [configuration](config.md) files to enabled or disable middleware for more control. This is especially useful if you have middleware that should, for example, run only in production.
+You can also use the [configuration](../settings/config.md) files to enabled or disable middleware for more control. This is especially useful if you have middleware that should, for example, run only in production.
 
 Appending configurable middleware looks like the following:
 

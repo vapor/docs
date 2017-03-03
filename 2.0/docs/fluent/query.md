@@ -1,6 +1,5 @@
----
-currentMenu: fluent-query
----
+!!! warning
+    This section may contain outdated information.
 
 # Query
 
