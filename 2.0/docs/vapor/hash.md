@@ -2,7 +2,7 @@
 
 Hashing is a one way method of converting arbitrary data into a fixed size format. Unlike ciphers, data that is hashed cannot be retrieved from the resulting digest. Hashes can be used to create keys, file identifiers, or store credentials.
 
-<img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/5/58/Hash_table_4_1_1_0_0_1_0_LL.svg/240px-Hash_table_4_1_1_0_0_1_0_LL.svg.png" width="240" height="184">
+<img alt="Hash function diagram" src="//upload.wikimedia.org/wikipedia/commons/thumb/5/58/Hash_table_4_1_1_0_0_1_0_LL.svg/480px-Hash_table_4_1_1_0_0_1_0_LL.svg.png" width="240" height="184">
 
 > Hash function diagram from [Wikipedia](https://en.wikipedia.org/wiki/Hash_function).
 
