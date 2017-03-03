@@ -2,12 +2,16 @@
 
 Hashing is a one way method of converting arbitrary data into a fixed size format. Unlike ciphers, data that is hashed cannot be retrieved from the resulting digest. Hashes can be used to create keys, file identifiers, or store credentials.
 
+<img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/5/58/Hash_table_4_1_1_0_0_1_0_LL.svg/240px-Hash_table_4_1_1_0_0_1_0_LL.svg.png" width="240" height="184">
+
+> Hash function diagram from [Wikipedia](https://en.wikipedia.org/wiki/Hash_function).
+
 !!! warning
-    Avoid storing passwords if possible. If you must, please make sure to research the state of the art before continuing.
+    Avoid storing password hashes if possible. If you must, please make sure to research the state of the art before continuing.
 
 ## Make
 
-To hash a string, use the `hash` class on `Droplet`.
+To hash a string, use the `hash` property on `Droplet`.
 
 ```swift
 let digest = try drop.hash.make("vapor")
