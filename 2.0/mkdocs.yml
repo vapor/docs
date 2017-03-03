@@ -1,11 +1,5 @@
 site_name: 'Vapor Docs'
 copyright: 'Copyright &copy; 2017 Qutheory, LLC'
-markdown_extensions:
-      - admonition
-      - codehilite(guess_lang=false)
-      - footnotes
-      - meta
-      - toc(permalink=true)
 
 pages:
 - Overview: 'index.md'
@@ -16,20 +10,21 @@ pages:
     - 'Hello, World': 'getting-started/hello-world.md'
     - 'Manual': 'getting-started/manual.md'
     - 'Xcode': 'getting-started/xcode.md'
-- Guide:
-    - 'Droplet': 'guide/droplet.md'
-    - 'Folder Structure': 'guide/folder-structure.md'
-    - 'JSON': 'guide/json.md'
-    - 'Config': 'guide/config.md'
-    - 'Views': 'guide/views.md'
-    - 'Leaf': 'guide/leaf.md'
-    - 'Controllers': 'guide/controllers.md'
-    - 'Middleware': 'guide/middleware.md'
-    - 'Validation': 'guide/validation.md'
-    - 'Provider': 'guide/provider.md'
-    - 'Sessions': 'guide/sessions.md'
-    - 'Hash': 'guide/hash.md'
-    - 'Commands': 'guide/commands.md'
+- Vapor:
+    - 'Folder Structure': 'general/folder-structure.md'
+    - 'Droplet': 'general/droplet.md'
+    - 'Views': 'general/views.md'
+    - 'Controllers': 'general/controllers.md'
+    - 'Middleware': 'general/middleware.md'
+    - 'Validation': 'general/validation.md'
+    - 'Provider': 'general/provider.md'
+    - 'Hash': 'general/hash.md'
+    - 'Log': 'general/log.md'
+    - 'Commands': 'general/commands.md'
+- Settings:
+    - 'Config': 'settings/config.md'
+- JSON:
+    - 'JSON': 'json/json.md'
 - Routing:
     - 'Basic': 'routing/basic.md'
     - 'Route Parameters': 'routing/parameters.md'
@@ -46,6 +41,8 @@ pages:
     - 'Middleware': 'auth/middleware.md'
     - 'Request': 'auth/request.md'
     - 'Protect': 'auth/protect.md'
+- Sessions:
+    - 'Sessions': 'sessions/sessions.md'
 - HTTP:
     - 'Request': 'http/request.md'
     - 'Response': 'http/response.md'
@@ -55,22 +52,34 @@ pages:
     - 'Client': 'http/client.md'
     - 'Server': 'http/server.md'
     - 'CORS': 'http/cors.md'
+- Leaf:
+    - 'Overview': 'leaf/overview.md'
+
+markdown_extensions:
+    - admonition
+    - codehilite(guess_lang=false)
+    - footnotes
+    - meta
+    - toc(permalink=true)
+
 theme: 'material'
 theme_dir: 'vapor-material'
 repo_url: https://github.com/vapor/documentation
+
 extra_css:
   - 'stylesheets/extra.css'
 edit_uri: edit/master/2.0/docs/
 extra:
-      logo: 'images/droplet-white.svg'
-      social:
+    logo: 'images/droplet-white.svg'
+    social:
         - type: 'twitter'
           link: 'https://twitter.com/@codevapor'
         - type: 'slack'
           link: 'http://vapor.team/'
-      font:
+    font:
         text: 'Roboto Slab'
         code: 'Source Code Pro'
+    
 google_analytics:
-  - 'UA-76177358-4'
-  - 'auto'
+    - 'UA-76177358-4'
+    - 'auto'

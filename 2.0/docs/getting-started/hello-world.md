@@ -50,7 +50,7 @@ Look for the following line in the `main.swift` file.
 let drop = try Droplet()
 ```
 
-This is where the one and only `Droplet `for this example will be created. The `Droplet` class has a plethora of useful functions on it, and is used extensively.
+This is where the one and only `Droplet `for this example will be created. The [Droplet](../general/droplet.md) class has a plethora of useful functions on it, and is used extensively.
 
 ### Routing
 

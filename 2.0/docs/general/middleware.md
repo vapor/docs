@@ -8,7 +8,7 @@ Middleware is an essential part of any modern web framework. It allows you to mo
 
 You can imagine middleware as a chain of logic connecting your server to the client requesting your web app.
 
-## Basic
+## Version Middleware
 
 As an example, let's create a middleware that will add the version of our API to each response. The middleware would look something like this:
 
@@ -36,7 +36,7 @@ You can imagine our `VersionMiddleware` sitting in the middle of a chain that co
 ![Middleware](https://cloud.githubusercontent.com/assets/1342803/17382676/0b51d6d6-59a0-11e6-9cbb-7585b9ab9803.png)
 
 
-## Breakdown
+### Breakdown
 
 Let's break down the middleware line by line.
 
@@ -65,7 +65,7 @@ The middleware can also modify or interact with the request.
 ```swift
 func respond(to request: Request, chainingTo next: Responder) throws -> Response {
     guard request.cookies["token"] == "secret" else {
-        throw Abort.badRequest
+        throw Abort(.badRequest)
     }
 
     return try next.respond(to: request)
@@ -84,7 +84,7 @@ enum FooError: Error {
 }
 ```
 
-Say there is a custom error that either you defined or one of the APIs you are using `throws`. This error must be caught when thrown, or else it will end up as a server error which may be unexpected to a user. The most obvious solution is to catch the error in the route closure.
+Say there is a custom error that either you defined or one of the APIs you are using `throws`. This error must be caught when thrown, or else it will end up as an internal server error (500) which may be unexpected to a user. The most obvious solution is to catch the error in the route closure.
 
 ```swift
 app.get("foo") { request in
@@ -92,14 +92,14 @@ app.get("foo") { request in
     do {
         foo = try getFooFromService()
     } catch {
-        throw Abort.badRequest
+        throw Abort(.badRequest)
     }
 
     // continue with Foo object
 }
 ```
 
-This solution works, but it would get repetitive if repeated throughout multiple routes. It can also easily lead to code duplication. Luckily, this error could be caught in a middleware instead.
+This solution works, but it would get repetitive if multiple routes need to handle the error. Luckily, this error could be caught in a middleware instead.
 
 ```swift
 final class FooErrorMiddleware: Middleware {
@@ -107,9 +107,9 @@ final class FooErrorMiddleware: Middleware {
         do {
             return try next.respond(to: request)
         } catch FooError.fooServiceUnavailable {
-            throw Abort.custom(
-                status: .badRequest,
-                message: "Sorry, we were unable to query the Foo service."
+            throw Abort(
+                .badRequest,
+                reason: "Sorry, we were unable to query the Foo service."
             )
         }
     }
@@ -132,7 +132,18 @@ app.get("foo") { request in
 }
 ```
 
-Interestingly, this is how `Abort` itself is implemented in Vapor. `AbortMiddleware` catches any `Abort` errors and returns a JSON response. Should you want to customize how `Abort` errors appear, you can remove this middleware and add your own.
+## Route Groups
+
+For more granularity, Middleware can be applied to specific route groups.
+
+```swift
+let authed = drop.grouped(AuthMiddleware())
+authed.get("secure") { req in
+    return Secrets.all().makeJSON()
+}
+```
+
+Anything added to the `authed` group must pass through `AuthMiddleware`. Because of this, we can assume all traffic to `/secure` has been authorized. Learn more in [Routing](../routing/group).
 
 ## Configuration
 
@@ -172,15 +183,19 @@ Likewise, if the middleware appears in the `client` array for the loaded configu
 
 One middleware can be appended to both the Client and the Server, and can be added multiple times. The ordering of middleware is respected.
 
-## Extensions (Advanced)
+## Advanced
 
-Middleware pairs great with request/response extensions and storage.
+### Extensions
+
+Middleware pairs great with request/response extensions and storage. This example shows you how to dynamically return either HTML or JSON responses for a Model depending on the type of client.
+
+#### Middleware
 
 ```swift
 final class PokemonMiddleware: Middleware {
-    let drop: Droplet
-    init(drop: Droplet) {
-        self.drop = drop
+    let view: ViewProtocol
+    init(_ view: ViewProtocol) {
+        self.view = view
     }
 
     func respond(to request: Request, chainingTo next: Responder) throws -> Response {
@@ -188,7 +203,7 @@ final class PokemonMiddleware: Middleware {
 
         if let pokemon = response.pokemon {
             if request.accept.prefers("html") {
-                response.view = try drop.view("pokemon.mustache", context: pokemon)
+                response.view = try view.make("pokemon.mustache", pokemon)
             } else {
                 response.json = try pokemon.makeJSON()
             }
@@ -198,6 +213,8 @@ final class PokemonMiddleware: Middleware {
     }
 }
 ```
+
+#### Response
 
 And the extension to `Response`.
 
@@ -212,10 +229,18 @@ extension Response {
 
 In this example, we added a new property to response capable of holding a Pokémon object. If the middleware finds a response with one of these Pokémon objects, it will dynamically check whether the client prefers HTML. If the client is a browser like Safari and prefers HTML, it will return a Mustache view. If the client does not prefer HTML, it will return JSON.
 
+#### Usage
+
 Your closures can now look something like this:
 
 ```swift
+import Vapor
 import HTTP
+
+let drop = try Droplet()
+
+let pokemonMiddleware = PokemonMiddleware(drop.view)
+drop.middleware.append(pokemonMiddleware)
 
 drop.get("pokemon", Pokemon.self) { request, pokemon in
     let response = Response()
@@ -224,7 +249,9 @@ drop.get("pokemon", Pokemon.self) { request, pokemon in
 }
 ```
 
-Or, if you want to go a step further, you can make `Pokemon` conform to `ResponseRepresentable`.
+#### Response Representable
+
+If you want to go a step further, you can make `Pokemon` conform to `ResponseRepresentable`.
 
 ```swift
 import HTTP
@@ -238,7 +265,7 @@ extension Pokemon: ResponseRepresentable {
 }
 ```
 
-Now your route closures are greatly simplified and you don't need to `import HTTP`.
+Now your route closures are greatly simplified.
 
 ```swift
 drop.get("pokemon", Pokemon.self) { request, pokemon in
@@ -247,5 +274,3 @@ drop.get("pokemon", Pokemon.self) { request, pokemon in
 ```
 
 Middleware is incredibly powerful. Combined with extensions, it allows you to add functionality that feels native to the framework.
-
-For those that are curious, this is how Vapor manages JSON internally. Whenever you return JSON in a closure, it sets the `json: JSON?` property on `Response`. The `JSONMiddleware` then detects this property and serializes the JSON into the body of the response.

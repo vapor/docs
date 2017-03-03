@@ -1,7 +1,3 @@
----
-currentMenu: guide-controllers
----
-
 # Controllers
 
 Controllers help you organize related functionality into a single place. They can also be used to create RESTful resources.
@@ -11,11 +7,15 @@ Controllers help you organize related functionality into a single place. They ca
 A basic controller looks like the following:
 
 ```swift
+import Vapor
+import HTTP
+
 final class HelloController {
 	func sayHello(_ req: Request) throws -> ResponseRepresentable {
-		guard let name = req.data["name"] else { 
-			throw Abort.badRequest 
+		guard let name = req.data["name"]?.string else { 
+			throw Abort(.badRequest)
 		}
+
 		return "Hello, \(name)"
 	}
 }
@@ -28,6 +28,9 @@ Simple controllers don't need to conform to any protocols. You are free to desig
 The only required structure is the signature of each method in the controller. In order to register this method into the router, it must have a signature like `(Request) throws -> ResponseRepresentable`. `Request` and `ResponseRepresentable` are made available by importing the `HTTP` module.
 
 ```swift
+import Vapor
+let drop = try Droplet()
+
 let hc = HelloController()
 drop.get("hello", handler: hc.sayHello)
 ```
@@ -128,12 +131,12 @@ drop.resource("users", users)
 
  `drop.resource` will take care of registering only the routes that have been supplied by the call to `makeResource()`. In this case, only the `index` and `show` routes will be supplied.
 
-> Note: `drop.resource` also adds useful defaults for OPTIONS requests. These can be overriden.  
+!!! note
+    `drop.resource` also adds useful defaults for OPTIONS requests. These can be overriden.  
 
 ## Folder
 
-Controllers can go anywhere in your application, but they are most often stored in the `Controllers/` directory. 
+Controllers can go anywhere in your application, but they are most often stored in the `App/Controllers/` directory. 
 
-### Modules
-
-If you are building a large application, you may want to create your controllers in a separate module. This will allow you to perform unit tests on your controllers. For more information on creating modules, visit the documentation for the [Swift Package Manager](https://swift.org/package-manager/).
+!!! tip
+    If you are building a large application, you may want to create your controllers in a separate module. This will allow you to perform unit tests on your controllers. For more information on creating modules, see the [modules](../advanced/modules.md) section in Advanced.

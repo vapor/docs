@@ -1,10 +1,6 @@
----
-currentMenu: guide-folder-structure
----
-
 # Folder Structure
 
-The first step to creating an awesome application is knowing where things are. If you created your project using the [Toolbox](../getting-started/toolbox.md) or from a template, you will already have the folder structure created.
+The first step to creating an awesome application is knowing where things are. If you created your project using the [Toolbox](../getting-started/install-toolbox.md) or from a template, you will already have the folder structure created.
 
 If you are making a Vapor application from scratch, this will show you exactly how to set it up.
 
@@ -24,11 +20,12 @@ This works best with the Swift package manager's restrictions on how packages sh
 
 The `Public` folder is where all publicly accessible files should go. This folder will be automatically checked every time a URL is requested that is not found in your routes.
 
-> Note: The `FileMiddleware` is responsible for accessing files from the `Public` folder.
+!!! note
+    The `FileMiddleware` is responsible for accessing files from the `Public` folder.
 
 ## Models
 
-The `Models` folder is a recommendation of where you can put your database and other models, following the MVC pattern.
+The `Models` folder is a recommendation of where you can put your database and other models.
 
 ```
 .
@@ -39,7 +36,7 @@ The `Models` folder is a recommendation of where you can put your database and o
 
 ## Controllers
 
-The `Controllers` folder is a recommendation of where you can put your route controllers, following the MVC pattern.
+The `Controllers` folder is a recommendation of where you can put your route controllers.
 
 ```
 .

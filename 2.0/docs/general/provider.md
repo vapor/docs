@@ -1,7 +1,3 @@
----
-currentMenu: guide-provider
----
-
 # Provider
 
 The `Provider` protocol creates a simple and predictable way for adding functionality and third party packages to your Vapor project.
@@ -20,13 +16,14 @@ To add the provider to your package, add it as a dependency in your `Package.swi
 let package = Package(
     name: "MyApp",
     dependencies: [
-        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 1, minor: 0),
-        .Package(url: "https://github.com/vapor/mysql-provider.git", majorVersion: 1, minor: 0)
+        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 2),
+        .Package(url: "https://github.com/vapor/mysql-provider.git", majorVersion: 2)
     ]
 )
 ```
 
-> It's important to `vapor clean` or `vapor build --clean` after adding new packages.
+!!! warning
+    Always run `vapor update` or `vapor clean` after editing your `Package.swift` file.
 
 ### Import
 
@@ -37,7 +34,13 @@ Here is what importing the MySQL provider looks like:
 ```swift
 import Vapor
 import VaporMySQL
+```
 
+### Add to Droplet
+
+Every provider comes with a class named `Provider`. Add this class to your Droplet using the `addProvider` method. 
+
+```swift
 let drop = Droplet()
 
 try drop.addProvider(VaporMySQL.Provider.self)
@@ -47,9 +50,7 @@ try drop.addProvider(VaporMySQL.Provider.self)
 drop.run()
 ```
 
-Every provider comes with a class named `Provider`. Append the `Type` of this class to your `providers` array in the `Droplet`'s init method.
-
-### Config
+### Configuration
 
 Some drivers may require a configuration file. For example, `VaporMySQL` requires a `Config/mysql.json` file like the following:
 
@@ -64,22 +65,16 @@ Some drivers may require a configuration file. For example, `VaporMySQL` require
 
 You will receive an error during the `Droplet`'s initialization if a configuration file is required.
 
-## Advanced
+!!! tip
+    Storing sensitive configuration files (ones that contain passwords) in the `Config/secrets` folder will prevent them from being tracked by git.
 
-You may choose to initialize the provider yourself. 
+### Manual
+
+Some providers can be configured manually by using the Provider's init method. This method can be used instead of configuration files.
 
 ```swift
-import Vapor
-import VaporMySQL
-
-let drop = Droplet()
-
-let mysql = try VaporMySQL.Provider(host: "localhost", user: "root", password: "", database: "vapor")
-drop.addProvider(mysql)
-
-...
-
-drop.run()
+let mysqlProvider = VaporMySQL.Provider(host: "localhost", user: "root", password: "", database: "vapor")
+try drop.addProvider(mysqlProvider)
 ```
 
 ## Create a Provider
@@ -95,25 +90,22 @@ import Vapor
 
 public final class Provider: Vapor.Provider {
 	public let message: String
-    public let provided: Providable
 
     public convenience init(config: Config) throws {
     	guard let message = config["foo", "message"].string else {
-    		throw SomeError
+    		throw ConfigError.missing(key: ["message"], file: "foo", desiredType: String.self)
     	}
 
-        try self.init(message: message)
+        self.init(message: message)
     }
 
-    public init(message: String) throws {
+    public init(message: String) {
 		self.message = message
     }
 
-    public func afterInit(_ drop: Droplet) {
+    public func boot(_ drop: Droplet) { }
 
-    }
-
-    public func beforeServe(_ drop: Droplet) {
+    public func beforeRun(_ drop: Droplet) {
 		drop.console.info(message)
     }
 }

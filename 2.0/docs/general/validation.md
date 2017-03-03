@@ -1,6 +1,5 @@
----
-currentMenu: guide-validation
----
+!!! warning
+    This section may contain outdated information.
 
 # Validation
 

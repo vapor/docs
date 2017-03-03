@@ -1,10 +1,6 @@
----
-currentMenu: guide-views
----
-
 # Views
 
-Views return HTML data from your application. They can be created from pure HTML documents or passed through renderers such as Mustache or Stencil.
+Views return HTML data from your application. They can be created from pure HTML documents or passed through renderers such as [Leaf](../leaf/leaf.md).
 
 ## Views Directory
 
@@ -22,7 +18,7 @@ drop.get("html") { request in
 
 ## Templating
 
-Templated documents like [Leaf](./leaf.html), Mustache, or Stencil can take a `Context`.
+Templated documents like [Leaf](../leaf/leaf.md) can take a `Context`.
 
 ```swift
 drop.get("template") { request in
@@ -31,6 +27,8 @@ drop.get("template") { request in
 	])
 }
 ```
+
+This context will be rendered in the view dynamically based on the `ViewRenderer` used.
 
 ## Public Resources
 
@@ -41,6 +39,9 @@ Any resources that your views need, such as images, styles, and scripts, should 
 Any class that conforms to `ViewRenderer` can be added to our droplet. 
 
 ```swift
+import Vapor
+import VaporLeaf
+
 let drop = Droplet()
 
 drop.view = LeafRenderer(viewsDir: drop.viewsDir)
@@ -51,4 +52,3 @@ drop.view = LeafRenderer(viewsDir: drop.viewsDir)
 These renderers can be added to your application through [Providers](provider.md).
 
 - [Leaf](https://github.com/vapor/leaf)
-- [Mustache](https://github.com/vapor/mustache-provider)

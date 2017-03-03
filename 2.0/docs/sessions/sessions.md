@@ -24,7 +24,7 @@ let drop = Droplet()
 drop.middleware.append(sessions)
 ```
 
-> Note: If you'd like to enable or disable the middleware based on config files, check out [middleware](../guide/middleware.md).
+> Note: If you'd like to enable or disable the middleware based on config files, check out [middleware](middleware.md).
 
 ## Request
 
