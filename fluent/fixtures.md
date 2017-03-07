@@ -3,7 +3,7 @@ currentMenu: fluent-fixtures
 ---
 
 # Fixtures
-Sometimes, you may need to prepopulate your database with data. For exemples, you might need insert in your table 'Users' an admin account or a test account.
+Sometimes, you may need to prepopulate your database with existing datas. For exemple, you might need to insert in your table 'Users' an admin account or a test account.
 
 
 In a separate file (Database+Fixture.swift):
