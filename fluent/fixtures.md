@@ -3,8 +3,7 @@ currentMenu: fluent-fixtures
 ---
 
 # Fixtures
-Sometimes, you may need to prepopulate your database with existing datas. For exemple, you might need to insert in your table 'Users' an admin account or a test account.
-
+When you want to prepopulate a database with existing data, you will need to create one or several fixtures. For example, in your table `users`, it's very common to create admin account and a test account just after the creation of the table. The following snippets of code show you how to deal with it.
 
 In a separate file (Database+Fixture.swift):
 ```swift
@@ -21,7 +20,7 @@ extension Database {
 }
 ```
 
-In your model User.swift file
+In your model User.swift file:
 ```swift
 static func prepare(_ database: Database) throws {
         try database.create("users") { users in
