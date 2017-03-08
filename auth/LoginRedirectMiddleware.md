@@ -4,7 +4,7 @@ currentMenu: LoginRedirectMiddleware
 
 # Login Redirect Middleware
 
-`LoginRedirectMiddleware` is a Middleware to be used when you what to create an automatic redirection from any routes when the user is not authenticated.
+`LoginRedirectMiddleware` is a Middleware to be used when you want to create an automatic redirection from any routes when the user is not authenticated. Users that want to access to a protected route will be redirected to a single route.
 
 ## Example
 In your main.swift file:
