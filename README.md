@@ -80,6 +80,8 @@ Here are a list of providers and third party packages that work great with Vapor
 - [VaporForms](https://github.com/bygri/vapor-forms): Brings simple, dynamic and re-usable web form handling to Vapor.
 - [Jobs](https://github.com/BrettRToomey/Jobs): A minimalistic job/background-task system for Swift.
 - [Heimdall](https://github.com/himani93/heimdall): An easy to use HTTP request logger.
+- [vapor-mail](https://github.com/bygri/vapor-mail): Send HTML and plaintext emails natively through a variety of backends (SMTP, Sendgrid, etc).
+- [vapor-wkhtmltopdf](https://github.com/bygri/vapor-wkhtmltopdf): Use wkhtmltopdf to generate PDFs from Vapor views.
 
 
 ## Authors
