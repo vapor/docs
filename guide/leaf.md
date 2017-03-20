@@ -29,6 +29,7 @@ There can be many different usages of these 4 elements depending on the Tag's im
   - `#index(friends, "0")`
   - `#loop(friends, "friend") { <li>#(friend.name)</li> }`
   - `#raw() { <a href="#raw">Anything goes!@#$%^&*</a> }`
+  - `#raw(variable)`
 
 ### Using the `#` token in HTML
 
@@ -36,9 +37,15 @@ The `#` token cannot be escaped. Use the `#()` or `#raw() {}` Tag to output a `#
 
 ### Raw HTML
 
-All Leaf output is escaped by default. Use the `#raw() {}` Tag for unescaped output.
+All Leaf output is escaped by default.
+
+> IMPORTANT!  Make sure you are not using the `#raw` Tag with user input. Allowing user input will allow HTML/Script Injection (Cross-site scripting) attacks on your application.
+
+Use the `#raw() {}` Tag for unescaped output.
 `#raw() { <a href="#link">Link</a> }` => `<a href="#link">Link</a>`
-> IMPORTANT!  Make sure you are not using the `#raw() {}` Tag with user input.
+
+Use the `#raw(variable)` Tag for unescaped variable output.
+`#raw(post.link)` => `<a href="#link">Link</a>`
 
 ### Chaining
 
@@ -63,6 +70,14 @@ The double token: `##` indicates a chain. It can be applied to any standard Tag.
     Do whatever w/ #'s here, this code won't be rendered as leaf document and is not escaped.
     It's a great place for things like Javascript or large HTML sections.
 }
+```
+
+#### Raw: `#raw(variable) {}`
+
+> IMPORTANT!  Make sure you are not using the `#raw(variable)` Tag with user input! Allowing user input will allow HTML/Script Injection (Cross-site scripting) attacks on your application.
+
+```
+#raw(variable) // Render the variable as HTML and do not not escape the contents of the variable.
 ```
 
 #### Equal: `#equal(lhs, rhs) {}`
