@@ -37,6 +37,7 @@ pages:
     - 'Query': 'fluent/query.md'
     - 'Relation': 'fluent/relation.md'
 - Auth:
+    - 'Getting Started': 'auth/getting-started.md'
     - 'User': 'auth/user.md'
     - 'Middleware': 'auth/middleware.md'
     - 'Request': 'auth/request.md'

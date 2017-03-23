@@ -64,7 +64,7 @@ Supplying a key will cause the hasher to produce _keyed_ hashes using HMAC. Some
 | SHA-224      | sha224      | no           |
 | SHA-256      | sha256      | no           |
 | SHA-384      | sha384      | no           |
-| SHA-512       | sha512      | no           |
+| SHA-512      | sha512      | no           |
 | MD4          | md4         | no           |
 | MD5          | md5         | no           |
 | RIPEMD-160   | ripemd160   | no           |
