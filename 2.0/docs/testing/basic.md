@@ -14,7 +14,7 @@ Here's an example of my setup file. I name mine `Droplet+Setup.swift`. Here's ho
 ```swift
 import Vapor
 
-func load(_ drop: Droplet) throws {
+public func load(_ drop: Droplet) throws {
     drop.preparations.append(Todo.self)
 
     drop.get { _ in return "put my droplet's logic in this `load` function" }
