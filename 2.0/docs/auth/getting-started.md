@@ -32,19 +32,22 @@ We will start by creating a model to represent our user. If you already have a u
 
 ```swift
 import Vapor
+import FluentProvider
 
 final class ExampleUser: Model {
     let name: String
 
     ...
 }
+
+extension ExampleUser: Preparation { ... }
 ```
 
 Here we create a very simple user with just one property: a name.
 
 !!! seealso
-	We're omitting most of `Model`'s protocol requirements. Check out Fluent's 
-	[Getting Started](../fluent/getting-started.md) for more information about `Model`.
+	We're omitting most of `Model` and `Preparation` protocol requirements. Check out Fluent's 
+	[Getting Started](../fluent/getting-started.md) for more information about these protocols.
 
 
 ### Token
@@ -59,6 +62,7 @@ For now, here's what our simple token model will look like.
 
 ```swift
 import Vapor
+import FluentProvider
 
 final class ExampleToken: Model {
     let token: String
@@ -70,6 +74,8 @@ final class ExampleToken: Model {
 
     ...
 }
+
+extension ExampleToken: Preparation { ... }
 ```
 
 This token has two properties:
@@ -112,7 +118,7 @@ extension Request {
 }
 ```
 
-This will come in handy in a few steps.
+This is a nice shortcut that will come in handy in a few steps.
 
 ### Middleware
 
@@ -122,8 +128,11 @@ to individual routes or to the entire Droplet. For simplicity, we'll apply it to
 ```swift
 import Vapor
 import AuthProvider
+import FluentProvider
 
 let drop = try Droplet()
+
+drop.preparations += [ExampleUser.self, ExampleToken.self]
 
 let tokenMiddleware = TokenAuthenticationMiddleware(ExampleUser.self)
 drop.middleware.append(tokenMiddleware)
@@ -132,8 +141,8 @@ drop.middleware.append(tokenMiddleware)
 Since our `ExampleUser` class is `TokenAuthenticatable`, we can pass it into the middleware's init method.
 
 !!! seealso
-	For more information about adding middleware to routes, 
-	visit the [Route Group](../routing/group.md) section 
+	If you only want to require authentication for certain routes, look at our 
+	[Route Group](../routing/group.md) section in the routing docs.
 
 ### Route
 
@@ -148,7 +157,8 @@ drop.get("me") { req in
 ```
 
 !!! tip
-	We're using the `.user()` convenience we added to `Request` here.
+	We're using the `.user()` convenience we added to `Request` here. It is a shortcut
+	for `let user = try req.auth.assertAuthenticated(ExampleUser.self)` 
 
 
 ### Database
