@@ -106,7 +106,7 @@ extension ExampleUser: TokenAuthenticatable {
 
 Now that our example user is `TokenAuthenticatable`, we can move on to the next step!
 
-### Request 
+### User Helper
 
 Let's add a simple convenience method on request for accessing the authenticated user.
 
