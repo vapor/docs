@@ -32,10 +32,12 @@ pages:
     - 'Group': 'routing/group.md'
     - 'Collection': 'routing/collection.md'
 - Fluent:
+    - 'Getting Started': 'fluent/getting-started.md'
     - 'Driver': 'fluent/driver.md'
     - 'Model': 'fluent/model.md'
     - 'Query': 'fluent/query.md'
     - 'Relation': 'fluent/relation.md'
+    - 'Package': 'fluent/package.md'
 - Auth:
     - 'Getting Started': 'auth/getting-started.md'
     - 'Helper': 'auth/helper.md'

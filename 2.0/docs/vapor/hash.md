@@ -32,6 +32,15 @@ By default, Vapor uses a SHA-256 hasher. You can change this in the configuratio
 
 ### Configuration
 
+`Config/droplet.json`
+```json
+{
+    ...,
+    "hash": "crypto",
+    ...
+}
+```
+
 `Config/crypto.json`
 ```json 
 {
@@ -102,14 +111,14 @@ drop.hash = CryptoHasher(
 
 ## BCryptHasher
 
-BCrypt is a password hashing function that automatically incorporates salts and offers a configurable work factor. The work factor can be used to increase the computation required to generate a hash 
+BCrypt is a password hashing function that automatically incorporates salts and offers a configurable work factor. The work factor can be used to increase the computation required to generate a hash.
 
 !!! seealso
     Learn more about [key stretching](https://en.wikipedia.org/wiki/Key_stretching) on Wikipedia.
 
 ### Configuration
 
-To use the BCryptHasher instead of the CryptoHasher, change the `"hash"` key in the `droplet.json` configuration file.
+To use the BCryptHasher change the `"hash"` key in the `droplet.json` configuration file.
 
 `Config/droplet.json`
 ```json
