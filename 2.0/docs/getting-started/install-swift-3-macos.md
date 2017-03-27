@@ -12,12 +12,34 @@ Install [Xcode 8](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) from 
 
 After Xcode 8 has been downloaded, you must open it to finish the installation. This may take a while.
 
-## Check
+## Check Swift
 
 Double check the installation was successful by running:
 
 ```sh
-curl -sL check.vapor.sh | bash
+eval "$(curl -sL check2.vapor.sh)"
+```
+
+## Transport Layer Security
+
+Vapor 2.+ requires a TLS library like OpenSSL or LibreSSL to be installed and linked. This gives you the option to choose which security library you would like to use and helps ensure your app behaves similarly across macOS and Linux.
+
+### OpenSSL (Recommended)
+
+Installing OpenSSL is the easiest way to get up and running with Vapor.
+
+This quick start script will guide you through the installation process.
+
+```sh
+eval "$(curl -sL openssl.vapor.sh)"
+```
+
+### LibreSSL / Other (Advanced)
+
+To use a different TLS library, install the library to your computer (through `brew` or downloading from the site). Once the library is installed, you can link it during `swift build` using:
+
+```sh
+swift build -Xswiftc -I/path/to/headers -Xlinker -L/path/to/libs
 ```
 
 ## Toolbox
