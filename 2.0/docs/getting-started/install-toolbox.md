@@ -11,6 +11,14 @@ Vapor's command line interface provides shortcuts and assistance for common task
 
 Run the following script to install the [Toolbox](https://github.com/vapor/toolbox).
 
+### macOS
+
+```sh
+brew install vapor/tap/toolbox
+```
+
+### Linux
+
 ```sh
 curl -sL toolbox.vapor.sh | bash
 ```
