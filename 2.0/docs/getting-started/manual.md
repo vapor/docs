@@ -5,15 +5,7 @@ Learn how to create a Vapor project _without_ the Toolbox using just Swift 3 and
 This document assumes that you have Swift 3.1 installed.
 
 !!! tip
-    If you'd prefer to use the Toolbox, learn how to install it [here](install-toolbox.md). If you've installed the Toolbox, follow the toolbox guide [here](hello-world.md).
-
-## Check
-
-To check that your environment is compatible, run the following script:
-
-```bash
-curl -sL check.vapor.sh | bash
-```
+    If you'd prefer to use the Toolbox, follow the toolbox guide [here](hello-world.md).
 
 ## Make new project using SwiftPM
 

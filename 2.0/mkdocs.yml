@@ -4,9 +4,9 @@ copyright: 'Copyright &copy; 2017 Qutheory, LLC'
 pages:
 - Overview: 'index.md'
 - Getting started:
-    - 'Install Swift 3.1: macOS': 'getting-started/install-swift-3-macos.md'
-    - 'Install Swift 3.1: Ubuntu': 'getting-started/install-swift-3-ubuntu.md'
-    - 'Install Toolbox': 'getting-started/install-toolbox.md'
+    - 'Install: macOS': 'getting-started/install-on-macos.md'
+    - 'Install: Ubuntu': 'getting-started/install-on-ubuntu.md'
+    - 'Toolbox': 'getting-started/toolbox.md'
     - 'Hello, World': 'getting-started/hello-world.md'
     - 'Manual': 'getting-started/manual.md'
     - 'Xcode': 'getting-started/xcode.md'

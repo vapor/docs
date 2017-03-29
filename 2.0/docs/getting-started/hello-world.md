@@ -10,8 +10,11 @@ This section assumes you have installed Swift 3.1 and the Vapor Toolbox and have
 Let's start by creating a new project called "Hello, World".
 
 ```sh
-vapor new Hello
+vapor new Hello --template=api
 ```
+
+!!! warning
+    Use `vapor new Hello --template=api --branch=beta` while Vapor 2 is in beta
 
 Vapor's folder structure will probably look familiar to you if you have worked with other web frameworks.
 

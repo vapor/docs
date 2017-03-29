@@ -26,14 +26,3 @@ swift package generate-xcodeproj
 ```
 
 Open the project and continue normally.
-
-## Flags
-
-For some packages with underlying C dependencies, users will need to pass linker flags during **build** and **project generation**. Make sure to consult the guides associated with those dependencies. For example, MySQL:
-
-```
-swift package generate-xcodeproj -Xswiftc -I/usr/local/include/mysql -Xlinker -L/usr/local/lib
-```
-
-!!! tip
-    The Vapor Toolbox automatically detects and adds linker flags required for Vapor packages.
