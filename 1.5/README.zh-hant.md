@@ -63,6 +63,7 @@ Vapor 是一個在 Swift 上很受歡迎的 Web framework。它提供了清楚�
 - [Kitura Provider](https://github.com/vapor/kitura-provider): 在 Vapor 中使用 IBM 的 Kitura HTTP Server。
 - [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver-Vapor): 在 Vapor 中使用 SwiftBeaver 的套件。(譯註: 就像強化版的 NSLog() 或 print())
 - [APNS](https://github.com/matthijs2704/vapor-apns): 用來操作 Apple 推播的工具。
+- [VaporFCM](https://github.com/mdab121/vapor-fcm): 用于发送FCM通知的简单库。
 - [JWT](https://github.com/siemensikkema/vapor-jwt): 讓我們可以設定一些規則以取得特定資源的工具。
 - [VaporS3Signer](https://github.com/JustinM1/VaporS3Signer): 用來產生 HTTP request 的 headers 及已經簽證過的 URL，用來 request AWS S3 的 REST API。
 - [Flock](https://github.com/jakeheis/Flock): 自動將 Swift 專案發佈上主機。

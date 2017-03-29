@@ -102,6 +102,7 @@ These are packages created by community members that work great with Vapor.
 - [Kitura Provider](https://github.com/vapor/kitura-provider): Use IBM's Kitura HTTP server in Vapor.
 - [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver-Vapor): Adds the powerful logging of SwiftyBeaver to Vapor.
 - [APNS](https://github.com/matthijs2704/vapor-apns): Simple APNS Library for Vapor (Swift).
+- [VaporFCM](https://github.com/mdab121/vapor-fcm): Simple FCM (iOS + Android Push Notifications) library built for Vapor in Swift.
 - [VaporS3Signer](https://github.com/JustinM1/VaporS3Signer): Generate V4 Auth Header/Pre-Signed URL for AWS S3 REST API
 - [Flock](https://github.com/jakeheis/Flock): Automated deployment of Swift projects to servers
 	- [VaporFlock](https://github.com/jakeheis/VaporFlock): Use Flock to deploy Vapor applications
