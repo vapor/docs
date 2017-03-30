@@ -22,6 +22,8 @@ eval "$(curl -sL check2.vapor.sh)"
 
 ## Install Vapor
 
+Now that you have Swift 3.1, let's install the Vapor toolbox. 
+
 The toolbox includes all of Vapor's dependencies as well as a handy CLI tool for creating new projects.
 
 ### Install Homebrew
@@ -36,7 +38,7 @@ For more information on installing Homebrew, visit [brew.sh](https://brew.sh).
 
 ### Add Homebrew Tap
 
-Vapor's Homebrew tap will give your Homebrew installation access to all of Vapor's system packages.
+Vapor's Homebrew tap will give your Homebrew installation access to all of Vapor's macOS packages.
 
 ```sh
 brew tap vapor/homebrew-tap
@@ -45,7 +47,7 @@ brew update
 
 ### Install
 
-Now that you've added Vapor's tap, you can install the Vapor's toolbox and dependencies.
+Now that you've added Vapor's tap, you can install Vapor's toolbox and dependencies.
 
 ```sh
 brew install vapor
