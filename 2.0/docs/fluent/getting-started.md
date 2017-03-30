@@ -3,7 +3,7 @@
 Fluent provides an easy, simple, and safe API for working with your persisted data. Each database table/collection is represented by a `Model` that can be used to interact with the data. Fluent supports common operations like creating, reading, updating, and deleting models. It also supports more advanced operations like joining, relating, and soft deleting. 
 
 !!! note
-    Don't forget to add `import VaporFluent` to the top of your Swift files.
+    Don't forget to add `import FluentProvider` to the top of your Swift files.
 
 Fluent ships with SQLite by default. You can use SQLite to quickly scaffolding your application with the in-memory database it provides. This is enabled by default in Vapor's default template. To learn more about configuring your database, visit the [Database](database.md) section.
 
