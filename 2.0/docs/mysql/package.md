@@ -34,6 +34,7 @@ let package = Package(
     name: "Project",
     dependencies: [
         ...
+        .Package(url: "https://github.com/vapor/fluent.git", majorVersion: 2),
         .Package(url: "https://github.com/vapor/mysql-driver.git", majorVersion: 2)
     ],
     exclude: [ ... ]
@@ -58,3 +59,5 @@ let package = Package(
     exclude: [ ... ]
 )
 ```
+
+Use `import MySQL` to access the `MySQL.Database` class.
