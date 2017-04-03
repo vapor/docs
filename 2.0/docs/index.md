@@ -109,6 +109,9 @@ These are packages created by community members that work great with Vapor.
 - [Jobs](https://github.com/BrettRToomey/Jobs): A minimalistic job/background-task system for Swift.
 - [Heimdall](https://github.com/himani93/heimdall): An easy to use HTTP request logger.
 
+### Providers
+
+Vapor providers are a convenient way to add functionality to your Vapor projects. For a full list of providers, check out the [`vapor-provider`](https://github.com/search?utf8=✓&q=topic%3Avapor-provider&type=Repositories) tag on GitHub.
 
 ## Authors
 

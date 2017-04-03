@@ -21,7 +21,7 @@ let package = Package(
 
 The Fluent provider package adds Fluent to your project and adds some additional, Vapor-specific conveniences like HTTP conformances. 
 
-Using `import VaporFluent` will import both Fluent and Fluent's Vapor-specific APIs. 
+Using `import FluentProvider` will import both Fluent and Fluent's Vapor-specific APIs. 
 
 ## Without Vapor
 
@@ -45,3 +45,6 @@ Use `import Fluent` to access Fluent's APIs.
 !!! warning
     `Model` is a Vapor + Fluent type, use `Entity` instead.
 
+## Drivers
+
+Fluent drivers allow Fluent models and queries to communicate with various database technologies like MySQL or Mongo. For a full list of drivers, check out the [`fluent-driver`](https://github.com/search?utf8=✓&q=topic%3Afluent-driver&type=Repositories) tag on GitHub.

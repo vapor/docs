@@ -38,6 +38,8 @@ pages:
     - 'Query': 'fluent/query.md'
     - 'Relation': 'fluent/relation.md'
     - 'Package': 'fluent/package.md'
+- MySQL:
+    - 'Package': 'mysql/package.md'
 - Auth:
     - 'Getting Started': 'auth/getting-started.md'
     - 'Helper': 'auth/helper.md'
