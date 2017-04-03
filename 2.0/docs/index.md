@@ -6,7 +6,7 @@ Vapor is the most used web framework for Swift. It provides a beautifully expres
 
 ## Where To Start
 
-If this is your first time using Vapor, head to the [Getting Started](getting-started/install-swift-3-macos.md) section to install Swift and create your first app.
+If this is your first time using Vapor, head to the [Getting Started](getting-started/install-on-macos.md) section to install Swift and create your first app.
 
 ### Viewing Mediums
 

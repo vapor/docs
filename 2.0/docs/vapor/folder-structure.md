@@ -1,6 +1,6 @@
 # Folder Structure
 
-The first step to creating an awesome application is knowing where things are. If you created your project using the [Toolbox](../getting-started/install-toolbox.md) or from a template, you will already have the folder structure created.
+The first step to creating an awesome application is knowing where things are. If you created your project using the [Toolbox](../getting-started/toolbox.md) or from a template, you will already have the folder structure created.
 
 If you are making a Vapor application from scratch, this will show you exactly how to set it up.
 
