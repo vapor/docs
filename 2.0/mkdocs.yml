@@ -38,10 +38,15 @@ pages:
     - 'Model': 'fluent/model.md'
     - 'Query': 'fluent/query.md'
     - 'Relation': 'fluent/relation.md'
+- Cache: 'cache/index.md'
 - MySQL:
     - 'Package': 'mysql/package.md'
     - 'Provider': 'mysql/provider.md'
     - 'Driver': 'mysql/driver.md'
+- Redis:
+    - 'Package': 'redis/package.md'
+    - 'Provider': 'redis/provider.md'
+
 - Auth:
     - 'Getting Started': 'auth/getting-started.md'
     - 'Helper': 'auth/helper.md'

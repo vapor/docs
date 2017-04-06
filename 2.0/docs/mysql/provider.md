@@ -93,6 +93,20 @@ import MySQLProvider
 let mysqlDriver = try drop.mysql()
 ```
 
+## Configure Cache
+
+You can also choose to use your Fluent database (now set to MySQL) for caching. 
+
+`Config/droplet.json`
+
+```json
+{
+    "driver": "fluent"
+}
+```
+
+Learn more about [caching here](../cache/index.md).
+
 ## Done
 
 Next time you boot your Droplet, you should see:
