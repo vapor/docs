@@ -34,7 +34,6 @@ pages:
 - Fluent:
     - 'Package': 'fluent/package.md'
     - 'Getting Started': 'fluent/getting-started.md'
-    - 'Driver': 'fluent/driver.md'
     - 'Model': 'fluent/model.md'
     - 'Query': 'fluent/query.md'
     - 'Relation': 'fluent/relation.md'
