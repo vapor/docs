@@ -47,11 +47,11 @@ pages:
     - 'Provider': 'redis/provider.md'
 
 - Auth:
+    - 'Package': 'auth/package.md'
     - 'Getting Started': 'auth/getting-started.md'
     - 'Helper': 'auth/helper.md'
     - 'Password': 'auth/password.md'
     - 'Persist': 'auth/persist.md'
-    - 'Package': 'auth/package.md'
 - Sessions:
     - 'Sessions': 'sessions/sessions.md'
 - HTTP:
