@@ -63,8 +63,8 @@ final class Pet: Model {
 
     func makeRow() throws -> Row {
         var row = Row()
-        try row.get("name", name)
-        try row.get("age", age)
+        try row.set("name", name)
+        try row.set("age", age)
         return row
     }
 }
@@ -80,7 +80,7 @@ You can do this by conforming your model to `Preparation`.
 
 ```swift
 extension Pet: Preparation {
-    static func prepare(_ database: Database) {
+    static func prepare(_ database: Database) throws {
         try database.create(self) { pets in
             pets.id(for: self)
             pets.string("name")
@@ -88,7 +88,7 @@ extension Pet: Preparation {
         }
     } 
 
-    static func revert(_ database: Database) {
+    static func revert(_ database: Database) throws {
         try database.delete(self)
     }
 }
