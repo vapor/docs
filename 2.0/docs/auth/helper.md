@@ -69,6 +69,9 @@ The header has additional conveniences for parsing out bearer tokens.
 print(req.auth.header?.bearer)
 ```
 
+!!! tip
+	You can use `_authorizationBasic` and `_authorizationBearer` to send tokens in the URL string.
+
 ### Password
 
 And basic auth username + password.
