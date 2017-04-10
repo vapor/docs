@@ -65,6 +65,7 @@ pages:
     - 'CORS': 'http/cors.md'
 - Leaf:
     - 'Overview': 'leaf/leaf.md'
+- Core: 'core/index.md'
 - Bits: 'bits/index.md'
 - Advanced:
     - 'Modules': 'advanced/modules.md'
