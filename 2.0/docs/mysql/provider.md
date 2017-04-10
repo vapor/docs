@@ -72,7 +72,7 @@ Read replicas can be supplied by passing a single `master` hostname and an array
 ```json
 {
     "master": "master.mysql.foo.com",
-    "readReplicas": ["read01.mysql.foo.com", "read02.mysql.foo.com"]
+    "readReplicas": ["read01.mysql.foo.com", "read02.mysql.foo.com"],
     "user": "root",
     "password": "password",
     "database": "hello"
