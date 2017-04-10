@@ -72,6 +72,7 @@ Aquí hay una lista de proveedores y paquetes de terceros que funcionan muy bien
 - [Kitura Provider](https://github.com/vapor/kitura-provider): Permite usar el servidor HTTP de IBM (Kitura) en Vapor.
 - [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver-Vapor): Agrega el potente _logging_ de SwiftyBeaver a Vapor.
 - [APNS](https://github.com/matthijs2704/vapor-apns): Sencilla biblioteca APNS para Vapor (Swift).
+- [VaporFCM](https://github.com/mdab121/vapor-fcm): Sencilla biblioteca FCM para Vapor.
 - [JWT](https://github.com/siemensikkema/vapor-jwt): Implementación JWT para Vapor.
 - [VaporS3Signer](https://github.com/JustinM1/VaporS3Signer): Gerera _V4 Auth Header/Pre-Signed URL_ para _AWS S3 REST API_.
 - [Flock](https://github.com/jakeheis/Flock): _Despliegue_ automatizado de proyectos Swift en servidores.
