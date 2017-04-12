@@ -88,6 +88,26 @@ try database.create(self) { builder in
 }
 ```
 
+### Foreign Keys
+
+Foreign keys are automatically added with `.foreignId()`. To add a foreign key manually, use the
+`.foreignKey` method.
+
+```swift
+try database.create(self) { builder in
+    builder.foreignKey("user_id", references: "id", on: User.self)
+}
+```
+
+To disable automatic foreign keys, set `autoForeignKeys` to false in the `Config/fluent.json` file.
+
+```json
+{
+    "autoForeignKeys": false
+}
+
+```
+
 ### Modifier
 
 Existing schema can be modified using the `.modify()` property. All of the methods from `.create()`
