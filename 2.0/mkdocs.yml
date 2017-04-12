@@ -64,6 +64,7 @@ pages:
     - 'Server': 'http/server.md'
     - 'CORS': 'http/cors.md'
 - Leaf:
+    - 'Package': 'leaf/package.md'
     - 'Overview': 'leaf/leaf.md'
 - Core: 'core/index.md'
 - Bits: 'bits/index.md'
