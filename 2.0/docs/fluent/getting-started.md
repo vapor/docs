@@ -153,18 +153,5 @@ print(dogs) // all dogs older than 2
 
 ## Drivers
 
-By default, Fluent includes in-memory and SQLite drivers. There are several drivers available to add to your Vapor application.
+Check out the [database](database.md) section for more information about different database drivers you can use with Fluent.
 
-### Available
-
-| Type       | Key    | Package                                                            | Class               | Official |
-|------------|--------|--------------------------------------------------------------------|---------------------|----------|
-| Memory     | memory | [Fluent Provider](../fluent/package.md)                            | Fluent.MemoryDriver | Yes      |
-| SQlite     | sqlite | [Fluent Provider](../fluent/package.md)                            | Fluent.SQLiteDriver | Yes      |
-| MySQL      | mysql  | [MySQLProvider](../mysql/package.md)                               | MySQLDriver.Driver  | Yes      |
-| PostgreSQL | N/A    | [PostgreSQLProvider](https://github.com/vapor/postgresql-provider) | N/A                 | No       |
-| MongoDB    | N/A    | [MongoProvider](https://github.com/vapor/mongo-provider)           | N/A                 | No       |
-
-Click on the provider package for more information about how to use it.
-
-You can search for a list of available [Vapor database providers](https://github.com/search?utf8=✓&q=topic%3Avapor-provider+topic%3Adatabase&type=Repositories) on GitHub.

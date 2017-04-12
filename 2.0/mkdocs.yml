@@ -35,6 +35,7 @@ pages:
     - 'Package': 'fluent/package.md'
     - 'Getting Started': 'fluent/getting-started.md'
     - 'Model': 'fluent/model.md'
+    - 'Database': 'fluent/database.md'
     - 'Query': 'fluent/query.md'
     - 'Relation': 'fluent/relation.md'
 - Cache: 'cache/index.md'
