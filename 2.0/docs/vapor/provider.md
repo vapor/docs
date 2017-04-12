@@ -56,7 +56,7 @@ Some drivers may require a configuration file. For example, `VaporMySQL` require
 
 ```json
 {
-	"host": "localhost",
+	"hostname": "localhost",
 	"user": "root",
 	"password": "",
 	"database": "vapor"
