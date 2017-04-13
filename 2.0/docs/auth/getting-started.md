@@ -84,7 +84,7 @@ This token has two properties:
 - userId: the identifier for the user to whom this token belongs
 
 !!! seealso
-	We're using Fluent relations here. Check out Fluent's  [Relations](../fluent/relation.md)
+	We're using Fluent relations here. Check out Fluent's  [Relations](../fluent/relations.md)
 	section for more information.
 
 ### Token Authenticatable

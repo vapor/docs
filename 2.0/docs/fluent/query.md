@@ -85,6 +85,9 @@ try query.filter("age" >= 21)
 | .contains            |          | Contains               |
 | .custom(String)      |          | Custom                 |
 
+!!! tip
+	You can omit the comparison type for `.equals`, e.g., `query.filter("age", 23)`
+
 
 ### Subset
 

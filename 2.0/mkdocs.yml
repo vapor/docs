@@ -37,7 +37,7 @@ pages:
     - 'Model': 'fluent/model.md'
     - 'Database': 'fluent/database.md'
     - 'Query': 'fluent/query.md'
-    - 'Relation': 'fluent/relation.md'
+    - 'Relations': 'fluent/relations.md'
 - Cache: 'cache/index.md'
 - MySQL:
     - 'Package': 'mysql/package.md'
