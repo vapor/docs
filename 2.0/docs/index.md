@@ -79,10 +79,12 @@ Here is a list of all the packages and modules included with Vapor.
 These are officially supported packages for Vapor that are not included by default.
 
 - [Fluent](https://github.com/vapor/fluent): Models, relationships, and querying for NoSQL and SQL databases.
+	- [Fluent Provider](https://github.com/vapor/fluent-provider): Fluent provider for Vapor.
 - [MySQL](https://github.com/vapor/mysql): Robust MySQL interface for Swift.
 	- [MySQL Driver](https://github.com/vapor/mysql-driver): MySQL driver for Fluent.
 	- [MySQL Provider](https://github.com/vapor/mysql-provider): MySQL provider for Vapor.
 - [Leaf](https://github.com/vapor/leaf): An extensible templating language.
+	- [Leaf Provider](https://github.com/vapor/leaf-provider): Leaf provider for Vapor.
 - [Redbird](https://github.com/vapor/redbird): Pure-Swift Redis client implemented from the original protocol spec..
 	- [Redis Provider](https://github.com/vapor/redis-provider): Redis cache provider for Vapor.
 - [JWT](https://github.com/vapor/jwt): JSON Web Tokens in Swift.

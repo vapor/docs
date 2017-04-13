@@ -79,6 +79,120 @@ let query = try Pet.makeQuery()
 
 To learn more about crafting complex queries, see the [query](query.md) section.
 
+## Timestamps
+
+To add timestamps to your model, simply conform it to `Timestampable`.
+
+```swift
+extension User: Timestampable { }
+```
+
+You can access the updated at and created at times on any model instance.
+
+```swift
+user.updatedAt // Date?
+user.createdAt // Date?
+```
+
+When filtering or sorting on the timestamp data, you can use the timestamp keys from the class.
+
+```swift
+let newUsers = try User
+    .makeQuery()
+    .filter(User.createdAtKey, .greaterThan, ...)
+    .all()
+```
+
+You can also override the timestamp keys if you have custom needs.
+
+```swift
+extension User: Timestampable {
+    static var updatedAtKey: String { return "custom_updated_at" }
+    static var createdAtKey: String { return "custom_created_at" }
+}
+```
+
+### Migration
+
+`Timestampable` models will automatically have created at and updated at keys added during
+[database create](database.md#Create) calls.
+
+Should you need to manually add `Timestampable` to an existing model, you can use the `date()` method
+in a [migration](database.md#Migrations).
+
+```swift
+database.modify(User.self) { builder in
+    builder.date(User.createdAtKey)
+    builder.date(User.updatedAtKey)
+}
+```
+
+## Soft Delete
+
+Soft delete is a way of "deleting" a model from all fetch and update queries to Fluent but not actually deleting the model from the database. Soft deleted models can also be restored. 
+
+To make your model soft deletable, simply conform it to `SoftDeletable`.
+
+```swift
+extension User: SoftDeletable { }
+```
+
+Once your model is soft deletable, all calls to `delete()` will set the deleted at flag instead of actually
+deleting the model.
+
+To restore a model, call `.restore()`. To actually delete a model from the database, call `.forceDelete()`.
+
+You can also override the soft delete key if you have custom needs.
+
+```swift
+extension User: SoftDeletable {
+    static var deletedAtKey: String { return "custom_deleted_at" }
+}
+```
+
+### Including Deleted
+
+When a model is soft deleted, it will be affected by any queries made with the Fluent query builder.
+
+To include soft deleted models, for instance if you want to restore them, use the `.withSoftDeleted()` method
+on the query builder.
+
+```swift
+let allUsers = try User.makeQuery().withSoftDeleted().all()
+```
+
+### Lifecycle
+
+You can hook into the soft delete events of a model.
+
+```swift
+extension User: SoftDeletable {
+    func willSoftDelete() throws { ... }
+    func didSoftDelete() { ... }
+    func willForceDelete() throws { ... }
+    func didForceDelete() { ... }
+    func willRestore() throws { ... }
+    func didRestore() { ... }
+}
+```
+
+!!! note:
+    Throwing during a `will` hook will prevent the action from happening.
+
+### Migration
+
+`SoftDeletable` models will automatically have a deleted at key added during
+[database create](database.md#Create) calls.
+
+Should you need to manually add `SoftDeletable` to an existing model, you can use the `date()` method
+in a [migration](database.md#Migrations).
+
+```swift
+database.modify(User.self) { builder in
+    builder.date(User.deletedAtKey, optional: true)
+}
+```
+
 ## Convenience
 
 ### Assert Exists

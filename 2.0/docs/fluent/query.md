@@ -1,119 +1,204 @@
-!!! warning
-    This section may contain outdated information.
-
 # Query
 
-The `Query` class is what powers every interaction with Fluent. Whether you're fetching a model with `.find()` or saving to the database, there is a `Query` involved somewhere.
+Fluent's query builder provides a simple interface for creating complex database queries. The `Query` class itself (raw queries excluded) is the sole method by which Fluent communicates with your database.
 
-## Querying Models
+## Make
 
-Every type that conforms to [Model](model.md) gets a static `.query()` method.
-
-```swift
-let query = try User.query()
-```
-
-This is how you can create a `Query<User>`.
-
-### No Database
-
-The `.query()` method is marked with `try` because it can throw an error if the Model has not had its static database property set.
+You can create a new query builder from any model class.
 
 ```swift
-User.database = drop.database
+let query = try Post.makeQuery()
 ```
 
-This property is set automatically when you pass the Model as a preparation.
-
-## Filter
-
-The most common types of queries involve filtering data.
+You can also create queries from an instance. This is especially useful if you need to use a special
+database connection (like for [transactions](database.md#Transactions)) to save or update a model.
 
 ```swift
-let smithsQuery = try User.query().filter("last_name", "Smith")
+guard let post = try Post.find(42) else { ... }
+post.content = "Updated"
+let query = try post.makeQuery(conn).save()
 ```
 
-Here is the short hand for adding an `equals` filter to the query. As you can see, queries can be chained together.
+## Fetch
 
-In additional to `equals`, there are many other types of `Filter.Comparison`.
-
-```swift
-let over21 = try User.query().filter("age", .greaterThanOrEquals, 21)
-```
-
-### Scope
-
-Filters can also be run on sets.
-
-```swift
-let coolPets = try Pet.query().filter("type", .in, ["Dog", "Ferret"])
-```
-
-Here only Pets of type Dog _or_ Ferret are returned. The opposite works for `notIn`.
-
-
-### Contains
-
-Partially matching filters can also be applied.
-
-```swift
-let statesWithNew = try State.query().filter("name", contains: "New")
-```
-
-## Retrieving
-
-There are two methods for running a query.
+You have multiple options for fetching the results of a query.
 
 ### All
 
-All of the matching entities can be fetched. This returns an array of `[Model]`, in this case users.
+The simplest option, `.all()` returns all rows relevant to the query.
 
-```swift
-let usersOver21 = try User.query().filter("age", .greaterThanOrEquals, 21).all()
+```
+let users = try User.makeQuery().filter(...).all()
 ```
 
 ### First
 
-The first matching entity can be fetched. This returns an optional `Model?`, in this case a user.
-
-```swift
-let firstSmith = try User.query().filter("last_name", "Smith").first()
-```
-
-## Union
-
-Other Models can be joined onto your query to assist in filtering. The results must still be either `[Model]` or `Model?` for whichever type created the query.
-
-```swift
-let usersWithCoolPets = try User.query()
-	.union(Pet.self)
-	.filter(Pet.self, "type", .in, ["Dog", "Ferret"])
-```
-
-Here the `User` collection is unioned to the `Pet` collection. Only `User`s who have a dog or a ferret will be returned.
-
-### Keys
-
-The `union` method assumes that the querying table has a foreign key identifier to the joining table.
-
-The above example with users and pets assumes the following schema.
+You can take only the first row as well with `.first()`. 
 
 ```
-users
-- id
-pets
-- id
-- user_id
+let user = try User.makeQuery().filter(...).first()
 ```
 
-Custom foreign keys can be provided through overloads to `union`.
+Fluent will automatically limit the results to `1` to increase
+the performance of the query.
 
-## Raw Queries
+### Chunk
 
-Since Fluent is focused on interacting with models, each Query requires a model type. If you want to do raw database queries that aren't based on a model, you should use the underlying Fluent Driver to do so.
+If you want to fetch a large amount of models from the database, using `.chunk()` can help reduce the
+amount of memory required for the query by fetching chunks of data at a time.
 
-```swift
-if let mysql = drop.database?.driver as? MySQLDriver {
-    let version = try mysql.raw("SELECT @@version")
+```
+User.makeQuery().filter(...).chunk(32) { users in
+	print(users)
 }
 ```
+
+## Filter
+
+Filters allow you to choose exactly what subset of data you want to modify or fetch. There are three different
+types of filters.
+
+### Compare
+
+Compare filters perform a comparison between a field on your model in the database and a supplied value.
+
+```swift
+try query.filter("age", .greaterThanOrEquals, 21)
+```
+
+You can also use operators.
+
+```swift
+try query.filter("age" >= 21)
+```
+
+| Case                 | Operator | Type                   |
+|----------------------|----------|------------------------|
+| .equals              | ==       | Equals                 |
+| .greaterThan         | >        | Greater Than           |
+| .lessThan            | <        | Less Than              |
+| .greaterThanOrEquals | >=       | Greater Than Or Equals |
+| .lessThanOrEquals    | <=       | Less Than Or Equals    |
+| .notEquals           | !=       | Not Equals             |
+| .hasSuffix           |          | Has Suffix             |
+| .hasPrefix           |          | Has Prefix             |
+| .contains            |          | Contains               |
+| .custom(String)      |          | Custom                 |
+
+
+### Subset
+
+You can also filter by fields being in a set of data.
+
+```swift
+try query.filter("favoriteColor", in: ["pink", "blue"])
+```
+
+Or the opposite.
+
+
+```swift
+try query.filter("favoriteColor", notIn: ["brown", "black"])
+```
+
+### Group
+
+By default, all query filters are joined by AND logic. You can create groups of filters within
+your query that are joined with AND or OR logic.
+
+```swift
+try query.or { orGroup in
+    try orGroup.filter("age", .greaterThan, 75)
+    try orGroup.filter("age", .lessThan, 18)
+}
+```
+
+This will result in SQL similar to the following:
+
+
+```sql
+SELECT * FROM `users` WHERE (`age` > 75 OR `age` < 18);
+```
+
+`.and()` is also available in case you need to switch back to joining filters with AND nested inside of an OR.
+
+#### Complex Example
+
+```swift
+let users = try User
+	.makeQuery()
+	.filter("planetOfOrigin", .greaterThan, "Earth")
+	.or { orGroup in
+		orGroup.and { andGroup in
+			andGroup.filter("name", "Rick")
+			andGroup.filter("favoriteFood", "Beer")
+		}
+		orGroup.and { andGroup in
+			andGroup.filter("name", "Morty")
+			andGroup.filter("favoriteFood", "Eyeholes")
+		}
+	}
+	.all()
+```
+
+This will result in SQL similar to the following:
+
+```swift
+SELECT * FROM `users` 
+	WHERE `planetOfOrigin` = 'Earth' AND (
+		   (`name` = 'Rick' AND `favoriteFood` = 'Beer')
+		OR (`name` = 'Morty' AND `favoriteFood` = 'Eyeholes')
+	)
+```
+
+!!! note
+	Keep in mind that the AND/OR logic for a group applies only to the filters added _within_ the group. All filters outside of a filter group will be joined by AND.
+
+### Raw
+
+Raw filters can be used to filter by values that should not be parameterized.
+
+```swift
+try query.filter(raw: "date >= CURRENT_TIMESTAMP")
+```
+
+## Distinct
+
+To select only distinct models from the database, add `.distinct()` to your query.
+
+```swift
+try query.distinct()
+```
+
+## Limit / Offset
+
+To limit or offset your query, use the `.limit()` method.
+
+```swift
+try query.limit(20, offset: 5)
+```
+
+## Sort
+
+To sort the results of your query, use the `.sort()` method
+
+```swift
+try query.sort("age", .descending)
+```
+
+## Raw
+
+Should you need to perform a query that the query builder does not support, you can use the raw query.
+
+```swift
+try drop.database?.raw("SELECT @@version")
+```
+
+You can also use the database of a given model.
+
+```
+User.database?.raw("SELECT * FROM `users`")
+```
+
+Besides providing a more expressive interface for querying your database, the query builder also takes measures to increase security by automatically sanitizing input. Because of this, try to use the query class wherever you can over performing raw queries.
+
