@@ -182,10 +182,10 @@ extension User: SoftDeletable {
 ### Migration
 
 `SoftDeletable` models will automatically have a deleted at key added during
-[database create](database.md#Create) calls.
+[database create](database.md#create) calls.
 
 Should you need to manually add `SoftDeletable` to an existing model, you can use the `date()` method
-in a [migration](database.md#Migrations).
+in a [migration](database.md#migrations).
 
 ```swift
 database.modify(User.self) { builder in
