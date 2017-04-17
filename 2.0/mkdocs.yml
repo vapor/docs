@@ -24,8 +24,7 @@ pages:
 - JSON: 'json/overview.md'
 - Routing:
     - 'Basic': 'routing/basic.md'
-    - 'Route Parameters': 'routing/parameters.md'
-    - 'Query Parameters': 'routing/query-parameters.md'
+    - 'Parameters': 'routing/parameters.md'
     - 'Group': 'routing/group.md'
     - 'Collection': 'routing/collection.md'
 - Fluent:

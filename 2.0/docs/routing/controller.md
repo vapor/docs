@@ -1,13 +1,10 @@
-!!! warning
-    This section may contain outdated information.
-
-# Introduction
+# Basic Controller
 
 Instead of defining all of your request handling logic as Closures in route files, you may wish to organize this behavior
-using Controller classes. Controllers can group related request handling logic into a single class. Controllers are stored 
-in the `Sources/App/Controllers` directory.
+using Controller classes. 
 
-# Basic Controller
+Controllers can group related request handling logic into a single class. They are normally stored 
+in the `Sources/App/Controllers` directory.
 
 ## Defining Controllers
 
@@ -15,33 +12,31 @@ in the `Sources/App/Controllers` directory.
 import Vapor
 import HTTP
 
-final class FirstController {
-    func index(request: Request) throws -> ResponseRepresentable {
-        return try JSON(node: [
-            "message": "This is FirstController's index method"
-            ])
+final class HelloController {
+    func sayHello(_ req: Request) throws -> ResponseRepresentable {
+        return "Hello"
     }
 }
 ```
+
 You can define a route to this controller action like so:
 
 ```swift
-drop.get("getindex") {request in
-    return try FirstController().index(request: request)
-}
+let controller = HelloController()
+drop.get("hello", handler: controller.sayHello)
 ```
+
 Now, when a request matches the specified route URI, the Index method on the FirstController 
 class will be executed. Of course, the route parameters will also be passed to the method.
-
---------
 
 # Resource Controllers
 
 Vapor resource routing assigns the typical "CRUD" routes to a controller with a single line of code. 
 
 ```swift
-drop.resource("URI", Controller())
+drop.resource("users", UserController())
 ```
+
 This single route declaration creates multiple routes to handle a variety of actions on the resource. 
 The generated controller will already have methods stubbed for each of these actions, including 
 notes informing you of the HTTP verbs and URIs they handle.
@@ -59,6 +54,13 @@ notes informing you of the HTTP verbs and URIs they handle.
 You can also custom method name, add `makeResource` method in the controller
 
 ```swift
+final class UserController: ResourceRepresentable {
+    func index(_ req: Request) throws -> ResponseRepresentable {
+       ...
+    }
+
+    ...
+
     func makeResource() -> Resource<First> {
         return Resource(
             index: index,
@@ -70,4 +72,5 @@ You can also custom method name, add `makeResource` method in the controller
             clear: clear
         )
     }
+}
 ```

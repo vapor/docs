@@ -1,6 +1,3 @@
-!!! warning
-    This section may contain outdated information.
-
 # Route Collections
 
 Route collections allow multiple routes and route groups to be organized in different files or modules.
@@ -15,8 +12,7 @@ import HTTP
 import Routing
 
 class V1Collection: RouteCollection {
-    typealias Wrapped = HTTP.Responder
-    func build<B: RouteBuilder where B.Value == Wrapped>(_ builder: B) {
+    func build(_ builder: RouteBuilder) {
         let v1 = builder.grouped("v1")
         let users = v1.grouped("users")
         let articles = v1.grouped("articles")
@@ -25,7 +21,7 @@ class V1Collection: RouteCollection {
             return "Requested all users."
         }
 
-        articles.get(Article.self) { request, article in
+        articles.get(Article.init) { request, article in
             return "Requested \(article.name)"
         }
     }
@@ -41,32 +37,10 @@ drop.collection(v1)
 
 The `Droplet` will then be passed to the `build(_:)` method of your route collection and have the various routes added to it.
 
-### Breakdown
-
-For those that are curious, let's break down the route collection line by line to better understand what is going on.
-
-```swift
-typealias Wrapped = HTTP.Responder
-```
-
-This limits our route collection to adding HTTP responders. While the underlying router is capable of routing any type, Vapor routes HTTP responders exclusively. If we want to use this route collection with Vapor, it's wrapped type needs to match.
-
-```swift
-func build<B: RouteBuilder where B.Value == Wrapped>(_ builder: B) {
-```
-
-This method accepts a route builder and also verifies that the route builder accepts `Wrapped` or, as defined in the last line, `HTTP.Responder`s. Vapor's `Droplet` and any route [group](group.md) created with Vapor are `RouteBuilder`s that accept HTTP responders.
-
-```swift
-let v1 = builder.grouped("v1")
-```
-
-From there you can create routes with the `builder` as usual. The `builder: B` will work exactly like a `Droplet` or route [group](group.md). Any methods that work there will work on this builder.
-
 
 ## Empty Initializable
 
-You can even add `EmptyInitializable` to your route collection if it has an empty `init` method. This will allow you to add the route collection via its type name.
+You can add `EmptyInitializable` to your route collection if it has an empty `init` method. This will allow you to add the route collection via its type name.
 
 ```swift
 class V1Collection: RouteCollection, EmptyInitializable {

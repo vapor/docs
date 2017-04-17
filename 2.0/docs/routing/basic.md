@@ -1,6 +1,3 @@
-!!! warning
-    This section may contain outdated information.
-
 # Basic Routing
 
 Routing is one of the most critical parts of a web framework. The router decides which requests get which responses.
@@ -24,8 +21,6 @@ drop.post("form") { request in
     return "Submitted with a POST request"
 }
 ```
-
-You can also use `any` to match all methods.
 
 ## Nesting
 
@@ -68,6 +63,8 @@ A route closure can return in three ways:
 A custom [Response](../http/response.md) can be returned.
 
 ```swift
+import HTTP 
+
 drop.get("vapor") { request in
     return Response(redirect: "http://vapor.codes")
 }
@@ -82,20 +79,18 @@ As you have seen in the previous examples, `String`s can be returned in route cl
 A lot of types in Vapor conform to this protocol by default:
 - String
 - Int
-- JSON
-- Model
+- [JSON](../json/overview.md)
+- [Model](../fluent/model.md)
 
 ```swift
 drop.get("json") { request in
-    return try JSON(node: [
-        "number": 123,
-        "text": "unicorns",
-        "bool": false
-    ])
+    var json = JSON()
+    try json.set("number", 123)
+    try json.set("text", "unicorns")
+    try json.set("bool", false)
+    return json
 }
 ```
-
-> If you are curious about what `node:` means, read more about [Node](https://github.com/vapor/node)
 
 ### Throwing
 
@@ -103,7 +98,7 @@ If you are unable to return a response, you may `throw` any object that conforms
 
 ```swift
 drop.get("404") { request in
-    throw Abort.notFound
+    throw Abort(.notFound)
 }
 ```
 
@@ -111,11 +106,11 @@ You can customize the message of these errors by using `Abort`
 
 ```swift
 drop.get("error") { request in
-    throw Abort.custom(status: .badRequest, message: "Sorry 😱")
+    throw Abort(.badRequest, reason: "Sorry 😱")
 }
 ```
 
-These errors are caught by default in the `AbortMiddleware` where they are turned into a JSON response like the following.
+These errors are caught by default in the `ErrorMiddleware` where they are turned into a JSON response like the following.
 
 ```json
 {
@@ -124,7 +119,7 @@ These errors are caught by default in the `AbortMiddleware` where they are turne
 }
 ```
 
-If you want to override this behavior, remove the `AbortMiddleware` from the `Droplet`'s middleware and add your own.
+If you want to override this behavior, remove the `ErrorMiddleware` (key: `"error"`) from the `Droplet`'s middleware and add your own.
 
 ## Fallback
 

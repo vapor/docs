@@ -1,6 +1,3 @@
-!!! warning
-    This section may contain outdated information.
-
 # Route Groups
 
 Grouping routes together makes it easy to add common prefixes, middleware, or hosts to multiple routes.
@@ -9,7 +6,7 @@ Route groups have two different forms: Group and Grouped.
 
 ### Group
 
-Group (without the "ed" at the end) takes a closure that is passed a `GroupBuilder`.
+Group (without the "ed" at the end) takes a closure that is passed a `RouteBuilder`.
 
 ```swift
 drop.group("v1") { v1 in
@@ -21,7 +18,7 @@ drop.group("v1") { v1 in
 
 ### Grouped
 
-Grouped returns a `GroupBuilder` that you can pass around.
+Grouped returns a `RouteBuilder` that you can pass around.
 
 ```swift
 let v1 = drop.grouped("v1")
@@ -47,7 +44,7 @@ drop.group(AuthMiddleware()) { authorized in
 You can limit the host for a group of routes.
 
 ```swift
-drop.group(host: "vapor.codes") { vapor
+drop.group(host: "vapor.codes") { vapor in
     vapor.get { request in
         // only responds to requests to vapor.codes
     }
@@ -63,4 +60,3 @@ drop.grouped(host: "vapor.codes").grouped(AuthMiddleware()).group("v1") { authed
     // add routes here
 }
 ```
-
