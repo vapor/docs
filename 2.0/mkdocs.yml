@@ -66,6 +66,7 @@ pages:
     - 'CORS': 'http/cors.md'
 - Leaf:
     - 'Package': 'leaf/package.md'
+    - 'Provider': 'leaf/provider.md'
     - 'Overview': 'leaf/leaf.md'
 - Core: 'core/index.md'
 - Bits: 'bits/index.md'
