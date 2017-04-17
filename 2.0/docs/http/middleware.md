@@ -1,7 +1,3 @@
----
-currentMenu: guide-middleware
----
-
 # Middleware
 
 Middleware is an essential part of any modern web framework. It allows you to modify requests and responses as they pass between the client and your server.
@@ -13,6 +9,8 @@ You can imagine middleware as a chain of logic connecting your server to the cli
 As an example, let's create a middleware that will add the version of our API to each response. The middleware would look something like this:
 
 ```swift
+import HTTP
+
 final class VersionMiddleware: Middleware {
     func respond(to request: Request, chainingTo next: Responder) throws -> Response {
         let response = try next.respond(to: request)

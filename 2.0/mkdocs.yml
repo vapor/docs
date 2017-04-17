@@ -15,16 +15,13 @@ pages:
     - 'Droplet': 'vapor/droplet.md'
     - 'Views': 'vapor/views.md'
     - 'Controllers': 'vapor/controllers.md'
-    - 'Middleware': 'vapor/middleware.md'
-    - 'Validation': 'vapor/validation.md'
     - 'Provider': 'vapor/provider.md'
     - 'Hash': 'vapor/hash.md'
     - 'Log': 'vapor/log.md'
     - 'Commands': 'vapor/commands.md'
 - Settings:
     - 'Config': 'settings/config.md'
-- JSON:
-    - 'JSON': 'json/json.md'
+- JSON: 'json/overview.md'
 - Routing:
     - 'Basic': 'routing/basic.md'
     - 'Route Parameters': 'routing/parameters.md'
@@ -59,6 +56,7 @@ pages:
 - HTTP:
     - 'Request': 'http/request.md'
     - 'Response': 'http/response.md'
+    - 'Middleware': 'http/middleware.md'
     - 'Body': 'http/body.md'
     - 'ResponseRepresentable': 'http/response-representable.md'
     - 'Responder': 'http/responder.md'
@@ -69,6 +67,7 @@ pages:
     - 'Package': 'leaf/package.md'
     - 'Provider': 'leaf/provider.md'
     - 'Overview': 'leaf/leaf.md'
+- Validation: 'validation/overview.md'
 - Core: 'core/index.md'
 - Bits: 'bits/index.md'
 - Advanced:

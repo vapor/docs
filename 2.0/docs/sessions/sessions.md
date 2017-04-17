@@ -23,7 +23,7 @@ let drop = Droplet()
 drop.middleware.append(sessions)
 ```
 
-> Note: If you'd like to enable or disable the middleware based on config files, check out [middleware](../vapor/middleware.md).
+> Note: If you'd like to enable or disable the middleware based on config files, check out [middleware](../http/middleware.md).
 
 ## Request
 
