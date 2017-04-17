@@ -49,6 +49,7 @@ pages:
 
 - Auth:
     - 'Package': 'auth/package.md'
+    - 'Provider': 'auth/provider.md'
     - 'Getting Started': 'auth/getting-started.md'
     - 'Helper': 'auth/helper.md'
     - 'Password': 'auth/password.md'
