@@ -8,9 +8,9 @@ Testing is a critical part of any software application, and Vapor apps should be
 
 ## Displacing Droplet Creation Logic
 
-Up to this point, a lot of our documentation has centered around putting our `Droplet` creation logic in `main.swift`. Unfortunately, when testing against our application, this code becomes largely inaccessible. The first thing we'll need to do is break this out into the `AppLogic` module.
+Up to this point, a lot of our documentation has centered around putting our `Droplet` creation logic in `main.swift`. Unfortunately, when testing against our application, this code becomes largely inaccessible. The first thing we'll need to do is break this out and move the running into a new `Run` module.
 
-Here's an example of my setup file. I name mine `Droplet+Setup.swift`. Here's how it might look:
+Here's an example of my setup file in `App`. I name mine `Droplet+Setup.swift`. Here's how it might look:
 
 ```swift
 import Vapor
@@ -31,15 +31,15 @@ public func load(_ drop: Droplet) throws {
 
 > [WARNING] Do **not** call `run()` anywhere within the `load` function as `run()` is a blocking call.
 
-You will also want to move your application's code into `AppLogic` as well; things like controllers, models, etc.
-
 ## Updated `main.swift`
 
-Now that we've abstracted our loading logic, we'll need to update our `main.swift` **in the `App` module** to reflect those changes. Here's how it should look after:
+Now that we've abstracted our loading logic, we'll need to move our `main.swift` into the `Run` module.
+
+Next, we need to update `main.swift` it to reflect those changes. Here's how it should look after:
 
 ```swift
 import Vapor
-import AppLogic
+import App
 
 let drop = Droplet(...)
 try load(drop)
@@ -50,13 +50,13 @@ drop.run()
 
 ## Testable Droplet
 
-The first thing we'll do is in my testing target `AppLogicTests`, add a file called `Droplet+Test.swift`. It will look like this:
+The first thing we'll do is in my testing target `AppTests`, add a file called `Droplet+Test.swift`. It will look like this:
 
 ```swift
 @testable import Vapor
 
 func makeTestDroplet() throws -> Droplet {
-    let drop = Droplet(arguments: ["dummy/path/", "prepare"], ...)
+    let drop = Droplet(arguments: ["dummy/path/", "prepare"])
     try load(drop)
     try drop.runCommands()
     return drop
@@ -84,7 +84,7 @@ Now that all of this has been created, we're ready to start testing our applicat
 ```swift
 import XCTest
 import HTTP
-@testable import AppLogic
+@testable import App
 
 class SmokeTest: XCTestCase {
     func testEndpoint() throws {
