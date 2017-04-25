@@ -50,7 +50,7 @@ drop.run()
 
 ## Testable Droplet
 
-The first thing we'll do is in my testing target, add a file called `Droplet+Test.swift`. It will look like this:
+The first thing we'll do is in my testing target `AppLogicTests`, add a file called `Droplet+Test.swift`. It will look like this:
 
 ```swift
 @testable import Vapor
@@ -79,7 +79,7 @@ We'll need to import the testable compilation of Vapor to access the `runCommand
 
 ## Test Our Droplet
 
-Now that all of this has been created, we're ready to start testing our application's `Droplet`. Here's how a really basic test might look:
+Now that all of this has been created, we're ready to start testing our application's `Droplet` by adding tests under `AppLogicTests`. Here's how a really basic test might look:
 
 ```swift
 @testable import AppLogic
