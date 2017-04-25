@@ -81,7 +81,7 @@ extension Pet {
 
     ...
 
-    var owner: <Pet, User> {
+    var owner: Parent<Pet, User> {
         return parent(id: userId)
     }
 }
