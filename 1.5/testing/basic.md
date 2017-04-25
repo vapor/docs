@@ -31,6 +31,8 @@ public func load(_ drop: Droplet) throws {
 
 > [WARNING] Do **not** call `run()` anywhere within the `load` function as `run()` is a blocking call.
 
+You will also want to move your application's code into `AppLogic` as well; things like controllers, models, etc.
+
 ## Updated `main.swift`
 
 Now that we've abstracted our loading logic, we'll need to update our `main.swift` **in the `App` module** to reflect those changes. Here's how it should look after:
