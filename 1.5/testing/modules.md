@@ -12,13 +12,16 @@ Testing a Vapor app gets tricky, and requires some maneuvering of your app targe
 
 To start, you need to split up your Vapor project into a target called `App`, and a target called `AppLogic`. The App module will only include a `main.swift`, and your `AppLogic` will contain the actual logic for the app.
 
+Add a `Sources/AppLogic` folder to your project, then add `targets` to your `Package.swift`:
+
 ```swift
 import PackageDescription
 
 let package = Package(
     name: “ProjectName”,
     targets: [
-        Target(name: "App", dependencies: ["AppLogic"])
+        Target(name: "App", dependencies: ["AppLogic"]),
+        Target(name: "AppLogic")
     ],
     dependencies: [
         .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 1, minor: 3)
