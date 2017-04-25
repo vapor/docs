@@ -54,6 +54,7 @@ The first thing we'll do is in my testing target `AppTests`, add a file called `
 
 ```swift
 @testable import Vapor
+import App
 
 func makeTestDroplet() throws -> Droplet {
     let drop = Droplet(arguments: ["dummy/path/", "prepare"])
