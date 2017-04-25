@@ -38,6 +38,8 @@ let package = Package(
 
 ## **Step 2:** Update Tests Folder
 
+If you don't already have a `Tests` folder at the root of your project, add one.
+
 Make sure that your tests folder has a file called `LinuxMain.swift` and a folder called `AppLogicTests`. In your `AppLogicTests`, you can add your testing files like `UserTests.swift`.
 
 As always, make sure that you regenerate with `vapor xcode -y`
