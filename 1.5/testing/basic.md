@@ -82,15 +82,20 @@ We'll need to import the testable compilation of Vapor to access the `runCommand
 Now that all of this has been created, we're ready to start testing our application's `Droplet` by adding tests under `AppLogicTests`. Here's how a really basic test might look:
 
 ```swift
+import XCTest
+import HTTP
 @testable import AppLogic
 
-func testEndpoint() throws {
-    let drop = try makeTestDroplet()
-    let request = ...
-    let expectedBody = ...
+class SmokeTest: XCTestCase {
+    func testEndpoint() throws {
+        let drop = try makeTestDroplet()
+        let request = try Request(method: .get, uri: "/")
+        let expectedBody = "It works."
 
-    let response = try drop.respond(to: request)
-    XCTAssertEqual(expectedBody, response.body.bytes)
+        let response = try drop.respond(to: request)
+        let responseBody = try response.body.bytes!.string()
+        XCTAssertTrue(responseBody.contains(expectedBody))
+    }
 }
 ```
 
