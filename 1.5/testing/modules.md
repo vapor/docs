@@ -42,4 +42,6 @@ If you don't already have a `Tests` folder at the root of your project, add one.
 
 Make sure that your tests folder has a file called `LinuxMain.swift` and a folder called `AppLogicTests`. In your `AppLogicTests`, you can add your testing files like `UserTests.swift`.
 
-As always, make sure that you regenerate with `vapor xcode -y`
+As always, make sure that you regenerate with `vapor xcode -y`.
+
+As long as there is at least one test file under `AppLogicTests`, your generated Xcode project will have an `AppLogicTests` target that you can run as usual. You can also run the tests from the command line with `vapor test`.
