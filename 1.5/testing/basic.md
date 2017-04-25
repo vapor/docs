@@ -38,6 +38,9 @@ You will also want to move your application's code into `AppLogic` as well; thin
 Now that we've abstracted our loading logic, we'll need to update our `main.swift` **in the `App` module** to reflect those changes. Here's how it should look after:
 
 ```swift
+import Vapor
+import AppLogic
+
 let drop = Droplet(...)
 try load(drop)
 drop.run()
