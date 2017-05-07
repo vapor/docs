@@ -8,9 +8,11 @@ Vapor es el _framework web_  más utilizado para Swift. Proporciona una base mar
 
 Para ver el código fuente y la documentación del código visita [Vapor's GitHub](https://github.com/vapor/vapor).
 
-Para leer esto en [正體中文](https://github.com/vapor/documentation/blob/master/README.zh-hant.md)
+Para leer esto en [正體中文](https://github.com/vapor/documentation/1.5/README.zh-hant.md)
 
-Para leer esto en [english](https://github.com/vapor/documentation/blob/master/README.md)
+Para leer esto en [简体中文](https://github.com/vapor/documentation/blob/README.zh-cn.md)
+
+Para leer esto en [English](https://github.com/vapor/documentation/1.5/README.md)
 
 ## Cómo leer esta documentación.
 
