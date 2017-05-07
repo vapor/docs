@@ -17,7 +17,7 @@ import Routing
 
 class V1Collection: RouteCollection {
     typealias Wrapped = HTTP.Responder
-    func build<B: RouteBuilder where B.Value == Wrapped>(_ builder: B) {
+    func build<B: RouteBuilder>(_ builder: B) where B.Value == Wrapped {
         let v1 = builder.grouped("v1")
         let users = v1.grouped("users")
         let articles = v1.grouped("articles")
