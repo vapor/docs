@@ -53,7 +53,7 @@ typealias Wrapped = HTTP.Responder
 This limits our route collection to adding HTTP responders. While the underlying router is capable of routing any type, Vapor routes HTTP responders exclusively. If we want to use this route collection with Vapor, it's wrapped type needs to match.
 
 ```swift
-func build<B: RouteBuilder where B.Value == Wrapped>(_ builder: B) {
+func build<B: RouteBuilder>(_ builder: B) where B.Value == Wrapped {
 ```
 
 This method accepts a route builder and also verifies that the route builder accepts `Wrapped` or, as defined in the last line, `HTTP.Responder`s. Vapor's `Droplet` and any route [group](group.md) created with Vapor are `RouteBuilder`s that accept HTTP responders.
