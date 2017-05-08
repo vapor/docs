@@ -8,7 +8,11 @@ Vapor is the most used web framework for Swift. It provides a beautifully expres
 
 To view the framework's source code and code documentation, visit [Vapor's GitHub](https://github.com/vapor/vapor).
 
-Read this in [正體中文](https://github.com/vapor/documentation/blob/master/README.zh-hant.md)
+Read this in [Spanish](https://github.com/vapor/documentation/1.5/README.es.md)
+
+Read this in [正體中文](https://github.com/vapor/documentation/1.5/README.zh-hant.md)
+
+Read this in [简体中文](https://github.com/vapor/documentation/1.5/README.zh-cn.md)
 
 ## How To Read
 
@@ -85,4 +89,4 @@ Here are a list of providers and third party packages that work great with Vapor
 
 ## Authors
 
-[Tanner Nelson](mailto:tanner@qutheory.io), [Logan Wright](mailto:logan@qutheory.io), and the hundreds of members of Vapor.
+[Tanner Nelson](mailto:tanner@qutheory.io), [Logan Wright](mailto:logan@qutheory.io),and the hundreds of members of Vapor.
