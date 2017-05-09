@@ -8,11 +8,11 @@ Vapor 是一個在 Swift 上很受歡迎的 Web framework。它提供了清楚�
 
 我們可以在 [Vapor's GitHub](https://github.com/vapor/vapor) 查看原始碼及說明文件。
 
-閱讀 [English](https://github.com/vapor/documentation/1.5/README.md)
+閱讀 [English](README.md)
 
-閱讀 [Spanish](https://github.com/vapor/documentation/1.5/README.es.md)
+閱讀 [Spanish](README.es.md)
 
-閱讀 [简体中文](https://github.com/vapor/documentation/1.5/README.zh-cn.md)
+閱讀 [简体中文](README.zh-cn.md)
 
 ## 如何閱讀說明文件
 
@@ -81,4 +81,4 @@ Vapor 是一個在 Swift 上很受歡迎的 Web framework。它提供了清楚�
 
 ## 作者們
 
-[Tanner Nelson](mailto:tanner@qutheory.io), [Logan Wright](mailto:logan@qutheory.io)，以及其他上百位 Vapor 的貢獻者們。
+[Tanner Nelson](mailto:tanner@qutheory.io), [Logan Wright](mailto:logan@qutheory.io),以及其他上百位 Vapor 的貢獻者們。
