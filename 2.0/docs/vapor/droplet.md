@@ -67,24 +67,27 @@ The `Droplet`'s properties can be changed programmatically or through configurat
 
 ### Programmatic 
 
-Properties on the `Droplet` can be changed after it is initialized.
+Properties on the `Droplet` are constant and can be overridden through the init method.
 
 ```swift
-let drop = Droplet()
-
-drop.server = MyServerType.self
+let drop = try Droplet(server: MyServerType.self)
 ```
 
 Here the type of server the `Droplet` uses is changed to a custom type. When the `Droplet` is run, this custom server type will be booted instead of the default server.
+
+!!! warning
+    Using the init method manually can override configured properties.
 
 ### Configurable
 
 If you want to modify a property of the `Droplet` only in certain cases, you can use `addConfigurable`. Say for example you want to email error logs to yourself in production, but you don't want to spam your inbox while developing.
 
 ```swift
-let drop = Droplet()
+let config = try Config()
+config.addConfigurable(log: MyEmailLogger.self, name: "email")
 
-drop.addConfigurable(log: MyEmailLogger.self, name: "email")
+let drop = Droplet(config)
+
 ```
 
 The `Droplet` will continue to use the default logger until you modify the `Config/droplet.json` file to point to your email logger. If this is done in `Config/production/droplet.json`, then your logger will only be used in production.
@@ -126,9 +129,11 @@ Now add the logger to the Droplet using the `addConfigurable` method for logs.
 
 `main.swift`
 ```swift
-let drop = try Droplet()
+let config = try Config()
+config.addConfigurable(log: AllCapsLogger(), name: "all-caps")
 
-drop.addConfigurable(log: AllCapsLogger(), name: "all-caps")
+let drop = try Droplet(config)
+
 ```
 
 Whenever the `"log"` property is set to `"all-caps"` in the `droplet.json`, our new logger will be used. 
@@ -181,9 +186,11 @@ Now that we have conformed our logger to `ConfigInitializable`, we can pass just
 
 `main.swift`
 ```swift
-let drop = try Droplet()
+let config = try Config()
+config.addConfigurable(log: AllCapsLogger.self, name: "all-caps")
 
-drop.addConfigurable(log: AllCapsLogger.self, name: "all-caps")
+let drop = try Droplet(config)
+
 ```
 
 Now if you add a file named `allCaps.json` to the `Config` folder, you can configure the logger.
@@ -196,23 +203,3 @@ Now if you add a file named `allCaps.json` to the `Config` folder, you can confi
 ```
 
 With this configurable abstraction, you can easily change how your application functions in different environments without needing to hard code these values into your source code.
-
-## Initialization
-
-The `Droplet` init method is fairly simple since most properties are variable and can be changed after initialization.
-
-Most plugins for Vapor come with a [Provider](provider.md), these take care of configuration details for you.
-
-```swift
-Droplet(
-    arguments: [String]?,
-    workDir workDirProvided: String?,
-    config configProvided: Config?,
-    localization localizationProvided: Localization?,
-)
-```
-
-!!! warning
-    Remember that the Droplet's properties are initialized with usable defaults. This means that if you change a property, you must be sure to change it _before_ other parts of your code use it. 
-
-

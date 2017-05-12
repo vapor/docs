@@ -10,9 +10,10 @@ First, register the `LeafProvider.Provider` with your Droplet.
 import Vapor
 import LeafProvider
 
-let drop = try Droplet()
+let config = try Config()
+try config.addProvider(LeafProvider.Provider.self)
 
-try drop.addProvider(LeafProvider.Provider.self)
+let drop = try Droplet(config)
 
 ...
 ```

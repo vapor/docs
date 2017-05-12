@@ -10,9 +10,10 @@ First, register the `MySQLProvider.Provider` with your Droplet.
 import Vapor
 import MySQLProvider
 
-let drop = try Droplet()
+let config = try Config()
+try config.addProvider(MySQLProvider.Provider.self)
 
-try drop.addProvider(MySQLProvider.Provider.self)
+let drop = try Droplet(config)
 
 ...
 ```

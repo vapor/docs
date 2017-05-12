@@ -56,9 +56,11 @@ To use a different cache provider besides the default `MemoryCache`, make sure y
 import Vapor
 import <package>Provider
 
-let drop = try Droplet()
+let config = try Config()
+try config.addProvider(<package>Provider.Provider.self)
 
-try drop.addProvider(<package>Provider.Provider.self)
+let drop = try Droplet(config)
+
 
 ...
 ```

@@ -63,8 +63,6 @@ A route closure can return in three ways:
 A custom [Response](../http/response.md) can be returned.
 
 ```swift
-import HTTP 
-
 drop.get("vapor") { request in
     return Response(redirect: "http://vapor.codes")
 }

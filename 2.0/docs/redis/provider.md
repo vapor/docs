@@ -10,9 +10,10 @@ First, register the `RedisProvider.Provider` with your Droplet.
 import Vapor
 import RedisProvider
 
-let drop = try Droplet()
+let config = try Config()
+try config.addProvider(RedisProvider.Provider.self)
 
-try drop.addProvider(RedisProvider.Provider.self)
+let drop = try Droplet(config)
 
 ...
 ```

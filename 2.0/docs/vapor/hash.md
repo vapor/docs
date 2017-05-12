@@ -89,24 +89,25 @@ Hashers can be swapped without the use of configuration files.
 #### Hash
 
 ```swift
-let drop = try Droplet()
-
-drop.hash = CryptoHasher(
+let hash = CryptoHasher(
     hash: .sha256,
     encoding: .hex
 )
+
+let drop = try Droplet(hash: hash)
+
 ```
 
 #### HMAC
 
 ```swift
-let drop = try Droplet()
-
-drop.hash = CryptoHasher(
+let hash = CryptoHasher(
     hmac: .sha256,
     encoding: .hex,
     key: "password".makeBytes()
 )
+
+let drop = try Droplet(hash: hash)
 ```
 
 ## BCryptHasher
@@ -146,9 +147,9 @@ To configure the work factor, add a `bcrypt.json` file.
 You can manually assign a `BCryptHasher` to `drop.hash`.
 
 ```swift
-let drop = try Droplet()
+let hash = BCryptHasher(workFactor: 8)
 
-drop.hash = BCryptHasher(workFactor: 8)
+let drop = try Droplet(hash: hash)
 ```
 
 ## Advanced

@@ -41,9 +41,10 @@ import VaporMySQL
 Every provider comes with a class named `Provider`. Add this class to your Droplet using the `addProvider` method. 
 
 ```swift
-let drop = Droplet()
+let config = try Config()
+try config.addProvider(VaporMySQL.Provider.self)
 
-try drop.addProvider(VaporMySQL.Provider.self)
+let drop = try Droplet(config)
 
 // ...
 
@@ -74,7 +75,7 @@ Some providers can be configured manually by using the Provider's init method. T
 
 ```swift
 let mysqlProvider = VaporMySQL.Provider(host: "localhost", user: "root", password: "", database: "vapor")
-try drop.addProvider(mysqlProvider)
+try config.addProvider(mysqlProvider)
 ```
 
 ## Create a Provider

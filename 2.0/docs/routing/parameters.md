@@ -10,7 +10,8 @@ Traditional web frameworks leave room for error in routing by using strings for 
 To create a type safe route simply replace one of the parts of your path with a `Type`.
 
 ```swift
-drop.get("users", Int.init) { request, userId in
+drop.get("users", Int.parameter) { req in
+    let userId = try req.parameters.next(Int.self)
     return "You requested User #\(userId)"
 }
 ```
@@ -29,21 +30,16 @@ drop.get("users", ":id") { request in
 
 Here you can see that type safe routing saves ~3 lines of code and also prevents runtime errors like misspelling `:id`.
 
-## String Initializable
+## Parameterizable
 
-Any static method that accepts a `String` can be used as a type-safe routing parameter. The following types include an `init`
-method for this purpose by default.
+Any type conforming to `Parameterizable` can be used as a parameter. By default, all Vapor [Models](../fluent/model.md) conform.
 
-- String
-- Int
-- Model
-
-`String` is the most generic type and always matches. `Int` only matches when the string supplied can be turned into an integer. `Model` only matches when the string, used as an identifier, can be used to find the model in the database.
-
-Our previous example with users can be further simplified.
+Using this, our previous example with users can be further simplified.
 
 ```swift
-drop.get("users", User.init) { request, user in
+drop.get("users", User.parameter) { req in
+    let user = try req.parameters.next(User.self)
+
     return "You requested \(user.name)"
 }
 ```
@@ -53,74 +49,58 @@ Here the identifier supplied is automatically used to lookup a user. For example
 Here is what this would look like if we looked the model up manually.
 
 ```swift
-drop.get("users", Int.self) { request, userId in
+drop.get("users", Int.parameter) { req in
+    let userId = try req.parameters.next(Int.self)
     guard let user = try User.find(userId) else {
         throw Abort.notFound
     }
 
-    return "You requested User #\(userId)"
+    return "You requested \(user.name)"
 }
 ```
 
-Altogether, type safe routing can save around 6 lines of code from each route.
-
 ### Protocol
 
-Adding a static `String` method to your own types is easy. You can do either an `init` method or a `static func`.
+You can conform your own types to `Parameterizable`.
 
 ```swift
-extension User {
-    static func findBy(nickname: String) throws -> User {
+import Routing
+
+extension Foo: Parameterizable {
+    /// This unique slug is used to identify
+    /// the parameter in the router
+    static var uniqueSlug: String {
+        return "foo"
+    }
+
+
+    static func make(for parameter: String) throws -> Foo {
+        /// custom lookup logic here
+        /// the parameter string contains the information
+        /// parsed from the URL.
         ...
     }
 }
 ```
 
-Now you can use this method for type safe routing.
+Now you can use this type for type safe routing.
 
-```
-drop.get("users", "nickname", User.findBy(nickname:)) { req, user in
+```swift
+drop.get("users", "nickname", Foo.parameter) { req in
+    let foo = try req.parameters.next(Foo.self)
     ...
 }
 ```
 
-### Limits
-
-Type safe routing is currently limited to three path parts. This is usually remedied by adding route [groups](group.md).
-
-```swift
-drop.group("v1", "users") { users in
-    users.get(User.init, "posts", Post.init) { request, user, post in
-        return "Requested \(post.name) for \(user.name)"
-    }
-}
-```
-
-The resulting path for the above example is `/v1/users/:userId/posts/:postId`. If you are clamoring for more type safe routing, please let us know and we can look into increasing the limit of three.
-
-## Manual
-
-As shown briefly above, you are still free to do traditional routing. This can be useful for especially complex situations.
-
-```swift
-drop.get("v1", "users", ":userId", "posts", ":postId", "comments", ":commentId") { request in
-    let userId = try request.parameters.get("userId") as Identifier
-    let postId = try request.parameters.get("postId") as Identifier
-    let commentId = try request.parameters.get("commentId") as Identifier
-
-    return "You requested comment #\(commentId) for post #\(postId) for user #\(userId)"
-}
-```
-
-Request parameters can be accessed either as a dictionary or using the `extract` syntax which throws instead of returning an optional.
-
 ### Groups
 
-Manual request parameters also work with [groups](group.md).
+Type-safe parameters also work with [groups](group.md).
 
 ```swift
-let userGroup = drop.grouped("users", ":userId")
+let userGroup = drop.grouped("users", User.parameter)
 userGroup.get("messages") { req in
-    let user = try req.parameters.get("userId") as Identifier
+    let user = try req.parameters.next(User.self)
+
+    ...
 }
 ```

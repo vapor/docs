@@ -10,9 +10,10 @@ Register the `AuthProvider.Provider` with your Droplet.
 import Vapor
 import AuthProvider
 
-let drop = try Droplet()
+let config = try Config()
+try config.addProvider(AuthProvider.Provider.self)
 
-try drop.addProvider(AuthProvider.Provider.self)
+let drop = try Droplet(config)
 
 ...
 ```

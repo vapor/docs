@@ -145,3 +145,9 @@ You should see the following output in your browser window.
 ```
 Hello, world!
 ```
+
+!!! success
+    Like Vapor so far? Click the button below and star the repo to help spread the word! 
+
+<iframe src="https://ghbtns.com/github-btn.html?user=vapor&repo=vapor&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
