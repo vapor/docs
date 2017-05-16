@@ -4,7 +4,7 @@ This is the documentation for Vapor, a Web Framework for Swift that works on iOS
 
 Vapor is the most used web framework for Swift. It provides a beautifully expressive and easy to use foundation for your next website or API.
 
-## Where To Start
+## Getting Started
 
 If this is your first time using Vapor, head to the [Getting Started](getting-started/install-on-macos.md) section to install Swift and create your first app.
 

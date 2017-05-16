@@ -1,8 +1,12 @@
 # Xcode
 
-The first thing you'll probably notice about Vapor and Swift Package Manager projects in general is that they don't include an Xcode project. In fact, when SPM generates packages, the `.xcodeproj` file is `.gitignore`d by default.
 
-This means we don't have to worry about `.pbxproj` conflicts, and it's easy for different platforms to utilize their own editors.
+If you're on a Mac, you can develop your Vapor project using Xcode. 
+You can build, run, and stop your server from within Xcode, as well as use breakpoints to debug your code.
+
+<img width="1072" alt="screen shot 2017-05-15 at 7 14 48 pm" src="https://cloud.githubusercontent.com/assets/1342803/26072406/4d74dfca-39a3-11e7-98c7-d9a678d3fe17.png">
+
+To use Xcode, you will first need to generate a `*.xcodeproj` file.
 
 ## Generate Project
 
