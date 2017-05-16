@@ -2662,13 +2662,23 @@
         }, 
         {
             "location": "/switch/1_5/", 
-            "text": "Hi", 
+            "text": "Redirecting...", 
             "title": "1.5"
         }, 
         {
-            "location": "/switch/2_0/", 
+            "location": "/switch/1_5/#redirecting", 
             "text": "", 
+            "title": "Redirecting..."
+        }, 
+        {
+            "location": "/switch/2_0/", 
+            "text": "Redirecting...", 
             "title": "2.0"
+        }, 
+        {
+            "location": "/switch/2_0/#redirecting", 
+            "text": "", 
+            "title": "Redirecting..."
         }
     ]
 }
