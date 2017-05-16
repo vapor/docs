@@ -77,7 +77,7 @@ As you have seen in the previous examples, `String`s can be returned in route cl
 A lot of types in Vapor conform to this protocol by default:
 - String
 - Int
-- [JSON](../json/overview.md)
+- [JSON](../json/package.md)
 - [Model](../fluent/model.md)
 
 ```swift

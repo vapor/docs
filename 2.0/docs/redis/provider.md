@@ -72,5 +72,5 @@ Both password and database are optional.
 
 ## Done
 
-You are now ready to [start using Cache](../cache/index.md) with your Redis database.
+You are now ready to [start using Cache](../cache/package.md) with your Redis database.
 

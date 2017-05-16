@@ -21,9 +21,12 @@ pages:
     - 'Commands': 'vapor/commands.md'
 - Settings:
     - 'Config': 'settings/config.md'
-- JSON: 'json/overview.md'
+- JSON: 
+    - 'Package': 'json/package.md'
+    - 'Overview': 'json/overview.md'
 - Routing:
-    - 'Basic': 'routing/basic.md'
+    - 'Package': 'routing/package.md'
+    - 'Overview': 'routing/overview.md'
     - 'Parameters': 'routing/parameters.md'
     - 'Group': 'routing/group.md'
     - 'Collection': 'routing/collection.md'
@@ -34,7 +37,9 @@ pages:
     - 'Database': 'fluent/database.md'
     - 'Query': 'fluent/query.md'
     - 'Relations': 'fluent/relations.md'
-- Cache: 'cache/index.md'
+- Cache: 
+    - 'Package': 'cache/package.md'
+    - 'Overview': 'cache/overview.md'
 - MySQL:
     - 'Package': 'mysql/package.md'
     - 'Provider': 'mysql/provider.md'
@@ -67,8 +72,12 @@ pages:
     - 'Provider': 'leaf/provider.md'
     - 'Overview': 'leaf/leaf.md'
 - Validation: 'validation/overview.md'
-- Core: 'core/index.md'
-- Bits: 'bits/index.md'
+- Core: 
+    - 'Package': 'bits/package.md'
+    - 'Overview': 'core/overview.md'
+- Bits: 
+    - 'Package': 'bits/package.md'
+    - 'Overview': 'bits/overview.md'
 - Advanced:
     - 'Modules': 'advanced/modules.md'
 - Version (2.0):

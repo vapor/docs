@@ -73,6 +73,7 @@ Here is a list of all the packages and modules included with Vapor.
 	- [Path Indexable](https://github.com/vapor/path-indexable): A protocol for powerful subscript access of common types like JSON.
 - [Core](https://github.com/vapor/core): Core extensions, type-aliases, and functions that facilitate common tasks.
 - [Socks](https://github.com/vapor/socks): Swift C Socket API wrapper.
+- [Bits](https://github.com/vapor/bits): Low level byte manipulation helpers
 
 ### Extras
 
