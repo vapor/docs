@@ -71,6 +71,9 @@ pages:
 - Bits: 'bits/index.md'
 - Advanced:
     - 'Modules': 'advanced/modules.md'
+- Version (2.0):
+    - '1.5': 'switch/1_5.md'
+    - '2.0': 'switch/2_0.md'
 
 markdown_extensions:
     - admonition
