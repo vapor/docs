@@ -106,7 +106,7 @@ You can also choose to use your Fluent database (now set to MySQL) for caching.
 }
 ```
 
-Learn more about [caching here](../cache/index.md).
+Learn more about [caching here](../cache/package.md).
 
 ## Done
 

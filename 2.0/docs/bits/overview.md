@@ -7,11 +7,20 @@ The bits package is included in Vapor by default and provides a convenient API f
 
 ## Typealias
 
-The bits package provides two type-alises for bytes.
+The bits package provides two type-aliases for bytes.
 
 ```swift
 typealias Byte = UInt8
 typealias Bytes = [Byte]
+```
+
+## BytesConvertible
+
+It's quite often that we want to convert objects to and from byte arrays when we're working. The BytesConvertible helps define objects that have these capabilities. This is implemented already on most objects in Vapor that can/should be converted to and from byte arrays.
+
+```Swift
+let hello = String(bytes: [72, 101, 108, 108, 111])
+let bytes = hello.makeBytes() 
 ```
 
 ## String
