@@ -78,6 +78,9 @@ pages:
 - Bits: 
     - 'Package': 'bits/package.md'
     - 'Overview': 'bits/overview.md'
+- Debugging: 
+    - 'Package': 'debugging/package.md'
+    - 'Overview': 'debugging/overview.md'
 - Advanced:
     - 'Modules': 'advanced/modules.md'
 - Version (2.0):

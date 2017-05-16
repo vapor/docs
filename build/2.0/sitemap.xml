@@ -428,6 +428,22 @@
     
         
     <url>
+     <loc>/debugging/package/</loc>
+     <lastmod>2017-05-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/debugging/overview/</loc>
+     <lastmod>2017-05-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
      <loc>/advanced/modules/</loc>
      <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>

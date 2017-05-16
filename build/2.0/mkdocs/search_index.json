@@ -2726,6 +2726,36 @@
             "title": "Byte"
         }, 
         {
+            "location": "/debugging/package/", 
+            "text": "Using Debugging\n\n\nWith Vapor\n\n\nThis package is included with Vapor by default, just add:\n\n\nimport\n \nDebugging\n\n\n\n\n\n\nWithout Vapor\n\n\nDebugging is a convenient protocol for providing more information about error messages. You can use it in any of your Swift projects.\n\n\nimport\n \nPackageDescription\n\n\n\nlet\n \npackage\n \n=\n \nPackage\n(\n\n    \nname\n:\n \nProject\n,\n\n    \ndependencies\n:\n \n[\n\n        \n...\n\n        \n.\nPackage\n(\nurl\n:\n \nhttps://github.com/vapor/debugging.git\n,\n \nmajorVersion\n:\n \n1\n)\n\n    \n],\n\n    \nexclude\n:\n \n[\n \n...\n \n]\n\n\n)\n\n\n\n\n\n\nUse \nimport Debugging\n to access Debugging' APIs.", 
+            "title": "Package"
+        }, 
+        {
+            "location": "/debugging/package/#using-debugging", 
+            "text": "", 
+            "title": "Using Debugging"
+        }, 
+        {
+            "location": "/debugging/package/#with-vapor", 
+            "text": "This package is included with Vapor by default, just add:  import   Debugging", 
+            "title": "With Vapor"
+        }, 
+        {
+            "location": "/debugging/package/#without-vapor", 
+            "text": "Debugging is a convenient protocol for providing more information about error messages. You can use it in any of your Swift projects.  import   PackageDescription  let   package   =   Package ( \n     name :   Project , \n     dependencies :   [ \n         ... \n         . Package ( url :   https://github.com/vapor/debugging.git ,   majorVersion :   1 ) \n     ], \n     exclude :   [   ...   ]  )   Use  import Debugging  to access Debugging' APIs.", 
+            "title": "Without Vapor"
+        }, 
+        {
+            "location": "/debugging/overview/", 
+            "text": "Debugging\n\n\nConforming your error types to \nDebuggable\n allows Vapor to create richer error messages and makes debugging easier.\n\n\nimport\n \nDebugging\n\n\n\nextension\n \nFooError\n:\n \nDebuggable\n \n{\n\n    \n// conform here\n\n\n}\n\n\n\n\n\n\nNow when a \nFooError\n is thrown, you will get a nice message in your console.\n\n\nFoo Error: You \ndo\n not have a \n`\nfoo\n`\n.\n\nIdentifier: DebuggingTests.FooError.noFoo\n\nHere are some possible causes: \n- You did not \nset\n the flongwaffle.\n- The session ended before a \n`\nFoo\n`\n could be made.\n- The universe conspires against us all.\n- Computers are hard.\n\nThese suggestions could address the issue: \n- You really want to use a \n`\nBar\n`\n here.\n- Take up the guitar and move to the beach.\n\nVapor\ns documentation talks about this: \n- http://documentation.com/Foo\n- http://documentation.com/foo/noFoo", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/debugging/overview/#debugging", 
+            "text": "Conforming your error types to  Debuggable  allows Vapor to create richer error messages and makes debugging easier.  import   Debugging  extension   FooError :   Debuggable   { \n     // conform here  }   Now when a  FooError  is thrown, you will get a nice message in your console.  Foo Error: You  do  not have a  ` foo ` .\n\nIdentifier: DebuggingTests.FooError.noFoo\n\nHere are some possible causes: \n- You did not  set  the flongwaffle.\n- The session ended before a  ` Foo `  could be made.\n- The universe conspires against us all.\n- Computers are hard.\n\nThese suggestions could address the issue: \n- You really want to use a  ` Bar `  here.\n- Take up the guitar and move to the beach.\n\nVapor s documentation talks about this: \n- http://documentation.com/Foo\n- http://documentation.com/foo/noFoo", 
+            "title": "Debugging"
+        }, 
+        {
             "location": "/advanced/modules/", 
             "text": "", 
             "title": "Modules"
