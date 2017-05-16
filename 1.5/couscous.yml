@@ -4,7 +4,7 @@ template:
 title: Vapor Documentation
 subTitle: A web framework and server for Swift that works on macOS and Ubuntu.
 
-baseUrl: https://vapor.github.io/documentation
+baseUrl: /1.5
 
 menu:
     sections:
@@ -177,3 +177,14 @@ menu:
               deploy-supervisor:
                   text: Supervisor
                   relativeUrl: deploy/supervisor.html
+
+
+        versions:
+            name: Version (1.5)
+            items: 
+                1_5:
+                    text: '1.5'
+                    relativeUrl: switch/1_5.html
+                2_0:
+                    text: '2.0'
+                    relativeUrl: switch/2_0.html
