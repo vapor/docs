@@ -73,7 +73,7 @@ pages:
     - 'Overview': 'leaf/leaf.md'
 - Validation: 'validation/overview.md'
 - Core: 
-    - 'Package': 'bits/package.md'
+    - 'Package': 'core/package.md'
     - 'Overview': 'core/overview.md'
 - Bits: 
     - 'Package': 'bits/package.md'

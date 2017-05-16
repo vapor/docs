@@ -2631,14 +2631,24 @@
             "title": "Validation Failures"
         }, 
         {
-            "location": "/bits/package/", 
-            "text": "Using Bits\n\n\nThis package is included with the Vapor dependency, use\n\n\nimport\n \nBits", 
+            "location": "/core/package/", 
+            "text": "Using Core\n\n\nWith Vapor\n\n\nThis package is included with Vapor by default, just add:\n\n\nimport\n \nCore\n\n\n\n\n\n\nWithout Vapor\n\n\nCore provides a lot of conveniences for any server-side Swift project. To include it in your package, add the following to your \nPackage.swift\n file.\n\n\nimport\n \nPackageDescription\n\n\n\nlet\n \npackage\n \n=\n \nPackage\n(\n\n    \nname\n:\n \nProject\n,\n\n    \ndependencies\n:\n \n[\n\n        \n...\n\n        \n.\nPackage\n(\nurl\n:\n \nhttps://github.com/vapor/core.git\n,\n \nmajorVersion\n:\n \n2\n)\n\n    \n],\n\n    \nexclude\n:\n \n[\n \n...\n \n]\n\n\n)\n\n\n\n\n\n\nUse \nimport Core\n to access Core's APIs.", 
             "title": "Package"
         }, 
         {
-            "location": "/bits/package/#using-bits", 
-            "text": "This package is included with the Vapor dependency, use  import   Bits", 
-            "title": "Using Bits"
+            "location": "/core/package/#using-core", 
+            "text": "", 
+            "title": "Using Core"
+        }, 
+        {
+            "location": "/core/package/#with-vapor", 
+            "text": "This package is included with Vapor by default, just add:  import   Core", 
+            "title": "With Vapor"
+        }, 
+        {
+            "location": "/core/package/#without-vapor", 
+            "text": "Core provides a lot of conveniences for any server-side Swift project. To include it in your package, add the following to your  Package.swift  file.  import   PackageDescription  let   package   =   Package ( \n     name :   Project , \n     dependencies :   [ \n         ... \n         . Package ( url :   https://github.com/vapor/core.git ,   majorVersion :   2 ) \n     ], \n     exclude :   [   ...   ]  )   Use  import Core  to access Core's APIs.", 
+            "title": "Without Vapor"
         }, 
         {
             "location": "/core/overview/", 
@@ -2667,13 +2677,23 @@
         }, 
         {
             "location": "/bits/package/", 
-            "text": "Using Bits\n\n\nThis package is included with the Vapor dependency, use\n\n\nimport\n \nBits", 
+            "text": "Using Bits\n\n\nWith Vapor\n\n\nThis package is included with Vapor by default, just add:\n\n\nimport\n \nBits\n\n\n\n\n\n\nWithout Vapor\n\n\nBits provides a lot of byte-manipulation conveniences for any server-side Swift project. To include it in your package, add the following to your \nPackage.swift\n file.\n\n\nimport\n \nPackageDescription\n\n\n\nlet\n \npackage\n \n=\n \nPackage\n(\n\n    \nname\n:\n \nProject\n,\n\n    \ndependencies\n:\n \n[\n\n        \n...\n\n        \n.\nPackage\n(\nurl\n:\n \nhttps://github.com/vapor/bits.git\n,\n \nmajorVersion\n:\n \n1\n)\n\n    \n],\n\n    \nexclude\n:\n \n[\n \n...\n \n]\n\n\n)\n\n\n\n\n\n\nUse \nimport Bits\n to access Bits' APIs.", 
             "title": "Package"
         }, 
         {
             "location": "/bits/package/#using-bits", 
-            "text": "This package is included with the Vapor dependency, use  import   Bits", 
+            "text": "", 
             "title": "Using Bits"
+        }, 
+        {
+            "location": "/bits/package/#with-vapor", 
+            "text": "This package is included with Vapor by default, just add:  import   Bits", 
+            "title": "With Vapor"
+        }, 
+        {
+            "location": "/bits/package/#without-vapor", 
+            "text": "Bits provides a lot of byte-manipulation conveniences for any server-side Swift project. To include it in your package, add the following to your  Package.swift  file.  import   PackageDescription  let   package   =   Package ( \n     name :   Project , \n     dependencies :   [ \n         ... \n         . Package ( url :   https://github.com/vapor/bits.git ,   majorVersion :   1 ) \n     ], \n     exclude :   [   ...   ]  )   Use  import Bits  to access Bits' APIs.", 
+            "title": "Without Vapor"
         }, 
         {
             "location": "/bits/overview/", 
