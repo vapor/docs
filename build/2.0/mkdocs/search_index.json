@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Vapor Documentation\n\n\nThis is the documentation for Vapor, a Web Framework for Swift that works on iOS, macOS, and Ubuntu; and all of the packages that Vapor offers.\n\n\nVapor is the most used web framework for Swift. It provides a beautifully expressive and easy to use foundation for your next website or API.\n\n\nGetting Started\n\n\nIf this is your first time using Vapor, head to the \nGetting Started\n section to install Swift and create your first app.\n\n\nViewing Mediums\n\n\nYou can read this guide by clicking through the folders and markdown files on \nGitHub\n or through the rendered \nwebsite\n.\n\n\nOther Sources\n\n\nHere are some other great places to find information about Vapor.\n\n\nAPI\n\n\nAuto-generated API documentation is located at \napi.vapor.codes\n.\n\n\nStack Overflow\n\n\nView or ask questions related to Vapor on Stack Overflow using the \nvapor\n tag.\n\n\nGitHub\n\n\nSource Code\n\n\nTo view the framework's source code and code documentation, visit \nVapor's GitHub\n.\n\n\nIssues\n\n\nTo view open bug reports and feature requests, or to create one, visit the \nissues\n tab on \nVapor's GitHub\n.\n\n\nPackages\n\n\nVapor is a modular framework built for a modular language. Code is split up into modules which are grouped to form packages. Packages can be added to your project by adding the package's Git url to your \nPackage.swift\n file. Once a package is included, all of its modules will be available to \nimport\n. You can read more about packages and modules in the Swift Package Manager \nconceptual overview\n. \n\n\nBelow is a list of packages and modules that come with or can be used by Vapor projects. Packages will have a link to their respective GitHub page.\n\n\nIncluded\n\n\nHere is a list of all the packages and modules included with Vapor. \n\n\n\n\nTip\n\n\nWhile these packages are included in Vapor by default, they can also be used individually.\n\n\n\n\n\n\nVapor\n: Swift's most used web framework.\n\n\nAuth: User authentication and persistance.\n\n\nSessions: Secure, ephemeral cookie based data storage.\n\n\nCookies: HTTP cookies.\n\n\nRouting: Advanced router with type-safe parameterization.\n\n\n\n\n\n\nEngine\n: Core transport layers.\n\n\nHTTP: Pure Swift HTTP client and server.\n\n\nURI: Pure Swift URI parsing and serializing.\n\n\nWebSockets: Full-duplex communication channels over a single TCP connection.\n\n\nSMTP: Send email using Sendgrid and Gmail.\n\n\n\n\n\n\nMultipart\n: Fast, streaming, non-blocking multipart parser and serializer.\n\n\nMultipart: Parses and serializes \nmultipart/mixed\n.\n\n\nFormData: Parses and serializes \nmultipart/form-data\n.\n\n\n\n\n\n\nJSON\n: Conveniences for working with JSON in Swift.\n\n\nConsole\n: Swift wrapper for console IO and commands.\n\n\nTLS\n: Swift wrapper for CLibreSSL's new TLS.\n\n\nCrypto\n: Cryptography from LibreSSL and Swift.\n\n\nDigests: Hashing with and without authentication.\n\n\nCiphers: Encryption and decryption\n\n\nRandom: Pseudo and cryptographically secure randomness.\n\n\nBCrypt: Pure Swift implementation.\n\n\n\n\n\n\nNode\n: Data structure for easy type conversions.\n\n\nPolymorphic\n: Syntax for easily accessing values from common types like JSON.\n\n\nPath Indexable\n: A protocol for powerful subscript access of common types like JSON.\n\n\n\n\n\n\nCore\n: Core extensions, type-aliases, and functions that facilitate common tasks.\n\n\nSocks\n: Swift C Socket API wrapper.\n\n\n\n\nExtras\n\n\nThese are officially supported packages for Vapor that are not included by default.\n\n\n\n\nFluent\n: Models, relationships, and querying for NoSQL and SQL databases.\n\n\nFluent Provider\n: Fluent provider for Vapor.\n\n\n\n\n\n\nMySQL\n: Robust MySQL interface for Swift.\n\n\nMySQL Driver\n: MySQL driver for Fluent.\n\n\nMySQL Provider\n: MySQL provider for Vapor.\n\n\n\n\n\n\nLeaf\n: An extensible templating language.\n\n\nLeaf Provider\n: Leaf provider for Vapor.\n\n\n\n\n\n\nRedbird\n: Pure-Swift Redis client implemented from the original protocol spec..\n\n\nRedis Provider\n: Redis cache provider for Vapor.\n\n\n\n\n\n\nJWT\n: JSON Web Tokens in Swift.\n\n\nJWT Provider\n: JWT conveniences for Vapor.\n\n\n\n\n\n\n\n\nThird Party\n\n\nThese are packages created by community members that work great with Vapor.\n\n\n\n\nPostgreSQL\n: Robust PostgreSQL interface for Swift.\n\n\nPostgreSQL Driver\n: PostgreSQL driver for Fluent.\n\n\nPostgreSQL Provider\n: PostgreSQL provider for Vapor.\n\n\n\n\n\n\nMongoKitten*\n: Native MongoDB driver for Swift, written in Swift\n\n\nMongo Driver\n: MongoKitten driver for Fluent.\n\n\nMongo Provider\n: MongoKitten provider for Vapor.\n\n\nMainecoonVapor\n: MongoKitten ORM for Vapor.\n\n\n\n\n\n\nKitura Provider\n: Use IBM's Kitura HTTP server in Vapor.\n\n\nSwiftyBeaver\n: Adds the powerful logging of SwiftyBeaver to Vapor.\n\n\nAPNS\n: Simple APNS Library for Vapor (Swift).\n\n\nVaporFCM\n: Simple FCM (iOS + Android Push Notifications) library built for Vapor in Swift.\n\n\nVaporS3Signer\n: Generate V4 Auth Header/Pre-Signed URL for AWS S3 REST API\n\n\nFlock\n: Automated deployment of Swift projects to servers\n\n\nVaporFlock\n: Use Flock to deploy Vapor applications\n\n\n\n\n\n\nVaporForms\n: Brings simple, dynamic and re-usable web form handling to Vapor.\n\n\nJobs\n: A minimalistic job/background-task system for Swift.\n\n\nHeimdall\n: An easy to use HTTP request logger.\n\n\n\n\nProviders\n\n\nVapor providers are a convenient way to add functionality to your Vapor projects. For a full list of providers, check out the \nvapor-provider\n tag on GitHub.\n\n\nAuthors\n\n\nTanner Nelson\n, \nLogan Wright\n, and the hundreds of members of Vapor.", 
+            "text": "Vapor Documentation\n\n\nThis is the documentation for Vapor, a Web Framework for Swift that works on iOS, macOS, and Ubuntu; and all of the packages that Vapor offers.\n\n\nVapor is the most used web framework for Swift. It provides a beautifully expressive and easy to use foundation for your next website or API.\n\n\nGetting Started\n\n\nIf this is your first time using Vapor, head to the \nGetting Started\n section to install Swift and create your first app.\n\n\nViewing Mediums\n\n\nYou can read this guide by clicking through the folders and markdown files on \nGitHub\n or through the rendered \nwebsite\n.\n\n\nOther Sources\n\n\nHere are some other great places to find information about Vapor.\n\n\nAPI\n\n\nAuto-generated API documentation is located at \napi.vapor.codes\n.\n\n\nStack Overflow\n\n\nView or ask questions related to Vapor on Stack Overflow using the \nvapor\n tag.\n\n\nGitHub\n\n\nSource Code\n\n\nTo view the framework's source code and code documentation, visit \nVapor's GitHub\n.\n\n\nIssues\n\n\nTo view open bug reports and feature requests, or to create one, visit the \nissues\n tab on \nVapor's GitHub\n.\n\n\nPackages\n\n\nVapor is a modular framework built for a modular language. Code is split up into modules which are grouped to form packages. Packages can be added to your project by adding the package's Git url to your \nPackage.swift\n file. Once a package is included, all of its modules will be available to \nimport\n. You can read more about packages and modules in the Swift Package Manager \nconceptual overview\n. \n\n\nBelow is a list of packages and modules that come with or can be used by Vapor projects. Packages will have a link to their respective GitHub page.\n\n\nIncluded\n\n\nHere is a list of all the packages and modules included with Vapor. \n\n\n\n\nTip\n\n\nWhile these packages are included in Vapor by default, they can also be used individually.\n\n\n\n\n\n\nVapor\n: Swift's most used web framework.\n\n\nAuth: User authentication and persistance.\n\n\nSessions: Secure, ephemeral cookie based data storage.\n\n\nCookies: HTTP cookies.\n\n\nRouting: Advanced router with type-safe parameterization.\n\n\n\n\n\n\nEngine\n: Core transport layers.\n\n\nHTTP: Pure Swift HTTP client and server.\n\n\nURI: Pure Swift URI parsing and serializing.\n\n\nWebSockets: Full-duplex communication channels over a single TCP connection.\n\n\nSMTP: Send email using Sendgrid and Gmail.\n\n\n\n\n\n\nMultipart\n: Fast, streaming, non-blocking multipart parser and serializer.\n\n\nMultipart: Parses and serializes \nmultipart/mixed\n.\n\n\nFormData: Parses and serializes \nmultipart/form-data\n.\n\n\n\n\n\n\nJSON\n: Conveniences for working with JSON in Swift.\n\n\nConsole\n: Swift wrapper for console IO and commands.\n\n\nTLS\n: Swift wrapper for CLibreSSL's new TLS.\n\n\nCrypto\n: Cryptography from LibreSSL and Swift.\n\n\nDigests: Hashing with and without authentication.\n\n\nCiphers: Encryption and decryption\n\n\nRandom: Pseudo and cryptographically secure randomness.\n\n\nBCrypt: Pure Swift implementation.\n\n\n\n\n\n\nNode\n: Data structure for easy type conversions.\n\n\nPolymorphic\n: Syntax for easily accessing values from common types like JSON.\n\n\nPath Indexable\n: A protocol for powerful subscript access of common types like JSON.\n\n\n\n\n\n\nCore\n: Core extensions, type-aliases, and functions that facilitate common tasks.\n\n\nSocks\n: Swift C Socket API wrapper.\n\n\nBits\n: Low level byte manipulation helpers\n\n\n\n\nExtras\n\n\nThese are officially supported packages for Vapor that are not included by default.\n\n\n\n\nFluent\n: Models, relationships, and querying for NoSQL and SQL databases.\n\n\nFluent Provider\n: Fluent provider for Vapor.\n\n\n\n\n\n\nMySQL\n: Robust MySQL interface for Swift.\n\n\nMySQL Driver\n: MySQL driver for Fluent.\n\n\nMySQL Provider\n: MySQL provider for Vapor.\n\n\n\n\n\n\nLeaf\n: An extensible templating language.\n\n\nLeaf Provider\n: Leaf provider for Vapor.\n\n\n\n\n\n\nRedbird\n: Pure-Swift Redis client implemented from the original protocol spec..\n\n\nRedis Provider\n: Redis cache provider for Vapor.\n\n\n\n\n\n\nJWT\n: JSON Web Tokens in Swift.\n\n\nJWT Provider\n: JWT conveniences for Vapor.\n\n\n\n\n\n\n\n\nThird Party\n\n\nThese are packages created by community members that work great with Vapor.\n\n\n\n\nPostgreSQL\n: Robust PostgreSQL interface for Swift.\n\n\nPostgreSQL Driver\n: PostgreSQL driver for Fluent.\n\n\nPostgreSQL Provider\n: PostgreSQL provider for Vapor.\n\n\n\n\n\n\nMongoKitten*\n: Native MongoDB driver for Swift, written in Swift\n\n\nMongo Driver\n: MongoKitten driver for Fluent.\n\n\nMongo Provider\n: MongoKitten provider for Vapor.\n\n\nMainecoonVapor\n: MongoKitten ORM for Vapor.\n\n\n\n\n\n\nKitura Provider\n: Use IBM's Kitura HTTP server in Vapor.\n\n\nSwiftyBeaver\n: Adds the powerful logging of SwiftyBeaver to Vapor.\n\n\nAPNS\n: Simple APNS Library for Vapor (Swift).\n\n\nVaporFCM\n: Simple FCM (iOS + Android Push Notifications) library built for Vapor in Swift.\n\n\nVaporS3Signer\n: Generate V4 Auth Header/Pre-Signed URL for AWS S3 REST API\n\n\nFlock\n: Automated deployment of Swift projects to servers\n\n\nVaporFlock\n: Use Flock to deploy Vapor applications\n\n\n\n\n\n\nVaporForms\n: Brings simple, dynamic and re-usable web form handling to Vapor.\n\n\nJobs\n: A minimalistic job/background-task system for Swift.\n\n\nHeimdall\n: An easy to use HTTP request logger.\n\n\n\n\nProviders\n\n\nVapor providers are a convenient way to add functionality to your Vapor projects. For a full list of providers, check out the \nvapor-provider\n tag on GitHub.\n\n\nAuthors\n\n\nTanner Nelson\n, \nLogan Wright\n, and the hundreds of members of Vapor.", 
             "title": "Overview"
         }, 
         {
@@ -57,7 +57,7 @@
         }, 
         {
             "location": "/#included", 
-            "text": "Here is a list of all the packages and modules included with Vapor.    Tip  While these packages are included in Vapor by default, they can also be used individually.    Vapor : Swift's most used web framework.  Auth: User authentication and persistance.  Sessions: Secure, ephemeral cookie based data storage.  Cookies: HTTP cookies.  Routing: Advanced router with type-safe parameterization.    Engine : Core transport layers.  HTTP: Pure Swift HTTP client and server.  URI: Pure Swift URI parsing and serializing.  WebSockets: Full-duplex communication channels over a single TCP connection.  SMTP: Send email using Sendgrid and Gmail.    Multipart : Fast, streaming, non-blocking multipart parser and serializer.  Multipart: Parses and serializes  multipart/mixed .  FormData: Parses and serializes  multipart/form-data .    JSON : Conveniences for working with JSON in Swift.  Console : Swift wrapper for console IO and commands.  TLS : Swift wrapper for CLibreSSL's new TLS.  Crypto : Cryptography from LibreSSL and Swift.  Digests: Hashing with and without authentication.  Ciphers: Encryption and decryption  Random: Pseudo and cryptographically secure randomness.  BCrypt: Pure Swift implementation.    Node : Data structure for easy type conversions.  Polymorphic : Syntax for easily accessing values from common types like JSON.  Path Indexable : A protocol for powerful subscript access of common types like JSON.    Core : Core extensions, type-aliases, and functions that facilitate common tasks.  Socks : Swift C Socket API wrapper.", 
+            "text": "Here is a list of all the packages and modules included with Vapor.    Tip  While these packages are included in Vapor by default, they can also be used individually.    Vapor : Swift's most used web framework.  Auth: User authentication and persistance.  Sessions: Secure, ephemeral cookie based data storage.  Cookies: HTTP cookies.  Routing: Advanced router with type-safe parameterization.    Engine : Core transport layers.  HTTP: Pure Swift HTTP client and server.  URI: Pure Swift URI parsing and serializing.  WebSockets: Full-duplex communication channels over a single TCP connection.  SMTP: Send email using Sendgrid and Gmail.    Multipart : Fast, streaming, non-blocking multipart parser and serializer.  Multipart: Parses and serializes  multipart/mixed .  FormData: Parses and serializes  multipart/form-data .    JSON : Conveniences for working with JSON in Swift.  Console : Swift wrapper for console IO and commands.  TLS : Swift wrapper for CLibreSSL's new TLS.  Crypto : Cryptography from LibreSSL and Swift.  Digests: Hashing with and without authentication.  Ciphers: Encryption and decryption  Random: Pseudo and cryptographically secure randomness.  BCrypt: Pure Swift implementation.    Node : Data structure for easy type conversions.  Polymorphic : Syntax for easily accessing values from common types like JSON.  Path Indexable : A protocol for powerful subscript access of common types like JSON.    Core : Core extensions, type-aliases, and functions that facilitate common tasks.  Socks : Swift C Socket API wrapper.  Bits : Low level byte manipulation helpers", 
             "title": "Included"
         }, 
         {
@@ -741,9 +741,19 @@
             "title": "2. --CONFIG:FILE-NAME.KEY=CUSTOM-VALUE"
         }, 
         {
+            "location": "/json/package/", 
+            "text": "Using JSON\n\n\nThis package is included with the Vapor dependency, use\n\n\nimport\n \nJSON", 
+            "title": "Package"
+        }, 
+        {
+            "location": "/json/package/#using-json", 
+            "text": "This package is included with the Vapor dependency, use  import   JSON", 
+            "title": "Using JSON"
+        }, 
+        {
             "location": "/json/overview/", 
             "text": "JSON\n\n\nJSON is an integral part of Vapor. It powers Vapor's \nConfig\n and is easy to use in both requests and responses.\n\n\nRequest\n\n\nJSON is automatically available in \nrequest.data\n alongside Form URL Encoded, Form Data, and Query data. This allows you to focus on making a great API, not worrying about what content types data will be sent in.\n\n\ndrop\n.\nget\n(\nhello\n)\n \n{\n \nrequest\n \nin\n\n    \nguard\n \nlet\n \nname\n \n=\n \nrequest\n.\ndata\n[\nname\n]?.\nstring\n \nelse\n \n{\n\n        \nthrow\n \nAbort\n(.\nbadRequest\n)\n\n    \n}\n\n    \nreturn\n \nHello, \n\\(\nname\n)\n!\n\n\n}\n\n\n\n\n\n\nThis will return a greeting for any HTTP method or content type that the \nname\n is sent as, including JSON.\n\n\nJSON Only\n\n\nTo specifically target JSON, use the \nrequest.json\n property.\n\n\ndrop\n.\npost\n(\njson\n)\n \n{\n \nrequest\n \nin\n\n    \nguard\n \nlet\n \nname\n \n=\n \nrequest\n.\njson\n?[\nname\n]?.\nstring\n \nelse\n \n{\n\n        \nthrow\n \nAbort\n(.\nbadRequest\n)\n\n    \n}\n\n\n    \nreturn\n \nHello, \n\\(\nname\n)\n!\n\n\n}\n\n\n\n\n\n\nThe above snippet will only work if the request is sent with JSON data.\n\n\nResponse\n\n\nTo respond with JSON, simply create a \nJSON\n object and add values to it.\n\n\ndrop\n.\nget\n(\nversion\n)\n \n{\n \nrequest\n \nin\n\n    \nvar\n \njson\n \n=\n \nJSON\n()\n\n    \ntry\n \njson\n.\nset\n(\nversion\n,\n \n1.0\n)\n\n    \nreturn\n \njson\n\n\n}\n\n\n\n\n\n\nConvertible\n\n\nMaking your classes and structs JSON convertible is a great way to interact with APIs in an organized and DRY way.\n\n\nRepresentable\n\n\nWhen something conforms to \nJSONRepresentable\n, it can be converted into JSON.\n\n\nextension\n \nUser\n:\n \nJSONRepresentable\n \n{\n\n    \nfunc\n \nmakeJSON\n()\n \nthrows\n \n-\n \nJSON\n \n{\n\n        \nvar\n \njson\n \n=\n \nJSON\n()\n\n        \ntry\n \njson\n.\nset\n(\nid\n,\n \nid\n)\n\n        \ntry\n \njson\n.\nset\n(\nname\n,\n \nname\n)\n\n        \ntry\n \njson\n.\nset\n(\nage\n,\n \nage\n)\n\n        \nreturn\n \njson\n\n    \n}\n\n\n}\n\n\n\n\n\n\nNow you can simply return \nuser.makeJSON()\n in your routes.\n\n\ndrop\n.\nget\n(\nusers\n,\n \nUser\n.\ninit\n)\n \n{\n \nreq\n,\n \nuser\n \nin\n\n    \nreturn\n \ntry\n \nuser\n.\nmakeJSON\n()\n\n\n}\n\n\n\n\n\n\nYou can even go a step further and conform your model to \nResponseRepresentable\n. Since it's already \nJSONRepresentable\n\nyou will get the conformance for free.\n\n\nextension\n \nUser\n:\n \nResponseRepresentable\n \n{\n \n}\n\n\n\n\n\n\nNow you can return the model by itself. It will automatically call \n.makeJSON()\n.\n\n\ndrop\n.\nget\n(\nusers\n,\n \nUser\n.\ninit\n)\n \n{\n \nreq\n,\n \nuser\n \nin\n\n    \nreturn\n \ntry\n \nuser\n\n\n}\n\n\n\n\n\n\nInitializable\n\n\nWhen something conforms to \nJSONInitializable\n, it can be created from JSON.\n\n\nextension\n \nUser\n:\n \nJSONInitializable\n \n{\n\n    \nconvenience\n \ninit\n(\njson\n:\n \nJSON\n)\n \nthrows\n \n{\n\n        \ntry\n \nself\n.\ninit\n(\n\n            \nname\n:\n \njson\n.\nget\n(\nname\n),\n\n            \nage\n:\n \njson\n.\nget\n(\nage\n)\n\n        \n)\n\n    \n}\n\n\n}\n\n\n\n\n\n\nNow you can simply call \nUser(json: ...)\n to create a user from JSON.\n\n\ndrop\n.\npost\n(\nusers\n)\n \n{\n \nreq\n \nin\n\n    \nguard\n \nlet\n \njson\n \n=\n \nreq\n.\njson\n \nelse\n \n{\n\n        \nthrow\n \nAbort\n(.\nbadRequest\n)\n\n    \n}\n\n\n    \nlet\n \nuser\n \n=\n \ntry\n \nUser\n(\njson\n:\n \njson\n)\n\n    \ntry\n \nuser\n.\nsave\n()\n\n    \nreturn\n \nuser\n\n\n}", 
-            "title": "JSON"
+            "title": "Overview"
         }, 
         {
             "location": "/json/overview/#json", 
@@ -781,57 +791,62 @@
             "title": "Initializable"
         }, 
         {
-            "location": "/routing/basic/", 
-            "text": "Basic Routing\n\n\nRouting is one of the most critical parts of a web framework. The router decides which requests get which responses.\n\n\nVapor has a plethora of functionality for routing including route builders, groups, and collections. In this section, we will look at the basics of routing.\n\n\nRegister\n\n\nThe most basic route includes a method, path, and closure.\n\n\ndrop\n.\nget\n(\nwelcome\n)\n \n{\n \nrequest\n \nin\n\n    \nreturn\n \nHello\n\n\n}\n\n\n\n\n\n\nThe standard HTTP methods are available including \nget\n, \npost\n, \nput\n, \npatch\n, \ndelete\n, and \noptions\n.\n\n\ndrop\n.\npost\n(\nform\n)\n \n{\n \nrequest\n \nin\n\n    \nreturn\n \nSubmitted with a POST request\n\n\n}\n\n\n\n\n\n\nNesting\n\n\nTo nest paths (adding \n/\ns in the URL), simply add commas.\n\n\ndrop\n.\nget\n(\nfoo\n,\n \nbar\n,\n \nbaz\n)\n \n{\n \nrequest\n \nin\n\n    \nreturn\n \nYou requested /foo/bar/baz\n\n\n}\n\n\n\n\n\n\nYou can also use \n/\n, but commas are often easier to type and work better with type safe route \nparameters\n.\n\n\nAlternate\n\n\nAn alternate syntax that accepts a \nMethod\n as the first parameter is also available.\n\n\ndrop\n.\nadd\n(.\ntrace\n,\n \nwelcome\n)\n \n{\n \nrequest\n \nin\n\n    \nreturn\n \nHello\n\n\n}\n\n\n\n\n\n\nThis may be useful if you want to register routes dynamically or use a less common method.\n\n\nRequest\n\n\nEach route closure is given a single \nRequest\n. This contains all of the data associated with the request that led to your route closure being called.\n\n\nResponse Representable\n\n\nA route closure can return in three ways:\n\n\n\n\nResponse\n\n\nResponseRepresentable\n\n\nthrow\n\n\n\n\nResponse\n\n\nA custom \nResponse\n can be returned.\n\n\ndrop\n.\nget\n(\nvapor\n)\n \n{\n \nrequest\n \nin\n\n    \nreturn\n \nResponse\n(\nredirect\n:\n \nhttp://vapor.codes\n)\n\n\n}\n\n\n\n\n\n\nThis is useful for creating special responses like redirects. It is also useful for cases where you want to add cookies or other items to the response.\n\n\nResponse Representable\n\n\nAs you have seen in the previous examples, \nString\ns can be returned in route closures. This is because they conform to \nResponseRepresentable\n\n\nA lot of types in Vapor conform to this protocol by default:\n- String\n- Int\n- \nJSON\n\n- \nModel\n\n\ndrop\n.\nget\n(\njson\n)\n \n{\n \nrequest\n \nin\n\n    \nvar\n \njson\n \n=\n \nJSON\n()\n\n    \ntry\n \njson\n.\nset\n(\nnumber\n,\n \n123\n)\n\n    \ntry\n \njson\n.\nset\n(\ntext\n,\n \nunicorns\n)\n\n    \ntry\n \njson\n.\nset\n(\nbool\n,\n \nfalse\n)\n\n    \nreturn\n \njson\n\n\n}\n\n\n\n\n\n\nThrowing\n\n\nIf you are unable to return a response, you may \nthrow\n any object that conforms to \nError\n. Vapor comes with a default error enum \nAbort\n.\n\n\ndrop\n.\nget\n(\n404\n)\n \n{\n \nrequest\n \nin\n\n    \nthrow\n \nAbort\n(.\nnotFound\n)\n\n\n}\n\n\n\n\n\n\nYou can customize the message of these errors by using \nAbort\n\n\ndrop\n.\nget\n(\nerror\n)\n \n{\n \nrequest\n \nin\n\n    \nthrow\n \nAbort\n(.\nbadRequest\n,\n \nreason\n:\n \nSorry \ud83d\ude31\n)\n\n\n}\n\n\n\n\n\n\nThese errors are caught by default in the \nErrorMiddleware\n where they are turned into a JSON response like the following.\n\n\n{\n\n    \nerror:\n \ntrue,\n\n    \nmessage:\n \nthe message\n\n\n}\n\n\n\n\n\n\nIf you want to override this behavior, remove the \nErrorMiddleware\n (key: \n\"error\"\n) from the \nDroplet\n's middleware and add your own.\n\n\nFallback\n\n\nFallback routes allow you to match multiple layers of nesting slashes.\n\n\napp\n.\nget\n(\nanything\n,\n \n*\n)\n \n{\n \nrequest\n \nin\n\n    \nreturn\n \nMatches anything after /anything\n\n\n}\n\n\n\n\n\n\nFor example, the above route matches all of the following and more:\n\n\n\n\n/anything\n\n\n/anything/foo\n\n\n/anything/foo/bar\n\n\n/anything/foo/bar/baz\n\n\n...", 
-            "title": "Basic"
+            "location": "/routing/package/", 
+            "text": "", 
+            "title": "Package"
         }, 
         {
-            "location": "/routing/basic/#basic-routing", 
+            "location": "/routing/overview/", 
+            "text": "Basic Routing\n\n\nRouting is one of the most critical parts of a web framework. The router decides which requests get which responses.\n\n\nVapor has a plethora of functionality for routing including route builders, groups, and collections. In this section, we will look at the basics of routing.\n\n\nRegister\n\n\nThe most basic route includes a method, path, and closure.\n\n\ndrop\n.\nget\n(\nwelcome\n)\n \n{\n \nrequest\n \nin\n\n    \nreturn\n \nHello\n\n\n}\n\n\n\n\n\n\nThe standard HTTP methods are available including \nget\n, \npost\n, \nput\n, \npatch\n, \ndelete\n, and \noptions\n.\n\n\ndrop\n.\npost\n(\nform\n)\n \n{\n \nrequest\n \nin\n\n    \nreturn\n \nSubmitted with a POST request\n\n\n}\n\n\n\n\n\n\nNesting\n\n\nTo nest paths (adding \n/\ns in the URL), simply add commas.\n\n\ndrop\n.\nget\n(\nfoo\n,\n \nbar\n,\n \nbaz\n)\n \n{\n \nrequest\n \nin\n\n    \nreturn\n \nYou requested /foo/bar/baz\n\n\n}\n\n\n\n\n\n\nYou can also use \n/\n, but commas are often easier to type and work better with type safe route \nparameters\n.\n\n\nAlternate\n\n\nAn alternate syntax that accepts a \nMethod\n as the first parameter is also available.\n\n\ndrop\n.\nadd\n(.\ntrace\n,\n \nwelcome\n)\n \n{\n \nrequest\n \nin\n\n    \nreturn\n \nHello\n\n\n}\n\n\n\n\n\n\nThis may be useful if you want to register routes dynamically or use a less common method.\n\n\nRequest\n\n\nEach route closure is given a single \nRequest\n. This contains all of the data associated with the request that led to your route closure being called.\n\n\nResponse Representable\n\n\nA route closure can return in three ways:\n\n\n\n\nResponse\n\n\nResponseRepresentable\n\n\nthrow\n\n\n\n\nResponse\n\n\nA custom \nResponse\n can be returned.\n\n\ndrop\n.\nget\n(\nvapor\n)\n \n{\n \nrequest\n \nin\n\n    \nreturn\n \nResponse\n(\nredirect\n:\n \nhttp://vapor.codes\n)\n\n\n}\n\n\n\n\n\n\nThis is useful for creating special responses like redirects. It is also useful for cases where you want to add cookies or other items to the response.\n\n\nResponse Representable\n\n\nAs you have seen in the previous examples, \nString\ns can be returned in route closures. This is because they conform to \nResponseRepresentable\n\n\nA lot of types in Vapor conform to this protocol by default:\n- String\n- Int\n- \nJSON\n\n- \nModel\n\n\ndrop\n.\nget\n(\njson\n)\n \n{\n \nrequest\n \nin\n\n    \nvar\n \njson\n \n=\n \nJSON\n()\n\n    \ntry\n \njson\n.\nset\n(\nnumber\n,\n \n123\n)\n\n    \ntry\n \njson\n.\nset\n(\ntext\n,\n \nunicorns\n)\n\n    \ntry\n \njson\n.\nset\n(\nbool\n,\n \nfalse\n)\n\n    \nreturn\n \njson\n\n\n}\n\n\n\n\n\n\nThrowing\n\n\nIf you are unable to return a response, you may \nthrow\n any object that conforms to \nError\n. Vapor comes with a default error enum \nAbort\n.\n\n\ndrop\n.\nget\n(\n404\n)\n \n{\n \nrequest\n \nin\n\n    \nthrow\n \nAbort\n(.\nnotFound\n)\n\n\n}\n\n\n\n\n\n\nYou can customize the message of these errors by using \nAbort\n\n\ndrop\n.\nget\n(\nerror\n)\n \n{\n \nrequest\n \nin\n\n    \nthrow\n \nAbort\n(.\nbadRequest\n,\n \nreason\n:\n \nSorry \ud83d\ude31\n)\n\n\n}\n\n\n\n\n\n\nThese errors are caught by default in the \nErrorMiddleware\n where they are turned into a JSON response like the following.\n\n\n{\n\n    \nerror:\n \ntrue,\n\n    \nmessage:\n \nthe message\n\n\n}\n\n\n\n\n\n\nIf you want to override this behavior, remove the \nErrorMiddleware\n (key: \n\"error\"\n) from the \nDroplet\n's middleware and add your own.\n\n\nFallback\n\n\nFallback routes allow you to match multiple layers of nesting slashes.\n\n\napp\n.\nget\n(\nanything\n,\n \n*\n)\n \n{\n \nrequest\n \nin\n\n    \nreturn\n \nMatches anything after /anything\n\n\n}\n\n\n\n\n\n\nFor example, the above route matches all of the following and more:\n\n\n\n\n/anything\n\n\n/anything/foo\n\n\n/anything/foo/bar\n\n\n/anything/foo/bar/baz\n\n\n...", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/routing/overview/#basic-routing", 
             "text": "Routing is one of the most critical parts of a web framework. The router decides which requests get which responses.  Vapor has a plethora of functionality for routing including route builders, groups, and collections. In this section, we will look at the basics of routing.", 
             "title": "Basic Routing"
         }, 
         {
-            "location": "/routing/basic/#register", 
+            "location": "/routing/overview/#register", 
             "text": "The most basic route includes a method, path, and closure.  drop . get ( welcome )   {   request   in \n     return   Hello  }   The standard HTTP methods are available including  get ,  post ,  put ,  patch ,  delete , and  options .  drop . post ( form )   {   request   in \n     return   Submitted with a POST request  }", 
             "title": "Register"
         }, 
         {
-            "location": "/routing/basic/#nesting", 
+            "location": "/routing/overview/#nesting", 
             "text": "To nest paths (adding  / s in the URL), simply add commas.  drop . get ( foo ,   bar ,   baz )   {   request   in \n     return   You requested /foo/bar/baz  }   You can also use  / , but commas are often easier to type and work better with type safe route  parameters .", 
             "title": "Nesting"
         }, 
         {
-            "location": "/routing/basic/#alternate", 
+            "location": "/routing/overview/#alternate", 
             "text": "An alternate syntax that accepts a  Method  as the first parameter is also available.  drop . add (. trace ,   welcome )   {   request   in \n     return   Hello  }   This may be useful if you want to register routes dynamically or use a less common method.", 
             "title": "Alternate"
         }, 
         {
-            "location": "/routing/basic/#request", 
+            "location": "/routing/overview/#request", 
             "text": "Each route closure is given a single  Request . This contains all of the data associated with the request that led to your route closure being called.", 
             "title": "Request"
         }, 
         {
-            "location": "/routing/basic/#response-representable", 
+            "location": "/routing/overview/#response-representable", 
             "text": "A route closure can return in three ways:   Response  ResponseRepresentable  throw", 
             "title": "Response Representable"
         }, 
         {
-            "location": "/routing/basic/#response", 
+            "location": "/routing/overview/#response", 
             "text": "A custom  Response  can be returned.  drop . get ( vapor )   {   request   in \n     return   Response ( redirect :   http://vapor.codes )  }   This is useful for creating special responses like redirects. It is also useful for cases where you want to add cookies or other items to the response.", 
             "title": "Response"
         }, 
         {
-            "location": "/routing/basic/#response-representable_1", 
+            "location": "/routing/overview/#response-representable_1", 
             "text": "As you have seen in the previous examples,  String s can be returned in route closures. This is because they conform to  ResponseRepresentable  A lot of types in Vapor conform to this protocol by default:\n- String\n- Int\n-  JSON \n-  Model  drop . get ( json )   {   request   in \n     var   json   =   JSON () \n     try   json . set ( number ,   123 ) \n     try   json . set ( text ,   unicorns ) \n     try   json . set ( bool ,   false ) \n     return   json  }", 
             "title": "Response Representable"
         }, 
         {
-            "location": "/routing/basic/#throwing", 
+            "location": "/routing/overview/#throwing", 
             "text": "If you are unable to return a response, you may  throw  any object that conforms to  Error . Vapor comes with a default error enum  Abort .  drop . get ( 404 )   {   request   in \n     throw   Abort (. notFound )  }   You can customize the message of these errors by using  Abort  drop . get ( error )   {   request   in \n     throw   Abort (. badRequest ,   reason :   Sorry \ud83d\ude31 )  }   These errors are caught by default in the  ErrorMiddleware  where they are turned into a JSON response like the following.  { \n     error:   true, \n     message:   the message  }   If you want to override this behavior, remove the  ErrorMiddleware  (key:  \"error\" ) from the  Droplet 's middleware and add your own.", 
             "title": "Throwing"
         }, 
         {
-            "location": "/routing/basic/#fallback", 
+            "location": "/routing/overview/#fallback", 
             "text": "Fallback routes allow you to match multiple layers of nesting slashes.  app . get ( anything ,   * )   {   request   in \n     return   Matches anything after /anything  }   For example, the above route matches all of the following and more:   /anything  /anything/foo  /anything/foo/bar  /anything/foo/bar/baz  ...", 
             "title": "Fallback"
         }, 
@@ -1381,42 +1396,52 @@
             "title": "Custom Through"
         }, 
         {
-            "location": "/cache/", 
-            "text": "Cache\n\n\nVapor's \nCacheProtocol\n allows you to store and fetch items from a cache using optional expiration dates.\n\n\nBy default, the Droplet's cache is set to \nMemoryCache\n. See the various \nproviders\n below.\n\n\nStore\n\n\nStoring data into the cache is straightforward.\n\n\ntry\n \ndrop\n.\ncache\n.\nset\n(\nhello\n,\n \nworld\n)\n\n\n\n\n\n\nExpiration\n\n\nWhen storing data, you can also supply an expiration date.\n\n\ntry\n \ndrop\n.\ncache\n.\nset\n(\nephemeral\n,\n \n42\n,\n \nexpiration\n:\n \nDate\n(\ntimeIntervalSinceNow\n:\n \n30\n))\n\n\n\n\n\n\nIn the above example, the supplied key value pair will expire after 30 seconds.\n\n\nFetch\n\n\nYou can retreive data from the cache using the \n.get()\n method.\n\n\ntry\n \ndrop\n.\ncache\n.\nget\n(\nhello\n)\n \n// \nworld\n\n\n\n\n\n\nDelete\n\n\nKeys can be deleted from the cache using the \n.delete()\n method.\n\n\ntry\n \ndrop\n.\ncache\n.\ndelete\n(\nhello\n)\n\n\n\n\n\n\nProviders\n\n\nHere is a list of official cache providers. You can \nsearch GitHub\n for additional packages.\n\n\n\n\n\n\n\n\nType\n\n\nKey\n\n\nDescription\n\n\nPackage\n\n\nClass\n\n\n\n\n\n\n\n\n\n\nMemory\n\n\nmemory\n\n\nIn-memory cache. Not persisted.\n\n\nVapor\n\n\nMemoryCache\n\n\n\n\n\n\nFluent\n\n\nfluent\n\n\nUses Fluent database.\n\n\nFluent Provider\n\n\nFluentCache\n\n\n\n\n\n\nRedis\n\n\nredis\n\n\nUses Redis database.\n\n\nRedisProvider\n\n\nRedisCache\n\n\n\n\n\n\n\n\nHow to Use\n\n\nTo use a different cache provider besides the default \nMemoryCache\n, make sure you have added the provider to your Package.\n\n\nimport\n \nVapor\n\n\nimport\n \npackage\nProvider\n\n\n\nlet\n \nconfig\n \n=\n \ntry\n \nConfig\n()\n\n\ntry\n \nconfig\n.\naddProvider\n(\npackage\nProvider\n.\nProvider\n.\nself\n)\n\n\n\nlet\n \ndrop\n \n=\n \ntry\n \nDroplet\n(\nconfig\n)\n\n\n\n\n...\n\n\n\n\n\n\nThen change the Droplet's configuration file.\n\n\nConfig/droplet.json\n\n\n{\n\n    \ncache\n:\n \nkey\n\n\n}", 
-            "title": "Cache"
+            "location": "/cache/package/", 
+            "text": "Using Cache\n\n\nThis package is included with the Vapor dependency, use\n\n\nimport\n \nCache", 
+            "title": "Package"
         }, 
         {
-            "location": "/cache/#cache", 
+            "location": "/cache/package/#using-cache", 
+            "text": "This package is included with the Vapor dependency, use  import   Cache", 
+            "title": "Using Cache"
+        }, 
+        {
+            "location": "/cache/overview/", 
+            "text": "Cache\n\n\nVapor's \nCacheProtocol\n allows you to store and fetch items from a cache using optional expiration dates.\n\n\nBy default, the Droplet's cache is set to \nMemoryCache\n. See the various \nproviders\n below.\n\n\nStore\n\n\nStoring data into the cache is straightforward.\n\n\ntry\n \ndrop\n.\ncache\n.\nset\n(\nhello\n,\n \nworld\n)\n\n\n\n\n\n\nExpiration\n\n\nWhen storing data, you can also supply an expiration date.\n\n\ntry\n \ndrop\n.\ncache\n.\nset\n(\nephemeral\n,\n \n42\n,\n \nexpiration\n:\n \nDate\n(\ntimeIntervalSinceNow\n:\n \n30\n))\n\n\n\n\n\n\nIn the above example, the supplied key value pair will expire after 30 seconds.\n\n\nFetch\n\n\nYou can retreive data from the cache using the \n.get()\n method.\n\n\ntry\n \ndrop\n.\ncache\n.\nget\n(\nhello\n)\n \n// \nworld\n\n\n\n\n\n\nDelete\n\n\nKeys can be deleted from the cache using the \n.delete()\n method.\n\n\ntry\n \ndrop\n.\ncache\n.\ndelete\n(\nhello\n)\n\n\n\n\n\n\nProviders\n\n\nHere is a list of official cache providers. You can \nsearch GitHub\n for additional packages.\n\n\n\n\n\n\n\n\nType\n\n\nKey\n\n\nDescription\n\n\nPackage\n\n\nClass\n\n\n\n\n\n\n\n\n\n\nMemory\n\n\nmemory\n\n\nIn-memory cache. Not persisted.\n\n\nVapor\n\n\nMemoryCache\n\n\n\n\n\n\nFluent\n\n\nfluent\n\n\nUses Fluent database.\n\n\nFluent Provider\n\n\nFluentCache\n\n\n\n\n\n\nRedis\n\n\nredis\n\n\nUses Redis database.\n\n\nRedisProvider\n\n\nRedisCache\n\n\n\n\n\n\n\n\nHow to Use\n\n\nTo use a different cache provider besides the default \nMemoryCache\n, make sure you have added the provider to your Package.\n\n\nimport\n \nVapor\n\n\nimport\n \npackage\nProvider\n\n\n\nlet\n \nconfig\n \n=\n \ntry\n \nConfig\n()\n\n\ntry\n \nconfig\n.\naddProvider\n(\npackage\nProvider\n.\nProvider\n.\nself\n)\n\n\n\nlet\n \ndrop\n \n=\n \ntry\n \nDroplet\n(\nconfig\n)\n\n\n\n\n...\n\n\n\n\n\n\nThen change the Droplet's configuration file.\n\n\nConfig/droplet.json\n\n\n{\n\n    \ncache\n:\n \nkey\n\n\n}", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/cache/overview/#cache", 
             "text": "Vapor's  CacheProtocol  allows you to store and fetch items from a cache using optional expiration dates.  By default, the Droplet's cache is set to  MemoryCache . See the various  providers  below.", 
             "title": "Cache"
         }, 
         {
-            "location": "/cache/#store", 
+            "location": "/cache/overview/#store", 
             "text": "Storing data into the cache is straightforward.  try   drop . cache . set ( hello ,   world )", 
             "title": "Store"
         }, 
         {
-            "location": "/cache/#expiration", 
+            "location": "/cache/overview/#expiration", 
             "text": "When storing data, you can also supply an expiration date.  try   drop . cache . set ( ephemeral ,   42 ,   expiration :   Date ( timeIntervalSinceNow :   30 ))   In the above example, the supplied key value pair will expire after 30 seconds.", 
             "title": "Expiration"
         }, 
         {
-            "location": "/cache/#fetch", 
+            "location": "/cache/overview/#fetch", 
             "text": "You can retreive data from the cache using the  .get()  method.  try   drop . cache . get ( hello )   //  world", 
             "title": "Fetch"
         }, 
         {
-            "location": "/cache/#delete", 
+            "location": "/cache/overview/#delete", 
             "text": "Keys can be deleted from the cache using the  .delete()  method.  try   drop . cache . delete ( hello )", 
             "title": "Delete"
         }, 
         {
-            "location": "/cache/#providers", 
+            "location": "/cache/overview/#providers", 
             "text": "Here is a list of official cache providers. You can  search GitHub  for additional packages.     Type  Key  Description  Package  Class      Memory  memory  In-memory cache. Not persisted.  Vapor  MemoryCache    Fluent  fluent  Uses Fluent database.  Fluent Provider  FluentCache    Redis  redis  Uses Redis database.  RedisProvider  RedisCache", 
             "title": "Providers"
         }, 
         {
-            "location": "/cache/#how-to-use", 
+            "location": "/cache/overview/#how-to-use", 
             "text": "To use a different cache provider besides the default  MemoryCache , make sure you have added the provider to your Package.  import   Vapor  import   package Provider  let   config   =   try   Config ()  try   config . addProvider ( package Provider . Provider . self )  let   drop   =   try   Droplet ( config )  ...   Then change the Droplet's configuration file.  Config/droplet.json  { \n     cache :   key  }", 
             "title": "How to Use"
         }, 
@@ -2606,52 +2631,77 @@
             "title": "Validation Failures"
         }, 
         {
-            "location": "/core/", 
-            "text": "Core\n\n\nCore provides some conveniences for common tasks.\n\n\n\n\nNote\n\n\nUse \nimport Core\n\n\n\n\nBackground\n\n\nEasily create a background thread using \nbackground()\n\n\nprint\n(\nhello\n)\n\n\n\ntry\n \nbackground\n \n{\n\n    \nprint\n(\nworld\n)\n  \n\n}\n\n\n\n\n\n\nPortal\n\n\nPortals allow you to make async tasks blocking.\n\n\nlet\n \nresult\n \n=\n \ntry\n \nPortal\n.\nopen\n \n{\n \nportal\n \nin\n\n    \nsomeAsyncTask\n \n{\n \nresult\n \nin\n\n        \nportal\n.\nclose\n(\nwith\n:\n \nresult\n)\n\n    \n}\n\n\n}\n\n\n\nprint\n(\nresult\n)\n \n// the result from the async task\n\n\n\n\n\n\nRFC1123\n\n\nCreate RFC1123 type dates.\n\n\nlet\n \nnow\n \n=\n \nDate\n().\nrfc1123\n \n// string \n\n\n\n\n\n\nYou can also parse RFC1123 strings.\n\n\nlet parsed = Date(rfc1123: \nMon, 10 Apr 2017 11:26:13 GMT\n)", 
-            "title": "Core"
+            "location": "/bits/package/", 
+            "text": "Using Bits\n\n\nThis package is included with the Vapor dependency, use\n\n\nimport\n \nBits", 
+            "title": "Package"
         }, 
         {
-            "location": "/core/#core", 
+            "location": "/bits/package/#using-bits", 
+            "text": "This package is included with the Vapor dependency, use  import   Bits", 
+            "title": "Using Bits"
+        }, 
+        {
+            "location": "/core/overview/", 
+            "text": "Core\n\n\nCore provides some conveniences for common tasks.\n\n\n\n\nNote\n\n\nUse \nimport Core\n\n\n\n\nBackground\n\n\nEasily create a background thread using \nbackground()\n\n\nprint\n(\nhello\n)\n\n\n\ntry\n \nbackground\n \n{\n\n    \nprint\n(\nworld\n)\n  \n\n}\n\n\n\n\n\n\nPortal\n\n\nPortals allow you to make async tasks blocking.\n\n\nlet\n \nresult\n \n=\n \ntry\n \nPortal\n.\nopen\n \n{\n \nportal\n \nin\n\n    \nsomeAsyncTask\n \n{\n \nresult\n \nin\n\n        \nportal\n.\nclose\n(\nwith\n:\n \nresult\n)\n\n    \n}\n\n\n}\n\n\n\nprint\n(\nresult\n)\n \n// the result from the async task\n\n\n\n\n\n\nRFC1123\n\n\nCreate RFC1123 type dates.\n\n\nlet\n \nnow\n \n=\n \nDate\n().\nrfc1123\n \n// string \n\n\n\n\n\n\nYou can also parse RFC1123 strings.\n\n\nlet parsed = Date(rfc1123: \nMon, 10 Apr 2017 11:26:13 GMT\n)", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/core/overview/#core", 
             "text": "Core provides some conveniences for common tasks.   Note  Use  import Core", 
             "title": "Core"
         }, 
         {
-            "location": "/core/#background", 
+            "location": "/core/overview/#background", 
             "text": "Easily create a background thread using  background()  print ( hello )  try   background   { \n     print ( world )    }", 
             "title": "Background"
         }, 
         {
-            "location": "/core/#portal", 
+            "location": "/core/overview/#portal", 
             "text": "Portals allow you to make async tasks blocking.  let   result   =   try   Portal . open   {   portal   in \n     someAsyncTask   {   result   in \n         portal . close ( with :   result ) \n     }  }  print ( result )   // the result from the async task", 
             "title": "Portal"
         }, 
         {
-            "location": "/core/#rfc1123", 
+            "location": "/core/overview/#rfc1123", 
             "text": "Create RFC1123 type dates.  let   now   =   Date (). rfc1123   // string    You can also parse RFC1123 strings.  let parsed = Date(rfc1123:  Mon, 10 Apr 2017 11:26:13 GMT )", 
             "title": "RFC1123"
         }, 
         {
-            "location": "/bits/", 
-            "text": "Bits\n\n\nThe bits package is included in Vapor by default and provides a convenient API for working with bytes.\n\n\n\n\nNote\n\n\nUse \nimport Bits\n to use this package.\n\n\n\n\nTypealias\n\n\nThe bits package provides two type-alises for bytes.\n\n\ntypealias\n \nByte\n \n=\n \nUInt8\n\n\ntypealias\n \nBytes\n \n=\n \n[\nByte\n]\n\n\n\n\n\n\nString\n\n\nConverting from bytes to string using the UTF-8 encoding is easy.\n\n\nlet\n \nbytes\n \n=\n \nhello\n.\nmakeBytes\n()\n\n\nlet\n \nstring\n \n=\n \nbytes\n.\nmakeString\n()\n\n\nprint\n(\nstring\n)\n \n// \nhello\n\n\n\n\n\n\nByte\n\n\nThe upper and lowercase latin alphabet and some additional control characters are statically typed on the \nByte\n.\n\n\nlet\n \nbytes\n:\n \nBytes\n \n=\n \n[.\nh\n,\n \n.\ne\n,\n \n.\nl\n,\n \n.\nl\n,\n \n.\no\n]\n\n\nprint\n(\nbytes\n.\nmakeString\n())\n \n// \nhello\n\n\n\n\n\n\nThis makes byte manipulation and comparison easy and is useful for building things like parsers and serializers.\n\n\nlet\n \nbyte\n:\n \nByte\n \n=\n \n65\n\n\nif\n \nbyte\n \n==\n \n.\nA\n \n{\n\n    \nprint\n(\nfound A!\n)\n\n\n}", 
-            "title": "Bits"
+            "location": "/bits/package/", 
+            "text": "Using Bits\n\n\nThis package is included with the Vapor dependency, use\n\n\nimport\n \nBits", 
+            "title": "Package"
         }, 
         {
-            "location": "/bits/#bits", 
+            "location": "/bits/package/#using-bits", 
+            "text": "This package is included with the Vapor dependency, use  import   Bits", 
+            "title": "Using Bits"
+        }, 
+        {
+            "location": "/bits/overview/", 
+            "text": "Bits\n\n\nThe bits package is included in Vapor by default and provides a convenient API for working with bytes.\n\n\n\n\nNote\n\n\nUse \nimport Bits\n to use this package.\n\n\n\n\nTypealias\n\n\nThe bits package provides two type-aliases for bytes.\n\n\ntypealias\n \nByte\n \n=\n \nUInt8\n\n\ntypealias\n \nBytes\n \n=\n \n[\nByte\n]\n\n\n\n\n\n\nBytesConvertible\n\n\nIt's quite often that we want to convert objects to and from byte arrays when we're working. The BytesConvertible helps define objects that have these capabilities. This is implemented already on most objects in Vapor that can/should be converted to and from byte arrays.\n\n\nlet\n \nhello\n \n=\n \nString\n(\nbytes\n:\n \n[\n72\n,\n \n101\n,\n \n108\n,\n \n108\n,\n \n111\n])\n\n\nlet\n \nbytes\n \n=\n \nhello\n.\nmakeBytes\n()\n \n\n\n\n\n\nString\n\n\nConverting from bytes to string using the UTF-8 encoding is easy.\n\n\nlet\n \nbytes\n \n=\n \nhello\n.\nmakeBytes\n()\n\n\nlet\n \nstring\n \n=\n \nbytes\n.\nmakeString\n()\n\n\nprint\n(\nstring\n)\n \n// \nhello\n\n\n\n\n\n\nByte\n\n\nThe upper and lowercase latin alphabet and some additional control characters are statically typed on the \nByte\n.\n\n\nlet\n \nbytes\n:\n \nBytes\n \n=\n \n[.\nh\n,\n \n.\ne\n,\n \n.\nl\n,\n \n.\nl\n,\n \n.\no\n]\n\n\nprint\n(\nbytes\n.\nmakeString\n())\n \n// \nhello\n\n\n\n\n\n\nThis makes byte manipulation and comparison easy and is useful for building things like parsers and serializers.\n\n\nlet\n \nbyte\n:\n \nByte\n \n=\n \n65\n\n\nif\n \nbyte\n \n==\n \n.\nA\n \n{\n\n    \nprint\n(\nfound A!\n)\n\n\n}", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/bits/overview/#bits", 
             "text": "The bits package is included in Vapor by default and provides a convenient API for working with bytes.   Note  Use  import Bits  to use this package.", 
             "title": "Bits"
         }, 
         {
-            "location": "/bits/#typealias", 
-            "text": "The bits package provides two type-alises for bytes.  typealias   Byte   =   UInt8  typealias   Bytes   =   [ Byte ]", 
+            "location": "/bits/overview/#typealias", 
+            "text": "The bits package provides two type-aliases for bytes.  typealias   Byte   =   UInt8  typealias   Bytes   =   [ Byte ]", 
             "title": "Typealias"
         }, 
         {
-            "location": "/bits/#string", 
+            "location": "/bits/overview/#bytesconvertible", 
+            "text": "It's quite often that we want to convert objects to and from byte arrays when we're working. The BytesConvertible helps define objects that have these capabilities. This is implemented already on most objects in Vapor that can/should be converted to and from byte arrays.  let   hello   =   String ( bytes :   [ 72 ,   101 ,   108 ,   108 ,   111 ])  let   bytes   =   hello . makeBytes ()", 
+            "title": "BytesConvertible"
+        }, 
+        {
+            "location": "/bits/overview/#string", 
             "text": "Converting from bytes to string using the UTF-8 encoding is easy.  let   bytes   =   hello . makeBytes ()  let   string   =   bytes . makeString ()  print ( string )   //  hello", 
             "title": "String"
         }, 
         {
-            "location": "/bits/#byte", 
+            "location": "/bits/overview/#byte", 
             "text": "The upper and lowercase latin alphabet and some additional control characters are statically typed on the  Byte .  let   bytes :   Bytes   =   [. h ,   . e ,   . l ,   . l ,   . o ]  print ( bytes . makeString ())   //  hello   This makes byte manipulation and comparison easy and is useful for building things like parsers and serializers.  let   byte :   Byte   =   65  if   byte   ==   . A   { \n     print ( found A! )  }", 
             "title": "Byte"
         }, 

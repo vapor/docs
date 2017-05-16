@@ -112,17 +112,31 @@
     
 
     
+        
+    <url>
+     <loc>/json/package/</loc>
+     <lastmod>2017-05-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     <url>
      <loc>/json/overview/</loc>
      <lastmod>2017-05-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
     
 
     
         
     <url>
-     <loc>/routing/basic/</loc>
+     <loc>/routing/package/</loc>
+     <lastmod>2017-05-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/routing/overview/</loc>
      <lastmod>2017-05-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -188,11 +202,19 @@
     
 
     
+        
     <url>
-     <loc>/cache/</loc>
+     <loc>/cache/package/</loc>
      <lastmod>2017-05-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    <url>
+     <loc>/cache/overview/</loc>
+     <lastmod>2017-05-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     
@@ -372,19 +394,35 @@
     
 
     
+        
     <url>
-     <loc>/core/</loc>
+     <loc>/bits/package/</loc>
      <lastmod>2017-05-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    <url>
+     <loc>/core/overview/</loc>
+     <lastmod>2017-05-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     
+        
     <url>
-     <loc>/bits/</loc>
+     <loc>/bits/package/</loc>
      <lastmod>2017-05-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    <url>
+     <loc>/bits/overview/</loc>
+     <lastmod>2017-05-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     
