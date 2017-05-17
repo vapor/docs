@@ -2631,6 +2631,26 @@
             "title": "Validation Failures"
         }, 
         {
+            "location": "/node/package/", 
+            "text": "Using Node\n\n\nWith Vapor\n\n\nThis package is included with Vapor by default, just add:\n\n\nimport\n \nNode\n\n\n\n\n\n\nWithout Vapor\n\n\nNode provides a lot of conveniences for any server-side, or client side Swift project. To include it in your package, add the following to your \nPackage.swift\n file.\n\n\nimport\n \nPackageDescription\n\n\n\nlet\n \npackage\n \n=\n \nPackage\n(\n\n    \nname\n:\n \nProject\n,\n\n    \ndependencies\n:\n \n[\n\n        \n...\n\n        \n.\nPackage\n(\nurl\n:\n \nhttps://github.com/vapor/node.git\n,\n \nmajorVersion\n:\n \n2\n)\n\n    \n],\n\n    \nexclude\n:\n \n[\n \n...\n \n]\n\n\n)\n\n\n\n\n\n\nUse \nimport Node\n to access Node's APIs\n.", 
+            "title": "Package"
+        }, 
+        {
+            "location": "/node/package/#using-node", 
+            "text": "", 
+            "title": "Using Node"
+        }, 
+        {
+            "location": "/node/package/#with-vapor", 
+            "text": "This package is included with Vapor by default, just add:  import   Node", 
+            "title": "With Vapor"
+        }, 
+        {
+            "location": "/node/package/#without-vapor", 
+            "text": "Node provides a lot of conveniences for any server-side, or client side Swift project. To include it in your package, add the following to your  Package.swift  file.  import   PackageDescription  let   package   =   Package ( \n     name :   Project , \n     dependencies :   [ \n         ... \n         . Package ( url :   https://github.com/vapor/node.git ,   majorVersion :   2 ) \n     ], \n     exclude :   [   ...   ]  )   Use  import Node  to access Node's APIs\n.", 
+            "title": "Without Vapor"
+        }, 
+        {
             "location": "/core/package/", 
             "text": "Using Core\n\n\nWith Vapor\n\n\nThis package is included with Vapor by default, just add:\n\n\nimport\n \nCore\n\n\n\n\n\n\nWithout Vapor\n\n\nCore provides a lot of conveniences for any server-side Swift project. To include it in your package, add the following to your \nPackage.swift\n file.\n\n\nimport\n \nPackageDescription\n\n\n\nlet\n \npackage\n \n=\n \nPackage\n(\n\n    \nname\n:\n \nProject\n,\n\n    \ndependencies\n:\n \n[\n\n        \n...\n\n        \n.\nPackage\n(\nurl\n:\n \nhttps://github.com/vapor/core.git\n,\n \nmajorVersion\n:\n \n2\n)\n\n    \n],\n\n    \nexclude\n:\n \n[\n \n...\n \n]\n\n\n)\n\n\n\n\n\n\nUse \nimport Core\n to access Core's APIs.", 
             "title": "Package"

@@ -396,6 +396,16 @@
     
         
     <url>
+     <loc>/node/package/</loc>
+     <lastmod>2017-05-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
      <loc>/core/package/</loc>
      <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>

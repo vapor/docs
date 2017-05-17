@@ -72,6 +72,8 @@ pages:
     - 'Provider': 'leaf/provider.md'
     - 'Overview': 'leaf/leaf.md'
 - Validation: 'validation/overview.md'
+- Node:
+    - 'Package': 'node/package.md'
 - Core: 
     - 'Package': 'core/package.md'
     - 'Overview': 'core/overview.md'
