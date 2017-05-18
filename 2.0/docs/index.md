@@ -40,12 +40,16 @@ Vapor is a modular framework built for a modular language. Code is split up into
 
 Below is a list of packages and modules that come with or can be used by Vapor projects. Packages will have a link to their respective GitHub page.
 
-### Included
+### Core
 
-Here is a list of all the packages and modules included with Vapor. 
+Core packages are maintained by the Vapor team. 
+
+#### Included
+
+The following packages are included with Vapor by default.
 
 !!! tip 
-	While these packages are included in Vapor by default, they can also be used individually.
+	These packages can also be used individually
 
 - [Vapor](https://github.com/vapor/vapor): Swift's most used web framework.
 	- Auth: User authentication and persistance.
@@ -53,8 +57,8 @@ Here is a list of all the packages and modules included with Vapor.
 	- Cookies: HTTP cookies.
 	- Routing: Advanced router with type-safe parameterization.
 - [Engine](https://github.com/vapor/engine): Core transport layers.
-	- HTTP: Pure Swift HTTP client and server.
-	- URI: Pure Swift URI parsing and serializing.
+	- HTTP: HTTP client and server.
+	- URI: URI parsing and serializing.
 	- WebSockets: Full-duplex communication channels over a single TCP connection.
 	- SMTP: Send email using Sendgrid and Gmail.
 - [Multipart](https://github.com/vapor/multipart): Fast, streaming, non-blocking multipart parser and serializer.
@@ -75,7 +79,7 @@ Here is a list of all the packages and modules included with Vapor.
 - [Socks](https://github.com/vapor/socks): Swift C Socket API wrapper.
 - [Bits](https://github.com/vapor/bits): Low level byte manipulation helpers
 
-### Extras
+#### Providers
 
 These are officially supported packages for Vapor that are not included by default.
 
@@ -91,9 +95,9 @@ These are officially supported packages for Vapor that are not included by defau
 - [JWT](https://github.com/vapor/jwt): JSON Web Tokens in Swift.
 	- [JWT Provider](https://github.com/vapor/jwt-provider): JWT conveniences for Vapor.
 
-### Third Party
+### Community
 
-These are packages created by community members that work great with Vapor.
+These are packages maintained by community members that work great with Vapor.
 
 - [PostgreSQL](https://github.com/vapor/postgresql): Robust PostgreSQL interface for Swift.
 	- [PostgreSQL Driver](https://github.com/vapor/postgresql-driver): PostgreSQL driver for Fluent.
