@@ -89,7 +89,7 @@ swift build
 Compiling in Swift's release mode and setting Vapor's environment to production will make your app more secure and performant.
 
 ```sh
-swift build --configuraiton release
+swift build --configuration release
 .build/release/Hello serve --env=production
 ```
 
