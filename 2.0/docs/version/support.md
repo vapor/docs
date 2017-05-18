@@ -23,6 +23,9 @@ Additionally, new features and optimizations may be added. If new API is added, 
 
 When a new version of Vapor is released, the previous version will enter a maintenance phase which lasts for six months. During this phase, critical security issues and bugs will be fixed. No new features will be added.
 
+!!! note
+	Only the latest minor version will be maintained.
+
 ### Unstable
 
 The master branch is the latest development version of Vapor and is constantly changing. Before a new version of Vapor is released, there may be unstable alpha and beta phases in which you are welcome to test and provide feedback on the changes.
