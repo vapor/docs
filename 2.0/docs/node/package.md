@@ -26,4 +26,3 @@ let package = Package(
 ```
 
 Use `import Node` to access Node's APIs
-.
