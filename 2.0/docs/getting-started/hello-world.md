@@ -13,32 +13,48 @@ Let's start by creating a new project called "Hello, World".
 vapor new Hello --template=api
 ```
 
-!!! warning
-    Use `vapor new Hello --template=api --branch=beta` while Vapor 2 is in beta
-
 Vapor's folder structure will probably look familiar to you if you have worked with other web frameworks.
 
 ```
 Hello
-├── Sources
-│   └── App
-│       └── Controllers
-│       └── Middleware
-│       └── Models
-│       └── main.swift
+├── Config
+│   ├── app.json
+│   ├── crypto.json
+│   ├── droplet.json
+│   ├── fluent.json
+│   └── server.json
+├── Package.pins
+├── Package.swift
 ├── Public
-├── Resources
-│   └── Views
-└── Package.swift
+├── README.md
+├── Sources
+│   ├── App
+│   │   ├── Config+Setup.swift
+│   │   ├── Controllers
+│   │   │   └── PostController.swift
+│   │   ├── Droplet+Setup.swift
+│   │   ├── Models
+│   │   │   └── Post.swift
+│   │   └── Routes.swift
+│   └── Run
+│       └── main.swift
+├── Tests
+│   ├── AppTests
+│   │   ├── PostControllerTests.swift
+│   │   ├── RouteTests.swift
+│   │   └── Utilities.swift
+│   └── LinuxMain.swift
+├── circle.yml
+└── license
 ```
 
-For our Hello, World project, we will be focusing on the `main.swift` file.
+For our Hello, World project, we will be focusing on the `Routes.swift` file.
 
 ```
 Hello
 └── Sources
     └── App
-        └── main.swift
+        └── Routes.swift
 ```
 !!! tip
     The `vapor new` command creates a new project with examples and comments about how to use the framework. You can delete these if you want.
@@ -47,25 +63,25 @@ Hello
 
 ### Droplet
 
-Look for the following line in the `main.swift` file.
+Look for the following line in the `Routes.swift` file.
 
 ```swift
-let drop = try Droplet()
+func build(_ builder: RouteBuilder) throws
 ```
 
-This is where the one and only `Droplet `for this example will be created. The [Droplet](../vapor/droplet.md) class has a plethora of useful functions on it, and is used extensively.
+This method is where all the routes for our application will be added. 
 
 ### Routing
 
-Right after the creation of `drop`, add the following code snippet.
+In the scope of the `build` method, look for the following statement.
 
 ```swift
-drop.get("hello") { request in
+builder.get("plaintext") { req in
     return "Hello, world!"
 }
 ```
 
-This creates a new route on the `Droplet` that will match all `GET` requests to `/hello`.
+This creates a new route that will match all `GET` requests to `/plaintext`.
 
 All route closures are passed an instance of [Request](../http/request.md) that contains information such as the URI requested and data sent.
 
@@ -73,16 +89,6 @@ This route simply returns a string, but anything that is [ResponseRepresentable]
 
 !!! tip
     Xcode autocomplete may add extraneous type information to your closure's input arguments. This can be deleted to keep the code clean. If you'd like to keep the type information add `import HTTP` to the top of the file.
-
-### Serving
-
-At the bottom of the main file, make sure to run your `Droplet`.
-
-```swift
-drop.run()
-```
-
-Save the file, and switch back to the terminal.
 
 ## Compile & Run
 
@@ -120,7 +126,7 @@ Boot up the server by running the following command.
 vapor run serve
 ```
 
-You should see a message `Server starting...`. You can now visit `http://localhost:8080/hello` in your browser.
+You should see a message `Server starting...`. You can now visit `http://localhost:8080/plaintext` in your browser.
 
 !!! note
     Certain port numbers require super user access to bind. Simply run `sudo vapor run` to allow access. If you decide to run on a port besides `80`, make sure to direct your browser accordingly.
