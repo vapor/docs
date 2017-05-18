@@ -84,7 +84,7 @@ If you want to modify a property of the `Droplet` only in certain cases, you can
 
 ```swift
 let config = try Config()
-config.addConfigurable(log: MyEmailLogger.self, name: "email")
+config.addConfigurable(log: MyEmailLogger.init, name: "email")
 
 let drop = Droplet(config)
 
