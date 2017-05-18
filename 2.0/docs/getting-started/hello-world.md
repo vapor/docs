@@ -48,7 +48,7 @@ Hello
 └── license
 ```
 
-For our Hello, World project, we will be focusing on the `main.swift` file.
+For our Hello, World project, we will be focusing on the `Routes.swift` file.
 
 ```
 Hello
@@ -69,7 +69,7 @@ Look for the following line in the `Routes.swift` file.
 func build(_ builder: RouteBuilder) throws
 ```
 
-This method is where the routes for the one and only `Drooplet` for this example will be created. The [Droplet](../vapor/droplet.md) class has a plethora of useful functions on it, and is used extensively.
+This method is where all the routes for our application will be added. 
 
 ### Routing
 
@@ -81,7 +81,7 @@ builder.get("plaintext") { req in
 }
 ```
 
-This creates a new route on the `Droplet` that will match all `GET` requests to `/hello`.
+This creates a new route that will match all `GET` requests to `/plaintext`.
 
 All route closures are passed an instance of [Request](../http/request.md) that contains information such as the URI requested and data sent.
 
