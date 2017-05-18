@@ -41,16 +41,13 @@ The toolbox can create a project from the Vapor basic-template or any other git 
 vapor new <name> [--template=<repo-url-or-github-path>]
 ```
 
-!!! warning
-    Use `vapor new --template=api --branch=beta` while Vapor 2 is in beta
-
 ### Options
 
 The toolbox will build an absolute URL based on what you pass as the template option. 
 
-- `--template=light` clones `http://github.com/vapor/light-template`.
+- `--template=web` clones `http://github.com/vapor/web-template`
 - `--template=user/repo` clones `http://github.com/user/repo`.
 - `--template=http://example.com/repo-path` clones the full url given.
 
 !!! note
-    If you do not specify a template option, the project will be built from Vapor's [basic template](https://github.com/vapor/basic-template).
+    If you do not specify a template option, the project will be built from Vapor's [API template](https://github.com/vapor/api-template).
