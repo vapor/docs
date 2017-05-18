@@ -187,7 +187,7 @@
         }, 
         {
             "location": "/getting-started/toolbox/", 
-            "text": "Install Toolbox\n\n\nVapor's command line interface provides shortcuts and assistance for common tasks.\n\n\n\n\n\n\nTip\n\n\nIf you do not want to use the Toolbox or templates, checkout the \nManual\n quickstart.\n\n\n\n\nHelp\n\n\nHelp prints useful information about available commands and flags. You can also run the \n--help\n option on any Toolbox command.\n\n\nvapor --help\n\n\n\n\n\nUpdating\n\n\nThe toolbox should be updated by the package manager it was installed with.\n\n\nHomebrew\n\n\nbrew upgrade vapor\n\n\n\n\n\nAPT\n\n\napt-get update\napt-get install vapor\n\n\n\n\n\nTemplates\n\n\nThe toolbox can create a project from the Vapor basic-template or any other git repo.\n\n\nvapor new \nname\n \n[\n--template\n=\nrepo-url-or-github-path\n]\n\n\n\n\n\n\n\n\nWarning\n\n\nUse \nvapor new --template=api --branch=beta\n while Vapor 2 is in beta\n\n\n\n\nOptions\n\n\nThe toolbox will build an absolute URL based on what you pass as the template option. \n\n\n\n\n--template=light\n clones \nhttp://github.com/vapor/light-template\n.\n\n\n--template=user/repo\n clones \nhttp://github.com/user/repo\n.\n\n\n--template=http://example.com/repo-path\n clones the full url given.\n\n\n\n\n\n\nNote\n\n\nIf you do not specify a template option, the project will be built from Vapor's \nbasic template\n.", 
+            "text": "Install Toolbox\n\n\nVapor's command line interface provides shortcuts and assistance for common tasks.\n\n\n\n\n\n\nTip\n\n\nIf you do not want to use the Toolbox or templates, checkout the \nManual\n quickstart.\n\n\n\n\nHelp\n\n\nHelp prints useful information about available commands and flags. You can also run the \n--help\n option on any Toolbox command.\n\n\nvapor --help\n\n\n\n\n\nUpdating\n\n\nThe toolbox should be updated by the package manager it was installed with.\n\n\nHomebrew\n\n\nbrew upgrade vapor\n\n\n\n\n\nAPT\n\n\napt-get update\napt-get install vapor\n\n\n\n\n\nTemplates\n\n\nThe toolbox can create a project from the Vapor basic-template or any other git repo.\n\n\nvapor new \nname\n \n[\n--template\n=\nrepo-url-or-github-path\n]\n\n\n\n\n\n\nOptions\n\n\nThe toolbox will build an absolute URL based on what you pass as the template option. \n\n\n\n\n--template=web\n clones \nhttp://github.com/vapor/web-template\n\n\n--template=user/repo\n clones \nhttp://github.com/user/repo\n.\n\n\n--template=http://example.com/repo-path\n clones the full url given.\n\n\n\n\n\n\nNote\n\n\nIf you do not specify a template option, the project will be built from Vapor's \nAPI template\n.", 
             "title": "Toolbox"
         }, 
         {
@@ -217,12 +217,12 @@
         }, 
         {
             "location": "/getting-started/toolbox/#templates", 
-            "text": "The toolbox can create a project from the Vapor basic-template or any other git repo.  vapor new  name   [ --template = repo-url-or-github-path ]    Warning  Use  vapor new --template=api --branch=beta  while Vapor 2 is in beta", 
+            "text": "The toolbox can create a project from the Vapor basic-template or any other git repo.  vapor new  name   [ --template = repo-url-or-github-path ]", 
             "title": "Templates"
         }, 
         {
             "location": "/getting-started/toolbox/#options", 
-            "text": "The toolbox will build an absolute URL based on what you pass as the template option.    --template=light  clones  http://github.com/vapor/light-template .  --template=user/repo  clones  http://github.com/user/repo .  --template=http://example.com/repo-path  clones the full url given.    Note  If you do not specify a template option, the project will be built from Vapor's  basic template .", 
+            "text": "The toolbox will build an absolute URL based on what you pass as the template option.    --template=web  clones  http://github.com/vapor/web-template  --template=user/repo  clones  http://github.com/user/repo .  --template=http://example.com/repo-path  clones the full url given.    Note  If you do not specify a template option, the project will be built from Vapor's  API template .", 
             "title": "Options"
         }, 
         {
@@ -2632,7 +2632,7 @@
         }, 
         {
             "location": "/node/package/", 
-            "text": "Using Node\n\n\nWith Vapor\n\n\nThis package is included with Vapor by default, just add:\n\n\nimport\n \nNode\n\n\n\n\n\n\nWithout Vapor\n\n\nNode provides a lot of conveniences for any server-side, or client side Swift project. To include it in your package, add the following to your \nPackage.swift\n file.\n\n\nimport\n \nPackageDescription\n\n\n\nlet\n \npackage\n \n=\n \nPackage\n(\n\n    \nname\n:\n \nProject\n,\n\n    \ndependencies\n:\n \n[\n\n        \n...\n\n        \n.\nPackage\n(\nurl\n:\n \nhttps://github.com/vapor/node.git\n,\n \nmajorVersion\n:\n \n2\n)\n\n    \n],\n\n    \nexclude\n:\n \n[\n \n...\n \n]\n\n\n)\n\n\n\n\n\n\nUse \nimport Node\n to access Node's APIs\n.", 
+            "text": "Using Node\n\n\nWith Vapor\n\n\nThis package is included with Vapor by default, just add:\n\n\nimport\n \nNode\n\n\n\n\n\n\nWithout Vapor\n\n\nNode provides a lot of conveniences for any server-side, or client side Swift project. To include it in your package, add the following to your \nPackage.swift\n file.\n\n\nimport\n \nPackageDescription\n\n\n\nlet\n \npackage\n \n=\n \nPackage\n(\n\n    \nname\n:\n \nProject\n,\n\n    \ndependencies\n:\n \n[\n\n        \n...\n\n        \n.\nPackage\n(\nurl\n:\n \nhttps://github.com/vapor/node.git\n,\n \nmajorVersion\n:\n \n2\n)\n\n    \n],\n\n    \nexclude\n:\n \n[\n \n...\n \n]\n\n\n)\n\n\n\n\n\n\nUse \nimport Node\n to access Node's APIs", 
             "title": "Package"
         }, 
         {
@@ -2647,7 +2647,7 @@
         }, 
         {
             "location": "/node/package/#without-vapor", 
-            "text": "Node provides a lot of conveniences for any server-side, or client side Swift project. To include it in your package, add the following to your  Package.swift  file.  import   PackageDescription  let   package   =   Package ( \n     name :   Project , \n     dependencies :   [ \n         ... \n         . Package ( url :   https://github.com/vapor/node.git ,   majorVersion :   2 ) \n     ], \n     exclude :   [   ...   ]  )   Use  import Node  to access Node's APIs\n.", 
+            "text": "Node provides a lot of conveniences for any server-side, or client side Swift project. To include it in your package, add the following to your  Package.swift  file.  import   PackageDescription  let   package   =   Package ( \n     name :   Project , \n     dependencies :   [ \n         ... \n         . Package ( url :   https://github.com/vapor/node.git ,   majorVersion :   2 ) \n     ], \n     exclude :   [   ...   ]  )   Use  import Node  to access Node's APIs", 
             "title": "Without Vapor"
         }, 
         {
