@@ -74,6 +74,7 @@ pages:
 - Validation: 'validation/overview.md'
 - Node:
     - 'Package': 'node/package.md'
+    - 'Getting Started': 'node/getting-started.md'
 - Core: 
     - 'Package': 'core/package.md'
     - 'Overview': 'core/overview.md'
