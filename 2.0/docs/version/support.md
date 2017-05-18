@@ -1,9 +1,13 @@
 # Version Support
 
-![Support Matrix](https://cloud.githubusercontent.com/assets/1342803/26204807/ca86b23c-3bd7-11e7-83cb-fbafac2e90d5.png)
+![Support Matrix](https://cloud.githubusercontent.com/assets/1342803/26206235/24c6ebb4-3bdc-11e7-9cea-1405030f20b0.png)
 
 Vapor 2.0 is currently active.
 Vapor 1.5 is being maintained until November 2017.
+
+!!! warning
+	Dashed blocks and lines represent the team's goals and are not yet guaranteed. 
+	Vapor 3's release and the beginning of Vapor 2's maintenance phase have not yet been decided.
 
 ## Core
 
@@ -17,7 +21,7 @@ Additionally, new features and optimizations may be added. If new API is added, 
 
 ### Maintenance 
 
-When a new version of Vapor is released, the previous version will enter a maintenance phase which lasts for six months. During this phase critical security issues and bugs will be fixed. No new features will be added.
+When a new version of Vapor is released, the previous version will enter a maintenance phase which lasts for six months. During this phase, critical security issues and bugs will be fixed. No new features will be added.
 
 ### Unstable
 
