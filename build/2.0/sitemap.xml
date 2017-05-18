@@ -464,13 +464,19 @@
     
         
     <url>
-     <loc>/switch/1_5/</loc>
+     <loc>/version/1_5/</loc>
      <lastmod>2017-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/switch/2_0/</loc>
+     <loc>/version/2_0/</loc>
+     <lastmod>2017-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/version/support/</loc>
      <lastmod>2017-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>

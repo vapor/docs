@@ -289,6 +289,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#core" title="Core" class="md-nav__link">
+    Core
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#included" title="Included" class="md-nav__link">
     Included
   </a>
@@ -296,21 +304,26 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#extras" title="Extras" class="md-nav__link">
-    Extras
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#third-party" title="Third Party" class="md-nav__link">
-    Third Party
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#providers" title="Providers" class="md-nav__link">
+    Providers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#community" title="Community" class="md-nav__link">
+    Community
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providers_1" title="Providers" class="md-nav__link">
     Providers
   </a>
   
@@ -1548,7 +1561,7 @@
 
 
   <li class="md-nav__item">
-    <a href="switch/1_5/" title="1.5" class="md-nav__link">
+    <a href="version/1_5/" title="1.5" class="md-nav__link">
       1.5
     </a>
   </li>
@@ -1560,8 +1573,20 @@
 
 
   <li class="md-nav__item">
-    <a href="switch/2_0/" title="2.0" class="md-nav__link">
+    <a href="version/2_0/" title="2.0" class="md-nav__link">
       2.0
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="version/support/" title="Support" class="md-nav__link">
+      Support
     </a>
   </li>
 
@@ -1674,6 +1699,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#core" title="Core" class="md-nav__link">
+    Core
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#included" title="Included" class="md-nav__link">
     Included
   </a>
@@ -1681,21 +1714,26 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#extras" title="Extras" class="md-nav__link">
-    Extras
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#third-party" title="Third Party" class="md-nav__link">
-    Third Party
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#providers" title="Providers" class="md-nav__link">
+    Providers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#community" title="Community" class="md-nav__link">
+    Community
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providers_1" title="Providers" class="md-nav__link">
     Providers
   </a>
   
@@ -1749,11 +1787,13 @@
 <h2 id="packages">Packages<a class="headerlink" href="#packages" title="Permanent link">&para;</a></h2>
 <p>Vapor is a modular framework built for a modular language. Code is split up into modules which are grouped to form packages. Packages can be added to your project by adding the package's Git url to your <code>Package.swift</code> file. Once a package is included, all of its modules will be available to <code>import</code>. You can read more about packages and modules in the Swift Package Manager <a href="https://swift.org/package-manager/">conceptual overview</a>. </p>
 <p>Below is a list of packages and modules that come with or can be used by Vapor projects. Packages will have a link to their respective GitHub page.</p>
-<h3 id="included">Included<a class="headerlink" href="#included" title="Permanent link">&para;</a></h3>
-<p>Here is a list of all the packages and modules included with Vapor. </p>
+<h3 id="core">Core<a class="headerlink" href="#core" title="Permanent link">&para;</a></h3>
+<p>Core packages are maintained by the Vapor team. </p>
+<h4 id="included">Included<a class="headerlink" href="#included" title="Permanent link">&para;</a></h4>
+<p>The following packages are included with Vapor by default.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>While these packages are included in Vapor by default, they can also be used individually.</p>
+<p>These packages can also be used individually</p>
 </div>
 <ul>
 <li><a href="https://github.com/vapor/vapor">Vapor</a>: Swift's most used web framework.<ul>
@@ -1764,8 +1804,8 @@
 </ul>
 </li>
 <li><a href="https://github.com/vapor/engine">Engine</a>: Core transport layers.<ul>
-<li>HTTP: Pure Swift HTTP client and server.</li>
-<li>URI: Pure Swift URI parsing and serializing.</li>
+<li>HTTP: HTTP client and server.</li>
+<li>URI: URI parsing and serializing.</li>
 <li>WebSockets: Full-duplex communication channels over a single TCP connection.</li>
 <li>SMTP: Send email using Sendgrid and Gmail.</li>
 </ul>
@@ -1794,7 +1834,7 @@
 <li><a href="https://github.com/vapor/socks">Socks</a>: Swift C Socket API wrapper.</li>
 <li><a href="https://github.com/vapor/bits">Bits</a>: Low level byte manipulation helpers</li>
 </ul>
-<h3 id="extras">Extras<a class="headerlink" href="#extras" title="Permanent link">&para;</a></h3>
+<h4 id="providers">Providers<a class="headerlink" href="#providers" title="Permanent link">&para;</a></h4>
 <p>These are officially supported packages for Vapor that are not included by default.</p>
 <ul>
 <li><a href="https://github.com/vapor/fluent">Fluent</a>: Models, relationships, and querying for NoSQL and SQL databases.<ul>
@@ -1819,8 +1859,8 @@
 </ul>
 </li>
 </ul>
-<h3 id="third-party">Third Party<a class="headerlink" href="#third-party" title="Permanent link">&para;</a></h3>
-<p>These are packages created by community members that work great with Vapor.</p>
+<h3 id="community">Community<a class="headerlink" href="#community" title="Permanent link">&para;</a></h3>
+<p>These are packages maintained by community members that work great with Vapor.</p>
 <ul>
 <li><a href="https://github.com/vapor/postgresql">PostgreSQL</a>: Robust PostgreSQL interface for Swift.<ul>
 <li><a href="https://github.com/vapor/postgresql-driver">PostgreSQL Driver</a>: PostgreSQL driver for Fluent.</li>
@@ -1846,7 +1886,7 @@
 <li><a href="https://github.com/BrettRToomey/Jobs">Jobs</a>: A minimalistic job/background-task system for Swift.</li>
 <li><a href="https://github.com/himani93/heimdall">Heimdall</a>: An easy to use HTTP request logger.</li>
 </ul>
-<h3 id="providers">Providers<a class="headerlink" href="#providers" title="Permanent link">&para;</a></h3>
+<h3 id="providers_1">Providers<a class="headerlink" href="#providers_1" title="Permanent link">&para;</a></h3>
 <p>Vapor providers are a convenient way to add functionality to your Vapor projects. For a full list of providers, check out the <a href="https://github.com/search?utf8=✓&amp;q=topic%3Avapor-provider&amp;type=Repositories"><code>vapor-provider</code></a> tag on GitHub.</p>
 <h2 id="authors">Authors<a class="headerlink" href="#authors" title="Permanent link">&para;</a></h2>
 <p><a href="mailto:tanner@vapor.codes">Tanner Nelson</a>, <a href="mailto:logan@vapor.codes">Logan Wright</a>, and the hundreds of members of Vapor.</p>
