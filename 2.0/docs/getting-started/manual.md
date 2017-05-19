@@ -1,8 +1,8 @@
 # Manual Quickstart
 
-Learn how to create a Vapor project _without_ the Toolbox using just Swift 3 and the Swift Package Manager.
+Learn how to create a Vapor project _without_ the Toolbox using just Swift 3 and the Swift Package Manager (SPM).
 
-This document assumes that you have Swift 3.1 installed.
+This document assumes that you have Swift 3.1 installed, if not please refer to [Swift.org](https://swift.org/getting-started/#installing-swift) before you can continue.
 
 !!! tip
     If you'd prefer to use the Toolbox, follow the toolbox guide [here](hello-world.md).
@@ -21,7 +21,7 @@ cd Hello
 swift package init --type executable
 ```
 
-Your folder should look like this:
+Your folder structure should look like this:
 
 ```
 ├── Package.swift
@@ -38,11 +38,11 @@ Open your `Package.swift` file:
 open Package.swift
 ```
 
-And add Vapor as a dependency. Here's how your file will look.
-
-### Package.swift
+And add Vapor as a dependency. Here's how your `Package.swift` should look like.
 
 ```swift
+// swift-tools-version:3.1
+
 import PackageDescription
 
 let package = Package(
@@ -63,16 +63,16 @@ A simple hello world:
 ```swift
 import Vapor
 
-let drop = Droplet()
+let drop = try Droplet()
 
 drop.get("hello") { req in
   return "Hello Vapor"
 }
 
-drop.run()
+try drop.run()
 ```
 
-## Compile & Run
+### Compile & Run (Development)
 
 The first `build` command can take a while to fetch dependencies.
 
@@ -93,6 +93,6 @@ swift build --configuration release
 .build/release/Hello serve --env=production
 ```
 
-## View
+### View
 
 Go to your favorite browser and visit `http://localhost:8080/hello`
