@@ -416,11 +416,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      Settings
+      Configs
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Settings
+        Configs
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -431,7 +431,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../settings/config/" title="Config" class="md-nav__link">
+    <a href="../../configs/config/" title="Config" class="md-nav__link">
       Config
     </a>
   </li>
@@ -947,6 +947,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -1053,6 +1065,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../http/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
         
           
           
@@ -1441,11 +1465,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-20" type="checkbox" id="nav-20">
     
     <label class="md-nav__link" for="nav-20">
-      Advanced
+      Deploy
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-20">
-        Advanced
+        Deploy
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -1456,8 +1480,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../advanced/modules/" title="Modules" class="md-nav__link">
-      Modules
+    <a href="../../deploy/nginx/" title="Nginx" class="md-nav__link">
+      Nginx
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/supervisor/" title="Supervisor" class="md-nav__link">
+      Supervisor
     </a>
   </li>
 
@@ -1610,33 +1646,39 @@
                
               
                 
-                <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This section may contain outdated information.</p>
-</div>
-<h1 id="sessions">Sessions<a class="headerlink" href="#sessions" title="Permanent link">&para;</a></h1>
+                <h1 id="sessions">Sessions<a class="headerlink" href="#sessions" title="Permanent link">&para;</a></h1>
 <p>Sessions help you store information about a user between requests. As long as the client supports cookies, sessions are easy to create.</p>
 <h2 id="middleware">Middleware<a class="headerlink" href="#middleware" title="Permanent link">&para;</a></h2>
-<p>Enable sessions on your <code>Droplet</code> by adding an instance of <code>SessionMiddleware</code>.</p>
+<p>Enable sessions on your <code>Droplet</code> by adding <code>"sessions"</code> to your middleware array.</p>
+<p><code>Config/droplet.json</code></p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="err">...,</span>
+    <span class="nt">&quot;middleware&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="err">...</span><span class="p">,</span>
+        <span class="s2">&quot;sessions&quot;</span><span class="p">,</span>
+        <span class="err">...</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="err">...,</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>By default, the memory sessions driver will be used. You can change this with the <code>droplet.sessions</code> key.</p>
+<p><code>Config/droplet.json</code></p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="err">...,</span>
+    <span class="nt">&quot;sessions&quot;</span><span class="p">:</span> <span class="s2">&quot;memory&quot;</span><span class="p">,</span>
+    <span class="err">...,</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="request">Request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h2>
+<p>After <code>SessionMiddleware</code> has been enabled, you can access the <code>req.assertSession()</code> method to get access to session.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Sessions</span>
 
-<span class="kd">let</span> <span class="nv">memory</span> <span class="p">=</span> <span class="n">MemorySessions</span><span class="p">()</span>
-<span class="kd">let</span> <span class="nv">sessions</span> <span class="p">=</span> <span class="n">SessionsMiddleware</span><span class="p">(</span><span class="n">sessions</span><span class="p">:</span> <span class="n">memory</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Then add to the <code>Droplet</code>.</p>
-<div class="codehilite"><pre><span></span>let drop = Droplet()
-drop.middleware.append(sessions)
-</pre></div>
-
-
-<blockquote>
-<p>Note: If you'd like to enable or disable the middleware based on config files, check out <a href="../../http/middleware/">middleware</a>.</p>
-</blockquote>
-<h2 id="request">Request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h2>
-<p>After <code>SessionMiddleware</code> has been enabled, you can access the <code>req.sessions()</code> method to get access to session data.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">data</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">session</span><span class="p">().</span><span class="n">data</span>
+<span class="kd">let</span> <span class="nv">session</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">assertSession</span><span class="p">()</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">session</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 
 
@@ -1645,10 +1687,11 @@ drop.middleware.append(sessions)
 <h3 id="store">Store<a class="headerlink" href="#store" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">drop</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;remember&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
     <span class="k">guard</span> <span class="kd">let</span> <span class="nv">name</span> <span class="p">=</span> <span class="n">req</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">]?.</span><span class="n">string</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="n">Abort</span><span class="p">.</span><span class="n">badRequest</span>
+        <span class="k">throw</span> <span class="n">Abort</span><span class="p">(.</span><span class="n">badRequest</span><span class="p">)</span>
     <span class="p">}</span>
 
-    <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">session</span><span class="p">().</span><span class="n">data</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="n">Node</span><span class="p">.</span><span class="n">string</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nv">session</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">assertSession</span><span class="p">()</span>
+    <span class="k">try</span> <span class="n">session</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="s">&quot;Remebered name.&quot;</span>
 <span class="p">}</span>
@@ -1659,8 +1702,10 @@ drop.middleware.append(sessions)
 <h3 id="fetch">Fetch<a class="headerlink" href="#fetch" title="Permanent link">&para;</a></h3>
 <p>On <code>GET /remember</code>, fetch the <code>name</code> from the session data and return it.</p>
 <div class="codehilite"><pre><span></span><span class="n">drop</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;remember&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
-    <span class="k">guard</span> <span class="kd">let</span> <span class="nv">name</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">session</span><span class="p">().</span><span class="n">data</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">]?.</span><span class="n">string</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">throw</span> <span class="n">Abort</span><span class="p">.</span><span class="n">custom</span><span class="p">(</span><span class="n">status</span><span class="p">:</span> <span class="p">.</span><span class="n">badRequest</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="s">&quot;Please POST the name first.&quot;</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nv">session</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">assertSession</span><span class="p">()</span>
+
+    <span class="k">guard</span> <span class="kd">let</span> <span class="nv">name</span> <span class="p">=</span> <span class="n">session</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">]?.</span><span class="n">string</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">throw</span> <span class="n">Abort</span><span class="p">(.</span><span class="n">badRequest</span><span class="p">,</span> <span class="n">reason</span><span class="p">:</span> <span class="s">&quot;Please POST the name first.&quot;</span><span class="p">)</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">name</span>
@@ -1683,7 +1728,7 @@ drop.middleware.append(sessions)
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../auth/persist/" title="Persist" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../package/" title="Package" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1692,19 +1737,19 @@ drop.middleware.append(sessions)
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Persist
+                Package
               </span>
             </div>
           </a>
         
         
-          <a href="../../http/request/" title="Request" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../http/package/" title="Package" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Request
+                Package
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

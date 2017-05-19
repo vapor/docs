@@ -416,11 +416,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      Settings
+      Configs
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Settings
+        Configs
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -431,7 +431,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../settings/config/" title="Config" class="md-nav__link">
+    <a href="../../configs/config/" title="Config" class="md-nav__link">
       Config
     </a>
   </li>
@@ -947,6 +947,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../sessions/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../sessions/sessions/" title="Sessions" class="md-nav__link">
       Sessions
     </a>
@@ -978,6 +990,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
         
           
           
@@ -1107,19 +1131,6 @@
     Config
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#multiple" title="Multiple" class="md-nav__link">
-    Multiple
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1225,29 +1236,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#manual" title="Manual" class="md-nav__link">
-    Manual
+  <a href="#nginx" title="Nginx" class="md-nav__link">
+    Nginx
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#simple" title="Simple" class="md-nav__link">
-    Simple
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tls_1" title="TLS" class="md-nav__link">
-    TLS
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1549,11 +1540,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-20" type="checkbox" id="nav-20">
     
     <label class="md-nav__link" for="nav-20">
-      Advanced
+      Deploy
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-20">
-        Advanced
+        Deploy
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -1564,8 +1555,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../advanced/modules/" title="Modules" class="md-nav__link">
-      Modules
+    <a href="../../deploy/nginx/" title="Nginx" class="md-nav__link">
+      Nginx
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/supervisor/" title="Supervisor" class="md-nav__link">
+      Supervisor
     </a>
   </li>
 
@@ -1666,19 +1669,6 @@
   <a href="#config" title="Config" class="md-nav__link">
     Config
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#multiple" title="Multiple" class="md-nav__link">
-    Multiple
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1785,29 +1775,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#manual" title="Manual" class="md-nav__link">
-    Manual
+  <a href="#nginx" title="Nginx" class="md-nav__link">
+    Nginx
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#simple" title="Simple" class="md-nav__link">
-    Simple
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tls_1" title="TLS" class="md-nav__link">
-    TLS
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1826,57 +1796,29 @@
                
               
                 
-                <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This section may contain outdated information.</p>
-</div>
-<h1 id="server">Server<a class="headerlink" href="#server" title="Permanent link">&para;</a></h1>
+                <h1 id="server">Server<a class="headerlink" href="#server" title="Permanent link">&para;</a></h1>
 <p>The server is responsible for accepting connections from clients, parsing their requests, and delivering them a response. </p>
 <h2 id="default">Default<a class="headerlink" href="#default" title="Permanent link">&para;</a></h2>
 <p>Starting your Droplet with a default server is simple.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Vapor</span>
 
-<span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="n">Droplet</span><span class="p">()</span>
-
-<span class="n">drop</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+<span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Droplet</span><span class="p">()</span>
+<span class="k">try</span> <span class="n">drop</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 
 
 <p>The default server will bind to host <code>0.0.0.0</code> at port <code>8080</code>.</p>
 <h2 id="config">Config<a class="headerlink" href="#config" title="Permanent link">&para;</a></h2>
-<p>If you are using a <code>Config/servers.json</code> file, this is where you can easily change your host and port or even boot multiple servers.</p>
+<p>If you are using a <code>Config/server.json</code> file, this is where you can easily change your host and port.</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;$PORT:8080&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;securityLayer&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span>
-    <span class="p">}</span>
+    <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;$PORT:8080&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;securityLayer&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<p>The default <code>servers.json</code> is above. The port with try to resolve the environment variable <code>$PORT</code> or fallback to <code>8080</code>.</p>
-<h3 id="multiple">Multiple<a class="headerlink" href="#multiple" title="Permanent link">&para;</a></h3>
-<p>You can start multiple servers in the same application. This is especially useful if you want to boot an <code>HTTP</code> and <code>HTTPS</code> server side by side.</p>
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;plaintext&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;80&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;vapor.codes&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;securityLayer&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span>
-    <span class="p">},</span>
-    <span class="nt">&quot;secure&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;443&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;vapor.codes&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;securityLayer&quot;</span><span class="p">:</span> <span class="s2">&quot;tls&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;tls&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&quot;certificates&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;signature&quot;</span><span class="p">:</span> <span class="s2">&quot;selfSigned&quot;</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-<span class="p">}</span>
-</pre></div>
-
-
+<p>The default <code>server.json</code> is above. The port with try to resolve the environment variable <code>$PORT</code> or fallback to <code>8080</code>.</p>
 <h2 id="tls">TLS<a class="headerlink" href="#tls" title="Permanent link">&para;</a></h2>
 <p>TLS (formerly SSL) can be configured with a variety of different certificate and signature types.</p>
 <h3 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h3>
@@ -1885,8 +1827,8 @@
 <p>Note: Be extremely careful when disabling these options.</p>
 </blockquote>
 <div class="codehilite"><pre><span></span><span class="s2">&quot;tls&quot;</span><span class="err">:</span> <span class="p">{</span>
-   <span class="nt">&quot;verifyHost&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-   <span class="nt">&quot;verifyCertificates&quot;</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="nt">&quot;verifyHost&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;verifyCertificates&quot;</span><span class="p">:</span> <span class="kc">false</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -1948,62 +1890,24 @@
 
 
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<p>Here is an example <code>servers.json</code> file using certificate files with a self signed signature and host verification redundantly set to <code>true</code>.</p>
+<p>Here is an example <code>server.json</code> file using certificate files with a self signed signature and host verification redundantly set to <code>true</code>.</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;secure&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;8443&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;securityLayer&quot;</span><span class="p">:</span> <span class="s2">&quot;tls&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;tls&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&quot;verifyHost&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="nt">&quot;certificates&quot;</span><span class="p">:</span> <span class="s2">&quot;files&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;certificateFile&quot;</span><span class="p">:</span> <span class="s2">&quot;/vapor/certs/cert.pem&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;privateKeyFile&quot;</span><span class="p">:</span> <span class="s2">&quot;/vapor/certs/key.pem&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;signature&quot;</span><span class="p">:</span> <span class="s2">&quot;selfSigned&quot;</span>
-        <span class="p">}</span>
+    <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;8443&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;securityLayer&quot;</span><span class="p">:</span> <span class="s2">&quot;tls&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;tls&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;verifyHost&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nt">&quot;certificates&quot;</span><span class="p">:</span> <span class="s2">&quot;files&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;certificateFile&quot;</span><span class="p">:</span> <span class="s2">&quot;/vapor/certs/cert.pem&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;privateKeyFile&quot;</span><span class="p">:</span> <span class="s2">&quot;/vapor/certs/key.pem&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;signature&quot;</span><span class="p">:</span> <span class="s2">&quot;selfSigned&quot;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<h2 id="manual">Manual<a class="headerlink" href="#manual" title="Permanent link">&para;</a></h2>
-<p>Servers can also be configured manually, without configuration files. </p>
-<blockquote>
-<p>Note: If servers are configured programatically, they override any config settings.</p>
-</blockquote>
-<h3 id="simple">Simple<a class="headerlink" href="#simple" title="Permanent link">&para;</a></h3>
-<p>The <code>run</code> method on the Droplet takes a dictionary of server configuration objects. The key is the name of the server.</p>
-<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Vapor</span>
-
-<span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="n">Droplet</span><span class="p">()</span>
-
-<span class="n">drop</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">servers</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s">&quot;default&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">host</span><span class="p">:</span> <span class="s">&quot;vapor.codes&quot;</span><span class="p">,</span> <span class="n">port</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span> <span class="n">securityLayer</span><span class="p">:</span> <span class="p">.</span><span class="kr">none</span><span class="p">)</span>
-<span class="p">]</span>
-</pre></div>
-
-
-<h3 id="tls_1">TLS<a class="headerlink" href="#tls_1" title="Permanent link">&para;</a></h3>
-<p>TLS can also be configured manually, and works similarly to the <code>servers.json</code> config files described above.</p>
-<p>```swift
-import Vapor
-import TLS</p>
-<p>let drop = Droplet()</p>
-<p>let config = try TLS.Config(
-    mode: .server,
-    certificates: .files(
-        certificateFile: "/Users/tanner/Desktop/certs/cert.pem", 
-        privateKeyFile: "/Users/tanner/Desktop/certs/key.pem", 
-        signature: .selfSigned
-    ),
-    verifyHost: true,
-    verifyCertificates: true
-)</p>
-<p>drop.run(servers: [
-    "plaintext": ("vapor.codes", 8080, .none),
-    "secure": ("vapor.codes", 8443, .tls(config)),
-])
-````</p>
+<h2 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h2>
+<p>It is highly recommended that you serve your Vapor project behind Nginx in production. Read more in the <a href="../../deploy/nginx/">deploy Nginx</a> section.</p>
               
               
             </article>

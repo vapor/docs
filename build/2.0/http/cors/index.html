@@ -416,11 +416,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      Settings
+      Configs
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Settings
+        Configs
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -431,7 +431,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../settings/config/" title="Config" class="md-nav__link">
+    <a href="../../configs/config/" title="Config" class="md-nav__link">
       Config
     </a>
   </li>
@@ -947,6 +947,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../sessions/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../sessions/sessions/" title="Sessions" class="md-nav__link">
       Sessions
     </a>
@@ -978,6 +990,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
         
           
           
@@ -1125,13 +1149,6 @@
           <li class="md-nav__item">
   <a href="#configuration" title="Configuration" class="md-nav__link">
     Configuration
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#json-config" title="JSON Config" class="md-nav__link">
-    JSON Config
   </a>
   
 </li>
@@ -1427,11 +1444,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-20" type="checkbox" id="nav-20">
     
     <label class="md-nav__link" for="nav-20">
-      Advanced
+      Deploy
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-20">
-        Advanced
+        Deploy
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -1442,8 +1459,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../advanced/modules/" title="Modules" class="md-nav__link">
-      Modules
+    <a href="../../deploy/nginx/" title="Nginx" class="md-nav__link">
+      Nginx
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/supervisor/" title="Supervisor" class="md-nav__link">
+      Supervisor
     </a>
   </li>
 
@@ -1555,13 +1584,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#json-config" title="JSON Config" class="md-nav__link">
-    JSON Config
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1582,11 +1604,7 @@
                
               
                 
-                <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This section may contain outdated information.</p>
-</div>
-<h1 id="cors">CORS<a class="headerlink" href="#cors" title="Permanent link">&para;</a></h1>
+                <h1 id="cors">CORS<a class="headerlink" href="#cors" title="Permanent link">&para;</a></h1>
 <p>Vapor by default provides a middleware for implementing proper support for Cross-Origin Resource Sharing (CORS) named <code>CORSMiddleware</code>.</p>
 <p>"Cross-Origin Resource Sharing (CORS) is a specification that enables truly open access across domain-boundaries. If you serve public content, please consider using CORS to open it up for universal JavaScript / browser access." - <a href="http://enable-cors.org/">http://enable-cors.org/</a></p>
 <p>To learn more about middlewares, please visit the Middleware section of the documentation <a href="https://vapor.github.io/documentation/guide/middleware.html">here</a>.</p>
@@ -1594,8 +1612,32 @@
 <em>Image Author: <a href="https://commons.wikimedia.org/wiki/File:Flowchart_showing_Simple_and_Preflight_XHR.svg">Wikipedia</a></em></p>
 <h2 id="basic">Basic<a class="headerlink" href="#basic" title="Permanent link">&para;</a></h2>
 <p>First of all, add the CORS middleware into your droplet middlewares array.</p>
-<div class="codehilite"><pre><span></span><span class="p">#</span> <span class="n">Insert</span> <span class="n">CORS</span> <span class="n">before</span> <span class="n">any</span> <span class="n">other</span> <span class="n">middlewares</span>
-<span class="n">drop</span><span class="p">.</span><span class="n">middleware</span><span class="p">.</span><span class="bp">insert</span><span class="p">(</span><span class="n">CORSMiddleware</span><span class="p">(),</span> <span class="n">at</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+<p><code>Config/droplet.json</code></p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="err">...,</span>
+    <span class="nt">&quot;middleware&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="err">...</span><span class="p">,</span>
+        <span class="s2">&quot;cors&quot;</span><span class="p">,</span>
+        <span class="err">...</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="err">...,</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Next time you boot your application, you will be prompted to add a <code>Config/cors.json</code> file.</p>
+<p><code>Config/cors.json</code></p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;allowedOrigin&quot;</span><span class="p">:</span> <span class="s2">&quot;*&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;allowedMethods&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;PUT&quot;</span><span class="p">,</span> <span class="s2">&quot;OPTIONS&quot;</span><span class="p">,</span> <span class="s2">&quot;DELETE&quot;</span><span class="p">,</span> <span class="s2">&quot;PATCH&quot;</span><span class="p">],</span>
+    <span class="nt">&quot;allowedHeaders&quot;</span><span class="p">:</span> <span class="p">[</span>
+       <span class="s2">&quot;Accept&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;Authorization&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;Content-Type&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;Origin&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;X-Requested-With&quot;</span>
+    <span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 
 
@@ -1622,47 +1664,37 @@
 <p>See below for how to set up both and what are the options.</p>
 <h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
 <p>The <code>CORSConfiguration</code> struct is used to configure the <code>CORSMiddleware</code>. You can instanitate one like this:</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">configuration</span> <span class="p">=</span> <span class="n">CORSConfiguration</span><span class="p">(</span><span class="n">allowedOrigin</span><span class="p">:</span> <span class="p">.</span><span class="n">custom</span><span class="p">(</span><span class="s">&quot;https://vapor.codes&quot;</span><span class="p">),</span>
-                                          <span class="n">allowedMethods</span><span class="p">:</span> <span class="p">[.</span><span class="kr">get</span><span class="p">,</span> <span class="p">.</span><span class="n">post</span><span class="p">,</span> <span class="p">.</span><span class="n">options</span><span class="p">],</span>
-                                          <span class="n">allowedHeaders</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;Accept&quot;</span><span class="p">,</span> <span class="s">&quot;Authorization&quot;</span><span class="p">],</span>
-                                          <span class="n">allowCredentials</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-                                          <span class="n">cacheExpiration</span><span class="p">:</span> <span class="mi">600</span><span class="p">,</span>
-                                          <span class="n">exposedHeaders</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;Cache-Control&quot;</span><span class="p">,</span> <span class="s">&quot;Content-Language&quot;</span><span class="p">])</span>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">config</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Config</span><span class="p">()</span>
+<span class="n">config</span><span class="p">.</span><span class="n">addConfigurable</span><span class="p">(</span><span class="n">middleware</span><span class="p">:</span> <span class="p">{</span> <span class="n">config</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="n">CORSConfiguration</span><span class="p">(</span>
+        <span class="n">allowedOrigin</span><span class="p">:</span> <span class="p">.</span><span class="n">custom</span><span class="p">(</span><span class="s">&quot;https://vapor.codes&quot;</span><span class="p">),</span>
+        <span class="n">allowedMethods</span><span class="p">:</span> <span class="p">[.</span><span class="kr">get</span><span class="p">,</span> <span class="p">.</span><span class="n">post</span><span class="p">,</span> <span class="p">.</span><span class="n">options</span><span class="p">],</span>
+        <span class="n">allowedHeaders</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;Accept&quot;</span><span class="p">,</span> <span class="s">&quot;Authorization&quot;</span><span class="p">],</span>
+        <span class="n">allowCredentials</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="n">cacheExpiration</span><span class="p">:</span> <span class="mi">600</span><span class="p">,</span>
+        <span class="n">exposedHeaders</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;Cache-Control&quot;</span><span class="p">,</span> <span class="s">&quot;Content-Language&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">},</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;custom-cors&quot;</span><span class="p">)</span>
 </pre></div>
 
 
-<p>After creating a configuration you can add the CORS middleware.</p>
-<div class="codehilite"><pre><span></span><span class="n">drop</span><span class="p">.</span><span class="n">middleware</span><span class="p">.</span><span class="bp">insert</span><span class="p">(</span><span class="n">CORSMiddleware</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="n">configuration</span><span class="p">),</span> <span class="n">at</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+<p>Then set the <code>custom-cors</code> in your Droplet's middleware array.</p>
+<p><code>Config/droplet.json</code></p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="err">...,</span>
+    <span class="nt">&quot;middleware&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="err">...</span><span class="p">,</span>
+        <span class="s2">&quot;custom-cors&quot;</span><span class="p">,</span>
+        <span class="err">...</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="err">...,</span>
+<span class="p">}</span>
 </pre></div>
 
 
 <blockquote>
 <p>Note: Please consult the documentation in the source code of the <code>CORSConfiguration</code> for more information about available values for the settings.</p>
 </blockquote>
-<h3 id="json-config">JSON Config<a class="headerlink" href="#json-config" title="Permanent link">&para;</a></h3>
-<p>Optionally, <code>CORSMiddleware</code> can be configured using the Vapor's <code>Config</code> which is created out of the json files contained in your Config folder. You will need to create a file called <code>cors.json</code> or <code>CORS.json</code> in your Config folder in your project and add the required keys.</p>
-<p>Example of how such a file could look as follows:</p>
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="s">&quot;allowedOrigin&quot;</span><span class="p">:</span> <span class="s">&quot;origin&quot;</span><span class="p">,</span>
-    <span class="s">&quot;allowedMethods&quot;</span><span class="p">:</span> <span class="s">&quot;GET,POST,PUT,OPTIONS,DELETE,PATCH&quot;</span><span class="p">,</span>
-    <span class="s">&quot;allowedHeaders&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;Accept&quot;</span><span class="p">,</span> <span class="s">&quot;Authorization&quot;</span><span class="p">,</span> <span class="s">&quot;Content-Type&quot;</span><span class="p">,</span> <span class="s">&quot;Origin&quot;</span><span class="p">,</span> <span class="s">&quot;X-Requested-With&quot;</span><span class="p">]</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<blockquote>
-<p>Note: Following keys are required: <code>allowedOrigin</code>, <code>allowedMethods</code>, <code>allowedHeaders</code>. If they are not present an error will be thrown while instantiating the middleware.</p>
-<p>Optionally you can also specify the keys <code>allowCredentials</code> (Bool), <code>cacheExpiration</code> (Int) and <code>exposedHeaders</code> ([String]).</p>
-</blockquote>
-<p>Afterwards you can add the middleware using the a throwing overload of the initialiser that accepts Vapor's <code>Config</code>.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="n">Droplet</span><span class="p">()</span>
-
-<span class="k">do</span> <span class="p">{</span>
-    <span class="n">drop</span><span class="p">.</span><span class="n">middleware</span><span class="p">.</span><span class="bp">insert</span><span class="p">(</span><span class="k">try</span> <span class="n">CORSMiddleware</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="n">drop</span><span class="p">.</span><span class="n">config</span><span class="p">),</span> <span class="n">at</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
-<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
-    <span class="bp">fatalError</span><span class="p">(</span><span class="s">&quot;Error creating CORSMiddleware, please check that you&#39;ve setup cors.json correctly.&quot;</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
               
               
             </article>

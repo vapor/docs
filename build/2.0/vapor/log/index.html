@@ -427,11 +427,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      Settings
+      Configs
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Settings
+        Configs
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -442,7 +442,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../settings/config/" title="Config" class="md-nav__link">
+    <a href="../../configs/config/" title="Config" class="md-nav__link">
       Config
     </a>
   </li>
@@ -958,6 +958,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../sessions/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../sessions/sessions/" title="Sessions" class="md-nav__link">
       Sessions
     </a>
@@ -987,6 +999,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../http/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
         
           
           
@@ -1375,11 +1399,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-20" type="checkbox" id="nav-20">
     
     <label class="md-nav__link" for="nav-20">
-      Advanced
+      Deploy
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-20">
-        Advanced
+        Deploy
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -1390,8 +1414,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../advanced/modules/" title="Modules" class="md-nav__link">
-      Modules
+    <a href="../../deploy/nginx/" title="Nginx" class="md-nav__link">
+      Nginx
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/supervisor/" title="Supervisor" class="md-nav__link">
+      Supervisor
     </a>
   </li>
 
@@ -1480,6 +1516,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#types" title="Types" class="md-nav__link">
+    Types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#protocol" title="Protocol" class="md-nav__link">
     Protocol
   </a>
@@ -1508,17 +1551,57 @@
 </pre></div>
 
 
-<p>Log types supported are:</p>
-<ul>
-<li>info</li>
-<li>warning</li>
-<li>verbose</li>
-<li>debug</li>
-<li>error</li>
-<li>fatal</li>
-</ul>
+<h2 id="types">Types<a class="headerlink" href="#types" title="Permanent link">&para;</a></h2>
+<p>Below are the following methods you can call on the log protocol. Only <code>error</code> and <code>fatal</code> will be shown in <code>production</code> mode.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Production</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>info</td>
+<td>No</td>
+</tr>
+<tr>
+<td>warning</td>
+<td>No</td>
+</tr>
+<tr>
+<td>verbose</td>
+<td>No</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>No</td>
+</tr>
+<tr>
+<td>error</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>fatal</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <h2 id="protocol">Protocol<a class="headerlink" href="#protocol" title="Permanent link">&para;</a></h2>
 <p>Create your own logger by conforming to <code>LogProtocol</code>. </p>
+<div class="codehilite"><pre><span></span><span class="c1">/// Logger protocol. Custom loggers must conform</span>
+<span class="c1">/// to this protocol</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="nc">LogProtocol</span><span class="p">:</span> <span class="kd">class</span> <span class="p">{</span>
+    <span class="c1">/// Enabled log levels. Only levels in this</span>
+    <span class="c1">/// array should be logged.</span>
+    <span class="kd">var</span> <span class="nv">enabled</span><span class="p">:</span> <span class="p">[</span><span class="n">LogLevel</span><span class="p">]</span> <span class="p">{</span> <span class="kr">get</span> <span class="kr">set</span> <span class="p">}</span>
+
+    <span class="c1">/// Log the given message at the passed filter level.</span>
+    <span class="c1">/// file, function and line of the logging call</span>
+    <span class="c1">/// are automatically injected in the convenience function.</span>
+    <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="kc">_</span> <span class="n">level</span><span class="p">:</span> <span class="n">LogLevel</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">function</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
               
               
             </article>

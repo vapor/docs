@@ -256,6 +256,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#supported" title="Supported" class="md-nav__link">
+    Supported
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#apt-repo" title="APT Repo" class="md-nav__link">
     APT Repo
   </a>
@@ -500,11 +507,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      Settings
+      Configs
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Settings
+        Configs
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -515,7 +522,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../settings/config/" title="Config" class="md-nav__link">
+    <a href="../../configs/config/" title="Config" class="md-nav__link">
       Config
     </a>
   </li>
@@ -1031,6 +1038,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../sessions/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../sessions/sessions/" title="Sessions" class="md-nav__link">
       Sessions
     </a>
@@ -1060,6 +1079,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../http/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
         
           
           
@@ -1448,11 +1479,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-20" type="checkbox" id="nav-20">
     
     <label class="md-nav__link" for="nav-20">
-      Advanced
+      Deploy
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-20">
-        Advanced
+        Deploy
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -1463,8 +1494,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../advanced/modules/" title="Modules" class="md-nav__link">
-      Modules
+    <a href="../../deploy/nginx/" title="Nginx" class="md-nav__link">
+      Nginx
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/supervisor/" title="Supervisor" class="md-nav__link">
+      Supervisor
     </a>
   </li>
 
@@ -1555,6 +1598,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#supported" title="Supported" class="md-nav__link">
+    Supported
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#apt-repo" title="APT Repo" class="md-nav__link">
     APT Repo
   </a>
@@ -1626,6 +1676,30 @@
                 
                 <h1 id="install-on-ubuntu">Install on Ubuntu<a class="headerlink" href="#install-on-ubuntu" title="Permanent link">&para;</a></h1>
 <p>Installing Vapor on Ubuntu only takes a couple of minutes. </p>
+<h2 id="supported">Supported<a class="headerlink" href="#supported" title="Permanent link">&para;</a></h2>
+<p>Vapor supports the same versions of Ubuntu that Swift supports.</p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Codename</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16.10</td>
+<td>Yakkety Yak</td>
+</tr>
+<tr>
+<td>16.04</td>
+<td>Xenial Xerus</td>
+</tr>
+<tr>
+<td>14.04</td>
+<td>Trusty Tahr</td>
+</tr>
+</tbody>
+</table>
 <h2 id="apt-repo">APT Repo<a class="headerlink" href="#apt-repo" title="Permanent link">&para;</a></h2>
 <p>Add Vapor's APT repo to get access to all of Vapor's system packages.</p>
 <h3 id="quick-script">Quick Script<a class="headerlink" href="#quick-script" title="Permanent link">&para;</a></h3>
@@ -1634,6 +1708,10 @@
 </pre></div>
 
 
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This command requires <code>curl</code> which can be installed using <code>sudo apt-get install curl</code></p>
+</div>
 <h3 id="manual">Manual<a class="headerlink" href="#manual" title="Permanent link">&para;</a></h3>
 <p>Or add the repo manually.</p>
 <div class="codehilite"><pre><span></span>wget -q https://repo.vapor.codes/apt/keyring.gpg -O- <span class="p">|</span> sudo apt-key add -
@@ -1650,7 +1728,7 @@ sudo apt-get update
 
 <h2 id="verify-installation">Verify Installation<a class="headerlink" href="#verify-installation" title="Permanent link">&para;</a></h2>
 <p>Double check the installation was successful by running:</p>
-<div class="codehilite"><pre><span></span><span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(</span>curl -sL check2.vapor.sh<span class="k">)</span><span class="s2">&quot;</span>
+<div class="codehilite"><pre><span></span><span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(</span>curl -sL check.vapor.sh<span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
 
 

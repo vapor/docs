@@ -104,7 +104,7 @@
     
         
     <url>
-     <loc>/settings/config/</loc>
+     <loc>/configs/config/</loc>
      <lastmod>2017-05-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -298,6 +298,12 @@
     
         
     <url>
+     <loc>/sessions/package/</loc>
+     <lastmod>2017-05-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>/sessions/sessions/</loc>
      <lastmod>2017-05-19</lastmod>
      <changefreq>daily</changefreq>
@@ -306,6 +312,12 @@
     
 
     
+        
+    <url>
+     <loc>/http/package/</loc>
+     <lastmod>2017-05-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
         
     <url>
      <loc>/http/request/</loc>
@@ -460,7 +472,13 @@
     
         
     <url>
-     <loc>/advanced/modules/</loc>
+     <loc>/deploy/nginx/</loc>
+     <lastmod>2017-05-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/deploy/supervisor/</loc>
      <lastmod>2017-05-19</lastmod>
      <changefreq>daily</changefreq>
     </url>

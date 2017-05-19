@@ -346,6 +346,13 @@
     Serving
   </a>
   
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hello-world_1" title="Hello, World" class="md-nav__link">
+    Hello, World
+  </a>
+  
     <nav class="md-nav">
       <ul class="md-nav__list">
         
@@ -358,13 +365,6 @@
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hello-world_1" title="Hello, World" class="md-nav__link">
-    Hello, World
-  </a>
   
 </li>
         
@@ -539,11 +539,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      Settings
+      Configs
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Settings
+        Configs
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -554,7 +554,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../settings/config/" title="Config" class="md-nav__link">
+    <a href="../../configs/config/" title="Config" class="md-nav__link">
       Config
     </a>
   </li>
@@ -1070,6 +1070,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../sessions/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../sessions/sessions/" title="Sessions" class="md-nav__link">
       Sessions
     </a>
@@ -1099,6 +1111,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../http/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
         
           
           
@@ -1487,11 +1511,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-20" type="checkbox" id="nav-20">
     
     <label class="md-nav__link" for="nav-20">
-      Advanced
+      Deploy
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-20">
-        Advanced
+        Deploy
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -1502,8 +1526,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../advanced/modules/" title="Modules" class="md-nav__link">
-      Modules
+    <a href="../../deploy/nginx/" title="Nginx" class="md-nav__link">
+      Nginx
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/supervisor/" title="Supervisor" class="md-nav__link">
+      Supervisor
     </a>
   </li>
 
@@ -1660,6 +1696,13 @@
     Serving
   </a>
   
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hello-world_1" title="Hello, World" class="md-nav__link">
+    Hello, World
+  </a>
+  
     <nav class="md-nav">
       <ul class="md-nav__list">
         
@@ -1672,13 +1715,6 @@
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hello-world_1" title="Hello, World" class="md-nav__link">
-    Hello, World
-  </a>
   
 </li>
         
@@ -1812,21 +1848,15 @@
 </pre></div>
 
 
-<p>You should see a message <code>Server starting...</code>. You can now visit <code>http://localhost:8080/plaintext</code> in your browser.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Certain port numbers require super user access to bind. Simply run <code>sudo vapor run</code> to allow access. If you decide to run on a port besides <code>80</code>, make sure to direct your browser accordingly.</p>
-</div>
-<h4 id="production">Production<a class="headerlink" href="#production" title="Permanent link">&para;</a></h4>
-<p>Serving your application in the production environment increases its security and performance.</p>
-<div class="codehilite"><pre><span></span>vapor run serve --env<span class="o">=</span>production
+<p>You should see a message <code>Server starting...</code>. </p>
+<p>You can now visit <code>localhost:8080/plaintext</code> in your browser or run </p>
+<div class="codehilite"><pre><span></span>curl localhost:8080/plaintext
 </pre></div>
 
 
-<p>Debug errors will be silenced while in the production environment, so make sure to check your logs for errors.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If you compiled your application with <code>--release</code>, make sure to add that flag to the <code>vapor run</code> command as well. e.g., <code>vapor run serve --env=production --release</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Certain port numbers require super user access to bind. Simply run <code>sudo vapor run</code> to allow access. If you decide to run on a port besides <code>80</code>, make sure to direct your browser accordingly.</p>
 </div>
 <h3 id="hello-world_1">Hello, World<a class="headerlink" href="#hello-world_1" title="Permanent link">&para;</a></h3>
 <p>You should see the following output in your browser window.</p>
@@ -1839,6 +1869,19 @@
 <p>Like Vapor so far? Click the button below and star the repo to help spread the word! </p>
 </div>
 <iframe src="https://ghbtns.com/github-btn.html?user=vapor&repo=vapor&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
+<h4 id="production">Production<a class="headerlink" href="#production" title="Permanent link">&para;</a></h4>
+<p>Serving your application in the production environment increases its security and performance.</p>
+<div class="codehilite"><pre><span></span>vapor run serve --env<span class="o">=</span>production
+</pre></div>
+
+
+<p>Some debug messages will be silenced while in the production environment, so make sure to check your logs for errors.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you compiled your application with <code>--release</code>, make sure to add that flag to the <code>vapor run</code> command as well. e.g., <code>vapor run serve --env=production --release</code>.</p>
+</div>
+<p>For more information on deploying your code, check out the <a href="http://127.0.0.1:8000/deploy/nginx/">deploy section</a>.</p>
               
               
             </article>

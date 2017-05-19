@@ -405,34 +405,9 @@
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        Commands
-      </label>
-    
     <a href="./" title="Commands" class="md-nav__link md-nav__link--active">
       Commands
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#example" title="Example" class="md-nav__link">
-    Example
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
     
   </li>
 
@@ -452,11 +427,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      Settings
+      Configs
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Settings
+        Configs
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -467,7 +442,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../settings/config/" title="Config" class="md-nav__link">
+    <a href="../../configs/config/" title="Config" class="md-nav__link">
       Config
     </a>
   </li>
@@ -983,6 +958,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../sessions/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../sessions/sessions/" title="Sessions" class="md-nav__link">
       Sessions
     </a>
@@ -1012,6 +999,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../http/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
         
           
           
@@ -1400,11 +1399,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-20" type="checkbox" id="nav-20">
     
     <label class="md-nav__link" for="nav-20">
-      Advanced
+      Deploy
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-20">
-        Advanced
+        Deploy
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -1415,8 +1414,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../advanced/modules/" title="Modules" class="md-nav__link">
-      Modules
+    <a href="../../deploy/nginx/" title="Nginx" class="md-nav__link">
+      Nginx
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/supervisor/" title="Supervisor" class="md-nav__link">
+      Supervisor
     </a>
   </li>
 
@@ -1500,8 +1511,6 @@
 <nav class="md-nav md-nav--secondary">
   
   
-    
-  
   
     <label class="md-nav__title" for="toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
@@ -1510,6 +1519,33 @@
   <a href="#example" title="Example" class="md-nav__link">
     Example
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config-initializable" title="Config Initializable" class="md-nav__link">
+    Config Initializable
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-to-droplet" title="Add to Droplet" class="md-nav__link">
+    Add to Droplet
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure" title="Configure" class="md-nav__link">
+    Configure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1528,19 +1564,20 @@
                
               
                 
-                <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This section may contain outdated information.</p>
+                  <h1>Commands</h1>
+                
+                <p>In addition to the commands provided by Vapor (like <code>serve</code>, and <code>routes</code>) you can build your own custom commands.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Commands are a great way to script your application with CRON jobs.</p>
 </div>
-<h1 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h1>
-<p>Custom console commands on Vapor are a breeze.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <p>To make a custom console command we must first create a new <code>.swift</code> file, import <code>Vapor</code> and <code>Console</code>, and implement the <code>Command</code> protocol.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Vapor</span>
 <span class="kd">import</span> <span class="nc">Console</span>
 
 <span class="kr">final</span> <span class="kd">class</span> <span class="nc">MyCustomCommand</span><span class="p">:</span> <span class="n">Command</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">let</span> <span class="nv">id</span> <span class="p">=</span> <span class="s">&quot;command&quot;</span>
+    <span class="kd">public</span> <span class="kd">let</span> <span class="nv">id</span> <span class="p">=</span> <span class="s">&quot;my-command&quot;</span>
     <span class="kd">public</span> <span class="kd">let</span> <span class="nv">help</span> <span class="p">=</span> <span class="p">[</span><span class="s">&quot;This command does things, like foo, and bar.&quot;</span><span class="p">]</span>
     <span class="kd">public</span> <span class="kd">let</span> <span class="nv">console</span><span class="p">:</span> <span class="n">ConsoleProtocol</span>
 
@@ -1561,14 +1598,39 @@
 <li>The <strong>console</strong> property is the object passed to your custom command that adheres to the console protocol, allowing manipulation of the console.</li>
 <li>The <strong>run</strong> method is where you put the logic relating to your command.</li>
 </ul>
-<p>After we work our magic in the Custom Command file, we switch over to our <code>main.swift</code> file and add the custom command to the droplet like so.</p>
-<div class="codehilite"><pre><span></span><span class="n">drop</span><span class="p">.</span><span class="n">commands</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">MyCustomCommand</span><span class="p">(</span><span class="n">console</span><span class="p">:</span> <span class="n">drop</span><span class="p">.</span><span class="n">console</span><span class="p">))</span>
+<h2 id="config-initializable">Config Initializable<a class="headerlink" href="#config-initializable" title="Permanent link">&para;</a></h2>
+<p>To make our command configurable, conform it to <code>ConfigInitializable</code></p>
+<div class="codehilite"><pre><span></span><span class="kd">extension</span> <span class="nc">MyCustomCommand</span><span class="p">:</span> <span class="n">ConfigInitializable</span> <span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="add-to-droplet">Add to Droplet<a class="headerlink" href="#add-to-droplet" title="Permanent link">&para;</a></h2>
+<p>After we work our magic in the Custom Command file, we switch over to our <code>main.swift</code> file and add the custom command to the Droplet like so.</p>
+<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Vapor</span>
+
+<span class="kd">let</span> <span class="nv">config</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Config</span><span class="p">()</span>
+<span class="k">try</span> <span class="n">config</span><span class="p">.</span><span class="n">addConfigurable</span><span class="p">(</span><span class="n">command</span><span class="p">:</span> <span class="n">MyCustomCommand</span><span class="p">.</span><span class="kd">init</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;my-command&quot;</span><span class="p">)</span>
+
+<span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Droplet</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </pre></div>
 
 
 <p>This allows Vapor access to our custom command and lets it know to display it in the <code>--help</code> section of the program.</p>
+<h3 id="configure">Configure<a class="headerlink" href="#configure" title="Permanent link">&para;</a></h3>
+<p>Now that you've made the command configurable, just add it to the <code>commands</code> array in your <code>Config/droplet.json</code> file.</p>
+<p><code>Config/droplet.json</code></p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="err">...,</span>
+    <span class="nt">&quot;commands&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;my-command&quot;</span><span class="p">],</span>
+    <span class="err">...,</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <p>After compiling the application we can run our custom command like so.</p>
-<div class="codehilite"><pre><span></span>.build/debug/App command
+<div class="codehilite"><pre><span></span>vapor run my-command
 </pre></div>
               
               
@@ -1598,7 +1660,7 @@
           </a>
         
         
-          <a href="../../settings/config/" title="Config" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../configs/config/" title="Config" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">

@@ -416,11 +416,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      Settings
+      Configs
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Settings
+        Configs
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -431,7 +431,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../settings/config/" title="Config" class="md-nav__link">
+    <a href="../../configs/config/" title="Config" class="md-nav__link">
       Config
     </a>
   </li>
@@ -947,6 +947,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../sessions/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../sessions/sessions/" title="Sessions" class="md-nav__link">
       Sessions
     </a>
@@ -978,6 +990,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
         
           
           
@@ -1495,11 +1519,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-20" type="checkbox" id="nav-20">
     
     <label class="md-nav__link" for="nav-20">
-      Advanced
+      Deploy
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-20">
-        Advanced
+        Deploy
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -1510,8 +1534,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../advanced/modules/" title="Modules" class="md-nav__link">
-      Modules
+    <a href="../../deploy/nginx/" title="Nginx" class="md-nav__link">
+      Nginx
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/supervisor/" title="Supervisor" class="md-nav__link">
+      Supervisor
     </a>
   </li>
 
@@ -1839,7 +1875,7 @@
 <p>Anything added to the <code>authed</code> group must pass through <code>AuthMiddleware</code>. Because of this, we can assume all traffic to <code>/secure</code> has been authorized. Learn more in <a href="../../routing/group">Routing</a>.</p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <p>Appending middleware to the <code>drop.middleware</code> array is the simplest way to add middleware--it will be used every time the application starts.</p>
-<p>You can also use the <a href="../../settings/config/">configuration</a> files to enabled or disable middleware for more control. This is especially useful if you have middleware that should, for example, run only in production.</p>
+<p>You can also use the <a href="../../configs/config/">configuration</a> files to enabled or disable middleware for more control. This is especially useful if you have middleware that should, for example, run only in production.</p>
 <p>Appending configurable middleware looks like the following:</p>
 <div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="n">Droplet</span><span class="p">()</span>
 <span class="n">drop</span><span class="p">.</span><span class="n">addConfigurable</span><span class="p">(</span><span class="n">middleware</span><span class="p">:</span> <span class="n">myMiddleware</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;my-middleware&quot;</span><span class="p">)</span>

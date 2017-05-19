@@ -416,11 +416,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      Settings
+      Configs
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Settings
+        Configs
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -431,7 +431,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../settings/config/" title="Config" class="md-nav__link">
+    <a href="../../configs/config/" title="Config" class="md-nav__link">
       Config
     </a>
   </li>
@@ -477,9 +477,41 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Package
+      </label>
+    
     <a href="./" title="Package" class="md-nav__link md-nav__link--active">
       Package
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#with-vapor" title="With Vapor" class="md-nav__link">
+    With Vapor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#without-vapor" title="Without Vapor" class="md-nav__link">
+    Without Vapor
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -958,6 +990,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../sessions/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../sessions/sessions/" title="Sessions" class="md-nav__link">
       Sessions
     </a>
@@ -987,6 +1031,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../http/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
         
           
           
@@ -1375,11 +1431,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-20" type="checkbox" id="nav-20">
     
     <label class="md-nav__link" for="nav-20">
-      Advanced
+      Deploy
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-20">
-        Advanced
+        Deploy
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -1390,8 +1446,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../advanced/modules/" title="Modules" class="md-nav__link">
-      Modules
+    <a href="../../deploy/nginx/" title="Nginx" class="md-nav__link">
+      Nginx
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/supervisor/" title="Supervisor" class="md-nav__link">
+      Supervisor
     </a>
   </li>
 
@@ -1478,6 +1546,25 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#with-vapor" title="With Vapor" class="md-nav__link">
+    With Vapor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#without-vapor" title="Without Vapor" class="md-nav__link">
+    Without Vapor
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1492,9 +1579,28 @@
               
                 
                 <h1 id="using-json">Using JSON<a class="headerlink" href="#using-json" title="Permanent link">&para;</a></h1>
-<p>This package is included with the Vapor dependency, use</p>
+<h2 id="with-vapor">With Vapor<a class="headerlink" href="#with-vapor" title="Permanent link">&para;</a></h2>
+<p>This package is included with Vapor by default, just add:</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">JSON</span>
 </pre></div>
+
+
+<h2 id="without-vapor">Without Vapor<a class="headerlink" href="#without-vapor" title="Permanent link">&para;</a></h2>
+<p>JSON provides easy-to-use JSON support for any server-side, or client side Swift project. To include it in your package, add the following to your <code>Package.swift</code> file.</p>
+<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">PackageDescription</span>
+
+<span class="kd">let</span> <span class="nv">package</span> <span class="p">=</span> <span class="n">Package</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">:</span> <span class="s">&quot;Project&quot;</span><span class="p">,</span>
+    <span class="n">dependencies</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">...</span>
+        <span class="p">.</span><span class="n">Package</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="s">&quot;https://github.com/vapor/json.git&quot;</span><span class="p">,</span> <span class="n">majorVersion</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">exclude</span><span class="p">:</span> <span class="p">[</span> <span class="p">...</span> <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Use <code>import JSON</code> to access JSON's APIs</p>
               
               
             </article>
@@ -1508,7 +1614,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../settings/config/" title="Config" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../configs/config/" title="Config" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>

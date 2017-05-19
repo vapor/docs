@@ -366,8 +366,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#working-directory" title="Working Directory" class="md-nav__link">
-    Working Directory
+  <a href="#config-directory" title="Config Directory" class="md-nav__link">
+    Config Directory
   </a>
   
 </li>
@@ -520,11 +520,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      Settings
+      Configs
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Settings
+        Configs
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -535,7 +535,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../settings/config/" title="Config" class="md-nav__link">
+    <a href="../../configs/config/" title="Config" class="md-nav__link">
       Config
     </a>
   </li>
@@ -1051,6 +1051,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../sessions/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../sessions/sessions/" title="Sessions" class="md-nav__link">
       Sessions
     </a>
@@ -1080,6 +1092,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../http/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
         
           
           
@@ -1468,11 +1492,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-20" type="checkbox" id="nav-20">
     
     <label class="md-nav__link" for="nav-20">
-      Advanced
+      Deploy
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-20">
-        Advanced
+        Deploy
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -1483,8 +1507,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../advanced/modules/" title="Modules" class="md-nav__link">
-      Modules
+    <a href="../../deploy/nginx/" title="Nginx" class="md-nav__link">
+      Nginx
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/supervisor/" title="Supervisor" class="md-nav__link">
+      Supervisor
     </a>
   </li>
 
@@ -1589,8 +1625,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#working-directory" title="Working Directory" class="md-nav__link">
-    Working Directory
+  <a href="#config-directory" title="Config Directory" class="md-nav__link">
+    Config Directory
   </a>
   
 </li>
@@ -1685,7 +1721,7 @@
 <p>Creation of the <code>Droplet</code> normally happens in the <code>main.swift</code> file. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For the sake of simplicity, most of the documentations sample code uses just the <code>main.swift</code> file. See the <a href="../../advanced/modules/">modules</a> section in Advanced to learn more about using multiple modules.</p>
+<p>For the sake of simplicity, most of the documentations sample code uses just the <code>main.swift</code> file. You can read more about packages and modules in the Swift Package Manager <a href="https://swift.org/package-manager/">conceptual overview</a>.</p>
 </div>
 <h2 id="environment">Environment<a class="headerlink" href="#environment" title="Permanent link">&para;</a></h2>
 <p>The <code>environment</code> property contains the current environment your application is running in. Usually development, testing, or production.</p>
@@ -1695,7 +1731,7 @@
 </pre></div>
 
 
-<p>The environment affects <a href="../../settings/config/">Config</a> and <a href="../log/">Logging</a>. The environment is <code>development</code> by default. To change it, pass the <code>--env=</code> flag as an argument.</p>
+<p>The environment affects <a href="../../configs/config/">Config</a> and <a href="../log/">Logging</a>. The environment is <code>development</code> by default. To change it, pass the <code>--env=</code> flag as an argument.</p>
 <div class="codehilite"><pre><span></span>vapor run serve --env<span class="o">=</span>production
 </pre></div>
 
@@ -1705,7 +1741,7 @@
 <p class="admonition-title">Warning</p>
 <p>Debug logs can reduce the number of requests your application can handle per second. Enable production mode to silence non-critical logs.</p>
 </div>
-<h2 id="working-directory">Working Directory<a class="headerlink" href="#working-directory" title="Permanent link">&para;</a></h2>
+<h2 id="config-directory">Config Directory<a class="headerlink" href="#config-directory" title="Permanent link">&para;</a></h2>
 <p>The <code>workDir</code> property contains a path to the current working directory of the application. Vapor uses this property to find the folders related to your project, such as <code>Resources</code>, <code>Public</code>, and <code>Config</code>.</p>
 <div class="codehilite"><pre><span></span><span class="bp">print</span><span class="p">(</span><span class="n">drop</span><span class="p">.</span><span class="n">workDir</span><span class="p">)</span> <span class="c1">// /var/www/my-project/</span>
 </pre></div>
