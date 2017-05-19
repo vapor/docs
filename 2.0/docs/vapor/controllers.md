@@ -70,11 +70,12 @@ Controllers that conform to `ResourceRepresentable` can be easily registered int
 
 ```swift
 final class UserController {
-    func index(_ request: Request) throws -> ResponseRepresentable {
-        return try User.all().makeNode().converted(to: JSON.self)
+    func index(_ req: Request) throws -> ResponseRepresentable {
+        return try User.all().makeJSON()
     }
 
-    func show(_ request: Request, _ user: User) -> ResponseRepresentable {
+    func show(_ req: Request) -> ResponseRepresentable {
+        let user = try req.parameters.next(User.self)
         return user
     }
 }
