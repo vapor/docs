@@ -652,8 +652,13 @@
         }, 
         {
             "location": "/vapor/log/", 
-            "text": "Logging...", 
+            "text": "Log information using \ndrop.log\n.\n\n\ndrop.log.info(\nInformational log\n)\n\n\n\n\n\nLog types supported are:\n- info\n- warning\n- verbose\n- debug\n- error\n- fatal\n\n\nProtocol\n\n\nCreate your own logger by conforming to \nLogProtocol\n.", 
             "title": "Log"
+        }, 
+        {
+            "location": "/vapor/log/#protocol", 
+            "text": "Create your own logger by conforming to  LogProtocol .", 
+            "title": "Protocol"
         }, 
         {
             "location": "/vapor/commands/", 
@@ -787,8 +792,23 @@
         }, 
         {
             "location": "/routing/package/", 
-            "text": "", 
+            "text": "Using Routing\n\n\nWith Vapor\n\n\nThis package is included with Vapor by default, just add:\n\n\nimport\n \nRouting\n\n\n\n\n\n\nWithout Vapor\n\n\nRouting providers a performant, pure-Swift router to use in any server-side Swift project. To include it in your package, add the following to your \nPackage.swift\n file.\n\n\nimport\n \nPackageDescription\n\n\n\nlet\n \npackage\n \n=\n \nPackage\n(\n\n    \nname\n:\n \nProject\n,\n\n    \ndependencies\n:\n \n[\n\n        \n...\n\n        \n.\nPackage\n(\nurl\n:\n \nhttps://github.com/vapor/routing.git\n,\n \nmajorVersion\n:\n \n2\n)\n\n    \n],\n\n    \nexclude\n:\n \n[\n \n...\n \n]\n\n\n)\n\n\n\n\n\n\nUse \nimport Routing\n to access Routing's APIs", 
             "title": "Package"
+        }, 
+        {
+            "location": "/routing/package/#using-routing", 
+            "text": "", 
+            "title": "Using Routing"
+        }, 
+        {
+            "location": "/routing/package/#with-vapor", 
+            "text": "This package is included with Vapor by default, just add:  import   Routing", 
+            "title": "With Vapor"
+        }, 
+        {
+            "location": "/routing/package/#without-vapor", 
+            "text": "Routing providers a performant, pure-Swift router to use in any server-side Swift project. To include it in your package, add the following to your  Package.swift  file.  import   PackageDescription  let   package   =   Package ( \n     name :   Project , \n     dependencies :   [ \n         ... \n         . Package ( url :   https://github.com/vapor/routing.git ,   majorVersion :   2 ) \n     ], \n     exclude :   [   ...   ]  )   Use  import Routing  to access Routing's APIs", 
+            "title": "Without Vapor"
         }, 
         {
             "location": "/routing/overview/", 

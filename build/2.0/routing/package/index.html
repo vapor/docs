@@ -522,10 +522,44 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
     
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Package
+      </label>
     
     <a href="./" title="Package" class="md-nav__link md-nav__link--active">
       Package
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#with-vapor" title="With Vapor" class="md-nav__link">
+    With Vapor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#without-vapor" title="Without Vapor" class="md-nav__link">
+    Without Vapor
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -1473,6 +1507,27 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#with-vapor" title="With Vapor" class="md-nav__link">
+    With Vapor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#without-vapor" title="Without Vapor" class="md-nav__link">
+    Without Vapor
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1487,7 +1542,29 @@
                
               
                 
-                <h1 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+                <h1 id="using-routing">Using Routing<a class="headerlink" href="#using-routing" title="Permanent link">&para;</a></h1>
+<h2 id="with-vapor">With Vapor<a class="headerlink" href="#with-vapor" title="Permanent link">&para;</a></h2>
+<p>This package is included with Vapor by default, just add:</p>
+<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Routing</span>
+</pre></div>
+
+
+<h2 id="without-vapor">Without Vapor<a class="headerlink" href="#without-vapor" title="Permanent link">&para;</a></h2>
+<p>Routing providers a performant, pure-Swift router to use in any server-side Swift project. To include it in your package, add the following to your <code>Package.swift</code> file.</p>
+<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">PackageDescription</span>
+
+<span class="kd">let</span> <span class="nv">package</span> <span class="p">=</span> <span class="n">Package</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">:</span> <span class="s">&quot;Project&quot;</span><span class="p">,</span>
+    <span class="n">dependencies</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">...</span>
+        <span class="p">.</span><span class="n">Package</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="s">&quot;https://github.com/vapor/routing.git&quot;</span><span class="p">,</span> <span class="n">majorVersion</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">exclude</span><span class="p">:</span> <span class="p">[</span> <span class="p">...</span> <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Use <code>import Routing</code> to access Routing's APIs</p>
               
               
             </article>

@@ -390,6 +390,8 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
     
+      
+    
     
     <a href="./" title="Log" class="md-nav__link md-nav__link--active">
       Log
@@ -1474,6 +1476,18 @@
   
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#protocol" title="Protocol" class="md-nav__link">
+    Protocol
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1489,7 +1503,20 @@
                 
                   <h1>Log</h1>
                 
-                <p>Logging...</p>
+                <p>Log information using <code>drop.log</code>.</p>
+<div class="codehilite"><pre><span></span>drop.log.info(&quot;Informational log&quot;)
+</pre></div>
+
+
+<p>Log types supported are:
+- info
+- warning
+- verbose
+- debug
+- error
+- fatal</p>
+<h2 id="protocol">Protocol<a class="headerlink" href="#protocol" title="Permanent link">&para;</a></h2>
+<p>Create your own logger by conforming to <code>LogProtocol</code>. </p>
               
               
             </article>
