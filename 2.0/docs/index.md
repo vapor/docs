@@ -90,7 +90,7 @@ These are officially supported packages for Vapor that are not included by defau
 	- [MySQL Provider](https://github.com/vapor/mysql-provider): MySQL provider for Vapor.
 - [Leaf](https://github.com/vapor/leaf): An extensible templating language.
 	- [Leaf Provider](https://github.com/vapor/leaf-provider): Leaf provider for Vapor.
-- [Redbird](https://github.com/vapor/redbird): Pure-Swift Redis client implemented from the original protocol spec.
+- [Redis](https://github.com/vapor/redbird): Pure-Swift Redis client implemented from the original protocol spec.
 	- [Redis Provider](https://github.com/vapor/redis-provider): Redis cache provider for Vapor.
 - [JWT](https://github.com/vapor/jwt): JSON Web Tokens in Swift.
 	- [JWT Provider](https://github.com/vapor/jwt-provider): JWT conveniences for Vapor.
