@@ -31,7 +31,7 @@ Once the provider is added to your Droplet, you can configure Fluent to use the 
 ```
 
 !!! seealso
-	Learn more about configuration files in the [Settings guide](../settings/config.md).
+	Learn more about configuration files in the [Settings guide](../configs/config.md).
 
 ## Configure MySQL
 

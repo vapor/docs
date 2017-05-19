@@ -1,8 +1,3 @@
-!!! warning
-    This section may contain outdated information.
-
-> Module: `import HTTP`
-
 # Body
 
 The `HTTP.Body` represents the payload of an `HTTP.Message`, and is used to pass the underlying data. Some examples of this in practice would be `JSON`, `HTML` text, or the bytes of an image. Let's look at the implementation:

@@ -33,7 +33,7 @@ Once the provider is added to your Droplet, you can configure your Droplet to us
 ```
 
 !!! seealso
-	Learn more about configuration files in the [Settings guide](../settings/config.md).
+	Learn more about configuration files in the [Settings guide](../configs/config.md).
 
 ## Manual
 

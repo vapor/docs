@@ -1,8 +1,3 @@
-!!! warning
-    This section may contain outdated information.
-
-> Module: `import HTTP`
-
 # ResponseRepresentable
 
 Traditionally HTTP servers take a `Request` and return a `Response`. Vapor is no different, but we can take advantage of Swift's powerful protocols to be a bit more flexible to the user facing API.
@@ -23,7 +18,7 @@ Because string conforms to `ResponseRepresentable`, we can return it directly in
 
 ```swift
 drop.get("hello") { request in
-  return "Hello, World!"
+    return "Hello, World!"
 }
 ```
 
@@ -33,15 +28,10 @@ drop.get("hello") { request in
 
 ```swift
 drop.get("hello") { request in
-  return try JSON(node: [
-      "hello": "world",
-      "some-numbers": [
-        1,
-        2,
-        3
-      ]
-    ]
-  )
+    var json = JSON()
+    try json.set("hello", "world")
+    try json.set("some-numbers", [1, 2, 3])
+    return json
 }
 ```
 
@@ -51,7 +41,11 @@ Of course, we can also return Responses for anything not covered:
 
 ```swift
 drop.get("hello") { request in
-  return Response(status: .ok, headers: ["Content-Type": "text/plain"], body: "Hello, World!")
+    return Response(
+        status: .ok, 
+        headers: ["Content-Type": "text/plain"], 
+        body: "Hello, World!"
+    )
 }
 ```
 
@@ -73,31 +67,27 @@ And now, let's conform it to response representable.
 
 ```swift
 import HTTP
-import Foundation
 
 extension BlogPost: ResponseRepresentable {
-  func makeResponse() throws -> Response {
-    let json = try JSON(node:
-      [
-        "id": id,
-        "content": content,
-        "created-at": createdAt.timeIntervalSince1970
-      ]
-    )
-    return try json.makeResponse()
-  }
+    func makeResponse() throws -> Response {
+        var json = JSON()
+        try json.set("id", id)
+        try json.set("content", content)
+        try json.set("created-at", createdAt.timeIntervalSince1970)
+        return try json.makeResponse()
+    }
 }
 ```
-
-> Don't forget to import HTTP.
 
 Now that we've modeled our BlogPost, we can return it directly in route handlers.
 
 ```swift
 drop.post("post") { req in
-  guard let content = request.data["content"] else { throw Error.missingContent }
-  let post = Post(content: content)
-  try post.save(to: database)
-  return post
+    guard let content = request.data["content"] else { 
+        throw Error.missingContent 
+    }
+    let post = Post(content: content)
+    try post.save(to: database)
+    return post
 }
 ```

@@ -22,7 +22,7 @@ try drop.run()
 Creation of the `Droplet` normally happens in the `main.swift` file. 
 
 !!! note
-    For the sake of simplicity, most of the documentations sample code uses just the `main.swift` file. See the [modules](../advanced/modules.md) section in Advanced to learn more about using multiple modules.
+    For the sake of simplicity, most of the documentations sample code uses just the `main.swift` file. You can read more about packages and modules in the Swift Package Manager [conceptual overview](https://swift.org/package-manager/).
 
 ## Environment
 
@@ -34,7 +34,7 @@ if drop.environment == .production {
 }
 ```
 
-The environment affects [Config](../settings/config.md) and [Logging](log.md). The environment is `development` by default. To change it, pass the `--env=` flag as an argument.
+The environment affects [Config](../configs/config.md) and [Logging](log.md). The environment is `development` by default. To change it, pass the `--env=` flag as an argument.
 
 ```sh
 vapor run serve --env=production
@@ -45,7 +45,7 @@ If you are in Xcode, you can pass arguments through the scheme editor.
 !!! warning
     Debug logs can reduce the number of requests your application can handle per second. Enable production mode to silence non-critical logs.
 
-## Working Directory
+## Config Directory
 
 The `workDir` property contains a path to the current working directory of the application. Vapor uses this property to find the folders related to your project, such as `Resources`, `Public`, and `Config`.
 

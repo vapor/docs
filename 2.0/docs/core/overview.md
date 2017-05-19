@@ -2,9 +2,6 @@
 
 Core provides some conveniences for common tasks.
 
-!!! note
-	Use `import Core`
-
 ## Background
 
 Easily create a background thread using `background()`

@@ -1,6 +1,6 @@
 # Manual Quickstart
 
-Learn how to create a Vapor project _without_ the Toolbox using just Swift 3 and the Swift Package Manager (SPM).
+Learn how to create a Vapor project _without_ the Toolbox using just Swift 3.1 and the Swift Package Manager (SPM).
 
 This document assumes that you have Swift 3.1 installed, if not please refer to [Swift.org](https://swift.org/getting-started/#installing-swift) before you can continue.
 

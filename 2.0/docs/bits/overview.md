@@ -2,9 +2,6 @@
 
 The bits package is included in Vapor by default and provides a convenient API for working with bytes.
 
-!!! note
-	Use `import Bits` to use this package.
-
 ## Typealias
 
 The bits package provides two type-aliases for bytes.

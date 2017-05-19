@@ -139,4 +139,4 @@ drop.resource("users", users)
 Controllers can go anywhere in your application, but they are most often stored in the `App/Controllers/` directory. 
 
 !!! tip
-    If you are building a large application, you may want to create your controllers in a separate module. This will allow you to perform unit tests on your controllers. For more information on creating modules, see the [modules](../advanced/modules.md) section in Advanced.
+    If you are building a large application, you may want to create your controllers in a separate module. This will allow you to perform unit tests on your controllers. 

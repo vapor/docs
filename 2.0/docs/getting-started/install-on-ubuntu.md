@@ -2,6 +2,16 @@
 
 Installing Vapor on Ubuntu only takes a couple of minutes. 
 
+## Supported
+
+Vapor supports the same versions of Ubuntu that Swift supports.
+
+| Version | Codename     |
+|---------|--------------|
+| 16.10   | Yakkety Yak  |
+| 16.04   | Xenial Xerus |
+| 14.04   | Trusty Tahr  |
+
 ## APT Repo
 
 Add Vapor's APT repo to get access to all of Vapor's system packages.
@@ -13,6 +23,9 @@ Easily add Vapor's APT repo with this handy script.
 ```sh
 eval "$(curl -sL https://apt.vapor.sh)"
 ```
+
+!!! note
+	This command requires `curl` which can be installed using `sudo apt-get install curl`
 
 ### Manual 
 
@@ -37,7 +50,7 @@ sudo apt-get install swift vapor
 Double check the installation was successful by running:
 
 ```sh
-eval "$(curl -sL check2.vapor.sh)"
+eval "$(curl -sL check.vapor.sh)"
 ```
 
 ## Next
