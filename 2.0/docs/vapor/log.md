@@ -1,10 +1,11 @@
 Log information using `drop.log`.
 
-```
+```swift
 drop.log.info("Informational log")
 ```
 
 Log types supported are:
+
 - info
 - warning
 - verbose
