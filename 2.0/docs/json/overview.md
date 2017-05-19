@@ -1,6 +1,6 @@
 # JSON
 
-JSON is an integral part of Vapor. It powers Vapor's [Config](../settings/config.md) and is easy to use in both requests and responses.
+JSON is an integral part of Vapor. It powers Vapor's [Config](../configs/config.md) and is easy to use in both requests and responses.
 
 ## Request
 

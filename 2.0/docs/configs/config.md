@@ -1,6 +1,3 @@
-!!! warning
-    This section may contain outdated information.
-
 # Config
 
 An application's configuration settings. Cloud applications generally require complex configurations that can adjust based on their environment. Vapor intends to provide a flexible configuration interaction that can be customized for a given user.
@@ -12,47 +9,45 @@ For Vapor applications, configuration files are expected to be nested under a to
 ```bash
 ./
 ├── Config/
-│   ├── servers.json
+│   ├── server.json
 ```
 
 And an example of how this might look:
 
 ```JSON
 {
-  "http": {
     "host": "0.0.0.0",
-    "port": 8080
-  }
+    "port": 8080,
+    "securityLayer": "none"
 }
 ```
 
-What that's saying, is that our application should start a single server named 'http' serving port `8080` on host `0.0.0.0`. This represents the following url: `http://localhost:8080`.
+What that's saying, is that our application should start a server on port `8080` and host `0.0.0.0`. This represents the following url: `http://localhost:8080`.
 
 ### Custom Keys
 
-Let's add a custom key to the `servers.json` file:
+Let's add a custom key to the `server.json` file:
 
 ```JSON
 {
-  "http": {
     "host": "0.0.0.0",
     "port": 8080,
+    "securityLayer": "none",
     "custom-key": "custom value"
-  }
 }
 ```
 
 This can be accessed from your application's config using the following.
 
 ```swift
-let customValue = drop.config["servers", "http", "custom-key"]?.string ?? "default"
+let customValue = drop.config["server", "custom-key"]?.string ?? "default"
 ```
 
 That's it, feel free to add and utilize keys as necessary to make your application configuration easier.
 
 ## Config Syntax
 
-You can access your config directory with the following syntax. `app.config[<#file-name#>, <#path#>, <#to#>, <#file#>]`. For example, let's hypothesize that in addition to the `servers.json` file we mentioned earlier, there is also a `keys.json` that looks like this:
+You can access your config directory with the following syntax. `app.config[fileName, path, to, key]`. For example, let's hypothesize that in addition to the `server.json` file we mentioned earlier, there is also a `keys.json` that looks like this:
 
 ```JSON
 {
@@ -110,7 +105,7 @@ Config files will be accessed in the following priority.
 3. Config/name-of-environment/
 4. Config/
 
-What this means is that if a user calls `app.config["servers", "host"]`, the key will be searched in the CLI first, then the `secrets/` directory, then the top level default configs.
+What this means is that if a user calls `app.config["server", "host"]`, the key will be searched in the CLI first, then the `secrets/` directory, then the top level default configs.
 
 > `secrets/` directory should very likely be added to the gitignore.
 
@@ -118,58 +113,38 @@ What this means is that if a user calls `app.config["servers", "host"]`, the key
 
 Let's start with the following JSON files.
 
-#### `servers.json`
+#### `server.json`
 
 ```JSON
 {
-  "http": {
     "host": "0.0.0.0",
     "port": 9000
-  }
 }
 ```
 
-#### `production/servers.json`
+#### `production/server.json`
 
 ```JSON
 {
-  "http": {
     "host": "127.0.0.1",
     "port": "$PORT"
-  }
 }
 ```
 
 > The `"$NAME"` syntax is available for all values to access environment variables.
 
-Please notice that `servers.json`, and `production/servers.json` both declare the same keys: `host`, and `port`. In our application, we'll call:
+Please notice that `server.json`, and `production/server.json` both declare the same keys: `host`, and `port`. In our application, we'll call:
 
 ```swift
 // will load 0.0.0.0 or 127.0.0.1 based on above config
-let host = drop.config["servers", "http", "host"]?.string ?? "0.0.0.0"
+let host = drop.config["server" "host"]?.string ?? "0.0.0.0"
 // will load 9000, or environment variable port.
-let port = drop.config["servers", "http", "port"]?.int ?? 9000
+let port = drop.config["server", "port"]?.int ?? 9000
 ```
 
 ## COMMAND LINE
 
 In addition to json files nested within the `Config/` directory, we can also use the command line to pass arguments into our config. By default, these values will be set as the "cli" file, but more complex options are also available.
-
-#### 1. `--KEY=VALUE`
-
-Arguments set through the command line can be accessed through config's cli file. For example, the following CLI command:
-
-```bash
---mongo-password=$MONGO_PASSWORD
-```
-
-would be accessible within your application by using the following:
-
-```swift
-let mongoPassword = drop.config["cli", "mongo-password"]?.string
-```
-
-#### 2. `--CONFIG:FILE-NAME.KEY=CUSTOM-VALUE`
 
 If you want command line arguments set to a file besides "cli", you can use this more advanced specification. For example, the following CLI command:
 

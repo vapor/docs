@@ -29,8 +29,8 @@ brew upgrade vapor
 ### APT
 
 ```
-apt-get update
-apt-get install vapor
+sudo apt-get update
+sudo apt-get install vapor
 ```
 
 ## Templates
@@ -38,8 +38,18 @@ apt-get install vapor
 The toolbox can create a project from the Vapor basic-template or any other git repo.
 
 ```sh
-vapor new <name> [--template=<repo-url-or-github-path>]
+vapor new <name> [--template]
 ```
+
+| Name | Flag           | Description                       |
+|------|----------------|-----------------------------------|
+| API  | --template=api | JSON API with Fluent database.    |
+| Web  | --template=web | HTML website with Leaf templates. |
+
+
+!!! note
+    If you do not specify a template option, the API template will be used.
+    This may change in the future.
 
 ### Options
 
@@ -48,6 +58,5 @@ The toolbox will build an absolute URL based on what you pass as the template op
 - `--template=web` clones `http://github.com/vapor/web-template`
 - `--template=user/repo` clones `http://github.com/user/repo`.
 - `--template=http://example.com/repo-path` clones the full url given.
+- `--branch=foo` can be used to specify a branch besides `master`.
 
-!!! note
-    If you do not specify a template option, the project will be built from Vapor's [API template](https://github.com/vapor/api-template).

@@ -1,8 +1,3 @@
-!!! warning
-    This section may contain outdated information.
-
-> Module: `import HTTP`
-
 # Responder
 
 The `Responder` is a simple protocol defining the behavior of objects that can accept a `Request` and return a `Response`. Most notably in Vapor, it is the core API endpoint that connects the `Droplet` to the `Server`. Let's look at the definition:

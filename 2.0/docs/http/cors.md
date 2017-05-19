@@ -1,6 +1,3 @@
-!!! warning
-    This section may contain outdated information.
-
 # CORS
 
 Vapor by default provides a middleware for implementing proper support for Cross-Origin Resource Sharing (CORS) named `CORSMiddleware`.
@@ -16,10 +13,37 @@ To learn more about middlewares, please visit the Middleware section of the docu
 
 First of all, add the CORS middleware into your droplet middlewares array.
 
-```swift
-# Insert CORS before any other middlewares
-drop.middleware.insert(CORSMiddleware(), at: 0)
-``` 
+`Config/droplet.json`
+```json
+{
+    ...,
+    "middleware": [
+        ...,
+        "cors",
+        ...,
+    ],
+    ...,
+}
+```
+
+Next time you boot your application, you will be prompted to add a `Config/cors.json` file.
+
+
+`Config/cors.json`
+```json
+{
+    "allowedOrigin": "*",
+    "allowedMethods": ["GET", "POST", "PUT", "OPTIONS", "DELETE", "PATCH"],
+    "allowedHeaders": [
+       "Accept",
+       "Authorization",
+       "Content-Type",
+       "Origin",
+       "X-Requested-With"
+    ]
+}
+```
+
 
 > Note: Make sure you insert CORS middleware before any other throwing middlewares, like the AbortMiddleware or similar. Otherwise the proper headers might not be added to the response.
 
@@ -43,51 +67,32 @@ See below for how to set up both and what are the options.
 The `CORSConfiguration` struct is used to configure the `CORSMiddleware`. You can instanitate one like this:
 
 ```swift
-let configuration = CORSConfiguration(allowedOrigin: .custom("https://vapor.codes"),
-						                  allowedMethods: [.get, .post, .options],
-						                  allowedHeaders: ["Accept", "Authorization"],
-						                  allowCredentials: false,
-						                  cacheExpiration: 600,
-						                  exposedHeaders: ["Cache-Control", "Content-Language"])
+let config = try Config()
+config.addConfigurable(middleware: { config in
+	return CORSConfiguration(
+		allowedOrigin: .custom("https://vapor.codes"),
+		allowedMethods: [.get, .post, .options],
+		allowedHeaders: ["Accept", "Authorization"],
+		allowCredentials: false,
+		cacheExpiration: 600,
+		exposedHeaders: ["Cache-Control", "Content-Language"]
+	)
+}, name: "custom-cors")
 ```
 
-After creating a configuration you can add the CORS middleware.
+Then set the `custom-cors` in your Droplet's middleware array.
 
-```swift
-drop.middleware.insert(CORSMiddleware(configuration: configuration), at: 0)
+`Config/droplet.json`
+```json
+{
+    ...,
+    "middleware": [
+        ...,
+        "custom-cors",
+        ...,
+    ],
+    ...,
+}
 ```
 
 > Note: Please consult the documentation in the source code of the `CORSConfiguration` for more information about available values for the settings.
-
-
-### JSON Config
-
-Optionally, `CORSMiddleware` can be configured using the Vapor's `Config` which is created out of the json files contained in your Config folder. You will need to create a file called `cors.json` or `CORS.json` in your Config folder in your project and add the required keys.
-
-Example of how such a file could look as follows:
-
-```swift
-{
-    "allowedOrigin": "origin",
-    "allowedMethods": "GET,POST,PUT,OPTIONS,DELETE,PATCH",
-    "allowedHeaders": ["Accept", "Authorization", "Content-Type", "Origin", "X-Requested-With"]
-}
-
-```
-
-> Note: Following keys are required: `allowedOrigin`, `allowedMethods`, `allowedHeaders`. If they are not present an error will be thrown while instantiating the middleware.
-> 
-> Optionally you can also specify the keys `allowCredentials` (Bool), `cacheExpiration` (Int) and `exposedHeaders` ([String]).
-
-Afterwards you can add the middleware using the a throwing overload of the initialiser that accepts Vapor's `Config`.
-
-```swift
-let drop = Droplet()
-
-do {
-	drop.middleware.insert(try CORSMiddleware(configuration: drop.config), at: 0)
-} catch {
-	fatalError("Error creating CORSMiddleware, please check that you've setup cors.json correctly.")
-}
-```
-

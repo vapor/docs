@@ -33,7 +33,7 @@ Here is what importing the MySQL provider looks like:
 
 ```swift
 import Vapor
-import VaporMySQL
+import MySQLProvider
 ```
 
 ### Add to Droplet
@@ -42,7 +42,7 @@ Every provider comes with a class named `Provider`. Add this class to your Dropl
 
 ```swift
 let config = try Config()
-try config.addProvider(VaporMySQL.Provider.self)
+try config.addProvider(MySQLProvider.Provider.self)
 
 let drop = try Droplet(config)
 
@@ -53,7 +53,7 @@ drop.run()
 
 ### Configuration
 
-Some drivers may require a configuration file. For example, `VaporMySQL` requires a `Config/mysql.json` file like the following:
+Some drivers may require a configuration file. For example, `MySQLProvider` requires a `Config/mysql.json` file like the following:
 
 ```json
 {

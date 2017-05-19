@@ -19,8 +19,8 @@ pages:
     - 'Hash': 'vapor/hash.md'
     - 'Log': 'vapor/log.md'
     - 'Commands': 'vapor/commands.md'
-- Settings:
-    - 'Config': 'settings/config.md'
+- Configs:
+    - 'Config': 'configs/config.md'
 - JSON: 
     - 'Package': 'json/package.md'
     - 'Overview': 'json/overview.md'
@@ -56,8 +56,10 @@ pages:
     - 'Password': 'auth/password.md'
     - 'Persist': 'auth/persist.md'
 - Sessions:
+    - 'Package': 'sessions/package.md'
     - 'Sessions': 'sessions/sessions.md'
 - HTTP:
+    - 'Package': 'http/package.md'
     - 'Request': 'http/request.md'
     - 'Response': 'http/response.md'
     - 'Middleware': 'http/middleware.md'
@@ -84,8 +86,9 @@ pages:
 - Debugging: 
     - 'Package': 'debugging/package.md'
     - 'Overview': 'debugging/overview.md'
-- Advanced:
-    - 'Modules': 'advanced/modules.md'
+- Deploy:
+    - 'Nginx': 'deploy/nginx.md'
+    - 'Supervisor': 'deploy/supervisor.md'
 - Version (2.0):
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'

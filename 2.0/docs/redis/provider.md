@@ -31,7 +31,7 @@ Once the provider is added to your Droplet, you can configure Vapor to use Redis
 ```
 
 !!! seealso
-	Learn more about configuration files in the [Settings guide](../settings/config.md).
+	Learn more about configuration files in the [Settings guide](../configs/config.md).
 
 ## Configure Redis
 

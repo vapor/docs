@@ -1,6 +1,3 @@
-!!! warning
-    This section may contain outdated information.
-
 # Supervisor
 
 [Supervisor](http://supervisord.org) is a process control system that makes it easy to start, stop, and restart your Vapor app.
@@ -18,7 +15,7 @@ Each Vapor app on your server should have its own configuration file. For an exa
 
 ```sh
 [program:hello]
-command=/home/vapor/hello/.build/release/App serve --env=production
+command=/home/vapor/hello/.build/release/Run serve --env=production
 directory=/home/vapor/hello/
 user=www-data
 stdout_logfile=/var/log/supervisor/%(program_name)-stdout.log
@@ -42,9 +39,7 @@ Exported variables can be used in Vapor's configuration files with the `$` prefi
 `Config/production/servers.json `
 ```json
 {
-	"my-server": {
-		"port": "$PORT"
-	}
+	"port": "$PORT"
 }
 ```
 
@@ -60,4 +55,5 @@ supervisorctl add hello
 supervisorctl start hello
 ```
 
-> Note: The `add` command may have already started your app.
+!!! note
+	The `add` command may have already started your app.

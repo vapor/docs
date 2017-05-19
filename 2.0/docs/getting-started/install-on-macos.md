@@ -17,7 +17,7 @@ After Xcode 8 has been downloaded, you must open it to finish the installation. 
 Double check the installation was successful by running:
 
 ```sh
-eval "$(curl -sL check2.vapor.sh)"
+eval "$(curl -sL check.vapor.sh)"
 ```
 
 ## Install Vapor

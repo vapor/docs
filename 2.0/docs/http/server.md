@@ -1,6 +1,3 @@
-!!! warning
-    This section may contain outdated information.
-
 # Server
 
 The server is responsible for accepting connections from clients, parsing their requests, and delivering them a response. 
@@ -12,51 +9,25 @@ Starting your Droplet with a default server is simple.
 ```swift
 import Vapor
 
-let drop = Droplet()
-
-drop.run()
+let drop = try Droplet()
+try drop.run()
 ```
 
 The default server will bind to host `0.0.0.0` at port `8080`.
 
 ## Config
 
-If you are using a `Config/servers.json` file, this is where you can easily change your host and port or even boot multiple servers.
+If you are using a `Config/server.json` file, this is where you can easily change your host and port.
 
 ```json
 {
-    "default": {
-        "port": "$PORT:8080",
-        "host": "0.0.0.0",
-        "securityLayer": "none"
-    }
+    "port": "$PORT:8080",
+    "host": "0.0.0.0",
+    "securityLayer": "none"
 }
 ```
 
-The default `servers.json` is above. The port with try to resolve the environment variable `$PORT` or fallback to `8080`.
-
-### Multiple
-
-You can start multiple servers in the same application. This is especially useful if you want to boot an `HTTP` and `HTTPS` server side by side.
-
-```json
-{
-    "plaintext": {
-        "port": "80",
-        "host": "vapor.codes",
-        "securityLayer": "none"
-    },
-    "secure": {
-        "port": "443",
-        "host": "vapor.codes",
-        "securityLayer": "tls",
-        "tls": {
-            "certificates": "none",
-            "signature": "selfSigned"
-        }
-    },
-}
-```
+The default `server.json` is above. The port with try to resolve the environment variable `$PORT` or fallback to `8080`.
 
 ## TLS
 
@@ -70,8 +41,8 @@ Verificiation of hosts and certificates can be disabled. They are enabled by def
 
 ```json
 "tls": {
-   "verifyHost": false,
-   "verifyCertificates": false
+    "verifyHost": false,
+    "verifyCertificates": false
 }
 ```
 
@@ -142,68 +113,23 @@ Verificiation of hosts and certificates can be disabled. They are enabled by def
 
 ## Example
 
-Here is an example `servers.json` file using certificate files with a self signed signature and host verification redundantly set to `true`.
+Here is an example `server.json` file using certificate files with a self signed signature and host verification redundantly set to `true`.
 
 ```json
 {
-    "secure": {
-        "port": "8443",
-        "host": "0.0.0.0",
-        "securityLayer": "tls",
-        "tls": {
-            "verifyHost": true,
-            "certificates": "files",
-            "certificateFile": "/vapor/certs/cert.pem",
-            "privateKeyFile": "/vapor/certs/key.pem",
-            "signature": "selfSigned"
-        }
+    "port": "8443",
+    "host": "0.0.0.0",
+    "securityLayer": "tls",
+    "tls": {
+        "verifyHost": true,
+        "certificates": "files",
+        "certificateFile": "/vapor/certs/cert.pem",
+        "privateKeyFile": "/vapor/certs/key.pem",
+        "signature": "selfSigned"
     }
 }
 ```
 
-## Manual
+## Nginx
 
-Servers can also be configured manually, without configuration files. 
-
-> Note: If servers are configured programatically, they override any config settings.
-
-### Simple
-
-The `run` method on the Droplet takes a dictionary of server configuration objects. The key is the name of the server.
-
-```swift
-import Vapor
-
-let drop = Droplet()
-
-drop.run(servers: [
-    "default": (host: "vapor.codes", port: 8080, securityLayer: .none)
-]
-```
-
-### TLS
-
-TLS can also be configured manually, and works similarly to the `servers.json` config files described above.
-
-```swift
-import Vapor
-import TLS
-
-let drop = Droplet()
-
-let config = try TLS.Config(
-    mode: .server,
-    certificates: .files(
-        certificateFile: "/Users/tanner/Desktop/certs/cert.pem", 
-        privateKeyFile: "/Users/tanner/Desktop/certs/key.pem", 
-        signature: .selfSigned
-    ),
-    verifyHost: true,
-    verifyCertificates: true
-)
-
-drop.run(servers: [
-    "plaintext": ("vapor.codes", 8080, .none),
-    "secure": ("vapor.codes", 8443, .tls(config)),
-])
-````
+It is highly recommended that you serve your Vapor project behind Nginx in production. Read more in the [deploy Nginx](../deploy/nginx.md) section.

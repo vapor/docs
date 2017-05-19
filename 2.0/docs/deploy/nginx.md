@@ -1,11 +1,9 @@
-!!! warning
-    This section may contain outdated information.
-
 # Deploying with Nginx
 
 Nginx is an extremely fast, battle tested, and easy-to-configure HTTP server and proxy. While Vapor supports directly serving HTTP requests with or without TLS, proxying behind Nginx can provide increased performance, security, and ease-of-use. 
 
-> Note: We recommend proxying Vapor HTTP servers behind Nginx.
+!!! note
+    We recommend proxying Vapor HTTP servers behind Nginx.
 
 ## Overview
 
@@ -19,7 +17,8 @@ An important feature of this middleman proxy is that it can alter or even redire
 
 The default port for receiving HTTP requests is port `80` (and `443` for HTTPS). When you bind a Vapor server to port `80`, it will directly receive and respond to the HTTP requests that come to your server. When adding a proxy like Nginx, you bind Vapor to an internal port, like port `8080`. 
 
-> Note: Ports greater than 1024 do not require `sudo` to bind.
+!!! note
+    Ports greater than 1024 do not require `sudo` to bind.
 
 When Vapor is bound to a port besides `80` or `443`, it will not be accessible to the outside internet. You then bind Nginx to port `80` and configure it to route requests to your Vapor server bound at port `8080` (or whichever port you've chosen).
 
@@ -30,6 +29,7 @@ And that's it. If Nginx is properly configured, you will see your Vapor app resp
 The first step is installing Nginx. One of the great parts of Nginx is the tremendous amount of community resources and documentation surrounding it. Because of this, we will not go into great detail here about installing Nginx as there is almost definitely a tutorial for your specific platform, OS, and provider.
 
 Tutorials:
+
 - [How To Install Nginx on Ubuntu 14.04 LTS](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-14-04-lts)
 - [How To Install Nginx on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)
 - [How to Deploy Nginx on Heroku](https://blog.codeship.com/how-to-deploy-nginx-on-heroku/)

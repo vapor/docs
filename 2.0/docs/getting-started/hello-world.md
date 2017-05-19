@@ -126,23 +126,16 @@ Boot up the server by running the following command.
 vapor run serve
 ```
 
-You should see a message `Server starting...`. You can now visit `http://localhost:8080/plaintext` in your browser.
+You should see a message `Server starting...`. 
+
+You can now visit `localhost:8080/plaintext` in your browser or run 
+
+```sh
+curl localhost:8080/plaintext
+```
 
 !!! note
     Certain port numbers require super user access to bind. Simply run `sudo vapor run` to allow access. If you decide to run on a port besides `80`, make sure to direct your browser accordingly.
-
-#### Production
-
-Serving your application in the production environment increases its security and performance.
-
-```sh
-vapor run serve --env=production
-```
-
-Debug errors will be silenced while in the production environment, so make sure to check your logs for errors.
-
-!!! warning 
-    If you compiled your application with `--release`, make sure to add that flag to the `vapor run` command as well. e.g., `vapor run serve --env=production --release`.
 
 ### Hello, World
 
@@ -156,4 +149,20 @@ Hello, world!
     Like Vapor so far? Click the button below and star the repo to help spread the word! 
 
 <iframe src="https://ghbtns.com/github-btn.html?user=vapor&repo=vapor&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
+
+#### Production
+
+Serving your application in the production environment increases its security and performance.
+
+```sh
+vapor run serve --env=production
+```
+
+Some debug messages will be silenced while in the production environment, so make sure to check your logs for errors.
+
+!!! warning 
+    If you compiled your application with `--release`, make sure to add that flag to the `vapor run` command as well. e.g., `vapor run serve --env=production --release`.
+
+For more information on deploying your code, check out the [deploy section](http://127.0.0.1:8000/deploy/nginx/).
 

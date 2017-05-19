@@ -80,6 +80,6 @@ Vapor has a sophisticated configuration system that involves a hierarchy of conf
          └── app.json  // overrides app.json in all environments, ignored by git
 ```
 
-`.json` files are structured in the `Config` folder as shown above. The configuration will be applied dependant on where the `.json` file exists in the hierarchy. Learn more in [Config](../settings/config.md).
+`.json` files are structured in the `Config` folder as shown above. The configuration will be applied dependant on where the `.json` file exists in the hierarchy. Learn more in [Config](../configs/config.md).
 
 Learn about changing environments (the `--env=` flag) in the [Droplet](droplet.md) section.
