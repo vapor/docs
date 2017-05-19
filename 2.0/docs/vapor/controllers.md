@@ -45,20 +45,24 @@ You can also use controller methods with type-safe routing.
 final class HelloController {
 	...
 
-	func sayHelloAlternate(_ req: Request, _ name: String) -> ResponseRepresentable {
+	func sayHelloAlternate(_ req: Request) -> ResponseRepresentable {
+        let name: String = try req.parameters.next(String.self)
 		return "Hello, \(name)"
 	}
 }
 ```
 
-We add a new method called `sayHelloAlternate` to the `HelloController` that accepts a second parameter `name: String`.
+We add a new method called `sayHelloAlternate` to the `HelloController` that fetches a `String` from the request's parameters.
 
 ```swift
 let hc = HelloController()
-drop.get("hello", String.self, handler: hc.sayHelloAlternate)
+drop.get("hello", String.parameter, handler: hc.sayHelloAlternate)
 ```
 
-Since this type-safe `drop.get` accepts a signature `(Request, String) throws -> ResponseRepresentable`, our method can now be used as the closure for this route. 
+Since `drop.get` accepts a signature `(Request) throws -> ResponseRepresentable`, our method can now be used as the closure for this route. 
+
+!!! note 
+    Read more about type safe routing in the [Routing Parameters](https://docs.vapor.codes/2.0/routing/parameters/#type-safe) section.
 
 ## Resources
 
