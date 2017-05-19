@@ -90,7 +90,7 @@ These are officially supported packages for Vapor that are not included by defau
 	- [MySQL Provider](https://github.com/vapor/mysql-provider): MySQL provider for Vapor.
 - [Leaf](https://github.com/vapor/leaf): An extensible templating language.
 	- [Leaf Provider](https://github.com/vapor/leaf-provider): Leaf provider for Vapor.
-- [Redbird](https://github.com/vapor/redbird): Pure-Swift Redis client implemented from the original protocol spec..
+- [Redbird](https://github.com/vapor/redbird): Pure-Swift Redis client implemented from the original protocol spec.
 	- [Redis Provider](https://github.com/vapor/redis-provider): Redis cache provider for Vapor.
 - [JWT](https://github.com/vapor/jwt): JSON Web Tokens in Swift.
 	- [JWT Provider](https://github.com/vapor/jwt-provider): JWT conveniences for Vapor.
@@ -107,7 +107,7 @@ These are packages maintained by community members that work great with Vapor.
 	- [Mongo Provider](https://github.com/vapor/mongo-provider): MongoKitten provider for Vapor.
 	- [MainecoonVapor](https://github.com/OpenKitten/MainecoonVapor): MongoKitten ORM for Vapor.
 - [Kitura Provider](https://github.com/vapor/kitura-provider): Use IBM's Kitura HTTP server in Vapor.
-- [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver-Vapor): Adds the powerful logging of SwiftyBeaver to Vapor.
+- [SwiftyBeaver](https://github.com/vapor-community/swiftybeaver-provider): Adds the powerful logging of SwiftyBeaver to Vapor.
 - [APNS](https://github.com/matthijs2704/vapor-apns): Simple APNS Library for Vapor (Swift).
 - [VaporFCM](https://github.com/mdab121/vapor-fcm): Simple FCM (iOS + Android Push Notifications) library built for Vapor in Swift.
 - [VaporS3Signer](https://github.com/JustinM1/VaporS3Signer): Generate V4 Auth Header/Pre-Signed URL for AWS S3 REST API
