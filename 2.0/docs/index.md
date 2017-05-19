@@ -102,10 +102,9 @@ These are packages maintained by community members that work great with Vapor.
 - [PostgreSQL](https://github.com/vapor/postgresql): Robust PostgreSQL interface for Swift.
 	- [PostgreSQL Driver](https://github.com/vapor/postgresql-driver): PostgreSQL driver for Fluent.
 	- [PostgreSQL Provider](https://github.com/vapor/postgresql-provider): PostgreSQL provider for Vapor.
-- [MongoKitten*](https://github.com/OpenKitten/MongoKitten): Native MongoDB driver for Swift, written in Swift
+- [MongoKitten](https://github.com/OpenKitten/MongoKitten): Native MongoDB driver for Swift, written in Swift
 	- [Mongo Driver](https://github.com/vapor/mongo-driver): MongoKitten driver for Fluent.
 	- [Mongo Provider](https://github.com/vapor/mongo-provider): MongoKitten provider for Vapor.
-	- [MainecoonVapor](https://github.com/OpenKitten/MainecoonVapor): MongoKitten ORM for Vapor.
 - [Kitura Provider](https://github.com/vapor/kitura-provider): Use IBM's Kitura HTTP server in Vapor.
 - [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver-Vapor): Adds the powerful logging of SwiftyBeaver to Vapor.
 - [APNS](https://github.com/matthijs2704/vapor-apns): Simple APNS Library for Vapor (Swift).
