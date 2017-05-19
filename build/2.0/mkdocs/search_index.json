@@ -652,7 +652,7 @@
         }, 
         {
             "location": "/vapor/log/", 
-            "text": "Log information using \ndrop.log\n.\n\n\ndrop.log.info(\nInformational log\n)\n\n\n\n\n\nLog types supported are:\n- info\n- warning\n- verbose\n- debug\n- error\n- fatal\n\n\nProtocol\n\n\nCreate your own logger by conforming to \nLogProtocol\n.", 
+            "text": "Log information using \ndrop.log\n.\n\n\ndrop\n.\nlog\n.\ninfo\n(\nInformational log\n)\n\n\n\n\n\n\nLog types supported are:\n\n\n\n\ninfo\n\n\nwarning\n\n\nverbose\n\n\ndebug\n\n\nerror\n\n\nfatal\n\n\n\n\nProtocol\n\n\nCreate your own logger by conforming to \nLogProtocol\n.", 
             "title": "Log"
         }, 
         {

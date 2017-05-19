@@ -1504,17 +1504,19 @@
                   <h1>Log</h1>
                 
                 <p>Log information using <code>drop.log</code>.</p>
-<div class="codehilite"><pre><span></span>drop.log.info(&quot;Informational log&quot;)
+<div class="codehilite"><pre><span></span><span class="n">drop</span><span class="p">.</span><span class="n">log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Informational log&quot;</span><span class="p">)</span>
 </pre></div>
 
 
-<p>Log types supported are:
-- info
-- warning
-- verbose
-- debug
-- error
-- fatal</p>
+<p>Log types supported are:</p>
+<ul>
+<li>info</li>
+<li>warning</li>
+<li>verbose</li>
+<li>debug</li>
+<li>error</li>
+<li>fatal</li>
+</ul>
 <h2 id="protocol">Protocol<a class="headerlink" href="#protocol" title="Permanent link">&para;</a></h2>
 <p>Create your own logger by conforming to <code>LogProtocol</code>. </p>
               
