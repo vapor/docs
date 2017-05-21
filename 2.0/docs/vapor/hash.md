@@ -42,7 +42,7 @@ By default, Vapor uses a SHA-256 hasher. You can change this in the configuratio
 ```
 
 `Config/crypto.json`
-```json 
+```json
 {
     "hash": {
         "method": "sha256",
@@ -65,7 +65,7 @@ The CryptoHasher supports three methods of encoding.
 
 Supplying a key will cause the hasher to produce _keyed_ hashes using HMAC. Some hashers require a key.
 
-#### Supported 
+#### Supported
 
 | Name         | Method      | Requires Key |
 |--------------|-------------|--------------|
@@ -112,7 +112,7 @@ let drop = try Droplet(hash: hash)
 
 ## BCryptHasher
 
-BCrypt is a password hashing function that automatically incorporates salts and offers a configurable work factor. The work factor can be used to increase the computation required to generate a hash.
+BCrypt is a password hashing function that automatically incorporates salts and offers a configurable cost. The cost can be used to increase the computation required to generate a hash.
 
 !!! seealso
     Learn more about [key stretching](https://en.wikipedia.org/wiki/Key_stretching) on Wikipedia.
@@ -130,24 +130,24 @@ To use the BCryptHasher change the `"hash"` key in the `droplet.json` configurat
 }
 ```
 
-To configure the work factor, add a `bcrypt.json` file.
+To configure the cost, add a `bcrypt.json` file.
 
 `Config/bcrypt.json`
 ```json
 {
-    "workFactor": 8
+    "cost": 8
 }
 ```
 
 !!! tip
-    You can use different BCrypt work factors for production and development modes to keep password hashing fast while working on a project.
+    You can use different BCrypt costs for production and development modes to keep password hashing fast while working on a project.
 
 ### Manual
 
 You can manually assign a `BCryptHasher` to `drop.hash`.
 
 ```swift
-let hash = BCryptHasher(workFactor: 8)
+let hash = BCryptHasher(cost: 8)
 
 let drop = try Droplet(hash: hash)
 ```
