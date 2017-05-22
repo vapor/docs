@@ -25,7 +25,7 @@ Our small team works hard to make Vapor awesome (and free). Support the framewor
 
 Here are some other great places to find information about Vapor.
 
-### API 
+### API
 
 Auto-generated API documentation is located at [api.vapor.codes](http://api.vapor.codes).
 
@@ -45,19 +45,19 @@ To view open bug reports and feature requests, or to create one, visit the [issu
 
 ## Packages
 
-Vapor is a modular framework built for a modular language. Code is split up into modules which are grouped to form packages. Packages can be added to your project by adding the package's Git url to your `Package.swift` file. Once a package is included, all of its modules will be available to `import`. You can read more about packages and modules in the Swift Package Manager [conceptual overview](https://swift.org/package-manager/). 
+Vapor is a modular framework built for a modular language. Code is split up into modules which are grouped to form packages. Packages can be added to your project by adding the package's Git url to your `Package.swift` file. Once a package is included, all of its modules will be available to `import`. You can read more about packages and modules in the Swift Package Manager [conceptual overview](https://swift.org/package-manager/).
 
 Below is a list of packages and modules that come with or can be used by Vapor projects. Packages will have a link to their respective GitHub page.
 
 ### Core
 
-Core packages are maintained by the Vapor team. 
+Core packages are maintained by the Vapor team.
 
 #### Included
 
 The following packages are included with Vapor by default.
 
-!!! tip 
+!!! tip
 	These packages can also be used individually
 
 - [Vapor](https://github.com/vapor/vapor): Swift's most used web framework.
@@ -124,6 +124,8 @@ These are packages maintained by community members that work great with Vapor.
 - [VaporForms](https://github.com/bygri/vapor-forms): Brings simple, dynamic and re-usable web form handling to Vapor.
 - [Jobs](https://github.com/BrettRToomey/Jobs): A minimalistic job/background-task system for Swift.
 - [Heimdall](https://github.com/himani93/heimdall): An easy to use HTTP request logger.
+- [SteamPress](https://github.com/brokenhandsio/SteamPress): A blogging engine for Vapor.
+- [Vapor Security Headers](https://github.com/brokenhandsio/VaporSecurityHeaders): Add common security headers to your Vapor Application.
 
 ### Providers
 
