@@ -3,7 +3,7 @@
 Traditional web frameworks leave room for error in routing by using strings for route parameter names and types. Vapor takes advantage of Swift's closures to provide a safer and more intuitive method for accessing route parameters.
 
 !!! seealso
-    Route parameters refer to segments of the URL path (e.g., `/users/:id`). For query parameters (e.g., `?foo=bar`) see [request query parameters](../http/request#query-parameters).
+    Route parameters refer to segments of the URL path (e.g., `/users/:id`). For query parameters (e.g., `?foo=bar`) see [request query parameters](../http/request/#query-parameters).
 
 ## Type Safe
 
