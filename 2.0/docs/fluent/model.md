@@ -152,7 +152,7 @@ extension User: SoftDeletable {
 
 ### Including Deleted
 
-When a model is soft deleted, it will be affected by any queries made with the Fluent query builder.
+When a model is soft deleted, it will not be affected by any queries made with the Fluent query builder.
 
 To include soft deleted models, for instance if you want to restore them, use the `.withSoftDeleted()` method
 on the query builder.
