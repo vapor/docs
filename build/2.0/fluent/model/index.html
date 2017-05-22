@@ -2065,7 +2065,7 @@ deleting the model.</p>
 
 
 <h3 id="including-deleted">Including Deleted<a class="headerlink" href="#including-deleted" title="Permanent link">&para;</a></h3>
-<p>When a model is soft deleted, it will be affected by any queries made with the Fluent query builder.</p>
+<p>When a model is soft deleted, it will not be affected by any queries made with the Fluent query builder.</p>
 <p>To include soft deleted models, for instance if you want to restore them, use the <code>.withSoftDeleted()</code> method
 on the query builder.</p>
 <div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">allUsers</span> <span class="p">=</span> <span class="k">try</span> <span class="n">User</span><span class="p">.</span><span class="n">makeQuery</span><span class="p">().</span><span class="n">withSoftDeleted</span><span class="p">().</span><span class="n">all</span><span class="p">()</span>
