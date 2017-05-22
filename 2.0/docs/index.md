@@ -126,6 +126,7 @@ These are packages maintained by community members that work great with Vapor.
 - [Heimdall](https://github.com/himani93/heimdall): An easy to use HTTP request logger.
 - [SteamPress](https://github.com/brokenhandsio/SteamPress): A blogging engine for Vapor.
 - [Vapor Security Headers](https://github.com/brokenhandsio/VaporSecurityHeaders): Add common security headers to your Vapor Application.
+- [MarkdownProvider](https://github.com/vapor-community/markdown-provider) - Easily use Markdown from Leaf.
 
 ### Providers
 
