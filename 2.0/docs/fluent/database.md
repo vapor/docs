@@ -8,13 +8,13 @@ By default, Fluent includes in-memory and SQLite drivers. There are several driv
 
 ### Available
 
-| Type       | Key    | Package                                                            | Class               | Official |
-|------------|--------|--------------------------------------------------------------------|---------------------|----------|
-| Memory     | memory | [Fluent Provider](../fluent/package.md)                            | Fluent.MemoryDriver | Yes      |
-| SQlite     | sqlite | [Fluent Provider](../fluent/package.md)                            | Fluent.SQLiteDriver | Yes      |
-| MySQL      | mysql  | [MySQLProvider](../mysql/package.md)                               | MySQLDriver.Driver  | Yes      |
-| PostgreSQL | N/A    | [PostgreSQLProvider](https://github.com/vapor/postgresql-provider) | N/A                 | No       |
-| MongoDB    | N/A    | [MongoProvider](https://github.com/vapor/mongo-provider)           | N/A                 | No       |
+| Type       | Key        | Package                                                                      | Class                   | Official |
+|------------|------------|------------------------------------------------------------------------------|-------------------------|----------|
+| Memory     | memory     | [Fluent Provider](../fluent/package.md)                                      | Fluent.MemoryDriver     | Yes      |
+| SQlite     | sqlite     | [Fluent Provider](../fluent/package.md)                                      | Fluent.SQLiteDriver     | Yes      |
+| MySQL      | mysql      | [MySQLProvider](../mysql/package.md)                                         | MySQLDriver.Driver      | Yes      |
+| PostgreSQL | postgresql | [PostgreSQLProvider](https://github.com/vapor-community/postgresql-provider) | PostgreSQLDriver.Driver | No       |
+| MongoDB    | N/A        | [MongoProvider](https://github.com/vapor-community/mongo-provider)           | N/A                     | No       |
 
 Click on the provider package for more information about how to use it.
 
