@@ -25,11 +25,11 @@ Creation of the `Droplet` normally happens in the `main.swift` file.
     For the sake of simplicity, most of the documentations sample code uses just the `main.swift` file. You can read more about packages and modules in the Swift Package Manager [conceptual overview](https://swift.org/package-manager/).
 
 ## Environment
-
-The `environment` property contains the current environment your application is running in. Usually development, testing, or production.
+The `environment` is accessible via the config of the droplet.
+It contains the current environment your application is running in. Usually development, testing, or production.
 
 ```swift
-if drop.environment == .production {
+if drop.config.environment == .production {
     ...
 }
 ```
