@@ -1724,8 +1724,9 @@
 <p>For the sake of simplicity, most of the documentations sample code uses just the <code>main.swift</code> file. You can read more about packages and modules in the Swift Package Manager <a href="https://swift.org/package-manager/">conceptual overview</a>.</p>
 </div>
 <h2 id="environment">Environment<a class="headerlink" href="#environment" title="Permanent link">&para;</a></h2>
-<p>The <code>environment</code> property contains the current environment your application is running in. Usually development, testing, or production.</p>
-<div class="codehilite"><pre><span></span><span class="k">if</span> <span class="n">drop</span><span class="p">.</span><span class="n">environment</span> <span class="p">==</span> <span class="p">.</span><span class="n">production</span> <span class="p">{</span>
+<p>The <code>environment</code> is accessible via the config of the droplet.
+It contains the current environment your application is running in. Usually development, testing, or production.</p>
+<div class="codehilite"><pre><span></span><span class="k">if</span> <span class="n">drop</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">environment</span> <span class="p">==</span> <span class="p">.</span><span class="n">production</span> <span class="p">{</span>
     <span class="p">...</span>
 <span class="p">}</span>
 </pre></div>
