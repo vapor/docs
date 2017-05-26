@@ -8,11 +8,11 @@ Vapor 是一个在 Swift 上很受欢迎的 Web framework。它提供了清晰�
 
 我们可以在 [Vapor's GitHub](https://github.com/vapor/vapor) 查看源码及说明文档。
 
-阅读 [繁体中文](https://github.com/vapor/documentation/1.5/README.zh-hant.md)
+阅读 [繁体中文](README.zh-hant.md)
 
-阅读 [Spanish](https://github.com/vapor/documentation/1.5/README.es.md)
+阅读 [Spanish](README.es.md)
 
-阅读 [English](https://github.com/vapor/documentation/1.5/README.md)
+阅读 [English](README.md)
 
 ## 说明文档
 
