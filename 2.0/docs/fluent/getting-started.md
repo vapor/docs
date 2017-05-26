@@ -92,7 +92,7 @@ You can do this by conforming your model to `Preparation`.
 extension Pet: Preparation {
     static func prepare(_ database: Database) throws {
         try database.create(self) { pets in
-            pets.id(for: self)
+            pets.id()
             pets.string("name")
             pets.int("age")
         }
