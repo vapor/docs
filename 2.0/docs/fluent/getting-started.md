@@ -112,15 +112,15 @@ Here we are creating a simple table that will look like this:
 
 ### Add to Droplet
 
-Now you can add your model to the Droplet's prearations so the database is prepared when your application boots.
+Now you can add your model to the config's prearations so the database is prepared when your application boots.
 
 ```swift
 import Vapor
 import FluentProvider
 
-let drop = try Droplet()
-
-drop.preparations.append(Pet.self)
+let config = try Config()
+try config.preparations.append(Pet.self)
+let drop = try Droplet(config)
 
 ...
 ```
