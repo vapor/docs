@@ -119,7 +119,7 @@ import Vapor
 import FluentProvider
 
 let config = try Config()
-try config.preparations.append(Pet.self)
+config.preparations.append(Pet.self)
 let drop = try Droplet(config)
 
 ...
