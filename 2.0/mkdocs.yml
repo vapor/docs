@@ -73,7 +73,9 @@ pages:
     - 'Package': 'leaf/package.md'
     - 'Provider': 'leaf/provider.md'
     - 'Overview': 'leaf/leaf.md'
-- Validation: 'validation/overview.md'
+- Validation:
+    - 'Package': 'validation/package.md'
+    - 'Overview': 'validation/overview.md'
 - Node:
     - 'Package': 'node/package.md'
     - 'Getting Started': 'node/getting-started.md'
