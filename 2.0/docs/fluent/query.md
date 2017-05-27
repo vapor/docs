@@ -94,14 +94,14 @@ try query.filter("age" >= 21)
 You can also filter by fields being in a set of data.
 
 ```swift
-try query.filter("favoriteColor", in: ["pink", "blue"])
+try query.filter(.subset("favoriteColor", .in, ["pink", "blue"]))
 ```
 
 Or the opposite.
 
 
 ```swift
-try query.filter("favoriteColor", notIn: ["brown", "black"])
+try query.filter(.subset("favoriteColor", .notIn, ["brown", "black"]))
 ```
 
 ### Group
