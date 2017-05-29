@@ -22,12 +22,35 @@ final class VersionMiddleware: Middleware {
 }
 ```
 
-We then supply this middleware to our `Droplet`.
+In `Config+Setup.swift`, add the setupMiddlewares methods and call it in the setup method.
 
 ```swift
-let drop = Droplet()
-drop.middleware.append(VersionMiddleware())
+public func setup() throws {
+    ...
+    try setupMiddlewares()
+}
+
+/// Configure middlewares
+private func setupMiddlewares() throws {
+    try addConfigurable(middleware: VersionMiddleware(), name: "VersionMiddleware")
+}
 ```
+
+Then, in the `Config/droplet.json` file, add `VersionMiddleware` to the `middleware` array.
+
+```json
+{
+    ...
+    "middleware": [
+        ...
+        "VersionMiddleware",
+        ...
+    ],
+    ...
+}
+```
+
+The ordering of middleware is respected as per the ordering in the array.
 
 You can imagine our `VersionMiddleware` sitting in the middle of a chain that connects the client and our server. Every request and response that hits our server must go through this chain of middleware.
 
@@ -114,11 +137,35 @@ final class FooErrorMiddleware: Middleware {
 }
 ```
 
-We just need to append this middleware to the `Droplet`.
+In `Config+Setup.swift`, add the setupMiddlewares methods and call it in the setup method.
 
 ```swift
-drop.middleware.append(FooErrorMiddleware())
+public func setup() throws {
+...
+try setupMiddlewares()
+}
+
+/// Configure middlewares
+private func setupMiddlewares() throws {
+    try addConfigurable(middleware: FooErrorMiddleware(), name: "FooErrorMiddleware")
+}
 ```
+
+Then, in the `Config/droplet.json` file, add `VersionMiddleware` to the `middleware` array.
+
+```json
+{
+    ...
+    "middleware": [
+        ...
+        "FooErrorMiddleware",
+        ...
+    ],
+    ...
+}
+```
+
+The ordering of middleware is respected as per the ordering in the array.
 
 Now our route closures look a lot better and we don't have to worry about code duplication.
 
@@ -142,44 +189,6 @@ authed.get("secure") { req in
 ```
 
 Anything added to the `authed` group must pass through `AuthMiddleware`. Because of this, we can assume all traffic to `/secure` has been authorized. Learn more in [Routing](../routing/group).
-
-## Configuration
-
-Appending middleware to the `drop.middleware` array is the simplest way to add middleware--it will be used every time the application starts.
-
-You can also use the [configuration](../configs/config.md) files to enabled or disable middleware for more control. This is especially useful if you have middleware that should, for example, run only in production.
-
-Appending configurable middleware looks like the following:
-
-```swift
-let drop = Droplet()
-drop.addConfigurable(middleware: myMiddleware, name: "my-middleware")
-```
-
-Then, in the `Config/droplet.json` file, add `my-middleware` to the appropriate `middleware` array.
-
-```json
-{
-    ...
-    "middleware": {
-        "server": [
-            ...
-            "my-middleware",
-            ...
-        ],
-        "client": [
-            ...
-        ]
-    },
-    ...
-}
-```
-
-If the name of the added middleware appears in the `server` array for the loaded configuration, it will be added to the server's middleware when the application boots.
-
-Likewise, if the middleware appears in the `client` array for the loaded configuration, it will be added to the client's middleware.
-
-One middleware can be appended to both the Client and the Server, and can be added multiple times. The ordering of middleware is respected.
 
 ## Advanced
 
