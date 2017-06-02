@@ -164,5 +164,5 @@ Some debug messages will be silenced while in the production environment, so mak
 !!! warning 
     If you compiled your application with `--release`, make sure to add that flag to the `vapor run` command as well. e.g., `vapor run serve --env=production --release`.
 
-For more information on deploying your code, check out the [deploy section](http://127.0.0.1:8000/deploy/nginx/).
+For more information on deploying your code, check out the [deploy section](../deploy/nginx.md).
 
