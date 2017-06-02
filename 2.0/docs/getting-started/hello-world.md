@@ -66,7 +66,7 @@ Hello
 Look for the following line in the `Routes.swift` file.
 
 ```swift
-func build(_ builder: RouteBuilder) throws
+func setupRoutes() throws
 ```
 
 This method is where all the routes for our application will be added. 
@@ -76,7 +76,7 @@ This method is where all the routes for our application will be added.
 In the scope of the `build` method, look for the following statement.
 
 ```swift
-builder.get("plaintext") { req in
+get("plaintext") { req in
     return "Hello, world!"
 }
 ```
