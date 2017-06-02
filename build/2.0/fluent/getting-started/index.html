@@ -1323,10 +1323,46 @@
       
 
 
-  <li class="md-nav__item">
-    <a href="../../validation/overview/" title="Validation" class="md-nav__link">
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+    
+    <label class="md-nav__link" for="nav-15">
       Validation
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-15">
+        Validation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../validation/package/" title="Package" class="md-nav__link">
+      Package
     </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../validation/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -1795,12 +1831,22 @@
     <span class="kd">var</span> <span class="nv">age</span><span class="p">:</span> <span class="nb">Int</span>
     <span class="kd">let</span> <span class="nv">storage</span> <span class="p">=</span> <span class="n">Storage</span><span class="p">()</span>
 
+    <span class="kd">init</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="n">Row</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="n">name</span> <span class="p">=</span> <span class="k">try</span> <span class="n">row</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">)</span>
+        <span class="n">age</span> <span class="p">=</span> <span class="k">try</span> <span class="n">row</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;age&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+
     <span class="kd">init</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
         <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">name</span>
         <span class="kc">self</span><span class="p">.</span><span class="n">age</span> <span class="p">=</span> <span class="n">age</span>
     <span class="p">}</span>
 
-    <span class="p">...</span>
+    <span class="kd">func</span> <span class="nf">makeRow</span><span class="p">()</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Row</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nv">row</span> <span class="p">=</span> <span class="n">Row</span><span class="p">()</span>
+        <span class="k">try</span> <span class="n">row</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">try</span> <span class="n">row</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="s">&quot;age&quot;</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">row</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -1845,7 +1891,7 @@
 <div class="codehilite"><pre><span></span><span class="kd">extension</span> <span class="nc">Pet</span><span class="p">:</span> <span class="n">Preparation</span> <span class="p">{</span>
     <span class="kd">static</span> <span class="kd">func</span> <span class="nf">prepare</span><span class="p">(</span><span class="kc">_</span> <span class="n">database</span><span class="p">:</span> <span class="n">Database</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
         <span class="k">try</span> <span class="n">database</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">pets</span> <span class="k">in</span>
-            <span class="n">pets</span><span class="p">.</span><span class="n">id</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+            <span class="n">pets</span><span class="p">.</span><span class="n">id</span><span class="p">()</span>
             <span class="n">pets</span><span class="p">.</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">)</span>
             <span class="n">pets</span><span class="p">.</span><span class="n">int</span><span class="p">(</span><span class="s">&quot;age&quot;</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1876,13 +1922,13 @@
 </tbody>
 </table>
 <h3 id="add-to-droplet">Add to Droplet<a class="headerlink" href="#add-to-droplet" title="Permanent link">&para;</a></h3>
-<p>Now you can add your model to the Droplet's prearations so the database is prepared when your application boots.</p>
+<p>Now you can add your model to the config's prearations so the database is prepared when your application boots.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Vapor</span>
 <span class="kd">import</span> <span class="nc">FluentProvider</span>
 
-<span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Droplet</span><span class="p">()</span>
-
-<span class="n">drop</span><span class="p">.</span><span class="n">preparations</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Pet</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">config</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Config</span><span class="p">()</span>
+<span class="n">config</span><span class="p">.</span><span class="n">preparations</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Pet</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Droplet</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
 <span class="p">...</span>
 </pre></div>

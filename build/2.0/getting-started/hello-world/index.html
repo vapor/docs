@@ -1302,10 +1302,46 @@
       
 
 
-  <li class="md-nav__item">
-    <a href="../../validation/overview/" title="Validation" class="md-nav__link">
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+    
+    <label class="md-nav__link" for="nav-15">
       Validation
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-15">
+        Validation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../validation/package/" title="Package" class="md-nav__link">
+      Package
     </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../validation/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -1799,14 +1835,14 @@
 <h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
 <h3 id="droplet">Droplet<a class="headerlink" href="#droplet" title="Permanent link">&para;</a></h3>
 <p>Look for the following line in the <code>Routes.swift</code> file.</p>
-<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nf">build</span><span class="p">(</span><span class="kc">_</span> <span class="n">builder</span><span class="p">:</span> <span class="n">RouteBuilder</span><span class="p">)</span> <span class="kr">throws</span>
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nf">setupRoutes</span><span class="p">()</span> <span class="kr">throws</span>
 </pre></div>
 
 
 <p>This method is where all the routes for our application will be added. </p>
 <h3 id="routing">Routing<a class="headerlink" href="#routing" title="Permanent link">&para;</a></h3>
 <p>In the scope of the <code>build</code> method, look for the following statement.</p>
-<div class="codehilite"><pre><span></span><span class="n">builder</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;plaintext&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
+<div class="codehilite"><pre><span></span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;plaintext&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
     <span class="k">return</span> <span class="s">&quot;Hello, world!&quot;</span>
 <span class="p">}</span>
 </pre></div>
@@ -1881,7 +1917,7 @@
 <p class="admonition-title">Warning</p>
 <p>If you compiled your application with <code>--release</code>, make sure to add that flag to the <code>vapor run</code> command as well. e.g., <code>vapor run serve --env=production --release</code>.</p>
 </div>
-<p>For more information on deploying your code, check out the <a href="http://127.0.0.1:8000/deploy/nginx/">deploy section</a>.</p>
+<p>For more information on deploying your code, check out the <a href="../../deploy/nginx/">deploy section</a>.</p>
               
               
             </article>

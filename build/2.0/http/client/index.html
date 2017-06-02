@@ -1263,10 +1263,46 @@
       
 
 
-  <li class="md-nav__item">
-    <a href="../../validation/overview/" title="Validation" class="md-nav__link">
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+    
+    <label class="md-nav__link" for="nav-15">
       Validation
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-15">
+        Validation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../validation/package/" title="Package" class="md-nav__link">
+      Package
     </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../validation/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -1697,7 +1733,7 @@ This is useful if you need to add JSON or FormURLEncoded data to the request.</p
     <span class="s">&quot;email&quot;</span><span class="p">:</span> <span class="s">&quot;mymail@vapor.codes&quot;</span>
 <span class="p">])</span>
 
-<span class="k">try</span> <span class="n">drop</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">response</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">req</span><span class="p">)</span>
+<span class="k">try</span> <span class="n">drop</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">respond</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">req</span><span class="p">)</span>
 </pre></div>
 
 

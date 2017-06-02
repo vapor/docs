@@ -1311,10 +1311,46 @@
       
 
 
-  <li class="md-nav__item">
-    <a href="../../validation/overview/" title="Validation" class="md-nav__link">
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+    
+    <label class="md-nav__link" for="nav-15">
       Validation
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-15">
+        Validation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../validation/package/" title="Package" class="md-nav__link">
+      Package
     </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../validation/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -1844,8 +1880,8 @@ Adding a preparation to your model will allow you to prepare the database while 
 </pre></div>
 
 
-<p>Once you have created you preparation, add it to the Droplet's prepratations array.</p>
-<div class="codehilite"><pre><span></span><span class="n">drop</span><span class="p">.</span><span class="n">preparations</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<p>Once you have created you preparation, add it to the Config's prepratations array.</p>
+<div class="codehilite"><pre><span></span><span class="n">config</span><span class="p">.</span><span class="n">preparations</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
 </pre></div>
 
 
