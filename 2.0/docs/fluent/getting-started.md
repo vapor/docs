@@ -18,13 +18,23 @@ final class Pet: Model {
     var name: String
     var age: Int
     let storage = Storage()
+    
+    init(row: Row) throws {
+        name = try row.get("name")
+        age = try row.get("age")
+    }
 
     init(name: String, age: Int) {
         self.name = name
         self.age = age
     }
-
-    ...
+    
+    func makeRow() throws -> Row {
+        var row = Row()
+        try row.set("name", name)
+        try row.set("age", age)
+        return row
+    }
 }
 ```
 
@@ -82,7 +92,7 @@ You can do this by conforming your model to `Preparation`.
 extension Pet: Preparation {
     static func prepare(_ database: Database) throws {
         try database.create(self) { pets in
-            pets.id(for: self)
+            pets.id()
             pets.string("name")
             pets.int("age")
         }
@@ -102,15 +112,15 @@ Here we are creating a simple table that will look like this:
 
 ### Add to Droplet
 
-Now you can add your model to the Droplet's prearations so the database is prepared when your application boots.
+Now you can add your model to the config's prearations so the database is prepared when your application boots.
 
 ```swift
 import Vapor
 import FluentProvider
 
-let drop = try Droplet()
-
-drop.preparations.append(Pet.self)
+let config = try Config()
+config.preparations.append(Pet.self)
+let drop = try Droplet(config)
 
 ...
 ```

@@ -8,6 +8,12 @@ You can build, run, and stop your server from within Xcode, as well as use break
 
 To use Xcode, you will first need to generate a `*.xcodeproj` file.
 
+### Select 'Run'
+
+Make sure after generating your Xcode project that you properly select the executable if you're trying to run your application.
+
+<img src="https://cloud.githubusercontent.com/assets/6710841/26517851/72841fd6-426f-11e7-9e6c-945d22933094.png" alt="select 'run' from dropdown" width="300">
+
 ## Generate Project
 
 ### Vapor Toolbox

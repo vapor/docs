@@ -48,7 +48,7 @@ req.formURLEncoded = Node(node: [
     "email": "mymail@vapor.codes"
 ])
 
-try drop.client.response(to: req)
+try drop.client.respond(to: req)
 ```
 
 ## Re-usable Connection

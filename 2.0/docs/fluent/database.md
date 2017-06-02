@@ -58,10 +58,10 @@ The above prepare statement results in SQL similar to the following:
 CREATE TABLE `users` (`id` INTEGER PRIMARY KEY NOT NULL, `name` TEXT NOT NULL, `age` INTEGER NOT NULL)
 ```
 
-Once you have created you preparation, add it to the Droplet's prepratations array.
+Once you have created you preparation, add it to the Config's prepratations array.
 
 ```swift
-drop.preparations.append(User.self)
+config.preparations.append(User.self)
 ```
 
 ### Create

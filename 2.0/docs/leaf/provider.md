@@ -43,9 +43,8 @@ You can also set the `drop.view` property manually if you want to hardcode your 
 import Vapor
 import LeafProvider
 
-let drop = try Droplet()
-
-drop.view = LeafRenderer(viewsDir: drop.viewsDir)
+let view = LeafRenderer(viewsDir: drop.viewsDir)
+let drop = try Droplet(view: view)
 ```
 
 ## Done
