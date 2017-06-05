@@ -16,7 +16,7 @@ Help prints useful information about available commands and flags. You can also 
 vapor --help
 ```
 
-### Framework Commands
+### Application Commands
 
 The `vapor run` command is a special toolbox command that forwards to your Vapor application.
 
