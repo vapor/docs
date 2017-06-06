@@ -202,7 +202,7 @@ Fluent will try to filter on the 'base' model.
 ```swift
 let departments = try Department.makeQuery()
   .join(Employee.self)
-  .filter(Employee.self, "years_of_service", .greaterThanOrEquals, 10)
+  .filter(Employee.self, "years_of_service" >= 10)
 ```
 
 Fluent will work out the relationship fields for you, but you can also specify them yourself with the `baseKey`
