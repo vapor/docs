@@ -118,3 +118,27 @@ let json = request.response["hello"]
 ## Key Paths
 
 For more on KeyPaths, visit [here](./request.md#key-paths)
+
+## Serving Files
+
+If you are simply looking to serve files from your public directory,
+it may be useful to look at 'FileMiddleware' instead.
+
+```swift
+let res = try Response(filePath: "/path/to/file.txt")
+```
+
+Use this to initialize a file response for the exact file path.
+If using from a public folder for example, the file name should be appended
+to the public directory, ie: `drop.publicDir + "myFile.cool"`
+
+```swift
+Response(filePath: String, ifNoneMatch: String? = nil, chunkSize: Int = 2048) throws
+```
+
+If none match represents an ETag that will be used to check if the file has
+changed since the last load by the client. This allows clients like browsers
+to cache their files and avoid downloading resources unnecessarily.
+Most often calculated w/ https://tools.ietf.org/html/rfc7232#section-3.2
+
+For an example of how this is used, look at 'FileMiddleware'.

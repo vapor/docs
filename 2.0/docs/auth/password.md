@@ -73,18 +73,29 @@ import AuthProvider
 
 let drop = try Droplet()
 
-drop.middleware += [
-	PasswordAuthenticationMiddleware(User.self)
-]
+let passwordMiddleware = PasswordAuthenticationMiddleware(User.self)
+
+let authed = try drop.grouped(passwordMiddleware)
 
 try drop.run()
 ```
 
-All routes on this Droplet will now be protected by the password middleware.
+All routes added to the `authed` route group will be protected by the password middleware.
 
 !!! seealso
-	If you only want to require authentication for certain routes, look at our 
-	[Route Group](../routing/group.md) section in the routing docs.
+	If you only want to globally require the password middleware, checkout the
+	[Middleware Config](../http/middleware.md/#config) section in the HTTP docs.
+
+### Route
+
+Now you can add a route to return the authenticated user.
+
+```swift
+authed.get("me") { req in
+    // return the authenticated user
+    return try req.auth.assertAuthenticated(User.self)
+}
+```
 
 Call `req.user.authenticated(User.self)` to get access to the authenticated user.
 

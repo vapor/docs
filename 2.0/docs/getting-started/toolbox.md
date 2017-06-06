@@ -55,6 +55,7 @@ vapor new <name> [--template]
 | API  | --template=api | JSON API with Fluent database.    |
 | Web  | --template=web | HTML website with Leaf templates. |
 
+View a list of all [templates](https://github.com/search?utf8=✓&q=topic%3Avapor+topic%3Atemplate&type=Repositories) on GitHub.
 
 !!! note
     If you do not specify a template option, the API template will be used.

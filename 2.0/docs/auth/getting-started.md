@@ -10,6 +10,9 @@ authorization easy and secure. It supports common auth patterns such as:
 
 Auth's modular, protocol-based nature also makes it a great foundation for custom auth needs.
 
+!!! tip
+    Use `vapor new <name> --template=vapor/auth-template` to create a new [project template](https://github.com/vapor/auth-template) with AuthProvider and samples included.
+
 ## Package
 
 To use Auth, you will need to have the [Auth Provider](https://github.com/vapor/auth-provider) added to your project.
@@ -130,12 +133,18 @@ import Vapor
 import AuthProvider
 import FluentProvider
 
-let drop = try Droplet()
+let config = try Config()
 
-drop.preparations += [ExampleUser.self, ExampleToken.self]
+config.preparations.append(ExampleUser.self)
+config.preparations.append(ExampleToken.self)
+
+let drop = try Droplet(config)
+
 
 let tokenMiddleware = TokenAuthenticationMiddleware(ExampleUser.self)
-drop.middleware.append(tokenMiddleware)
+
+/// use this route group for protected routes
+let authed = drop.grouped(tokenMiddleware)
 ```
 
 Since our `ExampleUser` class is `TokenAuthenticatable`, we can pass it into the middleware's init method.
@@ -146,11 +155,11 @@ Since our `ExampleUser` class is `TokenAuthenticatable`, we can pass it into the
 
 ### Route
 
-Now that our Droplet is setup to require token authentication globally, let's add a route to
+Now that we have a route group protected by our TokenMiddleware, let's add a route to
 return the authenticated user's name.
 
 ```swift
-drop.get("me") { req in
+authed.get("me") { req in
     // return the authenticated user's name
     return try req.user().name
 }

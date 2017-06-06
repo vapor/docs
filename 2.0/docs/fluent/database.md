@@ -176,6 +176,23 @@ vapor run prepare --revert --all
 
 Logging queries is a great way to find optimizations for your application and track down bugs.
 
+The easiest way to log queries is to enable logging in your `fluent.json` file.
+
+`Config/fluent.json`
+```json
+{
+    ...,
+    "log": true,
+    ...
+}
+```
+
+This will emit info-level logs for all database queries.
+
+### Custom
+
+You can also hook into the database's query logging callback to execute custom logic.
+
 ```swift
 drop.database?.log = { query in
     print(query)

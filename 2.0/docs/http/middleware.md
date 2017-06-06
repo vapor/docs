@@ -25,9 +25,19 @@ final class VersionMiddleware: Middleware {
 We then supply this middleware to our `Droplet`.
 
 ```swift
-let drop = Droplet()
-drop.middleware.append(VersionMiddleware())
+import Vapor
+
+let config = try Config()
+
+config.addConfigurable(middleware: VersionMiddleware(), name: "version")
+
+let drop = try Droplet(config)
 ```
+
+!!! tip
+    You can now dynamically enable and disable this mdidleware from your configuration files. 
+    Simply add `"version"` to the `"middleware"` array in your `droplet.json` file.
+    See the [configuration](#configuration) section for more information.
 
 You can imagine our `VersionMiddleware` sitting in the middle of a chain that connects the client and our server. Every request and response that hits our server must go through this chain of middleware.
 
@@ -114,11 +124,14 @@ final class FooErrorMiddleware: Middleware {
 }
 ```
 
-We just need to append this middleware to the `Droplet`.
+We just need to add this middleware to our droplet's config.
 
 ```swift
-drop.middleware.append(FooErrorMiddleware())
+config.addConfigurable(middleware: FooErrorMiddleware(), name: "foo-error")
 ```
+
+!!! tip
+    Don't forget to enable the middleware in your `droplet.json` file.
 
 Now our route closures look a lot better and we don't have to worry about code duplication.
 
@@ -145,41 +158,46 @@ Anything added to the `authed` group must pass through `AuthMiddleware`. Because
 
 ## Configuration
 
-Appending middleware to the `drop.middleware` array is the simplest way to add middleware--it will be used every time the application starts.
-
-You can also use the [configuration](../configs/config.md) files to enabled or disable middleware for more control. This is especially useful if you have middleware that should, for example, run only in production.
+You can use the [configuration](../configs/config.md) files to enabled or disable middleware dynamically. This is especially useful if you have middleware that should, for example, run only in production.
 
 Appending configurable middleware looks like the following:
 
 ```swift
-let drop = Droplet()
-drop.addConfigurable(middleware: myMiddleware, name: "my-middleware")
+let config = try Config()
+
+config.addConfigurable(middleware: myMiddleware, name: "my-middleware")
+
+let drop = Droplet(config)
 ```
 
-Then, in the `Config/droplet.json` file, add `my-middleware` to the appropriate `middleware` array.
+Then, in the `Config/droplet.json` file, add `my-middleware` to the `middleware` array.
 
 ```json
 {
     ...
     "middleware": {
-        "server": [
-            ...
-            "my-middleware",
-            ...
-        ],
-        "client": [
-            ...
-        ]
+        ...
+        "my-middleware",
+        ...
     },
     ...
 }
 ```
 
-If the name of the added middleware appears in the `server` array for the loaded configuration, it will be added to the server's middleware when the application boots.
+If the name of the added middleware appears in the middleware array it will be added to the server's middleware when the application boots.
 
-Likewise, if the middleware appears in the `client` array for the loaded configuration, it will be added to the client's middleware.
+The ordering of middleware is respected.
 
-One middleware can be appended to both the Client and the Server, and can be added multiple times. The ordering of middleware is respected.
+## Manual
+
+You can also hardcode your middleware if you don't want to use configuration files.
+
+```swift
+import Vapor
+
+let versionMiddleware = VersionMiddleware()
+let drop = try Droplet(middleware: [versionMiddleware])
+```
 
 ## Advanced
 
@@ -210,6 +228,13 @@ final class PokemonMiddleware: Middleware {
         return response
     }
 }
+
+extension PokemonMiddleware: ConfigInitializable {
+    convenience init(config: Config) throws {
+        let view = try config.resolveView()
+        self.init(view)
+    }
+}
 ```
 
 #### Response
@@ -233,12 +258,11 @@ Your closures can now look something like this:
 
 ```swift
 import Vapor
-import HTTP
 
-let drop = try Droplet()
+let config = try Config()
+config.addConfigurable(middleware: PokemonMiddleware.init, name: "pokemon")
 
-let pokemonMiddleware = PokemonMiddleware(drop.view)
-drop.middleware.append(pokemonMiddleware)
+let drop = try Droplet(config)
 
 drop.get("pokemon", Pokemon.self) { request, pokemon in
     let response = Response()
@@ -246,6 +270,9 @@ drop.get("pokemon", Pokemon.self) { request, pokemon in
     return response
 }
 ```
+
+!!! tip
+    Don't forget to add `"pokemon"` to your `droplet.json` middleware array.
 
 #### Response Representable
 
