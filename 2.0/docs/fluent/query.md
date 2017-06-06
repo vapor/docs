@@ -146,7 +146,7 @@ let users = try User
 
 This will result in SQL similar to the following:
 
-```swift
+```sql
 SELECT * FROM `users`
 	WHERE `planetOfOrigin` = 'Earth' AND (
 		   (`name` = 'Rick' AND `favoriteFood` = 'Beer')
@@ -183,10 +183,16 @@ try query.limit(20, offset: 5)
 
 ## Sort
 
-To sort the results of your query, use the `.sort()` method
+To sort the results of your query, use the `.sort()` method.
 
 ```swift
 try query.sort("age", .descending)
+```
+
+You can sort on multiple columns at once by chaining your `.sort()` calls.
+
+```swift
+try query.sort("age", .descending).sort("shoe_size")
 ```
 
 ## Join
@@ -222,7 +228,7 @@ try drop.database?.raw("SELECT @@version")
 
 You can also use the database of a given model.
 
-```
+```swift
 User.database?.raw("SELECT * FROM `users`")
 ```
 
