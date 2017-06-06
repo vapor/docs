@@ -201,8 +201,8 @@ Fluent will try to filter on the 'base' model.
 
 ```swift
 let departments = try Department.makeQuery()
-	.join(Employee.self)
-	.filter(Employee.self, "years_of_service", .greaterThanOrEquals, 10)
+  .join(Employee.self)
+  .filter(Employee.self, "years_of_service", .greaterThanOrEquals, 10)
 ```
 
 Fluent will work out the relationship fields for you, but you can also specify them yourself with the `baseKey`
@@ -210,7 +210,7 @@ and `joinedKey` method parameters, where `baseKey` is the identifier field on th
 and `joinedKey` is the foreign key field on the 'joined' model (the Employee) which relates back to the 'base' model.
 
 !!! tip
-	Fluent supports both inner and outer joins; use the invocation `.join(kind: .outer, MyModel.self)`
+  Fluent supports both inner and outer joins; use the invocation `.join(kind: .outer, MyModel.self)`
 
 ## Raw
 
