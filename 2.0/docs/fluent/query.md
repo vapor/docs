@@ -33,7 +33,7 @@ let users = try User.makeQuery().filter(...).all()
 
 ### First
 
-You can take only the first row as well with `.first()`. 
+You can take only the first row as well with `.first()`.
 
 ```
 let user = try User.makeQuery().filter(...).first()
@@ -147,7 +147,7 @@ let users = try User
 This will result in SQL similar to the following:
 
 ```swift
-SELECT * FROM `users` 
+SELECT * FROM `users`
 	WHERE `planetOfOrigin` = 'Earth' AND (
 		   (`name` = 'Rick' AND `favoriteFood` = 'Beer')
 		OR (`name` = 'Morty' AND `favoriteFood` = 'Eyeholes')
@@ -189,6 +189,29 @@ To sort the results of your query, use the `.sort()` method
 try query.sort("age", .descending)
 ```
 
+## Join
+
+You can join two model tables together, which is useful if you want to filter one model by a property of another.
+For example, let's say you have a table of Employees which belong to Departments. You want to know which
+Departments contain Employees who have completed ten years of service.
+
+First you use the `.join()` method on a Department query to join it with the Employee table. Next you chain a
+`.filter()` on to the query. Bear in mind you need to explicitly pass the 'joined' model to the filter, otherwise
+Fluent will try to filter on the 'base' model.
+
+```swift
+let departments = try Department.makeQuery()
+	.join(Employee.self)
+	.filter(Employee.self, "years_of_service", .greaterThanOrEquals, 10)
+```
+
+Fluent will work out the relationship fields for you, but you can also specify them yourself with the `baseKey`
+and `joinedKey` method parameters, where `baseKey` is the identifier field on the 'base' model (the Department)
+and `joinedKey` is the foreign key field on the 'joined' model (the Employee) which relates back to the 'base' model.
+
+!!! tip
+	Fluent supports both inner and outer joins; use the invocation `.join(kind: .outer, MyModel.self)`
+
 ## Raw
 
 Should you need to perform a query that the query builder does not support, you can use the raw query.
@@ -204,4 +227,3 @@ User.database?.raw("SELECT * FROM `users`")
 ```
 
 Besides providing a more expressive interface for querying your database, the query builder also takes measures to increase security by automatically sanitizing input. Because of this, try to use the query class wherever you can over performing raw queries.
-
