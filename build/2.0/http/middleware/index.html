@@ -1108,6 +1108,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#manual" title="Manual" class="md-nav__link">
+    Manual
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#advanced" title="Advanced" class="md-nav__link">
     Advanced
   </a>
@@ -1722,6 +1729,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#manual" title="Manual" class="md-nav__link">
+    Manual
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#advanced" title="Advanced" class="md-nav__link">
     Advanced
   </a>
@@ -1810,11 +1824,22 @@
 
 
 <p>We then supply this middleware to our <code>Droplet</code>.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="n">Droplet</span><span class="p">()</span>
-<span class="n">drop</span><span class="p">.</span><span class="n">middleware</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">VersionMiddleware</span><span class="p">())</span>
+<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Vapor</span>
+
+<span class="kd">let</span> <span class="nv">config</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Config</span><span class="p">()</span>
+
+<span class="n">config</span><span class="p">.</span><span class="n">addConfigurable</span><span class="p">(</span><span class="n">middleware</span><span class="p">:</span> <span class="n">VersionMiddleware</span><span class="p">(),</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;version&quot;</span><span class="p">)</span>
+
+<span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Droplet</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </pre></div>
 
 
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can now dynamically enable and disable this mdidleware from your configuration files. 
+Simply add <code>"version"</code> to the <code>"middleware"</code> array in your <code>droplet.json</code> file.
+See the <a href="#configuration">configuration</a> section for more information.</p>
+</div>
 <p>You can imagine our <code>VersionMiddleware</code> sitting in the middle of a chain that connects the client and our server. Every request and response that hits our server must go through this chain of middleware.</p>
 <p><img alt="Middleware" src="https://cloud.githubusercontent.com/assets/1342803/17382676/0b51d6d6-59a0-11e6-9cbb-7585b9ab9803.png" /></p>
 <h3 id="breakdown">Breakdown<a class="headerlink" href="#breakdown" title="Permanent link">&para;</a></h3>
@@ -1885,11 +1910,15 @@
 </pre></div>
 
 
-<p>We just need to append this middleware to the <code>Droplet</code>.</p>
-<div class="codehilite"><pre><span></span><span class="n">drop</span><span class="p">.</span><span class="n">middleware</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">FooErrorMiddleware</span><span class="p">())</span>
+<p>We just need to add this middleware to our droplet's config.</p>
+<div class="codehilite"><pre><span></span><span class="n">config</span><span class="p">.</span><span class="n">addConfigurable</span><span class="p">(</span><span class="n">middleware</span><span class="p">:</span> <span class="n">FooErrorMiddleware</span><span class="p">(),</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;foo-error&quot;</span><span class="p">)</span>
 </pre></div>
 
 
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Don't forget to enable the middleware in your <code>droplet.json</code> file.</p>
+</div>
 <p>Now our route closures look a lot better and we don't have to worry about code duplication.</p>
 <div class="codehilite"><pre><span></span><span class="n">app</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">request</span> <span class="k">in</span>
     <span class="kd">let</span> <span class="nv">foo</span> <span class="p">=</span> <span class="k">try</span> <span class="n">getFooFromService</span><span class="p">()</span>
@@ -1910,35 +1939,40 @@
 
 <p>Anything added to the <code>authed</code> group must pass through <code>AuthMiddleware</code>. Because of this, we can assume all traffic to <code>/secure</code> has been authorized. Learn more in <a href="../../routing/group">Routing</a>.</p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
-<p>Appending middleware to the <code>drop.middleware</code> array is the simplest way to add middleware--it will be used every time the application starts.</p>
-<p>You can also use the <a href="../../configs/config/">configuration</a> files to enabled or disable middleware for more control. This is especially useful if you have middleware that should, for example, run only in production.</p>
+<p>You can use the <a href="../../configs/config/">configuration</a> files to enabled or disable middleware dynamically. This is especially useful if you have middleware that should, for example, run only in production.</p>
 <p>Appending configurable middleware looks like the following:</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="n">Droplet</span><span class="p">()</span>
-<span class="n">drop</span><span class="p">.</span><span class="n">addConfigurable</span><span class="p">(</span><span class="n">middleware</span><span class="p">:</span> <span class="n">myMiddleware</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;my-middleware&quot;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">config</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Config</span><span class="p">()</span>
+
+<span class="n">config</span><span class="p">.</span><span class="n">addConfigurable</span><span class="p">(</span><span class="n">middleware</span><span class="p">:</span> <span class="n">myMiddleware</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;my-middleware&quot;</span><span class="p">)</span>
+
+<span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="n">Droplet</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </pre></div>
 
 
-<p>Then, in the <code>Config/droplet.json</code> file, add <code>my-middleware</code> to the appropriate <code>middleware</code> array.</p>
+<p>Then, in the <code>Config/droplet.json</code> file, add <code>my-middleware</code> to the <code>middleware</code> array.</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
     <span class="err">...</span>
     <span class="nt">&quot;middleware&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;server&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="err">...</span>
-            <span class="s2">&quot;my-middleware&quot;</span><span class="p">,</span>
-            <span class="err">...</span>
-        <span class="p">],</span>
-        <span class="nt">&quot;client&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="err">...</span>
-        <span class="p">]</span>
+        <span class="err">...</span>
+        <span class="nt">&quot;my-middleware&quot;</span><span class="p">,</span>
+        <span class="err">...</span>
     <span class="p">},</span>
     <span class="err">...</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<p>If the name of the added middleware appears in the <code>server</code> array for the loaded configuration, it will be added to the server's middleware when the application boots.</p>
-<p>Likewise, if the middleware appears in the <code>client</code> array for the loaded configuration, it will be added to the client's middleware.</p>
-<p>One middleware can be appended to both the Client and the Server, and can be added multiple times. The ordering of middleware is respected.</p>
+<p>If the name of the added middleware appears in the middleware array it will be added to the server's middleware when the application boots.</p>
+<p>The ordering of middleware is respected.</p>
+<h2 id="manual">Manual<a class="headerlink" href="#manual" title="Permanent link">&para;</a></h2>
+<p>You can also hardcode your middleware if you don't want to use configuration files.</p>
+<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Vapor</span>
+
+<span class="kd">let</span> <span class="nv">versionMiddleware</span> <span class="p">=</span> <span class="n">VersionMiddleware</span><span class="p">()</span>
+<span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Droplet</span><span class="p">(</span><span class="n">middleware</span><span class="p">:</span> <span class="p">[</span><span class="n">versionMiddleware</span><span class="p">])</span>
+</pre></div>
+
+
 <h2 id="advanced">Advanced<a class="headerlink" href="#advanced" title="Permanent link">&para;</a></h2>
 <h3 id="extensions">Extensions<a class="headerlink" href="#extensions" title="Permanent link">&para;</a></h3>
 <p>Middleware pairs great with request/response extensions and storage. This example shows you how to dynamically return either HTML or JSON responses for a Model depending on the type of client.</p>
@@ -1963,6 +1997,13 @@
         <span class="k">return</span> <span class="n">response</span>
     <span class="p">}</span>
 <span class="p">}</span>
+
+<span class="kd">extension</span> <span class="nc">PokemonMiddleware</span><span class="p">:</span> <span class="n">ConfigInitializable</span> <span class="p">{</span>
+    <span class="kr">convenience</span> <span class="kd">init</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">view</span> <span class="p">=</span> <span class="k">try</span> <span class="n">config</span><span class="p">.</span><span class="n">resolveView</span><span class="p">()</span>
+        <span class="kc">self</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 
 
@@ -1981,12 +2022,11 @@
 <h4 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h4>
 <p>Your closures can now look something like this:</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Vapor</span>
-<span class="kd">import</span> <span class="nc">HTTP</span>
 
-<span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Droplet</span><span class="p">()</span>
+<span class="kd">let</span> <span class="nv">config</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Config</span><span class="p">()</span>
+<span class="n">config</span><span class="p">.</span><span class="n">addConfigurable</span><span class="p">(</span><span class="n">middleware</span><span class="p">:</span> <span class="n">PokemonMiddleware</span><span class="p">.</span><span class="kd">init</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;pokemon&quot;</span><span class="p">)</span>
 
-<span class="kd">let</span> <span class="nv">pokemonMiddleware</span> <span class="p">=</span> <span class="n">PokemonMiddleware</span><span class="p">(</span><span class="n">drop</span><span class="p">.</span><span class="n">view</span><span class="p">)</span>
-<span class="n">drop</span><span class="p">.</span><span class="n">middleware</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">pokemonMiddleware</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Droplet</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
 <span class="n">drop</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;pokemon&quot;</span><span class="p">,</span> <span class="n">Pokemon</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">request</span><span class="p">,</span> <span class="n">pokemon</span> <span class="k">in</span>
     <span class="kd">let</span> <span class="nv">response</span> <span class="p">=</span> <span class="n">Response</span><span class="p">()</span>
@@ -1996,6 +2036,10 @@
 </pre></div>
 
 
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Don't forget to add <code>"pokemon"</code> to your <code>droplet.json</code> middleware array.</p>
+</div>
 <h4 id="response-representable">Response Representable<a class="headerlink" href="#response-representable" title="Permanent link">&para;</a></h4>
 <p>If you want to go a step further, you can make <code>Pokemon</code> conform to <code>ResponseRepresentable</code>.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">HTTP</span>

@@ -1129,6 +1129,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#serving-files" title="Serving Files" class="md-nav__link">
+    Serving Files
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1735,6 +1742,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#serving-files" title="Serving Files" class="md-nav__link">
+    Serving Files
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1846,6 +1860,25 @@
 
 <h2 id="key-paths">Key Paths<a class="headerlink" href="#key-paths" title="Permanent link">&para;</a></h2>
 <p>For more on KeyPaths, visit <a href="../request/#key-paths">here</a></p>
+<h2 id="serving-files">Serving Files<a class="headerlink" href="#serving-files" title="Permanent link">&para;</a></h2>
+<p>If you are simply looking to serve files from your public directory,
+it may be useful to look at 'FileMiddleware' instead.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">res</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Response</span><span class="p">(</span><span class="n">filePath</span><span class="p">:</span> <span class="s">&quot;/path/to/file.txt&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Use this to initialize a file response for the exact file path.
+If using from a public folder for example, the file name should be appended
+to the public directory, ie: <code>drop.publicDir + "myFile.cool"</code></p>
+<div class="codehilite"><pre><span></span><span class="n">Response</span><span class="p">(</span><span class="n">filePath</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">ifNoneMatch</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">chunkSize</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="mi">2048</span><span class="p">)</span> <span class="kr">throws</span>
+</pre></div>
+
+
+<p>If none match represents an ETag that will be used to check if the file has
+changed since the last load by the client. This allows clients like browsers
+to cache their files and avoid downloading resources unnecessarily.
+Most often calculated w/ https://tools.ietf.org/html/rfc7232#section-3.2</p>
+<p>For an example of how this is used, look at 'FileMiddleware'.</p>
               
               
             </article>

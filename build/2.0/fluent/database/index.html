@@ -750,6 +750,19 @@
     Log
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom" title="Custom" class="md-nav__link">
+    Custom
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1761,6 +1774,19 @@
     Log
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom" title="Custom" class="md-nav__link">
+    Custom
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2008,6 +2034,19 @@ your server by calling:</p>
 
 <h2 id="log">Log<a class="headerlink" href="#log" title="Permanent link">&para;</a></h2>
 <p>Logging queries is a great way to find optimizations for your application and track down bugs.</p>
+<p>The easiest way to log queries is to enable logging in your <code>fluent.json</code> file.</p>
+<p><code>Config/fluent.json</code></p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="err">...,</span>
+    <span class="nt">&quot;log&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="err">...</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>This will emit info-level logs for all database queries.</p>
+<h3 id="custom">Custom<a class="headerlink" href="#custom" title="Permanent link">&para;</a></h3>
+<p>You can also hook into the database's query logging callback to execute custom logic.</p>
 <div class="codehilite"><pre><span></span><span class="n">drop</span><span class="p">.</span><span class="n">database</span><span class="p">?.</span><span class="n">log</span> <span class="p">=</span> <span class="p">{</span> <span class="n">query</span> <span class="k">in</span>
     <span class="bp">print</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
 <span class="p">}</span>

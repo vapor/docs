@@ -1809,20 +1809,18 @@ See the <a href="../password/">Password</a> section to learn more.</p>
 
 <span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Droplet</span><span class="p">()</span>
 
-<span class="n">drop</span><span class="p">.</span><span class="n">middleware</span> <span class="o">+=</span> <span class="p">[</span>
-    <span class="n">sessionsMiddleware</span><span class="p">,</span> <span class="n">persistMiddleware</span><span class="p">,</span> <span class="n">passwordMiddleware</span>
-<span class="p">]</span>
+<span class="kd">let</span> <span class="nv">authed</span> <span class="p">=</span> <span class="n">drop</span><span class="p">.</span><span class="n">grouped</span><span class="p">([</span><span class="n">sessionsMiddleware</span><span class="p">,</span> <span class="n">persistMiddleware</span><span class="p">,</span> <span class="n">passwordMiddleware</span><span class="p">])</span>
 </pre></div>
 
 
 <div class="admonition seealso">
 <p class="admonition-title">Seealso</p>
-<p>If you only want to require authentication for certain routes, look at our 
-<a href="../../routing/group/">Route Group</a> section in the routing docs.</p>
+<p>If you only want to globally require the password middleware, checkout the
+<a href="../../http/middleware.md/#config">Middleware Config</a> section in the HTTP docs.</p>
 </div>
 <h3 id="route">Route<a class="headerlink" href="#route" title="Permanent link">&para;</a></h3>
 <p>Now you can add a route to return the authenticated user.</p>
-<div class="codehilite"><pre><span></span><span class="n">drop</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;me&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
+<div class="codehilite"><pre><span></span><span class="n">authed</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;me&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
     <span class="c1">// return the authenticated user</span>
     <span class="k">return</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">auth</span><span class="p">.</span><span class="n">assertAuthenticated</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
 <span class="p">}</span>
