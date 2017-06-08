@@ -95,7 +95,7 @@ Foreign keys are automatically added with `.foreignId()`. To add a foreign key m
 
 ```swift
 try database.create(self) { builder in
-    builder.foreignKey("user_id", references: "id", on: User.self)
+    builder.foreignKey(foreignIdKey: "user_id", referencesIdKey: "id", on: User.self)
 }
 ```
 
