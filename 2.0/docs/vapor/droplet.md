@@ -84,7 +84,7 @@ If you want to modify a property of the `Droplet` only in certain cases, you can
 
 ```swift
 let config = try Config()
-config.addConfigurable(log: MyEmailLogger.init, name: "email")
+config.addConfigurable(log: { config in return MyEmailLogger() }, name: "all-caps")
 
 let drop = Droplet(config)
 
@@ -130,7 +130,7 @@ Now add the logger to the Droplet using the `addConfigurable` method for logs.
 `main.swift`
 ```swift
 let config = try Config()
-config.addConfigurable(log: AllCapsLogger(), name: "all-caps")
+config.addConfigurable(log: { config in return AllCapsLogger() }, name: "all-caps")
 
 let drop = try Droplet(config)
 
@@ -181,21 +181,21 @@ extension AllCapsLogger: ConfigInitializable {
 !!! note
     The first parameter to `config` is the name of the file.
 
-Now that we have conformed our logger to `ConfigInitializable`, we can pass just the type name to `addConfigurable`.
+Now that we have conformed our logger to `ConfigInitializable`, we can pass the config to the custom logger.
 
 
 `main.swift`
 ```swift
 let config = try Config()
-config.addConfigurable(log: AllCapsLogger.self, name: "all-caps")
+config.addConfigurable(log: { config in return AllCapsLogger(config: config) }, name: "all-caps")
 
 let drop = try Droplet(config)
 
 ```
 
-Now if you add a file named `allCaps.json` to the `Config` folder, you can configure the logger.
+Now if you add a file named `allCapsConfiguration.json` to the `Config` folder, you can configure the logger.
 
-`allCaps.json`
+`allCapsConfiguration.json`
 ```json
 {
     "exclamationCount": 5
