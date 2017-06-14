@@ -15,7 +15,7 @@ Each Vapor app on your server should have its own configuration file. For an exa
 
 ```sh
 [program:hello]
-command=/home/vapor/hello/.build/release/Run serve --env=production
+command=vapor /home/vapor/hello/.build/release/Run serve --env=production
 directory=/home/vapor/hello/
 user=www-data
 stdout_logfile=/var/log/supervisor/%(program_name)-stdout.log
