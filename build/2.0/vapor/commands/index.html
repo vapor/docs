@@ -1637,7 +1637,10 @@
 <h2 id="config-initializable">Config Initializable<a class="headerlink" href="#config-initializable" title="Permanent link">&para;</a></h2>
 <p>To make our command configurable, conform it to <code>ConfigInitializable</code></p>
 <div class="codehilite"><pre><span></span><span class="kd">extension</span> <span class="nc">MyCustomCommand</span><span class="p">:</span> <span class="n">ConfigInitializable</span> <span class="p">{</span>
-    <span class="p">...</span>
+    <span class="kd">public</span> <span class="kr">convenience</span> <span class="kd">init</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">console</span> <span class="p">=</span> <span class="k">try</span> <span class="n">config</span><span class="p">.</span><span class="n">resolveConsole</span><span class="p">()</span>
+        <span class="kc">self</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">console</span><span class="p">:</span> <span class="n">console</span><span class="p">)</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 
