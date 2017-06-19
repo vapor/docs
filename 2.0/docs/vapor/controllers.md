@@ -74,7 +74,7 @@ final class UserController {
         return try User.all().makeJSON()
     }
 
-    func show(_ req: Request) -> ResponseRepresentable {
+    func show(_ req: Request) throws -> ResponseRepresentable {
         let user = try req.parameters.next(User.self)
         return user
     }
