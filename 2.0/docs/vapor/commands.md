@@ -36,7 +36,10 @@ To make our command configurable, conform it to `ConfigInitializable`
 
 ```swift
 extension MyCustomCommand: ConfigInitializable {
-    ...
+    public convenience init(config: Config) throws {
+        let console = try config.resolveConsole()
+        self.init(console: console)
+    }
 }
 ```
 
