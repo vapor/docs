@@ -407,6 +407,19 @@
     Resources
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#actions" title="Actions" class="md-nav__link">
+    Actions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1644,6 +1657,19 @@
     Resources
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#actions" title="Actions" class="md-nav__link">
+    Actions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1758,27 +1784,8 @@
 </pre></div>
 
 
-<p>Conforming <code>UserController</code> to <code>ResourceRepresentable</code> requires that the signatures of the <code>index</code> and <code>show</code> methods match what the <code>Resource&lt;User&gt;</code> is expecting.</p>
-<p>Here is a peek into the <code>Resource</code> class.</p>
-<div class="codehilite"><pre><span></span><span class="kr">final</span> <span class="kd">class</span> <span class="nc">Resource</span><span class="p">&lt;</span><span class="n">Model</span><span class="p">:</span> <span class="n">StringInitializable</span><span class="p">&gt;</span> <span class="p">{</span>
-    <span class="kd">typealias</span> <span class="n">Multiple</span> <span class="p">=</span> <span class="p">(</span><span class="n">Request</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">ResponseRepresentable</span>
-    <span class="kd">typealias</span> <span class="n">Item</span> <span class="p">=</span> <span class="p">(</span><span class="n">Request</span><span class="p">,</span> <span class="n">Model</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">ResponseRepresentable</span>
-
-    <span class="kd">var</span> <span class="nv">index</span><span class="p">:</span> <span class="n">Multiple</span><span class="p">?</span>
-    <span class="kd">var</span> <span class="nv">store</span><span class="p">:</span> <span class="n">Multiple</span><span class="p">?</span>
-    <span class="kd">var</span> <span class="nv">show</span><span class="p">:</span> <span class="n">Item</span><span class="p">?</span>
-    <span class="kd">var</span> <span class="nv">replace</span><span class="p">:</span> <span class="n">Item</span><span class="p">?</span>
-    <span class="kd">var</span> <span class="nv">modify</span><span class="p">:</span> <span class="n">Item</span><span class="p">?</span>
-    <span class="kd">var</span> <span class="nv">destroy</span><span class="p">:</span> <span class="n">Item</span><span class="p">?</span>
-    <span class="kd">var</span> <span class="nv">clear</span><span class="p">:</span> <span class="n">Multiple</span><span class="p">?</span>
-    <span class="kd">var</span> <span class="nv">aboutItem</span><span class="p">:</span> <span class="n">Item</span><span class="p">?</span>
-    <span class="kd">var</span> <span class="nv">aboutMultiple</span><span class="p">:</span> <span class="n">Multiple</span><span class="p">?</span>
-
-    <span class="p">...</span>
-<span class="p">}</span>
-</pre></div>
-
-
+<p>Conforming <code>UserController</code> to <code>ResourceRepresentable</code> requires that the signatures of 
+the <code>index</code> and <code>show</code> methods match what the <code>Resource&lt;User&gt;</code> is expecting.</p>
 <p>Now that <code>UserController</code> conforms to <code>ResourceRepresentable</code>, registering the routes is easy.</p>
 <div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">users</span> <span class="p">=</span> <span class="n">UserController</span><span class="p">()</span>
 <span class="n">drop</span><span class="p">.</span><span class="n">resource</span><span class="p">(</span><span class="s">&quot;users&quot;</span><span class="p">,</span> <span class="n">users</span><span class="p">)</span>
@@ -1789,6 +1796,81 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code>drop.resource</code> also adds useful defaults for OPTIONS requests. These can be overriden.  </p>
+</div>
+<h3 id="actions">Actions<a class="headerlink" href="#actions" title="Permanent link">&para;</a></h3>
+<p>Below is a table describing all of the actions available.</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Method</th>
+<th>Path</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index</td>
+<td>GET</td>
+<td>/users</td>
+<td>Returns all users, optionally filtered by the request data.</td>
+</tr>
+<tr>
+<td>store</td>
+<td>POST</td>
+<td>/users</td>
+<td>Creates a new user from the request data.</td>
+</tr>
+<tr>
+<td>show</td>
+<td>GET</td>
+<td>/users/:id</td>
+<td>Returns the user with the ID supplied in the path.</td>
+</tr>
+<tr>
+<td>replace</td>
+<td>PUT</td>
+<td>/users/:id</td>
+<td>Updates the specified user, setting any fields not present in the request data to <code>nil</code>.</td>
+</tr>
+<tr>
+<td>update</td>
+<td>PATCH</td>
+<td>/users/:id</td>
+<td>Updates the specified user, only modifying fields present in the request data.</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>DELETE</td>
+<td>/users/:id</td>
+<td>Deletes the specified user.</td>
+</tr>
+<tr>
+<td>clear</td>
+<td>DELETE</td>
+<td>/users</td>
+<td>Deletes all users, optionally filtered by the request data.</td>
+</tr>
+<tr>
+<td>create</td>
+<td>GET</td>
+<td>/users/create</td>
+<td>Displays a form for creating a new user.</td>
+</tr>
+<tr>
+<td>edit</td>
+<td>GET</td>
+<td>/users/:id/edit</td>
+<td>Displays a form for editing the specified user.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The difference between <code>replace</code> and <code>update</code> is subtle but important:
+If a field does not exist in the request data (for example, the user's age is missing),
+<code>update</code> should simply not update that field where as <code>replace</code> should set it to <code>nil</code>.
+If required data is missing from a <code>replace</code> request, an error should be thrown.</p>
 </div>
 <h2 id="folder">Folder<a class="headerlink" href="#folder" title="Permanent link">&para;</a></h2>
 <p>Controllers can go anywhere in your application, but they are most often stored in the <code>App/Controllers/</code> directory. </p>
