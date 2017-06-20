@@ -67,7 +67,8 @@ extension User: JSONRepresentable {
 Now you can simply return `user.makeJSON()` in your routes.
 
 ```swift
-drop.get("users", User.init) { req, user in
+drop.get("users", User.parameter) { req in
+    let user = try req.parameters.next(User.self)
     return try user.makeJSON()
 }
 ```
@@ -82,7 +83,8 @@ extension User: ResponseRepresentable { }
 Now you can return the model by itself. It will automatically call `.makeJSON()`.
 
 ```swift
-drop.get("users", User.init) { req, user in
+drop.get("users", User.parameter) { req in
+    let user = try req.parameters.next(User.self)
     return try user
 }
 ```
