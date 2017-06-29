@@ -10,7 +10,7 @@ To make a custom console command we must first create a new `.swift` file, impor
 import Vapor
 import Console
 
-final class MyCustomCommand: Command {
+public final class MyCustomCommand: Command {
     public let id = "my-command"
     public let help = ["This command does things, like foo, and bar."]
     public let console: ConsoleProtocol
