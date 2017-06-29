@@ -2,7 +2,15 @@
 
 This section outlines how to import the MySQL package both with or without a Vapor project.
 
-## With Vapor
+## Install MySQL
+
+To use MySQL, you need to have the C MySQL library installed on your computer. 
+
+```sh
+brew install vapor/tap/cmysql
+```
+
+## With Vapor + Fluent
 
 The easiest way to use MySQL with Vapor is to include the MySQL provider. 
 

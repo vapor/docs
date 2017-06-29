@@ -74,7 +74,7 @@ final class UserController {
         return try User.all().makeJSON()
     }
 
-    func show(_ req: Request) -> ResponseRepresentable {
+    func show(_ req: Request) throws -> ResponseRepresentable {
         let user = try req.parameters.next(User.self)
         return user
     }
@@ -104,28 +104,9 @@ extension UserController: ResourceRepresentable {
 }
 ```
 
-Conforming `UserController` to `ResourceRepresentable` requires that the signatures of the `index` and `show` methods match what the `Resource<User>` is expecting.
+Conforming `UserController` to `ResourceRepresentable` requires that the signatures of 
+the `index` and `show` methods match what the `Resource<User>` is expecting.
 
-Here is a peek into the `Resource` class.
-
-```swift
-final class Resource<Model: StringInitializable> {
-    typealias Multiple = (Request) throws -> ResponseRepresentable
-    typealias Item = (Request, Model) throws -> ResponseRepresentable
-
-    var index: Multiple?
-    var store: Multiple?
-    var show: Item?
-    var replace: Item?
-    var modify: Item?
-    var destroy: Item?
-    var clear: Multiple?
-    var aboutItem: Item?
-    var aboutMultiple: Multiple?
-
-    ...
-}
-```
 
 Now that `UserController` conforms to `ResourceRepresentable`, registering the routes is easy.
 
@@ -138,6 +119,28 @@ drop.resource("users", users)
 
 !!! note
     `drop.resource` also adds useful defaults for OPTIONS requests. These can be overriden.  
+
+### Actions
+
+Below is a table describing all of the actions available.
+
+| Action  | Method | Path            | Note                                                                                      |
+|---------|--------|-----------------|-------------------------------------------------------------------------------------------|
+| index   | GET    | /users          | Returns all users, optionally filtered by the request data.                               |
+| store   | POST   | /users          | Creates a new user from the request data.                                                 |
+| show    | GET    | /users/:id      | Returns the user with the ID supplied in the path.                                        |
+| replace | PUT    | /users/:id      | Updates the specified user, setting any fields not present in the request data to `nil`.  |
+| update  | PATCH  | /users/:id      | Updates the specified user, only modifying fields present in the request data.            |
+| delete  | DELETE | /users/:id      | Deletes the specified user.                                                               |
+| clear   | DELETE | /users          | Deletes all users, optionally filtered by the request data.                               |
+| create  | GET    | /users/create   | Displays a form for creating a new user.                                                  |
+| edit    | GET    | /users/:id/edit | Displays a form for editing the specified user.                                           |
+
+!!! tip
+    The difference between `replace` and `update` is subtle but important:
+    If a field does not exist in the request data (for example, the user's age is missing),
+    `update` should simply not update that field where as `replace` should set it to `nil`.
+    If required data is missing from a `replace` request, an error should be thrown.
 
 ## Folder
 

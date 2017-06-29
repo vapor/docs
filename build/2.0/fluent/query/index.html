@@ -792,6 +792,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#join" title="Join" class="md-nav__link">
+    Join
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#raw_1" title="Raw" class="md-nav__link">
     Raw
   </a>
@@ -1811,6 +1818,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#join" title="Join" class="md-nav__link">
+    Join
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#raw_1" title="Raw" class="md-nav__link">
     Raw
   </a>
@@ -1857,7 +1871,7 @@ database connection (like for <a href="../database/#Transactions">transactions</
 
 
 <h3 id="first">First<a class="headerlink" href="#first" title="Permanent link">&para;</a></h3>
-<p>You can take only the first row as well with <code>.first()</code>. </p>
+<p>You can take only the first row as well with <code>.first()</code>.</p>
 <div class="codehilite"><pre><span></span>let user = try User.makeQuery().filter(...).first()
 </pre></div>
 
@@ -1998,10 +2012,10 @@ your query that are joined with AND or OR logic.</p>
 
 
 <p>This will result in SQL similar to the following:</p>
-<div class="codehilite"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="p">`</span><span class="n">users</span><span class="p">`</span> 
-    <span class="n">WHERE</span> <span class="p">`</span><span class="n">planetOfOrigin</span><span class="p">`</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">Earth</span><span class="err">&#39;</span> <span class="n">AND</span> <span class="p">(</span>
-           <span class="p">(`</span><span class="n">name</span><span class="p">`</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">Rick</span><span class="err">&#39;</span> <span class="n">AND</span> <span class="p">`</span><span class="n">favoriteFood</span><span class="p">`</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">Beer</span><span class="err">&#39;</span><span class="p">)</span>
-        <span class="n">OR</span> <span class="p">(`</span><span class="n">name</span><span class="p">`</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">Morty</span><span class="err">&#39;</span> <span class="n">AND</span> <span class="p">`</span><span class="n">favoriteFood</span><span class="p">`</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">Eyeholes</span><span class="err">&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span>
+    <span class="k">WHERE</span> <span class="o">`</span><span class="n">planetOfOrigin</span><span class="o">`</span> <span class="o">=</span> <span class="s1">&#39;Earth&#39;</span> <span class="k">AND</span> <span class="p">(</span>
+           <span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span> <span class="o">=</span> <span class="s1">&#39;Rick&#39;</span> <span class="k">AND</span> <span class="o">`</span><span class="n">favoriteFood</span><span class="o">`</span> <span class="o">=</span> <span class="s1">&#39;Beer&#39;</span><span class="p">)</span>
+        <span class="k">OR</span> <span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span> <span class="o">=</span> <span class="s1">&#39;Morty&#39;</span> <span class="k">AND</span> <span class="o">`</span><span class="n">favoriteFood</span><span class="o">`</span> <span class="o">=</span> <span class="s1">&#39;Eyeholes&#39;</span><span class="p">)</span>
     <span class="p">)</span>
 </pre></div>
 
@@ -2029,11 +2043,36 @@ your query that are joined with AND or OR logic.</p>
 
 
 <h2 id="sort">Sort<a class="headerlink" href="#sort" title="Permanent link">&para;</a></h2>
-<p>To sort the results of your query, use the <code>.sort()</code> method</p>
+<p>To sort the results of your query, use the <code>.sort()</code> method.</p>
 <div class="codehilite"><pre><span></span><span class="k">try</span> <span class="n">query</span><span class="p">.</span><span class="bp">sort</span><span class="p">(</span><span class="s">&quot;age&quot;</span><span class="p">,</span> <span class="p">.</span><span class="n">descending</span><span class="p">)</span>
 </pre></div>
 
 
+<p>You can sort on multiple columns at once by chaining your <code>.sort()</code> calls.</p>
+<div class="codehilite"><pre><span></span><span class="k">try</span> <span class="n">query</span><span class="p">.</span><span class="bp">sort</span><span class="p">(</span><span class="s">&quot;age&quot;</span><span class="p">,</span> <span class="p">.</span><span class="n">descending</span><span class="p">).</span><span class="bp">sort</span><span class="p">(</span><span class="s">&quot;shoe_size&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<h2 id="join">Join<a class="headerlink" href="#join" title="Permanent link">&para;</a></h2>
+<p>You can join two model tables together, which is useful if you want to filter one model by a property of another.
+For example, let's say you have a table of Employees which belong to Departments. You want to know which
+Departments contain Employees who have completed ten years of service.</p>
+<p>First you use the <code>.join()</code> method on a Department query to join it with the Employee table. Next you chain a
+<code>.filter()</code> on to the query. Bear in mind you need to explicitly pass the 'joined' model to the filter, otherwise
+Fluent will try to filter on the 'base' model.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">departments</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Department</span><span class="p">.</span><span class="n">makeQuery</span><span class="p">()</span>
+  <span class="p">.</span><span class="bp">join</span><span class="p">(</span><span class="n">Employee</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+  <span class="p">.</span><span class="bp">filter</span><span class="p">(</span><span class="n">Employee</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="s">&quot;years_of_service&quot;</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Fluent will work out the relationship fields for you, but you can also specify them yourself with the <code>baseKey</code>
+and <code>joinedKey</code> method parameters, where <code>baseKey</code> is the identifier field on the 'base' model (the Department)
+and <code>joinedKey</code> is the foreign key field on the 'joined' model (the Employee) which relates back to the 'base' model.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+</div>
+<p>Fluent supports both inner and outer joins; use the invocation <code>.join(kind: .outer, MyModel.self)</code></p>
 <h2 id="raw_1">Raw<a class="headerlink" href="#raw_1" title="Permanent link">&para;</a></h2>
 <p>Should you need to perform a query that the query builder does not support, you can use the raw query.</p>
 <div class="codehilite"><pre><span></span><span class="k">try</span> <span class="n">drop</span><span class="p">.</span><span class="n">database</span><span class="p">?.</span><span class="n">raw</span><span class="p">(</span><span class="s">&quot;SELECT @@version&quot;</span><span class="p">)</span>
@@ -2041,7 +2080,7 @@ your query that are joined with AND or OR logic.</p>
 
 
 <p>You can also use the database of a given model.</p>
-<div class="codehilite"><pre><span></span>User.database?.raw(&quot;SELECT * FROM `users`&quot;)
+<div class="codehilite"><pre><span></span><span class="n">User</span><span class="p">.</span><span class="n">database</span><span class="p">?.</span><span class="n">raw</span><span class="p">(</span><span class="s">&quot;SELECT * FROM `users`&quot;</span><span class="p">)</span>
 </pre></div>
 
 
