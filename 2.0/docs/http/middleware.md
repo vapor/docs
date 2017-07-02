@@ -35,7 +35,7 @@ let drop = try Droplet(config)
 ```
 
 !!! tip
-    You can now dynamically enable and disable this mdidleware from your configuration files. 
+    You can now dynamically enable and disable this middleware from your configuration files. 
     Simply add `"version"` to the `"middleware"` array in your `droplet.json` file.
     See the [configuration](#configuration) section for more information.
 
