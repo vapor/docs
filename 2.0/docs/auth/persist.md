@@ -30,12 +30,12 @@ import AuthProvider
 import HTTP
 
 extension User: SessionPersistable {
-	func persist(for: Request) throws {
-		// something custom
-	}
+    func persist(for: Request) throws {
+        // something custom
+    }
 
     static func fetchPersisted(for: Request) throws -> Self? {
-    	// something custom
+        // something custom
     }
 }
 
@@ -47,7 +47,7 @@ Now that the user is `SessionPersistable`, we can create our middleware.
 
 #### Sessions
 
-First let's start by creating `SessionMiddleware`. We'll use the `MemorySessions()` to get started.
+First let's start by creating `SessionsMiddleware`. We'll use the `MemorySessions()` to get started.
 
 ```swift
 let memory = MemorySessions()
