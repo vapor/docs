@@ -1,4 +1,3 @@
 type: "blank"
 webroot: "/build/"
 force_tls: true
-docker_template: "blank"
