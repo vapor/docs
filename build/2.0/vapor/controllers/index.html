@@ -11,7 +11,7 @@
       
         <link rel="shortcut icon" href="../../assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.2, mkdocs-material-1.1.1">
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.1.1">
     
     
       
@@ -1756,7 +1756,7 @@
         <span class="k">return</span> <span class="k">try</span> <span class="n">User</span><span class="p">.</span><span class="n">all</span><span class="p">().</span><span class="n">makeJSON</span><span class="p">()</span>
     <span class="p">}</span>
 
-    <span class="kd">func</span> <span class="nf">show</span><span class="p">(</span><span class="kc">_</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">ResponseRepresentable</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">show</span><span class="p">(</span><span class="kc">_</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">ResponseRepresentable</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">parameters</span><span class="p">.</span><span class="n">next</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">user</span>
     <span class="p">}</span>

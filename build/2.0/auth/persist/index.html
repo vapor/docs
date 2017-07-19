@@ -11,7 +11,7 @@
       
         <link rel="shortcut icon" href="../../assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.2, mkdocs-material-1.1.1">
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.1.1">
     
     
       
@@ -1774,7 +1774,7 @@ you can implement them if you want to do something custom.</p>
 <h3 id="middleware">Middleware<a class="headerlink" href="#middleware" title="Permanent link">&para;</a></h3>
 <p>Now that the user is <code>SessionPersistable</code>, we can create our middleware.</p>
 <h4 id="sessions_1">Sessions<a class="headerlink" href="#sessions_1" title="Permanent link">&para;</a></h4>
-<p>First let's start by creating <code>SessionMiddleware</code>. We'll use the <code>MemorySessions()</code> to get started.</p>
+<p>First let's start by creating <code>SessionsMiddleware</code>. We'll use the <code>MemorySessions()</code> to get started.</p>
 <div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">memory</span> <span class="p">=</span> <span class="n">MemorySessions</span><span class="p">()</span>
 <span class="kd">let</span> <span class="nv">sessionsMiddleware</span> <span class="p">=</span> <span class="n">SessionsMiddleware</span><span class="p">(</span><span class="n">memory</span><span class="p">)</span>
 </pre></div>
