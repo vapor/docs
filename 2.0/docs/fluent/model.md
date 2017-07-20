@@ -289,7 +289,7 @@ This value should be overriden if a particular model in your database uses a dif
 
 ```swift
 final class Pet: Model {
-    static let idType = .uuid
+    static let idType: IdentifierType = .uuid
 }
 ```
 
