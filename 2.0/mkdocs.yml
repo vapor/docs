@@ -55,6 +55,7 @@ pages:
     - 'Helper': 'auth/helper.md'
     - 'Password': 'auth/password.md'
     - 'Persist': 'auth/persist.md'
+    - 'Redirect Middleware': 'auth/redirect-middleware.md'
 - Sessions:
     - 'Package': 'sessions/package.md'
     - 'Sessions': 'sessions/sessions.md'
