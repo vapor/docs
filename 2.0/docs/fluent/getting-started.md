@@ -5,7 +5,7 @@ Fluent provides an easy, simple, and safe API for working with your persisted da
 !!! note
     Don't forget to add `import FluentProvider` (or your other database provider) to the top of your Swift files.
 
-Fluent ships with SQLite by default. You can use SQLite to quickly scaffolding your application with the in-memory database it provides. This is enabled by default in Vapor's default template. To learn more about configuring your database, check out the available [drivers](#drivers).
+Fluent ships with SQLite by default. You can use SQLite to quickly scaffold your application with the in-memory database it provides. This is enabled by default in Vapor's default template. To learn more about configuring your database, check out the available [drivers](#drivers).
 
 ## Creating a Model
 
@@ -112,7 +112,7 @@ Here we are creating a simple table that will look like this:
 
 ### Add to Droplet
 
-Now you can add your model to the config's prearations so the database is prepared when your application boots.
+Now you can add your model to the config's preparations so the database is prepared when your application boots.
 
 ```swift
 import Vapor
