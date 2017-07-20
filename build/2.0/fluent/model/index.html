@@ -2212,7 +2212,7 @@ database or query may need when saving, fetching, or deleting your models.</p>
 <p>Example: uuid, integer, etc.</p>
 <p>This value should be overriden if a particular model in your database uses a different ID type.</p>
 <div class="codehilite"><pre><span></span><span class="kr">final</span> <span class="kd">class</span> <span class="nc">Pet</span><span class="p">:</span> <span class="n">Model</span> <span class="p">{</span>
-    <span class="kd">static</span> <span class="kd">let</span> <span class="nv">idType</span> <span class="p">=</span> <span class="p">.</span><span class="n">uuid</span>
+    <span class="kd">static</span> <span class="kd">let</span> <span class="nv">idType</span><span class="p">:</span> <span class="n">IdentifierType</span> <span class="p">=</span> <span class="p">.</span><span class="n">uuid</span>
 <span class="p">}</span>
 </pre></div>
 
