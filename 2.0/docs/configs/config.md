@@ -141,6 +141,68 @@ let host = drop.config["server" "host"]?.string ?? "0.0.0.0"
 // will load 9000, or environment variable port.
 let port = drop.config["server", "port"]?.int ?? 9000
 ```
+## Configuration file Options 
+
+#### `droplet.json`
+```JSON
+{
+    "server": "engine",
+    "client": "engine",
+    "console": "terminal",
+    "log": "console",
+    "hash": "crypto",
+    "cipher": "crypto",
+    "middleware": [
+        "error",
+        "date",
+        "file"
+    ],
+    "commands": [
+        "prepare"
+    ]
+}
+```
+
+#### `server.json`
+```JSON
+{
+    "port": "$PORT:8080",
+    "host": "0.0.0.0",
+    "securityLayer": "none"
+}
+```
+
+#### `fluent.json`
+```JSON
+{
+    "driver": "memory",
+    "keyNamingConvention": "snake_case",
+    "migrationEntityName": "fluent",
+    "pivotNameConnector": "_",
+    "autoForeignKeys": true,
+    "defaultPageKey": "page",
+    "defaultPageSize": 10,
+    "log": false, 
+    "maxConnections":10
+}
+```
+
+#### `crypto.json`
+```JSON
+{
+    "hash": {
+        "method": "sha256",
+        "encoding": "hex",
+        "key": "0000000000000000"
+    },
+    
+    "cipher": {
+        "method": "aes256",
+        "encoding": "base64",
+        "key": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+    }
+}
+```
 
 ## COMMAND LINE
 
