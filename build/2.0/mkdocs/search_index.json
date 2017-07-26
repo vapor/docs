@@ -1926,6 +1926,56 @@
             "title": "Request"
         }, 
         {
+            "location": "/auth/redirect-middleware/", 
+            "text": "Redirect Middlewares\n\n\nIncluded in the \nAuthProvider\n package are \nRedirectMiddleware\n and \nInverseRedirectMiddleware\n classes that will help you \nredirect unauthenticated or authenticated requests to a given path. This is especially useful for redirecting users away from secure\npages to a login page and vice versa.\n\n\nRedirect Middleware\n\n\nLet's take a look at how to add a \nRedirectMiddleware\n to your application.\n\n\nExisting Auth\n\n\nSince we only want this middleware to apply to secure pages, we'll apply it using route groups.\n\n\nYou should already have a protected area in your application using one of the authentication middlewares.\n\n\nimport\n \nVapor\n\n\nimport\n \nAuthProvider\n\n\n\nlet\n \ndrop\n \n=\n \ntry\n \nDroplet\n()\n\n\n\ndrop\n.\nget\n(\nlogin\n)\n \n{\n \nreq\n \nin\n\n    \nreturn\n \n// some login form\n\n\n}\n\n\n\nlet\n \nauth\n \n=\n \nTokenAuthenticationMiddleware\n(\nUser\n.\nself\n)\n\n\nlet\n \nprotected\n \n=\n \ndrop\n.\ngrouped\n([\nauth\n])\n\n\nprotected\n.\nget\n(\nsecure\n)\n \n{\n \nreq\n \nin\n\n    \nlet\n \nuser\n \n=\n \ntry\n \nreq\n.\nauth\n.\nassertAuthenticated\n(\nUser\n.\nself\n)\n\n    \nreturn\n \nWelcome to the secure page, \n\\(\nuser\n.\nname\n)\n\n\n}\n\n\n\n\n\n\nThe above snippet protects access to the page at \nGET /secure\n using the \nTokenAuthenticationMiddleware\n. \n\n\nSince we've applied \nTokenAuthenticationMiddleware\n, this page cannot be accessed by anyone not authenticated.\nAlthough this is perfectly secure, we should provide a better experience for unauthenticated users. Instead of \njust showing them an error message, we can redirect them to the login page.\n\n\nAdd Redirect\n\n\nCreating a redirect middleware is very simple. We'll use one of the presets for redirecting a user to \n/login\n.\n\n\nlet\n \nredirect\n \n=\n \nRedirectMiddleware\n.\nlogin\n()\n\n\n\n\n\n\nNow we just need to add this redirect middleware to our \nprotected\n route group mentioned previously.\n\n\nlet\n \nprotected\n \n=\n \ndrop\n.\ngrouped\n([\nredirect\n,\n \nauth\n])\n\n\n\n\n\n\n\n\nWarning\n\n\nMake sure the redirect middleware comes \nbefore\n the auth middleware. \n\n\n\n\nComplete Example\n\n\nNow whenever an unauthenticated user attemps to visit \nGET /secure\n, they will be redirected to \nGET /login\n.\n\n\nimport\n \nVapor\n\n\nimport\n \nAuthProvider\n\n\n\nlet\n \ndrop\n \n=\n \ntry\n \nDroplet\n()\n\n\n\nlet\n \nredirect\n \n=\n \nRedirectMiddleware\n.\nlogin\n()\n\n\nlet\n \nauth\n \n=\n \nTokenAuthenticationMiddleware\n(\nTestUser\n.\nself\n)\n\n\n\nlet\n \nprotected\n \n=\n \ndrop\n.\ngrouped\n([\nredirect\n,\n \nauth\n])\n\n\nprotected\n.\nget\n \n{\n \nreq\n \nin\n\n    \nlet\n \nuser\n \n=\n \ntry\n \nreq\n.\nauth\n.\nassertAuthenticated\n(\nTestUser\n.\nself\n)\n\n    \nreturn\n \nWelcome to the dashboard, \n\\(\nuser\n.\nname\n)\n\n\n}\n\n\n\n\n\n\nCustom Route\n\n\nIf your login page is not \n/login\n or you'd like the redirect middleware to redirect to a different type of page, \nsimply use the full initializer.\n\n\nlet\n \nredirect\n \n=\n \nRedirectMiddleware\n(\npath\n:\n \n/foo\n)\n\n\n\n\n\n\nInverse Redirect Middleware\n\n\nComplementary to the \nRedirectMiddleware\n is the \nInverseRedirectMiddleware\n. Just like you want to redirect unauthenticated\nusers away from secure pages, you also might want to redirect \nauthenticated\n users away from certain pages.\n\n\nFor example, if a user is already authenticated and they visit the login page, they might be confused and attempt to login again.\n\n\nExample\n\n\nHere is an example of the \nInverseRedirectMiddleware\n being used to redirect authenticated \nUser\ns away from the login page.\n\n\nWe are using the preset \n.home()\n convenience, which redirects the user to \nGET /\n.\n\n\nimport\n \nVapor\n\n\nimport\n \nAuthProvider\n\n\n\nlet\n \ndrop\n \n=\n \ntry\n \nDroplet\n()\n\n\n\nlet\n \nredirect\n \n=\n \nInverseRedirectMiddleware\n.\nhome\n(\nUser\n.\nself\n)\n\n\nlet\n \ngroup\n \n=\n \ndrop\n.\ngrouped\n([\nredirect\n])\n\n\ngroup\n.\nget\n(\nlogin\n)\n \n{\n \nreq\n \nin\n\n    \nreturn\n \nPlease login\n\n\n}\n\n\n\n\n\n\nCustom Route\n\n\nIf your desired page is not \n/\n or you'd like the inverse redirect middleware to redirect to a different type of page, \nsimply use the full initializer.\n\n\nlet\n \nredirect\n \n=\n \nInverseRedirectMiddleware\n(\nUser\n.\nself\n,\n \npath\n:\n \n/foo\n)", 
+            "title": "Redirect Middleware"
+        }, 
+        {
+            "location": "/auth/redirect-middleware/#redirect-middlewares", 
+            "text": "Included in the  AuthProvider  package are  RedirectMiddleware  and  InverseRedirectMiddleware  classes that will help you \nredirect unauthenticated or authenticated requests to a given path. This is especially useful for redirecting users away from secure\npages to a login page and vice versa.", 
+            "title": "Redirect Middlewares"
+        }, 
+        {
+            "location": "/auth/redirect-middleware/#redirect-middleware", 
+            "text": "Let's take a look at how to add a  RedirectMiddleware  to your application.", 
+            "title": "Redirect Middleware"
+        }, 
+        {
+            "location": "/auth/redirect-middleware/#existing-auth", 
+            "text": "Since we only want this middleware to apply to secure pages, we'll apply it using route groups.  You should already have a protected area in your application using one of the authentication middlewares.  import   Vapor  import   AuthProvider  let   drop   =   try   Droplet ()  drop . get ( login )   {   req   in \n     return   // some login form  }  let   auth   =   TokenAuthenticationMiddleware ( User . self )  let   protected   =   drop . grouped ([ auth ])  protected . get ( secure )   {   req   in \n     let   user   =   try   req . auth . assertAuthenticated ( User . self ) \n     return   Welcome to the secure page,  \\( user . name )  }   The above snippet protects access to the page at  GET /secure  using the  TokenAuthenticationMiddleware .   Since we've applied  TokenAuthenticationMiddleware , this page cannot be accessed by anyone not authenticated.\nAlthough this is perfectly secure, we should provide a better experience for unauthenticated users. Instead of \njust showing them an error message, we can redirect them to the login page.", 
+            "title": "Existing Auth"
+        }, 
+        {
+            "location": "/auth/redirect-middleware/#add-redirect", 
+            "text": "Creating a redirect middleware is very simple. We'll use one of the presets for redirecting a user to  /login .  let   redirect   =   RedirectMiddleware . login ()   Now we just need to add this redirect middleware to our  protected  route group mentioned previously.  let   protected   =   drop . grouped ([ redirect ,   auth ])    Warning  Make sure the redirect middleware comes  before  the auth middleware.", 
+            "title": "Add Redirect"
+        }, 
+        {
+            "location": "/auth/redirect-middleware/#complete-example", 
+            "text": "Now whenever an unauthenticated user attemps to visit  GET /secure , they will be redirected to  GET /login .  import   Vapor  import   AuthProvider  let   drop   =   try   Droplet ()  let   redirect   =   RedirectMiddleware . login ()  let   auth   =   TokenAuthenticationMiddleware ( TestUser . self )  let   protected   =   drop . grouped ([ redirect ,   auth ])  protected . get   {   req   in \n     let   user   =   try   req . auth . assertAuthenticated ( TestUser . self ) \n     return   Welcome to the dashboard,  \\( user . name )  }", 
+            "title": "Complete Example"
+        }, 
+        {
+            "location": "/auth/redirect-middleware/#custom-route", 
+            "text": "If your login page is not  /login  or you'd like the redirect middleware to redirect to a different type of page, \nsimply use the full initializer.  let   redirect   =   RedirectMiddleware ( path :   /foo )", 
+            "title": "Custom Route"
+        }, 
+        {
+            "location": "/auth/redirect-middleware/#inverse-redirect-middleware", 
+            "text": "Complementary to the  RedirectMiddleware  is the  InverseRedirectMiddleware . Just like you want to redirect unauthenticated\nusers away from secure pages, you also might want to redirect  authenticated  users away from certain pages.  For example, if a user is already authenticated and they visit the login page, they might be confused and attempt to login again.", 
+            "title": "Inverse Redirect Middleware"
+        }, 
+        {
+            "location": "/auth/redirect-middleware/#example", 
+            "text": "Here is an example of the  InverseRedirectMiddleware  being used to redirect authenticated  User s away from the login page.  We are using the preset  .home()  convenience, which redirects the user to  GET / .  import   Vapor  import   AuthProvider  let   drop   =   try   Droplet ()  let   redirect   =   InverseRedirectMiddleware . home ( User . self )  let   group   =   drop . grouped ([ redirect ])  group . get ( login )   {   req   in \n     return   Please login  }", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/auth/redirect-middleware/#custom-route_1", 
+            "text": "If your desired page is not  /  or you'd like the inverse redirect middleware to redirect to a different type of page, \nsimply use the full initializer.  let   redirect   =   InverseRedirectMiddleware ( User . self ,   path :   /foo )", 
+            "title": "Custom Route"
+        }, 
+        {
             "location": "/sessions/package/", 
             "text": "Using Sessions\n\n\nThis module is a part of Vapor, just add:\n\n\nimport\n \nSessions", 
             "title": "Package"
