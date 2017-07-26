@@ -47,7 +47,6 @@ pages:
 - Redis:
     - 'Package': 'redis/package.md'
     - 'Provider': 'redis/provider.md'
-
 - Auth:
     - 'Package': 'auth/package.md'
     - 'Provider': 'auth/provider.md'
@@ -56,6 +55,9 @@ pages:
     - 'Password': 'auth/password.md'
     - 'Persist': 'auth/persist.md'
     - 'Redirect Middleware': 'auth/redirect-middleware.md'
+- JWT:
+    - 'Package': 'jwt/package.md'
+    - 'Overview': 'jwt/overview.md'
 - Sessions:
     - 'Package': 'sessions/package.md'
     - 'Sessions': 'sessions/sessions.md'

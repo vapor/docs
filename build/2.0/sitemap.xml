@@ -304,6 +304,22 @@
     
         
     <url>
+     <loc>/jwt/package/</loc>
+     <lastmod>2017-07-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/jwt/overview/</loc>
+     <lastmod>2017-07-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
      <loc>/sessions/package/</loc>
      <lastmod>2017-07-26</lastmod>
      <changefreq>daily</changefreq>
