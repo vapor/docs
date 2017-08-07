@@ -127,6 +127,7 @@ These are packages maintained by community members that work great with Vapor.
 - [SteamPress](https://github.com/brokenhandsio/SteamPress): A blogging engine for Vapor.
 - [Vapor Security Headers](https://github.com/brokenhandsio/VaporSecurityHeaders): Add common security headers to your Vapor Application.
 - [MarkdownProvider](https://github.com/vapor-community/markdown-provider) - Easily use Markdown from Leaf.
+- [Vapor OAuth](https://github.com/brokenhandsio/vapor-oauth) - An OAuth2 Provider library for Vapor
 
 ### Providers
 
