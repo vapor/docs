@@ -27,6 +27,12 @@ eval "$(curl -sL https://apt.vapor.sh)"
 !!! note
 	This command requires `curl` which can be installed using `sudo apt-get install curl`
 
+### Dockerfile
+When configuring Ubuntu from a Dockerfile, adding the APT repo can be done via this command:
+```sh
+	RUN /bin/bash -c "$(wget -qO- https://apt.vapor.sh)"
+```
+
 ### Manual 
 
 Or add the repo manually.
