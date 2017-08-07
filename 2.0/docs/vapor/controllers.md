@@ -117,24 +117,26 @@ drop.resource("users", users)
 
  `drop.resource` will take care of registering only the routes that have been supplied by the call to `makeResource()`. In this case, only the `index` and `show` routes will be supplied.
 
-!!! note
-    `drop.resource` also adds useful defaults for OPTIONS requests. These can be overriden.  
-
 ### Actions
 
 Below is a table describing all of the actions available.
 
-| Action  | Method | Path            | Note                                                                                      |
-|---------|--------|-----------------|-------------------------------------------------------------------------------------------|
-| index   | GET    | /users          | Returns all users, optionally filtered by the request data.                               |
-| store   | POST   | /users          | Creates a new user from the request data.                                                 |
-| show    | GET    | /users/:id      | Returns the user with the ID supplied in the path.                                        |
-| replace | PUT    | /users/:id      | Updates the specified user, setting any fields not present in the request data to `nil`.  |
-| update  | PATCH  | /users/:id      | Updates the specified user, only modifying fields present in the request data.            |
-| delete  | DELETE | /users/:id      | Deletes the specified user.                                                               |
-| clear   | DELETE | /users          | Deletes all users, optionally filtered by the request data.                               |
-| create  | GET    | /users/create   | Displays a form for creating a new user.                                                  |
-| edit    | GET    | /users/:id/edit | Displays a form for editing the specified user.                                           |
+| Action        | Method  | Path            | Note                                                                                     |
+|---------------|---------|-----------------|------------------------------------------------------------------------------------------|
+| index         | GET     | /users          | Returns all users, optionally filtered by the request data.                              |
+| store         | POST    | /users          | Creates a new user from the request data.                                                |
+| show          | GET     | /users/:id      | Returns the user with the ID supplied in the path.                                       |
+| replace       | PUT     | /users/:id      | Updates the specified user, setting any fields not present in the request data to `nil`. |
+| update        | PATCH   | /users/:id      | Updates the specified user, only modifying fields present in the request data.           |
+| destroy       | DELETE  | /users/:id      | Deletes the specified user.                                                              |
+| clear         | DELETE  | /users          | Deletes all users, optionally filtered by the request data.                              |
+| create        | GET     | /users/create   | Displays a form for creating a new user.                                                 |
+| edit          | GET     | /users/:id/edit | Displays a form for editing the specified user.                                          |
+| aboutItem     | OPTIONS | /users/:id      | Meta action. Displays information about which actions are supported.                     |
+| aboutMultiple | OPTIONS | /users          | Meta action. Displays information about which actions are supported.                     |
+
+!!! note
+    The `aboutItem` and `aboutMultiple` meta actions are implemented automatically if not overridden. 
 
 !!! tip
     The difference between `replace` and `update` is subtle but important:
