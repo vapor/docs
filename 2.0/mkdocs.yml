@@ -93,7 +93,7 @@ pages:
     - 'Overview': 'debugging/overview.md'
 - Deploy:
     - 'Nginx': 'deploy/nginx.md'
-    - 'Apache2': 'deploy/apache2.md
+    - 'Apache2': 'deploy/apache2.md'
     - 'Supervisor': 'deploy/supervisor.md'
 - Version (2.0):
     - '1.5': 'version/1_5.md'
