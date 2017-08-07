@@ -50,10 +50,11 @@ The toolbox can create a project from the Vapor basic-template or any other git 
 vapor new <name> [--template]
 ```
 
-| Name | Flag           | Description                       |
-|------|----------------|-----------------------------------|
-| API  | --template=api | JSON API with Fluent database.    |
-| Web  | --template=web | HTML website with Leaf templates. |
+| Name | Flag            | Description                                |
+|------|-----------------|--------------------------------------------|
+| API  | --template=api  | JSON API with Fluent database.             |
+| Web  | --template=web  | HTML website with Leaf templates.          |
+| Auth | --template=auth | Bearer and Basic authentication templates. |
 
 View a list of all [templates](https://github.com/search?utf8=✓&q=topic%3Avapor+topic%3Atemplate&type=Repositories) on GitHub.
 
