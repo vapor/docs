@@ -278,6 +278,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#dockerfile" title="Dockerfile" class="md-nav__link">
+    Dockerfile
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#manual" title="Manual" class="md-nav__link">
     Manual
   </a>
@@ -1728,6 +1735,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#dockerfile" title="Dockerfile" class="md-nav__link">
+    Dockerfile
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#manual" title="Manual" class="md-nav__link">
     Manual
   </a>
@@ -1820,6 +1834,12 @@
 <p class="admonition-title">Note</p>
 <p>This command requires <code>curl</code> which can be installed using <code>sudo apt-get install curl</code></p>
 </div>
+<h3 id="dockerfile">Dockerfile<a class="headerlink" href="#dockerfile" title="Permanent link">&para;</a></h3>
+<p>When configuring Ubuntu from a Dockerfile, adding the APT repo can be done via this command:</p>
+<div class="codehilite"><pre><span></span>    RUN /bin/bash -c <span class="s2">&quot;</span><span class="k">$(</span>wget -qO- https://apt.vapor.sh<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+
+
 <h3 id="manual">Manual<a class="headerlink" href="#manual" title="Permanent link">&para;</a></h3>
 <p>Or add the repo manually.</p>
 <div class="codehilite"><pre><span></span>wget -q https://repo.vapor.codes/apt/keyring.gpg -O- <span class="p">|</span> sudo apt-key add -

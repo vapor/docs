@@ -534,6 +534,47 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuration-file-options" title="Configuration file Options" class="md-nav__link">
+    Configuration file Options
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dropletjson" title="droplet.json" class="md-nav__link">
+    droplet.json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverjson_1" title="server.json" class="md-nav__link">
+    server.json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentjson" title="fluent.json" class="md-nav__link">
+    fluent.json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cryptojson" title="crypto.json" class="md-nav__link">
+    crypto.json
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#command-line" title="COMMAND LINE" class="md-nav__link">
     COMMAND LINE
   </a>
@@ -1799,6 +1840,47 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuration-file-options" title="Configuration file Options" class="md-nav__link">
+    Configuration file Options
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dropletjson" title="droplet.json" class="md-nav__link">
+    droplet.json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverjson_1" title="server.json" class="md-nav__link">
+    server.json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentjson" title="fluent.json" class="md-nav__link">
+    fluent.json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cryptojson" title="crypto.json" class="md-nav__link">
+    crypto.json
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#command-line" title="COMMAND LINE" class="md-nav__link">
     COMMAND LINE
   </a>
@@ -1941,6 +2023,68 @@
 <span class="kd">let</span> <span class="nv">host</span> <span class="p">=</span> <span class="n">drop</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">&quot;server&quot;</span> <span class="s">&quot;host&quot;</span><span class="p">]?.</span><span class="n">string</span> <span class="p">??</span> <span class="s">&quot;0.0.0.0&quot;</span>
 <span class="c1">// will load 9000, or environment variable port.</span>
 <span class="kd">let</span> <span class="nv">port</span> <span class="p">=</span> <span class="n">drop</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">&quot;server&quot;</span><span class="p">,</span> <span class="s">&quot;port&quot;</span><span class="p">]?.</span><span class="n">int</span> <span class="p">??</span> <span class="mi">9000</span>
+</pre></div>
+
+
+<h2 id="configuration-file-options">Configuration file Options<a class="headerlink" href="#configuration-file-options" title="Permanent link">&para;</a></h2>
+<h4 id="dropletjson"><code>droplet.json</code><a class="headerlink" href="#dropletjson" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;server&quot;</span><span class="p">:</span> <span class="s2">&quot;engine&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;client&quot;</span><span class="p">:</span> <span class="s2">&quot;engine&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;console&quot;</span><span class="p">:</span> <span class="s2">&quot;terminal&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;log&quot;</span><span class="p">:</span> <span class="s2">&quot;console&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;crypto&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;cipher&quot;</span><span class="p">:</span> <span class="s2">&quot;crypto&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;middleware&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;error&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;date&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;file&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;commands&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;prepare&quot;</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h4 id="serverjson_1"><code>server.json</code><a class="headerlink" href="#serverjson_1" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;$PORT:8080&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;securityLayer&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h4 id="fluentjson"><code>fluent.json</code><a class="headerlink" href="#fluentjson" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;driver&quot;</span><span class="p">:</span> <span class="s2">&quot;memory&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;keyNamingConvention&quot;</span><span class="p">:</span> <span class="s2">&quot;snake_case&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;migrationEntityName&quot;</span><span class="p">:</span> <span class="s2">&quot;fluent&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;pivotNameConnector&quot;</span><span class="p">:</span> <span class="s2">&quot;_&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;autoForeignKeys&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;defaultPageKey&quot;</span><span class="p">:</span> <span class="s2">&quot;page&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;defaultPageSize&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="nt">&quot;log&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> 
+    <span class="nt">&quot;maxConnections&quot;</span><span class="p">:</span><span class="mi">10</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h4 id="cryptojson"><code>crypto.json</code><a class="headerlink" href="#cryptojson" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;sha256&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;encoding&quot;</span><span class="p">:</span> <span class="s2">&quot;hex&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;0000000000000000&quot;</span>
+    <span class="p">},</span>
+
+    <span class="nt">&quot;cipher&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;aes256&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;encoding&quot;</span><span class="p">:</span> <span class="s2">&quot;base64&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 
 
