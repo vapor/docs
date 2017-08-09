@@ -53,7 +53,7 @@ http://server_domain_name_or_IP
 
 ### Service
 
-Ther service an be started or stopped.
+The service can be started or stopped.
 
 ```sh
 sudo service nginx stop
