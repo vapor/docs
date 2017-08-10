@@ -1763,14 +1763,13 @@ Custom signers are not backward compatible and must specify an additional <code>
 </ul>
 <p><code>Config/jwt.json</code></p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;signers&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
+  <span class="nt">&quot;signers&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;1234&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;rsa&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;kid&quot;</span><span class="p">:</span> <span class="s2">&quot;1234&quot;</span><span class="p">,</span>
       <span class="nt">&quot;algorithm&quot;</span><span class="p">:</span> <span class="s2">&quot;rs256&quot;</span><span class="p">,</span>
       <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;yourkeyhere&quot;</span>
     <span class="p">}</span>
-  <span class="p">]</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 
