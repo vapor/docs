@@ -44,14 +44,13 @@ Custom signers are not backward compatible and must specify an additional `kid` 
 `Config/jwt.json`
 ```json
 {
-  "signers": [
-    {
+  "signers": {
+    "1234": {
       "type": "rsa",
-      "kid": "1234",
       "algorithm": "rs256",
       "key": "yourkeyhere"
     }
-  ]
+  }
 }
 ```
 
