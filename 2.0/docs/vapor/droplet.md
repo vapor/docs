@@ -50,7 +50,7 @@ If you are in Xcode, you can pass arguments through the scheme editor.
 The `workDir` property contains a path to the current working directory of the application. Vapor uses this property to find the folders related to your project, such as `Resources`, `Public`, and `Config`.
 
 ```swift
-print(drop.workDir) // /var/www/my-project/
+print(drop.config.workDir) // /var/www/my-project/
 ```
 
 Vapor automatically determines the working directory in most situations. However, you may need to manually set it for advanced use cases.
