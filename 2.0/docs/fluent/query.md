@@ -165,6 +165,44 @@ Raw filters can be used to filter by values that should not be parameterized.
 try query.filter(raw: "date >= CURRENT_TIMESTAMP")
 ```
 
+### NodeConvertible Conformance
+
+Filters can be converted to and from Node objects, which allows filters to be specified via JSON and other NodeRepresentable formats. This makes it very easy if you want to allow a consumer API to filter your entities.
+
+Example:
+```json
+{  
+  "entity":"MyApp.User",
+  "method":{  
+    "type":"group",
+    "relation":"and",
+    "filters":[  
+      {  
+        "entity":"MyApp.User",
+        "method":{  
+          "type":"compare",
+          "comparison":"greaterThanOrEquals",
+          "field":"age",
+          "value":18
+        }
+      },
+      {  
+        "entity":"MyApp.User",
+        "method":{  
+          "type":"compare",
+          "comparison":"equals",
+          "field":"gender",
+          "value":"male"
+        }
+      }
+    ]
+  }
+}
+```
+
+!!! note
+	You must include the module name in the entity field. "MyModule.MyEntity"
+
 ## Distinct
 
 To select only distinct models from the database, add `.distinct()` to your query.
