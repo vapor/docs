@@ -1852,7 +1852,7 @@ It contains the current environment your application is running in. Usually deve
 </div>
 <h2 id="config-directory">Config Directory<a class="headerlink" href="#config-directory" title="Permanent link">&para;</a></h2>
 <p>The <code>workDir</code> property contains a path to the current working directory of the application. Vapor uses this property to find the folders related to your project, such as <code>Resources</code>, <code>Public</code>, and <code>Config</code>.</p>
-<div class="codehilite"><pre><span></span><span class="bp">print</span><span class="p">(</span><span class="n">drop</span><span class="p">.</span><span class="n">workDir</span><span class="p">)</span> <span class="c1">// /var/www/my-project/</span>
+<div class="codehilite"><pre><span></span><span class="bp">print</span><span class="p">(</span><span class="n">drop</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">workDir</span><span class="p">)</span> <span class="c1">// /var/www/my-project/</span>
 </pre></div>
 
 

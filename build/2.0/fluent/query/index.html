@@ -765,6 +765,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#nodeconvertible-conformance" title="NodeConvertible Conformance" class="md-nav__link">
+    NodeConvertible Conformance
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1863,6 +1870,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#nodeconvertible-conformance" title="NodeConvertible Conformance" class="md-nav__link">
+    NodeConvertible Conformance
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2102,6 +2116,43 @@ your query that are joined with AND or OR logic.</p>
 </pre></div>
 
 
+<h3 id="nodeconvertible-conformance">NodeConvertible Conformance<a class="headerlink" href="#nodeconvertible-conformance" title="Permanent link">&para;</a></h3>
+<p>Filters can be converted to and from Node objects, which allows filters to be specified via JSON and other NodeRepresentable formats. This makes it very easy if you want to allow a consumer API to filter your entities.</p>
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>  
+  <span class="nt">&quot;entity&quot;</span><span class="p">:</span><span class="s2">&quot;MyApp.User&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;method&quot;</span><span class="p">:{</span>  
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;group&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="s2">&quot;and&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;filters&quot;</span><span class="p">:[</span>  
+      <span class="p">{</span>  
+        <span class="nt">&quot;entity&quot;</span><span class="p">:</span><span class="s2">&quot;MyApp.User&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;method&quot;</span><span class="p">:{</span>  
+          <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;compare&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;comparison&quot;</span><span class="p">:</span><span class="s2">&quot;greaterThanOrEquals&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;age&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="mi">18</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="p">{</span>  
+        <span class="nt">&quot;entity&quot;</span><span class="p">:</span><span class="s2">&quot;MyApp.User&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;method&quot;</span><span class="p">:{</span>  
+          <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;compare&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;comparison&quot;</span><span class="p">:</span><span class="s2">&quot;equals&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;gender&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;male&quot;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You must include the module name in the entity field. "MyModule.MyEntity"</p>
+</div>
 <h2 id="distinct">Distinct<a class="headerlink" href="#distinct" title="Permanent link">&para;</a></h2>
 <p>To select only distinct models from the database, add <code>.distinct()</code> to your query.</p>
 <div class="codehilite"><pre><span></span><span class="k">try</span> <span class="n">query</span><span class="p">.</span><span class="n">distinct</span><span class="p">()</span>
