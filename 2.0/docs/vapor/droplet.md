@@ -133,12 +133,12 @@ extension AllCapsLogger: ConfigInitializable {
 
 Now add the logger to the Droplet using the `addConfigurable` method for logs.
 
-`Config+Setup.swift`
 ```swift
-public func setup() throws {
-    addConfigurable(log: AllCapsLogger.init, name: "all-caps")
-}
+addConfigurable(log: AllCapsLogger.init, name: "all-caps")
 ```
+
+!!! note
+    This should be added in `Config+Setup.swift` in templates with that file.
 
 Whenever the `"log"` property is set to `"all-caps"` in the `droplet.json`, our new logger will be used. 
 
@@ -187,13 +187,12 @@ extension AllCapsLogger: ConfigInitializable {
 
 Now that we have conformed our logger to `ConfigInitializable`, we can pass just the type name to `addConfigurable`.
 
-
-`Config+Setup.swift`
 ```swift
-public func setup() throws {
-    addConfigurable(log: AllCapsLogger.init, name: "all-caps")
-}
+addConfigurable(log: AllCapsLogger.init, name: "all-caps")
 ```
+
+!!! note
+    This should be added in `Config+Setup.swift` in templates with that file.
 
 Now if you add a file named `allCaps.json` to the `Config` folder, you can configure the logger.
 
