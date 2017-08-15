@@ -120,7 +120,7 @@ Let's create a custom logger to demonstrate Vapor's configurable properties.
 final class AllCapsLogger: LogProtocol {
     var enabled: [LogLevel] = []
     func log(_ level: LogLevel, message: String, file: String, function: String, line: Int) {
-        print(message.uppercased + "!!!")
+        print(message.uppercased() + "!!!")
     }
 }
 ```
