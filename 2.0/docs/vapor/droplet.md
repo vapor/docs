@@ -125,9 +125,9 @@ final class AllCapsLogger: LogProtocol {
 }
 
 extension AllCapsLogger: ConfigInitializable {
-	public convenience init(config: Config) throws {
-		self.init()
-	}
+    public convenience init(config: Config) throws {
+        self.init()
+    }
 }
 ```
 
