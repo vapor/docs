@@ -123,6 +123,12 @@ final class AllCapsLogger: LogProtocol {
         print(message.uppercased() + "!!!")
     }
 }
+
+extension AllCapsLogger: ConfigInitializable {
+	public convenience init(config: Config) throws {
+		self.init()
+	}
+}
 ```
 
 Now add the logger to the Droplet using the `addConfigurable` method for logs.
@@ -130,7 +136,7 @@ Now add the logger to the Droplet using the `addConfigurable` method for logs.
 `main.swift`
 ```swift
 let config = try Config()
-config.addConfigurable(log: AllCapsLogger(), name: "all-caps")
+config.addConfigurable(log: AllCapsLogger.init, name: "all-caps")
 
 let drop = try Droplet(config)
 
