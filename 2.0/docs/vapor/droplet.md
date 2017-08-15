@@ -125,7 +125,7 @@ final class AllCapsLogger: LogProtocol {
 }
 
 extension AllCapsLogger: ConfigInitializable {
-    public convenience init(config: Config) throws {
+    convenience init(config: Config) throws {
         self.init()
     }
 }
@@ -172,12 +172,12 @@ final class AllCapsLogger: LogProtocol {
     }
 
     func log(_ level: LogLevel, message: String, file: String, function: String, line: Int) {
-        print(message.uppercased + String(repeating: "!", count: exclamationCount))
+        print(message.uppercased() + String(repeating: "!", count: exclamationCount))
     }
 }
 
 extension AllCapsLogger: ConfigInitializable {
-   init(config: Config) throws {
+   convenience init(config: Config) throws {
         let count = config["allCaps", "exclamationCount"]?.int ?? 3
         self.init(exclamationCount: count)
    } 
@@ -193,7 +193,7 @@ Now that we have conformed our logger to `ConfigInitializable`, we can pass just
 `main.swift`
 ```swift
 let config = try Config()
-config.addConfigurable(log: AllCapsLogger.self, name: "all-caps")
+config.addConfigurable(log: AllCapsLogger.init, name: "all-caps")
 
 let drop = try Droplet(config)
 
