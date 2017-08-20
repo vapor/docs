@@ -14,7 +14,7 @@ After Xcode 8 has been downloaded, you must open it to finish the installation. 
 
 ## Verify Swift Installation
 
-Double check the installation was successful by running:
+Double check the installation was successful by opening Terminal and running:
 
 ```sh
 eval "$(curl -sL check.vapor.sh)"
