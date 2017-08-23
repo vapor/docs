@@ -15,7 +15,7 @@ To hash a string, use the `hash` property on `Droplet`.
 
 ```swift
 let digest = try drop.hash.make("vapor")
-print(digest.string)
+print(digest.makeString())
 ```
 
 ### Checking
