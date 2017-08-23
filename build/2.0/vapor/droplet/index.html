@@ -1958,7 +1958,13 @@ It contains the current environment your application is running in. Usually deve
 <div class="codehilite"><pre><span></span><span class="kr">final</span> <span class="kd">class</span> <span class="nc">AllCapsLogger</span><span class="p">:</span> <span class="n">LogProtocol</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nv">enabled</span><span class="p">:</span> <span class="p">[</span><span class="n">LogLevel</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span>
     <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="kc">_</span> <span class="n">level</span><span class="p">:</span> <span class="n">LogLevel</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">function</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">uppercased</span> <span class="o">+</span> <span class="s">&quot;!!!&quot;</span><span class="p">)</span>
+        <span class="bp">print</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">uppercased</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;!!!&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="nc">AllCapsLogger</span><span class="p">:</span> <span class="n">ConfigInitializable</span> <span class="p">{</span>
+    <span class="kr">convenience</span> <span class="kd">init</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="kd">init</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -1967,7 +1973,7 @@ It contains the current environment your application is running in. Usually deve
 <p>Now add the logger to the Droplet using the <code>addConfigurable</code> method for logs.</p>
 <p><code>main.swift</code></p>
 <div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">config</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Config</span><span class="p">()</span>
-<span class="n">config</span><span class="p">.</span><span class="n">addConfigurable</span><span class="p">(</span><span class="n">log</span><span class="p">:</span> <span class="n">AllCapsLogger</span><span class="p">(),</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;all-caps&quot;</span><span class="p">)</span>
+<span class="n">config</span><span class="p">.</span><span class="n">addConfigurable</span><span class="p">(</span><span class="n">log</span><span class="p">:</span> <span class="n">AllCapsLogger</span><span class="p">.</span><span class="kd">init</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;all-caps&quot;</span><span class="p">)</span>
 
 <span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Droplet</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </pre></div>
@@ -1996,12 +2002,12 @@ It contains the current environment your application is running in. Usually deve
     <span class="p">}</span>
 
     <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="kc">_</span> <span class="n">level</span><span class="p">:</span> <span class="n">LogLevel</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">function</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">uppercased</span> <span class="o">+</span> <span class="nb">String</span><span class="p">(</span><span class="n">repeating</span><span class="p">:</span> <span class="s">&quot;!&quot;</span><span class="p">,</span> <span class="bp">count</span><span class="p">:</span> <span class="n">exclamationCount</span><span class="p">))</span>
+        <span class="bp">print</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">uppercased</span><span class="p">()</span> <span class="o">+</span> <span class="nb">String</span><span class="p">(</span><span class="n">repeating</span><span class="p">:</span> <span class="s">&quot;!&quot;</span><span class="p">,</span> <span class="bp">count</span><span class="p">:</span> <span class="n">exclamationCount</span><span class="p">))</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kd">extension</span> <span class="nc">AllCapsLogger</span><span class="p">:</span> <span class="n">ConfigInitializable</span> <span class="p">{</span>
-   <span class="kd">init</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+   <span class="kr">convenience</span> <span class="kd">init</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nv">count</span> <span class="p">=</span> <span class="n">config</span><span class="p">[</span><span class="s">&quot;allCaps&quot;</span><span class="p">,</span> <span class="s">&quot;exclamationCount&quot;</span><span class="p">]?.</span><span class="n">int</span> <span class="p">??</span> <span class="mi">3</span>
         <span class="kc">self</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">exclamationCount</span><span class="p">:</span> <span class="bp">count</span><span class="p">)</span>
    <span class="p">}</span> 
@@ -2016,7 +2022,7 @@ It contains the current environment your application is running in. Usually deve
 <p>Now that we have conformed our logger to <code>ConfigInitializable</code>, we can pass just the type name to <code>addConfigurable</code>.</p>
 <p><code>main.swift</code></p>
 <div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">config</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Config</span><span class="p">()</span>
-<span class="n">config</span><span class="p">.</span><span class="n">addConfigurable</span><span class="p">(</span><span class="n">log</span><span class="p">:</span> <span class="n">AllCapsLogger</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;all-caps&quot;</span><span class="p">)</span>
+<span class="n">config</span><span class="p">.</span><span class="n">addConfigurable</span><span class="p">(</span><span class="n">log</span><span class="p">:</span> <span class="n">AllCapsLogger</span><span class="p">.</span><span class="kd">init</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;all-caps&quot;</span><span class="p">)</span>
 
 <span class="kd">let</span> <span class="nv">drop</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Droplet</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </pre></div>
