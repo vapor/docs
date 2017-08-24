@@ -1,9 +1,9 @@
 !!! warning
     This section may contain outdated information.
-    
+
 # Leaf
 
-Welcome to Leaf. Leaf's goal is to be a simple templating language that can make generating views easier. There's a lot of great templating languages, use what's best for you, maybe that's Leaf! The goals of Leaf are as follows:
+Welcome to Leaf. Leaf's goal is to be a simple templating language that can make generating views easier. There are plenty of great templating languages, so use what's best for you -- maybe that's Leaf! The goals of Leaf are:
 
 - Small set of strictly enforced rules
 - Consistency
