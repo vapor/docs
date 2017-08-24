@@ -108,6 +108,18 @@ Note: array indexes are always strings.
 }
 ```
 
+Note that `#if` requires a boolean variable. If you need to do a comparison then `#equal` is more appropriate. You can chain `#equal` in the same way as `#if`:
+
+```
+#equal(state, "0") {
+  <span class="green">Normal</span>
+} ##equal(state, "1") {
+  <span class="orange">Warning</span>
+} ##else() {
+  <span class="red">Alert</span>
+}
+```
+
 #### Import: `#import("template")`
 #### Export: `#export("template") { Leaf/HTML }`
 #### Extend: `#extend("template")`
