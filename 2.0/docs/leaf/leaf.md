@@ -77,13 +77,16 @@ The double token: `##` indicates a chain. It can be applied to any standard Tag.
 Hello, #(name)!
 ```
 
-#### Loop: `#loop(object, "index")`
+#### Loop: `#loop(array, "item") {}`
 
 ```
 #loop(friends, "friend") {
-  Hello, #(friend.name)!
+  #(offset). #(friend.name)
 }
 ```
+
+The body of a `#loop` can access an `index` variable corresponding to the index of the array. There is also an `offset` variable which is the index plus 1.
+
 #### Index: `#index(array, _ index: String)`
 
 ```
