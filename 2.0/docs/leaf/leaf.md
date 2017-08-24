@@ -84,12 +84,14 @@ Hello, #(name)!
   Hello, #(friend.name)!
 }
 ```
-#### Index: `#index(object, _ index: Int|String)`
+#### Index: `#index(array, _ index: String)`
 
 ```
-Hello, #index(friends, 0)!
+Hello, #index(friends, "0")!
 Hello, #index(friends, "best")!
 ```
+
+Note: array indexes are always strings.
 
 #### If - Else: `#if(bool) ##else() { this }`
 
