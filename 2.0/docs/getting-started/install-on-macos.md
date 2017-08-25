@@ -41,7 +41,7 @@ For more information on installing Homebrew, visit [brew.sh](https://brew.sh).
 With Homebrew you can install Vapor's toolbox and dependencies. Vapor's Homebrew tap will give your Homebrew installation access to all of Vapor's macOS packages.
 
 ```sh
-brew install vapor/homebrew-tap/vapor
+brew install vapor/tap/vapor
 ```
 
 ## Next
