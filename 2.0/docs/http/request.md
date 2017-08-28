@@ -134,6 +134,23 @@ This also applies to multi-part requests and can even be extended to new types s
 
 If you'd prefer to access given types more explicitly, that's totally fine. The `data` variable is purely opt-in convenience for those who want it.
 
+## Form Data
+
+It is common in many applications to receive forms submitted from a Web browser. Vapor provides support for several common encodings:
+
+```swift
+// Node? from application/x-www-form-urlencoded
+let formData = request.formURLEncoded
+
+// [String:Field]? from multipart/form-data
+let multipartFormData = request.formData
+
+// [Part]? from multipart/mixed
+let multipartMixedData = request.multipart
+```
+
+These accessors will return `nil` if the request's `Content-Type` does not match what they expect.
+
 ## JSON
 
 To access JSON directly on a given request, use the following:
