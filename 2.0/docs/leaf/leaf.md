@@ -1,9 +1,9 @@
 !!! warning
     This section may contain outdated information.
-    
+
 # Leaf
 
-Welcome to Leaf. Leaf's goal is to be a simple templating language that can make generating views easier. There's a lot of great templating languages, use what's best for you, maybe that's Leaf! The goals of Leaf are as follows:
+Welcome to Leaf. Leaf's goal is to be a simple templating language that can make generating views easier. There are plenty of great templating languages, so use what's best for you -- maybe that's Leaf! The goals of Leaf are:
 
 - Small set of strictly enforced rules
 - Consistency
@@ -77,19 +77,24 @@ The double token: `##` indicates a chain. It can be applied to any standard Tag.
 Hello, #(name)!
 ```
 
-#### Loop: `#loop(object, "index")`
+#### Loop: `#loop(array, "item") {}`
 
 ```
 #loop(friends, "friend") {
-  Hello, #(friend.name)!
+  #(offset). #(friend.name)
 }
 ```
-#### Index: `#index(object, _ index: Int|String)`
+
+The body of a `#loop` can access an `index` variable corresponding to the index of the array. There is also an `offset` variable which is the index plus 1.
+
+#### Index: `#index(array, _ index: String)`
 
 ```
-Hello, #index(friends, 0)!
+Hello, #index(friends, "0")!
 Hello, #index(friends, "best")!
 ```
+
+Note: array indexes are always strings.
 
 #### If - Else: `#if(bool) ##else() { this }`
 
@@ -100,6 +105,18 @@ Hello, #index(friends, "best")!
   Goodbye!
 } ##else() {
   I've been here the whole time.
+}
+```
+
+Note that `#if` requires a boolean variable. If you need to do a comparison then `#equal` is more appropriate. You can chain `#equal` in the same way as `#if`:
+
+```
+#equal(state, "0") {
+  <span class="green">Normal</span>
+} ##equal(state, "1") {
+  <span class="orange">Warning</span>
+} ##else() {
+  <span class="red">Alert</span>
 }
 ```
 
