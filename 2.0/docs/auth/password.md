@@ -82,9 +82,9 @@ try drop.run()
 
 All routes added to the `authed` route group will be protected by the password middleware.
 
-!!! seealso
+!!! see also
 	If you only want to globally require the password middleware, checkout the
-	[Middleware Config](../http/middleware.md/#config) section in the HTTP docs.
+	[Middleware Config](../http/middleware/) section in the HTTP docs.
 
 ### Route
 
