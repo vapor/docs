@@ -1,0 +1,34 @@
+site_name: 'Vapor Docs'
+copyright: 'Copyright &copy; 2017 Qutheory, LLC'
+
+pages:
+- Overview: 'index.md'
+
+markdown_extensions:
+    - admonition
+    - codehilite(guess_lang=false)
+    - footnotes
+    - meta
+    - toc(permalink=true)
+
+theme: 'material'
+theme_dir: 'vapor-material'
+repo_url: https://github.com/vapor/documentation
+
+extra_css:
+  - 'stylesheets/extra.css'
+edit_uri: edit/master/2.0/docs/
+extra:
+    logo: 'images/droplet-white.svg'
+    social:
+        - type: 'twitter'
+          link: 'https://twitter.com/@codevapor'
+        - type: 'slack'
+          link: 'http://vapor.team/'
+    font:
+        text: 'Roboto Slab'
+        code: 'Source Code Pro'
+    
+google_analytics:
+    - 'UA-76177358-4'
+    - 'auto'
