@@ -1,8 +1,4 @@
-# Async
-
-Async provides the fundament for asynchronous libraries. It consists of Futures and Streams.
-
-## Promise and Future
+# Promise and Future
 
 When working with asynchronous APIs, one of the problems you'll face is not knowing when a variable is set.
 
@@ -29,7 +25,7 @@ You can imagine code becoming complex. Difficult to read and comprehend.
 
 Promises and futures are two types that this library introduces to solve this.
 
-### Creating a promise
+## Creating a promise
 
 Promises are important if you're implementing a function that returns a result in the future, such as the database shown above.
 
@@ -69,7 +65,7 @@ func fetchUser(named name: String) -> Future<User> {
 }
 ```
 
-### On future completion
+## On future completion
 
 When a promise completes, you can chain the result/error into a closure:
 
@@ -86,7 +82,7 @@ future.then { user in
 }
 ```
 
-### Catching specific errors
+## Catching specific errors
 
 Sometimes you only care for specific errors, for example, for logging.
 
@@ -106,7 +102,7 @@ future.then { user in
 }
 ```
 
-### Mapping results
+## Mapping results
 
 Futures can be mapped to different results asynchronously.
 
@@ -125,7 +121,7 @@ futureUsername.then { username in
 }
 ```
 
-### For synchronous APIs
+## For synchronous APIs
 
 Sometimes, an API needs to be used synchronously in a synchronous envinronment.
 

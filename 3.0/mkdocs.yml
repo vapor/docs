@@ -3,6 +3,9 @@ copyright: 'Copyright &copy; 2017 Qutheory, LLC'
 
 pages:
 - Overview: 'index.md'
+- Async:
+    - 'Promise & Future': 'async/promise-future.md'
+    - 'Stream': 'async/stream.md'
 
 markdown_extensions:
     - admonition
@@ -28,7 +31,7 @@ extra:
     font:
         text: 'Roboto Slab'
         code: 'Source Code Pro'
-    
+
 google_analytics:
     - 'UA-76177358-4'
     - 'auto'
