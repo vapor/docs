@@ -97,13 +97,13 @@ Streams support two kinds of transforms. `flatMap` and `map`. Map transforms the
 // `flatMap`s the data into a `String?`. If the string results in `nil`, the resulting `stringStream` does not get called.
 // `stringStream` is a stream outputting `String`
 let stringStream = tcpStream.flatMap { bytes in
-  return String(bytes: bytes, encoding: self.encoding)
+  return String(bytes: bytes, encoding: .utf8)
 }
 
 // `map`s the data into a `String?`. If the string results in `nil`, the resulting `optionalStringStream` emits `nil`, too.
 // `optionalStringStream` is a stream outputting `String?`
-let optionalStringStream = tcpStream.flatMap { bytes in
-  return String(bytes: bytes, encoding: self.encoding)
+let optionalStringStream = tcpStream.map { bytes in
+  return String(bytes: bytes, encoding: .utf8)
 }
 ```
 
@@ -112,7 +112,7 @@ As you see, you an provide a closure to do the mapping for you. If you want to r
 ```swift
 // Creates a `String` from `ByteBuffer`. This can return `nil` if the `ByteBuffer` doesn't contain valid UTF-8
 func utf8String(from bytes: ByteBuffer) -> String? {
-  return String(bytes: bytes, encoding: self.encoding)
+  return String(bytes: bytes, encoding: .utf8)
 }
 
 // `flatMap`s the data into a `String?`. If the string results in `nil`, the resulting `stringStream` does not get called.
@@ -121,5 +121,5 @@ let stringStream = tcpStream.flatMap(utf8String)
 
 // `map`s the data into a `String?`. If the string results in `nil`, the resulting `optionalStringStream` emits `nil`, too.
 // `optionalStringStream` is a stream outputting `String?`
-let optionalStringStream = tcpStream.flatMap(utf8String)
+let optionalStringStream = tcpStream.map(utf8String)
 ```
