@@ -6,6 +6,9 @@ pages:
 - Async:
     - 'Promise & Future': 'async/promise-future.md'
     - 'Stream': 'async/stream.md'
+- Crypto:
+    - 'Hashes': 'crypto/hash.md'
+    - 'Streaming hashes': 'crypto/hash-stream.md'
 
 markdown_extensions:
     - admonition
