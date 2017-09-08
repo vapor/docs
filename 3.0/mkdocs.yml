@@ -8,7 +8,8 @@ pages:
     - 'Stream': 'async/stream.md'
 - Crypto:
     - 'Hashes': 'crypto/hash.md'
-    - 'Streaming hashes': 'crypto/hash-stream.md'
+    - 'Message authentication': 'crypto/mac.md'
+    - 'Password hashing': 'crypto/passwords.md'
 
 markdown_extensions:
     - admonition
