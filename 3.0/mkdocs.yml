@@ -30,7 +30,7 @@ pages:
         - 'ResponseSerializer': 'http/response-serializer.md'
         - 'Server': 'http/server.md'
 - JWT:
-    - 'Signed Tokens': 'crypto/jws.md'
+    - 'Signed Tokens': 'jwt/jws.md'
 # - Leaf:
 # - MySQL:
 - Routing:
