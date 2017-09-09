@@ -7,9 +7,52 @@ pages:
     - 'Promise & Future': 'async/promise-future.md'
     - 'Stream': 'async/stream.md'
 - Crypto:
+    - 'Base64': 'crypto/base64.md'
     - 'Hashes': 'crypto/hash.md'
     - 'Message authentication': 'crypto/mac.md'
     - 'Password hashing': 'crypto/passwords.md'
+    - 'Random': 'crypto/random.md'
+- HTTP:
+    - 'Basics':
+        - 'Body': 'http/body.md'
+        - 'Client': 'http/client.md'
+        - 'Headers': 'web/headers.md'
+        - 'Method': 'http/method.md'
+        - 'Middleware': 'http/middleware.md'
+        - 'Response': 'http/response.md'
+        - 'Responder': 'http/responder.md'
+        - 'Request': 'http/request.md'
+        - 'URI': 'http/uri.md'
+    - 'Advanced':
+        - 'RequestParser': 'http/request-parser.md'
+        - 'RequestSerializer': 'http/request-serializer.md'
+        - 'ResponseParser': 'http/response-parser.md'
+        - 'ResponseSerializer': 'http/response-serializer.md'
+        - 'Server': 'http/server.md'
+- JWT:
+    - 'Signed Tokens': 'crypto/jws.md'
+# - Leaf:
+# - MySQL:
+- Routing:
+    - 'Async': 'routing/async.md'
+    - 'Route Collection': 'routing/collection.md'
+    - 'Route Group': 'routing/group.md'
+    - 'Parameters': 'routing/parameters.md'
+    - 'Route': 'routing/route.md'
+    - 'Router': 'routing/router.md'
+    - 'Sync': 'routing/sync.md'
+# - Service:
+# - TCP:
+#     - ''
+# - TLS:
+# - Vapor:
+- WebSocket:
+    - 'Basics':
+        - 'Binary': 'websocket/binary-stream.md'
+        - 'Text': 'websocket/text-stream.md'
+    - 'Advanced':
+        - 'Client': 'websocket/client.md'
+        - 'Server': 'websocket/server.md'
 
 markdown_extensions:
     - admonition

@@ -32,3 +32,5 @@ You can optionally configure PBKDF2 to use a different iteration count and outpu
 // Iterates 20'000 times and outputs 100 bytes
 let hash = try PBKDF2<SHA256>.derive(fromPassword: password, salt: salt, iterating: 20_000, derivedKeyLength: 100)
 ```
+
+## BCrypt - TODO
