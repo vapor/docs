@@ -17,12 +17,13 @@ pages:
         - 'Body': 'http/body.md'
         - 'Client': 'http/client.md'
         - 'Headers': 'web/headers.md'
-        - 'Method': 'http/method.md'
+        - 'Methods': 'http/method.md'
         - 'Middleware': 'http/middleware.md'
         - 'Multipart': 'web/multipart.md'
         - 'Response': 'http/response.md'
         - 'Responder': 'http/responder.md'
         - 'Request': 'http/request.md'
+        - 'Status codes': 'http/status.md'
         - 'URI': 'http/uri.md'
     - 'Advanced':
         - 'RequestParser': 'http/request-parser.md'
@@ -44,8 +45,9 @@ pages:
 # - TCP:
 #     - ''
 # - TLS:
-# - Vapor:
-# - 'Route Collection': 'vapor/route-collection.md'
+- Vapor:
+    - 'Route Collection': 'vapor/route-collection.md'
+    - 'Route Group': 'vapor/route-group.md'
 - WebSocket:
     - 'Basics':
         - 'Binary': 'websocket/binary-stream.md'
