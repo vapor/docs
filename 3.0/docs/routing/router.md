@@ -1,0 +1,42 @@
+# Router
+
+Router is a protocol that you can conform your own routers to.
+
+## Registering a route
+
+First, create a [Route](route.md) using a [Method](../http/method.md), path and a responder.
+
+The following example shows an [async route](async.md) with a constant path.
+
+```swift
+let responder = BasicAsyncResponder { request in
+  return Future("Hello world")
+}
+
+let route = Route(method: .get, path: [.constant("hello"), .constant("world")], responder: responder)
+```
+
+The following example shows a [synchronous route](sync.md) with a [Parameter](parameters.md):
+
+```swift
+let responder = BasicSyncResponder { request in
+  let name = try request.parameters.next(String.self)
+  return "Hello \(name)"
+}
+
+let route = Route(method: .get, path: [.constant("greet"), .parameter(String.self)], responder: responder)
+```
+
+## Routing a request through a Router
+
+Assuming you have a request, like the following example:
+
+```swift
+let request = Request(method: .get, URI(path: "/hello/world"))
+```
+
+The router should be able to route the [Request](../http/request.md) using
+
+```swift
+let responder = router.route(request: request)
+```

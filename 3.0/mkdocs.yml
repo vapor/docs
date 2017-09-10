@@ -36,7 +36,6 @@ pages:
 - Routing:
     - 'Async': 'routing/async.md'
     - 'Route Collection': 'routing/collection.md'
-    - 'Route Group': 'routing/group.md'
     - 'Parameters': 'routing/parameters.md'
     - 'Route': 'routing/route.md'
     - 'Router': 'routing/router.md'
@@ -46,6 +45,7 @@ pages:
 #     - ''
 # - TLS:
 # - Vapor:
+#     - 'Route Group': 'routing/group.md'
 - WebSocket:
     - 'Basics':
         - 'Binary': 'websocket/binary-stream.md'
