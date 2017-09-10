@@ -19,6 +19,7 @@ pages:
         - 'Headers': 'web/headers.md'
         - 'Method': 'http/method.md'
         - 'Middleware': 'http/middleware.md'
+        - 'Multipart': 'web/multipart.md'
         - 'Response': 'http/response.md'
         - 'Responder': 'http/responder.md'
         - 'Request': 'http/request.md'
@@ -35,7 +36,6 @@ pages:
 # - MySQL:
 - Routing:
     - 'Async': 'routing/async.md'
-    - 'Route Collection': 'routing/collection.md'
     - 'Parameters': 'routing/parameters.md'
     - 'Route': 'routing/route.md'
     - 'Router': 'routing/router.md'
@@ -45,7 +45,7 @@ pages:
 #     - ''
 # - TLS:
 # - Vapor:
-#     - 'Route Group': 'routing/group.md'
+# - 'Route Collection': 'vapor/route-collection.md'
 - WebSocket:
     - 'Basics':
         - 'Binary': 'websocket/binary-stream.md'
