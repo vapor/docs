@@ -135,4 +135,4 @@ Vapor providers are a convenient way to add functionality to your Vapor projects
 
 ## Authors
 
-[Tanner Nelson](mailto:tanner@vapor.codes), [Logan Wright](mailto:logan@vapor.codes), and the hundreds of members of Vapor.
+[Tanner Nelson](mailto:tanner@vapor.codes), [Logan Wright](mailto:logan@vapor.codes), [Joannis Orlandos](mailto:joannis@qutheory.io), and the hundreds of members of Vapor.
