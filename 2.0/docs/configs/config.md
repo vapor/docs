@@ -76,18 +76,18 @@ let mongoUrl = drop.config["keys", "mongo", "url"]?.string ?? "default"
 
 ## Advanced Configurations
 
-Having the default `servers.json` is great, but what about more complex scenarios. For example, what if we want a different host in production and in development? These complex scenarios can be achieved by adding additional folders to our `Config/` directory. Here's an example of a folder structure that's setup for production and development environments.
+Having the default `server.json` is great, but what about more complex scenarios. For example, what if we want a different host in production and in development? These complex scenarios can be achieved by adding additional folders to our `Config/` directory. Here's an example of a folder structure that's setup for production and development environments.
 
 ```bash
 WorkingDirectory/
 ├── Config/
-│   ├── servers.json
+│   ├── server.json
 │   ├── production/
-│   │   └── servers.json
+│   │   └── server.json
 │   ├── development/
-│   │   └── servers.json
+│   │   └── server.json
 │   └── secrets/
-│       └── servers.json
+│       └── server.json
 ```
 
 > You can specify the environment through the command line by using --env=. Custom environments are also available, a few are provided by default: production, development, and testing.
