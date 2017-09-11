@@ -20,4 +20,4 @@ router.on(.get, to: "hello", "world") { request in
 
 The `.get` represents the [Method](../http/method.md) you want to use. `to: "hello", "world"` registers the path `/hello/world`.
 
-The trailing closure receives a [Request](../http/request.md). The route can throw errors and needs to return a [`ResponseRepresentable`](../vapor/responserepresentable.md) conforming type.
+The trailing closure receives a [Request](../http/request.md). The route can throw errors and needs to return a [`Future<ResponseRepresentable>`](../vapor/response.md) conforming type.
