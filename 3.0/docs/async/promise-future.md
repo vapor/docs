@@ -121,6 +121,21 @@ futureUsername.then { username in
 }
 ```
 
+## Futures without promise
+
+In some scenarios you're required to return a `Future` where a `Promise` isn't necessary as you already have the result.
+
+In these scenarios you can initialize a future with the already completed result.
+
+```swift
+// Already completed on initialization
+let future = Future("Hello world!")
+
+future.then { string in
+  print(string)
+}
+```
+
 ## For synchronous APIs
 
 Sometimes, an API needs to be used synchronously in a synchronous envinronment.
