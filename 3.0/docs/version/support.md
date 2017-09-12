@@ -3,7 +3,9 @@
 ![Support Matrix](https://cloud.githubusercontent.com/assets/1342803/26206235/24c6ebb4-3bdc-11e7-9cea-1405030f20b0.png)
 
 Vapor 3.0 is currently in beta.
+
 Vapor 2.0 is currently active.
+
 Vapor 1.5 is being maintained until November 2017.
 
 !!! warning
