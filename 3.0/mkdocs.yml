@@ -57,6 +57,12 @@ pages:
         - 'WebSocket': 'websocket/websocket.md'
     - 'Advanced':
         - 'Server': 'websocket/server.md'
+- Version (3.0):
+    - '1.5': 'version/1_5.md'
+    - '2.0': 'version/2_0.md'
+    - '3.0-beta': 'version/3_0.md'
+    - 'Support': 'version/support.md'
+
 
 markdown_extensions:
     - admonition
@@ -71,7 +77,7 @@ repo_url: https://github.com/vapor/documentation
 
 extra_css:
   - 'stylesheets/extra.css'
-edit_uri: edit/master/2.0/docs/
+edit_uri: edit/master/3.0/docs/
 extra:
     logo: 'images/droplet-white.svg'
     social:
