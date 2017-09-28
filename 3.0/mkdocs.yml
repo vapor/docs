@@ -25,6 +25,12 @@ pages:
     - 'Request': 'http/request.md'
     - 'Status codes': 'http/status.md'
     - 'URI': 'http/uri.md'
+- Routing:
+    - 'Async': 'routing/async.md'
+    - 'Parameters': 'routing/parameters.md'
+    - 'Route': 'routing/route.md'
+    - 'Router': 'routing/router.md'
+    - 'Sync': 'routing/sync.md'
 - WebSocket:
     - 'WebSocket': 'websocket/websocket.md'
     - 'Client': 'websocket/client.md'
@@ -32,13 +38,6 @@ pages:
     - 'Text': 'websocket/text-stream.md'
 - JWT:
     - 'Signed Tokens': 'jwt/jws.md'
-    - Routing:
-        - 'Index': 'routing/index.md'
-        - 'Async': 'routing/async.md'
-        - 'Sync': 'routing/sync.md'
-        - 'Parameters': 'routing/parameters.md'
-        - 'Router': 'routing/router.md'
-        - 'Route': 'routing/route.md'
 - Crypto:
     - 'Index': 'crypto/index.md'
     - 'Base64': 'crypto/base64.md'
