@@ -42,7 +42,7 @@ extension Int: ResponseRepresentable {
 
 `ResponseInitializable` is used for converting a `Response` to another type.
 
-This is particularely useful for [HTTP Clients](client.md) that interact with existing APIs.
+This is particularly useful for [HTTP Clients](client.md) that interact with existing APIs.
 
 This example is pseudocode for interacting with a payment API such as Stripe or PayPal in a type-safe fashion.
 

@@ -13,22 +13,22 @@ pages:
     - 'Password hashing': 'crypto/passwords.md'
     - 'Random': 'crypto/random.md'
 - HTTP:
-    - 'Basics':
+    # - 'Basics':
         - 'Body': 'http/body.md'
-        - 'Headers': 'web/headers.md'
+        - 'Headers': 'http/headers.md'
         - 'Methods': 'http/method.md'
         - 'Middleware': 'http/middleware.md'
-        - 'Multipart': 'web/multipart.md'
+        - 'Multipart': 'http/multipart.md'
         - 'Response': 'http/response.md'
         - 'Responder': 'http/responder.md'
         - 'Request': 'http/request.md'
         - 'Status codes': 'http/status.md'
         - 'URI': 'http/uri.md'
-    - 'Advanced':
-        - 'RequestParser': 'http/request-parser.md'
-        - 'RequestSerializer': 'http/request-serializer.md'
-        - 'ResponseParser': 'http/response-parser.md'
-        - 'ResponseSerializer': 'http/response-serializer.md'
+    # - 'Advanced':
+    #     - 'RequestParser': 'http/request-parser.md'
+    #     - 'RequestSerializer': 'http/request-serializer.md'
+    #     - 'ResponseParser': 'http/response-parser.md'
+    #     - 'ResponseSerializer': 'http/response-serializer.md'
 - JWT:
     - 'Signed Tokens': 'jwt/jws.md'
 # - Leaf:

@@ -1,6 +1,6 @@
 # JSON
 
-Vapor doesn't support using a "raw JSON" API. We instead recommend using `Foundation.JSONEncoder` and `Foundation.JSONDecoder` for type-safe JSON communication.
+Vapor doesn't recommend using a "raw" JSON API. We instead recommend using `Foundation.JSONEncoder` and `Foundation.JSONDecoder` for type-safe JSON communication.
 
 ## Login screen Example
 
@@ -36,7 +36,7 @@ struct LoginRequest: Decodable {
 }
 
 /// A login response (success output)
-struct LoginResponse: Encodable, JSONResponseRepresentable {
+struct LoginResponse: Encodable, ResponseRepresentable {
   var token: String
 
   // The profile will be encoded to JSON
@@ -44,7 +44,7 @@ struct LoginResponse: Encodable, JSONResponseRepresentable {
 }
 
 /// A login error (unsuccessful output)
-struct LoginError: Encodable, JSONResponseRepresentable {
+struct LoginError: Encodable, ResponseRepresentable {
   // The reason will be represented in JSON as a `String`
   enum Reason: String, Encodable {
     case invalidCredentials
@@ -81,7 +81,7 @@ print(loginRequest.password) // prints "hunter2"
 
 ## Encoding an (error) response
 
-First you need to instantiate your `JSONResponseRepresentable` response.
+First you need to instantiate your `ResponseRepresentable` response.
 
 Returning this from a `Route` will convert it to a [`Response`](../http/response.md) automatically.
 

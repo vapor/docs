@@ -20,6 +20,7 @@ import Async
 Async is a powerful library for any Swift project. To include it in your package, add the following to your `Package.swift` file.
 
 ```swift
+// swift-tools-version:4.0
 import PackageDescription
 
 let package = Package(

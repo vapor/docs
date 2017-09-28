@@ -63,14 +63,14 @@ The following packages are included with Vapor by default.
 - [Routing](routing/index.md): Advanced router with type-safe parameterization.
 - [HTTP](http/index.md): HTTP client and server.
 - [WebSockets](websockets/index.md): Full-duplex communication channels over a single TCP connection.
-- [Multipart](multipart/index.md): Fast, streaming, non-blocking multipart parser and serializer.
+- [Multipart](http/multipart.md): Fast, streaming, non-blocking multipart parser and serializer.
 - [JSON](vapor/json.md): Conveniences for working with JSON in Swift.ole IO and commands.
 - [TLS](tls/index.md): Swift wrapper for CLibreSSL's new TLS.
 - [Crypto](crypto/index.md): Cryptography from LibreSSL and Swift.
 	- [Digests](crypto/hash.md): Hashing with and without authentication.
 	- [Random](crypto//random.md): Pseudo and cryptographically secure randomness.
 	- [BCrypt & PBKDF2](crypto/passwords.md): Pure Swift implementation.
-- [Socks](sockets/index.md): Swift C Socket API wrapper.
+- [Socks](sockets/index.md): Swift Socket API.
 
 #### Providers
 
