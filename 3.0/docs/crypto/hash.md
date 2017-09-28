@@ -8,7 +8,7 @@ Crypto currently supports a few hashes.
 
 - MD5
 - SHA1
-- SHA2
+- SHA2 (all variants)
 
 MD5 and SHA1 are generally used for file validation or legacy (weak) passwords. They're performant and lightweight.
 

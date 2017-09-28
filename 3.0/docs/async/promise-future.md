@@ -39,24 +39,23 @@ func fetchUser(named name: String) -> Future<User> {
 	// Creates a promise that can be fulfilled in the future
 	let promise = Promise<User>()
 
-	// Run a query asynchronously, looking for the user
-	asyncDatabaseQuery(where: "username" == name, onComplete: { databaseResult in
-		do {
-			// Initialize the user using the datbase result
-			// This can throw an error if the result is empty or invalid
-			let user = try User(decodingFrom: databaseResult)
+	do {
+        // TODO: Run a query asynchronously, looking for the user
 
-			// If initialization is successful, complete the promise.
-			//
-			// Completing the promise will notify the promise's associated future with this user
-			promise.complete(user)
-		} catch {
-			// If initialization is successful, fail the promise.
-			//
-			// Failing the promise will notify the promise's associated future with an error
-			promise.fail(error)
-		}
-	})
+		// Initialize the user using the datbase result
+		// This can throw an error if the result is empty or invalid
+		let user = try User(decodingFrom: databaseResult)
+
+		// If initialization is successful, complete the promise.
+		//
+		// Completing the promise will notify the promise's associated future with this user
+		promise.complete(user)
+	} catch {
+		// If initialization is successful, fail the promise.
+		//
+		// Failing the promise will notify the promise's associated future with an error
+		promise.fail(error)
+	}
 
 	// After spawning the asynchronous operation, return the promise's associated future
 	//

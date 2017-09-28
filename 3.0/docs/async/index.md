@@ -1,4 +1,11 @@
-# Using Core
+# Using Async
+
+Async is a library revolving around two main concepts:
+
+- [Streams](stream.md)
+- [Promises](promise-future.md)
+
+Together they form the foundation of Vapor 3's data flow.
 
 ## With Vapor
 
@@ -19,7 +26,7 @@ let package = Package(
     name: "Project",
     dependencies: [
         ...
-        .package(url: "https://github.com/vapor/async.git", majorVersion: 2),
+        .package(url: "https://github.com/vapor/async.git", .upToNextMajor(from: "1.0.0")),
     ],
     targets: [
       .target(name: "Project", dependencies: ["Async", ... ])

@@ -1,5 +1,9 @@
 # Message authentication
 
+Message authentication is used for verifying message authenticity and validity.
+
+Common use cases are JSON Web Tokens.
+
 For message authentication, Vapor only supports HMAC.
 
 ## Using HMAC
