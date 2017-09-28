@@ -3,60 +3,60 @@ copyright: 'Copyright &copy; 2017 Qutheory, LLC'
 
 pages:
 - Overview: 'index.md'
-- Async:
-    - 'Promise & Future': 'async/promise-future.md'
-    - 'Stream': 'async/stream.md'
-- Crypto:
-    - 'Base64': 'crypto/base64.md'
-    - 'Hashes': 'crypto/hash.md'
-    - 'Message authentication': 'crypto/mac.md'
-    - 'Password hashing': 'crypto/passwords.md'
-    - 'Random': 'crypto/random.md'
-- HTTP:
-    # - 'Basics':
-        - 'Body': 'http/body.md'
-        - 'Headers': 'http/headers.md'
-        - 'Methods': 'http/method.md'
-        - 'Middleware': 'http/middleware.md'
-        - 'Multipart': 'http/multipart.md'
-        - 'Response': 'http/response.md'
-        - 'Responder': 'http/responder.md'
-        - 'Request': 'http/request.md'
-        - 'Status codes': 'http/status.md'
-        - 'URI': 'http/uri.md'
-    # - 'Advanced':
-    #     - 'RequestParser': 'http/request-parser.md'
-    #     - 'RequestSerializer': 'http/request-serializer.md'
-    #     - 'ResponseParser': 'http/response-parser.md'
-    #     - 'ResponseSerializer': 'http/response-serializer.md'
-- JWT:
-    - 'Signed Tokens': 'jwt/jws.md'
-# - Leaf:
-# - MySQL:
-- Routing:
-    - 'Async': 'routing/async.md'
-    - 'Parameters': 'routing/parameters.md'
-    - 'Route': 'routing/route.md'
-    - 'Router': 'routing/router.md'
-    - 'Sync': 'routing/sync.md'
-# - Service:
-# - TCP:
-#     - ''
-# - TLS:
 - Vapor:
     - 'Application': 'vapor/application.md'
     - 'Client': 'vapor/client.md'
     - 'JSON': 'vapor/json.md'
     - 'Route Collection': 'vapor/route-collection.md'
     - 'Route Group': 'vapor/route-group.md'
+- Async:
+    - 'Index': 'async/index.md'
+    - 'Promise & Future': 'async/promise-future.md'
+    - 'Stream': 'async/stream.md'
+- HTTP:
+    - 'Index': 'http/index.md'
+    - 'Body': 'http/body.md'
+    - 'Headers': 'http/headers.md'
+    - 'Methods': 'http/method.md'
+    - 'Middleware': 'http/middleware.md'
+    - 'Multipart': 'http/multipart.md'
+    - 'Response': 'http/response.md'
+    - 'Responder': 'http/responder.md'
+    - 'Request': 'http/request.md'
+    - 'Status codes': 'http/status.md'
+    - 'URI': 'http/uri.md'
 - WebSocket:
-    - 'Basics':
-        - 'Binary': 'websocket/binary-stream.md'
-        - 'Client': 'websocket/client.md'
-        - 'Text': 'websocket/text-stream.md'
-        - 'WebSocket': 'websocket/websocket.md'
-    - 'Advanced':
-        - 'Server': 'websocket/server.md'
+    - 'WebSocket': 'websocket/websocket.md'
+    - 'Client': 'websocket/client.md'
+    - 'Binary': 'websocket/binary-stream.md'
+    - 'Text': 'websocket/text-stream.md'
+- JWT:
+    - 'Signed Tokens': 'jwt/jws.md'
+    - Routing:
+        - 'Index': 'routing/index.md'
+        - 'Async': 'routing/async.md'
+        - 'Sync': 'routing/sync.md'
+        - 'Parameters': 'routing/parameters.md'
+        - 'Router': 'routing/router.md'
+        - 'Route': 'routing/route.md'
+- Crypto:
+    - 'Index': 'crypto/index.md'
+    - 'Base64': 'crypto/base64.md'
+    - 'Hashes': 'crypto/hash.md'
+    - 'Message authentication': 'crypto/mac.md'
+    - 'Password hashing': 'crypto/passwords.md'
+    - 'Random': 'crypto/random.md'
+    # - 'Advanced':
+    #     - 'RequestParser': 'http/request-parser.md'
+    #     - 'RequestSerializer': 'http/request-serializer.md'
+    #     - 'ResponseParser': 'http/response-parser.md'
+    #     - 'ResponseSerializer': 'http/response-serializer.md'
+# - Leaf:
+# - MySQL:
+# - Service:
+# - TCP:
+#     - ''
+# - TLS:
 - Version (3.0):
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'
