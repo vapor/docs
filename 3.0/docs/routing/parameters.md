@@ -10,15 +10,34 @@ To create a custom parameter type, simply conform to `Parameter` and implement t
 
 In this example, the `User` class will be initialized from a parameter that represents it's identifier.
 
+We recommend prefixing custom Parameter identifiers.
+
 ```swift
 class User : Parameter {
+  var username: String
+
+  // The unique (prefixed) identifier for this type
   static var uniqueSlug = "my-app:user"
 
+  // Creates a new user from the raw `parameter`
   static func make(for parameter: String, in request: Request) throws -> User {
-    // Fetches the user from MySQL
-    let user =
+    return User(named: parameter)
+  }
+
+  init(named username: String) {
+    self.username = username
   }
 }
 ```
 
-TODO!!!
+## Using (custom) parameters
+
+After conforming a type to `Parameter` you can access it's static property `parameter` as part of a path.
+
+```swift
+router.on(.get, to: "users", User.parameter, "profile") { request in
+  let user = try request.parameters.next(User.self)
+
+  // Return the user's Profile sync or async (depending on the router)
+}
+```
