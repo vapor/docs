@@ -10,4 +10,4 @@ Method  | Purpose
 .post   | Used for creating content
 .delete | Used for deleting content
 
-A [path](uri.md) is used for specifying a specific resource/content. The method infleunces the type of interaction with this resource/content.
+A [path](uri.md) is used for specifying a specific resource/content. The method influences the type of interaction with this resource/content.

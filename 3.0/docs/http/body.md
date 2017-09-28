@@ -1,3 +1,3 @@
 # Body
 
-**Body is undocumented since the low level API will be reworked**
+**Body is undocumented since part of the API will be reworked**

@@ -27,16 +27,31 @@ public final class SpecialHeaderCheckMiddleware: Middleware {
 The following example demonstrates a middleware that creates a session token for new users.
 
 ```swift
+// For the random number
+import Crypto
+
+struct InvalidString : Swift.Error {}
+
 public final class SessionTokenMiddleware: Middleware {
   func generateSessionToken() throws -> String {
     // Generate token here ...
-    return token
+    let base64 = Base64Encoder.encode(OSRandom().data(count: 32))
+
+    // Convert to a String
+    guard let string = String(bytes: base64, encoding: .utf8) else {
+      // This can never happen, but throw an error anyways
+      throw InvalidString()
+    }
+
+    return string
   }
 
   public func respond(to request: Request, chainingTo next: Responder) throws -> Future<Response> {
     let response = try next.respond(to: request)
 
+    // If the session cookie is not set
     guard request.cookies["session"] != nil else {
+      // Set a new session token
       response.cookies["session"] = try generateSessionToken()
 
       return response
