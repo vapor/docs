@@ -10,6 +10,20 @@ They consist of the following components:
 - query
 - fragment
 
+## Creating an URI
+
+URIs can be created from it's initializer or from a String literal.
+
+```swift
+let stringLiteralURI: URI = "http://localhost:8080/path"
+let manualURI: URI = URI(
+    scheme: "http",
+    hostname: "localhost",
+    port: 8080,
+    path: "/path"
+)
+```
+
 ## Scheme
 
 The scheme is used to define the specification used to communicate with the resource.

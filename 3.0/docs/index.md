@@ -4,7 +4,6 @@ This is the documentation for Vapor, a Web Framework for Swift that works on iOS
 
 Vapor is the most used web framework for Swift. It provides a beautifully expressive and easy to use foundation for your next website or API.
 
-
 ## Getting Started
 
 If this is your first time using Vapor, head to the [Getting Started](getting-started/install-on-macos.md) section to install Swift and create your first app.
@@ -60,33 +59,18 @@ The following packages are included with Vapor by default.
 !!! tip
 	These packages can also be used individually
 
-- [Vapor](https://github.com/vapor/vapor): Swift's most used web framework.
-	- Auth: User authentication and persistance.
-	- Sessions: Secure, ephemeral cookie based data storage.
-	- Cookies: HTTP cookies.
-	- Routing: Advanced router with type-safe parameterization.
-- [Engine](https://github.com/vapor/engine): Core transport layers.
-	- HTTP: HTTP client and server.
-	- URI: URI parsing and serializing.
-	- WebSockets: Full-duplex communication channels over a single TCP connection.
-	- SMTP: Send email using Sendgrid and Gmail.
-- [Multipart](https://github.com/vapor/multipart): Fast, streaming, non-blocking multipart parser and serializer.
-	- Multipart: Parses and serializes `multipart/mixed`.
-	- FormData: Parses and serializes `multipart/form-data`.
-- [JSON](https://github.com/vapor/json): Conveniences for working with JSON in Swift.
-- [Console](https://github.com/vapor/console): Swift wrapper for console IO and commands.
-- [TLS](https://github.com/vapor/tls): Swift wrapper for CLibreSSL's new TLS.
-- [Crypto](https://github.com/vapor/crypto): Cryptography from LibreSSL and Swift.
-	- Digests: Hashing with and without authentication.
-	- Ciphers: Encryption and decryption
-	- Random: Pseudo and cryptographically secure randomness.
-	- BCrypt: Pure Swift implementation.
-- [Node](https://github.com/vapor/node): Data structure for easy type conversions.
-	- [Polymorphic](https://github.com/vapor/polymorphic): Syntax for easily accessing values from common types like JSON.
-	- [Path Indexable](https://github.com/vapor/path-indexable): A protocol for powerful subscript access of common types like JSON.
-- [Core](https://github.com/vapor/core): Core extensions, type-aliases, and functions that facilitate common tasks.
-- [Socks](https://github.com/vapor/socks): Swift C Socket API wrapper.
-- [Bits](https://github.com/vapor/bits): Low level byte manipulation helpers
+- [Vapor](vapor/index.md): Swift's most used web framework.
+- [Routing](routing/index.md): Advanced router with type-safe parameterization.
+- [HTTP](http/index.md): HTTP client and server.
+- [WebSockets](websockets/index.md): Full-duplex communication channels over a single TCP connection.
+- [Multipart](multipart/index.md): Fast, streaming, non-blocking multipart parser and serializer.
+- [JSON](vapor/json.md): Conveniences for working with JSON in Swift.ole IO and commands.
+- [TLS](tls/index.md): Swift wrapper for CLibreSSL's new TLS.
+- [Crypto](crypto/index.md): Cryptography from LibreSSL and Swift.
+	- [Digests](crypto/hash.md): Hashing with and without authentication.
+	- [Random](crypto//random.md): Pseudo and cryptographically secure randomness.
+	- [BCrypt & PBKDF2](crypto/passwords.md): Pure Swift implementation.
+- [Socks](sockets/index.md): Swift C Socket API wrapper.
 
 #### Providers
 
