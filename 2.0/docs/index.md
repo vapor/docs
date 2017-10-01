@@ -128,6 +128,7 @@ These are packages maintained by community members that work great with Vapor.
 - [Vapor Security Headers](https://github.com/brokenhandsio/VaporSecurityHeaders): Add common security headers to your Vapor Application.
 - [MarkdownProvider](https://github.com/vapor-community/markdown-provider) - Easily use Markdown from Leaf.
 - [Vapor OAuth](https://github.com/brokenhandsio/vapor-oauth) - An OAuth2 Provider library for Vapor
+- [Leaf Error Middleware](https://github.com/brokenhandsio/leaf-error-middleware) - Custom 404 and error views for your website
 
 ### Providers
 
