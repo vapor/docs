@@ -144,6 +144,12 @@ query.execute().then {
 If you simply want to fetch all of the results, you can use the `.all()` convenience.
 This will automatically create a stream and return a future containing your results.
 
+```swift
+query.all().then { rows in
+    print(rows)
+}
+```
+
 #### Sync
 
 For situations where blocking is appropriate (perhaps in tests) you can use `.sync()` to block
