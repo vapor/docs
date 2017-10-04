@@ -10,7 +10,7 @@ pages:
     - 'Route Collection': 'vapor/route-collection.md'
     - 'Route Group': 'vapor/route-group.md'
 - Async:
-    - 'Index': 'async/index.md'
+    - 'Package': 'async/package.md'
     - 'Promise & Future': 'async/promise-future.md'
     - 'Stream': 'async/stream.md'
 - HTTP:
@@ -45,6 +45,9 @@ pages:
     - 'Message authentication': 'crypto/mac.md'
     - 'Password hashing': 'crypto/passwords.md'
     - 'Random': 'crypto/random.md'
+- SQLite:
+    - 'Package': 'sqlite/package.md'
+    - 'Overview': 'sqlite/overview.md'
     # - 'Advanced':
     #     - 'RequestParser': 'http/request-parser.md'
     #     - 'RequestSerializer': 'http/request-serializer.md'
