@@ -2,7 +2,7 @@
 
 This section outlines how to import the Leaf package both with or without a Vapor project.
 
-# Leaf must place right in folder structure of project
+## Example Folder Structure
 
 ```
 Hello
