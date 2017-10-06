@@ -92,6 +92,7 @@ pages:
     - 'Package': 'debugging/package.md'
     - 'Overview': 'debugging/overview.md'
 - Deploy:
+    - 'Cloud': 'deploy/cloud.md'
     - 'Nginx': 'deploy/nginx.md'
     - 'Apache2': 'deploy/apache2.md'
     - 'Supervisor': 'deploy/supervisor.md'
