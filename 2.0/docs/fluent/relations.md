@@ -189,7 +189,7 @@ The siblings relation works similarly to [queries](query.md) and parent/children
 If you are using a `Pivot` type, you can simply add it to your Droplet's preparation array.
 
 ```swift
-drop.preparations.append(Pivot<Pet, Toy>)
+drop.preparations.append(Pivot<Pet, Toy>.self)
 ```
 
 If you are using a `Pivot` for your "through" model, it will also have methods for adding and removing models from the relation.
