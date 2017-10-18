@@ -1,4 +1,4 @@
-# Promise and Future
+# Introduction into Promises and Futures
 
 When working with asynchronous APIs, one of the problems you'll face is not knowing when a variable is set.
 
@@ -40,7 +40,7 @@ func fetchUser(named name: String) -> Future<User> {
 	let promise = Promise<User>()
 
 	do {
-        // TODO: Run a query asynchronously, looking for the user
+    // TODO: Run a query asynchronously, looking for the user
 
 		// Initialize the user using the datbase result
 		// This can throw an error if the result is empty or invalid
@@ -135,18 +135,18 @@ future.then { string in
 }
 ```
 
-## For synchronous APIs
+## Synchronous APIs
 
 Sometimes, an API needs to be used synchronously in a synchronous envinronment.
 
-Rather than using a synchronous API with all edge cases involved, we recommend using the `try future.sync()` function.
+Rather than using a synchronous API with all edge cases involved, we recommend using the `try future.blockingAwait()` function.
 
 ```swift
 // The future provided by the above function will be used
 let future: Future<User> = fetchUser(named: "Admin")
 
 // This will either receive the user if the promise was completed or throw an error if the promise was failed.
-let user: User = try future.sync()
+let user: User = try future.blockingAwait()
 ```
 
 This will wait for a result indefinitely, blocking the thread.
@@ -155,5 +155,5 @@ If you expect a result with a specified duration, say, 30 seconds:
 
 ```swift
 // This will also throw an error if the deadline wasn't met
-let user = try future.sync(deadline: .seconds(30))
+let user = try future.blocked(timeout: .seconds(30))
 ```

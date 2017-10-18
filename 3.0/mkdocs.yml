@@ -10,8 +10,10 @@ pages:
     - 'Route Group': 'vapor/route-group.md'
 - Async:
     - 'Package': 'async/package.md'
-    - 'Promise & Future': 'async/promise-future.md'
-    - 'Stream': 'async/stream.md'
+    - 'Promise & Future Introduction': 'async/promise-future-introduction.md'
+    - 'Future Basics': 'async/futures-basics.md'
+    - 'Streams Introduction': 'async/streams-introduction.md'
+    - 'Stream Basics': 'async/streams-basics.md'
 - HTTP:
     - 'Index': 'http/index.md'
     - 'Body': 'http/body.md'

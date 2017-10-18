@@ -1,4 +1,4 @@
-# Stream
+# Introduction into Streams
 
 Streams is a mechanism that you can implement on objects that process any information efficiently and asynchronously without bloat.
 
@@ -26,7 +26,7 @@ This example is a stream that deserializes `ByteBuffer` to `String` streaming/as
 struct InvalidUTF8 : Error {}
 
 // Deserializes `ByteBuffer` (`Input`) to `String` (`Output`) using the provided encoding
-class StringDeserializationStream : Async.Stream {
+class StringDeserializationStream: Async.Stream {
     typealias Input = ByteBuffer
     typealias Output = String
 
@@ -87,7 +87,7 @@ stringStream.drain { string in
 }
 ```
 
-## Transforming streams without an intermediate stream
+## Transforming streams without an intermediary stream
 
 The above stream `StringDeserializationStream` is a very simple example of implementing a stream.
 
