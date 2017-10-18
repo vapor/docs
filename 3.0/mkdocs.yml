@@ -5,7 +5,6 @@ pages:
 - Overview: 'index.md'
 - Vapor:
     - 'Application': 'vapor/application.md'
-    - 'Client': 'vapor/client.md'
     - 'JSON': 'vapor/json.md'
     - 'Route Collection': 'vapor/route-collection.md'
     - 'Route Group': 'vapor/route-group.md'

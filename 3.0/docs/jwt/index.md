@@ -10,6 +10,8 @@ JWT is a standard for managing client tokens. Tokens are a form of identificatio
 - A weak signing key was used and brute-forced
 - The signing key used was leaked out to a third party
 
+Please note that any private/secret data **must not** be stored inside a JSON Web Token since they're publically readable. They are **not** encrypted.
+
 ### Index
 
 - [JSON Web Signature](jws.md)
