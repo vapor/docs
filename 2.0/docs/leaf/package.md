@@ -2,6 +2,47 @@
 
 This section outlines how to import the Leaf package both with or without a Vapor project.
 
+## Example Folder Structure
+
+```
+Hello
+├── Config
+│   ├── app.json
+│   ├── crypto.json
+│   ├── droplet.json
+│   ├── fluent.json
+│   └── server.json
+├── Package.pins
+├── Package.swift
+├── Public
+├── README.md
+├── Resources
+│   ├── Views
+│   │   │   └── hello.leaf
+├── Public
+│   ├── images (images resources)
+│   ├── styles (css resources) 
+├── Sources
+│   ├── App
+│   │   ├── Config+Setup.swift
+│   │   ├── Controllers
+│   │   │   └── PostController.swift
+│   │   ├── Droplet+Setup.swift
+│   │   ├── Models
+│   │   │   └── Post.swift
+│   │   └── Routes.swift
+│   └── Run
+│       └── main.swift
+├── Tests
+│   ├── AppTests
+│   │   ├── PostControllerTests.swift
+│   │   ├── RouteTests.swift
+│   │   └── Utilities.swift
+│   └── LinuxMain.swift
+├── circle.yml
+└── license
+```
+
 ## With Vapor
 
 The easiest way to use Leaf with Vapor is to include the Leaf provider. 
