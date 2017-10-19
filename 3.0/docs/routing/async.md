@@ -3,18 +3,18 @@
 The `AsyncRouter` protocol can be applied on top of any router without additional implementation.
 
 ```swift
-let router: AsyncRouter = ...
+let router: AsyncRouter = app.make(AsyncRouter.self)
 ```
 
 ## Registering a route
 
 The `on` function on a `AsyncRouter` registers a route to the provided path. The following registers a `GET /hello/world` route.
 
-It responds with `"Hello world!"`
+It responds with `"Hello world!"` using futures.
 
 ```swift
 router.on(.get, to: "hello", "world") { request in
-  return "Hello world!"
+  return Future("Hello world!")
 }
 ```
 

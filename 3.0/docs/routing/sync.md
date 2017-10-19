@@ -3,7 +3,7 @@
 The `SyncRouter` protocol can be applied on top of any router without additional implementation.
 
 ```swift
-let router: SyncRouter = ...
+let router: SyncRouter = app.make(SyncRouter.self)
 ```
 
 ## Registering a route
