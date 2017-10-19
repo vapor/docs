@@ -23,10 +23,12 @@ webSocket.onBinary { byteBuffer in
 }
 ```
 
-Binary data can also, instead, be used as Foundation's `Data`. This is less efficient than `ByteBuffer` but often more useful.
+Binary data can also, instead, be used as Foundation's `Data`. This is less efficient than `ByteBuffer` but often easier to use.
 
 ```swift
 webSocket.onData { data in
   // use the `Data`
 }
 ```
+
+You can only use one of the two listeners at a time.

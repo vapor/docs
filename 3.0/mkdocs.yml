@@ -35,9 +35,11 @@ pages:
     - 'Sync': 'routing/sync.md'
 - WebSocket:
     - 'WebSocket': 'websocket/websocket.md'
-    - 'Client': 'websocket/client.md'
     - 'Binary': 'websocket/binary-stream.md'
     - 'Text': 'websocket/text-stream.md'
+    - 'Client': 'websocket/client.md'
+    - 'Server': 'websocket/server.md'
+    - 'Server Upgrades': 'websocket/upgrade.md'
 - JWT:
     - 'Signed Tokens': 'jwt/jws.md'
 - Crypto:
