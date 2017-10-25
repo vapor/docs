@@ -1,6 +1,16 @@
-# Using JSON Web Token
+# JSON Web Token
 
 JSON Web Token is a library containing all JSON Web Token related APIs.
+
+### What is JWT?
+
+JWT is a standard for managing client tokens. Tokens are a form of identification and proof to the server. JWT is cryptographically signed, so it is not possible to falsify the validity of a JWT unless any of the following conditions is met:
+
+- A broken algorithm was used (such as MD5)
+- A weak signing key was used and brute-forced
+- The signing key used was leaked out to a third party
+
+Please note that any private/secret data **must not** be stored inside a JSON Web Token since they're publically readable. They are **not** encrypted.
 
 ### Index
 
@@ -34,4 +44,4 @@ let package = Package(
 )
 ```
 
-Use `import JSON Web Token` to access JSON Web Token's APIs.
+Use `import JWT` to access JSON Web Token's APIs.

@@ -25,8 +25,6 @@ let ok = Status.ok
 let notFound = Status.notFound
 ```
 
-This is equally valid as
-
 ```swift
 let ok: Status = 200
 let notFound: Status = 404

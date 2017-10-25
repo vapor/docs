@@ -4,10 +4,10 @@ WebSocket clients work the same on the client side as the [server side](server.m
 
 ## Connecting a WebSocket client
 
-WebSockets require an [URI](../http/uri.md) to connect to and a DispatchQueue to run on.
+WebSockets require an [URI](../http/uri.md) to connect to and a [Worker](../async/worker.md) to run on.
 
 ```swift
-let queue: DispatchQueue = ...
+let worker: Worker = ...
 
 let futureWebSocket: Future<WebSocket> = try WebSocket.connect(to: "ws://localhost/path", queue: queue)
 ```
