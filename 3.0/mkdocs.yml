@@ -27,6 +27,13 @@ pages:
     - 'Middleware': 'http/middleware.md'
     - 'Multipart': 'http/multipart.md'
     - 'Responder': 'http/responder.md'
+    - 'Request': 'http/request.md'
+    - 'Status codes': 'http/status.md'
+    - 'URI': 'http/uri.md'
+- Redis:
+    - 'Index': 'redis/index.md'
+    - 'Basics': 'redis/basics.md'
+    - 'Custom commands': 'redis/custom-commands.md'
 - Routing:
     - 'Async': 'routing/async.md'
     - 'Parameters': 'routing/parameters.md'
