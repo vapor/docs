@@ -47,6 +47,9 @@ pages:
     - 'Client': 'websocket/client.md'
     - 'Server': 'websocket/server.md'
     - 'Server Upgrades': 'websocket/upgrade.md'
+- Security:
+    - 'Index': 'security/index.md'
+    - 'Denial of Service': 'security/dos.md'
 - JWT:
     - 'Signed Tokens': 'jwt/jws.md'
 - Crypto:
