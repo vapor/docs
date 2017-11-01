@@ -22,7 +22,7 @@ struct AuthorizationToken : Codable {
 
 To send a token to the client, you need to sign it. Signing is done using a "secret". Secrets are a static key that stays the same across server reboots and is usually put inside a configuration file.
 
-Secrets _should_ be randomly generated. Longer secrets are better, there is no limit.
+Secrets _should_ be randomly generated. Longer secrets and less predictable are better, there is no limit.
 
 Once a secret is available in the application you can sign your tokens.
 
