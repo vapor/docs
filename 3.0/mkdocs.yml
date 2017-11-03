@@ -14,6 +14,8 @@ pages:
     - 'Future Basics': 'async/futures-basics.md'
     - 'Streams Introduction': 'async/streams-introduction.md'
     - 'Stream Basics': 'async/streams-basics.md'
+- Fluent:
+    - 'Package': 'fluent/package.md'
 - HTTP:
     - 'Index': 'http/index.md'
     - 'Request': 'http/request.md'
