@@ -12,6 +12,8 @@ Redis works as a key-value store, but allows querying the keys, unlike most data
 
 - [Basics](basics.md)
 - [Custom commands](custom-commands.md)
+- [Pub/Sub](pub-sub.md)
+- [Pub/Sub](pipeline.md)
 
 ## With and without Vapor
 

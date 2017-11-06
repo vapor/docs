@@ -34,6 +34,7 @@ pages:
     - 'Index': 'redis/index.md'
     - 'Basics': 'redis/basics.md'
     - 'Custom commands': 'redis/custom-commands.md'
+    - 'Pipeline': 'redis/pipeline.md'
 - Routing:
     - 'Async': 'routing/async.md'
     - 'Parameters': 'routing/parameters.md'
