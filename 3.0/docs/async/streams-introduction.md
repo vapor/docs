@@ -18,6 +18,31 @@ OutputStream is a protocol that, when implement, can emit output.
 
 In Vapor 3 (related libraries), almost everything is a stream. TCP Server is a stream of clients. Each client is a stream of received binary data. For HTTP, each client has an HTTP Request Parser, and Response Serializer. A parser accepts the binary stream and outputs a request stream. And a responder accepts a response and outputs a binary stream (that you can send back to the client's TCP socket as input for the binary stream).
 
+## Draining streams
+
+In the above example an example of chaining streams was shown. Part of this example demonstrates draining streams. In this example the [TCP Server](../sockets/tcp-server.md) accepts clients. This client stream can be drained. This stream can be drained with a closure in which more processing can take place.
+
+In this example we print the string representation of the TCP connnection's incoming data.
+
+```swift
+tcpSocket.drain { buffer in
+  print(String(bytes: buffer, encoding: .utf8))
+}
+```
+
+Another use case for draining is when the stream does not need to be continued any further. After a [Response](../http/response.md) has been sent to the Client, nothing else needs to happen.
+
+## Catching stream errors
+
+When a (fatal) error occurs, often something need to happen. Many chained streams will do a sensible default. Sockets will close, for example. You can hook into this process by `.catch`-ing a stream's errors.
+
+```swift
+stream.catch { error in
+  // Do something with the error
+  print(error)
+}
+```
+
 ## Implementing an example stream
 
 This example is a stream that deserializes `ByteBuffer` to `String` streaming/asynchronously.
@@ -61,29 +86,6 @@ class StringDeserializationStream: Async.Stream {
         // On success, output the created string
         self.outputStream?(string)
     }
-}
-```
-
-## Chaining Streams
-
-The above stream can now be called manually, but you still need to receive the output.
-
-In this example, we'll take a TCP Stream implementation that outputs `ByteBuffer` for incoming data.
-
-```swift
-// TCP stream is a Stream of `ByteBuffer`
-let tcpStream = ...
-let stringStream = StringDeserializationStream()
-
-// tcpStream's output equals stringStream's input, we can drain tcpStream into stringStream
-//
-// This will call `stringStream.inputStream` for every tcpStream's output
-tcpStream.drain(into: stringStream)
-
-// StringStream can then be drained to print the results
-stringStream.drain { string in
-  // print the results
-  print(string)
 }
 ```
 
