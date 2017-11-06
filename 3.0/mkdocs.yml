@@ -50,6 +50,9 @@ pages:
 - Security:
     - 'Index': 'security/index.md'
     - 'Denial of Service': 'security/dos.md'
+- Sockets:
+    - 'Index': 'sockets/index.md'
+    - 'TCP Client': 'sockets/tcp-client.md'
 - JWT:
     - 'Signed Tokens': 'jwt/jws.md'
 - Crypto:
