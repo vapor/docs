@@ -12,8 +12,6 @@ Crypto currently supports a few hashes.
 
 MD5 and SHA1 are generally used for file validation or legacy (weak) passwords. They're performant and lightweight.
 
-## Using the hashes
-
 Every Hash type has a set of helpers that you can use.
 
 ## Hashing blobs of data

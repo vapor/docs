@@ -2,7 +2,7 @@
 
 Every application in Vapor starts as an `Application`. Application is a open class, meaning it _can_ be subclassed to add extra properties, but that's usually not necessary.
 
-Application is [`Extendable`](../core/extend.md), has a [`Config`](../service/config.md) and [`Services`](../service/services.md).
+Application has a [`Config`](../service/config.md) and [`Services`](../service/services.md).
 
 Application may behave differently depending on it's [`Environment`](../service/environment.md).
 
