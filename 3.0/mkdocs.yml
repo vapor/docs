@@ -62,6 +62,10 @@ pages:
 - SQLite:
     - 'Package': 'sqlite/package.md'
     - 'Overview': 'sqlite/overview.md'
+- MySQL:
+    - 'Index': 'mysql/index.md'
+    - 'Setup': 'mysql/setup.md'
+    - 'Basics': 'mysql/basics.md'
     # - 'Advanced':
     #     - 'RequestParser': 'http/request-parser.md'
     #     - 'RequestSerializer': 'http/request-serializer.md'
