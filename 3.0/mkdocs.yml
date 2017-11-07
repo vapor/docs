@@ -2,33 +2,35 @@ site_name: 'Vapor Docs'
 copyright: 'Copyright &copy; 2017 Qutheory, LLC'
 
 pages:
-- Overview: 'index.md'
+- 'Overview': 'index.md'
+- 'What is Vapor?': 'getting-started/vapor.md'
+- 'Installation':
+    - 'Installing on macOS': 'getting-started/install-on-macos.md'
+    - 'Installing on Ubuntu': 'getting-started/install-on-ubuntu.md'
+    - 'Installing Vapor Toolbox': 'getting-started/toolbox.md'
+    - 'Managing your project': 'getting-started/package.md'
 - 'Introduction':
-    - 'Why do I need Vapor?': 'getting-started/vapor-use-cases.md'
-    - 'Glossary': 'getting-started/glossary.md'
     - 'HTTP': 'getting-started/http.md'
+    - 'Websites': 'getting-started/websites.md'
+    - 'APIs': 'getting-started/apis.md'
     - 'Controllers': 'getting-started/controllers.md'
     - 'Databases': 'getting-started/databases.md'
-- 'Vapor Basics':
-    - 'Setting up Vapor': 'getting-started/setup.md'
-    - 'Routing': 'getting-started/routing.md'
-    - 'JSON': 'getting-started/json.md'
-    - 'Deployment': 'getting-started/cloud.md'
-    # - 'Frequently Asked Questions': 'getting-started/faq.md'
-- 'All documentation':
-    - Vapor:
-        - 'Application': 'vapor/application.md'
-        - 'JSON': 'vapor/json.md'
-        - 'Route Collection': 'vapor/route-collection.md'
-        - 'Route Group': 'vapor/route-group.md'
-    - Async:
+- 'Getting started':
+    - 'Application': 'vapor/application.md'
+    - 'Promise & Future Introduction': 'async/promise-future-introduction.md'
+    - 'Routing': 'vapor/routing.md'
+    - 'Route Collection': 'vapor/route-collection.md'
+    - 'Route Group': 'vapor/route-group.md'
+    - 'JSON': 'vapor/json.md'
+    - 'Deployment': 'vapor/cloud.md'
+- 'Basics':
+    - 'Async':
         - 'Package': 'async/package.md'
-        - 'Promise & Future Introduction': 'async/promise-future-introduction.md'
         - 'Future Basics': 'async/futures-basics.md'
         - 'Streams Introduction': 'async/streams-introduction.md'
         - 'Stream Basics': 'async/streams-basics.md'
         - 'Worker': 'async/worker.md'
-    - HTTP:
+    - 'HTTP':
         - 'Index': 'http/index.md'
         - 'Body': 'http/body.md'
         - 'Client': 'http/client.md'
@@ -42,32 +44,35 @@ pages:
         - 'Responder': 'http/responder.md'
         - 'Status codes': 'http/status.md'
         - 'URI': 'http/uri.md'
-    - Redis:
+    - 'Redis':
         - 'Index': 'redis/index.md'
         - 'Basics': 'redis/basics.md'
         - 'Custom commands': 'redis/custom-commands.md'
         - 'Publish and Subscribe': 'redis/pub-sub.md'
         - 'Pipeline': 'redis/pipeline.md'
-    - Routing:
-        - 'Basics': 'routing/basics.md'
-        - 'Parameters': 'routing/parameters.md'
-        - 'Route': 'routing/route.md'
-        - 'Router': 'routing/router.md'
-    - WebSocket:
+    - 'WebSocket':
         - 'WebSocket': 'websocket/websocket.md'
         - 'Binary': 'websocket/binary-stream.md'
         - 'Text': 'websocket/text-stream.md'
         - 'Client': 'websocket/client.md'
         - 'Server': 'websocket/server.md'
         - 'Server Upgrades': 'websocket/upgrade.md'
-    - Security:
-        - 'Index': 'security/index.md'
-        - 'Denial of Service': 'security/dos.md'
-    - Sockets:
-        - 'Index': 'sockets/index.md'
-        - 'TCP Client': 'sockets/tcp-client.md'
-    - JWT:
+    - 'JWT':
         - 'Signed Tokens': 'jwt/jws.md'
+- 'Databases':
+    - 'SQLite':
+        - 'Package': 'sqlite/package.md'
+        - 'Overview': 'sqlite/overview.md'
+    - 'MySQL':
+        - 'Index': 'mysql/index.md'
+        - 'Setup': 'mysql/setup.md'
+        - 'Basics': 'mysql/basics.md'
+    # - 'PostgreSQL':
+    # - 'MongoDB':
+# - 'ORMs':
+#     - 'Overview': 'orms/overview.md'
+    # - 'Fluent':
+- 'Advanced':
     - Crypto:
         - 'Index': 'crypto/index.md'
         - 'Base64': 'crypto/base64.md'
@@ -75,24 +80,27 @@ pages:
         - 'Message authentication': 'crypto/mac.md'
         - 'Password hashing': 'crypto/passwords.md'
         - 'Random': 'crypto/random.md'
-    - SQLite:
-        - 'Package': 'sqlite/package.md'
-        - 'Overview': 'sqlite/overview.md'
-    - MySQL:
-        - 'Index': 'mysql/index.md'
-        - 'Setup': 'mysql/setup.md'
-        - 'Basics': 'mysql/basics.md'
+    - Routing:
+        - 'Basics': 'routing/basics.md'
+        - 'Parameters': 'routing/parameters.md'
+        - 'Route': 'routing/route.md'
+        - 'Router': 'routing/router.md'
+    - 'Sockets':
+        - 'Index': 'sockets/index.md'
+        - 'TCP Client': 'sockets/tcp-client.md'
+    - Security:
+        - 'Index': 'security/index.md'
+        - 'Denial of Service': 'security/dos.md'
+- 'Additional information':
+    - 'Architecture': 'supplementary/architecture.md'
+    - 'Performance': 'supplementary/performance.md'
     # - 'Advanced':
     #     - 'RequestParser': 'http/request-parser.md'
     #     - 'RequestSerializer': 'http/request-serializer.md'
     #     - 'ResponseParser': 'http/response-parser.md'
     #     - 'ResponseSerializer': 'http/response-serializer.md'
 # - Leaf:
-# - MySQL:
 # - Service:
-# - TCP:
-#     - ''
-# - TLS:
 - Version (3.0):
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'
