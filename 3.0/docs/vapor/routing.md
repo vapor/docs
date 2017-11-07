@@ -31,3 +31,5 @@ The [`Response`](../http/response.md) returned will then be sent to the client.
 The returned response in this closure **must** be either a `Response` or a [`Future`](../async/promise-future-introduction.md) containing any [`ResponseRepresentable`](../http/repsonse.md#responserepresentable).
 
 ## Registering with parameters
+
+TODO
