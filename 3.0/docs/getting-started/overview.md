@@ -14,7 +14,7 @@ If you're coming from another language, chances are you've never heard of Swift'
 
 Asynchronous programming specifically is an essential part of the Vapor ecosystem that we recommend people [that is described here](async-and-codable.md).
 
-[The same article](async-and-codable.md) will dive into Codable, a very simple protocol but important protocol in Vapor 3.
+[The same article](async-and-codable.md) will dive into Codable, a very simple but important protocol in Vapor 3.
 
 ## Databases
 

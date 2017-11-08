@@ -4,11 +4,9 @@ Streams are a set of events that occur asynchronously in time. Some events may d
 
 ## Chaining streams
 
-If an `OutputStream`'s Output is the same as an `InputStream`'s input, you can "chain" these streams. This doesn't work for all situations.
+If an `OutputStream`'s Output is the same as an `InputStream`'s input, you can "chain" these streams together to create really performant and readable solutions.
 
-Base64-encoders chained to an HTTP parser will never work, since base64 isn't a valid HTTP format. But depending on your scenario you can provide really performant and readable solutions.
-
-The following example assumes a `client` (Input and Output Stream of `ByteBuffer`) and a [base64 encoder](../crypto/base64.md) (input and output `ByteBuffer`).
+This doesn't work for all situation, but let's look at an example that *does* accept [base64](../crypto/base64.md).
 
 ```swift
 client.stream(to: base64encoder).stream(to: client)

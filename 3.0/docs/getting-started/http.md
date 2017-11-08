@@ -6,7 +6,7 @@ HTTP comes in two major versions. `HTTP/1` and `HTTP/2`. Vapor comes with HTTP/1
 
 ### What is the difference?
 
-HTTP/1 is a protocol designed in the '90s for the then new and rapidly evolving internet. The protocol is designed around simplicity above security and functionality. Since then, many kinds of attacks have been designed against the protocol, resulting in the ability to attack HTTP/1 servers relatively easily. Vapor 3 is designed with these attacks in mind and is relatively secure [as is described here](../security/dos.md).
+HTTP/1 is a protocol designed in the '90s for the then new and rapidly evolving internet. The protocol is designed around simplicity above security and functionality.
 
 HTTP/2 is a protocol with security and performance in mind. Designed with experience of the past 20 years of internet in addition to modern standards such as a high bandwidth and many resources per page.
 

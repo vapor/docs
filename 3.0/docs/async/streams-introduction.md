@@ -20,7 +20,7 @@ In Vapor 3 (related libraries), almost everything is a stream. TCP Server is a s
 
 ## Draining streams
 
-In the above example an example of chaining streams was shown. Part of this example demonstrates draining streams. In this example the [TCP Server](../sockets/tcp-server.md) accepts clients. This client stream can be drained. This stream can be drained with a closure in which more processing can take place.
+Now that we've seen how to chain streams, let's talk about draining. In this example the [TCP Server](../sockets/tcp-server.md) accepts a client stream which can be drained with a closure. This allows additional processing to take place.
 
 In this example we print the string representation of the TCP connnection's incoming data.
 

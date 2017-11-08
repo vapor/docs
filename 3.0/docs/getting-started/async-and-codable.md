@@ -4,9 +4,7 @@ This document covers both `Codable` and `Async`, the two primary concepts in Vap
 
 # Codable
 
-Codable is any type that's both `Encodable` and `Decodable`. Encodable types can be serialized to a format, and Decodable types can be deserialized from a format. Codable types can be both serialized and deserialized.
-
-Conforming your types is really simple. You have to conform to the `Codable`, `Encodable` or `Decodable` protocol, depending on your use case.
+Codable is any type that's both `Encodable` and `Decodable`. Encodable types can be serialized to a format, and Decodable types can be deserialized from a format.
 
 If you only want your type to be serializable to another type, then you conform to `Encodable`. This will allow serializing this type to other formats such as JSON, XML, MySQL rows, MongoDB/BSON and more. But not backwards.
 
@@ -23,7 +21,7 @@ struct User: Codable {
 }
 ```
 
-As you see, the implementation is transparent. The above struct can now be (de-)serialized between JSON, XML, MongoDB BSON, MySQL and more!
+With this addition, the above struct can now be (de-)serialized between JSON, XML, MongoDB BSON, MySQL and more!
 
 # Async
 
