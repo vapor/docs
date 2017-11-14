@@ -254,7 +254,7 @@ and `joinedKey` method parameters, where `baseKey` is the identifier field on th
 and `joinedKey` is the foreign key field on the 'joined' model (the Employee) which relates back to the 'base' model.
 
 !!! tip
-  Fluent supports both inner and outer joins; use the invocation `.join(kind: .outer, MyModel.self)`
+    Fluent supports both inner and outer joins; use the invocation `.join(kind: .outer, MyModel.self)`
 
 ## Raw
 
