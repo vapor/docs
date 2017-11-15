@@ -1,9 +1,9 @@
-# Using Fluent
+# Adding Fluent to your Project
 
 Fluent ([vapor/fluent](https://github.com/vapor/fluent)) is a type-safe, fast, and easy-to-use ORM built for Swift. 
 It takes advantage of Swift's strong type system to provide an elegant API for your database.
 
-## Official Drivers
+## Database
 
 In addition to adding Fluent to your project, you must also add a Fluent driver. 
 Fluent does not include any database drivers by default. All official drivers have a getting started guide similar to this one. 
@@ -15,12 +15,13 @@ Fluent does not include any database drivers by default. All official drivers ha
 | SQLite     | vapor/sqlite            | vapor/fluent-sqlite      | [SQLite > Package](../sqlite/package.md)                         |
 | MongoDB    | mongokitten/mongokitten | vapor/fluent-mongokitten | [README.md](http://github.com/vapor/fluent-mongokitten/readme.md)|
 
-Any database can be made to work with Fluent by conforming to its [Database](database-protocol.md) protocol. 
-For a list of all compatible database types, search GitHub for the [fluent-driver](https://github.com/topics/fluent-driver) topic.
+!!! tip
+	Any database can be made to work with Fluent by conforming to its [Database](database-protocol.md) protocol. 
+	For a list of all compatible database types, search GitHub for the [fluent-driver](https://github.com/topics/fluent-driver) topic.
 
-## Fluent Package
+## Fluent
 
-Once you have picked a driver, simply add it and the Fluent package to your Package manifest.
+After you have added your database driver, simply add the Fluent package to your Package manifest.
 
 ```swift
 // swift-tools-version:4.0
