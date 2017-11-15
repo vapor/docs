@@ -2,7 +2,7 @@
 
 `Base64Encoder` is used to encode Base64 data. It works either as a stream or as a bulk decoder.
 
-## Bulk
+## Bulk Encoding
 
 Base64 can be bulk-encoded using a static method `encode`. This throws an error if the base64 is invalid.
 
@@ -12,7 +12,7 @@ You can encode `String`, `Data` or `ByteBuffer` input.
 let encodedData: Data = Base64Encoder.encode(input)
 ```
 
-## Stream
+## Stream Encoding
 
 To use the Base64 streaming encoder, you first need to initialize the `Base64Encoder`.
 
@@ -26,7 +26,7 @@ The input of the `Base64Encoder` is the raw data. The output is Base64 encoded d
 
 `Base64Decoder` is used to decode Base64 data. It works either as a stream or as a bulk decoder.
 
-## Bulk
+## Bulk Decoding
 
 Base64 can be bulk-decoded using a static method `decode`. This throws an error if the base64 is invalid.
 
@@ -36,7 +36,7 @@ You can decode `String`, `Data` or `ByteBuffer` input.
 let decodedData: Data = try Base64Decoder.decode(input)
 ```
 
-## Stream
+## Stream Decoding
 
 To use the Base64 streaming decoder, you first need to initialize the `Base64Decoder`.
 
@@ -46,7 +46,18 @@ let encoder = Base64Decoder()
 
 The input of the `Base64Decoder` is the Base64 encoded data. The output is raw data.
 
-# Optimization
+# Tips
+
+## Transforming binary streams
+
+Both `Base64Encoder` and `Base64Decoder` have a static `transform` function that transforms an existing stream of data using the en/decoder.
+
+```swift
+let base64EncodedStream = Base64Encoder.transform(binaryStream)
+let newBinaryStream = Base64Decoder.transform(base64EncodedStream)
+```
+
+## Optimization
 
 Both `Base64Encoder` as well as `Base64Decoder` accept the `decodedCapacity`. This is the expected amount of decoded bytes you expect to input or receive.
 
