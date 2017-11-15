@@ -3,7 +3,7 @@
 Async is a library revolving around two main concepts:
 
 - [Streams](stream.md)
-- [Promises](promise-future.md)
+- [Promises](promise-future-introduction.md)
 
 Together they form the foundation of Vapor 3's data flow.
 

@@ -1,12 +1,12 @@
 # Request
 
-When a client connects with an HTTP Server it sends a `Request`. This HTTP request will be processed [as discussed here](../getting-started/http-request-response.md) and resolved into a [`Response`](response.md). This is the response in the http [Request/Response model](../getting-started/http-request-response.md).
+When a client connects with an HTTP Server it sends a `Request`. This HTTP request will be processed [as discussed here](../getting-started/http.md) and resolved into a [`Response`](response.md). This is the response in the http [Request/Response model](../getting-started/http.md).
 
 Requests consist of a [Method](method.md), [URI](uri.md) and [Headers](../web/headers.md).
 
-Requests can optionally also contain a Body.
+Requests can optionally also contain a [Body](body.md).
 
-[Requests are Extensible.](../core/extend.md)
+Requests are Extensible using the `extend` property. This allow storing additional data for use by integrating libraries.
 
 ## Request properties
 
@@ -16,9 +16,9 @@ The [Request Method](method.md), [URI](uri.md), [Headers](headers.md) and [Body]
 
 We also provide access to the HTTP version, although this will almost always be `1.1`.
 
-In addition to these properties there is an [`Extend`](../core/extend.md) available which an be used to store extra information for each request.
+In addition to these properties there is an Extend available which an be used to store extra information for each request.
 
-It can be used to store information between middlewares and the responder and is used by Vapor to store the current [Worker](../async/worker.md), too.
+It can be used to store information between [middlewares](middleware.md) and the responder and is used by Vapor to store the current [Worker](../async/worker.md), too.
 
 Using Extend, many properties can be added in extensions.
 

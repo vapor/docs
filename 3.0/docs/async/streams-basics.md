@@ -1,10 +1,20 @@
 # Stream Basics
 
+Streams are a set of events that occur asynchronously in time. Some events may dispatch immediately, and others may have a delay in nanoseconds, milliseconds, minutes or any other duration. Streams can be linked together to create simple, performant and maintainable software.
+
 ## Chaining streams
 
-Streams can be chained. One Stream's output can be the other's input.
+If an `OutputStream`'s Output is the same as an `InputStream`'s input, you can "chain" these streams together to create really performant and readable solutions.
 
-To make this accessible we added stream chaining. One good example is how Vapor processes requests internally.
+This doesn't work for all situation, but let's look at an example that *does* accept [base64](../crypto/base64.md).
+
+```swift
+client.stream(to: base64encoder).stream(to: client)
+```
+
+The result is an "echo" server that base64-encodes incoming data, and replies it back in base64-encoded format.
+
+Another good example is how Vapor processes requests internally.
 
 ```swift
 let server = try TCPServer(port: 8080, worker: Worker(queue: myDispatchQueue))
@@ -33,22 +43,3 @@ server.drain { client in
 In the above example, the output of one stream is inputted into another. This ends up taking care of the entire HTTP [Request](../http/request.md)/[Response](../http/response.md) process.
 
 `Socket -> Request-Data -> Request -> Processing -> Response -> Response-Data -> Socket`
-
-## Draining streams
-
-In the above example an example of chaining streams was shown. Part of this example demonstrates draining streams. In this example the [TCP Server](../sockets/tcp-server.md) accepts clients. This client stream can be drained. This stream can be drained with a closure in which more processing can take place.
-
-In this example we used the closure to set up a parsing/serialization context per accepted connection.
-
-Another use case for draining is when the stream does not need to be continued any further. After a [Response](../http/response.md) has been sent to the Client, nothing else needs to happen.
-
-## Catching stream errors
-
-When a (fatal) error occurs, often something need to happen. Many chained streams will do a sensible default. Sockets will close, for example. You can hook into this process by `.catch`-ing a stream's errors.
-
-```swift
-stream.catch { error in
-  // Do something with the error
-  print(error)
-}
-```

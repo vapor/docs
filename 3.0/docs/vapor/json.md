@@ -2,13 +2,15 @@
 
 Vapor doesn't recommend using a "raw" JSON API. We instead recommend using `Foundation.JSONEncoder` and `Foundation.JSONDecoder` for type-safe JSON communication.
 
+This requires you to `import Foundation` when working with JSON.
+
 ## Login screen Example
 
-For the purpose of a demo this example does not use [password hashing/encryption](../crypto/passwords.md) or a database.
+For the purpose of a demo this example does not use [password hashing/encryption](../crypto/passwords.md) or a [database](../getting-started/databases.md).
 
 ### The raw data
 
-First, create the models for requests, responses, errors and the underlying (internal) data.
+First, create the models for the JSON requests, responses, errors and the underlying (internal) data structure.
 
 ```swift
 /// The model, can be stored in the database
