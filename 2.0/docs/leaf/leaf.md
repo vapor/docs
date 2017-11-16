@@ -52,7 +52,7 @@ The double token: `##` indicates a chain. It can be applied to any standard Tag.
 #### Token: `#()`
 
 ```
-#() #()hashtags #()FTW => # #Hashtags #FTW
+#() #()hashtags #()FTW => # #hashtags #FTW
 ```
 
 #### Raw: `#raw() {}`
