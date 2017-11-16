@@ -11,7 +11,7 @@
       
         <link rel="shortcut icon" href="../../assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.1.1">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-1.1.1">
     
     
       
@@ -114,7 +114,7 @@
   
 
 
-  <a href="https://github.com/vapor/documentation" title="Go to repository" class="md-source" data-md-source="github">
+  <a href="https://github.com/vapor/documentation/" title="Go to repository" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -161,7 +161,7 @@
   
 
 
-  <a href="https://github.com/vapor/documentation" title="Go to repository" class="md-source" data-md-source="github">
+  <a href="https://github.com/vapor/documentation/" title="Go to repository" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -1659,6 +1659,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../version/3_0/" title="3.0-beta" class="md-nav__link">
+      3.0-beta
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../version/support/" title="Support" class="md-nav__link">
       Support
     </a>
@@ -1756,11 +1768,9 @@
 <p>The <code>Authorization: Basic ...</code> header can be used to send username and password credentials
 for authentication.</p>
 <p>This page will show you how to use this type of authentication in your web app.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Sending and storing passwords should be avoided wherever possible. Use tokens or
-sessions persistance to prevent the need for sending the password in every request.</p>
-</div>
+<p>!!! note:
+    Sending and storing passwords should be avoided wherever possible. Use tokens or
+    sessions persistance to prevent the need for sending the password in every request.</p>
 <h2 id="password-authenticatable">Password Authenticatable<a class="headerlink" href="#password-authenticatable" title="Permanent link">&para;</a></h2>
 <p>Start by conforming your user model to the <code>PasswordAuthenticatable</code> protocol.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">AuthProvider</span>

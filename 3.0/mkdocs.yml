@@ -3,108 +3,110 @@ copyright: 'Copyright &copy; 2017 Qutheory, LLC'
 
 pages:
 - 'Overview': 'index.md'
-- 'What is Vapor?': 'getting-started/vapor.md'
 - 'Installation':
-    - 'Installing on macOS': 'getting-started/install-on-macos.md'
-    - 'Installing on Ubuntu': 'getting-started/install-on-ubuntu.md'
-    - 'Installing Vapor Toolbox': 'getting-started/toolbox.md'
-    - 'Managing your project': 'getting-started/package.md'
-- 'Concepts':
-    - 'Overview': 'getting-started/overview.md'
-    - 'HTTP': 'getting-started/http.md'
-    - 'Async and Codable': 'getting-started/async-and-codable.md'
-    - 'Controllers': 'getting-started/controllers.md'
-    - 'Databases': 'getting-started/databases.md'
+    - 'Install: macOS': 'installation/install-on-macos.md'
+    - 'Install: Ubuntu': 'installation/install-on-ubuntu.md'
+    - 'Toolbox': 'installation/toolbox.md'
+    - 'Xcode & SPM': 'installation/package.md'
 - 'Getting started':
-    - 'Application': 'vapor/application.md'
-    - 'Promise & Future Introduction': 'async/promise-future-introduction.md'
-    - 'Routing': 'vapor/routing.md'
-    - 'Route Collection': 'vapor/route-collection.md'
-    - 'Route Group': 'vapor/route-group.md'
-    - 'JSON': 'vapor/json.md'
-    - 'Deployment': 'vapor/cloud.md'
-- 'Basics':
-    - 'Async':
-        - 'Package': 'async/package.md'
-        - 'Future Basics': 'async/futures-basics.md'
-        - 'Streams Introduction': 'async/streams-introduction.md'
-        - 'Stream Basics': 'async/streams-basics.md'
-        - 'Worker': 'async/worker.md'
-    - 'HTTP':
-        - 'Index': 'http/index.md'
-        - 'Body': 'http/body.md'
-        - 'Client': 'http/client.md'
-        - 'Cookies': 'http/cookies.md'
-        - 'Headers': 'http/headers.md'
-        - 'Methods': 'http/method.md'
-        - 'Middleware': 'http/middleware.md'
-        - 'Multipart': 'http/multipart.md'
-        - 'Request': 'http/request.md'
-        - 'Response': 'http/response.md'
-        - 'Responder': 'http/responder.md'
-        - 'Status codes': 'http/status.md'
-        - 'URI': 'http/uri.md'
-    - 'Redis':
-        - 'Index': 'redis/index.md'
-        - 'Basics': 'redis/basics.md'
-        - 'Custom commands': 'redis/custom-commands.md'
-        - 'Publish and Subscribe': 'redis/pub-sub.md'
-        - 'Pipeline': 'redis/pipeline.md'
-    - 'WebSocket':
-        - 'WebSocket': 'websocket/websocket.md'
-        - 'Binary': 'websocket/binary-stream.md'
-        - 'Text': 'websocket/text-stream.md'
-        - 'Client': 'websocket/client.md'
-        - 'Server': 'websocket/server.md'
-        - 'Server Upgrades': 'websocket/upgrade.md'
-    - 'JWT':
-        - 'Signed Tokens': 'jwt/jws.md'
+    - 'Hello, world': 'getting-started/hello-world.md'
+    - 'Structure': 'getting-started/structure.md'
+    - 'Application': 'getting-started/application.md'
+    - 'Promises': 'getting-started/promises.md'
+    - 'Routing': 'getting-started/routing.md'
+    - 'JSON': 'getting-started/json.md'
+    - 'Deployment': 'getting-started/cloud.md'
+- 'Concepts':
+    - 'What is Vapor?': 'concepts/vapor.md'
+    - 'Overview': 'concepts/overview.md'
+    - 'HTTP': 'concepts/http.md'
+    - 'Async and Codable': 'concepts/async-and-codable.md'
+    - 'Controllers': 'concepts/controllers.md'
+    - 'Databases': 'concepts/databases.md'
+- 'Async':
+    - 'Package': 'async/package.md'
+    - 'Future Basics': 'async/futures-basics.md'
+    - 'Streams Introduction': 'async/streams-introduction.md'
+    - 'Stream Basics': 'async/streams-basics.md'
+    - 'Worker': 'async/worker.md'
+- 'HTTP':
+    - 'Index': 'http/index.md'
+    - 'Body': 'http/body.md'
+    - 'Client': 'http/client.md'
+    - 'Cookies': 'http/cookies.md'
+    - 'Headers': 'http/headers.md'
+    - 'Methods': 'http/method.md'
+    - 'Middleware': 'http/middleware.md'
+    - 'Multipart': 'http/multipart.md'
+    - 'Request': 'http/request.md'
+    - 'Response': 'http/response.md'
+    - 'Responder': 'http/responder.md'
+    - 'Status codes': 'http/status.md'
+    - 'URI': 'http/uri.md'
+- 'Fluent':
+    - 'Getting Started':
+        - 'Package': 'fluent/getting-started/package.md'
+        - 'Provider': 'fluent/getting-started/provider.md'
+        - 'Models': 'fluent/getting-started/models.md'
+        - 'Migrations': 'fluent/getting-started/migrations.md'
+        - 'Querying': 'fluent/getting-started/querying.md'
+    - 'Database': 'fluent/database.md'
+    - 'Model': 'fluent/model.md'
+    - 'Query Builder': 'fluent/query-builder.md'
+    - 'Migration': 'fluent/migration.md'
+    - 'Schema Builder': 'fluent/schema-builder.md'
+    - 'Relations': 'fluent/relations.md'
+    - 'Pivot': 'fluent/pivot.md'
+    - 'Transaction': 'fluent/transaction.md'
 - 'Databases':
     - 'SQLite':
-        - 'Package': 'sqlite/package.md'
-        - 'Overview': 'sqlite/overview.md'
+        - 'Package': 'databases/sqlite/package.md'
+        - 'Overview': 'databases/sqlite/overview.md'
     - 'MySQL':
-        - 'Index': 'mysql/index.md'
-        - 'Setup': 'mysql/setup.md'
-        - 'Basics': 'mysql/basics.md'
-    # - 'PostgreSQL':
-    # - 'MongoDB':
-# - 'ORMs':
-#     - 'Overview': 'orms/overview.md'
-    # - 'Fluent':
-- 'Advanced':
-    - Crypto:
-        - 'Index': 'crypto/index.md'
-        - 'Base64': 'crypto/base64.md'
-        - 'Hashes': 'crypto/hash.md'
-        - 'Message authentication': 'crypto/mac.md'
-        - 'Password hashing': 'crypto/passwords.md'
-        - 'Random': 'crypto/random.md'
-    - Routing:
-        - 'Basics': 'routing/basics.md'
-        - 'Parameters': 'routing/parameters.md'
-        - 'Route': 'routing/route.md'
-        - 'Router': 'routing/router.md'
-    - 'Sockets':
-        - 'Index': 'sockets/index.md'
-        - 'TCP Client': 'sockets/tcp-client.md'
-    - Security:
-        - 'Index': 'security/index.md'
-        - 'Denial of Service': 'security/dos.md'
+        - 'Package': 'databases/mysql/package.md'
+        - 'Index': 'databases/mysql/index.md'
+        - 'Setup': 'databases/mysql/setup.md'
+        - 'Basics': 'databases/mysql/basics.md'
+- 'Redis':
+    - 'Index': 'redis/index.md'
+    - 'Basics': 'redis/basics.md'
+    - 'Custom commands': 'redis/custom-commands.md'
+    - 'Publish and Subscribe': 'redis/pub-sub.md'
+    - 'Pipeline': 'redis/pipeline.md'
+- 'WebSocket':
+    - 'WebSocket': 'websocket/websocket.md'
+    - 'Binary': 'websocket/binary-stream.md'
+    - 'Text': 'websocket/text-stream.md'
+    - 'Client': 'websocket/client.md'
+    - 'Server': 'websocket/server.md'
+    - 'Server Upgrades': 'websocket/upgrade.md'
+- 'JWT':
+    - 'Signed Tokens': 'jwt/jws.md'
+- 'Crypto':
+    - 'Index': 'crypto/index.md'
+    - 'Base64': 'crypto/base64.md'
+    - 'Hashes': 'crypto/hash.md'
+    - 'Message authentication': 'crypto/mac.md'
+    - 'Password hashing': 'crypto/passwords.md'
+    - 'Random': 'crypto/random.md'
+- 'Routing':
+    - 'Basics': 'routing/basics.md'
+    - 'Parameters': 'routing/parameters.md'
+    - 'Route': 'routing/route.md'
+    - 'Router': 'routing/router.md'
+- 'Sockets':
+    - 'Index': 'sockets/index.md'
+    - 'TCP Client': 'sockets/tcp-client.md'
+- 'Security':
+    - 'Index': 'security/index.md'
+    - 'Denial of Service': 'security/dos.md'
 - 'Additional information':
     - 'Architecture': 'supplementary/architecture.md'
     - 'Performance': 'supplementary/performance.md'
-    # - 'Advanced':
-    #     - 'RequestParser': 'http/request-parser.md'
-    #     - 'RequestSerializer': 'http/request-serializer.md'
-    #     - 'ResponseParser': 'http/response-parser.md'
-    #     - 'ResponseSerializer': 'http/response-serializer.md'
-# - Leaf:
-# - Service:
-- Version (3.0):
+- 'Version (3.0-alpha)':
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'
-    - '3.0-beta': 'version/3_0.md'
+    - '3.0-alpha': 'version/3_0.md'
     - 'Support': 'version/support.md'
 
 
@@ -115,20 +117,23 @@ markdown_extensions:
     - meta
     - toc(permalink=true)
 
-theme: 'material'
-theme_dir: 'vapor-material'
-repo_url: https://github.com/vapor/documentation
-
-extra_css:
-  - 'stylesheets/extra.css'
-edit_uri: edit/master/3.0/docs/
-extra:
+theme: 
+    name: 'material'
+    palette:
+        primary: 'blue'
+        accent: 'purple'
     logo: 'images/droplet-white.svg'
+
+repo_url: http://github.com/vapor/vapor
+edit_uri: https://github.com/vapor/documentation/edit/fluent/3.0/docs/
+extra:
     social:
         - type: 'twitter'
           link: 'https://twitter.com/@codevapor'
         - type: 'slack'
           link: 'http://vapor.team/'
+        - type: 'github'
+          link: 'https://github.com/vapor'
     font:
         text: 'Roboto Slab'
         code: 'Source Code Pro'
