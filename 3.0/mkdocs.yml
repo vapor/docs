@@ -125,7 +125,7 @@ theme:
     logo: 'images/droplet-white.svg'
 
 repo_url: http://github.com/vapor/vapor
-edit_uri: https://github.com/vapor/documentation/edit/fluent/3.0/docs/
+edit_uri: https://github.com/vapor/documentation/edit/beta/3.0/docs/
 extra:
     social:
         - type: 'twitter'
