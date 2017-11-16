@@ -188,3 +188,6 @@ menu:
                 2_0:
                     text: '2.0'
                     relativeUrl: switch/2_0.html
+                3_0:
+                    text: '3.0-beta'
+                    relativeUrl: switch/3_0.html

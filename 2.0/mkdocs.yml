@@ -99,6 +99,7 @@ pages:
 - Version (2.0):
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'
+    - '3.0-beta': 'version/3_0.md'
     - 'Support': 'version/support.md'
 
 markdown_extensions:
