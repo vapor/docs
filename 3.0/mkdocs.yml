@@ -50,15 +50,23 @@ pages:
         - 'Models': 'fluent/getting-started/models.md'
         - 'Migrations': 'fluent/getting-started/migrations.md'
         - 'Querying': 'fluent/getting-started/querying.md'
+    - 'Database': 'fluent/database.md'
     - 'Model': 'fluent/model.md'
+    - 'Query Builder': 'fluent/query-builder.md'
+    - 'Migration': 'fluent/migration.md'
+    - 'Schema Builder': 'fluent/schema-builder.md'
+    - 'Relations': 'fluent/relations.md'
+    - 'Pivot': 'fluent/pivot.md'
+    - 'Transaction': 'fluent/transaction.md'
 - 'Databases':
     - 'SQLite':
-        - 'Package': 'sqlite/package.md'
-        - 'Overview': 'sqlite/overview.md'
+        - 'Package': 'databases/sqlite/package.md'
+        - 'Overview': 'databases/sqlite/overview.md'
     - 'MySQL':
-        - 'Index': 'mysql/index.md'
-        - 'Setup': 'mysql/setup.md'
-        - 'Basics': 'mysql/basics.md'
+        - 'Package': 'databases/mysql/package.md'
+        - 'Index': 'databases/mysql/index.md'
+        - 'Setup': 'databases/mysql/setup.md'
+        - 'Basics': 'databases/mysql/basics.md'
 - 'Redis':
     - 'Index': 'redis/index.md'
     - 'Basics': 'redis/basics.md'
@@ -116,7 +124,7 @@ theme:
         accent: 'purple'
 
 repo_url: http://github.com/vapor/vapor
-edit_uri: https://github.com/vapor/documentation/edit/vapor3/3.0/docs/
+edit_uri: https://github.com/vapor/documentation/edit/fluent/3.0/docs/
 extra:
     logo: 'images/droplet-white.svg'
     social:

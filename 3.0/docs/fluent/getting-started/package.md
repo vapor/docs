@@ -5,14 +5,14 @@ It takes advantage of Swift's strong type system to provide an elegant API for y
 
 ## Database
 
-In addition to adding Fluent to your project, you must also add a Fluent driver. 
-Fluent does not include any database drivers by default. All official drivers have a getting started guide similar to this one. 
+In addition to adding Fluent to your project, you must also add a Fluent compatible database. 
+Fluent does not include any databases by default. All official databases have a getting started guide similar to this one. 
 
 | database   | library                 | driver                   | guide                                                            |
 |------------|-------------------------|--------------------------|------------------------------------------------------------------|
-| PostgreSQL | vapor/postgres          | vapor/fluent-postgres    | [PostgreSQL > Package](../postgres/package.md)                   |
-| MySQL      | vapor/mysql             | vapor/fluent-mysql       | [MySQL > Package](../mysql/package.md)                           |
-| SQLite     | vapor/sqlite            | vapor/fluent-sqlite      | [SQLite > Package](../sqlite/package.md)                         |
+| PostgreSQL | vapor/postgres          | vapor/fluent-postgres    | [PostgreSQL &rarr; Package](../../databases/postgres/package.md) |
+| MySQL      | vapor/mysql             | vapor/fluent-mysql       | [MySQL &rarr; Package](../../databases/mysql/package.md)         |
+| SQLite     | vapor/sqlite            | vapor/fluent-sqlite      | [SQLite &rarr; Package](../../databases/sqlite/package.md)       |
 | MongoDB    | mongokitten/mongokitten | vapor/fluent-mongokitten | [README.md](http://github.com/vapor/fluent-mongokitten/readme.md)|
 
 !!! tip

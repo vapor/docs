@@ -1,3 +1,3 @@
 # Fluent Model
 
-Overview of properties.
+Coming soon.
