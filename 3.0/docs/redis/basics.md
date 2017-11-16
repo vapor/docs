@@ -10,7 +10,7 @@ This requires a hostname, port and [worker](../async/worker.md). The worker's Di
 let client = try RedisClient<TCPClient>.connect(worker: worker) // Future<RedisClient<TCPClient>>
 ```
 
-The `connect` method will return a [Future](../async/promise-future.md) containing the TCP based Redis Client.
+The `connect` method will return a [Future](../async/promise-future-introduction.md) containing the TCP based Redis Client.
 
 ## Redis Data Types
 
@@ -76,7 +76,7 @@ client.set("world", forKey: "hello")
 
 This returns a future that'll indicate successful or unsuccessful insertion.
 
-### Reading a recod
+### Reading a record
 
 Reading a record is similar, only you'll get a warning if you don't use the returned future.
 

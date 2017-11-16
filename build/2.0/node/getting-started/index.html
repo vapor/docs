@@ -11,7 +11,7 @@
       
         <link rel="shortcut icon" href="../../assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.1.1">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-1.1.1">
     
     
       
@@ -114,7 +114,7 @@
   
 
 
-  <a href="https://github.com/vapor/documentation" title="Go to repository" class="md-source" data-md-source="github">
+  <a href="https://github.com/vapor/documentation/" title="Go to repository" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -161,7 +161,7 @@
   
 
 
-  <a href="https://github.com/vapor/documentation" title="Go to repository" class="md-source" data-md-source="github">
+  <a href="https://github.com/vapor/documentation/" title="Go to repository" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -1673,6 +1673,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../version/3_0/" title="3.0-beta" class="md-nav__link">
+      3.0-beta
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../version/support/" title="Support" class="md-nav__link">
       Support
     </a>
@@ -1798,7 +1810,7 @@
 <p>Note: There are some more advanced functionality options for JSON and database Row types in particular, we'll cover that later.</p>
 </blockquote>
 <p>By conforming our <code>Person</code> object to <code>NodeInitializable</code>, we can also use more advanced cases such as arrays:</p>
-<div class="codehilite"><pre><span></span>let people = try [Person](node: jsonArray)
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">people</span> <span class="p">=</span> <span class="k">try</span> <span class="p">[</span><span class="n">Person</span><span class="p">](</span><span class="n">node</span><span class="p">:</span> <span class="n">jsonArray</span><span class="p">)</span>
 </pre></div>
 
 
