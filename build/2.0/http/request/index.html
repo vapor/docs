@@ -11,7 +11,7 @@
       
         <link rel="shortcut icon" href="../../assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.1.1">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-1.1.1">
     
     
       
@@ -114,7 +114,7 @@
   
 
 
-  <a href="https://github.com/vapor/documentation" title="Go to repository" class="md-source" data-md-source="github">
+  <a href="https://github.com/vapor/documentation/" title="Go to repository" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -161,7 +161,7 @@
   
 
 
-  <a href="https://github.com/vapor/documentation" title="Go to repository" class="md-source" data-md-source="github">
+  <a href="https://github.com/vapor/documentation/" title="Go to repository" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -1151,6 +1151,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#form-data" title="Form Data" class="md-nav__link">
+    Form Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#json" title="JSON" class="md-nav__link">
     JSON
   </a>
@@ -1729,6 +1736,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../version/3_0/" title="3.0-beta" class="md-nav__link">
+      3.0-beta
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../version/support/" title="Support" class="md-nav__link">
       Support
     </a>
@@ -1811,6 +1830,13 @@
         <li class="md-nav__item">
   <a href="#content" title="Content" class="md-nav__link">
     Content
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#form-data" title="Form Data" class="md-nav__link">
+    Form Data
   </a>
   
 </li>
@@ -2003,6 +2029,20 @@
 </blockquote>
 <p>This also applies to multi-part requests and can even be extended to new types such as XML or YAML through middleware.</p>
 <p>If you'd prefer to access given types more explicitly, that's totally fine. The <code>data</code> variable is purely opt-in convenience for those who want it.</p>
+<h2 id="form-data">Form Data<a class="headerlink" href="#form-data" title="Permanent link">&para;</a></h2>
+<p>It is common in many applications to receive forms submitted from a Web browser. Vapor provides support for several common encodings:</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Node? from application/x-www-form-urlencoded</span>
+<span class="kd">let</span> <span class="nv">formData</span> <span class="p">=</span> <span class="n">request</span><span class="p">.</span><span class="n">formURLEncoded</span>
+
+<span class="c1">// [String:Field]? from multipart/form-data</span>
+<span class="kd">let</span> <span class="nv">multipartFormData</span> <span class="p">=</span> <span class="n">request</span><span class="p">.</span><span class="n">formData</span>
+
+<span class="c1">// [Part]? from multipart/mixed</span>
+<span class="kd">let</span> <span class="nv">multipartMixedData</span> <span class="p">=</span> <span class="n">request</span><span class="p">.</span><span class="n">multipart</span>
+</pre></div>
+
+
+<p>These accessors will return <code>nil</code> if the request's <code>Content-Type</code> does not match what they expect.</p>
 <h2 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h2>
 <p>To access JSON directly on a given request, use the following:</p>
 <div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">json</span> <span class="p">=</span> <span class="n">request</span><span class="p">.</span><span class="n">json</span><span class="p">[</span><span class="s">&quot;hello&quot;</span><span class="p">]</span>

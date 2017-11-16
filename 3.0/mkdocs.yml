@@ -132,6 +132,8 @@ extra:
           link: 'https://twitter.com/@codevapor'
         - type: 'slack'
           link: 'http://vapor.team/'
+        - type: 'github'
+          link: 'https://github.com/vapor'
     font:
         text: 'Roboto Slab'
         code: 'Source Code Pro'
