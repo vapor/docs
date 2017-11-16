@@ -38,7 +38,7 @@ let person = try Person(node: json)
 
 By conforming our `Person` object to `NodeInitializable`, we can also use more advanced cases such as arrays:
 
-```
+```swift
 let people = try [Person](node: jsonArray)
 ```
 

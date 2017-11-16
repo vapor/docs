@@ -60,7 +60,7 @@ Both password and database are optional.
 
 You can also pass the Redis credentials as a URL.
 
-`Config/Redis.json`
+`Config/redis.json`
 ```json
 {
     "url": "redis://:secret@127.0.0.1:6379/2"

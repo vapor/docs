@@ -108,26 +108,28 @@ These are officially supported packages for Vapor that are not included by defau
 
 These are packages maintained by community members that work great with Vapor.
 
-- [PostgreSQL](https://github.com/vapor/postgresql): Robust PostgreSQL interface for Swift.
-	- [PostgreSQL Driver](https://github.com/vapor/postgresql-driver): PostgreSQL driver for Fluent.
-	- [PostgreSQL Provider](https://github.com/vapor/postgresql-provider): PostgreSQL provider for Vapor.
+- [APNS](https://github.com/matthijs2704/vapor-apns): Simple APNS Library for Vapor (Swift).
+- [Flock](https://github.com/jakeheis/Flock): Automated deployment of Swift projects to servers
+	- [VaporFlock](https://github.com/jakeheis/VaporFlock): Use Flock to deploy Vapor applications
+- [Heimdall](https://github.com/himani93/heimdall): An easy to use HTTP request logger.
+- [Jobs](https://github.com/BrettRToomey/Jobs): A minimalistic job/background-task system for Swift.
+- [Kitura Provider](https://github.com/vapor/kitura-provider): Use IBM's Kitura HTTP server in Vapor.
+- [Leaf Error Middleware](https://github.com/brokenhandsio/leaf-error-middleware) - Custom 404 and error views for your website
+- [MarkdownProvider](https://github.com/vapor-community/markdown-provider) - Easily use Markdown from Leaf.
 - [MongoKitten](https://github.com/OpenKitten/MongoKitten): Native MongoDB driver for Swift, written in Swift
 	- [Mongo Driver](https://github.com/vapor/mongo-driver): MongoKitten driver for Fluent.
 	- [Mongo Provider](https://github.com/vapor/mongo-provider): MongoKitten provider for Vapor.
-- [Kitura Provider](https://github.com/vapor/kitura-provider): Use IBM's Kitura HTTP server in Vapor.
-- [SwiftyBeaver](https://github.com/vapor-community/swiftybeaver-provider): Adds the powerful logging of SwiftyBeaver to Vapor.
-- [APNS](https://github.com/matthijs2704/vapor-apns): Simple APNS Library for Vapor (Swift).
-- [VaporFCM](https://github.com/mdab121/vapor-fcm): Simple FCM (iOS + Android Push Notifications) library built for Vapor in Swift.
-- [VaporS3Signer](https://github.com/JustinM1/VaporS3Signer): Generate V4 Auth Header/Pre-Signed URL for AWS S3 REST API
-- [Flock](https://github.com/jakeheis/Flock): Automated deployment of Swift projects to servers
-	- [VaporFlock](https://github.com/jakeheis/VaporFlock): Use Flock to deploy Vapor applications
-- [VaporForms](https://github.com/bygri/vapor-forms): Brings simple, dynamic and re-usable web form handling to Vapor.
-- [Jobs](https://github.com/BrettRToomey/Jobs): A minimalistic job/background-task system for Swift.
-- [Heimdall](https://github.com/himani93/heimdall): An easy to use HTTP request logger.
+- [PostgreSQL](https://github.com/vapor/postgresql): Robust PostgreSQL interface for Swift.
+	- [PostgreSQL Driver](https://github.com/vapor/postgresql-driver): PostgreSQL driver for Fluent.
+	- [PostgreSQL Provider](https://github.com/vapor/postgresql-provider): PostgreSQL provider for Vapor.
+- [Sanitize](https://github.com/gperdomor/sanitize): Powerful model extraction from JSON requests.
 - [SteamPress](https://github.com/brokenhandsio/SteamPress): A blogging engine for Vapor.
-- [Vapor Security Headers](https://github.com/brokenhandsio/VaporSecurityHeaders): Add common security headers to your Vapor Application.
-- [MarkdownProvider](https://github.com/vapor-community/markdown-provider) - Easily use Markdown from Leaf.
+- [SwiftyBeaver](https://github.com/vapor-community/swiftybeaver-provider): Adds the powerful logging of SwiftyBeaver to Vapor.
+- [VaporFCM](https://github.com/mdab121/vapor-fcm): Simple FCM (iOS + Android Push Notifications) library built for Vapor in Swift.
+- [VaporForms](https://github.com/bygri/vapor-forms): Brings simple, dynamic and re-usable web form handling to Vapor.
+- [VaporS3Signer](https://github.com/JustinM1/VaporS3Signer): Generate V4 Auth Header/Pre-Signed URL for AWS S3 REST API
 - [Vapor OAuth](https://github.com/brokenhandsio/vapor-oauth) - An OAuth2 Provider library for Vapor
+- [Vapor Security Headers](https://github.com/brokenhandsio/VaporSecurityHeaders): Add common security headers to your Vapor Application.
 
 ### Providers
 

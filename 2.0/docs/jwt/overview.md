@@ -7,11 +7,11 @@ This guide gives an overview of using the JWT provider package.
 `JWTProvider` can be configured in **3** different ways:
 
 - Custom signers defined in `jwt.json`
-  - Supports (private/public): `hmac`, `rsa`, `esdca`.
+    - Supports (private/public): `hmac`, `rsa`, `esdca`.
 - Legacy custom signer defined in `jwt.json`. 
-  - Supports (private/public): `hmac`, `rsa`, `esdca`.
+    - Supports (private/public): `hmac`, `rsa`, `esdca`.
 - Remote JSON Web Key Set (`jwks.json`) URL
-  - Supports (private/public): `rsa`.
+    - Supports (private/public): `rsa`.
 
 If your Vapor app is acting as an Authentication Provider, you may want to use either the `Legacy custom signer` setup, or the `Custom signers` setup, which is great if you want to perform certificates rotation.
 
@@ -37,9 +37,9 @@ Custom signers are not backward compatible and must specify an additional `kid` 
 - type: `unsigned`, `hmac`, `rsa`, `esdca`
 - kid: an unique identifier
 - algorithm:
-  - type[`hmac`]: `hs256`, `hs384`, `hs512`
-  - type[`rsa`]: `rs256`, `rs384`, `rs512`
-  - type[`esdca`]: `es256`, `es384`, `es512`
+    - type[`hmac`]: `hs256`, `hs384`, `hs512`
+    - type[`rsa`]: `rs256`, `rs384`, `rs512`
+    - type[`esdca`]: `es256`, `es384`, `es512`
 
 `Config/jwt.json`
 ```json
@@ -60,9 +60,9 @@ This is backwards compatible with the previous implementation.
 
 - type: `unsigned`, `hmac`, `rsa`, `esdca`
 - algorithm:
-  - type[`hmac`]: `hs256`, `hs384`, `hs512`
-  - type[`rsa`]: `rs256`, `rs384`, `rs512`
-  - type[`esdca`]: `es256`, `es384`, `es512`
+    - type[`hmac`]: `hs256`, `hs384`, `hs512`
+    - type[`rsa`]: `rs256`, `rs384`, `rs512`
+    - type[`esdca`]: `es256`, `es384`, `es512`
 
 `Config/jwt.json`
 ```json

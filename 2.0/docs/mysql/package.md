@@ -4,15 +4,26 @@ This section outlines how to import the MySQL package both with or without a Vap
 
 ## Install MySQL
 
-To use MySQL, you need to have the C MySQL library installed on your computer. 
+To use MySQL, you need to have the C MySQL library installed on your computer.
 
 ```sh
+# macOS
+
 brew install vapor/tap/cmysql
+```
+
+> Note for Ubuntu
+> * [Add Vapor's APT repo to get access to all of Vapor's system packages.](https://docs.vapor.codes/2.0/getting-started/install-on-ubuntu/#apt-repo)
+
+```sh
+# Ubuntu
+
+sudo apt-get install cmysql
 ```
 
 ## With Vapor + Fluent
 
-The easiest way to use MySQL with Vapor is to include the MySQL provider. 
+The easiest way to use MySQL with Vapor is to include the MySQL provider.
 
 ```swift
 import PackageDescription
@@ -27,9 +38,9 @@ let package = Package(
 )
 ```
 
-The MySQL provider package adds MySQL to your project and adds some additional, Vapor-specific conveniences like `drop.mysql()`. 
+The MySQL provider package adds MySQL to your project and adds some additional, Vapor-specific conveniences like `drop.mysql()`.
 
-Using `import MySQLProvider` will import both Fluent and Fluent's Vapor-specific APIs. 
+Using `import MySQLProvider` will import both Fluent and Fluent's Vapor-specific APIs.
 
 ## With Fluent
 
@@ -49,7 +60,7 @@ let package = Package(
 )
 ```
 
-Use `import MySQLDriver` to access the `MySQLDriver` class which you can use to initialize a Fluent `Database`. 
+Use `import MySQLDriver` to access the `MySQLDriver` class which you can use to initialize a Fluent `Database`.
 
 ## Just MySQL
 

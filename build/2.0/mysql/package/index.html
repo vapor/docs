@@ -1556,6 +1556,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../deploy/cloud/" title="Cloud" class="md-nav__link">
+      Cloud
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../deploy/nginx/" title="Nginx" class="md-nav__link">
       Nginx
     </a>
@@ -1717,13 +1729,25 @@
                 <h1 id="using-mysql">Using MySQL<a class="headerlink" href="#using-mysql" title="Permanent link">&para;</a></h1>
 <p>This section outlines how to import the MySQL package both with or without a Vapor project.</p>
 <h2 id="install-mysql">Install MySQL<a class="headerlink" href="#install-mysql" title="Permanent link">&para;</a></h2>
-<p>To use MySQL, you need to have the C MySQL library installed on your computer. </p>
-<div class="codehilite"><pre><span></span>brew install vapor/tap/cmysql
+<p>To use MySQL, you need to have the C MySQL library installed on your computer.</p>
+<div class="codehilite"><pre><span></span><span class="c1"># macOS</span>
+
+brew install vapor/tap/cmysql
+</pre></div>
+
+
+<blockquote>
+<p>Note for Ubuntu
+* <a href="https://docs.vapor.codes/2.0/getting-started/install-on-ubuntu/#apt-repo">Add Vapor's APT repo to get access to all of Vapor's system packages.</a></p>
+</blockquote>
+<div class="codehilite"><pre><span></span><span class="c1"># Ubuntu</span>
+
+sudo apt-get install cmysql
 </pre></div>
 
 
 <h2 id="with-vapor-fluent">With Vapor + Fluent<a class="headerlink" href="#with-vapor-fluent" title="Permanent link">&para;</a></h2>
-<p>The easiest way to use MySQL with Vapor is to include the MySQL provider. </p>
+<p>The easiest way to use MySQL with Vapor is to include the MySQL provider.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">PackageDescription</span>
 
 <span class="kd">let</span> <span class="nv">package</span> <span class="p">=</span> <span class="n">Package</span><span class="p">(</span>
@@ -1737,8 +1761,8 @@
 </pre></div>
 
 
-<p>The MySQL provider package adds MySQL to your project and adds some additional, Vapor-specific conveniences like <code>drop.mysql()</code>. </p>
-<p>Using <code>import MySQLProvider</code> will import both Fluent and Fluent's Vapor-specific APIs. </p>
+<p>The MySQL provider package adds MySQL to your project and adds some additional, Vapor-specific conveniences like <code>drop.mysql()</code>.</p>
+<p>Using <code>import MySQLProvider</code> will import both Fluent and Fluent's Vapor-specific APIs.</p>
 <h2 id="with-fluent">With Fluent<a class="headerlink" href="#with-fluent" title="Permanent link">&para;</a></h2>
 <p>Fluent is a powerful, pure-Swift ORM that can be used with any Server-Side Swift framework. The MySQL driver allows you to use a MySQL database to power your models and queries.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">PackageDescription</span>
@@ -1755,7 +1779,7 @@
 </pre></div>
 
 
-<p>Use <code>import MySQLDriver</code> to access the <code>MySQLDriver</code> class which you can use to initialize a Fluent <code>Database</code>. </p>
+<p>Use <code>import MySQLDriver</code> to access the <code>MySQLDriver</code> class which you can use to initialize a Fluent <code>Database</code>.</p>
 <h2 id="just-mysql">Just MySQL<a class="headerlink" href="#just-mysql" title="Permanent link">&para;</a></h2>
 <p>At the core of the MySQL provider and MySQL driver is a Swift wrapper around the C MySQL client. This package can be used by itself to send raw, parameterized queries to your MySQL database.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">PackageDescription</span>
