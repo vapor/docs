@@ -3,18 +3,19 @@ copyright: 'Copyright &copy; 2017 Qutheory, LLC'
 
 pages:
 - 'Overview': 'index.md'
-- 'Installation':
-    - 'Install: macOS': 'installation/install-on-macos.md'
-    - 'Install: Ubuntu': 'installation/install-on-ubuntu.md'
-    - 'Toolbox': 'installation/toolbox.md'
-    - 'Xcode & SPM': 'installation/package.md'
+- 'Install':
+    - 'macOS': 'install/macos.md'
+    - 'Ubuntu': 'install/ubuntu.md'
 - 'Getting started':
     - 'Hello, world': 'getting-started/hello-world.md'
+    - 'Toolbox': 'getting-started/toolbox.md'
+    - 'SPM': 'getting-started/spm.md'
+    - 'Xcode': 'getting-started/xcode.md'
     - 'Structure': 'getting-started/structure.md'
     - 'Application': 'getting-started/application.md'
-    - 'Promises': 'getting-started/promises.md'
+    - 'Futures': 'getting-started/futures.md'
     - 'Routing': 'getting-started/routing.md'
-    - 'JSON': 'getting-started/json.md'
+    - 'Content': 'getting-started/content.md'
     - 'Deployment': 'getting-started/cloud.md'
 - 'Concepts':
     - 'What is Vapor?': 'concepts/vapor.md'
