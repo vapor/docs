@@ -12,25 +12,13 @@
     
         
     <url>
-     <loc>/installation/install-on-macos/</loc>
+     <loc>/install/macos/</loc>
      <lastmod>2017-11-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/installation/install-on-ubuntu/</loc>
-     <lastmod>2017-11-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/installation/toolbox/</loc>
-     <lastmod>2017-11-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/installation/package/</loc>
+     <loc>/install/ubuntu/</loc>
      <lastmod>2017-11-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -41,6 +29,24 @@
         
     <url>
      <loc>/getting-started/hello-world/</loc>
+     <lastmod>2017-11-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/getting-started/toolbox/</loc>
+     <lastmod>2017-11-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/getting-started/spm/</loc>
+     <lastmod>2017-11-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/getting-started/xcode/</loc>
      <lastmod>2017-11-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -58,7 +64,7 @@
     </url>
         
     <url>
-     <loc>/getting-started/promises/</loc>
+     <loc>/getting-started/controllers/</loc>
      <lastmod>2017-11-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -70,7 +76,13 @@
     </url>
         
     <url>
-     <loc>/getting-started/json/</loc>
+     <loc>/getting-started/content/</loc>
+     <lastmod>2017-11-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/getting-started/futures/</loc>
      <lastmod>2017-11-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -92,31 +104,19 @@
     </url>
         
     <url>
-     <loc>/concepts/overview/</loc>
+     <loc>/concepts/async/</loc>
+     <lastmod>2017-11-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/concepts/codable/</loc>
      <lastmod>2017-11-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/concepts/http/</loc>
-     <lastmod>2017-11-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/concepts/async-and-codable/</loc>
-     <lastmod>2017-11-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/concepts/controllers/</loc>
-     <lastmod>2017-11-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/concepts/databases/</loc>
      <lastmod>2017-11-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -390,6 +390,44 @@
     
         
     <url>
+     <loc>/routing/basics/</loc>
+     <lastmod>2017-11-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/routing/parameters/</loc>
+     <lastmod>2017-11-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/routing/route/</loc>
+     <lastmod>2017-11-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/routing/router/</loc>
+     <lastmod>2017-11-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/services/getting-started/</loc>
+     <lastmod>2017-11-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
      <loc>/jwt/jws/</loc>
      <lastmod>2017-11-16</lastmod>
      <changefreq>daily</changefreq>
@@ -440,25 +478,13 @@
     
         
     <url>
-     <loc>/routing/basics/</loc>
+     <loc>/sockets/</loc>
      <lastmod>2017-11-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/routing/parameters/</loc>
-     <lastmod>2017-11-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/routing/route/</loc>
-     <lastmod>2017-11-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/routing/router/</loc>
+     <loc>/sockets/tcp-client/</loc>
      <lastmod>2017-11-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -468,13 +494,7 @@
     
         
     <url>
-     <loc>/sockets/</loc>
-     <lastmod>2017-11-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/sockets/tcp-client/</loc>
+     <loc>/testing/getting-started/</loc>
      <lastmod>2017-11-16</lastmod>
      <changefreq>daily</changefreq>
     </url>

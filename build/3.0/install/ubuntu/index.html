@@ -32,7 +32,7 @@
     
     
       
-        <title>Overview - Vapor Docs</title>
+        <title>Ubuntu - Vapor Docs</title>
       
     
     
@@ -92,11 +92,11 @@
             
               
                 <span class="md-header-nav__parent">
-                  Concepts
+                  Install
                 </span>
               
             
-            Overview
+            Ubuntu
           
         </span>
       </div>
@@ -216,17 +216,19 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
-      Installation
+      Install
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-2">
-        Installation
+        Install
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -237,8 +239,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../installation/install-on-macos/" title="Install: macOS" class="md-nav__link">
-      Install: macOS
+    <a href="../macos/" title="macOS" class="md-nav__link">
+      macOS
     </a>
   </li>
 
@@ -247,35 +249,135 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../installation/install-on-ubuntu/" title="Install: Ubuntu" class="md-nav__link">
-      Install: Ubuntu
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Ubuntu
+      </label>
+    
+    <a href="./" title="Ubuntu" class="md-nav__link md-nav__link--active">
+      Ubuntu
     </a>
-  </li>
-
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#supported" title="Supported" class="md-nav__link">
+    Supported
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apt-repo" title="APT Repo" class="md-nav__link">
+    APT Repo
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../installation/toolbox/" title="Toolbox" class="md-nav__link">
-      Toolbox
-    </a>
-  </li>
-
+          <li class="md-nav__item">
+  <a href="#quick-script" title="Quick Script" class="md-nav__link">
+    Quick Script
+  </a>
+  
+</li>
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../installation/package/" title="Xcode & SPM" class="md-nav__link">
-      Xcode & SPM
-    </a>
+          <li class="md-nav__item">
+  <a href="#dockerfile" title="Dockerfile" class="md-nav__link">
+    Dockerfile
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual" title="Manual" class="md-nav__link">
+    Manual
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-vapor" title="Install Vapor" class="md-nav__link">
+    Install Vapor
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-installation" title="Verify Installation" class="md-nav__link">
+    Verify Installation
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swift" title="Swift" class="md-nav__link">
+    Swift
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vapor-toolbox" title="Vapor Toolbox" class="md-nav__link">
+    Vapor Toolbox
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#done" title="Done" class="md-nav__link">
+    Done
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#swiftorg" title="Swift.org" class="md-nav__link">
+    Swift.org
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -321,8 +423,44 @@
 
 
   <li class="md-nav__item">
-    <a href="../../getting-started/structure/" title="Structure" class="md-nav__link">
-      Structure
+    <a href="../../getting-started/toolbox/" title="Toolbox" class="md-nav__link">
+      Toolbox
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/spm/" title="SPM" class="md-nav__link">
+      SPM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/xcode/" title="Xcode" class="md-nav__link">
+      Xcode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/structure/" title="Folder Structure" class="md-nav__link">
+      Folder Structure
     </a>
   </li>
 
@@ -345,8 +483,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../getting-started/promises/" title="Promises" class="md-nav__link">
-      Promises
+    <a href="../../getting-started/controllers/" title="Controllers" class="md-nav__link">
+      Controllers
     </a>
   </li>
 
@@ -369,8 +507,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../getting-started/json/" title="JSON" class="md-nav__link">
-      JSON
+    <a href="../../getting-started/content/" title="Content" class="md-nav__link">
+      Content
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/futures/" title="Futures" class="md-nav__link">
+      Futures
     </a>
   </li>
 
@@ -396,12 +546,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       Concepts
@@ -419,7 +567,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../vapor/" title="What is Vapor?" class="md-nav__link">
+    <a href="../../concepts/vapor/" title="What is Vapor?" class="md-nav__link">
       What is Vapor?
     </a>
   </li>
@@ -429,68 +577,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        Overview
-      </label>
-    
-    <a href="./" title="Overview" class="md-nav__link md-nav__link--active">
-      Overview
+  <li class="md-nav__item">
+    <a href="../../concepts/async/" title="Async" class="md-nav__link">
+      Async
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#http" title="HTTP" class="md-nav__link">
-    HTTP
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#async-and-codable" title="Async and Codable" class="md-nav__link">
-    Async and Codable
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#databases" title="Databases" class="md-nav__link">
-    Databases
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#front-end" title="Front-end" class="md-nav__link">
-    Front-end
-  </a>
-  
-</li>
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -500,44 +591,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../http/" title="HTTP" class="md-nav__link">
+    <a href="../../concepts/codable/" title="Codable" class="md-nav__link">
+      Codable
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../concepts/http/" title="HTTP" class="md-nav__link">
       HTTP
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../async-and-codable/" title="Async and Codable" class="md-nav__link">
-      Async and Codable
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../controllers/" title="Controllers" class="md-nav__link">
-      Controllers
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../databases/" title="Databases" class="md-nav__link">
-      Databases
     </a>
   </li>
 
@@ -1349,10 +1416,118 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
     
     <label class="md-nav__link" for="nav-11">
-      JWT
+      Routing
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-11">
+        Routing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../routing/basics/" title="Basics" class="md-nav__link">
+      Basics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../routing/parameters/" title="Parameters" class="md-nav__link">
+      Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../routing/route/" title="Route" class="md-nav__link">
+      Route
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../routing/router/" title="Router" class="md-nav__link">
+      Router
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
+    
+    <label class="md-nav__link" for="nav-12">
+      Services
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-12">
+        Services
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../services/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+    
+    <label class="md-nav__link" for="nav-13">
+      JWT
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-13">
         JWT
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1382,13 +1557,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
     
-    <label class="md-nav__link" for="nav-12">
+    <label class="md-nav__link" for="nav-14">
       Crypto
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-12">
+      <label class="md-nav__title" for="nav-14">
         Crypto
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1478,85 +1653,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
     
-    <label class="md-nav__link" for="nav-13">
-      Routing
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-13">
-        Routing
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../routing/basics/" title="Basics" class="md-nav__link">
-      Basics
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../routing/parameters/" title="Parameters" class="md-nav__link">
-      Parameters
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../routing/route/" title="Route" class="md-nav__link">
-      Route
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../routing/router/" title="Router" class="md-nav__link">
-      Router
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
-    
-    <label class="md-nav__link" for="nav-14">
+    <label class="md-nav__link" for="nav-15">
       Sockets
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-14">
+      <label class="md-nav__title" for="nav-15">
         Sockets
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1598,13 +1701,49 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-16" type="checkbox" id="nav-16">
     
-    <label class="md-nav__link" for="nav-15">
+    <label class="md-nav__link" for="nav-16">
+      Testing
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-16">
+        Testing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../testing/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-17" type="checkbox" id="nav-17">
+    
+    <label class="md-nav__link" for="nav-17">
       Security
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-15">
+      <label class="md-nav__title" for="nav-17">
         Security
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1646,13 +1785,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-16" type="checkbox" id="nav-16">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-18" type="checkbox" id="nav-18">
     
-    <label class="md-nav__link" for="nav-16">
+    <label class="md-nav__link" for="nav-18">
       Additional information
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-16">
+      <label class="md-nav__title" for="nav-18">
         Additional information
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1694,13 +1833,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-17" type="checkbox" id="nav-17">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-19" type="checkbox" id="nav-19">
     
-    <label class="md-nav__link" for="nav-17">
+    <label class="md-nav__link" for="nav-19">
       Version (3.0-alpha)
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-17">
+      <label class="md-nav__title" for="nav-19">
         Version (3.0-alpha)
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1780,29 +1919,96 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#http" title="HTTP" class="md-nav__link">
-    HTTP
+  <a href="#supported" title="Supported" class="md-nav__link">
+    Supported
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#async-and-codable" title="Async and Codable" class="md-nav__link">
-    Async and Codable
+  <a href="#apt-repo" title="APT Repo" class="md-nav__link">
+    APT Repo
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-script" title="Quick Script" class="md-nav__link">
+    Quick Script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile" title="Dockerfile" class="md-nav__link">
+    Dockerfile
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual" title="Manual" class="md-nav__link">
+    Manual
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-vapor" title="Install Vapor" class="md-nav__link">
+    Install Vapor
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-installation" title="Verify Installation" class="md-nav__link">
+    Verify Installation
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swift" title="Swift" class="md-nav__link">
+    Swift
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vapor-toolbox" title="Vapor Toolbox" class="md-nav__link">
+    Vapor Toolbox
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#done" title="Done" class="md-nav__link">
+    Done
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#databases" title="Databases" class="md-nav__link">
-    Databases
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#front-end" title="Front-end" class="md-nav__link">
-    Front-end
+  <a href="#swiftorg" title="Swift.org" class="md-nav__link">
+    Swift.org
   </a>
   
 </li>
@@ -1821,24 +2027,91 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/vapor/documentation/edit/beta/3.0/docs/concepts/overview.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/vapor/documentation/edit/beta/3.0/docs/install/ubuntu.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
-<p>Vapor is a web framework and ecosystem for developing backends. To get started, this section will cover all concepts surrounding the ecosystem. It is optional, and can be skipped by those who already have experience in web/backend development.</p>
-<h2 id="http">HTTP<a class="headerlink" href="#http" title="Permanent link">&para;</a></h2>
-<p>At the heart of the web lies HTTP. HTTP (or HyperText Transfer Protocol) is used for communicating multiple types of media between a client and a server.</p>
-<p><a href="../http/">This page</a> will cover most of HTTP in depth.</p>
-<h2 id="async-and-codable">Async and Codable<a class="headerlink" href="#async-and-codable" title="Permanent link">&para;</a></h2>
-<p>If you're coming from another language, chances are you've never heard of Swift's Codable protocol. If you don't know what protocols are we can highly recommend reading up on <a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html">the swift language guide</a>. This is a thorough and easy to understand guide through the Swift language. It is not required to read the entire guide before starting, although most concepts mentioned throughout the Vapor documentation will be explained in the guide.</p>
-<p>Asynchronous programming specifically is an essential part of the Vapor ecosystem that we recommend people <a href="../async-and-codable/">that is described here</a>.</p>
-<p><a href="../async-and-codable/">The same article</a> will dive into Codable, a very simple but important protocol in Vapor 3.</p>
-<h2 id="databases">Databases<a class="headerlink" href="#databases" title="Permanent link">&para;</a></h2>
-<p>Last, but not least, most applications will need a database for managing information such as user accounts, articles and other types of data.</p>
-<p>Choosing a database can be a complex task for beginners and reading into your database of choice before starting can save a lot of frustration. We aim to simplify this stage <a href="../databases/">in this article.</a></p>
-<h2 id="front-end">Front-end<a class="headerlink" href="#front-end" title="Permanent link">&para;</a></h2>
-<p>Depending on your application you may need one or more clients to interact with your website. Frontends are very broad. Websites are a frontend that can be designed in various ways. Applications such as iOS and android apps are also considered frontends.</p>
-<p>To assist designing your application you can <a href="application-desing.md">read this article.</a></p>
+                <h1 id="install-on-ubuntu">Install on Ubuntu<a class="headerlink" href="#install-on-ubuntu" title="Permanent link">&para;</a></h1>
+<p>Installing Vapor on Ubuntu only takes a couple of minutes.</p>
+<h2 id="supported">Supported<a class="headerlink" href="#supported" title="Permanent link">&para;</a></h2>
+<p>Vapor supports the same versions of Ubuntu that Swift supports.</p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Codename</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16.10</td>
+<td>Yakkety Yak</td>
+</tr>
+<tr>
+<td>16.04</td>
+<td>Xenial Xerus</td>
+</tr>
+<tr>
+<td>14.04</td>
+<td>Trusty Tahr</td>
+</tr>
+</tbody>
+</table>
+<h2 id="apt-repo">APT Repo<a class="headerlink" href="#apt-repo" title="Permanent link">&para;</a></h2>
+<p>Add Vapor's APT repo to get access to all of Vapor's Ubuntu packages.</p>
+<h3 id="quick-script">Quick Script<a class="headerlink" href="#quick-script" title="Permanent link">&para;</a></h3>
+<p>Easily add Vapor's APT repo with this handy script.</p>
+<div class="codehilite"><pre><span></span><span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(</span>curl -sL https://apt.vapor.sh<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This command requires <code>curl</code> which can be installed using <code>sudo apt-get install curl</code></p>
+</div>
+<h3 id="dockerfile">Dockerfile<a class="headerlink" href="#dockerfile" title="Permanent link">&para;</a></h3>
+<p>When configuring Ubuntu from a Dockerfile, adding the APT repo can be done via this command:</p>
+<div class="codehilite"><pre><span></span>RUN /bin/bash -c <span class="s2">&quot;</span><span class="k">$(</span>wget -qO- https://apt.vapor.sh<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+
+
+<h3 id="manual">Manual<a class="headerlink" href="#manual" title="Permanent link">&para;</a></h3>
+<p>Or add the repo manually.</p>
+<div class="codehilite"><pre><span></span>wget -q https://repo.vapor.codes/apt/keyring.gpg -O- <span class="p">|</span> sudo apt-key add -
+<span class="nb">echo</span> <span class="s2">&quot;deb https://repo.vapor.codes/apt </span><span class="k">$(</span>lsb_release -sc<span class="k">)</span><span class="s2"> main&quot;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/vapor.list
+sudo apt-get update
+</pre></div>
+
+
+<h2 id="install-vapor">Install Vapor<a class="headerlink" href="#install-vapor" title="Permanent link">&para;</a></h2>
+<p>Now that you have added Vapor's APT repo, you can install the required dependencies.</p>
+<div class="codehilite"><pre><span></span>sudo apt-get install swift vapor
+</pre></div>
+
+
+<h3 id="verify-installation">Verify Installation<a class="headerlink" href="#verify-installation" title="Permanent link">&para;</a></h3>
+<p>Double check everything worked with the following commands.</p>
+<h4 id="swift">Swift<a class="headerlink" href="#swift" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span>swift --version
+</pre></div>
+
+
+<p>You should see output similar to:</p>
+<div class="codehilite"><pre><span></span>Apple Swift version <span class="m">4</span>.0.2 <span class="o">(</span>swiftlang-900.0.69.2 clang-900.0.38<span class="o">)</span>
+Target: x86_64-apple-macosx10.9
+</pre></div>
+
+
+<p>Vapor requires Swift 4.</p>
+<h4 id="vapor-toolbox">Vapor Toolbox<a class="headerlink" href="#vapor-toolbox" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span>vapor --help
+</pre></div>
+
+
+<p>You should see a long list of available commands.</p>
+<h2 id="done">Done<a class="headerlink" href="#done" title="Permanent link">&para;</a></h2>
+<p>Now that you have installed Vapor, create your first app in <a href="../../getting-started/hello-world/">Getting Started &rarr; Hello, world</a>.</p>
+<h2 id="swiftorg">Swift.org<a class="headerlink" href="#swiftorg" title="Permanent link">&para;</a></h2>
+<p>Check out <a href="https://swift.org">Swift.org</a>'s guide to <a href="https://swift.org/download/#using-downloads">using downloads</a> if you need more detailed instructions for installing Swift 4.</p>
                 
                   
                 
@@ -1857,7 +2130,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../vapor/" title="What is Vapor?" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../macos/" title="macOS" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1866,19 +2139,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                What is Vapor?
+                macOS
               </span>
             </div>
           </a>
         
         
-          <a href="../http/" title="HTTP" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../getting-started/hello-world/" title="Hello, world" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                HTTP
+                Hello, world
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
