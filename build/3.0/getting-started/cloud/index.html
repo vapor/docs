@@ -412,10 +412,46 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
     
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Deployment
+      </label>
     
     <a href="./" title="Deployment" class="md-nav__link md-nav__link--active">
       Deployment
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vapor-cloud" title="Vapor Cloud" class="md-nav__link">
+    Vapor Cloud
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-options" title="Other Options" class="md-nav__link">
+    Other Options
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -476,6 +512,18 @@
   <li class="md-nav__item">
     <a href="../../concepts/codable/" title="Codable" class="md-nav__link">
       Codable
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../concepts/services/" title="Services" class="md-nav__link">
+      Services
     </a>
   </li>
 
@@ -1788,6 +1836,42 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vapor-cloud" title="Vapor Cloud" class="md-nav__link">
+    Vapor Cloud
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-options" title="Other Options" class="md-nav__link">
+    Other Options
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
@@ -1796,9 +1880,24 @@
                   <a href="https://github.com/vapor/documentation/edit/beta/3.0/docs/getting-started/cloud.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Deployment</h1>
-                
-                <p>TODO</p>
+                <h1 id="deployment">Deployment<a class="headerlink" href="#deployment" title="Permanent link">&para;</a></h1>
+<p>Deploying code is the process of making your Vapor project publically available. 
+It can be one of the most difficult aspects of web development. Fortunately, there
+are services to help.</p>
+<h2 id="vapor-cloud">Vapor Cloud<a class="headerlink" href="#vapor-cloud" title="Permanent link">&para;</a></h2>
+<p>The best way to deploy your application is through Vapor Cloud. It's a cloud platform built
+specifically for the Vapor web framework. This means it's incredibly easy to deploy your
+project quickly and be confident that it will be fast and stable.</p>
+<p>Deploying your project to Vapor Cloud is simple, it's built right into the <a href="../toolbox/">Vapor Toolbox</a>.
+Just run this command from within the root directory of your project.</p>
+<div class="codehilite"><pre><span></span>vapor cloud deploy
+</pre></div>
+
+
+<p>For a detailed guide, visit <a href="https://docs.vapor.cloud/quick-start/">Vapor Cloud &rarr; Quick Start</a>.</p>
+<h2 id="other-options">Other Options<a class="headerlink" href="#other-options" title="Permanent link">&para;</a></h2>
+<p>Vapor can be deployed anywhere that supports Ubuntu (basically everywhere). To learn more about
+deploying your code, checkout <a href="../deploy/getting-started.md">Deploy &rarr; Getting Started</a></p>
                 
                   
                 

@@ -398,22 +398,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creating-a-router" title="Creating a router" class="md-nav__link">
-    Creating a router
+  <a href="#routes" title="Routes" class="md-nav__link">
+    Routes
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#registering-routes" title="Registering routes" class="md-nav__link">
-    Registering routes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#registering-with-parameters" title="Registering with parameters" class="md-nav__link">
-    Registering with parameters
+  <a href="#parameters" title="Parameters" class="md-nav__link">
+    Parameters
   </a>
   
 </li>
@@ -519,6 +512,18 @@
   <li class="md-nav__item">
     <a href="../../concepts/codable/" title="Codable" class="md-nav__link">
       Codable
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../concepts/services/" title="Services" class="md-nav__link">
+      Services
     </a>
   </li>
 
@@ -1845,22 +1850,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creating-a-router" title="Creating a router" class="md-nav__link">
-    Creating a router
+  <a href="#routes" title="Routes" class="md-nav__link">
+    Routes
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#registering-routes" title="Registering routes" class="md-nav__link">
-    Registering routes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#registering-with-parameters" title="Registering with parameters" class="md-nav__link">
-    Registering with parameters
+  <a href="#parameters" title="Parameters" class="md-nav__link">
+    Parameters
   </a>
   
 </li>
@@ -1883,28 +1881,55 @@
                 
                 
                 <h1 id="routing">Routing<a class="headerlink" href="#routing" title="Permanent link">&para;</a></h1>
-<p>In Vapor, routing is usually done using the <code>.get</code>, <code>.put</code>, <code>.post</code>, <code>.patch</code> and <code>.delete</code> shorthands. You can provide <a href="../../routing/parameters/">custom (flexible) parameters</a> or normal literal string path components to express the path.</p>
-<h2 id="creating-a-router">Creating a router<a class="headerlink" href="#creating-a-router" title="Permanent link">&para;</a></h2>
-<p>To register routes, first, you need to get a router object.</p>
-<p>To access some routing functions you may need to <code>import Routing</code>.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">router</span> <span class="p">=</span> <span class="k">try</span> <span class="n">app</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">Router</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
-</pre></div>
-
-
-<p>This router can then be used to register routes. However, you should only register routes during the setup phase of your application. Registering routes during the execution of Vapor <em>could</em> cause a crash.</p>
-<h2 id="registering-routes">Registering routes<a class="headerlink" href="#registering-routes" title="Permanent link">&para;</a></h2>
-<p>Registering routes using the shorthands requires a <code>Router</code>. To work with <a href="../../http/request/"><code>Request</code></a> and <a href="../../http/response/"><code>Response</code></a> objects you should <code>import HTTP</code>.</p>
-<div class="codehilite"><pre><span></span><span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;users&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">request</span> <span class="k">in</span>
-    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">status</span><span class="p">:</span> <span class="p">.</span><span class="n">ok</span><span class="p">)</span>
+<p>Routing is the process of finding the appropriate response to an incoming request.
+For example, imagine you want to return a list of users when someone visits <code>GET /users</code>. 
+That would look something like this.</p>
+<div class="codehilite"><pre><span></span><span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;users&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="c1">// fetch the users</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<p>We created a <code>GET</code> route to <code>/users/</code>. The <a href="../../http/request/">request</a> that is accepted in the trailing closure can be used to access all request metadata.</p>
-<p>The <a href="../../http/response/"><code>Response</code></a> returned will then be sent to the client.</p>
-<p>The returned response in this closure <strong>must</strong> be either a <code>Response</code> or a <a href="../async/promise-future-introduction.md"><code>Future</code></a> containing any <a href="../http/repsonse.md#responserepresentable"><code>ResponseRepresentable</code></a>.</p>
-<h2 id="registering-with-parameters">Registering with parameters<a class="headerlink" href="#registering-with-parameters" title="Permanent link">&para;</a></h2>
-<p>TODO</p>
+<p>In Vapor, routing is usually done using the <code>.get</code>, <code>.put</code>, <code>.post</code>, <code>.patch</code> and <code>.delete</code> shorthands. 
+You can supply the path as <code>/</code> or comma-separated strings. We recommend comma separated, as it's more readable.</p>
+<div class="codehilite"><pre><span></span><span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;path&quot;</span><span class="p">,</span> <span class="s">&quot;to&quot;</span><span class="p">,</span> <span class="s">&quot;something&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</pre></div>
+
+
+<h2 id="routes">Routes<a class="headerlink" href="#routes" title="Permanent link">&para;</a></h2>
+<p>The best place to add routes is in the <a href="../structure/#routesswift"><code>routes.swift</code></a> file.
+You will find a router there that is ready to use.</p>
+<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Vapor</span>
+
+<span class="kr">final</span> <span class="kd">class</span> <span class="nc">Routes</span><span class="p">:</span> <span class="n">RouteCollection</span> <span class="p">{</span>
+    <span class="p">...</span>
+
+    <span class="kd">func</span> <span class="nf">boot</span><span class="p">(</span><span class="n">router</span><span class="p">:</span> <span class="n">Router</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
+            <span class="k">return</span> <span class="s">&quot;Hello, world!&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>You can return anything that conforms to <a href="../content/"><code>Content</code></a> in a route closure. This includes <a href="../futures/">futures</a> 
+whose expectation is Content as well.</p>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
+<p>Sometimes you may want one of the components of your route path to be dynamic. This is often used when
+you want to get an item with a supplied identifier, i.e., <code>GET /users/:id</code></p>
+<div class="codehilite"><pre><span></span><span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;users&quot;</span><span class="p">,</span> <span class="nb">Int</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
+    <span class="kd">let</span> <span class="nv">id</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">parameters</span><span class="p">.</span><span class="n">next</span><span class="p">(</span><span class="nb">Int</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+    <span class="k">return</span> <span class="c1">// fetch the user with id</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Instead of passing a string, pass the <em>type</em> of parameter you expect. In this case, our <code>User</code> has an <code>Int</code> ID.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can define your own <a href="../../routing/parameters/">custom parameter types</a> as well.</p>
+</div>
                 
                   
                 

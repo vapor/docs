@@ -463,9 +463,97 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Async
+      </label>
+    
     <a href="./" title="Async" class="md-nav__link md-nav__link--active">
       Async
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#differences" title="Differences" class="md-nav__link">
+    Differences
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concurrency" title="Concurrency" class="md-nav__link">
+    Concurrency
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sync-blocking" title="Sync (Blocking)" class="md-nav__link">
+    Sync (Blocking)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-non-blocking" title="Async (Non-blocking)" class="md-nav__link">
+    Async (Non-blocking)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced" title="Advanced" class="md-nav__link">
+    Advanced
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#threads" title="Threads" class="md-nav__link">
+    Threads
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-reactor" title="Multi-Reactor" class="md-nav__link">
+    Multi-Reactor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coroutines" title="Coroutines" class="md-nav__link">
+    Coroutines
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -478,6 +566,18 @@
   <li class="md-nav__item">
     <a href="../codable/" title="Codable" class="md-nav__link">
       Codable
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../services/" title="Services" class="md-nav__link">
+      Services
     </a>
   </li>
 
@@ -1800,6 +1900,81 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#differences" title="Differences" class="md-nav__link">
+    Differences
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concurrency" title="Concurrency" class="md-nav__link">
+    Concurrency
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sync-blocking" title="Sync (Blocking)" class="md-nav__link">
+    Sync (Blocking)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-non-blocking" title="Async (Non-blocking)" class="md-nav__link">
+    Async (Non-blocking)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced" title="Advanced" class="md-nav__link">
+    Advanced
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#threads" title="Threads" class="md-nav__link">
+    Threads
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-reactor" title="Multi-Reactor" class="md-nav__link">
+    Multi-Reactor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coroutines" title="Coroutines" class="md-nav__link">
+    Coroutines
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1813,26 +1988,89 @@
                   <a href="https://github.com/vapor/documentation/edit/beta/3.0/docs/concepts/async.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h3 id="this-document">This document<a class="headerlink" href="#this-document" title="Permanent link">&para;</a></h3>
-<p>This document covers both <code>Codable</code> and <code>Async</code>, the two primary concepts in Vapor 3. Understanding these 2 concepts is essential, even for existing Vapor 1 and 2 users.</p>
-<h1 id="codable">Codable<a class="headerlink" href="#codable" title="Permanent link">&para;</a></h1>
-<p>Codable is any type that's both <code>Encodable</code> and <code>Decodable</code>. Encodable types can be serialized to a format, and Decodable types can be deserialized from a format.</p>
-<p>If you only want your type to be serializable to another type, then you conform to <code>Encodable</code>. This will allow serializing this type to other formats such as JSON, XML, MySQL rows, MongoDB/BSON and more. But not backwards.</p>
-<p>If you want to be able to construct your type from the raw data, you can conform your type to <code>Decodable</code>. This will allow converting serialized data to your model (the reverse of <code>Encodable</code>), allowing JSON, XML, MySQL and MongoDB data to construct your model. This will not allow serialization.</p>
-<p>If you want both serialization and deserialization, you can conform to <code>Codable</code>.</p>
-<p>For the best experience you should conform one of the above protocols in the <em>definition</em> of your <code>struct</code> or <code>class</code>. This way the compiler can infer the protocol requirements automatically. Conforming to these protocols in an extension will require you to manually implement the protocol requirements.</p>
-<div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">User</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nv">username</span><span class="p">:</span> <span class="nb">String</span>
-  <span class="kd">var</span> <span class="nv">age</span><span class="p">:</span> <span class="nb">Int</span>
+                <h1 id="async">Async<a class="headerlink" href="#async" title="Permanent link">&para;</a></h1>
+<p>Async APIs are one of the most important aspects of Vapor 3. You have likely noticed that they are
+the biggest change to the API from previous versions. To learn more about how to use the new async
+APIs check out the <a href="../async/getting-started.md">Async &rarr; Getting Started</a> section. This document
+aims to explain <em>why</em> Vapor 3 moved to async APIs and <em>how</em> it has led to huge performance gains.</p>
+<h2 id="differences">Differences<a class="headerlink" href="#differences" title="Permanent link">&para;</a></h2>
+<p>Let's first make sure we understand the different between a "sync" and "async" API. </p>
+<div class="codehilite"><pre><span></span><span class="c1">// sync</span>
+<span class="kd">let</span> <span class="nv">users</span> <span class="p">=</span> <span class="k">try</span> <span class="n">api</span><span class="p">.</span><span class="n">getUsers</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Sync APIs return values immediately. </p>
+<div class="codehilite"><pre><span></span><span class="c1">// async</span>
+<span class="k">try</span> <span class="n">api</span><span class="p">.</span><span class="n">getUsers</span><span class="p">(</span><span class="n">onCompletion</span><span class="p">:</span> <span class="p">{</span> <span class="n">users</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+
+<span class="p">})</span>
+</pre></div>
+
+
+<p>Async APIs return their value at some point in the future. There are many different ways to implement
+async APIs (such as <a href="../../getting-started/futures/">futures</a>), but we will use callbacks here to make it obvious.</p>
+<h2 id="concurrency">Concurrency<a class="headerlink" href="#concurrency" title="Permanent link">&para;</a></h2>
+<p>It's fairly obvious from the above snippet that sync APIs are more concise. So why would anyone use an async API?
+To understand why, you must first understand how concurrency works with these two API types. </p>
+<h3 id="sync-blocking">Sync (Blocking)<a class="headerlink" href="#sync-blocking" title="Permanent link">&para;</a></h3>
+<p>In Swift, most APIs are synchronous. For example, when you convert a string to uppercase.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">hello</span> <span class="p">=</span> <span class="s">&quot;Hello&quot;</span><span class="p">.</span><span class="n">uppercased</span><span class="p">()</span>
+</pre></div>
+
+
+<p>There is no problem with this API being synchronous because at no point in converting "Hello" to uppercase is
+the computer ever <em>waiting</em>. Waiting, also called "blocking", is an important concept. Most simple functions, 
+like <code>.uppercased()</code> never wait&mdash;they are busy doing the requested work (i.e., capitalizing letters) the entire time.
+However, some functions do wait. The classic example of this is a function that makes a network request.</p>
+<div class="codehilite"><pre><span></span><span class="c1">/// sync + blocking</span>
+<span class="kd">let</span> <span class="nv">res</span> <span class="p">=</span> <span class="k">try</span> <span class="n">HTTPClient</span><span class="p">.</span><span class="n">getSync</span><span class="p">(</span><span class="s">&quot;http://google.com&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>In the above example, the <code>.getSync</code> function must block. After it sends the request to <code>google.com</code>, it must wait for
+their server to generate a response. While this function is waiting, it can't do anything. In other words, the CPU 
+is idle. If you're trying to optimize your application, you'd quickly notice that letting your (expensive) CPU sit 
+idle is not a great idea.</p>
+<h3 id="async-non-blocking">Async (Non-blocking)<a class="headerlink" href="#async-non-blocking" title="Permanent link">&para;</a></h3>
+<p>To solve this problem, instead of expecting the <code>.getSync</code> function to immediately return a response, you give it a callback.</p>
+<div class="codehilite"><pre><span></span><span class="c1">/// async + non-blocking</span>
+<span class="n">HTTPClient</span><span class="p">.</span><span class="n">getAsync</span><span class="p">(</span><span class="s">&quot;http://google.com&quot;</span><span class="p">,</span> <span class="n">onCompletion</span><span class="p">:</span> <span class="p">{</span> <span class="n">res</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+
+<span class="p">})</span>
+</pre></div>
+
+
+<p>Now, after the <code>.getAsync</code> function is done sending the request to <code>google.com</code>, it can simply continue executing your 
+program. When Google's servers return a response, the CPU will be notified, and it will give the response to your callback.</p>
+<h2 id="advanced">Advanced<a class="headerlink" href="#advanced" title="Permanent link">&para;</a></h2>
+<p>Let's now take a deeper look at why Vapor prefers async (non-blocking) APIs over sync (blocking) ones.</p>
+<h3 id="threads">Threads<a class="headerlink" href="#threads" title="Permanent link">&para;</a></h3>
+<p>You may be thinking, what's the problem with <code>.getSync</code>? Why not just call that function on a background thread.
+That is indeed a valid solution, and it would work. This style of threading is widely used and taught. However, the problem is
+that threads are not "free" to create. When you're programming for iOS, this doesn't (usually) matter. You can
+often spin up as many threads as you like. You have a whole CPU to yourself! Things are different on the server though. 
+Web applications must respond to thousands (even millions) of requests <em>at the same time</em>. Imagine running a million instances
+of your iOS app on one device. Even relatively small costs, like creating a thread, become extremely important as a web server.</p>
+<h3 id="multi-reactor">Multi-Reactor<a class="headerlink" href="#multi-reactor" title="Permanent link">&para;</a></h3>
+<p>To achieve optimal performance, Vapor only creates one thread per CPU core on your machine. This means there will be no
+wasted time allocating new threads and very little wasted time switching between them. </p>
+<p>Each one of these threads is called an event loop, similar to Node.js. The difference is that Vapor has multiple event loops
+(one for each core) where as Node.js just has one. This means you don't need to spin up multiple instances of your app
+per computer for it to run optimally.</p>
+<div class="codehilite"><pre><span></span><span class="c1">/// every incoming request has a reference</span>
+<span class="c1">/// to its assigned event loop</span>
+<span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(...)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
+    <span class="bp">print</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">eventLoop</span><span class="p">)</span> <span class="c1">// EventLoop?</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<p>With this addition, the above struct can now be (de-)serialized between JSON, XML, MongoDB BSON, MySQL and more!</p>
-<h1 id="async">Async<a class="headerlink" href="#async" title="Permanent link">&para;</a></h1>
-<p>To understand asynchronous code you must first understand what synchronous code does.</p>
-<p>Synchronous code is code that writes top to bottom and executes exactly in that order independent of your use case. It does not use callbacks, it does not use futures and it does not use streams. Many information is not immediately available. The internet has a delay between any communication traffic. Querying a database requires sending the query to the database, waiting for the database to process and execute the request, and then receiving the requested information. To keep code synchronous you need to "block" the thread. This results in rendering the thread unusable until the response has been received. This is, naturally, inefficient. You're wasting a thread and much performance.</p>
-<p>The only clean solution here is to do nonblocking operations. This means that once you send the query, you continue to the next line of code immediately without waiting/blocking. The problem that arises is that the next lines of code are dependent on the result of the previous query's results. For this reason, Vapor 3 introduces <a href="../async/promise-future-introduction.md">Futures</a>. Futures are very common in many (high performance) ecosystems.</p>
+<p>It's important that you don't make blocking calls on an event loop. If you do, all other requests running on that event loop will
+be blocked. For example, if your computer has 2 cores, and you call <code>sleep(10)</code> on one of the event loops, your application will
+stop responding to half of the incoming requests for 10 seconds.</p>
+<h3 id="coroutines">Coroutines<a class="headerlink" href="#coroutines" title="Permanent link">&para;</a></h3>
+<p>Coming soon.</p>
                 
                   
                 

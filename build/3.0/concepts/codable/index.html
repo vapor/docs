@@ -488,6 +488,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../services/" title="Services" class="md-nav__link">
+      Services
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../http/" title="HTTP" class="md-nav__link">
       HTTP
     </a>
@@ -1813,9 +1825,7 @@
                   <a href="https://github.com/vapor/documentation/edit/beta/3.0/docs/concepts/codable.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h3 id="this-document">This document<a class="headerlink" href="#this-document" title="Permanent link">&para;</a></h3>
-<p>This document covers both <code>Codable</code> and <code>Async</code>, the two primary concepts in Vapor 3. Understanding these 2 concepts is essential, even for existing Vapor 1 and 2 users.</p>
-<h1 id="codable">Codable<a class="headerlink" href="#codable" title="Permanent link">&para;</a></h1>
+                <h1 id="codable">Codable<a class="headerlink" href="#codable" title="Permanent link">&para;</a></h1>
 <p>Codable is any type that's both <code>Encodable</code> and <code>Decodable</code>. Encodable types can be serialized to a format, and Decodable types can be deserialized from a format.</p>
 <p>If you only want your type to be serializable to another type, then you conform to <code>Encodable</code>. This will allow serializing this type to other formats such as JSON, XML, MySQL rows, MongoDB/BSON and more. But not backwards.</p>
 <p>If you want to be able to construct your type from the raw data, you can conform your type to <code>Decodable</code>. This will allow converting serialized data to your model (the reverse of <code>Encodable</code>), allowing JSON, XML, MySQL and MongoDB data to construct your model. This will not allow serialization.</p>
@@ -1829,10 +1839,6 @@
 
 
 <p>With this addition, the above struct can now be (de-)serialized between JSON, XML, MongoDB BSON, MySQL and more!</p>
-<h1 id="async">Async<a class="headerlink" href="#async" title="Permanent link">&para;</a></h1>
-<p>To understand asynchronous code you must first understand what synchronous code does.</p>
-<p>Synchronous code is code that writes top to bottom and executes exactly in that order independent of your use case. It does not use callbacks, it does not use futures and it does not use streams. Many information is not immediately available. The internet has a delay between any communication traffic. Querying a database requires sending the query to the database, waiting for the database to process and execute the request, and then receiving the requested information. To keep code synchronous you need to "block" the thread. This results in rendering the thread unusable until the response has been received. This is, naturally, inefficient. You're wasting a thread and much performance.</p>
-<p>The only clean solution here is to do nonblocking operations. This means that once you send the query, you continue to the next line of code immediately without waiting/blocking. The problem that arises is that the next lines of code are dependent on the result of the previous query's results. For this reason, Vapor 3 introduces <a href="../async/promise-future-introduction.md">Futures</a>. Futures are very common in many (high performance) ecosystems.</p>
                 
                   
                 
@@ -1866,13 +1872,13 @@
           </a>
         
         
-          <a href="../http/" title="HTTP" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../services/" title="Services" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                HTTP
+                Services
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
