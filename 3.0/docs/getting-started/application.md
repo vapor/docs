@@ -1,6 +1,6 @@
 # Application
 
-Every Vapor project has an `Application`. You use the the application to create any services
+Every Vapor project has an `Application`. You use the application to create any services
 you might need while developing. 
 
 The best place to access the application is in your project's [`boot.swift`](structure.md#bootswift) file.
