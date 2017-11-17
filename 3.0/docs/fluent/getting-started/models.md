@@ -31,7 +31,7 @@ Now that we have our `User` class, let's conform it to `Model`.
 
 
 ```swift
-import Fluent
+import FluentMySQL
 
 extension User: Model {
 
@@ -51,7 +51,6 @@ on using this model with. This allows Fluent to enable database-specific feature
 use this model.
 
 ```swift
-import Fluent
 import FluentMySQL
 
 extension User: Model {
@@ -69,7 +68,7 @@ has an ID property of type `UUID` named `id`.
 
 
 ```swift
-import Fluent
+import FluentMySQL
 import Foundation
 
 extension User: Model {
@@ -97,7 +96,7 @@ In order to prevent duplicate (and error-prone) strings throughout your code, Fl
 a `KeyFieldMap`. This maps your model's properties to their respective database fields.
 
 ```swift
-import Fluent
+import FluentMySQL
 
 extension User: Model {
     ...
@@ -129,7 +128,6 @@ We now have a fully-conformed Fluent model!
 
 
 ```swift
-import Fluent
 import FluentMySQL
 import Foundation
 

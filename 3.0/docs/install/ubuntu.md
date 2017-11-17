@@ -14,7 +14,7 @@ Vapor supports the same versions of Ubuntu that Swift supports.
 
 ## APT Repo
 
-Add Vapor's APT repo to get access to all of Vapor's system packages.
+Add Vapor's APT repo to get access to all of Vapor's Ubuntu packages.
 
 ### Quick Script
 
@@ -24,13 +24,13 @@ Easily add Vapor's APT repo with this handy script.
 eval "$(curl -sL https://apt.vapor.sh)"
 ```
 
-!!! note
+!!! tip
 	This command requires `curl` which can be installed using `sudo apt-get install curl`
 
 ### Dockerfile
 When configuring Ubuntu from a Dockerfile, adding the APT repo can be done via this command:
 ```sh
-	RUN /bin/bash -c "$(wget -qO- https://apt.vapor.sh)"
+RUN /bin/bash -c "$(wget -qO- https://apt.vapor.sh)"
 ```
 
 ### Manual
@@ -51,17 +51,36 @@ Now that you have added Vapor's APT repo, you can install the required dependenc
 sudo apt-get install swift vapor
 ```
 
-## Verify Installation
+### Verify Installation
 
-Double check the installation was successful by running:
+Double check everything worked with the following commands.
+
+#### Swift
 
 ```sh
-eval "$(curl -sL check.vapor.sh)"
+swift --version
 ```
 
-## Next
+You should see output similar to:
 
-Learn more about the Vapor toolbox CLI in the [Toolbox section](toolbox.md) of the Getting Started section.
+```sh
+Apple Swift version 4.0.2 (swiftlang-900.0.69.2 clang-900.0.38)
+Target: x86_64-apple-macosx10.9
+```
+
+Vapor requires Swift 4.
+
+#### Vapor Toolbox
+
+```sh
+vapor --help
+```
+
+You should see a long list of available commands.
+
+## Done
+
+Now that you have installed Vapor, create your first app in [Getting Started &rarr; Hello, world](../getting-started/hello-world.md).
 
 ## Swift.org
 
