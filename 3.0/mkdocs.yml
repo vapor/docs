@@ -22,6 +22,7 @@ pages:
     - 'What is Vapor?': 'concepts/vapor.md'
     - 'Async': 'concepts/async.md'
     - 'Codable': 'concepts/codable.md'
+    - 'Services': 'concepts/services.md'
     - 'HTTP': 'concepts/http.md'
 - 'Async':
     - 'Package': 'async/package.md'
