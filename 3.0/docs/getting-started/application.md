@@ -1,41 +1,55 @@
 # Application
 
-Every application in Vapor starts as an `Application`. Application is a open class, meaning it _can_ be subclassed to add extra properties, but that's usually not necessary.
+Every Vapor project has an `Application`. You use the the application to create any services
+you might need while developing. 
 
-Application has a [`Config`](../service/config.md) and [`Services`](../service/services.md).
-
-Application may behave differently depending on it's [`Environment`](../service/environment.md).
-
-## Creating a basic application
-
-If not overridden, `Application` comes with it's own set of default services. This makes setting up an empty (basic) application extremely simple.
+The best place to access the application is in your project's [`boot.swift`](structure.md#bootswift) file.
 
 ```swift
 import Vapor
 
-let application = Application()
-
-// Set up your routes etc..
-
-try application.run()
+public func boot(_ app: Application) throws {
+    // your code here
+}
 ```
 
-You can override the default config, environment and services like so:
+You can also access the application from your [`routes.swift`](structure.md#routesswift) file. It's stored
+as a property there.
 
 ```swift
-let config: Config = ...
-let environment = Environment.production
-var services = Services.default()
+import Vapor
 
-// configure services, otherwise there's no Server and Router
+final class Routes: RouteCollection {
+    let app: Application
+
+    ...
+}
 ```
 
-## Application routing services
+Unlike some other web frameworks, Vapor doesn't support statically accessing the application.
+If you need to access it from another class or struct, you should pass through a method or initializer.
 
-In order to add routes to an `Application` you need to get a router first.
+!!! info
+    Avoiding static access to variables helps make Vapor performant by preventing
+    the need for thread-safe locks or semaphores.
+
+
+## Services
+
+The application's main function is to make services. For example, you might need a `BCryptHasher` to hash
+some passwords before storing them in a database. You can use the application to create one.
 
 ```swift
-let router = try app.make(Router.self)
+import BCrypt
+
+let bcryptHasher = try app.make(BCryptHasher.self)
 ```
 
-From here you can start writing [your application's routes](routing.md).
+Or you might use the application to create an HTTP client.
+
+```swift
+let client = try app.make(Client.self)
+let res = client.get("http://vapor.codes")
+```
+
+Learn more about services in [Services &rarr; Getting Started](../services/getting-started.md).

@@ -11,19 +11,18 @@ pages:
     - 'Toolbox': 'getting-started/toolbox.md'
     - 'SPM': 'getting-started/spm.md'
     - 'Xcode': 'getting-started/xcode.md'
-    - 'Structure': 'getting-started/structure.md'
+    - 'Folder Structure': 'getting-started/structure.md'
     - 'Application': 'getting-started/application.md'
-    - 'Futures': 'getting-started/futures.md'
+    - 'Controllers': 'getting-started/controllers.md'
     - 'Routing': 'getting-started/routing.md'
     - 'Content': 'getting-started/content.md'
+    - 'Futures': 'getting-started/futures.md'
     - 'Deployment': 'getting-started/cloud.md'
 - 'Concepts':
     - 'What is Vapor?': 'concepts/vapor.md'
-    - 'Overview': 'concepts/overview.md'
+    - 'Async': 'concepts/async.md'
+    - 'Codable': 'concepts/codable.md'
     - 'HTTP': 'concepts/http.md'
-    - 'Async and Codable': 'concepts/async-and-codable.md'
-    - 'Controllers': 'concepts/controllers.md'
-    - 'Databases': 'concepts/databases.md'
 - 'Async':
     - 'Package': 'async/package.md'
     - 'Future Basics': 'async/futures-basics.md'
@@ -81,6 +80,13 @@ pages:
     - 'Client': 'websocket/client.md'
     - 'Server': 'websocket/server.md'
     - 'Server Upgrades': 'websocket/upgrade.md'
+- 'Routing':
+    - 'Basics': 'routing/basics.md'
+    - 'Parameters': 'routing/parameters.md'
+    - 'Route': 'routing/route.md'
+    - 'Router': 'routing/router.md'
+- 'Services':
+    - 'Getting Started': 'services/getting-started.md'
 - 'JWT':
     - 'Signed Tokens': 'jwt/jws.md'
 - 'Crypto':
@@ -90,14 +96,11 @@ pages:
     - 'Message authentication': 'crypto/mac.md'
     - 'Password hashing': 'crypto/passwords.md'
     - 'Random': 'crypto/random.md'
-- 'Routing':
-    - 'Basics': 'routing/basics.md'
-    - 'Parameters': 'routing/parameters.md'
-    - 'Route': 'routing/route.md'
-    - 'Router': 'routing/router.md'
 - 'Sockets':
     - 'Index': 'sockets/index.md'
     - 'TCP Client': 'sockets/tcp-client.md'
+- 'Testing':
+    - 'Getting Started': 'testing/getting-started.md'
 - 'Security':
     - 'Index': 'security/index.md'
     - 'Denial of Service': 'security/dos.md'
