@@ -28,7 +28,7 @@ The following code creates a new connectionpool to `localhost` and the default M
 
 The database is the database that is selected and authenticated to. Any future queries will be sent to this database.
 
-The `worker` is defined in [the async documentation](../async/worker.md).
+The `worker` is defined in [the async documentation](../../async/worker.md).
 
 ```swift
 let connectionPool = ConnectionPool(hostname: "localhost", user: "root", password: nil, database: "test-db", worker: worker)

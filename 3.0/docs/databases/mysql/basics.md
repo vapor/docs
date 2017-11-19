@@ -29,7 +29,7 @@ struct User {
 
 ### Streams
 
-Streams, [as described on this page](../async/streams-introduction.md), are a source of information that calls a single reader's callback. Streams are best used in larger datasets to prevent the query from consuming a large amount of memory. The downside of a stream is that you cannot return all results in a single future. You'll need to stream the results to the other endpoint, too. For HTTP [this is described here.](../http/streaming-response.md)
+Streams, [as described on this page](../../async/streams.md), are a source of information that calls a single reader's callback. Streams are best used in larger datasets to prevent the query from consuming a large amount of memory. The downside of a stream is that you cannot return all results in a single future. You'll need to stream the results to the other endpoint, too. For HTTP [this is described here.](../../http/body-stream.md)
 
 Querying a database for a stream of results is achieved through the `stream` function and requires specifying the `Decodable` type that the results need to be deserialized into.
 
@@ -42,7 +42,7 @@ This stream will return all results in the ModelStream's output callback which y
 
 ### Futures
 
-Futures are often easier to use but significantly heavier on your memory and thus performance. [They are thoroughly described here](../async/promise-future-introduction.md)
+Futures are often easier to use but significantly heavier on your memory and thus performance. [They are thoroughly described here](../../async/futures.md)
 
 Querying a database for a future is achieved through the `all` function and requires specifying the `Decodable` type that the results need to be deserialized into.
 

@@ -1,8 +1,8 @@
 # Request
 
-When a client connects with an HTTP Server it sends a `Request`. This HTTP request will be processed [as discussed here](../getting-started/http.md) and resolved into a [`Response`](response.md). This is the response in the http [Request/Response model](../getting-started/http.md).
+When a client connects with an HTTP Server it sends a `Request`. This HTTP request will be processed [as discussed here](../concepts/http.md) and resolved into a [`Response`](response.md). This is the response in the http [Request/Response model](../concepts/http.md).
 
-Requests consist of a [Method](method.md), [URI](uri.md) and [Headers](../web/headers.md).
+Requests consist of a [Method](method.md), [URI](uri.md) and [Headers](headers.md).
 
 Requests can optionally also contain a [Body](body.md).
 

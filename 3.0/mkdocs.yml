@@ -14,6 +14,7 @@ pages:
     - 'Folder Structure': 'getting-started/structure.md'
     - 'Application': 'getting-started/application.md'
     - 'Controllers': 'getting-started/controllers.md'
+    - 'JSON': 'getting-started/json.md'
     - 'Routing': 'getting-started/routing.md'
     - 'Content': 'getting-started/content.md'
     - 'Futures': 'getting-started/futures.md'
@@ -26,9 +27,8 @@ pages:
     - 'HTTP': 'concepts/http.md'
 - 'Async':
     - 'Package': 'async/package.md'
-    - 'Future Basics': 'async/futures-basics.md'
-    - 'Streams Introduction': 'async/streams-introduction.md'
-    - 'Stream Basics': 'async/streams-basics.md'
+    - 'Futures': 'async/futures.md'
+    - 'Streams': 'async/streams.md'
     - 'Worker': 'async/worker.md'
 - 'HTTP':
     - 'Index': 'http/index.md'
@@ -43,6 +43,7 @@ pages:
     - 'Response': 'http/response.md'
     - 'Responder': 'http/responder.md'
     - 'Status codes': 'http/status.md'
+    - 'Streaming Body': 'http/body-stream.md'
     - 'URI': 'http/uri.md'
 - 'Fluent':
     - 'Getting Started':
@@ -67,6 +68,10 @@ pages:
         - 'Package': 'databases/mysql/package.md'
         - 'Setup': 'databases/mysql/setup.md'
         - 'Basics': 'databases/mysql/basics.md'
+    - 'PostgreSQL':
+        - 'Package': 'databases/postgres/package.md'
+        - 'Setup': 'databases/postgres/setup.md'
+        - 'Basics': 'databases/postgres/basics.md'
 - 'Redis':
     - 'Package': 'redis/package.md'
     - 'Basics': 'redis/basics.md'
@@ -99,6 +104,7 @@ pages:
     - 'Random': 'crypto/random.md'
 - 'TLS':
     - 'Package': 'tls/package.md'
+    - 'Client': 'tls/client.md'
 - 'Sockets':
     - 'Package': 'sockets/package.md'
     - 'TCP Client': 'sockets/tcp-client.md'

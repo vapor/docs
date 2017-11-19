@@ -1,13 +1,13 @@
 # Futures
 
-You may have noticed some APIs in Vapor expect or return a `Future<T>` type. 
+You may have noticed some APIs in Vapor expect or return a `Future<T>` type.
 If this is your first time hearing about futures, they might seem a little confusing at first.
 But don't worry, Vapor makes them easy to use.
 
 ## Callbacks
 
 Futures are a way of representing an object that you don't have yet. You have probably seen
-APIs that use callbacks before (especially if you have developed iOS apps). Futures are just a 
+APIs that use callbacks before (especially if you have developed iOS apps). Futures are just a
 way to make APIs with callbacks more user-friendly.
 
 This is a what a common callback API looks like.
@@ -27,7 +27,7 @@ print(users) // Future<[User]>
 ```
 
 !!! info
-    Futures use fewer system resources than synchronous APIs. This is part of 
+    Futures use fewer system resources than synchronous APIs. This is part of
     what makes Vapor so fast!
 
 ## Chaining
@@ -77,5 +77,4 @@ four.do { four in
 ```
 
 Learn more about Vapor's async architecture in [Concepts &rarr; Async](../concepts/async.md).
-Or take a deeper look at Futures and Promises in [Async &rarr; Getting Started](../async/getting-started.md).
-
+Or take a deeper look at Futures and Promises in [Async &rarr; Getting Started](../async/futures.md).

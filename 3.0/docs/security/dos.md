@@ -36,7 +36,7 @@ Both are (partially) prevented by default using the `PeerValidator` which is par
 
 ### How PeerValidator works
 
-As part of Vapor 3's design goals, all notification-like I/O is implemented using [Streams](../async/streams-basics.md). This also includes the [TCP Server](../sockets/tcp-server.md). The TCP server is seen as a stream of clients/peers that are accepted and then sent to the client. It has a hook called `willAccept`. This closure's input is a `TCPClient`, and the output is a `Bool`. If the returned boolean is `true`, the peer will be accepted where `false` will deny the peer and will close the connection.
+As part of Vapor 3's design goals, all notification-like I/O is implemented using [Streams](../async/streams.md). This also includes the [TCP Server](../sockets/tcp-server.md). The TCP server is seen as a stream of clients/peers that are accepted and then sent to the client. It has a hook called `willAccept`. This closure's input is a `TCPClient`, and the output is a `Bool`. If the returned boolean is `true`, the peer will be accepted where `false` will deny the peer and will close the connection.
 
 `PeerValidator` hooks into this capability by looking the peer's address up in it's cache and keeps track of the amount of connections this peer has currently opened to this server. If the counter exceeds a threshold as specified in the `PeerValidator` initializer, the connection will be rejected.
 

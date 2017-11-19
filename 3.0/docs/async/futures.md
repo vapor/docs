@@ -1,29 +1,80 @@
-# Introduction into Promises and Futures
+# Future basics
 
-When working with asynchronous APIs, one of the problems you'll face is not knowing when a variable is set.
+Futures are used throughout Vapor, so it is useful to know some of the available helpers. We explain the reasoning and use cases [here](../concepts/async.md).
 
-When querying a database synchronously, the thread is blocked until a result has been received. At which point the result will be returned to you and the thread continues from where you left off querying the database.
+## Adding awaiters to all results
 
-```swift
-let user = try database.fetchUser(named: "Admin")
+If you need to handle the results of an operation regardless of success or failure, you can do so by calling the `.addAwaiter` function on a future.
 
-print(user.username)
-```
-
-In the asynchronous world, you won't receive a result immediately. Instead, you'll receive a result in a callback.
+The awaiter shall be called on completion with a `Result<Expectation>`. This is an enum with either the `Expectation` or an `Error` contained within.
 
 ```swift
-// Callback `found` will receive the user. If an error occurred, the `onError` callback will be called instead.
-try database.fetchUser(named: "Admin", found: { user in
-  print(user.username)
-}, onError: { error in
-  print(error)
-})
+let future = Future("Hello world")
+
+future.addAwaiter { result in
+  switch result {
+  case .expectation(let string):
+    print(string)
+  case .error(let error):
+    print("Error: \(error)")
+  }
+}
 ```
 
-You can imagine code becoming complex. Difficult to read and comprehend.
+## Flat-Mapping results
 
-Promises and futures are two types that this library introduces to solve this.
+Nested async callbacks can be a pain to unwind. An example of a painfully complex "callback hell" scenario is demonstrated below:
+
+```swift
+app.get("friends") { request in
+	let session = try request.getSessionCookie() as UserSession
+
+	let promise = Promise<View>()
+
+	// Fetch the user
+	try session.user.resolve().then { user in
+		// Returns all the user's friends
+		try user.friends.resolve().then { friends in
+			return try view.make("friends", context: friends, for: request).then {	renderedView in
+				promise.complete(renderedView)
+			}.catch(promise.fail)
+		}.catch(promise.fail)
+	}.catch(promise.fail)
+
+	return promise.future
+}
+```
+
+Vapor 3 offers a `flatMap` solution here that will help keep the code readable and maintainable.
+
+```swift
+app.get("friends") { request in
+	let session = try request.getSessionCookie() as UserSession
+
+	// Fetch the user
+	return try session.user.resolve().flatten { user in
+		// Returns all the user's friends
+		return try user.friends.resolve()
+	}.map { friends in
+		// Flatten replaced this future with
+		return try view.make("friends", context: friends, for: request)
+	}
+}
+```
+
+## Combining multiple futures
+
+If you're expecting the same type of result from multiple sources you can group them using the `flatten` function.
+
+```swift
+var futures = [Future<String>]()
+futures.append(Future("Hello"))
+futures.append(Future("World"))
+futures.append(Future("Foo"))
+futures.append(Future("Bar"))
+
+let futureResults = futures.flatten() // Future<[String]>
+```
 
 ## Creating a promise
 

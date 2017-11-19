@@ -34,7 +34,7 @@ let client = TCPClient(socket: socket, worker: worker)
 
 Now that your socket is connected you can start communicating. First, you'll need to start by setting up the handlers for incoming data.
 
-Since `TCPClient` is a stream, you can use [the introduction](../async/streams-introduction.md) and [the basics](../async/streams-basics.md) of streams for reading the socket's output (incoming data).
+Since `TCPClient` is a stream, you can use [the introduction](../async/streams.md) of streams for reading the socket's output (incoming data).
 
 Sending data is done through the `inputStream` function.
 

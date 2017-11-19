@@ -6,7 +6,7 @@ On top of [vapor/sqlite](https://github.com/vapor/sqlite), we have built [vapor/
 
 ## With Fluent
 
-SQLite works great with Fluent, you just need to make sure to add the [vapor/fluent-sqlite](https://github.com/vapor/fluent-sqlite) 
+SQLite works great with Fluent, you just need to make sure to add the [vapor/fluent-sqlite](https://github.com/vapor/fluent-sqlite)
 package to your project.
 
 To do this, add the Fluent SQLite package to your Package manifest.
@@ -27,7 +27,7 @@ let package = Package(
 )
 ```
 
-If this is your first time adding a dependency, you should read our introduction to [Package.swift](../spm/manfiest.md).
+If this is your first time adding a dependency, you should read our introduction to [Package.swift](../../getting-started/spm.md).
 
 Use `import FluentSQLite` to access SQLite's Fluent compatible APIs.
 

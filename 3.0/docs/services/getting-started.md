@@ -1,6 +1,6 @@
 ## Configure
 
-You configure the application in the [`configure.swift`](structure.md#configureswift) file. Here you can 
+You configure the application in the [`configure.swift`](structure.md) file. Here you can
 register your own services, or override the ones provided by default.
 
 ```swift
@@ -21,4 +21,3 @@ let foo = try app.make(FooService.self)
 ```
 
 ### Providers
-

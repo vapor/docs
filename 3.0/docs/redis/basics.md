@@ -10,7 +10,7 @@ This requires a hostname, port and [worker](../async/worker.md). The worker's Di
 let client = try RedisClient<TCPClient>.connect(worker: worker) // Future<RedisClient<TCPClient>>
 ```
 
-The `connect` method will return a [Future](../async/promise-future-introduction.md) containing the TCP based Redis Client.
+The `connect` method will return a [Future](../async/futures.md) containing the TCP based Redis Client.
 
 ## Redis Data Types
 

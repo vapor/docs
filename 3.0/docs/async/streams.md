@@ -1,5 +1,3 @@
-# Introduction into Streams
-
 Streams is a mechanism that you can implement on objects that process any information efficiently and asynchronously without bloat.
 
 There are three primary stream protocols:
@@ -125,3 +123,15 @@ let stringStream = tcpStream.flatMap(utf8String)
 // `optionalStringStream` is a stream outputting `String?`
 let optionalStringStream = tcpStream.map(utf8String)
 ```
+
+## Chaining streams
+
+If an `OutputStream`'s Output is the same as an `InputStream`'s input, you can "chain" these streams together to create really performant and readable solutions.
+
+This doesn't work for all situation, but let's look at an example that *does* accept [base64](../crypto/base64.md).
+
+```swift
+client.stream(to: base64encoder).stream(to: client)
+```
+
+The result is an "echo" server that base64-encodes incoming data, and replies it back in base64-encoded format.
