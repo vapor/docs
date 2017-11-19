@@ -83,7 +83,6 @@ pages:
     - 'Binary': 'websocket/binary-stream.md'
     - 'Text': 'websocket/text-stream.md'
     - 'Client': 'websocket/client.md'
-    - 'Server': 'websocket/server.md'
     - 'Server Upgrades': 'websocket/upgrade.md'
 - 'Routing':
     - 'Basics': 'routing/basics.md'
