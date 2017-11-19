@@ -2,7 +2,7 @@
 
 Crypto is a library containing all common APIs related to cryptography and security.
 
-This project does **not** support TLS. For that, please see [the TLS package](../tls/index.md).
+This project does **not** support TLS. For that, please see [the TLS package](../tls/package.md).
 
 ### Index
 

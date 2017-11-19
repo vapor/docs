@@ -12,7 +12,7 @@ HTTP/2 is a protocol with security and performance in mind. Designed with experi
 
 ## How it works
 
-At the heart of HTTP lie the [Request](../http/request.md) and [Response](../http/response,d). Both of them are "HTTP Messages". Both HTTP messages consists of [Headers](../http/headers.md) and [a body](../http/body.md).
+At the heart of HTTP lie the [Request](../http/request.md) and [Response](../http/response.md). Both of them are "HTTP Messages". Both HTTP messages consists of [Headers](../http/headers.md) and [a body](../http/body.md).
 
 HTTP clients connect to an HTTP server. The clients can send a request to which the server will send a response.
 

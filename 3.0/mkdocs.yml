@@ -65,11 +65,10 @@ pages:
         - 'Overview': 'databases/sqlite/overview.md'
     - 'MySQL':
         - 'Package': 'databases/mysql/package.md'
-        - 'Index': 'databases/mysql/index.md'
         - 'Setup': 'databases/mysql/setup.md'
         - 'Basics': 'databases/mysql/basics.md'
 - 'Redis':
-    - 'Index': 'redis/index.md'
+    - 'Package': 'redis/package.md'
     - 'Basics': 'redis/basics.md'
     - 'Custom commands': 'redis/custom-commands.md'
     - 'Publish and Subscribe': 'redis/pub-sub.md'
@@ -89,17 +88,22 @@ pages:
 - 'Services':
     - 'Getting Started': 'services/getting-started.md'
 - 'JWT':
+    - 'Package': 'jwt/package.md'
     - 'Signed Tokens': 'jwt/jws.md'
 - 'Crypto':
-    - 'Index': 'crypto/index.md'
+    - 'Package': 'crypto/package.md'
     - 'Base64': 'crypto/base64.md'
     - 'Hashes': 'crypto/hash.md'
     - 'Message authentication': 'crypto/mac.md'
     - 'Password hashing': 'crypto/passwords.md'
     - 'Random': 'crypto/random.md'
+- 'TLS':
+    - 'Package': 'tls/package.md'
 - 'Sockets':
-    - 'Index': 'sockets/index.md'
+    - 'Package': 'sockets/package.md'
     - 'TCP Client': 'sockets/tcp-client.md'
+    - 'TCP Server': 'sockets/tcp-server.md'
+    - 'TCP Socket': 'sockets/tcp-socket.md'
 - 'Testing':
     - 'Getting Started': 'testing/getting-started.md'
 - 'Security':
@@ -122,7 +126,7 @@ markdown_extensions:
     - meta
     - toc(permalink=true)
 
-theme: 
+theme:
     name: 'material'
     palette:
         primary: 'blue'
