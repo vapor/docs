@@ -68,6 +68,7 @@ pages:
         - 'Package': 'databases/mysql/package.md'
         - 'Setup': 'databases/mysql/setup.md'
         - 'Basics': 'databases/mysql/basics.md'
+        - 'Prepared Statements': 'databases/mysql/prepared-statements.md'
     - 'PostgreSQL':
         - 'Package': 'databases/postgres/package.md'
         - 'Setup': 'databases/postgres/setup.md'
