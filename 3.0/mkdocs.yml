@@ -14,6 +14,7 @@ pages:
     - 'Folder Structure': 'getting-started/structure.md'
     - 'Application': 'getting-started/application.md'
     - 'Controllers': 'getting-started/controllers.md'
+    - 'JSON': 'getting-started/json.md'
     - 'Routing': 'getting-started/routing.md'
     - 'Content': 'getting-started/content.md'
     - 'Futures': 'getting-started/futures.md'
@@ -26,12 +27,11 @@ pages:
     - 'HTTP': 'concepts/http.md'
 - 'Async':
     - 'Package': 'async/package.md'
-    - 'Future Basics': 'async/futures-basics.md'
-    - 'Streams Introduction': 'async/streams-introduction.md'
-    - 'Stream Basics': 'async/streams-basics.md'
+    - 'Futures': 'async/futures.md'
+    - 'Streams': 'async/streams.md'
     - 'Worker': 'async/worker.md'
 - 'HTTP':
-    - 'Index': 'http/index.md'
+    - 'Package': 'http/package.md'
     - 'Body': 'http/body.md'
     - 'Client': 'http/client.md'
     - 'Cookies': 'http/cookies.md'
@@ -43,6 +43,7 @@ pages:
     - 'Response': 'http/response.md'
     - 'Responder': 'http/responder.md'
     - 'Status codes': 'http/status.md'
+    - 'Streaming Body': 'http/body-stream.md'
     - 'URI': 'http/uri.md'
 - 'Fluent':
     - 'Getting Started':
@@ -65,11 +66,15 @@ pages:
         - 'Overview': 'databases/sqlite/overview.md'
     - 'MySQL':
         - 'Package': 'databases/mysql/package.md'
-        - 'Index': 'databases/mysql/index.md'
         - 'Setup': 'databases/mysql/setup.md'
         - 'Basics': 'databases/mysql/basics.md'
+        - 'Prepared Statements': 'databases/mysql/prepared-statements.md'
+    - 'PostgreSQL':
+        - 'Package': 'databases/postgres/package.md'
+        - 'Setup': 'databases/postgres/setup.md'
+        - 'Basics': 'databases/postgres/basics.md'
 - 'Redis':
-    - 'Index': 'redis/index.md'
+    - 'Package': 'redis/package.md'
     - 'Basics': 'redis/basics.md'
     - 'Custom commands': 'redis/custom-commands.md'
     - 'Publish and Subscribe': 'redis/pub-sub.md'
@@ -79,9 +84,9 @@ pages:
     - 'Binary': 'websocket/binary-stream.md'
     - 'Text': 'websocket/text-stream.md'
     - 'Client': 'websocket/client.md'
-    - 'Server': 'websocket/server.md'
     - 'Server Upgrades': 'websocket/upgrade.md'
 - 'Routing':
+    - 'Package': 'routing/package.md'
     - 'Basics': 'routing/basics.md'
     - 'Parameters': 'routing/parameters.md'
     - 'Route': 'routing/route.md'
@@ -89,17 +94,23 @@ pages:
 - 'Services':
     - 'Getting Started': 'services/getting-started.md'
 - 'JWT':
+    - 'Package': 'jwt/package.md'
     - 'Signed Tokens': 'jwt/jws.md'
 - 'Crypto':
-    - 'Index': 'crypto/index.md'
+    - 'Package': 'crypto/package.md'
     - 'Base64': 'crypto/base64.md'
     - 'Hashes': 'crypto/hash.md'
     - 'Message authentication': 'crypto/mac.md'
     - 'Password hashing': 'crypto/passwords.md'
     - 'Random': 'crypto/random.md'
+- 'TLS':
+    - 'Package': 'tls/package.md'
+    - 'Client': 'tls/client.md'
 - 'Sockets':
-    - 'Index': 'sockets/index.md'
+    - 'Package': 'sockets/package.md'
     - 'TCP Client': 'sockets/tcp-client.md'
+    - 'TCP Server': 'sockets/tcp-server.md'
+    - 'TCP Socket': 'sockets/tcp-socket.md'
 - 'Testing':
     - 'Getting Started': 'testing/getting-started.md'
 - 'Security':
@@ -122,7 +133,7 @@ markdown_extensions:
     - meta
     - toc(permalink=true)
 
-theme: 
+theme:
     name: 'material'
     palette:
         primary: 'blue'

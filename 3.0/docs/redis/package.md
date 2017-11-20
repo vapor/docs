@@ -35,4 +35,6 @@ let package = Package(
 )
 ```
 
+If this is your first time adding a dependency, you should read our introduction to [Package.swift](../getting-started/spm.md).
+
 Use `import Redis` to access Redis' APIs.

@@ -16,4 +16,4 @@ let future = client.run(command: "GET", arguments: ["my-key"]) // Future<RedisDa
 
 This future will contain the result as specified in the article on the redis command page or an error.
 
-The future can be used as described in the [Async API](../async/index.md).
+The future can be used as described in the [Async API](../async/package.md).

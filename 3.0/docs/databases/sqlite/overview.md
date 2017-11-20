@@ -1,12 +1,12 @@
 # SQLite Overview
 
-Let's dive into the [vapor/sqlite](https://github.com/vapor/sqlite) package and 
+Let's dive into the [vapor/sqlite](https://github.com/vapor/sqlite) package and
 see how to connect to and query a database.
 
 !!! warning
-	This documentation provides an overview for the SQLite API. 
+	This documentation provides an overview for the SQLite API.
 	If you are using SQLite with Fluent, you will likely never need to use
-	this API. Use [Fluent's APIs](../fluent/overview.md) instead.
+	this API. Use [Fluent's APIs](../../fluent/getting-started/package.md) instead.
 
 Follow the instructions in the [package](package.md) section to add the SQLite package to your project. Once its added, you should be able to use `import SQLite.`
 
@@ -46,11 +46,11 @@ let conn = try db.makeConnection(on: .global())
 ```
 
 !!! note
-	Pay special attention to which `DispatchQueue` you pass to `makeConnection(on:)`. 
+	Pay special attention to which `DispatchQueue` you pass to `makeConnection(on:)`.
 	This will be the queue SQLite calls you back on.
 
 !!! tip
-	If you are using SQLite with Vapor, make sure to pass the [worker](async/worker.md)'s queue here.
+	If you are using SQLite with Vapor, make sure to pass the [worker](../../async/worker.md)'s queue here.
 
 ## Query
 
@@ -62,7 +62,7 @@ let query = conn.query("SELECT * FROM users")
 
 ### Binding Values
 
-If you are executing a query that has input values, you should bind these using parameters. 
+If you are executing a query that has input values, you should bind these using parameters.
 
 ```swift
 let query = conn.query("INSERT INTO users (name, age) VALUES (?, ?)")
@@ -130,7 +130,7 @@ let name = row["name"]?.text // String
 
 ### Run
 
-Once your query is ready to execute, you simply call `.execute()`. This returns a `Future<Void>` 
+Once your query is ready to execute, you simply call `.execute()`. This returns a `Future<Void>`
 that will be completed when the query is done executing.
 
 ```swift
@@ -162,7 +162,7 @@ let rows = try conn.query("SELECT * FROM users").sync()
 
 ### Example
 
-Now for the complete example: 
+Now for the complete example:
 
 ```swift
 import SQLite

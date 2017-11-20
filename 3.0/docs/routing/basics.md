@@ -24,7 +24,7 @@ The `.get` represents the [Method](../http/method.md) you want to use. `to: "hel
 
 For variable path components you can use [parameters](parameters.md).
 
-The trailing closure receives a [Request](../http/request.md). The route can throw errors and needs to return a [`Future<ResponseRepresentable>`](../vapor/response.md) conforming type.
+The trailing closure receives a [Request](../http/request.md). The route can throw errors and needs to return a [`Future<ResponseRepresentable>`](../http/response.md) conforming type.
 
 ## Registering a route using Vapor
 
