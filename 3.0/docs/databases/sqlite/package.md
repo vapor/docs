@@ -46,9 +46,11 @@ let package = Package(
         .package(url: "https://github.com/vapor/sqlite.git", .upToNextMajor(from: "3.0.0")),
     ],
     targets: [
-      .target(name: "Project", dependencies: ["Async", ... ])
+      .target(name: "Project", dependencies: ["SQLite", ... ])
     ]
 )
 ```
+
+If this is your first time adding a dependency, you should read our introduction to [Package.swift](../../getting-started/spm.md).
 
 Use `import SQLite` to access the Swift SQLite APIs.

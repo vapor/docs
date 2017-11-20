@@ -4,8 +4,7 @@ Routing is a library containing all Routing related APIs.
 
 ### Index
 
-- [Aync routing](async.md)
-- [Sync routing](sync.md)
+- [Basics](basics.md)
 - [Route Parameters](parameters.md)
 - [Route](route.md)
 - [TrieRouter](router.md)
@@ -37,5 +36,7 @@ let package = Package(
     ]
 )
 ```
+
+If this is your first time adding a dependency, you should read our introduction to [Package.swift](../getting-started/spm.md).
 
 Use `import Routing` to access Routing's APIs.

@@ -31,7 +31,7 @@ pages:
     - 'Streams': 'async/streams.md'
     - 'Worker': 'async/worker.md'
 - 'HTTP':
-    - 'Index': 'http/index.md'
+    - 'Package': 'http/package.md'
     - 'Body': 'http/body.md'
     - 'Client': 'http/client.md'
     - 'Cookies': 'http/cookies.md'
@@ -86,6 +86,7 @@ pages:
     - 'Client': 'websocket/client.md'
     - 'Server Upgrades': 'websocket/upgrade.md'
 - 'Routing':
+    - 'Package': 'routing/package.md'
     - 'Basics': 'routing/basics.md'
     - 'Parameters': 'routing/parameters.md'
     - 'Route': 'routing/route.md'
