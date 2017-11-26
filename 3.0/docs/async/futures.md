@@ -1,6 +1,6 @@
 # Future basics
 
-Futures are used throughout Vapor, so it is useful to know some of the available helpers. We explain the reasoning and use cases [here](../concepts/async.md).
+Futures are used throughout Vapor, so it is useful to know some of the available helpers. We explain the reasoning and use cases [here](../concepts/async.md). They are the primary [`FutureType`](futuretype.md) implementation.
 
 ## Adding awaiters to all results
 
