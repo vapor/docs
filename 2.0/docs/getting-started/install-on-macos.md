@@ -53,6 +53,15 @@ Now that you've added Vapor's tap, you can install Vapor's toolbox and dependenc
 brew install vapor
 ```
 
+### Upgrade
+
+If you've previously installed Vapor upgrades to Homebrew and Vapor may be required to work with the latest versions of macOS, Swift, or the instructions in this guide.
+
+```sh
+brew update
+brew upgrade vapor
+```
+
 ## Next
 
 Learn more about the Vapor toolbox CLI in the [Toolbox section](toolbox.md) of the Getting Started section.
