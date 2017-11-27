@@ -35,7 +35,7 @@ let hc = HelloController()
 drop.get("hello", handler: hc.sayHello)
 ```
 
-Since the signature of our `sayHello` method matches the signature of the closure for the `drop.get` method, we can pass it directly. If you want to test it locally simply call `http://0.0.0.0:8080/hello?name=John`.
+Since the signature of our `sayHello` method matches the signature of the closure for the `drop.get` method, we can pass it directly. If you want to test it locally simply call `http://localhost:8080/hello?name=John`.
 
 ### Type Safe
 
@@ -59,7 +59,7 @@ let hc = HelloController()
 drop.get("hello", String.parameter, handler: hc.sayHelloAlternate)
 ```
 
-Since `drop.get` accepts a signature `(Request) throws -> ResponseRepresentable`, our method can now be used as the closure for this route. In this case to test it locally call `http://0.0.0.0:8080/hello/John`.
+Since `drop.get` accepts a signature `(Request) throws -> ResponseRepresentable`, our method can now be used as the closure for this route. In this case to test it locally call `http://localhost:8080/hello/John`.
 
 !!! note 
     Read more about type safe routing in the [Routing Parameters](https://docs.vapor.codes/2.0/routing/parameters/#type-safe) section.
