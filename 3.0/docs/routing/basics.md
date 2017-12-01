@@ -1,9 +1,9 @@
 # Basics
 
-In Vapor the default Router is the `TrieRouter`. You can implement custom routers by implementing one conformant to the `Router` protocol.
+In Vapor the default Router is the `EngineRouter`. You can implement custom routers by implementing one conformant to the `Router` protocol.
 
 ```swift
-let router = try app.make(Router.self)
+let router = try EngineRouter.default()
 ```
 
 There are two APIs available, one is supplied by the `Routing` library and a set of helpers is available in Vapor itself.
@@ -35,7 +35,17 @@ For variable path components you can use [parameters](parameters.md) here, too.
 Vapor has an added benefit here in that you can return the `Response` itself in addition to `Future<ResponseRepresentable>` or `Future<Response>`.
 
 ```swift
-drop.get("components", "in", "path") { request in
+router.get("components", "in", "path") { request in
   return Response(status: .ok)
 }
 ```
+
+## After registering your routes
+
+After registering routes to the Router, you must add the router to your services.
+
+```swift
+services.register(Router.self, router)
+```
+
+[More about services here.](../concepts/services.md)

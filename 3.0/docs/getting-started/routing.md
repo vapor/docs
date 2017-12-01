@@ -1,8 +1,23 @@
 # Routing
 
 Routing is the process of finding the appropriate response to an incoming request.
-For example, imagine you want to return a list of users when someone visits `GET /users`. 
-That would look something like this.
+
+## Making a Router
+
+In Vapor the default Router is the `EngineRouter`. You can implement custom routers by implementing one conformant to the `Router` protocol.
+
+```swift
+let router = try EngineRouter.default()
+```
+
+There are two APIs available, one is supplied by the `Routing` library and a set of helpers is available in Vapor itself.
+
+We recommend using the helpers and will continue to describe those here.
+
+## Registering a route
+
+Imagine you want to return a list of users when someone visits `GET /users`.
+Leaving authorization on the side, that would look something like this.
 
 ```swift
 router.get("users") { req in
@@ -10,7 +25,7 @@ router.get("users") { req in
 }
 ```
 
-In Vapor, routing is usually done using the `.get`, `.put`, `.post`, `.patch` and `.delete` shorthands. 
+In Vapor, routing is usually done using the `.get`, `.put`, `.post`, `.patch` and `.delete` shorthands.
 You can supply the path as `/` or comma-separated strings. We recommend comma separated, as it's more readable.
 
 ```swift
@@ -36,7 +51,7 @@ final class Routes: RouteCollection {
 }
 ```
 
-You can return anything that conforms to [`Content`](content.md) in a route closure. This includes [futures](futures.md) 
+You can return anything that conforms to [`Content`](content.md) in a route closure. This includes [futures](futures.md)
 whose expectation is Content as well.
 
 ## Parameters
@@ -55,3 +70,7 @@ Instead of passing a string, pass the _type_ of parameter you expect. In this ca
 
 !!! tip
     You can define your own [custom parameter types](../routing/parameters.md) as well.
+
+## After registering your routes
+
+After registering your routes you must register the Router as a [`Service`](../concepts/services.md)
