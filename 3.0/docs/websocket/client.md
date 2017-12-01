@@ -1,12 +1,12 @@
 # WebSocket Client
 
-WebSocket clients work the same on the client side as the [server side](server.md).
+WebSocket clients work the same on the client side as the [server side](upgrade.md).
 
 ## Connecting a WebSocket client
 
 WebSockets require an [URI](../http/uri.md) to connect to and an EventLoop to run on.
 
-The `EventLoop` is described in [the async concepts introduction](../../async/eventloop.md).
+The `EventLoop` is described in [the async concepts introduction](../async/eventloop.md).
 
 !!! warning
 	Vapor does not retain the WebSocket. It is the responsibility of the user to keep the WebSocket active by means of strong references and pings.

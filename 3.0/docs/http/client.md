@@ -6,7 +6,7 @@ HTTP Clients are often used to communicate with external APIs such as PayPal, St
 
 Connecting only requires a hostname and a boolean indicating if you want to use SSL. For almost every use case it is recommended to use SSL. If you're processing any sensitive data such as payments, emails and other personal data you will need to use SSL by setting it to `true`.
 
-HTTP clients require an eventloop to run on. The `EventLoop` is described in [the async concepts introduction](../../async/eventloop.md).
+HTTP clients require an eventloop to run on. The `EventLoop` is described in [the async concepts introduction](../async/eventloop.md).
 
 ```swift
 // Future<HTTPClient>
