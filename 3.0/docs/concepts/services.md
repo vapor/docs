@@ -71,7 +71,7 @@ services.register(Logger.self) { container in
 If we set Vapor's environment to development we'll get an instance of `VerboseLogger` and otherwise we'll get an `ErrorLogger`.
 
 ```swift
-let logger = container.make(Logger.self)
+let logger = container.make(Logger.self, for: Request.self)
 logger.log("hello", level: .verbose) // only logs on development
 ```
 

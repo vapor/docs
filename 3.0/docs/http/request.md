@@ -18,7 +18,7 @@ We also provide access to the HTTP version, although this will almost always be 
 
 In addition to these properties there is an Extend available which an be used to store extra information for each request.
 
-It can be used to store information between [middlewares](middleware.md) and the responder and is used by Vapor to store the current [Worker](../async/worker.md), too.
+It can be used to store information between [middlewares](middleware.md) and the responder and is used by Vapor to store the current [EventLoop](../async/eventloop.md), too.
 
 Using Extend, many properties can be added in extensions.
 

@@ -28,7 +28,9 @@ pages:
 - 'Async':
     - 'Package': 'async/package.md'
     - 'Futures': 'async/futures.md'
+    - 'FutureType': 'async/futuretype.md'
     - 'Streams': 'async/streams.md'
+    - 'EventLoop': 'async/eventloop.md'
 - 'HTTP':
     - 'Package': 'http/package.md'
     - 'Body': 'http/body.md'

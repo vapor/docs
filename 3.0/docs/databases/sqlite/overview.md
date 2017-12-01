@@ -50,7 +50,7 @@ let conn = try db.makeConnection(on: .global())
 	This will be the queue SQLite calls you back on.
 
 !!! tip
-	If you are using SQLite with Vapor, make sure to pass the [worker](../../async/worker.md)'s queue here.
+	If you are using SQLite with Vapor, make sure to pass the [EventLoop](../async/eventloop.md) here.
 
 ## Query
 
