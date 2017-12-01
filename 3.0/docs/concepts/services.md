@@ -74,3 +74,11 @@ If we set Vapor's environment to development we'll get an instance of `VerboseLo
 let logger = container.make(Logger.self)
 logger.log("hello", level: .verbose) // only logs on development
 ```
+
+## Containers
+
+Containers are types that contain the current context. They have access to the services, environment, configuration and [EventLoop](async.md) and can use these to `.make()` new service types.
+
+The factory method registered to a service will get access to the container's Context during the creation of type.
+
+There are a few containers that are often accessed, the primary `Container` type for Vapor users is [`Request`](../http/request.md), which can be accessed in every [`Route`](../routing/route.md).

@@ -29,7 +29,6 @@ pages:
     - 'Package': 'async/package.md'
     - 'Futures': 'async/futures.md'
     - 'Streams': 'async/streams.md'
-    - 'Worker': 'async/worker.md'
 - 'HTTP':
     - 'Package': 'http/package.md'
     - 'Body': 'http/body.md'
