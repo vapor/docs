@@ -50,7 +50,7 @@ brew update
 Now that you've added Vapor's tap, you can install Vapor's toolbox and dependencies.
 
 ```sh
-brew install vapor
+brew install vapor/tap/vapor
 ```
 
 ### Upgrade
