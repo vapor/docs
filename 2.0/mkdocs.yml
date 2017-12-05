@@ -109,13 +109,19 @@ markdown_extensions:
     - meta
     - toc(permalink=true)
 
-theme: 'material'
-theme_dir: 'vapor-material'
-repo_url: https://github.com/vapor/documentation
+theme: 
+    name: 'material'
+    palette:
+        primary: 'blue'
+        accent: 'purple'
+    logo: 'images/droplet-white.svg'
+
+repo_url: http://github.com/vapor/vapor
+edit_uri: https://github.com/vapor/documentation/edit/master/3.0/docs/
 
 extra_css:
   - 'stylesheets/extra.css'
-edit_uri: edit/master/2.0/docs/
+
 extra:
     logo: 'images/droplet-white.svg'
     social:
