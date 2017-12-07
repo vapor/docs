@@ -32,7 +32,7 @@
     
     
       
-        <title>Streams Introduction - Vapor Docs</title>
+        <title>Package - Vapor Docs</title>
       
     
     
@@ -92,11 +92,11 @@
             
               
                 <span class="md-header-nav__parent">
-                  Async
+                  HTTP
                 </span>
               
             
-            Streams Introduction
+            Package
           
         </span>
       </div>
@@ -369,6 +369,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../getting-started/json/" title="JSON" class="md-nav__link">
+      JSON
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../getting-started/routing/" title="Routing" class="md-nav__link">
       Routing
     </a>
@@ -504,12 +516,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
       Async
@@ -527,7 +537,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../package/" title="Package" class="md-nav__link">
+    <a href="../../async/package/" title="Package" class="md-nav__link">
       Package
     </a>
   </li>
@@ -539,11 +549,61 @@
 
 
   <li class="md-nav__item">
-    <a href="../futures-basics/" title="Future Basics" class="md-nav__link">
-      Future Basics
+    <a href="../../async/futures/" title="Futures" class="md-nav__link">
+      Futures
     </a>
   </li>
 
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../async/streams/" title="Streams" class="md-nav__link">
+      Streams
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../async/worker/" title="Worker" class="md-nav__link">
+      Worker
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      HTTP
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        HTTP
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
         
           
           
@@ -560,11 +620,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        Streams Introduction
+        Package
       </label>
     
-    <a href="./" title="Streams Introduction" class="md-nav__link md-nav__link--active">
-      Streams Introduction
+    <a href="./" title="Package" class="md-nav__link md-nav__link--active">
+      Package
     </a>
     
       
@@ -578,36 +638,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#concept" title="Concept" class="md-nav__link">
-    Concept
+  <a href="#index" title="Index" class="md-nav__link">
+    Index
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#draining-streams" title="Draining streams" class="md-nav__link">
-    Draining streams
+  <a href="#with-vapor" title="With Vapor" class="md-nav__link">
+    With Vapor
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#catching-stream-errors" title="Catching stream errors" class="md-nav__link">
-    Catching stream errors
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#implementing-an-example-stream" title="Implementing an example stream" class="md-nav__link">
-    Implementing an example stream
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#transforming-streams-without-an-intermediary-stream" title="Transforming streams without an intermediary stream" class="md-nav__link">
-    Transforming streams without an intermediary stream
+  <a href="#without-vapor" title="Without Vapor" class="md-nav__link">
+    Without Vapor
   </a>
   
 </li>
@@ -627,67 +673,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../streams-basics/" title="Stream Basics" class="md-nav__link">
-      Stream Basics
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../worker/" title="Worker" class="md-nav__link">
-      Worker
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
-    
-    <label class="md-nav__link" for="nav-6">
-      HTTP
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-6">
-        HTTP
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../http/" title="Index" class="md-nav__link">
-      Index
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../http/body/" title="Body" class="md-nav__link">
+    <a href="../body/" title="Body" class="md-nav__link">
       Body
     </a>
   </li>
@@ -699,7 +685,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../http/client/" title="Client" class="md-nav__link">
+    <a href="../client/" title="Client" class="md-nav__link">
       Client
     </a>
   </li>
@@ -711,7 +697,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../http/cookies/" title="Cookies" class="md-nav__link">
+    <a href="../cookies/" title="Cookies" class="md-nav__link">
       Cookies
     </a>
   </li>
@@ -723,7 +709,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../http/headers/" title="Headers" class="md-nav__link">
+    <a href="../headers/" title="Headers" class="md-nav__link">
       Headers
     </a>
   </li>
@@ -735,7 +721,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../http/method/" title="Methods" class="md-nav__link">
+    <a href="../method/" title="Methods" class="md-nav__link">
       Methods
     </a>
   </li>
@@ -747,7 +733,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../http/middleware/" title="Middleware" class="md-nav__link">
+    <a href="../middleware/" title="Middleware" class="md-nav__link">
       Middleware
     </a>
   </li>
@@ -759,7 +745,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../http/multipart/" title="Multipart" class="md-nav__link">
+    <a href="../multipart/" title="Multipart" class="md-nav__link">
       Multipart
     </a>
   </li>
@@ -771,7 +757,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../http/request/" title="Request" class="md-nav__link">
+    <a href="../request/" title="Request" class="md-nav__link">
       Request
     </a>
   </li>
@@ -783,7 +769,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../http/response/" title="Response" class="md-nav__link">
+    <a href="../response/" title="Response" class="md-nav__link">
       Response
     </a>
   </li>
@@ -795,7 +781,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../http/responder/" title="Responder" class="md-nav__link">
+    <a href="../responder/" title="Responder" class="md-nav__link">
       Responder
     </a>
   </li>
@@ -807,7 +793,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../http/status/" title="Status codes" class="md-nav__link">
+    <a href="../status/" title="Status codes" class="md-nav__link">
       Status codes
     </a>
   </li>
@@ -819,7 +805,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../../http/uri/" title="URI" class="md-nav__link">
+    <a href="../body-stream/" title="Streaming Body" class="md-nav__link">
+      Streaming Body
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uri/" title="URI" class="md-nav__link">
       URI
     </a>
   </li>
@@ -1138,18 +1136,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../databases/mysql/" title="Index" class="md-nav__link">
-      Index
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../databases/mysql/setup/" title="Setup" class="md-nav__link">
       Setup
     </a>
@@ -1163,6 +1149,78 @@
 
   <li class="md-nav__item">
     <a href="../../databases/mysql/basics/" title="Basics" class="md-nav__link">
+      Basics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../databases/mysql/prepared-statements/" title="Prepared Statements" class="md-nav__link">
+      Prepared Statements
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-3" type="checkbox" id="nav-8-3">
+    
+    <label class="md-nav__link" for="nav-8-3">
+      PostgreSQL
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-8-3">
+        PostgreSQL
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../databases/postgres/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../databases/postgres/setup/" title="Setup" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../databases/postgres/basics/" title="Basics" class="md-nav__link">
       Basics
     </a>
   </li>
@@ -1203,8 +1261,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../redis/" title="Index" class="md-nav__link">
-      Index
+    <a href="../../redis/package/" title="Package" class="md-nav__link">
+      Package
     </a>
   </li>
 
@@ -1335,18 +1393,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../websocket/server/" title="Server" class="md-nav__link">
-      Server
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../websocket/upgrade/" title="Server Upgrades" class="md-nav__link">
       Server Upgrades
     </a>
@@ -1376,6 +1422,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../routing/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
         
           
           
@@ -1491,6 +1549,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../jwt/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../jwt/jws/" title="Signed Tokens" class="md-nav__link">
       Signed Tokens
     </a>
@@ -1527,8 +1597,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../crypto/" title="Index" class="md-nav__link">
-      Index
+    <a href="../../crypto/package/" title="Package" class="md-nav__link">
+      Package
     </a>
   </li>
 
@@ -1608,11 +1678,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
     
     <label class="md-nav__link" for="nav-15">
-      Sockets
+      TLS
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-15">
-        Sockets
+        TLS
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -1623,8 +1693,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../sockets/" title="Index" class="md-nav__link">
-      Index
+    <a href="../../tls/package/" title="Package" class="md-nav__link">
+      Package
     </a>
   </li>
 
@@ -1635,8 +1705,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../sockets/tcp-client/" title="TCP Client" class="md-nav__link">
-      TCP Client
+    <a href="../../tls/client/" title="Client" class="md-nav__link">
+      Client
     </a>
   </li>
 
@@ -1656,10 +1726,82 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-16" type="checkbox" id="nav-16">
     
     <label class="md-nav__link" for="nav-16">
-      Testing
+      Sockets
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-16">
+        Sockets
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../sockets/package/" title="Package" class="md-nav__link">
+      Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../sockets/tcp-client/" title="TCP Client" class="md-nav__link">
+      TCP Client
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../sockets/tcp-server/" title="TCP Server" class="md-nav__link">
+      TCP Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../sockets/tcp-socket/" title="TCP Socket" class="md-nav__link">
+      TCP Socket
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-17" type="checkbox" id="nav-17">
+    
+    <label class="md-nav__link" for="nav-17">
+      Testing
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-17">
         Testing
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1689,13 +1831,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-17" type="checkbox" id="nav-17">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-18" type="checkbox" id="nav-18">
     
-    <label class="md-nav__link" for="nav-17">
+    <label class="md-nav__link" for="nav-18">
       Security
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-17">
+      <label class="md-nav__title" for="nav-18">
         Security
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1737,13 +1879,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-18" type="checkbox" id="nav-18">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-19" type="checkbox" id="nav-19">
     
-    <label class="md-nav__link" for="nav-18">
+    <label class="md-nav__link" for="nav-19">
       Additional information
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-18">
+      <label class="md-nav__title" for="nav-19">
         Additional information
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1785,13 +1927,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-19" type="checkbox" id="nav-19">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-20" type="checkbox" id="nav-20">
     
-    <label class="md-nav__link" for="nav-19">
+    <label class="md-nav__link" for="nav-20">
       Version (3.0-alpha)
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-19">
+      <label class="md-nav__title" for="nav-20">
         Version (3.0-alpha)
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1871,36 +2013,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#concept" title="Concept" class="md-nav__link">
-    Concept
+  <a href="#index" title="Index" class="md-nav__link">
+    Index
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#draining-streams" title="Draining streams" class="md-nav__link">
-    Draining streams
+  <a href="#with-vapor" title="With Vapor" class="md-nav__link">
+    With Vapor
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#catching-stream-errors" title="Catching stream errors" class="md-nav__link">
-    Catching stream errors
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#implementing-an-example-stream" title="Implementing an example stream" class="md-nav__link">
-    Implementing an example stream
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#transforming-streams-without-an-intermediary-stream" title="Transforming streams without an intermediary stream" class="md-nav__link">
-    Transforming streams without an intermediary stream
+  <a href="#without-vapor" title="Without Vapor" class="md-nav__link">
+    Without Vapor
   </a>
   
 </li>
@@ -1919,116 +2047,50 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/vapor/documentation/edit/beta/3.0/docs/async/streams-introduction.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/vapor/documentation/edit/beta/3.0/docs/http/package.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="introduction-into-streams">Introduction into Streams<a class="headerlink" href="#introduction-into-streams" title="Permanent link">&para;</a></h1>
-<p>Streams is a mechanism that you can implement on objects that process any information efficiently and asynchronously without bloat.</p>
-<p>There are three primary stream protocols:</p>
+                <h1 id="using-http">Using HTTP<a class="headerlink" href="#using-http" title="Permanent link">&para;</a></h1>
+<p>HTTP is a module as part of the <code>Engine</code> library containing all HTTP related APIs.</p>
+<h3 id="index">Index<a class="headerlink" href="#index" title="Permanent link">&para;</a></h3>
 <ul>
-<li>InputStream</li>
-<li>OutputStream</li>
-<li>Stream</li>
+<li><a href="../request/">Request</a></li>
+<li><a href="../response/">Response</a></li>
+<li><a href="../method/">Method</a></li>
+<li><a href="../status/">Status</a></li>
+<li><a href="../headers/">Headers</a></li>
+<li><a href="../body/">Body</a></li>
+<li><a href="../middleware/">Middleware</a></li>
+<li><a href="../multipart/">Multipart</a></li>
+<li><a href="../responder/">Responder</a></li>
+<li><a href="../uri/">URI</a></li>
 </ul>
-<p>Conforming to Stream means conformance to both InputStream and OutputStream. So <code>Stream</code> is both processing output and providing output.</p>
-<p>InputStream is a protocol that, when implemented, accepts streaming input. An example can be a TCP socket that, on input, writes data to the socket.</p>
-<p>OutputStream is a protocol that, when implement, can emit output.</p>
-<h3 id="concept">Concept<a class="headerlink" href="#concept" title="Permanent link">&para;</a></h3>
-<p>In Vapor 3 (related libraries), almost everything is a stream. TCP Server is a stream of clients. Each client is a stream of received binary data. For HTTP, each client has an HTTP Request Parser, and Response Serializer. A parser accepts the binary stream and outputs a request stream. And a responder accepts a response and outputs a binary stream (that you can send back to the client's TCP socket as input for the binary stream).</p>
-<h2 id="draining-streams">Draining streams<a class="headerlink" href="#draining-streams" title="Permanent link">&para;</a></h2>
-<p>Now that we've seen how to chain streams, let's talk about draining. In this example the <a href="../sockets/tcp-server.md">TCP Server</a> accepts a client stream which can be drained with a closure. This allows additional processing to take place.</p>
-<p>In this example we print the string representation of the TCP connnection's incoming data.</p>
-<div class="codehilite"><pre><span></span><span class="n">tcpSocket</span><span class="p">.</span><span class="n">drain</span> <span class="p">{</span> <span class="n">buffer</span> <span class="k">in</span>
-  <span class="bp">print</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">bytes</span><span class="p">:</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">))</span>
-<span class="p">}</span>
+<h2 id="with-vapor">With Vapor<a class="headerlink" href="#with-vapor" title="Permanent link">&para;</a></h2>
+<p>This package is included with Vapor by default, just add:</p>
+<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">HTTP</span>
 </pre></div>
 
 
-<p>Another use case for draining is when the stream does not need to be continued any further. After a <a href="../../http/response/">Response</a> has been sent to the Client, nothing else needs to happen.</p>
-<h2 id="catching-stream-errors">Catching stream errors<a class="headerlink" href="#catching-stream-errors" title="Permanent link">&para;</a></h2>
-<p>When a (fatal) error occurs, often something need to happen. Many chained streams will do a sensible default. Sockets will close, for example. You can hook into this process by <code>.catch</code>-ing a stream's errors.</p>
-<div class="codehilite"><pre><span></span><span class="n">stream</span><span class="p">.</span><span class="k">catch</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
-  <span class="c1">// Do something with the error</span>
-  <span class="bp">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
-<span class="p">}</span>
+<h2 id="without-vapor">Without Vapor<a class="headerlink" href="#without-vapor" title="Permanent link">&para;</a></h2>
+<p>To include it in your package, add the following to your <code>Package.swift</code> file.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// swift-tools-version:4.0</span>
+<span class="kd">import</span> <span class="nc">PackageDescription</span>
+
+<span class="kd">let</span> <span class="nv">package</span> <span class="p">=</span> <span class="n">Package</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">:</span> <span class="s">&quot;Project&quot;</span><span class="p">,</span>
+    <span class="n">dependencies</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">...</span>
+        <span class="p">.</span><span class="n">package</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="s">&quot;https://github.com/vapor/engine.git&quot;</span><span class="p">,</span> <span class="p">.</span><span class="n">upToNextMajor</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="s">&quot;3.0.0&quot;</span><span class="p">)),</span>
+    <span class="p">],</span>
+    <span class="n">targets</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">.</span><span class="n">target</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Project&quot;</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;HTTP&quot;</span><span class="p">,</span> <span class="p">...</span> <span class="p">])</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 </pre></div>
 
 
-<h2 id="implementing-an-example-stream">Implementing an example stream<a class="headerlink" href="#implementing-an-example-stream" title="Permanent link">&para;</a></h2>
-<p>This example is a stream that deserializes <code>ByteBuffer</code> to <code>String</code> streaming/asynchronously.</p>
-<div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">InvalidUTF8</span> <span class="p">:</span> <span class="n">Error</span> <span class="p">{}</span>
-
-<span class="c1">// Deserializes `ByteBuffer` (`Input`) to `String` (`Output`) using the provided encoding</span>
-<span class="kd">class</span> <span class="nc">StringDeserializationStream</span><span class="p">:</span> <span class="n">Async</span><span class="p">.</span><span class="n">Stream</span> <span class="p">{</span>
-    <span class="kd">typealias</span> <span class="n">Input</span> <span class="p">=</span> <span class="n">ByteBuffer</span>
-    <span class="kd">typealias</span> <span class="n">Output</span> <span class="p">=</span> <span class="nb">String</span>
-
-    <span class="c1">// Used only by this specific stream to specify an encoding</span>
-    <span class="kd">let</span> <span class="nv">encoding</span><span class="p">:</span> <span class="nb">String</span><span class="p">.</span><span class="n">Encoding</span>
-
-    <span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> Stream requirements</span>
-
-    <span class="c1">// An error stream that can be listened to for errors in this stream</span>
-    <span class="kd">var</span> <span class="nv">errorStream</span><span class="p">:</span> <span class="n">BaseStream</span><span class="p">.</span><span class="n">ErrorHandler</span><span class="p">?</span>
-
-    <span class="c1">// A handler that can be set to handle output</span>
-    <span class="kd">var</span> <span class="nv">outputStream</span><span class="p">:</span> <span class="n">OutputHandler</span><span class="p">?</span>
-
-    <span class="c1">// Creates a new `StringDeserializationStream`</span>
-    <span class="kd">init</span><span class="p">(</span><span class="n">encoding</span><span class="p">:</span> <span class="nb">String</span><span class="p">.</span><span class="n">Encoding</span> <span class="p">=</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Sets the String encoding</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">encoding</span> <span class="p">=</span> <span class="n">encoding</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Receives `Input`/`ByteBuffer` from another stream or manual call</span>
-    <span class="c1">//</span>
-    <span class="c1">// Attempts to process it to a String using the specified encoding</span>
-    <span class="kd">func</span> <span class="nf">inputStream</span><span class="p">(</span><span class="kc">_</span> <span class="n">input</span><span class="p">:</span> <span class="n">Input</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Converts the `Input`/`ByteBuffer` to a String</span>
-        <span class="k">guard</span> <span class="kd">let</span> <span class="nv">string</span> <span class="p">=</span> <span class="nb">String</span><span class="p">(</span><span class="n">bytes</span><span class="p">:</span> <span class="n">input</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">encoding</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// Stream an error if string initialization failed</span>
-            <span class="kc">self</span><span class="p">.</span><span class="n">errorStream</span><span class="p">?(</span><span class="n">InvalidUTF8</span><span class="p">())</span>
-            <span class="k">return</span>
-        <span class="p">}</span>
-
-        <span class="c1">// On success, output the created string</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">outputStream</span><span class="p">?(</span><span class="n">string</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<h2 id="transforming-streams-without-an-intermediary-stream">Transforming streams without an intermediary stream<a class="headerlink" href="#transforming-streams-without-an-intermediary-stream" title="Permanent link">&para;</a></h2>
-<p>The above stream <code>StringDeserializationStream</code> is a very simple example of implementing a stream.</p>
-<p>Streams support two kinds of transforms. <code>flatMap</code> and <code>map</code>. Map transforms the output of the stream into a new stream with different output. And <code>flatMap</code> does the same, but allows returning <code>nil</code> and does not output it.</p>
-<div class="codehilite"><pre><span></span><span class="c1">// `flatMap`s the data into a `String?`. If the string results in `nil`, the resulting `stringStream` does not get called.</span>
-<span class="c1">// `stringStream` is a stream outputting `String`</span>
-<span class="kd">let</span> <span class="nv">stringStream</span> <span class="p">=</span> <span class="n">tcpStream</span><span class="p">.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="n">bytes</span> <span class="k">in</span>
-  <span class="k">return</span> <span class="nb">String</span><span class="p">(</span><span class="n">bytes</span><span class="p">:</span> <span class="n">bytes</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="c1">// `map`s the data into a `String?`. If the string results in `nil`, the resulting `optionalStringStream` emits `nil`, too.</span>
-<span class="c1">// `optionalStringStream` is a stream outputting `String?`</span>
-<span class="kd">let</span> <span class="nv">optionalStringStream</span> <span class="p">=</span> <span class="n">tcpStream</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="n">bytes</span> <span class="k">in</span>
-  <span class="k">return</span> <span class="nb">String</span><span class="p">(</span><span class="n">bytes</span><span class="p">:</span> <span class="n">bytes</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>As you see, you an provide a closure to do the mapping for you. If you want to reuse this code instead, you could make it a function for simplicity. This function can then be used instead of the closure.</p>
-<div class="codehilite"><pre><span></span><span class="c1">// Creates a `String` from `ByteBuffer`. This can return `nil` if the `ByteBuffer` doesn&#39;t contain valid UTF-8</span>
-<span class="kd">func</span> <span class="nf">utf8String</span><span class="p">(</span><span class="n">from</span> <span class="n">bytes</span><span class="p">:</span> <span class="n">ByteBuffer</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">String</span><span class="p">?</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nb">String</span><span class="p">(</span><span class="n">bytes</span><span class="p">:</span> <span class="n">bytes</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="c1">// `flatMap`s the data into a `String?`. If the string results in `nil`, the resulting `stringStream` does not get called.</span>
-<span class="c1">// `stringStream` is a stream outputting `String`</span>
-<span class="kd">let</span> <span class="nv">stringStream</span> <span class="p">=</span> <span class="n">tcpStream</span><span class="p">.</span><span class="n">flatMap</span><span class="p">(</span><span class="n">utf8String</span><span class="p">)</span>
-
-<span class="c1">// `map`s the data into a `String?`. If the string results in `nil`, the resulting `optionalStringStream` emits `nil`, too.</span>
-<span class="c1">// `optionalStringStream` is a stream outputting `String?`</span>
-<span class="kd">let</span> <span class="nv">optionalStringStream</span> <span class="p">=</span> <span class="n">tcpStream</span><span class="p">.</span><span class="bp">map</span><span class="p">(</span><span class="n">utf8String</span><span class="p">)</span>
-</pre></div>
+<p>If this is your first time adding a dependency, you should read our introduction to <a href="../../getting-started/spm/">Package.swift</a>.</p>
+<p>Use <code>import HTTP</code> to access HTTP's APIs.</p>
                 
                   
                 
@@ -2047,7 +2109,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../futures-basics/" title="Future Basics" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../async/worker/" title="Worker" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -2056,19 +2118,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Future Basics
+                Worker
               </span>
             </div>
           </a>
         
         
-          <a href="../streams-basics/" title="Stream Basics" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../body/" title="Body" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Stream Basics
+                Body
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
