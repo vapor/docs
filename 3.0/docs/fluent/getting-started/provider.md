@@ -1,6 +1,6 @@
 # Configuring Fluent
 
-Fluent integrates seamlessly into your Vapor project using [services](../getting-started/application.md#services). 
+Fluent integrates seamlessly into your Vapor project using [services](../getting-started/application.md#services).
 In this section we will add the Fluent service provider to your application and configure your databases.
 
 !!! warning
@@ -18,21 +18,21 @@ import Fluent
 try services.register(FluentProvider())
 ```
 
-Register the `FluentProvider` in the [configure section](../getting-started/structure.md#configure) of your application. 
+Register the `FluentProvider` in the [configure section](../../getting-started/structure.md#configure) of your application.
 
 !!! question
-    Learn more about how service providers work in [Getting Started: Application](../getting-started/application.md#providers)
-    and [Concepts: Services](../concepts/services.md#providers).
+    Learn more about how service providers work in [Getting Started: Application](../../getting-started/application.md#providers)
+    and [Concepts: Services](../../concepts/services.md#providers).
 
 
 ## Config
 
-Once the service provider has been added, we can configure one or more databases 
+Once the service provider has been added, we can configure one or more databases
 to be used with Fluent.
 
 ### Identifier
 
-Each database you use with Fluent must have a unique identifier. The easiest way to 
+Each database you use with Fluent must have a unique identifier. The easiest way to
 keep track of this identifier is to add it as static extension to `DatabaseIdentifier`.
 
 ```swift
@@ -57,13 +57,13 @@ Now we can use the identifier anywhere in our project:
 req.database(.foo) { ... }
 ```
 
-The [configure section](../getting-started/structure.md#configure) of your project is a good place to put this extension.
+The [configure section](../../getting-started/structure.md#configure) of your project is a good place to put this extension.
 
 ### Databases
 
 Now that we have created a unique identifier for our database, we can register it
 to our application using `DatabaseConfig`. A good place to do this is in the
-[configure section](../getting-started/structure.md#configure) of your project.
+[configure section](../../getting-started/structure.md#configure) of your project.
 
 You can add databases to the `DatabaseConfig` using either a type (`.self`) or an instance.
 
@@ -87,7 +87,7 @@ services.register(databaseConfig)
 
 #### Instance
 
-You can also register a pre-initialized database. This is especially useful if you'd 
+You can also register a pre-initialized database. This is especially useful if you'd
 like to configure two instances of the same database type.
 
 ```swift

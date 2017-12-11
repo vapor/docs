@@ -6,17 +6,17 @@ Router is a protocol that you can conform your own routers to.
 
 First, create a [Route](route.md) using a [Method](../http/method.md), path and a responder.
 
-The following example shows an [async route](async.md) with a constant path.
+The following example shows a route with a constant path.
 
 ```swift
 let responder = BasicAsyncResponder { request in
-  return Future("Hello world")
+  return "Hello world"
 }
 
 let route = Route(method: .get, path: [.constant("hello"), .constant("world")], responder: responder)
 ```
 
-The following example shows a [synchronous route](sync.md) with a [Parameter](parameters.md):
+The following example shows a with a [Parameter](parameters.md):
 
 ```swift
 let responder = BasicSyncResponder { request in

@@ -1,6 +1,6 @@
 # What is Vapor?
 
-Vapor is a [high performance](../supplementary/performance.md), type-safe and [easy to use](setup.md) web framework written in and for Swift.
+Vapor is a [high performance](../supplementary/performance.md), type-safe and [easy to use](../getting-started/hello-world.md) web framework written in and for Swift.
 
 Vapor is designed for both big and small services, providing a low entry barrier to get started in addition to high performance, well tested and well documented APIs.
 

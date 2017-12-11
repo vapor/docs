@@ -12,15 +12,15 @@ HTTP/2 is a protocol with security and performance in mind. Designed with experi
 
 ## How it works
 
-At the heart of HTTP lie the [Request](../http/request.md) and [Response](../http/response,d). Both of them are "HTTP Messages". Both HTTP messages consists of [Headers](../http/headers.md) and [a body](../http/body.md).
+At the heart of HTTP lie the [Request](../http/request.md) and [Response](../http/response.md). Both of them are "HTTP Messages". Both HTTP messages consists of [Headers](../http/headers.md) and [a body](../http/body.md).
 
 HTTP clients connect to an HTTP server. The clients can send a request to which the server will send a response.
 
-Bodies contain the concrete information being transferred. Think of the web-page, images, videos, [JSON](../vapor/json.md) and [forms](../http/multipart.md).
+Bodies contain the concrete information being transferred. Think of the web-page, images, videos, [JSON](../getting-started/json.md) and [forms](../http/multipart.md).
 
 Headers contain metadata.
 
-[Cookies](../http/cookies.md) are metadataabout the client that, for example, can be used for identifying users after they've (successfully) logged in. One of these methods are [session tokens](../jwt/index.md).
+[Cookies](../http/cookies.md) are metadataabout the client that, for example, can be used for identifying users after they've (successfully) logged in. One of these methods are [session tokens](../jwt/package.md).
 
 Another type of metadata can be related to the content. For example, defining the type of content transferred in the body.
 
@@ -38,7 +38,7 @@ Responses have one additional property in addition to the message's properties. 
 
 ## Handling requests
 
-Requests in Vapor will be handled by a [router](../vapor/routing.md). This allows registering a path to a method. For example, registering `.get("users")` will register the path `/users/` to the method `GET`. The responder/closure associated with this route can then handle requests sent to `/users/` with the `GET` method.
+Requests in Vapor will be handled by a [router](../getting-started/routing.md). This allows registering a path to a method. For example, registering `.get("users")` will register the path `/users/` to the method `GET`. The responder/closure associated with this route can then handle requests sent to `/users/` with the `GET` method.
 
 ## Types of endpoints
 
@@ -50,12 +50,12 @@ iOS and Android apps usually communicate with an API, where a web browser such a
 
 Websites come in two major flavours. Server and client rendered pages. "Rendering" in this context doesn't mean the graphical rendering on your monitor, but instead the way information is injected into the HTML DOM to display the information to the users.
 
-Server rendered pages make use of a templating system such as [leaf](../leaf/index.md) whereas client rendered pages communicate with an API.
+Server rendered pages make use of a templating system such as [leaf](../leaf/package.md) whereas client rendered pages communicate with an API.
 
 ### API
 
-APIs are endpoints that sometimes receive but always reply with raw data. The raw data can be in any format. Most commonly, APIs communicate with [JSON](../vapor/json.md). Sometimes, they communicate with XML or other data types. Vapor can flexibly switch between supported formats, both by official or by community made libraries.
+APIs are endpoints that sometimes receive but always reply with raw data. The raw data can be in any format. Most commonly, APIs communicate with [JSON](../getting-started/json.md). Sometimes, they communicate with XML or other data types. Vapor can flexibly switch between supported formats, both by official or by community made libraries.
 
-APIs in Vapor are (almost) always creating using a "MVC" or "Model View Controller" model [which we explain here.](controllers.md)
+APIs in Vapor are (almost) always creating using a "MVC" or "Model View Controller" model [which we explain here.](../getting-started/controllers.md)
 
-Designing an API in Vapor is really simple. [We dive into this more here.](application-design.md)
+Designing an API in Vapor is really simple. [We dive into this from here.](../getting-started/application.md)

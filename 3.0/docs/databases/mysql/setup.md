@@ -28,10 +28,16 @@ The following code creates a new connectionpool to `localhost` and the default M
 
 The database is the database that is selected and authenticated to. Any future queries will be sent to this database.
 
-The `worker` is defined in [the async documentation](../async/worker.md).
+The `worker` is defined in [the async documentation](../../async/worker.md).
 
 ```swift
 let connectionPool = ConnectionPool(hostname: "localhost", user: "root", password: nil, database: "test-db", worker: worker)
+```
+
+You can set the maximum amount of connections after creating the `ConnectionPool`.
+
+```swift
+connectionPool.maxConnections = 50
 ```
 
 Creating a connection pool successfully does not imply that the configuration is correct. The (first) query's success or failure will indicate the successful or unsuccessful connection. This way the API stays much simpler than it would otherwise be.

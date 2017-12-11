@@ -6,10 +6,13 @@ WebSocket clients work the same on the client side as the [server side](server.m
 
 WebSockets require an [URI](../http/uri.md) to connect to and a [Worker](../async/worker.md) to run on.
 
+!!! warning
+	Vapor does not retain the WebSocket. It is the responsibility of the user to keep the WebSocket active by means of strong references and pings.
+
 ```swift
 let worker: Worker = ...
 
-let futureWebSocket: Future<WebSocket> = try WebSocket.connect(to: "ws://localhost/path", queue: queue)
+let futureWebSocket: Future<WebSocket> = try WebSocket.connect(to: "ws://localhost/path", worker: worker)
 ```
 
 ## Using websockets

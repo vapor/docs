@@ -1,35 +1,57 @@
 # Routing
 
-In Vapor, routing is usually done using the `.get`, `.put`, `.post`, `.patch` and `.delete` shorthands. You can provide [custom (flexible) parameters](../routing/parameters.md) or normal literal string path components to express the path.
-
-## Creating a router
-
-To register routes, first, you need to get a router object.
-
-To access some routing functions you may need to `import Routing`.
+Routing is the process of finding the appropriate response to an incoming request.
+For example, imagine you want to return a list of users when someone visits `GET /users`. 
+That would look something like this.
 
 ```swift
-let router = try app.make(Router.self)
-```
-
-This router can then be used to register routes. However, you should only register routes during the setup phase of your application. Registering routes during the execution of Vapor *could* cause a crash.
-
-## Registering routes
-
-Registering routes using the shorthands requires a `Router`. To work with [`Request`](../http/request.md) and [`Response`](../http/response.md) objects you should `import HTTP`.
-
-```swift
-router.get("users") { request in
-    return Response(status: .ok)
+router.get("users") { req in
+    return // fetch the users
 }
 ```
 
-We created a `GET` route to `/users/`. The [request](../http/request.md) that is accepted in the trailing closure can be used to access all request metadata.
+In Vapor, routing is usually done using the `.get`, `.put`, `.post`, `.patch` and `.delete` shorthands. 
+You can supply the path as `/` or comma-separated strings. We recommend comma separated, as it's more readable.
 
-The [`Response`](../http/response.md) returned will then be sent to the client.
+```swift
+router.get("path", "to", "something") { ... }
+```
 
-The returned response in this closure **must** be either a `Response` or a [`Future`](../async/promise-future-introduction.md) containing any [`ResponseRepresentable`](../http/repsonse.md#responserepresentable).
+## Routes
 
-## Registering with parameters
+The best place to add routes is in the [`routes.swift`](structure.md#routesswift) file.
+You will find a router there that is ready to use.
 
-TODO
+```swift
+import Vapor
+
+final class Routes: RouteCollection {
+    ...
+
+    func boot(router: Router) throws {
+        router.get("hello") { req in
+            return "Hello, world!"
+        }
+    }
+}
+```
+
+You can return anything that conforms to [`Content`](content.md) in a route closure. This includes [futures](futures.md) 
+whose expectation is Content as well.
+
+## Parameters
+
+Sometimes you may want one of the components of your route path to be dynamic. This is often used when
+you want to get an item with a supplied identifier, i.e., `GET /users/:id`
+
+```swift
+router.get("users", Int.self) { req in
+    let id = try req.parameters.next(Int.self)
+    return // fetch the user with id
+}
+```
+
+Instead of passing a string, pass the _type_ of parameter you expect. In this case, our `User` has an `Int` ID.
+
+!!! tip
+    You can define your own [custom parameter types](../routing/parameters.md) as well.
