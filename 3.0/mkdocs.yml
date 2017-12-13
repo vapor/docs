@@ -116,9 +116,8 @@ pages:
 # - 'Security':
 #     - 'Index': 'security/index.md'
 #     - 'Denial of Service': 'security/dos.md'
-# - 'Additional information':
-#     - 'Architecture': 'supplementary/architecture.md'
-#     - 'Performance': 'supplementary/performance.md'
+- 'Additional information':
+    - 'Async design': 'supplementary/async.md'
 - 'Version (3.0-alpha)':
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'
