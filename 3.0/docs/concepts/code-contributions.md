@@ -10,7 +10,9 @@ We designed all of Vapor 3's APIs (including the Async library) to require littl
 
 ### Enums
 
-`enum` is to be used almost never. *Only* use enums if there realistically will not be any other cases that are added in the future.
+`enum` must *only* be used if there realistically will not be any other cases that are added in the future. This ensures we don't break APIs.
+
+If you want to use the enum shorthand syntax such as `.get` you can make use of a `static var` with the same type as the current type.
 
 ### Classes
 
