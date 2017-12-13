@@ -17,4 +17,4 @@ struct User: Codable {
 }
 ```
 
-With this addition, the above struct can now be (de-)serialized between JSON, XML, MongoDB BSON, MySQL and more!
+With this addition, the above struct can now be (de-)serialized between JSON, XML, MongoDB (BSON), MySQL and more!

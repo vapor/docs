@@ -18,7 +18,7 @@ MongoDB is the only database in this list that is not an SQL database (or NoSQL)
 
 MongoDB's advantages lie in it's architectural difference. It's more easily integrated in data models and more scalable.
 
-The downsides of MongoDB are that the familiar SQL syntax and some table joins are not supported. MongoDB is also a fairly new player, so although it has become very stable and mature it is not as battle tested over the years compared to MySQL.
+The downsides of MongoDB are that the familiar SQL syntax and some table joins are not supported. MongoDB is also a fairly new player, so although it has become very stable and mature it is not as battle tested over the years compared to MySQL. MongoDB does not support auto incremented integers.
 
 ## MySQL
 

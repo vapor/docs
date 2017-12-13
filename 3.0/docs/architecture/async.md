@@ -1,30 +1,12 @@
 # Async
 
+Vapor 3 async is a framework consisting of two basic principles. Futures and Streams.
+Both have their ideal use cases and strengths.
+
 Async APIs are one of the most important aspects of Vapor 3. You have likely noticed that they are
 the biggest change to the API from previous versions. To learn more about how to use the new async
 APIs check out the [Async &rarr; Getting Started](../async/package.md) section. This document
 aims to explain _why_ Vapor 3 moved to async APIs and _how_ it has led to huge performance gains.
-
-## Differences
-
-Let's first make sure we understand the different between a "sync" and "async" API.
-
-```swift
-// sync
-let users = try api.getUsers()
-```
-
-Sync APIs return values immediately.
-
-```swift
-// async
-try api.getUsers(onCompletion: { users, error in
-
-})
-```
-
-Async APIs return their value at some point in the future. There are many different ways to implement
-async APIs (such as [futures](../getting-started/futures.md)), but we will use callbacks here to make it obvious.
 
 ## Concurrency
 
@@ -40,7 +22,7 @@ let hello = "Hello".uppercased()
 ```
 
 There is no problem with this API being synchronous because at no point in converting "Hello" to uppercase is
-the computer ever _waiting_. Waiting, also called "blocking", is an important concept. Most simple functions,
+the computer ever _waiting_. Waiting, also called "blocking", is an important reason to go async. Most simple functions,
 like `.uppercased()` never wait&mdash;they are busy doing the requested work (i.e., capitalizing letters) the entire time.
 However, some functions do wait. The classic example of this is a function that makes a network request.
 
@@ -68,8 +50,6 @@ HTTPClient.getAsync("http://google.com", onCompletion: { res, error in
 Now, after the `.getAsync` function is done sending the request to `google.com`, it can simply continue executing your
 program. When Google's servers return a response, the CPU will be notified, and it will give the response to your callback.
 
-## Advanced
-
 Let's now take a deeper look at why Vapor prefers async (non-blocking) APIs over sync (blocking) ones.
 
 ### Threads
@@ -78,8 +58,11 @@ You may be thinking, what's the problem with `.getSync`? Why not just call that 
 That is indeed a valid solution, and it would work. This style of threading is widely used and taught. However, the problem is
 that threads are not "free" to create. When you're programming for iOS, this doesn't (usually) matter. You can
 often spin up as many threads as you like. You have a whole CPU to yourself! Things are different on the server though.
-Web applications must respond to thousands (even millions) of requests _at the same time_. Imagine running a million instances
+Web applications must respond to hundreds or thousands (even millions) of requests _at the same time_. Imagine running a million instances
 of your iOS app on one device. Even relatively small costs, like creating a thread, become extremely important as a web server.
+
+Besides that, incrementing a single (global) integer by one every request requires a lock for thread safety, or your application can crash.
+A single lock can become a significantly impacting factor in a high performance environment.
 
 ### Multi-Reactor
 
@@ -102,6 +85,11 @@ It's important that you don't make blocking calls on an event loop. If you do, a
 be blocked. For example, if your computer has 2 cores, and you call `sleep(10)` on one of the event loops, your application will
 stop responding to half of the incoming requests for 10 seconds.
 
-### Coroutines
+## Thread unsafe and pointers
 
-Coming soon.
+Vapor 3 guarantees, and requires users to guarantee that callbacks are called from the same thread they originated from.
+This way the overhead of multithreading and locks is not required and code becomes simpler and more maintainable.
+
+In addition to this, stream implementations are encouraged to use `ByteBuffer`s for most binary data. These types are not copied, increasing performance and applicability significantly.
+
+Thread safety and copies usually have the biggest impact performance.
