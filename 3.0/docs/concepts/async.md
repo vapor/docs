@@ -178,4 +178,6 @@ Signals, or `Future<Void>` is a Future that can contain either an Error or Void 
 
 ## Streams
 
-Streams
+Streams are a protocol which, if conformed to, allows reactive data processing. They're lightweight on memory, are easily integrated and allow for readable and maintainable code with high performance and high reusability.
+
+# **TODO**

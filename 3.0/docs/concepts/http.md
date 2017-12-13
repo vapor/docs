@@ -12,17 +12,17 @@ HTTP/2 is a protocol with security and performance in mind. Designed with experi
 
 ## How it works
 
-At the heart of HTTP lie the [Request](../http/request.md) and [Response](../http/response.md). Both of them are "HTTP Messages". Both HTTP messages consists of [Headers](../http/headers.md) and [a body](../http/body.md).
+At the heart of HTTP lie the [Request](../http/request.md) and [Response](../http/response.md) types. Both of them are "HTTP Messages". Both HTTP messages consists of [Headers](../http/headers.md) and a [body](../http/body.md).
 
 HTTP clients connect to an HTTP server. The clients can send a request to which the server will send a response.
 
-Bodies contain the concrete information being transferred. Think of the web-page, images, videos, [JSON](../getting-started/json.md) and [forms](../http/multipart.md).
+Bodies contain the concrete information being transferred. Think of the web-page, images, videos, JSON and [forms](../http/multipart.md).
 
-Headers contain metadata.
+Headers contain metadata, meaning they carry information describing the HTTP message, it's context and it's content.
 
-[Cookies](../http/cookies.md) are metadataabout the client that, for example, can be used for identifying users after they've (successfully) logged in. One of these methods are [session tokens](../jwt/package.md).
+[Cookies](../http/cookies.md) are context metadata about the client that, for example, can be used for identifying users after they've (successfully) logged in. One of these methods are [session tokens](../jwt/package.md).
 
-Another type of metadata can be related to the content. For example, defining the type of content transferred in the body.
+Another type of metadata that is often used to define the type of content transferred in the body is the `Content-Type` header
 
 ### Request
 
