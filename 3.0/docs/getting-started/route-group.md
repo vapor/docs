@@ -30,7 +30,7 @@ Like any closure, you can provide a function here
 func register(to router: Router) {
   // This registered route will pass through the following chain
   // middleware0 -> middleware1 -> middlewareN -> route
-  router.on(.get, "hello") { request in
+  router.get("hello") { request in
     return ...
   }
 }
@@ -40,14 +40,14 @@ router.group(middleware0, middleware1, middlewareN, use: register)
 
 ## Path components
 
-Like the middleware chain, path components will be appended inbetween the existing components and the route.
+Like the middleware chain, path components will be appended in between the existing components and the route.
 
 ```swift
 let group = router.grouped("api", "v1")
 
 // This registered route will be on the following path
 // `GET /api/v1/hello`
-group.on(.get, "hello") { request in
+group.get("hello") { request in
   return ...
 }
 ```
@@ -66,7 +66,7 @@ Like any closure, you can provide a function here, just like middleware.
 func register(to router: Router) {
   // This registered route will be on the following path
   // `GET /api/v1/hello`
-  router.on(.get, "hello") { request in
+  router.get("hello") { request in
     return ...
   }
 }
@@ -84,10 +84,10 @@ func register(to router: SyncRouter) {
   // `GET /api/v1/\(string_here)/echo`
   //
   // Will return the `string_here` parameter
-  router.on(.get, "echo") { request in
+  router.get("echo") { request in
     let string_here = try request.parameters.next(String.self)
 
-    return string_here
+    return Future(string_here)
   }
 }
 
@@ -101,7 +101,7 @@ Using parameters inside a group might have unforeseen effects:
 ```swift
 let group = router.grouped("api", "v1", String.parameter)
 
-group.on(.get, String.parameter) { request in
+group.get(String.parameter) { request in
   // Expects the route specific string parameter
   // Instead gets the grouped string parameter
   let parameter = try request.parameters.next(String.self)

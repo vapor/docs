@@ -38,7 +38,7 @@ Now we are ready to decode that HTTP request.
 
 ```swift
 router.post("login") { req -> Response in
-    let loginRequest = try req.content(LoginRequest.self)
+    let loginRequest = try req.decode(LoginRequest.self)
 
     print(loginRequest.email) // user@vapor.codes
     print(loginRequest.password) // don't look!
@@ -51,8 +51,8 @@ It's that simple!
 
 ### Other Request Types
 
-Since the request in the previous example declared JSON as it's content type, 
-Vapor knows to use a JSON decoder automatically. 
+Since the request in the previous example declared JSON as it's content type,
+Vapor knows to use a JSON decoder automatically.
 This same method would work just as well for the following request.
 
 ```http
@@ -99,27 +99,13 @@ Now we are ready to encode that HTTP response.
 ```swift
 router.get("user") { req -> Response in
     let user = User(
-        name: "Vapor User", 
+        name: "Vapor User",
         email: "user@vapor.codes"
     )
 
     let res = Response(status: .ok)
-    try res.content(user)
+    try res.encode(user, as: .json)
     return res
-}
-```
-
-Even better, if you don't need to configure any properties on the response, you can 
-simply return the user directly.
-
-```swift
-router.get("user") { req -> User in
-    let user = User(
-        name: "Vapor User", 
-        email: "user@vapor.codes"
-    )
-
-    return user
 }
 ```
 
@@ -129,7 +115,7 @@ Content will automatically encode as JSON by default. You can always override wh
 using the `as:` parameter.
 
 ```swift
-try res.content(user, as: .formURLEncoded)
+try res.encode(user, as: .formURLEncoded)
 ```
 
 You can also change the default media type for any class or struct.
@@ -146,4 +132,3 @@ struct User: Content {
 ## Configuring Content
 
 Coming soon.
-

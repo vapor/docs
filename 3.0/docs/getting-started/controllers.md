@@ -1,6 +1,6 @@
 # Controllers
 
-Controllers are a great way to organization your code. They are collections of methods that accept
+Controllers are a great way to organize your code. They are collections of methods that accept
 a request and return a response.
 
 A good place to put your controllers is in the [Controllers](structure.md#controllers) folder.
@@ -19,7 +19,7 @@ final class HelloController {
 }
 ```
 
-Controller methods should always accept a `Request` and return something `ResponseRepresentable`. 
+Controller methods should always accept a `Request` and return something `ResponseRepresentable`.
 This also includes [futures](futures.md) whose expectations are `ResponseRepresentable` (i.e, `Future<String>`).
 
 To use this controller, we can simply initialize it, then pass the method to a router.

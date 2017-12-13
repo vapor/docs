@@ -45,14 +45,14 @@ final class Routes: RouteCollection {
 
     func boot(router: Router) throws {
         router.get("hello") { req in
-            return "Hello, world!"
+            return Future("Hello, world!")
         }
     }
 }
 ```
 
-You can return anything that conforms to [`Content`](content.md) in a route closure. This includes [futures](futures.md)
-whose expectation is Content as well.
+You _must_ return a Future containing a `RespondeEncodable` here.
+The most common `ResponseEncodable` types are [`Content`](content.md), [`Response`](../http/response.md) amd [`View`](../leaf/view.md).
 
 ## Parameters
 

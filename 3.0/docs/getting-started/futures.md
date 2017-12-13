@@ -54,11 +54,11 @@ api.doThingOne(onCompletion: { one, error in
 Futures prevent nesting and greatly simplify error checking.
 
 ```swift
-let four = api.doThingOne().then {
+let four = api.doThingOne().flatMap(ResultTwo.self) {
     return api.doThingTwo()
-}.then {
+}.flatMap(ResultThree.self) {
     return api.doThingThree()
-}.then {
+}.flatMap(ResultFour.self) {
     return api.doThingFour()
 }
 
