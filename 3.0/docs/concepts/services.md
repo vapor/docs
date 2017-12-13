@@ -190,3 +190,32 @@ let environment = Environment.custom("staging")
 ```
 
 Containers give access to the current environment, so libraries may change behaviour depending on the environment.
+
+### Changing configurations per environment
+
+For easy of development, some parameters may and should change for easy of debugging.
+Password hashes can be made intentionally weaker in development scenarios to compensate for debug compilation performance, or API tokens may change to the correct one for your environment.
+
+```swift
+services.register { container -> BCryptConfig in
+  let cost: Int
+
+  switch container.environment {
+  case .production:
+      cost = 12
+  default:
+      cost = 4
+  }
+
+  return BCryptConfig(cost: cost)
+}
+```
+
+## Getting a Service
+
+To get a service you need an existing container matching the current EventLoop.
+If you're processing a [`Request`](../http/request.md), you should almost always use the Request as a Container type.
+
+```swift
+myContainerType.make(Logger.self, for: Request.self)
+```

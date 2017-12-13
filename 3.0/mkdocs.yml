@@ -14,7 +14,6 @@ pages:
     - 'Folder Structure': 'getting-started/structure.md'
     - 'Application': 'getting-started/application.md'
     - 'Controllers': 'getting-started/controllers.md'
-    - 'JSON': 'getting-started/json.md'
     - 'Routing': 'getting-started/routing.md'
     - 'Content': 'getting-started/content.md'
     - 'Futures': 'getting-started/futures.md'
@@ -29,7 +28,6 @@ pages:
 - 'Async':
     - 'Package': 'async/package.md'
     - 'Futures': 'async/futures.md'
-    - 'FutureType': 'async/futuretype.md'
     - 'Streams': 'async/streams.md'
     - 'EventLoop': 'async/eventloop.md'
 # - 'HTTP':
