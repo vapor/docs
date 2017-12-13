@@ -24,6 +24,10 @@ Services are registered to a matching type or protocol it can represent, includi
 
 Services are registered to a blueprint before the [`Application`](../getting-started/application.md) is initialized. Together they make up the blueprint that Containers use to create an individual Service.
 
+### Environment
+
+Environments indicate the type of deployment/situation in which an application is ran. Environments can be used to change database credentials or API tokens per environment. Development environments often have more debugging features and don't impact real life. A credit card transaction in development is often faked.
+
 ## Registering
 
 Services are registered as a concrete (singleton) type or factories. Singleton types should be a struct, but can be a class.
@@ -98,7 +102,30 @@ The above can be combined with `isSingleton: true`
 
 ### Registering multiple conformances
 
-A sing
+A single type can conform to multiple protocols, and you might want to register a single service for all those conforming situations.
+
+```swift
+protocol Console {
+  func write(_ message: String, color: AnsiColor)
+}
+
+struct PrintConsole: Console, Logger {
+  func write(_ message: String, color: AnsiColor) {
+    print(message)
+  }
+
+  func log(_ message: String, level: Level) {
+    print(message)
+  }
+
+  init() {}
+}
+
+services.register(
+  supports: [Logger.self, Console.self],
+  ErrorLogger()
+)
+```
 
 ### Registering for a specific requester
 
@@ -138,58 +165,28 @@ services.register(Logger.self, PrintLogger(), for: Router.self)
 
 Some services have dependencies. An extremly useful use case is TLS, where the implementation is separated from the protocol. This allows users to create a TLS socket to connect to another host with without relying on a specific implementation. Vapor uses this to better integrate with the operating system by changing the default TLS implementation from OpenSSL on Linux to the Transport Security Framework on macOS and iOS.
 
-```swift
-```
-
-### Types and implementations
-
-For any given type or protocol you can implement multiple factories and implementations. An example where this is useful is configuration files.
+Factorized services get access to the event loop to factorize dependencies.
 
 ```swift
-services.register(HTTPServerConfig.self) { container in
-  return HTTPServerConfig(port: 8081)
+services.register { container -> GithubClient in
+  // Create an HTTP client for our GithubClient
+  let client = try container.make(Client.self, for: GithubClient.self)
+  try client.connect(hostname: "github.com", ssl: true)
+
+  return GithubClient(using: client)
 }
 ```
 
-The above lines of code register a new `HTTPServerConfig` to the `HTTPServerConfig.self` Type. This means that whenever I, or any code requests an `HTTPServerConfig`, the above function will be executed which will return me a config on port `8081`.
+Please do note that we explicitly stated that the `GithubClient` requests an (HTTP) Client. We recommend doing this at all times, so that you leave configuration options open.
+
+## Environments
+
+Vapor 3 supports (custom) environments. By default we recommend (and support) the `.production`, `.development` and `.testing` environments.
+
+You can create a custom environment type as `.custom(<my-environment-name>)`.
 
 ```swift
-let serverConfig = try services.make(HTTPServerConfig.self)
-
-print(serverConfig.port) // prints `8081`
+let environment = Environment.custom("staging")
 ```
 
-### Protocols and Environments
-
-In Swift, we prefer working with protocols. This is useful for testing and adds flexibility. Assuming the simple logging protocol and implementation below we'll try to set up a protocol oriented service.
-
-```swift
-
-```
-
-Using the above code we could use the `VerboseLogger` for development, and error logger on production.
-
-```swift
-services.register(Logger.self) { container in
-  if container == .development {
-    return VerboseLogger()
-  } else {
-    return ErrorLogger()
-  }
-}
-```
-
-If we set Vapor's environment to development we'll get an instance of `VerboseLogger` and otherwise we'll get an `ErrorLogger`.
-
-```swift
-let logger = container.make(Logger.self, for: Request.self)
-logger.log("hello", level: .verbose) // only logs on development
-```
-
-## Containers
-
-Containers are types that contain the current context. They have access to the services, environment, configuration and [EventLoop](async.md) and can use these to `.make()` new service types.
-
-The factory method registered to a service will get access to the container's Context during the creation of type.
-
-There are a few containers that are often accessed, the primary `Container` type for Vapor users is
+Containers give access to the current environment, so libraries may change behaviour depending on the environment.
