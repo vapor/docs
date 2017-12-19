@@ -16,40 +16,12 @@ The body can be a `Body` or `BodyRepresentable`. If the body is a `BodyRepresent
 let response1 = Response(
                   status: status,
                   headers: headers,
-                  body: body)
+                  body: body
+                )
 
 let response2 = try Response(
                   status: status,
                   headers: headers,
-                  body: bodyRepresentable)
-```
-
-## ResponseRepresentable
-
-Instead of requiring a Response, many parts of the framework and related libraries work with the protocol `ResponseRepresentable`. When types conform to `ResponseRepresentable` they're required to implement a `makeResponse` function that allows conversion from this instance to a `Response`.
-
-For the purpose of an example, we'll convert an integer to a `Response`. This `Int` will always response with a status code 200 (OK) and a body containing itself in textual representation.
-
-```swift
-extension Int: ResponseRepresentable {
-  public func makeResponse() throws -> Response {
-    return try Response(status: .ok, body: self.description)
-  }
-}
-```
-
-## ResponseInitializable
-
-`ResponseInitializable` is used for converting a `Response` to another type.
-
-This is particularly useful for [HTTP Clients](client.md) that interact with existing APIs.
-
-This example is pseudocode for interacting with a payment API such as Stripe or PayPal in a type-safe fashion.
-
-```swift
-struct PaymentStatus: ResponseInitializable {
-  public init(response: Response) throws {
-    // Create a `PaymentStatus` from the API call's `Response`
-  }
-}
+                  body: bodyRepresentable
+                )
 ```
