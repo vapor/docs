@@ -7,6 +7,8 @@ The Async library consists of two major concepts:
 - the promise & future objects
 - Streams
 
+This document will focus on the Promises and Futures. For information on streams, [read more here](../async/streams.md)
+
 ## Promise & Future
 
 Promises and Futures are two strongly related types. Every promise has a future.
@@ -175,9 +177,3 @@ At the end of the above function, `i` will *always* be 0. If the promise is comp
 ### Signals
 
 Signals, or `Future<Void>` is a Future that can contain either an Error or Void (the Expectation). `Future<Void>` is often used to indicate the successful or unsuccessful completion of a task.
-
-## Streams
-
-Streams are a protocol which, if conformed to, allows reactive data processing. They're lightweight on memory, are easily integrated and allow for readable and maintainable code with high performance and high reusability.
-
-# **TODO**

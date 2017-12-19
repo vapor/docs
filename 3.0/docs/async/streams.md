@@ -1,137 +1,69 @@
-Streams are a mechanism that process any information efficiently, reactively and asynchronously without bloat.
+# Streams
 
-There are three primary stream protocols:
+Streams are a mechanism that process any information efficiently, [reactively](reactive.md) and asynchronously without bloat.
 
-- InputStream
-- OutputStream
-- Stream
-
-Conforming to Stream means conformance to both InputStream and OutputStream. So `Stream` is both processing output and providing output.
-
-InputStream is a protocol that, when implemented, accepts streaming input. An example can be a TCP socket that, on input, writes data to the socket.
-
-OutputStream is a protocol that, when implement, can emit output.
-
-### Concept
-
-In Vapor 3 (related libraries), almost everything is a stream. TCP Server is a stream of clients. Each client is a stream of received binary data. For HTTP, each client has an HTTP Request Parser, and Response Serializer. A parser accepts the binary stream and outputs a request stream. And a responder accepts a response and outputs a binary stream (that you can send back to the client's TCP socket as input for the binary stream).
+Streams are designed to limit memory usage and copies. They are used in all domains of Vapor 3, be it sockets, be it (larger) database operations.
 
 ## Draining streams
 
-Now that we've seen how to chain streams, let's talk about draining. In this example the [TCP Server](../sockets/tcp-server.md) accepts a client stream which can be drained with a closure. This allows additional processing to take place.
-
 In this example we print the string representation of the TCP connnection's incoming data.
 
+Since this socket is reactive we need to first request data before we can expect a result.
+After requesting data we need to set up the output
+
 ```swift
-tcpSocket.drain { buffer in
+import Async
+import Foundation
+
+...
+
+tcpSocket.drain { upstream in
+  upstream.request()
+}.output { buffer in
   print(String(bytes: buffer, encoding: .utf8))
+  tcpSocket.request()
+}.catch { error in
+  print("Error occurred \(error)")
+}.finally {
+  print("TCP socket closed")
 }
 ```
 
-Another use case for draining is when the stream does not need to be continued any further. After a [Response](../http/response.md) has been sent to the Client, nothing else needs to happen.
+In the above implementation we explicitly request more information from the socket after receiving output.
 
-## Catching stream errors
+## Emitting output
 
-When a (fatal) error occurs, often something need to happen. Many chained streams will do a sensible default. Sockets will close, for example. You can hook into this process by `.catch`-ing a stream's errors.
+Emitter streams are useful if you don't want to create your own reactive stream implementation.
+
+They allow emitting output easily which can then be used like any other stream.
 
 ```swift
-stream.catch { error in
-  // Do something with the error
-  print(error)
+let emitter = EmitterStream<Int>()
+
+emitter.drain { upstream in
+  upstream.request()
+}.output { number in
+  print(number)
+  emitter.request()
 }
+
+emitter.emit(3)
+emitter.emit(4)
+emitter.emit(3)
+emitter.emit(5)
 ```
 
-## Implementing an example stream
+## Mapping Streams
 
-This example is a stream that deserializes `ByteBuffer` to `String` streaming/asynchronously.
+To transform a string to another type you can map it similarly to futures.
+The following assumes `stream` contains a stream of `Int` as defined in the above emitter.
 
 ```swift
-struct InvalidUTF8 : Error {}
-
-// Deserializes `ByteBuffer` (`Input`) to `String` (`Output`) using the provided encoding
-class StringDeserializationStream: Async.Stream {
-    typealias Input = ByteBuffer
-    typealias Output = String
-
-    // Used only by this specific stream to specify an encoding
-    let encoding: String.Encoding
-
-    // MARK: Stream requirements
-
-    // An error stream that can be listened to for errors in this stream
-    var errorStream: BaseStream.ErrorHandler?
-
-    // A handler that can be set to handle output
-    var outputStream: OutputHandler?
-
-    // Creates a new `StringDeserializationStream`
-    init(encoding: String.Encoding = .utf8) {
-        // Sets the String encoding
-        self.encoding = encoding
-    }
-
-    // Receives `Input`/`ByteBuffer` from another stream or manual call
-    //
-    // Attempts to process it to a String using the specified encoding
-    func inputStream(_ input: Input) {
-        // Converts the `Input`/`ByteBuffer` to a String
-        guard let string = String(bytes: input, encoding: self.encoding) {
-            // Stream an error if string initialization failed
-            self.errorStream?(InvalidUTF8())
-            return
-        }
-
-        // On success, output the created string
-        self.outputStream?(string)
-    }
+let stringStream = emitter.map(to: String.self) { number in
+  return number.description
 }
 ```
 
-## Transforming streams without an intermediary stream
+## Implementing customstreams
 
-The above stream `StringDeserializationStream` is a very simple example of implementing a stream.
-
-Streams support two kinds of transforms. `flatMap` and `map`. Map transforms the output of the stream into a new stream with different output. And `flatMap` does the same, but allows returning `nil` and does not output it.
-
-```swift
-// `flatMap`s the data into a `String?`. If the string results in `nil`, the resulting `stringStream` does not get called.
-// `stringStream` is a stream outputting `String`
-let stringStream = tcpStream.flatMap { bytes in
-  return String(bytes: bytes, encoding: .utf8)
-}
-
-// `map`s the data into a `String?`. If the string results in `nil`, the resulting `optionalStringStream` emits `nil`, too.
-// `optionalStringStream` is a stream outputting `String?`
-let optionalStringStream = tcpStream.map { bytes in
-  return String(bytes: bytes, encoding: .utf8)
-}
-```
-
-As you see, you an provide a closure to do the mapping for you. If you want to reuse this code instead, you could make it a function for simplicity. This function can then be used instead of the closure.
-
-```swift
-// Creates a `String` from `ByteBuffer`. This can return `nil` if the `ByteBuffer` doesn't contain valid UTF-8
-func utf8String(from bytes: ByteBuffer) -> String? {
-  return String(bytes: bytes, encoding: .utf8)
-}
-
-// `flatMap`s the data into a `String?`. If the string results in `nil`, the resulting `stringStream` does not get called.
-// `stringStream` is a stream outputting `String`
-let stringStream = tcpStream.flatMap(utf8String)
-
-// `map`s the data into a `String?`. If the string results in `nil`, the resulting `optionalStringStream` emits `nil`, too.
-// `optionalStringStream` is a stream outputting `String?`
-let optionalStringStream = tcpStream.map(utf8String)
-```
-
-## Chaining streams
-
-If an `OutputStream`'s Output is the same as an `InputStream`'s input, you can "chain" these streams together to create really performant and readable solutions.
-
-This doesn't work for all situation, but let's look at an example that *does* accept [base64](../crypto/base64.md).
-
-```swift
-client.stream(to: base64encoder).stream(to: client)
-```
-
-The result is an "echo" server that base64-encodes incoming data, and replies it back in base64-encoded format.
+TODO
