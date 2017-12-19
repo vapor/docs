@@ -30,6 +30,7 @@ pages:
     - 'Futures': 'async/futures.md'
     - 'Streams': 'async/streams.md'
     - 'EventLoop': 'async/eventloop.md'
+    - 'Reactive Programming': 'async/reactive.md'
 # - 'HTTP':
 #     - 'Package': 'http/package.md'
 #     - 'Body': 'http/body.md'

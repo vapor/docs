@@ -26,7 +26,7 @@ Services are registered to a blueprint before the [`Application`](../getting-sta
 
 ### Environment
 
-Environments indicate the type of deployment/situation in which an application is ran. Environments can be used to change database credentials or API tokens per environment. Development environments often have more debugging features and don't impact real life. A credit card transaction in development is often faked.
+Environments indicate the type of deployment/situation in which an application is ran. Environments can be used to change database credentials or API tokens per environment automatically.
 
 ## Registering
 
@@ -217,5 +217,9 @@ To get a service you need an existing container matching the current EventLoop.
 If you're processing a [`Request`](../http/request.md), you should almost always use the Request as a Container type.
 
 ```swift
-myContainerType.make(Logger.self, for: Request.self)
+// ErrorLogger
+let errorLogger = myContainerType.make(Logger.self, for: Request.self)
+
+// PrintLogger
+let printLogger = myContainerType.make(Logger.self, for: Router.self)
 ```

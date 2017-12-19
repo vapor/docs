@@ -1,4 +1,4 @@
-Streams is a mechanism that you can implement on objects that process any information efficiently and asynchronously without bloat.
+Streams are a mechanism that process any information efficiently, reactively and asynchronously without bloat.
 
 There are three primary stream protocols:
 

@@ -51,13 +51,15 @@ Vapor 3 offers a `flatMap` solution here that will help keep the code readable a
 app.get("friends") { request in
 	let session = try request.getSessionCookie() as UserSession
 
+  let user = try session.user.resolve() // Future<User>
+
 	// Fetch the user
-	return try session.user.resolve().flatten { user in
+	return user.flatMap(to: [User].self) { user in
 		// Returns all the user's friends
 		return try user.friends.resolve()
-	}.map { friends in
-		// Flatten replaced this future with
-		return try view.make("friends", context: friends, for: request)
+	}.flatMap(to: View.self) { friends in // Future<[User]> -> Future<View>
+		// flatMap replaced this future with result
+		return try view.make("friendslist", context: friends, for: request)
 	}
 }
 ```
@@ -161,7 +163,7 @@ Futures can be mapped to different results asynchronously.
 let future: Future<User> = fetchUser(named: "Admin")
 
 // Maps the user to it's username
-let futureUsername: Future<String> = future.map { user in
+let futureUsername: Future<String> = future.map(to: String.self) { user in
 	return user.username
 }
 
