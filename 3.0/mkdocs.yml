@@ -73,26 +73,22 @@ pages:
 #         - 'Package': 'databases/postgres/package.md'
 #         - 'Setup': 'databases/postgres/setup.md'
 #         - 'Basics': 'databases/postgres/basics.md'
-# - 'Redis':
-#     - 'Package': 'redis/package.md'
-#     - 'Basics': 'redis/basics.md'
-#     - 'Custom commands': 'redis/custom-commands.md'
-#     - 'Publish and Subscribe': 'redis/pub-sub.md'
-#     - 'Pipeline': 'redis/pipeline.md'
-# - 'WebSocket':
-#     - 'WebSocket': 'websocket/websocket.md'
-#     - 'Binary': 'websocket/binary-stream.md'
-#     - 'Text': 'websocket/text-stream.md'
-#     - 'Client': 'websocket/client.md'
-#     - 'Server Upgrades': 'websocket/upgrade.md'
+- 'Redis':
+    - 'Package': 'redis/package.md'
+    - 'Basics': 'redis/basics.md'
+    - 'Custom commands': 'redis/custom-commands.md'
+    - 'Publish and Subscribe': 'redis/pub-sub.md'
+    - 'Pipeline': 'redis/pipeline.md'
+- 'WebSocket':
+    - 'WebSocket': 'websocket/websocket.md'
 # - 'Routing':
 #     - 'Package': 'routing/package.md'
 #     - 'Basics': 'routing/basics.md'
 #     - 'Parameters': 'routing/parameters.md'
 #     - 'Route': 'routing/route.md'
 #     - 'Router': 'routing/router.md'
-# - 'Services':
-#     - 'Getting Started': 'services/getting-started.md'
+- 'Services':
+    - 'Getting Started': 'services/getting-started.md'
 # - 'JWT':
 #     - 'Package': 'jwt/package.md'
 #     - 'Signed Tokens': 'jwt/jws.md'
