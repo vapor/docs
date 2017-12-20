@@ -40,9 +40,9 @@ pages:
     - 'Methods': 'http/method.md'
     - 'Middleware': 'http/middleware.md'
     - 'Multipart': 'http/multipart.md'
-    - 'Request': 'http/request.md'
-    - 'Response': 'http/response.md'
-    - 'Responder': 'http/responder.md'
+    # - 'Request': 'http/request.md'
+    # - 'Response': 'http/response.md'
+    # - 'Responder': 'http/responder.md'
     - 'Status codes': 'http/status.md'
     - 'URI': 'http/uri.md'
 # - 'Fluent':
