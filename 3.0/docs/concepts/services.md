@@ -1,6 +1,6 @@
 # Services
 
-Services is a framework for managing types and implementations in a type-safe fashion with protocol and environment support.
+Services is a framework for creating things you need in your application in a type-safe fashion with protocol and environment support.
 
 The Services framework is designed to be thread unsafe. The framework aims to guarantee that a service exists on the same [EventLoop](../async/eventloop.md) it was created from and will be used on.
 
