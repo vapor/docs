@@ -79,26 +79,24 @@ pages:
     - 'Custom commands': 'redis/custom-commands.md'
     - 'Publish and Subscribe': 'redis/pub-sub.md'
     - 'Pipeline': 'redis/pipeline.md'
-- 'WebSocket':
-    - 'WebSocket': 'websocket/websocket.md'
+- 'WebSocket': 'websocket/websocket.md'
 # - 'Routing':
 #     - 'Package': 'routing/package.md'
 #     - 'Basics': 'routing/basics.md'
 #     - 'Parameters': 'routing/parameters.md'
 #     - 'Route': 'routing/route.md'
 #     - 'Router': 'routing/router.md'
-- 'Services':
-    - 'Getting Started': 'services/getting-started.md'
+- 'Services': 'services/getting-started.md'
 # - 'JWT':
 #     - 'Package': 'jwt/package.md'
 #     - 'Signed Tokens': 'jwt/jws.md'
-# - 'Crypto':
-#     - 'Package': 'crypto/package.md'
-#     - 'Base64': 'crypto/base64.md'
-#     - 'Hashes': 'crypto/hash.md'
-#     - 'Message authentication': 'crypto/mac.md'
-#     - 'Password hashing': 'crypto/passwords.md'
-#     - 'Random': 'crypto/random.md'
+- 'Crypto':
+    - 'Package': 'crypto/package.md'
+    - 'Base64': 'crypto/base64.md'
+    - 'Hashes': 'crypto/hash.md'
+    - 'Message authentication': 'crypto/mac.md'
+    - 'Password hashing': 'crypto/passwords.md'
+    - 'Random': 'crypto/random.md'
 # - 'TLS':
 #     - 'Package': 'tls/package.md'
 #     - 'Client': 'tls/client.md'
