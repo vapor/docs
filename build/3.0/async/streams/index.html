@@ -369,18 +369,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../getting-started/json/" title="JSON" class="md-nav__link">
-      JSON
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../getting-started/routing/" title="Routing" class="md-nav__link">
       Routing
     </a>
@@ -453,8 +441,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../concepts/vapor/" title="What is Vapor?" class="md-nav__link">
-      What is Vapor?
+    <a href="../../concepts/vapor/" title="Vapor" class="md-nav__link">
+      Vapor
     </a>
   </li>
 
@@ -465,20 +453,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../concepts/async/" title="Async" class="md-nav__link">
-      Async
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../concepts/codable/" title="Codable" class="md-nav__link">
-      Codable
+    <a href="../../concepts/content/" title="Content" class="md-nav__link">
+      Content
     </a>
   </li>
 
@@ -503,6 +479,18 @@
   <li class="md-nav__item">
     <a href="../../concepts/http/" title="HTTP" class="md-nav__link">
       HTTP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../concepts/code-contributions/" title="Code Contributions" class="md-nav__link">
+      Code Contributions
     </a>
   </li>
 
@@ -539,7 +527,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../package/" title="Package" class="md-nav__link">
+    <a href="../getting-started/" title="Package" class="md-nav__link">
       Package
     </a>
   </li>
@@ -568,6 +556,8 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
     
+      
+    
     
       <label class="md-nav__link md-nav__link--active" for="toc">
         Streams
@@ -581,16 +571,11 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
+  
   
     <label class="md-nav__title" for="toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#concept" title="Concept" class="md-nav__link">
-    Concept
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#draining-streams" title="Draining streams" class="md-nav__link">
@@ -600,29 +585,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#catching-stream-errors" title="Catching stream errors" class="md-nav__link">
-    Catching stream errors
+  <a href="#emitting-output" title="Emitting output" class="md-nav__link">
+    Emitting output
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#implementing-an-example-stream" title="Implementing an example stream" class="md-nav__link">
-    Implementing an example stream
+  <a href="#mapping-streams" title="Mapping Streams" class="md-nav__link">
+    Mapping Streams
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#transforming-streams-without-an-intermediary-stream" title="Transforming streams without an intermediary stream" class="md-nav__link">
-    Transforming streams without an intermediary stream
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#chaining-streams" title="Chaining streams" class="md-nav__link">
-    Chaining streams
+  <a href="#implementing-custom-streams" title="Implementing custom streams" class="md-nav__link">
+    Implementing custom streams
   </a>
   
 </li>
@@ -642,8 +620,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../worker/" title="Worker" class="md-nav__link">
-      Worker
+    <a href="../eventloop/" title="EventLoop" class="md-nav__link">
+      EventLoop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reactive/" title="Reactive Programming" class="md-nav__link">
+      Reactive Programming
     </a>
   </li>
 
@@ -678,7 +668,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../http/package/" title="Package" class="md-nav__link">
+    <a href="../../http/getting-started/" title="Package" class="md-nav__link">
       Package
     </a>
   </li>
@@ -774,56 +764,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../http/request/" title="Request" class="md-nav__link">
-      Request
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../http/response/" title="Response" class="md-nav__link">
-      Response
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../http/responder/" title="Responder" class="md-nav__link">
-      Responder
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../http/status/" title="Status codes" class="md-nav__link">
       Status codes
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../http/body-stream/" title="Streaming Body" class="md-nav__link">
-      Streaming Body
     </a>
   </li>
 
@@ -855,418 +797,10 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
     
     <label class="md-nav__link" for="nav-7">
-      Fluent
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-7">
-        Fluent
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-1" type="checkbox" id="nav-7-1">
-    
-    <label class="md-nav__link" for="nav-7-1">
-      Getting Started
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-7-1">
-        Getting Started
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../fluent/getting-started/package/" title="Package" class="md-nav__link">
-      Package
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../fluent/getting-started/provider/" title="Provider" class="md-nav__link">
-      Provider
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../fluent/getting-started/models/" title="Models" class="md-nav__link">
-      Models
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../fluent/getting-started/migrations/" title="Migrations" class="md-nav__link">
-      Migrations
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../fluent/getting-started/querying/" title="Querying" class="md-nav__link">
-      Querying
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../fluent/database/" title="Database" class="md-nav__link">
-      Database
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../fluent/model/" title="Model" class="md-nav__link">
-      Model
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../fluent/query-builder/" title="Query Builder" class="md-nav__link">
-      Query Builder
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../fluent/migration/" title="Migration" class="md-nav__link">
-      Migration
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../fluent/schema-builder/" title="Schema Builder" class="md-nav__link">
-      Schema Builder
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../fluent/relations/" title="Relations" class="md-nav__link">
-      Relations
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../fluent/pivot/" title="Pivot" class="md-nav__link">
-      Pivot
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../fluent/transaction/" title="Transaction" class="md-nav__link">
-      Transaction
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
-    
-    <label class="md-nav__link" for="nav-8">
-      Databases
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-8">
-        Databases
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-1" type="checkbox" id="nav-8-1">
-    
-    <label class="md-nav__link" for="nav-8-1">
-      SQLite
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-8-1">
-        SQLite
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../databases/sqlite/package/" title="Package" class="md-nav__link">
-      Package
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../databases/sqlite/overview/" title="Overview" class="md-nav__link">
-      Overview
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-2" type="checkbox" id="nav-8-2">
-    
-    <label class="md-nav__link" for="nav-8-2">
-      MySQL
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-8-2">
-        MySQL
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../databases/mysql/package/" title="Package" class="md-nav__link">
-      Package
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../databases/mysql/setup/" title="Setup" class="md-nav__link">
-      Setup
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../databases/mysql/basics/" title="Basics" class="md-nav__link">
-      Basics
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../databases/mysql/prepared-statements/" title="Prepared Statements" class="md-nav__link">
-      Prepared Statements
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-3" type="checkbox" id="nav-8-3">
-    
-    <label class="md-nav__link" for="nav-8-3">
-      PostgreSQL
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-8-3">
-        PostgreSQL
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../databases/postgres/package/" title="Package" class="md-nav__link">
-      Package
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../databases/postgres/setup/" title="Setup" class="md-nav__link">
-      Setup
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../databases/postgres/basics/" title="Basics" class="md-nav__link">
-      Basics
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
-    
-    <label class="md-nav__link" for="nav-9">
       Redis
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-9">
+      <label class="md-nav__title" for="nav-7">
         Redis
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1278,7 +812,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../redis/package/" title="Package" class="md-nav__link">
+    <a href="../../redis/getting-started/" title="Package" class="md-nav__link">
       Package
     </a>
   </li>
@@ -1342,202 +876,22 @@
       
 
 
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
-    
-    <label class="md-nav__link" for="nav-10">
-      WebSocket
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-10">
-        WebSocket
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
   <li class="md-nav__item">
     <a href="../../websocket/websocket/" title="WebSocket" class="md-nav__link">
       WebSocket
     </a>
   </li>
 
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../websocket/binary-stream/" title="Binary" class="md-nav__link">
-      Binary
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../websocket/text-stream/" title="Text" class="md-nav__link">
-      Text
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../websocket/client/" title="Client" class="md-nav__link">
-      Client
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../websocket/upgrade/" title="Server Upgrades" class="md-nav__link">
-      Server Upgrades
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
     
       
       
       
 
 
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
-    
-    <label class="md-nav__link" for="nav-11">
-      Routing
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-11">
-        Routing
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
   <li class="md-nav__item">
-    <a href="../../routing/package/" title="Package" class="md-nav__link">
-      Package
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../routing/basics/" title="Basics" class="md-nav__link">
-      Basics
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../routing/parameters/" title="Parameters" class="md-nav__link">
-      Parameters
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../routing/route/" title="Route" class="md-nav__link">
-      Route
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../routing/router/" title="Router" class="md-nav__link">
-      Router
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
-    
-    <label class="md-nav__link" for="nav-12">
+    <a href="../../services/getting-started/" title="Services" class="md-nav__link">
       Services
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-12">
-        Services
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../services/getting-started/" title="Getting Started" class="md-nav__link">
-      Getting Started
     </a>
-  </li>
-
-        
-      </ul>
-    </nav>
   </li>
 
     
@@ -1548,61 +902,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
     
-    <label class="md-nav__link" for="nav-13">
-      JWT
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-13">
-        JWT
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../jwt/package/" title="Package" class="md-nav__link">
-      Package
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../jwt/jws/" title="Signed Tokens" class="md-nav__link">
-      Signed Tokens
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
-    
-    <label class="md-nav__link" for="nav-14">
+    <label class="md-nav__link" for="nav-10">
       Crypto
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-14">
+      <label class="md-nav__title" for="nav-10">
         Crypto
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1614,7 +920,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../crypto/package/" title="Package" class="md-nav__link">
+    <a href="../../crypto/getting-started/" title="Package" class="md-nav__link">
       Package
     </a>
   </li>
@@ -1692,265 +998,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
     
-    <label class="md-nav__link" for="nav-15">
-      TLS
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-15">
-        TLS
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../tls/package/" title="Package" class="md-nav__link">
-      Package
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../tls/client/" title="Client" class="md-nav__link">
-      Client
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-16" type="checkbox" id="nav-16">
-    
-    <label class="md-nav__link" for="nav-16">
-      Sockets
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-16">
-        Sockets
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../sockets/package/" title="Package" class="md-nav__link">
-      Package
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../sockets/tcp-client/" title="TCP Client" class="md-nav__link">
-      TCP Client
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../sockets/tcp-server/" title="TCP Server" class="md-nav__link">
-      TCP Server
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../sockets/tcp-socket/" title="TCP Socket" class="md-nav__link">
-      TCP Socket
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-17" type="checkbox" id="nav-17">
-    
-    <label class="md-nav__link" for="nav-17">
-      Testing
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-17">
-        Testing
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../testing/getting-started/" title="Getting Started" class="md-nav__link">
-      Getting Started
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-18" type="checkbox" id="nav-18">
-    
-    <label class="md-nav__link" for="nav-18">
-      Security
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-18">
-        Security
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../security/" title="Index" class="md-nav__link">
-      Index
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../security/dos/" title="Denial of Service" class="md-nav__link">
-      Denial of Service
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-19" type="checkbox" id="nav-19">
-    
-    <label class="md-nav__link" for="nav-19">
-      Additional information
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-19">
-        Additional information
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../supplementary/architecture/" title="Architecture" class="md-nav__link">
-      Architecture
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../supplementary/performance/" title="Performance" class="md-nav__link">
-      Performance
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-20" type="checkbox" id="nav-20">
-    
-    <label class="md-nav__link" for="nav-20">
+    <label class="md-nav__link" for="nav-11">
       Version (3.0-alpha)
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-20">
+      <label class="md-nav__title" for="nav-11">
         Version (3.0-alpha)
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -2023,16 +1077,11 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
+  
   
     <label class="md-nav__title" for="toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#concept" title="Concept" class="md-nav__link">
-    Concept
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#draining-streams" title="Draining streams" class="md-nav__link">
@@ -2042,29 +1091,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#catching-stream-errors" title="Catching stream errors" class="md-nav__link">
-    Catching stream errors
+  <a href="#emitting-output" title="Emitting output" class="md-nav__link">
+    Emitting output
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#implementing-an-example-stream" title="Implementing an example stream" class="md-nav__link">
-    Implementing an example stream
+  <a href="#mapping-streams" title="Mapping Streams" class="md-nav__link">
+    Mapping Streams
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#transforming-streams-without-an-intermediary-stream" title="Transforming streams without an intermediary stream" class="md-nav__link">
-    Transforming streams without an intermediary stream
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#chaining-streams" title="Chaining streams" class="md-nav__link">
-    Chaining streams
+  <a href="#implementing-custom-streams" title="Implementing custom streams" class="md-nav__link">
+    Implementing custom streams
   </a>
   
 </li>
@@ -2086,124 +1128,62 @@
                   <a href="https://github.com/vapor/documentation/edit/beta/3.0/docs/async/streams.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Streams</h1>
-                
-                <p>Streams is a mechanism that you can implement on objects that process any information efficiently and asynchronously without bloat.</p>
-<p>There are three primary stream protocols:</p>
-<ul>
-<li>InputStream</li>
-<li>OutputStream</li>
-<li>Stream</li>
-</ul>
-<p>Conforming to Stream means conformance to both InputStream and OutputStream. So <code>Stream</code> is both processing output and providing output.</p>
-<p>InputStream is a protocol that, when implemented, accepts streaming input. An example can be a TCP socket that, on input, writes data to the socket.</p>
-<p>OutputStream is a protocol that, when implement, can emit output.</p>
-<h3 id="concept">Concept<a class="headerlink" href="#concept" title="Permanent link">&para;</a></h3>
-<p>In Vapor 3 (related libraries), almost everything is a stream. TCP Server is a stream of clients. Each client is a stream of received binary data. For HTTP, each client has an HTTP Request Parser, and Response Serializer. A parser accepts the binary stream and outputs a request stream. And a responder accepts a response and outputs a binary stream (that you can send back to the client's TCP socket as input for the binary stream).</p>
+                <h1 id="streams">Streams<a class="headerlink" href="#streams" title="Permanent link">&para;</a></h1>
+<p>Streams are a mechanism that process any information efficiently, <a href="../reactive/">reactively</a> and asynchronously without bloat. They make asynchronous data flows easier to deal with.</p>
+<p>Streams are designed to limit memory usage and copies. They are used in all domains of Vapor 3, be it sockets, be it (larger) database operations.</p>
 <h2 id="draining-streams">Draining streams<a class="headerlink" href="#draining-streams" title="Permanent link">&para;</a></h2>
-<p>Now that we've seen how to chain streams, let's talk about draining. In this example the <a href="../../sockets/tcp-server/">TCP Server</a> accepts a client stream which can be drained with a closure. This allows additional processing to take place.</p>
 <p>In this example we print the string representation of the TCP connnection's incoming data.</p>
-<div class="codehilite"><pre><span></span><span class="n">tcpSocket</span><span class="p">.</span><span class="n">drain</span> <span class="p">{</span> <span class="n">buffer</span> <span class="k">in</span>
-  <span class="bp">print</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">bytes</span><span class="p">:</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">))</span>
+<p>Since this socket is reactive we need to first request data before we can expect a result.
+After requesting data we need to set up the output</p>
+<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Async</span>
+<span class="kd">import</span> <span class="nc">Foundation</span>
+
+<span class="p">...</span>
+
+<span class="n">tcpSocket</span><span class="p">.</span><span class="n">drain</span> <span class="p">{</span> <span class="n">upstream</span> <span class="k">in</span>
+    <span class="n">upstream</span><span class="p">.</span><span class="n">request</span><span class="p">()</span>
+<span class="p">}.</span><span class="n">output</span> <span class="p">{</span> <span class="n">buffer</span> <span class="k">in</span>
+    <span class="bp">print</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">bytes</span><span class="p">:</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">))</span>
+    <span class="n">tcpSocket</span><span class="p">.</span><span class="n">request</span><span class="p">()</span>
+<span class="p">}.</span><span class="k">catch</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Error occurred </span><span class="si">\(</span><span class="n">error</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="p">}.</span><span class="n">finally</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;TCP socket closed&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<p>Another use case for draining is when the stream does not need to be continued any further. After a <a href="../../http/response/">Response</a> has been sent to the Client, nothing else needs to happen.</p>
-<h2 id="catching-stream-errors">Catching stream errors<a class="headerlink" href="#catching-stream-errors" title="Permanent link">&para;</a></h2>
-<p>When a (fatal) error occurs, often something need to happen. Many chained streams will do a sensible default. Sockets will close, for example. You can hook into this process by <code>.catch</code>-ing a stream's errors.</p>
-<div class="codehilite"><pre><span></span><span class="n">stream</span><span class="p">.</span><span class="k">catch</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
-  <span class="c1">// Do something with the error</span>
-  <span class="bp">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+<p>In the above implementation we explicitly request more information from the socket after receiving output.</p>
+<h2 id="emitting-output">Emitting output<a class="headerlink" href="#emitting-output" title="Permanent link">&para;</a></h2>
+<p>Emitter streams are useful if you don't want to create your own reactive stream implementation.</p>
+<p>They allow emitting output easily which can then be used like any other stream.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">emitter</span> <span class="p">=</span> <span class="n">EmitterStream</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;()</span>
+
+<span class="n">emitter</span><span class="p">.</span><span class="n">drain</span> <span class="p">{</span> <span class="n">upstream</span> <span class="k">in</span>
+  <span class="n">upstream</span><span class="p">.</span><span class="n">request</span><span class="p">()</span>
+<span class="p">}.</span><span class="n">output</span> <span class="p">{</span> <span class="n">number</span> <span class="k">in</span>
+  <span class="bp">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+  <span class="n">emitter</span><span class="p">.</span><span class="n">request</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">emitter</span><span class="p">.</span><span class="n">emit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">emitter</span><span class="p">.</span><span class="n">emit</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">emitter</span><span class="p">.</span><span class="n">emit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">emitter</span><span class="p">.</span><span class="n">emit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+
+<h2 id="mapping-streams">Mapping Streams<a class="headerlink" href="#mapping-streams" title="Permanent link">&para;</a></h2>
+<p>To transform a string to another type you can map it similarly to futures.
+The following assumes <code>stream</code> contains a stream of <code>Int</code> as defined in the above emitter.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">stringStream</span> <span class="p">=</span> <span class="n">emitter</span><span class="p">.</span><span class="bp">map</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="nb">String</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">number</span> <span class="k">in</span>
+  <span class="k">return</span> <span class="n">number</span><span class="p">.</span><span class="n">description</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<h2 id="implementing-an-example-stream">Implementing an example stream<a class="headerlink" href="#implementing-an-example-stream" title="Permanent link">&para;</a></h2>
-<p>This example is a stream that deserializes <code>ByteBuffer</code> to <code>String</code> streaming/asynchronously.</p>
-<div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">InvalidUTF8</span> <span class="p">:</span> <span class="n">Error</span> <span class="p">{}</span>
-
-<span class="c1">// Deserializes `ByteBuffer` (`Input`) to `String` (`Output`) using the provided encoding</span>
-<span class="kd">class</span> <span class="nc">StringDeserializationStream</span><span class="p">:</span> <span class="n">Async</span><span class="p">.</span><span class="n">Stream</span> <span class="p">{</span>
-    <span class="kd">typealias</span> <span class="n">Input</span> <span class="p">=</span> <span class="n">ByteBuffer</span>
-    <span class="kd">typealias</span> <span class="n">Output</span> <span class="p">=</span> <span class="nb">String</span>
-
-    <span class="c1">// Used only by this specific stream to specify an encoding</span>
-    <span class="kd">let</span> <span class="nv">encoding</span><span class="p">:</span> <span class="nb">String</span><span class="p">.</span><span class="n">Encoding</span>
-
-    <span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> Stream requirements</span>
-
-    <span class="c1">// An error stream that can be listened to for errors in this stream</span>
-    <span class="kd">var</span> <span class="nv">errorStream</span><span class="p">:</span> <span class="n">BaseStream</span><span class="p">.</span><span class="n">ErrorHandler</span><span class="p">?</span>
-
-    <span class="c1">// A handler that can be set to handle output</span>
-    <span class="kd">var</span> <span class="nv">outputStream</span><span class="p">:</span> <span class="n">OutputHandler</span><span class="p">?</span>
-
-    <span class="c1">// Creates a new `StringDeserializationStream`</span>
-    <span class="kd">init</span><span class="p">(</span><span class="n">encoding</span><span class="p">:</span> <span class="nb">String</span><span class="p">.</span><span class="n">Encoding</span> <span class="p">=</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Sets the String encoding</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">encoding</span> <span class="p">=</span> <span class="n">encoding</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Receives `Input`/`ByteBuffer` from another stream or manual call</span>
-    <span class="c1">//</span>
-    <span class="c1">// Attempts to process it to a String using the specified encoding</span>
-    <span class="kd">func</span> <span class="nf">inputStream</span><span class="p">(</span><span class="kc">_</span> <span class="n">input</span><span class="p">:</span> <span class="n">Input</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Converts the `Input`/`ByteBuffer` to a String</span>
-        <span class="k">guard</span> <span class="kd">let</span> <span class="nv">string</span> <span class="p">=</span> <span class="nb">String</span><span class="p">(</span><span class="n">bytes</span><span class="p">:</span> <span class="n">input</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">encoding</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// Stream an error if string initialization failed</span>
-            <span class="kc">self</span><span class="p">.</span><span class="n">errorStream</span><span class="p">?(</span><span class="n">InvalidUTF8</span><span class="p">())</span>
-            <span class="k">return</span>
-        <span class="p">}</span>
-
-        <span class="c1">// On success, output the created string</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">outputStream</span><span class="p">?(</span><span class="n">string</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<h2 id="transforming-streams-without-an-intermediary-stream">Transforming streams without an intermediary stream<a class="headerlink" href="#transforming-streams-without-an-intermediary-stream" title="Permanent link">&para;</a></h2>
-<p>The above stream <code>StringDeserializationStream</code> is a very simple example of implementing a stream.</p>
-<p>Streams support two kinds of transforms. <code>flatMap</code> and <code>map</code>. Map transforms the output of the stream into a new stream with different output. And <code>flatMap</code> does the same, but allows returning <code>nil</code> and does not output it.</p>
-<div class="codehilite"><pre><span></span><span class="c1">// `flatMap`s the data into a `String?`. If the string results in `nil`, the resulting `stringStream` does not get called.</span>
-<span class="c1">// `stringStream` is a stream outputting `String`</span>
-<span class="kd">let</span> <span class="nv">stringStream</span> <span class="p">=</span> <span class="n">tcpStream</span><span class="p">.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="n">bytes</span> <span class="k">in</span>
-  <span class="k">return</span> <span class="nb">String</span><span class="p">(</span><span class="n">bytes</span><span class="p">:</span> <span class="n">bytes</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="c1">// `map`s the data into a `String?`. If the string results in `nil`, the resulting `optionalStringStream` emits `nil`, too.</span>
-<span class="c1">// `optionalStringStream` is a stream outputting `String?`</span>
-<span class="kd">let</span> <span class="nv">optionalStringStream</span> <span class="p">=</span> <span class="n">tcpStream</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="n">bytes</span> <span class="k">in</span>
-  <span class="k">return</span> <span class="nb">String</span><span class="p">(</span><span class="n">bytes</span><span class="p">:</span> <span class="n">bytes</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>As you see, you an provide a closure to do the mapping for you. If you want to reuse this code instead, you could make it a function for simplicity. This function can then be used instead of the closure.</p>
-<div class="codehilite"><pre><span></span><span class="c1">// Creates a `String` from `ByteBuffer`. This can return `nil` if the `ByteBuffer` doesn&#39;t contain valid UTF-8</span>
-<span class="kd">func</span> <span class="nf">utf8String</span><span class="p">(</span><span class="n">from</span> <span class="n">bytes</span><span class="p">:</span> <span class="n">ByteBuffer</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">String</span><span class="p">?</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nb">String</span><span class="p">(</span><span class="n">bytes</span><span class="p">:</span> <span class="n">bytes</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="c1">// `flatMap`s the data into a `String?`. If the string results in `nil`, the resulting `stringStream` does not get called.</span>
-<span class="c1">// `stringStream` is a stream outputting `String`</span>
-<span class="kd">let</span> <span class="nv">stringStream</span> <span class="p">=</span> <span class="n">tcpStream</span><span class="p">.</span><span class="n">flatMap</span><span class="p">(</span><span class="n">utf8String</span><span class="p">)</span>
-
-<span class="c1">// `map`s the data into a `String?`. If the string results in `nil`, the resulting `optionalStringStream` emits `nil`, too.</span>
-<span class="c1">// `optionalStringStream` is a stream outputting `String?`</span>
-<span class="kd">let</span> <span class="nv">optionalStringStream</span> <span class="p">=</span> <span class="n">tcpStream</span><span class="p">.</span><span class="bp">map</span><span class="p">(</span><span class="n">utf8String</span><span class="p">)</span>
-</pre></div>
-
-
-<h2 id="chaining-streams">Chaining streams<a class="headerlink" href="#chaining-streams" title="Permanent link">&para;</a></h2>
-<p>If an <code>OutputStream</code>'s Output is the same as an <code>InputStream</code>'s input, you can "chain" these streams together to create really performant and readable solutions.</p>
-<p>This doesn't work for all situation, but let's look at an example that <em>does</em> accept <a href="../../crypto/base64/">base64</a>.</p>
-<div class="codehilite"><pre><span></span><span class="n">client</span><span class="p">.</span><span class="n">stream</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">base64encoder</span><span class="p">).</span><span class="n">stream</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">client</span><span class="p">)</span>
-</pre></div>
-
-
-<p>The result is an "echo" server that base64-encodes incoming data, and replies it back in base64-encoded format.</p>
+<h2 id="implementing-custom-streams">Implementing custom streams<a class="headerlink" href="#implementing-custom-streams" title="Permanent link">&para;</a></h2>
+<p>Coming soon</p>
                 
                   
                 
@@ -2237,13 +1217,13 @@
           </a>
         
         
-          <a href="../worker/" title="Worker" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../eventloop/" title="EventLoop" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Worker
+                EventLoop
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
