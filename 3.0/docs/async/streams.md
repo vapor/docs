@@ -1,6 +1,6 @@
 # Streams
 
-Streams are a mechanism that process any information efficiently, [reactively](reactive.md) and asynchronously without bloat.
+Streams are a mechanism that process any information efficiently, [reactively](reactive.md) and asynchronously without bloat. They make asynchronous data flows easier to deal with.
 
 Streams are designed to limit memory usage and copies. They are used in all domains of Vapor 3, be it sockets, be it (larger) database operations.
 
