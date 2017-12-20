@@ -18,16 +18,16 @@ try socket.connect(hostname: "example.com", port: 80)
 
 After connecting, your socket may not be ready yet. Since this socket is asynchronous, the `connect` phase may not be over yet.
 
-You'll have to add a `writable` notification to a queue. This queue **must** be the current queue you're working on. [More about this here.](../async/worker.md)
+You'll have to add a `writable` notification to a queue.
 
 ```swift
-let connectedNotification = try socket.writable(queue: worker.queue) // Future<Void>
+let connectedNotification = try socket.writable() // Future<Void>
 ```
 
 At this point, a successful client socket has been created. You can either [interact with sockets manually](tcp-socket.md) or continue using the `TCPClient` helpers. In the second case, continue reading this article and wrap the socket.
 
 ```swift
-let client = TCPClient(socket: socket, worker: worker)
+let client = TCPClient(socket: socket, eventLoop: eventLoop)
 ```
 
 ## Communicating

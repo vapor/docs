@@ -14,24 +14,25 @@ pages:
     - 'Folder Structure': 'getting-started/structure.md'
     - 'Application': 'getting-started/application.md'
     - 'Controllers': 'getting-started/controllers.md'
-    - 'JSON': 'getting-started/json.md'
     - 'Routing': 'getting-started/routing.md'
     - 'Content': 'getting-started/content.md'
     - 'Futures': 'getting-started/futures.md'
     - 'Deployment': 'getting-started/cloud.md'
 - 'Concepts':
-    - 'What is Vapor?': 'concepts/vapor.md'
-    - 'Async': 'concepts/async.md'
-    - 'Codable': 'concepts/codable.md'
+    - 'Vapor': 'concepts/vapor.md'
+    # - 'Async': 'concepts/async.md'
+    - 'Content': 'concepts/content.md'
     - 'Services': 'concepts/services.md'
     - 'HTTP': 'concepts/http.md'
+    - 'Code Contributions': 'concepts/code-contributions.md'
 - 'Async':
-    - 'Package': 'async/package.md'
+    - 'Package': 'async/getting-started.md'
     - 'Futures': 'async/futures.md'
     - 'Streams': 'async/streams.md'
-    - 'Worker': 'async/worker.md'
+    - 'EventLoop': 'async/eventloop.md'
+    - 'Reactive Programming': 'async/reactive.md'
 - 'HTTP':
-    - 'Package': 'http/package.md'
+    - 'Package': 'http/getting-started.md'
     - 'Body': 'http/body.md'
     - 'Client': 'http/client.md'
     - 'Cookies': 'http/cookies.md'
@@ -39,86 +40,73 @@ pages:
     - 'Methods': 'http/method.md'
     - 'Middleware': 'http/middleware.md'
     - 'Multipart': 'http/multipart.md'
-    - 'Request': 'http/request.md'
-    - 'Response': 'http/response.md'
-    - 'Responder': 'http/responder.md'
+    # - 'Request': 'http/request.md'
+    # - 'Response': 'http/response.md'
+    # - 'Responder': 'http/responder.md'
     - 'Status codes': 'http/status.md'
-    - 'Streaming Body': 'http/body-stream.md'
     - 'URI': 'http/uri.md'
-- 'Fluent':
-    - 'Getting Started':
-        - 'Package': 'fluent/getting-started/package.md'
-        - 'Provider': 'fluent/getting-started/provider.md'
-        - 'Models': 'fluent/getting-started/models.md'
-        - 'Migrations': 'fluent/getting-started/migrations.md'
-        - 'Querying': 'fluent/getting-started/querying.md'
-    - 'Database': 'fluent/database.md'
-    - 'Model': 'fluent/model.md'
-    - 'Query Builder': 'fluent/query-builder.md'
-    - 'Migration': 'fluent/migration.md'
-    - 'Schema Builder': 'fluent/schema-builder.md'
-    - 'Relations': 'fluent/relations.md'
-    - 'Pivot': 'fluent/pivot.md'
-    - 'Transaction': 'fluent/transaction.md'
-- 'Databases':
-    - 'SQLite':
-        - 'Package': 'databases/sqlite/package.md'
-        - 'Overview': 'databases/sqlite/overview.md'
-    - 'MySQL':
-        - 'Package': 'databases/mysql/package.md'
-        - 'Setup': 'databases/mysql/setup.md'
-        - 'Basics': 'databases/mysql/basics.md'
-        - 'Prepared Statements': 'databases/mysql/prepared-statements.md'
-    - 'PostgreSQL':
-        - 'Package': 'databases/postgres/package.md'
-        - 'Setup': 'databases/postgres/setup.md'
-        - 'Basics': 'databases/postgres/basics.md'
+# - 'Fluent':
+#     - 'Getting Started':
+#         - 'Package': 'fluent/getting-started/getting-started.md'
+#         - 'Provider': 'fluent/getting-started/provider.md'
+#         - 'Models': 'fluent/getting-started/models.md'
+#         - 'Migrations': 'fluent/getting-started/migrations.md'
+#         - 'Querying': 'fluent/getting-started/querying.md'
+#     - 'Database': 'fluent/database.md'
+#     - 'Model': 'fluent/model.md'
+#     - 'Query Builder': 'fluent/query-builder.md'
+#     - 'Migration': 'fluent/migration.md'
+#     - 'Schema Builder': 'fluent/schema-builder.md'
+#     - 'Relations': 'fluent/relations.md'
+#     - 'Pivot': 'fluent/pivot.md'
+#     - 'Transaction': 'fluent/transaction.md'
+# - 'Databases':
+#     - 'SQLite':
+#         - 'Package': 'databases/sqlite/getting-started.md'
+#         - 'Overview': 'databases/sqlite/overview.md'
+#     - 'MySQL':
+#         - 'Package': 'databases/mysql/getting-started.md'
+#         - 'Setup': 'databases/mysql/setup.md'
+#         - 'Basics': 'databases/mysql/basics.md'
+#         - 'Prepared Statements': 'databases/mysql/prepared-statements.md'
+#     - 'PostgreSQL':
+#         - 'Package': 'databases/postgres/getting-started.md'
+#         - 'Setup': 'databases/postgres/setup.md'
+#         - 'Basics': 'databases/postgres/basics.md'
 - 'Redis':
-    - 'Package': 'redis/package.md'
+    - 'Package': 'redis/getting-started.md'
     - 'Basics': 'redis/basics.md'
     - 'Custom commands': 'redis/custom-commands.md'
     - 'Publish and Subscribe': 'redis/pub-sub.md'
     - 'Pipeline': 'redis/pipeline.md'
-- 'WebSocket':
-    - 'WebSocket': 'websocket/websocket.md'
-    - 'Binary': 'websocket/binary-stream.md'
-    - 'Text': 'websocket/text-stream.md'
-    - 'Client': 'websocket/client.md'
-    - 'Server Upgrades': 'websocket/upgrade.md'
-- 'Routing':
-    - 'Package': 'routing/package.md'
-    - 'Basics': 'routing/basics.md'
-    - 'Parameters': 'routing/parameters.md'
-    - 'Route': 'routing/route.md'
-    - 'Router': 'routing/router.md'
-- 'Services':
-    - 'Getting Started': 'services/getting-started.md'
-- 'JWT':
-    - 'Package': 'jwt/package.md'
-    - 'Signed Tokens': 'jwt/jws.md'
+- 'WebSocket': 'websocket/websocket.md'
+# - 'Routing':
+#     - 'Package': 'routing/getting-started.md'
+#     - 'Basics': 'routing/basics.md'
+#     - 'Parameters': 'routing/parameters.md'
+#     - 'Route': 'routing/route.md'
+#     - 'Router': 'routing/router.md'
+- 'Services': 'services/getting-started.md'
+# - 'JWT':
+#     - 'Package': 'jwt/getting-started.md'
+#     - 'Signed Tokens': 'jwt/jws.md'
 - 'Crypto':
-    - 'Package': 'crypto/package.md'
+    - 'Package': 'crypto/getting-started.md'
     - 'Base64': 'crypto/base64.md'
     - 'Hashes': 'crypto/hash.md'
     - 'Message authentication': 'crypto/mac.md'
     - 'Password hashing': 'crypto/passwords.md'
     - 'Random': 'crypto/random.md'
-- 'TLS':
-    - 'Package': 'tls/package.md'
-    - 'Client': 'tls/client.md'
-- 'Sockets':
-    - 'Package': 'sockets/package.md'
-    - 'TCP Client': 'sockets/tcp-client.md'
-    - 'TCP Server': 'sockets/tcp-server.md'
-    - 'TCP Socket': 'sockets/tcp-socket.md'
-- 'Testing':
-    - 'Getting Started': 'testing/getting-started.md'
-- 'Security':
-    - 'Index': 'security/index.md'
-    - 'Denial of Service': 'security/dos.md'
-- 'Additional information':
-    - 'Architecture': 'supplementary/architecture.md'
-    - 'Performance': 'supplementary/performance.md'
+# - 'TLS':
+#     - 'Package': 'tls/getting-started.md'
+#     - 'Client': 'tls/client.md'
+# - 'Sockets':
+#     - 'Package': 'sockets/getting-started.md'
+#     - 'TCP Client': 'sockets/tcp-client.md'
+#     - 'TCP Server': 'sockets/tcp-server.md'
+#     - 'TCP Socket': 'sockets/tcp-socket.md'
+# - 'Testing':
+#     - 'Getting Started': 'testing/getting-started.md'
 - 'Version (3.0-alpha)':
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'

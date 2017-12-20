@@ -28,11 +28,11 @@ The following code creates a new connectionpool to `localhost` and the default M
 
 The database is the database that is selected and authenticated to. Any future queries will be sent to this database.
 
-The `worker` is defined in [the async documentation](../../async/worker.md).
-
 ```swift
-let connectionPool = ConnectionPool(hostname: "localhost", user: "root", password: nil, database: "test-db", worker: worker)
+let connectionPool = ConnectionPool(hostname: "localhost", user: "root", password: nil, database: "test-db", on: eventLoop)
 ```
+
+[The `eventLoop` types can be found here](../../async/eventloop.md).
 
 You can set the maximum amount of connections after creating the `ConnectionPool`.
 

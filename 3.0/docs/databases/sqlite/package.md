@@ -29,7 +29,7 @@ let package = Package(
 
 If this is your first time adding a dependency, you should read our introduction to [Package.swift](../../getting-started/spm.md).
 
-Use `import FluentSQLite` to access SQLite's Fluent compatible APIs.
+Use `import FluentSQLite` to access SQLite's Fluent compatible APIs. [Learn more about the Fluent APIs here](../../fluent/getting-started/provider.md)
 
 ## Just SQLite
 

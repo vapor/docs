@@ -6,9 +6,9 @@ see how to connect to and query a database.
 !!! warning
 	This documentation provides an overview for the SQLite API.
 	If you are using SQLite with Fluent, you will likely never need to use
-	this API. Use [Fluent's APIs](../../fluent/getting-started/package.md) instead.
+	this API. Use [Fluent's APIs](../../fluent/getting-started/getting-started.md) instead.
 
-Follow the instructions in the [package](package.md) section to add the SQLite package to your project. Once its added, you should be able to use `import SQLite.`
+Follow the instructions in the [package](getting-started.md) section to add the SQLite package to your project. Once its added, you should be able to use `import SQLite.`
 
 ## Database
 
@@ -50,7 +50,7 @@ let conn = try db.makeConnection(on: .global())
 	This will be the queue SQLite calls you back on.
 
 !!! tip
-	If you are using SQLite with Vapor, make sure to pass the [worker](../../async/worker.md)'s queue here.
+	If you are using SQLite with Vapor, make sure to pass the [EventLoop](../../async/eventloop.md) here.
 
 ## Query
 

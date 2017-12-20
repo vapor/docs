@@ -10,9 +10,9 @@ Fluent does not include any databases by default. All official databases have a 
 
 | database   | library                 | driver                   | guide                                                            |
 |------------|-------------------------|--------------------------|------------------------------------------------------------------|
-| PostgreSQL | vapor/postgres          | vapor/fluent-postgres    | [PostgreSQL &rarr; Package](../../databases/postgres/package.md) |
-| MySQL      | vapor/mysql             | vapor/fluent-mysql       | [MySQL &rarr; Package](../../databases/mysql/package.md)         |
-| SQLite     | vapor/sqlite            | vapor/fluent-sqlite      | [SQLite &rarr; Package](../../databases/sqlite/package.md)       |
+| PostgreSQL | vapor/postgres          | vapor/fluent-postgres    | [PostgreSQL &rarr; Package](../../databases/postgres/getting-started.md) |
+| MySQL      | vapor/mysql             | vapor/fluent-mysql       | [MySQL &rarr; Package](../../databases/mysql/getting-started.md)         |
+| SQLite     | vapor/sqlite            | vapor/fluent-sqlite      | [SQLite &rarr; Package](../../databases/sqlite/getting-started.md)       |
 | MongoDB    | mongokitten/mongokitten | vapor/fluent-mongokitten | [README.md](http://github.com/vapor/fluent-mongokitten/readme.md)|
 
 !!! tip

@@ -2,12 +2,6 @@
 
 Sockets is a library containing all Socket related APIs.
 
-### Index
-
-- [TCP Socket](tcp-socket.md)
-  - [TCP Client](tcp-client.md)
-  - [TCP Server](tcp-server.md)
-
 ## With Vapor
 
 This package is included with Vapor by default, just add:

@@ -2,15 +2,7 @@
 
 Crypto is a library containing all common APIs related to cryptography and security.
 
-This project does **not** support TLS. For that, please see [the TLS package](../tls/package.md).
-
-### Index
-
-- [Password hashing and verification](passwords.md)
-- [Message authentication](random.md)
-- [Base64 (also Streaming)](hash.md)
-- [Hashes (also Streaming)](hash.md)
-- [Random](random.md)
+This project does **not** support TLS. For that, please see [the TLS package](../tls/getting-started.md).
 
 ## With Vapor
 

@@ -6,7 +6,7 @@ This guide will take you step by step through creating a new project, building, 
 ## New Project
 
 The first step is to create a new Vapor project on your computer.
-For this guide, we will call the project `Hello`. 
+For this guide, we will call the project `Hello`.
 
 Open up your terminal, and use [Vapor Toolbox's `new`](toolbox.md#new) command.
 
@@ -55,4 +55,4 @@ You should see the following page.
 Hello, world!
 ```
 
-Congratulations on creating, building, and running your first Vapor app! 🎉 
+Congratulations on creating, building, and running your first Vapor app! 🎉

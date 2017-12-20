@@ -73,12 +73,12 @@ let hash: Data = md5Context.hash
 
 ## Streaming hashes (Async)
 
-Sometimes you need to hash the contents of a Stream, for example, when processing a file transfer. In this case you can use `StreamHasher`.
+Sometimes you need to hash the contents of a Stream, for example, when processing a file transfer. In this case you can use `ByteStreamHasher`.
 
-First, create a new generic `StreamHasher<Hash>` where `Hash` is the hash you want to use. In this case, SHA512.
+First, create a new generic `ByteStreamHasher<Hash>` where `Hash` is the hash you want to use. In this case, SHA512.
 
 ```swift
-let streamHasher = StreamHasher<SHA512>()
+let streamHasher = ByteStreamHasher<SHA512>()
 ```
 
 This stream works like any `inputStream` by consuming the incoming data and passing the buffers to the hash context.
@@ -96,15 +96,7 @@ This will incrementally update the hash using the provided TCP socket's data.
 When the hash has been completely accumulated, you can `complete` the hash.
 
 ```swift
-let hash: Data = streamHasher.complete()
+let hash = streamHasher.complete() // Foundation `Data`
 ```
 
 This will reset the hash's context to the default configuration, ready to start over.
-
-### Using StreamHasher as a transparent component
-
-StreamHasher is only an `InputStream`, meaning it doesn't output anything. In some scenarios, like uploading a file, you want both the unaltered file data in addition to the hash. One solution is to split the stream. But that adds unnecessary complexity.
-
-`PassthroughByteStreamHasher` is a `ByteStreamHasher` that's also an `OutputStream`. The output it emits is identical to the `PassthroughByteStreamHasher`'s input.
-
-`PassthroughByteStreamHasher` functions exactly like `ByteStreamHasher`

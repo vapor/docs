@@ -3,8 +3,8 @@
 Async is a library revolving around two main concepts:
 
 - [Promises and Futures](futures.md)
-- [Streams](streams.md)
-- [Workers](worker.md)
+- [(Reactive) Streams](streams.md)
+- [EventLoops](eventloop.md)
 
 Together they form the foundation of Vapor 3's data flow.
 
@@ -28,7 +28,7 @@ let package = Package(
     name: "Project",
     dependencies: [
         ...
-        .package(url: "https://github.com/vapor/async.git", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/vapor/async.git", .revision("beta")),
     ],
     targets: [
       .target(name: "Project", dependencies: ["Async", ... ])
@@ -37,3 +37,5 @@ let package = Package(
 ```
 
 Use `import Async` to access Async's APIs.
+
+<!-- TODO: Update async dependency pointer on release -->
