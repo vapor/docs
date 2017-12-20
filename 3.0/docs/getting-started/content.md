@@ -38,7 +38,7 @@ Now we are ready to decode that HTTP request.
 
 ```swift
 router.post("login") { req -> Response in
-    let loginRequest = try req.decode(LoginRequest.self)
+    let loginRequest = try req.content.decode(LoginRequest.self)
 
     print(loginRequest.email) // user@vapor.codes
     print(loginRequest.password) // don't look!
@@ -104,7 +104,7 @@ router.get("user") { req -> Response in
     )
 
     let res = Response(status: .ok)
-    try res.encode(user, as: .json)
+    try res.content.encode(user, as: .json)
     return res
 }
 ```
@@ -115,7 +115,7 @@ Content will automatically encode as JSON by default. You can always override wh
 using the `as:` parameter.
 
 ```swift
-try res.encode(user, as: .formURLEncoded)
+try res.content.encode(user, as: .formURLEncoded)
 ```
 
 You can also change the default media type for any class or struct.

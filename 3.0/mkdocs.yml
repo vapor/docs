@@ -26,13 +26,13 @@ pages:
     - 'HTTP': 'concepts/http.md'
     - 'Code Contributions': 'concepts/code-contributions.md'
 - 'Async':
-    - 'Package': 'async/package.md'
+    - 'Package': 'async/getting-started.md'
     - 'Futures': 'async/futures.md'
     - 'Streams': 'async/streams.md'
     - 'EventLoop': 'async/eventloop.md'
     - 'Reactive Programming': 'async/reactive.md'
 - 'HTTP':
-    - 'Package': 'http/package.md'
+    - 'Package': 'http/getting-started.md'
     - 'Body': 'http/body.md'
     - 'Client': 'http/client.md'
     - 'Cookies': 'http/cookies.md'
@@ -47,7 +47,7 @@ pages:
     - 'URI': 'http/uri.md'
 # - 'Fluent':
 #     - 'Getting Started':
-#         - 'Package': 'fluent/getting-started/package.md'
+#         - 'Package': 'fluent/getting-started/getting-started.md'
 #         - 'Provider': 'fluent/getting-started/provider.md'
 #         - 'Models': 'fluent/getting-started/models.md'
 #         - 'Migrations': 'fluent/getting-started/migrations.md'
@@ -62,46 +62,46 @@ pages:
 #     - 'Transaction': 'fluent/transaction.md'
 # - 'Databases':
 #     - 'SQLite':
-#         - 'Package': 'databases/sqlite/package.md'
+#         - 'Package': 'databases/sqlite/getting-started.md'
 #         - 'Overview': 'databases/sqlite/overview.md'
 #     - 'MySQL':
-#         - 'Package': 'databases/mysql/package.md'
+#         - 'Package': 'databases/mysql/getting-started.md'
 #         - 'Setup': 'databases/mysql/setup.md'
 #         - 'Basics': 'databases/mysql/basics.md'
 #         - 'Prepared Statements': 'databases/mysql/prepared-statements.md'
 #     - 'PostgreSQL':
-#         - 'Package': 'databases/postgres/package.md'
+#         - 'Package': 'databases/postgres/getting-started.md'
 #         - 'Setup': 'databases/postgres/setup.md'
 #         - 'Basics': 'databases/postgres/basics.md'
 - 'Redis':
-    - 'Package': 'redis/package.md'
+    - 'Package': 'redis/getting-started.md'
     - 'Basics': 'redis/basics.md'
     - 'Custom commands': 'redis/custom-commands.md'
     - 'Publish and Subscribe': 'redis/pub-sub.md'
     - 'Pipeline': 'redis/pipeline.md'
 - 'WebSocket': 'websocket/websocket.md'
 # - 'Routing':
-#     - 'Package': 'routing/package.md'
+#     - 'Package': 'routing/getting-started.md'
 #     - 'Basics': 'routing/basics.md'
 #     - 'Parameters': 'routing/parameters.md'
 #     - 'Route': 'routing/route.md'
 #     - 'Router': 'routing/router.md'
 - 'Services': 'services/getting-started.md'
 # - 'JWT':
-#     - 'Package': 'jwt/package.md'
+#     - 'Package': 'jwt/getting-started.md'
 #     - 'Signed Tokens': 'jwt/jws.md'
 - 'Crypto':
-    - 'Package': 'crypto/package.md'
+    - 'Package': 'crypto/getting-started.md'
     - 'Base64': 'crypto/base64.md'
     - 'Hashes': 'crypto/hash.md'
     - 'Message authentication': 'crypto/mac.md'
     - 'Password hashing': 'crypto/passwords.md'
     - 'Random': 'crypto/random.md'
 # - 'TLS':
-#     - 'Package': 'tls/package.md'
+#     - 'Package': 'tls/getting-started.md'
 #     - 'Client': 'tls/client.md'
 # - 'Sockets':
-#     - 'Package': 'sockets/package.md'
+#     - 'Package': 'sockets/getting-started.md'
 #     - 'TCP Client': 'sockets/tcp-client.md'
 #     - 'TCP Server': 'sockets/tcp-server.md'
 #     - 'TCP Socket': 'sockets/tcp-socket.md'

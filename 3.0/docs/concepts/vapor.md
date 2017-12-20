@@ -1,6 +1,6 @@
 # What is Vapor?
 
-Vapor 3 is an [asynchronous](../async/package.md), codable and protocol oriented framework. This document will outline the major lines how vapor is designed and why.
+Vapor 3 is an [asynchronous](../async/getting-started.md), codable and protocol oriented framework. This document will outline the major lines how vapor is designed and why.
 
 ## Async
 

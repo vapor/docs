@@ -1,6 +1,6 @@
 # EventLoop
 
-EventLoops are loops that listen for events in file descriptors that indicate being able to read or write data.
+Event loops are at the heart of Vapor's non-blocking concurrency model. There is usually one event loop per logical core in your computer's CPU. The event loop's main purpose is to detect when data is ready to be read from or written to a socket. By detecting socket events before actually attempting to read or write data, Vapor can avoid making function calls that may block. Avoiding blocking calls is critical for performance as it allows Vapor to aggressively re-use threads, making your app very fast and efficient.
 
 In addition to the above, they're also able to run single tasks inbetween listening for events.
 
@@ -13,6 +13,12 @@ The third one (currently work in progress) is the `EPollEventLoop`, a Linux only
 ### Workers
 
 To carry around context, the `Worker` protocol exists to indicate the current eventloop context.
+
+```swift
+print(worker.eventLoop) // EventLoop
+```
+
+When looking for a worker, the most common ones you'll come across are the `Request` and `Response`.
 
 ### Future changes during beta
 

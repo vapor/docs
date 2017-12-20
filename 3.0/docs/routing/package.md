@@ -2,13 +2,6 @@
 
 Routing is a library containing all Routing related APIs.
 
-### Index
-
-- [Basics](basics.md)
-- [Route Parameters](parameters.md)
-- [Route](route.md)
-- [TrieRouter](router.md)
-
 ## With Vapor
 
 This package is included with Vapor by default, just add:

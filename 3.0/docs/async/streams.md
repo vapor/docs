@@ -18,14 +18,14 @@ import Foundation
 ...
 
 tcpSocket.drain { upstream in
-  upstream.request()
+    upstream.request()
 }.output { buffer in
-  print(String(bytes: buffer, encoding: .utf8))
-  tcpSocket.request()
+    print(String(bytes: buffer, encoding: .utf8))
+    tcpSocket.request()
 }.catch { error in
-  print("Error occurred \(error)")
+    print("Error occurred \(error)")
 }.finally {
-  print("TCP socket closed")
+    print("TCP socket closed")
 }
 ```
 
@@ -64,6 +64,6 @@ let stringStream = emitter.map(to: String.self) { number in
 }
 ```
 
-## Implementing customstreams
+## Implementing custom streams
 
-TODO
+Coming soon

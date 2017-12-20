@@ -23,7 +23,7 @@ let promise = Promise<String>()
 let future = promise.future // Future<String>
 
 future.do { string in
-  print(string)
+    print(string)
 }
 
 promise.complete("Hello")
@@ -45,9 +45,9 @@ Instead, a `.catch` block will be triggered.
 
 ```swift
 future.do { string in
-  print(string)
+    print(string)
 }.catch { error in
-  print("Error '\(error)' occurred")
+    print("Error '\(error)' occurred")
 }
 ```
 
@@ -67,15 +67,15 @@ If the promise that was mapped failed to begin with, the `.catch` block will als
 let promise = Promise<Int>()
 
 promise.future.do { int in
-  print(int)
+    print(int)
 }.map(to: Int.self) { int in
-  return int + 4
+    return int + 4
 }.map(to: String.self) { int in
-  return int.description
+    return int.description
 }.do { string in
-  print(string)
+    print(string)
 }.catch { error in
-  print("Error '\(error)' occurred")
+    print("Error '\(error)' occurred")
 }
 
 promise.complete(3)
@@ -97,27 +97,30 @@ In the above `map` function we returned a new result synchronously. In some situ
 
 First, let's see how this would work out using `map` by exaggerating synchronous code as if it were an asynchronous call.
 
+!!! warning
+    Do not use this implementation, use the next one instead. This is an unnecessarily complicated way of nesting futures.
+
 ```swift
 let promise = Promise<Int>()
 
 promise.map(to: Future<Int>.self) { int in
-  return Future(int + 4)
+    return Future(int + 4)
 }.map(to: Future<Future<String>>.self) { futureInt in
-  return futureInt.map(to: Future<String.self>) { int in
-    return Future(int.description)
-  }
-}.do { doubleFutureString in // Future<Future<String>>
-  doubleFutureString.do { futureString in // Future<String>
-    futureString.do { string in
-      print(string)
-    }.catch { error in
-      print("Error '\(error)' occurred")
+    return futureInt.map(to: Future<String.self>) { int in
+        return Future(int.description)
     }
-  }.catch { error in
-    print("Error '\(error)' occurred")
-  }
+}.do { doubleFutureString in // Future<Future<String>>
+    doubleFutureString.do { futureString in // Future<String>
+      futureString.do { string in
+          print(string)
+      }.catch { error in
+          print("Error '\(error)' occurred")
+      }
+    }.catch { error in
+        print("Error '\(error)' occurred")
+    }
 }.catch { error in
-  print("Error '\(error)' occurred")
+    print("Error '\(error)' occurred")
 }
 
 promise.complete(3)
@@ -130,13 +133,13 @@ The type supplied in the `to:` argument is implied to be wrapped in a `Future<>`
 let promise = Promise<Int>()
 
 promise.flatMap(to: Int.self) { int in
-  return Future<Int>(int + 4)
+    return Future<Int>(int + 4)
 }.flatMap(to: String.self) { int in
-  return Future(int.description)
+    return Future(int.description)
 }.do { string in
-  print(string)
+    print(string)
 }.catch { error in
-  print("Error '\(error)' occurred")
+    print("Error '\(error)' occurred")
 }
 
 promise.complete(3)
@@ -154,14 +157,14 @@ let promise = Promise<Int>()
 let future = promise.future // Future<Int>
 
 future.do { int in
-  i += int * 3
+    i += int * 3
 }.do { int in
-  i += (int - 1)
+    i += (int - 1)
 }.catch {
-  i = -1
+    i = -1
 }.finally {
-  print(i)
-  i = 0
+    print(i)
+    i = 0
 }
 ```
 

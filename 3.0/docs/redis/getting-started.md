@@ -8,13 +8,6 @@ Redis is an in-memory data store used as a database, cache and message broker. I
 
 Redis works as a key-value store, but allows querying the keys, unlike most databases.
 
-### Index
-
-- [Basics](basics.md)
-- [Custom commands](custom-commands.md)
-- [Pub/Sub](pub-sub.md)
-- [Pub/Sub](pipeline.md)
-
 ## With and without Vapor
 
 To include it in your package, add the following to your `Package.swift` file.

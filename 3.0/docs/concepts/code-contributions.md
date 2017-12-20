@@ -10,13 +10,11 @@ We designed all of Vapor 3's APIs (including the Async library) to require littl
 
 ### Enums
 
-`enum` must *only* be used if there realistically will not be any other cases that are added in the future. This ensures we don't break APIs.
-
-If you want to use the enum shorthand syntax such as `.get` you can make use of a `static var` with the same type as the current type.
+`enum`s should only be used where adding a new case should result in a breaking change. Specifically since exhaustively switching on an `enum` will no longer compile when a new case is added. For things like errors, this is obviously undesirable as supporting a new error type results in code no longer compiling. However, for something like a supported data type, `enum`s makes sense because the errors help you track down all of places that need support for that new type added. Most use cases for `enum`s are when the enum is internal to the current module.
 
 ### Classes
 
-Always mark classes as `final`. If you plan on using a `public` or `open` class, look into a protocol or generics oriented approach.
+Always mark classes as `final`. If you plan on using a `public` class, look into a protocol or generics oriented approach.
 
 ### Low-level APIs
 

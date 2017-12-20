@@ -45,7 +45,7 @@ router.get("components", "in", "path") { request in
 After registering routes to the Router, you must add the router to your services.
 
 ```swift
-services.register(Router.self, router)
+services.instance(Router.self, router)
 ```
 
 [More about services here.](../concepts/services.md)

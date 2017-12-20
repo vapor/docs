@@ -12,9 +12,6 @@ JWT is a standard for managing client tokens. Tokens are a form of identificatio
 
 Please note that any private/secret data **must not** be stored inside a JSON Web Token since they're publically readable. They are **not** encrypted.
 
-### Index
-
-- [JSON Web Signature](jws.md)
 
 ## With Vapor
 

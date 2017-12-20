@@ -52,7 +52,7 @@ Vapor 3 configurations are _always_ a concrete struct type. Registering a concre
 ```swift
 struct EmptyService {}
 
-services.register(EmptyService())
+services.instance(EmptyService())
 ```
 
 ### Singletons
@@ -64,7 +64,7 @@ final class SingletonService {
   init() {}
 }
 
-services.register(isSingleton: true, SingletonService())
+services.instance(isSingleton: true, SingletonService())
 ```
 
 Assuming the above service, you can now make this service from a container. The global container in Vapor is `Application` which *must not* be used within routes.
@@ -95,7 +95,7 @@ struct PrintLogger: Logger {
   }
 }
 
-services.register(Logger.self, PrintLogger())
+services.instance(Logger.self, PrintLogger())
 ```
 
 The above can be combined with `isSingleton: true`
@@ -121,7 +121,7 @@ struct PrintConsole: Console, Logger {
   init() {}
 }
 
-services.register(
+services.instance(
   supports: [Logger.self, Console.self],
   ErrorLogger()
 )
@@ -155,10 +155,10 @@ struct ErrorLogger: Logger {
 }
 
 // Only log errors
-services.register(Logger.self, ErrorLogger())
+services.instance(Logger.self, ErrorLogger())
 
 // Except the router, do log not found errors verbosely
-services.register(Logger.self, PrintLogger(), for: Router.self)
+services.instance(Logger.self, PrintLogger(), for: Router.self)
 ```
 
 ### Factorized services

@@ -4,7 +4,7 @@ Fluent integrates seamlessly into your Vapor project using [services](../getting
 In this section we will add the Fluent service provider to your application and configure your databases.
 
 !!! warning
-    This section assumes you have added both [Fluent](package.md#fluent) and a [Fluent database](package.md#database) to your package.
+    This section assumes you have added both [Fluent](getting-started.md#fluent) and a [Fluent database](getting-started.md#database) to your package.
 
 ## Service Provider
 
@@ -15,7 +15,7 @@ import Fluent
 
 ...
 
-try services.register(FluentProvider())
+try services.instance(FluentProvider())
 ```
 
 Register the `FluentProvider` in the [configure section](../../getting-started/structure.md#configure) of your application.
@@ -82,7 +82,7 @@ var databaseConfig = DatabaseConfig()
 
 databaseConfig.add(database: SQLiteDatabase.self, as: .foo)
 
-services.register(databaseConfig)
+services.instance(databaseConfig)
 ```
 
 #### Instance
@@ -101,7 +101,7 @@ var databaseConfig = DatabaseConfig()
 let mysql = MySQLDatabase(...)
 databaseConfig.add(database: mysql, as: .bar)
 
-services.register(databaseConfig)
+services.instance(databaseConfig)
 ```
 
 ### Migrations
@@ -118,7 +118,7 @@ var migrationConfig = MigrationConfig()
 
 migrationConfig.add(migration: User.self, database: .foo)
 
-services.register(migrationConfig)
+services.instance(migrationConfig)
 ```
 
 You can read more about migrations in [Fluent: Migrations](migrations.md).

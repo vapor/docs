@@ -2,19 +2,6 @@
 
 HTTP is a module as part of the `Engine` library containing all HTTP related APIs.
 
-### Index
-
-- [Request](request.md)
-- [Response](response.md)
-- [Method](method.md)
-- [Status](status.md)
-- [Headers](headers.md)
-- [Body](body.md)
-- [Middleware](middleware.md)
-- [Multipart](multipart.md)
-- [Responder](responder.md)
-- [URI](uri.md)
-
 ## With Vapor
 
 This package is included with Vapor by default, just add:

@@ -2,10 +2,6 @@
 
 The TLS packages allow writing TLS/SSL clients and servers.
 
-### Index
-
-- [Client](client.md)
-
 ## Package.swift
 
 To include it in your package, add the following to your `Package.swift` file.

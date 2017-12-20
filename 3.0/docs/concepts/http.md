@@ -20,7 +20,7 @@ Bodies contain the concrete information being transferred. Think of the web-page
 
 Headers contain metadata, meaning they carry information describing the HTTP message, it's context and it's content.
 
-[Cookies](../http/cookies.md) are context metadata about the client that, for example, can be used for identifying users after they've (successfully) logged in. One of these methods are [session tokens](../jwt/package.md).
+[Cookies](../http/cookies.md) are context metadata about the client that, for example, can be used for identifying users after they've (successfully) logged in. One of these methods are [session tokens](../jwt/getting-started.md).
 
 Another type of metadata that is often used to define the type of content transferred in the body is the `Content-Type` header
 
@@ -50,7 +50,7 @@ iOS and Android apps usually communicate with an API, where a web browser such a
 
 Websites come in two major flavours. Server and client rendered pages. "Rendering" in this context doesn't mean the graphical rendering on your monitor, but instead the way information is injected into the HTML DOM to display the information to the users.
 
-Server rendered pages make use of a templating system such as [leaf](../leaf/package.md) whereas client rendered pages communicate with an API.
+Server rendered pages make use of a templating system such as [leaf](../leaf/getting-started.md) whereas client rendered pages communicate with an API.
 
 ### API
 
