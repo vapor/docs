@@ -73,6 +73,10 @@ pages:
 #         - 'Package': 'databases/postgres/getting-started.md'
 #         - 'Setup': 'databases/postgres/setup.md'
 #         - 'Basics': 'databases/postgres/basics.md'
+- 'Leaf':
+    - 'Package': 'leaf/package.md'
+    - 'Basics': 'leaf/basics.md'
+    - 'Custom tags': 'leaf/custom-tags.md'
 - 'Redis':
     - 'Package': 'redis/getting-started.md'
     - 'Basics': 'redis/basics.md'
