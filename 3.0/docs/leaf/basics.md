@@ -22,7 +22,14 @@ router.get { req -> Future<View> in
 }
 ```
 
-That will load home.leaf in the Resources/Views directory and render it. The `context` dictionary is there to let you provide custom data to render inside the template, but you might find it easier to use codable structs instead because they provide extra type safety.
+That will load home.leaf in the Resources/Views directory and render it. The `context` dictionary is there to let you provide custom data to render inside the template, but you might find it easier to use codable structs instead because they provide extra type safety. For example:
+
+```swift
+struct HomePage: Codable {
+    var title: String
+    var content: String
+}
+```
 
 ## Template syntax
 ### Structure
