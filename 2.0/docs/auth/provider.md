@@ -4,7 +4,7 @@ After you've [added the Auth Provider package](package.md) to your project, sett
 
 ## Add to Droplet
 
-Register the `AuthProvider.Provider` with your Droplet in your `main.swift` file:
+Register the `AuthProvider.Provider` with your Droplet in your `Config+Setup.swift` file:
 
 ```swift
 import App
