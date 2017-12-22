@@ -12,7 +12,7 @@ Vapor's high performance is achieved by a combination of an [asynchronous archit
 
 ### Type safety
 
-Vapor is designed around type-safety and compile-time checks, ensuring that code doesn't behave in unexpected ways and shows you most problems at compile time. Vapor achieves this by leveraging Swift and it's Codable protocol.
+Vapor is designed around type-safety and compile-time checks, ensuring that code doesn't behave in unexpected ways and shows you most problems at compile time. Vapor achieves this by leveraging Swift and its Codable protocol.
 
 We believe type-safety is critical to both security and developer productivity.
 
