@@ -16,7 +16,7 @@ The preferred method for getting access to a database connection is via an incom
 
 ```swift
 router.get(...) { req in
-    return req.database(.foo) { db in
+    return req.withConnection(to: .foo) { db in
         // use the db here
     }
 }
@@ -26,7 +26,7 @@ The first parameter is the database's [identifier](provider.md#identifier). The 
 that accepts a connection to that database.
 
 !!! tip
-    Although the closure to `.database(...)` accepts a database _connection_, we often use just `db` for short.
+    Although the closure to `.withConnection(to: ...)` accepts a database _connection_, we often use just `db` for short.
 
 The closure is expected to return a `Future<Void>`. When this future is completed, the connection will be released
 back into Fluent's connection pool. This is usually acheived by simply returning the query as we will soon see.
@@ -55,9 +55,9 @@ To create (save) a model to the database, first initialize an instance of your m
 
 ```swift
 router.post(...) { req in
-    return req.database(.foo) { db -> Future<User> in
+    return req.withConnection(to: .foo) { db -> Future<Parking> in
         let user = User(name: "Vapor", age: 3)
-        return user.save(on: db).map { user }
+        return user.save(on: db).map(to: User.self) { user }
     }
 }
 ```
@@ -70,11 +70,12 @@ map that `Future<Void>` to a `Future<User>` by calling `.map` and passing in the
 You can also use `.map` to return a simple success response.
 
 ```swift
+
 router.post(...) { req in
-    return req.database(.foo) { db -> Future<Response> in
+    return req.withConnection(to: .foo) { db -> Future<Response> in
         let user = User(name: "Vapor", age: 3)
-        return user.save(on: db).map { 
-            return Response(status: .created) 
+        return user.save(on: db).map(to: Response.self) { 
+            return Response(http: HTTPResponse(status: .created), using: req)
         }
     }
 }
@@ -86,7 +87,7 @@ If you have multiple instances to save, do so using an array. Arrays containing 
 
 ```swift
 router.post(...) { req in
-    return req.database(.foo) { db -> Future<Response> in
+    return req.withConnection(to: .foo) { db -> Future<Response> in
         let marie = User(name: "Marie Curie", age: 66)
         let charles = User(name: "Charles Darwin", age: 73)
         return [
@@ -109,7 +110,7 @@ Fetch all instances of a model from the database using `.all()`.
 
 ```swift
 router.get(...) { req in
-    return req.database(.foo) { db -> Future<[User]> in
+    return req.withConnection(to: .foo) { db -> Future<[User]> in
         return db.query(User.self).all()
     }
 }
@@ -121,7 +122,7 @@ Use `.filter(...)` to apply [filters](../query-builder#filters) to your query.
 
 ```swift
 router.get(...) { req in
-    return req.database(.foo) { db -> Future<[User]> in
+    return req.withConnection(to: .foo) { db -> Future<[User]> in
         return try db.query(User.self).filter(\User.age > 50).all()
     }
 }
@@ -133,8 +134,8 @@ You can also use `.first()` to just get the first result.
 
 ```swift
 router.get(...) { req in
-    return req.database(.foo) { db -> Future<User> in
-        return try db.query(User.self).filter(\User.name == "Vapor").first().map { user in
+    return req.withConnection(to: .foo) { db -> Future<User> in
+        return try db.query(User.self).filter(\User.name == "Vapor").first().map(to: User.self) { user in
             guard let user = user else {
                 throw Abort(.notFound, reason: "Could not find user.")
             }
@@ -145,7 +146,7 @@ router.get(...) { req in
 }
 ```
 
-Notice we use `.map()` here to convert the optional user returned by `.first()` to a non-optional
+Notice we use `.map(to:)` here to convert the optional user returned by `.first()` to a non-optional
 user, or we throw an error.
 
 ## Update
@@ -153,5 +154,21 @@ user, or we throw an error.
 Coming soon.
 
 ## Delete
+```swift
+router.delete(...) { req in
+    return req.withConnection(to: .foo) { db -> Future<User> in
+        return db.query(User.self).first().map(to: User.self) { user in
+            guard let user = $0 else {
+                throw Abort(.notFound, reason: "Could not find user.")
+            }
 
-Coming soon.
+            return user
+        }.flatMap(to: User.self, { user in
+            return user.delete(on: db).map(to: User.self) {user}
+        })
+    }
+}
+```
+
+Notice we use `.map(to:)` here to convert the optional user returned by `.first()` to a non-optional
+user, or we throw an error.
