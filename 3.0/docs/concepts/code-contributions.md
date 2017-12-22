@@ -10,7 +10,7 @@ We designed all of Vapor 3's APIs (including the Async library) to require littl
 
 ### Enums
 
-`enum`s should only be used where adding a new case should result in a breaking change. Specifically since exhaustively switching on an `enum` will no longer compile when a new case is added. For things like errors, this is obviously undesirable as supporting a new error type results in code no longer compiling. However, for something like a supported data type, `enum`s makes sense because the errors help you track down all of places that need support for that new type added. Most use cases for `enum`s are when the enum is internal to the current module.
+`enum`s should only be used where adding a new case should result in a breaking change. Specifically since exhaustively switching on an `enum` will no longer compile when a new case is added. For things like errors, this is obviously undesirable as supporting a new error type results in code no longer compiling. However, for something like a supported data type, `enum`s make sense because the errors help you track down all of places that need support for that new type added. Most use cases for `enum`s are when the enum is internal to the current module.
 
 ### Classes
 
