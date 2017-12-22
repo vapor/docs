@@ -31,8 +31,8 @@ import PackageDescription
 let package = Package(
     name: "Project",
     dependencies: [
-        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 2),
-        .Package(url: "https://github.com/vapor/mysql-provider.git", majorVersion: 2)
+        .package(url: "https://github.com/vapor/vapor.git", majorVersion: 2),
+        .package(url: "https://github.com/vapor/mysql-provider.git", majorVersion: 2)
     ],
     exclude: [ ... ]
 )
@@ -53,8 +53,8 @@ let package = Package(
     name: "Project",
     dependencies: [
         ...
-        .Package(url: "https://github.com/vapor/fluent.git", majorVersion: 2),
-        .Package(url: "https://github.com/vapor/mysql-driver.git", majorVersion: 2)
+        .package(url: "https://github.com/vapor/fluent.git", majorVersion: 2),
+        .package(url: "https://github.com/vapor/mysql-driver.git", majorVersion: 2)
     ],
     exclude: [ ... ]
 )
@@ -73,7 +73,7 @@ let package = Package(
     name: "Project",
     dependencies: [
         ...
-        .Package(url: "https://github.com/vapor/mysql.git", majorVersion: 2)
+        .package(url: "https://github.com/vapor/mysql.git", majorVersion: 2)
     ],
     exclude: [ ... ]
 )

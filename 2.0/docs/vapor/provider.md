@@ -16,8 +16,8 @@ To add the provider to your package, add it as a dependency in your `Package.swi
 let package = Package(
     name: "MyApp",
     dependencies: [
-        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 2),
-        .Package(url: "https://github.com/vapor/mysql-provider.git", majorVersion: 2)
+        .package(url: "https://github.com/vapor/vapor.git", majorVersion: 2),
+        .package(url: "https://github.com/vapor/mysql-provider.git", majorVersion: 2)
     ]
 )
 ```
