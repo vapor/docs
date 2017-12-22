@@ -21,7 +21,7 @@ let package = Package(
 
 The Auth provider package adds Auth to your project and adds some additional, vapor-specific conveniences like auth middleware. 
 
-After you added the dependency, fetch it using `vapor fetch`.
+After you added the dependency, fetch it using `vapor update`.
 
 Using `import AuthProvider` will import all of the auth middleware and the Authentication and Authorization modules. 
 
@@ -42,6 +42,6 @@ let package = Package(
 )
 ```
 
-After you added the dependency, fetch it using `vapor fetch`.
+After you added the dependency, fetch it using `vapor update`.
 
 Use `import Auth` to access the core auth classes.
