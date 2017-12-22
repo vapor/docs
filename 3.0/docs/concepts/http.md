@@ -56,6 +56,6 @@ Server rendered pages make use of a templating system such as [leaf](../leaf/get
 
 APIs are endpoints that sometimes receive but always reply with raw data. The raw data can be in any format. Most commonly, APIs communicate with [JSON](../getting-started/json.md). Sometimes, they communicate with XML or other data types. Vapor can flexibly switch between supported formats, both by official or by community made libraries.
 
-APIs in Vapor are (almost) always creating using a "MVC" or "Model View Controller" model [which we explain here.](../getting-started/controllers.md)
+APIs in Vapor are (almost) always created using a "MVC" or "Model View Controller" model [which we explain here.](../getting-started/controllers.md)
 
 Designing an API in Vapor is really simple. [We dive into this from here.](../getting-started/application.md)
