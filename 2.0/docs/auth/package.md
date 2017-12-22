@@ -4,7 +4,15 @@ This section outlines how to import the Auth package both with or without a Vapo
 
 ## With Vapor
 
-The easiest way to use Auth with Vapor is to include the Auth provider in your `Package.swift` file:
+The easiest way to use Auth with Vapor is to include the Auth provider.
+
+You can achieve this by running:
+
+```bash
+vapor provider add auth
+```
+
+or by manually modifying your `Package.swift` file:
 
 ```swift
 import PackageDescription
