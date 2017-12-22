@@ -6,6 +6,7 @@ Welcome to Leaf. Leaf's goal is to be a simple templating language that can make
 - Consistency
 - Parser first mentality
 - Extensibility
+- Asynchronous and reactive
 
 
 ## Rendering a template
@@ -30,6 +31,12 @@ struct HomePage: Codable {
     var content: String
 }
 ```
+
+### Async
+
+Leaf's engine is completely [reactive](../async/reactive.md), supporting both [streams](../async/streams.md) and [futures](../async/futures.md). One of the only ones of it's kind.
+
+When working with asynchronous results, simply pass the `Future` or `Stream` in your template context.
 
 ## Template syntax
 ### Structure

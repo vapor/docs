@@ -12,7 +12,7 @@ Once you have Vapor installed, check out [Getting Started &rarr; Hello, world](g
 
 ## Like Vapor?
 
-Our small team works hard to make Vapor awesome (and free). Support the framework by [starring Vapor on GitHub](https://github.com/vapor/vapor) 
+Our small team works hard to make Vapor awesome (and free). Support the framework by [starring Vapor on GitHub](https://github.com/vapor/vapor)
 or [donating $1 monthly](https://opencollective.com/vapor)&mdash;it helps us a lot. Thanks!
 
 ## Other Sources
@@ -29,7 +29,7 @@ Here are some other great places to find information about Vapor.
 
 ## Providers
 
-Vapor providers are a convenient way to add functionality to your Vapor projects. 
+Vapor providers are a convenient way to add functionality to your Vapor projects.
 For a full list of providers, check out the [`vapor-provider`](https://github.com/search?utf8=✓&q=topic%3Avapor-provider&type=Repositories) tag on GitHub.
 
 ## Authors

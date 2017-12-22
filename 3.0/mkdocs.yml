@@ -26,13 +26,13 @@ pages:
     - 'HTTP': 'concepts/http.md'
     - 'Code Contributions': 'concepts/code-contributions.md'
 - 'Async':
-    - 'Package': 'async/getting-started.md'
+    - 'Getting Started': 'async/getting-started.md'
     - 'Futures': 'async/futures.md'
     - 'Streams': 'async/streams.md'
     - 'EventLoop': 'async/eventloop.md'
     - 'Reactive Programming': 'async/reactive.md'
 - 'HTTP':
-    - 'Package': 'http/getting-started.md'
+    - 'Getting Started': 'http/getting-started.md'
     - 'Body': 'http/body.md'
     - 'Client': 'http/client.md'
     - 'Cookies': 'http/cookies.md'
@@ -74,11 +74,11 @@ pages:
 #         - 'Setup': 'databases/postgres/setup.md'
 #         - 'Basics': 'databases/postgres/basics.md'
 - 'Leaf':
-    - 'Package': 'leaf/getting-started.md'
+    - 'Getting Started': 'leaf/getting-started.md'
     - 'Basics': 'leaf/basics.md'
     - 'Custom tags': 'leaf/custom-tags.md'
 - 'Redis':
-    - 'Package': 'redis/getting-started.md'
+    - 'Getting Started': 'redis/getting-started.md'
     - 'Basics': 'redis/basics.md'
     - 'Custom commands': 'redis/custom-commands.md'
     - 'Publish and Subscribe': 'redis/pub-sub.md'
@@ -95,7 +95,7 @@ pages:
 #     - 'Package': 'jwt/getting-started.md'
 #     - 'Signed Tokens': 'jwt/jws.md'
 - 'Crypto':
-    - 'Package': 'crypto/getting-started.md'
+    - 'Getting Started': 'crypto/getting-started.md'
     - 'Base64': 'crypto/base64.md'
     - 'Hashes': 'crypto/hash.md'
     - 'Message authentication': 'crypto/mac.md'
