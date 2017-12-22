@@ -7,6 +7,8 @@ This section outlines how to import the Auth package both with or without a Vapo
 The easiest way to use Auth with Vapor is to include the Auth provider. 
 
 ```swift
+// swift-tools-version:4.0
+
 import PackageDescription
 
 let package = Package(
