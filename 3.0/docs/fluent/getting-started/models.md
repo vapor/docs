@@ -90,37 +90,6 @@ You can also use any property name you'd like for the id.
 !!! warning
     Some databases require certain ID keys. For example, MongoDB requires `_id`.
 
-### Key Field Map
-
-In order to prevent duplicate (and error-prone) strings throughout your code, Fluent models declare
-a `KeyFieldMap`. This maps your model's properties to their respective database fields.
-
-```swift
-import FluentMySQL
-
-extension User: Model {
-    ...
-
-    /// See Model.keyFieldMap
-    static var keyFieldMap: KeyFieldMap {
-        return [
-            key(\.id): field("id"),
-            key(\.name): field("name"),
-            key(\.age): field("age"),
-        ]
-    }
-}
-```
-
-Key paths are a type-safe way to declare references to your model's properties.
-You can learn more about key paths in the Swift Evolution proposal, [SE-0161](https://github.com/apple/swift-evolution/blob/master/proposals/0161-key-paths.md).
-
-!!! note
-    Unless you have a special use case, you should always 
-    just set the `field(...)` and `key(...)` as the same string.
-
-To see what using these key paths looks like in action, check out [Fluent &rarr; Getting Started &rarr; Query](querying.md).
-
 
 ## Example
 
@@ -147,15 +116,6 @@ extension User: Model {
     /// See Model.idKey
     static var idKey: IDKey {
         return \.id
-    }
-
-    /// See Model.keyFieldMap
-    static var keyFieldMap: KeyFieldMap {
-        return [
-            key(\.id): field("id"),
-            key(\.name): field("name"),
-            key(\.age): field("age"),
-        ]
     }
 }
 ```
