@@ -148,11 +148,11 @@ promise.complete(3)
 ## Always
 
 Sometimes you want to always execute a function as part of the cleanup phase.
-You can use the `.always` block to execute a block of code after the future has been successfully executes (and mapped if applicable) or when an error occurred. Please do consider that finally also will be executed in the order in which it has been registered, like all other closures.
+You can use the `.always` block to execute a block of code after the future has been successfully executed (and mapped if applicable) or when an error occurs. Please do consider that `always` also will be executed in the order in which it has been registered, like all other closures.
 
 ```swift
 var i = 0
-
+        
 let promise = Promise<Int>()
 let future = promise.future // Future<Int>
 
@@ -160,11 +160,11 @@ future.do { int in
     i += int * 3
 }.do { int in
     i += (int - 1)
-}.catch {
-    i = -1
-}.finally {
+}.always {
     print(i)
     i = 0
+}.catch { _ in
+    i = -1
 }
 ```
 
