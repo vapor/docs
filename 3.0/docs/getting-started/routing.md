@@ -60,8 +60,8 @@ Sometimes you may want one of the components of your route path to be dynamic. T
 you want to get an item with a supplied identifier, i.e., `GET /users/:id`
 
 ```swift
-router.get("users", Int.self) { req in
-    let id = try req.parameters.next(Int.self)
+router.get("users", Int.parameter) { req -> Future<String> in
+    let id = try req.parameter(Int.self)
     return // fetch the user with id
 }
 ```
