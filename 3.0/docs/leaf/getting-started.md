@@ -1,6 +1,6 @@
 # Leaf
 
-Leaf is a templating language that integrates with Futures, Streams and Codable. This section outlines how to import the Leaf package into a Vapor project.
+Leaf is a templating language that integrates with Futures, Reactive Streams and Codable. This section outlines how to import the Leaf package into a Vapor project.
 
 ## Example Folder Structure
 

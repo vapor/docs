@@ -1,8 +1,32 @@
 # Using MySQL
 
-The [vapor/mysql](https://github.com/vapor/mysql) package is a lightweight, async pure swift MySQL/MariaDB driver. It provides an intuitive Swift interface for working with MySQL that can be used with any Swift project.
+The [vapor/mysql](https://github.com/vapor/mysql) package is a lightweight, reactive, async and pure swift MySQL/MariaDB driver. It provides an intuitive interface for working with MySQL that can be used with any Swift project.
 
 On top of [vapor/mysql](https://github.com/vapor/mysql), we have built [vapor/fluent-sqlite](https://github.com/vapor/fluent-sqlite) which allows SQLite databases to be used with Fluent.
+
+## Just MySQL
+
+This package was built to be a powerful interface for MySQL. To include this MySQL package in your project, simply add it to your Package manifest.
+
+```swift
+// swift-tools-version:4.0
+import PackageDescription
+
+let package = Package(
+    name: "Project",
+    dependencies: [
+        ...
+        .package(url: "https://github.com/vapor/mysql.git", .revision("beta")),
+    ],
+    targets: [
+      .target(name: "Project", dependencies: ["MySQL", ... ])
+    ]
+)
+```
+
+If this is your first time adding a dependency, you should read our introduction to [Package.swift](../../getting-started/spm.md).
+
+Use `import MySQL` to access the Swift MySQL APIs.
 
 ## With Fluent
 
@@ -74,27 +98,3 @@ services.instance(migrationConfig)
 ```
 
 More info on working with Fluent can be found [here](../../fluent/getting-started/getting-started.md).
-
-## Just MySQL
-
-This package was built to be a powerful interface for MySQL. To include this MySQL package in your project, simply add it to your Package manifest.
-
-```swift
-// swift-tools-version:4.0
-import PackageDescription
-
-let package = Package(
-    name: "Project",
-    dependencies: [
-        ...
-        .package(url: "https://github.com/vapor/mysql.git", .revision("beta")),
-    ],
-    targets: [
-      .target(name: "Project", dependencies: ["MySQL", ... ])
-    ]
-)
-```
-
-If this is your first time adding a dependency, you should read our introduction to [Package.swift](../../getting-started/spm.md).
-
-Use `import MySQL` to access the Swift MySQL APIs.

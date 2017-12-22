@@ -64,7 +64,6 @@ pages:
     #     - 'Overview': 'databases/sqlite/overview.md'
     - 'MySQL':
         - 'Getting Started': 'databases/mysql/getting-started.md'
-        - 'Setup': 'databases/mysql/setup.md'
         - 'Basics': 'databases/mysql/basics.md'
         - 'Prepared Statements': 'databases/mysql/prepared-statements.md'
     # - 'PostgreSQL':
