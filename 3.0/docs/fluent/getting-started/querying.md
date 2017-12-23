@@ -151,7 +151,25 @@ user, or we throw an error.
 
 ## Update
 
-Coming soon.
+```swift
+router.put(...) { req in
+    return req.withConnection(to: .foo) { db -> Future<User> in
+        return db.query(User.self).first().map(to: User.self) { user in
+            guard let user = $0 else {
+                throw Abort(.notFound, reason: "Could not find user.")
+            }
+
+            return user
+        }.flatMap(to: User.self, { user in
+            user.age += 1
+            return user.update(on: db).map(to: User.self) {user}
+        })
+    }
+}
+```
+
+Notice we use `.map(to:)` here to convert the optional user returned by `.first()` to a non-optional
+user, or we throw an error.
 
 ## Delete
 ```swift
