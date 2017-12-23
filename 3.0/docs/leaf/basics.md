@@ -36,7 +36,27 @@ struct HomePage: Codable {
 
 Leaf's engine is completely [reactive](../async/reactive.md), supporting both [streams](../async/streams.md) and [futures](../async/futures.md). One of the only ones of it's kind.
 
-When working with asynchronous results, simply pass the `Future` or `Stream` in your template context.
+When working with Future results, simply pass the `Future` in your template context.
+Streams that carry an encodable type need to be encoded before they're usable within Leaf.
+
+```swift
+struct Profile: Codable {
+    var friends: EncodableStream
+    var currentUser: Future<User>
+}
+```
+
+In the above context, the `currentUser` variable in Leaf will behave as being a `User` type. Leaf will not read the user Future if it's not used during rendering.
+
+`EncodableStream` will behave as an array of LeafData, only with lower memory impact and better performance. It is recommended to use `EncodableStream` for (large) database queries.
+
+```
+Your name is #(currentUser.name).
+
+#for(friend in friends) {
+    #(friend.name) is a friend of you.
+}
+```
 
 ## Template syntax
 ### Structure
