@@ -13,8 +13,9 @@ even ones that come from a different module. All you have to do is conform to `M
 
 ```swift
 import Foundation
+import Vapor
 
-final class User: Codable {
+final class User: Content {
     var id: UUID?
     var name: String
     var age: Int
@@ -98,6 +99,7 @@ We now have a fully-conformed Fluent model!
 ```swift
 import FluentMySQL
 import Foundation
+import Vapor
 
 final class User: Codable {
     var id: UUID?
