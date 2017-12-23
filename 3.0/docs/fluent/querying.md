@@ -57,7 +57,7 @@ To create (save) a model to the database, first initialize an instance of your m
 router.post(...) { req in
     return req.withConnection(to: .foo) { db -> Future<User> in
         let user = User(name: "Vapor", age: 3)
-        return user.save(on: db).map(to: User.self).transform(to: user) // Future<User>
+        return user.save(on: db).transform(to: user) // Future<User>
     }
 }
 ```
