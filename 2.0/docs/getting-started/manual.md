@@ -1,8 +1,8 @@
 # Manual Quickstart
 
-Learn how to create a Vapor project _without_ the Toolbox using just Swift 3.1 and the Swift Package Manager (SPM).
+Learn how to create a Vapor project _without_ the Toolbox using just Swift 4 and the Swift Package Manager (SPM).
 
-This document assumes that you have Swift 3.1 installed, if not please refer to [Swift.org](https://swift.org/getting-started/#installing-swift) before you can continue.
+This document assumes that you have Swift 4 installed, if not please refer to [Swift.org](https://swift.org/getting-started/#installing-swift) before you can continue.
 
 !!! tip
     If you'd prefer to use the Toolbox, follow the toolbox guide [here](hello-world.md).
@@ -48,7 +48,7 @@ import PackageDescription
 let package = Package(
     name: "Hello",
     dependencies: [
-        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 2)
+        .package(url: "https://github.com/vapor/vapor.git", from: "2.4.2")
     ]
 )
 ```
@@ -73,6 +73,13 @@ try drop.run()
 ```
 
 ### Compile & Run (Development)
+
+You will have to add CTLS to be able to build this.
+
+```bash
+brew tap vapor/homebrew-tap
+brew install ctls
+```
 
 The first `build` command can take a while to fetch dependencies.
 
