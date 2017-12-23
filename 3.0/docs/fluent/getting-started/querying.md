@@ -93,7 +93,7 @@ router.post(...) { req in
         return [
             marie.save(on: db),
             charles.save(on: db)
-        ].map {
+        ].map(to: Response.self) {
             return Response(status: .created)
         }
     }
@@ -160,10 +160,10 @@ router.put(...) { req in
             }
 
             return user
-        }.flatMap(to: User.self, { user in
+        }.flatMap(to: User.self) { user in
             user.age += 1
-            return user.update(on: db).map(to: User.self) {user}
-        })
+            return user.update(on: db).map(to: User.self) { user }
+        }
     }
 }
 ```
@@ -181,9 +181,9 @@ router.delete(...) { req in
             }
 
             return user
-        }.flatMap(to: User.self, { user in
-            return user.delete(on: db).map(to: User.self) {user}
-        })
+        }.flatMap(to: User.self) { user in
+            return user.delete(on: db).map(to: User.self) { user }
+        }
     }
 }
 ```
