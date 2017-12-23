@@ -1,16 +1,15 @@
 # Getting Started with Models
 
-Models are the heart of Fluent. Unlike ORMs in other languages, Fluent doesn't return untyped 
-arrays or dictionaries for queries. Instead, you query the database using models. This allows the 
+Models are the heart of Fluent. Unlike ORMs in other languages, Fluent doesn't return untyped
+arrays or dictionaries for queries. Instead, you query the database using models. This allows the
 Swift compiler to catch many errors that have burdened ORM users for ages.
 
-In this guide, we will cover the creation of a basic `User` model. See [Fluent &rarr; Model](../model.md) for
-more in-depth information about the model protocol.
+In this guide, we will cover the creation of a basic `User` model.
 
 ## Class
 
-Every Fluent model starts with a `Codable` class. You can make any `Codable` class a Fluent model, 
-even ones that come from a different module. All you have to do is conform to `Model`. 
+Every Fluent model starts with a `Codable` class. You can make any `Codable` class a Fluent model,
+even ones that come from a different module. All you have to do is conform to `Model`.
 
 ```swift
 import Foundation
@@ -54,7 +53,7 @@ use this model.
 import FluentMySQL
 
 extension User: Model {
-    ... 
+    ...
 
     /// See Model.Database
     typealias Database = MySQLDatabase
@@ -122,6 +121,5 @@ extension User: Model {
 
 ## Done
 
-Now that you have a working Fluent model, you can move onto [querying](querying.md) your model. 
+Now that you have a working Fluent model, you can move onto [querying](querying.md) your model.
 However, if your database uses schemas, you may need to create a [migration](migrations.md) for your model first.
-

@@ -35,7 +35,7 @@ From here, you can send [Requests](../http/request.md). You can only send one re
 
 ```swift
 // Future<Response>
-let response = client.flatMap { connectedClient in
+let response = client.flatMap(to: Response.self) { connectedClient in
   let request = Request(
     method: .get,
     uri: "https://example.com/"

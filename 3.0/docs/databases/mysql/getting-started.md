@@ -74,7 +74,7 @@ let password = "<mysql-pass-here>"
 let database = "<mysql-database>"
 
 let db = MySQLDatabase(hostname: "localhost", user: username, password: password, database: database)
-databaseConfig.add(database: db, as: mysqlDB)
+databaseConfig.add(database: db, as: .mysql)
 services.instance(databaseConfig)
 ```
 
@@ -84,7 +84,11 @@ You need to create an identifier for each database you attach to Fluent.
 The following identifer can be global, or as a static variable in an extension on `DatabaseIdentifier`.
 
 ```swift
-let mysqlDB = DatabaseIdentifier<MySQLDatabase>("<any-unique-strings>")
+extension DatabaseIdentifier {
+    static var mysql: DatabaseIdentifier<MySQLDatabase> {
+        return .init("foo")
+    }
+}
 ```
 
 Last, you can specify migrations for Fluent to execute. This can be used for creating and altering schemas and migrating data within the table.
@@ -93,7 +97,7 @@ Fluent `Model`s that conform to the protocol `Migration` automatically inherit a
 
 ```swift
 var migrationConfig = MigrationConfig()
-migrationConfig.add(model: MyModel.self, database: mysqlDB)
+migrationConfig.add(model: MyModel.self, database: .mysql)
 services.instance(migrationConfig)
 ```
 

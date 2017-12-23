@@ -46,18 +46,16 @@ pages:
     - 'URI': 'http/uri.md'
 - 'Fluent':
     - 'Getting Started': 'fluent/getting-started.md'
-    - 'Provider': 'fluent/provider.md'
     - 'Models': 'fluent/models.md'
     - 'Migrations': 'fluent/migrations.md'
     - 'Querying': 'fluent/querying.md'
-    - 'Database': 'fluent/database.md'
-    - 'Model': 'fluent/model.md'
     - 'Query Builder': 'fluent/query-builder.md'
-    - 'Migration': 'fluent/migration.md'
     - 'Schema Builder': 'fluent/schema-builder.md'
+    - 'Migration': 'fluent/migration.md'
     - 'Relations': 'fluent/relations.md'
     - 'Pivot': 'fluent/pivot.md'
     - 'Transaction': 'fluent/transaction.md'
+    - 'Database': 'fluent/database.md'
 - 'Databases':
     # - 'SQLite':
     #     - 'Package': 'databases/sqlite/getting-started.md'

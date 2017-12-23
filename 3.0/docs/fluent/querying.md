@@ -1,6 +1,6 @@
 # Querying Models
 
-Once you have a [model](models.md) (and optionally a [migration](migrations.md)) you can start 
+Once you have a [model](models.md) (and optionally a [migration](migrations.md)) you can start
 querying your database to create, read, update, and delete data.
 
 ## Connection
@@ -12,11 +12,11 @@ access to the [`DatabaseIdentifier`](provider.md#identifier).
 
 ### Request
 
-The preferred method for getting access to a database connection is via an incoming request. 
+The preferred method for getting access to a database connection is via an incoming request.
 
 ```swift
 router.get(...) { req in
-    return req.database(.foo) { db in
+    return req.withConnection(to: .foo) { db in
         // use the db here
     }
 }
@@ -37,7 +37,7 @@ You can also create a database connection using the application. This is useful 
 the database from outside a request/response event.
 
 ```swift
-let res = app.database(.foo) { db in
+let res = app.withConnection(to: .foo) { db in
     // use the db here
 }
 print(res) // Future<T>
@@ -55,9 +55,9 @@ To create (save) a model to the database, first initialize an instance of your m
 
 ```swift
 router.post(...) { req in
-    return req.database(.foo) { db -> Future<User> in
+    return req.withConnection(to: .foo) { db -> Future<User> in
         let user = User(name: "Vapor", age: 3)
-        return user.save(on: db).map { user }
+        return user.save(on: db).transform(to: user) // Future<User>
     }
 }
 ```
@@ -65,16 +65,16 @@ router.post(...) { req in
 ### Response
 
 `.save(on: )` returns a `Future<Void>` that completes when the user has finished saving. In this example, we then
-map that `Future<Void>` to a `Future<User>` by calling `.map` and passing in the recently-saved user. 
+map that `Future<Void>` to a `Future<User>` by calling `.map` and passing in the recently-saved user.
 
 You can also use `.map` to return a simple success response.
 
 ```swift
 router.post(...) { req in
-    return req.database(.foo) { db -> Future<Response> in
+    return req.withConnection(to: .foo) { db -> Future<HTTPResponse> in
         let user = User(name: "Vapor", age: 3)
-        return user.save(on: db).map { 
-            return Response(status: .created) 
+        return user.save(on: db).map(to: HTTPResponse.self) {
+            return HTTPResponse(status: .created)
         }
     }
 }
@@ -86,14 +86,14 @@ If you have multiple instances to save, do so using an array. Arrays containing 
 
 ```swift
 router.post(...) { req in
-    return req.database(.foo) { db -> Future<Response> in
+    return req.withConnection(to: .foo) { db -> Future<HTTPResponse> in
         let marie = User(name: "Marie Curie", age: 66)
         let charles = User(name: "Charles Darwin", age: 73)
         return [
             marie.save(on: db),
             charles.save(on: db)
-        ].map {
-            return Response(status: .created)
+        ].map(to: HTTPResponse.self) {
+            return HTTPResponse(status: .created)
         }
     }
 }
@@ -101,7 +101,7 @@ router.post(...) { req in
 
 ## Read
 
-To read models from the database, use `.query()` on the database connection to create a [QueryBuilder](../query-builder). 
+To read models from the database, use `.query()` on the database connection to create a [QueryBuilder](../query-builder).
 
 ### All
 
@@ -109,7 +109,7 @@ Fetch all instances of a model from the database using `.all()`.
 
 ```swift
 router.get(...) { req in
-    return req.database(.foo) { db -> Future<[User]> in
+    return req.withConnection(to: .foo) { db -> Future<[User]> in
         return db.query(User.self).all()
     }
 }
@@ -121,7 +121,7 @@ Use `.filter(...)` to apply [filters](../query-builder#filters) to your query.
 
 ```swift
 router.get(...) { req in
-    return req.database(.foo) { db -> Future<[User]> in
+    return req.withConnection(to: .foo) { db -> Future<[User]> in
         return try db.query(User.self).filter(\User.age > 50).all()
     }
 }
@@ -133,8 +133,8 @@ You can also use `.first()` to just get the first result.
 
 ```swift
 router.get(...) { req in
-    return req.database(.foo) { db -> Future<User> in
-        return try db.query(User.self).filter(\User.name == "Vapor").first().map { user in
+    return req.withConnection(to: .foo) { db -> Future<User> in
+        return try db.query(User.self).filter(\User.name == "Vapor").first().map(to: User.self) { user in
             guard let user = user else {
                 throw Abort(.notFound, reason: "Could not find user.")
             }
@@ -154,4 +154,14 @@ Coming soon.
 
 ## Delete
 
-Coming soon.
+```swift
+router.delete(...) { req in
+    return req.withConnection(to: .foo) { db -> Future<Response> in
+        return try db.query(User.self).filter(\User.name == "Vapor").first().flatMap(to: Void.self) { user in // User -> Void
+            return user.delete(on: db)
+        }.map(to: HTTPResponse.self) { // Void -> HTTPResponse
+            return HTTPResponse(status: ok)
+        }
+    }
+}
+```
