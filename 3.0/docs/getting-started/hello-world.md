@@ -16,6 +16,8 @@ vapor new Hello
 
 !!! warning
 	Make sure to add `--branch=beta` while using Vapor 3 pre-release.
+	
+	If you receive an error that looks like this:  'Cloning Template [Failed]' then the template you are using is not           yet ready for the beta branch. Try a different template. 
 
 Once that finishes, change into the newly created directory.
 
