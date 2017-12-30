@@ -12,9 +12,20 @@ Containers are [EventLoops](../async/eventloop.md) that can create and cache ser
 
 [`Request`](../http/request.md) is the most common `Container` type, which can be accessed in every [`Route`](../getting-started/routing.md).
 
+Containers cache instances of a given service (keyed by the requested protocol) on a per-container basis.
+
+1. Any given container has its own cache. No two containers will ever share a service instance, whether singleton or not.
+2. A singleton service is chosen and cached only by which interface(s) it supports and the service tag.
+There will only ever be one instance of a singleton service per-container, regardless of what requested it.
+3. A normal service is chosen and cached by which interface(s) it supports, the service tag, and the requesting client interface.
+There will be as many instances of a normal service per-container as there are unique clients requesting it.
+(Remembering that clients are also interface types, not instances - that's the `for:` parameter to `.make()`)
+
 ### EphemeralContainer
 
-EphemeralContainers are containers that are short-lived. Their cache does not stretch beyond a short lifecycle. The most common EphemeralContainer is an [HTTP Request](../http/request.md) which lives for the duration of the route handler.
+EphemeralContainers are containers that are short-lived.
+Their cache does not stretch beyond a short lifecycle.
+The most common EphemeralContainer is an [HTTP Request](../http/request.md) which lives for the duration of the route handler.
 
 ### Service
 
@@ -56,6 +67,8 @@ services.instance(EmptyService())
 ```
 
 ### Singletons
+
+Singleton services (which declare themselves, or were registered, as such) are cached on a per-container basis, but the singleton cache ignores which Client is requesting the service (whereas the normal cache does not).
 
 Singleton classes _must_ be thread-safe to prevent crashes. If you want your class to be a singleton type (across all threads):
 
