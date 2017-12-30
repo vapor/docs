@@ -77,6 +77,21 @@ webSocket.onData { data in
 
 Setting a listener will override all previous listeners. You need to split into multiple listeners manually.
 
+### On close
+
+When requesting data using the `onString`, `onByteBuffer` and/or `onData` functions, you'll receive a handle to that stream.
+This can be used for catching errors and detecting the websocket being closed.
+
+```swift
+webSocket.onString { websocket, string in
+    print(string)
+}.catch { error in
+	print("Error occurred: \(error)")
+}.finally {
+	print("closed")
+}
+```
+
 ### Errors
 
 Any error in a WebSocket will close the connection. This notification will be received on the binary _and_ text streams.
