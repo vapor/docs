@@ -994,46 +994,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#crud" title="CRUD" class="md-nav__link">
-    CRUD
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#creating" title="Creating" class="md-nav__link">
-    Creating
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" title="Troubleshooting" class="md-nav__link">
-    Troubleshooting
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ambiguous-naming" title="Ambiguous naming" class="md-nav__link">
-    Ambiguous naming
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
       
       
     </ul>
@@ -1501,46 +1461,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#crud" title="CRUD" class="md-nav__link">
-    CRUD
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#creating" title="Creating" class="md-nav__link">
-    Creating
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" title="Troubleshooting" class="md-nav__link">
-    Troubleshooting
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ambiguous-naming" title="Ambiguous naming" class="md-nav__link">
-    Ambiguous naming
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
       
       
     </ul>
@@ -1586,24 +1506,137 @@ The database will also need access to your <a href="../../../async/eventloop/">w
 </pre></div>
 
 
-<h2 id="crud">CRUD<a class="headerlink" href="#crud" title="Permanent link">&para;</a></h2>
+<h1 id="crud">CRUD<a class="headerlink" href="#crud" title="Permanent link">&para;</a></h1>
 <p>Before applying a CRUD operation you need to select a Collection first. This is the MongoDB equivalent of a table.</p>
 <p>You can subscript a database with a string to get a collection with that name. You do not need to set up a schema first.</p>
 <div class="codehilite"><pre><span></span><span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;users&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">request</span> <span class="k">in</span>
     <span class="kd">let</span> <span class="nv">database</span> <span class="p">=</span> <span class="k">try</span> <span class="n">request</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">Database</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
-    <span class="kd">let</span> <span class="nv">users</span> <span class="p">=</span> <span class="n">database</span><span class="p">[</span><span class="s">&quot;users&quot;</span><span class="p">]</span>
+    <span class="kd">let</span> <span class="nv">users</span> <span class="p">=</span> <span class="n">database</span><span class="p">[</span><span class="s">&quot;users&quot;</span><span class="p">]</span> <span class="c1">// Collection&lt;Document&gt;</span>
 
     <span class="p">...</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<h3 id="creating">Creating<a class="headerlink" href="#creating" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span>
+<p>Subscripting will give you a <code>Collection&lt;Document&gt;</code>. If you want to read the collection as a different (Codable) type you'll need to <code>map</code> the collection to a different type.</p>
+<div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">User</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">_id</span> <span class="p">=</span> <span class="n">ObjectId</span><span class="p">()</span>
+    <span class="kd">var</span> <span class="nv">username</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">var</span> <span class="nv">age</span><span class="p">:</span> <span class="nb">Int</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="n">named</span> <span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">username</span> <span class="p">=</span> <span class="n">named</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">age</span> <span class="p">=</span> <span class="n">age</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nv">users</span> <span class="p">=</span> <span class="n">database</span><span class="p">[</span><span class="s">&quot;users&quot;</span><span class="p">].</span><span class="bp">map</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
 </pre></div>
 
 
-<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<p>CRUD operations</p>
+<h2 id="insert">Insert<a class="headerlink" href="#insert" title="Permanent link">&para;</a></h2>
+<p>Inserting entities is done by using <code>.insert</code> with either one or a sequence of the entity.</p>
+<div class="codehilite"><pre><span></span><span class="n">users</span><span class="p">.</span><span class="bp">insert</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="n">users</span><span class="p">.</span><span class="n">insertAll</span><span class="p">([</span><span class="n">user1</span><span class="p">,</span> <span class="n">user2</span><span class="p">,</span> <span class="n">user3</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Insert returns a <code>Future&lt;Reply.Insert&gt;</code> which you can use to determine if one (or more) inserts failed. Is <code>reply.ok != 1</code> the future will not be completed but failed with the reply, instead.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">reply</span> <span class="p">=</span> <span class="n">users</span><span class="p">.</span><span class="n">insertAll</span><span class="p">([</span><span class="n">user1</span><span class="p">,</span> <span class="n">user2</span><span class="p">,</span> <span class="n">user3</span><span class="p">])</span>
+
+<span class="n">reply</span><span class="p">.</span><span class="k">do</span> <span class="p">{</span> <span class="n">success</span> <span class="k">in</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;</span><span class="si">\(</span><span class="n">success</span><span class="p">.</span><span class="n">n</span><span class="si">)</span><span class="s"> users inserted&quot;</span><span class="p">)</span>
+<span class="p">}.</span><span class="k">catch</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="c1">// Insert failed!</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="find">Find<a class="headerlink" href="#find" title="Permanent link">&para;</a></h2>
+<p>Using <code>find</code> on a collection returns a <code>Cursor&lt;C&gt;</code> where <code>C</code> is the type nested in the collection as demonstrated above.</p>
+<p><code>find</code> can take 4 arguments. A filter, range, sort and projection.</p>
+<p>There is also <code>findOne</code>, which is useful when you want to exactly one object. This does not support a range expression.</p>
+<h3 id="filter">Filter<a class="headerlink" href="#filter" title="Permanent link">&para;</a></h3>
+<p>The filter is a MongoKitten <a href="query.md"><code>Query</code></a> object.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// User?</span>
+<span class="k">guard</span> <span class="kd">let</span> <span class="nv">joannis</span> <span class="p">=</span> <span class="n">users</span><span class="p">.</span><span class="n">findOne</span><span class="p">(</span><span class="s">&quot;username&quot;</span> <span class="p">==</span> <span class="s">&quot;Joannis&quot;</span> <span class="o">&amp;&amp;</span> <span class="s">&quot;active&quot;</span> <span class="p">==</span> <span class="kc">true</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3 id="range">Range<a class="headerlink" href="#range" title="Permanent link">&para;</a></h3>
+<p>A range is any native swift Range. It is used for <code>skip</code> and <code>limit</code>.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Cursor with the first 10 users</span>
+
+<span class="kd">let</span> <span class="nv">users1</span> <span class="p">=</span> <span class="n">users</span><span class="p">.</span><span class="bp">find</span><span class="p">(</span><span class="k">in</span><span class="p">:</span> <span class="p">..&lt;</span><span class="mi">10</span><span class="p">)</span> <span class="c1">// Cursor&lt;User&gt;</span>
+<span class="kd">let</span> <span class="nv">users2</span> <span class="p">=</span> <span class="n">users</span><span class="p">.</span><span class="bp">find</span><span class="p">(</span><span class="k">in</span><span class="p">:</span> <span class="mf">10.</span><span class="p">.&lt;</span><span class="mi">20</span><span class="p">)</span> <span class="c1">// Cursor&lt;User&gt;</span>
+<span class="kd">let</span> <span class="nv">users3</span> <span class="p">=</span> <span class="n">users</span><span class="p">.</span><span class="bp">find</span><span class="p">(</span><span class="k">in</span><span class="p">:</span> <span class="mf">30.</span><span class="p">..)</span> <span class="c1">// Cursor&lt;User&gt;</span>
+</pre></div>
+
+
+<h3 id="sort">Sort<a class="headerlink" href="#sort" title="Permanent link">&para;</a></h3>
+<p>The <a href="sort.md"><code>Sort</code></a> is used to sort entities in either ascending or descending order based on one or more fields.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">maleUsers</span> <span class="p">=</span> <span class="n">users</span><span class="p">.</span><span class="bp">find</span><span class="p">(</span><span class="s">&quot;gender&quot;</span> <span class="p">==</span> <span class="s">&quot;male&quot;</span><span class="p">,</span> <span class="n">sortedBy</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;age&quot;</span><span class="p">:</span> <span class="p">.</span><span class="n">ascending</span><span class="p">])</span> <span class="c1">// Cursor&lt;User&gt;</span>
+</pre></div>
+
+
+<h3 id="projection">Projection<a class="headerlink" href="#projection" title="Permanent link">&para;</a></h3>
+<p>The <a href="projection.md">projection</a> ensures only the specifies subset of fields are returned. Projections can also be computed fields. Remember that the projection must fit within the Collection's Codable type. If this is not a dictionary(-like) type such as <code>Document</code> it will be required that the Document fetched matches the Codable type.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">adults</span> <span class="p">=</span> <span class="n">users</span><span class="p">.</span><span class="bp">find</span><span class="p">(</span><span class="s">&quot;age&quot;</span> <span class="o">&gt;=</span> <span class="mi">21</span><span class="p">,</span> <span class="n">projecting</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;_id&quot;</span><span class="p">:</span> <span class="p">.</span><span class="n">excluded</span><span class="p">,</span> <span class="s">&quot;username&quot;</span><span class="p">:</span> <span class="p">.</span><span class="n">included</span><span class="p">])</span> <span class="c1">// Cursor&lt;User&gt;</span>
+</pre></div>
+
+
+<h2 id="count">Count<a class="headerlink" href="#count" title="Permanent link">&para;</a></h2>
+<p>Count is similar to a find operation in that it is a read-only operation. Since it does not return the actual data (only an integer of the total entities found) it does not support projections and sorting. It does support a range expression, although it's not often used.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">totalUsers</span> <span class="p">=</span> <span class="n">users</span><span class="p">.</span><span class="bp">count</span><span class="p">()</span> <span class="c1">// Future&lt;Int&gt;</span>
+<span class="kd">let</span> <span class="nv">femaleUsers</span> <span class="p">=</span> <span class="n">users</span><span class="p">.</span><span class="bp">count</span><span class="p">(</span><span class="s">&quot;gender&quot;</span> <span class="p">==</span> <span class="s">&quot;female&quot;</span><span class="p">)</span> <span class="c1">// Future&lt;Int&gt;</span>
+</pre></div>
+
+
+<h2 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h2>
+<p>Updating can be done on one or all entities. Updates can either update the entire entity or only a subset of fields.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="n">User</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&quot;Joannis&quot;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">111</span><span class="p">)</span>
+
+<span class="n">users</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="s">&quot;username&quot;</span> <span class="p">==</span> <span class="s">&quot;Joannis&quot;</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">user</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Update also indicates a success state in the same way <code>insert</code> does.</p>
+<h3 id="updating-fields">Updating fields<a class="headerlink" href="#updating-fields" title="Permanent link">&para;</a></h3>
+<p>Updating a subset of fields can be done more efficiently using</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Rename `Joannis` -&gt; `JoannisO`</span>
+<span class="n">users</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="s">&quot;username&quot;</span> <span class="p">==</span> <span class="s">&quot;Joannis&quot;</span><span class="p">,</span> <span class="n">fields</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s">&quot;username&quot;</span><span class="p">:</span> <span class="s">&quot;JoannisO&quot;</span>
+<span class="p">])</span>
+
+<span class="c1">// Migrate all users to require a password update</span>
+<span class="n">users</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">fields</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s">&quot;resetPassword&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">])</span>
+</pre></div>
+
+
+<h3 id="upsert">Upsert<a class="headerlink" href="#upsert" title="Permanent link">&para;</a></h3>
+<p>If you don't know if an entity exists but want it inserted/updated accordingly you should use <code>upsert</code>.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="n">User</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&quot;Joannis&quot;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">111</span><span class="p">)</span>
+
+<span class="n">users</span><span class="p">.</span><span class="n">upsert</span><span class="p">(</span><span class="s">&quot;_id&quot;</span> <span class="p">==</span> <span class="n">user</span><span class="p">.</span><span class="n">_id</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">user</span><span class="p">)</span>
+</pre></div>
+
+
+<h2 id="remove">Remove<a class="headerlink" href="#remove" title="Permanent link">&para;</a></h2>
+<p>Remove removes the first or all entities matching a query.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Remove me!</span>
+<span class="n">users</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="s">&quot;username&quot;</span> <span class="p">==</span> <span class="s">&quot;Joannis&quot;</span><span class="p">)</span>
+
+<span class="c1">// Remove all Dutch users</span>
+<span class="n">users</span><span class="p">.</span><span class="bp">removeAll</span><span class="p">(</span><span class="s">&quot;country&quot;</span> <span class="p">==</span> <span class="s">&quot;NL&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h1>
 <h3 id="ambiguous-naming">Ambiguous naming<a class="headerlink" href="#ambiguous-naming" title="Permanent link">&para;</a></h3>
 <p>In some situations you may find that MongoKitten's <code>Database</code> or <code>ClientSettings</code> are ambiguous with another library. The following lines will help get rid of that.</p>
 <div class="codehilite"><pre><span></span><span class="kd">typealias</span> <span class="n">MongoDB</span> <span class="p">=</span> <span class="n">MongoKitten</span><span class="p">.</span><span class="n">Database</span>
