@@ -59,6 +59,7 @@ pages:
 - 'Databases':
     - 'MongoDB':
         - 'Getting Started': 'databases/mongodb/getting-started.md'
+        - 'BSON': 'databases/mongodb/bson.md'
         - 'Basics': 'databases/mongodb/basics.md'
         - 'Interpreting tutorials': 'databases/mongodb/interpreting.md'
     - 'MySQL':
