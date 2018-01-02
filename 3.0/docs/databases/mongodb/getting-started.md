@@ -35,7 +35,7 @@ Use `import MongoKitten` to access the APIs.
 
 ## With Fluent
 
-MySQL works well Fluent, you just need to make sure to add the [vapor/fluent-mysql](https://github.com/vapor/fluent-mysql) package to your project.
+To use MongoDB with Fluent, you just need to make sure to add the [vapor/fluent-mongodb](https://github.com/vapor/fluent-mongodb) package to your project.
 
 To do this, add the Fluent MySQL package to your Package manifest.
 
@@ -47,21 +47,21 @@ let package = Package(
     name: "Project",
     dependencies: [
         ...
-        .package(url: "https://github.com/vapor/fluent-mysql.git", .revision("beta")),
+        .package(url: "https://github.com/vapor/fluent-mongodb.git", .revision("beta")),
     ],
     targets: [
-      .target(name: "Project", dependencies: ["FluentMySQL", ... ])
+      .target(name: "Project", dependencies: ["FluentMongoDB", ... ])
     ]
 )
 ```
 
 If this is your first time adding a dependency, you should read our introduction to [Package.swift](../../getting-started/spm.md).
 
-Use `import FluentMySQL` to access MySQL's Fluent compatible APIs. [Learn more about the Fluent APIs here](../../fluent/getting-started/provider.md)
+Use `import FluentMongoDB` to access MongoDB's Fluent compatible APIs. [Learn more about the Fluent APIs here](../../fluent/getting-started/provider.md)
 
-### Setting up services
-
-In order to set up MySQL with Fluent you first need to register the Fluent provider:
+<!-- ### Setting up services -->
+<!--
+In order to set up MongoDB with Fluent you first need to register the Fluent provider:
 
 ```swift
 try services.provider(FluentProvider())
@@ -104,6 +104,6 @@ Fluent `Model`s that conform to the protocol `Migration` automatically inherit a
 var migrationConfig = MigrationConfig()
 migrationConfig.add(model: MyModel.self, database: .mysql)
 services.instance(migrationConfig)
-```
+``` -->
 
 More info on working with Fluent can be found [here](../../fluent/getting-started/getting-started.md).

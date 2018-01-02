@@ -77,12 +77,23 @@ For inserting you can use `insert` which have various parameters which you can u
 Most parameters have a default and can thus be left out of not needed.
 
 ```swift
-
+myCollection.insert([
+    "_id": ObjectId(),
+    "some": "string",
+    "date": Date()
+])
 ```
 
 ## Aggregates
-If you followed this article you should know the basics of MongoKitten aggregates. If you, at any point, need a specific stage, you can look for the stage by the MongoDB name in the documentation or make use of autocomplete.
-All aggregates can be quickly accessed using by simply typing a dot (.) inside the pipeline array literal like you would for enum cases. This will autocomplete to all available static functions that can help you create a stage. If you miss a stage or want to create a stage manually you can do so by providing a BSONDocument like this:
+If you followed this article you should know the basics of MongoKitten aggregates.
+If you, at any point, need a specific stage, you can look for the stage by the MongoDB name in the documentation or make use of autocomplete.
+
+All supported aggregates can be quickly accessed using by simply typing a dot (`.`) inside the pipeline array literal like you would for enum cases.
+This will autocomplete to all available static functions that can help you create a stage.
+
+If you miss a stage or want to create a stage manually you can do so by providing a BSON `Document` like this:
+
+```swift
 let stage = Stage([
   "$match": [
     "username": [
@@ -90,18 +101,21 @@ let stage = Stage([
     ]
   ]
 ])
+```
+
 The stage must be equal to the Document representation of the stage operators described here.
 You can then add this stage as one of the values in the array.
-Queries
-MongoDB queries can work if converted to a Document. If you do this, you must either use a literal query like below or write it using the query builder described here.
+
+## Document Queries
+
+MongoDB queries can work if converted to a Document.
+If you do this, you must either use a literal query like below or write it using the query builder described here.
+
+```swift
 let query = Query(document)
 let literalQuery: Query = [
   "age": [
     "$gte": 15
   ]
 ]
-Sorting and Projecting
-Sorts and projections have quite a bit of sugarcoating around them for readability and MongoDB-newcomers as explained here.
-Both objects can be wrapped around a Document like you can with Query :
-let sort = Sort(document)
-let projection = Projection(document)
+```
