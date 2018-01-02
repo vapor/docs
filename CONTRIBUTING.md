@@ -12,7 +12,7 @@ Thanks!
 
 Install `couscous` through Composer and run `couscous preview`
 
-### 2.0
+### 2.0 and 3.0
 
 Install MkDocs and MkDocs Material theme.
 
