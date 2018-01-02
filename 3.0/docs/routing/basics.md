@@ -16,7 +16,7 @@ It responds with `"Hello world!"` using futures.
 
 ```swift
 router.on(.get, to: "hello", "world") { request in
-  return Future(try Response(body: "Hello world!"))
+  return try Response(body: "Hello world!") 
 }
 ```
 

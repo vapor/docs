@@ -87,7 +87,7 @@ func register(to router: SyncRouter) {
   router.get("echo") { request in
     let string_here = try request.parameters.next(String.self)
 
-    return Future(string_here)
+    return string_here
   }
 }
 

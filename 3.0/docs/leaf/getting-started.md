@@ -1,6 +1,6 @@
 # Leaf
 
-Leaf is a templating language that integrates with Futures, Streams and Codable. This section outlines how to import the Leaf package into a Vapor project.
+Leaf is a templating language that integrates with Futures, Reactive Streams and Codable. This section outlines how to import the Leaf package into a Vapor project.
 
 ## Example Folder Structure
 
@@ -14,7 +14,7 @@ Hello
 │   │   └── hello.leaf
 ├── Public
 │   ├── images (images resources)
-│   ├── styles (css resources) 
+│   ├── styles (css resources)
 ├── Sources
 │   ├── App
 │   │   ├── boot.swift
@@ -31,7 +31,7 @@ Hello
 
 ## Adding Leaf to your project
 
-The easiest way to use Leaf with Vapor is to include the Leaf repository as a dependency in Package.swift: 
+The easiest way to use Leaf with Vapor is to include the Leaf repository as a dependency in Package.swift:
 
 ```swift
 // swift-tools-version:4.0
@@ -40,7 +40,7 @@ import PackageDescription
 let package = Package(
     name: "project1",
     dependencies: [
-        // 💧 A server-side Swift web framework. 
+        // 💧 A server-side Swift web framework.
         .package(url: "https://github.com/vapor/vapor.git", .branch("beta")),
         .package(url: "https://github.com/vapor/leaf.git", .branch("beta")),
     ],
@@ -82,5 +82,3 @@ There appears to be a way to [make Xcode file associations persist](http://stack
 ### CLion & AppCode
 
 Some preliminary work has been done to implement a Leaf Plugin for CLion & AppCode but lack of skill and interest in Java has slowed progress! If you have IntelliJ SDK experience and want to help with this, message Tom Holland on [Vapor Slack](http://vapor.team)
-
-

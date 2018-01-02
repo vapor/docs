@@ -15,7 +15,7 @@ struct StaticResponder: Responder {
   }
 
   func respond(to req: Request) throws -> Future<Response> {
-    return Future(response)
+    return response
   }
 }
 ```

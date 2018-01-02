@@ -1,6 +1,6 @@
 # Querying Models
 
-Once you have a [model](models.md) (and optionally a [migration](migrations.md)) you can start 
+Once you have a [model](models.md) (and optionally a [migration](migrations.md)) you can start
 querying your database to create, read, update, and delete data.
 
 ## Connection
@@ -12,7 +12,7 @@ access to the [`DatabaseIdentifier`](provider.md#identifier).
 
 ### Request
 
-The preferred method for getting access to a database connection is via an incoming request. 
+The preferred method for getting access to a database connection is via an incoming request.
 
 ```swift
 router.get(...) { req in
@@ -37,7 +37,7 @@ You can also create a database connection using the application. This is useful 
 the database from outside a request/response event.
 
 ```swift
-let res = app.database(.foo) { db in
+let res = app.withConnection(to: .foo) { db in
     // use the db here
 }
 print(res) // Future<T>
@@ -55,9 +55,9 @@ To create (save) a model to the database, first initialize an instance of your m
 
 ```swift
 router.post(...) { req in
-    return req.withConnection(to: .foo) { db -> Future<Parking> in
+    return req.withConnection(to: .foo) { db -> Future<User> in
         let user = User(name: "Vapor", age: 3)
-        return user.save(on: db).map(to: User.self) { user }
+        return user.save(on: db).transform(to: user) // Future<User>
     }
 }
 ```
@@ -65,17 +65,17 @@ router.post(...) { req in
 ### Response
 
 `.save(on: )` returns a `Future<Void>` that completes when the user has finished saving. In this example, we then
-map that `Future<Void>` to a `Future<User>` by calling `.map` and passing in the recently-saved user. 
+map that `Future<Void>` to a `Future<User>` by calling `.map` and passing in the recently-saved user.
 
 You can also use `.map` to return a simple success response.
 
 ```swift
 
 router.post(...) { req in
-    return req.withConnection(to: .foo) { db -> Future<Response> in
+    return req.withConnection(to: .foo) { db -> Future<HTTPResponse> in
         let user = User(name: "Vapor", age: 3)
-        return user.save(on: db).map(to: Response.self) { 
-            return Response(http: HTTPResponse(status: .created), using: req)
+        return user.save(on: db).map(to: HTTPResponse.self) {
+            return HTTPResponse(status: .created)
         }
     }
 }
@@ -87,14 +87,14 @@ If you have multiple instances to save, do so using an array. Arrays containing 
 
 ```swift
 router.post(...) { req in
-    return req.withConnection(to: .foo) { db -> Future<Response> in
+    return req.withConnection(to: .foo) { db -> Future<HTTPResponse> in
         let marie = User(name: "Marie Curie", age: 66)
         let charles = User(name: "Charles Darwin", age: 73)
         return [
             marie.save(on: db),
             charles.save(on: db)
-        ].map(to: Response.self) {
-            return Response(status: .created)
+        ].map(to: HTTPResponse.self) {
+            return HTTPResponse(status: .created)
         }
     }
 }
@@ -102,7 +102,7 @@ router.post(...) { req in
 
 ## Read
 
-To read models from the database, use `.query()` on the database connection to create a [QueryBuilder](../query-builder). 
+To read models from the database, use `.query()` on the database connection to create a [QueryBuilder](../query-builder).
 
 ### All
 
@@ -179,10 +179,9 @@ router.delete(...) { req in
             guard let user = $0 else {
                 throw Abort(.notFound, reason: "Could not find user.")
             }
-
             return user
         }.flatMap(to: User.self) { user in
-            return user.delete(on: db).map(to: User.self) { user }
+            return user.delete(on: db).transfom(to: user)
         }
     }
 }

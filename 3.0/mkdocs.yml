@@ -21,18 +21,17 @@ pages:
 - 'Concepts':
     - 'Vapor': 'concepts/vapor.md'
     # - 'Async': 'concepts/async.md'
-    - 'Content': 'concepts/content.md'
     - 'Services': 'concepts/services.md'
     - 'HTTP': 'concepts/http.md'
     - 'Code Contributions': 'concepts/code-contributions.md'
 - 'Async':
-    - 'Package': 'async/getting-started.md'
+    - 'Getting Started': 'async/getting-started.md'
     - 'Futures': 'async/futures.md'
     - 'Streams': 'async/streams.md'
     - 'EventLoop': 'async/eventloop.md'
     - 'Reactive Programming': 'async/reactive.md'
 - 'HTTP':
-    - 'Package': 'http/getting-started.md'
+    - 'Getting Started': 'http/getting-started.md'
     - 'Body': 'http/body.md'
     - 'Client': 'http/client.md'
     - 'Cookies': 'http/cookies.md'
@@ -45,40 +44,38 @@ pages:
     # - 'Responder': 'http/responder.md'
     - 'Status codes': 'http/status.md'
     - 'URI': 'http/uri.md'
-# - 'Fluent':
-#     - 'Getting Started':
-#         - 'Package': 'fluent/getting-started/getting-started.md'
-#         - 'Provider': 'fluent/getting-started/provider.md'
-#         - 'Models': 'fluent/getting-started/models.md'
-#         - 'Migrations': 'fluent/getting-started/migrations.md'
-#         - 'Querying': 'fluent/getting-started/querying.md'
-#     - 'Database': 'fluent/database.md'
-#     - 'Model': 'fluent/model.md'
-#     - 'Query Builder': 'fluent/query-builder.md'
-#     - 'Migration': 'fluent/migration.md'
-#     - 'Schema Builder': 'fluent/schema-builder.md'
-#     - 'Relations': 'fluent/relations.md'
-#     - 'Pivot': 'fluent/pivot.md'
-#     - 'Transaction': 'fluent/transaction.md'
-# - 'Databases':
-#     - 'SQLite':
-#         - 'Package': 'databases/sqlite/getting-started.md'
-#         - 'Overview': 'databases/sqlite/overview.md'
-#     - 'MySQL':
-#         - 'Package': 'databases/mysql/getting-started.md'
-#         - 'Setup': 'databases/mysql/setup.md'
-#         - 'Basics': 'databases/mysql/basics.md'
-#         - 'Prepared Statements': 'databases/mysql/prepared-statements.md'
-#     - 'PostgreSQL':
-#         - 'Package': 'databases/postgres/getting-started.md'
-#         - 'Setup': 'databases/postgres/setup.md'
-#         - 'Basics': 'databases/postgres/basics.md'
+- 'Fluent':
+    - 'Getting Started': 'fluent/getting-started.md'
+    - 'Models': 'fluent/models.md'
+    - 'Migrations': 'fluent/migrations.md'
+    - 'Querying': 'fluent/querying.md'
+    - 'Query Builder': 'fluent/query-builder.md'
+    - 'Schema Builder': 'fluent/schema-builder.md'
+    - 'Migration': 'fluent/migration.md'
+    - 'Relations': 'fluent/relations.md'
+    - 'Pivot': 'fluent/pivot.md'
+    - 'Transaction': 'fluent/transaction.md'
+    - 'Database': 'fluent/database.md'
+- 'Databases':
+    - 'MongoDB':
+        - 'Getting Started': 'databases/mongodb/getting-started.md'
+        - 'BSON': 'databases/mongodb/bson.md'
+        - 'Basics': 'databases/mongodb/basics.md'
+        - 'Interpreting tutorials': 'databases/mongodb/interpreting.md'
+    - 'MySQL':
+        - 'Getting Started': 'databases/mysql/getting-started.md'
+        - 'Basics': 'databases/mysql/basics.md'
+        - 'Prepared Statements': 'databases/mysql/prepared-statements.md'
+    # - 'PostgreSQL':
+    #     - 'Package': 'databases/postgres/getting-started.md'
+    #     - 'Setup': 'databases/postgres/setup.md'
+    #     - 'Basics': 'databases/postgres/basics.md'
 - 'Leaf':
-    - 'Package': 'leaf/getting-started.md'
+    - 'Getting Started': 'leaf/getting-started.md'
     - 'Basics': 'leaf/basics.md'
     - 'Custom tags': 'leaf/custom-tags.md'
 - 'Redis':
-    - 'Package': 'redis/getting-started.md'
+    - 'Getting Started': 'redis/getting-started.md'
     - 'Basics': 'redis/basics.md'
     - 'Custom commands': 'redis/custom-commands.md'
     - 'Publish and Subscribe': 'redis/pub-sub.md'
@@ -95,7 +92,7 @@ pages:
 #     - 'Package': 'jwt/getting-started.md'
 #     - 'Signed Tokens': 'jwt/jws.md'
 - 'Crypto':
-    - 'Package': 'crypto/getting-started.md'
+    - 'Getting Started': 'crypto/getting-started.md'
     - 'Base64': 'crypto/base64.md'
     - 'Hashes': 'crypto/hash.md'
     - 'Message authentication': 'crypto/mac.md'

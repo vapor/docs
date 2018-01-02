@@ -24,6 +24,8 @@ try connection.withPreparation(statement: "SELECT * FROM users WHERE username = 
 
 The statement can be bound by calling the `bind` function on `statement`. This will provide you with a temporary binding context.
 
+You must bind the same or a similar type to the one related to the field being bound to. Bindings must be added in the same order they appear in the query.
+
 ```swift
 try statement.bind { binding in
   try binding.bind("ExampleUser")
@@ -31,6 +33,18 @@ try statement.bind { binding in
 ```
 
 Bindings will throw an error if the inputted value did not meet the query's required type.
+
+## Binding encodable data
+
+When inserting entities, often you need to encode all of the values to the query, preferably with type safety.
+
+```swift
+try binding.withEncoder { encoder in
+    try model.encode(to: encoder)
+}
+```
+
+You can use this `withEncoder` closure to bind multiple structures, too.
 
 ## Reading the query's results
 

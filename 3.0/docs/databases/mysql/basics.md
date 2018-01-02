@@ -1,31 +1,10 @@
 # MySQL Basics
 
-This guide assumes you've set up MySQL and are connected to MySQL using a connection pool as described in [the setup guide](setup.md).
+This guide assumes you've set up MySQL and are connected to MySQL using a connection pool as described in [the getting started guide](getting-started.md).
 
 ### Type safety
 
-The MySQL driver is written to embrace type-safety and Codable. We currently *only* expose Codable based results until we've found a good design for the non-codable API.
-
-## Retaining a connection
-
-Before you can send queries, you first need to retain a connection from the pool.
-
-You are *required* to return a [Future](../../async/futures.md) from within the closure. This closure's completion will be used to determine when the connection can be released back into the pool for the next request.
-
-```swift
-// The result from within the closure
-
-// Future<Response>
-let result = pool.retain { connection in
-  // query the connection
-
-  return Future(Response(status: .ok))
-}
-```
-
-The future returned from the retain call will be equal to the future returned within the retain call.
-
-This way you can return the connection back into the pool after one or more successive operations and return the (final) result.
+The MySQL driver is written to embrace type-safety and Codable. We currently *only* expose Codable based results.
 
 ## Queries
 
@@ -42,7 +21,7 @@ You can receive results from Queries in 4 kinds of formats.
 All examples assume the following model:
 
 ```swift
-struct User {
+struct User: Codable {
   var username: String
   var passwordHash: String
   var age: Int
@@ -63,7 +42,7 @@ let users = connection.all(User.self, in: "SELECT * FROM users")
 For partial results (`SELECT username, age FROM`) it is recommended to create a second decodable struct specifically for this query to ensure correctness and type-safety.
 
 ```swift
-struct UserLoginDetails: Decodable {
+struct UserLoginDetails: Codable {
   var username: String
   var age: Int
 }
@@ -71,16 +50,15 @@ struct UserLoginDetails: Decodable {
 
 ### Streams
 
-Streams, [as described on this page](../../async/streams.md), are a source of information that calls a single reader's callback. Streams are best used in larger datasets to prevent the query from consuming a large amount of memory. The downside of a stream is that you cannot return all results in a single future. You'll need to stream the results to the other endpoint, too. For HTTP [this is described here.](../../http/body-stream.md)
+Streams, [as described on this page](../../async/streams.md), are a source of information that calls a single reader's callback. Streams are best used in larger datasets to prevent the query from consuming a large amount of memory. The downside of a stream is that you cannot return all results in a single future. You'll need to stream the results to the other endpoint, too. For HTTP [this is described here.](../../advanced/streaming-results-http.md)
 
 Querying a database for a stream of results is achieved through the `stream` function and requires specifying the `Decodable` type that the results need to be deserialized into.
 
 ```swift
- // `ModelStream<User>`
-let usersStream = connection.stream(User.self, in: "SELECT * FROM users")
+try connection.stream(User.self, in: "SELECT * FROM users", to: inputStream)
 ```
 
-This stream will return all results in the ModelStream's output callback which you can drain. You can register a callback on `usersStream.onClose` that will trigger when the end of the `ModelStream` has been reached.
+This will put all Users into the `inputStream`. This requires `inputStream` to be an `InputStream` accepting `User` as Input.
 
 ### ForEach
 
@@ -99,9 +77,19 @@ let completed = connection.forEach(User.self, in: "SELECT * FROM users") { user 
   print(user.username)
 }
 
-completed.then {
-  print("All users printed")
+completed.do {
+    print("All users printed")
+}.catch { error in
+    print("An error occurred while printing the users: \(error)")
 }
+```
+
+### Single column rows
+
+When the query returns only one column, you can decode resulting rows as a single value.
+
+```swift
+let usernames = connection.all(String.self, in: "SELECT username FROM users") // Future<[String]>
 ```
 
 ### Resultless queries

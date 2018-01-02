@@ -1,3 +1,0 @@
-# Fluent Model
-
-Coming soon.

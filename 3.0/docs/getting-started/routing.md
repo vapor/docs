@@ -45,7 +45,7 @@ final class Routes: RouteCollection {
 
     func boot(router: Router) throws {
         router.get("hello") { req in
-            return Future("Hello, world!")
+            return "Hello, world!"
         }
     }
 }

@@ -4,7 +4,7 @@ Vapor 3 is an [asynchronous](../async/getting-started.md), codable and protocol 
 
 ## Async
 
-Vapor 3 async is a framework consisting of two basic principles. Futures and Streams. Both have their ideal use cases and strengths.
+Vapor 3 async is a framework consisting of two basic principles. [Futures](../getting-started/futures.md) and [Reactive Streams](../async/streams.md). Both have their ideal use cases and strengths.
 
 ### Performance
 
