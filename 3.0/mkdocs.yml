@@ -57,9 +57,10 @@ pages:
     - 'Transaction': 'fluent/transaction.md'
     - 'Database': 'fluent/database.md'
 - 'Databases':
-    # - 'SQLite':
-    #     - 'Package': 'databases/sqlite/getting-started.md'
-    #     - 'Overview': 'databases/sqlite/overview.md'
+    - 'MongoDB':
+        - 'Getting Started': 'databases/mongodb/getting-started.md'
+        - 'Basics': 'databases/mongodb/basics.md'
+        - 'Interpreting tutorials': 'databases/mongodb/interpreting.md'
     - 'MySQL':
         - 'Getting Started': 'databases/mysql/getting-started.md'
         - 'Basics': 'databases/mysql/basics.md'
