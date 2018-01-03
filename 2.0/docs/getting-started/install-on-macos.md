@@ -4,9 +4,9 @@ To use Vapor on macOS, you just need to have Xcode 8 or later installed.
 
 ## Install Xcode
 
-Install [Xcode 9.2](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) from the Mac App Store.
+Install [Xcode 9](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) from the Mac App Store.
 
-[![Xcode 9.2](https://cloud.githubusercontent.com/assets/1342803/18537674/2ddd8e9c-7ad5-11e6-9bc2-7155d57d20ec.png)](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
+[![Xcode 9](https://cloud.githubusercontent.com/assets/1342803/18537674/2ddd8e9c-7ad5-11e6-9bc2-7155d57d20ec.png)](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
 
 (Xcode 8 is the minimum required to use Vapor 2.0 on macOS. If you have an Apple Developer membership you can download older versions of Xcode from Apple's developer [downloads page](https://developer.apple.com/download/more/))
 
