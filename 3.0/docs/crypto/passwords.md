@@ -20,7 +20,7 @@ The output is a combination of the BCrypt "cost" factor, salt and resulting hash
 let result: Data = try BCrypt.make(message: "MyPassword")
 
 guard try BCrypt.verify(message: "MyPassword", matches: result) else {
-    fatalError("This never triggers, since the verification process will always be successful for the same password and conditions")
+    // Password invalid
 }
 ```
 
