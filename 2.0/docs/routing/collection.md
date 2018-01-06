@@ -28,7 +28,7 @@ class V1Collection: RouteCollection {
 }
 ```
 
-This class could be place in any file, and we could add it to our droplet or even another route group.
+This class could be placed in any file, and we could add it to our droplet or even another route group.
 
 ```swift
 let v1 = V1Collection()
