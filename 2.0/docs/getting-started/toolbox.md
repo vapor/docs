@@ -20,7 +20,7 @@ vapor --help
 
 The `vapor run` command is a special toolbox command that forwards to your Vapor application.
 
-You can use `vapor run serve` to boot your application, or `vapor run help` to view all available application-level commands. This includes custom commands you may have added to your application.
+Once you've built your application with `vapor build` you can use `vapor run serve` to boot your application, or `vapor run help` to view all available application-level commands. This includes custom commands you may have added to your application.
 
 !!! warning
 	Using `vapor run --help` will provide information about the `run` command itself and will not forward to your Vapor application.
