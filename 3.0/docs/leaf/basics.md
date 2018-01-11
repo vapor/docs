@@ -179,7 +179,7 @@ That configures one item of context, `body`, but doesn’t display it directly. 
 ```
 <html>
 <head><title>#(title)</title></head>
-<body>#(body)</body>
+<body>#get(body)</body>
 </html>
 ```
 
