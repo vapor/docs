@@ -4,10 +4,10 @@ After you've [added the Auth Provider package](package.md) to your project, sett
 
 ## Add to Droplet
 
-Register the `AuthProvider.Provider` with your Droplet.
+Register the `AuthProvider.Provider` with your Droplet in your `Config+Setup.swift` file:
 
 ```swift
-import Vapor
+import App
 import AuthProvider
 
 let config = try Config()
