@@ -19,7 +19,7 @@ let package = Package(
     name: "Project",
     dependencies: [
         ...
-        .Package(url: "https://github.com/vapor/routing.git", majorVersion: 2)
+        .package(url: "https://github.com/vapor/routing.git", majorVersion: 2)
     ],
     exclude: [ ... ]
 )

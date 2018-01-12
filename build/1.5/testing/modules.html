@@ -356,7 +356,7 @@ let package = Package(
         Target(name: "Run", dependencies: ["App"])
     ],
     dependencies: [
-        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 1, minor: 5)
+        .package(url: "https://github.com/vapor/vapor.git", majorVersion: 1, minor: 5)
     ],
     exclude: [
         "Config",
@@ -389,7 +389,7 @@ let package = Package(
                             eE: false,
                             c : [
                                 {
-                                    b: '[(]', 
+                                    b: '[(]',
                                     e: '[)]',
                                     eE: true,
                                     c: [
@@ -475,7 +475,7 @@ let package = Package(
                 });
 
                 // scroll to the active nav item
-                $("nav .scroll").animate({ 
+                $("nav .scroll").animate({
                     scrollTop: $("nav .active").offset().top - 157
                 }, 0);
 

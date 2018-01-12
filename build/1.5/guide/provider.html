@@ -349,8 +349,8 @@
 <pre><code class="language-swift">let package = Package(
     name: "MyApp",
     dependencies: [
-        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 1, minor: 0),
-        .Package(url: "https://github.com/vapor/mysql-provider.git", majorVersion: 1, minor: 0)
+        .package(url: "https://github.com/vapor/vapor.git", majorVersion: 1, minor: 0),
+        .package(url: "https://github.com/vapor/mysql-provider.git", majorVersion: 1, minor: 0)
     ]
 )</code></pre>
 <blockquote>
@@ -445,7 +445,7 @@ public final class Provider: Vapor.Provider {
                             eE: false,
                             c : [
                                 {
-                                    b: '[(]', 
+                                    b: '[(]',
                                     e: '[)]',
                                     eE: true,
                                     c: [
@@ -531,7 +531,7 @@ public final class Provider: Vapor.Provider {
                 });
 
                 // scroll to the active nav item
-                $("nav .scroll").animate({ 
+                $("nav .scroll").animate({
                     scrollTop: $("nav .active").offset().top - 157
                 }, 0);
 

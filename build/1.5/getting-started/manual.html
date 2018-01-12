@@ -375,7 +375,7 @@ swift package init --type executable</code></pre>
 let package = Package(
     name: "Hello",
     dependencies: [
-        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 1, minor: 1)
+        .package(url: "https://github.com/vapor/vapor.git", majorVersion: 1, minor: 1)
     ]
 )</code></pre>
 <blockquote>
@@ -419,7 +419,7 @@ drop.run()</code></pre>
                             eE: false,
                             c : [
                                 {
-                                    b: '[(]', 
+                                    b: '[(]',
                                     e: '[)]',
                                     eE: true,
                                     c: [
@@ -505,7 +505,7 @@ drop.run()</code></pre>
                 });
 
                 // scroll to the active nav item
-                $("nav .scroll").animate({ 
+                $("nav .scroll").animate({
                     scrollTop: $("nav .active").offset().top - 157
                 }, 0);
 

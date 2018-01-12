@@ -19,7 +19,7 @@ To use Auth, you will need to have the [Auth Provider](https://github.com/vapor/
 This is as simple as adding the following line to your `Package.swift` file.
 
 ```swift
-.Package(url: "https://github.com/vapor/auth-provider.git", ...)
+.package(url: "https://github.com/vapor/auth-provider.git", ...)
 ```
 
 Check out the [Package](package.md) section for more information.
