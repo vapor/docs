@@ -90,10 +90,7 @@ pages:
 - 'Crypto':
     - 'Getting Started': 'crypto/getting-started.md'
     - 'Base64': 'crypto/base64.md'
-    - 'Hashes': 'crypto/hash.md'
-    - 'Message authentication': 'crypto/mac.md'
     - 'Password hashing': 'crypto/passwords.md'
-    - 'Random': 'crypto/random.md'
 # - 'TLS':
 #     - 'Package': 'tls/getting-started.md'
 #     - 'Client': 'tls/client.md'
