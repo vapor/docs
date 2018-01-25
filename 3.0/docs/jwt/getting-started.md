@@ -85,6 +85,13 @@ struct AuthorizationToken : JWTPayload {
 
 ### Creating a signer
 
+To create a signer you need a "key" of the type `Data`. This data will be used as the signing key.
+This key should be randomly generated for security and should not be shared outside of the system.
+
+```swift
+let signer = JWTSigner.hs512(key: key)
+```
+
 ### Sending a signed token with the client
 
 To send a token to a client you need to sign it with a signer.

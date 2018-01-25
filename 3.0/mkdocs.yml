@@ -77,7 +77,6 @@ pages:
 - 'Services': 'concepts/services.md'
 - 'JWT':
     - 'Package': 'jwt/getting-started.md'
-    - 'Signed Tokens': 'jwt/jws.md'
 - 'Crypto': 'crypto/getting-started.md'
 # - 'TLS':
 #     - 'Package': 'tls/getting-started.md'
