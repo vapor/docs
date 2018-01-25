@@ -36,21 +36,11 @@ Use `import Crypto` to access Crypto's APIs.
 
 ## Available hashes
 
-Hashes are a one-directional encryption that is commonly used for validating files or one-way securing data such as passwords.
-
-Crypto currently supports a few hashes.
-
-- MD5
-- SHA1
-- SHA2 (all variants)
-
-MD5 and SHA1 are generally used for file validation or legacy (weak) passwords. They're performant and lightweight.
-
-Every Hash type has a set of helpers that you can use.
+Hashes are a one-directional encryption that is commonly used for validating data or one-way encrypting data such as passwords.
 
 ### Hashing blobs of data
 
-Every `Hash` has a static method called `hash` that can be used for hashing the entire contents of `Foundation.Data`, `ByteBuffer` or `String`.
+Every `Hash` has a static method called `hash` that can be used for hashing the entire contents of `Data`, `ByteBuffer` or `String`.
 
 The result is `Data` containing the resulting hash. The hash's length is according to spec and defined in the static variable `digestSize`.
 
@@ -91,13 +81,9 @@ md5Context.update(data)
 
 The data data need not be a specific length. Any length works.
 
-When you need the result, you can call `md5Context.finalize()`. This will finish calculating the hash by appending the standard `1` bit, padding and message bitlength.
+When you need the result, you can call `md5Context.finalize()`. This will finish calculating the hash by appending the standard `1` bit, padding and message bit length.
 
-You can optionally provide a last set of data to `finalize()`.
-
-After calling `finalize()`, do not update the hash if you want correct results.
-
-### Fetching the results
+You can optionally provide a last set of data to `finalize()`. After calling `finalize()`, do not update the hash if you want a valid result.
 
 The context can then be accessed to extract the resulting Hash.
 
@@ -157,18 +143,13 @@ guard let string = String(bytes: result, encoding: .utf8) else {
 
 ### PBKDF2
 
-PBKDF2 is an algorithm that is almost always (and in Vapor, exclusively) used with HMAC for message authentication.
-
-PBKDF2 can be paired up with any hashing algorithm and is simple to implement. PBKDF2 is used all over the world through the WPA2 standard, securing WiFi connections. But we still recommend PBKDF2 above any normal hashing function.
-
-For PBKDF2 you also select the Hash using generics.
+PBKDF2 can be paired up with any hashing algorithm and is simple to implement. For PBKDF2 you also select the Hash using generics.
 
 In the following example:
 
 - `password` is either a `String` or `Data`
-- The `salt` is `Data`
-- Iterations is defaulted to `10_000` iterations
-- The keySize is equivalent to 1 hash's length.
+- Iterations defaulted to `10_000` iterations
+- The keySize is equivalent to 1 hash's length, in this case SHA256
 
 ```swift
 // Generate a random salt
@@ -184,7 +165,7 @@ You can optionally configure PBKDF2 to use a different iteration count and outpu
 let hash = try PBKDF2<SHA256>.derive(fromPassword: password, salt: salt, iterating: 20_000, derivedKeyLength: 100)
 ```
 
-When you're storing the PBKDF2 results, be sure to also store the Salt. Without the original salt, iteration count and other parameters you cannot reproduce the same hash for validation or authentication.
+When you're storing the PBKDF2 results you must also store the Salt. Without the original salt, iteration count and other parameters you cannot reproduce the same results for validation or authentication.
 
 ## Random
 
