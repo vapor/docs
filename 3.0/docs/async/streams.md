@@ -13,15 +13,13 @@ After requesting data we need to set up the output
 
 ```swift
 import Async
+import TCP
 import Foundation
 
 ...
 
-tcpSocket.drain { upstream in
-    upstream.request()
-}.output { buffer in
+tcpSocket.drain { buffer in
     print(String(bytes: buffer, encoding: .utf8))
-    tcpSocket.request()
 }.catch { error in
     print("Error occurred \(error)")
 }.finally {
@@ -40,11 +38,8 @@ They allow emitting output easily which can then be used like any other stream.
 ```swift
 let emitter = EmitterStream<Int>()
 
-emitter.drain { upstream in
-  upstream.request()
-}.output { number in
+emitter.drain { number in
   print(number)
-  emitter.request()
 }
 
 emitter.emit(3)
@@ -66,4 +61,4 @@ let stringStream = emitter.map(to: String.self) { number in
 
 ## Implementing custom streams
 
-Coming soon
+Coming soon <!-- TODO: Translating stream, Transcribing stream, ByteParser -->

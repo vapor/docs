@@ -19,17 +19,13 @@ pages:
     - 'Futures': 'getting-started/futures.md'
     - 'Deployment': 'getting-started/cloud.md'
 - 'Concepts':
-    - 'Vapor': 'concepts/vapor.md'
-    # - 'Async': 'concepts/async.md'
     - 'Services': 'concepts/services.md'
     - 'HTTP': 'concepts/http.md'
     - 'Code Contributions': 'concepts/code-contributions.md'
 - 'Async':
     - 'Getting Started': 'async/getting-started.md'
-    - 'Futures': 'async/futures.md'
     - 'Streams': 'async/streams.md'
     - 'EventLoop': 'async/eventloop.md'
-    - 'Reactive Programming': 'async/reactive.md'
 - 'HTTP':
     - 'Getting Started': 'http/getting-started.md'
     - 'Body': 'http/body.md'
@@ -87,7 +83,7 @@ pages:
 #     - 'Parameters': 'routing/parameters.md'
 #     - 'Route': 'routing/route.md'
 #     - 'Router': 'routing/router.md'
-- 'Services': 'services/getting-started.md'
+- 'Services': 'concepts/services.md'
 # - 'JWT':
 #     - 'Package': 'jwt/getting-started.md'
 #     - 'Signed Tokens': 'jwt/jws.md'

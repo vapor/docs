@@ -152,7 +152,7 @@ You can use the `.always` block to execute a block of code after the future has 
 
 ```swift
 var i = 0
-        
+
 let promise = Promise<Int>()
 let future = promise.future // Future<Int>
 
@@ -169,7 +169,3 @@ future.do { int in
 ```
 
 At the end of the above function, `i` will *always* be 0. If the promise is completed with the successful result `i`, the number "11" will be printed. On error, "-1" will be printed.
-
-## Signals
-
-Signals, or `Future<Void>` is a Future that can contain either an Error or Void (the Expectation). `Future<Void>` is often used to indicate the successful or unsuccessful completion of a task.
