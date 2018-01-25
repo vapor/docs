@@ -87,10 +87,7 @@ pages:
 # - 'JWT':
 #     - 'Package': 'jwt/getting-started.md'
 #     - 'Signed Tokens': 'jwt/jws.md'
-- 'Crypto':
-    - 'Getting Started': 'crypto/getting-started.md'
-    - 'Base64': 'crypto/base64.md'
-    - 'Password hashing': 'crypto/passwords.md'
+- 'Crypto': 'crypto/getting-started.md'
 # - 'TLS':
 #     - 'Package': 'tls/getting-started.md'
 #     - 'Client': 'tls/client.md'
