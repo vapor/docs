@@ -2,7 +2,7 @@
 
 Parameters are a registered type that can be initialized from a String.
 
-They can be part of a [Route](route.md), and be extracted from [Requests](../http/request.md) that are called in that Route.
+They can be part of a [Route](route.md), and be extracted from [Requests](../http/message.md) that are called in that Route.
 
 ## Creating custom parameters
 

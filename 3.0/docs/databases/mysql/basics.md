@@ -50,7 +50,7 @@ struct UserLoginDetails: Codable {
 
 ### Streams
 
-Streams, [as described on this page](../../async/streams.md), are a source of information that calls a single reader's callback. Streams are best used in larger datasets to prevent the query from consuming a large amount of memory. The downside of a stream is that you cannot return all results in a single future. You'll need to stream the results to the other endpoint, too. For HTTP [this is described here.](../../advanced/streaming-results-http.md)
+Streams, [as described on this page](../../async/streams.md), are a source of information that calls a single reader's callback. Streams are best used in larger datasets to prevent the query from consuming a large amount of memory. The downside of a stream is that you cannot return all results in a single future. You'll need to stream the results to the other endpoint, too.
 
 Querying a database for a stream of results is achieved through the `stream` function and requires specifying the `Decodable` type that the results need to be deserialized into.
 
@@ -105,9 +105,9 @@ connection.administrativeQuery("DROP TABLE users")
 You can handle success or response using the returned future.
 
 ```swift
-connection.administrativeQuery("DROP TABLE users").then {
+connection.administrativeQuery("DROP TABLE users").do {
   print("success")
-}.catch {
-  print("failure")
+}.catch { error in
+  print("failure \(error)")
 }
 ```

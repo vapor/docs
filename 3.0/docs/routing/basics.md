@@ -16,15 +16,15 @@ It responds with `"Hello world!"` using futures.
 
 ```swift
 router.on(.get, to: "hello", "world") { request in
-  return try Response(body: "Hello world!") 
+  return try Response(body: "Hello world!")
 }
 ```
 
-The `.get` represents the [Method](../http/method.md) you want to use. `to: "hello", "world"` registers the path `/hello/world`.
+The `.get` represents the Method you want to use. `to: "hello", "world"` registers the path `/hello/world`.
 
 For variable path components you can use [parameters](parameters.md).
 
-The trailing closure receives a [Request](../http/request.md). The route can throw errors and needs to return a [`Future<ResponseRepresentable>`](../http/response.md) conforming type.
+The trailing closure receives a Request. The route can throw errors and needs to return a [`Future<ResponseRepresentable>`](../http/response.md) conforming type.
 
 ## Registering a route using Vapor
 

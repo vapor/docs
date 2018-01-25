@@ -12,7 +12,7 @@ HTTP/2 is a protocol with security and performance in mind. Designed with experi
 
 ## How it works
 
-At the heart of HTTP lie the [Request](../http/request.md) and [Response](../http/response.md) types. Both of them are "HTTP Messages". Both HTTP messages consists of [Headers](../http/headers.md) and a [body](../http/body.md).
+At the heart of HTTP lie the [Request and Response](../http/message.md) types. Both of them are "HTTP Messages". Both HTTP messages consists of Headers and a body.
 
 HTTP clients connect to an HTTP server. The clients can send a request to which the server will send a response.
 
@@ -30,11 +30,11 @@ Requests have two additional properties in addition to all properties of a Messa
 
 The path is used to specify the resource being accessed. Although there are conventions, there are no rules/limitations to how you structure your paths except their format. Paths consist of [components](../routing/parameters.md). The components are separated by a forward slash (`/`). All components must be encoded with percent encoding, affecting special characters only.
 
-The [method](../http/method.md) indicated the operation to this resource. `GET` is used for reading a resource where `DELETE` will (attempt to) remove the resource. This does not mean you need to blindly comply. If a user doesn't have the permissions for said operation, you can emit a response indicating this.
+The [method](../http/message.md) indicated the operation to this resource. `GET` is used for reading a resource where `DELETE` will (attempt to) remove the resource. This does not mean you need to blindly comply. If a user doesn't have the permissions for said operation, you can emit a response indicating this.
 
 ### Response
 
-Responses have one additional property in addition to the message's properties. This is [the status code](../http/status.md). The status code is used to indicate to the client what the status/result is of a Request. If a client was not authenticated, for example, you would return a status 401 or 403 for "Unauthorized" or "Forbidden" respectively. [More about status codes here.](../http/status.md)
+Responses have one additional property in addition to the message's properties. This is the status code. The status code is used to indicate to the client what the status/result is of a Request. If a client was not authenticated, for example, you would return a status 401 or 403 for "Unauthorized" or "Forbidden" respectively. [More about status codes here.](../http/message.md)
 
 ## Handling requests
 

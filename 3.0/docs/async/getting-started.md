@@ -38,6 +38,6 @@ let package = Package(
 
 Use `import Async` to access Async's APIs.
 
-To learn the basics, check out [Getting Started &rarr; Async](../deploy/getting-started.md)
+To learn the basics, check out [Async &rarr; Futures](futures.md)
 
 <!-- TODO: Update async dependency pointer on release -->

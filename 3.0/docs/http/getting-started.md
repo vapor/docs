@@ -22,7 +22,7 @@ let package = Package(
     name: "Project",
     dependencies: [
         ...
-        .package(url: "https://github.com/vapor/engine.git", .upToNextMajor(from: "3.0.0")),
+        .package(url: "https://github.com/vapor/engine.git", .revision("beta")),
     ],
     targets: [
       .target(name: "Project", dependencies: ["HTTP", ... ])

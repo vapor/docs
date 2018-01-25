@@ -10,7 +10,7 @@ The Services framework is designed to be thread unsafe. The framework aims to gu
 
 Containers are [EventLoops](../async/eventloop.md) that can create and cache services.
 
-[`Request`](../http/request.md) is the most common `Container` type, which can be accessed in every [`Route`](../getting-started/routing.md).
+`Request` is the most common `Container` type, which can be accessed in every [`Route`](../getting-started/routing.md).
 
 Containers cache instances of a given service (keyed by the requested protocol) on a per-container basis.
 
@@ -25,7 +25,7 @@ There will be as many instances of a normal service per-container as there are u
 
 EphemeralContainers are containers that are short-lived.
 Their cache does not stretch beyond a short lifecycle.
-The most common EphemeralContainer is an [HTTP Request](../http/request.md) which lives for the duration of the route handler.
+The most common EphemeralContainer is an HTTP Request which lives for the duration of the route handler.
 
 ### Service
 
@@ -227,7 +227,7 @@ services.register { container -> BCryptConfig in
 ## Getting a Service
 
 To get a service you need an existing container matching the current EventLoop.
-If you're processing a [`Request`](../http/request.md), you should almost always use the Request as a Container type.
+If you're processing a `Request`, you should almost always use the Request as a Container type.
 
 ```swift
 // ErrorLogger

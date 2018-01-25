@@ -44,3 +44,79 @@ let package = Package(
 If this is your first time adding a dependency, you should read our introduction to [Package.swift](../getting-started/spm.md).
 
 Use `import JWT` to access JSON Web Token's APIs.
+
+## Signed JSON Web Tokens
+
+JSON Web Signatures are a Base64 encoded token with a signature for verification.
+
+This means signatures can be read by the client and **must not** contain sensitive data such as passwords.
+
+It can be used as an authentication token or "proof" by the client.
+
+It does not need to be stored on the server and can be verified by any server that knows the key used for signing.
+
+### Creating a token
+
+Creating a token is as simple as creating a Codable struct.
+
+```swift
+struct AuthorizationToken : JWTPayload {
+    // Predefined claim(s)
+    let iat: IssuedAtClaim
+    let exp: ExpirationClaim
+
+    // Custom claim(s)
+    let username: String
+
+    init(username: String, expirationDate: Date) {
+        // now
+        iat = IssuedAtClaim(value: Date())
+        exp = ExpirationClaim(value: expirationDate)
+
+        username = username
+    }
+
+    func verify() throws {
+        // Verify that the Token is not expired
+        try exp.verify()
+    }
+}
+```
+
+### Creating a signer
+
+### Sending a signed token with the client
+
+To send a token to a client you need to sign it with a signer.
+
+```swift
+let encodedSignature = try jws.sign(using: signer) // Data
+```
+
+The signature is `Data` but can be easily initialized to a String.
+
+```swift
+guard let signature = String(data: encodedSignature, encoding: .utf8) else {
+    // handle this error situation
+}
+```
+
+Make sure you did `import Foundation` in this file.
+
+### Decoding a token
+
+When the client interacts with your website again, they'll have a token this time. This token needs to be decoded and verified first.
+
+```swift
+let signature: try JWT<AuthorizationToken>(from: encodedSignature, verifyingWith: signer)
+```
+
+The `signer` in this example is a `JWTSigner`.
+
+To extract the `AuthorizationToken`, you access the `token.payload`.
+
+```swift
+let token: AuthorizationToken = signature.payload
+
+print(token.username) // prints "Example Username"
+```
