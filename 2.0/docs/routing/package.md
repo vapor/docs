@@ -10,7 +10,7 @@ import Routing
 
 ## Without Vapor
 
-Routing providers a performant, pure-Swift router to use in any server-side Swift project. To include it in your package, add the following to your `Package.swift` file.
+Routing provides a performant, pure-Swift router to use in any server-side Swift project. To include it in your package, add the following to your `Package.swift` file.
 
 ```Swift
 import PackageDescription
