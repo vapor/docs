@@ -48,7 +48,7 @@ extension ExampleUser: Preparation { ... }
 
 Here we create a very simple user with just one property: a name.
 
-!!! seealso
+!!! see also
 	We're omitting most of `Model` and `Preparation` protocol requirements. Check out Fluent's 
 	[Getting Started](../fluent/getting-started.md) for more information about these protocols.
 
@@ -86,7 +86,7 @@ This token has two properties:
 - token: a unique, random string that we will send in requests
 - userId: the identifier for the user to whom this token belongs
 
-!!! seealso
+!!! see also
 	We're using Fluent relations here. Check out Fluent's  [Relations](../fluent/relations.md)
 	section for more information.
 
@@ -149,7 +149,7 @@ let authed = drop.grouped(tokenMiddleware)
 
 Since our `ExampleUser` class is `TokenAuthenticatable`, we can pass it into the middleware's init method.
 
-!!! seealso
+!!! see also
 	If you only want to require authentication for certain routes, look at our 
 	[Route Group](../routing/group.md) section in the routing docs.
 
