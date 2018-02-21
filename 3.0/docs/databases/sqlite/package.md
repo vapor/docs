@@ -19,7 +19,7 @@ let package = Package(
     name: "Project",
     dependencies: [
         ...
-        .package(url: "https://github.com/vapor/fluent-sqlite.git", .upToNextMajor(from: "3.0.0")),
+        .package(url: "https://github.com/vapor/fluent.git", .branch("beta")),
     ],
     targets: [
       .target(name: "Project", dependencies: ["FluentSQLite", ... ])
