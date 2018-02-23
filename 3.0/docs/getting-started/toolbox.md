@@ -29,7 +29,7 @@ vapor new <name>
 Just pass the name of your project as the first argument to the `new` command.
 
 !!! note
-    Project names should be <a href="http://wiki.c2.com/?PascalCase" target="_blank">PascalCase &rarr;</a>, like `HelloWorld` or `MyProject`.
+    Project names _should_ be <a href="http://wiki.c2.com/?PascalCase" target="_blank">PascalCase &rarr;</a>, like `HelloWorld` or `MyProject`.
 
 ### Templates
 
@@ -55,8 +55,8 @@ vapor run
 ```
 
 !!! tip
-    We recommend building and running through [Xcode](xcode.md) if you have a Mac. 
-    It's a bit faster and you can set breakpoints! 
+    We recommend building and running through [Xcode](xcode.md) if you have a Mac.
+    It's a bit faster and you can set breakpoints!
     Just use `vapor xcode` to generate an Xcode project.
 
 ## Updating
@@ -75,3 +75,7 @@ brew upgrade vapor
 sudo apt-get update
 sudo apt-get install vapor
 ```
+
+## Package.swift
+
+At the heart of your project lies the `Package.swift` file. This file describes your project's modules and dependencies. [Learn more about SPM and Package.swift here &rarr;](spm.md)
