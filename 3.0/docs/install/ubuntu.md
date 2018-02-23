@@ -8,6 +8,7 @@ Vapor supports the same versions of Ubuntu that Swift supports.
 
 | Version | Codename     |
 |---------|--------------|
+| 17.04   | Zesty Zapus  |
 | 16.10   | Yakkety Yak  |
 | 16.04   | Xenial Xerus |
 | 14.04   | Trusty Tahr  |
@@ -28,6 +29,7 @@ eval "$(curl -sL https://apt.vapor.sh)"
 	This command requires `curl` which can be installed using `sudo apt-get install curl`
 
 ### Dockerfile
+
 When configuring Ubuntu from a Dockerfile, adding the APT repo can be done via this command:
 ```sh
 RUN /bin/bash -c "$(wget -qO- https://apt.vapor.sh)"
