@@ -18,10 +18,6 @@ pages:
     - 'Content': 'getting-started/content.md'
     - 'Futures': 'async/futures.md'
     - 'Deployment': 'getting-started/cloud.md'
-- 'Concepts':
-    - 'Services': 'concepts/services.md'
-    - 'HTTP': 'concepts/http.md'
-    - 'Code Contributions': 'concepts/code-contributions.md'
 - 'Async':
     - 'Getting Started': 'async/getting-started.md'
     - 'Futures': 'async/futures.md'
@@ -76,7 +72,7 @@ pages:
 #     - 'Parameters': 'routing/parameters.md'
 #     - 'Route': 'routing/route.md'
 #     - 'Router': 'routing/router.md'
-- 'Services': 'concepts/services.md'
+- 'Services': 'services/getting-started.md'
 - 'JWT':
     - 'Package': 'jwt/getting-started.md'
 - 'Crypto':

@@ -20,7 +20,7 @@ final class HelloController {
 ```
 
 Controller methods should always accept a `Request` and return something `ResponseRepresentable`.
-This also includes [futures](../async/futures.md) whose expectations are `ResponseRepresentable` (i.e, `Future<String>`).
+This also includes [futures](futures.md) whose expectations are `ResponseRepresentable` (i.e, `Future<String>`).
 
 To use this controller, we can simply initialize it, then pass the method to a router.
 

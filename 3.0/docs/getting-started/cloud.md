@@ -1,6 +1,6 @@
 # Deployment
 
-Deploying code is the process of making your Vapor project publically available.
+Deploying code is the process of making your Vapor project publicly available.
 It can be one of the most difficult aspects of web development. Fortunately, there
 are services to help.
 
