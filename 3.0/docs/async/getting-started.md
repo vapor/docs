@@ -8,6 +8,10 @@ Async is a library revolving around two main concepts:
 
 Together they form the foundation of Vapor 3's data flow.
 
+### What is async?
+
+### How does async impact my application?
+
 ## With Vapor
 
 This package is included with Vapor by default, just add:
