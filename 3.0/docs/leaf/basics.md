@@ -13,13 +13,19 @@ Welcome to Leaf. Leaf's goal is to be a simple templating language that can make
 
 Once you have Leaf installed, you should create a directory called “Resources” inside your project folder, and inside that create another directory called “Views”. This Resources/Views directory is the default location for Leaf templates, although you can change it if you want.
 
-To render a basic Leaf template from a route, add this code:
+Firstly, import Leaf to routes.swift
+
+```swift
+import Leaf
+```
+
+Then, to render a basic Leaf template from a route, add this code:
 
 ```swift
 router.get { req -> Future<View> in
     let leaf = try req.make(LeafRenderer.self)
     let context = [String: String]()
-    return try leaf.make("home", context)
+    return try leaf.render("home", context)
 }
 ```
 
@@ -179,7 +185,7 @@ That configures one item of context, `body`, but doesn’t display it directly. 
 ```
 <html>
 <head><title>#(title)</title></head>
-<body>#(body)</body>
+<body>#get(body)</body>
 </html>
 ```
 

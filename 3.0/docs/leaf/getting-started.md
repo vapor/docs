@@ -58,7 +58,7 @@ let package = Package(
 The Leaf package adds Leaf to your project, but to configure it for use you must modify configure.swift:
 
 1. Add `import Leaf` to the top of the file so that Leaf is available to use. You will also need to add this to any file that will render templates.
-2. Add `try services.provider(LeafProvider())` to the `configure()` function so that routes may render Leaf templates as needed.
+2. Add `try services.register(LeafProvider())` to the `configure()` function so that routes may render Leaf templates as needed.
 
 
 ## Syntax Highlighting

@@ -117,7 +117,7 @@ theme:
     logo: 'images/droplet-white.svg'
 
 repo_url: http://github.com/vapor/vapor
-edit_uri: https://github.com/vapor/documentation/edit/master/3.0/docs/
+edit_uri: https://github.com/vapor/documentation/edit/master/2.0/docs/
 
 extra:
     logo: 'images/droplet-white.svg'
