@@ -27,7 +27,7 @@ If this is your first time using Vapor, head to the [Install &rarr; macOS](insta
 
 Once you have Vapor installed, check out [Getting Started &rarr; Hello, world](getting-started/hello-world.md) to create your first Vapor app!
 
-### Upgrading from Vapor 2?
+### Coming from Vapor 2?
 
 Vapor 3 shares a lot of the same principles with Vapor 2, but a lot has changed. [Catch up with our changes &rarr;](../introductions/vapor2.md)
 
