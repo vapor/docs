@@ -2,11 +2,11 @@
 
 WebSockets are a type of connection that can be instantiated by upgrading an existing HTTP/1.1 connection. They're used to dispatch notifications and communicate real-time binary and textual Data.
 
-Vapor 3 supports both WebSocket Clients and server-side sockets.
+Vapor supports both WebSocket Clients and server-side sockets.
 
 ### Server side Sockets
 
-Vapor 3 adds a helper to routing that helps accepting clients.
+Vapor adds a helper to routing that helps accepting clients.
 
 ```swift
 import WebSocket

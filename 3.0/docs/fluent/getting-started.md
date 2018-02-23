@@ -31,13 +31,16 @@ let package = Package(
     name: "Project",
     dependencies: [
         ...
-        .package(url: "https://github.com/vapor/fluent.git", .upToNextMajor(from: "3.0.0")),
+        .package(url: "https://github.com/vapor/fluent.git", from: "3.0.0"),
     ],
     targets: [
       .target(name: "Project", dependencies: ["Fluent", ... ])
     ]
 )
 ```
+
+!!! warning
+    The `3.0.0` tag is not available during the pre-release phase. [Check the latest tag &rarr;](https://github.com/vapor/async/releases)
 
 If this is your first time adding a dependency, you should read our introduction to [Package.swift](../../getting-started/spm.md).
 

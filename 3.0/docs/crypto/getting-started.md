@@ -24,13 +24,16 @@ let package = Package(
     name: "Project",
     dependencies: [
         ...
-        .package(url: "https://github.com/vapor/crypto.git", .upToNextMajor(from: "x.0.0")),
+        .package(url: "https://github.com/vapor/crypto.git", from: "3.0.0"),
     ],
     targets: [
       .target(name: "Project", dependencies: ["Crypto", ... ])
     ]
 )
 ```
+
+!!! warning
+    The `3.0.0` tag is not available during the pre-release phase. [Check the latest tag &rarr;](https://github.com/vapor/async/releases)
 
 Use `import Crypto` to access Crypto's APIs.
 
