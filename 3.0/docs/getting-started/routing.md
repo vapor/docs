@@ -10,7 +10,7 @@ In Vapor the default Router is the `EngineRouter`. You can implement custom rout
 let router = try EngineRouter.default()
 ```
 
-There are two APIs available, one is supplied by the `Routing` library and a set of helpers is available in Vapor itself.
+There are two APIs available, a low level API is supplied by the `Routing` library and a simpler, higher level API is available in Vapor itself.
 
 We recommend using the helpers and will continue to describe those here.
 
@@ -32,28 +32,6 @@ You can supply the path as `/` or comma-separated strings. We recommend comma se
 router.get("path", "to", "something") { ... }
 ```
 
-## Routes
-
-The best place to add routes is in the [`routes.swift`](structure.md#routesswift) file.
-You will find a router there that is ready to use.
-
-```swift
-import Vapor
-
-final class Routes: RouteCollection {
-    ...
-
-    func boot(router: Router) throws {
-        router.get("hello") { req in
-            return "Hello, world!"
-        }
-    }
-}
-```
-
-You _must_ return a Future containing a `ResponseEncodable` here.
-The most common `ResponseEncodable` types are [`Content`](content.md), [`Response`](../http/response.md) amd [`View`](../leaf/view.md).
-
 ## Parameters
 
 Sometimes you may want one of the components of your route path to be dynamic. This is often used when
@@ -73,4 +51,8 @@ Instead of passing a string, pass the _type_ of parameter you expect. In this ca
 
 ## After registering your routes
 
-After registering your routes you must register the Router as a [`Service`](../concepts/services.md)
+After registering your routes you must register the Router as a [`Service`](../services/getting-started.md)
+
+```swift
+services.register(router, as: Router.self)
+```

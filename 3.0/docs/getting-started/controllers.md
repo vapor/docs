@@ -20,7 +20,7 @@ final class HelloController {
 ```
 
 Controller methods should always accept a `Request` and return something `ResponseRepresentable`.
-This also includes [futures](futures.md) whose expectations are `ResponseRepresentable` (i.e, `Future<String>`).
+This also includes [futures](../async/futures.md) whose expectations are `ResponseRepresentable` (i.e, `Future<String>`).
 
 To use this controller, we can simply initialize it, then pass the method to a router.
 
@@ -31,7 +31,7 @@ router.get("greet", use: helloController.greet)
 
 ## Use Services
 
-You will probably want to access your [application's services](application.md#services) from within your controllers.
+You will probably want to access your [application's services](../services/getting-started.md) from within your controllers.
 Luckily this is easy to do. First, declare what services your controller needs in its init method. Then store them
 as properties on the controller.
 

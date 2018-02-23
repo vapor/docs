@@ -1,7 +1,6 @@
 # Application
 
-Every Vapor project has an `Application`. You use the application to create any services
-you might need while developing.
+Every Vapor project has an `Application`. You use the application for background services.
 
 The best place to access the application is in your project's [`boot.swift`](structure.md#bootswift) file.
 
@@ -34,7 +33,7 @@ If you need to access it from another class or struct, you should pass through a
 
 ## Services
 
-The application's main function is to make services. For example, you might need a `BCryptHasher` to hash
+The application's main function is to make background services. For example, you might need a `BCryptHasher` to hash
 some passwords before storing them in a database. You can use the application to create one.
 
 ```swift

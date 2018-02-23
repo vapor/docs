@@ -68,6 +68,8 @@ pages:
     - 'Getting Started': 'redis/getting-started.md'
     - 'Publish & Subscribe': 'redis/pub-sub.md'
 - 'WebSocket': 'websocket/websocket.md'
+- 'Testing':
+    - 'Getting Started': 'testing/getting-started.md'
 # - 'Routing':
 #     - 'Package': 'routing/getting-started.md'
 #     - 'Basics': 'routing/basics.md'
