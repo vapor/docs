@@ -77,15 +77,14 @@ pages:
 - 'Services': 'concepts/services.md'
 - 'JWT':
     - 'Package': 'jwt/getting-started.md'
-- 'Crypto': 'crypto/getting-started.md'
+- 'Crypto':
+    - 'Getting Started': 'crypto/getting-started.md'
+    - 'Base64': 'crypto/base64.md'
 # - 'TLS':
 #     - 'Package': 'tls/getting-started.md'
 #     - 'Client': 'tls/client.md'
-# - 'Sockets':
-#     - 'Package': 'sockets/getting-started.md'
-#     - 'TCP Client': 'sockets/tcp-client.md'
-#     - 'TCP Server': 'sockets/tcp-server.md'
-#     - 'TCP Socket': 'sockets/tcp-socket.md'
+- 'Sockets':
+    - 'Getting Started': 'sockets/getting-started.md'
 # - 'Testing':
 #     - 'Getting Started': 'testing/getting-started.md'
 - 'Version (3.0-alpha)':
