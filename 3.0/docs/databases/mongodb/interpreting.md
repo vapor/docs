@@ -30,7 +30,7 @@ let document0: Doucment = [
   "author": "dave",
   "score": Int32(80),
   "views": 100,
-  "aweosme": true,
+  "awesome": true,
   "users": [
     ["_id": 2, "user": "ijk123", "status": "A"],
     ["_id": 3, "user": "xyz123", "status": "P"],
