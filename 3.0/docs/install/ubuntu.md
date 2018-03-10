@@ -45,11 +45,14 @@ sudo apt-get update
 
 ## Install Vapor
 
-Now that you have added Vapor's APT repo, you can install the required dependencies.
+Now that you have added Vapor's APT repo, you can install the required dependencies.\*
 
 ```sh
 sudo apt-get install swift vapor
 ```
+
+!!! warning
+	\*While swift 4.1 is still in development it can be downloaded from https://swift.org/download/#swift-41-development.
 
 ### Verify Installation
 
@@ -64,11 +67,11 @@ swift --version
 You should see output similar to:
 
 ```sh
-Apple Swift version 4.0.2 (swiftlang-900.0.69.2 clang-900.0.38)
-Target: x86_64-apple-macosx10.9
+Swift version 4.1-dev (LLVM 4d75b446be, Clang db92199adc, Swift 990b05adc6)
+Target: x86_64-unknown-linux-gnu
 ```
 
-Vapor requires Swift 4.
+Vapor requires Swift 4.1.
 
 #### Vapor Toolbox
 
@@ -84,4 +87,4 @@ Now that you have installed Vapor, create your first app in [Getting Started &ra
 
 ## Swift.org
 
-Check out [Swift.org](https://swift.org)'s guide to [using downloads](https://swift.org/download/#using-downloads) if you need more detailed instructions for installing Swift 4.
+Check out [Swift.org](https://swift.org)'s guide to [using downloads](https://swift.org/download/#using-downloads) if you need more detailed instructions for installing Swift 4.1.
