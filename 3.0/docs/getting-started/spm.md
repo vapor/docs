@@ -1,15 +1,15 @@
 # Managing your project
 
-The Swift Package Manager (SPM for short) is used for building your project's source code and dependencies. 
-It's a similar idea to Cocoapods, Ruby gems, and NPM. Most of the time the [Vapor Toolbox](toolbox.md) will 
+The Swift Package Manager (SPM for short) is used for building your project's source code and dependencies.
+It's a similar idea to Cocoapods, Ruby gems, and NPM. Most of the time the [Vapor Toolbox](toolbox.md) will
 interact with SPM on your behalf. However, it's important to understand the basics.
 
 !!! tip
-    Learn more about SPM on <a href="https://swift.org/package-manager/" target="_blank">Swift.org &rarr;</a> 
+    Learn more about SPM on <a href="https://swift.org/package-manager/" target="_blank">Swift.org &rarr;</a>
 
 ## Package Manifest
 
-The first place SPM looks in your project is the package manfiest. This should always be located in the root
+The first place SPM looks in your project is the package manifest. This should always be located in the root
 directory of your project and named `Package.swift`.
 
 ### Dependencies
@@ -24,12 +24,15 @@ import PackageDescription
 let package = Package(
     name: "VaporApp",
     dependencies: [
-        // 💧 A server-side Swift web framework. 
+        // 💧 A server-side Swift web framework.
         .package(url: "https://github.com/vapor/vapor.git", from: "3.0.0"),
     ],
     targets: [ ... ]
 )
 ```
+
+!!! warning
+    Please note that the above `3.0.0` tag will not yet work during the early access phases of Vapor 3.
 
 In the above example, you can see <a href="https://github.com/vapor/vapor" target="_blank">vapor/vapor &rarr;</a> version 3.0
 or later is a dependency of this package.
@@ -37,11 +40,11 @@ When you add a dependency to your package, you must next signal which [targets](
 the newly available modules.
 
 !!! warning
-    Anytime you modify the package manifest, call `vapor update` to effect the changes.
+    Anytime you modify the package manifest, call `vapor update` and `vapor xcode` to download the dependencies and update the xcode project.
 
 ### Targets
 
-Targets are all of the modules, executables, and tests that your package contains. 
+Targets are all of the modules, executables, and tests that your package contains.
 
 ```swift
 // swift-tools-version:4.0
@@ -84,7 +87,7 @@ Below is the typical folder structure for an SPM package.
 └── Package.swift
 ```
 
-Each `.target` corresponds to a folder in the `Sources` folder. 
+Each `.target` corresponds to a folder in the `Sources` folder.
 Each `.testTarget` corresponds to a folder in the `Tests` folder.
 
 ## Troubleshooting

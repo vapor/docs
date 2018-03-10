@@ -16,34 +16,20 @@ pages:
     - 'Controllers': 'getting-started/controllers.md'
     - 'Routing': 'getting-started/routing.md'
     - 'Content': 'getting-started/content.md'
-    - 'Futures': 'getting-started/futures.md'
+    - 'Futures': 'async/futures.md'
     - 'Deployment': 'getting-started/cloud.md'
-- 'Concepts':
-    - 'Vapor': 'concepts/vapor.md'
-    # - 'Async': 'concepts/async.md'
-    - 'Services': 'concepts/services.md'
-    - 'HTTP': 'concepts/http.md'
-    - 'Code Contributions': 'concepts/code-contributions.md'
 - 'Async':
     - 'Getting Started': 'async/getting-started.md'
     - 'Futures': 'async/futures.md'
     - 'Streams': 'async/streams.md'
     - 'EventLoop': 'async/eventloop.md'
-    - 'Reactive Programming': 'async/reactive.md'
 - 'HTTP':
     - 'Getting Started': 'http/getting-started.md'
-    - 'Body': 'http/body.md'
     - 'Client': 'http/client.md'
     - 'Cookies': 'http/cookies.md'
-    - 'Headers': 'http/headers.md'
-    - 'Methods': 'http/method.md'
+    - 'Message': 'http/message.md'
     - 'Middleware': 'http/middleware.md'
     - 'Multipart': 'http/multipart.md'
-    # - 'Request': 'http/request.md'
-    # - 'Response': 'http/response.md'
-    # - 'Responder': 'http/responder.md'
-    - 'Status codes': 'http/status.md'
-    - 'URI': 'http/uri.md'
 - 'Fluent':
     - 'Getting Started': 'fluent/getting-started.md'
     - 'Models': 'fluent/models.md'
@@ -76,11 +62,10 @@ pages:
     - 'Custom tags': 'leaf/custom-tags.md'
 - 'Redis':
     - 'Getting Started': 'redis/getting-started.md'
-    - 'Basics': 'redis/basics.md'
-    - 'Custom commands': 'redis/custom-commands.md'
-    - 'Publish and Subscribe': 'redis/pub-sub.md'
-    - 'Pipeline': 'redis/pipeline.md'
+    - 'Publish & Subscribe': 'redis/pub-sub.md'
 - 'WebSocket': 'websocket/websocket.md'
+- 'Testing':
+    - 'Getting Started': 'testing/getting-started.md'
 # - 'Routing':
 #     - 'Package': 'routing/getting-started.md'
 #     - 'Basics': 'routing/basics.md'
@@ -88,24 +73,16 @@ pages:
 #     - 'Route': 'routing/route.md'
 #     - 'Router': 'routing/router.md'
 - 'Services': 'services/getting-started.md'
-# - 'JWT':
-#     - 'Package': 'jwt/getting-started.md'
-#     - 'Signed Tokens': 'jwt/jws.md'
+- 'JWT':
+    - 'Package': 'jwt/getting-started.md'
 - 'Crypto':
     - 'Getting Started': 'crypto/getting-started.md'
     - 'Base64': 'crypto/base64.md'
-    - 'Hashes': 'crypto/hash.md'
-    - 'Message authentication': 'crypto/mac.md'
-    - 'Password hashing': 'crypto/passwords.md'
-    - 'Random': 'crypto/random.md'
 # - 'TLS':
 #     - 'Package': 'tls/getting-started.md'
 #     - 'Client': 'tls/client.md'
-# - 'Sockets':
-#     - 'Package': 'sockets/getting-started.md'
-#     - 'TCP Client': 'sockets/tcp-client.md'
-#     - 'TCP Server': 'sockets/tcp-server.md'
-#     - 'TCP Socket': 'sockets/tcp-socket.md'
+- 'Sockets':
+    - 'Getting Started': 'sockets/getting-started.md'
 # - 'Testing':
 #     - 'Getting Started': 'testing/getting-started.md'
 - 'Version (3.0-alpha)':

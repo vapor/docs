@@ -1,9 +1,5 @@
 # Publish & Subscribe
 
-Redis' Publish and Subscribe model is really useful for notifications.
-
-### Use cases
-
 Pub/sub is used for notifying subscribers of an event.
 A simple and common event for example would be a chat message.
 
@@ -33,26 +29,28 @@ let notifiedCount = client.publish(notification, to: "my-channel") // Future<Int
 
 ### Subscribing
 
-To subscribe for notifications you're rendering an entire Redis Client useless in exchange for listening to events.
+To subscribe for notifications you need to open a new connection to the Redis server that listens for messages.
 
-A single client can listen to one or more channels, which is provided using a set of unique channel names. The result of subscribing is a `SubscriptionStream`.
+A single client can listen to one or more channels, which is provided using a set of unique channel names. The result of subscribing is a `RedisChannelStream`.
 
 ```swift
-let notifications = client.subscribe(to: ["some-notification-channel", "other-notification-channel"])
+let client = RedisClient.subscribe(to: ["some-notification-channel", "other-notification-channel"]) // Future<RedisChannelStream>
 ```
 
-If you try to use the client after subscribing, all operations will fail. These errors are usually emitted through the Future.
-
-This stream will receive messages asynchronously from the point of `draining`. This works like [any other async stream](../async/streams.md)
+This stream will receive messages asynchronously.This works like [any other async stream](../async/streams.md)
 
 Notifications consist of the channel and payload.
 
 ```swift
-notifications.drain { notification in
-  print(notification.channel)
+client.do { channelStream in
+    channelStream.drain { notification in
+      print(notification.channel)
 
-  let payload = notification.payload
+      let payload = notification.payload
 
-  // TODO: Process the payload
+      // TODO: Process the payload
+    }
+}.catch { error in
+    // handle error
 }
 ```

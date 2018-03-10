@@ -31,7 +31,7 @@ router.get("greet", use: helloController.greet)
 
 ## Use Services
 
-You will probably want to access your [application's services](application.md#services) from within your controllers.
+You will probably want to access your [application's services](../services/getting-started.md) from within your controllers.
 Luckily this is easy to do. First, declare what services your controller needs in its init method. Then store them
 as properties on the controller.
 

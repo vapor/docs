@@ -8,6 +8,7 @@ Vapor supports the same versions of Ubuntu that Swift supports.
 
 | Version | Codename     |
 |---------|--------------|
+| 17.04   | Zesty Zapus  |
 | 16.10   | Yakkety Yak  |
 | 16.04   | Xenial Xerus |
 | 14.04   | Trusty Tahr  |
@@ -28,7 +29,9 @@ eval "$(curl -sL https://apt.vapor.sh)"
 	This command requires `curl` which can be installed using `sudo apt-get install curl`
 
 ### Dockerfile
+
 When configuring Ubuntu from a Dockerfile, adding the APT repo can be done via this command:
+
 ```sh
 RUN /bin/bash -c "$(wget -qO- https://apt.vapor.sh)"
 ```
@@ -64,11 +67,11 @@ swift --version
 You should see output similar to:
 
 ```sh
-Apple Swift version 4.0.2 (swiftlang-900.0.69.2 clang-900.0.38)
-Target: x86_64-apple-macosx10.9
+Apple Swift version 4.1 (swiftlang-902.0.34 clang-902.0.30)
+Target: x86_64-apple-darwin17.4.0
 ```
 
-Vapor requires Swift 4.
+Vapor requires Swift 4.1.
 
 #### Vapor Toolbox
 
@@ -84,4 +87,4 @@ Now that you have installed Vapor, create your first app in [Getting Started &ra
 
 ## Swift.org
 
-Check out [Swift.org](https://swift.org)'s guide to [using downloads](https://swift.org/download/#using-downloads) if you need more detailed instructions for installing Swift 4.
+Check out [Swift.org](https://swift.org)'s guide to [using downloads](https://swift.org/download/#using-downloads) if you need more detailed instructions for installing Swift 4.1.

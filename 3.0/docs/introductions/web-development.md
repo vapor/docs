@@ -1,4 +1,4 @@
-# Overview
+# Web development
 
 Vapor is a web framework and ecosystem for developing backends. To get started, this section will cover all concepts surrounding the ecosystem. It is optional, and can be skipped by those who already have experience in web/backend development.
 
@@ -10,7 +10,7 @@ At the heart of the web lies HTTP. HTTP (or HyperText Transfer Protocol) is used
 
 ## Async and Codable
 
-If you're coming from another language, chances are you've never heard of Swift's Codable protocol. If you don't know what protocols are we can highly recommend reading up on [the swift language guide](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html). This is a thorough and easy to understand guide through the Swift language. It is not required to read the entire guide before starting, although most concepts mentioned throughout the Vapor documentation will be explained in the guide.
+If you're coming from another language, chances are you've never heard of Swift's Codable protocol. If you don't know what protocols are we can highly recommend reading up on  This is a thorough and easy to understand guide through the Swift language. It is not required to read the entire guide before starting, although most concepts mentioned throughout the Vapor documentation will be explained in the guide.
 
 Asynchronous programming specifically is an essential part of the Vapor ecosystem that we recommend people [that is described here](async-and-codable.md).
 

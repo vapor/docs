@@ -128,7 +128,3 @@ struct User: Content {
     ...
 }
 ```
-
-## Configuring Content
-
-Coming soon.

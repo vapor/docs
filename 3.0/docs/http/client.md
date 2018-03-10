@@ -31,7 +31,7 @@ You can override the port by specifying a custom port using the following parame
 
 ## Sending Requests
 
-From here, you can send [Requests](../http/request.md). You can only send one request at a time. Sending a request before a [Response](../http/response.md) has been received has unpredictable consequences.
+From here, you can send Requests. You can only send one request at a time. Sending a request before a Response has been received has unpredictable consequences.
 
 ```swift
 // Future<Response>

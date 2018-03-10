@@ -1,28 +1,20 @@
 # EventLoop
 
-Event loops are at the heart of Vapor's non-blocking concurrency model. There is usually one event loop per logical core in your computer's CPU. The event loop's main purpose is to detect when data is ready to be read from or written to a socket. By detecting socket events before actually attempting to read or write data, Vapor can avoid making function calls that may block. Avoiding blocking calls is critical for performance as it allows Vapor to aggressively re-use threads, making your app very fast and efficient.
+Event loops are at the heart of Vapor's non-blocking concurrency model. There is usually one event loop per logical core. The event loop's main purpose is to detect when a file or (TCP) socket is ready to be read from or written to. By detecting socket events before actually attempting to read or write data, Vapor can avoid making function calls that may block. Avoiding blocking calls is critical for performance as it allows Vapor to aggressively re-use threads, making your app very fast and efficient.
 
 In addition to the above, they're also able to run single tasks inbetween listening for events.
 
-There are three main forms of eventloops.
-
-`DispatchEventLoop` is based on Dispatch, `KQueueEventLoop` is a macOS-only eventloop that is more performant than Dispatch.
-
-The third one (currently work in progress) is the `EPollEventLoop`, a Linux only eventloop that is also more performant than Dispatch.
+`EpollEventLoop` is a Linux-only eventloop and `KqueueEventLoop` is a macOS-only eventloop. Both are more performant than Dispatch for server-side operations.
 
 ### Workers
 
-To carry around context, the `Worker` protocol exists to indicate the current eventloop context.
+The `Worker` protocol exists to indicate the current eventloop context.
 
 ```swift
-print(worker.eventLoop) // EventLoop
+worker.eventLoop // EventLoop
 ```
 
 When looking for a worker, the most common ones you'll come across are the `Request` and `Response`.
-
-### Future changes during beta
-
-It is likely that we'll start inferring the current EventLoop using the Thread Local Storage, removing the need for Workers and passing EventLoop as an argument.
 
 ## Sources
 

@@ -4,7 +4,7 @@ Router is a protocol that you can conform your own routers to.
 
 ## Registering a route
 
-First, create a [Route](route.md) using a [Method](../http/method.md), path and a responder.
+First, create a [Route](route.md) using a Method, path and a responder.
 
 The following example shows a route with a constant path.
 
@@ -35,7 +35,7 @@ Assuming you have a request, like the following example:
 let request = Request(method: .get, URI(path: "/hello/world"))
 ```
 
-The router should be able to route the [Request](../http/request.md) using
+The router should be able to route the [Request](../http/message.md) using
 
 ```swift
 let responder = router.route(request: request)

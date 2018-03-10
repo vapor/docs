@@ -40,8 +40,8 @@ if `Public/favicon.ico` exists. If it does, Vapor will return it.
 
 ## Sources
 
-This folder contains all of the Swift source files for your project. 
-The top level folders (`App` and `Run`) reflect your package's modules, 
+This folder contains all of the Swift source files for your project.
+The top level folders (`App` and `Run`) reflect your package's modules,
 as declared in the [package manifest](spm#targets).
 
 ### App
@@ -65,17 +65,17 @@ Fluent [`Model`](../fluent/getting-started/models.md)s.
 #### boot.swift
 
 This file contains a function that will be called _after_ your application has booted,
-but _before_ it has started running. This is a great place do things that should happen 
+but _before_ it has started running. This is a great place do things that should happen
 every time your application starts.
 
 You have access to the [`Application`](application.md) here which you can use to create
-any [services](application.md#services) you might need.
+any [services](../services/getting-started.md) you might need.
 
 #### configure.swift
 
 This file contains a function that receives the config, environment, and services for your
-application as input. This is a great place to make changes to your config or register 
-[services](application.md#services) to your application.
+application as input. This is a great place to make changes to your config or register
+[services](../services/getting-started.md) to your application.
 
 #### routes.swift
 
@@ -85,7 +85,7 @@ for your controller methods.
 You'll notice there's one example route in there that returns the "hello, world" response we saw earlier.
 
 You can create as many route collections as you want to further organize your code. Just make sure
-to register them in this main route collection. 
+to register them in this main route collection.
 
 ## Tests
 
@@ -93,7 +93,7 @@ Each non-executable module in your `Sources` folder should have a corresponding 
 
 ### AppTests
 
-This folder contains the unit tests for code in your `App` module. 
+This folder contains the unit tests for code in your `App` module.
 Learn more about testing in [Testing &rarr; Getting Started](../testing/getting-started.md).
 
 ## Package.swift

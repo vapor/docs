@@ -11,7 +11,7 @@ let group = router.grouped(middleware0, middleware1, middlewareN)
 
 // This registered route will pass through the following chain
 // middleware0 -> middleware1 -> middlewareN -> route
-group.on(.get, "hello") { request in
+group.get("hello") { request in
   return ...
 }
 ```
