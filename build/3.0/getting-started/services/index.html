@@ -19,6 +19,10 @@
       
         <meta name="lang:search.language" content="en">
       
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
         <meta name="lang:search.result.none" content="No matching documents">
       
         <meta name="lang:search.result.one" content="1 matching document">
@@ -28,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.0.4">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.0">
     
     
       
@@ -36,15 +40,16 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application-709eec9410.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.78aab2dc.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-23f75ab9c7.palette.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.6079476c.css">
       
     
     
-      <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
     
     
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
       
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
@@ -57,21 +62,41 @@
   
     
     
-    
-      <body data-md-color-primary="blue" data-md-color-accent="purple">
-    
+    <body dir="ltr" data-md-color-primary="blue" data-md-color-accent="purple">
   
     <svg class="md-svg">
       <defs>
         
         
-          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
         
       </defs>
     </svg>
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#services" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -87,18 +112,18 @@
         <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
       </div>
       <div class="md-flex__cell md-flex__cell--stretch">
-        <span class="md-flex__ellipsis md-header-nav__title">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
             
-              
-                <span class="md-header-nav__parent">
-                  Getting started
-                </span>
-              
+              <span class="md-header-nav__topic">
+                Vapor Docs
+              </span>
+              <span class="md-header-nav__topic">
+                Services
+              </span>
             
-            Services
           
-        </span>
+        </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
@@ -107,11 +132,13 @@
             
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="search"></label>
-  <div class="md-search__inner">
+  <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -159,6 +186,9 @@
     
     <div class="md-container">
       
+        
+      
+      
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
           
@@ -170,7 +200,7 @@
   <label class="md-nav__title md-nav__title--site" for="drawer">
     <span class="md-nav__button md-logo">
       
-        <img src="../../images/droplet-white.svg" width="24" height="24">
+        <img src="../../images/droplet-white.svg" width="48" height="48">
       
     </span>
     Vapor Docs
@@ -442,112 +472,59 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ephemeralcontainer" title="EphemeralContainer" class="md-nav__link">
-    EphemeralContainer
+  <a href="#make" title="Make" class="md-nav__link">
+    Make
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services_1" title="Services" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instance" title="Instance" class="md-nav__link">
+    Instance
   </a>
   
 </li>
         
           <li class="md-nav__item">
+  <a href="#protocol" title="Protocol" class="md-nav__link">
+    Protocol
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#environment" title="Environment" class="md-nav__link">
     Environment
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#config" title="Config" class="md-nav__link">
+    Config
+  </a>
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#service" title="Service" class="md-nav__link">
-    Service
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#registering" title="Registering" class="md-nav__link">
-    Registering
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#concrete-implementations" title="Concrete implementations" class="md-nav__link">
-    Concrete implementations
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#singletons" title="Singletons" class="md-nav__link">
-    Singletons
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#protocol-conforming-services" title="Protocol conforming services" class="md-nav__link">
-    Protocol conforming services
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#registering-multiple-conformances" title="Registering multiple conformances" class="md-nav__link">
-    Registering multiple conformances
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#registering-for-a-specific-requester" title="Registering for a specific requester" class="md-nav__link">
-    Registering for a specific requester
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#factorized-services" title="Factorized services" class="md-nav__link">
-    Factorized services
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
-        <li class="md-nav__item">
-  <a href="#environments" title="Environments" class="md-nav__link">
-    Environments
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#changing-configurations-per-environment" title="Changing configurations per environment" class="md-nav__link">
-    Changing configurations per environment
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-a-service" title="Getting a Service" class="md-nav__link">
-    Getting a Service
-  </a>
-  
-</li>
       
       
       
@@ -1420,112 +1397,59 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ephemeralcontainer" title="EphemeralContainer" class="md-nav__link">
-    EphemeralContainer
+  <a href="#make" title="Make" class="md-nav__link">
+    Make
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services_1" title="Services" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instance" title="Instance" class="md-nav__link">
+    Instance
   </a>
   
 </li>
         
           <li class="md-nav__item">
+  <a href="#protocol" title="Protocol" class="md-nav__link">
+    Protocol
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#environment" title="Environment" class="md-nav__link">
     Environment
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#config" title="Config" class="md-nav__link">
+    Config
+  </a>
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#service" title="Service" class="md-nav__link">
-    Service
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#registering" title="Registering" class="md-nav__link">
-    Registering
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#concrete-implementations" title="Concrete implementations" class="md-nav__link">
-    Concrete implementations
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#singletons" title="Singletons" class="md-nav__link">
-    Singletons
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#protocol-conforming-services" title="Protocol conforming services" class="md-nav__link">
-    Protocol conforming services
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#registering-multiple-conformances" title="Registering multiple conformances" class="md-nav__link">
-    Registering multiple conformances
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#registering-for-a-specific-requester" title="Registering for a specific requester" class="md-nav__link">
-    Registering for a specific requester
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#factorized-services" title="Factorized services" class="md-nav__link">
-    Factorized services
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
-        <li class="md-nav__item">
-  <a href="#environments" title="Environments" class="md-nav__link">
-    Environments
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#changing-configurations-per-environment" title="Changing configurations per environment" class="md-nav__link">
-    Changing configurations per environment
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-a-service" title="Getting a Service" class="md-nav__link">
-    Getting a Service
-  </a>
-  
-</li>
       
       
       
@@ -1545,177 +1469,109 @@
                 
                 
                 <h1 id="services">Services<a class="headerlink" href="#services" title="Permanent link">&para;</a></h1>
-<p>Services is a framework for creating things you need in your application in a type-safe fashion with protocol and environment support.</p>
-<p>The Services framework is designed to be thread unsafe. The framework aims to guarantee that a service exists on the same EventLoop it was created from and will be used on.</p>
+<p>Services is a dependency injection (also called inversion of control) framework for Vapor. The services framework allows you to register, configure, and initialize anything you might need in your application.</p>
 <h2 id="container">Container<a class="headerlink" href="#container" title="Permanent link">&para;</a></h2>
-<p>Containers are event loops that can create and cache services.</p>
-<p>Request is the most common <code>Container</code> type, which can be accessed in every <a href="../routing/"><code>Route</code></a>.</p>
-<p>Containers cache instances of a given service (keyed by the requested protocol) on a per-container basis.</p>
-<ol>
-<li>Any given container has its own cache. No two containers will ever share a service instance, whether singleton or not.</li>
-<li>A singleton service is chosen and cached only by which interface(s) it supports and the service tag.
-There will only ever be one instance of a singleton service per-container, regardless of what requested it.</li>
-<li>A normal service is chosen and cached by which interface(s) it supports, the service tag, and the requesting client interface.
-There will be as many instances of a normal service per-container as there are unique clients requesting it.
-(Remembering that clients are also interface types, not instances - that's the <code>for:</code> parameter to <code>.make()</code>)</li>
-</ol>
-<h3 id="ephemeralcontainer">EphemeralContainer<a class="headerlink" href="#ephemeralcontainer" title="Permanent link">&para;</a></h3>
-<p>EphemeralContainers are containers that are short-lived. Their cache does not stretch beyond a short lifecycle. The most common EphemeralContainer is an HTTP Request which lives for the duration of the route handler.</p>
-<h3 id="environment">Environment<a class="headerlink" href="#environment" title="Permanent link">&para;</a></h3>
-<p>Environments indicate the type of deployment/situation in which an application is ran. Environments can be used to change database credentials or API tokens per environment automatically.</p>
-<h2 id="service">Service<a class="headerlink" href="#service" title="Permanent link">&para;</a></h2>
-<p>Services are a type that can be requested from a Container. They are registered as part of the application setup.</p>
-<p>Services are registered to a matching type or protocol it can represent, including its own concrete type.</p>
-<p>Services are registered to a blueprint before the <a href="../application/"><code>Application</code></a> is initialized. Together they make up the blueprint that Containers use to create an individual Service.</p>
-<h3 id="registering">Registering<a class="headerlink" href="#registering" title="Permanent link">&para;</a></h3>
-<p>Services are registered as a concrete (singleton) type or factories. Singleton types should be a struct, but can be a class.</p>
-<p>To create an empty list of Services you can call the initializer without parameters</p>
-<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nv">services</span> <span class="p">=</span> <span class="n">Services</span><span class="p">()</span>
+<p>Most of your interaction with services will happen through a container. A container is a combination of the following:</p>
+<ul>
+<li><a href="#services">Services</a>: A collection of registered services.</li>
+<li><a href="#config">Config</a>: Declared preferences for certain services over others.</li>
+<li><a href="#environment">Environment</a>: The application's current environment type (testing, production, etc)</li>
+<li><a href="../futures/#event-loop">Worker</a>: The event loop associated with this container.</li>
+</ul>
+<p>The most common containers you will interact with in Vapor are:</p>
+<ul>
+<li><code>Application</code></li>
+<li><code>Request</code></li>
+<li><code>Response</code></li>
+</ul>
+<p>You should use the <code>Application</code> as a container to create services required for booting your app. You should use the <code>Request</code> or <code>Response</code> containers to create services for responding to requests (in route closures and controllers).</p>
+<h3 id="make">Make<a class="headerlink" href="#make" title="Permanent link">&para;</a></h3>
+<p>Making services is simple, just call <code>.make(_:)</code> on a container and pass the type you want, usually a protocol like <code>Client</code>.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">client</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">Client</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
 </pre></div>
 
 
-<p>The Vapor framework has a default setup with the most common (and officially supported) Services already registered.</p>
-<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nv">services</span> <span class="p">=</span> <span class="n">Services</span><span class="p">.</span><span class="k">default</span><span class="p">()</span>
+<p>You can also specify a concrete type if you know exactly what you want.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">leaf</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">LeafRenderer</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">leaf</span><span class="p">)</span> <span class="c1">/// Definitely a LeafRenderer</span>
+
+<span class="kd">let</span> <span class="nv">view</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">ViewRenderer</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">view</span><span class="p">)</span> <span class="c1">/// ViewRenderer, might be a LeafRenderer</span>
 </pre></div>
 
 
-<h3 id="concrete-implementations">Concrete implementations<a class="headerlink" href="#concrete-implementations" title="Permanent link">&para;</a></h3>
-<p>A common use case for registering a struct is for registering configurations.
-Vapor 3 configurations are <em>always</em> a concrete struct type. Registering a concrete type is simple:</p>
-<div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">EmptyService</span> <span class="p">{}</span>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Try to rely on protocols over concrete types if you can. This will make testing your code easier (you can easily swap in dummy implementations) and it can help keep your code decoupled.</p>
+</div>
+<h2 id="services_1">Services<a class="headerlink" href="#services_1" title="Permanent link">&para;</a></h2>
+<p>The <code>Services</code> struct contains all of the services you&mdash;or the service providers you have added&mdash;have registered. You will usually register and configure your services in  <a href="../structure/#configureswift"><code>configure.swift</code></a>.</p>
+<h3 id="instance">Instance<a class="headerlink" href="#instance" title="Permanent link">&para;</a></h3>
+<p>You can register initialized service instances using <code>.register(_:)</code>.</p>
+<div class="codehilite"><pre><span></span><span class="c1">/// Create an in-memory SQLite database</span>
+<span class="kd">let</span> <span class="nv">sqlite</span> <span class="p">=</span> <span class="n">SQLiteDatabase</span><span class="p">(</span><span class="n">storage</span><span class="p">:</span> <span class="p">.</span><span class="n">memory</span><span class="p">)</span>
 
-<span class="n">services</span><span class="p">.</span><span class="n">instance</span><span class="p">(</span><span class="n">EmptyService</span><span class="p">())</span>
+<span class="c1">/// Register to sevices.</span>
+<span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">sqlite</span><span class="p">)</span>
 </pre></div>
 
 
-<h3 id="singletons">Singletons<a class="headerlink" href="#singletons" title="Permanent link">&para;</a></h3>
-<p>Singleton services (which declare themselves, or were registered, as such) are cached on a per-container basis, but the singleton cache ignores which Client is requesting the service (whereas the normal cache does not).</p>
-<p>Singleton classes <em>must</em> be thread-safe to prevent crashes. If you want your class to be a singleton type (across all threads):</p>
-<div class="codehilite"><pre><span></span><span class="kr">final</span> <span class="kd">class</span> <span class="nc">SingletonService</span> <span class="p">{</span>
-  <span class="kd">init</span><span class="p">()</span> <span class="p">{}</span>
+<p>After you register a service, it will be available for creation by a <code>Container</code>. </p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">db</span> <span class="p">=</span> <span class="n">app</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">SQLiteDatabase</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">db</span><span class="p">)</span> <span class="c1">// SQLiteDatabase (the one we registered earlier)</span>
+</pre></div>
+
+
+<h3 id="protocol">Protocol<a class="headerlink" href="#protocol" title="Permanent link">&para;</a></h3>
+<p>When registering services, you can also declare conformance to a particular protocol. You might have noticed that this is how Vapor registers its main router.</p>
+<div class="codehilite"><pre><span></span><span class="c1">/// Register routes to the router</span>
+<span class="kd">let</span> <span class="nv">router</span> <span class="p">=</span> <span class="n">EngineRouter</span><span class="p">.</span><span class="k">default</span><span class="p">()</span>
+<span class="k">try</span> <span class="n">routes</span><span class="p">(</span><span class="n">router</span><span class="p">)</span>
+<span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">router</span><span class="p">,</span> <span class="k">as</span><span class="p">:</span> <span class="n">Router</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Since we register the <code>router</code> variable with <code>as: Router.self</code>, it can be created using either the concrete type or the protocol.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">router</span> <span class="p">=</span> <span class="n">app</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">Router</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">engineRouter</span> <span class="p">=</span> <span class="n">app</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">EngineRouter</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">router</span><span class="p">)</span> <span class="c1">// Router (actually EngineRouter)</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">engineRouter</span><span class="p">)</span> <span class="c1">// EngineRouter</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">router</span> <span class="p">===</span> <span class="n">engineRouter</span><span class="p">)</span> <span class="c1">// true</span>
+</pre></div>
+
+
+<h2 id="environment">Environment<a class="headerlink" href="#environment" title="Permanent link">&para;</a></h2>
+<p>The environment is used to dynamically change how your Vapor app behaves in certain situations. For example, you probably want to use a different username and password for your database when your application is deployed. The <code>Environment</code> type makes managing this easy.</p>
+<p>When you run your Vapor app from the command line, you can pass an optional <code>--env</code> flag to specify the environment. By default, the environment will be <code>.development</code>.</p>
+<div class="codehilite"><pre><span></span>swift run Run --env prod
+</pre></div>
+
+
+<p>In the above example, we are running Vapor in the <code>.production</code> environment. This environment specifies <code>isRelease = true</code>.</p>
+<p>You can use the environment passed into <a href="../structure/#configureswift"><code>configure.swift</code></a> to dynamically register services.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">sqlite</span><span class="p">:</span> <span class="n">SQLiteDatabase</span>
+<span class="k">if</span> <span class="n">env</span><span class="p">.</span><span class="n">isRelease</span> <span class="p">{</span>
+    <span class="c1">/// Create file-based SQLite db using $SQLITE_PATH from process env</span>
+    <span class="n">sqlite</span> <span class="p">=</span> <span class="k">try</span> <span class="n">SQLiteDatabase</span><span class="p">(</span><span class="n">storage</span><span class="p">:</span> <span class="p">.</span><span class="n">file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Environment</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;SQLITE_PATH&quot;</span><span class="p">)</span><span class="o">!</span><span class="p">))</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">/// Create an in-memory SQLite database</span>
+    <span class="n">sqlite</span> <span class="p">=</span> <span class="k">try</span> <span class="n">SQLiteDatabase</span><span class="p">(</span><span class="n">storage</span><span class="p">:</span> <span class="p">.</span><span class="n">memory</span><span class="p">)</span>
 <span class="p">}</span>
-
-<span class="n">services</span><span class="p">.</span><span class="n">instance</span><span class="p">(</span><span class="n">SingletonService</span><span class="p">())</span>
+<span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">sqlite</span><span class="p">)</span>
 </pre></div>
 
 
-<p>Assuming the above service, you can now make this service from a container. The global container in Vapor is <code>Application</code> which <em>must not</em> be used within routes.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">app</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Application</span><span class="p">(</span><span class="n">services</span><span class="p">:</span> <span class="n">services</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nv">emptyService</span> <span class="p">=</span> <span class="n">app</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">EmptyService</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
-</pre></div>
-
-
-<h3 id="protocol-conforming-services">Protocol conforming services<a class="headerlink" href="#protocol-conforming-services" title="Permanent link">&para;</a></h3>
-<p>Often times when registering a service is conforms to one or more protocols for which it can be used. This is one of the more widely used use cases for Services.</p>
-<div class="codehilite"><pre><span></span><span class="kd">enum</span> <span class="nc">Level</span> <span class="p">{</span>
-  <span class="k">case</span> <span class="n">verbose</span><span class="p">,</span> <span class="n">error</span>
-<span class="p">}</span>
-
-<span class="kd">protocol</span> <span class="nc">Logger</span> <span class="p">{</span>
-  <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="kc">_</span> <span class="n">message</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="n">Level</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">struct</span> <span class="nc">PrintLogger</span><span class="p">:</span> <span class="n">Logger</span> <span class="p">{</span>
-  <span class="kd">init</span><span class="p">()</span> <span class="p">{}</span>
-
-  <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="kc">_</span> <span class="n">message</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="n">Level</span><span class="p">)</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">services</span><span class="p">.</span><span class="n">instance</span><span class="p">(</span><span class="n">Logger</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">PrintLogger</span><span class="p">())</span>
-</pre></div>
-
-
-<p>The above can be combined with <code>isSingleton: true</code></p>
-<h3 id="registering-multiple-conformances">Registering multiple conformances<a class="headerlink" href="#registering-multiple-conformances" title="Permanent link">&para;</a></h3>
-<p>A single type can conform to multiple protocols, and you might want to register a single service for all those conforming situations.</p>
-<div class="codehilite"><pre><span></span><span class="kd">protocol</span> <span class="nc">Console</span> <span class="p">{</span>
-  <span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="kc">_</span> <span class="n">message</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">AnsiColor</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">struct</span> <span class="nc">PrintConsole</span><span class="p">:</span> <span class="n">Console</span><span class="p">,</span> <span class="n">Logger</span> <span class="p">{</span>
-  <span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="kc">_</span> <span class="n">message</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">AnsiColor</span><span class="p">)</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-  <span class="p">}</span>
-
-  <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="kc">_</span> <span class="n">message</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="n">Level</span><span class="p">)</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-  <span class="p">}</span>
-
-  <span class="kd">init</span><span class="p">()</span> <span class="p">{}</span>
-<span class="p">}</span>
-
-<span class="n">services</span><span class="p">.</span><span class="n">instance</span><span class="p">(</span>
-  <span class="n">supports</span><span class="p">:</span> <span class="p">[</span><span class="n">Logger</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">Console</span><span class="p">.</span><span class="kc">self</span><span class="p">],</span>
-  <span class="n">ErrorLogger</span><span class="p">()</span>
-<span class="p">)</span>
-</pre></div>
-
-
-<h3 id="registering-for-a-specific-requester">Registering for a specific requester<a class="headerlink" href="#registering-for-a-specific-requester" title="Permanent link">&para;</a></h3>
-<p>Sometimes, the implementation should change depending on the user. A database connector might need to run over a VPN tunnel, redis might use an optimized local loopback whilst the default implementation is a normal TCP socket.</p>
-<p>Other times, you simply want to change the log destination depending on the type that's logging (such as logging HTTP errors differently from database errors).</p>
-<p>This comes in useful when changing configurations per situation, too.</p>
-<div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">VerboseLogger</span><span class="p">:</span> <span class="n">Logger</span> <span class="p">{</span>
-  <span class="kd">init</span><span class="p">()</span> <span class="p">{}</span>
-
-  <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="kc">_</span> <span class="n">message</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="n">Level</span><span class="p">)</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">struct</span> <span class="nc">ErrorLogger</span><span class="p">:</span> <span class="n">Logger</span> <span class="p">{</span>
-  <span class="kd">init</span><span class="p">()</span> <span class="p">{}</span>
-
-  <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="kc">_</span> <span class="n">message</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="n">Level</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="n">level</span> <span class="p">==</span> <span class="p">.</span><span class="n">error</span> <span class="p">{</span>
-      <span class="bp">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// Only log errors</span>
-<span class="n">services</span><span class="p">.</span><span class="n">instance</span><span class="p">(</span><span class="n">Logger</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">ErrorLogger</span><span class="p">())</span>
-
-<span class="c1">// Except the router, do log not found errors verbosely</span>
-<span class="n">services</span><span class="p">.</span><span class="n">instance</span><span class="p">(</span><span class="n">Logger</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">PrintLogger</span><span class="p">(),</span> <span class="k">for</span><span class="p">:</span> <span class="n">Router</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
-</pre></div>
-
-
-<h3 id="factorized-services">Factorized services<a class="headerlink" href="#factorized-services" title="Permanent link">&para;</a></h3>
-<p>Some services have dependencies. An extremly useful use case is TLS, where the implementation is separated from the protocol. This allows users to create a TLS socket to connect to another host without relying on a specific implementation. Vapor uses this to better integrate with the operating system by changing the default TLS implementation from OpenSSL on Linux to the Transport Security Framework on macOS and iOS.</p>
-<p>Factorized services get access to the event loop to factorize dependencies.</p>
-<div class="codehilite"><pre><span></span><span class="n">services</span><span class="p">.</span><span class="n">register</span> <span class="p">{</span> <span class="n">container</span> <span class="p">-&gt;</span> <span class="n">GithubClient</span> <span class="k">in</span>
-  <span class="c1">// Create an HTTP client for our GithubClient</span>
-  <span class="kd">let</span> <span class="nv">client</span> <span class="p">=</span> <span class="k">try</span> <span class="n">container</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">Client</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="k">for</span><span class="p">:</span> <span class="n">GithubClient</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
-  <span class="k">try</span> <span class="n">client</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">hostname</span><span class="p">:</span> <span class="s">&quot;github.com&quot;</span><span class="p">,</span> <span class="n">ssl</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
-
-  <span class="k">return</span> <span class="n">GithubClient</span><span class="p">(</span><span class="n">using</span><span class="p">:</span> <span class="n">client</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>Please do note that we explicitly stated that the <code>GithubClient</code> requests an (HTTP) Client. We recommend doing this at all times, so that you leave configuration options open.</p>
-<h2 id="environments">Environments<a class="headerlink" href="#environments" title="Permanent link">&para;</a></h2>
-<p>Vapor 3 supports (custom) environments. By default we recommend (and support) the <code>.production</code>, <code>.development</code> and <code>.testing</code> environments.</p>
-<p>You can create a custom environment type as <code>.custom(&lt;my-environment-name&gt;)</code>.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">environment</span> <span class="p">=</span> <span class="n">Environment</span><span class="p">.</span><span class="n">custom</span><span class="p">(</span><span class="s">&quot;staging&quot;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Containers give access to the current environment, so libraries may change behaviour depending on the environment.</p>
-<h3 id="changing-configurations-per-environment">Changing configurations per environment<a class="headerlink" href="#changing-configurations-per-environment" title="Permanent link">&para;</a></h3>
-<p>For easy of development, some parameters may and should change for easy of debugging.
-Password hashes can be made intentionally weaker in development scenarios to compensate for debug compilation performance, or API tokens may change to the correct one for your environment.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Use the static method <code>Environment.get(_:)</code> to fetch string values from the process environment.</p>
+</div>
+<p>You can also dynamically register services based on environment using the factory <code>.register(_:)</code> method.</p>
 <div class="codehilite"><pre><span></span><span class="n">services</span><span class="p">.</span><span class="n">register</span> <span class="p">{</span> <span class="n">container</span> <span class="p">-&gt;</span> <span class="n">BCryptConfig</span> <span class="k">in</span>
   <span class="kd">let</span> <span class="nv">cost</span><span class="p">:</span> <span class="nb">Int</span>
 
   <span class="k">switch</span> <span class="n">container</span><span class="p">.</span><span class="n">environment</span> <span class="p">{</span>
-  <span class="k">case</span> <span class="p">.</span><span class="n">production</span><span class="p">:</span>
-      <span class="n">cost</span> <span class="p">=</span> <span class="mi">12</span>
-  <span class="k">default</span><span class="p">:</span>
-      <span class="n">cost</span> <span class="p">=</span> <span class="mi">4</span>
+  <span class="k">case</span> <span class="p">.</span><span class="n">production</span><span class="p">:</span> <span class="n">cost</span> <span class="p">=</span> <span class="mi">12</span>
+  <span class="k">default</span><span class="p">:</span> <span class="n">cost</span> <span class="p">=</span> <span class="mi">4</span>
   <span class="p">}</span>
 
   <span class="k">return</span> <span class="n">BCryptConfig</span><span class="p">(</span><span class="n">cost</span><span class="p">:</span> <span class="n">cost</span><span class="p">)</span>
@@ -1723,14 +1579,21 @@ Password hashes can be made intentionally weaker in development scenarios to com
 </pre></div>
 
 
-<h2 id="getting-a-service">Getting a Service<a class="headerlink" href="#getting-a-service" title="Permanent link">&para;</a></h2>
-<p>To get a service you need an existing container matching the current EventLoop.
-If you're processing a Request, you should almost always use the Request as a Container type.</p>
-<div class="codehilite"><pre><span></span><span class="c1">// ErrorLogger</span>
-<span class="kd">let</span> <span class="nv">errorLogger</span> <span class="p">=</span> <span class="n">myContainerType</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">Logger</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="k">for</span><span class="p">:</span> <span class="n">Request</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<h2 id="config">Config<a class="headerlink" href="#config" title="Permanent link">&para;</a></h2>
+<p>If multiple services are available for a given protocol, you will need to use the <code>Config</code> struct to declare which service you prefer.</p>
+<div class="codehilite"><pre><span></span>ServiceError.ambiguity: Please choose which KeyedCache you prefer, multiple are available: MemoryKeyedCache, FluentCache&lt;SQLiteDatabase&gt;.
+</pre></div>
 
-<span class="c1">// PrintLogger</span>
-<span class="kd">let</span> <span class="nv">printLogger</span> <span class="p">=</span> <span class="n">myContainerType</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">Logger</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="k">for</span><span class="p">:</span> <span class="n">Router</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+
+<p>This is also done in <a href="../structure/#configureswift"><code>configure.swift</code></a>, just use the <code>config.prefer(_:for:)</code> method.</p>
+<div class="codehilite"><pre><span></span><span class="c1">/// Declare preference for MemoryKeyedCache anytime a container is asked to create a KeyedCache</span>
+<span class="n">config</span><span class="p">.</span><span class="n">prefer</span><span class="p">(</span><span class="n">MemoryKeyedCache</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="k">for</span><span class="p">:</span> <span class="n">KeyedCache</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+
+<span class="c1">/// ...</span>
+
+<span class="c1">/// Create a KeyedCache using the Request container</span>
+<span class="kd">let</span> <span class="nv">cache</span> <span class="p">=</span> <span class="n">req</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">KeyedCache</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">cache</span> <span class="k">is</span> <span class="n">MemoryKeyedCache</span><span class="p">)</span> <span class="c1">// true</span>
 </pre></div>
                 
                   
@@ -1791,9 +1654,9 @@ If you're processing a Request, you should almost always use the Request as a Co
           </div>
         
         powered by
-        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        <a href="http://www.mkdocs.org">MkDocs</a>
         and
-        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+        <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
       </div>
       
@@ -1817,14 +1680,14 @@ If you're processing a Request, you should almost always use the Request as a Co
       
     </div>
     
-      <script src="../../assets/javascripts/application-8e4952e681.js"></script>
+      <script src="../../assets/javascripts/application.8eb9be28.js"></script>
       
-      <script>app.initialize({version:"0.17.2",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"0.17.3",url:{base:"../.."}})</script>
       
     
     
       
-      <script>!function(e,t,a,n,o,c,i){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,c=t.createElement(a),i=t.getElementsByTagName(a)[0],c.async=1,c.src=n,i.parentNode.insertBefore(c,i)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-76177358-4","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var t=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",t,e.href)})});var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})</script>
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-76177358-4","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
       
     
   </body>
