@@ -32,7 +32,7 @@ Environments indicate the type of deployment/situation in which an application i
 
 Services are a type that can be requested from a Container. They are registered as part of the application setup.
 
-Services are registered to a matching type or protocol it can represent, including it's own concrete type.
+Services are registered to a matching type or protocol it can represent, including its own concrete type.
 
 Services are registered to a blueprint before the [`Application`](../getting-started/application.md) is initialized. Together they make up the blueprint that Containers use to create an individual Service.
 

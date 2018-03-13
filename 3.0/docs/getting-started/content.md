@@ -51,7 +51,7 @@ It's that simple!
 
 ### Other Request Types
 
-Since the request in the previous example declared JSON as it's content type,
+Since the request in the previous example declared JSON as its content type,
 Vapor knows to use a JSON decoder automatically.
 This same method would work just as well for the following request.
 
