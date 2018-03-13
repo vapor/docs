@@ -19,6 +19,10 @@
       
         <meta name="lang:search.language" content="en">
       
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
         <meta name="lang:search.result.none" content="No matching documents">
       
         <meta name="lang:search.result.one" content="1 matching document">
@@ -28,23 +32,24 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.0.4">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.0">
     
     
       
-        <title>WebSocket - Vapor Docs</title>
+        <title>Getting Started - Vapor Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application-709eec9410.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.78aab2dc.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-23f75ab9c7.palette.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.6079476c.css">
       
     
     
-      <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
     
     
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
       
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
@@ -57,21 +62,41 @@
   
     
     
-    
-      <body data-md-color-primary="blue" data-md-color-accent="purple">
-    
+    <body dir="ltr" data-md-color-primary="blue" data-md-color-accent="purple">
   
     <svg class="md-svg">
       <defs>
         
         
-          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
         
       </defs>
     </svg>
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#websocket" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -87,14 +112,18 @@
         <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
       </div>
       <div class="md-flex__cell md-flex__cell--stretch">
-        <span class="md-flex__ellipsis md-header-nav__title">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
             
-              
+              <span class="md-header-nav__topic">
+                Vapor Docs
+              </span>
+              <span class="md-header-nav__topic">
+                Getting Started
+              </span>
             
-            WebSocket
           
-        </span>
+        </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
@@ -103,11 +132,13 @@
             
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="search"></label>
-  <div class="md-search__inner">
+  <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -155,6 +186,9 @@
     
     <div class="md-container">
       
+        
+      
+      
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
           
@@ -166,7 +200,7 @@
   <label class="md-nav__title md-nav__title--site" for="drawer">
     <span class="md-nav__button md-logo">
       
-        <img src="../../images/droplet-white.svg" width="24" height="24">
+        <img src="../../images/droplet-white.svg" width="48" height="48">
       
     </span>
     Vapor Docs
@@ -401,6 +435,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../getting-started/services/" title="Services" class="md-nav__link">
+      Services
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../getting-started/cloud/" title="Deployment" class="md-nav__link">
       Deployment
     </a>
@@ -422,11 +468,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      Concepts
+      Routing
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Concepts
+        Routing
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -437,8 +483,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../concepts/vapor/" title="Vapor" class="md-nav__link">
-      Vapor
+    <a href="../../routing/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
     </a>
   </li>
 
@@ -449,8 +495,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../concepts/services/" title="Services" class="md-nav__link">
-      Services
+    <a href="../../routing/parameters/" title="Parameters" class="md-nav__link">
+      Parameters
     </a>
   </li>
 
@@ -461,8 +507,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../concepts/http/" title="HTTP" class="md-nav__link">
-      HTTP
+    <a href="../../routing/route/" title="Route" class="md-nav__link">
+      Route
     </a>
   </li>
 
@@ -473,8 +519,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../concepts/code-contributions/" title="Code Contributions" class="md-nav__link">
-      Code Contributions
+    <a href="../../routing/router/" title="Router" class="md-nav__link">
+      Router
     </a>
   </li>
 
@@ -494,238 +540,10 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
-      Async
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
-        Async
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../async/getting-started/" title="Getting Started" class="md-nav__link">
-      Getting Started
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../async/futures/" title="Futures" class="md-nav__link">
-      Futures
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../async/streams/" title="Streams" class="md-nav__link">
-      Streams
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../async/eventloop/" title="EventLoop" class="md-nav__link">
-      EventLoop
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../async/reactive/" title="Reactive Programming" class="md-nav__link">
-      Reactive Programming
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
-    
-    <label class="md-nav__link" for="nav-6">
-      HTTP
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-6">
-        HTTP
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../http/getting-started/" title="Getting Started" class="md-nav__link">
-      Getting Started
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../http/body/" title="Body" class="md-nav__link">
-      Body
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../http/client/" title="Client" class="md-nav__link">
-      Client
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../http/cookies/" title="Cookies" class="md-nav__link">
-      Cookies
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../http/headers/" title="Headers" class="md-nav__link">
-      Headers
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../http/method/" title="Methods" class="md-nav__link">
-      Methods
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../http/middleware/" title="Middleware" class="md-nav__link">
-      Middleware
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../http/multipart/" title="Multipart" class="md-nav__link">
-      Multipart
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../http/status/" title="Status codes" class="md-nav__link">
-      Status codes
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../http/uri/" title="URI" class="md-nav__link">
-      URI
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
-    
-    <label class="md-nav__link" for="nav-7">
       Fluent
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-7">
+      <label class="md-nav__title" for="nav-5">
         Fluent
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -809,18 +627,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../fluent/migration/" title="Migration" class="md-nav__link">
-      Migration
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../fluent/relations/" title="Relations" class="md-nav__link">
       Relations
     </a>
@@ -875,33 +681,14 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
-    <label class="md-nav__link" for="nav-8">
-      Databases
+    <label class="md-nav__link" for="nav-6">
+      PostgreSQL
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-8">
-        Databases
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-1" type="checkbox" id="nav-8-1">
-    
-    <label class="md-nav__link" for="nav-8-1">
-      MongoDB
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-8-1">
-        MongoDB
+      <label class="md-nav__title" for="nav-6">
+        PostgreSQL
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -912,7 +699,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../databases/mongodb/getting-started/" title="Getting Started" class="md-nav__link">
+    <a href="../../postgresql/getting-started/" title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
   </li>
@@ -924,8 +711,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../databases/mongodb/bson/" title="BSON" class="md-nav__link">
-      BSON
+    <a href="../../postgresql/fluent/" title="Fluent PostgreSQL" class="md-nav__link">
+      Fluent PostgreSQL
     </a>
   </li>
 
@@ -936,86 +723,9 @@
 
 
   <li class="md-nav__item">
-    <a href="../../databases/mongodb/basics/" title="Basics" class="md-nav__link">
-      Basics
+    <a href="../../postgresql/core/" title="PostgreSQL Core" class="md-nav__link">
+      PostgreSQL Core
     </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../databases/mongodb/interpreting/" title="Interpreting tutorials" class="md-nav__link">
-      Interpreting tutorials
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-2" type="checkbox" id="nav-8-2">
-    
-    <label class="md-nav__link" for="nav-8-2">
-      MySQL
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-8-2">
-        MySQL
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../databases/mysql/getting-started/" title="Getting Started" class="md-nav__link">
-      Getting Started
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../databases/mysql/basics/" title="Basics" class="md-nav__link">
-      Basics
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../databases/mysql/prepared-statements/" title="Prepared Statements" class="md-nav__link">
-      Prepared Statements
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
   </li>
 
         
@@ -1031,13 +741,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
     
-    <label class="md-nav__link" for="nav-9">
+    <label class="md-nav__link" for="nav-7">
       Leaf
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-9">
+      <label class="md-nav__title" for="nav-7">
         Leaf
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1091,13 +801,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
     
-    <label class="md-nav__link" for="nav-10">
+    <label class="md-nav__link" for="nav-8">
       Redis
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-10">
+      <label class="md-nav__title" for="nav-8">
         Redis
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1175,6 +885,27 @@
   
 
 
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" checked>
+    
+    <label class="md-nav__link" for="nav-9">
+      WebSocket
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        WebSocket
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
   <li class="md-nav__item md-nav__item--active">
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
@@ -1182,111 +913,15 @@
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        WebSocket
-      </label>
-    
-    <a href="./" title="WebSocket" class="md-nav__link md-nav__link--active">
-      WebSocket
+    <a href="./" title="Getting Started" class="md-nav__link md-nav__link--active">
+      Getting Started
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#server-side-sockets" title="Server side Sockets" class="md-nav__link">
-    Server side Sockets
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#client-side-sockets" title="Client side sockets" class="md-nav__link">
-    Client side sockets
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-websockets" title="Using websockets" class="md-nav__link">
-    Using websockets
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sending-strings" title="Sending strings" class="md-nav__link">
-    Sending strings
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#receiving-strings" title="Receiving strings" class="md-nav__link">
-    Receiving strings
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sending-binary-data" title="Sending binary data" class="md-nav__link">
-    Sending binary data
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#receiving-binary-data" title="Receiving binary data" class="md-nav__link">
-    Receiving binary data
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#on-close" title="On close" class="md-nav__link">
-    On close
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#errors" title="Errors" class="md-nav__link">
-    Errors
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-    </ul>
-  
-</nav>
     
   </li>
 
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../services/getting-started/" title="Services" class="md-nav__link">
-      Services
-    </a>
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -1297,13 +932,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
     
-    <label class="md-nav__link" for="nav-13">
+    <label class="md-nav__link" for="nav-10">
       Crypto
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-13">
+      <label class="md-nav__title" for="nav-10">
         Crypto
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1393,13 +1028,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
     
-    <label class="md-nav__link" for="nav-14">
+    <label class="md-nav__link" for="nav-11">
       Version (3.0-alpha)
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-14">
+      <label class="md-nav__title" for="nav-11">
         Version (3.0-alpha)
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1475,82 +1110,6 @@
     
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#server-side-sockets" title="Server side Sockets" class="md-nav__link">
-    Server side Sockets
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#client-side-sockets" title="Client side sockets" class="md-nav__link">
-    Client side sockets
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-websockets" title="Using websockets" class="md-nav__link">
-    Using websockets
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sending-strings" title="Sending strings" class="md-nav__link">
-    Sending strings
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#receiving-strings" title="Receiving strings" class="md-nav__link">
-    Receiving strings
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sending-binary-data" title="Sending binary data" class="md-nav__link">
-    Sending binary data
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#receiving-binary-data" title="Receiving binary data" class="md-nav__link">
-    Receiving binary data
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#on-close" title="On close" class="md-nav__link">
-    On close
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#errors" title="Errors" class="md-nav__link">
-    Errors
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1565,82 +1124,7 @@
                 
                 
                 <h1 id="websocket">WebSocket<a class="headerlink" href="#websocket" title="Permanent link">&para;</a></h1>
-<p>WebSockets are a type of connection that can be instantiated by upgrading an existing HTTP/1.1 connection. They're used to dispatch notifications and communicate real-time binary and textual Data.</p>
-<p>Vapor 3 supports both WebSocket Clients and server-side sockets.</p>
-<h3 id="server-side-sockets">Server side Sockets<a class="headerlink" href="#server-side-sockets" title="Permanent link">&para;</a></h3>
-<p>Vapor 3 adds a helper to routing that helps accepting clients.</p>
-<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">WebSocket</span>
-
-<span class="n">routing</span><span class="p">.</span><span class="n">websocket</span><span class="p">(</span><span class="s">&quot;api/v1/websocket&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span><span class="p">,</span> <span class="n">websocket</span> <span class="k">in</span>
-  <span class="c1">// set up the websocket</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<h3 id="client-side-sockets">Client side sockets<a class="headerlink" href="#client-side-sockets" title="Permanent link">&para;</a></h3>
-<p>Connecting to a remote WebSocket is relatively painless. You can provide a URL and Vapor 3 will attempt to set up a connection.</p>
-<p>For creating an SSL connection, however, a <a href="../../services/getting-started/">container</a> must be provided.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Vapor does not retain the WebSocket. You need to keep the WebSocket active by means of strong references and pings.</p>
-</div>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">futureWebSocket</span> <span class="p">=</span> <span class="k">try</span> <span class="n">WebSocket</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="s">&quot;ws://localhost/path&quot;</span><span class="p">,</span> <span class="n">using</span><span class="p">:</span> <span class="n">container</span><span class="p">)</span> <span class="c1">// Future&lt;WebSocket&gt;</span>
-</pre></div>
-
-
-<h2 id="using-websockets">Using websockets<a class="headerlink" href="#using-websockets" title="Permanent link">&para;</a></h2>
-<h3 id="sending-strings">Sending strings<a class="headerlink" href="#sending-strings" title="Permanent link">&para;</a></h3>
-<p>Sending a <code>String</code> using a WebSocket sends it to the remote.</p>
-<div class="codehilite"><pre><span></span><span class="n">webSocket</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span>
-</pre></div>
-
-
-<h3 id="receiving-strings">Receiving strings<a class="headerlink" href="#receiving-strings" title="Permanent link">&para;</a></h3>
-<p>String data can be read using the following function. Only one closure can read at a time.</p>
-<div class="codehilite"><pre><span></span><span class="n">webSocket</span><span class="p">.</span><span class="n">onString</span> <span class="p">{</span> <span class="n">string</span> <span class="k">in</span>
-  <span class="c1">// use the `String`</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<h3 id="sending-binary-data">Sending binary data<a class="headerlink" href="#sending-binary-data" title="Permanent link">&para;</a></h3>
-<p>Sending a <code>Data</code> or <code>ByteBuffer</code> using a WebSocket sends it to the remote.</p>
-<div class="codehilite"><pre><span></span><span class="n">webSocket</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">bytes</span><span class="p">:</span> <span class="n">byteBuffer</span><span class="p">)</span>
-<span class="n">webSocket</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
-</pre></div>
-
-
-<h3 id="receiving-binary-data">Receiving binary data<a class="headerlink" href="#receiving-binary-data" title="Permanent link">&para;</a></h3>
-<p>Binary data can be read as a <code>ByteBuffer</code> using the following function. Only one closure can read at a time.</p>
-<div class="codehilite"><pre><span></span><span class="n">webSocket</span><span class="p">.</span><span class="n">onByteBuffer</span> <span class="p">{</span> <span class="n">byteBuffer</span> <span class="k">in</span>
-  <span class="c1">// use the `ByteBuffer`</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>Binary data can also, instead, be used as Foundation's <code>Data</code>. This is less efficient than <code>ByteBuffer</code> but is often easier to use.</p>
-<div class="codehilite"><pre><span></span><span class="n">webSocket</span><span class="p">.</span><span class="n">onData</span> <span class="p">{</span> <span class="n">data</span> <span class="k">in</span>
-  <span class="c1">// use the `Data`</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>Setting a listener will override all previous listeners. You need to split into multiple listeners manually.</p>
-<h3 id="on-close">On close<a class="headerlink" href="#on-close" title="Permanent link">&para;</a></h3>
-<p>When requesting data using the <code>onString</code>, <code>onByteBuffer</code> and/or <code>onData</code> functions, you'll receive a handle to that stream.
-This can be used for catching errors and detecting the websocket being closed.</p>
-<div class="codehilite"><pre><span></span><span class="n">webSocket</span><span class="p">.</span><span class="n">onString</span> <span class="p">{</span> <span class="n">websocket</span><span class="p">,</span> <span class="n">string</span> <span class="k">in</span>
-    <span class="bp">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
-<span class="p">}.</span><span class="k">catch</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Error occurred: </span><span class="si">\(</span><span class="n">error</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
-<span class="p">}.</span><span class="n">finally</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;closed&quot;</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<h3 id="errors">Errors<a class="headerlink" href="#errors" title="Permanent link">&para;</a></h3>
-<p>Any error in a WebSocket will close the connection. This notification will be received on the binary <em>and</em> text streams.</p>
+<p>Coming soon.</p>
                 
                   
                 
@@ -1674,13 +1158,13 @@ This can be used for catching errors and detecting the websocket being closed.</
           </a>
         
         
-          <a href="../../services/getting-started/" title="Services" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../crypto/getting-started/" title="Getting Started" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Services
+                Getting Started
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -1696,13 +1180,13 @@ This can be used for catching errors and detecting the websocket being closed.</
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2017 Qutheory, LLC
+            Copyright &copy; 2018 Qutheory, LLC
           </div>
         
         powered by
-        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        <a href="http://www.mkdocs.org">MkDocs</a>
         and
-        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+        <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
       </div>
       
@@ -1726,14 +1210,14 @@ This can be used for catching errors and detecting the websocket being closed.</
       
     </div>
     
-      <script src="../../assets/javascripts/application-8e4952e681.js"></script>
+      <script src="../../assets/javascripts/application.8eb9be28.js"></script>
       
-      <script>app.initialize({version:"0.17.2",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"0.17.3",url:{base:"../.."}})</script>
       
     
     
       
-      <script>!function(e,t,a,n,o,c,i){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,c=t.createElement(a),i=t.getElementsByTagName(a)[0],c.async=1,c.src=n,i.parentNode.insertBefore(c,i)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-76177358-4","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var t=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",t,e.href)})});var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})</script>
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-76177358-4","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
       
     
   </body>
