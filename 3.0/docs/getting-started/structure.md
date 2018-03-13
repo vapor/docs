@@ -79,13 +79,11 @@ application as input. This is a great place to make changes to your config or re
 
 #### routes.swift
 
-This file contains the main route collection for your app. This is where you should assign routes
-for your controller methods.
+This file contains a function for adding routes to your router.
 
-You'll notice there's one example route in there that returns the "hello, world" response we saw earlier.
+You will notice there's one example route in there that returns the "hello, world" response we saw earlier.
 
-You can create as many route collections as you want to further organize your code. Just make sure
-to register them in this main route collection. 
+You can create as many methods as you want to further organize your code. Just make sure to call them in this main route collection. 
 
 ## Tests
 

@@ -4,20 +4,17 @@ Routing is the process of finding the appropriate response to an incoming reques
 
 ## Making a Router
 
-In Vapor the default Router is the `EngineRouter`. You can implement custom routers by implementing one conformant to the `Router` protocol.
+In Vapor the default Router is the `EngineRouter`. You can implement custom routers by implementing one conforming to the `Router` protocol.
 
 ```swift
 let router = try EngineRouter.default()
 ```
 
-There are two APIs available, one is supplied by the `Routing` library and a set of helpers is available in Vapor itself.
-
-We recommend using the helpers and will continue to describe those here.
+This is usually done in your [`configure.swift`](structure.md#configureswift) file.
 
 ## Registering a route
 
-Imagine you want to return a list of users when someone visits `GET /users`.
-Leaving authorization on the side, that would look something like this.
+Imagine you want to return a list of users when someone visits `GET /users`. Leaving authorization aside, that would look something like this.
 
 ```swift
 router.get("users") { req in
@@ -25,8 +22,7 @@ router.get("users") { req in
 }
 ```
 
-In Vapor, routing is usually done using the `.get`, `.put`, `.post`, `.patch` and `.delete` shorthands.
-You can supply the path as `/` or comma-separated strings. We recommend comma separated, as it's more readable.
+In Vapor, routing is usually done using the `.get`, `.put`, `.post`, `.patch` and `.delete` shorthands. You can supply the path as `/` or comma-separated strings. We recommend comma separated, as it's more readable.
 
 ```swift
 router.get("path", "to", "something") { ... }
@@ -34,25 +30,22 @@ router.get("path", "to", "something") { ... }
 
 ## Routes
 
-The best place to add routes is in the [`routes.swift`](structure.md#routesswift) file.
-You will find a router there that is ready to use.
+The best place to add routes is in the [`routes.swift`](structure.md#routesswift) file. Use the router supplied as a parameter to this function to register your routes.
 
 ```swift
 import Vapor
 
-final class Routes: RouteCollection {
-    ...
-
-    func boot(router: Router) throws {
-        router.get("hello") { req in
-            return "Hello, world!"
-        }
+public func routes(_ router: Router) throws {
+    // Basic "Hello, world!" example
+    router.get("hello") { req in
+        return "Hello, world!"
     }
+  
+    /// ...
 }
 ```
 
-You _must_ return a Future containing a `ResponseEncodable` here.
-The most common `ResponseEncodable` types are [`Content`](content.md), Response and [`View`](../leaf/getting-started.md).
+See [Getting Started &rarr; Content](content.md) for more information about what can be returned in a route closure.
 
 ## Parameters
 
@@ -60,9 +53,9 @@ Sometimes you may want one of the components of your route path to be dynamic. T
 you want to get an item with a supplied identifier, i.e., `GET /users/:id`
 
 ```swift
-router.get("users", Int.parameter) { req -> Future<String> in
+router.get("users", Int.parameter) { req -> String in
     let id = try req.parameter(Int.self)
-    return // fetch the user with id
+    return "requested id #\(id)"
 }
 ```
 
@@ -73,4 +66,4 @@ Instead of passing a string, pass the _type_ of parameter you expect. In this ca
 
 ## After registering your routes
 
-After registering your routes you must register the Router as a [`Service`](../getting-started/services.md)
+After registering your routes you must register the Router as a [Getting Started &rarr; Services](services.md)

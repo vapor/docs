@@ -1,7 +1,6 @@
 # Content
 
-In Vapor 3, all content types (JSON, protobuf, FormURLEncoded, Multipart, etc) are treated the same.
-All you need to parse and serialize content is a `Codable` class or struct.
+In Vapor 3, all content types (JSON, protobuf, FormURLEncoded, Multipart, etc) are treated the same. All you need to parse and serialize content is a `Codable` class or struct.
 
 For this introduction, we will use JSON as an example. But keep in mind the API is the same for any supported content type.
 
@@ -37,23 +36,20 @@ Then simply conform this struct or class to `Content`.
 Now we are ready to decode that HTTP request.
 
 ```swift
-router.post("login") { req -> Response in
-    let loginRequest = try req.content.decode(LoginRequest.self)
-
-    print(loginRequest.email) // user@vapor.codes
-    print(loginRequest.password) // don't look!
-
-    return Response(status: .ok)
+router.post("login") { req -> Future<HTTPStatus> in
+    return req.content.decode(LoginRequest.self).map(to: HTTPStatus.self) { loginRequest in
+        print(loginRequest.email) // user@vapor.codes
+        print(loginRequest.password) // don't look!
+        return .ok
+    }
 }
 ```
 
-It's that simple!
+We use `.map(to:)` here since `req.content.decode(_:)` returns a [future](futures.md).
 
 ### Other Request Types
 
-Since the request in the previous example declared JSON as it's content type,
-Vapor knows to use a JSON decoder automatically.
-This same method would work just as well for the following request.
+Since the request in the previous example declared JSON as it's content type, Vapor knows to use a JSON decoder automatically. This same method would work just as well for the following request.
 
 ```http
 POST /login HTTP/1.1
@@ -93,19 +89,14 @@ struct User: Content {
 }
 ```
 
-Then just conform this struct or class to `Content`.
-Now we are ready to encode that HTTP response.
+Then just conform this struct or class to `Content`. Now we are ready to encode that HTTP response.
 
 ```swift
-router.get("user") { req -> Response in
-    let user = User(
+router.get("user") { req -> User in
+    return User(
         name: "Vapor User",
         email: "user@vapor.codes"
     )
-
-    let res = Response(status: .ok)
-    try res.content.encode(user, as: .json)
-    return res
 }
 ```
 
@@ -131,4 +122,17 @@ struct User: Content {
 
 ## Configuring Content
 
-Coming soon.
+Use `ContentConfig` to register custom encoder/decoders for your application. These custom coders will be used anywhere you do `content.encode`/`content.decode`.
+
+```swift
+/// Create default content config
+var contentConfig = ContentConfig.default()
+
+/// Create custom JSON encoder
+var jsonEncoder = JSONEncoder()
+jsonEncoder.dateEncodingStrategy = .millisecondsSince1970
+
+/// Register JSON encoder and content config
+contentConfig.use(encoder: jsonEncoder, for: .json)
+services.register(contentConfig)
+```

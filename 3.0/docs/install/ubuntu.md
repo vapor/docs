@@ -64,11 +64,11 @@ swift --version
 You should see output similar to:
 
 ```sh
-Apple Swift version 4.0.2 (swiftlang-900.0.69.2 clang-900.0.38)
+Apple Swift version 4.1.0 (swiftlang-900.0.69.2 clang-900.0.38)
 Target: x86_64-apple-macosx10.9
 ```
 
-Vapor requires Swift 4.
+Vapor requires Swift 4.1 or greater.
 
 #### Vapor Toolbox
 
@@ -84,4 +84,4 @@ Now that you have installed Vapor, create your first app in [Getting Started &ra
 
 ## Swift.org
 
-Check out [Swift.org](https://swift.org)'s guide to [using downloads](https://swift.org/download/#using-downloads) if you need more detailed instructions for installing Swift 4.
+Check out [Swift.org](https://swift.org)'s guide to [using downloads](https://swift.org/download/#using-downloads) if you need more detailed instructions for installing Swift 4.1.
