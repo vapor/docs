@@ -11,13 +11,11 @@ For this guide, we will call the project `Hello`.
 Open up your terminal, and use [Vapor Toolbox's `new`](toolbox.md#new) command.
 
 ```sh
-vapor new Hello
+vapor new Hello --branch=beta
 ```
 
-!!! warning
-	Make sure to add `--branch=beta` while using Vapor 3 pre-release.
-	
-	If you receive an error that looks like this:  'Cloning Template [Failed]' then the template you are using is not           yet ready for the beta branch. Try a different template. 
+!!! beta
+    At the time of this writing, Vapor 3 is not officially released. You can omit the `--branch=beta` flag once [3.0.0](https://github.com/vapor/vapor/releases/tag/3.0.0) is released.
 
 Once that finishes, change into the newly created directory.
 
@@ -44,7 +42,7 @@ then click the play button.
 You should see the terminal pop up at the bottom of the screen.
 
 ```sh
-Server starting on localhost:8080
+Server starting on http://localhost:8080
 ```
 
 ## Visit Localhost

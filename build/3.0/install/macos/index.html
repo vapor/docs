@@ -1220,10 +1220,82 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
     
     <label class="md-nav__link" for="nav-13">
-      Version (3.0-rc)
+      Testing
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-13">
+        Testing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../testing/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
+    
+    <label class="md-nav__link" for="nav-14">
+      Deploy
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-14">
+        Deploy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+    
+    <label class="md-nav__link" for="nav-15">
+      Version (3.0-rc)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-15">
         Version (3.0-rc)
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1369,14 +1441,13 @@
                 
                 
                 <h1 id="install-on-macos">Install on macOS<a class="headerlink" href="#install-on-macos" title="Permanent link">&para;</a></h1>
-<p>To use Vapor on macOS, you just need to have Xcode 9 or greater installed.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>You need to install Xcode to install Swift, but after that you can use any text editor 
-you like to develop Vapor apps.</p>
-</div>
+<p>To use Vapor on macOS, you just need to have Xcode 9.3 or greater installed.</p>
 <h2 id="install-xcode">Install Xcode<a class="headerlink" href="#install-xcode" title="Permanent link">&para;</a></h2>
-<p>Install <a href="https://itunes.apple.com/us/app/xcode/id497799835?mt=12">Xcode 9 or greater</a> from the Mac App Store.</p>
+<p>Install <a href="https://itunes.apple.com/us/app/xcode/id497799835?mt=12">Xcode 9.3 or greater</a> from the Mac App Store.</p>
+<div class="admonition beta">
+<p class="admonition-title">Beta</p>
+<p>At the time of writing, Xcode 9.3 is still in beta. Download from the Apple developer portal until it is officially released.</p>
+</div>
 <p><img width="1112" alt="Xcode 9.1" src="https://user-images.githubusercontent.com/1342803/32911091-1b55b434-cad9-11e7-8ab2-fbd7ea0084da.png"></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1389,14 +1460,18 @@ you like to develop Vapor apps.</p>
 
 
 <p>You should see output similar to:</p>
-<div class="codehilite"><pre><span></span>Apple Swift version <span class="m">4</span>.0.2 <span class="o">(</span>swiftlang-900.0.69.2 clang-900.0.38<span class="o">)</span>
+<div class="codehilite"><pre><span></span>Apple Swift version <span class="m">4</span>.1.0 <span class="o">(</span>swiftlang-900.0.69.2 clang-900.0.38<span class="o">)</span>
 Target: x86_64-apple-macosx10.9
 </pre></div>
 
 
-<p>Vapor requires Swift 4.</p>
+<div class="admonition beta">
+<p class="admonition-title">Beta</p>
+<p>You may need to select Xcode 9.3 beta in Settings &rarr; Locations &rarr; Command Line Tools.</p>
+</div>
+<p>Vapor requires Swift 4.1 or greater.</p>
 <h2 id="install-vapor">Install Vapor<a class="headerlink" href="#install-vapor" title="Permanent link">&para;</a></h2>
-<p>Now that you have Swift 4, let's install the <a href="../../getting-started/toolbox/">Vapor Toolbox</a>.</p>
+<p>Now that you have Swift 4.1, let's install the <a href="../../getting-started/toolbox/">Vapor Toolbox</a>.</p>
 <p>The toolbox includes all of Vapor's dependencies as well as a handy CLI tool for creating new projects.</p>
 <div class="codehilite"><pre><span></span>brew install vapor/tap/vapor
 </pre></div>

@@ -464,30 +464,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#glossary" title="Glossary" class="md-nav__link">
-    Glossary
+  <a href="#container" title="Container" class="md-nav__link">
+    Container
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#container" title="Container" class="md-nav__link">
-    Container
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#ephemeralcontainer" title="EphemeralContainer" class="md-nav__link">
     EphemeralContainer
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#service" title="Service" class="md-nav__link">
-    Service
   </a>
   
 </li>
@@ -505,12 +491,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#registering" title="Registering" class="md-nav__link">
-    Registering
+  <a href="#service" title="Service" class="md-nav__link">
+    Service
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registering" title="Registering" class="md-nav__link">
+    Registering
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#concrete-implementations" title="Concrete implementations" class="md-nav__link">
@@ -1296,10 +1289,82 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
     
     <label class="md-nav__link" for="nav-13">
-      Version (3.0-rc)
+      Testing
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-13">
+        Testing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../testing/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
+    
+    <label class="md-nav__link" for="nav-14">
+      Deploy
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-14">
+        Deploy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+    
+    <label class="md-nav__link" for="nav-15">
+      Version (3.0-rc)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-15">
         Version (3.0-rc)
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1379,30 +1444,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#glossary" title="Glossary" class="md-nav__link">
-    Glossary
+  <a href="#container" title="Container" class="md-nav__link">
+    Container
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#container" title="Container" class="md-nav__link">
-    Container
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#ephemeralcontainer" title="EphemeralContainer" class="md-nav__link">
     EphemeralContainer
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#service" title="Service" class="md-nav__link">
-    Service
   </a>
   
 </li>
@@ -1420,12 +1471,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#registering" title="Registering" class="md-nav__link">
-    Registering
+  <a href="#service" title="Service" class="md-nav__link">
+    Service
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registering" title="Registering" class="md-nav__link">
+    Registering
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#concrete-implementations" title="Concrete implementations" class="md-nav__link">
@@ -1522,11 +1580,10 @@
                 
                 <h1 id="services">Services<a class="headerlink" href="#services" title="Permanent link">&para;</a></h1>
 <p>Services is a framework for creating things you need in your application in a type-safe fashion with protocol and environment support.</p>
-<p>The Services framework is designed to be thread unsafe. The framework aims to guarantee that a service exists on the same <a href="../async/eventloop.md">EventLoop</a> it was created from and will be used on.</p>
-<h2 id="glossary">Glossary<a class="headerlink" href="#glossary" title="Permanent link">&para;</a></h2>
-<h3 id="container">Container<a class="headerlink" href="#container" title="Permanent link">&para;</a></h3>
-<p>Containers are <a href="../async/eventloop.md">EventLoops</a> that can create and cache services.</p>
-<p><a href="../http/request.md"><code>Request</code></a> is the most common <code>Container</code> type, which can be accessed in every <a href="../routing/"><code>Route</code></a>.</p>
+<p>The Services framework is designed to be thread unsafe. The framework aims to guarantee that a service exists on the same EventLoop it was created from and will be used on.</p>
+<h2 id="container">Container<a class="headerlink" href="#container" title="Permanent link">&para;</a></h2>
+<p>Containers are event loops that can create and cache services.</p>
+<p>Request is the most common <code>Container</code> type, which can be accessed in every <a href="../routing/"><code>Route</code></a>.</p>
 <p>Containers cache instances of a given service (keyed by the requested protocol) on a per-container basis.</p>
 <ol>
 <li>Any given container has its own cache. No two containers will ever share a service instance, whether singleton or not.</li>
@@ -1537,16 +1594,14 @@ There will be as many instances of a normal service per-container as there are u
 (Remembering that clients are also interface types, not instances - that's the <code>for:</code> parameter to <code>.make()</code>)</li>
 </ol>
 <h3 id="ephemeralcontainer">EphemeralContainer<a class="headerlink" href="#ephemeralcontainer" title="Permanent link">&para;</a></h3>
-<p>EphemeralContainers are containers that are short-lived.
-Their cache does not stretch beyond a short lifecycle.
-The most common EphemeralContainer is an <a href="../http/request.md">HTTP Request</a> which lives for the duration of the route handler.</p>
-<h3 id="service">Service<a class="headerlink" href="#service" title="Permanent link">&para;</a></h3>
+<p>EphemeralContainers are containers that are short-lived. Their cache does not stretch beyond a short lifecycle. The most common EphemeralContainer is an HTTP Request which lives for the duration of the route handler.</p>
+<h3 id="environment">Environment<a class="headerlink" href="#environment" title="Permanent link">&para;</a></h3>
+<p>Environments indicate the type of deployment/situation in which an application is ran. Environments can be used to change database credentials or API tokens per environment automatically.</p>
+<h2 id="service">Service<a class="headerlink" href="#service" title="Permanent link">&para;</a></h2>
 <p>Services are a type that can be requested from a Container. They are registered as part of the application setup.</p>
 <p>Services are registered to a matching type or protocol it can represent, including it's own concrete type.</p>
 <p>Services are registered to a blueprint before the <a href="../application/"><code>Application</code></a> is initialized. Together they make up the blueprint that Containers use to create an individual Service.</p>
-<h3 id="environment">Environment<a class="headerlink" href="#environment" title="Permanent link">&para;</a></h3>
-<p>Environments indicate the type of deployment/situation in which an application is ran. Environments can be used to change database credentials or API tokens per environment automatically.</p>
-<h2 id="registering">Registering<a class="headerlink" href="#registering" title="Permanent link">&para;</a></h2>
+<h3 id="registering">Registering<a class="headerlink" href="#registering" title="Permanent link">&para;</a></h3>
 <p>Services are registered as a concrete (singleton) type or factories. Singleton types should be a struct, but can be a class.</p>
 <p>To create an empty list of Services you can call the initializer without parameters</p>
 <div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nv">services</span> <span class="p">=</span> <span class="n">Services</span><span class="p">()</span>
@@ -1574,7 +1629,7 @@ Vapor 3 configurations are <em>always</em> a concrete struct type. Registering a
   <span class="kd">init</span><span class="p">()</span> <span class="p">{}</span>
 <span class="p">}</span>
 
-<span class="n">services</span><span class="p">.</span><span class="n">instance</span><span class="p">(</span><span class="n">isSingleton</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="n">SingletonService</span><span class="p">())</span>
+<span class="n">services</span><span class="p">.</span><span class="n">instance</span><span class="p">(</span><span class="n">SingletonService</span><span class="p">())</span>
 </pre></div>
 
 
@@ -1704,7 +1759,7 @@ Password hashes can be made intentionally weaker in development scenarios to com
 
 <h2 id="getting-a-service">Getting a Service<a class="headerlink" href="#getting-a-service" title="Permanent link">&para;</a></h2>
 <p>To get a service you need an existing container matching the current EventLoop.
-If you're processing a <a href="../http/request.md"><code>Request</code></a>, you should almost always use the Request as a Container type.</p>
+If you're processing a Request, you should almost always use the Request as a Container type.</p>
 <div class="codehilite"><pre><span></span><span class="c1">// ErrorLogger</span>
 <span class="kd">let</span> <span class="nv">errorLogger</span> <span class="p">=</span> <span class="n">myContainerType</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">Logger</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="k">for</span><span class="p">:</span> <span class="n">Request</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
 

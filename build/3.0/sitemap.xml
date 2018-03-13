@@ -368,6 +368,26 @@
     
         
     <url>
+     <loc>/testing/getting-started/</loc>
+     <lastmod>2018-03-12</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/deploy/getting-started/</loc>
+     <lastmod>2018-03-12</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
      <loc>/version/1_5/</loc>
      <lastmod>2018-03-12</lastmod>
      <changefreq>daily</changefreq>

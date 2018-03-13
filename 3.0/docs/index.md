@@ -1,6 +1,6 @@
 # Vapor Documentation
 
-This is the documentation for Vapor, a Web Framework for Swift that works on iOS, macOS, and Ubuntu; and all of the packages that Vapor offers.
+This is the documentation for Vapor, a Web Framework for Swift that works on macOS and Ubuntu, and all of the packages that Vapor offers.
 
 Vapor is the most used web framework for Swift. It provides a beautifully expressive and easy to use foundation for your next website or API.
 
@@ -27,10 +27,10 @@ Here are some other great places to find information about Vapor.
 | Source Code    | Learn how Vapor works under the hood.            | [visit &rarr;](https://github.com/vapor/vapor)                  |
 | GitHub Issues  | Report bugs or request features on GitHub.       | [visit &rarr;](https://github.com/vapor/vapor/issues)           |
 
-## Providers
+## Service Providers
 
 Vapor providers are a convenient way to add functionality to your Vapor projects.
-For a full list of providers, check out the [`vapor-provider`](https://github.com/search?utf8=✓&q=topic%3Avapor-provider&type=Repositories) tag on GitHub.
+For a full list of providers, check out the [`vapor-service`](https://github.com/search?utf8=✓&q=topic%3Avapor-service&type=Repositories) tag on GitHub.
 
 ## Authors
 

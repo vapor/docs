@@ -1,7 +1,6 @@
 # Controllers
 
-Controllers are a great way to organize your code. They are collections of methods that accept
-a request and return a response.
+Controllers are a great way to organize your code. They are collections of methods that accept a request and return a response.
 
 A good place to put your controllers is in the [Controllers](structure.md#controllers) folder.
 
@@ -19,8 +18,10 @@ final class HelloController {
 }
 ```
 
-Controller methods should always accept a `Request` and return something `ResponseRepresentable`.
-This also includes [futures](futures.md) whose expectations are `ResponseRepresentable` (i.e, `Future<String>`).
+Controller methods should always accept a `Request` and return something `ResponseEncodable`. 
+
+!!! note
+    [Futures](futures.md) whose expectations are `ResponseEncodable` (i.e, `Future<String>`) are also `ResponseEncodable`.
 
 To use this controller, we can simply initialize it, then pass the method to a router.
 
@@ -29,28 +30,14 @@ let helloController = HelloController()
 router.get("greet", use: helloController.greet)
 ```
 
-## Use Services
+## Using Services
 
-You will probably want to access your [application's services](application.md#services) from within your controllers.
-Luckily this is easy to do. First, declare what services your controller needs in its init method. Then store them
-as properties on the controller.
+You will probably want to access your [services](services.md) from within your controllers. Just use the `Request` as a container to create services from within your route closures. Vapor will take care of caching the services.
 
 ```swift
 final class HelloController {
-	let hasher: BCryptHasher
-
-	init(hasher: BCryptHasher) {
-		self.hasher = hasher
+	func greet(_ req: Request) throws -> String {
+		return try req.make(BCryptHasher.self).hash("hello")
 	}
-
-	...
 }
-```
-
-Next, use the [application](application.md) to create these services when you initialize your controller.
-
-```swift
-let helloController = try HelloController(
-	hasher: app.make()
-)
 ```

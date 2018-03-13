@@ -1194,10 +1194,82 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
     
     <label class="md-nav__link" for="nav-13">
-      Version (3.0-rc)
+      Testing
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-13">
+        Testing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../testing/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
+    
+    <label class="md-nav__link" for="nav-14">
+      Deploy
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-14">
+        Deploy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+    
+    <label class="md-nav__link" for="nav-15">
+      Version (3.0-rc)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-15">
         Version (3.0-rc)
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1332,9 +1404,9 @@
 </pre></div>
 
 
-<p>The <code>.get</code> represents the <a href="../http/method.md">Method</a> you want to use. <code>to: "hello", "world"</code> registers the path <code>/hello/world</code>.</p>
+<p>The <code>.get</code> represents the HTTP method you want to use. <code>to: "hello", "world"</code> registers the path <code>/hello/world</code>.</p>
 <p>For variable path components you can use <a href="../parameters/">parameters</a>.</p>
-<p>The trailing closure receives a <a href="../http/request.md">Request</a>. The route can throw errors and needs to return a <a href="../http/response.md"><code>Future&lt;ResponseRepresentable&gt;</code></a> conforming type.</p>
+<p>The trailing closure receives a request. The route can throw errors and needs to return a future response conforming type.</p>
 <h2 id="registering-a-route-using-vapor">Registering a route using Vapor<a class="headerlink" href="#registering-a-route-using-vapor" title="Permanent link">&para;</a></h2>
 <p>In Vapor we add support for routes using the <code>.get</code>, <code>.put</code>, <code>.post</code>, <code>.patch</code> and <code>.delete</code> shorthands.</p>
 <p>For variable path components you can use <a href="../parameters/">parameters</a> here, too.</p>
@@ -1347,11 +1419,11 @@
 
 <h2 id="after-registering-your-routes">After registering your routes<a class="headerlink" href="#after-registering-your-routes" title="Permanent link">&para;</a></h2>
 <p>After registering routes to the Router, you must add the router to your services.</p>
-<div class="codehilite"><pre><span></span><span class="n">services</span><span class="p">.</span><span class="n">instance</span><span class="p">(</span><span class="n">Router</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">router</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">router</span><span class="p">,</span> <span class="k">as</span><span class="p">:</span> <span class="n">Router</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
 </pre></div>
 
 
-<p><a href="../concepts/services.md">More about services here.</a></p>
+<p>Learn more about services in <a href="../../getting-started/services/">Getting Started &rarr; Services</a></p>
                 
                   
                 

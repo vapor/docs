@@ -1214,10 +1214,82 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
     
     <label class="md-nav__link" for="nav-13">
-      Version (3.0-rc)
+      Testing
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-13">
+        Testing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../testing/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
+    
+    <label class="md-nav__link" for="nav-14">
+      Deploy
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-14">
+        Deploy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+    
+    <label class="md-nav__link" for="nav-15">
+      Version (3.0-rc)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-15">
         Version (3.0-rc)
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1408,7 +1480,7 @@ database field type to use.</p>
 <p>Learn more about creating, updating, and deleting schemas in <a href="../../schema-builder">Fluent &rarr; Schema Builder</a>.</p>
 <h3 id="revert">Revert<a class="headerlink" href="#revert" title="Permanent link">&para;</a></h3>
 <p>Revert is the opposite of prepare. It's job is to undo anything that was done in prepare. It is used when you boot your 
-app with the <code>--revert</code> option. See <a href="../migration.md#revert">Fluent &rarr; Migration</a> for more information.</p>
+app with the <code>--revert</code> option. </p>
 <p>To implement <code>revert</code> for our model, we simply use <code>.delete</code> to indicate that we would like to delete the schema created for <code>User</code>.</p>
 <div class="codehilite"><pre><span></span><span class="kd">extension</span> <span class="nc">User</span><span class="p">:</span> <span class="n">Migration</span> <span class="p">{</span>
     <span class="c1">/// See Migration.revert</span>
