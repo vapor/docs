@@ -77,7 +77,7 @@ Content-Type: application/json
 
 ### Encode Response
 
-Just like decoding, first create a struct or class that represents the data your expect.
+Just like decoding, first create a struct or class that represents the data that you are expecting.
 
 ```swift
 import Foundation
