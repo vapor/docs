@@ -1,235 +1,150 @@
 # Services
 
-Services is a framework for creating things you need in your application in a type-safe fashion with protocol and environment support.
-
-The Services framework is designed to be thread unsafe. The framework aims to guarantee that a service exists on the same EventLoop it was created from and will be used on.
+Services is a dependency injection (also called inversion of control) framework for Vapor. The services framework allows you to register, configure, and initialize anything you might need in your application.
 
 ## Container
 
-Containers are event loops that can create and cache services.
+Most of your interaction with services will happen through a container. A container is a combination of the following:
 
-Request is the most common `Container` type, which can be accessed in every [`Route`](../getting-started/routing.md).
+- [Services](#services): A collection of registered services.
+- [Config](#config): Declared preferences for certain services over others.
+- [Environment](#environment): The application's current environment type (testing, production, etc)
+- [Worker](futures.md#event-loop): The event loop associated with this container.
 
-Containers cache instances of a given service (keyed by the requested protocol) on a per-container basis.
+The most common containers you will interact with in Vapor are:
 
-1. Any given container has its own cache. No two containers will ever share a service instance, whether singleton or not.
-2. A singleton service is chosen and cached only by which interface(s) it supports and the service tag.
-There will only ever be one instance of a singleton service per-container, regardless of what requested it.
-3. A normal service is chosen and cached by which interface(s) it supports, the service tag, and the requesting client interface.
-There will be as many instances of a normal service per-container as there are unique clients requesting it.
-(Remembering that clients are also interface types, not instances - that's the `for:` parameter to `.make()`)
+- `Application`
+- `Request`
+- `Response`
 
-### EphemeralContainer
+You should use the `Application` as a container to create services required for booting your app. You should use the `Request` or `Response` containers to create services for responding to requests (in route closures and controllers).
 
-EphemeralContainers are containers that are short-lived. Their cache does not stretch beyond a short lifecycle. The most common EphemeralContainer is an HTTP Request which lives for the duration of the route handler.
+### Make
 
-### Environment
-
-Environments indicate the type of deployment/situation in which an application is ran. Environments can be used to change database credentials or API tokens per environment automatically.
-
-
-## Service
-
-Services are a type that can be requested from a Container. They are registered as part of the application setup.
-
-Services are registered to a matching type or protocol it can represent, including its own concrete type.
-
-Services are registered to a blueprint before the [`Application`](../getting-started/application.md) is initialized. Together they make up the blueprint that Containers use to create an individual Service.
-
-### Registering
-
-Services are registered as a concrete (singleton) type or factories. Singleton types should be a struct, but can be a class.
-
-To create an empty list of Services you can call the initializer without parameters
+Making services is simple, just call `.make(_:)` on a container and pass the type you want, usually a protocol like `Client`.
 
 ```swift
-var services = Services()
+let client = try req.make(Client.self)
 ```
 
-The Vapor framework has a default setup with the most common (and officially supported) Services already registered.
+You can also specify a concrete type if you know exactly what you want.
 
 ```swift
-var services = Services.default()
+let leaf = try req.make(LeafRenderer.self)
+print(leaf) /// Definitely a LeafRenderer
+
+let view = try req.make(ViewRenderer.self)
+print(view) /// ViewRenderer, might be a LeafRenderer
 ```
 
-### Concrete implementations
+!!! tip
+    Try to rely on protocols over concrete types if you can. This will make testing your code easier (you can easily swap in dummy implementations) and it can help keep your code decoupled.
 
-A common use case for registering a struct is for registering configurations.
-Vapor 3 configurations are _always_ a concrete struct type. Registering a concrete type is simple:
+## Services
+
+The `Services` struct contains all of the services you&mdash;or the service providers you have added&mdash;have registered. You will usually register and configure your services in  [`configure.swift`](structure.md#configureswift).
+
+### Instance
+
+You can register initialized service instances using `.register(_:)`.
 
 ```swift
-struct EmptyService {}
+/// Create an in-memory SQLite database
+let sqlite = SQLiteDatabase(storage: .memory)
 
-services.instance(EmptyService())
+/// Register to sevices.
+services.register(sqlite)
 ```
 
-### Singletons
-
-Singleton services (which declare themselves, or were registered, as such) are cached on a per-container basis, but the singleton cache ignores which Client is requesting the service (whereas the normal cache does not).
-
-Singleton classes _must_ be thread-safe to prevent crashes. If you want your class to be a singleton type (across all threads):
+After you register a service, it will be available for creation by a `Container`. 
 
 ```swift
-final class SingletonService {
-  init() {}
+let db = app.make(SQLiteDatabase.self)
+print(db) // SQLiteDatabase (the one we registered earlier)
+```
+
+### Protocol
+
+When registering services, you can also declare conformance to a particular protocol. You might have noticed that this is how Vapor registers its main router.
+
+```swift
+/// Register routes to the router
+let router = EngineRouter.default()
+try routes(router)
+services.register(router, as: Router.self)
+```
+
+Since we register the `router` variable with `as: Router.self`, it can be created using either the concrete type or the protocol.
+
+```swift
+let router = app.make(Router.self)
+let engineRouter = app.make(EngineRouter.self)
+print(router) // Router (actually EngineRouter)
+print(engineRouter) // EngineRouter
+print(router === engineRouter) // true
+```
+
+## Environment
+
+The environment is used to dynamically change how your Vapor app behaves in certain situations. For example, you probably want to use a different username and password for your database when your application is deployed. The `Environment` type makes managing this easy.
+
+When you run your Vapor app from the command line, you can pass an optional `--env` flag to specify the environment. By default, the environment will be `.development`.
+
+```sh
+swift run Run --env prod
+```
+
+In the above example, we are running Vapor in the `.production` environment. This environment specifies `isRelease = true`.
+
+You can use the environment passed into [`configure.swift`](structure.md#configureswift) to dynamically register services.
+
+```swift
+let sqlite: SQLiteDatabase
+if env.isRelease {
+    /// Create file-based SQLite db using $SQLITE_PATH from process env
+    sqlite = try SQLiteDatabase(storage: .file(path: Environment.get("SQLITE_PATH")!))
+} else {
+    /// Create an in-memory SQLite database
+    sqlite = try SQLiteDatabase(storage: .memory)
 }
-
-services.instance(SingletonService())
+services.register(sqlite)
 ```
 
-Assuming the above service, you can now make this service from a container. The global container in Vapor is `Application` which *must not* be used within routes.
-
-```swift
-let app = try Application(services: services)
-let emptyService = app.make(EmptyService.self)
-```
-
-### Protocol conforming services
-
-Often times when registering a service is conforms to one or more protocols for which it can be used. This is one of the more widely used use cases for Services.
-
-```swift
-enum Level {
-  case verbose, error
-}
-
-protocol Logger {
-  func log(_ message: String, level: Level)
-}
-
-struct PrintLogger: Logger {
-  init() {}
-
-  func log(_ message: String, level: Level) {
-    print(message)
-  }
-}
-
-services.instance(Logger.self, PrintLogger())
-```
-
-The above can be combined with `isSingleton: true`
-
-### Registering multiple conformances
-
-A single type can conform to multiple protocols, and you might want to register a single service for all those conforming situations.
-
-```swift
-protocol Console {
-  func write(_ message: String, color: AnsiColor)
-}
-
-struct PrintConsole: Console, Logger {
-  func write(_ message: String, color: AnsiColor) {
-    print(message)
-  }
-
-  func log(_ message: String, level: Level) {
-    print(message)
-  }
-
-  init() {}
-}
-
-services.instance(
-  supports: [Logger.self, Console.self],
-  ErrorLogger()
-)
-```
-
-### Registering for a specific requester
-
-Sometimes, the implementation should change depending on the user. A database connector might need to run over a VPN tunnel, redis might use an optimized local loopback whilst the default implementation is a normal TCP socket.
-
-Other times, you simply want to change the log destination depending on the type that's logging (such as logging HTTP errors differently from database errors).
-
-This comes in useful when changing configurations per situation, too.
-
-```swift
-struct VerboseLogger: Logger {
-  init() {}
-
-  func log(_ message: String, level: Level) {
-    print(message)
-  }
-}
-
-struct ErrorLogger: Logger {
-  init() {}
-
-  func log(_ message: String, level: Level) {
-    if level == .error {
-      print(message)
-    }
-  }
-}
-
-// Only log errors
-services.instance(Logger.self, ErrorLogger())
-
-// Except the router, do log not found errors verbosely
-services.instance(Logger.self, PrintLogger(), for: Router.self)
-```
-
-### Factorized services
-
-Some services have dependencies. An extremly useful use case is TLS, where the implementation is separated from the protocol. This allows users to create a TLS socket to connect to another host without relying on a specific implementation. Vapor uses this to better integrate with the operating system by changing the default TLS implementation from OpenSSL on Linux to the Transport Security Framework on macOS and iOS.
-
-Factorized services get access to the event loop to factorize dependencies.
-
-```swift
-services.register { container -> GithubClient in
-  // Create an HTTP client for our GithubClient
-  let client = try container.make(Client.self, for: GithubClient.self)
-  try client.connect(hostname: "github.com", ssl: true)
-
-  return GithubClient(using: client)
-}
-```
-
-Please do note that we explicitly stated that the `GithubClient` requests an (HTTP) Client. We recommend doing this at all times, so that you leave configuration options open.
-
-## Environments
-
-Vapor 3 supports (custom) environments. By default we recommend (and support) the `.production`, `.development` and `.testing` environments.
-
-You can create a custom environment type as `.custom(<my-environment-name>)`.
-
-```swift
-let environment = Environment.custom("staging")
-```
-
-Containers give access to the current environment, so libraries may change behaviour depending on the environment.
-
-### Changing configurations per environment
-
-For easy of development, some parameters may and should change for easy of debugging.
-Password hashes can be made intentionally weaker in development scenarios to compensate for debug compilation performance, or API tokens may change to the correct one for your environment.
+!!! info
+    Use the static method `Environment.get(_:)` to fetch string values from the process environment.
+    
+You can also dynamically register services based on environment using the factory `.register(_:)` method.
 
 ```swift
 services.register { container -> BCryptConfig in
   let cost: Int
-
+  
   switch container.environment {
-  case .production:
-      cost = 12
-  default:
-      cost = 4
+  case .production: cost = 12
+  default: cost = 4
   }
-
+  
   return BCryptConfig(cost: cost)
 }
 ```
 
-## Getting a Service
+## Config
 
-To get a service you need an existing container matching the current EventLoop.
-If you're processing a Request, you should almost always use the Request as a Container type.
+If multiple services are available for a given protocol, you will need to use the `Config` struct to declare which service you prefer.
+
+```sh
+ServiceError.ambiguity: Please choose which KeyedCache you prefer, multiple are available: MemoryKeyedCache, FluentCache<SQLiteDatabase>.
+```
+
+This is also done in [`configure.swift`](structure.md#configureswift), just use the `config.prefer(_:for:)` method.
 
 ```swift
-// ErrorLogger
-let errorLogger = myContainerType.make(Logger.self, for: Request.self)
+/// Declare preference for MemoryKeyedCache anytime a container is asked to create a KeyedCache
+config.prefer(MemoryKeyedCache.self, for: KeyedCache.self)
 
-// PrintLogger
-let printLogger = myContainerType.make(Logger.self, for: Router.self)
+/// ...
+
+/// Create a KeyedCache using the Request container
+let cache = req.make(KeyedCache.self)
+print(cache is MemoryKeyedCache) // true
 ```
