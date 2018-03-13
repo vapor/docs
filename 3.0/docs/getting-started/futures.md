@@ -1,175 +1,276 @@
 # Futures
 
-You may have noticed some APIs in Vapor expect or return a `Future<T>` type.
-If this is your first time hearing about futures, they might seem a little confusing at first.
-But don't worry, Vapor makes them easy to use.
+You may have noticed some APIs in Vapor expect or return a generic `Future` type. If this is your first time hearing about futures, they might seem a little confusing at first. But don't worry, Vapor makes them easy to use.
 
-Promises and Futures are two strongly related types. Every promise has a future.
-A promise is a write-only entity that has the ability to complete (or fail) its Future counterpart.
+!!! info
+    The promises, futures, and event loops that Vapor uses all come from the [Swift NIO](https://github.com/apple/swift-nio) library. This document covers the basics as well as some type-aliases and extensions that Vapor adds to make things more convenient.
 
-Futures are a read-only entity that can have a successful or error case. Successful cases are called the "Expectation".
+Promises and futures are related, but distinct types. Promises are used to _create_ futures. Most of the time, you will be working with futures returned by Vapor's APIs and you will not need to worry about creating promises.
 
-Futures can be used to register callbacks to, which will always executed in the order of registration. Promises can only be completed once. If a promise is completed more than once the input will be *ignored*.
+|type     |description                                          |mutability|methods                                         |
+|---------|-----------------------------------------------------|----------|----------------------------------------------------|
+|`Future` |Reference to an object that may not be available yet.|read-only |`.map(to:_:)` `.flatMap(to:_:)` `do(_:)` `catch(_:)`|
+|`Promise`                                                     |A promise to provide some object asynchronously.     |read/write|`succeed(_:)` `fail(_:)`                            |
 
-## Basics
+Futures are an alternative to callback-based asynchronous APIs. Futures can be chained and transformed in ways that simple closures cannot, making them quite powerful.
 
-Creating a promise is when the result is returned in the future at an unknown time.
-For the sake of demonstration, however, the promise will be completed at a predefined point in time and execution.
+## Transforming
 
-Within the `.do` block you may not throw an error or return a result.
+Just like optionals in Swift, futures can be mapped and flat-mapped. These are the most common operations you will perform on futures.
+
+|method   |signature |description|
+|---------|------------------|-----|
+|`map`    |`to: U.Type, _: (T) -> U`        |Maps a future value to a different value.
+|`flatMap`|`to: U.Type, _: (T) -> Future<U>`|Maps a future value to different _future_ value.|
+|`transform`         |`to: U`                  |Maps a future to an already available value.|
+
+If you look at the method signatures for `map` and `flatMap` on `Optional<T>` and `Array<T>`, you will see the are very similar to the methods available on `Future<T>`.
+
+### Map
+
+The `.map(to:_:)` method allows you to transform the future's value to another value. Because the future's value may not be available yet (it may be the result of an asynchronous task) we must provide a closure to accept the value.
 
 ```swift
-let promise = Promise<String>()
-let future = promise.future // Future<String>
+/// Assume we get a future string back from some API
+let futureString: Future<String> = ...
 
-future.do { string in
-    print(string)
+/// Map the future string to an integer
+let futureInt = futureString.map(to: Int.self) { string in
+    print(string) // The actual String
+    return Int(string) ?? 0
 }
 
-promise.complete("Hello")
+/// We now have a future integer
+print(futureInt) // Future<Int>
 ```
 
-The above code prints "Hello" in the console.
+### Flat Map
 
-## Errors
-
-When running the above code, you may have noticed a warning pop up. This is because the `.do` block only handles successful completions. If we were to replace the completion with the following code the `.do` block would never get run:
+The `.flatMap(to:_:)` method allows you to transform the future's value to another future value. It gets the name "flat" map because it is what allows you to avoid creating nested futures (i.e., `Future<Future<T>>`). In other words, it helps you keep your generic futures flat.
 
 ```swift
-struct MyError: Error {}
+/// Assume we get a future string back from some API
+let futureString: Future<String> = ...
 
-promise.fail(MyError())
+/// Assume we have created an HTTP client
+let client: Client = ... 
+
+/// Flat-map the future string to a future response
+let futureResponse = futureString.flatMap(to: Response.self) { string in
+    return client.get(string) // Future<Response>
+}
+
+/// We now have a future response
+print(futureResponse) // Future<Response>
 ```
 
-Instead, a `.catch` block will be triggered.
+!!! info
+    If we instead used `.map(to:_:)` in the above example, we would have ended up with a `Future<Future<Response>>`. Yikes!
+    
+### Transform
+
+The `.transform(_:)` method allows you to modify a future's value, ignoring the existing value. This is especially useful for transforming the results of `Future<Void>` where the actual value of the future is not important.
+
+!!! tip
+    `Future<Void>`, sometimes called a signal, is a future whose sole purpose is to notify you of completion or failure of some async operation.
 
 ```swift
-future.do { string in
-    print(string)
+/// Assume we get a void future back from some API
+let userDidSave: Future<Void> = ...
+
+/// Transform the void future to an HTTP status
+let futureStatus = userDidSave.transform(to: HTTPStatus.ok)
+print(futureStatus) // Future<HTTPStatus>
+```   
+
+Even though we have supplied an already-available value to `transform`, this is still a _transformation_. The future will not complete until all previous futures have completed (or failed).
+
+### Chaining
+
+The great part about transformations on futures is that they can be chained. This allows you to express many conversions and subtasks easily.
+
+Let's modify the examples from above to see how we can take advantage of chaining.
+
+```swift
+/// Assume we get a future string back from some API
+let futureString: Future<String> = ...
+
+/// Assume we have created an HTTP client
+let client: Client = ... 
+
+/// Transform the string to a url, then to a response
+let futureResponse = futureString.map(to: URL.self) { string in
+    guard let url = URL(string: string) else {
+        throw Abort(.badRequest, reason: "Invalid URL string: \(string)")
+    }
+    return url
+}.flatMap(to: Response.self) { url in
+    return client.get(url)
+}
+
+print(futureResponse) // Future<Response>
+```
+
+After the initial call to map, there is a temporary `Future<URL>` created. This future is then immediately flat-mapped to a `Future<Response>`
+
+!!! tip
+    You can `throw` errors inside of map and flat-map closures. This will result in the future failing with the error thrown.
+    
+## Future
+
+Let's take a look at some other, less commonly used methods on `Future<T>`.
+
+### Do / Catch
+
+Similar to Swift's `do` / `catch` syntax, futures have a `do` and `catch` method for awaiting the future's result.
+
+```swift
+/// Assume we get a future string back from some API
+let futureString: Future<String> = ...
+
+futureString.do { string in
+    print(string) // The actual String
 }.catch { error in
-    print("Error '\(error)' occurred")
+    print(error) // A Swift Error
 }
 ```
 
-In this scenario the test "Error 'MyError' occurred" will appear.
+!!! info
+    `.do` and `.catch` work together. If you forget `.catch`, the compiler will warn you about an unused result. Don't forget to handle the error case!
 
-Within the `.catch` block you may not throw an error or return a result.
+### Always
 
-## Basic Transformations
-
-Transformations are one of the more critical parts of Vapor 3's future system. They assist in reducing the complexity of futures and keep code isolated and readable. You can use the `.map` function to transform the future expectation to another future of the same or a different type. You need to explicitly state which type will be returned in the mapping closure.
-
-The mapping closure(s) will *only* be executed if an expectation has been received in the previous step. If at any point a transformation function throws an error, execution stops there and the `.catch` block will be executed.
-
-If the promise that was mapped failed to begin with, the `.catch` block will also be executed _without_ triggering *any* mapping closures.
+You can use `always` to add a callback that will be executed whether the future succeeds or fails.
 
 ```swift
-let promise = Promise<Int>()
+/// Assume we get a future string back from some API
+let futureString: Future<String> = ...
 
-promise.future.do { int in
-    print(int)
-}.map(to: Int.self) { int in
-    return int + 4
-}.map(to: String.self) { int in
-    return int.description
-}.do { string in
-    print(string)
-}.catch { error in
-    print("Error '\(error)' occurred")
+futureString.always {
+    print("The future is complete!")
 }
-
-promise.complete(3)
 ```
 
-The above code will print the inputted integer. Then map the input to `(integer + 4) == 7`.
-Then the textual representation of the integer is returned as a `String` which will be printed.
+!!! note
+    You can add as many callbacks to a future as you want.
+    
+### Wait
 
-This results in the following console output:
+You can use `.wait()` to synchronously wait for the future to be completed. Since a future may fail, this call is throwing.
 
-```sh
-3
-7
+```swift
+/// Assume we get a future string back from some API
+let futureString: Future<String> = ...
+
+/// Block until the string is ready
+let string = try futureString.wait()
+print(string) /// String
 ```
-
-## Recursive futures
-
-In the above `map` function we returned a new result synchronously. In some situations, however, you'll need to dispatch another asynchronous call based on the result of a previous call.
-
-First, let's see how this would work out using `map` by exaggerating synchronous code as if it were an asynchronous call.
 
 !!! warning
-    Do not use this implementation, use the next one instead. This is an unnecessarily complicated way of nesting futures.
+    Do not use this method in route closures or controllers. Read the section about [Blocking](#blocking) for more information.
+
+    
+## Promise
+
+Most of the time, you will be transforming futures returned by calls to Vapor's APIs. However, at some point you may need to create a promise of your own.
+
+To create a promise, you will need access to an `EventLoop`. All containers in Vapor have an `eventLoop` property that you can use. Most commonly, this will be the current `Request`.
 
 ```swift
-let promise = Promise<Int>()
+/// Create a new promise for some string
+let promiseString = req.eventLoop.newPromise(String.self)
+print(promiseString) // Promise<String>
+print(promiseString.futureResult) // Future<String>
 
-promise.map(to: Future<Int>.self) { int in
-    return Future(int + 4)
-}.map(to: Future<Future<String>>.self) { futureInt in
-    return futureInt.map(to: Future<String.self>) { int in
-        return Future(int.description)
-    }
-}.do { doubleFutureString in // Future<Future<String>>
-    doubleFutureString.do { futureString in // Future<String>
-      futureString.do { string in
-          print(string)
-      }.catch { error in
-          print("Error '\(error)' occurred")
-      }
-    }.catch { error in
-        print("Error '\(error)' occurred")
-    }
-}.catch { error in
-    print("Error '\(error)' occurred")
-}
+/// Completes the associated future
+promiseString.succeed(result: "Hello")
 
-promise.complete(3)
+/// Fails the associated future
+promiseString.fail(error: ...)
 ```
 
-To flatten this asynchronous recursion, instead, we recommend using `flatMap`.
-The type supplied in the `to:` argument is implied to be wrapped in a `Future<>`.
+!!! info
+    A promise can only be completed once. Any subsequent completions will be ignored.
+    
+### Thread Safety
+
+Promises can be completed (`succeed(result:)` / `fail(error:)`) from any thread. This is why promises require an event-loop to be initialized. Promises ensure that the completion action gets returned to its event-loop for execution.
+
+## Event Loop
+
+When your application boots, it will usually create one event loop for each core in the CPU it is running on. Each event loop has exactly one thread. If you are familiar with event loops from Node.js, the one's in Vapor are very similar. The only difference is that Vapor can run multiple event loops in one process since Swift supports multi-threading.
+
+Each time a client connects to your server, it will be assigned to one of the event loops. From that point on, all communication between the server and that client will happen on that same event loop (and by association, that event loop's thread). 
+
+The event loop is responsible for keeping track of each connected client's state. If there is a request from the client waiting to be read, the event loop trigger a read notification, causing the data to be read. Once the entire request is read, any futures waiting for that request's data will be completed. 
+
+### Worker
+
+Things that have access to an event loop are called `Workers`. Every container in Vapor is a worker. 
+
+The most common containers you will interact with in Vapor are:
+
+- `Application`
+- `Request`
+- `Response`
+
+You can use the `.eventLoop` property on these containers to gain access to the event loop.
 
 ```swift
-let promise = Promise<Int>()
-
-promise.flatMap(to: Int.self) { int in
-    return Future<Int>(int + 4)
-}.flatMap(to: String.self) { int in
-    return Future(int.description)
-}.do { string in
-    print(string)
-}.catch { error in
-    print("Error '\(error)' occurred")
-}
-
-promise.complete(3)
+print(app.eventLoop) // EventLoop
 ```
 
-## Always
+There are many methods in Vapor that require the current worker to be passed along. It will usually be labeled like `on: Worker`. If you are in a route closure or a controller, pass the current `Request` or `Response`. If you need a worker while booting your app, use the `Application`.
 
-Sometimes you want to always execute a function as part of the cleanup phase.
-You can use the `.always` block to execute a block of code after the future has been successfully executed (and mapped if applicable) or when an error occurs. Please do consider that `always` also will be executed in the order in which it has been registered, like all other closures.
+### Blocking
+
+An absolutely critical rule is the following:
+
+!!! danger
+    Never make blocking calls directly on an event loop.
+    
+An example of a blocking call would be something like `libc.sleep(_:)`.
 
 ```swift
-var i = 0
+router.get("hello") { req in
+    /// Puts the event loop's thread to sleep.
+    sleep(5)
+    
+    /// Returns a simple string once the thread re-awakens.
+    return "Hello, world!"
+}
+```
+
+`sleep(_:)` is a command that blocks the current thread for the number of seconds supplied. If you do blocking work directly on an event loop, the event loop will be unable to respond to any other clients assigned to it for the duration of the blocking work. In other words, if you do `sleep(5)` on an event loop, all of the other clients connected to that event loop (possibly hundreds or thousands) will be delayed for at least 5 seconds.
+
+Make sure to run any blocking work in the background. Use promises to notify the event loop when this work is done in a non-blocking way.
+
+```swift
+router.get("hello") { req in
+    /// Create a new void promise
+    let promise = req.eventLoop.newPromise(Void.self)
+    
+    /// Dispatch some work to happen on a background thread
+    DispatchQueue.global() {
+        /// Puts the background thread to sleep
+        /// This will not affect any of the event loops
+        sleep(5)
         
-let promise = Promise<Int>()
-let future = promise.future // Future<Int>
-
-future.do { int in
-    i += int * 3
-}.do { int in
-    i += (int - 1)
-}.always {
-    print(i)
-    i = 0
-}.catch { _ in
-    i = -1
+        /// When the "blocking work" has completed,
+        /// complete the promise and its associated future.
+        promise.succeed()
+    }
+    
+    /// Wait for the future to be completed, 
+    /// then transform the result to a simple String
+    return promise.futureResult.transform(to: "Hello, world!")
 }
 ```
 
-At the end of the above function, `i` will *always* be 0. If the promise is completed with the successful result `i`, the number "11" will be printed. On error, "-1" will be printed.
+Not all blocking calls will be as obvious as `sleep(_:)`. If you are suspicious that a call you are using may be blocking, research the method itself or ask someone. Chances are if the function is doing disk or network IO and uses a synchronous API (no callbacks or futures) it is blocking.
 
-## Signals
+!!! info
+    If doing blocking work is a central part of your application, you should consider using a `BlockingIOThreadPool` to control the number of threads you create to do blocking work. This will help you avoid starving your event loops from CPU time while blocking work is being done.
 
-Signals, or `Future<Void>` is a Future that can contain either an Error or Void (the Expectation). `Future<Void>` is often used to indicate the successful or unsuccessful completion of a task.
+    
