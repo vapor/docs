@@ -58,10 +58,10 @@ pages:
     - 'Message authentication': 'crypto/mac.md'
     - 'Password hashing': 'crypto/passwords.md'
     - 'Random': 'crypto/random.md'
-- 'Version (3.0-alpha)':
+- 'Version (3.0-rc)':
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'
-    - '3.0-alpha': 'version/3_0.md'
+    - '3.0-rc': 'version/3_0.md'
     - 'Support': 'version/support.md'
 
 
