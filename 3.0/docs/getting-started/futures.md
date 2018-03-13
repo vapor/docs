@@ -24,7 +24,7 @@ Just like optionals in Swift, futures can be mapped and flat-mapped. These are t
 |`flatMap`|`to: U.Type, _: (T) -> Future<U>`|Maps a future value to different _future_ value.|
 |`transform`         |`to: U`                  |Maps a future to an already available value.|
 
-If you look at the method signatures for `map` and `flatMap` on `Optional<T>` and `Array<T>`, you will see the are very similar to the methods available on `Future<T>`.
+If you look at the method signatures for `map` and `flatMap` on `Optional<T>` and `Array<T>`, you will see that they are very similar to the methods available on `Future<T>`.
 
 ### Map
 
@@ -46,7 +46,7 @@ print(futureInt) // Future<Int>
 
 ### Flat Map
 
-The `.flatMap(to:_:)` method allows you to transform the future's value to another future value. It gets the name "flat" map because it is what allows you to avoid creating nested futures (i.e., `Future<Future<T>>`). In other words, it helps you keep your generic futures flat.
+The `.flatMap(to:_:)` method allows you to transform the future's value to another future value. It gets the name "flat" map because it is what allows you to avoid creating nested futures (e.g., `Future<Future<T>>`). In other words, it helps you keep your generic futures flat.
 
 ```swift
 /// Assume we get a future string back from some API
@@ -199,7 +199,7 @@ Promises can be completed (`succeed(result:)` / `fail(error:)`) from any thread.
 
 ## Event Loop
 
-When your application boots, it will usually create one event loop for each core in the CPU it is running on. Each event loop has exactly one thread. If you are familiar with event loops from Node.js, the one's in Vapor are very similar. The only difference is that Vapor can run multiple event loops in one process since Swift supports multi-threading.
+When your application boots, it will usually create one event loop for each core in the CPU it is running on. Each event loop has exactly one thread. If you are familiar with event loops from Node.js, the ones in Vapor are very similar. The only difference is that Vapor can run multiple event loops in one process since Swift supports multi-threading.
 
 Each time a client connects to your server, it will be assigned to one of the event loops. From that point on, all communication between the server and that client will happen on that same event loop (and by association, that event loop's thread). 
 
