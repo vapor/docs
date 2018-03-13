@@ -1208,10 +1208,82 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
     
     <label class="md-nav__link" for="nav-13">
-      Version (3.0-rc)
+      Testing
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-13">
+        Testing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../testing/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
+    
+    <label class="md-nav__link" for="nav-14">
+      Deploy
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-14">
+        Deploy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+    
+    <label class="md-nav__link" for="nav-15">
+      Version (3.0-rc)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-15">
         Version (3.0-rc)
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1347,53 +1419,47 @@
                 <h1 id="routing">Routing<a class="headerlink" href="#routing" title="Permanent link">&para;</a></h1>
 <p>Routing is the process of finding the appropriate response to an incoming request.</p>
 <h2 id="making-a-router">Making a Router<a class="headerlink" href="#making-a-router" title="Permanent link">&para;</a></h2>
-<p>In Vapor the default Router is the <code>EngineRouter</code>. You can implement custom routers by implementing one conformant to the <code>Router</code> protocol.</p>
+<p>In Vapor the default Router is the <code>EngineRouter</code>. You can implement custom routers by implementing one conforming to the <code>Router</code> protocol.</p>
 <div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">router</span> <span class="p">=</span> <span class="k">try</span> <span class="n">EngineRouter</span><span class="p">.</span><span class="k">default</span><span class="p">()</span>
 </pre></div>
 
 
-<p>There are two APIs available, one is supplied by the <code>Routing</code> library and a set of helpers is available in Vapor itself.</p>
-<p>We recommend using the helpers and will continue to describe those here.</p>
+<p>This is usually done in your <a href="../structure/#configureswift"><code>configure.swift</code></a> file.</p>
 <h2 id="registering-a-route">Registering a route<a class="headerlink" href="#registering-a-route" title="Permanent link">&para;</a></h2>
-<p>Imagine you want to return a list of users when someone visits <code>GET /users</code>.
-Leaving authorization on the side, that would look something like this.</p>
+<p>Imagine you want to return a list of users when someone visits <code>GET /users</code>. Leaving authorization aside, that would look something like this.</p>
 <div class="codehilite"><pre><span></span><span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;users&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
     <span class="k">return</span> <span class="c1">// fetch the users</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<p>In Vapor, routing is usually done using the <code>.get</code>, <code>.put</code>, <code>.post</code>, <code>.patch</code> and <code>.delete</code> shorthands.
-You can supply the path as <code>/</code> or comma-separated strings. We recommend comma separated, as it's more readable.</p>
+<p>In Vapor, routing is usually done using the <code>.get</code>, <code>.put</code>, <code>.post</code>, <code>.patch</code> and <code>.delete</code> shorthands. You can supply the path as <code>/</code> or comma-separated strings. We recommend comma separated, as it's more readable.</p>
 <div class="codehilite"><pre><span></span><span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;path&quot;</span><span class="p">,</span> <span class="s">&quot;to&quot;</span><span class="p">,</span> <span class="s">&quot;something&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 </pre></div>
 
 
 <h2 id="routes">Routes<a class="headerlink" href="#routes" title="Permanent link">&para;</a></h2>
-<p>The best place to add routes is in the <a href="../structure/#routesswift"><code>routes.swift</code></a> file.
-You will find a router there that is ready to use.</p>
+<p>The best place to add routes is in the <a href="../structure/#routesswift"><code>routes.swift</code></a> file. Use the router supplied as a parameter to this function to register your routes.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Vapor</span>
 
-<span class="kr">final</span> <span class="kd">class</span> <span class="nc">Routes</span><span class="p">:</span> <span class="n">RouteCollection</span> <span class="p">{</span>
-    <span class="p">...</span>
-
-    <span class="kd">func</span> <span class="nf">boot</span><span class="p">(</span><span class="n">router</span><span class="p">:</span> <span class="n">Router</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
-        <span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
-            <span class="k">return</span> <span class="s">&quot;Hello, world!&quot;</span>
-        <span class="p">}</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">routes</span><span class="p">(</span><span class="kc">_</span> <span class="n">router</span><span class="p">:</span> <span class="n">Router</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+    <span class="c1">// Basic &quot;Hello, world!&quot; example</span>
+    <span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
+        <span class="k">return</span> <span class="s">&quot;Hello, world!&quot;</span>
     <span class="p">}</span>
+
+    <span class="c1">/// ...</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<p>You <em>must</em> return a Future containing a <code>ResponseEncodable</code> here.
-The most common <code>ResponseEncodable</code> types are <a href="../content/"><code>Content</code></a>, <a href="../http/response.md"><code>Response</code></a> amd <a href="../leaf/view.md"><code>View</code></a>.</p>
+<p>See <a href="../content/">Getting Started &rarr; Content</a> for more information about what can be returned in a route closure.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <p>Sometimes you may want one of the components of your route path to be dynamic. This is often used when
 you want to get an item with a supplied identifier, i.e., <code>GET /users/:id</code></p>
-<div class="codehilite"><pre><span></span><span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;users&quot;</span><span class="p">,</span> <span class="nb">Int</span><span class="p">.</span><span class="n">parameter</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span> <span class="k">in</span>
+<div class="codehilite"><pre><span></span><span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;users&quot;</span><span class="p">,</span> <span class="nb">Int</span><span class="p">.</span><span class="n">parameter</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="k">in</span>
     <span class="kd">let</span> <span class="nv">id</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">parameter</span><span class="p">(</span><span class="nb">Int</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
-    <span class="k">return</span> <span class="c1">// fetch the user with id</span>
+    <span class="k">return</span> <span class="s">&quot;requested id #</span><span class="si">\(</span><span class="n">id</span><span class="si">)</span><span class="s">&quot;</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -1404,7 +1470,7 @@ you want to get an item with a supplied identifier, i.e., <code>GET /users/:id</
 <p>You can define your own <a href="../../routing/parameters/">custom parameter types</a> as well.</p>
 </div>
 <h2 id="after-registering-your-routes">After registering your routes<a class="headerlink" href="#after-registering-your-routes" title="Permanent link">&para;</a></h2>
-<p>After registering your routes you must register the Router as a <a href="../concepts/services.md"><code>Service</code></a></p>
+<p>After registering your routes you must register the Router as a <a href="../services/">Getting Started &rarr; Services</a></p>
                 
                   
                 

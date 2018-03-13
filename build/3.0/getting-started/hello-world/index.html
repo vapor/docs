@@ -1201,10 +1201,82 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
     
     <label class="md-nav__link" for="nav-13">
-      Version (3.0-rc)
+      Testing
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-13">
+        Testing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../testing/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
+    
+    <label class="md-nav__link" for="nav-14">
+      Deploy
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-14">
+        Deploy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+    
+    <label class="md-nav__link" for="nav-15">
+      Version (3.0-rc)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-15">
         Version (3.0-rc)
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1337,14 +1409,13 @@ This guide will take you step by step through creating a new project, building, 
 <p>The first step is to create a new Vapor project on your computer.
 For this guide, we will call the project <code>Hello</code>.</p>
 <p>Open up your terminal, and use <a href="../toolbox/#new">Vapor Toolbox's <code>new</code></a> command.</p>
-<div class="codehilite"><pre><span></span>vapor new Hello
+<div class="codehilite"><pre><span></span>vapor new Hello --branch<span class="o">=</span>beta
 </pre></div>
 
 
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Make sure to add <code>--branch=beta</code> while using Vapor 3 pre-release.</p>
-<p>If you receive an error that looks like this:  'Cloning Template [Failed]' then the template you are using is not           yet ready for the beta branch. Try a different template. </p>
+<div class="admonition beta">
+<p class="admonition-title">Beta</p>
+<p>At the time of this writing, Vapor 3 is not officially released. You can omit the <code>--branch=beta</code> flag once <a href="https://github.com/vapor/vapor/releases/tag/3.0.0">3.0.0</a> is released.</p>
 </div>
 <p>Once that finishes, change into the newly created directory.</p>
 <div class="codehilite"><pre><span></span><span class="nb">cd</span> Hello
@@ -1363,7 +1434,7 @@ This will allow us to build and run our app from inside of Xcode, just like an i
 <p>You should now have Xcode open and running. Select the <a href="../xcode/#run">run scheme</a> from the scheme menu,
 then click the play button.</p>
 <p>You should see the terminal pop up at the bottom of the screen.</p>
-<div class="codehilite"><pre><span></span>Server starting on localhost:8080
+<div class="codehilite"><pre><span></span>Server starting on http://localhost:8080
 </pre></div>
 
 

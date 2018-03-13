@@ -1187,10 +1187,82 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
     
     <label class="md-nav__link" for="nav-13">
-      Version (3.0-rc)
+      Testing
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-13">
+        Testing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../testing/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
+    
+    <label class="md-nav__link" for="nav-14">
+      Deploy
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-14">
+        Deploy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deploy/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+    
+    <label class="md-nav__link" for="nav-15">
+      Version (3.0-rc)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-15">
         Version (3.0-rc)
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1305,7 +1377,7 @@
                 <h1 id="router">Router<a class="headerlink" href="#router" title="Permanent link">&para;</a></h1>
 <p>Router is a protocol that you can conform your own routers to.</p>
 <h2 id="registering-a-route">Registering a route<a class="headerlink" href="#registering-a-route" title="Permanent link">&para;</a></h2>
-<p>First, create a <a href="../route/">Route</a> using a <a href="../http/method.md">Method</a>, path and a responder.</p>
+<p>First, create a <a href="../route/">Route</a> using a HTTP method, path and a responder.</p>
 <p>The following example shows a route with a constant path.</p>
 <div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">responder</span> <span class="p">=</span> <span class="n">BasicAsyncResponder</span> <span class="p">{</span> <span class="n">request</span> <span class="k">in</span>
   <span class="k">return</span> <span class="s">&quot;Hello world&quot;</span>
@@ -1331,7 +1403,7 @@
 </pre></div>
 
 
-<p>The router should be able to route the <a href="../http/request.md">Request</a> using</p>
+<p>The router should be able to route the HTTP request using</p>
 <div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">responder</span> <span class="p">=</span> <span class="n">router</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span>
 </pre></div>
                 
