@@ -10,8 +10,8 @@ Fluent is just a framework for building ORMs, not an ORM itself. To get started 
 |database  |library         |driver                 |guide                                               |
 |----------|----------------|-----------------------|--------------------------------------------------- |
 |PostgreSQL|vapor/postgresql|vapor/fluent-postgresql|[Getting Started &rarr;](../postgresql/fluent.md)   |
-|MySQL     |vapor/mysql     |vapor/fluent-mysql     |[Getting Started &rarr;](mysql/getting-started.md)  |
-|SQLite    |vapor/sqlite    |vapor/fluent-sqlite    |[Getting Started &rarr;](sqlite/getting-started.md) |
+|MySQL     |vapor/mysql     |vapor/fluent-mysql     |[Getting Started &rarr;](../mysql/fluent.md)  |
+|SQLite    |vapor/sqlite    |vapor/fluent-sqlite    |[Getting Started &rarr;](../sqlite/fluent.md) |
 
 After you get started, come back to the other sections in this guide for a more in-depth look at Fluent's features.
 
