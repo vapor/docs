@@ -1,6 +1,6 @@
 # PostgreSQL Core
 
-PostgreSQL ([vapor/postgresql](https://github.com/vapor/postgresql)) is a pure-Swift (no `libpq` dependency), event-driven, non-blocking driver for PostgreSQL. It's build on top of the [Swift NIO](http://github.com/apple/swift-nio) networking library.
+PostgreSQL ([vapor/postgresql](https://github.com/vapor/postgresql)) is a pure-Swift (no `libpq` dependency), event-driven, non-blocking driver for PostgreSQL. It's built on top of the [Swift NIO](http://github.com/apple/swift-nio) networking library.
 
 !!! seealso
     The higher-level, Fluent PostgreSQL ORM guide is located at [PostgreSQL &rarr; Fluent](fluent.md)

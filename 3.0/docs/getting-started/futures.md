@@ -5,7 +5,7 @@ If this is your first time hearing about futures, they might seem a little confu
 But don't worry, Vapor makes them easy to use.
 
 Promises and Futures are two strongly related types. Every promise has a future.
-A promise is a write-only entity that has the ability to complete (or fail) it's Future counterpart.
+A promise is a write-only entity that has the ability to complete (or fail) its Future counterpart.
 
 Futures are a read-only entity that can have a successful or error case. Successful cases are called the "Expectation".
 

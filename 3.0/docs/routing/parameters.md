@@ -8,7 +8,7 @@ They can be part of a [Route](route.md), and be extracted from requests that are
 
 To create a custom parameter type, simply conform to `Parameter` and implement the conversion function `make` and a unique slug.
 
-In this example, the `User` class will be initialized from a parameter that represents it's identifier.
+In this example, the `User` class will be initialized from a parameter that represents its identifier.
 
 We recommend prefixing custom Parameter identifiers.
 
@@ -32,7 +32,7 @@ class User : Parameter {
 
 ## Using (custom) parameters
 
-After conforming a type to `Parameter` you can access it's static property `parameter` as part of a path.
+After conforming a type to `Parameter` you can access its static property `parameter` as part of a path.
 
 ```swift
 router.on(.get, to: "users", User.parameter, "profile") { request in

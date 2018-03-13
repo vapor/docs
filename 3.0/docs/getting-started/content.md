@@ -49,7 +49,7 @@ We use `.map(to:)` here since `req.content.decode(_:)` returns a [future](future
 
 ### Other Request Types
 
-Since the request in the previous example declared JSON as it's content type, Vapor knows to use a JSON decoder automatically. This same method would work just as well for the following request.
+Since the request in the previous example declared JSON as its content type, Vapor knows to use a JSON decoder automatically. This same method would work just as well for the following request.
 
 ```http
 POST /login HTTP/1.1
@@ -77,7 +77,7 @@ Content-Type: application/json
 
 ### Encode Response
 
-Just like decoding, first create a struct or class that represents the data your expect.
+Just like decoding, first create a struct or class that represents the data that you are expecting.
 
 ```swift
 import Foundation
