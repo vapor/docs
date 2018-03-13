@@ -99,6 +99,7 @@ pages:
 - Version (2.0):
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'
+    - '3.0-beta': 'version/3_0.md'
     - 'Support': 'version/support.md'
 
 markdown_extensions:
@@ -108,13 +109,16 @@ markdown_extensions:
     - meta
     - toc(permalink=true)
 
-theme: 'material'
-theme_dir: 'vapor-material'
-repo_url: https://github.com/vapor/documentation
+theme: 
+    name: 'material'
+    palette:
+        primary: 'blue'
+        accent: 'purple'
+    logo: 'images/droplet-white.svg'
 
-extra_css:
-  - 'stylesheets/extra.css'
-edit_uri: edit/master/2.0/docs/
+repo_url: http://github.com/vapor/vapor
+edit_uri: https://github.com/vapor/documentation/edit/master/2.0/docs/
+
 extra:
     logo: 'images/droplet-white.svg'
     social:

@@ -1,0 +1,98 @@
+site_name: 'Vapor Docs'
+copyright: 'Copyright &copy; 2018 Qutheory, LLC'
+
+pages:
+- 'Overview': 'index.md'
+- 'Install':
+    - 'macOS': 'install/macos.md'
+    - 'Ubuntu': 'install/ubuntu.md'
+- 'Getting started':
+    - 'Hello, world': 'getting-started/hello-world.md'
+    - 'Toolbox': 'getting-started/toolbox.md'
+    - 'SPM': 'getting-started/spm.md'
+    - 'Xcode': 'getting-started/xcode.md'
+    - 'Folder Structure': 'getting-started/structure.md'
+    - 'Application': 'getting-started/application.md'
+    - 'Controllers': 'getting-started/controllers.md'
+    - 'Routing': 'getting-started/routing.md'
+    - 'Content': 'getting-started/content.md'
+    - 'Futures': 'getting-started/futures.md'
+    - 'Services': 'getting-started/services.md'
+    - 'Deployment': 'getting-started/cloud.md'
+- 'Routing':
+    - 'Getting Started': 'routing/getting-started.md'
+    - 'Parameters': 'routing/parameters.md'
+    - 'Route': 'routing/route.md'
+    - 'Router': 'routing/router.md'
+- 'Fluent':
+    - 'Getting Started': 'fluent/getting-started.md'
+    - 'Models': 'fluent/models.md'
+    - 'Migrations': 'fluent/migrations.md'
+    - 'Querying': 'fluent/querying.md'
+    - 'Query Builder': 'fluent/query-builder.md'
+    - 'Schema Builder': 'fluent/schema-builder.md'
+    - 'Relations': 'fluent/relations.md'
+    - 'Pivot': 'fluent/pivot.md'
+    - 'Transaction': 'fluent/transaction.md'
+    - 'Database': 'fluent/database.md'
+- 'PostgreSQL':
+    - 'Getting Started': 'postgresql/getting-started.md'
+    - 'Fluent PostgreSQL': 'postgresql/fluent.md'
+    - 'PostgreSQL Core': 'postgresql/core.md'
+- 'Leaf':
+    - 'Getting Started': 'leaf/getting-started.md'
+    - 'Basics': 'leaf/basics.md'
+    - 'Custom tags': 'leaf/custom-tags.md'
+- 'Redis':
+    - 'Getting Started': 'redis/getting-started.md'
+    - 'Basics': 'redis/basics.md'
+    - 'Custom commands': 'redis/custom-commands.md'
+    - 'Publish and Subscribe': 'redis/pub-sub.md'
+    - 'Pipeline': 'redis/pipeline.md'
+- 'WebSocket': 
+    - 'Getting Started': 'websocket/websocket.md'
+- 'Crypto':
+    - 'Getting Started': 'crypto/getting-started.md'
+    - 'Base64': 'crypto/base64.md'
+    - 'Hashes': 'crypto/hash.md'
+    - 'Message authentication': 'crypto/mac.md'
+    - 'Password hashing': 'crypto/passwords.md'
+    - 'Random': 'crypto/random.md'
+- 'Version (3.0-alpha)':
+    - '1.5': 'version/1_5.md'
+    - '2.0': 'version/2_0.md'
+    - '3.0-alpha': 'version/3_0.md'
+    - 'Support': 'version/support.md'
+
+
+markdown_extensions:
+    - admonition
+    - codehilite(guess_lang=false)
+    - footnotes
+    - meta
+    - toc(permalink=true)
+
+theme:
+    name: 'material'
+    palette:
+        primary: 'blue'
+        accent: 'purple'
+    logo: 'images/droplet-white.svg'
+
+repo_url: http://github.com/vapor/vapor
+edit_uri: https://github.com/vapor/documentation/edit/beta/3.0/docs/
+extra:
+    social:
+        - type: 'twitter'
+          link: 'https://twitter.com/@codevapor'
+        - type: 'slack'
+          link: 'http://vapor.team/'
+        - type: 'github'
+          link: 'https://github.com/vapor'
+    font:
+        text: 'Roboto Slab'
+        code: 'Source Code Pro'
+
+google_analytics:
+    - 'UA-76177358-4'
+    - 'auto'
