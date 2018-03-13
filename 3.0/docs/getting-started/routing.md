@@ -52,7 +52,7 @@ final class Routes: RouteCollection {
 ```
 
 You _must_ return a Future containing a `ResponseEncodable` here.
-The most common `ResponseEncodable` types are [`Content`](content.md), [`Response`](../http/response.md) amd [`View`](../leaf/view.md).
+The most common `ResponseEncodable` types are [`Content`](content.md), Response and [`View`](../leaf/getting-started.md).
 
 ## Parameters
 
@@ -73,4 +73,4 @@ Instead of passing a string, pass the _type_ of parameter you expect. In this ca
 
 ## After registering your routes
 
-After registering your routes you must register the Router as a [`Service`](../concepts/services.md)
+After registering your routes you must register the Router as a [`Service`](../getting-started/services.md)

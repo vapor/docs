@@ -43,7 +43,7 @@ let notifications = client.subscribe(to: ["some-notification-channel", "other-no
 
 If you try to use the client after subscribing, all operations will fail. These errors are usually emitted through the Future.
 
-This stream will receive messages asynchronously from the point of `draining`. This works like [any other async stream](../async/streams.md)
+This stream will receive messages asynchronously from the point of `draining`. This works like any other async stream.
 
 Notifications consist of the channel and payload.
 

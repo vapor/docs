@@ -8,7 +8,7 @@ querying your database to create, read, update, and delete data.
 The first thing you need to query your database, is a connection to it. Luckily, they are easy to get.
 
 You can use either the application or an incoming request to create a database connection. You just need
-access to the [`DatabaseIdentifier`](provider.md#identifier).
+access to the database identifier.
 
 ### Request
 
@@ -22,7 +22,7 @@ router.get(...) { req in
 }
 ```
 
-The first parameter is the database's [identifier](provider.md#identifier). The second parameter is a closure
+The first parameter is the database's identifier. The second parameter is a closure
 that accepts a connection to that database.
 
 !!! tip

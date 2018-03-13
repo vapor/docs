@@ -20,11 +20,11 @@ router.on(.get, to: "hello", "world") { request in
 }
 ```
 
-The `.get` represents the [Method](../http/method.md) you want to use. `to: "hello", "world"` registers the path `/hello/world`.
+The `.get` represents the HTTP method you want to use. `to: "hello", "world"` registers the path `/hello/world`.
 
 For variable path components you can use [parameters](parameters.md).
 
-The trailing closure receives a [Request](../http/request.md). The route can throw errors and needs to return a [`Future<ResponseRepresentable>`](../http/response.md) conforming type.
+The trailing closure receives a request. The route can throw errors and needs to return a future response conforming type.
 
 ## Registering a route using Vapor
 
@@ -45,7 +45,7 @@ router.get("components", "in", "path") { request in
 After registering routes to the Router, you must add the router to your services.
 
 ```swift
-services.instance(Router.self, router)
+services.register(router, as: Router.self)
 ```
 
-[More about services here.](../concepts/services.md)
+Learn more about services in [Getting Started &rarr; Services](../getting-started/services.md)

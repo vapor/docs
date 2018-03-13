@@ -50,4 +50,4 @@ let client = try app.make(Client.self)
 let res = client.get("http://vapor.codes")
 ```
 
-Learn more about services in [Services &rarr; Getting Started](../services/getting-started.md).
+Learn more about services in [Getting Started &rarr; Services](services.md).

@@ -1,0 +1,48 @@
+.md-header {
+    box-shadow: 0px 0px 8px #657590!important;
+}
+
+.md-main__inner {
+    padding-top: 0;
+}
+
+.md-nav__button img {
+    width: 90%;
+}
+
+.md-logo {
+    padding: 6px;
+}
+
+.md-sidebar__inner .md-logo {
+    width: 60px!important;
+}
+
+.md-header-nav__title {
+    line-height: 4.6rem;
+}
+
+@media only screen and (min-width:75em) {
+    .md-header-nav__button img {
+        width: 28px!important;
+        height: 28px!important;
+    }
+
+    .md-main__inner {
+       padding-top: 1rem;
+    }
+}
+
+@media only screen and (min-width:100em) {
+    .md-header-nav__button img {
+        width: 32px!important;
+        height: 32px!important;
+    }
+}
+
+@media only screen and (min-width:125em) {
+    .md-header-nav__button img {
+        width: 38px!important;
+        height: 38px!important;
+    }
+}

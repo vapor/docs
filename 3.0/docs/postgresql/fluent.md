@@ -91,7 +91,7 @@ extension User: Migration { }
 
 That's all it takes. Fluent uses Codable to analyze your model and will attempt to create the best possible schema for it.
 
-Take a look at [Fluent &rarr; Migration](../fluent/migration.md) if you are interested in customizing this migration.
+Take a look at [Fluent &rarr; Migration](../fluent/migrations.md) if you are interested in customizing this migration.
 
 ### Configure
 

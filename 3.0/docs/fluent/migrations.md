@@ -67,7 +67,7 @@ Learn more about creating, updating, and deleting schemas in [Fluent &rarr; Sche
 ### Revert
 
 Revert is the opposite of prepare. It's job is to undo anything that was done in prepare. It is used when you boot your 
-app with the `--revert` option. See [Fluent &rarr; Migration](../migration.md#revert) for more information.
+app with the `--revert` option. 
 
 To implement `revert` for our model, we simply use `.delete` to indicate that we would like to delete the schema created for `User`.
 

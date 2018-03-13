@@ -1,15 +1,15 @@
 # Redis basic usage
 
 To interact with Redis, you first need to construct a Redis client.
-The Redis library primarily supports [TCP sockets](../sockets/tcp-client.md).
+The Redis library primarily supports TCP sockets.
 
-This requires a hostname, port and [Worker](../async/eventloop.md). The eventloop will be used for Redis' Socket. The hostname and port have a default. The hostname is defaulted to `localhost`, and the port to Redis' default port `6379`.
+This requires a hostname, port and worker. The eventloop will be used for Redis' Socket. The hostname and port have a default. The hostname is defaulted to `localhost`, and the port to Redis' default port `6379`.
 
 ```swift
 let client = try RedisClient.connect(on: worker) // Future<RedisClient>
 ```
 
-The `connect` method will return a [Future](../async/futures.md) containing the TCP based Redis Client.
+The `connect` method will return a future containing the TCP based Redis Client.
 
 ## Redis Data Types
 

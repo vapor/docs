@@ -84,8 +84,7 @@ extension User: Model {
 }
 ```
 
-You can use any type that conforms to `IDType` as a Fluent ID. See [Fluent &rarr; Model &rarr; ID](../model.md#id) for more information.
-You can also use any property name you'd like for the id.
+You can use any type that conforms to `IDType` as a Fluent ID. You can also use any property name you'd like for the id.
 
 !!! warning
     Some databases require certain ID keys. For example, MongoDB requires `_id`.

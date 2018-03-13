@@ -66,6 +66,10 @@ pages:
     - 'Message authentication': 'crypto/mac.md'
     - 'Password hashing': 'crypto/passwords.md'
     - 'Random': 'crypto/random.md'
+- 'Testing':
+    - 'Getting Started': 'testing/getting-started.md'
+- 'Deploy':
+    - 'Getting Started': 'deploy/getting-started.md'
 - 'Version (3.0-rc)':
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'

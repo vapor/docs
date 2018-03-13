@@ -2,15 +2,13 @@
 
 Services is a framework for creating things you need in your application in a type-safe fashion with protocol and environment support.
 
-The Services framework is designed to be thread unsafe. The framework aims to guarantee that a service exists on the same [EventLoop](../async/eventloop.md) it was created from and will be used on.
+The Services framework is designed to be thread unsafe. The framework aims to guarantee that a service exists on the same EventLoop it was created from and will be used on.
 
-## Glossary
+## Container
 
-### Container
+Containers are event loops that can create and cache services.
 
-Containers are [EventLoops](../async/eventloop.md) that can create and cache services.
-
-[`Request`](../http/request.md) is the most common `Container` type, which can be accessed in every [`Route`](../getting-started/routing.md).
+Request is the most common `Container` type, which can be accessed in every [`Route`](../getting-started/routing.md).
 
 Containers cache instances of a given service (keyed by the requested protocol) on a per-container basis.
 
@@ -23,11 +21,14 @@ There will be as many instances of a normal service per-container as there are u
 
 ### EphemeralContainer
 
-EphemeralContainers are containers that are short-lived.
-Their cache does not stretch beyond a short lifecycle.
-The most common EphemeralContainer is an [HTTP Request](../http/request.md) which lives for the duration of the route handler.
+EphemeralContainers are containers that are short-lived. Their cache does not stretch beyond a short lifecycle. The most common EphemeralContainer is an HTTP Request which lives for the duration of the route handler.
 
-### Service
+### Environment
+
+Environments indicate the type of deployment/situation in which an application is ran. Environments can be used to change database credentials or API tokens per environment automatically.
+
+
+## Service
 
 Services are a type that can be requested from a Container. They are registered as part of the application setup.
 
@@ -35,11 +36,7 @@ Services are registered to a matching type or protocol it can represent, includi
 
 Services are registered to a blueprint before the [`Application`](../getting-started/application.md) is initialized. Together they make up the blueprint that Containers use to create an individual Service.
 
-### Environment
-
-Environments indicate the type of deployment/situation in which an application is ran. Environments can be used to change database credentials or API tokens per environment automatically.
-
-## Registering
+### Registering
 
 Services are registered as a concrete (singleton) type or factories. Singleton types should be a struct, but can be a class.
 
@@ -77,7 +74,7 @@ final class SingletonService {
   init() {}
 }
 
-services.instance(isSingleton: true, SingletonService())
+services.instance(SingletonService())
 ```
 
 Assuming the above service, you can now make this service from a container. The global container in Vapor is `Application` which *must not* be used within routes.
@@ -227,7 +224,7 @@ services.register { container -> BCryptConfig in
 ## Getting a Service
 
 To get a service you need an existing container matching the current EventLoop.
-If you're processing a [`Request`](../http/request.md), you should almost always use the Request as a Container type.
+If you're processing a Request, you should almost always use the Request as a Container type.
 
 ```swift
 // ErrorLogger
