@@ -3,7 +3,7 @@
 Models are the heart of Fluent. Unlike ORMs in other languages, Fluent doesn't return untyped arrays or dictionaries for queries. Instead, you query the database using models. This allows the Swift compiler to catch many errors that have burdened ORM users for ages.
 
 !!! info
-    This guide provides an overview of the `Model` protocol and its associated methods and properties. If you are just getting started, check find the guide for your database at [Fluent &rarr; Getting Started](getting-started.md).
+    This guide provides an overview of the `Model` protocol and its associated methods and properties. If you are just getting started, check out the guide for your database at [Fluent &rarr; Getting Started](getting-started.md).
 
 `Model` is a protocol in the `Fluent` module. It extends the `AnyModel` protocol which can be used for type-erasure. 
 
