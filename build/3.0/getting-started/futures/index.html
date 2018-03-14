@@ -1650,7 +1650,7 @@
 </tr>
 </tbody>
 </table>
-<p>If you look at the method signatures for <code>map</code> and <code>flatMap</code> on <code>Optional&lt;T&gt;</code> and <code>Array&lt;T&gt;</code>, you will see the are very similar to the methods available on <code>Future&lt;T&gt;</code>.</p>
+<p>If you look at the method signatures for <code>map</code> and <code>flatMap</code> on <code>Optional&lt;T&gt;</code> and <code>Array&lt;T&gt;</code>, you will see that they are very similar to the methods available on <code>Future&lt;T&gt;</code>.</p>
 <h3 id="map">Map<a class="headerlink" href="#map" title="Permanent link">&para;</a></h3>
 <p>The <code>.map(to:_:)</code> method allows you to transform the future's value to another value. Because the future's value may not be available yet (it may be the result of an asynchronous task) we must provide a closure to accept the value.</p>
 <div class="codehilite"><pre><span></span><span class="c1">/// Assume we get a future string back from some API</span>
@@ -1668,7 +1668,7 @@
 
 
 <h3 id="flat-map">Flat Map<a class="headerlink" href="#flat-map" title="Permanent link">&para;</a></h3>
-<p>The <code>.flatMap(to:_:)</code> method allows you to transform the future's value to another future value. It gets the name "flat" map because it is what allows you to avoid creating nested futures (i.e., <code>Future&lt;Future&lt;T&gt;&gt;</code>). In other words, it helps you keep your generic futures flat.</p>
+<p>The <code>.flatMap(to:_:)</code> method allows you to transform the future's value to another future value. It gets the name "flat" map because it is what allows you to avoid creating nested futures (e.g., <code>Future&lt;Future&lt;T&gt;&gt;</code>). In other words, it helps you keep your generic futures flat.</p>
 <div class="codehilite"><pre><span></span><span class="c1">/// Assume we get a future string back from some API</span>
 <span class="kd">let</span> <span class="nv">futureString</span><span class="p">:</span> <span class="n">Future</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">...</span>
 
@@ -1805,7 +1805,7 @@
 <h3 id="thread-safety">Thread Safety<a class="headerlink" href="#thread-safety" title="Permanent link">&para;</a></h3>
 <p>Promises can be completed (<code>succeed(result:)</code> / <code>fail(error:)</code>) from any thread. This is why promises require an event-loop to be initialized. Promises ensure that the completion action gets returned to its event-loop for execution.</p>
 <h2 id="event-loop">Event Loop<a class="headerlink" href="#event-loop" title="Permanent link">&para;</a></h2>
-<p>When your application boots, it will usually create one event loop for each core in the CPU it is running on. Each event loop has exactly one thread. If you are familiar with event loops from Node.js, the one's in Vapor are very similar. The only difference is that Vapor can run multiple event loops in one process since Swift supports multi-threading.</p>
+<p>When your application boots, it will usually create one event loop for each core in the CPU it is running on. Each event loop has exactly one thread. If you are familiar with event loops from Node.js, the ones in Vapor are very similar. The only difference is that Vapor can run multiple event loops in one process since Swift supports multi-threading.</p>
 <p>Each time a client connects to your server, it will be assigned to one of the event loops. From that point on, all communication between the server and that client will happen on that same event loop (and by association, that event loop's thread). </p>
 <p>The event loop is responsible for keeping track of each connected client's state. If there is a request from the client waiting to be read, the event loop trigger a read notification, causing the data to be read. Once the entire request is read, any futures waiting for that request's data will be completed. </p>
 <h3 id="worker">Worker<a class="headerlink" href="#worker" title="Permanent link">&para;</a></h3>
