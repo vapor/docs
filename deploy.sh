@@ -20,4 +20,5 @@ mv 1.5/.couscous/generated build/1.5;
 echo "<meta http-equiv=\"refresh\" content=\"0; url=/2.0/\">" > build/index.html;
 git add .
 git commit -am "deploy"
+git push
 vapor cloud deploy --env=production --build=incremental -y
