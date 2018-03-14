@@ -1,126 +1,246 @@
-# Getting Started with Models
+# Fluent Models
 
-Models are the heart of Fluent. Unlike ORMs in other languages, Fluent doesn't return untyped
-arrays or dictionaries for queries. Instead, you query the database using models. This allows the
-Swift compiler to catch many errors that have burdened ORM users for ages.
+Models are the heart of Fluent. Unlike ORMs in other languages, Fluent doesn't return untyped arrays or dictionaries for queries. Instead, you query the database using models. This allows the Swift compiler to catch many errors that have burdened ORM users for ages.
 
-In this guide, we will cover the creation of a basic `User` model.
+!!! info
+    This guide provides an overview of the `Model` protocol and its associated methods and properties. If you are just getting started, check find the guide for your database at [Fluent &rarr; Getting Started](getting-started.md).
 
-## Class
+`Model` is a protocol in the `Fluent` module. It extends the `AnyModel` protocol which can be used for type-erasure. 
 
-Every Fluent model starts with a `Codable` class. You can make any `Codable` class a Fluent model,
-even ones that come from a different module. All you have to do is conform to `Model`.
+## Conformance 
+
+Both `struct`s and `class`es can conform to `Model`, however you must pay special attention to Fluent's return types if you use a `struct`. Since Fluent works asynchronously, any mutations to a value-type (`struct`) model must return a new copy of the model as a future result.
+
+Normally, you will conform your model to one of the convenience models available in your database-specific package (i.e., `PostgreSQLModel`). However, if you want to customize additional properties, such as the model's `idKey`, you will want to use the `Model` protocol itself.
+
+Let's take a look at what a basic `Model` conformance looks like.
 
 ```swift
-import Foundation
-import Vapor
+/// A simple user.
+final class User: Model {
+    /// See `Model.Database`
+    typealias Database = FooDatabase
 
-final class User: Content {
-    var id: UUID?
+    /// See `Model.ID`
+    typealias ID = Int
+
+    /// See `Model.idKey`
+    static let idKey: IDKey = \.id
+
+    /// The unique identifier for this user.
+    var id: Int?
+
+    /// The user's full name.
     var name: String
+
+    /// The user's current age in years.
     var age: Int
+
+    /// Creates a new user.
+    init(id: Int? = nil, name: String, age: Int) {
+        self.id = id
+        self.name = name
+        self.age = age
+    }
 }
 ```
-
-Although it's not necessary, adding `final` to your Swift classes can make them more performant
-and also make adding `init` methods in extensions easier.
-
-## Conforming to Model
-
-Now that we have our `User` class, let's conform it to `Model`.
-
-
-```swift
-import FluentMySQL
-
-extension User: Model {
-
-}
-```
-
-Once you add this conformance requirement, Swift will tell you that it does not yet conform.
-Let's add the necessary items to make `User` conform to model.
 
 !!! tip
-    We recommend adding `Model` conformance in an extension to help keep your code clean.
+    Using `final` prevents your class from being sub-classed. This makes your life easier.
+
+## Associated Types
+
+`Model` defines a few associated types that help Fluent create type-safe APIs for you to use. Take a look at `AnyModel` if you need a type-erased version with no associated types.
 
 ### Database
 
-The first step to conforming to `Model` is to let Fluent know which type of database you plan
-on using this model with. This allows Fluent to enable database-specific features wherever you
-use this model.
+This type indicates to Fluent which database you intend to use with this model. Using this information, Fluent can dynamically add appropriate methods and data types to any `QueryBuilder`s you create with this model.
 
 ```swift
-import FluentMySQL
-
-extension User: Model {
-    ...
-
-    /// See Model.Database
-    typealias Database = MySQLDatabase
+final class User: Model {
+    /// See `Model.Database`
+    typealias Database = FooDatabase
+    /// ...
 }
 ```
 
-### ID
-
-Now we can tell Fluent what type of ID this model uses. In this example, our `User` model
-has an ID property of type `UUID` named `id`.
-
+It is possible to make this associated type generic by adding a generic type to your class or struct (i.e, `User<T>`). This is useful for cases where you are attempting to create generic extensions to Fluent, like perhaps an additive service provider.
 
 ```swift
-import FluentMySQL
-import Foundation
+final class User<D>: Model where D: Database {
+    /// See `Model.Database`
+    typealias Database = D
+    /// ...
+}
+```
 
-extension User: Model {
-    ...
+You can add further conditions to `D`, such as `QuerySupporting` or `SchemaSupporting`. You can also dynamically extend and conform your generic model using `extension User where D: ... { }`.
 
-    /// See Model.ID
+That said, for most cases, you should stick to using a concrete type-alias wherever possible. Fluent 3 is designed to allow you to harness the power of your database by creating a strong connection between your models and the underlying driver. 
+
+### ID 
+
+This property defines the type your model will use for its unique identifier.
+
+```swift
+final class User: Model {
+    /// See `Model.ID`
     typealias ID = UUID
+    /// ...
+}
+```
 
-    /// See Model.idKey
-    static var idKey: IDKey {
-        return \.id
+This will usually be something like `Int`, `UUID`, or `String` although you can theoretically use any type you like.
+
+## Properties
+
+There are several overridable properties on `Model` that you can use to customize how Fluent interacts with your database.
+
+### Name
+
+This `String` will be used as a unique identifier for your model whenever Fluent needs one.
+
+```swift
+final class User: Model {
+    /// See `Model.name`
+    static let name = "user"
+    /// ...
+}
+```
+
+By default, this is the type name of your model lowercased.
+
+### Entity
+
+Entity is a generic word used to mean either "table" or "collection", depending on which type of backend you are using for Fluent.
+
+```swift
+final class Goose: Model {
+    /// See `Model.entity`
+    static let entity = "geese"
+    /// ...
+}
+```
+
+By default, this property will be [name](#name) pluralized. Overriding this property is useful in situations where language fails you and the plural form of a word is very irregular.
+
+### ID Key
+
+The ID key is a writeable [key path](https://github.com/apple/swift-evolution/blob/master/proposals/0161-key-paths.md) that points to your model's unique identifier property.
+
+Usually this will be a property named `id` (for some databases it is `_id`). However you can theoretically use any key you like.
+
+```swift
+final class User: Model {
+    /// See `Model.ID`
+    typealias ID = String
+  
+    /// See `Model.entity`
+    static let idKey = \.username
+    
+    /// The user's unique username
+    var username: String?
+    
+    /// ...
+}
+```
+
+The `idKey` property must point to an optional, writeable (`var`) property with type matching [ID](#id).
+
+## Lifecycle
+
+There are several lifecycle methods on `Model` that you can override to hook into Fluent events.
+
+|method      |description                                                |throwing                    |
+|------------|-----------------------------------------------------------|----------------------------|
+|`willCreate`|Called before Fluent saves your model (for the first time) |Cancels the save.           |
+|`didCreate` |Called after Fluent saves your model (for the first time)  |Save completes. Query fails.|
+|`willUpdate`|Called before Fluent saves your model (subsequent saves)   |Cancels the save.           |
+|`didUpdate` |Called after Fluent saves your model (subsequent saves)    |Save completes. Query fails.|
+|`willRead`  |Called before Fluent returns your model from a fetch query.|Cancels the fetch.          |
+|`willDelete`|Called before Fluent deletes your model.                   |Cancels the delete.         |
+
+Here's an example of overriding the `willUpdate(on:)` method.
+
+```swift
+final class User: Model {
+    /// ...
+    
+    /// See `Model.willUpdate(on:)`
+    func willUpdate(on connection: Database.Connection) throws -> Future<Self> {
+        /// Throws an error if the username is invalid
+        try validateUsername()
+       
+        /// Return the user. No async work is being done, so we must create a future manually.
+        return Future.map(on: connection) { self }
     }
 }
 ```
 
-You can use any type that conforms to `IDType` as a Fluent ID. You can also use any property name you'd like for the id.
+## CRUD
 
-!!! warning
-    Some databases require certain ID keys. For example, MongoDB requires `_id`.
+The model offers basic CRUD method (create, read, update, delete).
 
+### Create
 
-## Example
+This method creates a new row / item for an instance of your model in the database.
 
-We now have a fully-conformed Fluent model!
-
+If your model does not have an ID, calls to `.save(on:)` will redirect to this method.
 
 ```swift
-import FluentMySQL
-import Foundation
-import Vapor
+let didCreate = user.create(on: req)
+print(didCreate) /// Future<User>
+```
+!!! info
+    If you are using a value-type (`struct`), the instance of your model returned by `.create(on:)` will contain the model's new ID.
 
-final class User: Codable {
-    var id: UUID?
-    var name: String
-    var age: Int
-}
+### Read
 
-extension User: Model {
-    /// See Model.Database
-    typealias Database = MySQLDatabase
+Two methods are important for reading your model from the database, `find(_:on:)` and `query(on:)`.
 
-    /// See Model.ID
-    typealias ID = UUID
-
-    /// See Model.idKey
-    static var idKey: IDKey {
-        return \.id
-    }
-}
+```swift
+/// Finds a user with ID == 1
+let user = User.find(1, on: req)
+print(user) /// Future<User?>
 ```
 
-## Done
+```swift
+/// Finds all users with name == "Vapor"
+let users = User.query(on: req).filter(\.name == "Vapor").all()
+print(users) /// Future<[User]>
+```
 
-Now that you have a working Fluent model, you can move onto [querying](querying.md) your model.
-However, if your database uses schemas, you may need to create a [migration](migrations.md) for your model first.
+### Update
+
+This method updates the existing row / item associated with an instance of your model in the database.
+
+If your model already has an ID, calls to `.save(on:)` will redirect to this method.
+
+```swift
+/// Updates the user
+let didUpdate = user.update(on: req)
+print(didUpdate) /// Future<User>
+```
+
+### Delete
+
+This method deletes the existing row / item associated with an instance of your model from the database.
+
+```swift
+/// Deletes the user
+let didDelete = user.delete(on: req)
+print(didDelete) /// Future<Void>
+```
+
+## Methods
+
+`Model` offers some convenience methods to make working with it easier.
+
+### Require ID
+
+This method return's the models ID or throws an error.
+
+```swift
+let id = try user.requireID()
+```
+
