@@ -137,7 +137,7 @@ Please notice that `server.json`, and `production/server.json` both declare the 
 
 ```swift
 // will load 0.0.0.0 or 127.0.0.1 based on above config
-let host = drop.config["server" "host"]?.string ?? "0.0.0.0"
+let host = drop.config["server", "host"]?.string ?? "0.0.0.0"
 // will load 9000, or environment variable port.
 let port = drop.config["server", "port"]?.int ?? 9000
 ```
