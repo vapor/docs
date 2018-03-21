@@ -74,7 +74,7 @@ This method is where all the routes for our application will be added.
 
 ### Routing
 
-In the scope of the `build` method, look for the following statement.
+In the scope of the `setupRoutes` method, look for the following statement.
 
 ```swift
 get("plaintext") { req in
