@@ -36,7 +36,7 @@ After conforming a type to `Parameter` you can access its static property `param
 
 ```swift
 router.on(.get, to: "users", User.parameter, "profile") { request in
-  let user = try request.parameters.next(User.self)
+  let user = try request.parameter(User.self)
 
   // Return the user's Profile sync or async (depending on the router)
 }
