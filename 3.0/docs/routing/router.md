@@ -20,7 +20,7 @@ The following example shows a with a [Parameter](parameters.md):
 
 ```swift
 let responder = BasicSyncResponder { request in
-  let name = try request.parameters.next(String.self)
+  let name = try request.parameter(String.self)
   return "Hello \(name)"
 }
 
