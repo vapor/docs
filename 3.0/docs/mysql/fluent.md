@@ -124,7 +124,8 @@ You can of course override this config struct if you have non-standard credentia
 
 ```swift
 /// Register custom MySQL Config
-let mysqlConfig = MySQLDatabaseConfig(hostname: "localhost", port: 3306, username: "vapor")
+var mysqlConfig = DatabaseConfig()
+mysqlConfig.add(database: MySQLDatabase(hostname: "localhost", port: 3306, user: "testUser", password: "testPwd", database: "vapor"), as: .mysql)
 services.register(mysqlConfig)
 ```
 
