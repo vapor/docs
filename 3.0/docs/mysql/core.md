@@ -94,7 +94,7 @@ Visiting this route should display your MySQL version.
 
 A `MySQLConnection` is normally created using the `Request` container and can perform two different types of queries.
 
-### Create
+### Create (with Request)
 
 There are two methods for creating a `MySQLConnection`.
 
@@ -108,6 +108,16 @@ return req.withConnection(to: .mysql) { conn in
 ```
 
 As the names imply,  `withPooledConnection(to:)` utilizes a connection pool. `withConnection(to:)` does not. Connection pooling is a great way to ensure your application does not exceed the limits of your database, even under peak load.
+
+### Create (manually)
+
+If you are writing a simple tool and would like to use the `MySQL` wrapper, it is also quite simple. You need to create a SwiftNIO [`EventGroup`](https://github.com/apple/swift-nio/blob/master/README.md#eventloops-and-eventloopgroups) that can power the connection:
+
+```
+let database = MySQLDatabase(config: config)
+let worker = MultiThreadedEventLoopGroup(numThreads: System.coreCount)
+let futureConnection = database.makeConnection(on: worker)
+```
 
 ### Simply Query
 
