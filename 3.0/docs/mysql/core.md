@@ -32,7 +32,7 @@ let package = Package(
     name: "MyApp",
     dependencies: [
         /// Any other dependencies ...
-        
+
         // 🐬 Non-blocking, event-driven Swift client for MySQL.
         .package(url: "https://github.com/vapor/mysql.git", from: "3.0.0-rc"),
     ],
@@ -64,7 +64,7 @@ import MySQL
 try services.register(MySQLProvider())
 ```
 
-Registering the provider will add all of the services required for MySQL to work properly. It also includes a default database config struct that uses typical development environment credentials. 
+Registering the provider will add all of the services required for MySQL to work properly. It also includes a default database config struct that uses typical development environment credentials.
 
 You can of course override this config struct if you have non-standard credentials.
 
@@ -94,7 +94,7 @@ Visiting this route should display your MySQL version.
 
 A `MySQLConnection` is normally created using the `Request` container and can perform two different types of queries.
 
-### Create
+### Create (with Request)
 
 There are two methods for creating a `MySQLConnection`.
 
@@ -109,13 +109,17 @@ return req.withConnection(to: .mysql) { conn in
 
 As the names imply,  `withPooledConnection(to:)` utilizes a connection pool. `withConnection(to:)` does not. Connection pooling is a great way to ensure your application does not exceed the limits of your database, even under peak load.
 
+### Create (manually)
+
+If you are writing a simple tool and would like to use the `MySQL` wrapper directly, it is also quite simple. You should read up on Vapor's [async `Worker`](../../async/getting-started.md) to power the connection.
+
 ### Simply Query
 
-Use `.simpleQuery(_:)` to perform a query on your MySQL database that does not bind any parameters. Some queries you send to MySQL may actually require that you use the `simpleQuery(_:)` method instead of the parameterized method. 
+Use `.simpleQuery(_:)` to perform a query on your MySQL database that does not bind any parameters. Some queries you send to MySQL may actually require that you use the `simpleQuery(_:)` method instead of the parameterized method.
 
 !!! note
     This method sends and receives data as text-encoded, meaning it is not optimal for transmitting things like integers.
-    
+
 ```swift
 let rows = req.withPooledConnection(to: .mysql) { conn in
     return conn.simpleQuery("SELECT * FROM users;")
@@ -148,7 +152,4 @@ print(users) // Future<[[MySQLColumn: MySQLData]]>
 ```
 
 You can also provide a callback, similar to simple queries, for handling each row individually.
-
-
-
 
