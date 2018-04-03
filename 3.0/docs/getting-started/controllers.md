@@ -21,7 +21,7 @@ final class HelloController {
 Controller methods should always accept a `Request` and return something `ResponseEncodable`. 
 
 !!! note
-    [Futures](futures.md) whose expectations are `ResponseEncodable` (i.e, `Future<String>`) are also `ResponseEncodable`.
+    [Futures](async.md) whose expectations are `ResponseEncodable` (i.e, `Future<String>`) are also `ResponseEncodable`.
 
 To use this controller, we can simply initialize it, then pass the method to a router.
 

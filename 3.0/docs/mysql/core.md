@@ -94,9 +94,9 @@ Visiting this route should display your MySQL version.
 
 A `MySQLConnection` is normally created using the `Request` container and can perform two different types of queries.
 
-### Create (with Request)
+### Create
 
-There are two methods for creating a `MySQLConnection`.
+There are a few methods for creating a `MySQLConnection` with a `Container` (typically a `Request`).
 
 ```swift
 return req.withPooledConnection(to: .mysql) { conn in
@@ -109,9 +109,7 @@ return req.withConnection(to: .mysql) { conn in
 
 As the names imply,  `withPooledConnection(to:)` utilizes a connection pool. `withConnection(to:)` does not. Connection pooling is a great way to ensure your application does not exceed the limits of your database, even under peak load.
 
-### Create (manually)
-
-If you are writing a simple tool and would like to use the `MySQL` wrapper directly, it is also quite simple. You should read up on Vapor's [async `Worker`](../../async/getting-started.md) to power the connection.
+You can also create a connection manually using `MySQLDatabase.makeConnection(on:)` and passing a [`Worker`](../getting-started/async.md).
 
 ### Simply Query
 

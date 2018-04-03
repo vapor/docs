@@ -1,49 +1,32 @@
 # Random
 
-Crypto has two primary random number generators.
+The `Random` module deals with random data generation including random number generation.
 
-OSRandom generates random numbers by calling the operating system's random number generator.
+## Data Generator
 
-URandom generates random numbers by reading from `/dev/urandom`.
+The [`DataGenerator`]() class powers all of the random data generators.
 
-## Accessing random numbers
+### Implementations
 
-First, create an instance of the preferred random number generator:
+- [`OSRandom`](https://api.vapor.codes/crypto/latest/Random/Classes/OSRandom.html): Provides a random data generator using a platform-specific method.
+
+
+- [`URandom`](https://api.vapor.codes/crypto/latest/Random/Classes/URandom.html) provides random data generation based on the `/dev/urandom` file.
+
+
+- [`CryptoRandom`](https://api.vapor.codes/crypto/latest/Crypto/Classes/CryptoRandom.html) from the `Crypto` module provides cryptographically-secure random data using OpenSSL.
+
 
 ```swift
-let random = OSRandom()
+let random: DataGenerator ...
+let data = try random.generateData(bytes: 8)
 ```
 
-or
+### Generate
+
+`DataGenerator`s are capable of generating random primitive types using the `generate(_:)` method.
 
 ```swift
-let random = try URandom()
-```
-
-### Reading integers
-
-For every Swift integer a random number function exists.
-
-```swift
-let int8: Int8 = try random.makeInt8()
-let uint8: UInt8 = try random.makeUInt8()
-let int16: Int16 = try random.makeInt16()
-let uint16: UInt16 = try random.makeUInt16()
-let int32: Int32 = try random.makeInt32()
-let uint32: UInt32 = try random.makeUInt32()
-let int64: Int64 = try random.makeInt64()
-let uint64: UInt64 = try random.makeUInt64()
-let int: Int = try random.makeInt()
-let uint: UInt = try random.makeUInt()
-```
-
-### Reading random data
-
-Random buffers of data are useful when, for example, generating tokens or other unique strings/blobs.
-
-To generate a buffer of random data:
-
-```swift
-// generates 20 random bytes
-let data: Data = random.data(count: 20)
+let int = try OSRandom().generate(Int.self)
+print(int) // Int
 ```

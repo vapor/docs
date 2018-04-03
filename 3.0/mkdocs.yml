@@ -16,7 +16,7 @@ pages:
     - 'Controllers': 'getting-started/controllers.md'
     - 'Routing': 'getting-started/routing.md'
     - 'Content': 'getting-started/content.md'
-    - 'Futures': 'getting-started/futures.md'
+    - 'Async': 'getting-started/async.md'
     - 'Services': 'getting-started/services.md'
     - 'Deployment': 'getting-started/cloud.md'
 - 'Routing':
@@ -61,10 +61,9 @@ pages:
     - 'Getting Started': 'websocket/websocket.md'
 - 'Crypto':
     - 'Getting Started': 'crypto/getting-started.md'
-    - 'Base64': 'crypto/base64.md'
-    - 'Hashes': 'crypto/hash.md'
-    - 'Message authentication': 'crypto/mac.md'
-    - 'Password hashing': 'crypto/passwords.md'
+    - 'Digests': 'crypto/digests.md'
+    - 'Ciphers': 'crypto/ciphers.md'
+    - 'Asymmetric': 'crypto/asymmetric.md'
     - 'Random': 'crypto/random.md'
 - 'Testing':
     - 'Getting Started': 'testing/getting-started.md'

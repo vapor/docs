@@ -45,7 +45,7 @@ router.post("login") { req -> Future<HTTPStatus> in
 }
 ```
 
-We use `.map(to:)` here since `req.content.decode(_:)` returns a [future](futures.md).
+We use `.map(to:)` here since `req.content.decode(_:)` returns a [future](async.md).
 
 ### Other Request Types
 

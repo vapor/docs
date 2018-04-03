@@ -1,6 +1,9 @@
 # Using Crypto
 
-Crypto is a library containing all common APIs related to cryptography and security.
+Crypto is a library containing common APIs related to cryptography and data generation. The [vapor/crypto](https://github.com/vapor/crypto) package contains two modules:
+
+- `Crypto`
+- `Random`
 
 ## With Vapor
 
@@ -8,6 +11,7 @@ This package is included with Vapor by default, just add:
 
 ```swift
 import Crypto
+import Random
 ```
 
 ## Without Vapor
@@ -25,9 +29,9 @@ let package = Package(
         .package(url: "https://github.com/vapor/crypto.git", .upToNextMajor(from: "x.0.0")),
     ],
     targets: [
-      .target(name: "Project", dependencies: ["Crypto", ... ])
+      .target(name: "Project", dependencies: ["Crypto", "Random", ... ])
     ]
 )
 ```
 
-Use `import Crypto` to access Crypto's APIs.
+Use `import Crypto` to access Crypto's APIs and `import Random` to access Random's APIs.
