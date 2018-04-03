@@ -4,7 +4,7 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,13 +13,13 @@
         
     <url>
      <loc>/install/macos/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/install/ubuntu/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -29,297 +29,73 @@
         
     <url>
      <loc>/getting-started/hello-world/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/getting-started/toolbox/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/getting-started/spm/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/getting-started/xcode/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/getting-started/structure/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/getting-started/application/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/getting-started/controllers/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/getting-started/routing/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/getting-started/content/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/getting-started/async/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/getting-started/services/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/getting-started/cloud/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/routing/getting-started/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/routing/parameters/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/routing/route/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/routing/router/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/fluent/getting-started/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/fluent/models/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/fluent/migrations/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/fluent/querying/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/fluent/query-builder/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/fluent/schema-builder/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/fluent/relations/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/fluent/pivot/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/fluent/transaction/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/fluent/database/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/postgresql/getting-started/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/postgresql/fluent/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/postgresql/core/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/mysql/getting-started/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/mysql/fluent/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/mysql/core/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/sqlite/getting-started/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/sqlite/fluent/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/sqlite/core/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/leaf/getting-started/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/leaf/basics/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/leaf/custom-tags/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/redis/getting-started/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/redis/basics/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/redis/custom-commands/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/redis/pub-sub/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/redis/pipeline/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/websocket/websocket/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -329,41 +105,31 @@
         
     <url>
      <loc>/crypto/getting-started/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/crypto/digests/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/crypto/ciphers/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/crypto/asymmetric/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/crypto/random/</loc>
-     <lastmod>2018-04-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/testing/getting-started/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -373,7 +139,263 @@
         
     <url>
      <loc>/deploy/getting-started/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/fluent/getting-started/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/fluent/models/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/fluent/migrations/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/fluent/querying/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/fluent/query-builder/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/fluent/schema-builder/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/fluent/relations/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/fluent/pivot/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/fluent/transaction/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/fluent/database/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/leaf/getting-started/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/leaf/basics/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/leaf/custom-tags/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/mysql/getting-started/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/mysql/fluent/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/mysql/core/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/postgresql/getting-started/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/postgresql/fluent/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/postgresql/core/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/redis/getting-started/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/redis/basics/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/redis/custom-commands/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/redis/pub-sub/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/redis/pipeline/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/routing/getting-started/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/routing/parameters/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/routing/route/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/routing/router/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/service/getting-started/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/service/services/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/service/provider/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/sqlite/getting-started/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/sqlite/fluent/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/sqlite/core/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/testing/getting-started/</loc>
+     <lastmod>2018-04-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/websocket/websocket/</loc>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -383,25 +405,25 @@
         
     <url>
      <loc>/version/1_5/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/version/2_0/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/version/3_0/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/version/support/</loc>
-     <lastmod>2018-04-02</lastmod>
+     <lastmod>2018-04-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
