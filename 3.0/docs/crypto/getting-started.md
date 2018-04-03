@@ -1,6 +1,6 @@
 # Using Crypto
 
-Crypto is a library containing common APIs related to cryptography and data generation. The [vapor/crypto](https://github.com/vapor/crypto) package contains two modules:
+Crypto ([vapor/crypto](https://github.com/vapor/crypto)) is a library containing common APIs related to cryptography and data generation. The package contains two modules:
 
 - `Crypto`
 - `Random`
