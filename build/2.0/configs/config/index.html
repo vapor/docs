@@ -2104,7 +2104,7 @@
 </blockquote>
 <p>Please notice that <code>server.json</code>, and <code>production/server.json</code> both declare the same keys: <code>host</code>, and <code>port</code>. In our application, we'll call:</p>
 <div class="codehilite"><pre><span></span><span class="c1">// will load 0.0.0.0 or 127.0.0.1 based on above config</span>
-<span class="kd">let</span> <span class="nv">host</span> <span class="p">=</span> <span class="n">drop</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">&quot;server&quot;</span> <span class="s">&quot;host&quot;</span><span class="p">]?.</span><span class="n">string</span> <span class="p">??</span> <span class="s">&quot;0.0.0.0&quot;</span>
+<span class="kd">let</span> <span class="nv">host</span> <span class="p">=</span> <span class="n">drop</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">&quot;server&quot;</span><span class="p">,</span> <span class="s">&quot;host&quot;</span><span class="p">]?.</span><span class="n">string</span> <span class="p">??</span> <span class="s">&quot;0.0.0.0&quot;</span>
 <span class="c1">// will load 9000, or environment variable port.</span>
 <span class="kd">let</span> <span class="nv">port</span> <span class="p">=</span> <span class="n">drop</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">&quot;server&quot;</span><span class="p">,</span> <span class="s">&quot;port&quot;</span><span class="p">]?.</span><span class="n">int</span> <span class="p">??</span> <span class="mi">9000</span>
 </pre></div>

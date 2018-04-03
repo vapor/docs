@@ -36,7 +36,7 @@
     
     
       
-        <title>Message authentication - Vapor Docs</title>
+        <title>Ciphers - Vapor Docs</title>
       
     
     
@@ -93,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#message-authentication" tabindex="1" class="md-skip">
+      <a href="#cipher-algorithms" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -119,7 +119,7 @@
                 Vapor Docs
               </span>
               <span class="md-header-nav__topic">
-                Message authentication
+                Ciphers
               </span>
             
           
@@ -423,8 +423,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../getting-started/futures/" title="Futures" class="md-nav__link">
-      Futures
+    <a href="../../getting-started/async/" title="Async" class="md-nav__link">
+      Async
     </a>
   </li>
 
@@ -1073,20 +1073,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../base64/" title="Base64" class="md-nav__link">
-      Base64
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../hash/" title="Hashes" class="md-nav__link">
-      Hashes
+    <a href="../digests/" title="Digests" class="md-nav__link">
+      Digests
     </a>
   </li>
 
@@ -1106,11 +1094,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        Message authentication
+        Ciphers
       </label>
     
-    <a href="./" title="Message authentication" class="md-nav__link md-nav__link--active">
-      Message authentication
+    <a href="./" title="Ciphers" class="md-nav__link md-nav__link--active">
+      Ciphers
     </a>
     
       
@@ -1124,8 +1112,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#using-hmac" title="Using HMAC" class="md-nav__link">
-    Using HMAC
+  <a href="#encrypt" title="Encrypt" class="md-nav__link">
+    Encrypt
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decrypt" title="Decrypt" class="md-nav__link">
+    Decrypt
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streaming" title="Streaming" class="md-nav__link">
+    Streaming
   </a>
   
 </li>
@@ -1147,8 +1149,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../passwords/" title="Password hashing" class="md-nav__link">
-      Password hashing
+    <a href="../asymmetric/" title="Asymmetric" class="md-nav__link">
+      Asymmetric
     </a>
   </li>
 
@@ -1335,8 +1337,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#using-hmac" title="Using HMAC" class="md-nav__link">
-    Using HMAC
+  <a href="#encrypt" title="Encrypt" class="md-nav__link">
+    Encrypt
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decrypt" title="Decrypt" class="md-nav__link">
+    Decrypt
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streaming" title="Streaming" class="md-nav__link">
+    Streaming
   </a>
   
 </li>
@@ -1357,16 +1373,37 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/vapor/documentation/edit/master/3.0/docs/crypto/mac.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/vapor/documentation/edit/master/3.0/docs/crypto/ciphers.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="message-authentication">Message authentication<a class="headerlink" href="#message-authentication" title="Permanent link">&para;</a></h1>
-<p>Message authentication is used for verifying message authenticity and validity.</p>
-<p>Common use cases are JSON Web Tokens.</p>
-<p>For message authentication, Vapor only supports HMAC.</p>
-<h2 id="using-hmac">Using HMAC<a class="headerlink" href="#using-hmac" title="Permanent link">&para;</a></h2>
-<p>To use HMAC you first need to select the used hashing algorithm for authentication. This works using generics.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">hash</span> <span class="p">=</span> <span class="n">HMAC</span><span class="p">&lt;</span><span class="n">SHA224</span><span class="p">&gt;.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">withKey</span><span class="p">:</span> <span class="n">authenticationKey</span><span class="p">)</span>
+                <h1 id="cipher-algorithms">Cipher Algorithms<a class="headerlink" href="#cipher-algorithms" title="Permanent link">&para;</a></h1>
+<p>Ciphers allow you to encrypt plaintext data with a key yielding ciphertext. This ciphertext can be later decrypted by the same cipher using the same key.</p>
+<p>Read more about <a href="https://en.wikipedia.org/wiki/Cipher">ciphers</a> on Wikipedia.</p>
+<h2 id="encrypt">Encrypt<a class="headerlink" href="#encrypt" title="Permanent link">&para;</a></h2>
+<p>Use the global convenience variables for encrypting data with common algorithms.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">ciphertext</span> <span class="p">=</span> <span class="k">try</span> <span class="n">AES128</span><span class="p">.</span><span class="n">encrypt</span><span class="p">(</span><span class="s">&quot;vapor&quot;</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="s">&quot;secret&quot;</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">)</span> <span class="c1">/// Data</span>
+</pre></div>
+
+
+<h2 id="decrypt">Decrypt<a class="headerlink" href="#decrypt" title="Permanent link">&para;</a></h2>
+<p>Decryption works very similarly to <a href="#encrypt">encryption</a>. The following snippet shows how to decrypt the ciphertext from our previous example.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">plaintext</span> <span class="p">=</span> <span class="k">try</span> <span class="n">AES128</span><span class="p">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="s">&quot;secret&quot;</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">plaintext</span><span class="p">)</span> <span class="c1">/// &quot;vapor&quot;</span>
+</pre></div>
+
+
+<p>See the Crypto module's <a href="https://api.vapor.codes/crypto/latest/Crypto/Global%20Variables.html#/Ciphers">global variables</a> for a list of all available cipher algorithms.</p>
+<h2 id="streaming">Streaming<a class="headerlink" href="#streaming" title="Permanent link">&para;</a></h2>
+<p>Both encryption and decryption can work in a streaming mode that allows data to be chunked. This is useful for controlling memory usage while encrypting large amounts of data.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">key</span><span class="p">:</span> <span class="n">Data</span> <span class="c1">// 16-bytes</span>
+<span class="kd">let</span> <span class="nv">aes128</span> <span class="p">=</span> <span class="n">Cipher</span><span class="p">(</span><span class="n">algorithm</span><span class="p">:</span> <span class="p">.</span><span class="n">aes128ecb</span><span class="p">)</span>
+<span class="k">try</span> <span class="n">aes128</span><span class="p">.</span><span class="n">reset</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="p">.</span><span class="n">encrypt</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nv">buffer</span> <span class="p">=</span> <span class="n">Data</span><span class="p">()</span>
+<span class="k">try</span> <span class="n">aes128</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="s">&quot;hello&quot;</span><span class="p">,</span> <span class="n">into</span><span class="p">:</span> <span class="p">&amp;</span><span class="n">buffer</span><span class="p">)</span>
+<span class="k">try</span> <span class="n">aes128</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="s">&quot;world&quot;</span><span class="p">,</span> <span class="n">into</span><span class="p">:</span> <span class="p">&amp;</span><span class="n">buffer</span><span class="p">)</span>
+<span class="k">try</span> <span class="n">aes128</span><span class="p">.</span><span class="n">finish</span><span class="p">(</span><span class="n">into</span><span class="p">:</span> <span class="p">&amp;</span><span class="n">buffer</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span> <span class="c1">// Completed ciphertext</span>
 </pre></div>
                 
                   
@@ -1386,7 +1423,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../hash/" title="Hashes" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../digests/" title="Digests" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1395,19 +1432,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Hashes
+                Digests
               </span>
             </div>
           </a>
         
         
-          <a href="../passwords/" title="Password hashing" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../asymmetric/" title="Asymmetric" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Password hashing
+                Asymmetric
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

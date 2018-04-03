@@ -423,8 +423,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../getting-started/futures/" title="Futures" class="md-nav__link">
-      Futures
+    <a href="../../getting-started/async/" title="Async" class="md-nav__link">
+      Async
     </a>
   </li>
 
@@ -1118,8 +1118,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../crypto/base64/" title="Base64" class="md-nav__link">
-      Base64
+    <a href="../../crypto/digests/" title="Digests" class="md-nav__link">
+      Digests
     </a>
   </li>
 
@@ -1130,8 +1130,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../crypto/hash/" title="Hashes" class="md-nav__link">
-      Hashes
+    <a href="../../crypto/ciphers/" title="Ciphers" class="md-nav__link">
+      Ciphers
     </a>
   </li>
 
@@ -1142,20 +1142,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../crypto/mac/" title="Message authentication" class="md-nav__link">
-      Message authentication
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../crypto/passwords/" title="Password hashing" class="md-nav__link">
-      Password hashing
+    <a href="../../crypto/asymmetric/" title="Asymmetric" class="md-nav__link">
+      Asymmetric
     </a>
   </li>
 
@@ -1402,7 +1390,7 @@
 <h2 id="using-custom-parameters">Using (custom) parameters<a class="headerlink" href="#using-custom-parameters" title="Permanent link">&para;</a></h2>
 <p>After conforming a type to <code>Parameter</code> you can access its static property <code>parameter</code> as part of a path.</p>
 <div class="codehilite"><pre><span></span><span class="n">router</span><span class="p">.</span><span class="n">on</span><span class="p">(.</span><span class="kr">get</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="s">&quot;users&quot;</span><span class="p">,</span> <span class="n">User</span><span class="p">.</span><span class="n">parameter</span><span class="p">,</span> <span class="s">&quot;profile&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">request</span> <span class="k">in</span>
-  <span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="k">try</span> <span class="n">request</span><span class="p">.</span><span class="n">parameters</span><span class="p">.</span><span class="n">next</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+  <span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="k">try</span> <span class="n">request</span><span class="p">.</span><span class="n">parameter</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
 
   <span class="c1">// Return the user&#39;s Profile sync or async (depending on the router)</span>
 <span class="p">}</span>

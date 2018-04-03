@@ -423,8 +423,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../getting-started/futures/" title="Futures" class="md-nav__link">
-      Futures
+    <a href="../../getting-started/async/" title="Async" class="md-nav__link">
+      Async
     </a>
   </li>
 
@@ -1073,8 +1073,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../base64/" title="Base64" class="md-nav__link">
-      Base64
+    <a href="../digests/" title="Digests" class="md-nav__link">
+      Digests
     </a>
   </li>
 
@@ -1085,8 +1085,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../hash/" title="Hashes" class="md-nav__link">
-      Hashes
+    <a href="../ciphers/" title="Ciphers" class="md-nav__link">
+      Ciphers
     </a>
   </li>
 
@@ -1097,20 +1097,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../mac/" title="Message authentication" class="md-nav__link">
-      Message authentication
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../passwords/" title="Password hashing" class="md-nav__link">
-      Password hashing
+    <a href="../asymmetric/" title="Asymmetric" class="md-nav__link">
+      Asymmetric
     </a>
   </li>
 
@@ -1148,23 +1136,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#accessing-random-numbers" title="Accessing random numbers" class="md-nav__link">
-    Accessing random numbers
+  <a href="#data-generator" title="Data Generator" class="md-nav__link">
+    Data Generator
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#reading-integers" title="Reading integers" class="md-nav__link">
-    Reading integers
+  <a href="#implementations" title="Implementations" class="md-nav__link">
+    Implementations
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#reading-random-data" title="Reading random data" class="md-nav__link">
-    Reading random data
+  <a href="#generate" title="Generate" class="md-nav__link">
+    Generate
   </a>
   
 </li>
@@ -1355,23 +1343,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#accessing-random-numbers" title="Accessing random numbers" class="md-nav__link">
-    Accessing random numbers
+  <a href="#data-generator" title="Data Generator" class="md-nav__link">
+    Data Generator
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#reading-integers" title="Reading integers" class="md-nav__link">
-    Reading integers
+  <a href="#implementations" title="Implementations" class="md-nav__link">
+    Implementations
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#reading-random-data" title="Reading random data" class="md-nav__link">
-    Reading random data
+  <a href="#generate" title="Generate" class="md-nav__link">
+    Generate
   </a>
   
 </li>
@@ -1401,40 +1389,30 @@
                 
                 
                 <h1 id="random">Random<a class="headerlink" href="#random" title="Permanent link">&para;</a></h1>
-<p>Crypto has two primary random number generators.</p>
-<p>OSRandom generates random numbers by calling the operating system's random number generator.</p>
-<p>URandom generates random numbers by reading from <code>/dev/urandom</code>.</p>
-<h2 id="accessing-random-numbers">Accessing random numbers<a class="headerlink" href="#accessing-random-numbers" title="Permanent link">&para;</a></h2>
-<p>First, create an instance of the preferred random number generator:</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">random</span> <span class="p">=</span> <span class="n">OSRandom</span><span class="p">()</span>
+<p>The <code>Random</code> module deals with random data generation including random number generation.</p>
+<h2 id="data-generator">Data Generator<a class="headerlink" href="#data-generator" title="Permanent link">&para;</a></h2>
+<p>The <a href=""><code>DataGenerator</code></a> class powers all of the random data generators.</p>
+<h3 id="implementations">Implementations<a class="headerlink" href="#implementations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><a href="https://api.vapor.codes/crypto/latest/Random/Classes/OSRandom.html"><code>OSRandom</code></a>: Provides a random data generator using a platform-specific method.</p>
+</li>
+<li>
+<p><a href="https://api.vapor.codes/crypto/latest/Random/Classes/URandom.html"><code>URandom</code></a> provides random data generation based on the <code>/dev/urandom</code> file.</p>
+</li>
+<li>
+<p><a href="https://api.vapor.codes/crypto/latest/Crypto/Classes/CryptoRandom.html"><code>CryptoRandom</code></a> from the <code>Crypto</code> module provides cryptographically-secure random data using OpenSSL.</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">random</span><span class="p">:</span> <span class="n">DataGenerator</span> <span class="p">...</span>
+<span class="kd">let</span> <span class="nv">data</span> <span class="p">=</span> <span class="k">try</span> <span class="n">random</span><span class="p">.</span><span class="n">generateData</span><span class="p">(</span><span class="n">bytes</span><span class="p">:</span> <span class="mi">8</span><span class="p">)</span>
 </pre></div>
 
 
-<p>or</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">random</span> <span class="p">=</span> <span class="k">try</span> <span class="n">URandom</span><span class="p">()</span>
-</pre></div>
-
-
-<h3 id="reading-integers">Reading integers<a class="headerlink" href="#reading-integers" title="Permanent link">&para;</a></h3>
-<p>For every Swift integer a random number function exists.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">int8</span><span class="p">:</span> <span class="nb">Int8</span> <span class="p">=</span> <span class="k">try</span> <span class="n">random</span><span class="p">.</span><span class="n">makeInt8</span><span class="p">()</span>
-<span class="kd">let</span> <span class="nv">uint8</span><span class="p">:</span> <span class="nb">UInt8</span> <span class="p">=</span> <span class="k">try</span> <span class="n">random</span><span class="p">.</span><span class="n">makeUInt8</span><span class="p">()</span>
-<span class="kd">let</span> <span class="nv">int16</span><span class="p">:</span> <span class="nb">Int16</span> <span class="p">=</span> <span class="k">try</span> <span class="n">random</span><span class="p">.</span><span class="n">makeInt16</span><span class="p">()</span>
-<span class="kd">let</span> <span class="nv">uint16</span><span class="p">:</span> <span class="nb">UInt16</span> <span class="p">=</span> <span class="k">try</span> <span class="n">random</span><span class="p">.</span><span class="n">makeUInt16</span><span class="p">()</span>
-<span class="kd">let</span> <span class="nv">int32</span><span class="p">:</span> <span class="nb">Int32</span> <span class="p">=</span> <span class="k">try</span> <span class="n">random</span><span class="p">.</span><span class="n">makeInt32</span><span class="p">()</span>
-<span class="kd">let</span> <span class="nv">uint32</span><span class="p">:</span> <span class="nb">UInt32</span> <span class="p">=</span> <span class="k">try</span> <span class="n">random</span><span class="p">.</span><span class="n">makeUInt32</span><span class="p">()</span>
-<span class="kd">let</span> <span class="nv">int64</span><span class="p">:</span> <span class="nb">Int64</span> <span class="p">=</span> <span class="k">try</span> <span class="n">random</span><span class="p">.</span><span class="n">makeInt64</span><span class="p">()</span>
-<span class="kd">let</span> <span class="nv">uint64</span><span class="p">:</span> <span class="nb">UInt64</span> <span class="p">=</span> <span class="k">try</span> <span class="n">random</span><span class="p">.</span><span class="n">makeUInt64</span><span class="p">()</span>
-<span class="kd">let</span> <span class="nv">int</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="k">try</span> <span class="n">random</span><span class="p">.</span><span class="n">makeInt</span><span class="p">()</span>
-<span class="kd">let</span> <span class="nv">uint</span><span class="p">:</span> <span class="nb">UInt</span> <span class="p">=</span> <span class="k">try</span> <span class="n">random</span><span class="p">.</span><span class="n">makeUInt</span><span class="p">()</span>
-</pre></div>
-
-
-<h3 id="reading-random-data">Reading random data<a class="headerlink" href="#reading-random-data" title="Permanent link">&para;</a></h3>
-<p>Random buffers of data are useful when, for example, generating tokens or other unique strings/blobs.</p>
-<p>To generate a buffer of random data:</p>
-<div class="codehilite"><pre><span></span><span class="c1">// generates 20 random bytes</span>
-<span class="kd">let</span> <span class="nv">data</span><span class="p">:</span> <span class="n">Data</span> <span class="p">=</span> <span class="n">random</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="bp">count</span><span class="p">:</span> <span class="mi">20</span><span class="p">)</span>
+<h3 id="generate">Generate<a class="headerlink" href="#generate" title="Permanent link">&para;</a></h3>
+<p><code>DataGenerator</code>s are capable of generating random primitive types using the <code>generate(_:)</code> method.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">int</span> <span class="p">=</span> <span class="k">try</span> <span class="n">OSRandom</span><span class="p">().</span><span class="n">generate</span><span class="p">(</span><span class="nb">Int</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">int</span><span class="p">)</span> <span class="c1">// Int</span>
 </pre></div>
                 
                   
@@ -1454,7 +1432,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../passwords/" title="Password hashing" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../asymmetric/" title="Asymmetric" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1463,7 +1441,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Password hashing
+                Asymmetric
               </span>
             </div>
           </a>

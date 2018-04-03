@@ -423,8 +423,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../getting-started/futures/" title="Futures" class="md-nav__link">
-      Futures
+    <a href="../../getting-started/async/" title="Async" class="md-nav__link">
+      Async
     </a>
   </li>
 
@@ -1172,8 +1172,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../crypto/base64/" title="Base64" class="md-nav__link">
-      Base64
+    <a href="../../crypto/digests/" title="Digests" class="md-nav__link">
+      Digests
     </a>
   </li>
 
@@ -1184,8 +1184,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../crypto/hash/" title="Hashes" class="md-nav__link">
-      Hashes
+    <a href="../../crypto/ciphers/" title="Ciphers" class="md-nav__link">
+      Ciphers
     </a>
   </li>
 
@@ -1196,20 +1196,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../crypto/mac/" title="Message authentication" class="md-nav__link">
-      Message authentication
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../crypto/passwords/" title="Password hashing" class="md-nav__link">
-      Password hashing
+    <a href="../../crypto/asymmetric/" title="Asymmetric" class="md-nav__link">
+      Asymmetric
     </a>
   </li>
 
@@ -1539,7 +1527,7 @@
 </pre></div>
 
 
-<p>Registering the provider will add all of the services required for MySQL to work properly. It also includes a default database config struct that uses typical development environment credentials. </p>
+<p>Registering the provider will add all of the services required for MySQL to work properly. It also includes a default database config struct that uses typical development environment credentials.</p>
 <p>You can of course override this config struct if you have non-standard credentials.</p>
 <div class="codehilite"><pre><span></span><span class="c1">/// Register custom MySQL Config</span>
 <span class="kd">let</span> <span class="nv">mysqlConfig</span> <span class="p">=</span> <span class="n">MySQLDatabaseConfig</span><span class="p">(</span><span class="n">hostname</span><span class="p">:</span> <span class="s">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">port</span><span class="p">:</span> <span class="mi">3306</span><span class="p">,</span> <span class="n">username</span><span class="p">:</span> <span class="s">&quot;vapor&quot;</span><span class="p">)</span>
@@ -1563,7 +1551,7 @@
 <h2 id="connection">Connection<a class="headerlink" href="#connection" title="Permanent link">&para;</a></h2>
 <p>A <code>MySQLConnection</code> is normally created using the <code>Request</code> container and can perform two different types of queries.</p>
 <h3 id="create">Create<a class="headerlink" href="#create" title="Permanent link">&para;</a></h3>
-<p>There are two methods for creating a <code>MySQLConnection</code>.</p>
+<p>There are a few methods for creating a <code>MySQLConnection</code> with a <code>Container</code> (typically a <code>Request</code>).</p>
 <div class="codehilite"><pre><span></span><span class="k">return</span> <span class="n">req</span><span class="p">.</span><span class="n">withPooledConnection</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="p">.</span><span class="n">mysql</span><span class="p">)</span> <span class="p">{</span> <span class="n">conn</span> <span class="k">in</span>
     <span class="c1">/// ...</span>
 <span class="p">}</span>
@@ -1574,8 +1562,9 @@
 
 
 <p>As the names imply,  <code>withPooledConnection(to:)</code> utilizes a connection pool. <code>withConnection(to:)</code> does not. Connection pooling is a great way to ensure your application does not exceed the limits of your database, even under peak load.</p>
+<p>You can also create a connection manually using <code>MySQLDatabase.makeConnection(on:)</code> and passing a <a href="../../getting-started/async/"><code>Worker</code></a>.</p>
 <h3 id="simply-query">Simply Query<a class="headerlink" href="#simply-query" title="Permanent link">&para;</a></h3>
-<p>Use <code>.simpleQuery(_:)</code> to perform a query on your MySQL database that does not bind any parameters. Some queries you send to MySQL may actually require that you use the <code>simpleQuery(_:)</code> method instead of the parameterized method. </p>
+<p>Use <code>.simpleQuery(_:)</code> to perform a query on your MySQL database that does not bind any parameters. Some queries you send to MySQL may actually require that you use the <code>simpleQuery(_:)</code> method instead of the parameterized method.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This method sends and receives data as text-encoded, meaning it is not optimal for transmitting things like integers.</p>

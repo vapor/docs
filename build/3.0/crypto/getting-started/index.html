@@ -423,8 +423,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../getting-started/futures/" title="Futures" class="md-nav__link">
-      Futures
+    <a href="../../getting-started/async/" title="Async" class="md-nav__link">
+      Async
     </a>
   </li>
 
@@ -1118,8 +1118,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../base64/" title="Base64" class="md-nav__link">
-      Base64
+    <a href="../digests/" title="Digests" class="md-nav__link">
+      Digests
     </a>
   </li>
 
@@ -1130,8 +1130,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../hash/" title="Hashes" class="md-nav__link">
-      Hashes
+    <a href="../ciphers/" title="Ciphers" class="md-nav__link">
+      Ciphers
     </a>
   </li>
 
@@ -1142,20 +1142,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../mac/" title="Message authentication" class="md-nav__link">
-      Message authentication
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../passwords/" title="Password hashing" class="md-nav__link">
-      Password hashing
+    <a href="../asymmetric/" title="Asymmetric" class="md-nav__link">
+      Asymmetric
     </a>
   </li>
 
@@ -1375,10 +1363,15 @@
                 
                 
                 <h1 id="using-crypto">Using Crypto<a class="headerlink" href="#using-crypto" title="Permanent link">&para;</a></h1>
-<p>Crypto is a library containing all common APIs related to cryptography and security.</p>
+<p>Crypto is a library containing common APIs related to cryptography and data generation. The <a href="https://github.com/vapor/crypto">vapor/crypto</a> package contains two modules:</p>
+<ul>
+<li><code>Crypto</code></li>
+<li><code>Random</code></li>
+</ul>
 <h2 id="with-vapor">With Vapor<a class="headerlink" href="#with-vapor" title="Permanent link">&para;</a></h2>
 <p>This package is included with Vapor by default, just add:</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Crypto</span>
+<span class="kd">import</span> <span class="nc">Random</span>
 </pre></div>
 
 
@@ -1394,13 +1387,13 @@
         <span class="p">.</span><span class="n">package</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="s">&quot;https://github.com/vapor/crypto.git&quot;</span><span class="p">,</span> <span class="p">.</span><span class="n">upToNextMajor</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="s">&quot;x.0.0&quot;</span><span class="p">)),</span>
     <span class="p">],</span>
     <span class="n">targets</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">.</span><span class="n">target</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Project&quot;</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;Crypto&quot;</span><span class="p">,</span> <span class="p">...</span> <span class="p">])</span>
+      <span class="p">.</span><span class="n">target</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Project&quot;</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;Crypto&quot;</span><span class="p">,</span> <span class="s">&quot;Random&quot;</span><span class="p">,</span> <span class="p">...</span> <span class="p">])</span>
     <span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 
 
-<p>Use <code>import Crypto</code> to access Crypto's APIs.</p>
+<p>Use <code>import Crypto</code> to access Crypto's APIs and <code>import Random</code> to access Random's APIs.</p>
                 
                   
                 
@@ -1434,13 +1427,13 @@
           </a>
         
         
-          <a href="../base64/" title="Base64" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../digests/" title="Digests" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Base64
+                Digests
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

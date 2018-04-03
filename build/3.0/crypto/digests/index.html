@@ -36,7 +36,7 @@
     
     
       
-        <title>Hashes - Vapor Docs</title>
+        <title>Digests - Vapor Docs</title>
       
     
     
@@ -93,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#hash" tabindex="1" class="md-skip">
+      <a href="#message-digests" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -119,7 +119,7 @@
                 Vapor Docs
               </span>
               <span class="md-header-nav__topic">
-                Hashes
+                Digests
               </span>
             
           
@@ -423,8 +423,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../getting-started/futures/" title="Futures" class="md-nav__link">
-      Futures
+    <a href="../../getting-started/async/" title="Async" class="md-nav__link">
+      Async
     </a>
   </li>
 
@@ -1071,18 +1071,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../base64/" title="Base64" class="md-nav__link">
-      Base64
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -1094,11 +1082,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        Hashes
+        Digests
       </label>
     
-    <a href="./" title="Hashes" class="md-nav__link md-nav__link--active">
-      Hashes
+    <a href="./" title="Digests" class="md-nav__link md-nav__link--active">
+      Digests
     </a>
     
       
@@ -1112,30 +1100,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#available-hashes" title="Available hashes" class="md-nav__link">
-    Available hashes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hashing-blobs-of-data" title="Hashing blobs of data" class="md-nav__link">
-    Hashing blobs of data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#incremental-hashes-manual" title="Incremental hashes (manual)" class="md-nav__link">
-    Incremental hashes (manual)
+  <a href="#hash" title="Hash" class="md-nav__link">
+    Hash
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#fetching-the-results" title="Fetching the results" class="md-nav__link">
-    Fetching the results
+  <a href="#streaming" title="Streaming" class="md-nav__link">
+    Streaming
   </a>
   
 </li>
@@ -1146,9 +1120,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#streaming-hashes-async" title="Streaming hashes (Async)" class="md-nav__link">
-    Streaming hashes (Async)
+  <a href="#bcrypt" title="BCrypt" class="md-nav__link">
+    BCrypt
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hash_1" title="Hash" class="md-nav__link">
+    Hash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify" title="Verify" class="md-nav__link">
+    Verify
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hmac" title="HMAC" class="md-nav__link">
+    HMAC
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streaming_1" title="Streaming" class="md-nav__link">
+    Streaming
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1169,8 +1183,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../mac/" title="Message authentication" class="md-nav__link">
-      Message authentication
+    <a href="../ciphers/" title="Ciphers" class="md-nav__link">
+      Ciphers
     </a>
   </li>
 
@@ -1181,8 +1195,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../passwords/" title="Password hashing" class="md-nav__link">
-      Password hashing
+    <a href="../asymmetric/" title="Asymmetric" class="md-nav__link">
+      Asymmetric
     </a>
   </li>
 
@@ -1369,30 +1383,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#available-hashes" title="Available hashes" class="md-nav__link">
-    Available hashes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hashing-blobs-of-data" title="Hashing blobs of data" class="md-nav__link">
-    Hashing blobs of data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#incremental-hashes-manual" title="Incremental hashes (manual)" class="md-nav__link">
-    Incremental hashes (manual)
+  <a href="#hash" title="Hash" class="md-nav__link">
+    Hash
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#fetching-the-results" title="Fetching the results" class="md-nav__link">
-    Fetching the results
+  <a href="#streaming" title="Streaming" class="md-nav__link">
+    Streaming
   </a>
   
 </li>
@@ -1403,9 +1403,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#streaming-hashes-async" title="Streaming hashes (Async)" class="md-nav__link">
-    Streaming hashes (Async)
+  <a href="#bcrypt" title="BCrypt" class="md-nav__link">
+    BCrypt
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hash_1" title="Hash" class="md-nav__link">
+    Hash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify" title="Verify" class="md-nav__link">
+    Verify
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hmac" title="HMAC" class="md-nav__link">
+    HMAC
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streaming_1" title="Streaming" class="md-nav__link">
+    Streaming
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1425,86 +1465,61 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/vapor/documentation/edit/master/3.0/docs/crypto/hash.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/vapor/documentation/edit/master/3.0/docs/crypto/digests.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="hash">Hash<a class="headerlink" href="#hash" title="Permanent link">&para;</a></h1>
-<p>Hashes are a one-directional encryption that is commonly used for validating files or one-way securing data such as passwords.</p>
-<h3 id="available-hashes">Available hashes<a class="headerlink" href="#available-hashes" title="Permanent link">&para;</a></h3>
-<p>Crypto currently supports a few hashes.</p>
-<ul>
-<li>MD5</li>
-<li>SHA1</li>
-<li>SHA2 (all variants)</li>
-</ul>
-<p>MD5 and SHA1 are generally used for file validation or legacy (weak) passwords. They're performant and lightweight.</p>
-<p>Every Hash type has a set of helpers that you can use.</p>
-<h2 id="hashing-blobs-of-data">Hashing blobs of data<a class="headerlink" href="#hashing-blobs-of-data" title="Permanent link">&para;</a></h2>
-<p>Every <code>Hash</code> has a static method called <code>hash</code> that can be used for hashing the entire contents of <code>Foundation.Data</code>, <code>ByteBuffer</code> or <code>String</code>.</p>
-<p>The result is <code>Data</code> containing the resulting hash. The hash's length is according to spec and defined in the static variable <code>digestSize</code>.</p>
-<div class="codehilite"><pre><span></span><span class="c1">// MD5 with `Data`</span>
-<span class="kd">let</span> <span class="nv">fileData</span> <span class="p">=</span> <span class="n">Data</span><span class="p">()</span>
-<span class="kd">let</span> <span class="nv">fileMD5</span> <span class="p">=</span> <span class="n">MD5</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">fileData</span><span class="p">)</span>
+                <h1 id="message-digests">Message Digests<a class="headerlink" href="#message-digests" title="Permanent link">&para;</a></h1>
+<p>Cryptographic hash functions (also known as message digest algorithms) convert data of arbitrary size to a fixed-size digest. These are most often used for generating checksums or identifiers for large data blobs.</p>
+<p>Read more about <a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function">Cryptographic hash functions</a> on Wikipedia.</p>
+<h2 id="hash">Hash<a class="headerlink" href="#hash" title="Permanent link">&para;</a></h2>
+<p>Use the global convenience variables to create hashes using common algorithms.</p>
+<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Crypto</span>
 
-<span class="c1">// SHA1 with `ByteBuffer`</span>
-<span class="kd">let</span> <span class="nv">fileBuffer</span><span class="p">:</span> <span class="n">ByteBuffer</span> <span class="p">=</span> <span class="p">...</span>
-<span class="kd">let</span> <span class="nv">fileSHA1</span> <span class="p">=</span> <span class="n">SHA1</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">fileBuffer</span><span class="p">)</span>
-
-<span class="c1">// SHA2 variants with String</span>
-<span class="kd">let</span> <span class="nv">staticUnsafeToken</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;rsadd14ndmasidfm12i4j&quot;</span>
-
-<span class="kd">let</span> <span class="nv">tokenHashSHA224</span> <span class="p">=</span> <span class="n">SHA224</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">staticUnsafeToken</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nv">tokenHashSHA256</span> <span class="p">=</span> <span class="n">SHA256</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">staticUnsafeToken</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nv">tokenHashSHA384</span> <span class="p">=</span> <span class="n">SHA384</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">staticUnsafeToken</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nv">tokenHashSHA512</span> <span class="p">=</span> <span class="n">SHA512</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">staticUnsafeToken</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">digest</span> <span class="p">=</span> <span class="k">try</span> <span class="n">SHA1</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">digest</span><span class="p">.</span><span class="n">hexEncodedString</span><span class="p">())</span> <span class="c1">// aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d</span>
 </pre></div>
 
 
-<h2 id="incremental-hashes-manual">Incremental hashes (manual)<a class="headerlink" href="#incremental-hashes-manual" title="Permanent link">&para;</a></h2>
-<p>To incrementally process hashes you can create an instance of the Hash. This will set up a context.</p>
-<p>All hash context initializers are empty:</p>
-<div class="codehilite"><pre><span></span><span class="c1">// Create an MD5 context</span>
-<span class="kd">let</span> <span class="nv">md5Context</span> <span class="p">=</span> <span class="n">MD5</span><span class="p">()</span>
+<p>See the Crypto module's <a href="https://api.vapor.codes/crypto/latest/Crypto/Global%20Variables.html#/Digests">global variables</a> for a list of all available hash algorithms.</p>
+<h3 id="streaming">Streaming<a class="headerlink" href="#streaming" title="Permanent link">&para;</a></h3>
+<p>You can create a <a href="https://api.vapor.codes/crypto/latest/Crypto/Classes/Digest.html"><code>Digest</code></a> manually and use its instance methods to create a hash for one or more data chunks.</p>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nv">sha256</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Digest</span><span class="p">(</span><span class="n">algorithm</span><span class="p">:</span> <span class="p">.</span><span class="n">sha256</span><span class="p">)</span>
+<span class="k">try</span> <span class="n">sha256</span><span class="p">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="k">try</span> <span class="n">sha256</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="s">&quot;hello&quot;</span><span class="p">)</span>
+<span class="k">try</span> <span class="n">sha256</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="s">&quot;world&quot;</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">digest</span> <span class="p">=</span> <span class="k">try</span> <span class="n">sha256</span><span class="p">.</span><span class="n">finish</span><span class="p">()</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">digest</span><span class="p">)</span> <span class="c1">/// Data</span>
 </pre></div>
 
 
-<p>To process a single chunk of data, you can call the <code>update</code> function on a context using any <code>Sequence</code> of <code>UInt8</code>. That means <code>Array</code>, <code>Data</code> and <code>ByteBuffer</code> work alongside any other sequence of bytes.</p>
-<div class="codehilite"><pre><span></span><span class="n">md5Context</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<h2 id="bcrypt">BCrypt<a class="headerlink" href="#bcrypt" title="Permanent link">&para;</a></h2>
+<p>BCrypt is a popular hashing algorithm that has configurable complexity and handles salting automatically.</p>
+<h3 id="hash_1">Hash<a class="headerlink" href="#hash_1" title="Permanent link">&para;</a></h3>
+<p>Use the <code>hash(_:cost:salt:)</code> method to create BCrypt hashes.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">digest</span> <span class="p">=</span> <span class="k">try</span> <span class="n">BCrypt</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="s">&quot;vapor&quot;</span><span class="p">,</span> <span class="n">cost</span><span class="p">:</span> <span class="mi">4</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">digest</span><span class="p">)</span> <span class="c1">/// data</span>
 </pre></div>
 
 
-<p>The data data need not be a specific length. Any length works.</p>
-<p>When you need the result, you can call <code>md5Context.finalize()</code>. This will finish calculating the hash by appending the standard <code>1</code> bit, padding and message bitlength.</p>
-<p>You can optionally provide a last set of data to <code>finalize()</code>.</p>
-<p>After calling <code>finalize()</code>, do not update the hash if you want correct results.</p>
-<h3 id="fetching-the-results">Fetching the results<a class="headerlink" href="#fetching-the-results" title="Permanent link">&para;</a></h3>
-<p>The context can then be accessed to extract the resulting Hash.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">hash</span><span class="p">:</span> <span class="n">Data</span> <span class="p">=</span> <span class="n">md5Context</span><span class="p">.</span><span class="n">hash</span>
+<p>Increasing the <code>cost</code> value will make hashing and verification take longer.</p>
+<h3 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h3>
+<p>Use the <code>verify(_:created:)</code> method to verify that a BCrypt hash was created by a given plaintext input.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">hash</span> <span class="p">=</span> <span class="k">try</span> <span class="n">BCrypt</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="s">&quot;vapor&quot;</span><span class="p">,</span> <span class="n">cost</span><span class="p">:</span> <span class="mi">4</span><span class="p">)</span>
+<span class="k">try</span> <span class="n">BCrypt</span><span class="p">.</span><span class="n">verify</span><span class="p">(</span><span class="s">&quot;vapor&quot;</span><span class="p">,</span> <span class="n">created</span><span class="p">:</span> <span class="n">hash</span><span class="p">)</span> <span class="c1">// true</span>
+<span class="k">try</span> <span class="n">BCrypt</span><span class="p">.</span><span class="n">verify</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="n">created</span><span class="p">:</span> <span class="n">hash</span><span class="p">)</span> <span class="c1">// false</span>
 </pre></div>
 
 
-<h2 id="streaming-hashes-async">Streaming hashes (Async)<a class="headerlink" href="#streaming-hashes-async" title="Permanent link">&para;</a></h2>
-<p>Sometimes you need to hash the contents of a Stream, for example, when processing a file transfer. In this case you can use <code>ByteStreamHasher</code>.</p>
-<p>First, create a new generic <code>ByteStreamHasher&lt;Hash&gt;</code> where <code>Hash</code> is the hash you want to use. In this case, SHA512.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">streamHasher</span> <span class="p">=</span> <span class="n">ByteStreamHasher</span><span class="p">&lt;</span><span class="n">SHA512</span><span class="p">&gt;()</span>
+<h2 id="hmac">HMAC<a class="headerlink" href="#hmac" title="Permanent link">&para;</a></h2>
+<p>HMAC is an algorithm for creating <em>keyed</em> hashes. HMAC will generate different hashes for the same input if different keys are used.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">digest</span> <span class="p">=</span> <span class="k">try</span> <span class="n">HMAC</span><span class="p">.</span><span class="n">SHA1</span><span class="p">.</span><span class="n">authenticate</span><span class="p">(</span><span class="s">&quot;vapor&quot;</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="s">&quot;secret&quot;</span><span class="p">)</span> 
+<span class="bp">print</span><span class="p">(</span><span class="n">digest</span><span class="p">.</span><span class="n">hexEncodedString</span><span class="p">())</span> <span class="c1">// digest</span>
 </pre></div>
 
 
-<p>This stream works like any <code>inputStream</code> by consuming the incoming data and passing the buffers to the hash context.</p>
-<p>For example, draining a TCP socket.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">socket</span><span class="p">:</span> <span class="n">TCP</span><span class="p">.</span><span class="n">Socket</span> <span class="p">=</span> <span class="p">...</span>
-
-<span class="n">socket</span><span class="p">.</span><span class="n">drain</span><span class="p">(</span><span class="n">into</span><span class="p">:</span> <span class="n">streamHasher</span><span class="p">)</span>
-</pre></div>
-
-
-<p>This will incrementally update the hash using the provided TCP socket's data.</p>
-<p>When the hash has been completely accumulated, you can <code>complete</code> the hash.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">hash</span> <span class="p">=</span> <span class="n">streamHasher</span><span class="p">.</span><span class="n">complete</span><span class="p">()</span> <span class="c1">// Foundation `Data`</span>
-</pre></div>
-
-
-<p>This will reset the hash's context to the default configuration, ready to start over.</p>
+<p>See the <a href="https://api.vapor.codes/crypto/latest/Crypto/Classes/HMAC.html"><code>HMAC</code></a> class for a list of all available hash algorithms.</p>
+<h3 id="streaming_1">Streaming<a class="headerlink" href="#streaming_1" title="Permanent link">&para;</a></h3>
+<p>HMAC hashes can also be streamed. The API is identical to <a href="#streaming">hash streaming</a>.</p>
                 
                   
                 
@@ -1523,7 +1538,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../base64/" title="Base64" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../getting-started/" title="Getting Started" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1532,19 +1547,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Base64
+                Getting Started
               </span>
             </div>
           </a>
         
         
-          <a href="../mac/" title="Message authentication" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../ciphers/" title="Ciphers" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Message authentication
+                Ciphers
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

@@ -470,8 +470,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../futures/" title="Futures" class="md-nav__link">
-      Futures
+    <a href="../async/" title="Async" class="md-nav__link">
+      Async
     </a>
   </li>
 
@@ -1118,8 +1118,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../crypto/base64/" title="Base64" class="md-nav__link">
-      Base64
+    <a href="../../crypto/digests/" title="Digests" class="md-nav__link">
+      Digests
     </a>
   </li>
 
@@ -1130,8 +1130,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../crypto/hash/" title="Hashes" class="md-nav__link">
-      Hashes
+    <a href="../../crypto/ciphers/" title="Ciphers" class="md-nav__link">
+      Ciphers
     </a>
   </li>
 
@@ -1142,20 +1142,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../crypto/mac/" title="Message authentication" class="md-nav__link">
-      Message authentication
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../crypto/passwords/" title="Password hashing" class="md-nav__link">
-      Password hashing
+    <a href="../../crypto/asymmetric/" title="Asymmetric" class="md-nav__link">
+      Asymmetric
     </a>
   </li>
 
@@ -1392,7 +1380,7 @@
 <p>Controller methods should always accept a <code>Request</code> and return something <code>ResponseEncodable</code>. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><a href="../futures/">Futures</a> whose expectations are <code>ResponseEncodable</code> (i.e, <code>Future&lt;String&gt;</code>) are also <code>ResponseEncodable</code>.</p>
+<p><a href="../async/">Futures</a> whose expectations are <code>ResponseEncodable</code> (i.e, <code>Future&lt;String&gt;</code>) are also <code>ResponseEncodable</code>.</p>
 </div>
 <p>To use this controller, we can simply initialize it, then pass the method to a router.</p>
 <div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">helloController</span> <span class="p">=</span> <span class="n">HelloController</span><span class="p">()</span>

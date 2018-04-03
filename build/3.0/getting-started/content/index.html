@@ -517,8 +517,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../futures/" title="Futures" class="md-nav__link">
-      Futures
+    <a href="../async/" title="Async" class="md-nav__link">
+      Async
     </a>
   </li>
 
@@ -1165,8 +1165,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../crypto/base64/" title="Base64" class="md-nav__link">
-      Base64
+    <a href="../../crypto/digests/" title="Digests" class="md-nav__link">
+      Digests
     </a>
   </li>
 
@@ -1177,8 +1177,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../crypto/hash/" title="Hashes" class="md-nav__link">
-      Hashes
+    <a href="../../crypto/ciphers/" title="Ciphers" class="md-nav__link">
+      Ciphers
     </a>
   </li>
 
@@ -1189,20 +1189,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../crypto/mac/" title="Message authentication" class="md-nav__link">
-      Message authentication
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../crypto/passwords/" title="Password hashing" class="md-nav__link">
-      Password hashing
+    <a href="../../crypto/asymmetric/" title="Asymmetric" class="md-nav__link">
+      Asymmetric
     </a>
   </li>
 
@@ -1507,7 +1495,7 @@ Now we are ready to decode that HTTP request.</p>
 </pre></div>
 
 
-<p>We use <code>.map(to:)</code> here since <code>req.content.decode(_:)</code> returns a <a href="../futures/">future</a>.</p>
+<p>We use <code>.map(to:)</code> here since <code>req.content.decode(_:)</code> returns a <a href="../async/">future</a>.</p>
 <h3 id="other-request-types">Other Request Types<a class="headerlink" href="#other-request-types" title="Permanent link">&para;</a></h3>
 <p>Since the request in the previous example declared JSON as its content type, Vapor knows to use a JSON decoder automatically. This same method would work just as well for the following request.</p>
 <div class="codehilite"><pre><span></span><span class="nf">POST</span> <span class="nn">/login</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -1618,13 +1606,13 @@ using the <code>as:</code> parameter.</p>
           </a>
         
         
-          <a href="../futures/" title="Futures" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../async/" title="Async" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Futures
+                Async
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
