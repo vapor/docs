@@ -6,7 +6,7 @@ pages:
 - 'Install':
     - 'macOS': 'install/macos.md'
     - 'Ubuntu': 'install/ubuntu.md'
-- 'Getting started':
+- 'Getting Started':
     - 'Hello, world': 'getting-started/hello-world.md'
     - 'Toolbox': 'getting-started/toolbox.md'
     - 'SPM': 'getting-started/spm.md'
@@ -19,6 +19,18 @@ pages:
     - 'Async': 'getting-started/async.md'
     - 'Services': 'getting-started/services.md'
     - 'Deployment': 'getting-started/cloud.md'
+- 'Async':
+    - 'Getting Started': 'async/getting-started.md'
+    - 'Overview': 'async/overview.md'
+- 'Console':
+    - 'Getting Started': 'console/getting-started.md'
+    - 'Overview': 'console/overview.md'
+- 'Command':
+    - 'Getting Started': 'command/getting-started.md'
+    - 'Overview': 'command/overview.md'
+- 'Core':
+    - 'Getting Started': 'core/getting-started.md'
+    - 'Overview': 'core/overview.md'
 - 'Crypto':
     - 'Getting Started': 'crypto/getting-started.md'
     - 'Digests': 'crypto/digests.md'
@@ -42,6 +54,9 @@ pages:
     - 'Getting Started': 'leaf/getting-started.md'
     - 'Basics': 'leaf/basics.md'
     - 'Custom tags': 'leaf/custom-tags.md'
+- 'Logging':
+    - 'Getting Started': 'logging/getting-started.md'
+    - 'Overview': 'logging/overview.md'
 - 'MySQL':
     - 'Getting Started': 'mysql/getting-started.md'
     - 'Fluent MySQL': 'mysql/fluent.md'
