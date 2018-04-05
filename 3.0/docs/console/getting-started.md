@@ -3,7 +3,7 @@
 The Console module is provided as a part of Vapor's Console package ([vapor/console](https://github.com/vapor/console)).  This module provides APIs for performing console I/O including things like outputting stylized text, requesting user input, and displaying activity indicators like loading bars.
 
 !!! tip
-    For an in-depth look at all of Console's APIs, check out the [Console API docs](https://api.vapor.codes/console/latest/Console/indext.html).
+    For an in-depth look at all of Console's APIs, check out the [Console API docs](https://api.vapor.codes/console/latest/Console/index.html).
 
 ## Usage
 

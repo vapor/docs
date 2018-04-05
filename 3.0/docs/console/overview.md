@@ -35,7 +35,7 @@ You can combine as many differently styled fragments to a [`ConsoleText`](https:
 
 ```swift
 /// Accepts input from the terminal until the first newline.
-let input = console.input(isSecure: false)
+let input = console.input()
 console.print("You wrote: \(input)")
 ```
 
