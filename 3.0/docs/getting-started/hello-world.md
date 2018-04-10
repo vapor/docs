@@ -14,9 +14,6 @@ Open up your terminal, and use [Vapor Toolbox's `new`](toolbox.md#new) command.
 vapor new Hello --branch=beta
 ```
 
-!!! beta
-    At the time of this writing, Vapor 3 is not officially released. You can omit the `--branch=beta` flag once [3.0.0](https://github.com/vapor/vapor/releases/tag/3.0.0) is released.
-
 Once that finishes, change into the newly created directory.
 
 ```sh
