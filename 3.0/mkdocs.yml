@@ -84,6 +84,8 @@ pages:
     - 'Getting Started': 'sqlite/getting-started.md'
     - 'Fluent SQLite': 'sqlite/fluent.md'
     - 'SQLite Core': 'sqlite/core.md'
+- 'Template Kit':
+    - 'Getting Started': 'template-kit/getting-started.md'
 - 'Testing':
     - 'Getting Started': 'testing/getting-started.md'
 - 'WebSocket': 
