@@ -88,6 +88,9 @@ pages:
     - 'Getting Started': 'template-kit/getting-started.md'
 - 'Testing':
     - 'Getting Started': 'testing/getting-started.md'
+- 'Validation':
+    - 'Getting Started': 'validation/getting-started.md'
+    - 'Overview': 'validation/overview.md'
 - 'WebSocket': 
     - 'Getting Started': 'websocket/websocket.md'
 - 'Version (3.0-rc)':
