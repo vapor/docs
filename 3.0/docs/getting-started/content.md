@@ -106,7 +106,7 @@ Content will automatically encode as JSON by default. You can always override wh
 using the `as:` parameter.
 
 ```swift
-try res.content.encode(user, as: .formURLEncoded)
+try res.content.encode(user, as: .urlEncodedForm)
 ```
 
 You can also change the default media type for any class or struct.
@@ -114,7 +114,7 @@ You can also change the default media type for any class or struct.
 ```swift
 struct User: Content {
     /// See Content.defaultMediaType
-    static let defaultMediaType: MediaType = .formURLEncoded
+    static let defaultMediaType: MediaType = .urlEncodedForm
 
     ...
 }
