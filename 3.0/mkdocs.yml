@@ -37,8 +37,6 @@ pages:
     - 'Ciphers': 'crypto/ciphers.md'
     - 'Asymmetric': 'crypto/asymmetric.md'
     - 'Random': 'crypto/random.md'
-- 'Deploy':
-    - 'Getting Started': 'deploy/getting-started.md'
 - 'Fluent':
     - 'Getting Started': 'fluent/getting-started.md'
     - 'Models': 'fluent/models.md'
@@ -57,6 +55,9 @@ pages:
 - 'Logging':
     - 'Getting Started': 'logging/getting-started.md'
     - 'Overview': 'logging/overview.md'
+- 'Multipart':
+    - 'Getting Started': 'multipart/getting-started.md'
+    - 'Overview': 'multipart/overview.md'
 - 'MySQL':
     - 'Getting Started': 'mysql/getting-started.md'
     - 'Fluent MySQL': 'mysql/fluent.md'
@@ -91,6 +92,9 @@ pages:
 - 'Validation':
     - 'Getting Started': 'validation/getting-started.md'
     - 'Overview': 'validation/overview.md'
+- 'Vapor':
+    - 'Getting Started': 'vapor/getting-started.md'
+    - 'Content': 'vapor/content.md'
 - 'WebSocket': 
     - 'Getting Started': 'websocket/websocket.md'
 - 'Version (3.0-rc)':

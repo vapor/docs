@@ -21,5 +21,4 @@ For a detailed guide, visit [Vapor Cloud &rarr; Quick Start](https://docs.vapor.
 
 ## Other Options
 
-Vapor can be deployed anywhere that supports Ubuntu (basically everywhere). To learn more about
-deploying your code, checkout [Deploy &rarr; Getting Started](../deploy/getting-started.md)
+Vapor can be deployed anywhere that supports Ubuntu (basically everywhere). Guides on deploying to other systems are coming soon (contributions welcome)!
