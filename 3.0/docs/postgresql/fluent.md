@@ -23,7 +23,7 @@ let package = Package(
         /// Any other dependencies ...
         
         // 🖋🐘 Swift ORM (queries, models, relations, etc) built on PostgreSQL.
-        .package(url: "https://github.com/vapor/fluent-postgresql.git", from: "1.0.0-rc"),
+        .package(url: "https://github.com/vapor/fluent-postgresql.git", from: "1.0.0-rc.2"),
     ],
     targets: [
         .target(name: "App", dependencies: ["FluentPostgreSQL", ...]),
