@@ -89,6 +89,9 @@ pages:
     - 'Getting Started': 'template-kit/getting-started.md'
 - 'Testing':
     - 'Getting Started': 'testing/getting-started.md'
+- 'URL-Encoded Form':
+    - 'Getting Started': 'url-encoded-form/getting-started.md'
+    - 'Overview': 'url-encoded-form/overview.md'
 - 'Validation':
     - 'Getting Started': 'validation/getting-started.md'
     - 'Overview': 'validation/overview.md'

@@ -1,6 +1,6 @@
 # Using Content
 
-In Vapor 3, all content types (JSON, protobuf, URLEncodedForm, [Multipart](../multipart/getting-started.md), etc) are treated the same. All you need to parse and serialize content is a `Codable` class or struct.
+In Vapor 3, all content types (JSON, protobuf, [URLEncodedForm](../url-encoded-form/getting-started.md), [Multipart](../multipart/getting-started.md), etc) are treated the same. All you need to parse and serialize content is a `Codable` class or struct.
 
 For this introduction, we will use JSON as an example. But keep in mind the API is the same for any supported content type.
 
