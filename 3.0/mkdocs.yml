@@ -48,6 +48,11 @@ pages:
     - 'Pivot': 'fluent/pivot.md'
     - 'Transaction': 'fluent/transaction.md'
     - 'Database': 'fluent/database.md'
+- 'HTTP':
+    - 'Getting Started': 'http/getting-started.md'
+    - 'Client': 'http/client.md'
+    - 'Server': 'http/server.md'
+    - 'Message': 'http/message.md'
 - 'Leaf':
     - 'Getting Started': 'leaf/getting-started.md'
     - 'Basics': 'leaf/basics.md'
