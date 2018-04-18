@@ -1,3 +1,0 @@
-# WebSocket
-
-Coming soon.

@@ -104,7 +104,8 @@ pages:
     - 'Getting Started': 'vapor/getting-started.md'
     - 'Content': 'vapor/content.md'
 - 'WebSocket': 
-    - 'Getting Started': 'websocket/websocket.md'
+    - 'Getting Started': 'websocket/getting-started.md'
+    - 'Overview': 'websocket/overview.md'
 - 'Version (3.0-rc)':
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'

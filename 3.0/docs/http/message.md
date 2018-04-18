@@ -1,4 +1,4 @@
-# Using HTTPMessage
+# Using HTTP Message
 
 There are two types of HTTP messages, [`HTTPRequest`](#fixme) and [`HTTPResponse`](#fixme). For the most part they are very similar, but there are a couple of differences. 
 

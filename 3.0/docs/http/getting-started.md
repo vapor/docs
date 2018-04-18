@@ -1,6 +1,6 @@
 # Getting Started with HTTP
 
-HTTP ([vapor/http](https://github.com/vapor/http)) is a non-blocking, event-driven HTTP library built on Swift NIO. It makes working with Swift NIO's HTTP handlers easy and offers higher level functionality like media types, client upgrading, streaming bodies, and more. Creating an HTTP echo server takes ~15 lines of code.
+HTTP ([vapor/http](https://github.com/vapor/http)) is a non-blocking, event-driven HTTP library built on Swift NIO. It makes working with Swift NIO's HTTP handlers easy and offers higher level functionality like media types, client upgrading, streaming bodies, and more. Creating an HTTP echo server takes just a few lines of code.
 
 !!! tip
     If you use Vapor, most of HTTP's APIs will be wrapped by more convenient methods. Usually the only HTTP type you
