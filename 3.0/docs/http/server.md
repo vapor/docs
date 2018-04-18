@@ -1,6 +1,6 @@
 # Using HTTPServer
 
-HTTP servers respond to incoming [`HTTPRequests`](#fixme) with [`HTTPResponses`](#fixme). They usually run for long periods of time on dedicated computers. The [`HTTPServer`](#fixme) type is what powers Vapor's higher-level server. This short guide will show you how to set up your own HTTP server manually.
+HTTP servers respond to incoming [`HTTPRequests`](#fixme) with [`HTTPResponses`](#fixme). The [`HTTPServer`](#fixme) type is what powers Vapor's higher-level server. This short guide will show you how to set up your own HTTP server manually.
 
 !!! tip
 	If you are using Vapor, you probably don't need to use HTTP's APIs directly. Refer to [Vapor &rarr; Server](../vapor/server.md) for the more convenient APIs.
