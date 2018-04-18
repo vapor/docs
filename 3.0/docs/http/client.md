@@ -1,12 +1,12 @@
 # Using HTTPClient
 
-HTTP clients send requests to remote HTTP servers which then generate and return responses. HTTP clients are usually only active for a matter of seconds to minutes and may send one or more requests. The [`HTTPClient`](#fixme) type is what powers Vapor's higher-level client. This short guide will show you how to send HTTP requests to servers manually.
+HTTP clients send requests to remote HTTP servers which then generate and return responses. HTTP clients are usually only active for a matter of seconds to minutes and may send one or more requests. The [`HTTPClient`](https://api.vapor.codes/http/latest/HTTP/Classes/HTTPClient.html) type is what powers Vapor's higher-level client. This short guide will show you how to send HTTP requests to servers manually.
 
 
 !!! tip
 	If you are using Vapor, you probably don't need to use HTTP's APIs directly. Refer to [Vapor &rarr; Client](../vapor/client.md) for the more convenient APIs.
 
-For this example, we will fetch Vapor's homepage. The first step is to create a connected HTTP client. Use the static [`connect(...)`](#fixme) method to do this.
+For this example, we will fetch Vapor's homepage. The first step is to create a connected HTTP client. Use the static [`connect(...)`](https://api.vapor.codes/http/latest/HTTP/Classes/HTTPClient.html#/s:4HTTP10HTTPClientC7connectXeXeFZ) method to do this.
 
 ```swift
 // Connect a new client to the supplied hostname.
@@ -24,7 +24,7 @@ Take note that we are passing the _hostname_. This is different from a full URL.
 !!! warning
     This guide assumes you are on the main thread. Don't use `wait()` if you are inside of a route closure. See [Async &rarr; Overview](../async/overview/#blocking) for more information.
 
-After we have a connected HTTP client, we can send an [`HTTPRequest`](#fixme) using [`send(...)`](#fixme). This will return an  [`HTTPResponse`](#fixme) containing the headers and body sent back from the server. See [HTTP &rarr; Message](message.md) for more information on HTTP messages. 
+After we have a connected HTTP client, we can send an [`HTTPRequest`](https://api.vapor.codes/http/latest/HTTP/Structs/HTTPRequest.html) using [`send(...)`](https://api.vapor.codes/http/latest/HTTP/Classes/HTTPClient.html#/s:4HTTP10HTTPClientC4sendXeXeF). This will return an  [`HTTPResponse`](https://api.vapor.codes/http/latest/HTTP/Structs/HTTPResponse.html) containing the headers and body sent back from the server. See [HTTP &rarr; Message](message.md) for more information on HTTP messages. 
 
 ## API Docs
 

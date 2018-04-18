@@ -6,7 +6,7 @@ Although WebSocket is its own protocol, it still uses HTTP to get setup. Every W
 
 ## WebSocket
 
-The [`WebSocket`](#fixme) class represents a connected WebSocket client. You can use this to set callbacks for receiving data and to send data.
+The [`WebSocket`](https://api.vapor.codes/websocket/latest/WebSocket/Classes/WebSocket.html) class represents a connected WebSocket client. You can use this to set callbacks for receiving data and to send data.
 
 ```swift
 let ws: WebSocket = ...
@@ -23,7 +23,7 @@ ws.onText { ws, string in
 !!! tip
     All callbacks will receive a reference to the `WebSocket`. Use these if you need to send data to avoid creating a reference cycle.
 
-The `WebSocket` has an [`onClose`](#fixme) future that will be completed when the connection closes. You can use [`close()`](#fixme) to close the connection yourself.
+The `WebSocket` has an [`onClose`](https://api.vapor.codes/websocket/latest/WebSocket/Classes/WebSocket.html#/s:9WebSocketAAC7onCloseXev) future that will be completed when the connection closes. You can use [`close()`](https://api.vapor.codes/websocket/latest/WebSocket/Classes/WebSocket.html#/s:9WebSocketAAC5closeyyF) to close the connection yourself.
 
 ## Server
 
@@ -31,7 +31,7 @@ WebSocket servers connect to one or more WebSocket clients at a time. As mention
 
 ```swift
 // First, create an HTTPProtocolUpgrader
-let ws = WebSocket.httpProtocolUpgrader(shouldUpgrade: { req in
+let ws = HTTPServer.webSocketUpgrader(shouldUpgrade: { req in
     // Returning nil in this closure will reject upgrade
     if req.url.path == "/deny" { return nil }
     // Return any additional headers you like, or just empty

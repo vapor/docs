@@ -1,13 +1,13 @@
 # Using HTTPServer
 
-HTTP servers respond to incoming [`HTTPRequests`](#fixme) with [`HTTPResponses`](#fixme). The [`HTTPServer`](#fixme) type is what powers Vapor's higher-level server. This short guide will show you how to set up your own HTTP server manually.
+HTTP servers respond to incoming [`HTTPRequests`](https://api.vapor.codes/http/latest/HTTP/Structs/HTTPRequest.html) with [`HTTPResponses`](https://api.vapor.codes/http/latest/HTTP/Structs/HTTPResponse.html). The [`HTTPServer`](https://api.vapor.codes/http/latest/HTTP/Classes/HTTPServer.html) type is what powers Vapor's higher-level server. This short guide will show you how to set up your own HTTP server manually.
 
 !!! tip
 	If you are using Vapor, you probably don't need to use HTTP's APIs directly. Refer to [Vapor &rarr; Server](../vapor/server.md) for the more convenient APIs.
 
 ## Responder
 
-Creating an HTTP server is easy, and only takes a few lines of code. The first step is to create an [`HTTPServerResponder`](#fixme). This will be directly responsible for generating responses to incoming requests.
+Creating an HTTP server is easy, and only takes a few lines of code. The first step is to create an [`HTTPServerResponder`](https://api.vapor.codes/http/latest/HTTP/Protocols/HTTPServerResponder.html). This will be directly responsible for generating responses to incoming requests.
 
 Let's create a simple responder that will echo the request's content.
 
@@ -27,7 +27,7 @@ struct EchoResponder: HTTPServerResponder {
 
 ## Start
 
-Now that we have a responder, we can create our [`HTTPServer`](#fixme). We just need to choose a hostname and port for the server to bind to. In this example, we will bind to `http://localhost:8123`.
+Now that we have a responder, we can create our [`HTTPServer`](https://api.vapor.codes/http/latest/HTTP/Classes/HTTPServer.html). We just need to choose a hostname and port for the server to bind to. In this example, we will bind to `http://localhost:8123`.
 
 ```swift
 // Create an EventLoopGroup with an appropriate number
@@ -49,7 +49,7 @@ let server = try HTTPServer.start(
 try server.onClose.wait()
 ```
 
-The static [`start(...)`](#fixme) method creates and returns a new [`HTTPServer`](#fixme) asynchronously. The future will be completed when the server has finished boot succesfully, or it will contain an error if something went wrong.
+The static [`start(...)`](https://api.vapor.codes/http/latest/HTTP/Classes/HTTPServer.html#/s:4HTTP10HTTPServerC5startXeXeFZ) method creates and returns a new [`HTTPServer`](https://api.vapor.codes/http/latest/HTTP/Classes/HTTPServer.html) asynchronously. The future will be completed when the server has finished boot succesfully, or it will contain an error if something went wrong.
 
 Once the start future is complete, our server is running. By waiting for the server's `onClose` future to complete, we can keep our application alive until the server closes. Normally the server will not close itself--it will just run indefinitely. However if `server.close()` is ever called, the application can exit gracefully.
 
