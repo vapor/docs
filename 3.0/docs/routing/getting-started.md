@@ -13,7 +13,7 @@ For example, the routing package can help you route a request like the following
 This package is included with Vapor and exported by default. You will have access to all `Routing` APIs when you import `Vapor`.
 
 !!! tip
-    If you use Vapor, most of Routing's APIs will be wrapped by more convenient methods. See [Vapor &rarr; Routing] for more information.
+    If you use Vapor, most of Routing's APIs will be wrapped by more convenient methods. See [Vapor &rarr; Routing](../vapor/routing.md) for more information.
 
 ```swift
 import Vapor
