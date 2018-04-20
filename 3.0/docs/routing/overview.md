@@ -5,7 +5,7 @@ Routing ([vapor/routing](https://github.com/vapor/routing)) is a small framework
 !!! tip
     If you use Vapor, most of Routing's APIs will be wrapped by more convenient methods. See [Vapor → Routing] for more information.
 
-This guide will show you how to register a static route and a dynamic route and how to use [`Parameter`](#fixme)s.
+This guide will show you how to register a static route and a dynamic route and how to use [`Parameter`](https://api.vapor.codes/routing/latest/Routing/Protocols/Parameter.html)s.
 
 ## Register
 
@@ -28,7 +28,7 @@ print(router.route(path: ["fun", "meaning_of_universe"], parameters: &params)) /
 print(router.route(path: ["foo"], parameters: &params)) // nil
 ```
 
-Here we are using [`register(...)`](#fixme) to register routes to our router, then later [`route(...)`](#fixme) to fetch them. The [`TrieRouter`](#fixme) uses a trie (digital tree) internally to make finding value in the router fast.
+Here we are using [`register(...)`](https://api.vapor.codes/routing/latest/Routing/Classes/TrieRouter.html#/s:7Routing10TrieRouterC8registeryAA5RouteCyxG5route_tF) to register routes to our router, then later [`route(...)`](https://api.vapor.codes/routing/latest/Routing/Classes/TrieRouter.html#/s:7Routing10TrieRouterC5routexSgSayqd__G4path_AA10ParametersVz10parameterstAA17RoutableComponentRd__lF) to fetch them. The [`TrieRouter`](https://api.vapor.codes/routing/latest/Routing/Classes/TrieRouter.html) uses a trie (digital tree) internally to make finding value in the router fast.
 
 ## Parameter
 
