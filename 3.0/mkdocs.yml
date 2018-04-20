@@ -79,9 +79,7 @@ pages:
     - 'Pipeline': 'redis/pipeline.md'
 - 'Routing':
     - 'Getting Started': 'routing/getting-started.md'
-    - 'Parameters': 'routing/parameters.md'
-    - 'Route': 'routing/route.md'
-    - 'Router': 'routing/router.md'
+    - 'Overview': 'routing/overview.md'
 - 'Service':
     - 'Getting Started': 'service/getting-started.md'
     - 'Services': 'service/services.md'

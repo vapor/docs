@@ -1,51 +1,49 @@
-# Basics
+# Getting Started with Routing
 
-In Vapor the default Router is the `EngineRouter`. You can implement custom routers by implementing one conformant to the `Router` protocol.
+Routing ([vapor/routing](https://github.com/vapor/routing)) is a small framework for routing things like HTTP requests. It lets you register and lookup routes in a router using nested, dynamic path components.
 
-```swift
-let router = try EngineRouter.default()
+For example, the routing package can help you route a request like the following and collect the values of the dynamic components.
+
+```
+/users/:user_id/comments/:comment_id
 ```
 
-There are two APIs available, one is supplied by the `Routing` library and a set of helpers is available in Vapor itself.
+## Vapor
 
-## Registering a route using Routing
+This package is included with Vapor and exported by default. You will have access to all `Routing` APIs when you import `Vapor`.
 
-The `on` function on a `AsyncRouter` registers a route to the provided path. The following registers a `GET /hello/world` route.
-
-It responds with `"Hello world!"` using futures.
-
-```swift
-router.on(.get, to: "hello", "world") { request in
-  return try Response(body: "Hello world!") 
-}
-```
-
-The `.get` represents the HTTP method you want to use. `to: "hello", "world"` registers the path `/hello/world`.
-
-For variable path components you can use [parameters](parameters.md).
-
-The trailing closure receives a request. The route can throw errors and needs to return a future response conforming type.
-
-## Registering a route using Vapor
-
-In Vapor we add support for routes using the `.get`, `.put`, `.post`, `.patch` and `.delete` shorthands.
-
-For variable path components you can use [parameters](parameters.md) here, too.
-
-Vapor has an added benefit here in that you can return the `Response` itself in addition to `Future<ResponseRepresentable>` or `Future<Response>`.
+!!! tip
+    If you use Vapor, most of Routing's APIs will be wrapped by more convenient methods. See [Vapor &rarr; Routing] for more information.
 
 ```swift
-router.get("components", "in", "path") { request in
-  return Response(status: .ok)
-}
+import Vapor
 ```
 
-## After registering your routes
+## Standalone
 
-After registering routes to the Router, you must add the router to your services.
+The Routing package is lightweight, pure-Swift, and has very few dependencies. This means it can be used as a routing framework for any Swift project&mdash;even one not using Vapor.
+
+To include it in your package, add the following to your `Package.swift` file.
 
 ```swift
-services.register(router, as: Router.self)
+// swift-tools-version:4.0
+import PackageDescription
+
+let package = Package(
+    name: "Project",
+    dependencies: [
+        ...
+        .package(url: "https://github.com/vapor/routing.git", from: "3.0.0"),
+    ],
+    targets: [
+      .target(name: "Project", dependencies: ["Routing", ... ])
+    ]
+)
 ```
 
-Learn more about services in [Getting Started &rarr; Services](../getting-started/services.md)
+Use `import Routing` to access the APIs.
+
+!!! warning
+	Some of this guide may contain Vapor-specific APIs, however most of it should be applicable to the Routing package in general.
+	Visit the [API Docs](https://api.vapor.codes/routing/latest/Routing/index.html) for Routing-specific API info.
+
