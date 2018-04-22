@@ -1,6 +1,6 @@
 # Getting Started with Async
 
-The Async module is provided as a part of Vapor Core ([vapor/core](https://github.com/vapor/core)). It is a collection of convenience APIs (mostly extensions) built on top of [Swift NIO](https://github.com/apple/swift-nio).
+The Async module is provided as a part of Vapor Core ([vapor/core](https://github.com/vapor/core)). It is a collection of convenience APIs (mostly extensions) built on top of [SwiftNIO](https://github.com/apple/swift-nio).
 
 !!! tip
     You can read more about SwiftNIO's async types (`Future`,  `Promise`, `EventLoop`, and more) in its GitHub [README](https://github.com/apple/swift-nio/blob/master/README.md) or its [API Docs](https://apple.github.io/swift-nio/docs/current/NIO/index.html).
