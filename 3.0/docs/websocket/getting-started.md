@@ -15,7 +15,7 @@ import Vapor
 
 ## Standalone
 
-The WebSocket package is lightweight, pure-Swift, and only depends in SwiftNIO. This means it can be used as a WebSocket framework any Swift project—even one not using Vapor.
+The WebSocket package is lightweight, pure Swift, and only depends on SwiftNIO. This means it can be used as a WebSocket framework any Swift project—even one not using Vapor.
 
 To include it in your package, add the following to your `Package.swift` file.
 
