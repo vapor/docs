@@ -2,7 +2,7 @@
 
 You may have noticed some APIs in Vapor expect or return a generic `Future` type. If this is your first time hearing about futures, they might seem a little confusing at first. But don't worry, Vapor makes them easy to use.
 
-Promises and futures are related, but distinct types. Promises are used to _create_ futures. Most of the time, you will be working with futures returned by Vapor's APIs and you will not need to worry about creating promises.
+Promises and futures are related, but distinct, types. Promises are used to _create_ futures. Most of the time, you will be working with futures returned by Vapor's APIs and you will not need to worry about creating promises.
 
 |type     |description                                          |mutability|methods                                         |
 |---------|-----------------------------------------------------|----------|----------------------------------------------------|

@@ -1,6 +1,6 @@
 # Getting Started with HTTP
 
-HTTP ([vapor/http](https://github.com/vapor/http)) is a non-blocking, event-driven HTTP library built on SwiftNIO. It makes working with SwiftNIO's HTTP handlers easy and offers higher level functionality like media types, client upgrading, streaming bodies, and more. Creating an HTTP echo server takes just a few lines of code.
+HTTP ([vapor/http](https://github.com/vapor/http)) is a non-blocking, event-driven HTTP library built on SwiftNIO. It makes working with SwiftNIO's HTTP handlers easy and offers higher-level functionality like media types, client upgrading, streaming bodies, and more. Creating an HTTP echo server takes just a few lines of code.
 
 !!! tip
     If you use Vapor, most of HTTP's APIs will be wrapped by more convenient methods. Usually the only HTTP type you
@@ -16,7 +16,7 @@ import Vapor
 
 ## Standalone
 
-The HTTP package is lightweight, pure-Swift, and only depends in SwiftNIO. This means it can be used as an HTTP framework any Swift project&mdash;even one not using Vapor.
+The HTTP package is lightweight, pure Swift, and only depends on SwiftNIO. This means it can be used as an HTTP framework in any Swift project&mdash;even one not using Vapor.
 
 To include it in your package, add the following to your `Package.swift` file.
 

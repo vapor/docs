@@ -49,7 +49,7 @@ let server = try HTTPServer.start(
 try server.onClose.wait()
 ```
 
-The static [`start(...)`](https://api.vapor.codes/http/latest/HTTP/Classes/HTTPServer.html#/s:4HTTP10HTTPServerC5startXeXeFZ) method creates and returns a new [`HTTPServer`](https://api.vapor.codes/http/latest/HTTP/Classes/HTTPServer.html) asynchronously. The future will be completed when the server has finished boot succesfully, or it will contain an error if something went wrong.
+The static [`start(...)`](https://api.vapor.codes/http/latest/HTTP/Classes/HTTPServer.html#/s:4HTTP10HTTPServerC5startXeXeFZ) method creates and returns a new [`HTTPServer`](https://api.vapor.codes/http/latest/HTTP/Classes/HTTPServer.html) asynchronously. The future will be completed when the server has finished booting succesfully, or it will contain an error if something went wrong.
 
 Once the start future is complete, our server is running. By waiting for the server's `onClose` future to complete, we can keep our application alive until the server closes. Normally the server will not close itself--it will just run indefinitely. However if `server.close()` is ever called, the application can exit gracefully.
 
