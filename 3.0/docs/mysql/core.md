@@ -1,6 +1,6 @@
 # MySQL Core
 
-MySQL ([vapor/mysql](https://github.com/vapor/mysql)) is a pure-Swift (no `libmysql` dependency), event-driven, non-blocking driver for MySQL. It's built on top of the [Swift NIO](http://github.com/apple/swift-nio) networking library.
+MySQL ([vapor/mysql](https://github.com/vapor/mysql)) is a pure-Swift (no `libmysql` dependency), event-driven, non-blocking driver for MySQL. It's built on top of the [SwiftNIO](http://github.com/apple/swift-nio) networking library.
 
 !!! seealso
     The higher-level, Fluent MySQL ORM guide is located at [MySQL &rarr; Fluent](fluent.md)
