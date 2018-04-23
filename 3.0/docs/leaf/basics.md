@@ -155,6 +155,13 @@ Leaf provides some extra variables inside a `#for` loop to give you more informa
 - The `loop.isLast` variable is true when it's the last iteration.
 - The `loop.index` variable will be set to the number of the current iteration, counting from 0.
 
+Here's how we could use the loop variables to print just the first name in our array:
+
+```
+#for(name in team) {
+    #if(isFirst) { <p>#(name) is first!</p> }
+}
+```
 
 ### Embedding templates
 
