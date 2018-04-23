@@ -84,6 +84,9 @@ pages:
     - 'Getting Started': 'service/getting-started.md'
     - 'Services': 'service/services.md'
     - 'Provider': 'service/provider.md'
+- 'SQL':
+    - 'Getting Started': 'sql/getting-started.md'
+    - 'Overview': 'sql/overview.md'
 - 'SQLite':
     - 'Getting Started': 'sqlite/getting-started.md'
     - 'Fluent SQLite': 'sqlite/fluent.md'
