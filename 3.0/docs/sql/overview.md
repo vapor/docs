@@ -35,7 +35,7 @@ let sql = GeneralSQLSerializer.shared.serialize(query: users)
 print(sql) // "SELECT * FROM `users` WHERE (`name` = ?)"
 ```
 
-Here we are using the shared [`GeneralSQLSerializer`](#fixme) to serialize the query. You can also implement [custom serializers](#serializer).
+Here we are using the shared [`GeneralSQLSerializer`](https://api.vapor.codes/sql/latest/SQL/Classes/GeneralSQLSerializer.html) to serialize the query. You can also implement [custom serializers](#serializer).
 
 ## Data Manipulation
 
@@ -64,7 +64,7 @@ let sql = GeneralSQLSerializer.shared.serialize(query: user)
 print(sql) // "INSERT INTO `users` (`name`) VALUES (?)"
 ```
 
-That's all it takes to generate an `INSERT` query. Let's take a look at how this query would serialize if we use the [`.update`](#fixme) statement instead.
+That's all it takes to generate an `INSERT` query. Let's take a look at how this query would serialize if we use the [`.update`](https://api.vapor.codes/sql/latest/SQL/Enums/DataManipulationStatement.html) statement instead.
 
 ```swift
 // Change the statement type
@@ -108,9 +108,9 @@ That's all it takes to generate a `CREATE` query.
 
 ## Serializer
 
-The default [`GeneralSQLSerializer`](#fixme) that comes with this library generates a fairly "standard" SQL syntax. However, each flavor of SQL (SQLite, MySQL, PostgreSQL, etc) all have specific rules for their syntax. 
+The default `GeneralSQLSerializer` that comes with this library generates a fairly "standard" SQL syntax. However, each flavor of SQL (SQLite, MySQL, PostgreSQL, etc) all have specific rules for their syntax. 
 
-To deal with this, all serializers are backed by the [`SQLSerializer`](#fixme) protocol. All serialization methods are defined on this protocol and come with a default implementation. Custom serializers can conform to this protocol and implement only the methods they need to customize. 
+To deal with this, all serializers are backed by the [`SQLSerializer`](https://api.vapor.codes/sql/latest/SQL/Protocols/SQLSerializer.html) protocol. All serialization methods are defined on this protocol and come with a default implementation. Custom serializers can conform to this protocol and implement only the methods they need to customize. 
 
 Let's take a look at how we would implement a `PostgreSQLSerializer` that uses `$x` placeholders instead of `?`.
 
