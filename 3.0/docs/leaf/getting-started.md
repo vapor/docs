@@ -73,7 +73,24 @@ You may also wish to install one these third-party packages that provide support
 
 It is not currently possible to implement Leaf Syntax Highlighting in Xcode, however, using Xcode's HTML Syntax Coloring can help a bit. Select one or more Leaf files and then choose Editor > Syntax Coloring > HTML.  Your selected Leaf files will now use Xcode's HTML Syntax Coloring.  Unfortunately the usefulness of this is limited because this association will be removed when `vapor xcode` is run.
 
-There appears to be a way to [make Xcode file associations persist](http://stackoverflow.com/questions/9050035/how-to-make-xcode-recognize-a-custom-file-extension-as-objective-c-for-syntax-hi) but that requires a bit more kung-fu.
+There is a way to make the syntax coloring persistant, but that requires a little bit more kung-fu. 
+
+Follow the following steps:
+1. Create a new macOS Application (⌘ + shift + n), choose Cocoa App and give it a nice name (doesn't matter what it is) and save it somewhere (doesnt matter too)
+![Screenshot 1](../images/macos_new_app_preview.png)
+
+2. Select the target and go to the Info tab
+![Screenshot 2](../images/app_info.png)
+
+3. Toggle Exported UTI's and click the + button below. Choose a nice description and fill the follow fields:
+- Identifier (choose something thats unique)
+- Conforms to (has to be public.html for html highlighting, see [this overview](https://developer.apple.com/library/content/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html#//apple_ref/doc/uid/TP40009259) for more options)
+- Extensions: leaf (no dot)
+![Screenshot 3](../exported_utis.png)
+
+4. Now just run the app once and your choice will be persistant
+
+*Based on [this](http://stackoverflow.com/questions/41961953/adding-syntax-coloring-to-xcode-for-unknown-file-extension-such-as-tcl) Stack Overflow answer*
 
 ### VS Code
 
