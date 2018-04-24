@@ -79,14 +79,17 @@ Follow the following steps:
 1. Create a new macOS Application (⌘ + shift + n), choose Cocoa App and give it a nice name (doesn't matter what it is) and save it somewhere (doesnt matter too)
 ![Screenshot 1](../images/macos_new_app_preview.png)
 
+
 2. Select the target and go to the Info tab
 ![Screenshot 2](../images/app_info.png)
+
 
 3. Toggle Exported UTI's and click the + button below. Choose a nice description and fill the follow fields:
 - Identifier (choose something thats unique)
 - Conforms to (has to be public.html for html highlighting, see [this overview](https://developer.apple.com/library/content/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html#//apple_ref/doc/uid/TP40009259) for more options)
 - Extensions: leaf (no dot)
-![Screenshot 3](../exported_utis.png)
+![Screenshot 3](../images/exported_utis.png)
+
 
 4. Now just run the app once and your choice will be persistant
 
