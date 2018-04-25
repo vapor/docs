@@ -36,7 +36,7 @@
     
     
       
-        <title>Basics - Vapor Docs</title>
+        <title>Getting Started - Vapor Docs</title>
       
     
     
@@ -93,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#redis-basic-usage" tabindex="1" class="md-skip">
+      <a href="#getting-started-with-database-kit" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -119,7 +119,7 @@
                 Vapor Docs
               </span>
               <span class="md-header-nav__topic">
-                Basics
+                Getting Started
               </span>
             
           
@@ -738,10 +738,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" checked>
     
     <label class="md-nav__link" for="nav-9">
       Database Kit
@@ -757,11 +759,56 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../database-kit/getting-started/" title="Getting Started" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Getting Started
+      </label>
+    
+    <a href="./" title="Getting Started" class="md-nav__link md-nav__link--active">
       Getting Started
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#package" title="Package" class="md-nav__link">
+    Package
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-docs" title="API Docs" class="md-nav__link">
+    API Docs
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -771,7 +818,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../database-kit/overview/" title="Overview" class="md-nav__link">
+    <a href="../overview/" title="Overview" class="md-nav__link">
       Overview
     </a>
   </li>
@@ -1278,12 +1325,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-17" type="checkbox" id="nav-17" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-17" type="checkbox" id="nav-17">
     
     <label class="md-nav__link" for="nav-17">
       Redis
@@ -1301,7 +1346,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+    <a href="../../redis/getting-started/" title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
   </li>
@@ -1311,83 +1356,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        Basics
-      </label>
-    
-    <a href="./" title="Basics" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../redis/basics/" title="Basics" class="md-nav__link">
       Basics
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#redis-data-types" title="Redis Data Types" class="md-nav__link">
-    Redis Data Types
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#crud-using-redis" title="CRUD using Redis" class="md-nav__link">
-    CRUD using Redis
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#creating-a-record" title="Creating a record" class="md-nav__link">
-    Creating a record
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reading-a-record" title="Reading a record" class="md-nav__link">
-    Reading a record
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deleting-a-record" title="Deleting a record" class="md-nav__link">
-    Deleting a record
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1397,7 +1370,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../custom-commands/" title="Custom commands" class="md-nav__link">
+    <a href="../../redis/custom-commands/" title="Custom commands" class="md-nav__link">
       Custom commands
     </a>
   </li>
@@ -1409,7 +1382,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../pub-sub/" title="Publish and Subscribe" class="md-nav__link">
+    <a href="../../redis/pub-sub/" title="Publish and Subscribe" class="md-nav__link">
       Publish and Subscribe
     </a>
   </li>
@@ -1421,7 +1394,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../pipeline/" title="Pipeline" class="md-nav__link">
+    <a href="../../redis/pipeline/" title="Pipeline" class="md-nav__link">
       Pipeline
     </a>
   </li>
@@ -2005,43 +1978,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#redis-data-types" title="Redis Data Types" class="md-nav__link">
-    Redis Data Types
+  <a href="#package" title="Package" class="md-nav__link">
+    Package
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#crud-using-redis" title="CRUD using Redis" class="md-nav__link">
-    CRUD using Redis
+  <a href="#api-docs" title="API Docs" class="md-nav__link">
+    API Docs
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#creating-a-record" title="Creating a record" class="md-nav__link">
-    Creating a record
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reading-a-record" title="Reading a record" class="md-nav__link">
-    Reading a record
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deleting-a-record" title="Deleting a record" class="md-nav__link">
-    Deleting a record
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2061,90 +2007,38 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/vapor/documentation/edit/master/3.0/docs/redis/basics.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/vapor/documentation/edit/master/3.0/docs/database-kit/getting-started.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="redis-basic-usage">Redis basic usage<a class="headerlink" href="#redis-basic-usage" title="Permanent link">&para;</a></h1>
-<p>To interact with Redis, you first need to construct a Redis client.
-The Redis library primarily supports TCP sockets.</p>
-<p>This requires a hostname, port and worker. The eventloop will be used for Redis' Socket. The hostname and port have a default. The hostname is defaulted to <code>localhost</code>, and the port to Redis' default port <code>6379</code>.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">client</span> <span class="p">=</span> <span class="k">try</span> <span class="n">RedisClient</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on</span><span class="p">:</span> <span class="n">worker</span><span class="p">)</span> <span class="c1">// Future&lt;RedisClient&gt;</span>
+                <h1 id="getting-started-with-database-kit">Getting Started with Database Kit<a class="headerlink" href="#getting-started-with-database-kit" title="Permanent link">&para;</a></h1>
+<p>Database Kit (<a href="https://github.com/vapor/database-kit">vapor/database-kit</a>) is a framework for configuring and working with database connections. It includes core services like caching, logging, and connection pooling.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you use Fluent, you will usually not need to use Database Kit manually. 
+But learning the APIs may come in handy.</p>
+</div>
+<h2 id="package">Package<a class="headerlink" href="#package" title="Permanent link">&para;</a></h2>
+<p>The Database Kit package is lightweight, pure Swift, and has few dependencies. This means it can be used as a core database framework for any Swift project—even one not using Vapor.</p>
+<p>To include it in your package, add the following to your <code>Package.swift</code> file.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// swift-tools-version:4.0</span>
+<span class="kd">import</span> <span class="nc">PackageDescription</span>
+
+<span class="kd">let</span> <span class="nv">package</span> <span class="p">=</span> <span class="n">Package</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">:</span> <span class="s">&quot;Project&quot;</span><span class="p">,</span>
+    <span class="n">dependencies</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">...</span>
+        <span class="p">.</span><span class="n">package</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="s">&quot;https://github.com/vapor/database-kit.git&quot;</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="s">&quot;1.0.0&quot;</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">targets</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">.</span><span class="n">target</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Project&quot;</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;DatabaseKit&quot;</span><span class="p">,</span> <span class="p">...</span> <span class="p">])</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 </pre></div>
 
 
-<p>The <code>connect</code> method will return a future containing the TCP based Redis Client.</p>
-<h2 id="redis-data-types">Redis Data Types<a class="headerlink" href="#redis-data-types" title="Permanent link">&para;</a></h2>
-<p>Redis has 6 data types:</p>
-<ul>
-<li>null</li>
-<li>Int</li>
-<li>Error</li>
-<li>Array</li>
-<li>Basic String (used for command names and basic replies only)</li>
-<li>Bulk String (used for Strings and binary data blobs)</li>
-</ul>
-<p>You can instantiate one from the static functions and variables on <code>RedisData</code>.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">null</span> <span class="p">=</span> <span class="n">RedisData</span><span class="p">.</span><span class="n">null</span>
-
-<span class="kd">let</span> <span class="nv">helloWorld</span> <span class="p">=</span> <span class="n">RedisData</span><span class="p">.</span><span class="n">bulkString</span><span class="p">(</span><span class="s">&quot;Hello World&quot;</span><span class="p">)</span>
-
-<span class="kd">let</span> <span class="nv">three</span> <span class="p">=</span> <span class="n">RedisData</span><span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-
-<span class="kd">let</span> <span class="nv">oneThroughTen</span> <span class="p">=</span> <span class="n">RedisData</span><span class="p">.</span><span class="n">array</span><span class="p">([</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="p">])</span>
-</pre></div>
-
-
-<p>The above is the explicit way of defining Redis Types. You can also use literals in most scenarios:</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">array</span> <span class="p">=</span> <span class="n">RedisData</span><span class="p">.</span><span class="n">array</span><span class="p">([</span>
-  <span class="p">[</span>
-    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span>
-  <span class="p">],</span>
-  <span class="s">&quot;Hello World&quot;</span><span class="p">,</span>
-  <span class="s">&quot;One&quot;</span><span class="p">,</span>
-  <span class="s">&quot;Two&quot;</span><span class="p">,</span>
-  <span class="p">.</span><span class="n">null</span><span class="p">,</span>
-  <span class="p">.</span><span class="n">null</span><span class="p">,</span>
-  <span class="s">&quot;test&quot;</span>
-<span class="p">])</span>
-</pre></div>
-
-
-<h2 id="crud-using-redis">CRUD using Redis<a class="headerlink" href="#crud-using-redis" title="Permanent link">&para;</a></h2>
-<p>From here on it is assumed that your client has been successfully created and is available in the variable <code>client</code> as a <code>RedisClient</code>.</p>
-<h3 id="creating-a-record">Creating a record<a class="headerlink" href="#creating-a-record" title="Permanent link">&para;</a></h3>
-<p>Creating a record is done using a <code>RedisData</code> for a value and a key.</p>
-<div class="codehilite"><pre><span></span><span class="n">client</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="s">&quot;hello&quot;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>This returns a future that'll indicate successful or unsuccessful insertion.</p>
-<h3 id="reading-a-record">Reading a record<a class="headerlink" href="#reading-a-record" title="Permanent link">&para;</a></h3>
-<p>Reading a record is similar, only you'll get a warning if you don't use the returned future.</p>
-<p>The <code>Future&lt;RedisData&gt;</code> for the key "hello" will be "world" if you created the record as shown above.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">futureRecord</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">getData</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="s">&quot;hello&quot;</span><span class="p">)</span> <span class="c1">// Future&lt;RedisData&gt;</span>
-</pre></div>
-
-
-<h3 id="deleting-a-record">Deleting a record<a class="headerlink" href="#deleting-a-record" title="Permanent link">&para;</a></h3>
-<p>Deleting a record is similar but allows querying the keys, too.</p>
-<div class="codehilite"><pre><span></span><span class="n">client</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">keys</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;hello&quot;</span><span class="p">])</span>
-</pre></div>
-
-
-<p>Where the above command will remove the key "hello", the next command will delete <strong>all</strong> keys from the Redis database.</p>
-<div class="codehilite"><pre><span></span><span class="n">client</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">keys</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;*&quot;</span><span class="p">])</span>
-</pre></div>
+<p>Use <code>import DatabaseKit</code> to access the APIs.</p>
+<h2 id="api-docs">API Docs<a class="headerlink" href="#api-docs" title="Permanent link">&para;</a></h2>
+<p>The rest of this guide will give you an overview of what is available in the DatabaseKit package. As always, feel free to visit the <a href="http://api.vapor.codes/database-kit/latest/DatabaseKit/index.html">API docs</a> for more in-depth information.</p>
                 
                   
                 
@@ -2163,7 +2057,7 @@ The Redis library primarily supports TCP sockets.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../getting-started/" title="Getting Started" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../crypto/random/" title="Random" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -2172,19 +2066,19 @@ The Redis library primarily supports TCP sockets.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Getting Started
+                Random
               </span>
             </div>
           </a>
         
         
-          <a href="../custom-commands/" title="Custom commands" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../overview/" title="Overview" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Custom commands
+                Overview
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

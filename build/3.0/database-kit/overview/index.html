@@ -36,7 +36,7 @@
     
     
       
-        <title>Basics - Vapor Docs</title>
+        <title>Overview - Vapor Docs</title>
       
     
     
@@ -93,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#redis-basic-usage" tabindex="1" class="md-skip">
+      <a href="#using-database-kit" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -119,7 +119,7 @@
                 Vapor Docs
               </span>
               <span class="md-header-nav__topic">
-                Basics
+                Overview
               </span>
             
           
@@ -738,10 +738,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" checked>
     
     <label class="md-nav__link" for="nav-9">
       Database Kit
@@ -759,7 +761,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../database-kit/getting-started/" title="Getting Started" class="md-nav__link">
+    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
   </li>
@@ -769,11 +771,117 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../database-kit/overview/" title="Overview" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Overview
+      </label>
+    
+    <a href="./" title="Overview" class="md-nav__link md-nav__link--active">
       Overview
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#config" title="Config" class="md-nav__link">
+    Config
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identifier" title="Identifier" class="md-nav__link">
+    Identifier
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databases" title="Databases" class="md-nav__link">
+    Databases
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connections" title="Connections" class="md-nav__link">
+    Connections
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pools" title="Pools" class="md-nav__link">
+    Pools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new" title="New" class="md-nav__link">
+    New
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging" title="Logging" class="md-nav__link">
+    Logging
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keyed-cache" title="Keyed Cache" class="md-nav__link">
+    Keyed Cache
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-docs" title="API Docs" class="md-nav__link">
+    API Docs
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -1278,12 +1386,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-17" type="checkbox" id="nav-17" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-17" type="checkbox" id="nav-17">
     
     <label class="md-nav__link" for="nav-17">
       Redis
@@ -1301,7 +1407,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+    <a href="../../redis/getting-started/" title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
   </li>
@@ -1311,83 +1417,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        Basics
-      </label>
-    
-    <a href="./" title="Basics" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../redis/basics/" title="Basics" class="md-nav__link">
       Basics
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#redis-data-types" title="Redis Data Types" class="md-nav__link">
-    Redis Data Types
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#crud-using-redis" title="CRUD using Redis" class="md-nav__link">
-    CRUD using Redis
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#creating-a-record" title="Creating a record" class="md-nav__link">
-    Creating a record
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reading-a-record" title="Reading a record" class="md-nav__link">
-    Reading a record
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deleting-a-record" title="Deleting a record" class="md-nav__link">
-    Deleting a record
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1397,7 +1431,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../custom-commands/" title="Custom commands" class="md-nav__link">
+    <a href="../../redis/custom-commands/" title="Custom commands" class="md-nav__link">
       Custom commands
     </a>
   </li>
@@ -1409,7 +1443,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../pub-sub/" title="Publish and Subscribe" class="md-nav__link">
+    <a href="../../redis/pub-sub/" title="Publish and Subscribe" class="md-nav__link">
       Publish and Subscribe
     </a>
   </li>
@@ -1421,7 +1455,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../pipeline/" title="Pipeline" class="md-nav__link">
+    <a href="../../redis/pipeline/" title="Pipeline" class="md-nav__link">
       Pipeline
     </a>
   </li>
@@ -2005,43 +2039,77 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#redis-data-types" title="Redis Data Types" class="md-nav__link">
-    Redis Data Types
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#crud-using-redis" title="CRUD using Redis" class="md-nav__link">
-    CRUD using Redis
+  <a href="#config" title="Config" class="md-nav__link">
+    Config
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#creating-a-record" title="Creating a record" class="md-nav__link">
-    Creating a record
+  <a href="#identifier" title="Identifier" class="md-nav__link">
+    Identifier
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#reading-a-record" title="Reading a record" class="md-nav__link">
-    Reading a record
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deleting-a-record" title="Deleting a record" class="md-nav__link">
-    Deleting a record
+  <a href="#databases" title="Databases" class="md-nav__link">
+    Databases
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connections" title="Connections" class="md-nav__link">
+    Connections
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pools" title="Pools" class="md-nav__link">
+    Pools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new" title="New" class="md-nav__link">
+    New
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging" title="Logging" class="md-nav__link">
+    Logging
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keyed-cache" title="Keyed Cache" class="md-nav__link">
+    Keyed Cache
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-docs" title="API Docs" class="md-nav__link">
+    API Docs
+  </a>
   
 </li>
       
@@ -2061,90 +2129,154 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/vapor/documentation/edit/master/3.0/docs/redis/basics.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/vapor/documentation/edit/master/3.0/docs/database-kit/overview.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="redis-basic-usage">Redis basic usage<a class="headerlink" href="#redis-basic-usage" title="Permanent link">&para;</a></h1>
-<p>To interact with Redis, you first need to construct a Redis client.
-The Redis library primarily supports TCP sockets.</p>
-<p>This requires a hostname, port and worker. The eventloop will be used for Redis' Socket. The hostname and port have a default. The hostname is defaulted to <code>localhost</code>, and the port to Redis' default port <code>6379</code>.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">client</span> <span class="p">=</span> <span class="k">try</span> <span class="n">RedisClient</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on</span><span class="p">:</span> <span class="n">worker</span><span class="p">)</span> <span class="c1">// Future&lt;RedisClient&gt;</span>
+                <h1 id="using-database-kit">Using Database Kit<a class="headerlink" href="#using-database-kit" title="Permanent link">&para;</a></h1>
+<p>Database Kit is a framework for configuring and working with database connections. It helps you do things like manage and pool connections, create keyed caches, and log queries. </p>
+<p>Many of Vapor's packages such as the Fluent drivers, Redis, and Vapor core are built on top of Database Kit. This guide will walk you through some of the common APIs you might encounter when using Database Kit.</p>
+<h2 id="config">Config<a class="headerlink" href="#config" title="Permanent link">&para;</a></h2>
+<p>Your first interaction with Database Kit will most likely be with the <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Structs/DatabasesConfig.html"><code>DatabasesConfig</code></a> struct. This type helps you configure one or more databases to your application and will ultimately yield a <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Structs/Databases.html"><code>Databases</code></a> struct. This usually takes place in <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a>.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Create a SQLite database.</span>
+<span class="kd">let</span> <span class="nv">sqliteDB</span> <span class="p">=</span> <span class="n">SQLiteDatabase</span><span class="p">(...)</span>
+
+<span class="c1">// Create a new, empty DatabasesConfig.</span>
+<span class="kd">var</span> <span class="nv">dbsConfig</span> <span class="p">=</span> <span class="n">DatabasesConfig</span><span class="p">()</span>
+
+<span class="c1">// Register the SQLite database using &#39;.sqlite&#39; as an identifier.</span>
+<span class="n">dbsConfig</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">sqliteDB</span><span class="p">,</span> <span class="k">as</span><span class="p">:</span> <span class="p">.</span><span class="n">sqlite</span><span class="p">)</span>
+
+<span class="c1">// Register more DBs here if you want</span>
+
+<span class="c1">// Register the DatabaseConfig to services.</span>
+<span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">dbsConfig</span><span class="p">)</span>
 </pre></div>
 
 
-<p>The <code>connect</code> method will return a future containing the TCP based Redis Client.</p>
-<h2 id="redis-data-types">Redis Data Types<a class="headerlink" href="#redis-data-types" title="Permanent link">&para;</a></h2>
-<p>Redis has 6 data types:</p>
-<ul>
-<li>null</li>
-<li>Int</li>
-<li>Error</li>
-<li>Array</li>
-<li>Basic String (used for command names and basic replies only)</li>
-<li>Bulk String (used for Strings and binary data blobs)</li>
-</ul>
-<p>You can instantiate one from the static functions and variables on <code>RedisData</code>.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">null</span> <span class="p">=</span> <span class="n">RedisData</span><span class="p">.</span><span class="n">null</span>
-
-<span class="kd">let</span> <span class="nv">helloWorld</span> <span class="p">=</span> <span class="n">RedisData</span><span class="p">.</span><span class="n">bulkString</span><span class="p">(</span><span class="s">&quot;Hello World&quot;</span><span class="p">)</span>
-
-<span class="kd">let</span> <span class="nv">three</span> <span class="p">=</span> <span class="n">RedisData</span><span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-
-<span class="kd">let</span> <span class="nv">oneThroughTen</span> <span class="p">=</span> <span class="n">RedisData</span><span class="p">.</span><span class="n">array</span><span class="p">([</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span>
-  <span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="p">])</span>
+<p>Using the <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Structs/DatabasesConfig.html"><code>add(...)</code></a> methods, you can register <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Protocols/Database.html"><code>Database</code></a>s to the config. You can register instances of a database, a database type, or a closure that creates a database. The latter two methods will be resolved when your container boots.</p>
+<p>You can also configure options on your databases, such as enabling logging.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Enable logging on the SQLite database</span>
+<span class="n">dbsConfig</span><span class="p">.</span><span class="n">enableLogging</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="p">.</span><span class="n">sqlite</span><span class="p">)</span>
 </pre></div>
 
 
-<p>The above is the explicit way of defining Redis Types. You can also use literals in most scenarios:</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">array</span> <span class="p">=</span> <span class="n">RedisData</span><span class="p">.</span><span class="n">array</span><span class="p">([</span>
-  <span class="p">[</span>
-    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span>
-  <span class="p">],</span>
-  <span class="s">&quot;Hello World&quot;</span><span class="p">,</span>
-  <span class="s">&quot;One&quot;</span><span class="p">,</span>
-  <span class="s">&quot;Two&quot;</span><span class="p">,</span>
-  <span class="p">.</span><span class="n">null</span><span class="p">,</span>
-  <span class="p">.</span><span class="n">null</span><span class="p">,</span>
-  <span class="s">&quot;test&quot;</span>
-<span class="p">])</span>
+<p>See the section on <a href="#logging">logging</a> for more information.</p>
+<h3 id="identifier">Identifier<a class="headerlink" href="#identifier" title="Permanent link">&para;</a></h3>
+<p>Most database integrations will provide a default <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Structs/DatabaseIdentifier.html"><code>DatabaseIdentifier</code></a> to use. However, you can always create your own. This is usually done by creating a static extension.</p>
+<div class="codehilite"><pre><span></span><span class="kd">extension</span> <span class="nc">DatabaseIdentifier</span> <span class="p">{</span>
+    <span class="c1">/// Test database.</span>
+    <span class="kd">static</span> <span class="kd">var</span> <span class="nv">testing</span><span class="p">:</span> <span class="n">DatabaseIdentifier</span><span class="p">&lt;</span><span class="n">MySQLDatabase</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">&quot;testing&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 
 
-<h2 id="crud-using-redis">CRUD using Redis<a class="headerlink" href="#crud-using-redis" title="Permanent link">&para;</a></h2>
-<p>From here on it is assumed that your client has been successfully created and is available in the variable <code>client</code> as a <code>RedisClient</code>.</p>
-<h3 id="creating-a-record">Creating a record<a class="headerlink" href="#creating-a-record" title="Permanent link">&para;</a></h3>
-<p>Creating a record is done using a <code>RedisData</code> for a value and a key.</p>
-<div class="codehilite"><pre><span></span><span class="n">client</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="s">&quot;hello&quot;</span><span class="p">)</span>
+<p><code>DatabaseIdentifier</code> is <code>ExpressibleByStringLiteral</code> which allows you to create one with just a <code>String</code>.</p>
+<h3 id="databases">Databases<a class="headerlink" href="#databases" title="Permanent link">&para;</a></h3>
+<p>Once you have registered a <code>DatabasesConfig</code> to your services and booted a container, you can take advantage of the convenience extensions on <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Extensions/Container.html"><code>Container</code></a> to start creating connections.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Creates a new connection to `.sqlite` db</span>
+<span class="n">app</span><span class="p">.</span><span class="n">withNewConnection</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="p">.</span><span class="n">sqlite</span><span class="p">)</span> <span class="p">{</span> <span class="n">conn</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="n">conn</span><span class="p">.</span><span class="n">query</span><span class="p">(...)</span> <span class="c1">// do some db query</span>
+<span class="p">}</span>
 </pre></div>
 
 
-<p>This returns a future that'll indicate successful or unsuccessful insertion.</p>
-<h3 id="reading-a-record">Reading a record<a class="headerlink" href="#reading-a-record" title="Permanent link">&para;</a></h3>
-<p>Reading a record is similar, only you'll get a warning if you don't use the returned future.</p>
-<p>The <code>Future&lt;RedisData&gt;</code> for the key "hello" will be "world" if you created the record as shown above.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">futureRecord</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">getData</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="s">&quot;hello&quot;</span><span class="p">)</span> <span class="c1">// Future&lt;RedisData&gt;</span>
+<p>Read more about creating and managing connections in the next section.</p>
+<h2 id="connections">Connections<a class="headerlink" href="#connections" title="Permanent link">&para;</a></h2>
+<p>Database Kit's main focus is on creating, managing, and pooling connections. Creating new connections takes a non-trivial amount of time for your application and many cloud services limit the total number of connections to a service that can be open. Because of this, it is important for high-concurrency web applications to manage their connections carefully.</p>
+<h3 id="pools">Pools<a class="headerlink" href="#pools" title="Permanent link">&para;</a></h3>
+<p>A common solution to connection management is the use of connection pools. These pools usually have a set maximum number of connections that are allowed to be open at once. Each time the pool is asked for a connection, it will first check if one is available before creating a new connection. If none are available, it will create a new one. If no connections are available and the pool is already at its maximum, the request for a new connection will <em>wait</em> for a connection to be returned. </p>
+<p>The easiest way to request and release a pooled connection is the method <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Extensions/Container.html#/s:11DatabaseKit20withPooledConnectionXeXeF"><code>withPooledConnection(...)</code></a>. </p>
+<div class="codehilite"><pre><span></span><span class="c1">// Requests a pooled connection to `.psql` db</span>
+<span class="n">req</span><span class="p">.</span><span class="n">withPooledConnection</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="p">.</span><span class="n">psql</span><span class="p">)</span> <span class="p">{</span> <span class="n">conn</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="n">conn</span><span class="p">.</span><span class="n">query</span><span class="p">(...)</span> <span class="c1">// do some db query</span>
+<span class="p">}</span>
 </pre></div>
 
 
-<h3 id="deleting-a-record">Deleting a record<a class="headerlink" href="#deleting-a-record" title="Permanent link">&para;</a></h3>
-<p>Deleting a record is similar but allows querying the keys, too.</p>
-<div class="codehilite"><pre><span></span><span class="n">client</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">keys</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;hello&quot;</span><span class="p">])</span>
+<p>This method will requested a pooled connection to the identified database and call the provided closure when the connection is available. When the <code>Future</code> returned by the closure has completed, the connection will automatically be returned to the pool.</p>
+<p>If you need access to a connection outside of a closure, you can use the related request / release methods instead.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Request a connection from the pool and wait for it to be ready.</span>
+<span class="kd">let</span> <span class="nv">conn</span> <span class="p">=</span> <span class="k">try</span> <span class="n">app</span><span class="p">.</span><span class="n">requestPooledConnection</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="p">.</span><span class="n">psql</span><span class="p">).</span><span class="n">wait</span><span class="p">()</span>
+
+<span class="c1">// Ensure the connection is released when we exit this scope.</span>
+<span class="k">defer</span> <span class="p">{</span> <span class="n">app</span><span class="p">.</span><span class="n">releasePooledConnection</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="p">.</span><span class="n">psql</span><span class="p">)</span> <span class="p">}</span>
 </pre></div>
 
 
-<p>Where the above command will remove the key "hello", the next command will delete <strong>all</strong> keys from the Redis database.</p>
-<div class="codehilite"><pre><span></span><span class="n">client</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">keys</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;*&quot;</span><span class="p">])</span>
+<p>You can configure your connection pools using the <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Structs/DatabaseConnectionPoolConfig.html"><code>DatabaseConnectionPoolConfig</code></a> struct. </p>
+<div class="codehilite"><pre><span></span><span class="c1">// Create a new, empty pool config.</span>
+<span class="kd">var</span> <span class="nv">poolConfig</span> <span class="p">=</span> <span class="n">DatabaseConnectionPoolConfig</span><span class="p">()</span>
+
+<span class="c1">// Set max connections per pool to 8.</span>
+<span class="n">poolConfig</span><span class="p">.</span><span class="n">maxConnections</span> <span class="p">=</span> <span class="mi">8</span>
+
+<span class="c1">// Register the pool config.</span>
+<span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">poolConfig</span><span class="p">)</span>
 </pre></div>
+
+
+<p>To prevent race conditions, pools are never shared between event loops. There is usually one pool per database per event loop. This means that the amount of connections your application can potentially open to a given database is equal to <code>numThreads * maxConns</code>.</p>
+<h3 id="new">New<a class="headerlink" href="#new" title="Permanent link">&para;</a></h3>
+<p>You can always create a new connection to your databases if you need to. This will not affect your pooled connections. Creating new connections is especially useful during testing and app boot. But try not to do it in route closures since heavy traffic to your app could end up creating a lot of connections!</p>
+<p>Similar to pooled connections, opening and closing new connections can be done using <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Extensions/Container.html#/s:11DatabaseKit17withNewConnectionXeXeF"><code>withNewConnection(...)</code></a>. </p>
+<div class="codehilite"><pre><span></span><span class="c1">// Creates a new connection to `.sqlite` db</span>
+<span class="n">app</span><span class="p">.</span><span class="n">withNewConnection</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="p">.</span><span class="n">sqlite</span><span class="p">)</span> <span class="p">{</span> <span class="n">conn</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="n">conn</span><span class="p">.</span><span class="n">query</span><span class="p">(...)</span> <span class="c1">// do some db query</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>This method will create a new connection, calling the supplied closure when the connection is open. When the <code>Future</code> returned in the closure completes, the connection will be closed automatically.</p>
+<p>You can also simply open a new connection with <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Extensions/Container.html#/s:11DatabaseKit13newConnectionXeXeF"><code>newConnection(...)</code></a>.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Creates a new connection to `.sqlite` db</span>
+<span class="kd">let</span> <span class="nv">conn</span> <span class="p">=</span> <span class="k">try</span> <span class="n">app</span><span class="p">.</span><span class="n">newConnection</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="p">.</span><span class="n">sqlite</span><span class="p">).</span><span class="n">wait</span><span class="p">()</span>
+
+<span class="c1">// Ensure the connection is closed when we exit this scope.</span>
+<span class="k">defer</span> <span class="p">{</span> <span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span> <span class="p">}</span>
+</pre></div>
+
+
+<h2 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h2>
+<p>Databases can opt into supporting query logging via the <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Protocols/LogSupporting.html"><code>LogSupporting</code></a> protocol. Databases that conform to this protocol can have loggers <a href="#config">configured</a> via <code>DatabasesConfig</code>.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Enable logging on the SQLite database</span>
+<span class="n">dbsConfig</span><span class="p">.</span><span class="n">enableLogging</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="p">.</span><span class="n">sqlite</span><span class="p">)</span>
+</pre></div>
+
+
+<p>By default, a simple print logger will be used, but you can pass a custom <code>DatabaseLogHandler</code>.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Create a custom log handler.</span>
+<span class="kd">let</span> <span class="nv">myLogger</span><span class="p">:</span> <span class="n">DatabaseLogHandler</span> <span class="p">=</span> <span class="p">...</span>
+
+<span class="c1">// Enable logging on SQLite w/ custom logger.</span>
+<span class="n">dbsConfig</span><span class="p">.</span><span class="n">enableLogging</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="p">.</span><span class="n">sqlite</span><span class="p">,</span> <span class="n">logger</span><span class="p">:</span> <span class="n">myLogger</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Log handlers will receive an instance of <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Structs/DatabaseLog.html"><code>DatabaseLog</code></a> for each logged query. This contains information such as the query, parameterized values, database id, and time.</p>
+<h2 id="keyed-cache">Keyed Cache<a class="headerlink" href="#keyed-cache" title="Permanent link">&para;</a></h2>
+<p>Databases can opt into supporting keyed-caching via the <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Protocols/KeyedCacheSupporting.html"><code>KeyedCacheSupporting</code></a> protocol. Databases that conform to this protocol can be used to create instances of <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Classes/DatabaseKeyedCache.html"><code>DatabaseKeyedCache</code></a>.</p>
+<p>Keyed caches are capable of getting, setting, and removing <code>Codable</code> values at keys. They are sometimes called "key value stores".</p>
+<p>To create a keyed cache, you can use the extensions on <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Extensions/Container.html#/s:11DatabaseKit10keyedCacheXeXeF"><code>Container</code></a>.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Creates a DatabaseKeyedCache with .redis connection pool</span>
+<span class="kd">let</span> <span class="nv">cache</span> <span class="p">=</span> <span class="k">try</span> <span class="n">app</span><span class="p">.</span><span class="n">keyedCache</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="p">.</span><span class="n">redis</span><span class="p">)</span>
+
+<span class="c1">// Sets &quot;hello&quot; = &quot;world&quot;</span>
+<span class="k">try</span> <span class="n">cache</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="s">&quot;world&quot;</span><span class="p">).</span><span class="n">wait</span><span class="p">()</span>
+
+<span class="c1">// Gets &quot;hello&quot;</span>
+<span class="kd">let</span> <span class="nv">world</span> <span class="p">=</span> <span class="k">try</span> <span class="n">cache</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">,</span> <span class="k">as</span><span class="p">:</span> <span class="nb">String</span><span class="p">.</span><span class="kc">self</span><span class="p">).</span><span class="n">wait</span><span class="p">()</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">world</span><span class="p">)</span> <span class="c1">// &quot;world&quot;</span>
+
+<span class="c1">// Removes &quot;hello&quot;</span>
+<span class="k">try</span> <span class="n">cache</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">).</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+
+
+<p>See the <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Protocols/KeyedCache.html"><code>KeyedCache</code></a> protocol for more information.</p>
+<h2 id="api-docs">API Docs<a class="headerlink" href="#api-docs" title="Permanent link">&para;</a></h2>
+<p>Check out the <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/index.html">API docs</a> for more in-depth information about DatabaseKit's APIs.</p>
                 
                   
                 
@@ -2178,13 +2310,13 @@ The Redis library primarily supports TCP sockets.</p>
           </a>
         
         
-          <a href="../custom-commands/" title="Custom commands" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../fluent/getting-started/" title="Getting Started" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Custom commands
+                Getting Started
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
