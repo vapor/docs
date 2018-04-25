@@ -37,6 +37,9 @@ pages:
     - 'Ciphers': 'crypto/ciphers.md'
     - 'Asymmetric': 'crypto/asymmetric.md'
     - 'Random': 'crypto/random.md'
+- 'Database Kit':
+    - 'Getting Started': 'database-kit/getting-started.md'
+    - 'Overview': 'database-kit/overview.md'
 - 'Fluent':
     - 'Getting Started': 'fluent/getting-started.md'
     - 'Models': 'fluent/models.md'
