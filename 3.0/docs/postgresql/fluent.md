@@ -44,6 +44,9 @@ vapor xcode
 Now let's create our first `PostgreSQLModel`. Models represent tables in your PostgreSQL database and they are the primary method of interacting with your data. 
 
 ```swift
+import FluentPostgreSQL
+import Vapor
+
 /// A simple user.
 final class User: PostgreSQLModel {
     /// The unique identifier for this user.
