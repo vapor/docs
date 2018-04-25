@@ -1,6 +1,6 @@
 # Using Database Kit
 
-Database Kit is a framework for configuring and working with database connections. It helps you do things like manage and pool connections, create simple keyed caches, and log queries. 
+Database Kit is a framework for configuring and working with database connections. It helps you do things like manage and pool connections, create keyed caches, and log queries. 
 
 Many of Vapor's packages such as the Fluent drivers, Redis, and Vapor core are built on top of Database Kit. This guide will walk you through some of the common APIs you might encounter when using Database Kit.
 
@@ -18,6 +18,8 @@ var dbsConfig = DatabasesConfig()
 // Register the SQLite database using '.sqlite' as an identifier.
 dbsConfig.add(sqliteDB, as: .sqlite)
 
+// Register more DBs here if you want
+
 // Register the DatabaseConfig to services.
 services.register(dbsConfig)
 ```
@@ -30,6 +32,25 @@ You can also configure options on your databases, such as enabling logging.
 // Enable logging on the SQLite database
 dbsConfig.enableLogging(for: .sqlite)
 ```
+
+See the section on [logging](#logging) for more information.
+
+### Identifier
+
+Most database integrations will provide a default [`DatabaseIdentifier`](#fixme) to use. However, you can always create your own. This is usually done by creating a static extension.
+
+```swift
+extension DatabaseIdentifier {
+    /// Test database.
+    static var testing: DatabaseIdentifier<MySQLDatabase> {
+        return "testing"
+    }
+}
+```
+
+`DatabaseIdentifier` is `ExpressibleByStringLiteral` which allows you to create one with just a `String`.
+
+### Databases
 
 Once you have registered a `DatabasesConfig` to your services and booted a container, you can take advantage of the convenience extensions on [`Container`](#fixme) to start creating connections.
 
