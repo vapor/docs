@@ -26,3 +26,6 @@ let package = Package(
 
 Use `import Vapor` to access the APIs.
 
+## API Docs
+
+The rest of this guide will give you an overview of what is available in the Vapor package. As always, feel free to visit the [API docs](http://api.vapor.codes/vapor/latest/Vapor/index.html) for more in-depth information.
