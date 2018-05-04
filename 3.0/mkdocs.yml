@@ -108,6 +108,7 @@ pages:
     - 'Getting Started': 'vapor/getting-started.md'
     - 'Client': 'vapor/client.md'
     - 'Content': 'vapor/content.md'
+    - 'Sessions': 'vapor/sessions.md'
     - 'WebSocket': 'vapor/websocket.md'
 - 'WebSocket': 
     - 'Getting Started': 'websocket/getting-started.md'
