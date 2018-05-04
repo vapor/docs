@@ -283,6 +283,68 @@ let flags: Flags ...
 try req.query.encode(flags)
 ```
 
+## Dynamic Properties
+
+One of the most frequently asked questions regarding `Content` is:
+
+> How do I add a property to just this response?
+
+The way Vapor 3 handles `Content` is based entirely on `Codable`. At no point (that is publically accessible) is your data in an arbitrary data structure like `[String: Any]` that you can mutate at will. Because of this, all data structures that your app accepts and returns _must_ be statically defined.
+
+Let's take a look at a common scenario to better understand this. Very often when you are creating a user, there are a couple different data formats required:
+
+- create: password should be supplied twice to check values match
+- internal: you should store a hash not the plaintext password
+- public: when listing users, the password hash should not be included
+
+To do this, you should create three types.
+
+```swift
+// Data required to create a user
+struct UserCreate: Content {
+    var email: String
+    var password: String
+    var passwordCheck: String
+}
+
+// Our internal User representation
+struct User: Model {
+    var id: Int?
+    var email: String
+    var passwordHash: Data
+}
+
+// Public user representation
+struct PublicUser: Content {
+    var id: Int
+    var email: String
+}
+
+// Create a router for POST /users
+router.post(UserCreate.self, at: "users") { req, userCreate -> PublicUser in
+    guard userCreate.password == passwordCheck else { /* some error */ }
+    let hasher = try req.make(/* some hasher */)
+    let user = try User(
+        email: userCreate.email, 
+        passwordHash: hasher.hash(userCreate.password)
+    )
+    // save user
+    return try PublicUser(id: user.requireID(), email: user.email)
+}
+```
+
+For other methods such as `PATCH` and `PUT`, you may want to create additional types to supports the unique semantics.
+
+### Benefits
+
+This method may seem a bit verbose at first when compared to dynamic solutions, but it has a number of key advantages:
+
+- **Statically Typed**: Very little validation is needed on top of what Swift and Codable do automatically.
+- **Readability**: No need for Strings and optional chaining when working with Swift types.
+- **Maintainable**: Large projects will appreciate having this information separated and clearly stated.
+- **Shareable**: Types defining what content your routes accept and return can be used to conform to specifications like OpenAPI or even be shared directly with clients written in Swift.
+- **Performance**: Working with native Swift types is much more performant than mutating `[String: Any]` dictionaries.
+
 ## JSON
 
 JSON is a very popular encoding format for APIs and the way in which dates, data, floats, etc are encoded is non-standard. Because of this, Vapor makes it easy to use custom [`JSONDecoder`](#fixme)s when you interact with other APIs.
