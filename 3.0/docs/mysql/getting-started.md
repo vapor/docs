@@ -1,3 +1,6 @@
+!!! warning
+    MySQL 3.0 is still in beta. Some documentation may be missing or out of date.
+
 # Getting Started with MySQL
 
 [MySQL](https://www.mysql.com) is a widely-used, open-source database. It has an extremely popular wire-protocol that other open-source databases like [MariaDB](https://mariadb.com) also support.

@@ -1,3 +1,6 @@
+!!! warning
+    PostgreSQL 1.0 is still in beta. Some documentation may be missing or out of date.
+
 # Getting Started with PostgreSQL
 
 [PostgreSQL](https://www.postgresql.org) is a powerful, open-source database that puts an emphasis on standards compliance. PostgreSQL's strong type-system make it a great fit with Swift, and it is the preferred database for use with Vapor.

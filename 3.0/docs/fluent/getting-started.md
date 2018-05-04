@@ -1,3 +1,6 @@
+!!! warning
+    Fluent 3.0 is still in beta. Some documentation may be missing or out of date.
+
 # Getting Started with Fluent
 
 Fluent ([vapor/fluent](https://github.com/vapor/fluent)) is a type-safe, fast, and easy-to-use ORM framework built for Swift.

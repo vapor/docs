@@ -1,3 +1,6 @@
+!!! warning
+    Redis 3.0 is still in beta. Some documentation may be missing or out of date.
+
 # Redis
 
 Redis is a Redis client library that can communicate with a Redis database.

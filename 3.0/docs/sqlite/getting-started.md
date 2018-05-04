@@ -1,3 +1,6 @@
+!!! warning
+    SQLite 3.0 is still in beta. Some documentation may be missing or out of date.
+
 # Getting Started with SQLite
 
 [SQLite](https://www.sqlite.org/index.html) is a open-source, embedded database. Its simplistic nature makes it a great candiate for prototyping and testing.

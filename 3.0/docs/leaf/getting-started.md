@@ -1,3 +1,6 @@
+!!! warning
+    Leaf 3.0 is still in beta. Some documentation may be missing or out of date.
+
 # Leaf
 
 Leaf is a templating language that integrates with Futures, Reactive Streams and Codable. This section outlines how to import the Leaf package into a Vapor project.
