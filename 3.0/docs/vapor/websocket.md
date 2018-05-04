@@ -6,7 +6,7 @@ Vapor includes convenience methods for working with the lower level WebSocket [c
 
 Vapor's WebSocket server includes the ability to route incoming requests just like its HTTP server. 
 
-When Vapor's main HTTP [`Server`](#fixme) boots it will attempt to create a [`WebSocketServer`](#fixme). If one is registered, it will be added as an HTTP upgrade handler to the server. 
+When Vapor's main HTTP [`Server`](https://api.vapor.codes/vapor/latest/Vapor/Protocols/Server.html) boots it will attempt to create a [`WebSocketServer`](https://api.vapor.codes/vapor/latest/Vapor/Protocols/WebSocketServer.html). If one is registered, it will be added as an HTTP upgrade handler to the server. 
 
 So to create a WebSocket server, all you need to do is register one in  [`configure.swift`](../getting-started/structure.md#configureswift).
 
@@ -60,7 +60,7 @@ Welcome, Vapor!
 
 ## Client
 
-Vapor also supports connecting to WebSocket servers as a client. The easiest way to connect to a WebSocket server is through the [`webSocket(...)`](#fixme) method on [`Client`](#fixme).
+Vapor also supports connecting to WebSocket servers as a client. The easiest way to connect to a WebSocket server is through the [`webSocket(...)`](https://api.vapor.codes/vapor/latest/Vapor/Protocols/Client.html#/s:5Vapor6ClientPAAE9webSocketXeXeF) method on [`Client`](https://api.vapor.codes/vapor/latest/Vapor/Protocols/Client.html).
 
 For this example, we will assume our application connects to a WebSocket server in [`boot.swift`](../getting-started/structure.md#bootswift)
 

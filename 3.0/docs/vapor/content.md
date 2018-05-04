@@ -37,7 +37,7 @@ Notice the key names exactly match the keys in the request data. The expected da
 
 #### Decode
 
-Now we are ready to decode that HTTP request. Every [`Request`](#fixme) has a [`ContentContainer`](#fixme) that we can use to decode content from the message's body.
+Now we are ready to decode that HTTP request. Every [`Request`](https://api.vapor.codes/vapor/latest/Vapor/Classes/Request.html) has a [`ContentContainer`](https://api.vapor.codes/vapor/latest/Vapor/Structs/ContentContainer.html) that we can use to decode content from the message's body.
 
 ```swift
 router.post("login") { req -> Future<HTTPStatus> in
@@ -56,7 +56,7 @@ We use `.map(to:)` here since `decode(...)` returns a [future](../async/getting-
 
 #### Router
 
-To help make decoding content from incoming requests easier, Vapor offers a few extensions on [`Router`](#fixme) to do this automatically.
+To help make decoding content from incoming requests easier, Vapor offers a few extensions on [`Router`](https://api.vapor.codes/vapor/latest/Vapor/Protocols/Router.html) to do this automatically.
 
 ```swift
 router.post(LoginRequest.self, at: "login") { req, loginRequest in
@@ -128,7 +128,7 @@ router.get("user") { req -> User in
 }
 ```
 
-This will create a default `Response` with `200 OK` status code and minimal headers. You can customize the response using a convenience [`encode(...)`](#fixme) method.
+This will create a default `Response` with `200 OK` status code and minimal headers. You can customize the response using a convenience `encode(...)` method.
 
 ```swift
 router.get("user") { req -> Future<Response> in
@@ -159,7 +159,7 @@ struct User: Content {
 
 ## Client
 
-Encoding content to HTTP requests sent by [`Client`](#fixme)s is similar to encoding HTTP responses returned by your server. 
+Encoding content to HTTP requests sent by [`Client`](https://api.vapor.codes/vapor/latest/Vapor/Protocols/Client.html)s is similar to encoding HTTP responses returned by your server. 
 
 ### Request
 
@@ -238,7 +238,7 @@ print(user) // Future<User>
 
 ### Example
 
-Let's now take a look at our complete [`Client`](#fixme) request that both encodes and decodes content.
+Let's now take a look at our complete [`Client`](https://api.vapor.codes/vapor/latest/Vapor/Protocols/Client.html) request that both encodes and decodes content.
 
 ```swift
 // Create the LoginRequest data
@@ -256,7 +256,7 @@ print(user) // Future<User>
 
 ## Query String
 
-URL-Encoded Form data can be encoded and decoded from an HTTP request's URI query string just like content. All you need is a class or struct that conforms to [`Content`](#fixme). In these examples, we will be using the following struct.
+URL-Encoded Form data can be encoded and decoded from an HTTP request's URI query string just like content. All you need is a class or struct that conforms to [`Content`](https://api.vapor.codes/vapor/latest/Vapor/Protocols/Content.html). In these examples, we will be using the following struct.
 
 ```swift
 struct Flags: Content {
@@ -267,7 +267,7 @@ struct Flags: Content {
 
 ### Decode
 
-All [`Request`](#fixme)s have a [`QueryContainer`](#fixme) that you can use to decode the query string.
+All [`Request`](https://api.vapor.codes/vapor/latest/Vapor/Classes/Request.html)s have a [`QueryContainer`](https://api.vapor.codes/vapor/latest/Vapor/Structs/QueryContainer.html) that you can use to decode the query string.
 
 ```swift
 let flags = try req.query.decode(Flags.self)
@@ -276,7 +276,7 @@ print(flags) // Flags
 
 ### Encode
 
-You can also encode content. This is useful for encoding query strings when using [`Client`](#fixme).
+You can also encode content. This is useful for encoding query strings when using [`Client`](https://api.vapor.codes/vapor/latest/Vapor/Protocols/Client.html).
 
 ```swift
 let flags: Flags ...
@@ -347,7 +347,7 @@ This method may seem a bit verbose at first when compared to dynamic solutions, 
 
 ## JSON
 
-JSON is a very popular encoding format for APIs and the way in which dates, data, floats, etc are encoded is non-standard. Because of this, Vapor makes it easy to use custom [`JSONDecoder`](#fixme)s when you interact with other APIs.
+JSON is a very popular encoding format for APIs and the way in which dates, data, floats, etc are encoded is non-standard. Because of this, Vapor makes it easy to use custom [`JSONDecoder`](https://api.vapor.codes/vapor/latest/Vapor/Extensions/JSONDecoder.html#/s:5Vapor6customXeXeFZ)s when you interact with other APIs.
 
 ```swift
 // Conforms to Encodable
@@ -367,7 +367,7 @@ If you would like to set a custom JSON encoder or decoder globally, you can do s
 
 ## Configure
 
-Use [`ContentConfig`](#fixme) to register custom encoder/decoders for your application. These custom coders will be used anywhere you do `content.encode`/`content.decode`.
+Use [`ContentConfig`](https://api.vapor.codes/vapor/latest/Vapor/Structs/ContentConfig.html) to register custom encoder/decoders for your application. These custom coders will be used anywhere you do `content.encode`/`content.decode`.
 
 ```swift
 /// Create default content config

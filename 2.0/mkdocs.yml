@@ -99,7 +99,7 @@ pages:
 - Version (2.0):
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'
-    - '3.0-rc': 'version/3_0.md'
+    - '3.0': 'version/3_0.md'
     - 'Support': 'version/support.md'
 
 markdown_extensions:
@@ -112,8 +112,8 @@ markdown_extensions:
 theme: 
     name: 'material'
     palette:
-        primary: 'blue'
-        accent: 'purple'
+        primary: 'grey'
+        accent: 'grey'
     logo: 'images/droplet-white.svg'
 
 repo_url: http://github.com/vapor/vapor

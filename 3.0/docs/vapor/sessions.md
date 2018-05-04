@@ -8,11 +8,11 @@ When a new client connects and session data is set, Vapor will return a `Set-Coo
 
 ## Middleware
 
-The first step to using sessions is enabling [`SessionsMiddleware`](#fixme). This can be done globally for the entire application or on a per-route basis.
+The first step to using sessions is enabling [`SessionsMiddleware`](https://api.vapor.codes/vapor/latest/Vapor/Classes/SessionsMiddleware.html). This can be done globally for the entire application or on a per-route basis.
 
 ### Globally
 
-To globally enable sessions, add the middleware to your [`MiddlewareConfig`](#fixme).
+To globally enable sessions, add the middleware to your [`MiddlewareConfig`](https://api.vapor.codes/vapor/latest/Vapor/Structs/MiddlewareConfig.html).
 
 
 ```swift
@@ -25,7 +25,7 @@ This is usually done in [`configure.swift`](../getting-started/structure.md#conf
 
 ### Per Route
 
-To enable sessions for a group of routes, use the [`grouped(...)`](#fixme) methods on `Router`.
+To enable sessions for a group of routes, use the [`grouped(...)`](https://api.vapor.codes/vapor/latest/Vapor/Protocols/Router.html) methods on `Router`.
 
 ```swift
 // create a grouped router at /sessions w/ sessions enabled
@@ -39,13 +39,13 @@ sessions.get("foo") { req in
 
 ## Sessions
 
-When `SessionsMiddleware` boots it will attempt to make a [`Sessions`](#fixme) and a [`SessionsConfig`](#fixme). Vapor will use an in-memory session by default. You can override both of these services by registering them in `configure.swift`.
+When `SessionsMiddleware` boots it will attempt to make a [`Sessions`](https://api.vapor.codes/vapor/latest/Vapor/Protocols/Sessions.html) and a [`SessionsConfig`](https://api.vapor.codes/vapor/latest/Vapor/Structs/SessionsConfig.html). Vapor will use an in-memory session by default. You can override both of these services by registering them in `configure.swift`.
 
 You can use Fluent databases (like MySQL, PostgreSQL, etc) or caches like Redis to store your sessions. See the respective guides for more information.
 
 ## Session
 
-Once you have `SessionsMiddleware` enabled, you can use [`req.session()`](#fixme) to access the session. Here is a simple example that does simple CRUD operations on a `"name"` value in the session.
+Once you have `SessionsMiddleware` enabled, you can use [`req.session()`](https://api.vapor.codes/vapor/latest/Vapor/Classes/Request.html#/s:5Vapor7RequestC7sessionAA7SessionCyKF) to access the session. Here is a simple example that does simple CRUD operations on a `"name"` value in the session.
 
 ```swift
 // create a route at GET /sessions/get
