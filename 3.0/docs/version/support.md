@@ -1,16 +1,12 @@
 # Version Support
 
-![Support Matrix](https://cloud.githubusercontent.com/assets/1342803/26206235/24c6ebb4-3bdc-11e7-9cea-1405030f20b0.png)
+![Support Matrix](https://user-images.githubusercontent.com/1342803/39658502-3a7f7c8e-4fe3-11e8-8551-d2c30d44ee05.png)
 
-Vapor 3.0 is currently in beta.
+Vapor 3.0 is currently active.
 
-Vapor 2.0 is currently active.
+Vapor 2.4 is being maintained until November 2018.
 
-Vapor 1.5 is being maintained until November 2017.
-
-!!! warning
-	Dashed blocks and lines represent the team's goals and are not yet guaranteed. 
-	Vapor 3's release and the beginning of Vapor 2's maintenance phase have not yet been decided.
+Vapor 1.5 is no longer maintained (ended November 2017).
 
 ## Core
 
