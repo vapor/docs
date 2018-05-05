@@ -54,7 +54,7 @@ you want to get an item with a supplied identifier, e.g., `GET /users/:id`
 
 ```swift
 router.get("users", Int.parameter) { req -> String in
-    let id = try req.parameter(Int.self)
+    let id = try req.parameters.next(Int.self)
     return "requested id #\(id)"
 }
 ```
