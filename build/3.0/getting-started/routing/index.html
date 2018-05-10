@@ -2142,7 +2142,7 @@
 <p>Sometimes you may want one of the components of your route path to be dynamic. This is often used when
 you want to get an item with a supplied identifier, e.g., <code>GET /users/:id</code></p>
 <div class="codehilite"><pre><span></span><span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;users&quot;</span><span class="p">,</span> <span class="nb">Int</span><span class="p">.</span><span class="n">parameter</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="k">in</span>
-    <span class="kd">let</span> <span class="nv">id</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">parameter</span><span class="p">(</span><span class="nb">Int</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nv">id</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">parameters</span><span class="p">.</span><span class="n">next</span><span class="p">(</span><span class="nb">Int</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
     <span class="k">return</span> <span class="s">&quot;requested id #</span><span class="si">\(</span><span class="n">id</span><span class="si">)</span><span class="s">&quot;</span>
 <span class="p">}</span>
 </pre></div>
