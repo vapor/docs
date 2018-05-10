@@ -21,7 +21,7 @@ Here are some other great places to find information about Vapor.
 
 | name           | description                                      | link                                                            |
 |----------------|--------------------------------------------------|-----------------------------------------------------------------|
-| Vapor Chat     | Chat with ~5,000 Vapor developers.               | [visit &rarr;](http://vapor.team)                               |
+| Vapor Discord  | Chat with ~5,000 Vapor developers.               | [visit &rarr;](http://vapor.team)                               |
 | API docs       | Auto-generated documentation from code comments. | [visit &rarr;](http://api.vapor.codes)                          |
 | Stack Overflow | Ask and answer questions with the `vapor` tag.   | [visit &rarr;](http://stackoverflow.com/questions/tagged/vapor) |
 | Source Code    | Learn how Vapor works under the hood.            | [visit &rarr;](https://github.com/vapor/vapor)                  |
