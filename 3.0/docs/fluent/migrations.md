@@ -37,7 +37,7 @@ we will use the `.create(...)` function on the supplied database connection.
 extension User: Migration {
     /// See Migration.prepare
     static func prepare(on connection: MySQLConnection) -> Future<Void> {
-        return connection.create(self) { builder in
+        return MySQLDatabase.create(self, on: connection) { builder in
             try builder.field(for: \.id)
             try builder.field(for: \.name)
             try builder.field(for: \.age)
@@ -75,7 +75,7 @@ To implement `revert` for our model, we simply use `.delete` to indicate that we
 extension User: Migration {
     /// See Migration.revert
     static func revert(on connection: MySQLConnection) -> Future<Void> {
-        return connection.delete(self)
+        return MySQLDatabase.delete(self, on: connection)
     }
 }
 ```
@@ -88,7 +88,7 @@ We now have a fully functioning model with migration!
 extension TestUser: Migration {
     /// See Migration.prepare
     static func prepare(on connection: SQLiteConnection) -> Future<Void> {
-        return connection.create(self) { builder in
+        return SQLiteDatabase.create(self, on: connection) { builder in
             try builder.field(for: \.id)
             try builder.field(for: \.name)
             try builder.field(for: \.age)
@@ -97,7 +97,7 @@ extension TestUser: Migration {
 
     /// See Migration.revert
     static func revert(on connection: SQLiteConnection) -> Future<Void> {
-        return connection.delete(self)
+        return SQLiteDatabase.delete(self, on: connection)
     }
 }
 ```
