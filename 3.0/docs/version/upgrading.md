@@ -72,3 +72,4 @@ This migration guide is a work in progress. Please feel free to add any migratio
 
 Join the [#upgrading-to-3](https://discordapp.com/invite/BnXmVGA) in Vapor's team chat to ask questions and get help in real time.
 
+Also check out [Getting started with Vapor 3](https://engineering.nodesagency.com/articles/Vapor/Getting-started-with-Vapor-3/), an in-depth article about the differences between Vapor 2 and 3. This article was written by two developers from an app development company using Vapor. 
