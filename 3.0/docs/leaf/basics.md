@@ -46,7 +46,7 @@ When working with Future results, simply pass the `Future` in your template cont
 Streams that carry an encodable type need to be encoded before they're usable within Leaf.
 
 ```swift
-struct Profile: Codable {
+struct Profile: Encodable {
     var friends: EncodableStream
     var currentUser: Future<User>
 }
