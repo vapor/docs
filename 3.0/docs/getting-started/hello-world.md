@@ -33,7 +33,7 @@ The toolbox will ask you if you'd like to open Xcode automatically, select `yes`
 
 ## Build & Run
 
-You should now have Xcode open and running. Select the [run scheme](xcode.md#run) from the scheme menu,
+You should now have Xcode open and running. Select the [run scheme](xcode.md#run) from the scheme menu and My Mac from devices,
 then click the play button.
 
 You should see the terminal pop up at the bottom of the screen.
