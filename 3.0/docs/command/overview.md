@@ -110,7 +110,7 @@ struct CowsayCommand: Command {
     ...
     
     /// See `Command`.
-    func run(using context: CommandContext) throws -> Future {
+    func run(using context: CommandContext) throws -> Future<Void> {
         let message = try context.argument("message")
         /// We can use requireOption here since both options have default values
         let eyes = try context.requireOption("eyes")
