@@ -2139,7 +2139,7 @@ we will use the <code>.create(...)</code> function on the supplied database conn
 <div class="codehilite"><pre><span></span><span class="kd">extension</span> <span class="nc">User</span><span class="p">:</span> <span class="n">Migration</span> <span class="p">{</span>
     <span class="c1">/// See Migration.prepare</span>
     <span class="kd">static</span> <span class="kd">func</span> <span class="nf">prepare</span><span class="p">(</span><span class="n">on</span> <span class="n">connection</span><span class="p">:</span> <span class="n">MySQLConnection</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">connection</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">builder</span> <span class="k">in</span>
+        <span class="k">return</span> <span class="n">MySQLDatabase</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">on</span><span class="p">:</span> <span class="n">connection</span><span class="p">)</span> <span class="p">{</span> <span class="n">builder</span> <span class="k">in</span>
             <span class="k">try</span> <span class="n">builder</span><span class="p">.</span><span class="n">field</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="err">\</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
             <span class="k">try</span> <span class="n">builder</span><span class="p">.</span><span class="n">field</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="err">\</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
             <span class="k">try</span> <span class="n">builder</span><span class="p">.</span><span class="n">field</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="err">\</span><span class="p">.</span><span class="n">age</span><span class="p">)</span>
@@ -2169,7 +2169,7 @@ app with the <code>--revert</code> option. </p>
 <div class="codehilite"><pre><span></span><span class="kd">extension</span> <span class="nc">User</span><span class="p">:</span> <span class="n">Migration</span> <span class="p">{</span>
     <span class="c1">/// See Migration.revert</span>
     <span class="kd">static</span> <span class="kd">func</span> <span class="nf">revert</span><span class="p">(</span><span class="n">on</span> <span class="n">connection</span><span class="p">:</span> <span class="n">MySQLConnection</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">connection</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">MySQLDatabase</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">on</span><span class="p">:</span> <span class="n">connection</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -2180,7 +2180,7 @@ app with the <code>--revert</code> option. </p>
 <div class="codehilite"><pre><span></span><span class="kd">extension</span> <span class="nc">TestUser</span><span class="p">:</span> <span class="n">Migration</span> <span class="p">{</span>
     <span class="c1">/// See Migration.prepare</span>
     <span class="kd">static</span> <span class="kd">func</span> <span class="nf">prepare</span><span class="p">(</span><span class="n">on</span> <span class="n">connection</span><span class="p">:</span> <span class="n">SQLiteConnection</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">connection</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">builder</span> <span class="k">in</span>
+        <span class="k">return</span> <span class="n">SQLiteDatabase</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">on</span><span class="p">:</span> <span class="n">connection</span><span class="p">)</span> <span class="p">{</span> <span class="n">builder</span> <span class="k">in</span>
             <span class="k">try</span> <span class="n">builder</span><span class="p">.</span><span class="n">field</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="err">\</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
             <span class="k">try</span> <span class="n">builder</span><span class="p">.</span><span class="n">field</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="err">\</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
             <span class="k">try</span> <span class="n">builder</span><span class="p">.</span><span class="n">field</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="err">\</span><span class="p">.</span><span class="n">age</span><span class="p">)</span>
@@ -2189,7 +2189,7 @@ app with the <code>--revert</code> option. </p>
 
     <span class="c1">/// See Migration.revert</span>
     <span class="kd">static</span> <span class="kd">func</span> <span class="nf">revert</span><span class="p">(</span><span class="n">on</span> <span class="n">connection</span><span class="p">:</span> <span class="n">SQLiteConnection</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">connection</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">SQLiteDatabase</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">on</span><span class="p">:</span> <span class="n">connection</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>

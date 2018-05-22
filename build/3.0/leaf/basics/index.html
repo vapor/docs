@@ -2299,7 +2299,7 @@
 <p>Leaf's engine is completely reactive, supporting both streams and futures. One of the only ones of its kind.</p>
 <p>When working with Future results, simply pass the <code>Future</code> in your template context.
 Streams that carry an encodable type need to be encoded before they're usable within Leaf.</p>
-<div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">Profile</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">Profile</span><span class="p">:</span> <span class="n">Encodable</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nv">friends</span><span class="p">:</span> <span class="n">EncodableStream</span>
     <span class="kd">var</span> <span class="nv">currentUser</span><span class="p">:</span> <span class="n">Future</span><span class="p">&lt;</span><span class="n">User</span><span class="p">&gt;</span>
 <span class="p">}</span>

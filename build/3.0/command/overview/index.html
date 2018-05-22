@@ -2222,7 +2222,7 @@ Options:
     <span class="p">...</span>
 
     <span class="c1">/// See `Command`.</span>
-    <span class="kd">func</span> <span class="nf">run</span><span class="p">(</span><span class="n">using</span> <span class="n">context</span><span class="p">:</span> <span class="n">CommandContext</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Future</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">run</span><span class="p">(</span><span class="n">using</span> <span class="n">context</span><span class="p">:</span> <span class="n">CommandContext</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nv">message</span> <span class="p">=</span> <span class="k">try</span> <span class="n">context</span><span class="p">.</span><span class="n">argument</span><span class="p">(</span><span class="s">&quot;message&quot;</span><span class="p">)</span>
         <span class="c1">/// We can use requireOption here since both options have default values</span>
         <span class="kd">let</span> <span class="nv">eyes</span> <span class="p">=</span> <span class="k">try</span> <span class="n">context</span><span class="p">.</span><span class="n">requireOption</span><span class="p">(</span><span class="s">&quot;eyes&quot;</span><span class="p">)</span>
