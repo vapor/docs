@@ -72,8 +72,8 @@ pages:
     - 'MySQL Core': 'mysql/core.md'
 - 'PostgreSQL':
     - 'Getting Started': 'postgresql/getting-started.md'
-    - 'Fluent PostgreSQL': 'postgresql/fluent.md'
-    - 'PostgreSQL Core': 'postgresql/core.md'
+    - 'Core': 'postgresql/core.md'
+    - 'Fluent': 'postgresql/fluent.md'
 - 'Redis':
     - 'Getting Started': 'redis/getting-started.md'
     - 'Basics': 'redis/basics.md'

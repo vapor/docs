@@ -23,7 +23,7 @@ let package = Package(
         /// Any other dependencies ...
         
         // 🖋🐘 Swift ORM (queries, models, relations, etc) built on PostgreSQL.
-        .package(url: "https://github.com/vapor/fluent-postgresql.git", from: "1.0.0-rc"),
+        .package(url: "https://github.com/vapor/fluent-postgresql.git", from: "1.0.0"),
     ],
     targets: [
         .target(name: "App", dependencies: ["FluentPostgreSQL", ...]),
@@ -41,7 +41,7 @@ vapor xcode
 
 ### Model
 
-Now let's create our first `PostgreSQLModel`. Models represent tables in your PostgreSQL database and they are the primary method of interacting with your data. 
+Now let's create your first `PostgreSQLModel`. Models represent tables in your PostgreSQL database and they are the primary method of interacting with your data. 
 
 ```swift
 import FluentPostgreSQL
@@ -69,7 +69,7 @@ final class User: PostgreSQLModel {
 
 The example above shows a `PostgreSQLModel` for a simple model representing a user. You can make both `struct`s and `class`es a model. You can even conform types that come from external modules. The only requirement is that these types conform to `Codable`, which must be declared on the base type for synthesized (automatic) conformance.
 
-Standard practice with PostgreSQL databases is using an auto-generated `INTEGER` for creating and storing unique identifiers in the `id` column. It's also possible to use `UUID`s or even `String`s for your identifiers. There are convenience protocol for that. 
+Standard practice with PostgreSQL databases is using an auto-generated `BIGINT` for creating and storing unique identifiers in the `id` column. It's also possible to use `UUID`s or even `String`s for your identifiers. There are convenience protocol for that. 
 
 |protocol               |type  |key|
 |-----------------------|------|---|
@@ -82,19 +82,78 @@ Standard practice with PostgreSQL databases is using an auto-generated `INTEGER`
     
 ### Migration
 
-All of your models (with some rare exceptions) should have a corresponding table&mdash;or _schema_&mdash;in your database. You can use a [Fluent &rarr; Migration](../fluent/migrations.md) to automatically generate this schema in a testable, maintainable way. Fluent makes it easy to automatically generate a migration for your model
+Most of your models will have a corresponding table&mdash;or _schema_&mdash;in your database. You can use [Fluent &rarr; Migration](../fluent/migrations.md) to setup your schemas in a testable, maintainable way. 
 
-!!! tip
-    If you are creating models to represent an existing table or database, you can skip this step.
+If you are creating models to represent an existing table in your database, you don't need a migration. Just set the `defaultDatabase` property on your model so that Fluent knows which database to use if none is specified explicitly.
+
+```swift
+User.defaultDatabase = .psql
+```
+
+#### Automatic
+
+Fluent makes it easy to automatically generate a migration for your model
     
 ```swift
 /// Allows `User` to be used as a migration.
-extension User: Migration { }
+extension User: PostgreSQLMigration { }
 ```
 
-That's all it takes. Fluent uses Codable to analyze your model and will attempt to create the best possible schema for it.
+That's all it takes. Fluent uses Codable to analyze your model and will attempt to create an appropriate schema for it.
 
-Take a look at [Fluent &rarr; Migration](../fluent/migrations.md) if you are interested in customizing this migration.
+#### Custom
+
+You can also implement custom migrations for more fine-grain control over the schemas generated. For example, you may want to store a User's name using a `VARCHAR(64)` instead of `TEXT`. Just like `PostgreSQLModel`, any `struct` or `class` can conform to `PostgreSQLMigration`.
+
+```swift
+/// Creates a table for `User`s. 
+struct CreateUser: PostgreSQLMigration {
+    static func prepare(on conn: PostgreSQLConnection) -> Future<Void> {
+        return PostgreSQLDatabase.create(User.self, on: conn) { builder in
+            builder.field(for: \.id)
+            builder.field(for: \.name, type: .varchar(64))
+        }
+    }
+
+    static func revert(on conn: PostgreSQLConnection) -> Future<Void> {
+        return PostgreSQLDatabase.delete(User.self, on: conn)
+    }
+}
+```
+
+Migrations consist of two methods: `prepare(...)` and `revert(...)`. The prepare method runs once and should prepare the database for storing and fetching your model. The revert method runs only if you need to undo changes to your database and should undo anything you do in the prepare method.
+
+Custom migrations are also useful for situations where you may need to _alter_ an existing table, like to add a new column.
+
+```swift
+/// Adds a new field to `User`'s table.
+struct AddUsernameToUser: PostgreSQLMigration {
+    static func prepare(on conn: PostgreSQLConnection) -> Future<Void> {
+        return PostgreSQLDatabase.update(User.self, on: conn) { builder in
+            builder.field(for: \.username)
+        }
+    }
+
+    static func revert(on conn: PostgreSQLConnection) -> Future<Void> {
+        return PostgreSQLDatabase.update(User.self) { builder in
+            builder.deleteField(for: \.username, on: conn)
+        }
+    }
+}
+```
+
+#### Constraints
+
+You can also add foreign key and unique constraints to your models during a migration.
+
+```swift
+// creates a foreign key constraint ensuring Post.userID is a valid User.id
+builder.foreignKey(from: \Post.userID, to: \User.id)
+// creates a unique constraint ensuring no other posts have the same slug
+builder.unique(on: \Post.slug)
+``` 
+
+Take a look at [Fluent &rarr; Migration](../fluent/migrations.md) if you are interested in learning more about migrations.
 
 ### Configure
 
@@ -120,6 +179,9 @@ services.register(migrations)
     
 /// Other services....
 ```
+
+!!! tip
+    If this migration you are adding is also a model, you can use the [`add(model:on:)`](#fixme) convenience to automatically set the model's [`defaultDatabase`](#fixme) property. Otherwise, use the [`add(migration:on)`](#fixme) method.
 
 Registering the provider will add all of the services required for Fluent PostgreSQL to work properly. It also includes a default database config struct that uses typical development environment credentials. 
 
@@ -159,9 +221,13 @@ Let's take a look at a raw PostgreSQL query.
 
 ```swift
 router.get("psql-version") { req -> Future<String> in
+    struct Version: Decodable {
+        var version: String
+    }
+
     return req.withPooledConnection(to: .psql) { conn in
-        return try conn.query("select version() as v;").map(to: String.self) { rows in
-            return try rows[0].firstValue(forColumn: "v")?.decode(String.self) ?? "n/a"
+        return try conn.query("SELECT version() as version;", decoding: Version.self).map { rows in
+            return try rows[0].version
         }
     }
 }
@@ -169,4 +235,4 @@ router.get("psql-version") { req -> Future<String> in
 
 In the above example, `withPooledConnection(to:)` is used to create a connection to the database identified by `.psql`. This is the default database identifier. See [Fluent &rarr; Database](../fluent/database.md#identifier) to learn more.
 
-Once we have the `PostgreSQLConnection`, we can perform a query on it. You can learn more about the methods available in [PostgreSQL &rarr; Core](core.md).
+Once you have the `PostgreSQLConnection`, we can perform a query on it. You can learn more about the methods available in [PostgreSQL &rarr; Core](core.md).
