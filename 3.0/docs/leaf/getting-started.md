@@ -74,9 +74,7 @@ You may also wish to install one these third-party packages that provide support
 
 ### Xcode
 
-It is not currently possible to implement Leaf Syntax Highlighting in Xcode, however, using Xcode's HTML Syntax Coloring can help a bit. Select one or more Leaf files and then choose Editor > Syntax Coloring > HTML.  Your selected Leaf files will now use Xcode's HTML Syntax Coloring.  Unfortunately the usefulness of this is limited because this association will be removed when `vapor xcode` is run.
-
-There appears to be a way to [make Xcode file associations persist](http://stackoverflow.com/questions/9050035/how-to-make-xcode-recognize-a-custom-file-extension-as-objective-c-for-syntax-hi) but that requires a bit more kung-fu.
+There is a solution that associates .leaf-files in Xcode with HTML syntax coloring automatically: [xcode-leaf-color-schemer](https://github.com/ashokgelal/xcode-leaf-color-schemer) by ashokgelal.
 
 ### VS Code
 
