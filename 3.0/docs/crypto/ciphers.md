@@ -9,7 +9,7 @@ Read more about [ciphers](https://en.wikipedia.org/wiki/Cipher) on Wikipedia.
 Use the global convenience variables for encrypting data with common algorithms.
 
 ```swift
-let ciphertext = try AES128.encrypt("vapor", key: "secret")
+let ciphertext = try AES128.encrypt("vapor", key: "alengthkeymust16")//key must have 16 characters
 print(ciphertext) /// Data
 ```
 
@@ -19,7 +19,7 @@ Decryption works very similarly to [encryption](#encrypt). The following snippet
 
 ```swift
 let plaintext = try AES128.decrypt(ciphertext, key: "secret")
-print(plaintext) /// "vapor"
+print(plaintext) /// Data
 ```
 
 See the Crypto module's [global variables](https://api.vapor.codes/crypto/latest/Crypto/Global%20Variables.html#/Ciphers) for a list of all available cipher algorithms.
