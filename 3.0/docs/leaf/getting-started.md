@@ -66,7 +66,7 @@ The Leaf package adds Leaf to your project, but to configure it for use you must
 
 ## Syntax Highlighting
 
-You may also wish to install one these third-party packages that provide support for syntax highlighting in Leaf templates.
+You may also wish to install one of these third-party packages that provide support for syntax highlighting in Leaf templates.
 
 ### Atom
 
