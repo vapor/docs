@@ -109,7 +109,7 @@ return req.withConnection(to: .psql) { conn in
 
 As the names imply,  `withPooledConnection(to:)` utilizes a connection pool. `withConnection(to:)` does not. Connection pooling is a great way to ensure your application does not exceed the limits of your database, even under peak load.
 
-### Simply Query
+### Simple Query
 
 Use `.simpleQuery(_:)` to perform a query on your PostgreSQL database that does not bind any parameters. Some queries you send to PostgreSQL may actually require that you use the `simpleQuery(_:)` method instead of the parameterized method. 
 
