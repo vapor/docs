@@ -1,3 +1,0 @@
-# Fluent Pivot
-
-Coming soon.
