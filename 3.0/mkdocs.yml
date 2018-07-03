@@ -43,14 +43,10 @@ pages:
 - 'Fluent':
     - 'Getting Started': 'fluent/getting-started.md'
     - 'Models': 'fluent/models.md'
-    - 'Migrations': 'fluent/migrations.md'
     - 'Querying': 'fluent/querying.md'
-    - 'Query Builder': 'fluent/query-builder.md'
-    - 'Schema Builder': 'fluent/schema-builder.md'
+    - 'Migrations': 'fluent/migrations.md'
     - 'Relations': 'fluent/relations.md'
-    - 'Pivot': 'fluent/pivot.md'
     - 'Transaction': 'fluent/transaction.md'
-    - 'Database': 'fluent/database.md'
 - 'HTTP':
     - 'Getting Started': 'http/getting-started.md'
     - 'Client': 'http/client.md'

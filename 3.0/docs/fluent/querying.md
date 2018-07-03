@@ -1,191 +1,188 @@
 # Querying Models
 
-Once you have a [model](models.md) (and optionally a [migration](migrations.md)) you can start
-querying your database to create, read, update, and delete data.
+Once you have a [model](models.md) you can start querying your database to create, read, update, and delete data.
 
 ## Connection
 
 The first thing you need to query your database, is a connection to it. Luckily, they are easy to get.
 
-You can use either the application or an incoming request to create a database connection. You just need
-access to the database identifier.
-
 ### Request
 
-The preferred method for getting access to a database connection is via an incoming request.
+The easiest way to connect to your database is simply using the incoming `Request`. This will use the model's [`defaultDatabase`](#fixme) property to automatically fetch a pooled connection to the database. 
 
 ```swift
-router.get(...) { req in
-    return req.withConnection(to: .foo) { db in
-        // use the db here
-    }
+router.get("galaxies") { req in
+    return Galaxy.query(on: req).all()
 }
 ```
 
-The first parameter is the database's identifier. The second parameter is a closure
-that accepts a connection to that database.
-
-!!! tip
-    Although the closure to `.withConnection(to: ...)` accepts a database _connection_, we often use just `db` for short.
-
-The closure is expected to return a `Future<Void>`. When this future is completed, the connection will be released
-back into Fluent's connection pool. This is usually acheived by simply returning the query as we will soon see.
-
-### Application
-
-You can also create a database connection using the application. This is useful for cases where you must access
-the database from outside a request/response event.
-
-```swift
-let res = app.withConnection(to: .foo) { db in
-    // use the db here
-}
-print(res) // Future<T>
-```
-
-This is usually done in the [boot section](../getting-started/structure.md#boot) of your application.
-
-!!! warning
-    Do not use database connections created by the application in a route closure (when responding to a request).
-    Always use the incoming request to create a connection to avoid threading issues.
+You can use convenience methods on a `Container` to create connections manually. Learn more about that in [DatabaseKit &rarr; Overview &rarr; Connections](../database-kit/overview/#connections).
 
 ## Create
 
-To create (save) a model to the database, first initialize an instance of your model, then call `.save(on: )`.
+One of the first things you will likely need to do is save some data to your database. You do this in Fluent by initializing an instance of your model then calling [`create(on:)`](#fixme).
 
 ```swift
-router.post(...) { req in
-    return req.withConnection(to: .foo) { db -> Future<User> in
-        let user = User(name: "Vapor", age: 3)
-        return user.save(on: db).transform(to: user) // Future<User>
-    }
+router.post("galaxies") { req in
+    let galaxy: Galaxy = ... 
+    return galaxy.create(on: req)
 }
 ```
 
-### Response
+The create method will return the saved model. The returned model will include any generated fields such as the ID or fields with default values.
 
-`.save(on: )` returns a `Future<Void>` that completes when the user has finished saving. In this example, we then
-map that `Future<Void>` to a `Future<User>` by calling `.map` and passing in the recently-saved user.
+If your model also conforms to [`Content`](#fixme) you can return the result of the Fluent query directly.
 
-You can also use `.map` to return a simple success response.
-
-```swift
-
-router.post(...) { req in
-    return req.withConnection(to: .foo) { db -> Future<HTTPResponse> in
-        let user = User(name: "Vapor", age: 3)
-        return user.save(on: db).map(to: HTTPResponse.self) {
-            return HTTPResponse(status: .created)
-        }
-    }
-}
-```
-
-### Multiple
-
-If you have multiple instances to save, do so using an array. Arrays containing only futures behave like futures.
-
-```swift
-router.post(...) { req in
-    return req.withConnection(to: .foo) { db -> Future<HTTPResponse> in
-        let marie = User(name: "Marie Curie", age: 66)
-        let charles = User(name: "Charles Darwin", age: 73)
-        return [
-            marie.save(on: db),
-            charles.save(on: db)
-        ].map(to: HTTPResponse.self) {
-            return HTTPResponse(status: .created)
-        }
-    }
-}
-```
 
 ## Read
 
-To read models from the database, use `.query()` on the database connection to create a [QueryBuilder](../query-builder).
+To read models from the database, you can use [`query(on:)`](#fixme) or [`find(_:on:)`](#fixme).
 
-### All
+### Find
 
-Fetch all instances of a model from the database using `.all()`.
+The easiest way to find a single model is by passing its ID to [`find(_:on:)`](#fixme).
 
 ```swift
-router.get(...) { req in
-    return req.withConnection(to: .foo) { db -> Future<[User]> in
-        return db.query(User.self).all()
-    }
-}
+Galaxy.find(42, on: conn)
+```
+
+The result will be a future containing an optional value. You can use [`unwrap(or:)`](#fixme) to unwrap the future value or throw an error.
+
+```swift
+Galaxy.find(42, on: conn).unwrap(or: Abort(...))
+```
+
+### Query
+
+You can use the [`query(on:)`](#fixme) method to build database queries with filters, joins, sorts, and more. 
+
+```swift
+Galaxy.query(on: conn).filter(\.name == "Milky Way")
 ```
 
 ### Filter
 
-Use `.filter(...)` to apply [filters](../query-builder#filters) to your query.
+The [`filter(_:)`](#fixme) method accepts filters created from Fluent's operators. This provides a concise, Swifty way for building Fluent queries.
+
+Calls to filter can be chained and even grouped.
 
 ```swift
-router.get(...) { req in
-    return req.withConnection(to: .foo) { db -> Future<[User]> in
-        return try db.query(User.self).filter(\User.age > 50).all()
-    }
+Galaxy.query(on: conn).filter(\.mass >= 500).filter(\.type == .spiral)
+```
+
+Below is a list of all supported operators.
+
+|operator|type|
+|-|-|
+|`==`|Equal|
+|`!=`|Not equal|
+|`>`|Greater than|
+|`<`|Less than|
+|`>=`|Greater than or equal|
+|`<=`|Less than or equal|
+
+By default, all chained will be used to limit the result set. You can use filter groups to change this behavior.
+
+```swift
+Galaxy.query(on: conn).group(.or) {
+    $0.filter(\.mass <= 250).filter(\.mass >= 500)
+}.filter(\.type == .spiral)
+```
+
+The above query will include results where the galaxy's mass is below 250 _or_ above 500 _and_ the type is spiral.
+
+### Range
+
+You can apply Swift ranges to a query builder to limit the result set.
+
+```swift
+Galaxy.query(on: conn).range(..<50)
+```
+
+The above query will include only the first 50 results.
+
+For more information on ranges, see docs for Swift's [Range](https://developer.apple.com/documentation/swift/range) type.
+
+### Sort
+
+Query results can be sorted by a given field. 
+
+```swift
+Galaxy.query(on: conn).sort(\.name, .descending)
+```
+
+### Join
+
+Other models can be joined to an existing query in order to further filter the results. 
+
+```swift
+Galaxy.query(on: conn).join(\Planet.galaxyID, to: \Galaxy.id)
+    .filter(\Planet.name == "Earth")
+```
+
+Once a table has been joined using [`join(_:to:)`](#fixme), you can use fully-qualified key paths to filter results based on data in the joined table.
+
+You can even decode the joined models using [`alsoDecode(...)`](#fixme).
+
+```swift
+Galaxy.query(on: conn)
+    // join Planet and filter
+    .alsoDecode(Planet.self).all()
+```
+
+The above query will decode an array of `(Galaxy, Planet)` tuples.
+
+### Fetch
+
+To fetch the results of a query, use [`all()`](#fixme), [`chunk(max:)`](#fixme),  [`first()`](#fixme) or an aggregate method.
+
+#### All
+
+The most common method for fetching results is with `all()`. This will return all matching results according to any fliters applied. 
+
+```swift
+Galaxy.query(on: conn).all()
+```
+
+When combined with [`range(_:)`](#fixme), you can efficiently limit how many results are returned by the database.
+
+```swift
+Galaxy.query(on: conn).range(..<50).all()
+```
+
+#### Chunk
+
+For situations where memory conservation is important, use [`chunk(...)`](#fixme). This method returns the result set in multiple calls of a maximum chunk size.
+
+```swift
+Galaxy.query(on: conn).chunk(max: 32) { galaxies in
+    print(galaxies)
 }
 ```
 
-### First
+#### First
 
-You can also use `.first()` to just get the first result.
+The [`first()`](#fixme) method is a convenience for fetching the first result of a query. It will automatically apply a range restriction to avoid transferring unnecessary data. Note that this makes the `first` method different than calling `all` and getting the first item in the array.
 
 ```swift
-router.get(...) { req in
-    return req.withConnection(to: .foo) { db -> Future<User> in
-        return try db.query(User.self).filter(\User.name == "Vapor").first().map(to: User.self) { user in
-            guard let user = user else {
-                throw Abort(.notFound, reason: "Could not find user.")
-            }
-
-            return user
-        }
-    }
-}
+Galaxy.query(on: conn).filter(\.name == "Milky Way").first()
 ```
-
-Notice we use `.map(to:)` here to convert the optional user returned by `.first()` to a non-optional
-user, or we throw an error.
 
 ## Update
 
+After a model has been fetched from the database and mutated, you can use [`update(on:)`](#fixme) to save the changes.
+
 ```swift
-router.put(...) { req in
-    return req.withConnection(to: .foo) { db -> Future<User> in
-        return db.query(User.self).first().map(to: User.self) { user in
-            guard let user = $0 else {
-                throw Abort(.notFound, reason: "Could not find user.")
-            }
-
-            return user
-        }.flatMap(to: User.self) { user in
-            user.age += 1
-            return user.update(on: db).map(to: User.self) { user }
-        }
-    }
-}
+var planet: Planet ... // fetched from database
+planet.name = "Earth"
+planet.update(on: conn)
 ```
-
-Notice we use `.map(to:)` here to convert the optional user returned by `.first()` to a non-optional
-user, or we throw an error.
 
 ## Delete
-```swift
-router.delete(...) { req in
-    return req.withConnection(to: .foo) { db -> Future<User> in
-        return db.query(User.self).first().map(to: User.self) { user in
-            guard let user = $0 else {
-                throw Abort(.notFound, reason: "Could not find user.")
-            }
-            return user
-        }.flatMap(to: User.self) { user in
-            return user.delete(on: db).transfom(to: user)
-        }
-    }
-}
-```
 
-Notice we use `.map(to:)` here to convert the optional user returned by `.first()` to a non-optional
-user, or we throw an error.
+After a model has been fetched from the database, you can use [`delete(on:)`](#fixme) to delete it.
+
+```swift
+var planet: Planet ... // fetched from database
+planet.delete(on: conn)
+```
