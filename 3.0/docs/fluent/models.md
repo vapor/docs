@@ -108,7 +108,7 @@ final class User: Model {
 }
 ```
 
-By default, this is the type name of your model lowercased.
+By default, this is the type name of your model.
 
 ### Entity
 
