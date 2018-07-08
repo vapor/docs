@@ -122,7 +122,7 @@ final class Goose: Model {
 }
 ```
 
-By default, this property will be [name](#name) pluralized. Overriding this property is useful in situations where language fails you and the plural form of a word is very irregular.
+By default, this property will be [name](#name).
 
 ### ID Key
 
