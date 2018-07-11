@@ -8,9 +8,11 @@ make normal queries to your database.
 
 In this guide we will cover creating both types of migrations.
 
-## Create / Delete Schema
+## Creating and Deleting Schemas
 
 Let's take a look at how we can use migrations to prepare a schema supporting database to store a theoretical `Galaxy` model.
+
+Fill in the Xcode placeholders below with your database's name from [Getting Started &rarr; Choosing a Driver](getting-started/#choosing-a-driver).
 
 ```swift
 import Fluent<#Database#>
@@ -21,9 +23,9 @@ struct Galaxy: <#Database#>Model {
 }
 ```
 
-### Automatic
+### Automatic Model Migrations
 
-Models provide a shortcut for declaring database migrations. If you conform a type that conforms to [`Model`](#fixme) to migration, Fluent can infer the model's properties and automatically implement the `prepare(...)` and `revert(...)` methods.
+Models provide a shortcut for declaring database migrations. If you conform a type that conforms to [`Model`](#fixme) to [`Migration`](#fixme), Fluent can infer the model's properties and automatically implement the `prepare(...)` and `revert(...)` methods.
 
 ```swift
 import Fluent<#Database#>
@@ -33,9 +35,7 @@ extension Galaxy: <#Database#>Migration { }
 
 This method is especially useful for quick prototyping and simple setups. For most other situations you should consider creating a normal, custom migration. 
 
-#### Config
-
-Add this automatic migration to your [`MigrationConfig`](#fixme) using the `add(model:database:)` method. This is done in your [`configure.swift`](../getting-started/structure.md#configureswift) file.
+Add this automatic migration to your [`MigrationConfig`](#fixme) using the `add(model:database:)` method. This is done in [`configure.swift`](../getting-started/structure.md#configureswift).
 
 ```swift
 var migrations = MigrationConfig()
@@ -45,7 +45,7 @@ services.register(migrations)
 
 The `add(model:database:)` method will automatically set the model's [`defaultDatabase`](#fixme) property. 
 
-### Custom
+### Custom Migrations
 
 We can customize the table created for our model by creating a migration and using the static `create` and `delete` methods on [`Database`](#fixme).
 
@@ -57,7 +57,7 @@ struct CreateGalaxy: <#Database#>Migration {
 }
 ```
 
-#### Prepare
+#### Creating a Schema
 
 The most important method in a migration is `prepare(...)`. This is responsible for effecting the migration's changes. For our `CreateGalaxy` migration, we will use our database's static `create` method to create a schema.
 
@@ -88,16 +88,17 @@ try builder.field(for: \.name, type: <#DataType#>)
 
 Each database has it's own unique data types, so refer to your database's documentation for more information.
 
-Learn more about creating, updating, and deleting schemas in [Fluent &rarr; Schema Builder](../schema-builder).
+!!! danger
+    fixme: links to db's data types
 
-#### Revert
+#### Deleting a Schema
 
 Each migration should also include a method for _reverting_ the changes it makes. It is used when you boot your 
 app with the `--revert` option. 
 
 For a migration that creates a table in the database, the reversion is quite simple: delete the table.
 
-To implement `revert` for our model, we can use our database's static `delete(...)` method to indicate that we would like to delete the schema a schema.
+To implement `revert` for our model, we can use our database's static `delete(...)` method to indicate that we would like to delete the schema.
 
 ```swift
 import Fluent<#Database#>
@@ -114,8 +115,6 @@ To delete a schema, you pass a model type and connection as the two required par
 
 You can always choose to skip a reversion by simplying returning `conn.future(())`. But note that they are especially useful when testing and debugging your migrations.
 
-#### Config
-
 Add this custom migration to your [`MigrationConfig`](#fixme) using the `add(migration:database:)` method. This is done in your [`configure.swift`](../getting-started/structure.md#configureswift) file.
 
 ```swift
@@ -129,7 +128,7 @@ Make sure to also set the `defaultDatabase` property on your model when using a 
 Galaxy.defaultDatabase = .<#dbid#>
 ```
 
-## Update Schema
+## Updating a Schema
 
 After you deploy your application to production, you may find it necessary to add or remove fields on an existing model. You can achieve this by creating a new migration. 
 
@@ -155,8 +154,6 @@ struct AddGalaxyMass: <#Database#>Migration {
 }
 ```
 
-### Prepare
-
 Our prepare method will look very similar to the prepare method for a new table, except it will only contain our newly added field.
 
 ```swift
@@ -173,8 +170,6 @@ struct AddGalaxyMass: <#Database#>Migration {
 
 All methods available when creating a schema will be available while updating alongside some new methods for deleting fields. See [`SchemaUpdater`](#fixme) for a list of all available methods.
 
-### Revert
-
 To revert this change, we must delete the `mass` field from the table.
 
 ```swift
@@ -188,8 +183,6 @@ struct AddGalaxyMass: <#Database#>Migration {
 }
 ```
 
-### Config
-
 Add this migration to your [`MigrationConfig`](#fixme) using the `add(migration:database:)` method. This is done in your [`configure.swift`](../getting-started/structure.md#configureswift) file.
 
 ```swift
@@ -199,7 +192,7 @@ migrations.add(migration: AddGalaxyMass.self, database: .<#dbid#>)
 services.register(migrations)
 ```
 
-## Data
+## Migrating Data
 
 While migrations are useful for creating and updating schemas in SQL databases, they can also be used for more general purposes in any database. Migrations are passed a connection upon running which can be used to perform arbitrary database queries.
 
@@ -209,11 +202,9 @@ The first step is to create our new migration type.
 
 ```swift
 struct GalaxyMassCleanup: <#Database#>Migration {
-
+    // ... 
 }
 ```
-
-### Prepare
 
 In the prepare method of this migration, we will perform a query to delete all galaxies which have a mass equal to `0`.
 
@@ -222,10 +213,10 @@ struct GalaxyMassCleanup: <#Database#>Migration {
     static func prepare(on conn: <#Database#>Connection) -> Future<Void> {
         return Galaxy.query(on: conn).filter(\.mass == 0).delete()
     }
+
+    // ...
 }
 ```
-
-### Revert
 
 There is no way to undo this migration since it is destructive. You can omit the `revert(...)` method by returning a pre-completed future.
 
@@ -239,9 +230,7 @@ struct GalaxyMassCleanup: <#Database#>Migration {
 }
 ```
 
-### Config
-
-Add this migration to your [`MigrationConfig`](#fixme) using the `add(migration:database:)` method. This is done in your [`configure.swift`](../getting-started/structure.md#configureswift) file.
+Add this migration to your [`MigrationConfig`](#fixme) using the `add(migration:database:)` method. This is done in [`configure.swift`](../getting-started/structure.md#configureswift).
 
 ```swift
 var migrations = MigrationConfig()

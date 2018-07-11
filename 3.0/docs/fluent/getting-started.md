@@ -3,12 +3,9 @@
 Fluent ([vapor/fluent](https://github.com/vapor/fluent)) is a type-safe, fast, and easy-to-use ORM framework built for Swift.
 It takes advantage of Swift's strong type system to provide an elegant foundation for building database integrations.
 
-## Driver
+## Choosing a Driver
 
-Fluent is a framework for building ORMs, not an ORM itself. To use Fluent, you will first need to choose a database driver to use. 
-
-!!! tip
-    Fluent can support multiple databases and database drivers per application.
+Fluent is a framework for building ORMs, not an ORM itself. To use Fluent, you will first need to choose a database driver to use. Fluent can support multiple databases and database drivers per application.
 
 Below is a list of officially supported database drivers for Fluent. 
 
@@ -19,12 +16,12 @@ Below is a list of officially supported database drivers for Fluent.
 |SQLite|[fluent-sqlite](https://github.com/vapor/fluent-sqlite)|3.0.0|`sqlite`|Open source, embedded SQL database. Its simplistic nature makes it a great candiate for prototyping and testing.|
 |MongoDB|fluent-mongo|n/a|`mongo`|Coming soon. Popular NoSQL database.|
 
-Replace any Xcode placholders (`<#...#>`) in the code snippets below with the information from this table.
+!!! note
+    Replace any Xcode placholders (`<#...#>`) in the code snippets below with information from the above table.
 
-!!! seealso
-    You can search GitHub for the tag [`fluent-database`](https://github.com/topics/fluent-database) for a full list of official and third-party Fluent database drivers.
+You can search GitHub for the tag [`fluent-database`](https://github.com/topics/fluent-database) for a full list of official and third-party Fluent database drivers.
 
-### Package
+### Add Package Dependency
 
 Once you have decided which driver you want, the next step is adding it as a dependency to your project in your SPM package manifest file.
 
@@ -52,19 +49,13 @@ Don't forget to add the module as a dependency in the `targets` array. Once you 
 vapor xcode
 ```
 
-## Model
+## Creating a Model
 
 Now let's create your first model. Models represent tables in your database and they are the primary method of interacting with your data. 
 
-Each driver provides convenience model protocols that extend Fluent's base [`Model`](#fixme) protocol. These convenience types make declaring models more concise.
+Each driver provides convenience model protocols (`PostgreSQLModel`, `SQLiteModel`, etc) that extend Fluent's base [`Model`](#fixme) protocol. These convenience types make declaring models more concise by using standard values for ID key and type.
 
-|protocol|note|
-|-|-|
-|`<#Database#>Model`|Uses standard ID key and type for database engine.|
-|`<#Database#>UUIDModel`|Uses `UUID` IDs with standard key for database engine.|
-|`<#Database#>StringModel`|Uses `String` IDs with standard key for database engine.|
-
-For this example, we will use the standard convenience model protocol.
+Fill in the Xcode placeholders below with the name of your chosen database, i.e., `PostgreSQL`.
 
 ```swift
 import Fluent<#Database#>
@@ -94,11 +85,11 @@ The example above shows a simple model representing a user. You can make both st
 
 Take a look at [Fluent &rarr; Model](models.md) for more information on creating models with custom ID types and keys.
 
-## Configure
+## Configuring the Database
 
-Now that you have a model, you can configure your database. This is done in your [`configure.swift`](../getting-started/structure.md#configureswift) file.
+Now that you have a model, you can configure your database. This is done in [`configure.swift`](../getting-started/structure.md#configureswift).
 
-### Provider 
+### Register Provider 
 
 The first step is to register your database driver's provider.
 
@@ -114,13 +105,16 @@ try services.register(Fluent<#Database#>Provider())
 
 Registering the provider will add all of the services required for your Fluent database to work properly. It also includes a default database config struct that uses typical development environment credentials. 
 
-### Custom
+### Custom Credentials
 
 If you are using default configuration for your database (such as default credentials or other config) then this may be the only setup you need to perform. 
 
 See the documentation for your specific database type for more information about custom configuration.
 
-## Migration
+!!! danger
+    fixme: Add links to config structs.
+
+## Creating a Migration
 
 If your database driver uses schemas (is a SQL database), you will need to create a [`Migration`](#fixme) for your new model. Migrations allow Fluent to create a table for your model in a reliable, testable way. You can later create additional migrations to update or delete the model's table or even manipulate data in the table.
 
@@ -137,9 +131,11 @@ extension User: <#Database#>Migration { }
 
 Take a look at [Fluent &rarr; Migration](../fluent/migrations.md) if you are interested in learning more about custom migrations.
 
-### MigrationConfig
+### Configuring Migrations
 
-Once you have created a migration, you must register it to Fluent using [`MigrationConfig`](#fixme). This is done in your [`configure.swift`](../getting-started/structure.md#configureswift) file.
+Once you have created a migration, you must register it to Fluent using [`MigrationConfig`](#fixme). This is done in [`configure.swift`](../getting-started/structure.md#configureswift).
+
+Fill in the database ID  (`dbid`) from the table above, i.e., `psql`.
 
 ```swift
 import Fluent<#Database#>
@@ -164,7 +160,7 @@ Migrations complete
 Server starting on http://localhost:8080
 ```
 
-## Query
+## Performing a Query
 
 Now that you have created a model and a corresponding schema in your database, let's make your first query.
 
@@ -176,7 +172,7 @@ router.get("users") { req in
 
 If you run your app, and query that route, you should see an empty array returned. Now you just need to add some users! Congratulations on getting your first Fluent model working.
 
-## Connection
+## Raw Queries
 
 With Fluent, you always have access to the underlying database driver. Using this underlying driver to perform a query is sometimes called a "raw query". 
 

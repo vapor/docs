@@ -20,7 +20,7 @@ You can use convenience methods on a `Container` to create connections manually.
 
 ## Create
 
-One of the first things you will likely need to do is save some data to your database. You do this in Fluent by initializing an instance of your model then calling [`create(on:)`](#fixme).
+One of the first things you will need to do is save some data to your database. You do this by initializing an instance of your model then calling [`create(on:)`](#fixme).
 
 ```swift
 router.post("galaxies") { req in
@@ -81,7 +81,7 @@ Below is a list of all supported operators.
 |`>=`|Greater than or equal|
 |`<=`|Less than or equal|
 
-By default, all chained will be used to limit the result set. You can use filter groups to change this behavior.
+By default, all chained filters will be used to limit the result set. You can use filter groups to change this behavior.
 
 ```swift
 Galaxy.query(on: conn).group(.or) {
@@ -111,6 +111,8 @@ Query results can be sorted by a given field.
 Galaxy.query(on: conn).sort(\.name, .descending)
 ```
 
+You can sort by multiple fields to perform tie breaking behavior where there is duplicate information in the one of the sorted fields.
+
 ### Join
 
 Other models can be joined to an existing query in order to further filter the results. 
@@ -121,6 +123,8 @@ Galaxy.query(on: conn).join(\Planet.galaxyID, to: \Galaxy.id)
 ```
 
 Once a table has been joined using [`join(_:to:)`](#fixme), you can use fully-qualified key paths to filter results based on data in the joined table.
+
+The above query fetches all galaxies that have a planet named Earth.
 
 You can even decode the joined models using [`alsoDecode(...)`](#fixme).
 
@@ -156,17 +160,19 @@ For situations where memory conservation is important, use [`chunk(...)`](#fixme
 
 ```swift
 Galaxy.query(on: conn).chunk(max: 32) { galaxies in
-    print(galaxies)
+    print(galaxies) // Array of 32 or less galaxies
 }
 ```
 
 #### First
 
-The [`first()`](#fixme) method is a convenience for fetching the first result of a query. It will automatically apply a range restriction to avoid transferring unnecessary data. Note that this makes the `first` method different than calling `all` and getting the first item in the array.
+The [`first()`](#fixme) method is a convenience for fetching the first result of a query. It will automatically apply a range restriction to avoid transferring unnecessary data.
 
 ```swift
 Galaxy.query(on: conn).filter(\.name == "Milky Way").first()
 ```
+
+This method is more efficient than calling `all` and getting the first item in the array.
 
 ## Update
 
