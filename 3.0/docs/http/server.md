@@ -3,7 +3,7 @@
 HTTP servers respond to incoming [`HTTPRequests`](https://api.vapor.codes/http/latest/HTTP/Structs/HTTPRequest.html) with [`HTTPResponses`](https://api.vapor.codes/http/latest/HTTP/Structs/HTTPResponse.html). The [`HTTPServer`](https://api.vapor.codes/http/latest/HTTP/Classes/HTTPServer.html) type is what powers Vapor's higher-level server. This short guide will show you how to set up your own HTTP server manually.
 
 !!! tip
-	If you are using Vapor, you probably don't need to use HTTP's APIs directly. Refer to [Vapor &rarr; Server](../vapor/server.md) for the more convenient APIs.
+	If you are using Vapor, you probably don't need to use HTTP's APIs directly. Refer to [Vapor &rarr; Getting Started](../vapor/getting-started.md) for the more convenient APIs.
 
 ## Responder
 

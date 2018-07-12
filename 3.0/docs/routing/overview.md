@@ -1,4 +1,4 @@
-# Using Routing
+# Routing Overview
 
 Routing ([vapor/routing](https://github.com/vapor/routing)) is a small framework for routing things like HTTP requests. It lets you register and lookup routes in a router using nested, dynamic path components.
 

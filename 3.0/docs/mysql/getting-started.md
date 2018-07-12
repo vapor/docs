@@ -14,7 +14,7 @@ Using just the MySQL package for your project may be a good idea if any of the f
 MySQL core is built on top of DatabaseKit which provides some conveniences like connection pooling and integrations with Vapor's [Services](../getting-started/services.md) architecture.
 
 !!! tip
-    Even if you do choose to use [Fluent MySQL](fluent.md), all of the features of MySQL core will be available to you.
+    Even if you do choose to use [Fluent MySQL](../fluent/getting-started.md), all of the features of MySQL core will be available to you.
 
 ## Getting Started
 

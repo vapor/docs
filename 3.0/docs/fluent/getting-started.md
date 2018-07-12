@@ -21,7 +21,7 @@ Below is a list of officially supported database drivers for Fluent.
 
 You can search GitHub for the tag [`fluent-database`](https://github.com/topics/fluent-database) for a full list of official and third-party Fluent database drivers.
 
-### Add Package Dependency
+### Package
 
 Once you have decided which driver you want, the next step is adding it as a dependency to your project in your SPM package manifest file.
 

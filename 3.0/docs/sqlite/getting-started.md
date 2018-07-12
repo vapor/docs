@@ -14,7 +14,7 @@ Using just the SQLite package for your project may be a good idea if any of the 
 SQLite core is built on top of DatabaseKit which provides some conveniences like connection pooling and integrations with Vapor's [Services](../getting-started/services.md) architecture.
 
 !!! tip
-Even if you do choose to use [Fluent SQLite](fluent.md), all of the features of SQLite core will be available to you.
+    Even if you do choose to use [Fluent SQLite](../fluent/getting-started.md), all of the features of SQLite core will be available to you.
 
 ## Getting Started
 
@@ -29,18 +29,18 @@ The first step to using SQLite core is adding it as a dependency to your project
 import PackageDescription
 
 let package = Package(
-name: "MyApp",
-dependencies: [
-/// Any other dependencies ...
+    name: "MyApp",
+    dependencies: [
+        /// Any other dependencies ...
 
-// 🔵 SQLite 3 wrapper for Swift.
-.package(url: "https://github.com/vapor/sqlite.git", from: "3.0.0-rc"),
-],
-targets: [
-.target(name: "App", dependencies: ["SQLite", ...]),
-.target(name: "Run", dependencies: ["App"]),
-.testTarget(name: "AppTests", dependencies: ["App"]),
-]
+        // 🔵 SQLite 3 wrapper for Swift.
+        .package(url: "https://github.com/vapor/sqlite.git", from: "3.0.0"),
+    ],
+    targets: [
+        .target(name: "App", dependencies: ["SQLite", ...]),
+        .target(name: "Run", dependencies: ["App"]),
+        .testTarget(name: "AppTests", dependencies: ["App"]),
+    ]
 )
 ```
 
@@ -50,10 +50,9 @@ Don't forget to add the module as a dependency in the `targets` array. Once you 
 vapor xcode
 ```
 
-
 ### Config
 
-The next step is to configure the database in your [`configure.swift`](../getting-started/structure.md#configureswift) file.
+The next step is to configure the database in [`configure.swift`](../getting-started/structure.md#configureswift). SQLite's default database identifier is `.sqlite`. You can create a custom identifier if you want by extending [`DatabaseIdentifier`](#fixme). 
 
 ```swift
 import SQLite
@@ -66,12 +65,16 @@ try services.register(SQLiteProvider())
 
 Registering the provider will add all of the services required for SQLite to work properly. It also includes a default database config struct that uses an in-memory DB.
 
-You can of course override this config struct if you have non-standard credentials.
+You can of course override this if you'd like to use a different configuration. SQLite supports in-memory and file-based db persistance. 
 
 ```swift
-/// Register custom SQLite Config
-let sqliteConfig = SQLiteDatabaseConfig(storage: .memory)
-services.register(sqliteConfig)
+// Configure a SQLite database
+let sqlite = try SQLiteDatabase(storage: .file(path: "db.sqlite"))
+
+/// Register the configured SQLite database to the database config.
+var databases = DatabasesConfig()
+databases.add(database: sqlite, as: .sqlite)
+services.register(databases)
 ```
 
 ### Query
@@ -79,76 +82,23 @@ services.register(sqliteConfig)
 Now that the database is configured, you can make your first query.
 
 ```swift
-router.get("sqlite-version") { req -> Future<String> in
-return req.withPooledConnection(to: .sqlite) { conn in
-return try conn.query("select sqlite_version() as v;").map(to: String.self) { rows in
-return try rows[0].firstValue(forColumn: "v")?.decode(String.self) ?? "n/a"
+struct SQLiteVersion: Codable {
+    let version: String
 }
-}
-}
-```
 
-Visiting this route should display your SQLite version.
-
-## Connection
-
-A `SQLiteConnection` is normally created using the `Request` container and can perform two different types of queries.
-
-### Create
-
-There are two methods for creating a `SQLiteConnection`.
-
-```swift
-return req.withPooledConnection(to: .sqlite) { conn in
-/// ...
-}
-return req.withConnection(to: .sqlite) { conn in
-/// ...
+router.get("sql") { req in
+    return req.withPooledConnection(to: .sqlite) { conn in
+        return conn.select()
+            .column(function: "sqlite_version", as: "version")
+            .all(decoding: SQLiteVersion.self)
+    }.map { rows in
+        return rows[0].version
+    }
 }
 ```
 
-As the names imply,  `withPooledConnection(to:)` utilizes a connection pool. `withConnection(to:)` does not. Connection pooling is a great way to ensure your application does not exceed the limits of your database, even under peak load.
+Visiting this route should display your SQLite version. 
 
-### Simply Query
+The first step is to create a connection--here we are making use of database connection pooling. You can learn more about creating connections in [DatabaseKit &rarr; Getting Started](../database-kit/getting-started.md).
 
-Use `.simpleQuery(_:)` to perform a query on your SQLite database that does not bind any parameters. Some queries you send to SQLite may actually require that you use the `simpleQuery(_:)` method instead of the parameterized method. 
-
-!!! note
-This method sends and receives data as text-encoded, meaning it is not optimal for transmitting things like integers.
-
-```swift
-let rows = req.withPooledConnection(to: .sqlite) { conn in
-return conn.simpleQuery("SELECT * FROM users;")
-}
-print(rows) // Future<[[SQLiteColumn: SQLiteData]]>
-```
-
-You can also choose to receive each row in a callback, which is great for conserving memory for large queries.
-
-```swift
-let done = req.withPooledConnection(to: .sqlite) { conn in
-return conn.simpleQuery("SELECT * FROM users;") { row in
-print(row) // [SQLiteColumn: SQLiteData]
-}
-}
-print(done) // Future<Void>
-```
-
-### Parameterized Query
-
-SQLite also supports sending parameterized queries (sometimes called prepared statements). This method allows you to insert data placeholders into the SQL string and send the values separately.
-
-Data sent via parameterized queries is binary encoded, making it more efficient for sending some data types. In general, you should use parameterized queries where ever possible.
-
-```swift
-let users = req.withPooledConnection(to: .sqlite) { conn in
-return try conn.query("SELECT *  users WHERE name = $1;", ["Vapor"])
-}
-print(users) // Future<[[SQLiteColumn: SQLiteData]]>
-```
-
-You can also provide a callback, similar to simple queries, for handling each row individually.
-
-
-
-
+Once we have a connection, we can use [`select()`](#fixme) to create a `SELECT` query builder. Learn more about building queries in [SQL &rarr; Getting Started](../sql/getting-started.md).

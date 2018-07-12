@@ -62,7 +62,7 @@ router.get("users", Int.parameter) { req -> String in
 Instead of passing a string, pass the _type_ of parameter you expect. In this case, our `User` has an `Int` ID.
 
 !!! tip
-    You can define your own [custom parameter types](../routing/parameters.md) as well.
+    You can define your own [custom parameter types](../routing/overview.md#parameter) as well.
 
 ## After registering your routes
 

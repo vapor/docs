@@ -19,7 +19,7 @@ let package = Package(
     name: "Project",
     dependencies: [
         ...
-        .package(url: "https://github.com/vapor/sql.git", from: "1.0.0"),
+        .package(url: "https://github.com/vapor/sql.git", from: "2.0.0"),
     ],
     targets: [
       .target(name: "Project", dependencies: ["SQL", ... ])
@@ -28,5 +28,3 @@ let package = Package(
 ```
 
 Use `import SQL` to access the APIs.
-
-The rest of this guide will give you an overview of what is available in the SQL package. As always, feel free to visit the [API docs](http://api.vapor.codes/sql/latest/SQL/index.html) for more in-depth information.

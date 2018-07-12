@@ -14,7 +14,7 @@ Using just the PostgreSQL package for your project may be a good idea if any of 
 PostgreSQL core is built on top of DatabaseKit which provides some conveniences like connection pooling and integrations with Vapor's [Services](../getting-started/services.md) architecture.
 
 !!! tip
-Even if you do choose to use [Fluent PostgreSQL](fluent.md), all of the features of PostgreSQL core will be available to you.
+Even if you do choose to use [Fluent PostgreSQL](../fluent/getting-started.md), all of the features of PostgreSQL core will be available to you.
 
 ## Getting Started
 

@@ -1,4 +1,4 @@
-# Getting Started with Routing
+# Routing
 
 Routing ([vapor/routing](https://github.com/vapor/routing)) is a small framework for routing things like HTTP requests. It lets you register and lookup routes in a router using nested, dynamic path components.
 
@@ -13,7 +13,7 @@ For example, the routing package can help you route a request like the following
 This package is included with Vapor and exported by default. You will have access to all `Routing` APIs when you import `Vapor`.
 
 !!! tip
-    If you use Vapor, most of Routing's APIs will be wrapped by more convenient methods. See [Vapor &rarr; Routing](../vapor/routing.md) for more information.
+    If you use Vapor, most of Routing's APIs will be wrapped by more convenient methods. See [Getting Started &rarr; Routing](../getting-started/routing.md) for more information.
 
 ```swift
 import Vapor
