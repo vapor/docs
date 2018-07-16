@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.0">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.3">
     
     
       
@@ -40,7 +40,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.78aab2dc.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.8d40d89b.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/application-palette.6079476c.css">
       
@@ -89,8 +89,8 @@
         
       </defs>
     </svg>
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
       <a href="#getting-started-with-fluent" tabindex="1" class="md-skip">
@@ -836,8 +836,89 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#database" title="Database" class="md-nav__link">
-    Database
+  <a href="#choosing-a-driver" title="Choosing a Driver" class="md-nav__link">
+    Choosing a Driver
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#package" title="Package" class="md-nav__link">
+    Package
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-model" title="Creating a Model" class="md-nav__link">
+    Creating a Model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-the-database" title="Configuring the Database" class="md-nav__link">
+    Configuring the Database
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#register-provider" title="Register Provider" class="md-nav__link">
+    Register Provider
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-credentials" title="Custom Credentials" class="md-nav__link">
+    Custom Credentials
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-migration" title="Creating a Migration" class="md-nav__link">
+    Creating a Migration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-migrations" title="Configuring Migrations" class="md-nav__link">
+    Configuring Migrations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performing-a-query" title="Performing a Query" class="md-nav__link">
+    Performing a Query
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#raw-queries" title="Raw Queries" class="md-nav__link">
+    Raw Queries
   </a>
   
 </li>
@@ -871,18 +952,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../migrations/" title="Migrations" class="md-nav__link">
-      Migrations
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../querying/" title="Querying" class="md-nav__link">
       Querying
     </a>
@@ -895,20 +964,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../query-builder/" title="Query Builder" class="md-nav__link">
-      Query Builder
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../schema-builder/" title="Schema Builder" class="md-nav__link">
-      Schema Builder
+    <a href="../migrations/" title="Migrations" class="md-nav__link">
+      Migrations
     </a>
   </li>
 
@@ -931,32 +988,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../pivot/" title="Pivot" class="md-nav__link">
-      Pivot
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../transaction/" title="Transaction" class="md-nav__link">
       Transaction
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../database/" title="Database" class="md-nav__link">
-      Database
     </a>
   </li>
 
@@ -1225,30 +1258,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../mysql/fluent/" title="Fluent MySQL" class="md-nav__link">
-      Fluent MySQL
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../mysql/core/" title="MySQL Core" class="md-nav__link">
-      MySQL Core
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -1281,30 +1290,6 @@
   <li class="md-nav__item">
     <a href="../../postgresql/getting-started/" title="Getting Started" class="md-nav__link">
       Getting Started
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../postgresql/fluent/" title="Fluent PostgreSQL" class="md-nav__link">
-      Fluent PostgreSQL
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../postgresql/core/" title="PostgreSQL Core" class="md-nav__link">
-      PostgreSQL Core
     </a>
   </li>
 
@@ -1581,30 +1566,6 @@
   <li class="md-nav__item">
     <a href="../../sqlite/getting-started/" title="Getting Started" class="md-nav__link">
       Getting Started
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../sqlite/fluent/" title="Fluent SQLite" class="md-nav__link">
-      Fluent SQLite
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../sqlite/core/" title="SQLite Core" class="md-nav__link">
-      SQLite Core
     </a>
   </li>
 
@@ -2019,8 +1980,89 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#database" title="Database" class="md-nav__link">
-    Database
+  <a href="#choosing-a-driver" title="Choosing a Driver" class="md-nav__link">
+    Choosing a Driver
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#package" title="Package" class="md-nav__link">
+    Package
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-model" title="Creating a Model" class="md-nav__link">
+    Creating a Model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-the-database" title="Configuring the Database" class="md-nav__link">
+    Configuring the Database
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#register-provider" title="Register Provider" class="md-nav__link">
+    Register Provider
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-credentials" title="Custom Credentials" class="md-nav__link">
+    Custom Credentials
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-migration" title="Creating a Migration" class="md-nav__link">
+    Creating a Migration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-migrations" title="Configuring Migrations" class="md-nav__link">
+    Configuring Migrations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performing-a-query" title="Performing a Query" class="md-nav__link">
+    Performing a Query
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#raw-queries" title="Raw Queries" class="md-nav__link">
+    Raw Queries
   </a>
   
 </li>
@@ -2044,56 +2086,202 @@
                   <a href="https://github.com/vapor/documentation/edit/master/3.0/docs/fluent/getting-started.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Fluent 3.0 is still in beta. Some documentation may be missing or out of date.</p>
-</div>
-<h1 id="getting-started-with-fluent">Getting Started with Fluent<a class="headerlink" href="#getting-started-with-fluent" title="Permanent link">&para;</a></h1>
+                <h1 id="getting-started-with-fluent">Getting Started with Fluent<a class="headerlink" href="#getting-started-with-fluent" title="Permanent link">&para;</a></h1>
 <p>Fluent (<a href="https://github.com/vapor/fluent">vapor/fluent</a>) is a type-safe, fast, and easy-to-use ORM framework built for Swift.
 It takes advantage of Swift's strong type system to provide an elegant foundation for building database integrations.</p>
-<h2 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h2>
-<p>Fluent is just a framework for building ORMs, not an ORM itself. To get started using Fluent, pick one of the databases below.</p>
+<h2 id="choosing-a-driver">Choosing a Driver<a class="headerlink" href="#choosing-a-driver" title="Permanent link">&para;</a></h2>
+<p>Fluent is a framework for building ORMs, not an ORM itself. To use Fluent, you will first need to choose a database driver to use. Fluent can support multiple databases and database drivers per application.</p>
+<p>Below is a list of officially supported database drivers for Fluent. </p>
 <table>
 <thead>
 <tr>
 <th>database</th>
-<th>library</th>
-<th>driver</th>
-<th>guide</th>
+<th>repo</th>
+<th>version</th>
+<th>dbid</th>
+<th>notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>PostgreSQL</td>
-<td>vapor/postgresql</td>
-<td>vapor/fluent-postgresql</td>
-<td><a href="../../postgresql/fluent/">Getting Started &rarr;</a></td>
+<td><a href="https://github.com/vapor/fluent-postgresql.git">fluent-postgresql</a></td>
+<td>1.0.0</td>
+<td><code>psql</code></td>
+<td><strong>Recommended</strong>. Open source, standards compliant SQL database. Available on most cloud hosting providers.</td>
 </tr>
 <tr>
 <td>MySQL</td>
-<td>vapor/mysql</td>
-<td>vapor/fluent-mysql</td>
-<td><a href="../../mysql/fluent/">Getting Started &rarr;</a></td>
+<td><a href="https://github.com/vapor/fluent-mysql">fluent-mysql</a></td>
+<td>3.0.0</td>
+<td><code>mysql</code></td>
+<td>Popular open source SQL database. Available on most cloud hosting providers. This driver also supports MariaDB.</td>
 </tr>
 <tr>
 <td>SQLite</td>
-<td>vapor/sqlite</td>
-<td>vapor/fluent-sqlite</td>
-<td><a href="../../sqlite/fluent/">Getting Started &rarr;</a></td>
+<td><a href="https://github.com/vapor/fluent-sqlite">fluent-sqlite</a></td>
+<td>3.0.0</td>
+<td><code>sqlite</code></td>
+<td>Open source, embedded SQL database. Its simplistic nature makes it a great candiate for prototyping and testing.</td>
+</tr>
+<tr>
+<td>MongoDB</td>
+<td>fluent-mongo</td>
+<td>n/a</td>
+<td><code>mongo</code></td>
+<td>Coming soon. Popular NoSQL database.</td>
 </tr>
 </tbody>
 </table>
-<p>After you get started, come back to the other sections in this guide for a more in-depth look at Fluent's features.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Replace any Xcode placholders (<code>&lt;#...#&gt;</code>) in the code snippets below with information from the above table.</p>
+</div>
+<p>You can search GitHub for the tag <a href="https://github.com/topics/fluent-database"><code>fluent-database</code></a> for a full list of official and third-party Fluent database drivers.</p>
+<h3 id="package">Package<a class="headerlink" href="#package" title="Permanent link">&para;</a></h3>
+<p>Once you have decided which driver you want, the next step is adding it as a dependency to your project in your SPM package manifest file.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// swift-tools-version:4.0</span>
+<span class="kd">import</span> <span class="nc">PackageDescription</span>
+
+<span class="kd">let</span> <span class="nv">package</span> <span class="p">=</span> <span class="n">Package</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">:</span> <span class="s">&quot;MyApp&quot;</span><span class="p">,</span>
+    <span class="n">dependencies</span><span class="p">:</span> <span class="p">[</span>
+        <span class="c1">/// Any other dependencies ...</span>
+        <span class="p">.</span><span class="n">package</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="s">&quot;https://github.com/vapor/&lt;#repo#&gt;.git&quot;</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="s">&quot;&lt;#version#&gt;&quot;</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">targets</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">.</span><span class="n">target</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;App&quot;</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;Fluent&lt;#Database#&gt;&quot;</span><span class="p">,</span> <span class="p">...]),</span>
+        <span class="p">.</span><span class="n">target</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Run&quot;</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;App&quot;</span><span class="p">]),</span>
+        <span class="p">.</span><span class="n">testTarget</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;AppTests&quot;</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;App&quot;</span><span class="p">]),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Don't forget to add the module as a dependency in the <code>targets</code> array. Once you have added the dependency, regenerate your Xcode project with the following command:</p>
+<div class="codehilite"><pre><span></span>vapor xcode
+</pre></div>
+
+
+<h2 id="creating-a-model">Creating a Model<a class="headerlink" href="#creating-a-model" title="Permanent link">&para;</a></h2>
+<p>Now let's create your first model. Models represent tables in your database and they are the primary method of interacting with your data. </p>
+<p>Each driver provides convenience model protocols (<code>PostgreSQLModel</code>, <code>SQLiteModel</code>, etc) that extend Fluent's base <a href="#fixme"><code>Model</code></a> protocol. These convenience types make declaring models more concise by using standard values for ID key and type.</p>
+<p>Fill in the Xcode placeholders below with the name of your chosen database, i.e., <code>PostgreSQL</code>.</p>
+<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Fluent</span><span class="o">&lt;</span><span class="p">#</span><span class="nc">Database</span><span class="p">#</span><span class="o">&gt;</span>
+<span class="kd">import</span> <span class="nc">Vapor</span>
+
+<span class="c1">/// A simple user.</span>
+<span class="kr">final</span> <span class="kd">class</span> <span class="nc">User</span><span class="p">:</span> <span class="o">&lt;</span><span class="p">#</span><span class="n">Database</span><span class="p">#</span><span class="o">&gt;</span><span class="n">Model</span> <span class="p">{</span>
+    <span class="c1">/// The unique identifier for this user.</span>
+    <span class="kd">var</span> <span class="nv">id</span><span class="p">:</span> <span class="n">ID</span><span class="p">?</span>
+
+    <span class="c1">/// The user&#39;s full name.</span>
+    <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span>
+
+    <span class="c1">/// The user&#39;s current age in years.</span>
+    <span class="kd">var</span> <span class="nv">age</span><span class="p">:</span> <span class="nb">Int</span>
+
+    <span class="c1">/// Creates a new user.</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="n">ID</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">id</span> <span class="p">=</span> <span class="n">id</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">name</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">age</span> <span class="p">=</span> <span class="n">age</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>The example above shows a simple model representing a user. You can make both structs and classes a model. You can even conform types that come from external modules. The only requirement is that these types conform to <code>Codable</code>, which must be declared on the base type for synthesized (automatic) conformance.</p>
+<p>Take a look at <a href="../models/">Fluent &rarr; Model</a> for more information on creating models with custom ID types and keys.</p>
+<h2 id="configuring-the-database">Configuring the Database<a class="headerlink" href="#configuring-the-database" title="Permanent link">&para;</a></h2>
+<p>Now that you have a model, you can configure your database. This is done in <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a>.</p>
+<h3 id="register-provider">Register Provider<a class="headerlink" href="#register-provider" title="Permanent link">&para;</a></h3>
+<p>The first step is to register your database driver's provider.</p>
+<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Fluent</span><span class="o">&lt;</span><span class="p">#</span><span class="nc">Database</span><span class="p">#</span><span class="o">&gt;</span>
+<span class="kd">import</span> <span class="nc">Vapor</span>
+
+<span class="c1">// Register providers first</span>
+<span class="k">try</span> <span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">Fluent</span><span class="o">&lt;</span><span class="p">#</span><span class="n">Database</span><span class="p">#</span><span class="o">&gt;</span><span class="n">Provider</span><span class="p">())</span>
+
+<span class="c1">// Other services....</span>
+</pre></div>
+
+
+<p>Registering the provider will add all of the services required for your Fluent database to work properly. It also includes a default database config struct that uses typical development environment credentials. </p>
+<h3 id="custom-credentials">Custom Credentials<a class="headerlink" href="#custom-credentials" title="Permanent link">&para;</a></h3>
+<p>If you are using default configuration for your database (such as default credentials or other config) then this may be the only setup you need to perform. </p>
+<p>See the documentation for your specific database type for more information about custom configuration.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>fixme: Add links to config structs.</p>
+</div>
+<h2 id="creating-a-migration">Creating a Migration<a class="headerlink" href="#creating-a-migration" title="Permanent link">&para;</a></h2>
+<p>If your database driver uses schemas (is a SQL database), you will need to create a <a href="#fixme"><code>Migration</code></a> for your new model. Migrations allow Fluent to create a table for your model in a reliable, testable way. You can later create additional migrations to update or delete the model's table or even manipulate data in the table.</p>
+<p>To create a migration, you will normally first create a new struct or class to hold the migration. However, models can take advantage of a convenient shortcut. When you create a migration from an existing model type, Fluent can infer an appropriate schema from the model's codable properties.</p>
+<p>You can add the migration conformance to a model as an extension or on the base type declaration.</p>
+<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Fluent</span><span class="o">&lt;</span><span class="p">#</span><span class="nc">Database</span><span class="p">#</span><span class="o">&gt;</span>
+<span class="kd">import</span> <span class="nc">Vapor</span>
+
+<span class="kd">extension</span> <span class="nc">User</span><span class="p">:</span> <span class="o">&lt;</span><span class="p">#</span><span class="n">Database</span><span class="p">#</span><span class="o">&gt;</span><span class="n">Migration</span> <span class="p">{</span> <span class="p">}</span>
+</pre></div>
+
+
+<p>Take a look at <a href="../migrations/">Fluent &rarr; Migration</a> if you are interested in learning more about custom migrations.</p>
+<h3 id="configuring-migrations">Configuring Migrations<a class="headerlink" href="#configuring-migrations" title="Permanent link">&para;</a></h3>
+<p>Once you have created a migration, you must register it to Fluent using <a href="#fixme"><code>MigrationConfig</code></a>. This is done in <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a>.</p>
+<p>Fill in the database ID  (<code>dbid</code>) from the table above, i.e., <code>psql</code>.</p>
+<div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Fluent</span><span class="o">&lt;</span><span class="p">#</span><span class="nc">Database</span><span class="p">#</span><span class="o">&gt;</span>
+<span class="kd">import</span> <span class="nc">Vapor</span>
+
+<span class="c1">// Configure migrations</span>
+<span class="kd">var</span> <span class="nv">migrations</span> <span class="p">=</span> <span class="n">MigrationConfig</span><span class="p">()</span>
+<span class="n">migrations</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="p">.</span><span class="o">&lt;</span><span class="p">#</span><span class="n">dbid</span><span class="p">#</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">migrations</span><span class="p">)</span>
+
+<span class="c1">// Other services....</span>
+</pre></div>
+
+
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>You can also search GitHub for the tag <a href="https://github.com/topics/fluent-database"><code>fluent-database</code></a> for a full list of official and third-party Fluent databases.</p>
+<p>If the migration you are adding is also a model, you can use the <a href="#fixme"><code>add(model:on:)</code></a> convenience to automatically set the model's <a href="#fixme"><code>defaultDatabase</code></a> property. Otherwise, use the <a href="#fixme"><code>add(migration:on)</code></a> method.</p>
 </div>
+<p>Once you have the <code>MigrationConfig</code> added, you should be able to run your application and see the following:</p>
+<div class="codehilite"><pre><span></span>Migrating &lt;<span class="c1">#dbid#&gt; DB</span>
+Migrations <span class="nb">complete</span>
+Server starting on http://localhost:8080
+</pre></div>
+
+
+<h2 id="performing-a-query">Performing a Query<a class="headerlink" href="#performing-a-query" title="Permanent link">&para;</a></h2>
+<p>Now that you have created a model and a corresponding schema in your database, let's make your first query.</p>
+<div class="codehilite"><pre><span></span><span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;users&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">on</span><span class="p">:</span> <span class="n">req</span><span class="p">).</span><span class="n">all</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>If you run your app, and query that route, you should see an empty array returned. Now you just need to add some users! Congratulations on getting your first Fluent model working.</p>
+<h2 id="raw-queries">Raw Queries<a class="headerlink" href="#raw-queries" title="Permanent link">&para;</a></h2>
+<p>With Fluent, you always have access to the underlying database driver. Using this underlying driver to perform a query is sometimes called a "raw query". </p>
+<p>To perform raw queries, you need access to a database connection. Vapor's <a href="#fixme"><code>Request</code></a> type has a number of conveniences for creating new database connections. The recommended method is <code>withPooledConnection(to:)</code>.  Learn about other methods in <a href="../../database-kit/overview/#connections">DatabaseKit &rarr; Overview &rarr; Connections</a>.</p>
+<div class="codehilite"><pre><span></span><span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;raw&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="n">req</span><span class="p">.</span><span class="n">withPooledConnection</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="p">.</span><span class="o">&lt;</span><span class="p">#</span><span class="n">dbid</span><span class="p">#</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span> <span class="n">conn</span> <span class="k">in</span>
+        <span class="c1">// perform raw query using conn</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Once you have the database connection, you can perform a query on it. You can learn more about the methods available in the database's documentation.</p>
                 
                   
                 
               
               
                 
+
+
               
             </article>
           </div>
@@ -2173,7 +2361,7 @@ It takes advantage of Swift's strong type system to provide an elegant foundatio
       
     </div>
     
-      <script src="../../assets/javascripts/application.8eb9be28.js"></script>
+      <script src="../../assets/javascripts/application.b438e6c5.js"></script>
       
       <script>app.initialize({version:"0.17.3",url:{base:"../.."}})</script>
       

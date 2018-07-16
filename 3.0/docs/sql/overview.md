@@ -8,11 +8,15 @@ The SQL library helps you build and serialize SQL queries in Swift. It has an ex
 
 This package also integrates deeply with `Codable` and parameter binding to make working with your database fast and secure.
 
-Vapor's SQL database packages ([PostgreSQL](../postgresql/getting-started.md), [MySQL](../mysql/getting-started.md), and [SQLite](../sqlite/getting-started.md)) are built on top of this library. In some cases, these SQL dialects will have different syntaxes or supported features. Be sure to check their API docs for additional functionality. 
+This guide assumes you have already chosen and configured a driver in [SQL &rarr; Getting Started](getting-started.md). In some cases, these SQL dialects will have different syntaxes or supported features. Be sure to check their API docs for additional functionality. 
 
 ## Connection
 
 The first step to building a SQL query is getting access to a connection. Most often, you will use `withPooledConnection(to:)` followed by your database's `dbid`. 
+
+!!! note
+    Refer to the table in [SQL &rarr; Getting Started](getting-started.md) for your database's default `dbid`. 
+    The `dbid` allows you to use multiple databases per application.
 
 ```swift
 router.get("sql") { req in
