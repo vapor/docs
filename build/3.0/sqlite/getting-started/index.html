@@ -1980,17 +1980,13 @@
                 
                 <h1 id="sqlite">SQLite<a class="headerlink" href="#sqlite" title="Permanent link">&para;</a></h1>
 <p>SQLite (<a href="https://github.com/vapor/sqlite">vapor/sqlite</a>) is a wrapper around the <code>libsqlite</code> C-library.</p>
-<div class="admonition seealso">
-<p class="admonition-title">Seealso</p>
-<p>The higher-level, Fluent ORM guide is located at <a href="../../fluent/getting-started/">Fluent &rarr; Getting Started</a></p>
-</div>
-<p>Using just the SQLite package for your project may be a good idea if any of the following are true.</p>
+<p>The higher-level, Fluent ORM guide is located at <a href="../../fluent/getting-started/">Fluent &rarr; Getting Started</a>. Using just the SQLite package directly for your project may be a good idea if any of the following are true:</p>
 <ul>
 <li>You have an existing DB with non-standard structure.</li>
 <li>You rely heavily on custom or complex SQL queries.</li>
 <li>You just plain don't like ORMs.</li>
 </ul>
-<p>SQLite core is built on top of DatabaseKit which provides some conveniences like connection pooling and integrations with Vapor's <a href="../../getting-started/services/">Services</a> architecture.</p>
+<p>SQLite core is built on top of <a href="../../database-kit/getting-started/">DatabaseKit</a> which provides some conveniences like connection pooling and integrations with Vapor's <a href="../../getting-started/services/">Services</a> architecture.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Even if you do choose to use <a href="../../fluent/getting-started/">Fluent SQLite</a>, all of the features of SQLite core will be available to you.</p>
@@ -2025,7 +2021,7 @@
 
 
 <h3 id="config">Config<a class="headerlink" href="#config" title="Permanent link">&para;</a></h3>
-<p>The next step is to configure the database in <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a>. SQLite's default database identifier is <code>.sqlite</code>. You can create a custom identifier if you want by extending <a href="#fixme"><code>DatabaseIdentifier</code></a>. </p>
+<p>The next step is to configure the database in <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a>.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">SQLite</span>
 
 <span class="c1">/// ...</span>
@@ -2036,7 +2032,7 @@
 
 
 <p>Registering the provider will add all of the services required for SQLite to work properly. It also includes a default database config struct that uses an in-memory DB.</p>
-<p>You can of course override this if you'd like to use a different configuration. SQLite supports in-memory and file-based db persistance. </p>
+<p>You can of course override this if you'd like to use a different configuration. SQLite supports in-memory and file-based db persistance.</p>
 <div class="codehilite"><pre><span></span><span class="c1">// Configure a SQLite database</span>
 <span class="kd">let</span> <span class="nv">sqlite</span> <span class="p">=</span> <span class="k">try</span> <span class="n">SQLiteDatabase</span><span class="p">(</span><span class="n">storage</span><span class="p">:</span> <span class="p">.</span><span class="n">file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="s">&quot;db.sqlite&quot;</span><span class="p">))</span>
 
@@ -2047,6 +2043,8 @@
 </pre></div>
 
 
+<p>See <a href="https://api.vapor.codes/sqlite/latest/SQLite/Classes/SQLiteDatabase.html"><code>SQLiteDatabase</code></a> and <a href="https://api.vapor.codes/sqlite/latest/SQLite/Enums/SQLiteStorage.html"><code>SQLiteStorage</code></a> for more information.</p>
+<p>SQLite's default database identifier is <code>.sqlite</code>. You can create a custom identifier if you want by extending <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Structs/DatabaseIdentifier.html"><code>DatabaseIdentifier</code></a>. </p>
 <h3 id="query">Query<a class="headerlink" href="#query" title="Permanent link">&para;</a></h3>
 <p>Now that the database is configured, you can make your first query.</p>
 <div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">SQLiteVersion</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
@@ -2066,8 +2064,9 @@
 
 
 <p>Visiting this route should display your SQLite version. </p>
-<p>The first step is to create a connection--here we are making use of database connection pooling. You can learn more about creating connections in <a href="../../database-kit/getting-started/">DatabaseKit &rarr; Getting Started</a>.</p>
-<p>Once we have a connection, we can use <a href="#fixme"><code>select()</code></a> to create a <code>SELECT</code> query builder. Learn more about building queries in <a href="../../sql/getting-started/">SQL &rarr; Getting Started</a>.</p>
+<p>Here we are making use database connection pooling. You can learn more about creating connections in <a href="../../database-kit/getting-started/">DatabaseKit &rarr; Getting Started</a>.</p>
+<p>Once we have a connection, we can use <a href="https://api.vapor.codes/sql/latest/SQL/Protocols/SQLConnection.html#/s:3SQL13SQLConnectionPAAE6selectAA16SQLSelectBuilderCyxGyF"><code>select()</code></a> to create a <code>SELECT</code> query builder. Learn more about building queries in <a href="../../sql/getting-started/">SQL &rarr; Getting Started</a>.</p>
+<p>Visit SQLite's <a href="https://api.vapor.codes/sqlite/latest/SQLite/index.html">API docs</a> for detailed information about all available types and methods.</p>
                 
                   
                 
