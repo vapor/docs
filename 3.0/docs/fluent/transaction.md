@@ -2,7 +2,7 @@
 
 Transactions allow you to ensure multiple operations complete succesfully before saving data to your database. Once a transaction is started, you may run Fluent queries normally. However, no data will be saved to the database until the transaction completes. If an error is thrown at any point during the transaction (by you or the database), none of the changes will take effect.
 
-To perform a transaction, you need access to something that can connect to the database. This is usually an incoming HTTP request. Use the [`transaction(on:_:)`](#fixme) method.
+To perform a transaction, you need access to something that can connect to the database. This is usually an incoming HTTP request. Use the [`transaction(on:_:)`](https://api.vapor.codes/fluent/latest/Fluent/Extensions/DatabaseConnectable.html#/s:11DatabaseKit0A11ConnectableP6FluentE11transaction2on_3NIO15EventLoopFutureCyqd_0_GAA0A10IdentifierVyqd__G_AJ10ConnectionQyd__KctAD21TransactionSupportingRd__r0_lF) method.
 
 Fill in the Xcode placeholders below with your database's name from [Getting Started &rarr; Choosing a Driver](getting-started/#choosing-a-driver).
 

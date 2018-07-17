@@ -36,7 +36,7 @@ struct Planet: Model {
 
 For more information on defining models see [Fluent &rarr; Models](models.md).
 
-Fluent provides two helpers for working with parent-child relations: [`Parent`](#fixme) and [`Children`](#fixme). These helpers can be created using extensions on the related models for convenient access.
+Fluent provides two helpers for working with parent-child relations: [`Parent`](https://api.vapor.codes/fluent/latest/Fluent/Structs/Parent.html) and [`Children`](https://api.vapor.codes/fluent/latest/Fluent/Structs/Children.html). These helpers can be created using extensions on the related models for convenient access.
 
 ```swift
 extension Galaxy {
@@ -47,7 +47,7 @@ extension Galaxy {
 }
 ```
 
-Here the [`children(_:)`](#fixme) method is used on `Galaxy` to create the relation. The resulting type has two generic arguments in the signature that can be thought of as `<From, To`>. Since this relation goes _from_ galaxy _to_ planet, they are ordered as such in the generic arguments.
+Here the [`children(_:)`](https://api.vapor.codes/fluent/latest/Fluent/Protocols/Model.html#/s:6Fluent5ModelPAAE8childrenyAA8ChildrenVyxqd__Gs7KeyPathCyqd__2IDQzGAaBRd__8DatabaseQyd__AMRtzlF) method is used on `Galaxy` to create the relation. The resulting type has two generic arguments in the signature that can be thought of as `<From, To`>. Since this relation goes _from_ galaxy _to_ planet, they are ordered as such in the generic arguments.
 
 Note that this method is not static. That is because it must access the galaxy's identifier to perform the relation lookup. 
 
@@ -60,7 +60,7 @@ extension Planet {
 }
 ```
 
-Here the [`parent(_:)`](#fixme) method is used on `Planet` to create the inverse relation. The resulting type also has two generic arguments. In this case, they are reversed since this relation now goes _from_ planet _to_ galaxy.
+Here the [`parent(_:)`](https://api.vapor.codes/fluent/latest/Fluent/Protocols/Model.html#/s:6Fluent5ModelPAAE6parentyAA6ParentVyxqd__Gs7KeyPathCyx2IDQyd__GAaBRd__8DatabaseQyd__AMRtzlF) method is used on `Planet` to create the inverse relation. The resulting type also has two generic arguments. In this case, they are reversed since this relation now goes _from_ planet _to_ galaxy.
 
 Note that this method is also not static. That is because it must access the referenced identifier to perform the relation lookup.
 
@@ -71,7 +71,7 @@ let galaxy: Galaxy = ...
 let planets = galaxy.planets.query(on: ...).all()
 ```
 
-The `query(on:)` method on a relation creates an instance of [`QueryBuilder`](#fixme) filtered to the related models. See [Fluent &rarr; Querying](querying.md) for more information on working with the query builder.
+The `query(on:)` method on a relation creates an instance of [`QueryBuilder`](https://api.vapor.codes/fluent/latest/Fluent/Classes/QueryBuilder.html) filtered to the related models. See [Fluent &rarr; Querying](querying.md) for more information on working with the query builder.
 
 ```swift
 let planet: Planet = ...
@@ -174,7 +174,7 @@ planet.tags.query(on: ...).all()
 
 ### Modifiable Pivot
 
-If the pivot conforms to [`ModifiablePivot`](#fixme), then Fluent can help to create and delete pivots (called attaching and detaching).
+If the pivot conforms to [`ModifiablePivot`](https://api.vapor.codes/fluent/latest/Fluent/Protocols/ModifiablePivot.html), then Fluent can help to create and delete pivots (called attaching and detaching).
 
 Conforming a pivot is fairly simple. Fluent just needs to be able to initialize the pivot from two related models.
 

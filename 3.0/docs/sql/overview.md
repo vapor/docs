@@ -30,7 +30,7 @@ Check out [Database Kit &rarr; Overview &rarr; Connections](../database-kit/over
 
 ## Select
 
-Use the [`select()`](#fixme) method on a connection to create a [`SQLSelectBuilder`](#fixme). This builder helps you create `SELECT` statements and supports:
+Use the [`select()`](https://api.vapor.codes/sql/latest/SQL/Protocols/SQLConnection.html#/s:3SQL13SQLConnectionPAAE6selectAA16SQLSelectBuilderCyxGyF) method on a connection to create a [`SQLSelectBuilder`](https://api.vapor.codes/sql/latest/SQL/Classes/SQLSelectBuilder.html). This builder helps you create `SELECT` statements and supports:
 
 - `*`, columns, and expressions like functions
 - `FROM`
@@ -38,7 +38,7 @@ Use the [`select()`](#fixme) method on a connection to create a [`SQLSelectBuild
 - `GROUP BY`
 - `ORDER BY`
 
-The select builder conforms to [`SQLPredicateBuilder`](#fixme) for building `WHERE` predicates. It also conforms to [`SQLQueryFetcher`](#fixme) for decoding `Codable` models from the result set.
+The select builder conforms to [`SQLPredicateBuilder`](https://api.vapor.codes/sql/latest/SQL/Protocols/SQLPredicateBuilder.html) for building `WHERE` predicates. It also conforms to [`SQLQueryFetcher`](https://api.vapor.codes/sql/latest/SQL/Protocols/SQLQueryFetcher.html) for decoding `Codable` models from the result set.
 
 Let's take a look at an example `SELECT` query. Replace the Xcode placeholder with the name of the database you are using, i.e., `SQLite`. 
 

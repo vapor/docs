@@ -66,6 +66,37 @@ User.query(on: req).all()
 
 See [DatabaseKit &rarr; Getting Started](../database-kit/getting-started.md) to learn more.
 
+### Migrating SQL Database
+
+When migrating from Fluent 2 to 3 you may need to update your `fluent` table to support the new format. In Fluent 3, the migration log table has the following changes:
+
+- `id` is now a `UUID`.
+- `createdAt` and `updatedAt` must now be `camelCase`.
+
+Depending on how your Fluent database was configured, your tables may already be in the correct format. If not, you can run the following queries to transfer the table data. 
+
+Use this query if your column names were already set to `camelCase`.
+
+```sql
+ALTER TABLE fluent RENAME TO fluent_old;
+CREATE TABLE fluent 
+    AS (SELECT UUID() as id, name, batch, createdAt, updatedAt from fluent_old);
+```
+
+Use this query if your column names were `snake_case`.
+
+```sql
+ALTER TABLE fluent RENAME TO fluent_old;
+CREATE TABLE fluent 
+    AS (SELECT UUID() as id, name, batch, created_at as createdAt, updated_at as updatedAt from fluent_old);
+```
+
+After you have verified the table was transferred properly, you can drop the old fluent table.
+
+```sql
+DROP TABLE fluent_old;
+```
+
 ### Work in progress
 
 This migration guide is a work in progress. Please feel free to add any migration tips here by submitting a PR.

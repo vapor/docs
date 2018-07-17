@@ -25,7 +25,7 @@ struct Galaxy: <#Database#>Model {
 
 ### Automatic Model Migrations
 
-Models provide a shortcut for declaring database migrations. If you conform a type that conforms to [`Model`](#fixme) to [`Migration`](#fixme), Fluent can infer the model's properties and automatically implement the `prepare(...)` and `revert(...)` methods.
+Models provide a shortcut for declaring database migrations. If you conform a type that conforms to [`Model`](https://api.vapor.codes/fluent/latest/Fluent/Protocols/Model.html) to [`Migration`](https://api.vapor.codes/fluent/latest/Fluent/Protocols/Migration.html), Fluent can infer the model's properties and automatically implement the `prepare(...)` and `revert(...)` methods.
 
 ```swift
 import Fluent<#Database#>
@@ -35,7 +35,7 @@ extension Galaxy: <#Database#>Migration { }
 
 This method is especially useful for quick prototyping and simple setups. For most other situations you should consider creating a normal, custom migration. 
 
-Add this automatic migration to your [`MigrationConfig`](#fixme) using the `add(model:database:)` method. This is done in [`configure.swift`](../getting-started/structure.md#configureswift).
+Add this automatic migration to your [`MigrationConfig`](https://api.vapor.codes/fluent/latest/Fluent/Structs/MigrationConfig.html) using the `add(model:database:)` method. This is done in [`configure.swift`](../getting-started/structure.md#configureswift).
 
 ```swift
 var migrations = MigrationConfig()
@@ -43,11 +43,11 @@ migrations.add(model: Galaxy.self, database: .<#dbid#>)
 services.register(migrations)
 ```
 
-The `add(model:database:)` method will automatically set the model's [`defaultDatabase`](#fixme) property. 
+The `add(model:database:)` method will automatically set the model's [`defaultDatabase`](https://api.vapor.codes/fluent/latest/Fluent/Protocols/Model.html#/s:6Fluent5ModelPAAE15defaultDatabase0D3Kit0D10IdentifierVy0D0QzGSgvpZ) property. 
 
 ### Custom Migrations
 
-We can customize the table created for our model by creating a migration and using the static `create` and `delete` methods on [`Database`](#fixme).
+We can customize the table created for our model by creating a migration and using the static `create` and `delete` methods on [`Database`](https://api.vapor.codes/database-kit/latest/DatabaseKit/Protocols/Database.html).
 
 ```swift
 import Fluent<#Database#>
@@ -76,7 +76,7 @@ struct CreateGalaxy: <#Database#>Migration {
 }
 ```
 
-To create a schema, you must pass a model type and connection as the first two parameters. The third parameter is a closure that accepts the [`SchemaBuilder`](#fixme). This builder has convenience methods for declaring fields in the schema.
+To create a schema, you must pass a model type and connection as the first two parameters. The third parameter is a closure that accepts the [`SchemaBuilder`](https://api.vapor.codes/fluent/latest/Fluent/Protocols/SchemaBuilder.html). This builder has convenience methods for declaring fields in the schema.
 
 You can use the `field(for: <#KeyPath#>)` method to quickly create fields for each of your model's properties. Since this method accepts key paths to the model (indicated by `\.`), Fluent can see what type those properties are. For most common types (`String`, `Int`, `Double`, etc) Fluent will automatically be able to determine the best database field type to use.
 
@@ -88,8 +88,11 @@ try builder.field(for: \.name, type: <#DataType#>)
 
 Each database has it's own unique data types, so refer to your database's documentation for more information.
 
-!!! danger
-    fixme: links to db's data types
+|database|docs|api docs|
+|-|-|-|
+|PostgreSQL|[PostgreSQL &rarr; Getting Started](../postgresql/getting-started.md)|_Coming soon_|
+|MySQL|[MySQL &rarr; Getting Started](../mysql/getting-started.md)|_Coming soon_|
+|SQLite|[SQLite &rarr; Getting Started](../sqlite/getting-started.md)|[`SQLiteDataType`](https://api.vapor.codes/sqlite/latest/SQLite/Enums/SQLiteDataType.html)|
 
 #### Deleting a Schema
 
@@ -115,7 +118,7 @@ To delete a schema, you pass a model type and connection as the two required par
 
 You can always choose to skip a reversion by simplying returning `conn.future(())`. But note that they are especially useful when testing and debugging your migrations.
 
-Add this custom migration to your [`MigrationConfig`](#fixme) using the `add(migration:database:)` method. This is done in your [`configure.swift`](../getting-started/structure.md#configureswift) file.
+Add this custom migration to your [`MigrationConfig`](https://api.vapor.codes/fluent/latest/Fluent/Structs/MigrationConfig.html) using the `add(migration:database:)` method. This is done in your [`configure.swift`](../getting-started/structure.md#configureswift) file.
 
 ```swift
 var migrations = MigrationConfig()
@@ -144,7 +147,7 @@ struct Galaxy: <#Database#>Model {
 }
 ```
 
-Since our previous migration created a table with fields for both `id` and `name`, we need to update that table and add a field for `mass`. We can do this by using the static `update` method on [`Database`](#fixme).
+Since our previous migration created a table with fields for both `id` and `name`, we need to update that table and add a field for `mass`. We can do this by using the static `update` method on [`Database`](https://api.vapor.codes/database-kit/latest/DatabaseKit/Protocols/Database.html).
 
 ```swift
 import Fluent<#Database#>
@@ -168,7 +171,7 @@ struct AddGalaxyMass: <#Database#>Migration {
 }
 ```
 
-All methods available when creating a schema will be available while updating alongside some new methods for deleting fields. See [`SchemaUpdater`](#fixme) for a list of all available methods.
+All methods available when creating a schema will be available while updating alongside some new methods for deleting fields. See [`SchemaUpdater`](https://api.vapor.codes/fluent/latest/Fluent/Classes/SchemaUpdater.html) for a list of all available methods.
 
 To revert this change, we must delete the `mass` field from the table.
 
@@ -183,7 +186,7 @@ struct AddGalaxyMass: <#Database#>Migration {
 }
 ```
 
-Add this migration to your [`MigrationConfig`](#fixme) using the `add(migration:database:)` method. This is done in your [`configure.swift`](../getting-started/structure.md#configureswift) file.
+Add this migration to your [`MigrationConfig`](https://api.vapor.codes/fluent/latest/Fluent/Structs/MigrationConfig.html) using the `add(migration:database:)` method. This is done in your [`configure.swift`](../getting-started/structure.md#configureswift) file.
 
 ```swift
 var migrations = MigrationConfig()
@@ -230,7 +233,7 @@ struct GalaxyMassCleanup: <#Database#>Migration {
 }
 ```
 
-Add this migration to your [`MigrationConfig`](#fixme) using the `add(migration:database:)` method. This is done in [`configure.swift`](../getting-started/structure.md#configureswift).
+Add this migration to your [`MigrationConfig`](https://api.vapor.codes/fluent/latest/Fluent/Structs/MigrationConfig.html) using the `add(migration:database:)` method. This is done in [`configure.swift`](../getting-started/structure.md#configureswift).
 
 ```swift
 var migrations = MigrationConfig()

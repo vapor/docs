@@ -53,7 +53,7 @@ vapor xcode
 
 Now let's create your first model. Models represent tables in your database and they are the primary method of interacting with your data. 
 
-Each driver provides convenience model protocols (`PostgreSQLModel`, `SQLiteModel`, etc) that extend Fluent's base [`Model`](#fixme) protocol. These convenience types make declaring models more concise by using standard values for ID key and type.
+Each driver provides convenience model protocols (`PostgreSQLModel`, `SQLiteModel`, etc) that extend Fluent's base [`Model`](https://api.vapor.codes/fluent/latest/Fluent/Protocols/Model.html) protocol. These convenience types make declaring models more concise by using standard values for ID key and type.
 
 Fill in the Xcode placeholders below with the name of your chosen database, i.e., `PostgreSQL`.
 
@@ -111,12 +111,15 @@ If you are using default configuration for your database (such as default creden
 
 See the documentation for your specific database type for more information about custom configuration.
 
-!!! danger
-    fixme: Add links to config structs.
+|database|docs|api docs|
+|-|-|-|
+|PostgreSQL|[PostgreSQL &rarr; Getting Started](../postgresql/getting-started.md)|_Coming soon_|
+|MySQL|[MySQL &rarr; Getting Started](../mysql/getting-started.md)|_Coming soon_|
+|SQLite|[SQLite &rarr; Getting Started](../sqlite/getting-started.md)|[`SQLiteDatabase`](https://api.vapor.codes/sqlite/latest/SQLite/Classes/SQLiteDatabase.html)|
 
 ## Creating a Migration
 
-If your database driver uses schemas (is a SQL database), you will need to create a [`Migration`](#fixme) for your new model. Migrations allow Fluent to create a table for your model in a reliable, testable way. You can later create additional migrations to update or delete the model's table or even manipulate data in the table.
+If your database driver uses schemas (is a SQL database), you will need to create a [`Migration`](https://api.vapor.codes/fluent/latest/Fluent/Protocols/Migration.html) for your new model. Migrations allow Fluent to create a table for your model in a reliable, testable way. You can later create additional migrations to update or delete the model's table or even manipulate data in the table.
 
  To create a migration, you will normally first create a new struct or class to hold the migration. However, models can take advantage of a convenient shortcut. When you create a migration from an existing model type, Fluent can infer an appropriate schema from the model's codable properties.
 
@@ -133,7 +136,7 @@ Take a look at [Fluent &rarr; Migration](../fluent/migrations.md) if you are int
 
 ### Configuring Migrations
 
-Once you have created a migration, you must register it to Fluent using [`MigrationConfig`](#fixme). This is done in [`configure.swift`](../getting-started/structure.md#configureswift).
+Once you have created a migration, you must register it to Fluent using [`MigrationConfig`](https://api.vapor.codes/fluent/latest/Fluent/Structs/MigrationConfig.html). This is done in [`configure.swift`](../getting-started/structure.md#configureswift).
 
 Fill in the database ID  (`dbid`) from the table above, i.e., `psql`.
 
@@ -150,7 +153,7 @@ services.register(migrations)
 ```
 
 !!! tip
-    If the migration you are adding is also a model, you can use the [`add(model:on:)`](#fixme) convenience to automatically set the model's [`defaultDatabase`](#fixme) property. Otherwise, use the [`add(migration:on)`](#fixme) method.
+    If the migration you are adding is also a model, you can use the [`add(model:on:)`](https://api.vapor.codes/fluent/latest/Fluent/Structs/MigrationConfig.html#/s:6Fluent15MigrationConfigV3add5model8databaseyxm_11DatabaseKit0G10IdentifierVy0G0AA0B0PQzGtAaKRzAA5ModelRzAjaOPQzAMRSlF) convenience to automatically set the model's [`defaultDatabase`](https://api.vapor.codes/fluent/latest/Fluent/Protocols/Model.html#/s:6Fluent5ModelPAAE15defaultDatabase0D3Kit0D10IdentifierVy0D0QzGSgvpZ) property. Otherwise, use the [`add(migration:on)`](https://api.vapor.codes/fluent/latest/Fluent/Structs/MigrationConfig.html#/s:6Fluent15MigrationConfigV3add9migration8databaseyxm_11DatabaseKit0G10IdentifierVy0G0QzGtAA0B0RzlF) method.
 
 Once you have the `MigrationConfig` added, you should be able to run your application and see the following:
 
@@ -176,7 +179,7 @@ If you run your app, and query that route, you should see an empty array returne
 
 With Fluent, you always have access to the underlying database driver. Using this underlying driver to perform a query is sometimes called a "raw query". 
 
-To perform raw queries, you need access to a database connection. Vapor's [`Request`](#fixme) type has a number of conveniences for creating new database connections. The recommended method is `withPooledConnection(to:)`.  Learn about other methods in [DatabaseKit &rarr; Overview &rarr; Connections](../database-kit/overview/#connections).
+To perform raw queries, you need access to a database connection. Vapor's [`Request`](https://api.vapor.codes/vapor/latest/Vapor/Classes/Request.html) type has a number of conveniences for creating new database connections. The recommended method is `withPooledConnection(to:)`.  Learn about other methods in [DatabaseKit &rarr; Overview &rarr; Connections](../database-kit/overview/#connections).
 
 ```swift
 router.get("raw") { req -> Future<String> in
