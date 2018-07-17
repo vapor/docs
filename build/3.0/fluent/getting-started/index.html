@@ -2165,7 +2165,7 @@ It takes advantage of Swift's strong type system to provide an elegant foundatio
 
 <h2 id="creating-a-model">Creating a Model<a class="headerlink" href="#creating-a-model" title="Permanent link">&para;</a></h2>
 <p>Now let's create your first model. Models represent tables in your database and they are the primary method of interacting with your data. </p>
-<p>Each driver provides convenience model protocols (<code>PostgreSQLModel</code>, <code>SQLiteModel</code>, etc) that extend Fluent's base <a href="#fixme"><code>Model</code></a> protocol. These convenience types make declaring models more concise by using standard values for ID key and type.</p>
+<p>Each driver provides convenience model protocols (<code>PostgreSQLModel</code>, <code>SQLiteModel</code>, etc) that extend Fluent's base <a href="https://api.vapor.codes/fluent/latest/Fluent/Protocols/Model.html"><code>Model</code></a> protocol. These convenience types make declaring models more concise by using standard values for ID key and type.</p>
 <p>Fill in the Xcode placeholders below with the name of your chosen database, i.e., <code>PostgreSQL</code>.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Fluent</span><span class="o">&lt;</span><span class="p">#</span><span class="nc">Database</span><span class="p">#</span><span class="o">&gt;</span>
 <span class="kd">import</span> <span class="nc">Vapor</span>
@@ -2211,12 +2211,34 @@ It takes advantage of Swift's strong type system to provide an elegant foundatio
 <h3 id="custom-credentials">Custom Credentials<a class="headerlink" href="#custom-credentials" title="Permanent link">&para;</a></h3>
 <p>If you are using default configuration for your database (such as default credentials or other config) then this may be the only setup you need to perform. </p>
 <p>See the documentation for your specific database type for more information about custom configuration.</p>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>fixme: Add links to config structs.</p>
-</div>
+<table>
+<thead>
+<tr>
+<th>database</th>
+<th>docs</th>
+<th>api docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL</td>
+<td><a href="../../postgresql/getting-started/">PostgreSQL &rarr; Getting Started</a></td>
+<td><em>Coming soon</em></td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td><a href="../../mysql/getting-started/">MySQL &rarr; Getting Started</a></td>
+<td><em>Coming soon</em></td>
+</tr>
+<tr>
+<td>SQLite</td>
+<td><a href="../../sqlite/getting-started/">SQLite &rarr; Getting Started</a></td>
+<td><a href="https://api.vapor.codes/sqlite/latest/SQLite/Classes/SQLiteDatabase.html"><code>SQLiteDatabase</code></a></td>
+</tr>
+</tbody>
+</table>
 <h2 id="creating-a-migration">Creating a Migration<a class="headerlink" href="#creating-a-migration" title="Permanent link">&para;</a></h2>
-<p>If your database driver uses schemas (is a SQL database), you will need to create a <a href="#fixme"><code>Migration</code></a> for your new model. Migrations allow Fluent to create a table for your model in a reliable, testable way. You can later create additional migrations to update or delete the model's table or even manipulate data in the table.</p>
+<p>If your database driver uses schemas (is a SQL database), you will need to create a <a href="https://api.vapor.codes/fluent/latest/Fluent/Protocols/Migration.html"><code>Migration</code></a> for your new model. Migrations allow Fluent to create a table for your model in a reliable, testable way. You can later create additional migrations to update or delete the model's table or even manipulate data in the table.</p>
 <p>To create a migration, you will normally first create a new struct or class to hold the migration. However, models can take advantage of a convenient shortcut. When you create a migration from an existing model type, Fluent can infer an appropriate schema from the model's codable properties.</p>
 <p>You can add the migration conformance to a model as an extension or on the base type declaration.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Fluent</span><span class="o">&lt;</span><span class="p">#</span><span class="nc">Database</span><span class="p">#</span><span class="o">&gt;</span>
@@ -2228,7 +2250,7 @@ It takes advantage of Swift's strong type system to provide an elegant foundatio
 
 <p>Take a look at <a href="../migrations/">Fluent &rarr; Migration</a> if you are interested in learning more about custom migrations.</p>
 <h3 id="configuring-migrations">Configuring Migrations<a class="headerlink" href="#configuring-migrations" title="Permanent link">&para;</a></h3>
-<p>Once you have created a migration, you must register it to Fluent using <a href="#fixme"><code>MigrationConfig</code></a>. This is done in <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a>.</p>
+<p>Once you have created a migration, you must register it to Fluent using <a href="https://api.vapor.codes/fluent/latest/Fluent/Structs/MigrationConfig.html"><code>MigrationConfig</code></a>. This is done in <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a>.</p>
 <p>Fill in the database ID  (<code>dbid</code>) from the table above, i.e., <code>psql</code>.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Fluent</span><span class="o">&lt;</span><span class="p">#</span><span class="nc">Database</span><span class="p">#</span><span class="o">&gt;</span>
 <span class="kd">import</span> <span class="nc">Vapor</span>
@@ -2244,7 +2266,7 @@ It takes advantage of Swift's strong type system to provide an elegant foundatio
 
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>If the migration you are adding is also a model, you can use the <a href="#fixme"><code>add(model:on:)</code></a> convenience to automatically set the model's <a href="#fixme"><code>defaultDatabase</code></a> property. Otherwise, use the <a href="#fixme"><code>add(migration:on)</code></a> method.</p>
+<p>If the migration you are adding is also a model, you can use the <a href="https://api.vapor.codes/fluent/latest/Fluent/Structs/MigrationConfig.html#/s:6Fluent15MigrationConfigV3add5model8databaseyxm_11DatabaseKit0G10IdentifierVy0G0AA0B0PQzGtAaKRzAA5ModelRzAjaOPQzAMRSlF"><code>add(model:on:)</code></a> convenience to automatically set the model's <a href="https://api.vapor.codes/fluent/latest/Fluent/Protocols/Model.html#/s:6Fluent5ModelPAAE15defaultDatabase0D3Kit0D10IdentifierVy0D0QzGSgvpZ"><code>defaultDatabase</code></a> property. Otherwise, use the <a href="https://api.vapor.codes/fluent/latest/Fluent/Structs/MigrationConfig.html#/s:6Fluent15MigrationConfigV3add9migration8databaseyxm_11DatabaseKit0G10IdentifierVy0G0QzGtAA0B0RzlF"><code>add(migration:on)</code></a> method.</p>
 </div>
 <p>Once you have the <code>MigrationConfig</code> added, you should be able to run your application and see the following:</p>
 <div class="codehilite"><pre><span></span>Migrating &lt;<span class="c1">#dbid#&gt; DB</span>
@@ -2264,7 +2286,7 @@ Server starting on http://localhost:8080
 <p>If you run your app, and query that route, you should see an empty array returned. Now you just need to add some users! Congratulations on getting your first Fluent model working.</p>
 <h2 id="raw-queries">Raw Queries<a class="headerlink" href="#raw-queries" title="Permanent link">&para;</a></h2>
 <p>With Fluent, you always have access to the underlying database driver. Using this underlying driver to perform a query is sometimes called a "raw query". </p>
-<p>To perform raw queries, you need access to a database connection. Vapor's <a href="#fixme"><code>Request</code></a> type has a number of conveniences for creating new database connections. The recommended method is <code>withPooledConnection(to:)</code>.  Learn about other methods in <a href="../../database-kit/overview/#connections">DatabaseKit &rarr; Overview &rarr; Connections</a>.</p>
+<p>To perform raw queries, you need access to a database connection. Vapor's <a href="https://api.vapor.codes/vapor/latest/Vapor/Classes/Request.html"><code>Request</code></a> type has a number of conveniences for creating new database connections. The recommended method is <code>withPooledConnection(to:)</code>.  Learn about other methods in <a href="../../database-kit/overview/#connections">DatabaseKit &rarr; Overview &rarr; Connections</a>.</p>
 <div class="codehilite"><pre><span></span><span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;raw&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span> <span class="k">in</span>
     <span class="k">return</span> <span class="n">req</span><span class="p">.</span><span class="n">withPooledConnection</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="p">.</span><span class="o">&lt;</span><span class="p">#</span><span class="n">dbid</span><span class="p">#</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span> <span class="n">conn</span> <span class="k">in</span>
         <span class="c1">// perform raw query using conn</span>

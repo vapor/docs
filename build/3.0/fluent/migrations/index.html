@@ -2051,7 +2051,7 @@ make normal queries to your database.</p>
 
 
 <h3 id="automatic-model-migrations">Automatic Model Migrations<a class="headerlink" href="#automatic-model-migrations" title="Permanent link">&para;</a></h3>
-<p>Models provide a shortcut for declaring database migrations. If you conform a type that conforms to <a href="#fixme"><code>Model</code></a> to <a href="#fixme"><code>Migration</code></a>, Fluent can infer the model's properties and automatically implement the <code>prepare(...)</code> and <code>revert(...)</code> methods.</p>
+<p>Models provide a shortcut for declaring database migrations. If you conform a type that conforms to <a href="https://api.vapor.codes/fluent/latest/Fluent/Protocols/Model.html"><code>Model</code></a> to <a href="https://api.vapor.codes/fluent/latest/Fluent/Protocols/Migration.html"><code>Migration</code></a>, Fluent can infer the model's properties and automatically implement the <code>prepare(...)</code> and <code>revert(...)</code> methods.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Fluent</span><span class="o">&lt;</span><span class="p">#</span><span class="nc">Database</span><span class="p">#</span><span class="o">&gt;</span>
 
 <span class="kd">extension</span> <span class="nc">Galaxy</span><span class="p">:</span> <span class="o">&lt;</span><span class="p">#</span><span class="n">Database</span><span class="p">#</span><span class="o">&gt;</span><span class="n">Migration</span> <span class="p">{</span> <span class="p">}</span>
@@ -2059,16 +2059,16 @@ make normal queries to your database.</p>
 
 
 <p>This method is especially useful for quick prototyping and simple setups. For most other situations you should consider creating a normal, custom migration. </p>
-<p>Add this automatic migration to your <a href="#fixme"><code>MigrationConfig</code></a> using the <code>add(model:database:)</code> method. This is done in <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a>.</p>
+<p>Add this automatic migration to your <a href="https://api.vapor.codes/fluent/latest/Fluent/Structs/MigrationConfig.html"><code>MigrationConfig</code></a> using the <code>add(model:database:)</code> method. This is done in <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a>.</p>
 <div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nv">migrations</span> <span class="p">=</span> <span class="n">MigrationConfig</span><span class="p">()</span>
 <span class="n">migrations</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">Galaxy</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="p">.</span><span class="o">&lt;</span><span class="p">#</span><span class="n">dbid</span><span class="p">#</span><span class="o">&gt;</span><span class="p">)</span>
 <span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">migrations</span><span class="p">)</span>
 </pre></div>
 
 
-<p>The <code>add(model:database:)</code> method will automatically set the model's <a href="#fixme"><code>defaultDatabase</code></a> property. </p>
+<p>The <code>add(model:database:)</code> method will automatically set the model's <a href="https://api.vapor.codes/fluent/latest/Fluent/Protocols/Model.html#/s:6Fluent5ModelPAAE15defaultDatabase0D3Kit0D10IdentifierVy0D0QzGSgvpZ"><code>defaultDatabase</code></a> property. </p>
 <h3 id="custom-migrations">Custom Migrations<a class="headerlink" href="#custom-migrations" title="Permanent link">&para;</a></h3>
-<p>We can customize the table created for our model by creating a migration and using the static <code>create</code> and <code>delete</code> methods on <a href="#fixme"><code>Database</code></a>.</p>
+<p>We can customize the table created for our model by creating a migration and using the static <code>create</code> and <code>delete</code> methods on <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Protocols/Database.html"><code>Database</code></a>.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Fluent</span><span class="o">&lt;</span><span class="p">#</span><span class="nc">Database</span><span class="p">#</span><span class="o">&gt;</span>
 
 <span class="kd">struct</span> <span class="nc">CreateGalaxy</span><span class="p">:</span> <span class="o">&lt;</span><span class="p">#</span><span class="n">Database</span><span class="p">#</span><span class="o">&gt;</span><span class="n">Migration</span> <span class="p">{</span>
@@ -2094,7 +2094,7 @@ make normal queries to your database.</p>
 </pre></div>
 
 
-<p>To create a schema, you must pass a model type and connection as the first two parameters. The third parameter is a closure that accepts the <a href="#fixme"><code>SchemaBuilder</code></a>. This builder has convenience methods for declaring fields in the schema.</p>
+<p>To create a schema, you must pass a model type and connection as the first two parameters. The third parameter is a closure that accepts the <a href="https://api.vapor.codes/fluent/latest/Fluent/Protocols/SchemaBuilder.html"><code>SchemaBuilder</code></a>. This builder has convenience methods for declaring fields in the schema.</p>
 <p>You can use the <code>field(for: &lt;#KeyPath#&gt;)</code> method to quickly create fields for each of your model's properties. Since this method accepts key paths to the model (indicated by <code>\.</code>), Fluent can see what type those properties are. For most common types (<code>String</code>, <code>Int</code>, <code>Double</code>, etc) Fluent will automatically be able to determine the best database field type to use.</p>
 <p>You can also choose to manually select which database field type to use for a given field.</p>
 <div class="codehilite"><pre><span></span><span class="k">try</span> <span class="n">builder</span><span class="p">.</span><span class="n">field</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="err">\</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="o">&lt;</span><span class="p">#</span><span class="n">DataType</span><span class="p">#</span><span class="o">&gt;</span><span class="p">)</span>
@@ -2102,10 +2102,32 @@ make normal queries to your database.</p>
 
 
 <p>Each database has it's own unique data types, so refer to your database's documentation for more information.</p>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>fixme: links to db's data types</p>
-</div>
+<table>
+<thead>
+<tr>
+<th>database</th>
+<th>docs</th>
+<th>api docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL</td>
+<td><a href="../../postgresql/getting-started/">PostgreSQL &rarr; Getting Started</a></td>
+<td><em>Coming soon</em></td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td><a href="../../mysql/getting-started/">MySQL &rarr; Getting Started</a></td>
+<td><em>Coming soon</em></td>
+</tr>
+<tr>
+<td>SQLite</td>
+<td><a href="../../sqlite/getting-started/">SQLite &rarr; Getting Started</a></td>
+<td><a href="https://api.vapor.codes/sqlite/latest/SQLite/Enums/SQLiteDataType.html"><code>SQLiteDataType</code></a></td>
+</tr>
+</tbody>
+</table>
 <h4 id="deleting-a-schema">Deleting a Schema<a class="headerlink" href="#deleting-a-schema" title="Permanent link">&para;</a></h4>
 <p>Each migration should also include a method for <em>reverting</em> the changes it makes. It is used when you boot your 
 app with the <code>--revert</code> option. </p>
@@ -2124,7 +2146,7 @@ app with the <code>--revert</code> option. </p>
 
 <p>To delete a schema, you pass a model type and connection as the two required parameters. That's it.</p>
 <p>You can always choose to skip a reversion by simplying returning <code>conn.future(())</code>. But note that they are especially useful when testing and debugging your migrations.</p>
-<p>Add this custom migration to your <a href="#fixme"><code>MigrationConfig</code></a> using the <code>add(migration:database:)</code> method. This is done in your <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a> file.</p>
+<p>Add this custom migration to your <a href="https://api.vapor.codes/fluent/latest/Fluent/Structs/MigrationConfig.html"><code>MigrationConfig</code></a> using the <code>add(migration:database:)</code> method. This is done in your <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a> file.</p>
 <div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nv">migrations</span> <span class="p">=</span> <span class="n">MigrationConfig</span><span class="p">()</span>
 <span class="n">migrations</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">migration</span><span class="p">:</span> <span class="n">CreateGalaxy</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="p">.</span><span class="o">&lt;</span><span class="p">#</span><span class="n">dbid</span><span class="p">#</span><span class="o">&gt;</span><span class="p">)</span>
 <span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">migrations</span><span class="p">)</span>
@@ -2149,7 +2171,7 @@ app with the <code>--revert</code> option. </p>
 </pre></div>
 
 
-<p>Since our previous migration created a table with fields for both <code>id</code> and <code>name</code>, we need to update that table and add a field for <code>mass</code>. We can do this by using the static <code>update</code> method on <a href="#fixme"><code>Database</code></a>.</p>
+<p>Since our previous migration created a table with fields for both <code>id</code> and <code>name</code>, we need to update that table and add a field for <code>mass</code>. We can do this by using the static <code>update</code> method on <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Protocols/Database.html"><code>Database</code></a>.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Fluent</span><span class="o">&lt;</span><span class="p">#</span><span class="nc">Database</span><span class="p">#</span><span class="o">&gt;</span>
 
 <span class="kd">struct</span> <span class="nc">AddGalaxyMass</span><span class="p">:</span> <span class="o">&lt;</span><span class="p">#</span><span class="n">Database</span><span class="p">#</span><span class="o">&gt;</span><span class="n">Migration</span> <span class="p">{</span>
@@ -2171,7 +2193,7 @@ app with the <code>--revert</code> option. </p>
 </pre></div>
 
 
-<p>All methods available when creating a schema will be available while updating alongside some new methods for deleting fields. See <a href="#fixme"><code>SchemaUpdater</code></a> for a list of all available methods.</p>
+<p>All methods available when creating a schema will be available while updating alongside some new methods for deleting fields. See <a href="https://api.vapor.codes/fluent/latest/Fluent/Classes/SchemaUpdater.html"><code>SchemaUpdater</code></a> for a list of all available methods.</p>
 <p>To revert this change, we must delete the <code>mass</code> field from the table.</p>
 <div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">AddGalaxyMass</span><span class="p">:</span> <span class="o">&lt;</span><span class="p">#</span><span class="n">Database</span><span class="p">#</span><span class="o">&gt;</span><span class="n">Migration</span> <span class="p">{</span>
     <span class="c1">// ... </span>
@@ -2184,7 +2206,7 @@ app with the <code>--revert</code> option. </p>
 </pre></div>
 
 
-<p>Add this migration to your <a href="#fixme"><code>MigrationConfig</code></a> using the <code>add(migration:database:)</code> method. This is done in your <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a> file.</p>
+<p>Add this migration to your <a href="https://api.vapor.codes/fluent/latest/Fluent/Structs/MigrationConfig.html"><code>MigrationConfig</code></a> using the <code>add(migration:database:)</code> method. This is done in your <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a> file.</p>
 <div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nv">migrations</span> <span class="p">=</span> <span class="n">MigrationConfig</span><span class="p">()</span>
 <span class="c1">// ...</span>
 <span class="n">migrations</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">migration</span><span class="p">:</span> <span class="n">AddGalaxyMass</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="p">.</span><span class="o">&lt;</span><span class="p">#</span><span class="n">dbid</span><span class="p">#</span><span class="o">&gt;</span><span class="p">)</span>
@@ -2224,7 +2246,7 @@ app with the <code>--revert</code> option. </p>
 </pre></div>
 
 
-<p>Add this migration to your <a href="#fixme"><code>MigrationConfig</code></a> using the <code>add(migration:database:)</code> method. This is done in <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a>.</p>
+<p>Add this migration to your <a href="https://api.vapor.codes/fluent/latest/Fluent/Structs/MigrationConfig.html"><code>MigrationConfig</code></a> using the <code>add(migration:database:)</code> method. This is done in <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a>.</p>
 <div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nv">migrations</span> <span class="p">=</span> <span class="n">MigrationConfig</span><span class="p">()</span>
 <span class="c1">// ...</span>
 <span class="n">migrations</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">migration</span><span class="p">:</span> <span class="n">GalaxyMassCleanup</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="p">.</span><span class="o">&lt;</span><span class="p">#</span><span class="n">dbid</span><span class="p">#</span><span class="o">&gt;</span><span class="p">)</span>

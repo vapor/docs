@@ -1978,7 +1978,7 @@ The <code>dbid</code> allows you to use multiple databases per application.</p>
 
 <p>Check out <a href="../../database-kit/overview.md/#connections">Database Kit &rarr; Overview &rarr; Connections</a> for more information. The rest of this guide will assume you have access to a SQL database connection.</p>
 <h2 id="select">Select<a class="headerlink" href="#select" title="Permanent link">&para;</a></h2>
-<p>Use the <a href="#fixme"><code>select()</code></a> method on a connection to create a <a href="#fixme"><code>SQLSelectBuilder</code></a>. This builder helps you create <code>SELECT</code> statements and supports:</p>
+<p>Use the <a href="https://api.vapor.codes/sql/latest/SQL/Protocols/SQLConnection.html#/s:3SQL13SQLConnectionPAAE6selectAA16SQLSelectBuilderCyxGyF"><code>select()</code></a> method on a connection to create a <a href="https://api.vapor.codes/sql/latest/SQL/Classes/SQLSelectBuilder.html"><code>SQLSelectBuilder</code></a>. This builder helps you create <code>SELECT</code> statements and supports:</p>
 <ul>
 <li><code>*</code>, columns, and expressions like functions</li>
 <li><code>FROM</code></li>
@@ -1986,7 +1986,7 @@ The <code>dbid</code> allows you to use multiple databases per application.</p>
 <li><code>GROUP BY</code></li>
 <li><code>ORDER BY</code></li>
 </ul>
-<p>The select builder conforms to <a href="#fixme"><code>SQLPredicateBuilder</code></a> for building <code>WHERE</code> predicates. It also conforms to <a href="#fixme"><code>SQLQueryFetcher</code></a> for decoding <code>Codable</code> models from the result set.</p>
+<p>The select builder conforms to <a href="https://api.vapor.codes/sql/latest/SQL/Protocols/SQLPredicateBuilder.html"><code>SQLPredicateBuilder</code></a> for building <code>WHERE</code> predicates. It also conforms to <a href="https://api.vapor.codes/sql/latest/SQL/Protocols/SQLQueryFetcher.html"><code>SQLQueryFetcher</code></a> for decoding <code>Codable</code> models from the result set.</p>
 <p>Let's take a look at an example <code>SELECT</code> query. Replace the Xcode placeholder with the name of the database you are using, i.e., <code>SQLite</code>. </p>
 <div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">User</span><span class="p">:</span> <span class="n">SQLTable</span><span class="p">,</span> <span class="n">Codable</span> <span class="p">{</span>
     <span class="kd">static</span> <span class="kd">let</span> <span class="nv">sqlTableIdentifierString</span> <span class="p">=</span> <span class="s">&quot;users&quot;</span>

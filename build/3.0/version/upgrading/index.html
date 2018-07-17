@@ -1873,6 +1873,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#migrating-sql-database" title="Migrating SQL Database" class="md-nav__link">
+    Migrating SQL Database
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#work-in-progress" title="Work in progress" class="md-nav__link">
     Work in progress
   </a>
@@ -1962,6 +1969,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#migrating-sql-database" title="Migrating SQL Database" class="md-nav__link">
+    Migrating SQL Database
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#work-in-progress" title="Work in progress" class="md-nav__link">
     Work in progress
   </a>
@@ -2042,6 +2056,32 @@
 
 
 <p>See <a href="../../database-kit/getting-started/">DatabaseKit &rarr; Getting Started</a> to learn more.</p>
+<h3 id="migrating-sql-database">Migrating SQL Database<a class="headerlink" href="#migrating-sql-database" title="Permanent link">&para;</a></h3>
+<p>When migrating from Fluent 2 to 3 you may need to update your <code>fluent</code> table to support the new format. In Fluent 3, the migration log table has the following changes:</p>
+<ul>
+<li><code>id</code> is now a <code>UUID</code>.</li>
+<li><code>createdAt</code> and <code>updatedAt</code> must now be <code>camelCase</code>.</li>
+</ul>
+<p>Depending on how your Fluent database was configured, your tables may already be in the correct format. If not, you can run the following queries to transfer the table data. </p>
+<p>Use this query if your column names were already set to <code>camelCase</code>.</p>
+<div class="codehilite"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">fluent</span> <span class="k">RENAME</span> <span class="k">TO</span> <span class="n">fluent_old</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">fluent</span> 
+    <span class="k">AS</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">UUID</span><span class="p">()</span> <span class="k">as</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">createdAt</span><span class="p">,</span> <span class="n">updatedAt</span> <span class="k">from</span> <span class="n">fluent_old</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Use this query if your column names were <code>snake_case</code>.</p>
+<div class="codehilite"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">fluent</span> <span class="k">RENAME</span> <span class="k">TO</span> <span class="n">fluent_old</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">fluent</span> 
+    <span class="k">AS</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">UUID</span><span class="p">()</span> <span class="k">as</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">created_at</span> <span class="k">as</span> <span class="n">createdAt</span><span class="p">,</span> <span class="n">updated_at</span> <span class="k">as</span> <span class="n">updatedAt</span> <span class="k">from</span> <span class="n">fluent_old</span><span class="p">);</span>
+</pre></div>
+
+
+<p>After you have verified the table was transferred properly, you can drop the old fluent table.</p>
+<div class="codehilite"><pre><span></span><span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">fluent_old</span><span class="p">;</span>
+</pre></div>
+
+
 <h3 id="work-in-progress">Work in progress<a class="headerlink" href="#work-in-progress" title="Permanent link">&para;</a></h3>
 <p>This migration guide is a work in progress. Please feel free to add any migration tips here by submitting a PR.</p>
 <p>Join the <a href="https://discordapp.com/invite/BnXmVGA">#upgrading-to-3</a> in Vapor's team chat to ask questions and get help in real time.</p>
