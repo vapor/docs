@@ -1491,6 +1491,19 @@
     Config
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customizing-config" title="Customizing Config" class="md-nav__link">
+    Customizing Config
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1945,6 +1958,19 @@
     Config
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customizing-config" title="Customizing Config" class="md-nav__link">
+    Customizing Config
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -2024,15 +2050,15 @@
 <p>The next step is to configure the database in <a href="../../getting-started/structure/#configureswift"><code>configure.swift</code></a>.</p>
 <div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">SQLite</span>
 
-<span class="c1">/// ...</span>
-
 <span class="c1">/// Register providers first</span>
 <span class="k">try</span> <span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">SQLiteProvider</span><span class="p">())</span>
 </pre></div>
 
 
 <p>Registering the provider will add all of the services required for SQLite to work properly. It also includes a default database config struct that uses an in-memory DB.</p>
-<p>You can of course override this if you'd like to use a different configuration. SQLite supports in-memory and file-based db persistance.</p>
+<h4 id="customizing-config">Customizing Config<a class="headerlink" href="#customizing-config" title="Permanent link">&para;</a></h4>
+<p>You can of course override the default configuration provided by <code>SQLiteProvider</code> if you'd like. </p>
+<p>SQLite supports in-memory and file-based persistance. To configure your database manually, register a <a href="https://api.vapor.codes/database-kit/latest/DatabaseKit/Structs/DatabasesConfig.html"><code>DatabasesConfig</code></a> struct to your services.</p>
 <div class="codehilite"><pre><span></span><span class="c1">// Configure a SQLite database</span>
 <span class="kd">let</span> <span class="nv">sqlite</span> <span class="p">=</span> <span class="k">try</span> <span class="n">SQLiteDatabase</span><span class="p">(</span><span class="n">storage</span><span class="p">:</span> <span class="p">.</span><span class="n">file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="s">&quot;db.sqlite&quot;</span><span class="p">))</span>
 
