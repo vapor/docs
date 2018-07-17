@@ -2,16 +2,13 @@
 
 SQLite ([vapor/sqlite](https://github.com/vapor/sqlite)) is a wrapper around the `libsqlite` C-library.
 
-!!! seealso
-    The higher-level, Fluent ORM guide is located at [Fluent &rarr; Getting Started](../fluent/getting-started.md)
-
-Using just the SQLite package for your project may be a good idea if any of the following are true.
+The higher-level, Fluent ORM guide is located at [Fluent &rarr; Getting Started](../fluent/getting-started.md). Using just the SQLite package directly for your project may be a good idea if any of the following are true:
 
 - You have an existing DB with non-standard structure.
 - You rely heavily on custom or complex SQL queries.
 - You just plain don't like ORMs.
 
-SQLite core is built on top of DatabaseKit which provides some conveniences like connection pooling and integrations with Vapor's [Services](../getting-started/services.md) architecture.
+SQLite core is built on top of [DatabaseKit](../database-kit/getting-started.md) which provides some conveniences like connection pooling and integrations with Vapor's [Services](../getting-started/services.md) architecture.
 
 !!! tip
     Even if you do choose to use [Fluent SQLite](../fluent/getting-started.md), all of the features of SQLite core will be available to you.
@@ -52,7 +49,7 @@ vapor xcode
 
 ### Config
 
-The next step is to configure the database in [`configure.swift`](../getting-started/structure.md#configureswift). SQLite's default database identifier is `.sqlite`. You can create a custom identifier if you want by extending [`DatabaseIdentifier`](#fixme). 
+The next step is to configure the database in [`configure.swift`](../getting-started/structure.md#configureswift).
 
 ```swift
 import SQLite
@@ -65,7 +62,7 @@ try services.register(SQLiteProvider())
 
 Registering the provider will add all of the services required for SQLite to work properly. It also includes a default database config struct that uses an in-memory DB.
 
-You can of course override this if you'd like to use a different configuration. SQLite supports in-memory and file-based db persistance. 
+You can of course override this if you'd like to use a different configuration. SQLite supports in-memory and file-based db persistance.
 
 ```swift
 // Configure a SQLite database
@@ -76,6 +73,10 @@ var databases = DatabasesConfig()
 databases.add(database: sqlite, as: .sqlite)
 services.register(databases)
 ```
+
+See [`SQLiteDatabase`](https://api.vapor.codes/sqlite/latest/SQLite/Classes/SQLiteDatabase.html) and [`SQLiteStorage`](https://api.vapor.codes/sqlite/latest/SQLite/Enums/SQLiteStorage.html) for more information.
+
+SQLite's default database identifier is `.sqlite`. You can create a custom identifier if you want by extending [`DatabaseIdentifier`](https://api.vapor.codes/database-kit/latest/DatabaseKit/Structs/DatabaseIdentifier.html). 
 
 ### Query
 
@@ -99,6 +100,8 @@ router.get("sql") { req in
 
 Visiting this route should display your SQLite version. 
 
-The first step is to create a connection--here we are making use of database connection pooling. You can learn more about creating connections in [DatabaseKit &rarr; Getting Started](../database-kit/getting-started.md).
+Here we are making use database connection pooling. You can learn more about creating connections in [DatabaseKit &rarr; Getting Started](../database-kit/getting-started.md).
 
-Once we have a connection, we can use [`select()`](#fixme) to create a `SELECT` query builder. Learn more about building queries in [SQL &rarr; Getting Started](../sql/getting-started.md).
+Once we have a connection, we can use [`select()`](https://api.vapor.codes/sql/latest/SQL/Protocols/SQLConnection.html#/s:3SQL13SQLConnectionPAAE6selectAA16SQLSelectBuilderCyxGyF) to create a `SELECT` query builder. Learn more about building queries in [SQL &rarr; Getting Started](../sql/getting-started.md).
+
+Visit SQLite's [API docs](https://api.vapor.codes/sqlite/latest/SQLite/index.html) for detailed information about all available types and methods.
