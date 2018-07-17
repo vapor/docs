@@ -54,15 +54,17 @@ The next step is to configure the database in [`configure.swift`](../getting-sta
 ```swift
 import SQLite
 
-/// ...
-
 /// Register providers first
 try services.register(SQLiteProvider())
 ```
 
 Registering the provider will add all of the services required for SQLite to work properly. It also includes a default database config struct that uses an in-memory DB.
 
-You can of course override this if you'd like to use a different configuration. SQLite supports in-memory and file-based db persistance.
+#### Customizing Config
+
+You can of course override the default configuration provided by `SQLiteProvider` if you'd like. 
+
+SQLite supports in-memory and file-based persistance. To configure your database manually, register a [`DatabasesConfig`](https://api.vapor.codes/database-kit/latest/DatabaseKit/Structs/DatabasesConfig.html) struct to your services.
 
 ```swift
 // Configure a SQLite database
