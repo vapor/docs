@@ -114,7 +114,7 @@ See the documentation for your specific database type for more information about
 |database|docs|api docs|
 |-|-|-|
 |PostgreSQL|[PostgreSQL &rarr; Getting Started](../postgresql/getting-started.md)|_Coming soon_|
-|MySQL|[MySQL &rarr; Getting Started](../mysql/getting-started.md)|_Coming soon_|
+|MySQL|[MySQL &rarr; Getting Started](../mysql/getting-started.md)|[`MySQLDatabase`](https://api.vapor.codes/mysql/latest/MySQL/Classes/MySQLDatabase.html)|
 |SQLite|[SQLite &rarr; Getting Started](../sqlite/getting-started.md)|[`SQLiteDatabase`](https://api.vapor.codes/sqlite/latest/SQLite/Classes/SQLiteDatabase.html)|
 
 ## Creating a Migration
