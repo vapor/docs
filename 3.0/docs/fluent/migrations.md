@@ -181,7 +181,8 @@ struct AddGalaxyMass: <#Database#>Migration {
 
     static func revert(on conn: <#Database#>Connection) -> Future<Void> {
         return <#Database#>Database.update(Galaxy.self, on: conn) { builder in
-        builder.deleteField(for: \.mass)
+            builder.deleteField(for: \.mass)
+        }
     }
 }
 ```
