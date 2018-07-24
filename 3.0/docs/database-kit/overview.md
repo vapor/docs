@@ -80,7 +80,7 @@ req.withPooledConnection(to: .psql) { conn in
 }
 ```
 
-This method will requested a pooled connection to the identified database and call the provided closure when the connection is available. When the `Future` returned by the closure has completed, the connection will automatically be returned to the pool.
+This method will request a pooled connection to the identified database and call the provided closure when the connection is available. When the `Future` returned by the closure has completed, the connection will automatically be returned to the pool.
 
 If you need access to a connection outside of a closure, you can use the related request / release methods instead.
 
