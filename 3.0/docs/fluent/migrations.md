@@ -90,7 +90,7 @@ Each database has it's own unique data types, so refer to your database's docume
 
 |database|docs|api docs|
 |-|-|-|
-|PostgreSQL|[PostgreSQL &rarr; Getting Started](../postgresql/getting-started.md)|_Coming soon_|
+|PostgreSQL|[PostgreSQL &rarr; Getting Started](../postgresql/getting-started.md)|[`PostgreSQLDataType`](https://api.vapor.codes/postgresql/latest/PostgreSQL/Structs/PostgreSQLDataType.html)|
 |MySQL|[MySQL &rarr; Getting Started](../mysql/getting-started.md)|[`MySQLDataType`](https://api.vapor.codes/mysql/latest/MySQL/Structs/MySQLDataType.html)|
 |SQLite|[SQLite &rarr; Getting Started](../sqlite/getting-started.md)|[`SQLiteDataType`](https://api.vapor.codes/sqlite/latest/SQLite/Enums/SQLiteDataType.html)|
 

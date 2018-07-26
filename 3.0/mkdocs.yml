@@ -28,9 +28,6 @@ pages:
 - 'Command':
     - 'Getting Started': 'command/getting-started.md'
     - 'Overview': 'command/overview.md'
-- 'Core':
-    - 'Getting Started': 'core/getting-started.md'
-    - 'Overview': 'core/overview.md'
 - 'Crypto':
     - 'Getting Started': 'crypto/getting-started.md'
     - 'Digests': 'crypto/digests.md'
