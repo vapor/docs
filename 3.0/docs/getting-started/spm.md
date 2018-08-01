@@ -9,7 +9,7 @@ interact with SPM on your behalf. However, it's important to understand the basi
 
 ## Package Manifest
 
-The first place SPM looks in your project is the package manfiest. This should always be located in the root
+The first place SPM looks in your project is the package manifest. This should always be located in the root
 directory of your project and named `Package.swift`.
 
 ### Dependencies
