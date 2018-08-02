@@ -25,7 +25,7 @@ public final class CustomUppercase: TagRenderer {
         let string = tag.parameters[0].string?.uppercased() ?? ""
         
         // send it back wrapped in a TemplateData
-        return Future.map(on: tag) { .string(string) }
+        return tag.future(.string(string))
     }
 }
 ```
