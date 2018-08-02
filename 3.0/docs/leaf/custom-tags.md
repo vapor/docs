@@ -6,8 +6,8 @@ When working with custom tags, there are four important things to know:
 
 1. You should call `requireParameterCount()` with the number of parameters you expect to receive. This will throw an error if your tag is used incorrectly.
 2. If you do or do not require a body, you should use either `requireBody()` or `requireNoBody()`. Again, this will throw an error if your tag is used incorrectly.
-3. You can read individual parameters using the `parameters` array. Each parameter will be of type `LeafData`, which you can convert to concrete data types using properties such as `.string`, `.dictionary`, and so on.
-4. You must return a `Future<LeafData?>` containing what should be rendered. In the example below we wrap the resulting uppercase string in a `LeafData` string, then send that back wrapped in a future.
+3. You can read individual parameters using the `parameters` array. Each parameter will be of type `TemplateData`, which you can convert to concrete data types using properties such as `.string`, `.dictionary`, and so on.
+4. You must return a `Future<TemplateData>` containing what should be rendered. In the example below we wrap the resulting uppercase string in a `TemplateData` string, then send that back wrapped in a future.
 
 Here’s example code for a `CustomUppercase` Leaf tag:
 
@@ -15,17 +15,17 @@ Here’s example code for a `CustomUppercase` Leaf tag:
 import Async
 import Leaf
 
-public final class CustomUppercase: Leaf.LeafTag {
+public final class CustomUppercase: TagRenderer {
     public init() {}
-    public func render(parsed: ParsedTag, context: LeafContext, renderer: LeafRenderer) throws -> Future<LeafData?> {
+    public func render(tag: TagContext) throws -> Future<TemplateData> {
         // ensure we receive precisely one parameter
-        try parsed.requireParameterCount(1)
+        try tag.requireParameterCount(1)
         
         // pull out our lone parameter as a string then uppercase it, or use an empty string
-        let string = parsed.parameters[0].string?.uppercased() ?? ""
+        let string = tag.parameters[0].string?.uppercased() ?? ""
         
-        // send it back wrapped in a LeafData
-        return Future(.string(string))
+        // send it back wrapped in a TemplateData
+        return tag.future(.string(string))
     }
 }
 ```
@@ -33,19 +33,15 @@ public final class CustomUppercase: Leaf.LeafTag {
 We can now register this Tag in our `configure.swift` file with:
 
 ```swift
-services.register { container -> LeafConfig in
-    // take a copy of Leaf's default tags
-    var tags = defaultTags
+services.register { container -> LeafTagConfig in
+    // take a copy of LeafTagConfig's default
+    var leafTagConfig = LeafTagConfig.default()
 
     // add our custom tag
-    tags["customuppercase"] = CustomUppercase()
+    leafTagConfig.use(CustomUppercase(), as: "customuppercase")
 
-    // find the location of our Resources/Views directory
-    let directoryConfig = try container.make(DirectoryConfig.self, for: LeafRenderer.self)
-    let viewsDirectory = directoryConfig.workDir + "Resources/Views"
-
-    // put all that into a new Leaf configuration and return it
-    return LeafConfig(tags: tags, viewsDir: viewsDirectory)
+    // return it
+    return leafTagConfig
 }
 ```
 
