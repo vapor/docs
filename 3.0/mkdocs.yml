@@ -1,6 +1,6 @@
 site_name: 'Vapor Docs'
 copyright: 'Copyright &copy; 2018 Qutheory, LLC'
-site_url: 'https://vapor-docs.v2.vapor.cloud/3.0/'
+site_url: 'https://docs.vapor.cloud/3.0/'
 
 pages:
 - 'Overview': 'index.md'
@@ -136,7 +136,7 @@ extra:
     font:
         text: 'Roboto Slab'
         code: 'Source Code Pro'
-    disqus: 'staging-vapor-docs'
+    disqus: 'vapor-docs'
 
 google_analytics:
     - 'UA-76177358-4'
