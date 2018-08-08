@@ -52,7 +52,7 @@ pages:
     - 'Message': 'http/message.md'
 - 'Leaf':
     - 'Getting Started': 'leaf/getting-started.md'
-    - 'Basics': 'leaf/basics.md'
+    - 'Overview': 'leaf/overview.md'
     - 'Custom tags': 'leaf/custom-tags.md'
 - 'Logging':
     - 'Getting Started': 'logging/getting-started.md'

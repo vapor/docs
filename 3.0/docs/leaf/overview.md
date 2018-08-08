@@ -1,110 +1,76 @@
-# Basics
+# Leaf Overview
 
-Welcome to Leaf. Leaf's goal is to be a simple templating language that can make generating views easier. There are plenty of great templating languages, so use what's best for you – maybe that's Leaf! The goals of Leaf are:
+Leaf is a powerful templating language with Swift-inspired syntax. You can use it to generate dynamic HTML pages for a front-end website or generate rich emails to send from an API.
 
-- Small set of strictly enforced rules
-- Consistency
-- Parser first mentality
-- Extensibility
-- Asynchronous and reactive
-
-
-## Rendering a template
-
-Once you have Leaf installed, you should create a directory called “Resources” inside your project folder, and inside that create another directory called “Views”. This Resources/Views directory is the default location for Leaf templates, although you can change it if you want.
-
-Firstly, import Leaf to routes.swift
-
-```swift
-import Leaf
-```
-
-Then, to render a basic Leaf template from a route, add this code:
-
-```swift
-router.get { req -> Future<View> in
-    let leaf = try req.make(LeafRenderer.self)
-    let context = [String: String]()
-    return try leaf.render("home", context)
-}
-```
-
-That will load home.leaf in the Resources/Views directory and render it. The `context` dictionary is there to let you provide custom data to render inside the template, but you might find it easier to use codable structs instead because they provide extra type safety. For example:
-
-```swift
-struct HomePage: Codable {
-    var title: String
-    var content: String
-}
-```
-
-### Async
-
-Leaf's engine is completely reactive, supporting both streams and futures. One of the only ones of its kind.
-
-When working with Future results, simply pass the `Future` in your template context.
-Streams that carry an encodable type need to be encoded before they're usable within Leaf.
-
-```swift
-struct Profile: Encodable {
-    var friends: EncodableStream
-    var currentUser: Future<User>
-}
-```
-
-In the above context, the `currentUser` variable in Leaf will behave as being a `User` type. Leaf will not read the user Future if it's not used during rendering.
-
-`EncodableStream` will behave as an array of LeafData, only with lower memory impact and better performance. It is recommended to use `EncodableStream` for (large) database queries.
-
-```
-Your name is #(currentUser.name).
-
-#for(friend in friends) {
-    #(friend.name) is a friend of you.
-}
-```
+This guide will give you an overview of Leaf's syntax and the available tags.
 
 ## Template syntax
-### Structure
+
+Here is an example of a basic Leaf tag usage.
+
+```leaf
+There are #count(users) users. 
+```
 
 Leaf tags are made up of four elements:
 
-- Token: `#` is the token
-- Name: A `string` that identifies the tag
-- Parameter List: `()` May accept 0 or more arguments
-- Body (optional): `{}` Must be separated from the parameter list by a space
+- Token (`#`): This signals the leaf parser to begin looking for a tag.
+- Name (`count`): that identifies the tag.
+- Parameter List (`(users)`): May accept zero or more arguments.
+- Body (none): An optional body can be supplied to some tags. This is similar to Swift's trailing-closure syntax.
 
 There can be many different usages of these four elements depending on the tag's implementation. Let's look at a few examples of how Leaf's built-in tags might be used:
 
-  - `#()`
-  - `#(variable)`
-  - `#embed("template")`
-  - `#set("title") { Welcome to Vapor }`
-  - `#count(friends)`
-  - `#for(friend in friends) { <li>#(friend.name)</li> }`
+```leaf
+#(variable)
+#embed("template")
+#set("title") { Welcome to Vapor }
+#count(friends)
+#for(friend in friends) { <li>#(friend.name)</li> }
+```
 
+Leaf also supports many expressions you are familiar with in Swift. 
 
-### Working with context
+- `+`
+- `>`
+- `==`
+- `||`
+- etc.
 
-In our Swift example from earlier, we used an empty `[String: String]` dictionary for context, which passes no custom data to Leaf. To try rendering content, use this code instead:
+```leaf
+#if(1 + 1 == 2) {
+    Hello!
+}
+```
+
+## Context
+
+In the example from [Getting Started](./getting-started.md), we used a `[String: String]` dictionary to pass data to Leaf. However, you can pass anything that conforms to `Encodable`. It's actually preferred to use `Encodable` structs since `[String: Any]` is not supported.
 
 ```swift
-let context = ["title": "Welcome", "message": "Vapor and Leaf work hand in hand"]
-return try leaf.make("home", context)
+struct WelcomeContext: Encodable {
+    var title: String
+    var number: Int
+}
+return try req.view().make("home", WelcomeContext(title: "Hello!", number: 42))
 ```
 
 That will expose `title` and `message` to our Leaf template, which can then be used inside tags. For example:
 
-```
+```leaf
 <h1>#(title)</h1>
-<p>#(message)</p>
+<p>#(number)</p>
 ```
 
-### Checking conditions
+## Usage
+
+Here are some common Leaf usage examples.
+
+### Conditions
 
 Leaf is able to evaluate a range of conditions using its `#if` tag. For example, if you provide a variable it will check that variable exists in its context:
 
-```
+```leaf
 #if(title) {
     The title is #(title)
 } else {
@@ -114,7 +80,7 @@ Leaf is able to evaluate a range of conditions using its `#if` tag. For example,
 
 You can also write comparisons, for example:
 
-```
+```leaf
 #if(title == "Welcome") {
     This is a friendly web page.
 } else {
@@ -124,7 +90,7 @@ You can also write comparisons, for example:
 
 If you want to use another tag as part of your condition, you should omit the `#` for the inner tag. For example:
 
-```
+```leaf
 #if(lowercase(title) == "welcome") {
     This is a friendly web page.
 } else {
@@ -132,6 +98,17 @@ If you want to use another tag as part of your condition, you should omit the `#
 }
 ```
 
+Just like in Swift, you can also use `else if` statement.s
+
+```leaf
+#if(title == "Welcome") {
+    This is a friendly web page.
+} else if (1 == 2) {
+    What?
+} else {
+    No strangers allowed!
+}
+```
 
 ### Loops
 
@@ -143,7 +120,7 @@ let context = ["team": ["Malcolm", "Kaylee", "Jayne"]]
 
 We could then loop over them in Leaf like this:
 
-```
+```leaf
 #for(name in team) {
     <p>#(name) is in the team.</p>
 }
@@ -157,7 +134,7 @@ Leaf provides some extra variables inside a `#for` loop to give you more informa
 
 Here's how we could use a loop variable to print just the first name in our array:
 
-```
+```leaf
 #for(name in team) {
     #if(isFirst) { <p>#(name) is first!</p> }
 }
@@ -169,7 +146,7 @@ Leaf’s `#embed` tag allows you to copy the contents of one template into anoth
 
 Embedding is useful for copying in a standard piece of content, for example a page footer or advert code:
 
-```
+```leaf
 #embed("footer")
 ```
 
@@ -179,9 +156,9 @@ Using this approach, you would construct a child template that fills in its uniq
 
 For example, you might create a child.leaf template like this:
 
-```
+```leaf
 #set("body") {
-<p>Welcome to Vapor!</p>
+    <p>Welcome to Vapor!</p>
 }
 
 #embed("master")
@@ -189,20 +166,42 @@ For example, you might create a child.leaf template like this:
 
 That configures one item of context, `body`, but doesn’t display it directly. Instead, it embeds master.leaf, which can render `body` along with any other context variables passed in from Swift. For example, master.leaf might look like this:
 
-```
+```leaf
 <html>
-<head><title>#(title)</title></head>
-<body>#get(body)</body>
+    <head>
+        <title>#(title)</title>
+    </head>
+    <body>#get(body)</body>
 </html>
 ```
 
 When given the context `["title": "Hi there!"]`, child.leaf will render as follows:
 
-```
+```html
 <html>
-<head><title>Hi there!</title></head>
-<body><p>Welcome to Vapor!</p></body>
+    <head>
+        <title>Hi there!</title>
+    </head>
+    <body><p>Welcome to Vapor!</p></body>
 </html>
+```
+
+### Comments
+
+You can write single or multiline comments with Leaf. They will be discarded when rendering the view.
+
+```leaf
+#// Say hello to the user
+Hello, #(name)!
+```
+
+Multi-line comments are opened with `#/*` and closed with `*/`.
+
+```leaf
+#/*
+     Say hello to the user
+*/
+Hello, #(name)!
 ```
 
 ### Other tags
@@ -211,7 +210,7 @@ When given the context `["title": "Hi there!"]`, child.leaf will render as follo
 
 The `#capitalize` tag uppercases the first letter of any string. For example, “taylor” will become “Taylor”.
 
-```
+```leaf
 #capitalize(name)
 ```
 
@@ -219,7 +218,7 @@ The `#capitalize` tag uppercases the first letter of any string. For example, �
 
 The `#contains` tag accepts an array and a value as its two parameters, and returns true if the array in parameter one contains the value in parameter two. For example, given the array `team`:
 
-```
+```leaf
 #if(contains(team, "Jayne")) {
     You're all set!
 } else {
@@ -231,7 +230,7 @@ The `#contains` tag accepts an array and a value as its two parameters, and retu
 
 The `#count` tag returns the number of items in an array. For example:
 
-```
+```leaf
 Your search matched #count(matches) pages.
 ```
 
@@ -239,7 +238,7 @@ Your search matched #count(matches) pages.
 
 The `#lowercase` tag lowercases all letters in a string. For example, “Taylor” will become “taylor”.
 
-```
+```leaf
 #lowercase(name)
 ```
 
@@ -247,6 +246,6 @@ The `#lowercase` tag lowercases all letters in a string. For example, “Taylor�
 
 The `#uppercase` tag uppercases all letters in a string. For example, “Taylor” will become “TAYLOR”.
 
-```
+```leaf
 #uppercase(name)
 ```

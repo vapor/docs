@@ -1,72 +1,71 @@
-!!! warning
-    Leaf 3.0 is still in beta. Some documentation may be missing or out of date.
-
 # Leaf
 
-Leaf is a templating language that integrates with Futures, Reactive Streams and Codable. This section outlines how to import the Leaf package into a Vapor project.
+Leaf is a powerful templating language with Swift-inspired syntax. You can use it to generate dynamic HTML pages for a front-end website or generate rich emails to send from an API.
 
-## Example Folder Structure
+## Package
 
-```
-Hello
-├── Package.resolved
-├── Package.swift
-├── Public
-├── Resources
-│   ├── Views
-│   │   └── hello.leaf
-├── Public
-│   ├── images (images resources)
-│   ├── styles (css resources)
-├── Sources
-│   ├── App
-│   │   ├── boot.swift
-│   │   ├── configure.swift
-│   │   └── routes.swift
-│   └── Run
-│       └── main.swift
-├── Tests
-│   ├── AppTests
-│   │   └── AppTests.swift
-│   └── LinuxMain.swift
-└── LICENSE
-```
-
-## Adding Leaf to your project
-
-The easiest way to use Leaf with Vapor is to include the Leaf repository as a dependency in Package.swift:
+The first step to using Leaf is adding it as a dependency to your project in your SPM package manifest file.
 
 ```swift
 // swift-tools-version:4.0
 import PackageDescription
 
 let package = Package(
-    name: "project1",
+    name: "MyApp",
     dependencies: [
-        // 💧 A server-side Swift web framework.
-        .package(url: "https://github.com/vapor/vapor.git", .branch("beta")),
-        .package(url: "https://github.com/vapor/leaf.git", .branch("beta")),
+        /// Any other dependencies ...
+        .package(url: "https://github.com/vapor/leaf.git", from: "3.0.0"),
     ],
     targets: [
-        .target(
-            name: "App",
-            dependencies: ["Vapor", "Leaf"]
-        ),
+        .target(name: "App", dependencies: ["Leaf", ...]),
         .target(name: "Run", dependencies: ["App"]),
         .testTarget(name: "AppTests", dependencies: ["App"]),
     ]
 )
 ```
 
-The Leaf package adds Leaf to your project, but to configure it for use you must modify configure.swift:
+## Configure
 
-1. Add `import Leaf` to the top of the file so that Leaf is available to use. You will also need to add this to any file that will render templates.
-2. Add `try services.register(LeafProvider())` to the `configure()` function so that routes may render Leaf templates as needed.
+Once you have added the package to your project, you can configure Vapor to use it. This is usually done in [`configure.swift`](../getting-started/structure.md#configureswift).
 
+```swift
+import Leaf
+
+try services.register(LeafProvider())
+```
+
+If your application supports multiple view renderers, you may need to specify that you would like to use Leaf.
+
+```swift
+config.prefer(LeafRenderer.self, for: ViewRenderer.self)
+```
+
+## Folder Structure
+
+Once you have configured Leaf, you will need to ensure you have a `Views` folder to store your `.leaf` files in. By default, Leaf expects the views folder to be a `./Resources/Views` relative to your project's root.
+
+You will also likely want to enable Vapor's [`FileMiddleware`](https://api.vapor.codes/vapor/latest/Vapor/Classes/FileMiddleware.html) to serve files from your `/Public` folder. 
+
+```
+VaporApp
+├── Package.swift
+├── Resources
+│   ├── Views
+│   │   └── hello.leaf
+├── Public
+│   ├── images (images resources)
+│   ├── styles (css resources)
+└── Sources
+    └── ...
+```
 
 ## Syntax Highlighting
 
 You may also wish to install one of these third-party packages that provide support for syntax highlighting in Leaf templates.
+
+### Sublime
+
+Install the package [Leaf](https://packagecontrol.io/packages/Leaf) from package control.
 
 ### Atom
 
@@ -85,3 +84,23 @@ There appears to be a way to [make Xcode file associations persist](http://stack
 ### CLion & AppCode
 
 Some preliminary work has been done to implement a Leaf Plugin for CLion & AppCode but lack of skill and interest in Java has slowed progress! If you have IntelliJ SDK experience and want to help with this, message Tom Holland on [Vapor Slack](http://vapor.team)
+
+## Rendering a View
+
+Now that Leaf is configured, let's render your first template. Inside of the `Resources/Views` folder, create a new file called `hello.leaf` with the following contents:
+
+```leaf
+Hello, #(name)!
+```
+
+Then, register a route (usually done in `routes.swift` or a controller) to render the view.
+
+```swift
+import Leaf
+
+router.get("hello") { req -> Future<View> in
+    return try req.view().render("hello", ["name": "Leaf"])
+}
+```
+
+Open your browser and visit `/hello`. You should see `Hello, Leaf!`. Congratulations on rendering your first Leaf view!

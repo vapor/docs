@@ -5,6 +5,8 @@ COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt && rm -rf $HOME/.cache/pip
 
+RUN cd leaf-pygment && ./compile.sh
+RUN pip install leaf-pygment/dist/leaf-0.1.0-dev.tar.gz
 RUN cd 3.0 && mkdocs build
 
 FROM nginx:1.13.12-alpine as production-stage
