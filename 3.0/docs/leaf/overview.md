@@ -14,10 +14,10 @@ There are #count(users) users.
 
 Leaf tags are made up of four elements:
 
-- Token (`#`): This signals the leaf parser to begin looking for a tag.
-- Name (`count`): that identifies the tag.
-- Parameter List (`(users)`): May accept zero or more arguments.
-- Body (none): An optional body can be supplied to some tags. This is similar to Swift's trailing-closure syntax.
+- Token `#`: This signals the leaf parser to begin looking for a tag.
+- Name `count`: that identifies the tag.
+- Parameter List `(users)`: May accept zero or more arguments.
+- Body: An optional body can be supplied to some tags. This is similar to Swift's trailing-closure syntax.
 
 There can be many different usages of these four elements depending on the tag's implementation. Let's look at a few examples of how Leaf's built-in tags might be used:
 
@@ -112,31 +112,49 @@ Just like in Swift, you can also use `else if` statement.s
 
 ### Loops
 
-If you provide an array of items, Leaf can loop over them and let you manipulate each item individually using its `#for` tag. For example, we could update our Swift code to provide a list of names in a team:
+If you provide an array of items, Leaf can loop over them and let you manipulate each item individually using its `#for` tag. 
+
+For example, we could update our Swift code to provide a list of planets:
 
 ```swift
-let context = ["team": ["Malcolm", "Kaylee", "Jayne"]]
+struct SolarSystem: Codable {
+    let planets = ["Venus", "Earth", "Mars"]
+}
+
+return try req.view().render(..., SolarSystem())
 ```
 
 We could then loop over them in Leaf like this:
 
 ```leaf
-#for(name in team) {
-    <p>#(name) is in the team.</p>
+Planets:
+<ul>
+#for(planet in planets) {
+    <li>#(planet)</li>
 }
+</ul>
+```
+
+This would render a view that looks like:
+
+```
+Planets:
+- Venus
+- Earth
+- Mars
 ```
 
 Leaf provides some extra variables inside a `#for` loop to give you more information about the loop's progress:
 
-- The `loop.isFirst` variable is true when the current iteration is the first one.
-- The `loop.isLast` variable is true when it's the last iteration.
-- The `loop.index` variable will be set to the number of the current iteration, counting from 0.
+- The `isFirst` variable is true when the current iteration is the first one.
+- The `isLast` variable is true when it's the last iteration.
+- The `index` variable will be set to the number of the current iteration, counting from 0.
 
 Here's how we could use a loop variable to print just the first name in our array:
 
 ```leaf
-#for(name in team) {
-    #if(isFirst) { <p>#(name) is first!</p> }
+#for(planet in planets) {
+    #if(isFirst) { #(planet) is first! }
 }
 ```
 
@@ -206,9 +224,27 @@ Hello, #(name)!
 
 ### Other tags
 
+#### `#date`
+
+The `#date` tag formats dates into a readable string.
+
+```swift
+render(..., ["now": Date()])
+```
+
+```leaf
+The time is #date(now)
+```
+
+You can pass a custom date formatter string as the second argument. See Swift's [`DateFormatter`](https://developer.apple.com/documentation/foundation/dateformatter) for more information.
+
+```leaf
+The date is #date(now, "yyyy-MM-dd")
+```
+
 #### `#capitalize`
 
-The `#capitalize` tag uppercases the first letter of any string. For example, “taylor” will become “Taylor”.
+The `#capitalize` tag uppercases the first letter of any string.
 
 ```leaf
 #capitalize(name)
@@ -216,13 +252,13 @@ The `#capitalize` tag uppercases the first letter of any string. For example, �
 
 #### `#contains`
 
-The `#contains` tag accepts an array and a value as its two parameters, and returns true if the array in parameter one contains the value in parameter two. For example, given the array `team`:
+The `#contains` tag accepts an array and a value as its two parameters, and returns true if the array in parameter one contains the value in parameter two.
 
 ```leaf
-#if(contains(team, "Jayne")) {
-    You're all set!
+#if(contains(planets, "Earth")) {
+    Earth is here!
 } else {
-    You need someone to do PR.
+    Earth is not in this array.
 }
 ```
 
@@ -236,7 +272,7 @@ Your search matched #count(matches) pages.
 
 #### `#lowercase`
 
-The `#lowercase` tag lowercases all letters in a string. For example, “Taylor” will become “taylor”.
+The `#lowercase` tag lowercases all letters in a string. 
 
 ```leaf
 #lowercase(name)
@@ -244,7 +280,7 @@ The `#lowercase` tag lowercases all letters in a string. For example, “Taylor�
 
 #### `#uppercase`
 
-The `#uppercase` tag uppercases all letters in a string. For example, “Taylor” will become “TAYLOR”.
+The `#uppercase` tag uppercases all letters in a string.
 
 ```leaf
 #uppercase(name)
