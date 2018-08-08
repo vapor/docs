@@ -12,6 +12,7 @@ struct User: Codable {
     var name: String
     var age: Int
     var email: String?
+    var profilePictureURL: String?
 }
 ```
 
@@ -21,6 +22,7 @@ For example, when you decode the above `User` model, Swift will automatically en
   - `name` is a valid `String` and is _not_ `nil`.
   - `age` is a valid `Int` and is _not_ `nil`.
   - `email` is a valid `String` or is `nil`.
+  - `profilePictureURL` is a valid `String` or is `nil`.
 
 This is a great first step, but there is still room for improvement here. Here are some examples of things Swift and `Codable` would not mind, but are not ideal:
 
@@ -28,6 +30,7 @@ This is a great first step, but there is still room for improvement here. Here a
   - `name` contains non-alphanumeric characters
   - `age` is a negative number `-42`
   - `email` is not correctly formatted `test@@vapor.codes`
+  - `profilePictureURL` is not a `URL` without a scheme
 
 Luckily the Validation package can help.
 
@@ -109,6 +112,7 @@ extension User: Validatable {
         try validations.add(\.name, .alphanumeric && .count(3...))
         try validations.add(\.age, .range(18...))
         try validations.add(\.email, .email || .nil)
+        try validations.add(\.profilePictureURL, .url || .nil)
         return validations
     }
 }
@@ -126,5 +130,3 @@ router.post(User.self, at: "users") { req, user -> User in
 When you query that route, you should see that errors are thrown if the data does not meet your validations. If the data is correct, your user model is returned successfully.
 
 Congratulations on setting up your first `Validatable` model! Check out the [API docs](https://api.vapor.codes/validation/latest/Validation/index.html) for more information and code samples.
-
-
