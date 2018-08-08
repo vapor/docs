@@ -3,8 +3,8 @@
 
     
     <url>
-     <loc>/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,90 +12,14 @@
     
         
     <url>
-     <loc>/install/macos/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//install/macos/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/install/ubuntu/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/getting-started/hello-world/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/getting-started/toolbox/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/getting-started/spm/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/getting-started/xcode/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/getting-started/structure/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/getting-started/application/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/getting-started/controllers/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/getting-started/routing/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/getting-started/content/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/getting-started/async/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/getting-started/services/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/getting-started/cloud/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//install/ubuntu/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -104,80 +28,74 @@
     
         
     <url>
-     <loc>/async/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//getting-started/hello-world/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/async/overview/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/console/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//getting-started/toolbox/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/console/overview/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/command/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//getting-started/spm/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/command/overview/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/crypto/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//getting-started/xcode/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/crypto/digests/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//getting-started/structure/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/crypto/ciphers/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//getting-started/application/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/crypto/asymmetric/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//getting-started/controllers/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/crypto/random/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//getting-started/routing/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//getting-started/content/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//getting-started/async/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//getting-started/services/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//getting-started/cloud/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -186,54 +104,14 @@
     
         
     <url>
-     <loc>/database-kit/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//async/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/database-kit/overview/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/fluent/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/fluent/models/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/fluent/querying/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/fluent/migrations/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/fluent/relations/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/fluent/transaction/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//async/overview/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -242,26 +120,14 @@
     
         
     <url>
-     <loc>/http/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//console/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/http/client/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/http/server/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/http/message/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//console/overview/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -270,20 +136,14 @@
     
         
     <url>
-     <loc>/leaf/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//command/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/leaf/basics/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/leaf/custom-tags/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//command/overview/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -292,40 +152,32 @@
     
         
     <url>
-     <loc>/logging/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//crypto/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/logging/overview/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/multipart/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//crypto/digests/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/multipart/overview/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//crypto/ciphers/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
-    
-
-    
+    <url>
+     <loc>https://docs.vapor.codes/3.0//crypto/asymmetric/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
         
     <url>
-     <loc>/mysql/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//crypto/random/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -334,8 +186,14 @@
     
         
     <url>
-     <loc>/postgresql/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//database-kit/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//database-kit/overview/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -344,48 +202,38 @@
     
         
     <url>
-     <loc>/redis/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//fluent/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/redis/basics/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//fluent/models/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/redis/custom-commands/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//fluent/querying/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/redis/pub-sub/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//fluent/migrations/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/redis/pipeline/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/routing/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//fluent/relations/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/routing/overview/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//fluent/transaction/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -394,36 +242,26 @@
     
         
     <url>
-     <loc>/service/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//http/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/service/services/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//http/client/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/service/provider/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/sql/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//http/server/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/sql/overview/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//http/message/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -432,8 +270,20 @@
     
         
     <url>
-     <loc>/sqlite/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//leaf/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//leaf/basics/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//leaf/custom-tags/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -442,8 +292,14 @@
     
         
     <url>
-     <loc>/template-kit/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//logging/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//logging/overview/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -452,8 +308,14 @@
     
         
     <url>
-     <loc>/testing/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//multipart/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//multipart/overview/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -462,14 +324,8 @@
     
         
     <url>
-     <loc>/url-encoded-form/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/url-encoded-form/overview/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//mysql/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -478,14 +334,8 @@
     
         
     <url>
-     <loc>/validation/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/validation/overview/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//postgresql/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -494,48 +344,32 @@
     
         
     <url>
-     <loc>/vapor/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//redis/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/vapor/client/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//redis/basics/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/vapor/content/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//redis/custom-commands/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/vapor/sessions/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//redis/pub-sub/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/vapor/websocket/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/websocket/getting-started/</loc>
-     <lastmod>2018-07-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/websocket/overview/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//redis/pipeline/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -544,32 +378,198 @@
     
         
     <url>
-     <loc>/version/1_5/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//routing/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/version/2_0/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//routing/overview/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//service/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/version/3_0/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//service/services/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/version/upgrading/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//service/provider/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//sql/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/version/support/</loc>
-     <lastmod>2018-07-25</lastmod>
+     <loc>https://docs.vapor.codes/3.0//sql/overview/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//sqlite/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//template-kit/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//testing/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//url-encoded-form/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//url-encoded-form/overview/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//validation/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//validation/overview/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//vapor/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//vapor/client/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//vapor/content/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//vapor/sessions/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//vapor/websocket/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//websocket/getting-started/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//websocket/overview/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//version/1_5/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//version/2_0/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//version/3_0/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//version/upgrading/</loc>
+     <lastmod>2018-08-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.vapor.codes/3.0//version/support/</loc>
+     <lastmod>2018-08-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
