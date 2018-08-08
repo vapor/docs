@@ -2,3 +2,4 @@ build
 /.couscous
 .sass-cache
 .DS_Store
+leaf-pygment/dist
