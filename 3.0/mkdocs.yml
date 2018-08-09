@@ -23,6 +23,10 @@ pages:
 - 'Async':
     - 'Getting Started': 'async/getting-started.md'
     - 'Overview': 'async/overview.md'
+- 'Auth':
+    - 'Getting Started': 'auth/getting-started.md'
+    - 'Stateless (API)': 'auth/api.md'
+    - 'Sessions (Web)': 'auth/web.md'
 - 'Console':
     - 'Getting Started': 'console/getting-started.md'
     - 'Overview': 'console/overview.md'
