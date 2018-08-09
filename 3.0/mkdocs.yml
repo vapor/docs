@@ -20,7 +20,6 @@ pages:
     - 'Async': 'getting-started/async.md'
     - 'Services': 'getting-started/services.md'
     - 'Deployment': 'getting-started/cloud.md'
-- 'Style Guide': 'style-guide.md'
 - 'Async':
     - 'Getting Started': 'async/getting-started.md'
     - 'Overview': 'async/overview.md'
