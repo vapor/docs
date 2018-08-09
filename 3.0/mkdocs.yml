@@ -20,6 +20,7 @@ pages:
     - 'Async': 'getting-started/async.md'
     - 'Services': 'getting-started/services.md'
     - 'Deployment': 'getting-started/cloud.md'
+- 'Style Guide': 'style-guide.md'
 - 'Async':
     - 'Getting Started': 'async/getting-started.md'
     - 'Overview': 'async/overview.md'
@@ -35,6 +36,7 @@ pages:
     - 'Ciphers': 'crypto/ciphers.md'
     - 'Asymmetric': 'crypto/asymmetric.md'
     - 'Random': 'crypto/random.md'
+    - 'TOTP & HOTP': 'crypto/otp.md'
 - 'Database Kit':
     - 'Getting Started': 'database-kit/getting-started.md'
     - 'Overview': 'database-kit/overview.md'
