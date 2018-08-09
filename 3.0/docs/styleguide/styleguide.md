@@ -25,6 +25,7 @@ The preferred way to structure your application is by separating the application
 - Models 
 - Setup
 - Utilities 
+- Services
 
 The structure ensures that new members working on your project can easily find the file or asset they are looking for. 
 
@@ -49,6 +50,9 @@ The setup folder has all of the necessary pieces that are called on application 
 #### Utilities Folder
 The utilities folder serves as a general purpose location for any objects or helpers that don’t fit the other folders. For example, in your quest to eliminate stringly-typed code (see the “General Advice” section) you might place a `Constants.swift` file in this location. 
 
+#### Services Folder
+The services folder is used to hold any custom services that are created and registered. 
+
 The final application structure (inside the Sources folder) looks like this: 
 
 ```
@@ -68,7 +72,8 @@ The final application structure (inside the Sources folder) looks like this:
 │   ├── configure.swift
 │   ├── migrate.swift
 │   └── routes.swift
-├── Utils
+├── Utilities
+├── Services
 ```
 
 ## Configuration 
