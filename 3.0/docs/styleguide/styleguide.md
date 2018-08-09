@@ -219,7 +219,7 @@ import Vapor
 import FluentMySQL
 import Foundation
 
-protocol UserRepository: Service {
+protocol UserRepository: ServiceType {
     func find(id: Int, on connectable: DatabaseConnectable) -> Future<User?>
     func all(on connectable: DatabaseConnectable) -> Future<[User]>
     func find(email: String, on connectable: DatabaseConnectable) -> Future<User?>
@@ -228,6 +228,10 @@ protocol UserRepository: Service {
 }
 
 final class MySQLUserRepository: UserRepository {
+    static func makeService(for worker: Container) throws -> Self {
+        return .init()
+    }
+    
     func find(id: Int, on connectable: DatabaseConnectable) -> EventLoopFuture<User?> {
         return User.find(id, on: connectable)
     }
