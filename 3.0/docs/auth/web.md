@@ -31,7 +31,7 @@ services.register(middlewares)
 
 ### Model
 
-Once you are ready to enable session-based authentication, the first step is to conform your user model to [`SessionAuthenticatable`](#fixme). 
+Once you are ready to enable session-based authentication, the first step is to conform your user model to [`SessionAuthenticatable`](https://api.vapor.codes/auth/latest/Authentication/Protocols/SessionAuthenticatable.html). 
 
 ```swift
 extension User: SessionAuthenticatable { }
@@ -63,7 +63,7 @@ You can also apply this middleware globally to your application if you'd like.
 
 ### Route
 
-Inside of any route closure wrapped by the session auth middleware, we can access our authenticated model using the [`authenticated(_:)`](#fixme) methods.
+Inside of any route closure wrapped by the session auth middleware, we can access our authenticated model using the [`authenticated(_:)`](https://api.vapor.codes/auth/latest/Authentication/Extensions/Request.html#/s:5Vapor7RequestC14AuthenticationE13authenticatedxSgxmKAD15AuthenticatableRzlF) methods.
 
 ```swift
 let user = try req.requireAuthenticated(User.self)
@@ -75,7 +75,7 @@ Here we are using the method prefixed with `require` to throw an error if the us
 If you visit this route now, you should see a message saying no user has been authenticated. Let's resolve this by creating a way for our user to login!
 
 !!! note
-    Use [`GuardMiddleware`](#fixme) to protect routes that do not call `requireAuthenticated(_:)` or otherwise require authentication.
+    Use [`GuardAuthenticationMiddleware`](https://api.vapor.codes/auth/latest/Authentication/Classes/GuardAuthenticationMiddleware.html) to protect routes that do not call `requireAuthenticated(_:)` or otherwise require authentication.
 
 ### Login
 

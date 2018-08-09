@@ -47,7 +47,7 @@ Authentication middleware is responsible for reading the credentials from the re
 
 For each model / authentication method you use, you will add one middleware to your application. All of this package's middlewares are composable, meaning you can add multiple middlewares to one route and they will work together. If one middleware fails to authorize a user, it will simply forward the request for the next middleware to try.
 
-If you would like to ensure that a certain model's authentication has succeeded _before_ running your route, you must add an instance of [`GuardMiddleware`](#fixme).
+If you would like to ensure that a certain model's authentication has succeeded _before_ running your route, you must add an instance of [`GuardAuthenticationMiddleware`](https://api.vapor.codes/auth/latest/Authentication/Classes/GuardAuthenticationMiddleware.html).
 
 ### Model
 
@@ -119,16 +119,16 @@ router.grouped(password).get("hello") { req in
 }
 ```
 
-Here we are using `BCryptDigest` as the [`PasswordVerifier`](#fixme) since we are assuming the user's password is stored as a BCrypt hash. 
+Here we are using `BCryptDigest` as the [`PasswordVerifier`](https://api.vapor.codes/auth/latest/Authentication/Protocols/PasswordVerifier.html) since we are assuming the user's password is stored as a BCrypt hash. 
 
-Now, to fetch the authenticated user in the route closure, you can use [`requireAuthenticated(_:)`](#fixme). 
+Now, to fetch the authenticated user in the route closure, you can use [`requireAuthenticated(_:)`](https://api.vapor.codes/auth/latest/Authentication/Extensions/Request.html#/s:5Vapor7RequestC14AuthenticationE20requireAuthenticatedxxmKAD15AuthenticatableRzlF). 
 
 ```swift
 let user = try req.requireAuthenticated(User.self)
 return "Hello, \(user.name)."
 ```
 
-The `requireAuthenticated` method will automatically throw an appropriate unauthorized error if the valid credentials were not supplied. Because of this, using [`GuardMiddleware`](#fixme) to protect the route from unauthenticated access is not required. 
+The `requireAuthenticated` method will automatically throw an appropriate unauthorized error if the valid credentials were not supplied. Because of this, using [`GuardAuthenticationMiddleware`](https://api.vapor.codes/auth/latest/Authentication/Classes/GuardAuthenticationMiddleware.html) to protect the route from unauthenticated access is not required. 
 
 ### Token Authentication
 
@@ -201,11 +201,11 @@ router.grouped(token).get("hello") {
 }
 ```
 
-Now, to fetch the authenticated user in the route closure, you can use [`requireAuthenticated(_:)`](#fixme). 
+Now, to fetch the authenticated user in the route closure, you can use [`requireAuthenticated(_:)`](https://api.vapor.codes/auth/latest/Authentication/Extensions/Request.html#/s:5Vapor7RequestC14AuthenticationE20requireAuthenticatedxxmKAD15AuthenticatableRzlF). 
 
 ```swift
 let user = try req.requireAuthenticated(User.self)
 return "Hello, \(user.name)."
 ```
 
-The `requireAuthenticated` method will automatically throw an appropriate unauthorized error if the valid credentials were not supplied. Because of this, using [`GuardMiddleware`](#fixme) to protect the route from unauthenticated access is not required. 
+The `requireAuthenticated` method will automatically throw an appropriate unauthorized error if the valid credentials were not supplied. Because of this, using [`GuardAuthenticationMiddleware`](https://api.vapor.codes/auth/latest/Authentication/Classes/GuardAuthenticationMiddleware.html) to protect the route from unauthenticated access is not required. 
