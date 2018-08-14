@@ -22,7 +22,7 @@ cd Hello
 
 ## Generate Xcode Project
 
-Let's now use the [Vapor Toolbox's `xcode`](toolbox#xcode) command to generate an Xcode project.
+Let's now use the [Vapor Toolbox's `xcode`](toolbox.md) command to generate an Xcode project.
 This will allow us to build and run our app from inside of Xcode, just like an iOS app.
 
 ```sh
