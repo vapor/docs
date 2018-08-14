@@ -55,6 +55,9 @@ pages:
     - 'Client': 'http/client.md'
     - 'Server': 'http/server.md'
     - 'Message': 'http/message.md'
+- 'JWT':
+    - 'Getting Started': 'jwt/getting-started.md'
+    - 'Overview': 'jwt/overview.md'
 - 'Leaf':
     - 'Getting Started': 'leaf/getting-started.md'
     - 'Overview': 'leaf/overview.md'
