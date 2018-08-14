@@ -81,7 +81,7 @@ Let's take a look at how to parse and verify incoming JWTs.
 
 ### Payload
 
-First, we need to create a `Codable` type that represents our payload. This should also conform to [`JWTPayload`](#fixme).
+First, we need to create a `Codable` type that represents our payload. This should also conform to [`JWTPayload`](https://api.vapor.codes/jwt/latest/JWT/Protocols/JWTPayload.html).
 
 ```swift
 struct User: JWTPayload {
@@ -116,9 +116,9 @@ router.get("hello") { req -> String in
 }
 ```
 
-This snippet creates a new route at `GET /hello`. The first part of the route handler fetches the `<token>` value from the bearer authorization header. The second part uses the [`JWT`](#fixme) struct to parse the token using an `HS256` signer.
+This snippet creates a new route at `GET /hello`. The first part of the route handler fetches the `<token>` value from the bearer authorization header. The second part uses the [`JWT`](https://api.vapor.codes/jwt/latest/JWT/Structs/JWT.html) struct to parse the token using an `HS256` signer.
 
-Once the JWT is parsed, we access the [`payload`](#fixme) property which contains an instance of our `User` type. We then access the `name` property to say hello!
+Once the JWT is parsed, we access the [`payload`](https://api.vapor.codes/jwt/latest/JWT/Structs/JWT.html#/s:3JWTAAV7payloadxvp) property which contains an instance of our `User` type. We then access the `name` property to say hello!
 
 Run the following request and check the output:
 
@@ -142,7 +142,7 @@ Let's take a look at how to create and sign a JWT.
 
 ### Payload
 
-First, we need to create a `Codable` type that represents our payload. This should also conform to [`JWTPayload`](#fixme).
+First, we need to create a `Codable` type that represents our payload. This should also conform to [`JWTPayload`](https://api.vapor.codes/jwt/latest/JWT/Protocols/JWTPayload.html).
 
 ```swift
 struct User: JWTPayload {
@@ -172,7 +172,7 @@ router.post("login") { req -> String in
 }
 ```
 
-This snippet creates a new route at `POST /login`. The first part of the route handler creates an instance of our `User` payload type. The second part creates an instance of `JWT` using our payload, and calls the [`sign(using:)`](#fixme) method. This method returns `Data`, which we convert to a `String`.
+This snippet creates a new route at `POST /login`. The first part of the route handler creates an instance of our `User` payload type. The second part creates an instance of `JWT` using our payload, and calls the [`sign(using:)`](https://api.vapor.codes/jwt/latest/JWT/Structs/JWT.html#/s:3JWTAAV4sign10Foundation4DataVAA9JWTSignerC5using_tKF) method. This method returns `Data`, which we convert to a `String`.
 
 If you visit this route, you should get the following output:
 

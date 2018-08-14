@@ -35,4 +35,4 @@ let package = Package(
 )
 ```
 
-That's it for basic setup. The next section will give you an overview of the package's APIs. As always, feel free to visit the [API Docs](#fixme) for more specific information.
+That's it for basic setup. The next section will give you an overview of the package's APIs. As always, feel free to visit the [API Docs](https://api.vapor.codes/jwt/latest/JWT/index.html) for more specific information.
