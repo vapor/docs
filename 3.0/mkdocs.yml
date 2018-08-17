@@ -74,10 +74,7 @@ pages:
     - 'Getting Started': 'postgresql/getting-started.md'
 - 'Redis':
     - 'Getting Started': 'redis/getting-started.md'
-    - 'Basics': 'redis/basics.md'
-    - 'Custom commands': 'redis/custom-commands.md'
-    - 'Publish and Subscribe': 'redis/pub-sub.md'
-    - 'Pipeline': 'redis/pipeline.md'
+    - 'Overview': 'redis/overview.md'
 - 'Routing':
     - 'Getting Started': 'routing/getting-started.md'
     - 'Overview': 'routing/overview.md'
