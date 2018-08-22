@@ -125,17 +125,17 @@ The routes.swift file is used to declare route registration for your application
 ```swift
 import Vapor
 
-public func routes(_ router: Router) throws {
-    try router.register(collection: MyControllerHere())
+public func routes(_ router: Router, _ container: Container) throws {
+    try router.register(collection: MyControllerHere(db: container.connectionPool(to: .mysql)))
 }
 ```
 
 You should call this function from `configure.swift` like this:
 
 ```swift
-    services.register(Router.self) { _ -> EngineRouter in
+    services.register(Router.self) { container -> EngineRouter in
         let router = EngineRouter.default()
-        try routes(router)
+        try routes(router, container)
         return router
     }
 ```
@@ -610,6 +610,47 @@ router.post(User.self, at: "/update", use: update)
 
 func update(req: Request, content: User) throws -> Future<User> {
     return content.save(on: req)
+}
+```
+
+Controllers should follow the thread-safe architecture when possible. This means passing necessary `Service`s to the controller on initialization instead of making them in the routes. 
+
+**Bad:**
+
+```swift
+final class LoginViewController: RouteCollection {
+    func boot(router: Router) throws {
+        router.get("/login", use: login)
+    }
+
+    func login(req: Request) throws -> String {
+        let userRepository = try req.make(UserRepository.self)
+        //do something with it 
+
+        return ""
+    }
+}
+```
+
+**Good:**
+
+```swift
+final class LoginViewController: RouteCollection {
+    private let userRepository: UserRepository
+
+    init(userRepository: UserRepository) {
+        self.userRepository = userRepository
+    }
+
+    func boot(router: Router) throws {
+        router.get("/login", use: login)
+    }
+
+    func login(req: Request) throws -> String {
+        //use `self.userRepository`
+        
+        return ""
+    }
 }
 ```
 
