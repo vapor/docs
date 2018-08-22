@@ -289,10 +289,7 @@ The `repositories.swift` file is responsible for registering each repository dur
 import Vapor
 
 public func setupRepositories(services: inout Services, config: inout Config) {
-    services.register(UserRepository.self) { _ -> MySQLUserRepository in
-        return MySQLUserRepository()
-    }
-
+    services.register(MySQLUserRepository.self)
     preferDatabaseRepositories(config: &config)
 }
 
@@ -334,7 +331,7 @@ services.register { container -> APIKeyStorage in
 }
 ```
 
-\***\*Good:\*\***
+**Good:**
 
 ```swift
 guard let apiKey = Environment.get("api-key") else { throw Abort(.internalServerError) }
@@ -367,36 +364,47 @@ import FluentMySQL
 import Foundation
 
 protocol UserRepository: ServiceType {
-    func find(id: Int, on connectable: DatabaseConnectable) -> Future<User?>
-    func all(on connectable: DatabaseConnectable) -> Future<[User]>
-    func find(email: String, on connectable: DatabaseConnectable) -> Future<User?>
-    func findCount(email: String, on connectable: DatabaseConnectable) -> Future<Int>
-    func save(user: User, on connectable: DatabaseConnectable) -> Future<User>
+    func find(id: Int) -> Future<User?>
+    func all() -> Future<[User]>
+    func find(email: String) -> Future<User?>
+    func findCount(email: String) -> Future<Int>
+    func save(user: User) -> Future<User>
 }
 
 final class MySQLUserRepository: UserRepository {
+    let db: DatabaseConnectionPool<MySQLDatabase>
+    
+    init(_ db: DatabaseConnectionPool<MySQLDatabase>) {
+        self.db = db
+    }
+
+    func find(id: Int) -> EventLoopFuture<User?> {
+        return User.find(id, on: db)
+    }
+
+    func all() -> EventLoopFuture<[User]> {
+        return User.query(on: db).all()
+    }
+
+    func find(email: String) -> EventLoopFuture<User?> {
+        return User.query(on: db).filter(\.email == email).first()
+    }
+
+    func findCount(email: String) -> EventLoopFuture<Int> {
+        return User.query(on: db).filter(\.email == email).count()
+    }
+
+    func save(user: User) -> EventLoopFuture<User> {
+        return user.save(on: db)
+    }
+}
+
+//MARK: - ServiceType conformance
+extension MySQLUserRepository {
+    static let serviceSupports: [Any.Type] = [UserRepository.self]
+
     static func makeService(for worker: Container) throws -> Self {
-        return .init()
-    }
-
-    func find(id: Int, on connectable: DatabaseConnectable) -> EventLoopFuture<User?> {
-        return User.find(id, on: connectable)
-    }
-
-    func all(on connectable: DatabaseConnectable) -> EventLoopFuture<[User]> {
-        return User.query(on: connectable).all()
-    }
-
-    func find(email: String, on connectable: DatabaseConnectable) -> EventLoopFuture<User?> {
-        return User.query(on: connectable).filter(\.email == email).first()
-    }
-
-    func findCount(email: String, on connectable: DatabaseConnectable) -> EventLoopFuture<Int> {
-        return User.query(on: connectable).filter(\.email == email).count()
-    }
-
-    func save(user: User, on connectable: DatabaseConnectable) -> EventLoopFuture<User> {
-        return user.save(on: connectable)
+        return .init(db: worker.connectionPool(to: .mysql))
     }
 }
 ```
@@ -406,7 +414,7 @@ Then, in the controller:
 ```swift
 let repository = try req.make(UserRepository.self)
 let userQuery = repository
-            .find(email: content.email, on: req)
+            .find(email: content.email)
             .unwrap(or: Abort(.unauthorized, reason: "Invalid Credentials"))
 ```
 
