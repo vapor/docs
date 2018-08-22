@@ -404,7 +404,7 @@ extension MySQLUserRepository {
     static let serviceSupports: [Any.Type] = [UserRepository.self]
 
     static func makeService(for worker: Container) throws -> Self {
-        return .init(db: worker.connectionPool(to: .mysql))
+        return .init(worker.connectionPool(to: .mysql))
     }
 }
 ```
