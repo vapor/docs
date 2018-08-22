@@ -372,9 +372,9 @@ protocol UserRepository: ServiceType {
 }
 
 final class MySQLUserRepository: UserRepository {
-    let db: DatabaseConnectionPool<MySQLDatabase>
+    let db: MySQLDatabase.ConnectionPool
     
-    init(_ db: DatabaseConnectionPool<MySQLDatabase>) {
+    init(_ db: MySQLDatabase.ConnectionPool) {
         self.db = db
     }
 
@@ -404,8 +404,12 @@ extension MySQLUserRepository {
     static let serviceSupports: [Any.Type] = [UserRepository.self]
 
     static func makeService(for worker: Container) throws -> Self {
-        return .init(worker.connectionPool(to: .mysql))
+        return .init(try worker.connectionPool(to: .mysql))
     }
+}
+
+extension Database {
+    public typealias ConnectionPool = DatabaseConnectionPool<ConfiguredDatabase<Self>>
 }
 ```
 
