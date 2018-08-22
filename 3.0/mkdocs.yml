@@ -24,6 +24,10 @@ pages:
 - 'Async':
     - 'Getting Started': 'async/getting-started.md'
     - 'Overview': 'async/overview.md'
+- 'Auth':
+    - 'Getting Started': 'auth/getting-started.md'
+    - 'Stateless (API)': 'auth/api.md'
+    - 'Sessions (Web)': 'auth/web.md'
 - 'Console':
     - 'Getting Started': 'console/getting-started.md'
     - 'Overview': 'console/overview.md'
@@ -36,6 +40,7 @@ pages:
     - 'Ciphers': 'crypto/ciphers.md'
     - 'Asymmetric': 'crypto/asymmetric.md'
     - 'Random': 'crypto/random.md'
+    - 'TOTP & HOTP': 'crypto/otp.md'
 - 'Database Kit':
     - 'Getting Started': 'database-kit/getting-started.md'
     - 'Overview': 'database-kit/overview.md'
@@ -51,6 +56,9 @@ pages:
     - 'Client': 'http/client.md'
     - 'Server': 'http/server.md'
     - 'Message': 'http/message.md'
+- 'JWT':
+    - 'Getting Started': 'jwt/getting-started.md'
+    - 'Overview': 'jwt/overview.md'
 - 'Leaf':
     - 'Getting Started': 'leaf/getting-started.md'
     - 'Overview': 'leaf/overview.md'
@@ -67,10 +75,7 @@ pages:
     - 'Getting Started': 'postgresql/getting-started.md'
 - 'Redis':
     - 'Getting Started': 'redis/getting-started.md'
-    - 'Basics': 'redis/basics.md'
-    - 'Custom commands': 'redis/custom-commands.md'
-    - 'Publish and Subscribe': 'redis/pub-sub.md'
-    - 'Pipeline': 'redis/pipeline.md'
+    - 'Overview': 'redis/overview.md'
 - 'Routing':
     - 'Getting Started': 'routing/getting-started.md'
     - 'Overview': 'routing/overview.md'
