@@ -1,392 +1,392 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/getting-started/install-on-macos/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/getting-started/install-on-ubuntu/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/getting-started/toolbox/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/getting-started/hello-world/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/getting-started/manual/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/getting-started/xcode/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/vapor/folder-structure/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/vapor/droplet/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/vapor/views/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/vapor/controllers/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/vapor/provider/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/vapor/hash/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/vapor/log/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/vapor/commands/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/configs/config/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/json/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/json/overview/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/routing/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/routing/overview/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/routing/parameters/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/routing/group/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/routing/collection/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/fluent/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/fluent/getting-started/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/fluent/model/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/fluent/database/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/fluent/query/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/fluent/relations/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/cache/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/cache/overview/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/mysql/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/mysql/provider/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/mysql/driver/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/redis/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/redis/provider/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/auth/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/auth/provider/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/auth/getting-started/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/auth/helper/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/auth/password/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/auth/persist/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/auth/redirect-middleware/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/jwt/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/jwt/overview/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/sessions/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/sessions/sessions/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/http/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/http/request/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/http/response/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/http/middleware/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/http/body/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/http/response-representable/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/http/responder/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/http/client/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/http/server/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/http/cors/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/leaf/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/leaf/provider/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/leaf/leaf/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/validation/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/validation/overview/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/node/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/node/getting-started/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/core/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/core/overview/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/bits/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/bits/overview/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/debugging/package/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/debugging/overview/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/deploy/cloud/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/deploy/nginx/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/deploy/apache2/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/deploy/supervisor/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/version/1_5/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/version/2_0/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/version/3_0/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/version/support/</loc>
+     <loc>None</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>

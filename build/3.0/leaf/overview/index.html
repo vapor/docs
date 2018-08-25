@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-0.17.5, mkdocs-material-2.9.2">
+      <meta name="generator" content="mkdocs-1.0.2, mkdocs-material-3.0.3">
     
     
       
@@ -42,9 +42,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.ba0fd1a6.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.6079476c.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
       
       
         
@@ -100,7 +100,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#leaf-overview" tabindex="1" class="md-skip">
+      <a href="../../#leaf-overview" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -205,11 +205,11 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <span class="md-nav__button md-logo">
+    <a href="https://docs.vapor.codes/3.0/" title="Vapor Docs" class="md-nav__button md-logo">
       
         <img src="../../images/droplet-white.svg" width="48" height="48">
       
-    </span>
+    </a>
     Vapor Docs
   </label>
   
@@ -2190,7 +2190,7 @@
 <p>This guide will give you an overview of Leaf's syntax and the available tags.</p>
 <h2 id="template-syntax">Template syntax<a class="headerlink" href="#template-syntax" title="Permanent link">&para;</a></h2>
 <p>Here is an example of a basic Leaf tag usage.</p>
-<div class="codehilite"><pre><span></span>There are #count(users) users. 
+<div class="codehilite"><pre><span></span><span class="c">There are </span><span class="k">#count</span><span class="p">(</span>users)<span class="c"> users. </span>
 </pre></div>
 
 
@@ -2202,11 +2202,11 @@
 <li>Body: An optional body can be supplied to some tags. This is similar to Swift's trailing-closure syntax.</li>
 </ul>
 <p>There can be many different usages of these four elements depending on the tag's implementation. Let's look at a few examples of how Leaf's built-in tags might be used:</p>
-<div class="codehilite"><pre><span></span>#(variable)
-#embed(&quot;template&quot;)
-#set(&quot;title&quot;) { Welcome to Vapor }
-#count(friends)
-#for(friend in friends) { &lt;li&gt;#(friend.name)&lt;/li&gt; }
+<div class="codehilite"><pre><span></span><span class="k">#</span><span class="p">(</span>variable)<span class="c"></span>
+<span class="k">#embed</span><span class="p">(</span><span class="s">&quot;template&quot;</span>)<span class="c"></span>
+<span class="k">#set</span><span class="p">(</span><span class="s">&quot;title&quot;</span>)<span class="c"> </span><span class="bp">{</span><span class="c"> Welcome to Vapor </span><span class="bp">}</span><span class="c"></span>
+<span class="k">#count</span><span class="p">(</span>friends)<span class="c"></span>
+<span class="k">#for</span><span class="p">(</span>friend <span class="k">in</span> friends)<span class="c"> </span><span class="bp">{</span><span class="c"> &lt;li&gt;</span><span class="k">#</span><span class="p">(</span>friend<span class="err">.</span>name)<span class="c">&lt;/li&gt; </span><span class="bp">}</span><span class="c"></span>
 </pre></div>
 
 
@@ -2218,9 +2218,9 @@
 <li><code>||</code></li>
 <li>etc.</li>
 </ul>
-<div class="codehilite"><pre><span></span>#if(1 + 1 == 2) {
-    Hello!
-}
+<div class="codehilite"><pre><span></span><span class="k">#if</span><span class="p">(</span><span class="m m-Int">1</span> <span class="o">+</span> <span class="m m-Int">1</span> <span class="o">==</span> <span class="m m-Int">2</span>)<span class="c"> </span><span class="bp">{</span><span class="c"></span>
+<span class="c">    Hello!</span>
+<span class="bp">}</span><span class="c"></span>
 </pre></div>
 
 
@@ -2235,8 +2235,8 @@
 
 
 <p>That will expose <code>title</code> and <code>message</code> to our Leaf template, which can then be used inside tags. For example:</p>
-<div class="codehilite"><pre><span></span>&lt;h1&gt;#(title)&lt;/h1&gt;
-&lt;p&gt;#(number)&lt;/p&gt;
+<div class="codehilite"><pre><span></span><span class="c">&lt;h1&gt;</span><span class="k">#</span><span class="p">(</span>title)<span class="c">&lt;/h1&gt;</span>
+<span class="c">&lt;p&gt;</span><span class="k">#</span><span class="p">(</span>number)<span class="c">&lt;/p&gt;</span>
 </pre></div>
 
 
@@ -2244,40 +2244,40 @@
 <p>Here are some common Leaf usage examples.</p>
 <h3 id="conditions">Conditions<a class="headerlink" href="#conditions" title="Permanent link">&para;</a></h3>
 <p>Leaf is able to evaluate a range of conditions using its <code>#if</code> tag. For example, if you provide a variable it will check that variable exists in its context:</p>
-<div class="codehilite"><pre><span></span>#if(title) {
-    The title is #(title)
-} else {
-    No title was provided.
-}
+<div class="codehilite"><pre><span></span><span class="k">#if</span><span class="p">(</span>title)<span class="c"> </span><span class="bp">{</span><span class="c"></span>
+<span class="c">    The title is </span><span class="k">#</span><span class="p">(</span>title)<span class="c"></span>
+<span class="bp">}</span><span class="c"> </span><span class="k">else</span><span class="c"> </span><span class="bp">{</span><span class="c"></span>
+<span class="c">    No title was provided.</span>
+<span class="bp">}</span><span class="c"></span>
 </pre></div>
 
 
 <p>You can also write comparisons, for example:</p>
-<div class="codehilite"><pre><span></span>#if(title == &quot;Welcome&quot;) {
-    This is a friendly web page.
-} else {
-    No strangers allowed!
-}
+<div class="codehilite"><pre><span></span><span class="k">#if</span><span class="p">(</span>title <span class="o">==</span> <span class="s">&quot;Welcome&quot;</span>)<span class="c"> </span><span class="bp">{</span><span class="c"></span>
+<span class="c">    This is a friendly web page.</span>
+<span class="bp">}</span><span class="c"> </span><span class="k">else</span><span class="c"> </span><span class="bp">{</span><span class="c"></span>
+<span class="c">    No strangers allowed!</span>
+<span class="bp">}</span><span class="c"></span>
 </pre></div>
 
 
 <p>If you want to use another tag as part of your condition, you should omit the <code>#</code> for the inner tag. For example:</p>
-<div class="codehilite"><pre><span></span>#if(lowercase(title) == &quot;welcome&quot;) {
-    This is a friendly web page.
-} else {
-    No strangers allowed!
-}
+<div class="codehilite"><pre><span></span><span class="k">#if</span><span class="p">(</span><span class="bp">lowercase</span>(title) <span class="o">==</span> <span class="s">&quot;welcome&quot;</span>)<span class="c"> </span><span class="bp">{</span><span class="c"></span>
+<span class="c">    This is a friendly web page.</span>
+<span class="bp">}</span><span class="c"> </span><span class="k">else</span><span class="c"> </span><span class="bp">{</span><span class="c"></span>
+<span class="c">    No strangers allowed!</span>
+<span class="bp">}</span><span class="c"></span>
 </pre></div>
 
 
 <p>Just like in Swift, you can also use <code>else if</code> statement.s</p>
-<div class="codehilite"><pre><span></span>#if(title == &quot;Welcome&quot;) {
-    This is a friendly web page.
-} else if (1 == 2) {
-    What?
-} else {
-    No strangers allowed!
-}
+<div class="codehilite"><pre><span></span><span class="k">#if</span><span class="p">(</span>title <span class="o">==</span> <span class="s">&quot;Welcome&quot;</span>)<span class="c"> </span><span class="bp">{</span><span class="c"></span>
+<span class="c">    This is a friendly web page.</span>
+<span class="bp">}</span><span class="c"> </span><span class="k">else</span><span class="c"> </span><span class="k">if (</span><span class="m m-Int">1</span> <span class="o">==</span> <span class="m m-Int">2</span>)<span class="c"> </span><span class="bp">{</span><span class="c"></span>
+<span class="c">    What?</span>
+<span class="bp">}</span><span class="c"> </span><span class="k">else</span><span class="c"> </span><span class="bp">{</span><span class="c"></span>
+<span class="c">    No strangers allowed!</span>
+<span class="bp">}</span><span class="c"></span>
 </pre></div>
 
 
@@ -2293,12 +2293,12 @@
 
 
 <p>We could then loop over them in Leaf like this:</p>
-<div class="codehilite"><pre><span></span>Planets:
-&lt;ul&gt;
-#for(planet in planets) {
-    &lt;li&gt;#(planet)&lt;/li&gt;
-}
-&lt;/ul&gt;
+<div class="codehilite"><pre><span></span><span class="c">Planets:</span>
+<span class="c">&lt;ul&gt;</span>
+<span class="k">#for</span><span class="p">(</span>planet <span class="k">in</span> planets)<span class="c"> </span><span class="bp">{</span><span class="c"></span>
+<span class="c">    &lt;li&gt;</span><span class="k">#</span><span class="p">(</span>planet)<span class="c">&lt;/li&gt;</span>
+<span class="bp">}</span><span class="c"></span>
+<span class="c">&lt;/ul&gt;</span>
 </pre></div>
 
 
@@ -2317,37 +2317,37 @@
 <li>The <code>index</code> variable will be set to the number of the current iteration, counting from 0.</li>
 </ul>
 <p>Here's how we could use a loop variable to print just the first name in our array:</p>
-<div class="codehilite"><pre><span></span>#for(planet in planets) {
-    #if(isFirst) { #(planet) is first! }
-}
+<div class="codehilite"><pre><span></span><span class="k">#for</span><span class="p">(</span>planet <span class="k">in</span> planets)<span class="c"> </span><span class="bp">{</span><span class="c"></span>
+<span class="c">    </span><span class="k">#if</span><span class="p">(</span>isFirst)<span class="c"> </span><span class="bp">{</span><span class="c"> </span><span class="k">#</span><span class="p">(</span>planet)<span class="c"> is first! </span><span class="bp">}</span><span class="c"></span>
+<span class="bp">}</span><span class="c"></span>
 </pre></div>
 
 
 <h3 id="embedding-templates">Embedding templates<a class="headerlink" href="#embedding-templates" title="Permanent link">&para;</a></h3>
 <p>Leaf’s <code>#embed</code> tag allows you to copy the contents of one template into another. When use this, you should always omit the template file's .leaf extension.</p>
 <p>Embedding is useful for copying in a standard piece of content, for example a page footer or advert code:</p>
-<div class="codehilite"><pre><span></span>#embed(&quot;footer&quot;)
+<div class="codehilite"><pre><span></span><span class="k">#embed</span><span class="p">(</span><span class="s">&quot;footer&quot;</span>)<span class="c"></span>
 </pre></div>
 
 
 <p>This tag is also useful for building one template on top of another. For example, you might have a master.leaf file that includes all the code required to lay out your website – HTML structure, CSS and JavaScript – with some gaps in place that represent where page content varies.</p>
 <p>Using this approach, you would construct a child template that fills in its unique content, then embeds the parent template that places the content appropriately.</p>
 <p>For example, you might create a child.leaf template like this:</p>
-<div class="codehilite"><pre><span></span>#set(&quot;body&quot;) {
-    &lt;p&gt;Welcome to Vapor!&lt;/p&gt;
-}
+<div class="codehilite"><pre><span></span><span class="k">#set</span><span class="p">(</span><span class="s">&quot;body&quot;</span>)<span class="c"> </span><span class="bp">{</span><span class="c"></span>
+<span class="c">    &lt;p&gt;Welcome to Vapor!&lt;/p&gt;</span>
+<span class="bp">}</span><span class="c"></span>
 
-#embed(&quot;master&quot;)
+<span class="k">#embed</span><span class="p">(</span><span class="s">&quot;master&quot;</span>)<span class="c"></span>
 </pre></div>
 
 
 <p>That configures one item of context, <code>body</code>, but doesn’t display it directly. Instead, it embeds master.leaf, which can render <code>body</code> along with any other context variables passed in from Swift. For example, master.leaf might look like this:</p>
-<div class="codehilite"><pre><span></span>&lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;#(title)&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;#get(body)&lt;/body&gt;
-&lt;/html&gt;
+<div class="codehilite"><pre><span></span><span class="c">&lt;html&gt;</span>
+<span class="c">    &lt;head&gt;</span>
+<span class="c">        &lt;title&gt;</span><span class="k">#</span><span class="p">(</span>title)<span class="c">&lt;/title&gt;</span>
+<span class="c">    &lt;/head&gt;</span>
+<span class="c">    &lt;body&gt;</span><span class="k">#get</span><span class="p">(</span>body)<span class="c">&lt;/body&gt;</span>
+<span class="c">&lt;/html&gt;</span>
 </pre></div>
 
 
@@ -2363,16 +2363,16 @@
 
 <h3 id="comments">Comments<a class="headerlink" href="#comments" title="Permanent link">&para;</a></h3>
 <p>You can write single or multiline comments with Leaf. They will be discarded when rendering the view.</p>
-<div class="codehilite"><pre><span></span>#// Say hello to the user
-Hello, #(name)!
+<div class="codehilite"><pre><span></span><span class="s">#// Say hello to the user</span><span class="c"></span>
+<span class="c">Hello, </span><span class="k">#</span><span class="p">(</span>name)<span class="c">!</span>
 </pre></div>
 
 
 <p>Multi-line comments are opened with <code>#/*</code> and closed with <code>*/</code>.</p>
-<div class="codehilite"><pre><span></span>#/*
-     Say hello to the user
-*/
-Hello, #(name)!
+<div class="codehilite"><pre><span></span><span class="s">#/*</span>
+<span class="s">     Say hello to the user</span>
+<span class="s">*/</span><span class="c"></span>
+<span class="c">Hello, </span><span class="k">#</span><span class="p">(</span>name)<span class="c">!</span>
 </pre></div>
 
 
@@ -2383,46 +2383,46 @@ Hello, #(name)!
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>The time is #date(now)
+<div class="codehilite"><pre><span></span><span class="c">The time is </span><span class="k">#date</span><span class="p">(</span>now)<span class="c"></span>
 </pre></div>
 
 
 <p>You can pass a custom date formatter string as the second argument. See Swift's <a href="https://developer.apple.com/documentation/foundation/dateformatter"><code>DateFormatter</code></a> for more information.</p>
-<div class="codehilite"><pre><span></span>The date is #date(now, &quot;yyyy-MM-dd&quot;)
+<div class="codehilite"><pre><span></span><span class="c">The date is </span><span class="k">#date</span><span class="p">(</span>now, <span class="s">&quot;yyyy-MM-dd&quot;</span>)<span class="c"></span>
 </pre></div>
 
 
 <h4 id="capitalize"><code>#capitalize</code><a class="headerlink" href="#capitalize" title="Permanent link">&para;</a></h4>
 <p>The <code>#capitalize</code> tag uppercases the first letter of any string.</p>
-<div class="codehilite"><pre><span></span>#capitalize(name)
+<div class="codehilite"><pre><span></span><span class="k">#capitalize</span><span class="p">(</span>name)<span class="c"></span>
 </pre></div>
 
 
 <h4 id="contains"><code>#contains</code><a class="headerlink" href="#contains" title="Permanent link">&para;</a></h4>
 <p>The <code>#contains</code> tag accepts an array and a value as its two parameters, and returns true if the array in parameter one contains the value in parameter two.</p>
-<div class="codehilite"><pre><span></span>#if(contains(planets, &quot;Earth&quot;)) {
-    Earth is here!
-} else {
-    Earth is not in this array.
-}
+<div class="codehilite"><pre><span></span><span class="k">#if</span><span class="p">(</span><span class="bp">contains</span>(planets, <span class="s">&quot;Earth&quot;</span>))<span class="c"> </span><span class="bp">{</span><span class="c"></span>
+<span class="c">    Earth is here!</span>
+<span class="bp">}</span><span class="c"> </span><span class="k">else</span><span class="c"> </span><span class="bp">{</span><span class="c"></span>
+<span class="c">    Earth is not in this array.</span>
+<span class="bp">}</span><span class="c"></span>
 </pre></div>
 
 
 <h4 id="count"><code>#count</code><a class="headerlink" href="#count" title="Permanent link">&para;</a></h4>
 <p>The <code>#count</code> tag returns the number of items in an array. For example:</p>
-<div class="codehilite"><pre><span></span>Your search matched #count(matches) pages.
+<div class="codehilite"><pre><span></span><span class="c">Your search matched </span><span class="k">#count</span><span class="p">(</span>matches)<span class="c"> pages.</span>
 </pre></div>
 
 
 <h4 id="lowercase"><code>#lowercase</code><a class="headerlink" href="#lowercase" title="Permanent link">&para;</a></h4>
 <p>The <code>#lowercase</code> tag lowercases all letters in a string. </p>
-<div class="codehilite"><pre><span></span>#lowercase(name)
+<div class="codehilite"><pre><span></span><span class="k">#lowercase</span><span class="p">(</span>name)<span class="c"></span>
 </pre></div>
 
 
 <h4 id="uppercase"><code>#uppercase</code><a class="headerlink" href="#uppercase" title="Permanent link">&para;</a></h4>
 <p>The <code>#uppercase</code> tag uppercases all letters in a string.</p>
-<div class="codehilite"><pre><span></span>#uppercase(name)
+<div class="codehilite"><pre><span></span><span class="k">#uppercase</span><span class="p">(</span>name)<span class="c"></span>
 </pre></div>
                 
                   
@@ -2526,9 +2526,9 @@ Hello, #(name)!
       
     </div>
     
-      <script src="../../assets/javascripts/application.a59e2a89.js"></script>
+      <script src="../../assets/javascripts/application.583bbe55.js"></script>
       
-      <script>app.initialize({version:"0.17.5",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.0.2",url:{base:"../.."}})</script>
       
     
     
