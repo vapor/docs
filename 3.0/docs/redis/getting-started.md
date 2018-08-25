@@ -1,36 +1,68 @@
-!!! warning
-    Redis 3.0 is still in beta. Some documentation may be missing or out of date.
+# Getting Started with Redis
 
-# Redis
+Redis ([vapor/redis](https://github.com/vapor/redis)) is a pure-Swift, event-driven, non-blocking Redis client built on top of SwiftNIO.
 
-Redis is a Redis client library that can communicate with a Redis database.
+You can use this package to interact send Redis commands to your server directly, or as a cache through Vapor's `KeyedCache` interface. 
 
-### What is Redis?
+Let's take a look at how you can get started using Redis.
 
-Redis is an in-memory data store used as a database, cache and message broker. It supports most common data structures. Redis is most commonly used for caching data such as sessions and notifications (between multiple servers).
+## Package
 
-Redis works as a key-value store, but allows querying the keys, unlike most databases.
-
-## With and without Vapor
-
-To include it in your package, add the following to your `Package.swift` file.
+The first step to using Redis is adding it as a dependency to your project in your SPM package manifest file.
 
 ```swift
 // swift-tools-version:4.0
 import PackageDescription
 
 let package = Package(
-    name: "Project",
+    name: "MyApp",
     dependencies: [
-        ...
-        .package(url: "https://github.com/vapor/redis.git", .upToNextMajor(from: "3.0.0")),
+        /// Any other dependencies ...
+
+        // ⚡️Non-blocking, event-driven Redis client.
+        .package(url: "https://github.com/vapor/redis.git", from: "3.0.0"),
     ],
     targets: [
-      .target(name: "Project", dependencies: ["Redis", ... ])
+        .target(name: "App", dependencies: ["Redis", ...]),
+        .target(name: "Run", dependencies: ["App"]),
+        .testTarget(name: "AppTests", dependencies: ["App"]),
     ]
 )
 ```
 
-If this is your first time adding a dependency, you should read our introduction to [Package.swift](../getting-started/spm.md).
+## Provider
 
-Use `import Redis` to access Redis' APIs.
+Once you have succesfully added the Auth package to your project, the next step is to configure it in your application. This is usually done in [`configure.swift`](../getting-started/structure.md#configureswift).
+
+```swift
+import Redis
+
+// register Redis provider
+try services.register(RedisProvider())
+```
+
+That's it for basic setup. The next step is to create a Redis connection and send a command.
+
+## Command
+
+First, create a new connection to your Redis database. This package is built on top of DatabaseKit, so you can use any of its convenience methods for creating a new connection. See [DatabaseKit &rarr; Overview](../database-kit/overview.md) for more information.
+
+```swift
+router.get("redis") { req -> Future<String> in
+    return req.withNewConnection(to: .redis) { redis in
+        // use redis connection
+    }
+}
+```
+
+Once you have a connection, you can use it to send a command. Let's send the `"INFO"` command which should return information about our Redis server.
+
+```swift
+// send INFO command to redis
+return redis.command("INFO")
+    // map the resulting RedisData to a String
+    .map { $0.string ?? "" }
+```
+
+Run your app and query `GET /redis`. You should see information about your Redis server printed as output. Congratulations!
+
