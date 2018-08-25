@@ -14,7 +14,7 @@ rm -rf build
 mkdir -p build;
 
 cd leaf-pygment && ./compile.sh
-pip install leaf-pygment/dist/leaf-0.1.0-dev.tar.gz
+cd .. && pip install leaf-pygment/dist/leaf-0.1.0-dev.tar.gz
 
 mv 2.0/site build/2.0;
 mv 3.0/site build/3.0;
