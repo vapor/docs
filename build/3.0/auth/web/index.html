@@ -11,7 +11,7 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
-        <link rel="canonical" href="https://docs.vapor.codes/3.0/crypto/ciphers/">
+        <link rel="canonical" href="https://docs.vapor.codes/3.0/auth/web/">
       
       
       
@@ -38,7 +38,7 @@
     
     
       
-        <title>Ciphers - Vapor Docs</title>
+        <title>Sessions (Web) - Vapor Docs</title>
       
     
     
@@ -100,7 +100,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#cipher-algorithms" tabindex="1" class="md-skip">
+      <a href="#web-authentication" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -126,7 +126,7 @@
                 Vapor Docs
               </span>
               <span class="md-header-nav__topic">
-                Ciphers
+                Sessions (Web)
               </span>
             
           
@@ -517,10 +517,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
       Auth
@@ -538,7 +540,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../auth/getting-started/" title="Getting Started" class="md-nav__link">
+    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
   </li>
@@ -550,7 +552,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../auth/api/" title="Stateless (API)" class="md-nav__link">
+    <a href="../api/" title="Stateless (API)" class="md-nav__link">
       Stateless (API)
     </a>
   </li>
@@ -560,11 +562,103 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../auth/web/" title="Sessions (Web)" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Sessions (Web)
+      </label>
+    
+    <a href="./" title="Sessions (Web)" class="md-nav__link md-nav__link--active">
       Sessions (Web)
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#concept" title="Concept" class="md-nav__link">
+    Concept
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-requisites" title="Pre-requisites" class="md-nav__link">
+    Pre-requisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model" title="Model" class="md-nav__link">
+    Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#middleware" title="Middleware" class="md-nav__link">
+    Middleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#route" title="Route" class="md-nav__link">
+    Route
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login" title="Login" class="md-nav__link">
+    Login
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -673,12 +767,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
     
     <label class="md-nav__link" for="nav-8">
       Crypto
@@ -696,7 +788,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+    <a href="../../crypto/getting-started/" title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
   </li>
@@ -708,7 +800,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../digests/" title="Digests" class="md-nav__link">
+    <a href="../../crypto/digests/" title="Digests" class="md-nav__link">
       Digests
     </a>
   </li>
@@ -718,69 +810,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Ciphers
-      </label>
-    
-    <a href="./" title="Ciphers" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../crypto/ciphers/" title="Ciphers" class="md-nav__link">
       Ciphers
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#encrypt" title="Encrypt" class="md-nav__link">
-    Encrypt
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decrypt" title="Decrypt" class="md-nav__link">
-    Decrypt
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#streaming" title="Streaming" class="md-nav__link">
-    Streaming
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -790,7 +824,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../asymmetric/" title="Asymmetric" class="md-nav__link">
+    <a href="../../crypto/asymmetric/" title="Asymmetric" class="md-nav__link">
       Asymmetric
     </a>
   </li>
@@ -802,7 +836,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../random/" title="Random" class="md-nav__link">
+    <a href="../../crypto/random/" title="Random" class="md-nav__link">
       Random
     </a>
   </li>
@@ -814,7 +848,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../otp/" title="TOTP & HOTP" class="md-nav__link">
+    <a href="../../crypto/otp/" title="TOTP & HOTP" class="md-nav__link">
       TOTP & HOTP
     </a>
   </li>
@@ -1962,23 +1996,57 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#encrypt" title="Encrypt" class="md-nav__link">
-    Encrypt
+  <a href="#concept" title="Concept" class="md-nav__link">
+    Concept
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#decrypt" title="Decrypt" class="md-nav__link">
-    Decrypt
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-requisites" title="Pre-requisites" class="md-nav__link">
+    Pre-requisites
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#streaming" title="Streaming" class="md-nav__link">
-    Streaming
+        
+          <li class="md-nav__item">
+  <a href="#model" title="Model" class="md-nav__link">
+    Model
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#middleware" title="Middleware" class="md-nav__link">
+    Middleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#route" title="Route" class="md-nav__link">
+    Route
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login" title="Login" class="md-nav__link">
+    Login
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2004,38 +2072,83 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/vapor/documentation/edit/master/3.0/docs/crypto/ciphers.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/vapor/documentation/edit/master/3.0/docs/auth/web.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="cipher-algorithms">Cipher Algorithms<a class="headerlink" href="#cipher-algorithms" title="Permanent link">&para;</a></h1>
-<p>Ciphers allow you to encrypt plaintext data with a key yielding ciphertext. This ciphertext can be later decrypted by the same cipher using the same key.</p>
-<p>Read more about <a href="https://en.wikipedia.org/wiki/Cipher">ciphers</a> on Wikipedia.</p>
-<h2 id="encrypt">Encrypt<a class="headerlink" href="#encrypt" title="Permanent link">&para;</a></h2>
-<p>Use the global convenience variables for encrypting data with common algorithms.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">ciphertext</span> <span class="p">=</span> <span class="k">try</span> <span class="n">AES128</span><span class="p">.</span><span class="n">encrypt</span><span class="p">(</span><span class="s">&quot;vapor&quot;</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="s">&quot;secret&quot;</span><span class="p">)</span>
-<span class="bp">print</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">)</span> <span class="c1">/// Data</span>
+                <h1 id="web-authentication">Web Authentication<a class="headerlink" href="#web-authentication" title="Permanent link">&para;</a></h1>
+<p>This guide will introduce you to session-based authentication&mdash;a method of authentication commonly used for protecting web (front-end) pages. </p>
+<h2 id="concept">Concept<a class="headerlink" href="#concept" title="Permanent link">&para;</a></h2>
+<p>In Computer Science (especially web frameworks), the concept of Authentication means verifying the <em>identity</em> of a user. This is not to be confused with Authorization which verifies <em>privileges</em> to a given resource</p>
+<p>Session-based authentication uses cookies to re-authenticate users with each request to your website. It performs this logic via a middleware that you add to your application or specific routes.</p>
+<p>You are responsible for initially authenticating the user to your application (either manually or by using methods from the <a href="../api/">Stateless (API)</a> section). Once you have authenticated the user once, the middleware will use cookies to re-authenticate the user on subsequent requests automatically. </p>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<p>Let's take a look at a simple session-based authentication example.</p>
+<h3 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">&para;</a></h3>
+<p>In order to do session-based authentication, you must have a way to initially authenticate your user. In other words, you need a method for logging them in. The <a href="../api/">Stateless (API)</a> section covers some of these methods, but it's entirely up to you. </p>
+<p>You will also need to have sessions configured for your application. You can learn more about this in <a href="../../vapor/sessions/">Vapor &rarr; Sessions</a>. Usually this will require adding the <code>SessionsMiddleware</code> and choosing a <code>KeyedCache</code>.</p>
+<div class="codehilite"><pre><span></span><span class="n">config</span><span class="p">.</span><span class="n">prefer</span><span class="p">(</span><span class="n">MemoryKeyedCache</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="k">for</span><span class="p">:</span> <span class="n">KeyedCache</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nv">middlewares</span> <span class="p">=</span> <span class="n">MiddlewareConfig</span><span class="p">()</span>
+<span class="n">middlewares</span><span class="p">.</span><span class="n">use</span><span class="p">(</span><span class="n">SessionsMiddleware</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="c1">// ...</span>
+<span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">middlewares</span><span class="p">)</span>
 </pre></div>
 
 
-<h2 id="decrypt">Decrypt<a class="headerlink" href="#decrypt" title="Permanent link">&para;</a></h2>
-<p>Decryption works very similarly to <a href="#encrypt">encryption</a>. The following snippet shows how to decrypt the ciphertext from our previous example.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">plaintext</span> <span class="p">=</span> <span class="k">try</span> <span class="n">AES128</span><span class="p">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="s">&quot;secret&quot;</span><span class="p">)</span>
-<span class="bp">print</span><span class="p">(</span><span class="n">plaintext</span><span class="p">)</span> <span class="c1">/// &quot;vapor&quot;</span>
+<h3 id="model">Model<a class="headerlink" href="#model" title="Permanent link">&para;</a></h3>
+<p>Once you are ready to enable session-based authentication, the first step is to conform your user model to <a href="https://api.vapor.codes/auth/latest/Authentication/Protocols/SessionAuthenticatable.html"><code>SessionAuthenticatable</code></a>. </p>
+<div class="codehilite"><pre><span></span><span class="kd">extension</span> <span class="nc">User</span><span class="p">:</span> <span class="n">SessionAuthenticatable</span> <span class="p">{</span> <span class="p">}</span>
 </pre></div>
 
 
-<p>See the Crypto module's <a href="https://api.vapor.codes/crypto/latest/Crypto/Global%20Variables.html#/Ciphers">global variables</a> for a list of all available cipher algorithms.</p>
-<h2 id="streaming">Streaming<a class="headerlink" href="#streaming" title="Permanent link">&para;</a></h2>
-<p>Both encryption and decryption can work in a streaming mode that allows data to be chunked. This is useful for controlling memory usage while encrypting large amounts of data.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">key</span><span class="p">:</span> <span class="n">Data</span> <span class="c1">// 16-bytes</span>
-<span class="kd">let</span> <span class="nv">aes128</span> <span class="p">=</span> <span class="n">Cipher</span><span class="p">(</span><span class="n">algorithm</span><span class="p">:</span> <span class="p">.</span><span class="n">aes128ecb</span><span class="p">)</span>
-<span class="k">try</span> <span class="n">aes128</span><span class="p">.</span><span class="n">reset</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="p">.</span><span class="n">encrypt</span><span class="p">)</span>
-<span class="kd">var</span> <span class="nv">buffer</span> <span class="p">=</span> <span class="n">Data</span><span class="p">()</span>
-<span class="k">try</span> <span class="n">aes128</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="s">&quot;hello&quot;</span><span class="p">,</span> <span class="n">into</span><span class="p">:</span> <span class="p">&amp;</span><span class="n">buffer</span><span class="p">)</span>
-<span class="k">try</span> <span class="n">aes128</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="s">&quot;world&quot;</span><span class="p">,</span> <span class="n">into</span><span class="p">:</span> <span class="p">&amp;</span><span class="n">buffer</span><span class="p">)</span>
-<span class="k">try</span> <span class="n">aes128</span><span class="p">.</span><span class="n">finish</span><span class="p">(</span><span class="n">into</span><span class="p">:</span> <span class="p">&amp;</span><span class="n">buffer</span><span class="p">)</span>
-<span class="bp">print</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span> <span class="c1">// Completed ciphertext</span>
+<p>The conformance is empty since all of the required methods have default implementations. </p>
+<h3 id="middleware">Middleware<a class="headerlink" href="#middleware" title="Permanent link">&para;</a></h3>
+<p>Once your model is conformed, you can use it to create an <code>AuthenticationSessionsMiddleware</code>.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// create auth sessions middleware for user</span>
+<span class="kd">let</span> <span class="nv">session</span> <span class="p">=</span> <span class="n">User</span><span class="p">.</span><span class="n">authSessionsMiddleware</span><span class="p">()</span>
+
+<span class="c1">// create a route group wrapped by this middleware</span>
+<span class="kd">let</span> <span class="nv">auth</span> <span class="p">=</span> <span class="n">router</span><span class="p">.</span><span class="n">grouped</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+
+<span class="c1">// create new route in this route group</span>
+<span class="n">auth</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="k">in</span>
+    <span class="c1">// </span>
+<span class="p">}</span>
 </pre></div>
+
+
+<p>Create a route group wrapped by this middleware using the route grouping methods. Any routes you want to support session-based authentication should use this route group.</p>
+<p>You can also apply this middleware globally to your application if you'd like.</p>
+<h3 id="route">Route<a class="headerlink" href="#route" title="Permanent link">&para;</a></h3>
+<p>Inside of any route closure wrapped by the session auth middleware, we can access our authenticated model using the <a href="https://api.vapor.codes/auth/latest/Authentication/Extensions/Request.html#/s:5Vapor7RequestC14AuthenticationE13authenticatedxSgxmKAD15AuthenticatableRzlF"><code>authenticated(_:)</code></a> methods.</p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">requireAuthenticated</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="k">return</span> <span class="s">&quot;Hello, </span><span class="si">\(</span><span class="n">user</span><span class="p">.</span><span class="n">name</span><span class="si">)</span><span class="s">!&quot;</span>
+</pre></div>
+
+
+<p>Here we are using the method prefixed with <code>require</code> to throw an error if the user was not succesfully authenticated. </p>
+<p>If you visit this route now, you should see a message saying no user has been authenticated. Let's resolve this by creating a way for our user to login!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use <a href="https://api.vapor.codes/auth/latest/Authentication/Classes/GuardAuthenticationMiddleware.html"><code>GuardAuthenticationMiddleware</code></a> to protect routes that do not call <code>requireAuthenticated(_:)</code> or otherwise require authentication.</p>
+</div>
+<h3 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h3>
+<p>For the sake of this example, we will just log in a pre-defined user with a fixed ID.</p>
+<div class="codehilite"><pre><span></span><span class="n">auth</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;login&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="n">User</span><span class="p">.</span><span class="bp">find</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">on</span><span class="p">:</span> <span class="n">req</span><span class="p">).</span><span class="bp">map</span> <span class="p">{</span> <span class="n">user</span> <span class="k">in</span>
+        <span class="k">guard</span> <span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="n">user</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">Abort</span><span class="p">(.</span><span class="n">badRequest</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s">&quot;Logged in&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Remember that this login route must go through the <code>AuthenticationSessionsMiddleware</code>. The middleware is what will detect that we have authenticated a user and later restore the authentication automatically.</p>
+<p>Upon visiting <code>/hello</code>, you should recieve an error message stating that you are not logged in. If you then visit <code>/login</code> first, followed by <code>/hello</code> you should see that you are now successfully logged in!</p>
+<p>If you open the inspector, you should notice a new cookie named <code>"vapor-session"</code> has been added to your browser.</p>
                 
                   
                 
@@ -2048,9 +2161,9 @@
   <div id="disqus_thread"></div>
   <script>
     var disqus_config = function () {
-      this.page.url = "https://docs.vapor.codes/3.0/crypto/ciphers/";
+      this.page.url = "https://docs.vapor.codes/3.0/auth/web/";
       this.page.identifier =
-        "crypto/ciphers/";
+        "auth/web/";
     };
     (function() {
       var d = document, s = d.createElement("script");
@@ -2072,7 +2185,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../digests/" title="Digests" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../api/" title="Stateless (API)" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -2081,19 +2194,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Digests
+                Stateless (API)
               </span>
             </div>
           </a>
         
         
-          <a href="../asymmetric/" title="Asymmetric" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../console/getting-started/" title="Getting Started" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Asymmetric
+                Getting Started
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

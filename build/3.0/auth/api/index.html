@@ -11,7 +11,7 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
-        <link rel="canonical" href="https://docs.vapor.codes/3.0/redis/custom-commands/">
+        <link rel="canonical" href="https://docs.vapor.codes/3.0/auth/api/">
       
       
       
@@ -38,7 +38,7 @@
     
     
       
-        <title>Custom commands - Vapor Docs</title>
+        <title>Stateless (API) - Vapor Docs</title>
       
     
     
@@ -100,7 +100,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#custom-commands" tabindex="1" class="md-skip">
+      <a href="#api-authentication" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -126,7 +126,7 @@
                 Vapor Docs
               </span>
               <span class="md-header-nav__topic">
-                Custom commands
+                Stateless (API)
               </span>
             
           
@@ -517,16 +517,196 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
-      Console
+      Auth
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-5">
+        Auth
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Stateless (API)
+      </label>
+    
+    <a href="./" title="Stateless (API)" class="md-nav__link md-nav__link--active">
+      Stateless (API)
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#concept" title="Concept" class="md-nav__link">
+    Concept
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authorization-header" title="Authorization Header" class="md-nav__link">
+    Authorization Header
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic" title="Basic" class="md-nav__link">
+    Basic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bearer" title="Bearer" class="md-nav__link">
+    Bearer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#middleware" title="Middleware" class="md-nav__link">
+    Middleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model" title="Model" class="md-nav__link">
+    Model
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#password-authentication" title="Password Authentication" class="md-nav__link">
+    Password Authentication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-authentication" title="Token Authentication" class="md-nav__link">
+    Token Authentication
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../web/" title="Sessions (Web)" class="md-nav__link">
+      Sessions (Web)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Console
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
         Console
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -568,13 +748,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
     
-    <label class="md-nav__link" for="nav-6">
+    <label class="md-nav__link" for="nav-7">
       Command
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-6">
+      <label class="md-nav__title" for="nav-7">
         Command
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -616,13 +796,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
     
-    <label class="md-nav__link" for="nav-7">
+    <label class="md-nav__link" for="nav-8">
       Crypto
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-7">
+      <label class="md-nav__title" for="nav-8">
         Crypto
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -688,6 +868,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../crypto/otp/" title="TOTP & HOTP" class="md-nav__link">
+      TOTP & HOTP
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -700,13 +892,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
     
-    <label class="md-nav__link" for="nav-8">
+    <label class="md-nav__link" for="nav-9">
       Database Kit
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-8">
+      <label class="md-nav__title" for="nav-9">
         Database Kit
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -748,13 +940,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
     
-    <label class="md-nav__link" for="nav-9">
+    <label class="md-nav__link" for="nav-10">
       Fluent
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-9">
+      <label class="md-nav__title" for="nav-10">
         Fluent
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -844,13 +1036,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
     
-    <label class="md-nav__link" for="nav-10">
+    <label class="md-nav__link" for="nav-11">
       HTTP
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-10">
+      <label class="md-nav__title" for="nav-11">
         HTTP
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -916,13 +1108,61 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
     
-    <label class="md-nav__link" for="nav-11">
+    <label class="md-nav__link" for="nav-12">
+      JWT
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-12">
+        JWT
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../jwt/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../jwt/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+    
+    <label class="md-nav__link" for="nav-13">
       Leaf
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-11">
+      <label class="md-nav__title" for="nav-13">
         Leaf
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -946,8 +1186,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../leaf/basics/" title="Basics" class="md-nav__link">
-      Basics
+    <a href="../../leaf/overview/" title="Overview" class="md-nav__link">
+      Overview
     </a>
   </li>
 
@@ -976,13 +1216,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
     
-    <label class="md-nav__link" for="nav-12">
+    <label class="md-nav__link" for="nav-14">
       Logging
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-12">
+      <label class="md-nav__title" for="nav-14">
         Logging
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1024,13 +1264,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
     
-    <label class="md-nav__link" for="nav-13">
+    <label class="md-nav__link" for="nav-15">
       Multipart
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-13">
+      <label class="md-nav__title" for="nav-15">
         Multipart
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1072,13 +1312,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-16" type="checkbox" id="nav-16">
     
-    <label class="md-nav__link" for="nav-14">
+    <label class="md-nav__link" for="nav-16">
       MySQL
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-14">
+      <label class="md-nav__title" for="nav-16">
         MySQL
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1108,13 +1348,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-17" type="checkbox" id="nav-17">
     
-    <label class="md-nav__link" for="nav-15">
+    <label class="md-nav__link" for="nav-17">
       PostgreSQL
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-15">
+      <label class="md-nav__title" for="nav-17">
         PostgreSQL
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1141,18 +1381,16 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-16" type="checkbox" id="nav-16" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-18" type="checkbox" id="nav-18">
     
-    <label class="md-nav__link" for="nav-16">
+    <label class="md-nav__link" for="nav-18">
       Redis
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-16">
+      <label class="md-nav__title" for="nav-18">
         Redis
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1164,7 +1402,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+    <a href="../../redis/getting-started/" title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
   </li>
@@ -1176,88 +1414,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../basics/" title="Basics" class="md-nav__link">
-      Basics
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Custom commands
-      </label>
-    
-    <a href="./" title="Custom commands" class="md-nav__link md-nav__link--active">
-      Custom commands
-    </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#usage" title="Usage" class="md-nav__link">
-    Usage
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
-    
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../pub-sub/" title="Publish and Subscribe" class="md-nav__link">
-      Publish and Subscribe
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../pipeline/" title="Pipeline" class="md-nav__link">
-      Pipeline
+    <a href="../../redis/overview/" title="Overview" class="md-nav__link">
+      Overview
     </a>
   </li>
 
@@ -1274,13 +1432,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-17" type="checkbox" id="nav-17">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-19" type="checkbox" id="nav-19">
     
-    <label class="md-nav__link" for="nav-17">
+    <label class="md-nav__link" for="nav-19">
       Routing
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-17">
+      <label class="md-nav__title" for="nav-19">
         Routing
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1322,13 +1480,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-18" type="checkbox" id="nav-18">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-20" type="checkbox" id="nav-20">
     
-    <label class="md-nav__link" for="nav-18">
+    <label class="md-nav__link" for="nav-20">
       Service
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-18">
+      <label class="md-nav__title" for="nav-20">
         Service
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1382,13 +1540,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-19" type="checkbox" id="nav-19">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-21" type="checkbox" id="nav-21">
     
-    <label class="md-nav__link" for="nav-19">
+    <label class="md-nav__link" for="nav-21">
       SQL
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-19">
+      <label class="md-nav__title" for="nav-21">
         SQL
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1430,13 +1588,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-20" type="checkbox" id="nav-20">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-22" type="checkbox" id="nav-22">
     
-    <label class="md-nav__link" for="nav-20">
+    <label class="md-nav__link" for="nav-22">
       SQLite
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-20">
+      <label class="md-nav__title" for="nav-22">
         SQLite
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1466,13 +1624,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-21" type="checkbox" id="nav-21">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-23" type="checkbox" id="nav-23">
     
-    <label class="md-nav__link" for="nav-21">
+    <label class="md-nav__link" for="nav-23">
       Template Kit
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-21">
+      <label class="md-nav__title" for="nav-23">
         Template Kit
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1502,13 +1660,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-22" type="checkbox" id="nav-22">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-24" type="checkbox" id="nav-24">
     
-    <label class="md-nav__link" for="nav-22">
+    <label class="md-nav__link" for="nav-24">
       Testing
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-22">
+      <label class="md-nav__title" for="nav-24">
         Testing
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1538,13 +1696,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-23" type="checkbox" id="nav-23">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-25" type="checkbox" id="nav-25">
     
-    <label class="md-nav__link" for="nav-23">
+    <label class="md-nav__link" for="nav-25">
       URL-Encoded Form
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-23">
+      <label class="md-nav__title" for="nav-25">
         URL-Encoded Form
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1586,13 +1744,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-24" type="checkbox" id="nav-24">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-26" type="checkbox" id="nav-26">
     
-    <label class="md-nav__link" for="nav-24">
+    <label class="md-nav__link" for="nav-26">
       Validation
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-24">
+      <label class="md-nav__title" for="nav-26">
         Validation
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1634,13 +1792,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-25" type="checkbox" id="nav-25">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-27" type="checkbox" id="nav-27">
     
-    <label class="md-nav__link" for="nav-25">
+    <label class="md-nav__link" for="nav-27">
       Vapor
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-25">
+      <label class="md-nav__title" for="nav-27">
         Vapor
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1718,13 +1876,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-26" type="checkbox" id="nav-26">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-28" type="checkbox" id="nav-28">
     
-    <label class="md-nav__link" for="nav-26">
+    <label class="md-nav__link" for="nav-28">
       WebSocket
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-26">
+      <label class="md-nav__title" for="nav-28">
         WebSocket
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1766,13 +1924,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-27" type="checkbox" id="nav-27">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-29" type="checkbox" id="nav-29">
     
-    <label class="md-nav__link" for="nav-27">
+    <label class="md-nav__link" for="nav-29">
       Version (3.0)
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-27">
+      <label class="md-nav__title" for="nav-29">
         Version (3.0)
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1864,9 +2022,83 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#usage" title="Usage" class="md-nav__link">
-    Usage
+  <a href="#concept" title="Concept" class="md-nav__link">
+    Concept
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authorization-header" title="Authorization Header" class="md-nav__link">
+    Authorization Header
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic" title="Basic" class="md-nav__link">
+    Basic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bearer" title="Bearer" class="md-nav__link">
+    Bearer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#middleware" title="Middleware" class="md-nav__link">
+    Middleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model" title="Model" class="md-nav__link">
+    Model
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#password-authentication" title="Password Authentication" class="md-nav__link">
+    Password Authentication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-authentication" title="Token Authentication" class="md-nav__link">
+    Token Authentication
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1892,20 +2124,180 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/vapor/documentation/edit/master/3.0/docs/redis/custom-commands.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/vapor/documentation/edit/master/3.0/docs/auth/api.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="custom-commands">Custom commands<a class="headerlink" href="#custom-commands" title="Permanent link">&para;</a></h1>
-<p>Many commands are not (yet) implemented by the driver using a convenience function. This does not mean the feature/command is not usable.</p>
-<p><a href="https://redis.io/commands">(Almost) all functions listed here</a> work out of the box using custom commands.</p>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p>The Redis client has a <code>run</code> function that allows you to run these commands.</p>
-<p>The following code demonstrates a "custom" implementation for <a href="https://redis.io/commands/get">GET</a>.</p>
-<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">future</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">:</span> <span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="n">arguments</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;my-key&quot;</span><span class="p">])</span> <span class="c1">// Future&lt;RedisData&gt;</span>
+                <h1 id="api-authentication">API Authentication<a class="headerlink" href="#api-authentication" title="Permanent link">&para;</a></h1>
+<p>This guide will introduce you to stateless authentication&mdash;a method of authentication commonly used for protecting API endpoints. </p>
+<h2 id="concept">Concept<a class="headerlink" href="#concept" title="Permanent link">&para;</a></h2>
+<p>In Computer Science (especially web frameworks), the concept of Authentication means verifying the <em>identity</em> of a user. This is not to be confused with Authorization which verifies <em>privileges</em> to a given resource</p>
+<p>This package allows you to implement stateless authorization using the following tools:</p>
+<ul>
+<li><em><code>"Authorization"</code> header</em>: Used to send credentials in an HTTP request.</li>
+<li><em>Middleware</em>: Detects credentials in request and fetches authenticated user.</li>
+<li><em>Model</em>: Represents an authenticated user and its identifying information. </li>
+</ul>
+<h3 id="authorization-header">Authorization Header<a class="headerlink" href="#authorization-header" title="Permanent link">&para;</a></h3>
+<p>This packages makes use of two common authorization header formats: basic and bearer.</p>
+<h4 id="basic">Basic<a class="headerlink" href="#basic" title="Permanent link">&para;</a></h4>
+<p>Basic authorization contains a username and password. They are joined together by a <code>:</code> and then base64 encoded. </p>
+<p>A basic authorization header containing the username <code>Alladin</code> and password <code>OpenSesame</code> would look like this:</p>
+<div class="codehilite"><pre><span></span><span class="err">Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l</span>
 </pre></div>
 
 
-<p>This future will contain the result as specified in the article on the redis command page or an error.</p>
+<p>Although basic authorization can be used to authenticate each request to your server, most web applications usually create an ephemeral token for this purpose instead. </p>
+<h4 id="bearer">Bearer<a class="headerlink" href="#bearer" title="Permanent link">&para;</a></h4>
+<p>Bearer authorization simply contains a token. A bearer authorization header containing the token <code>cn389ncoiwuencr</code> would look like this:</p>
+<div class="codehilite"><pre><span></span><span class="err">Authorization: Bearer cn389ncoiwuencr</span>
+</pre></div>
+
+
+<p>The bearer authorization header is very common in APIs since it can be sent easily with each request and contain an ephemeral token. </p>
+<h3 id="middleware">Middleware<a class="headerlink" href="#middleware" title="Permanent link">&para;</a></h3>
+<p>The usage of Middleware is critical to this package. If you are not familiar with how Middleware works in Vapor, feel free to brush up by reading <a href="../vapor/middleware.md">Vapor &rarr; Middleware</a>.</p>
+<p>Authentication middleware is responsible for reading the credentials from the request and fetching the identifier user. This usually means checking the <code>"Authorization"</code> header, parsing the credentials, and doing a database lookup. </p>
+<p>For each model / authentication method you use, you will add one middleware to your application. All of this package's middlewares are composable, meaning you can add multiple middlewares to one route and they will work together. If one middleware fails to authorize a user, it will simply forward the request for the next middleware to try.</p>
+<p>If you would like to ensure that a certain model's authentication has succeeded <em>before</em> running your route, you must add an instance of <a href="https://api.vapor.codes/auth/latest/Authentication/Classes/GuardAuthenticationMiddleware.html"><code>GuardAuthenticationMiddleware</code></a>.</p>
+<h3 id="model">Model<a class="headerlink" href="#model" title="Permanent link">&para;</a></h3>
+<p>Fluent models are <em>what</em> the middlewares authenticate. Learn more about models by reading <a href="../../fluent/models/">Fluent &rarr; Models</a>. If authentication is succesful, the middleware will have fetched your model from the database and stored it on the request. This means you can access an authenticated model synchronously in your route. </p>
+<p>In your route closure, you use the following methods to check for authentication:</p>
+<ul>
+<li><code>authenticated(_:)</code>: Returns type if authenticated, <code>nil</code> if not.</li>
+<li><code>isAuthenticated(_:)</code>: Returns <code>true</code> if supplied type is authenticated.</li>
+<li><code>requireAuthenticated(_:)</code>: Returns type if authenticated, <code>throws</code> if not.</li>
+</ul>
+<p>Typical usage looks like the following:</p>
+<div class="codehilite"><pre><span></span><span class="c1">// use middleware to protect a group</span>
+<span class="kd">let</span> <span class="nv">protectedGroup</span> <span class="p">=</span> <span class="n">router</span><span class="p">.</span><span class="n">group</span><span class="p">(...)</span>
+
+<span class="c1">// add a protected route</span>
+<span class="n">protectedGroup</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
+    <span class="c1">// require that a User has been authed by middleware or throw</span>
+    <span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">requireAuthenticated</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+
+    <span class="c1">// say hello to the user</span>
+    <span class="k">return</span> <span class="s">&quot;Hello, </span><span class="si">\(</span><span class="n">user</span><span class="p">.</span><span class="n">name</span><span class="si">)</span><span class="s">.&quot;</span>
+
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h2>
+<p>This package supports two basic types of stateless authentication. </p>
+<ul>
+<li><em>Token</em>: Uses the bearer authorization header.</li>
+<li><em>Password</em>: Uses the basic authorization header.</li>
+</ul>
+<p>For each authentication type, there is a separate middleware and model protocol.</p>
+<h3 id="password-authentication">Password Authentication<a class="headerlink" href="#password-authentication" title="Permanent link">&para;</a></h3>
+<p>Password authentication uses the basic authorization header (username and password) to verify a user. With this method, the username and password must be sent with each request to a protected endpoint.</p>
+<p>To use password authentication, you will first need to conform your Fluent model to <code>PasswordAuthenticatable</code>. </p>
+<div class="codehilite"><pre><span></span><span class="kd">extension</span> <span class="nc">User</span><span class="p">:</span> <span class="n">PasswordAuthenticatable</span> <span class="p">{</span>
+    <span class="c1">/// See `PasswordAuthenticatable`.</span>
+    <span class="kd">static</span> <span class="kd">var</span> <span class="nv">usernameKey</span><span class="p">:</span> <span class="n">WritableKeyPath</span><span class="p">&lt;</span><span class="n">User</span><span class="p">,</span> <span class="nb">String</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="err">\</span><span class="p">.</span><span class="n">email</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// See `PasswordAuthenticatable`.</span>
+    <span class="kd">static</span> <span class="kd">var</span> <span class="nv">passwordKey</span><span class="p">:</span> <span class="n">WritableKeyPath</span><span class="p">&lt;</span><span class="n">User</span><span class="p">,</span> <span class="nb">String</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="err">\</span><span class="p">.</span><span class="n">passwordHash</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Note that the <code>passwordKey</code> should point to the <em>hashed</em> password. Never store passwords in plaintext. </p>
+<p>Once you have created an authenticatable model, the next step is to add middleware to your protected route.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Use user model to create an authentication middleware</span>
+<span class="kd">let</span> <span class="nv">password</span> <span class="p">=</span> <span class="n">User</span><span class="p">.</span><span class="n">basicAuthMiddleware</span><span class="p">(</span><span class="n">using</span><span class="p">:</span> <span class="n">BCryptDigest</span><span class="p">())</span>
+
+<span class="c1">// Create a route closure wrapped by this middleware </span>
+<span class="n">router</span><span class="p">.</span><span class="n">grouped</span><span class="p">(</span><span class="n">password</span><span class="p">).</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="k">in</span>
+    <span class="c1">///</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Here we are using <code>BCryptDigest</code> as the <a href="https://api.vapor.codes/auth/latest/Authentication/Protocols/PasswordVerifier.html"><code>PasswordVerifier</code></a> since we are assuming the user's password is stored as a BCrypt hash. </p>
+<p>Now, to fetch the authenticated user in the route closure, you can use <a href="https://api.vapor.codes/auth/latest/Authentication/Extensions/Request.html#/s:5Vapor7RequestC14AuthenticationE20requireAuthenticatedxxmKAD15AuthenticatableRzlF"><code>requireAuthenticated(_:)</code></a>. </p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">requireAuthenticated</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="k">return</span> <span class="s">&quot;Hello, </span><span class="si">\(</span><span class="n">user</span><span class="p">.</span><span class="n">name</span><span class="si">)</span><span class="s">.&quot;</span>
+</pre></div>
+
+
+<p>The <code>requireAuthenticated</code> method will automatically throw an appropriate unauthorized error if the valid credentials were not supplied. Because of this, using <a href="https://api.vapor.codes/auth/latest/Authentication/Classes/GuardAuthenticationMiddleware.html"><code>GuardAuthenticationMiddleware</code></a> to protect the route from unauthenticated access is not required. </p>
+<h3 id="token-authentication">Token Authentication<a class="headerlink" href="#token-authentication" title="Permanent link">&para;</a></h3>
+<p>Token authentication uses the bearer authorization header (token) to lookup a token and its related user. With this method, the token must be sent with each request to a protected endpoint.</p>
+<p>Unlike password authentication, token authentication relies on <em>two</em> Fluent models. One for the token and one for the user. The token model should be a <em>child</em> of the user model.</p>
+<p>Here is an example of a very basic <code>User</code> and associated <code>UserToken</code>. </p>
+<div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">User</span><span class="p">:</span> <span class="n">Model</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">id</span><span class="p">:</span> <span class="nb">Int</span><span class="p">?</span>
+    <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">var</span> <span class="nv">email</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">var</span> <span class="nv">passwordHash</span><span class="p">:</span> <span class="nb">String</span>
+
+    <span class="kd">var</span> <span class="nv">tokens</span><span class="p">:</span> <span class="n">Children</span><span class="p">&lt;</span><span class="n">User</span><span class="p">,</span> <span class="n">UserToken</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">children</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">userID</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">UserToken</span><span class="p">:</span> <span class="n">Model</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">id</span><span class="p">:</span> <span class="nb">Int</span><span class="p">?</span>
+    <span class="kd">var</span> <span class="nv">string</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">var</span> <span class="nv">userID</span><span class="p">:</span> <span class="n">User</span><span class="p">.</span><span class="n">ID</span>
+
+    <span class="kd">var</span> <span class="nv">user</span><span class="p">:</span> <span class="n">Parent</span><span class="p">&lt;</span><span class="n">UserToken</span><span class="p">,</span> <span class="n">User</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">parent</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">userID</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>The first step to using token authentication is to conform your user and token models to their respective <code>Authenticatable</code> protocols.</p>
+<div class="codehilite"><pre><span></span><span class="kd">extension</span> <span class="nc">UserToken</span><span class="p">:</span> <span class="n">Token</span> <span class="p">{</span>
+    <span class="c1">/// See `Token`.</span>
+    <span class="kd">typealias</span> <span class="n">UserType</span> <span class="p">=</span> <span class="n">User</span>
+
+    <span class="c1">/// See `Token`.</span>
+    <span class="kd">static</span> <span class="kd">var</span> <span class="nv">tokenKey</span><span class="p">:</span> <span class="n">WritableKeyPath</span><span class="p">&lt;</span><span class="n">UserToken</span><span class="p">,</span> <span class="nb">String</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="err">\</span><span class="p">.</span><span class="n">string</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// See `Token`.</span>
+    <span class="kd">static</span> <span class="kd">var</span> <span class="nv">userIDKey</span><span class="p">:</span> <span class="n">WritableKeyPath</span><span class="p">&lt;</span><span class="n">UserToken</span><span class="p">,</span> <span class="n">User</span><span class="p">.</span><span class="n">ID</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="err">\</span><span class="p">.</span><span class="n">userID</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Once the token is conformed to <code>Token</code>, setting up the user model is easy.</p>
+<div class="codehilite"><pre><span></span><span class="kd">extension</span> <span class="nc">User</span><span class="p">:</span> <span class="n">TokenAuthenticatable</span> <span class="p">{</span>
+    <span class="c1">/// See `TokenAuthenticatable`.</span>
+    <span class="kd">typealias</span> <span class="n">TokenType</span> <span class="p">=</span> <span class="n">UserToken</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Once you have conformed your models, the next step is to add middleware to your protected route.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Use user model to create an authentication middleware</span>
+<span class="kd">let</span> <span class="nv">token</span> <span class="p">=</span> <span class="n">User</span><span class="p">.</span><span class="n">tokenAuthMiddleware</span><span class="p">()</span>
+
+<span class="c1">// Create a route closure wrapped by this middleware </span>
+<span class="n">router</span><span class="p">.</span><span class="n">grouped</span><span class="p">(</span><span class="n">token</span><span class="p">).</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Now, to fetch the authenticated user in the route closure, you can use <a href="https://api.vapor.codes/auth/latest/Authentication/Extensions/Request.html#/s:5Vapor7RequestC14AuthenticationE20requireAuthenticatedxxmKAD15AuthenticatableRzlF"><code>requireAuthenticated(_:)</code></a>. </p>
+<div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">requireAuthenticated</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="k">return</span> <span class="s">&quot;Hello, </span><span class="si">\(</span><span class="n">user</span><span class="p">.</span><span class="n">name</span><span class="si">)</span><span class="s">.&quot;</span>
+</pre></div>
+
+
+<p>The <code>requireAuthenticated</code> method will automatically throw an appropriate unauthorized error if the valid credentials were not supplied. Because of this, using <a href="https://api.vapor.codes/auth/latest/Authentication/Classes/GuardAuthenticationMiddleware.html"><code>GuardAuthenticationMiddleware</code></a> to protect the route from unauthenticated access is not required. </p>
                 
                   
                 
@@ -1918,9 +2310,9 @@
   <div id="disqus_thread"></div>
   <script>
     var disqus_config = function () {
-      this.page.url = "https://docs.vapor.codes/3.0/redis/custom-commands/";
+      this.page.url = "https://docs.vapor.codes/3.0/auth/api/";
       this.page.identifier =
-        "redis/custom-commands/";
+        "auth/api/";
     };
     (function() {
       var d = document, s = d.createElement("script");
@@ -1942,7 +2334,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../basics/" title="Basics" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../getting-started/" title="Getting Started" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1951,19 +2343,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Basics
+                Getting Started
               </span>
             </div>
           </a>
         
         
-          <a href="../pub-sub/" title="Publish and Subscribe" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../web/" title="Sessions (Web)" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Publish and Subscribe
+                Sessions (Web)
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

@@ -86,6 +86,21 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://docs.vapor.codes/3.0/auth/getting-started/</loc>
+     <lastmod>2018-08-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://docs.vapor.codes/3.0/auth/api/</loc>
+     <lastmod>2018-08-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://docs.vapor.codes/3.0/auth/web/</loc>
+     <lastmod>2018-08-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://docs.vapor.codes/3.0/console/getting-started/</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
@@ -127,6 +142,11 @@
     </url>
     <url>
      <loc>https://docs.vapor.codes/3.0/crypto/random/</loc>
+     <lastmod>2018-08-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://docs.vapor.codes/3.0/crypto/otp/</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -191,12 +211,22 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://docs.vapor.codes/3.0/jwt/getting-started/</loc>
+     <lastmod>2018-08-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://docs.vapor.codes/3.0/jwt/overview/</loc>
+     <lastmod>2018-08-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://docs.vapor.codes/3.0/leaf/getting-started/</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.vapor.codes/3.0/leaf/basics/</loc>
+     <loc>https://docs.vapor.codes/3.0/leaf/overview/</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -241,22 +271,7 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.vapor.codes/3.0/redis/basics/</loc>
-     <lastmod>2018-08-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://docs.vapor.codes/3.0/redis/custom-commands/</loc>
-     <lastmod>2018-08-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://docs.vapor.codes/3.0/redis/pub-sub/</loc>
-     <lastmod>2018-08-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://docs.vapor.codes/3.0/redis/pipeline/</loc>
+     <loc>https://docs.vapor.codes/3.0/redis/overview/</loc>
      <lastmod>2018-08-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
