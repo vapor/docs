@@ -379,23 +379,33 @@ final class MySQLUserRepository: UserRepository {
     }
 
     func find(id: Int) -> EventLoopFuture<User?> {
-        return User.find(id, on: db)
+        return db.withConnection { conn in 
+            return User.find(id, on: conn)
+        }
     }
 
     func all() -> EventLoopFuture<[User]> {
-        return User.query(on: db).all()
+        return db.withConnection { conn in
+            return User.query(on: conn).all()
+        }
     }
 
     func find(email: String) -> EventLoopFuture<User?> {
-        return User.query(on: db).filter(\.email == email).first()
+        return db.withConnection { conn in
+            return User.query(on: conn).filter(\.email == email).first()
+        }
     }
 
     func findCount(email: String) -> EventLoopFuture<Int> {
-        return User.query(on: db).filter(\.email == email).count()
+        return db.withConnection { conn in
+            return User.query(on: conn).filter(\.email == email).count()
+        }
     }
 
     func save(user: User) -> EventLoopFuture<User> {
-        return user.save(on: db)
+        return db.withConnection { conn in
+            return user.save(on: conn)
+        }
     }
 }
 
