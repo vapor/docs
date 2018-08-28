@@ -21,6 +21,9 @@ print(httpRes) // HTTPResponse
 
 Take note that we are passing the _hostname_. This is different from a full URL. You can use `URL` and `URLComponents` from Foundation to parse out a hostname. Vapor's convenience APIs do this automatically.
 
+!!! tip
+    If you are creating a totally standalone client (not tying into the rest of Vapor) then you can create one of [`swift-nio`'s `MultiThreadedEventLoopGroup`](https://apple.github.io/swift-nio/docs/current/NIO/Classes/MultiThreadedEventLoopGroup.html) and pass it in to the `connect` method's `on` parameter.
+
 !!! warning
     This guide assumes you are on the main thread. Don't use `wait()` if you are inside of a route closure. See [Async &rarr; Overview](../async/overview/#blocking) for more information.
 
