@@ -52,4 +52,4 @@ The Vapor Auth package has middlewares that can do basic user validation, token 
 
 ## Middleware API
 
-Information on how middleware works and authoring custom middleware can be found in the [Vapor API Documentation](“https://api.vapor.codes/vapor/latest/Vapor/Protocols/Middleware.html).
+Information on how middleware works and authoring custom middleware can be found in the [Vapor API Documentation](https://api.vapor.codes/vapor/latest/Vapor/Protocols/Middleware.html).
