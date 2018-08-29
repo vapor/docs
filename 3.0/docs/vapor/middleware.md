@@ -16,11 +16,10 @@ services.register(middlewares)
 
 ## FileMiddleware
 
-FileMiddleware enables serving assets from the Public folder of your project to clients. You might include static files like stylesheets or bitmap images here.
+FileMiddleware enables the serving assets from the Public folder of your project to clients. You might include static files like stylesheets or bitmap images here.
 
 ```swift
 var middlewares = MiddlewareConfig()
-/* other registered middlewares */
 middlewares.use(FileMiddleware.self)
 services.register(middlewares)
 ```
