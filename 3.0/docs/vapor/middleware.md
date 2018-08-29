@@ -24,7 +24,7 @@ middlewares.use(FileMiddleware.self)
 services.register(middlewares)
 ```
 
-Now that the FileMiddleware is registered, an file like “Public/images/logo.png” can be linked from a Leaf template as `<img src="/images/logo.png"/>`.
+Now that the FileMiddleware is registered, a file like “Public/images/logo.png” can be linked from a Leaf template as `<img src="/images/logo.png"/>`.
 
 ## CORSMiddleware
 
@@ -44,7 +44,7 @@ config.use(corsConfiguration)
 services.register(middlewares)
 ```
 
-The CORSMiddleware must be listed at the top of your middlewares config.
+Given that thrown errors are immediately returned to the client, the CORSMiddleware must be listed before the ErrorMiddleware so that the errors can be received by browser clients.
 
 ## Authentication and Sessions Middleware
 
