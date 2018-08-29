@@ -2,7 +2,7 @@
 
 This guide will introduce you to middleware. Middlewares are a type of code that operate “in the middle” of a request coming in and out of the Vapor software.
 
-## Configuration
+## Configuration, and ErrorMiddleware
 
 Middleware is registered in your `config.swift` file. ErrorMiddleware is a very common example; it will take a thrown error in your software and convert it to a legible HTTP response code.
 
@@ -48,7 +48,7 @@ Given that thrown errors are immediately returned to the client, the CORSMiddlew
 
 ## Authentication and Sessions Middleware
 
-The Vapor Auth package has middlewares that can do basic user validation, token validation, and manage sessions. See the [Auth](https://docs.vapor.codes/3.0/auth/getting-started/) documentation for an outline of the AuthMiddleware.
+The Vapor Auth package has middlewares that can do basic user validation, token validation, and manage sessions. See the [Auth documentation](https://docs.vapor.codes/3.0/auth/getting-started/) for an outline of the AuthMiddleware.
 
 ## Middleware API
 
