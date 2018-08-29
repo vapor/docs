@@ -30,7 +30,7 @@ Now that the FileMiddleware is registered, a file like “Public/images/logo.png
 
 ## CORSMiddleware
 
-Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. APIs built in Vapor will require a CORS policy in order to safely return requests to modern web browsers.
+Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. REST APIs built in Vapor will require a CORS policy in order to safely return requests to modern web browsers.
 
 An example configuration could look something like this:
 
@@ -47,7 +47,7 @@ middlewares.use(ErrorMiddleware.self)
 services.register(middlewares)
 ```
 
-Given that thrown errors are immediately returned to the client, the CORSMiddleware must be listed before the ErrorMiddleware so that the errors can be received by browser clients.
+Given that thrown errors are immediately returned to the client, the CORSMiddleware must be listed _before_ the ErrorMiddleware; otherwise the HTTP error response will be returned without CORS headers, and cannot be read by the browser.
 
 ## Authentication and Sessions Middleware
 
