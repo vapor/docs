@@ -10,9 +10,11 @@ Middleware is registered in your `config.swift` file. ErrorMiddleware is a very 
 var middlewares = MiddlewareConfig()
 middlewares.use(ErrorMiddleware.self)
 middlewares.use(FileMiddleware.self)
+// etc.
 services.register(middlewares)
 ```
 
+It is common to run several middlewares in a single project. These middlewares are stacked up, and then registered together. The order in which middleware are listed can sometimes matter (see CORSMiddleware below).
 
 ## FileMiddleware
 
@@ -40,7 +42,8 @@ let corsConfiguration = CORSMiddleware.Configuration(
     allowedHeaders: [.accept, .authorization, .contentType, .origin, .xRequestedWith, .userAgent, .accessControlAllowOrigin]
 )
 let corsMiddleware = CORSMiddleware(configuration: corsConfiguration)
-config.use(corsConfiguration)
+middlewares.use(corsMiddleware)
+middlewares.use(ErrorMiddleware.self)
 services.register(middlewares)
 ```
 
