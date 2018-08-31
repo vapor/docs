@@ -1,10 +1,10 @@
 # Middleware
 
-This guide will introduce you to middleware. Middlewares are a type of code that operate “in the middle” of a request coming in and out of the Vapor software.
+Middleware is a logic chain between the client and a Vapor route handler. It allows you to make operations on incoming requests before they get to the route handler, and on outgoing responses before they go to the client.
 
 ## Configuration, and ErrorMiddleware
 
-Middleware is registered in your `config.swift` file. ErrorMiddleware is a very common example; it will take a thrown error in your software and convert it to a legible HTTP response code.
+Middleware is registered in your `config.swift` file. `ErrorMiddleware` is a very common example; it will take a thrown error in your software and convert it to a legible HTTP response code.
 
 ```swift
 var middlewares = MiddlewareConfig()
@@ -14,11 +14,11 @@ middlewares.use(FileMiddleware.self)
 services.register(middlewares)
 ```
 
-It is common to run several middlewares in a single project. These middlewares are stacked up, and then registered together. The order in which middleware are listed can sometimes matter (see CORSMiddleware below).
+You will often run several middlewares in a single project. These middlewares are stacked up, and then registered together. The order in which middleware are listed can sometimes matter (see `CORSMiddleware` below).
 
 ## FileMiddleware
 
-FileMiddleware enables the serving assets from the Public folder of your project to clients. You might include static files like stylesheets or bitmap images here.
+`FileMiddleware` enables the serving of assets from the Public folder of your project to the client. You might include static files like stylesheets or bitmap images here.
 
 ```swift
 var middlewares = MiddlewareConfig()
@@ -26,7 +26,7 @@ middlewares.use(FileMiddleware.self)
 services.register(middlewares)
 ```
 
-Now that the FileMiddleware is registered, a file like “Public/images/logo.png” can be linked from a Leaf template as `<img src="/images/logo.png"/>`.
+Now that the `FileMiddleware` is registered, a file like “Public/images/logo.png” can be linked from a Leaf template as `<img src="/images/logo.png"/>`.
 
 ## CORSMiddleware
 
@@ -47,11 +47,11 @@ middlewares.use(ErrorMiddleware.self)
 services.register(middlewares)
 ```
 
-Given that thrown errors are immediately returned to the client, the CORSMiddleware must be listed _before_ the ErrorMiddleware; otherwise the HTTP error response will be returned without CORS headers, and cannot be read by the browser.
+Given that thrown errors are immediately returned to the client, the CORSMiddleware must be listed _before_ the `ErrorMiddleware`; otherwise the HTTP error response will be returned without CORS headers, and cannot be read by the browser.
 
 ## Authentication and Sessions Middleware
 
-The Vapor Auth package has middlewares that can do basic user validation, token validation, and manage sessions. See the [Auth documentation](https://docs.vapor.codes/3.0/auth/getting-started/) for an outline of the AuthMiddleware.
+The Vapor Auth package has middlewares that can do basic user validation, token validation, and manage sessions. See the [Auth documentation](https://docs.vapor.codes/3.0/auth/getting-started/) for an outline of the `AuthMiddleware`.
 
 ## Middleware API
 
