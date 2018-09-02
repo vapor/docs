@@ -43,7 +43,7 @@ a different template by passing the `--template` flag.
 | Auth | `--template=auth-template`| JSON API with Fluent DB and Auth. |
 
 !!! info
-    There are lots of unofficial Vapor templates on GitHub under the <a href="https://github.com/search?utf8=✓&q=topic%3Avapor+topic%3Atemplate&type=Repositories" target="_blank">`vapor` + `template` topcs &rarr;</a>.
+    There are lots of unofficial Vapor templates on GitHub under the <a href="https://github.com/search?utf8=✓&q=topic%3Avapor+topic%3Atemplate&type=Repositories" target="_blank">`vapor` + `template` topics &rarr;</a>.
     You can use these by passing the full GitHub URL to the `--template` option.
 
 ## Build & Run
