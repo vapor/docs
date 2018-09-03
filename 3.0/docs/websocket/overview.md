@@ -82,7 +82,7 @@ ws.onText { ws, text in
 // Send a message.
 ws.send("Hello, world!")
 
-// Wait for the Websocket to closre.
+// Wait for the Websocket to close.
 try ws.onClose.wait()
 ```
 
