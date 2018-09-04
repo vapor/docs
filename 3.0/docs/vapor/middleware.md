@@ -47,7 +47,7 @@ middlewares.use(ErrorMiddleware.self)
 services.register(middlewares)
 ```
 
-Given that thrown errors are immediately returned to the client, the CORSMiddleware must be listed _before_ the `ErrorMiddleware`; otherwise the HTTP error response will be returned without CORS headers, and cannot be read by the browser.
+Given that thrown errors are immediately returned to the client, the `CORSMiddleware` must be listed _before_ the `ErrorMiddleware`; otherwise the HTTP error response will be returned without CORS headers, and cannot be read by the browser.
 
 ## Authentication and Sessions Middleware
 
