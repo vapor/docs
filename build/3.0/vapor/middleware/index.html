@@ -1669,10 +1669,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-27" type="checkbox" id="nav-27">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-27" type="checkbox" id="nav-27" checked>
     
     <label class="md-nav__link" for="nav-27">
       Vapor
@@ -1741,6 +1743,90 @@
     <a href="../websocket/" title="WebSocket" class="md-nav__link">
       WebSocket
     </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Middleware
+      </label>
+    
+    <a href="./" title="Middleware" class="md-nav__link md-nav__link--active">
+      Middleware
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-and-errormiddleware" title="Configuration, and ErrorMiddleware" class="md-nav__link">
+    Configuration, and ErrorMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filemiddleware" title="FileMiddleware" class="md-nav__link">
+    FileMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#corsmiddleware" title="CORSMiddleware" class="md-nav__link">
+    CORSMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-and-sessions-middleware" title="Authentication and Sessions Middleware" class="md-nav__link">
+    Authentication and Sessions Middleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#middleware-api" title="Middleware API" class="md-nav__link">
+    Middleware API
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -1898,6 +1984,56 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-and-errormiddleware" title="Configuration, and ErrorMiddleware" class="md-nav__link">
+    Configuration, and ErrorMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filemiddleware" title="FileMiddleware" class="md-nav__link">
+    FileMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#corsmiddleware" title="CORSMiddleware" class="md-nav__link">
+    CORSMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-and-sessions-middleware" title="Authentication and Sessions Middleware" class="md-nav__link">
+    Authentication and Sessions Middleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#middleware-api" title="Middleware API" class="md-nav__link">
+    Middleware API
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1912,7 +2048,48 @@
                 
                 
                 <h1 id="middleware">Middleware<a class="headerlink" href="#middleware" title="Permanent link">&para;</a></h1>
-<p>Coming soon.</p>
+<p>Middleware is a logic chain between the client and a Vapor route handler. It allows you to make operations on incoming requests before they get to the route handler, and on outgoing responses before they go to the client.</p>
+<h2 id="configuration-and-errormiddleware">Configuration, and ErrorMiddleware<a class="headerlink" href="#configuration-and-errormiddleware" title="Permanent link">&para;</a></h2>
+<p>Middleware is registered in your <code>config.swift</code> file. <code>ErrorMiddleware</code> is a very common example; it will take a thrown error in your software and convert it to a legible HTTP response code.</p>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nv">middlewares</span> <span class="p">=</span> <span class="n">MiddlewareConfig</span><span class="p">()</span>
+<span class="n">middlewares</span><span class="p">.</span><span class="n">use</span><span class="p">(</span><span class="n">ErrorMiddleware</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="n">middlewares</span><span class="p">.</span><span class="n">use</span><span class="p">(</span><span class="n">FileMiddleware</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="c1">// etc.</span>
+<span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">middlewares</span><span class="p">)</span>
+</pre></div>
+
+
+<p>You will often run several middlewares in a single project. These middlewares are stacked up, and then registered together. The order in which middleware are listed can sometimes matter (see <code>CORSMiddleware</code> below).</p>
+<h2 id="filemiddleware">FileMiddleware<a class="headerlink" href="#filemiddleware" title="Permanent link">&para;</a></h2>
+<p><code>FileMiddleware</code> enables the serving of assets from the Public folder of your project to the client. You might include static files like stylesheets or bitmap images here.</p>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nv">middlewares</span> <span class="p">=</span> <span class="n">MiddlewareConfig</span><span class="p">()</span>
+<span class="n">middlewares</span><span class="p">.</span><span class="n">use</span><span class="p">(</span><span class="n">FileMiddleware</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">middlewares</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Now that the <code>FileMiddleware</code> is registered, a file like “Public/images/logo.png” can be linked from a Leaf template as <code>&lt;img src="/images/logo.png"/&gt;</code>.</p>
+<h2 id="corsmiddleware">CORSMiddleware<a class="headerlink" href="#corsmiddleware" title="Permanent link">&para;</a></h2>
+<p>Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. REST APIs built in Vapor will require a CORS policy in order to safely return requests to modern web browsers.</p>
+<p>An example configuration could look something like this:</p>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nv">middlewares</span> <span class="p">=</span> <span class="n">MiddlewareConfig</span><span class="p">()</span>
+<span class="kd">let</span> <span class="nv">corsConfiguration</span> <span class="p">=</span> <span class="n">CORSMiddleware</span><span class="p">.</span><span class="n">Configuration</span><span class="p">(</span>
+    <span class="n">allowedOrigin</span><span class="p">:</span> <span class="p">.</span><span class="n">all</span><span class="p">,</span>
+    <span class="n">allowedMethods</span><span class="p">:</span> <span class="p">[.</span><span class="n">GET</span><span class="p">,</span> <span class="p">.</span><span class="n">POST</span><span class="p">,</span> <span class="p">.</span><span class="n">PUT</span><span class="p">,</span> <span class="p">.</span><span class="n">OPTIONS</span><span class="p">,</span> <span class="p">.</span><span class="n">DELETE</span><span class="p">,</span> <span class="p">.</span><span class="n">PATCH</span><span class="p">],</span>
+    <span class="n">allowedHeaders</span><span class="p">:</span> <span class="p">[.</span><span class="n">accept</span><span class="p">,</span> <span class="p">.</span><span class="n">authorization</span><span class="p">,</span> <span class="p">.</span><span class="n">contentType</span><span class="p">,</span> <span class="p">.</span><span class="n">origin</span><span class="p">,</span> <span class="p">.</span><span class="n">xRequestedWith</span><span class="p">,</span> <span class="p">.</span><span class="n">userAgent</span><span class="p">,</span> <span class="p">.</span><span class="n">accessControlAllowOrigin</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="kd">let</span> <span class="nv">corsMiddleware</span> <span class="p">=</span> <span class="n">CORSMiddleware</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="n">corsConfiguration</span><span class="p">)</span>
+<span class="n">middlewares</span><span class="p">.</span><span class="n">use</span><span class="p">(</span><span class="n">corsMiddleware</span><span class="p">)</span>
+<span class="n">middlewares</span><span class="p">.</span><span class="n">use</span><span class="p">(</span><span class="n">ErrorMiddleware</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">middlewares</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Given that thrown errors are immediately returned to the client, the <code>CORSMiddleware</code> must be listed <em>before</em> the <code>ErrorMiddleware</code>; otherwise the HTTP error response will be returned without CORS headers, and cannot be read by the browser.</p>
+<h2 id="authentication-and-sessions-middleware">Authentication and Sessions Middleware<a class="headerlink" href="#authentication-and-sessions-middleware" title="Permanent link">&para;</a></h2>
+<p>The Vapor Auth package has middlewares that can do basic user validation, token validation, and manage sessions. See the <a href="https://docs.vapor.codes/3.0/auth/getting-started/">Auth documentation</a> for an outline of the <code>AuthMiddleware</code>.</p>
+<h2 id="middleware-api">Middleware API<a class="headerlink" href="#middleware-api" title="Permanent link">&para;</a></h2>
+<p>Information on how middleware works and authoring custom middleware can be found in the <a href="https://api.vapor.codes/vapor/latest/Vapor/Protocols/Middleware.html">Vapor API Documentation</a>.</p>
                 
                   
                 
@@ -1945,6 +2122,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../websocket/" title="WebSocket" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                WebSocket
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../websocket/getting-started/" title="Getting Started" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Getting Started
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
