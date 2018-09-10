@@ -20,7 +20,6 @@ pages:
     - 'Async': 'getting-started/async.md'
     - 'Services': 'getting-started/services.md'
     - 'Deployment': 'getting-started/cloud.md'
-- 'Style Guide': 'styleguide/styleguide.md'
 - 'Async':
     - 'Getting Started': 'async/getting-started.md'
     - 'Overview': 'async/overview.md'
@@ -107,6 +106,8 @@ pages:
 - 'WebSocket': 
     - 'Getting Started': 'websocket/getting-started.md'
     - 'Overview': 'websocket/overview.md'
+- 'Extras': 
+    - 'extras/styleguide.md'
 - 'Version (3.0)':
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'
