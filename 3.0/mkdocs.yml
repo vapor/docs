@@ -103,6 +103,7 @@ pages:
     - 'Content': 'vapor/content.md'
     - 'Sessions': 'vapor/sessions.md'
     - 'WebSocket': 'vapor/websocket.md'
+    - 'Middleware': 'vapor/middleware.md'
 - 'WebSocket': 
     - 'Getting Started': 'websocket/getting-started.md'
     - 'Overview': 'websocket/overview.md'
