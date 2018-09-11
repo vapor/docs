@@ -4,17 +4,6 @@
 
 The Vapor style guide is a perspective on how to write Vapor application code that is clean, readable, and maintainable. It can serve as a jumping off point within your organization (or yourself) for how to write code in a style that aligns with the Vapor ecosystem. We think this guide can help solidify common ideas that occur across most applications and will be a reference for maintainers when starting a new project. This style guide is opinionated, so you should adapt your code in places where you don’t agree.
 
-## Maintainers
-
-This style guide was written and is maintained by the following Vapor members:
-
-- Andrew ([@andrewangeta](https://github.com/andrewangeta))
-- Jimmy ([@mcdappdev](https://github.com/mcdappdev)) (Project manager)
-- Jonas ([@joscdk](https://github.com/joscdk))
-- Tanner ([@tanner0101](https://github.com/tanner0101))
-- Tim ([@0xtim](https://github.com/0xtim))
-- Gustavo ([@gperdomor](https://github.com/gperdomor))
-
 ## Contributing
 
 To contribute to this guide, please submit a pull request that includes your proposed changes as well as logic to support your addition or modification. Pull requests will be reviewed by the maintainers and the rationale behind the maintainers’ decision to accept or deny the changes will be posted in the pull request.
@@ -1061,3 +1050,15 @@ This allows for easy to read and clean import statements:
 - Reuse `DateFormatters` where possible (while also maintaining thread safety). In particular, don’t create a date formatter inside of a loop as they are expensive to make.
 - Store dates in a computer-readable format until the last possible moment when they must be converted to human-readable strings. That conversion is typically very expensive and is unnecessary when passing dates around internally. Offloading this responsibility to JavaScript is a great tactic as well if you are building a front-end application.
 - Eliminate stringly-typed code where possible by storing frequently used strings in a file like `Constants.swift`.
+
+
+## Maintainers
+
+This style guide was written and is maintained by the following Vapor members:
+
+- Andrew ([@andrewangeta](https://github.com/andrewangeta))
+- Jimmy ([@mcdappdev](https://github.com/mcdappdev)) (Project manager)
+- Jonas ([@joscdk](https://github.com/joscdk))
+- Tanner ([@tanner0101](https://github.com/tanner0101))
+- Tim ([@0xtim](https://github.com/0xtim))
+- Gustavo ([@gperdomor](https://github.com/gperdomor))
