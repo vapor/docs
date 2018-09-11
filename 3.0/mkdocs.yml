@@ -107,6 +107,8 @@ pages:
 - 'WebSocket': 
     - 'Getting Started': 'websocket/getting-started.md'
     - 'Overview': 'websocket/overview.md'
+- 'Extras': 
+    - 'Style Guide': 'extras/style-guide.md'
 - 'Version (3.0)':
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'
