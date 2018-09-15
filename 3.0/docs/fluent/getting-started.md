@@ -165,7 +165,13 @@ Server starting on http://localhost:8080
 
 ## Performing a Query
 
-Now that you have created a model and a corresponding schema in your database, let's make your first query.
+First, we must ensure that our `User` object conforms to the `Content` type. This will ensure that the object can be encoded and decoded from HTTP messages. You get this conformance for free with any `Model` objects, so implementing this is straightforward:
+
+```swift
+extension User: Content { }
+```
+
+Now that you have created a model, made it conform to `Content` and created a corresponding schema in your database, let's make your first query.
 
 ```swift
 router.get("users") { req in
