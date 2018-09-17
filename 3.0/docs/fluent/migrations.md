@@ -157,7 +157,7 @@ struct AddGalaxyMass: <#Database#>Migration {
 }
 ```
 
-Our prepare method will look very similar to the prepare method for a new table, except it will only contain our newly added field.
+Our prepare method will look very similar to the prepare method for a new table, except it will only contain our newly added field. 
 
 ```swift
 struct AddGalaxyMass: <#Database#>Migration {
@@ -166,6 +166,25 @@ struct AddGalaxyMass: <#Database#>Migration {
     static func prepare(on conn: <#Database#>Connection) -> Future<Void> {
         return <#Database#>Database.update(Galaxy.self, on: conn) { builder in
             builder.field(for: \.mass)
+        }
+    }
+}
+```
+
+*Note:* In SQLite and maybe other databases that have strict NULL / NOT NULL constraint, you may receive the following error:
+
+> Cannot add a NOT NULL column with default value NULL
+
+Since we declared our `mass` property non-optional (`Int`), we will have to add a special configuration that declares its default value as well. In SQL, this is equivalent to the `DEFAULT` keyword. Therefore, to fix the error, the above code would become:
+
+```swift
+struct AddGalaxyMass: <#Database#>Migration {
+    // ... 
+
+    static func prepare(on conn: <#Database#>Connection) -> Future<Void> {
+        return <#Database#>Database.update(Galaxy.self, on: conn) { builder in
+            let defaultValueConstraint = SQLiteColumnConstraint.default(.literal(0))
+            builder.field(for: \.mass, type: .integer, defaultValueConstraint)
         }
     }
 }
