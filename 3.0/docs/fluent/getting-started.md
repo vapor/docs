@@ -79,9 +79,13 @@ final class User: <#Database#>Model {
         self.age = age
     }
 }
+
+extension User: Content { }
 ```
 
 The example above shows a simple model representing a user. You can make both structs and classes a model. You can even conform types that come from external modules. The only requirement is that these types conform to `Codable`, which must be declared on the base type for synthesized (automatic) conformance.
+
+*Note:* `Content` conformance will ensure that the object can be encoded and decoded from HTTP messages. This will be necessary when performing a query.
 
 Take a look at [Fluent &rarr; Model](models.md) for more information on creating models with custom ID types and keys.
 
@@ -164,8 +168,6 @@ Server starting on http://localhost:8080
 ```
 
 ## Performing a Query
-
-Now that you have created a model and a corresponding schema in your database, let's make your first query.
 
 ```swift
 router.get("users") { req in
