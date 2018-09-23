@@ -178,11 +178,11 @@ struct AddGalaxyMass: <#Database#>Migration {
 Since we declared our `mass` property non-optional (`Int`), we will have to add a special configuration that declares its default value as well. In SQL, this is equivalent to the `DEFAULT` keyword. Therefore, to fix the error, the above code would become:
 
 ```swift
-struct AddGalaxyMass: <#Database#>Migration {
-    // ... 
+struct AddGalaxyMass: SQLiteMigration {
+    // ...
 
-    static func prepare(on conn: <#Database#>Connection) -> Future<Void> {
-        return <#Database#>Database.update(Galaxy.self, on: conn) { builder in
+    static func prepare(on conn: SQLiteConnection) -> Future<Void> {
+        return SQLiteDatabase.update(Galaxy.self, on: conn) { builder in
             let defaultValueConstraint = SQLiteColumnConstraint.default(.literal(0))
             builder.field(for: \.mass, type: .integer, defaultValueConstraint)
         }
