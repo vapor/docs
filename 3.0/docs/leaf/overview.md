@@ -170,7 +170,7 @@ Embedding is useful for copying in a standard piece of content, for example a pa
 
 This tag is also useful for building one template on top of another. For example, you might have a master.leaf file that includes all the code required to lay out your website – HTML structure, CSS and JavaScript – with some gaps in place that represent where page content varies.
 
-Using this approach, you would construct a child template that fills in its unique content, then embeds the parent template that places the content appropriately.
+Using this approach, you would construct a child template that fills in its unique content, then embeds the parent template that places the content appropriately. To do this, you can use the `#set` and `#get` tags to store and later retrieve content from the context.
 
 For example, you might create a child.leaf template like this:
 
@@ -182,7 +182,7 @@ For example, you might create a child.leaf template like this:
 #embed("master")
 ```
 
-That configures one item of context, `body`, but doesn’t display it directly. Instead, it embeds master.leaf, which can render `body` along with any other context variables passed in from Swift. For example, master.leaf might look like this:
+This stores some HTML in the context as `body` using `#set`. We then embed master.leaf which will render `body` along with any other context variables passed in from Swift. For example, master.leaf might look like this:
 
 ```leaf
 <html>
@@ -193,7 +193,7 @@ That configures one item of context, `body`, but doesn’t display it directly. 
 </html>
 ```
 
-When given the context `["title": "Hi there!"]`, child.leaf will render as follows:
+Here we are using `#get` to fetch the content previously stored in the context. When passed `["title": "Hi there!"]` from Swift, child.leaf will render as follows:
 
 ```html
 <html>
