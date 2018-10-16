@@ -343,7 +343,7 @@ One of the most important decisions to make up front about your app is the style
 
 The basic idea behind the repository pattern is that it creates another abstraction between Fluent and your application code. Instead of using Fluent queries directly in controllers, this pattern encourages abstracting those queries into a more generic protocol and using that instead.
 
-There are a few benefits to this method. First, it makes testing a lot easier. This is because during the test environment you can easily utilize Vapor’s configuration abilities to swap out which implementation of the repository protocol gets used. This makes unit testing much faster because the unit tests can use a memory version of the protocol rather than the database. The other large benefit to this pattern is that it makes it really easy to switch out the database layer if needed. Because all of the ORM logic is abstracted to this piece of the application (and the controllers don’t know it exists) you could realistically swap out Fluent with a different ORM with minimal changes to your actual application/business logic code.
+There are a few benefits to this method. First, it makes testing a lot easier. This is because during the test environment you can easily utilize Vapor’s configuration abilities to swap out which implementation of the repository protocol gets used. This makes unit testing much faster because the unit tests can use a memory version of the protocol rather than the database. The other large benefit to this pattern is that it makes it really easy to switch out the database layer if needed. Because all of the ORM logic is abstracted to this piece of the application (and the controllers don’t know it exists) you could realistically swap out Fluent with a different ORM with minimal changes to your actual application/business logic code. This also means that you could switch out the specific database used during testing (i.e. using SQLite instead of MySQL). However, this strategy requires extra work to make your models generic as they can no longer conform the the specific database model types (e.g. `MySQLModel`). 
 
 Here’s an example of a `UserRepository`:
 
@@ -848,6 +848,33 @@ return stringFuture.map { _ in
 ```swift
 let stringFuture: Future<String>
 return stringFuture.transform(to: .ok)
+```
+
+<hr/>
+
+Avoid synchronous throwing where possible as it can lead to undefined behavior in the route, specifically because running IO operations may not finish before the route ends.
+
+**Bad:**
+
+```swift
+func index(_ req: Request) throws -> Future<View> {
+    let models = SomeModel.query(on: req).all()
+
+    guard someCondition else { throw SomeError(...) }
+
+    return req.view().render("someView", ["models": models])
+}
+```
+
+**Good:**
+```swift
+func index(_ req: Request) throws -> Future<View> {
+    let modelsFuture = SomeModel.query(on: req).all()
+    return modelsFuture.flatMap { models in 
+        guard someCondition else { throw SomeError(...) }
+        return req.view().render("someView", ["models": models])
+    }
+}
 ```
 
 ## Testing
