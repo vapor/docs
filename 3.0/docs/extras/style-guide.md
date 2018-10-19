@@ -15,7 +15,7 @@ The structure of your Vapor application is important from a readability standpoi
 The preferred way to structure your application is by separating the application into a few main parts:
 
 - Controllers
-- Middleware
+- Middlewares
 - Models
 - Setup
 - Utilities
@@ -27,9 +27,9 @@ The structure ensures that new members working on your project can easily find t
 
 The controllers folder houses all of the controllers for your application which correspond to your routes. If you are building an application that serves both API responses and frontend responses, this folder should be further segmented into an `API Controllers` folder and a `View Controllers` folder.
 
-#### Middleware Folder
+#### Middlewares Folder
 
-The middleware folder contains any custom middleware that you’ve written for your application. Each piece of middleware should be descriptively named and should only be responsible for one piece of functionality.
+The middlewares folder contains any custom middleware that you’ve written for your application. Each piece of middleware should be descriptively named and should only be responsible for one piece of functionality.
 
 #### Models Folder
 
@@ -58,7 +58,7 @@ The final application structure (inside the Sources folder) looks like this:
 ├── Controllers
 │   ├── API\ Controllers
 │   └── View\ Controllers
-├── Middleware
+├── Middlewares
 ├── Models
 │   ├── Entities
 │   │   └── User
