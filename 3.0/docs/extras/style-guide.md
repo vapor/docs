@@ -25,7 +25,7 @@ The structure ensures that new members working on your project can easily find t
 
 #### Controllers Folder
 
-The controllers folder houses all of the controllers for your application which correspond to your routes. If you are building an application that serves both API responses and frontend responses, this folder should be further segmented into an `API Controllers` folder and a `View Controllers` folder.
+The controllers folder houses all of the controllers for your application which correspond to your routes. If you are building an application that serves both API responses and frontend responses, this folder should be further segmented into an `API` folder and a `Views` folder.
 
 #### Middleware Folder
 
@@ -56,8 +56,8 @@ The final application structure (inside the Sources folder) looks like this:
 
 ```
 ├── Controllers
-│   ├── API\ Controllers
-│   └── View\ Controllers
+│   ├── API
+│   └── Views
 ├── Middleware
 ├── Models
 │   ├── Entities
