@@ -177,6 +177,39 @@ final class User: Model {
 }
 ```
 
+## Timestampable
+
+To add timestamps to your model, simply conform it to `Timestampable`.
+
+```swift
+extension User: Timestampable { }
+```
+
+You can access the updated at and created at times on any model instance.
+
+```swift
+user.updatedAt // Date?
+user.createdAt // Date?
+```
+
+When filtering or sorting on the timestamp data, you can use the timestamp keys from the class.
+
+```swift
+let newUsers = try User
+    .makeQuery()
+    .filter(User.createdAtKey, .greaterThan, ...)
+    .all()
+```
+
+You can also override the timestamp keys if you have custom needs.
+
+```swift
+extension User: Timestampable {
+    static var updatedAtKey: String { return "custom_updated_at" }
+    static var createdAtKey: String { return "custom_created_at" }
+}
+```
+
 ## CRUD
 
 The model offers basic CRUD method (create, read, update, delete).
