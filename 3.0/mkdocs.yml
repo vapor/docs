@@ -2,7 +2,7 @@ site_name: 'Vapor Docs'
 copyright: 'Copyright &copy; 2018 Qutheory, LLC'
 site_url: 'https://docs.vapor.codes/3.0/'
 
-pages:
+nav:
 - 'Overview': 'index.md'
 - 'Install':
     - 'macOS': 'install/macos.md'
@@ -120,10 +120,12 @@ pages:
 
 markdown_extensions:
     - admonition
-    - codehilite(guess_lang=false)
+    - codehilite:
+        guess_lang: false
     - footnotes
     - meta
-    - toc(permalink=true)
+    - toc:
+        permalink: true
 
 theme:
     name: 'material'
