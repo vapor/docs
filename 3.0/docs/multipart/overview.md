@@ -33,6 +33,10 @@ Content-Disposition: form-data; name="age"
 Content-Disposition: form-data; name="image"; filename="droplet.png"
 
 <contents of image>
+--123
+Content-Disposition: form-data; name="isAdmin"
+
+false
 --123--
 ```
 
@@ -63,6 +67,7 @@ struct User: Content {
     var name: String
     var age: Int
     var image: Data
+    var isAdmin: Bool
 }
 ```
 
@@ -77,6 +82,7 @@ router.post("users") { req -> Future<HTTPStatus> in
         print(user.name) // "Vapor"
         print(user.age) // 3
         print(user.image) // Raw image data
+        print(user.isAdmin)
         return .ok
     }
 }
@@ -91,7 +97,7 @@ APIs encode multipart data much less often than they decode it. However, encodin
 ```swift
 router.get("multipart") { req -> User in
     let res = req.makeResponse()
-    let user = User(name: "Vapor", age: 3, image: Data(...))
+    let user = User(name: "Vapor", age: 3, image: Data(...), isAdmin: false)
     res.content.encode(user, as: .formData)
     return user
 }
