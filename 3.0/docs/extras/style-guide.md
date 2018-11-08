@@ -25,7 +25,7 @@ The structure ensures that new members working on your project can easily find t
 
 #### Controllers Folder
 
-The controllers folder houses all of the controllers for your application which correspond to your routes. If you are building an application that serves both API responses and frontend responses, this folder should be further segmented into an `API Controllers` folder and a `View Controllers` folder.
+The controllers folder houses all of the controllers for your application which correspond to your routes. If you are building an application that serves both API responses and frontend responses, this folder should be further segmented into an `APIControllers` folder and a `ViewControllers` folder.
 
 #### Middleware Folder
 
@@ -56,15 +56,15 @@ The final application structure (inside the Sources folder) looks like this:
 
 ```
 ├── Controllers
-│   ├── API\ Controllers
-│   └── View\ Controllers
+│   ├── APIControllers
+│   └── ViewControllers
 ├── Middleware
 ├── Models
 │   ├── Entities
 │   │   └── User
 │   ├── Requests
 │   └── Responses
-│   └── View\ Contexts
+│   └── ViewContexts
 ├── Setup
 │   ├── app.swift
 │   ├── boot.swift
