@@ -153,6 +153,3 @@ extra:
 google_analytics:
     - 'UA-76177358-4'
     - 'auto'
-
-extra_css:
-    - 'stylesheets/extra.css'
