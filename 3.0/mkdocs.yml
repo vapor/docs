@@ -129,6 +129,7 @@ markdown_extensions:
 
 theme:
     name: 'material'
+    custom_dir: 'theme/'
     palette:
         primary: 'blue'
         accent: 'purple'
