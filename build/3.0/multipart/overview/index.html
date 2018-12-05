@@ -42,6 +42,7 @@
       
     
     
+	
       <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
@@ -52,9 +53,14 @@
         <meta name="theme-color" content="#2196f3">
       
     
+	<link rel="stylesheet" type="text/css" href="../../styles/carbon.css">
+
+    
     
       <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
     
+    <script src="../../scripts/carbon.js"></script>
+
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -2148,6 +2154,10 @@ Content-Disposition: form-data; name=&quot;age&quot;
 Content-Disposition: form-data; name=&quot;image&quot;; filename=&quot;droplet.png&quot;
 
 &lt;contents of image&gt;
+--123
+Content-Disposition: form-data; name=&quot;isAdmin&quot;
+
+false
 --123--
 </pre></div>
 
@@ -2172,6 +2182,7 @@ Content-Disposition: form-data; name=&quot;image&quot;; filename=&quot;droplet.p
     <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span>
     <span class="kd">var</span> <span class="nv">age</span><span class="p">:</span> <span class="nb">Int</span>
     <span class="kd">var</span> <span class="nv">image</span><span class="p">:</span> <span class="n">Data</span>
+    <span class="kd">var</span> <span class="nv">isAdmin</span><span class="p">:</span> <span class="nb">Bool</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -2186,6 +2197,7 @@ Content-Disposition: form-data; name=&quot;image&quot;; filename=&quot;droplet.p
         <span class="bp">print</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">name</span><span class="p">)</span> <span class="c1">// &quot;Vapor&quot;</span>
         <span class="bp">print</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">age</span><span class="p">)</span> <span class="c1">// 3</span>
         <span class="bp">print</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">image</span><span class="p">)</span> <span class="c1">// Raw image data</span>
+        <span class="bp">print</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">isAdmin</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">.</span><span class="n">ok</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -2197,7 +2209,7 @@ Content-Disposition: form-data; name=&quot;image&quot;; filename=&quot;droplet.p
 <p>APIs encode multipart data much less often than they decode it. However, encoding is just as easy with Vapor. Using our same <code>User</code> struct from the previous example, here is how we can encode a multipart-encoded response.</p>
 <div class="codehilite"><pre><span></span><span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;multipart&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span> <span class="p">-&gt;</span> <span class="n">User</span> <span class="k">in</span>
     <span class="kd">let</span> <span class="nv">res</span> <span class="p">=</span> <span class="n">req</span><span class="p">.</span><span class="n">makeResponse</span><span class="p">()</span>
-    <span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Vapor&quot;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Data</span><span class="p">(...))</span>
+    <span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Vapor&quot;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Data</span><span class="p">(...),</span> <span class="n">isAdmin</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
     <span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="k">as</span><span class="p">:</span> <span class="p">.</span><span class="n">formData</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">user</span>
 <span class="p">}</span>
