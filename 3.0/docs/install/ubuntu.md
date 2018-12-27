@@ -6,11 +6,12 @@ Installing Vapor on Ubuntu only takes a couple of minutes.
 
 Vapor supports the same versions of Ubuntu that Swift supports.
 
-| Version | Codename     |
-|---------|--------------|
-| 16.10   | Yakkety Yak  |
-| 16.04   | Xenial Xerus |
-| 14.04   | Trusty Tahr  |
+| Version | Codename      |
+|---------|---------------|
+| 18.04   | Bionic Beaver |
+| 16.10   | Yakkety Yak   |
+| 16.04   | Xenial Xerus  |
+| 14.04   | Trusty Tahr   |
 
 ## APT Repo
 
