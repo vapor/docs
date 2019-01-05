@@ -38,6 +38,10 @@ the file immediately.
 For example, a request to `localhost:8080/favicon.ico` will check to see
 if `Public/favicon.ico` exists. If it does, Vapor will return it.
 
+You will need to enable `FileMiddleware` in your `configure.swift` file before Vapor can return public files. Make sure you've uncommented this line:
+
+`middlewares.use(FileMiddleware.self)`
+
 ## Sources
 
 This folder contains all of the Swift source files for your project. 
