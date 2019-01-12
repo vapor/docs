@@ -64,7 +64,7 @@ have many functions that accept a request and return some sort of response.
 #### Models
 
 The `Models` folder is a great place to store your [`Content`](content.md) structs or
-Fluent [`Model`](../fluent/models.md)s.
+Fluent [`Models`](../fluent/models.md).
 
 #### boot.swift
 
