@@ -17,7 +17,7 @@ It's an empty protocol so there should be no missing requirements.
 
 ### Factory
 
-Now the service can be registered to the [`Services`](https://api.vapor.codes/service/latest/Service/Structs/Services.html) struct. This is usually done in [`configure.swift`](../getting-started/structure/#configureswift).
+Now the service can be registered to the [`Services`](https://api.vapor.codes/service/latest/Service/Structs/Services.html) struct. This is usually done in [`configure.swift`](../getting-started/structure.md#configureswift).
 
 ```swift
 services.register(Logger.self) { container in
@@ -81,7 +81,7 @@ default: config.prefer(PrintLogger.self, for: Logger.self)
 }
 ```
 
-Here we are using the [`Environment`](https://api.vapor.codes/service/latest/Service/Structs/Environment.html) to dynamically prefer a service. This is usually done in [`configure.swift`](../getting-started/structure/#configureswift).
+Here we are using the [`Environment`](https://api.vapor.codes/service/latest/Service/Structs/Environment.html) to dynamically prefer a service. This is usually done in [`configure.swift`](../getting-started/structure.md#configureswift).
 
 !!! note
 	You can also dynamically _register_ services based on environment instead of using service config. 
