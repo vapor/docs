@@ -5,7 +5,7 @@ you familiar with where things go.
 
 ## Folder Structure
 
-Vapor's folder structure builds on top of [SPM's folder structure](spm#folder-structure).
+Vapor's folder structure builds on top of [SPM's folder structure](spm.md#folder-structure).
 
 ```
 .
@@ -46,7 +46,7 @@ You will need to enable `FileMiddleware` in your `configure.swift` file before V
 
 This folder contains all of the Swift source files for your project. 
 The top level folders (`App` and `Run`) reflect your package's modules, 
-as declared in the [package manifest](spm#targets).
+as declared in the [package manifest](spm.md#targets).
 
 ### App
 
