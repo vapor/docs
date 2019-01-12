@@ -89,4 +89,4 @@ router.get("get") { req -> Future<String> in
 }
 ```
 
-See [DatabaseKit &rarr; Overview](../database-kit/overview/#keyed-cache) for more information.
+See [DatabaseKit &rarr; Overview](../database-kit/overview.md#keyed-cache) for more information.
