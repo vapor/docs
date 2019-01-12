@@ -4,7 +4,7 @@ Transactions allow you to ensure multiple operations complete succesfully before
 
 To perform a transaction, you need access to something that can connect to the database. This is usually an incoming HTTP request. Use the [`transaction(on:_:)`](https://api.vapor.codes/fluent/latest/Fluent/Extensions/DatabaseConnectable.html#/s:11DatabaseKit0A11ConnectableP6FluentE11transaction2on_3NIO15EventLoopFutureCyqd_0_GAA0A10IdentifierVyqd__G_AJ10ConnectionQyd__KctAD21TransactionSupportingRd__r0_lF) method.
 
-Fill in the Xcode placeholders below with your database's name from [Getting Started &rarr; Choosing a Driver](getting-started/#choosing-a-driver).
+Fill in the Xcode placeholders below with your database's name from [Getting Started &rarr; Choosing a Driver](getting-started.md#choosing-a-driver).
 
 ```swift
 req.transaction(on: .<#dbid#>) { conn in
