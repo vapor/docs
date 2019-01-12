@@ -22,7 +22,7 @@ let code = HOTP.SHA1.generate(secret: "hi", counter: 0)
 print(code) "208503"
 ```
 
-View the API docs for [`TOTP`](#fixme) and [`HOTP`](#fixme) for more information.
+View the API docs for [`TOTP`](https://api.vapor.codes/crypto/latest/Crypto/Structs/TOTP.html) and [`HOTP`](https://api.vapor.codes/crypto/latest/Crypto/Structs/HOTP.html) for more information.
 
 ## Base 32
 
@@ -38,4 +38,4 @@ let secret: Data = ...
 let encodedSecret = secret.base32EncodedString()
 ```
 
-See Crypto's [`Data`](#fixme) extensions for more information. 
+See Crypto's [`Data`](https://api.vapor.codes/crypto/latest/Crypto/Extensions/Data.html) extensions for more information. 
