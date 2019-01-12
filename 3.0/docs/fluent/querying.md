@@ -91,6 +91,10 @@ Galaxy.query(on: conn).group(.or) {
 
 The above query will include results where the galaxy's mass is below 250 _or_ above 500 _and_ the type is spiral.
 
+!!! tip
+    If you get an error that states your operator cannot be applied to two operands you are comparing in a filter,
+    ensure you have imported your specific Fluent ORM (FluentSQLite, FluentMySQL, etc).
+
 ### Range
 
 You can apply Swift ranges to a query builder to limit the result set.
