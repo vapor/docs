@@ -39,8 +39,6 @@ workflows:
             branches:
              ignore: master
       - deploy:
-          requires:
-            - test
           filters:
             branches:
               only: master
