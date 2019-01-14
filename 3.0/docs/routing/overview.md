@@ -5,7 +5,7 @@ Routing ([vapor/routing](https://github.com/vapor/routing)) is a small framework
 !!! tip
     If you use Vapor, most of Routing's APIs will be wrapped by more convenient methods. See [Vapor → Routing] for more information.
 
-This guide will show you how to register a static route and a dynamic route and how to use [`Parameter`](https://api.vapor.codes/routing/latest/Routing/Protocols/Parameter.html)s.
+This guide will show you how to register a static route and a dynamic route and how to use [`Parameter`s](https://api.vapor.codes/routing/latest/Routing/Protocols/Parameter.html).
 
 ## Register
 

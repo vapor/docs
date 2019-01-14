@@ -16,7 +16,7 @@ router.get("galaxies") { req in
 }
 ```
 
-You can use convenience methods on a `Container` to create connections manually. Learn more about that in [DatabaseKit &rarr; Overview &rarr; Connections](../database-kit/overview/#connections).
+You can use convenience methods on a `Container` to create connections manually. Learn more about that in [DatabaseKit &rarr; Overview &rarr; Connections](../database-kit/overview.md#connections).
 
 ## Create
 

@@ -1,6 +1,6 @@
 # Getting Started with Auth
 
-Auth ([vapor/auth](https://github.com/vapor/auth)) is a framework for adding authentication to your application. It builds on top of [Fluent](../fluent/getting-started) by using models as the basis of authentication. 
+Auth ([vapor/auth](https://github.com/vapor/auth)) is a framework for adding authentication to your application. It builds on top of [Fluent](../fluent/getting-started.md) by using models as the basis of authentication. 
 
 !!! tip
     There is a Vapor API template with Auth pre-configured available.

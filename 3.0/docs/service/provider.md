@@ -9,7 +9,7 @@ Providers can:
 
 ## Register
 
-Once you have added a Service-exposing [SPM dependency](../getting-started/spm/#dependencies) to your project, adding the provider is easy.
+Once you have added a Service-exposing [SPM dependency](../getting-started/spm.md#dependencies) to your project, adding the provider is easy.
 
 ```swift
 import Foo
@@ -17,7 +17,7 @@ import Foo
 try services.register(FooProvider())
 ```
 
-This is usually done in [`configure.swift`](../getting-started/structure/#configureswift). 
+This is usually done in [`configure.swift`](../getting-started/structure.md#configureswift). 
 
 !!! note
 	You can search GitHub for the [`vapor-service`](https://github.com/topics/vapor-service) tag for a list of packages that expose services using this method.

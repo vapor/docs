@@ -1,6 +1,6 @@
 # Getting Started with WebSocket
 
-WebSocket ([vapor/websocket](https://github.com/vapor/websocket)) is a non-blocking, event-driven WebSocket library built on SwiftNIO. It makes working with SwiftNIO's WebSocket handlers easy and provides integration with [HTTP](../http/getting-started) clients and servers. Creating a WebSocket echo server takes just a few lines of code.
+WebSocket ([vapor/websocket](https://github.com/vapor/websocket)) is a non-blocking, event-driven WebSocket library built on SwiftNIO. It makes working with SwiftNIO's WebSocket handlers easy and provides integration with [HTTP](../http/getting-started.md) clients and servers. Creating a WebSocket echo server takes just a few lines of code.
 
 !!! tip
     If you use Vapor, most of WebSocket's APIs will be wrapped by more convenient methods. 

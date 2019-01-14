@@ -26,7 +26,7 @@ router.get("sql") { req in
 }
 ```
 
-Check out [Database Kit &rarr; Overview &rarr; Connections](../database-kit/overview.md/#connections) for more information. The rest of this guide will assume you have access to a SQL database connection.
+Check out [Database Kit &rarr; Overview &rarr; Connections](../database-kit/overview.md#connections) for more information. The rest of this guide will assume you have access to a SQL database connection.
 
 ## Select
 

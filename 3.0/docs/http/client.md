@@ -22,7 +22,7 @@ print(httpRes) // HTTPResponse
 Take note that we are passing the _hostname_. This is different from a full URL. You can use `URL` and `URLComponents` from Foundation to parse out a hostname. Vapor's convenience APIs do this automatically.
 
 !!! warning
-    This guide assumes you are on the main thread. Don't use `wait()` if you are inside of a route closure. See [Async &rarr; Overview](../async/overview/#blocking) for more information.
+    This guide assumes you are on the main thread. Don't use `wait()` if you are inside of a route closure. See [Async &rarr; Overview](../async/overview.md#blocking) for more information.
 
 After we have a connected HTTP client, we can send an [`HTTPRequest`](https://api.vapor.codes/http/latest/HTTP/Structs/HTTPRequest.html) using [`send(...)`](https://api.vapor.codes/http/latest/HTTP/Classes/HTTPClient.html#/s:4HTTP10HTTPClientC4sendXeXeF). This will return an  [`HTTPResponse`](https://api.vapor.codes/http/latest/HTTP/Structs/HTTPResponse.html) containing the headers and body sent back from the server. See [HTTP &rarr; Message](message.md) for more information on HTTP messages. 
 
