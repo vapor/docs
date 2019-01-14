@@ -1,4 +1,4 @@
-# Vapor Documentation - Test
+# Vapor Documentation
 
 This is the documentation for Vapor, a Web Framework for Swift that works on macOS and Ubuntu, and all of the packages that Vapor offers.
 
