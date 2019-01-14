@@ -1,0 +1,36 @@
+version: 2
+
+jobs:
+  deploy:
+    docker:
+      - image: joscio/cloud2-build:v0.1.0
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - $CLOUD2_SSH_FINGERPRINT
+      - checkout
+      - run:
+          name: Push to Git
+          command: |
+            ssh-keyscan -H git.code.vapor.cloud >> ~/.ssh/known_hosts
+            git config --global user.email "jonas+deploy@vapor.codes"
+            git config --global user.name "Auto deploy"
+            git commit --allow-empty -m "Trigger deployment"
+            #git pull origin master
+            git push -q -f git@git.code.vapor.cloud:auto-deploy.git master
+      - run:
+          name: Login to Toolbox
+          command: vapor-beta cloud login --email $CLOUD2_EMAIL --password $CLOUD2_PASSWORD
+      - run:
+          name: Push to Vapor Cloud 2
+          command: vapor-beta cloud deploy -y --app auto-deploy --env production
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy
+      #- deploy:
+      #    filters:
+      #      branches:
+      #        only: master
