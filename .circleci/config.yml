@@ -1,6 +1,10 @@
 version: 2
 
 jobs:
+  test:
+    steps:
+      - checkout
+      - run: docker build -f web.Dockerfile .
   deploy:
     docker:
       - image: joscio/cloud2-build:v0.1.0
@@ -29,8 +33,10 @@ workflows:
   version: 2
   deploy:
     jobs:
-      - deploy
-      #- deploy:
-      #    filters:
-      #      branches:
-      #        only: master
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
