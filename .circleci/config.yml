@@ -21,7 +21,7 @@ jobs:
             git config --global user.email "jonas+deploy@vapor.codes"
             git config --global user.name "Auto deploy"
             git commit --allow-empty -m "Trigger deployment"
-            #git pull origin master
+            git pull origin master
             git push -q -f git@git.code.vapor.cloud:auto-deploy.git master
       - run:
           name: Login to Toolbox
