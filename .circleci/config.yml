@@ -22,13 +22,13 @@ jobs:
             git config --global user.name "Auto deploy"
             git commit --allow-empty -m "Trigger deployment"
             git pull origin master
-            git push -q -f git@git.code.vapor.cloud:auto-deploy.git master
+            git push -q -f git@git.code.vapor.cloud:vapor-docs.git master
       - run:
           name: Login to Toolbox
           command: vapor-beta cloud login --email $CLOUD2_EMAIL --password $CLOUD2_PASSWORD
       - run:
           name: Push to Vapor Cloud 2
-          command: vapor-beta cloud deploy -y --app auto-deploy --env production
+          command: vapor-beta cloud deploy -y --app vapor-docs --env production
 
 workflows:
   version: 2
