@@ -14,7 +14,7 @@ Below is a list of officially supported database drivers for Fluent.
 |PostgreSQL|[fluent-postgresql](https://github.com/vapor/fluent-postgresql.git)|1.0.0|`psql`|**Recommended**. Open source, standards compliant SQL database. Available on most cloud hosting providers.|
 |MySQL|[fluent-mysql](https://github.com/vapor/fluent-mysql)|3.0.0|`mysql`|Popular open source SQL database. Available on most cloud hosting providers. This driver also supports MariaDB.|
 |SQLite|[fluent-sqlite](https://github.com/vapor/fluent-sqlite)|3.0.0|`sqlite`|Open source, embedded SQL database. Its simplistic nature makes it a great candiate for prototyping and testing.|
-|MongoDB|fluent-mongo|n/a|`mongo`|Coming soon. Popular NoSQL database.|
+|MongoDB|[asensei/vapor-fluent-mongo](https://github.com/asensei/vapor-fluent-mongo)|0.0.1|`mongo`| Popular NoSQL database.|
 
 !!! note
     Replace any Xcode placholders (`<#...#>`) in the code snippets below with information from the above table.
