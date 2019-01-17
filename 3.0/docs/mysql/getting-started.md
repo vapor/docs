@@ -106,3 +106,23 @@ Here we are making use database connection pooling. You can learn more about cre
 Learn more about building queries in [SQL &rarr; Getting Started](../sql/getting-started.md).
 
 Visit MySQL's [API docs](https://api.vapor.codes/mysql/latest/MySQL/index.html) for detailed information about all available types and methods.
+
+### Cache
+
+You can configure Vapor to use MySQL as a cache if you are using Fluent. This enables things such as session persistence across server reboots.
+
+```swift
+typealias MySQLCache = DatabaseKeyedCache<ConfiguredDatabase<MySQLDatabase>>
+
+/// Register MySQL as a cache provider.
+services.register(KeyedCache.self) { container -> MySQLCache in
+    let pool = try container.connectionPool(to: .mysql)
+    return .init(pool: pool)
+}
+config.prefer(MySQLCache.self, for: KeyedCache.self)
+
+/// Sets up the migrations so that Fluent can create the necessary tables.
+var migrations = MigrationConfig()
+migrations.prepareCache(for: .mysql)
+services.register(migrations)
+```
