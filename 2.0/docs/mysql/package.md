@@ -8,8 +8,11 @@ To use MySQL, you need to have the C MySQL library installed on your computer.
 
 ```sh
 # macOS
-
-brew install vapor/tap/cmysql
+brew tap vapor/homebrew-tap
+brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/a340bfac3b7abff408a6b6fe6fdc39a38ab94871/Formula/mysql.rb
+brew install mysql
+brew install cmysql
+brew switch mysql 5.7.22
 ```
 
 > Note for Ubuntu
