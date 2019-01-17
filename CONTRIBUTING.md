@@ -22,3 +22,9 @@ pip install mkdocs-material
 ```
 
 Run with `mkdocs serve`
+
+### Maintainers 
+- @0xtim
+- @mcdappdev
+
+See https://github.com/vapor/vapor/blob/master/Docs/maintainers.md for more information. 
