@@ -21,6 +21,9 @@ final class EmailController: RouteCollection {
 }
 ```
 
+!!! tip
+    `QueueService` is thread safe so you can pass it directly to a controller instead of using `make`
+
 ### Setting `maxRetryCount`
 
 Jobs will automatically retry themselves upon error if you specify a `maxRetryCount`. For example: 
