@@ -37,10 +37,10 @@ In order to obtain access to services from inside of a job, you must use `JobCon
 extension JobContext {
     var emailService: EmailService? {
         get {
-            return userInfo[String(describing: self)] as? EmailService
+            return userInfo["emailservice"] as? EmailService
         }
         set {
-            userInfo[String(describing: self)] = newValue
+            userInfo["emailservice"] = newValue
         }
     }
 }
