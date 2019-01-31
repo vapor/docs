@@ -62,7 +62,28 @@ services.register { _ -> JobContext in
 }
 ```
 
-Finally, you can use this service inside of a `Job` function:
+A common use case is accessing a database connection. In that case, you can do something like this:
+
+```swift
+extension Database {
+    public typealias ConnectionPool = DatabaseConnectionPool<ConfiguredDatabase<Self>>
+}
+
+extension JobContext {
+    var database: MySQLDatabase.ConnectionPool? {
+        get {
+            return userInfo["database-pool"] as? MySQLDatabase.ConnectionPool
+        }
+        set {
+            userInfo["database-pool"] = newValue
+        }
+    }
+}
+
+jobContext.database = try container.connectionPool(to: .mysql)
+```
+
+Finally, you can use your registered services inside of a `Job` function:
 
 ```swift
 import Foundation
