@@ -1,6 +1,6 @@
 # Services
 
-Services is a dependency injection (also called inversion of control) framework for Vapor. The services framework allows you to register, configure, and initialize anything you might need in your application.
+Services is a Service Locator (sometimes called inversion of control) framework for Vapor. The services framework allows you to register, configure, and initialize anything you might need in your application.
 
 ## Container
 
