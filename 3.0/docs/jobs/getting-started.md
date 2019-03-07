@@ -1,6 +1,6 @@
 # Jobs
 
-Jobs ([vapor-community/jobs](https://github.com/vapor-community/jobs)) is a pure Swift queuing system that allows you to offload task responsibility to a side worker. 
+Jobs ([vapor-community/jobs](https://github.com/vapor/jobs)) is a pure Swift queuing system that allows you to offload task responsibility to a side worker. 
 
 Some of the tasks this package works well for:
 
@@ -20,6 +20,7 @@ This package is similar to [Ruby Sidekiq](https://github.com/mperham/sidekiq) or
 Jobs currently has support for the following drivers which interface with the main protocol:
 
 - [JobsRedisDriver](https://github.com/vapor-community/jobs-redis-driver)
+- [JobsPostgresqlDriver](https://github.com/vapor-community/jobs-postgresql-driver)
 
 !!! tip
     You should not install this package directly unless you are building a new driver. Install one of the driver packages instead. 
@@ -90,9 +91,9 @@ After modeling a job you must add it to your configuration section like this:
 
 ```swift
 //Register jobs
-services.register { _ -> JobsConfig in
+services.register { container -> JobsConfig in
     var jobsConfig = JobsConfig()
-    jobsConfig.add(EmailJob.self)
+    jobsConfig.add(try EmailJob(emailService: container.make()))
     return jobsConfig
 }
 ```
@@ -106,4 +107,4 @@ To register a persistence driver, see the driver's specific instructions.
 To start a new queue worker, run `vapor run jobs`. You can also specify a specific type of worker to run: `vapor run jobs --queue emails`.
 
 !!! tip
-    Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this: `worker: Run run jobs`
+    Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: Run run jobs`
