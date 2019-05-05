@@ -232,6 +232,57 @@ let didDelete = user.delete(on: req)
 print(didDelete) /// Future<Void>
 ```
 
+## Creation and Last Update Timestamps
+
+Often an application requires knowing when a row / item is created or gets updated.  If the model specifies fields for storing creation and/or update timestamps, Fluent will automatically set these values.  The model simply specifies the name of the field and a matching definition.
+
+```swift
+static let createdAtKey: TimestampKey? = \.createdAt
+static let updatedAtKey: Timestampkey? = \.updatedAt
+
+var createdAt: Date?
+var updatedAt: Date?
+```
+
+The presence of `createdAtKey` causes the associated field to be set when the object is created.  This field will not be subsequently changed.  The presence of `updatedAtKey` causes the associated field to be set when the object is created and whenever any update operation is performed.  A model may define one, both, or neither.
+
+
+## Soft Delete
+
+Fluent provides support for a two step deletion process.  A soft delete marks an existing row / item so that it does not appear in query results by default but does not remove it from the database.  This row / item may be restored at a later date or deleted entirely from the database when desired.  This can be a useful feature, but it requires some thought by the application developer.  Foreign key and uniqueness constraints in the database are impacted and query performance may be reduced by the presence of soft deleted rows.  Restoration of soft deleted rows, particularly when they are part of a complex graph, requires care to ensure that related data in other tables is in a proper state.
+
+Those warnings aside, Vapor makes soft delete easy to access and use.  A model defines `deletedAtKey` to enable soft deletes in the same manner as for the creation and update timestamps.  
+
+```swift
+static let deletedAtKey: TimestampKey? = \.deletedAt
+
+var deletedAt: Date?
+```
+
+The delete operation is now a soft delete.  The deletion timestamp is set and, if the model specifies `updatedAtKey`, the update timestamp is changed.  Soft deleted rows will no longer appear in results by default, but can be included in queries by setting `withSoftDeleted:true`.
+
+```swift
+User.query(on: conn).filter(…).delete()
+```
+
+Restoring these rows is straightforward.
+
+```swift
+User.query(on: conn, withSoftDeleted:true).filter(…).restore()
+```
+
+The restore will clear the deletion timestamp and will also set the update timestamp.  The restored rows will now appear in queries as normal.
+
+Rows, both normal and soft deleted, may be permanently deleted by indicating `force: true` on the delete.
+
+```swift
+User.query(on: conn, withSoftDeleted:true).filter(…).delete(force: true)
+```
+
+!!! tip
+    If there is a desire to archive deleted rows, a better solution may be to create a separate table of deleted items and use the `willDelete` lifecycle method to copy the row into the archive table.
+
+
 ## Methods
 
 `Model` offers some convenience methods to make working with it easier.
