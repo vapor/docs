@@ -15,10 +15,6 @@ workflows:
   version: 2
   deploy:
     jobs:
-      - test:
-          filters:
-            branches:
-             ignore: master
       - deploy:
           filters:
             branches:
