@@ -1,34 +1,15 @@
 version: 2
 
 jobs:
-  test:
-    machine: true
-    steps:
-      - checkout
-      - run: docker build -f web.Dockerfile .
   deploy:
     docker:
-      - image: joscio/cloud2-build:v0.1.0
+      - image: circleci/buildpack-deps:18.04-curl
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - $CLOUD2_SSH_FINGERPRINT
       - checkout
       - run:
-          name: Push to Git
+          name: Trigger deploy
           command: |
-            ssh-keyscan -H git.code.vapor.cloud >> ~/.ssh/known_hosts
-            git config --global user.email "jonas+deploy@vapor.codes"
-            git config --global user.name "Auto deploy"
-            git commit --allow-empty -m "Trigger deployment"
-            git pull origin master
-            git push -q -f git@git.code.vapor.cloud:vapor-docs.git master
-      - run:
-          name: Login to Toolbox
-          command: vapor-beta cloud login --email $CLOUD2_EMAIL --password $CLOUD2_PASSWORD
-      - run:
-          name: Push to Vapor Cloud 2
-          command: vapor-beta cloud deploy -y --app vapor-docs --env production
+            curl -X GET https://api.vapor.red/v1/apps/$RED_ID/deployments/trigger?token=$RED_TOKEN
 
 workflows:
   version: 2
