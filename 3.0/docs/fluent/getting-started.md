@@ -181,7 +181,7 @@ If you run your app, and query that route, you should see an empty array returne
 
 With Fluent, you always have access to the underlying database driver. Using this underlying driver to perform a query is sometimes called a "raw query". 
 
-To perform raw queries, you need access to a database connection. Vapor's [`Request`](https://api.vapor.codes/vapor/latest/Vapor/Classes/Request.html) type has a number of conveniences for creating new database connections. The recommended method is `withPooledConnection(to:)`.  Learn about other methods in [DatabaseKit &rarr; Overview &rarr; Connections](../database-kit/overview/#connections).
+To perform raw queries, you need access to a database connection. Vapor's [`Request`](https://api.vapor.codes/vapor/latest/Vapor/Classes/Request.html) type has a number of conveniences for creating new database connections. The recommended method is `withPooledConnection(to:)`.  Learn about other methods in [DatabaseKit &rarr; Overview &rarr; Connections](../../database-kit/overview/#connections).
 
 ```swift
 router.get("raw") { req -> Future<String> in
