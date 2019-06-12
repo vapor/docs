@@ -36,7 +36,7 @@ struct EmailJob: Job {
 ```
 
 !!! tip
-    Don't forget to follow the instructions in [Getting Started](/extras/jobs/getting-started.md#registering-a-job) to add this job to your configuration file. 
+    Don't forget to follow the instructions in [Getting Started](/jobs/getting-started.md#registering-a-job) to add this job to your configuration file. 
 
 !!! warning
     Each job's `Context` needs to have a unique name. Do not nest your context objects without uniquely naming them. 

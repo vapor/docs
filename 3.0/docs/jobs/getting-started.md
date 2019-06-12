@@ -8,6 +8,7 @@ Some of the tasks this package works well for:
 - Performing complex or long-running database operations 
 - Ensuring job integrity and resilience 
 - Speeding up response time by delaying non-critical processing
+- Scheduling jobs to occur at a specific time
 
 This package is similar to [Ruby Sidekiq](https://github.com/mperham/sidekiq) or [Laravel Queues](https://laravel.com/docs/5.7/queues). It provides the following features:
 
@@ -34,14 +35,14 @@ Let's take a look at how you can get started using Jobs.
 The first step to using Jobs is adding one of the drivers as a dependency to your project in your SPM package manifest file. In this example, we'll use the Redis driver. 
 
 ```swift
-// swift-tools-version:4.0
+// swift-tools-version:5.1
 import PackageDescription
 
 let package = Package(
     name: "MyApp",
     dependencies: [
         /// Any other dependencies ...
-        .package(url: "https://github.com/vapor-community/jobs-redis-driver.git", from: "0.2.0"),
+        .package(url: "https://github.com/vapor-community/jobs-redis-driver.git", from: "1.0.0"),
     ],
     targets: [
         .target(name: "App", dependencies: ["JobsRedisDriver", ...]),

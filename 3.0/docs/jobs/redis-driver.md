@@ -3,7 +3,7 @@
 In order to setup the Redis jobs driver, add the following to your SPM manifest: 
 
 ```swift
-// swift-tools-version:4.0
+// swift-tools-version:5.1
 import PackageDescription
 
 let package = Package(
@@ -27,15 +27,11 @@ Don't forget to add the module as a dependency in the `targets` array. Once you 
 In your `configure.swift` file, add the following:
 
 ```swift
-let redisUrlString = "redis://localhost:6379"
-guard let redisUrl = URL(string: redisUrlString) else { throw Abort(.internalServerError) }
-let redisConfig = try RedisDatabase(config: RedisClientConfig(url: redisUrl))
-    
-var databaseConfig = DatabasesConfig()
-databaseConfig.add(database: redisConfig, as: .redis)
-services.register(databaseConfig)
+guard let url = URL(string: "redis://127.0.0.1:6379") else { throw Abort(.internalServerError) }
+guard let configuration = RedisConfiguration(url: url) else { throw Abort(.internalServerError) }
     
 services.register(JobsPersistenceLayer.self) { container -> JobsRedisDriver in
-    return JobsRedisDriver(database: redisConfig, eventLoop: container.next())
+    let client = RedisConnectionSource(config: configuration, eventLoop: container.next())
+    return JobsRedisDriver(client: client, eventLoop: container.next())
 }
 ```

@@ -22,7 +22,7 @@ final class EmailController: RouteCollection {
 ```
 
 !!! tip
-    `QueueService` is thread safe so you can pass it directly to a controller instead of using `make`
+    `QueueService` is thread safe so you can pass it directly to a controller.
 
 ### Setting `maxRetryCount`
 
@@ -50,4 +50,4 @@ Then, specify the queue type when you call `dispatch`:
 queue.dispatch(job: job, queue: .emails)
 ```
 
-If you do not specify a queue the job will be run on the `default` queue. Make sure to follow the instructions in [Getting Started](/extras/jobs/getting-started.md#running-workers) to start workers for each queue type. 
+If you do not specify a queue the job will be run on the `default` queue. Make sure to follow the instructions in [Getting Started](/jobs/getting-started.md#running-workers) to start workers for each queue type. 
