@@ -50,12 +50,12 @@ See [Getting Started &rarr; Content](content.md) for more information about what
 ## Parameters
 
 Sometimes you may want one of the components of your route path to be dynamic. This is often used when
-you want to get an item with a supplied identifier, e.g., `GET /users/:uid`
+you want to get an item with a supplied identifier, e.g., `GET /users/:userID`
 
 ```swift
 router.get("users", Int.parameter) { req -> String in
-    let uid = try req.parameters.next(Int.self)
-    return "requested user id #\(uid)"
+    let userID = try req.parameters.next(Int.self)
+    return "requested user id #\(userID)"
 }
 ```
 
