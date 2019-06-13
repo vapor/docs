@@ -51,3 +51,14 @@ queue.dispatch(job: job, queue: .emails)
 ```
 
 If you do not specify a queue the job will be run on the `default` queue. Make sure to follow the instructions in [Getting Started](/jobs/getting-started.md#running-workers) to start workers for each queue type. 
+
+### Specifying a delay
+
+Jobs can also be set to only run after a certain `Date` has passed. To specify a delay, pass a `Date` into the `delay` parameter in `dispatch`:
+
+```swift
+let oneMinuteDelay = Date(timeIntervalSinceNow: 60)
+queue.dispatch(job: job, delay: oneMinuteDelay)
+```
+
+If a job is dequeued before its delay parameter, the job will be re-queued by the driver. 
