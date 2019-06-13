@@ -54,11 +54,11 @@ If you do not specify a queue the job will be run on the `default` queue. Make s
 
 ### Specifying a delay
 
-Jobs can also be set to only run after a certain `Date` has passed. To specify a delay, pass a `Date` into the `delay` parameter in `dispatch`:
+Jobs can also be set to only run after a certain `Date` has passed. To specify a delay, pass a `Date` into the `delayUntil` parameter in `dispatch`:
 
 ```swift
 let oneMinuteDelay = Date(timeIntervalSinceNow: 60)
-queue.dispatch(job: job, delay: oneMinuteDelay)
+queue.dispatch(job: job, delayUntil: oneMinuteDelay)
 ```
 
 If a job is dequeued before its delay parameter, the job will be re-queued by the driver. 
