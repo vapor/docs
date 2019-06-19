@@ -9,7 +9,7 @@ This guide will give you an overview of Leaf's syntax and the available tags.
 Here is an example of a basic Leaf tag usage.
 
 ```leaf
-There are #count(users) users. 
+There are #count(users) users.
 ```
 
 Leaf tags are made up of four elements:
@@ -29,7 +29,7 @@ There can be many different usages of these four elements depending on the tag's
 #for(friend in friends) { <li>#(friend.name)</li> }
 ```
 
-Leaf also supports many expressions you are familiar with in Swift. 
+Leaf also supports many expressions you are familiar with in Swift.
 
 - `+`
 - `>`
@@ -45,21 +45,23 @@ Leaf also supports many expressions you are familiar with in Swift.
 
 ## Context
 
-In the example from [Getting Started](./getting-started.md), we used a `[String: String]` dictionary to pass data to Leaf. However, you can pass anything that conforms to `Encodable`. It's actually preferred to use `Encodable` structs since `[String: Any]` is not supported.
+In the example from [Getting Started](./getting-started.md), we used a `[String: String]` dictionary to pass data to Leaf. However, you can pass anything that conforms to `Encodable`. It's actually preferred to use `Encodable` structs since `[String: Any]` is not supported. This means you *can not* pass in an array, and should instead wrap it in a struct:
 
 ```swift
 struct WelcomeContext: Encodable {
     var title: String
-    var number: Int
+    var numbers: [Int]
 }
-return try req.view().make("home", WelcomeContext(title: "Hello!", number: 42))
+return try req.view().make("home", WelcomeContext(title: "Hello!", numbers: [42, 9001]))
 ```
 
-That will expose `title` and `message` to our Leaf template, which can then be used inside tags. For example:
+That will expose `title` and `numbers` to our Leaf template, which can then be used inside tags. For example:
 
 ```leaf
 <h1>#(title)</h1>
-<p>#(number)</p>
+#for(number in numbers){
+    <p>#(number)</p>
+}
 ```
 
 ## Usage
@@ -112,7 +114,7 @@ Just like in Swift, you can also use `else if` statement.s
 
 ### Loops
 
-If you provide an array of items, Leaf can loop over them and let you manipulate each item individually using its `#for` tag. 
+If you provide an array of items, Leaf can loop over them and let you manipulate each item individually using its `#for` tag.
 
 For example, we could update our Swift code to provide a list of planets:
 
@@ -272,7 +274,7 @@ Your search matched #count(matches) pages.
 
 #### `#lowercase`
 
-The `#lowercase` tag lowercases all letters in a string. 
+The `#lowercase` tag lowercases all letters in a string.
 
 ```leaf
 #lowercase(name)
