@@ -75,15 +75,7 @@ You can also specify a custom `refreshInterval` or `persistenceKey` key, if you'
 import Jobs
 
 /// Register Jobs providers
-try services.register(JobsProvider(refreshInterval: .seconds(10), persistenceKey: "custom_key"))
-
-/// Register the Jobs command 
-services.register { _ -> CommandConfig in
-    var commandConfig = CommandConfig.default()
-    commandConfig.use(JobsCommand(), as: "jobs")
-    
-    return commandConfig
-}
+try services.register(JobsProvider(refreshInterval: .seconds(10), persistenceKey: "custom_key", commandKey: "queues"))
 ```
 
 ### Registering a `Job`
