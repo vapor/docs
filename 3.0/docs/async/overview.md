@@ -244,12 +244,12 @@ router.get("hello") { req in
 Make sure to run any blocking work in the background. Use promises to notify the event loop when this work is done in a non-blocking way.
 
 ```swift
-router.get("hello") { req in
+router.get("hello") { req -> Future<String> in
     /// Create a new void promise
     let promise = req.eventLoop.newPromise(Void.self)
     
     /// Dispatch some work to happen on a background thread
-    DispatchQueue.global() {
+    DispatchQueue.global().async {
         /// Puts the background thread to sleep
         /// This will not affect any of the event loops
         sleep(5)
