@@ -2,7 +2,7 @@
 
 Redis ([vapor/redis](https://github.com/vapor/redis)) is a pure-Swift, event-driven, non-blocking Redis client built on top of SwiftNIO.
 
-You can use this package to interact send Redis commands to your server directly, or as a cache through Vapor's `KeyedCache` interface. 
+You can use this package to interactively send Redis commands to your server directly, or as a cache through Vapor's `KeyedCache` interface. 
 
 Let's take a look at how you can get started using Redis.
 
