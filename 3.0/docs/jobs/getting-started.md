@@ -10,17 +10,18 @@ Some of the tasks this package works well for:
 - Speeding up response time by delaying non-critical processing
 - Scheduling jobs to occur at a specific time
 
-This package is similar to [Ruby Sidekiq](https://github.com/mperham/sidekiq) or [Laravel Queues](https://laravel.com/docs/5.7/queues). It provides the following features:
+This package is similar to [Ruby Sidekiq](https://github.com/mperham/sidekiq). It provides the following features:
 
 - Safe handling of `SIGTERM` and `SIGINT` signals sent by hosting providers to indicate a shutdown, restart, or new deploy.
 - Different queue priorities. Allows specifying a job be run on the `email` queue, for example, versus the `data-processing` queue.
 - Implements the reliable queue process to help with unexpected failures.
 - Includes a maxRetryCount feature that will repeat the job until it succeeds up until a specified count.
 - Uses NIO to utilize all available cores and EventLoops for jobs.
+- Allows users to schedule repeating tasks
 
 Jobs currently has support for the following drivers which interface with the main protocol:
 
-- [JobsRedisDriver](https://github.com/vapor-community/jobs-redis-driver)
+- [JobsRedisDriver](https://github.com/vapor/jobs-redis-driver)
 - [JobsPostgresqlDriver](https://github.com/vapor-community/jobs-postgresql-driver)
 
 !!! tip
@@ -95,9 +96,23 @@ services.register { container -> JobsConfig in
 
 To register a persistence driver, see the driver's specific instructions. 
 
-### Running Workers
+### Running Workers as Processes
 
 To start a new queue worker, run `vapor run jobs`. You can also specify a specific type of worker to run: `vapor run jobs --queue emails`.
 
 !!! tip
     Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: Run run jobs`
+
+### Running Workers in-process
+
+To run a worker in the same process as your application (as opposed to starting a whole separate server to handle it), call the `JobsCommand` like this in your `boot.swift` file:
+
+```swift
+JobsCommand(application: app).run()
+```
+
+To run scheduled jobs in process, pass the `scheduled` flag:
+
+```swift
+JobsCommand(application: app, scheduled: true).run()
+```
