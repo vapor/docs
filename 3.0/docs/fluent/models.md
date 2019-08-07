@@ -238,7 +238,7 @@ Often an application requires knowing when a row / item is created or gets updat
 
 ```swift
 static let createdAtKey: TimestampKey? = \.createdAt
-static let updatedAtKey: Timestampkey? = \.updatedAt
+static let updatedAtKey: TimestampKey? = \.updatedAt
 
 var createdAt: Date?
 var updatedAt: Date?
