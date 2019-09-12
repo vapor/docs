@@ -6,7 +6,7 @@ Many of Vapor's packages such as the Fluent drivers, Redis, and Vapor core are b
 
 ## Config
 
-Your first interaction with Database Kit will most likely be with the [`DatabasesConfig`](https://api.vapor.codes/database-kit/latest/DatabaseKit/Structs/DatabasesConfig.html) struct. This type helps you configure one or more databases to your application and will ultimately yield a [`Databases`](https://api.vapor.codes/database-kit/latest/DatabaseKit/Structs/Databases.html) struct. This usually takes place in [`configure.swift`](../getting-started/structure/#configureswift).
+Your first interaction with Database Kit will most likely be with the [`DatabasesConfig`](https://api.vapor.codes/database-kit/latest/DatabaseKit/Structs/DatabasesConfig.html) struct. This type helps you configure one or more databases to your application and will ultimately yield a [`Databases`](https://api.vapor.codes/database-kit/latest/DatabaseKit/Structs/Databases.html) struct. This usually takes place in [`configure.swift`](../../getting-started/structure/#configureswift).
 
 ```swift
 // Create a SQLite database.

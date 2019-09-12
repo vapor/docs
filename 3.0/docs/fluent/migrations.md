@@ -12,7 +12,7 @@ In this guide we will cover creating both types of migrations.
 
 Let's take a look at how we can use migrations to prepare a schema supporting database to store a theoretical `Galaxy` model.
 
-Fill in the Xcode placeholders below with your database's name from [Getting Started &rarr; Choosing a Driver](getting-started/#choosing-a-driver).
+Fill in the Xcode placeholders below with your database's name from [Getting Started &rarr; Choosing a Driver](../getting-started/#choosing-a-driver).
 
 ```swift
 import Fluent<#Database#>
