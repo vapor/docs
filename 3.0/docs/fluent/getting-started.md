@@ -15,6 +15,7 @@ Below is a list of officially supported database drivers for Fluent.
 |MySQL|[fluent-mysql](https://github.com/vapor/fluent-mysql)|3.0.0|`mysql`|Popular open source SQL database. Available on most cloud hosting providers. This driver also supports MariaDB.|
 |SQLite|[fluent-sqlite](https://github.com/vapor/fluent-sqlite)|3.0.0|`sqlite`|Open source, embedded SQL database. Its simplistic nature makes it a great candiate for prototyping and testing.|
 |MongoDB|fluent-mongo|n/a|`mongo`|Coming soon. Popular NoSQL database.|
+|DynamoDB|[fluent-dynamodb](https://github.com/Yasumoto/fluent-dynamodb)|3.0.0|`dynamodb`|Amazon's hosted [key-value store](https://aws.amazon.com/dynamodb/) available through AWS|
 
 !!! note
     Replace any Xcode placholders (`<#...#>`) in the code snippets below with information from the above table.
