@@ -7,7 +7,9 @@ It takes advantage of Swift's strong type system to provide an elegant foundatio
 
 Fluent is a framework for building ORMs, not an ORM itself. To use Fluent, you will first need to choose a database driver to use. Fluent can support multiple databases and database drivers per application.
 
-Below is a list of officially supported database drivers for Fluent. 
+### Official Fluent Drivers
+
+Below is a list of officially supported database drivers for Fluent.
 
 |database|repo|version|dbid|notes|
 |-|-|-|-|-|
@@ -15,6 +17,13 @@ Below is a list of officially supported database drivers for Fluent.
 |MySQL|[fluent-mysql](https://github.com/vapor/fluent-mysql)|3.0.0|`mysql`|Popular open source SQL database. Available on most cloud hosting providers. This driver also supports MariaDB.|
 |SQLite|[fluent-sqlite](https://github.com/vapor/fluent-sqlite)|3.0.0|`sqlite`|Open source, embedded SQL database. Its simplistic nature makes it a great candiate for prototyping and testing.|
 |MongoDB|fluent-mongo|n/a|`mongo`|Coming soon. Popular NoSQL database.|
+
+### Community Drivers
+
+And here are community-maintained drivers. These are all open-source Fluent drivers, but you should reach out to these projects with questions and pull requests!
+
+|database|repo|version|dbid|notes|
+|-|-|-|-|-|
 |DynamoDB|[fluent-dynamodb](https://github.com/Yasumoto/fluent-dynamodb)|3.0.0|`dynamodb`|Amazon's hosted [key-value store](https://aws.amazon.com/dynamodb/) available through AWS|
 
 !!! note
