@@ -27,7 +27,7 @@ open Package.swift
 
 ## Build & Run
 
-You should now have Xcode open and running. Click the play button to build and run your project.
+You should now have Xcode open. Click the play button to build and run your project.
 
 You should see the terminal pop up at the bottom of the screen.
 
