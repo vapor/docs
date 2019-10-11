@@ -1,5 +1,4 @@
 site_name: Vapor Docs
-copyright: 'Copyright &copy; 2019 Qutheory, LLC'
 site_url: 'https://docs.vapor.codes/4.0/'
 repo_url: http://github.com/vapor/vapor
 edit_uri: https://github.com/vapor/documentation/edit/master/4.0/docs/
@@ -10,13 +9,6 @@ theme:
     accent: 'blue'
   logo: 'logo.png'
 extra:
-  social:
-    - type: 'twitter'
-      link: 'https://twitter.com/@codevapor'
-    - type: 'slack'
-      link: 'http://vapor.team/'
-    - type: 'github'
-      link: 'https://github.com/vapor'
   font:
     text: 'Roboto Slab'
     code: 'Source Code Pro'
@@ -37,3 +29,5 @@ nav:
 - 'Install':
   - 'macOS': 'install/macos.md'
   - 'Ubuntu': 'install/ubuntu.md'
+- 'Getting Started':
+  - 'Hello, world': 'getting-started/hello-world.md'

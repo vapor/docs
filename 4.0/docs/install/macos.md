@@ -6,7 +6,7 @@ To use Vapor on macOS, you will need Swift 5.1 or greater. Swift and all of its 
 
 Install [Xcode 11 or greater](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) from the Mac App Store.
 
-<img width="1112" alt="Xcode 9.1" src="https://user-images.githubusercontent.com/1342803/32911091-1b55b434-cad9-11e7-8ab2-fbd7ea0084da.png">
+![Xcode 11](https://user-images.githubusercontent.com/1342803/66688324-2396bc80-ec54-11e9-8b96-bd8b29d0ce7c.jpg)
 
 After Xcode has been downloaded, you must open it to finish the installation. This may take a while.
 
@@ -19,8 +19,8 @@ swift --version
 You should see Swift's version information printed.
 
 ```sh
-Apple Swift version 5.1.0 (swiftlang-900.0.69.2 clang-900.0.38)
-Target: x86_64-apple-macosx10.15
+Apple Swift version 5.1 (swiftlang-1100.0.270.13 clang-1100.0.33.7)
+Target: x86_64-apple-darwin19.0.0
 ```
 
 Vapor 4 requires Swift 5.1 or greater.
