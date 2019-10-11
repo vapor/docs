@@ -1,0 +1,38 @@
+site_name: Vapor Docs
+site_url: 'https://docs.vapor.codes/4.0/'
+repo_url: http://github.com/vapor/vapor
+edit_uri: https://github.com/vapor/documentation/edit/master/4.0/docs/
+theme:
+  name: 'material'
+  palette:
+    primary: 'black'
+    accent: 'blue'
+  logo: 'logo.png'
+extra:
+  font:
+    text: 'Roboto Slab'
+    code: 'Source Code Pro'
+  # disqus: 'vapor-docs'
+google_analytics:
+  - 'UA-76177358-4'
+  - 'auto'
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+nav:
+- 'Welcome': 'index.md'
+- 'Install':
+  - 'macOS': 'install/macos.md'
+  - 'Ubuntu': 'install/ubuntu.md'
+- 'Getting Started':
+  - 'Hello, world': 'getting-started/hello-world.md'
+- 'Version (4.0)':
+    - '1.5': 'version/1_5.md'
+    - '2.0': 'version/2_0.md'
+    - '3.0': 'version/3_0.md'
+    - '4.0': 'version/4_0.md'
