@@ -22,7 +22,7 @@ You can also use Swift's official Docker images which come with the compiler pre
 
 ## Install Toolbox
 
-Now that you have Swift installed, let's install the [Vapor Toolbox](../getting-started/toolbox.md). This CLI tool is not required to use Vapor, but it includes helpful utilities. 
+Now that you have Swift installed, let's install the [Vapor Toolbox](https://github.com/vapor/toolbox). This CLI tool is not required to use Vapor, but it includes helpful utilities. 
 
 On Linux, you will need to build the toolbox from source. View the toolbox's <a href="https://github.com/vapor/toolbox/releases" target="_blank">releases</a> on GitHub to find the latest version.
 
