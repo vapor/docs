@@ -16,11 +16,11 @@ This is a simple `GET` HTTP request to the URL `/hello/vapor`. This is the kind 
 http://vapor.codes/hello/vapor
 ```
 
-## HTTP Verb
+## HTTP Method
 
-The first part of the request is the HTTP verb. `GET` is the most common HTTP verb, but there are several you will use often. These HTTP verbs are often associated with [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) semantics.
+The first part of the request is the HTTP method. `GET` is the most common HTTP method, but there are several you will use often. These HTTP methods are often associated with [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) semantics.
 
-|verb|crud|
+|method|crud|
 |-|-|
 |`GET`|Read|
 |`POST`|Create|
@@ -30,9 +30,9 @@ The first part of the request is the HTTP verb. `GET` is the most common HTTP ve
 
 ## Request Path
 
-Right after the HTTP verb is the request's URI. This consists of a path starting with `/` and an optional query string after `?`. The HTTP verb and path are what Vapor uses to route requests.
+Right after the HTTP method is the request's URI. This consists of a path starting with `/` and an optional query string after `?`. The HTTP method and path are what Vapor uses to route requests.
 
-After the HTTP verb and URI is the HTTP version followed by zero or more headers and finally a body. Since this is a `GET` request, it does not have a body. 
+After the URI is the HTTP version followed by zero or more headers and finally a body. Since this is a `GET` request, it does not have a body. 
 
 ## Router Methods
 
@@ -44,9 +44,9 @@ app.get("hello", "vapor") { req in
 }
 ```
 
-All of the common HTTP verbs are available as methods on `Application`. They accept one or more string arguments that represent the request's path separated by `/`. 
+All of the common HTTP methods are available as methods on `Application`. They accept one or more string arguments that represent the request's path separated by `/`. 
 
-Note that you could also write this using `on` followed by the verb.
+Note that you could also write this using `on` followed by the method.
 
 ```swift
 app.on(.GET, "hello", "vapor") { ... }
@@ -64,7 +64,7 @@ Hello, vapor!
 
 ## Route Parameters
 
-Now that we've successfully routed a request based on the HTTP verb and path, let's try making the path dynamic. Notice that the name "vapor" is hardcoded in both the path and the response. Let's make this dynamic so that you can visit `/hello/<any name>` and get a response.
+Now that we've successfully routed a request based on the HTTP method and path, let's try making the path dynamic. Notice that the name "vapor" is hardcoded in both the path and the response. Let's make this dynamic so that you can visit `/hello/<any name>` and get a response.
 
 ```swift
 app.get("hello", ":name") { req -> String in
@@ -74,9 +74,6 @@ app.get("hello", ":name") { req -> String in
 ```
 
 By using a path component prefixed with `:`, we indicate to the router that this is a dynamic component. Any string supplied here will now match this route. We can then use `req.parameters` to access the value of the string.
-
-!!! tip
-    We can be sure that `req.parameters.get` will never return `nil` here since our route path includes `:name`. However, if you are accessing route parameters in middleware or in code triggered by multiple routes, you will want to handle the possibility of `nil`.
 
 If you run the example request again, you'll still get a response that says hello to vapor. However, you can now include any name after `/hello/` and see it included in the response. Let's try `/hello/bob`.
 
