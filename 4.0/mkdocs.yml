@@ -34,8 +34,8 @@ nav:
   - 'Folder Structure': 'getting-started/folder-structure.md'
   - 'SPM': 'getting-started/spm.md'
 - 'Routing': 
-    'Overview': 'routing/overview.md'
-    'Routes': 'routing/routes.md'
+  - 'Overview': 'routing/overview.md'
+  - 'Routes': 'routing/routes.md'
 - 'Version (4.0)':
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'

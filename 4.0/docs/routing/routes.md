@@ -1,6 +1,6 @@
 # Routes
 
-A route specifies a request handler for a given HTTP method and URI path. They can also store additional metadata.
+A route specifies a request handler for a given HTTP method and URI path. It can also store additional metadata.
 
 ## Methods
 
@@ -77,6 +77,15 @@ app.get("foo", ":bar", "baz") { req in
 
 This is very similar to parameter except the value is discarded. This path component is specified as just `:`. 
 
+```swift
+// responds to GET /foo/bar/baz
+// responds to GET /foo/qux/baz
+// ...
+app.get("foo", ":", "baz") { req in
+	...
+}
+```
+
 ### Catchall
 
 This is a dynamic route component that matches one or more components. It is specified using just `*`. Any string at this position or later positions will be allowed in the request. 
@@ -92,7 +101,7 @@ app.get("foo", "*") { req in
 
 ## Parameters
 
-When using a parameter path component (prefixed with `:`), the value of the URI at that location will be stored in `req.parameters`. You can use the name of the path component to access the value. 
+When using a parameter path component (prefixed with `:`), the value of the URI at that position will be stored in `req.parameters`. You can use the name of the path component to access the value. 
 
 ```swift
 // responds to GET /hello/foo
@@ -162,4 +171,14 @@ $ swift run Run routes
 +--------+----------------+
 | DELETE | /todos/:todoID |
 +--------+----------------+
+```
+
+## Metadata
+
+All route registration methods return the created `Route`. This allows you to metadata to the route's `userInfo` dictionary. There are some default methods available, like adding a description.
+
+```swift
+app.get("hello", ":name") { req in
+	...
+}.description("says hello")
 ```
