@@ -75,10 +75,10 @@ app.get("hello", ":name") { req -> String in
 
 By using a path component prefixed with `:`, we indicate to the router that this is a dynamic component. Any string supplied here will now match this route. We can then use `req.parameters` to access the value of the string.
 
-If you run the example request again, you'll still get a response that says hello to vapor. However, you can now include any name after `/hello/` and see it included in the response. Let's try `/hello/bob`.
+If you run the example request again, you'll still get a response that says hello to vapor. However, you can now include any name after `/hello/` and see it included in the response. Let's try `/hello/swift`.
 
 ```http
-GET /hello/bob HTTP/1.1
+GET /hello/swift HTTP/1.1
 content-length: 0
 ```
 ```http
@@ -86,7 +86,7 @@ HTTP/1.1 200 OK
 content-length: 13
 content-type: text/plain; charset=utf-8
 
-Hello, bob!
+Hello, swift!
 ```
 
 Now that you understand the basics, check out each section to learn more about parameters, groups, and more.

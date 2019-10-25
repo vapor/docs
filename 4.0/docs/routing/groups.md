@@ -11,15 +11,15 @@ Path prefixing route groups allow you to prepend one or more path components to 
 ```swift
 let users = app.grouped("users")
 // GET /users
-users.get { req -> String in
+users.get { req in
     ...
 }
 // POST /users
-users.post { req -> String in
+users.post { req in
     ...
 }
 // GET /users/:id
-users.get(":id") { req -> String in
+users.get(":id") { req in
     let id = req.parameters.get("id")!
     ...
 }
@@ -30,17 +30,17 @@ Any path component you can pass into methods like `get` or `post` can be passed 
 ```swift
 app.group("users") { users in
     // GET /users
-    users.get { req -> String in
-        fatalError("...")
+    users.get { req in
+        ...
     }
     // POST /users
-    users.post { req -> String in
-        fatalError("...")
+    users.post { req in
+        ...
     }
     // GET /users/:id
-    users.get(":id") { req -> String in
+    users.get(":id") { req in
         let id = req.parameters.get("id")!
-        fatalError("...")
+        ...
     }
 }
 ```
