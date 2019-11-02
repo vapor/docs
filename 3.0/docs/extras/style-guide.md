@@ -335,7 +335,7 @@ As the old saying goes, “the two hardest problems in computer science are nami
 
 Files that contain objects used to decode body content from a request should be appended with `Request`. For example, `LoginRequest`. Files that contain objects used to encode body content to a response should be appended with `Response`. For example, `LoginResponse`.
 
-Controllers should also be named descriptively for their purpose. If your application contains logic for frontend responses and API responses, each controller’s name should denote their responsibility. For example, `LoginViewController` and `LoginController`. If you combine the login functionality into one controller, opt for the more generic name: `LoginController`.
+Controllers should also be named descriptively for their purpose. If your application contains logic for frontend responses and API responses, each controller’s name should denote their responsibility. For example, `LoginViewController` and `LoginAPIController`. If you combine the login functionality into one controller, opt for the more generic name: `LoginController`.
 
 ## Architecture
 
