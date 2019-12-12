@@ -2,7 +2,7 @@
 
 Routing is the process of finding the appropriate request handler for an incoming request. At the core of Vapor's routing is a high-performance, trie-node router from [RoutingKit](https://github.com/vapor/routing-kit).
 
-To understand how routing works in Vapor, you must first understand the basics of an HTTP request. Take a look at the following example request.
+To understand how routing works in Vapor, you should first understand a few basics about HTTP requests. Take a look at the following example request.
 
 ```http
 GET /hello/vapor HTTP/1.1

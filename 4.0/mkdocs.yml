@@ -4,6 +4,7 @@ repo_url: http://github.com/vapor/vapor
 edit_uri: https://github.com/vapor/documentation/edit/master/4.0/docs/
 theme:
   name: 'material'
+  custom_dir: 'theme/'
   palette:
     primary: 'black'
     accent: 'blue'
@@ -37,6 +38,8 @@ nav:
   - 'Overview': 'routing/overview.md'
   - 'Routes': 'routing/routes.md'
   - 'Groups': 'routing/groups.md'
+- 'Content':
+  - 'Overview': 'content/overview.md'
 - 'Version (4.0)':
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'
