@@ -61,7 +61,3 @@ Below are the media types the content API supports by default.
 |HTML|text/html|`.html`|
 
 Not all media types support all Codable features. For example, JSON does not support top-level fragments and Plaintext does not support nested data.
-
-## Request Query
-
-## Client Response
