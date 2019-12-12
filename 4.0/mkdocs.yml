@@ -40,6 +40,8 @@ nav:
   - 'Groups': 'routing/groups.md'
 - 'Content':
   - 'Overview': 'content/overview.md'
+  - 'Query': 'content/query.md'
+  - 'Config': 'content/config.md'
 - 'Version (4.0)':
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'
