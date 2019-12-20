@@ -99,4 +99,19 @@ Upon visiting `/hello`, you should recieve an error message stating that you are
 
 If you open the inspector, you should notice a new cookie named `"vapor-session"` has been added to your browser.
 
+### Redirecting unauthenticated users to the Login page
 
+To redirect unauthenticated users from protected routes to the login page, add the `RedirectMiddleware` to your protected routes.
+
+```swift
+func boot(router Router) throws {
+    let auth = User.authSessionsMiddleware() // The Authentication Middleware
+    let redirect = RedirectMiddleware<User>(path: "login") // The redirection Middleware
+    
+    let loginRoutes = router.grouped([auth]) // The Login page should not be protected
+    loginRoutes.get("login", use: renderLogin)
+		
+    let protectedRoutes = router.grouped([redirect, auth])
+    protectedRoutes.get("protected", use: renderProtected)
+}
+```
