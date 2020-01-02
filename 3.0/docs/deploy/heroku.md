@@ -100,31 +100,23 @@ Connect your app with heroku (replace with your app's name).
 $ heroku git:remote -a your-apps-name-here
 ```
 
-### Set Stack
-
-As of 13 September 2018, Heroku’s default stack is Heroku 18, we need it to be 16 for vapor.
-
-```bash
-heroku stack:set heroku-16 -a your-apps-name-here
-```
-
 ### Set Buildpack
 
 Set the buildpack to teach heroku how to deal with vapor.
 
 ```bash
-heroku buildpacks:set https://github.com/vapor-community/heroku-buildpack
+heroku buildpacks:set vapor/vapor
 ```
 
 ### Swift version file
 
-The buildpack we added looks for a **.swift-version** file to know which version of swift to use. (replace 4.2.2 with whatever version your project requires.)
+The buildpack we added looks for a **.swift-version** file to know which version of swift to use. (replace 5.1.3 with whatever version your project requires.)
 
 ```bash
-echo "4.2.2" > .swift-version
+echo "5.1.3" > .swift-version
 ```
 
-This creates **.swift-version** with `4.2.2` as its contents.
+This creates **.swift-version** with `5.1.3` as its contents.
 
 
 ### Procfile
@@ -177,7 +169,7 @@ Any time you want to update, just get the latest changes into master and push to
 
 ### Add PostgreSQL database
 
-Visit your applicatio at dashboard.heroku.com annd go to the **Add-ons** section.
+Visit your application at dashboard.heroku.com and go to the **Add-ons** section.
 
 From here enter `postgress` and you'll see an option for `Heroku Postgres`. Select it.
 
@@ -208,11 +200,13 @@ Here is an example databsae configuration
 let databaseConfig: PostgreSQLDatabaseConfig
 if let url = Environment.get("DATABASE_URL") {
   // configuring database
-  databaseConfig = PostgreSQLDatabaseConfig(url: url)!
+  databaseConfig = PostgreSQLDatabaseConfig(url: url, transport: .unverifiedTLS)!
 } else {
   // ...
 }
 ```
+
+Unverified TLS is required if you are using Heroku Postgres's standard plan.
 
 Don't forget to commit these changes
 
