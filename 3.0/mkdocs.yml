@@ -107,6 +107,8 @@ nav:
 - 'WebSocket': 
     - 'Getting Started': 'websocket/getting-started.md'
     - 'Overview': 'websocket/overview.md'
+- 'Deploy':
+    - 'Heroku': 'deploy/heroku.md'
 - 'Extras': 
     - 'Style Guide': 'extras/style-guide.md'
     - 'Yeoman': 'extras/yeoman.md'
