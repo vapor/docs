@@ -1,21 +1,21 @@
 site_name: Vapor Docs
-site_url: 'https://docs.vapor.codes/4.0/'
+site_url: "https://docs.vapor.codes/4.0/"
 repo_url: http://github.com/vapor/vapor
 edit_uri: https://github.com/vapor/documentation/edit/master/4.0/docs/
 theme:
-  name: 'material'
+  name: "material"
   palette:
-    primary: 'black'
-    accent: 'blue'
-  logo: 'logo.png'
+    primary: "black"
+    accent: "blue"
+  logo: "logo.png"
 extra:
   font:
-    text: 'Roboto Slab'
-    code: 'Source Code Pro'
+    text: "Roboto Slab"
+    code: "Source Code Pro"
   # disqus: 'vapor-docs'
 google_analytics:
-  - 'UA-76177358-4'
-  - 'auto'
+  - "UA-76177358-4"
+  - "auto"
 markdown_extensions:
   - admonition
   - codehilite:
@@ -25,20 +25,25 @@ markdown_extensions:
   - toc:
       permalink: true
 nav:
-- 'Welcome': 'index.md'
-- 'Install':
-  - 'macOS': 'install/macos.md'
-  - 'Ubuntu': 'install/ubuntu.md'
-- 'Getting Started':
-  - 'Hello, world': 'getting-started/hello-world.md'
-  - 'Folder Structure': 'getting-started/folder-structure.md'
-  - 'SPM': 'getting-started/spm.md'
-- 'Routing': 
-  - 'Overview': 'routing/overview.md'
-  - 'Routes': 'routing/routes.md'
-  - 'Groups': 'routing/groups.md'
-- 'Version (4.0)':
-    - '1.5': 'version/1_5.md'
-    - '2.0': 'version/2_0.md'
-    - '3.0': 'version/3_0.md'
-    - '4.0': 'version/4_0.md'
+  - "Welcome": "index.md"
+  - "Install":
+      - "macOS": "install/macos.md"
+      - "Ubuntu": "install/ubuntu.md"
+  - "Getting Started":
+      - "Hello, world": "getting-started/hello-world.md"
+      - "Folder Structure": "getting-started/folder-structure.md"
+      - "SPM": "getting-started/spm.md"
+  - "Routing":
+      - "Overview": "routing/overview.md"
+      - "Routes": "routing/routes.md"
+      - "Groups": "routing/groups.md"
+  - "Jobs":
+      - "Getting Started": "jobs/getting-started.md"
+      - "Modeling Jobs": "jobs/jobs.md"
+      - "Dispatching Jobs": "jobs/dispatching-jobs.md"
+      - "Scheduling Jobs": "jobs/scheduling-jobs.md"
+  - "Version (4.0)":
+      - "1.5": "version/1_5.md"
+      - "2.0": "version/2_0.md"
+      - "3.0": "version/3_0.md"
+      - "4.0": "version/4_0.md"
