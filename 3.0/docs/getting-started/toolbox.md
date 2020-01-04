@@ -2,6 +2,10 @@
 
 Vapor's command line interface provides shortcuts and assistance for common tasks.
 
+Installation (macOS): [Install &rarr; macOS](../install/macos.md)
+
+Installation (Ubuntu): [Install &rarr; Ubuntu](../install/ubuntu.md)
+
 <img width="682" alt="Vapor Toolbox" src="https://cloud.githubusercontent.com/assets/1342803/23553208/26af9a0e-0020-11e7-8ed5-1ce09407ae8e.png">
 
 Help prints useful information about available commands and flags.

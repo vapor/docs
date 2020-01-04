@@ -35,6 +35,7 @@ Now that you have Swift 4.1, let's install the [Vapor Toolbox](../getting-starte
 The toolbox includes all of Vapor's dependencies as well as a handy CLI tool for creating new projects.
 
 ```sh
+brew tap vapor/tap
 brew install vapor/tap/vapor
 ```
 
