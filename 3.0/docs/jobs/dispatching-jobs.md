@@ -15,7 +15,7 @@ final class EmailController: RouteCollection {
     }
     
     func sendEmail(req: Request) throws -> Future<HTTPStatus> {
-        let job = EmailJob(to: "to@to.com", from: "from@from.com", message: "message")
+        let job = EmailJobContext(to: "to@to.com", from: "from@from.com", message: "message")
         return queue.dispatch(job: job).transform(to: .ok)
     }
 }
