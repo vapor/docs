@@ -13,7 +13,7 @@ Some of the tasks this package works well for:
 This package is similar to [Ruby Sidekiq](https://github.com/mperham/sidekiq). It provides the following features:
 
 - Safe handling of `SIGTERM` and `SIGINT` signals sent by hosting providers to indicate a shutdown, restart, or new deploy.
-- Different queue priorities. Allows specifying a job be run on the `email` queue, for example, versus the `data-processing` queue.
+- Different queue priorities. For example, you can specify a job to be run on the email queue and another job to be run on the data-processing queue.
 - Implements the reliable queue process to help with unexpected failures.
 - Includes a maxRetryCount feature that will repeat the job until it succeeds up until a specified count.
 - Uses NIO to utilize all available cores and EventLoops for jobs.
@@ -54,6 +54,12 @@ let package = Package(
 ```
 
 Don't forget to add the module as a dependency in the `targets` array. Once you have added the dependency, regenerate your Xcode project with the following command:
+
+```sh
+open Package.swift
+```
+
+Or:
 
 ```sh
 vapor xcode

@@ -5,7 +5,9 @@ The Jobs package also allows you to schedule jobs to occur at certain points in 
 ## Starting the scheduler worker
 The scheduler requires a separate worker process to be running, similar to the queue worker. You can start the worker by running this command: 
 
-`vapor run jobs --scheduled`
+```sh
+vapor run jobs --scheduled
+```
 
 !!! tip
     Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: Run run jobs --scheduled`
@@ -60,3 +62,29 @@ There are five main methods that can be called on a scheduler, each of which cre
 |                 | `at(_ hour: Hour24, _ minute: Minute)`| The hour and minute to run the job on. Final method in the chain.              |
 |                 | `at(_ hour: Hour12, _ minute: Minute, _ period: HourPeriod)` | The hour, minute, and period to run the job on. Final method of the chain |
 | `hourly()`      | `at(_ minute: Minute)`                 | The minute to run the job at. Final method of the chain.                      |
+
+## Available helpers 
+Jobs ships with some helpers enums to make scheduling a bit easier: 
+
+| Helper Function | Available Helper Enum                 |
+|-----------------|---------------------------------------|
+| `yearly()`      | `.january`, `.february`, `.march`, ...|
+| `monthly()`     | `.first`, `.last`, `.exact(1)`        |
+| `weekly()`      | `.sunday`, `.monday`, `.tuesday`, ... |
+| `daily()`       | `.midnight`, `.noon`                  |
+
+To use the helper enum, call in to the appropriate modifier on the helper function and pass the value. For example:
+
+```swift
+// Every year in January 
+.yearly().in(.january)
+
+// Every month on the first day 
+.monthly().on(.first)
+
+// Every week on Sunday 
+.weekly().on(.sunday)
+
+// Every day at midnight
+.daily().at(.midnight)
+```

@@ -23,7 +23,7 @@ struct EmailJob: Job {
     }
     
     func error(_ context: JobContext, _ error: Error, _ payload: Email) -> EventLoopFuture<Void> {
-        //If you don't want to handle errors you can simply return a future. You can also omit this function entirely. 
+        // If you don't want to handle errors you can simply return a future. You can also omit this function entirely. 
         return context.eventLoop.future()
     }
 }

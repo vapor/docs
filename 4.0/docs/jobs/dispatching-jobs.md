@@ -35,13 +35,14 @@ Jobs can also be set to only run after a certain `Date` has passed. To specify a
 
 ```swift
 app.get("email") { req in
+    let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // One day
     return req
         .jobs
         .dispatch(
             EmailJob.self, 
             .init(to: "email@email.com", message: "message"),
             maxRetryCount: 3,
-            delayUntil: someFutureDate
+            delayUntil: futureDate
         ).map { "done" }
 }
 ```
@@ -64,13 +65,14 @@ Then, specify the queue type when you retrieve the `jobs` object:
 
 ```swift
 app.get("email") { req in
+    let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // One day
     return req
         .jobs(.emails)
         .dispatch(
             EmailJob.self, 
             .init(to: "email@email.com", message: "message"),
             maxRetryCount: 3,
-            delayUntil: someFutureDate
+            delayUntil: futureDate
         ).map { "done" }
 }
 ```

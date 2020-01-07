@@ -13,7 +13,7 @@ Some of the tasks this package works well for:
 This package is similar to [Ruby Sidekiq](https://github.com/mperham/sidekiq). It provides the following features:
 
 - Safe handling of `SIGTERM` and `SIGINT` signals sent by hosting providers to indicate a shutdown, restart, or new deploy.
-- Different queue priorities. Allows specifying a job be run on the `email` queue, for example, versus the `data-processing` queue.
+- Different queue priorities. For example, you can specify a job to be run on the email queue and another job to be run on the data-processing queue.
 - Implements the reliable queue process to help with unexpected failures.
 - Includes a maxRetryCount feature that will repeat the job until it succeeds up until a specified count.
 - Uses NIO to utilize all available cores and EventLoops for jobs.
@@ -91,10 +91,10 @@ To start a new queue worker, run `vapor run jobs`. You can also specify a specif
 To run a worker in the same process as your application (as opposed to starting a whole separate server to handle it), call the `JobsCommand` like this in your `boot.swift` file:
 
 ```swift
-try JobsCommand(application: app, scheduled: false).startJobs(on: .default)
+try JobsCommand(application: app).startJobs(on: .default)
 ```
 
-To run scheduled jobs in process, pass the `scheduled` flag:
+To run scheduled jobs in process, pass the `scheduled` flag and call `startScheduledJobs()`:
 
 ```swift
 try JobsCommand(application: app, scheduled: true).startScheduledJobs()

@@ -49,8 +49,34 @@ There are five main methods that can be called on a scheduler, each of which cre
 |-----------------|---------------------------------------|--------------------------------------------------------------------------------|
 | `yearly()`      | `in(_ month: Month) -> Monthly`       | The month to run the job in. Returns a `Monthly` object for further building.  |
 | `monthly()`     | `on(_ day: Day) -> Daily`             | The day to run the job in. Returns a `Daily` object for further building.      |
-| `weekly()`      | `on(_ dayOfWeek: DayOfWeek) -> Daily` | The day of the week to run the job on. Returns a `Daily` object.               |
+| `weekly()`      | `on(_ weekday: Weekday) -> Daily` | The day of the week to run the job on. Returns a `Daily` object.               |
 | `daily()`       | `at(_ time: Time)`                    | The time to run the job on. Final method in the chain.                         |
 |                 | `at(_ hour: Hour24, _ minute: Minute)`| The hour and minute to run the job on. Final method in the chain.              |
 |                 | `at(_ hour: Hour12, _ minute: Minute, _ period: HourPeriod)` | The hour, minute, and period to run the job on. Final method of the chain |
 | `hourly()`      | `at(_ minute: Minute)`                 | The minute to run the job at. Final method of the chain.                      |
+
+## Available helpers 
+Jobs ships with some helpers enums to make scheduling a bit easier: 
+
+| Helper Function | Available Helper Enum                 |
+|-----------------|---------------------------------------|
+| `yearly()`      | `.january`, `.february`, `.march`, ...|
+| `monthly()`     | `.first`, `.last`, `.exact(1)`        |
+| `weekly()`      | `.sunday`, `.monday`, `.tuesday`, ... |
+| `daily()`       | `.midnight`, `.noon`                  |
+
+To use the helper enum, call in to the appropriate modifier on the helper function and pass the value. For example:
+
+```swift
+// Every year in January 
+.yearly().in(.january)
+
+// Every month on the first day 
+.monthly().on(.first)
+
+// Every week on Sunday 
+.weekly().on(.sunday)
+
+// Every day at midnight
+.daily().at(.midnight)
+```

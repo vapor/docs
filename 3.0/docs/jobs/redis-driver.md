@@ -28,10 +28,10 @@ In your `configure.swift` file, add the following:
 
 ```swift
 guard let url = URL(string: "redis://127.0.0.1:6379") else { throw Abort(.internalServerError) }
-guard let configuration = RedisConfiguration(url: url) else { throw Abort(.internalServerError) }
+guard let redisConfiguration = RedisConfiguration(url: url) else { throw Abort(.internalServerError) }
     
 services.register(JobsPersistenceLayer.self) { container -> JobsRedisDriver in
-    let client = RedisConnectionSource(config: configuration, eventLoop: container.next())
-    return JobsRedisDriver(client: client, eventLoop: container.next())
+    let redisClient = RedisConnectionSource(config: redisConfiguration, eventLoop: container.next())
+    return JobsRedisDriver(client: redisClient, eventLoop: container.next())
 }
 ```
