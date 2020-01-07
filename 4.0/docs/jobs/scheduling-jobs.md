@@ -5,7 +5,9 @@ The Jobs package also allows you to schedule jobs to occur at certain points in 
 ## Starting the scheduler worker
 The scheduler requires a separate worker process to be running, similar to the queue worker. You can start the worker by running this command: 
 
-`swift run Run jobs --scheduled`
+```sh
+swift run Run jobs --scheduled
+```
 
 !!! tip
     Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: Run run jobs --scheduled`

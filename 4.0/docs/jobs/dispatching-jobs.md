@@ -3,7 +3,7 @@
 To dispatch a job, you need access to an instance of `Application` or `Request`. You will most likely be dispatching jobs inside of a route handler:
 
 ```swift
-app.get("email") { req in
+app.get("email") { req -> EventLoopFuture<String> in
     return req
         .jobs
         .dispatch(
@@ -18,7 +18,7 @@ app.get("email") { req in
 Jobs will automatically retry themselves upon error if you specify a `maxRetryCount`. For example: 
 
 ```swift
-app.get("email") { req in
+app.get("email") { req -> EventLoopFuture<String> in
     return req
         .jobs
         .dispatch(
@@ -34,7 +34,7 @@ app.get("email") { req in
 Jobs can also be set to only run after a certain `Date` has passed. To specify a delay, pass a `Date` into the `delayUntil` parameter in `dispatch`:
 
 ```swift
-app.get("email") { req in
+app.get("email") { req -> EventLoopFuture<String> in
     let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // One day
     return req
         .jobs
@@ -64,7 +64,7 @@ extension JobsQueueName {
 Then, specify the queue type when you retrieve the `jobs` object:
 
 ```swift
-app.get("email") { req in
+app.get("email") { req -> EventLoopFuture<String> in
     let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // One day
     return req
         .jobs(.emails)
