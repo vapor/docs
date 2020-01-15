@@ -1,6 +1,6 @@
-# Deploying to Digital Ocean
+# Deploying to DigitalOcean
 
-This guide will walk you through deploying a simple Hello, world Vapor application to a [Droplet](https://www.digitalocean.com/products/droplets/). To follow this guide, you will need to have a [Digital Ocean](https://www.digitalocean.com) account with billing configured.
+This guide will walk you through deploying a simple Hello, world Vapor application to a [Droplet](https://www.digitalocean.com/products/droplets/). To follow this guide, you will need to have a [DigitalOcean](https://www.digitalocean.com) account with billing configured.
 
 ## Create Server
 
@@ -29,7 +29,7 @@ Open your terminal and connect to the server as root using SSH.
 ssh root@your_server_ip
 ```
 
-Digital Ocean has an in-depth guide for [initial server setup on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04). This guide will quickly cover the basics.
+DigitalOcean has an in-depth guide for [initial server setup on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04). This guide will quickly cover the basics.
 
 ### Configure Firewall
 
@@ -172,7 +172,7 @@ Back on your server, you should see logs for the test request.
 
 Use `CTRL+C` to quit the server. It may take a second to shutdown.
 
-Congratulations on getting your Vapor app running on a Digital Ocean Droplet!
+Congratulations on getting your Vapor app running on a DigitalOcean Droplet!
 
 ## Next Steps
 

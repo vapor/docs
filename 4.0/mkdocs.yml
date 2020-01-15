@@ -37,7 +37,7 @@ nav:
   - 'Routes': 'routing/routes.md'
   - 'Groups': 'routing/groups.md'
 - 'Deploy':
-  - 'Digital Ocean': 'deploy/digital-ocean.md'
+  - 'DigitalOcean': 'deploy/digital-ocean.md'
   - 'Supervisor': 'deploy/supervisor.md'
   - 'Nginx': 'deploy/nginx.md'
 - 'Version (4.0)':
