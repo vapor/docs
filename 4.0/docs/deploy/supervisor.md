@@ -15,16 +15,16 @@ Each Vapor app on your server should have its own configuration file. For an exa
 
 ```sh
 [program:hello]
-command=/home/vapor/hello/.build/release/Run serve --env=production
+command=/home/vapor/hello/.build/release/Run serve --env production
 directory=/home/vapor/hello/
-user=www-data
+user=vapor
 stdout_logfile=/var/log/supervisor/%(program_name)-stdout.log
 stderr_logfile=/var/log/supervisor/%(program_name)-stderr.log
 ```
 
-As specified in our configuration file the `Hello` project is located in the home folder for the user `vapor`. Make sure `directory` points to the root directory of your project where the `Config/` folder is.
+As specified in our configuration file the `Hello` project is located in the home folder for the user `vapor`. Make sure `directory` points to the root directory of your project where the `Package.swift` file is.
 
-The `--env=production` flag will disable verbose logging and prioritize the `Config/production` sub folder of your configuration files.
+The `--env production` flag will disable verbose logging.
 
 ### Environment
 
@@ -34,16 +34,11 @@ You can export variables to your Vapor app with supervisor.
 environment=PORT=8123
 ```
 
-Exported variables can be used in Vapor's configuration files with the `$` prefix.
+Exported variables can be used in Vapor using `Environment.get`
 
-`Config/production/servers.json `
-```json
-{
-	"port": "$PORT"
-}
+```swift
+let port = Environment.get("PORT")
 ```
-
-The above config file will start a server named `my-server` on the port number exported by supervisor. This is a great way to control how Vapor starts from the supervisor config scripts. Feel free to name the server whatever you like.
 
 ## Start
 
