@@ -6,11 +6,11 @@ This guide will walk you through deploying a simple Hello, world Vapor applicati
 
 Let's start by installing Swift on an Ubuntu server. Use the create menu to create a new Droplet.
 
-<img src="/images/digital-ocean-create-droplet.png" width="541px">
+![Create Droplet](../images/digital-ocean-create-droplet.png)
 
 Under distributions, select Ubuntu 18.04 LTS.
 
-<img src="/images/digital-ocean-distributions-ubuntu-18.png" width="842px">
+![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu-18.png)
 
 !!! note 
 	You may select any version of Ubuntu that Swift supports. At the time of writing, Swift 5.1 supports Ubuntu 14.04, 16.04, and 18.04. You can check which operating systems are officially supported on the [Swift Releases](https://swift.org/download/#releases) page.
@@ -19,7 +19,7 @@ After selecting the distribution, choose any plan and datacenter region you pref
 
 Once the new server is ready, hover over the Droplet's IP address and click copy.
 
-<img src="/images/digital-ocean-droplet-list.png" width="1009px">
+![Droplet List](../images/digital-ocean-droplet-list.png)
 
 ## Initial Setup
 
@@ -84,7 +84,7 @@ sudo apt-get install clang libicu-dev libatomic1 build-essential pkg-config
 
 This guide will install Swift 5.1.3. Visit the [Swift Downloads](https://swift.org/download/#releases) page for a link to latest release. Copy the download link for Ubuntu 18.04.
 
-<img src="/images/swift-download-ubuntu-18-copy-link.png" width="772px">
+![Download Swift](../images/swift-download-ubuntu-18-copy-link.png)
 
 Download and decompress the Swift toolchain.
 
