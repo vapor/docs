@@ -105,17 +105,15 @@ sudo mkdir /swift
 sudo mv swift-5.1.3-RELEASE-ubuntu18.04 /swift/5.1.3
 ```
 
-Export Swift's bin path in your bash profile. This is located at `~/.bashrc`
+Add Swift to `/usr/bin` so it can be executed by `vapor` and `root`.
 
 ```sh
-# Add Swift 5.1.3 executables to PATH
-export PATH="/swift/5.1.3/usr/bin/:${PATH}"
+sudo ln -s /swift/5.1.3/usr/bin/swift /usr/bin/swift
 ```
 
-Reload your bash profile and verify that Swift was installed correctly.
+Verify that Swift was installed correctly.
 
 ```sh
-source ~/.bashrc 
 swift --version
 ```
 
