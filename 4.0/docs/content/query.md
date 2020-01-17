@@ -4,14 +4,14 @@ Vapor's Content APIs support handling URL encoded data in the URL's query string
 
 ## Decoding
 
-To understand how decoding a URL query string works, take a look at the follow example request.
+To understand how decoding a URL query string works, take a look at the following example request.
 
 ```http
 GET /hello?name=Vapor HTTP/1.1
 content-length: 0
 ```
 
-Just like the APIs for handling HTTP message body content, the first step for parsing URL query strings is to create a `struct` that matches the expectd structure.
+Just like the APIs for handling HTTP message body content, the first step for parsing URL query strings is to create a `struct` that matches the expected structure.
 
 ```swift
 struct Hello: Content {
