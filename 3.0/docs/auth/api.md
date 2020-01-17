@@ -51,7 +51,7 @@ If you would like to ensure that a certain model's authentication has succeeded 
 
 ### Model
 
-Fluent models are _what_ the middlewares authenticate. Learn more about models by reading [Fluent &rarr; Models](../fluent/models.md). If authentication is succesful, the middleware will have fetched your model from the database and stored it on the request. This means you can access an authenticated model synchronously in your route. 
+Fluent models are _what_ the middlewares authenticate. Learn more about models by reading [Fluent &rarr; Models](../fluent/models.md). If authentication is successful, the middleware will have fetched your model from the database and stored it on the request. This means you can access an authenticated model synchronously in your route. 
 
 In your route closure, you use the following methods to check for authentication:
 

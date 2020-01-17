@@ -13,7 +13,6 @@ extra:
   font:
     text: 'Roboto Slab'
     code: 'Source Code Pro'
-  # disqus: 'vapor-docs'
 google_analytics:
   - 'UA-76177358-4'
   - 'auto'
@@ -42,6 +41,10 @@ nav:
   - 'Overview': 'content/overview.md'
   - 'Query': 'content/query.md'
   - 'Custom': 'content/custom.md'
+- 'Deploy':
+  - 'DigitalOcean': 'deploy/digital-ocean.md'
+  - 'Supervisor': 'deploy/supervisor.md'
+  - 'Nginx': 'deploy/nginx.md'
 - 'Version (4.0)':
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'

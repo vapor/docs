@@ -44,12 +44,12 @@ Server starting on http://localhost:8080
 
 ## Visit Localhost
 
-Open your web browser, and visit <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello &rarr;</a>
+Open your web browser, and visit <a href="http://localhost:8080" target="_blank">localhost:8080 &rarr;</a>
 
 You should see the following page.
 
 ```html
-Hello, world!
+It works!
 ```
 
 Congratulations on creating, building, and running your first Vapor app! 🎉
