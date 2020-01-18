@@ -1,6 +1,6 @@
 # Fluent 
 
-Fluent is an [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) framework for Swift. It takes advantage of Swift's strong type system to provide an easy-to-use interface for your database. Using Fluent centers around the creation of model types which represent data structures in your database. These models are then used to perform create, read, update, and delete operations in-place of writing raw queries.
+Fluent is an [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) framework for Swift. It takes advantage of Swift's strong type system to provide an easy-to-use interface for your database. Using Fluent centers around the creation of model types which represent data structures in your database. These models are then used to perform create, read, update, and delete operations instead of writing raw queries.
 
 ## Configuration
 
@@ -12,21 +12,21 @@ Models represent fixed data structures in your database, like tables or collecti
 
 ```swift
 final class Galaxy: Model {
-	// name of the table or collection
+    // Name of the table or collection.
     static let schema = "galaxies"
 
-    // unique identifier for this galaxy
-	@ID(key: "id")
-	var id: Int?
+    // Unique identifier for this Galaxy.
+    @ID(key: "id")
+    var id: Int?
 
-    // the galaxy's name
-	@Field(key: "name")
-	var name: String
+    // The Galaxy's name.
+    @Field(key: "name")
+    var name: String
 
-    // creates a new, empty galaxy
+    // Creates a new, empty Galaxy.
     init() { }
 
-    // creates a new galaxy with all properties set
+    // Creates a new Galaxy with all properties set.
     init(id: Int? = nil, name: String) {
         self.id = id
         self.name = name
@@ -37,9 +37,9 @@ final class Galaxy: Model {
 To create a new model, create a new class conforming to `Model`. 
 
 !!! tip
-	Making model classes `final` is recommended as it improves performance and simplifies conformance requirements.
+    It's recommended to mark model classes `final` to improve performance and simplify conformance requirements.
 
-The model protocol's first requirement is the static string `schema`.
+The `Model` protocol's first requirement is the static string `schema`.
 
 ```swift
 static let schema = "galaxies"
@@ -92,7 +92,7 @@ If your database uses pre-defined schemas, like SQL databases, you will need a m
 
 ```swift
 struct CreateGalaxy: Migration {
-    // prepares the database for storing Galaxy models
+    // Prepares the database for storing Galaxy models.
     func prepare(on database: Database) -> EventLoopFuture<Void> {
         database.schema("galaxies")
             .field("id", .int, .identifier(auto: true))
@@ -100,7 +100,7 @@ struct CreateGalaxy: Migration {
             .create()
     }
 
-    // optionally reverts the changes made in the prepare method
+    // Optionally reverts the changes made in the prepare method.
     func revert(on database: Database) -> EventLoopFuture<Void> {
         database.schema("galaxies").delete()
     }
@@ -218,25 +218,25 @@ What are galaxies without stars! Let's take a quick look at Fluent's powerful re
 
 ```swift
 final class Star: Model, Content {
-    // name of the table or collection
+    // Name of the table or collection.
     static let schema = "stars"
 
-    // unique identifier for this star
+    // Unique identifier for this Star.
     @ID(key: "id")
     var id: Int?
 
-    // the star's name
+    // The Star's name.
     @Field(key: "name")
     var name: String
 
-    // reference to the galaxy this star is in
+    // Reference to the Galaxy this Star is in.
     @Parent(key: "galaxy_id")
     var galaxy: Galaxy
 
-    // creates a new, empty star
+    // Creates a new, empty Star.
     init() { }
 
-    // creates a new star with all properties set
+    // Creates a new Star with all properties set.
     init(id: Int? = nil, name: String, galaxyID: Int) {
         self.id = id
         self.name = name
@@ -272,7 +272,7 @@ Next, create a migration to prepare the database for handling `Star`.
 
 ```swift
 struct CreateStar: Migration {
-    // prepares the database for storing Star models
+    // Prepares the database for storing Star models.
     func prepare(on database: Database) -> EventLoopFuture<Void> {
         database.schema("stars")
             .field("id", .int, .identifier(auto: true))
@@ -281,7 +281,7 @@ struct CreateStar: Migration {
             .create()
     }
 
-    // optionally reverts the changes made in the prepare method
+    // Optionally reverts the changes made in the prepare method.
     func revert(on database: Database) -> EventLoopFuture<Void> {
         database.schema("stars").delete()
     }
@@ -347,7 +347,7 @@ You should see the newly created star returned with a unique identifier.
 Now let's take a look at how you can utilize Fluent's eager-loading feature to automatically return a galaxy's stars in the `GET /galaxies` route. Add the following property to the `Galaxy` model.
 
 ```swift
-// all the stars in this galaxy
+// All the Stars in this Galaxy.
 @Children(for: \.$galaxy)
 var stars: [Star]
 ```
