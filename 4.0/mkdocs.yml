@@ -41,6 +41,9 @@ nav:
   - 'Overview': 'content/overview.md'
   - 'Query': 'content/query.md'
   - 'Custom': 'content/custom.md'
+- 'Fluent':
+  - 'Overview': 'fluent/overview.md'
+  - 'Config': 'fluent/config.md'
 - 'Deploy':
   - 'DigitalOcean': 'deploy/digital-ocean.md'
   - 'Supervisor': 'deploy/supervisor.md'
