@@ -32,7 +32,7 @@ let hello = try req.content.decode(Hello.self, using: decoder)
 
 ## Custom Coders
 
-Application's and third-party packages can add support for media types that Vapor does not support by default by creating custom coders.
+Applications and third-party packages can add support for media types that Vapor does not support by default by creating custom coders.
 
 ### Content
 
