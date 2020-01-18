@@ -1,10 +1,10 @@
 # Configuring Fluent
 
-When creating a project using `vapor new`, answer "yes" to including Fluent and choose which database driver you want to use. This will automatically add the dependencies to your new project as well as example configuration files.
+When creating a project using `vapor new`, answer "yes" to including Fluent and choose which database driver you want to use. This will automatically add the dependencies to your new project as well as example configuration code.
 
 ## Existing Project
 
-If you have an existing project you want to add Fluent to, you will need to add two dependencies to your [package](../getting-started/spm.md):
+If you have an existing project that you want to add Fluent to, you will need to add two dependencies to your [package](../getting-started/spm.md):
 
 - [vapor/fluent](https://github.com/vapor/fluent)@4.0.0
 - One (or more) Fluent driver of your choice
