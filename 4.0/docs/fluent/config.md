@@ -176,5 +176,5 @@ app.databases.use(.mysql(
 You can also parse the credentials from a database connection string.
 
 ```swift
-try app.databases.use(.mysql(url: "<connection string>"), as: .psql)
+try app.databases.use(.mysql(url: "<connection string>"), as: .mysql)
 ```
