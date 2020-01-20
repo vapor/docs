@@ -24,6 +24,7 @@ markdown_extensions:
   - meta
   - toc:
       permalink: true
+
 nav:
 - 'Welcome': 'index.md'
 - 'Install':
@@ -36,10 +37,11 @@ nav:
 - 'Basics':
   - 'Routing': 'routing.md'
   - 'Content': 'content.md'
-  - 'Authentication': 'authentication.md'
 - 'Fluent':
   - 'Overview': 'fluent/overview.md'
   - 'Config': 'fluent/config.md'
+- 'Security':
+  - 'Authentication': 'authentication.md'
 - 'Deploy':
   - 'DigitalOcean': 'deploy/digital-ocean.md'
   - 'Supervisor': 'deploy/supervisor.md'
