@@ -4,7 +4,7 @@ When creating a project using `vapor new`, answer "yes" to including Fluent and 
 
 ## Existing Project
 
-If you have an existing project that you want to add Fluent to, you will need to add two dependencies to your [package](/spm.md):
+If you have an existing project that you want to add Fluent to, you will need to add two dependencies to your [package](../spm.md):
 
 - [vapor/fluent](https://github.com/vapor/fluent)@4.0.0
 - One (or more) Fluent driver of your choice

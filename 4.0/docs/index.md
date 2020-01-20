@@ -4,9 +4,9 @@ Vapor is the most used web framework for Swift. It provides a beautifully expres
 
 ## Getting Started
 
-If this is your first time using Vapor, head to [Install → macOS](/install/macos.md) to install Swift and Vapor.
+If this is your first time using Vapor, head to [Install → macOS](install/macos.md) to install Swift and Vapor.
 
-Once you have Vapor installed, check out [Getting Started → Hello, world](/hello-world.md) to create your first Vapor app!
+Once you have Vapor installed, check out [Getting Started → Hello, world](hello-world.md) to create your first Vapor app!
 
 ## Other Sources
 

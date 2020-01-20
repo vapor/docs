@@ -45,4 +45,4 @@ You should see a list of available commands.
 
 ## Next
 
-Now that you have installed Swift and Vapor Toolbox, create your first app in [Getting Started &rarr; Hello, world](/hello-world.md).
+Now that you have installed Swift and Vapor Toolbox, create your first app in [Getting Started &rarr; Hello, world](../hello-world.md).
