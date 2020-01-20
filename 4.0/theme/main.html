@@ -4,9 +4,9 @@
   {% if page and page.meta and page.meta.title %}
     <title>{{ page.meta.title }} - {{ config.site_name }}</title>
   {% elif page and page.title and not page.is_homepage %}
-    <title>{{ config.site_name }}: {% 
+    <title>Vapor: {% 
       if page.parent.title 
-    %} {{ page.parent.title}} - {% 
+    %} {{ page.parent.title}} &rarr; {% 
       endif 
     %} {{ page.title }}</title>
   {% else %}
