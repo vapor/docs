@@ -36,6 +36,7 @@ nav:
 - 'Basics':
   - 'Routing': 'routing.md'
   - 'Content': 'content.md'
+  - 'Authentication': 'authentication.md'
 - 'Fluent':
   - 'Overview': 'fluent/overview.md'
   - 'Config': 'fluent/config.md'
