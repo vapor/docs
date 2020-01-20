@@ -24,7 +24,6 @@ markdown_extensions:
   - meta
   - toc:
       permalink: true
-
 nav:
 - 'Welcome': 'index.md'
 - 'Install':
