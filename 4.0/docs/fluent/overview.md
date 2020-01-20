@@ -4,7 +4,7 @@ Fluent is an [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) fram
 
 ## Configuration
 
-If you haven't added Fluent to your Vapor project or set it up yet, check out the [configuration](../config.md) guide first. This guide assumes your app can already connect to a database.
+If you haven't added Fluent to your Vapor project or set it up yet, check out the [configuration](config.md) guide first. This guide assumes your app can already connect to a database.
 
 ## Models
 
@@ -184,7 +184,7 @@ app.post("galaxies") { req -> EventLoopFuture<Galaxy> in
 ```
 
 !!! seealso
-    See [Content &rarr; Overview](../content/overview.md) for more information about decoding request bodies.
+    See [Content &rarr; Overview](../basics/content.md) for more information about decoding request bodies.
 
 Once you have an instance of the model, calling `create(on:)` saves the model to the database. This returns an `EventLoopFuture<Void>` which signals that the save has completed. Once the save completes, return the newly created model using `map`.
 

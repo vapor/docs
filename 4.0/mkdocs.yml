@@ -33,14 +33,10 @@ nav:
   - 'Hello, world': 'getting-started/hello-world.md'
   - 'Folder Structure': 'getting-started/folder-structure.md'
   - 'SPM': 'getting-started/spm.md'
-- 'Routing': 
-  - 'Overview': 'routing/overview.md'
-  - 'Routes': 'routing/routes.md'
-  - 'Groups': 'routing/groups.md'
-- 'Content':
-  - 'Overview': 'content/overview.md'
-  - 'Query': 'content/query.md'
-  - 'Custom': 'content/custom.md'
+- 'Basics':
+  - 'Routing': 'basics/routing.md'
+  - 'Content': 'basics/content.md'
+  - 'Validation': 'basics/validation.md'
 - 'Fluent':
   - 'Overview': 'fluent/overview.md'
   - 'Config': 'fluent/config.md'
