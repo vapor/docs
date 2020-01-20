@@ -30,17 +30,12 @@ nav:
   - 'macOS': 'install/macos.md'
   - 'Ubuntu': 'install/ubuntu.md'
 - 'Getting Started':
-  - 'Hello, world': 'getting-started/hello-world.md'
-  - 'Folder Structure': 'getting-started/folder-structure.md'
-  - 'SPM': 'getting-started/spm.md'
-- 'Routing': 
-  - 'Overview': 'routing/overview.md'
-  - 'Routes': 'routing/routes.md'
-  - 'Groups': 'routing/groups.md'
-- 'Content':
-  - 'Overview': 'content/overview.md'
-  - 'Query': 'content/query.md'
-  - 'Custom': 'content/custom.md'
+  - 'Hello, world': 'hello-world.md'
+  - 'Folder Structure': 'folder-structure.md'
+  - 'SPM': 'spm.md'
+- 'Basics':
+  - 'Routing': 'routing.md'
+  - 'Content': 'content.md'
 - 'Fluent':
   - 'Overview': 'fluent/overview.md'
   - 'Config': 'fluent/config.md'
