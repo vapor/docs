@@ -184,7 +184,7 @@ app.post("galaxies") { req -> EventLoopFuture<Galaxy> in
 ```
 
 !!! seealso
-    See [Content &rarr; Overview](../basics/content.md) for more information about decoding request bodies.
+    See [Content &rarr; Overview](/content.md) for more information about decoding request bodies.
 
 Once you have an instance of the model, calling `create(on:)` saves the model to the database. This returns an `EventLoopFuture<Void>` which signals that the save has completed. Once the save completes, return the newly created model using `map`.
 
