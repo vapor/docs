@@ -174,9 +174,9 @@ Below is a list of the currently supported validators and a brief explanation of
 |`.count(_:)`|Collection's count is within supplied bounds.|
 |`.email`|Contains a valid email.|
 |`.empty`|Collection is empty.|
-|`.in(_:)`|Value is in supplied collection.|
+|`.in(_:)`|Value is in supplied `Collection`.|
 |`.nil`|Value is `null`.|
-|`.range(_:)`|Value is within supplied range.|
+|`.range(_:)`|Value is within supplied `Range`.|
 |`.url`|Contains a valid URL.|
 
 Validators can also be combined to build complex validations using operators. 
