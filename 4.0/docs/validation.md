@@ -151,7 +151,7 @@ validations.add(
 
 Since it's not possible to decode a `Color` from an invalid value, this validation uses `String` as the base type. It uses the `.in` validator to verify that the value is a valid option: red, blue, or green. Since this value is optional, `required` is set to false to signal that validation should not fail if this key is missing from the request data.
 
-Note that while the favorite color validation will pass if the key is missing, it will not pass if `null` is supplied. If you want to support `null`, change the validation type to `String?` and use the `.nil ||` (read: "is nil or ...") convenience.
+Note that while the favorite color validation will pass if the key is missing, it will not pass if `null` is supplied. If you want to support `null`, change the validation type to `String?` and use the `.nil ||` (read as: "is nil or ...") convenience.
 
 ```swift
 validations.add(
