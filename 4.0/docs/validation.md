@@ -1,14 +1,14 @@
 # Validation
 
-Vapor's Validation API helps you validate incoming request data before using the [Content](content.md) API to decode data. 
+Vapor's Validation API helps you validate incoming request before using the [Content](content.md) API to decode data. 
 
 ## Introduction 
 
-Vapor's deep integration of Swift's type-safe `Codable` protocol means you don't need to worry about data validation as much compared to dynamically typed languages. However, there are still a few reasons why you might want to opt-in to explicit validation using Vapor's Validation API.
+Vapor's deep integration of Swift's type-safe `Codable` protocol means you don't need to worry about data validation as much compared to dynamically typed languages. However, there are still a few reasons why you might want to opt-in to explicit validation using the Validation API.
 
 ### Human-Readable Errors
 
-Decoding structs using Vapor's [Content](content.md) API will yield errors if any of the data is not valid. However, these error messages can sometimes lack human-readability. For example, take the following string-backed enum:
+Decoding structs using the [Content](content.md) API will yield errors if any of the data is not valid. However, these error messages can sometimes lack human-readability. For example, take the following string-backed enum:
 
 ```swift
 enum Color: String, Codable {
@@ -28,11 +28,11 @@ While this error is technically correct and successfully protected the endpoint 
 favoriteColor is not red, blue, or green
 ```
 
-Furthermore, `Codable` will stop attempting to decode a type as soon as the first error is hit. This means that even if there are many invalid properties in the request, the user will only see the first error. Vapor's Validation API will report all validation failures in a single request.
+Furthermore, `Codable` will stop attempting to decode a type as soon as the first error is hit. This means that even if there are many invalid properties in the request, the user will only see the first error. The Validation API will report all validation failures in a single request.
 
 ### Specific Validation
 
-`Codable` handles type validation well, but sometimes you want more than that. For example, validating the contents of a string or validating the size of an integer. The Validation APIs have validators for helping to validate data like emails, character sets, integer ranges, and more.
+`Codable` handles type validation well, but sometimes you want more than that. For example, validating the contents of a string or validating the size of an integer. The Validation API has validators for helping to validate data like emails, character sets, integer ranges, and more.
 
 ## Validatable
 
@@ -129,11 +129,11 @@ age is less than minimum of 13, email is not a valid email address
 Next, let's add validations for `name` and `username`. 
 
 ```swift
-validations.add("name", as: String.self, is: !.isEmpty)
+validations.add("name", as: String.self, is: !.empty)
 validations.add("username", as: String.self, is: .count(3...) && .alphanumeric)
 ```
 
-The name validation uses the `!` operator to invert the `.isEmpty` validation. This will require that the string is not empty.
+The name validation uses the `!` operator to invert the `.empty` validation. This will require that the string is not empty.
 
 The username validation combines two validators using `&&`. This will require that the string is at least 3 characters long _and_ contains only alphanumeric characters.
 
