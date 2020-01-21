@@ -4,11 +4,11 @@ Vapor's Validation API helps you validate incoming request data before using the
 
 ## Introduction 
 
-Vapor's deep integration of Swift's type-safe `Codable` protocol means you don't need to worry about data-validation as much as in dynamically typed languages. However, there are still a few reasons why you might want to opt-in to explicit validation using Vapor's Validation API.
+Vapor's deep integration of Swift's type-safe `Codable` protocol means you don't need to worry about data validation as much compared to dynamically typed languages. However, there are still a few reasons why you might want to opt-in to explicit validation using Vapor's Validation API.
 
 ### Human-Readable Errors
 
-Decoding structs using Vapor's [Content](content.md) API will yield errors if any of the data is not valid. However, these error messages can sometimes lack human-readability. For example, take the following string-backed enum.
+Decoding structs using Vapor's [Content](content.md) API will yield errors if any of the data is not valid. However, these error messages can sometimes lack human-readability. For example, take the following string-backed enum:
 
 ```swift
 enum Color: String, Codable {
@@ -38,8 +38,6 @@ Furthermore, `Codable` will stop attempting to decode a type as soon as the firs
 
 To validate a request, you will need to generate a `Validations` collection. This is most commonly done by conforming an existing type to `Validatable`. 
 
-### Content
-
 Let's take a look at how you could add validation to this simple `POST /users` endpoint. This guide assumes you are already familiar with the [Content](content.md) API.
 
 ```swift
@@ -49,6 +47,7 @@ enum Color: String, Codable {
 
 struct CreateUser: Content {
     var name: String
+    var username: String
     var age: Int
     var email: String
     var favoriteColor: Color?
@@ -56,7 +55,7 @@ struct CreateUser: Content {
 
 app.post("users") { req -> CreateUser in
     let user = try req.content.decode(CreateUser.self)
-    // do something with user
+    // Do something with user.
     return user
 }
 ```
@@ -68,12 +67,12 @@ The first step is to conform the type you are decoding, in this case `CreateUser
 ```swift
 extension CreateUser: Validatable {
     static func validations(_ validations: inout Validations) {
-        // validations go here
+        // Validations go here.
     }
 }
 ```
 
-The static method `validations` will be called when `CreateUser` is validated. Any validations you want to perform should be added to the supplied `Validations` collection. Let's take a look at adding a simple validation to require that the user's email is valid.
+The static method `validations(_:)` will be called when `CreateUser` is validated. Any validations you want to perform should be added to the supplied `Validations` collection. Let's take a look at adding a simple validation to require that the user's email is valid.
 
 ```swift
 validations.add("email", as: String.self, is: .email)
@@ -83,7 +82,7 @@ The first parameter is the value's expected key, in this case `"email"`. This sh
 
 ### Validating Request
 
-Once `Validatable` conformance is implemented, the type gains a new static property `validate(_:)` that can be used to validate requests. Add the following line before `req.content.decode` in the route handler.
+Once you've conformed your type to `Validatable`, the static `validate(_:)` function can be used to validate requests. Add the following line before `req.content.decode(CreateUser.self)` in the route handler.
 
 ```swift
 try CreateUser.validate(req)
@@ -100,7 +99,8 @@ Content-Type: application/json
     "age": 4,
     "email": "foo",
     "favoriteColor": "green",
-    "name": "Foo"
+    "name": "Foo",
+    "username": "foo"
 }
 ```
 
@@ -110,26 +110,34 @@ You should see the following error returned:
 email is not a valid email address
 ```
 
-### Range, Count, and Alphanumeric
+### Integer Validation
 
-Great, let's add a couple more validations for `name` and `age`:
+Great, now let's try adding a validation for `age`.
 
 ```swift
 validations.add("age", as: Int.self, is: .range(13...))
-validations.add("name", as: String.self, is: .count(3...) && .alphanumeric)
 ```
 
-The age validation requires that the age is greater than or equal to `13`.
-
-The name validation combines two validators using `&&`. This will require that the name is at least 3 characters long _and_ contains only alphanumeric characters.
-
-If you try the same request from above, you should see a new error now:
+The age validation requires that the age is greater than or equal to `13`. If you try the same request from above, you should see a new error now:
 
 ```
 age is less than minimum of 13, email is not a valid email address
 ```
 
-### Subset and Nil Ignoring
+### String Validation
+
+Next, let's add validations for `name` and `username`. 
+
+```swift
+validations.add("name", as: String.self, is: !.isEmpty)
+validations.add("username", as: String.self, is: .count(3...) && .alphanumeric)
+```
+
+The name validation uses the `!` operator to invert the `.isEmpty` validation. This will require that the string is not empty.
+
+The username validation combines two validators using `&&`. This will require that the string is at least 3 characters long _and_ contains only alphanumeric characters.
+
+### Enum Validation
 
 Finally, let's take a look at a slightly more advanced validation to check that the supplied `favoriteColor` is valid.
 
