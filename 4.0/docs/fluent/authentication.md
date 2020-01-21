@@ -12,11 +12,11 @@ This guide assumes you are familiar with Fluent and have successfully configured
 
 ## User
 
-You will need a model representing the user that will be authenticated. For this guide, we'll be using the following model:
+To start, you will need a model representing the user that will be authenticated. For this guide, we'll be using the following model, but you are free to use an existing model.
 
 ```swift
-import Vapor
 import Fluent
+import Vapor
 
 final class User: Model, Content {
     static let schema = "users"
@@ -47,8 +47,8 @@ final class User: Model, Content {
 This model must be able to store a username, in this case an email, and a password hash. The corresponding migration for this model is here:
 
 ```swift
-import Vapor
 import Fluent
+import Vapor
 
 extension User {
     struct Migration: Fluent.Migration {
@@ -74,7 +74,7 @@ Don't forget to add the migration to `app.migrations`.
 app.migrations.add(User.Migration())
 ``` 
 
-The first thing you will need is an endpoint to create new users. Let's use `POST /users`. Create a `Content` struct representing the data this endpoint expects. Learn more about the Content API [here](../content.md).
+The first thing you will need is an endpoint to create new users. Let's use `POST /users`. Create a [Content](../content.md) struct representing the data this endpoint expects.
 
 ```swift
 import Vapor
@@ -89,7 +89,7 @@ extension User {
 }
 ```
 
-If you like, you can conform this struct to `Validatable` to add validation requirements. Learn more about the Validation API [here](../validation.md).
+If you like, you can conform this struct to [Validatable](../validation.md) to add validation requirements.
 
 ```swift
 import Vapor
@@ -106,8 +106,6 @@ extension User.Create: Validatable {
 Now you can create the `POST /users` endpoint. 
 
 ```swift
-import Vapor
-
 app.post("users") { req -> EventLoopFuture<User> in
     try User.Create.validate(req)
     let create = try req.content.decode(User.Create.self)
@@ -146,6 +144,9 @@ Content-Type: application/json
 Now that you have a user model and an endpoint to create new users, let's conform the model to `ModelUser`. This will allow for the model to be authenticated using username and password.
 
 ```swift
+import Fluent
+import Vapor
+
 extension User: ModelUser {
     static let usernameKey = \User.$email
     static let passwordHashKey = \User.$passwordHash
@@ -169,7 +170,7 @@ passwordProtected.post("login") { req -> User in
 }
 ```
 
-`ModelUser` adds a static method `authenticator()` for creating the authenticator. We can then use `middleware()` to generate a middleware from the authenticator. Learn more about the Authentication API [here](../authentication.md).
+`ModelUser` adds a static method `authenticator` for creating an [authenticator](../authentication.md). You can then use `middleware` to generate a middleware from the authenticator.
 
 Test that this route works by sending the following request.
 
@@ -187,6 +188,9 @@ While you could theoretically use basic authentication to protect all of your en
 Create a new model for representing user tokens.
 
 ```swift
+import Fluent
+import Vapor
+
 final class UserToken: Model, Content {
     static let schema = "user_tokens"
 
@@ -209,11 +213,13 @@ final class UserToken: Model, Content {
 }
 ```
 
-This model must have a `value` field for storing the token's unique string. It must also have a parent-relation to the user model. You may add additional properties to this token as you see fit, such as an expiration date. 
+This model must have a `value` field for storing the token's unique string. It must also have a [parent-relation](overview.md#parent) to the user model. You may add additional properties to this token as you see fit, such as an expiration date. 
 
 Next, create a migration for this model.
 
 ```swift
+import Fluent
+
 extension UserToken {
     struct Migration: Fluent.Migration {
         func prepare(on database: Database) -> EventLoopFuture<Void> {
@@ -280,13 +286,22 @@ Hold onto the token you get as we'll use it shortly.
 Conform `UserToken` to `ModelUserToken`. This will allow for tokens to authenticate your `User` model.
 
 ```swift
+import Vapor
+import Fluent
+
 extension UserToken: ModelUserToken {
     static let valueKey = \UserToken.$value
     static let userKey = \UserToken.$user
+
+    var isValid: Bool {
+        true
+    }
 }
 ```
 
-The first protocol requirement specifies which field stores the token's unique value. This is the value that will be sent in the bearer authentication header. The second requirement specifies the parent-relation to the `User` model. This is how Fluent will look up the authenticated user.
+The first protocol requirement specifies which field stores the token's unique value. This is the value that will be sent in the bearer authentication header. The second requirement specifies the parent-relation to the `User` model. This is how Fluent will look up the authenticated user. 
+
+The final requirement is an `isValid` boolean. If this is `false`, the token will be deleted from the database and the user will not be authenticated. For simplicity, we'll make the tokens eternal by hard coding this to `true`.
 
 Now that the token conforms to `ModelUserToken`, you can create an authenticator and middleware for protecting routes.
 
