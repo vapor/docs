@@ -6,7 +6,7 @@ Fluent builds on Vapor's [Authentication](../authentication.md) API to provide a
 
 Fluent defines two protocols `ModelUser` and `ModelUserToken` which can be added to your existing models. Conforming your models to these protocols allows for the creation of authenticators which generate middleware for protecting endpoints. 
 
-`ModelUserToken` authenticates with a bearer token. This is what you use to protect most of your endpoints. `ModelUser` authenticates with username and password and is used by a single endpoint for generating tokens. 
+`ModelUserToken` authenticates with a Bearer token. This is what you use to protect most of your endpoints. `ModelUser` authenticates with username and password and is used by a single endpoint for generating tokens. 
 
 This guide assumes you are familiar with Fluent and have successfully configured your app to use a database. If you are new to Fluent, start with the [overview](overview.md).
 
@@ -44,7 +44,7 @@ final class User: Model, Content {
 }
 ```
 
-This model must be able to store a username, in this case an email, and a password hash. The corresponding migration for this model is here:
+The model must be able to store a username, in this case an email, and a password hash. The corresponding migration for this example model is here:
 
 ```swift
 import Fluent
@@ -96,7 +96,7 @@ import Vapor
 
 extension User.Create: Validatable {
     static func validations(_ validations: inout Validations) {
-        validations.add("name", as: String.self, is: .count(3...) && .alphanumeric)
+        validations.add("name", as: String.self, is: !.empty)
         validations.add("email", as: String.self, is: .email)
         validations.add("password", as: String.self, is: .count(8...))
     }
@@ -159,9 +159,9 @@ extension User: ModelUser {
 
 This extension adds `ModelUser` conformance to `User`. The first two properties specify which fields should be used for storing the username and password hash respectively. The `\` notation creates a key path to the fields that Fluent can use to access them.
 
-The last requirement is a method for verifying plaintext passwords sent in the basic authentication header. Since we're using Bcrypt to hash the password during signup, we'll use Bcrypt to verify that the supplied password matches the stored password hash.
+The last requirement is a method for verifying plaintext passwords sent in the Basic authentication header. Since we're using Bcrypt to hash the password during signup, we'll use Bcrypt to verify that the supplied password matches the stored password hash.
 
-Now that the `User` conforms to `ModelUser`, we can create an authenticator to protect the login route.
+Now that the `User` conforms to `ModelUser`, we can create a middleware from the authenticator to protect the login route.
 
 ```swift
 let passwordProtected = app.grouped(User.authenticator().middleware())
@@ -179,9 +179,9 @@ POST /login HTTP/1.1
 Authorization: Basic dGVzdEB2YXBvci5jb2RlczpzZWNyZXQ=
 ```
 
-This request passes the username `test@vapor.codes` and password `secret` via the basic authentication header. You should see the previously created user returned.
+This request passes the username `test@vapor.codes` and password `secret` via the Basic authentication header. You should see the previously created user returned.
 
-While you could theoretically use basic authentication to protect all of your endpoints, it's recommended to use a separate token instead. This minimizes how often you must send the user's sensitive password over the Internet. It also makes authentication much faster since you only need to perform password hashing during login.
+While you could theoretically use Basic authentication to protect all of your endpoints, it's recommended to use a separate token instead. This minimizes how often you must send the user's sensitive password over the Internet. It also makes authentication much faster since you only need to perform password hashing during login.
 
 ## User Token
 
@@ -299,9 +299,9 @@ extension UserToken: ModelUserToken {
 }
 ```
 
-The first protocol requirement specifies which field stores the token's unique value. This is the value that will be sent in the bearer authentication header. The second requirement specifies the parent-relation to the `User` model. This is how Fluent will look up the authenticated user. 
+The first protocol requirement specifies which field stores the token's unique value. This is the value that will be sent in the Bearer authentication header. The second requirement specifies the parent-relation to the `User` model. This is how Fluent will look up the authenticated user. 
 
-The final requirement is an `isValid` boolean. If this is `false`, the token will be deleted from the database and the user will not be authenticated. For simplicity, we'll make the tokens eternal by hard coding this to `true`.
+The final requirement is an `isValid` boolean. If this is `false`, the token will be deleted from the database and the user will not be authenticated. For simplicity, we'll make the tokens eternal by hard-coding this to `true`.
 
 Now that the token conforms to `ModelUserToken`, you can create an authenticator and middleware for protecting routes.
 
@@ -314,7 +314,7 @@ tokenProtected.get("me") { req -> User in
 }
 ```
 
-Similar to `User`, `UserToken` now has a static `authenticator()` that can be generate a middleware with `middleware()`. The middleware will attempt to find a matching `UserToken` using the value provided in the bearer authentication header. If it finds a match, it will fetch the related `User` and authenticate it. 
+Similar to `User`, `UserToken` now has a static `authenticator()` method that can generate a middleware with `middleware()`. The middleware will attempt to find a matching `UserToken` using the value provided in the Bearer authentication header. If it finds a match, it will fetch the related `User` and authenticate it. 
 
 Test that this route works by sending the following HTTP request where the token is the value you saved from the `POST /login` request. 
 

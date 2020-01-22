@@ -4,15 +4,15 @@ Authentication is the act of verifying a user's identity. This is done through t
 
 ## Introduction
 
-Vapor's Authentication API provides support for authenticating a user via the `Authorization` header, using [basic](https://tools.ietf.org/html/rfc7617) and [bearer](https://tools.ietf.org/html/rfc6750). It also supports authenticating a user via the data decoded from the [Content](/content.md) API.
+Vapor's Authentication API provides support for authenticating a user via the `Authorization` header, using [Basic](https://tools.ietf.org/html/rfc7617) and [Bearer](https://tools.ietf.org/html/rfc6750). It also supports authenticating a user via the data decoded from the [Content](/content.md) API.
 
 Authentication is implemented by creating an `Authenticator` which contains the verification logic. An authenticator is then capable of creating middleware which can be used to protect individual route groups or an entire app. The following authenticator helpers ship with Vapor:
 
 |Protocol|Description|
 |-|-|
 |`RequestAuthenticator`|Base authenticator capable of creating middleware.|
-|[`BasicAuthenticator`](#basic)|Authenticates basic authorization header.|
-|[`BearerAuthenticator`](#bearer)|Authenticates bearer authorization header.|
+|[`BasicAuthenticator`](#basic)|Authenticates Basic authorization header.|
+|[`BearerAuthenticator`](#bearer)|Authenticates Bearer authorization header.|
 |`UserTokenAuthenticator`|Authenticates a token type with associated user.|
 |`CredentialsAuthenticator`|Authenticates a credentials payload from the request body.|
 
@@ -20,7 +20,7 @@ If authentication is successful, the authenticator returns the verified user. Th
 
 ## Authenticatable
 
-To use the Authentication API, you first need a user type that conforms to `Authenticatable`. This can be a `struct`, `class`, or even a Fluent model. The following examples assume this simple `User` struct that has one property: `name`.
+To use the Authentication API, you first need a user type that conforms to `Authenticatable`. This can be a `struct`, `class`, or even a Fluent `Model`. The following examples assume this simple `User` struct that has one property: `name`.
 
 ```swift
 import Vapor
@@ -30,7 +30,7 @@ struct User: Authenticatable {
 }
 ```
 
-Each example will create an authenticator named `UserAuthenticator`. 
+Each example below will create an authenticator named `UserAuthenticator`. 
 
 ### Route
 
@@ -47,23 +47,25 @@ protected.get("me") { req -> String in
 
 ### Guard Middleware
 
-You can also add `GuardMiddleware` to the route group to require an authenticated user before continuing.
+You can also use `GuardMiddleware` in your route group to ensure that a user has been authenticated before reaching your route handler.
 
 ```swift
 let protected = app.grouped(UserAuthenticator().middleware())
     .grouped(User.guardMiddleware())
 ```
 
+Requiring authentication is not done by the authenticator's middleware to allow for composition of authenticators. Read more about [composition](#composing-authenticators) below.
+
 ## Basic
 
-Basic authentication sends a username and password in the `Authorization` header. The username and password are concatenated with a colon, base-64 encoded, and prefixed with `"Basic "`. The following example request encodes the username `test` with password `secret`.
+Basic authentication sends a username and password in the `Authorization` header. The username and password are concatenated with a colon (e.g. `test:secret`), base-64 encoded, and prefixed with `"Basic "`. The following example request encodes the username `test` with password `secret`.
 
 ```http
 GET /me HTTP/1.1
 Authorization: Basic dGVzdDpzZWNyZXQ=
 ``` 
 
-Basic authentication is typically used once to log a user in and generate a token. This minimizes how frequently the user's sensitive password must be sent. You should never send basic authorization over a plaintext or unverified TLS connection.
+Basic authentication is typically used once to log a user in and generate a token. This minimizes how frequently the user's sensitive password must be sent. You should never send Basic authorization over a plaintext or unverified TLS connection.
 
 To implement Basic authentication in your app, create a new authenticator conforming to `BasicAuthenticator`. Below is an example authenticator hard-coded to verify the request from above.
 
@@ -87,9 +89,12 @@ struct UserAuthenticator: BasicAuthenticator {
 }
 ```
 
-This protocols requires you to implement `authenticate(basic:for:)` which will be called when an incoming contains contains the `Authorization: Basic ...` header. A `BasicAuthorization` struct containing the username and password is passed to the method.
+This protocol requires you to implement `authenticate(basic:for:)` which will be called when an incoming request contains the `Authorization: Basic ...` header. A `BasicAuthorization` struct containing the username and password is passed to the method.
 
-In this test authenticator, the username and password are tested against hard coded values. In a real authenticator, you might check against a database or external API. This is why the `authenticate` method allows you to return a future. 
+In this test authenticator, the username and password are tested against hard-coded values. In a real authenticator, you might check against a database or external API. This is why the `authenticate` method allows you to return a future. 
+
+!!! tip
+    Passwords should never be stored in a database as plaintext. Always use password hashes for comparison.
 
 If the authentication parameters are correct, in this case matching the hard-coded values, a `User` named Vapor is returned. If the authentication parameters do not match, `nil` is returned, which signifies authentication failed. 
 
@@ -104,7 +109,7 @@ GET /me HTTP/1.1
 Authorization: Bearer foo
 ``` 
 
-Bearer authentication is commonly used for authentication of API endpoints. The user typically requests a login endpoint using credentials like a username and password and is given a token. This token may last minutes or days depending on the application's needs. 
+Bearer authentication is commonly used for authentication of API endpoints. The user typically requests a Bearer token by sending credentials like a username and password to a login endpoint. This token may last minutes or days depending on the application's needs. 
 
 As long as the token is valid, the user can use it in place of his or her credentials to authenticate against the API. If the token becomes invalid, a new one can be generated using the login endpoint.
 
@@ -129,14 +134,14 @@ struct UserAuthenticator: BearerAuthenticator {
 }
 ```
 
-This protocols requires you to implement `authenticate(bearer:for:)` which will be called when an incoming contains contains the `Authorization: Bearer ...` header. A `BearerAuthorization` struct containing the token is passed to the method.
+This protocol requires you to implement `authenticate(bearer:for:)` which will be called when an incoming request contains the `Authorization: Bearer ...` header. A `BearerAuthorization` struct containing the token is passed to the method.
 
-In this test authenticator, the token is tested against a hard coded value. In a real authenticator, you might verify the token by checking against a database or using cryptographic measures, like is done with JWT. This is why the `authenticate` method allows you to return a future. 
+In this test authenticator, the token is tested against a hard-coded value. In a real authenticator, you might verify the token by checking against a database or using cryptographic measures, like is done with JWT. This is why the `authenticate` method allows you to return a future. 
 
 !!! tip
 	When implementing token verification, it's important to consider horizontal scalability. If your application needs to handle many users concurrently, authentication can be a potential bottlneck. Consider how your design will scale across multiple instances of your application running at once.
 
-If the authentication parameters are correct, in this case matching the hard coded value, a `User` named Vapor is returned. If the authentication parameters do not match, `nil` is returned, which signifies authentication failed. 
+If the authentication parameters are correct, in this case matching the hard-coded value, a `User` named Vapor is returned. If the authentication parameters do not match, `nil` is returned, which signifies authentication failed. 
 
 If you add this authenticator to your app, and test the route defined above, you should see the name `"Vapor"` returned for a successful login. If the credentials are not correct, you should see a `401 Unauthorized` error.
 
