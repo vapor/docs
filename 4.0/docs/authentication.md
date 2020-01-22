@@ -54,7 +54,7 @@ let protected = app.grouped(UserAuthenticator().middleware())
     .grouped(User.guardMiddleware())
 ```
 
-Requiring authentication is not done by the authenticator's middleware to allow for composition of authenticators. Read more about [composition](#composing-authenticators) below.
+Requiring authentication is not done by the authenticator's middleware to allow for composition of authenticators. Read more about [composition](#composition) below.
 
 ## Basic
 
@@ -144,6 +144,50 @@ In this test authenticator, the token is tested against a hard-coded value. In a
 If the authentication parameters are correct, in this case matching the hard-coded value, a `User` named Vapor is returned. If the authentication parameters do not match, `nil` is returned, which signifies authentication failed. 
 
 If you add this authenticator to your app, and test the route defined above, you should see the name `"Vapor"` returned for a successful login. If the credentials are not correct, you should see a `401 Unauthorized` error.
+
+## Composition
+
+Multiple authenticators can be composed (combined together) to create more complex endpoint authentication. Since an authenticator's middleware will not reject the request if authentication fails, more than one of these middleware can be chained together. Authenticators can composed in two key ways. 
+
+### Composing Methods
+
+
+The first method of authentication composition is chaining more than one authenticator for the same user type. Take the following example:
+
+```swift
+app.grouped(UserPasswordAuthenticator().middleware())
+    .grouped(UserTokenAuthenticator().middleware())
+    .grouped(User.guardMiddleware())
+    .post("login") 
+{ req in
+    let user = try req.auth.require(User.self)
+    // Do something with user.
+}
+```
+
+This example assumes two authenticators `UserPasswordAuthenticator` and `UserTokenAuthenticator` that both authenticate `User`. The middleware for both of these authenticators is added to the route group. Finally, `GuardMiddleware` is added after the authenticators' middleware to require that `User` was successfully authenticated. 
+
+This composition of authenticators results in a route that can be accessed by either password or token. Such a route could allow a user to login and generate a token, then continue to use that token to generate new tokens.
+
+### Composing Users
+
+The second method of authentication composition is chaining authenticators for different user types. Take the following example:
+
+```swift
+app.grouped(AdminAuthenticator().middleware())
+    .grouped(UserAuthenticator().middleware())
+    .get("secure") 
+{ req in
+    guard req.auth.has(Admin.self) || req.auth.has(User.self) else {
+        throw Abort(.unauthorized)
+    }
+    // Do something.
+}
+```
+
+This example assumes two authenticators `AdminAuthenticator` and `UserAuthenticator` that authenticate `Admin` and `User`, respectively. The middleware for both of these authenticators is added to the route group. Instead of using `GuardMiddleware`, a check in the route handler is added to see if either `Admin` or `User` were authenticated. If not, an error is thrown.
+
+This composition of authenticators results in a route that can be accessed by two different types of users with potentially different methods of authentication. Such a route could allow for normal user authentication while still giving access to a super-user.
 
 ## Manual
 
