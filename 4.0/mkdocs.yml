@@ -40,6 +40,9 @@ nav:
 - 'Fluent':
   - 'Overview': 'fluent/overview.md'
   - 'Config': 'fluent/config.md'
+  - 'Authentication': 'fluent/authentication.md'
+- 'Security':
+  - 'Authentication': 'authentication.md'
 - 'Deploy':
   - 'DigitalOcean': 'deploy/digital-ocean.md'
   - 'Supervisor': 'deploy/supervisor.md'
