@@ -88,7 +88,7 @@ Using convenience inits is especially helpful if you add new properties to your 
 
 ### Timestamps
 
-If your model needs to track when it is created or gets updated. You can specify fields for storing creation and/or update timestamps, Fluent will automatically set these values. 
+Fluent provides the ability to track creation and update times on models by specifying `Timestamp` fields in your model. Fluent automatically sets the fields when necessary. You can add these like so:
 
 ```swift
 @Timestamp(key: "created_at", on: .create)
@@ -99,10 +99,7 @@ var updatedAt: Date?
 ```
 
 !!! Info
-    You can use any name/key for these fields. created_at/updated_at, are only for illustration purposes
-
-If you use timestamps, Fluent will take care of setting them for you when your model is updated of deleted.
-
+    You can use any name/key for these fields. `created_at` / `updated_at`, are only for illustration purposes
 
 
 ## Migrations
@@ -116,6 +113,8 @@ struct CreateGalaxy: Migration {
         database.schema("galaxies")
             .field("id", .int, .identifier(auto: true))
             .field("name", .string)
+            // These are necessary if you have added timestamps
+            //in your models
             .field("created_at", .datetime)
             .field("updated_at", .datetime)
             .create()
@@ -407,9 +406,9 @@ A key-path to the `@Children` relation is passed to `with` to tell Fluent to aut
 
 ## Lifecycle
 
-To create hooks that respond to Events on your Model, you can create Middlewares for your model. Middleware must conform to ModelMiddleware.
+To create hooks that respond to events on your Model, you can create middlewares for your model. Your middleware must conform to `ModelMiddleware`.
 
-Here is an example of a simple Middleware:
+Here is an example of a simple middleware:
 
 ```swift
 struct GalaxyMiddleware: ModelMiddleware {
@@ -433,19 +432,18 @@ struct GalaxyMiddleware: ModelMiddleware {
         return next.restore(model , on: db)
     }
     
-    // Runs when a model is permanently deleted
-    // The "force" parameter indicates that the model will
-    // be permanently deleted, not soft deleted
+    // Runs when a model is deleted
+    // If the "force" parameter is true, the model will be permanently deleted, even when using soft delete timestamps.
     func delete(model: Galaxy, force: Bool, on db: Database, next: AnyModelResponder) -> EventLoopFuture<Void> {
         return next.delete(model, force: force, on: db)
     }
 }
 ```
 
-Each of these methods has a default implementation, so you only need to include the methods for hooks that you need. You should normally return the appropriate method on the 'next' responder, so Fluent knows to continue processing the event. 
+Each of these methods has a default implementation, so you only need to include the methods you require. You should return the corresponding method on the next `AnyModelResponder` so Fluent continues processing the event. 
 
 !!! Important
-    The 'model' parameter in your Middleware methods should be the Type of the Model the Middleware should respond to. In the above example GalaxyMiddleware will respond to events on the Galaxy Model.
+    The middleware will only respond to lifecycle events of the `Model` type provided in the functions. In the above example...
 
 Using these methods you can perform actions both before, and after the event completes.  Performing actions after the event completes can be done using using .flatMap() on the future returned from the next responder.  For example:
 
@@ -457,15 +455,14 @@ struct GalaxyMiddleware: ModelMiddleware {
         model.name = "<New Galaxy Name>"
 
         return next.create(model, on: db).flatMap {
-            // Once the galaxy has been created, the code here 
-            // will be executed
+            // Once the galaxy has been created, the code here will be executed
             print ("Galaxy \(model.name) was created")
         }
     }
 }
 ```
 
-Once you have created your Middleware, you must register it with Vapor, so that it can associate it with your model. This is done in configure.swift:
+Once you have created your middleware, you must register it with the `Application`'s database middleware configuration so Vapor will use it:
 
 ```swift
 app.databases.middleware.use(GalaxyMiddleware(), on: .psql)
@@ -473,18 +470,18 @@ app.databases.middleware.use(GalaxyMiddleware(), on: .psql)
 
 ## Soft Delete
 
-Soft deleting an item sets a timestamp on it to the time when it was soft deleted, but doesn't actually remove it from the database. Soft deleted items won't appear in queries by default, and can be restored at any time.
+Soft deletion marks an item as deleted in the database but doesn't actually remove it. This can be useful when you have data retention requirements, for example. In Fluent, it works by setting a deletion timestamp. By default, soft deleted items won't appear in queries and can be restored at any time.
 
-In the same way as created/deleted timestamps, to enable soft deleting items, all that is required is to add a timestamp property, that responds to the .delete trigger.
+Similar to created and deleted timestamps, to enable soft deletion in a model just set a deletion timestamp for .delete:
 
 ```swift
 @Timestamp(key: "deleted_at", on: .delete)
     var deletedAt: Date?
 ```
 
-Calling `Model.delete(on: Database)` on a model that has a delete timestamp property will automatically soft delete. Without this property, the item will be permanently deleted.
+Calling `Model.delete(on:)` on a model that has a delete timestamp property will automatically soft delete it.
 
-If you need to perform a query that includes the soft deleted items, you can use `withDeleted()`. Soft deleted items can easily then be restored with `restore(on: database)`:
+If you need to perform a query that includes the soft deleted items, you can use `withDeleted()` in your query. You can easily restore soft deleted items with `restore(on:)`:
 
 ```swift
 // Find the first soft deleted Galaxy
@@ -495,7 +492,7 @@ Galaxy.query(on: db).withDeleted().first().flatMap{ g -> EventLoopFuture<Void> i
 }
 ```
 
-It is also equally easy to permanently delete items:
+It is also equally easy to permanently delete items with the `force` parameter:
 
 ```swift
 // Find the first soft deleted Galaxy
