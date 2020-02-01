@@ -113,8 +113,7 @@ struct CreateGalaxy: Migration {
         database.schema("galaxies")
             .field("id", .int, .identifier(auto: true))
             .field("name", .string)
-            // These are necessary if you have added timestamps
-            //in your models
+            // These are necessary if you have added timestamps in your models
             .field("created_at", .datetime)
             .field("updated_at", .datetime)
             .create()
@@ -406,7 +405,7 @@ A key-path to the `@Children` relation is passed to `with` to tell Fluent to aut
 
 ## Lifecycle
 
-To create hooks that respond to events on your Model, you can create middlewares for your model. Your middleware must conform to `ModelMiddleware`.
+To create hooks that respond to events on your `Model`, you can create middlewares for your model. Your middleware must conform to `ModelMiddleware`.
 
 Here is an example of a simple middleware:
 
@@ -433,7 +432,8 @@ struct GalaxyMiddleware: ModelMiddleware {
     }
     
     // Runs when a model is deleted
-    // If the "force" parameter is true, the model will be permanently deleted, even when using soft delete timestamps.
+    // If the "force" parameter is true, the model will be permanently deleted, 
+    // even when using soft delete timestamps.
     func delete(model: Galaxy, force: Bool, on db: Database, next: AnyModelResponder) -> EventLoopFuture<Void> {
         return next.delete(model, force: force, on: db)
     }
@@ -443,7 +443,7 @@ struct GalaxyMiddleware: ModelMiddleware {
 Each of these methods has a default implementation, so you only need to include the methods you require. You should return the corresponding method on the next `AnyModelResponder` so Fluent continues processing the event. 
 
 !!! Important
-    The middleware will only respond to lifecycle events of the `Model` type provided in the functions. In the above example...
+    The middleware will only respond to lifecycle events of the `Model` type provided in the functions. In the above example `GalaxyMiddleware` will respond to events on the Galaxy model.
 
 Using these methods you can perform actions both before, and after the event completes.  Performing actions after the event completes can be done using using .flatMap() on the future returned from the next responder.  For example:
 
@@ -462,7 +462,7 @@ struct GalaxyMiddleware: ModelMiddleware {
 }
 ```
 
-Once you have created your middleware, you must register it with the `Application`'s database middleware configuration so Vapor will use it:
+Once you have created your middleware, you must register it with the `Application`'s database middleware configuration so Vapor will use it. In `configure.swift` add:
 
 ```swift
 app.databases.middleware.use(GalaxyMiddleware(), on: .psql)
@@ -472,7 +472,7 @@ app.databases.middleware.use(GalaxyMiddleware(), on: .psql)
 
 Soft deletion marks an item as deleted in the database but doesn't actually remove it. This can be useful when you have data retention requirements, for example. In Fluent, it works by setting a deletion timestamp. By default, soft deleted items won't appear in queries and can be restored at any time.
 
-Similar to created and deleted timestamps, to enable soft deletion in a model just set a deletion timestamp for .delete:
+Similar to created and deleted timestamps, to enable soft deletion in a model just set a deletion timestamp for `.delete`:
 
 ```swift
 @Timestamp(key: "deleted_at", on: .delete)
