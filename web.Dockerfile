@@ -19,9 +19,11 @@ RUN cd leaf-pygment && ./compile.sh
 RUN pip install leaf-pygment/dist/leaf-0.1.0-dev.tar.gz
 RUN cd 3.0 && mkdocs build
 RUN cd 2.0 && mkdocs build
+RUN cd 4.0 && mkdocs build
 
 FROM nginx:1.13.12-alpine as production-stage
 
+COPY --from=build-stage /app/4.0/site/ /usr/share/nginx/html/4.0
 COPY --from=build-stage /app/3.0/site/ /usr/share/nginx/html/3.0
 COPY --from=build-stage /app/2.0/site/ /usr/share/nginx/html/2.0
 COPY --from=build-couscous /app/1.5/.couscous/generated /usr/share/nginx/html/1.5
