@@ -9,14 +9,14 @@ sudo apt-get update
 sudo apt-get install supervisor
 ```
 
-Supervisor can currently only run as the `root` user. You can exit and login as root, or create a new group and add `vapor` to it.
+Once installed, Supervisor is only configured to run as the `root` user. It is considered a good practice to not your services as `root`. If you created a `vapor` user earlier, you can add it to a group that can run Supervisor thusly:
 
 ```sh
 groupadd supervisor
 usermod -a vapor -G supervisor
 ```
 
-Log out, log back in, and edit the the supervisord configuration file (/etc/supervisor/supervisor.conf) unix_http_server section:
+Log out, log back in, and edit the the supervisord configuration file (`/etc/supervisor/supervisor.conf`) `unix_http_server` section. These changes will grant the newly created group `supervisor` access to the service.
 
 ```sh
 [unix_http_server]
