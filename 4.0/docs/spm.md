@@ -11,7 +11,7 @@ The first place SPM looks in your project is the package manifest. This should a
 Take a look at this example Package manifest.
 
 ```swift
-// swift-tools-version:5.1
+// swift-tools-version:5.2
 import PackageDescription
 
 let package = Package(
