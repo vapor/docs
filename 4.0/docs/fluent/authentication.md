@@ -52,6 +52,8 @@ import Vapor
 
 extension User {
     struct Migration: Fluent.Migration {
+        var name: String { "CreateUser" }
+
         func prepare(on database: Database) -> EventLoopFuture<Void> {
             database.schema("users")
                 .field("id", .int, .identifier(auto: true))
@@ -222,6 +224,8 @@ import Fluent
 
 extension UserToken {
     struct Migration: Fluent.Migration {
+        var name: String { "CreateUserToken" }
+        
         func prepare(on database: Database) -> EventLoopFuture<Void> {
             database.schema("user_tokens")
                 .field("id", .int, .identifier(auto: true))
