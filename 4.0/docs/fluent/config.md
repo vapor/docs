@@ -40,7 +40,7 @@ PostgreSQL is an open source, standards compliant SQL database. It is easily con
 To use PostgreSQL, add the following dependencies to your package.
 
 ```swift
-// swift-tools-version:5.1
+// swift-tools-version:5.2
 import PackageDescription
 
 let package = Package(
@@ -88,7 +88,7 @@ SQLite is an open source, embedded SQL database. Its simplistic nature makes it 
 To use SQLite, add the following dependencies to your package.
 
 ```swift
-// swift-tools-version:5.1
+// swift-tools-version:5.2
 import PackageDescription
 
 let package = Package(
@@ -138,7 +138,7 @@ MySQL is a popular open source SQL database. It is available on many cloud hosti
 To use MySQL, add the following dependencies to your package.
 
 ```swift
-// swift-tools-version:5.1
+// swift-tools-version:5.2
 import PackageDescription
 
 let package = Package(
