@@ -371,7 +371,7 @@ Now let's take a look at how you can utilize Fluent's eager-loading feature to a
 var stars: [Star]
 ```
 
-The `@Children` property wrapper is the inverse of `@Parent`. It takes a key-path to the child's `@Parent` field as the `for` argument. Its value is an array of chidlren since zero or more child models may exist. No changes to the galaxy's migration are needed since all the information needed for this relation is stored on `Star`.
+The `@Children` property wrapper is the inverse of `@Parent`. It takes a key-path to the child's `@Parent` field as the `for` argument. Its value is an array of children since zero or more child models may exist. No changes to the galaxy's migration are needed since all the information needed for this relation is stored on `Star`.
 
 ### Eager Load
 
@@ -402,6 +402,76 @@ A key-path to the `@Children` relation is passed to `with` to tell Fluent to aut
     }
 ]
 ```
+
+
+### Siblings
+
+The last type of relationship is many-to-many, or sibling.  Create a Tag model with an id and name field that we'll use to tag stars with certain characteristics.  A tag can have many stars and a star can have many tags making them Siblings.  A sibling relationship between two models requires a third model (called a pivot) that holds the relationship data.  Each model object will store a single Tag to Star relationship.
+
+```swift
+@ID(key: "id") var id:Int?
+
+@Parent(key: "tag_id")
+var tag:Tag
+
+@Parent(key: "star_id")
+var star:Star
+    
+init(tagID:Int, starID:Int) {
+    self.$tag.id = tagID
+    self.$star.id = starID
+}
+```
+
+Now let's update our new Tag model to add a stars property for all the stars that contain a tag:
+
+```swift
+@ID(key: "id")
+var id:Int?
+
+@Field(key: "name")
+var name:String
+
+@Siblings(through: StarTag.self, from: \.$tag, to: \.$star)
+var stars:[Star]
+```
+
+The @Sibling property wrapper takes three arguments, the pivot model, that model's keypath to the current model, and the keypath to the current model's sibling model.  Now let's update our Star model with a new tags siblings property:
+
+```swift
+@Siblings(through: StarTag.self, from: \.$star, to: \.$tag)
+var tags:[Tag]
+```
+
+These siblings properties rely on StarTag for storage so we don't need to update the Star migration, but we do need to create migrations for the new Tag and StarTag models.  Now we want to add tags to stars.  After creating a route to create a new tag, we need to create a route that will add a category to an existing star.
+
+
+```swift
+
+app.post("star", ":starid", "tag", ":tagid") { req -> EventLoopFuture<HTTPResponseStatus> in
+    guard let starid = req.parameters.get("starid", as: Int.self), let tagid = req.parameters.get("tagid", as: Int.self) else {
+        return req.eventLoop.future( HTTPStatus.badRequest )
+    }
+    
+    let starTag = StarTag(tagID: tagid, starID: starid)
+    
+    return starTag.save(on: req.db).map { (void) -> (HTTPStatus) in
+        return .ok
+    }
+}
+```
+
+This route includes parameter path components for the ids of stars and tags that we want to associate with one another.  If we want to create a relationship between a tag with an id of 1 and a tag with an id of 1, we'd send a post request to https://localhost:8080/star/1/tag/1 and we'd receive an http response in return.
+
+Siblings aren't returned by default so we need to update our get route for stars if we want include them when querying by inserting the with method:
+
+```swift
+app.get("stars") { req in
+    Star.query(on: req.db).with(\.$tags).all()
+}
+```
+
+
 
 ## Lifecycle
 
