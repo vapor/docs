@@ -438,7 +438,9 @@ The `@Sibling` property wrapper takes three arguments, the pivot model, that mod
 var tags:[Tag]
 ```
 
-These siblings properties rely on `StarTag` for storage so we don't need to update the `Star` migration, but we do need to create migrations for the new `Tag` and `StarTag` models.  Now we want to add tags to stars.  After creating a route to create a new tag, we need to create a route that will add a category to an existing star.
+These siblings properties rely on `StarTag` for storage so we don't need to update the `Star` migration, but we do need to create migrations for the new `Tag` and `StarTag` models.
+
+Now we want to add tags to stars.  After creating a route to create a new tag, we need to create a route that will add a category to an existing star.
 
 ```swift
 app.post("star", ":starid", "tag", ":tagid") { req -> EventLoopFuture<HTTPResponseStatus> in
@@ -456,7 +458,7 @@ app.post("star", ":starid", "tag", ":tagid") { req -> EventLoopFuture<HTTPRespon
 
 This route includes parameter path components for the ids of stars and tags that we want to associate with one another.  If we want to create a relationship between a tag with an id of 1 and a tag with an id of 1, we'd `POST /star/1/tag/1` and we'd receive an http response code in return.
 
-Siblings aren't returned by default so we need to update our get route for stars if we want include them when querying by inserting the `with` method:
+Siblings aren't fetched by default so we need to update our get route for stars if we want include them when querying by inserting the `with` method:
 
 ```swift
 app.get("stars") { req in
