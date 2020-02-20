@@ -406,20 +406,20 @@ A key-path to the `@Children` relation is passed to `with` to tell Fluent to aut
 
 ### Siblings
 
-The last type of relationship is many-to-many, or sibling.  Create a `Tag` model with an id and name field that we'll use to tag stars with certain characteristics.  
+The last type of relationship is many-to-many, or sibling relationship.  Create a `Tag` model with an `id` and `name` field that we'll use to tag stars with certain characteristics.  
 
 ```swift
 final class Tag: Model, Content {
     
     static let schema: String = "tags"
     
-    @ID(key: "id") var id:Int?
+    @ID(key: "id") var id: Int?
     
-    @Field(key: "name") var name:String
+    @Field(key: "name") var name: String
         
     init() {}
     
-    init(id:Int? = nil, name:String) {
+    init(id: Int? = nil, name: String) {
         self.id = id
         self.name = name
     }
@@ -427,22 +427,22 @@ final class Tag: Model, Content {
 }
 ```
 
-A tag can have many stars and a star can have many tags making them Siblings.  A sibling relationship between two models requires a third model (called a pivot) that holds the relationship data.  Each of these `StarTag` model objects will represent a single star-to-tag relationship holding the id of a single `Tag` and a single `Star`:
+A tag can have many stars and a star can have many tags making them siblings.  A sibling relationship between two models requires a third model (called a pivot) that holds the relationship data.  Each of these `StarTag` model objects will represent a single star-to-tag relationship holding the ids of a single `Star` and a single `Tag`:
 
 ```swift
-final class StarTag:Model {
+final class StarTag: Model {
     
     static let schema: String = "star_tag"
     
-    @ID(key: "id") var id:Int?
+    @ID(key: "id") var id: Int?
     
-    @Parent(key: "tag_id") var tag:Tag
+    @Parent(key: "tag_id") var tag: Tag
     
-    @Parent(key: "star_id") var star:Star
+    @Parent(key: "star_id") var star: Star
         
     init() {}
     
-    init(tagID:Int, starID:Int) {
+    init(tagID: Int, starID: Int) {
         self.$tag.id = tagID
         self.$star.id = starID
     }
@@ -454,20 +454,20 @@ Now let's update our new `Tag` model to add a `stars` property for all the stars
 
 ```swift
 @Siblings(through: StarTag.self, from: \.$tag, to: \.$star)
-var stars:[Star]
+var stars: [Star]
 ```
 
-The` @Siblings` property wrapper takes three arguments. The first argument is the pivot model that we created earlier, `StarTag`. The next two arguments are key-paths to the pivot model's parent relations. The from key-path is the pivot's parent relation to the current model, in this case `Tag`. The to key-path is the pivot's parent relation to the related model, in this case `Star`. These three arguments together create a relation from the current model `Tag`, through the pivot `StarTag`, to the desired model `Star`.  Now let's update our `Star` model with its siblings property which is the inverse of the one we just created:
+The` @Siblings` property wrapper takes three arguments. The first argument is the pivot model that we created earlier, `StarTag`. The next two arguments are key paths to the pivot model's parent relations. The `from` key path is the pivot's parent relation to the current model, in this case `Tag`. The `to` key path is the pivot's parent relation to the related model, in this case `Star`. These three arguments together create a relation from the current model `Tag`, through the pivot `StarTag`, to the desired model `Star`. Now let's update our `Star` model with its siblings property which is the inverse of the one we just created:
 
 ```swift
 @Siblings(through: StarTag.self, from: \.$star, to: \.$tag)
-var tags:[Tag]
+var tags: [Tag]
 ```
 
 These siblings properties rely on `StarTag` for storage so we don't need to update the `Star` migration, but we do need to create migrations for the new `Tag` and `StarTag` models:
 
 ```swift
-struct CreateTag:Migration {
+struct CreateTag: Migration {
     func prepare(on database: Database) -> EventLoopFuture<Void> {
         return database.schema("tags")
             .field("id", .int, .identifier(auto: true))
@@ -481,7 +481,7 @@ struct CreateTag:Migration {
 
 }
 
-struct CreateStarTag:Migration {
+struct CreateStarTag: Migration {
     func prepare(on database: Database) -> EventLoopFuture<Void> {
         return database.schema("star_tag")
             .field("id", .int, .identifier(auto: true))
@@ -503,30 +503,21 @@ app.migrations.add(CreateTag())
 app.migrations.add(CreateStarTag())
 ```
 
-Now we want to add tags to stars.  After creating a route to create a new tag, we need to create a route that will add a category to an existing star.
+Now we want to add tags to stars.  After creating a route to create a new tag, we need to create a route that will add a tag to an existing star.
 
 ```swift
 app.post("star", ":starID", "tag", ":tagID") { req -> EventLoopFuture<HTTPStatus> in
-    
-    guard let starID = req.parameters.get("starID", as: Int.self), let tagID = req.parameters.get("tagID", as: Int.self) else {
-        return req.eventLoop.future( HTTPStatus.badRequest )
-    }
-    
-    let star = Star.find(starID, on: req.db)
-    let tag = Tag.find(tagID, on: req.db)
-    
+    let star = Star.find(req.parameters.get("starID"), on: req.db)
+        .unwrap(or: Abort(.notFound))
+    let tag = Tag.find(req.parameters.get("tagID"), on: req.db)
+        .unwrap(or: Abort(.notFound))
     return star.and(tag).flatMap { (aStar, aTag) in
-        
-        guard let unwrappedStar = aStar, let unwrappedTag = aTag else {
-            return req.eventLoop.future(.badRequest)
-        }
-        
-        return unwrappedStar.$tags.attach(unwrappedTag, on: req.db).transform(to: .ok)
-    }
+        aStar.$tags.attach(aTag, on: req.db)
+    }.transform(to: .ok)
 }
 ```
 
-This route includes parameter path components for the IDs of stars and tags that we want to associate with one another.  If we want to create a relationship between a star with an ID of 1 and a tag with an ID of 2, we'd `POST /star/1/tag/2` and we'd receive an http response code in return.  First, we make sure the ID parameters exist in the request.  Then, we find them in the database to ensure these are valid IDs.  Finally, we create the relationship by attaching the tag to the star's tags.  Since the star's `tags` property is a relationship to another model, we need to access it via it's `@Siblings` property wrapper by using the `$` operator.
+This route includes parameter path components for the IDs of star and tag that we want to associate with one another.  If we want to create a relationship between a star with an ID of 1 and a tag with an ID of 2, we'd send a **POST** request to  `/star/1/tag/2` and we'd receive an HTTP response code in return.  First, we lookup the star and tag in the database to ensure these are valid IDs.  Then, we create the relationship by attaching the tag to the star's tags.  Since the star's `tags` property is a relationship to another model, we need to access it via it's `@Siblings` property wrapper by using the `$` operator.
 
 Siblings aren't fetched by default so we need to update our get route for stars if we want include them when querying by inserting the `with` method:
 
