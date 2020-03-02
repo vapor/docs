@@ -36,6 +36,7 @@ nav:
 - 'Basics':
   - 'Routing': 'routing.md'
   - 'Content': 'content.md'
+  - 'Client': 'client.md'
   - 'Validation': 'validation.md'
 - 'Fluent':
   - 'Overview': 'fluent/overview.md'
