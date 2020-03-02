@@ -27,7 +27,7 @@ CryptoKit includes support for:
 
 Bcrypt is a password hashing algorithm that uses a randomized salt to ensure hashing the same password multiple times doesn't result in the same digest.
 
-Vapor's provides a `Bcrypt` type for hashing and comparing passwords. 
+Vapor provides a `Bcrypt` type for hashing and comparing passwords. 
 
 ```swift
 import Vapor
@@ -35,7 +35,7 @@ import Vapor
 let digest = try Bcrypt.hash("test")
 ```
 
-Because Bcrypt uses a salt, password hashes cannot be compared directly. Both the plaintext password and the digest to check must be verified together. 
+Because Bcrypt uses a salt, password hashes cannot be compared directly. Both the plaintext password and the existing digest must be verified together. 
 
 ```swift
 import Vapor
