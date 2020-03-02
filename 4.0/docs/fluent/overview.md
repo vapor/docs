@@ -16,8 +16,8 @@ final class Galaxy: Model {
     static let schema = "galaxies"
 
     // Unique identifier for this Galaxy.
-    @ID(key: "id")
-    var id: Int?
+    @ID(key: .id)
+    var id: UUID?
 
     // The Galaxy's name.
     @Field(key: "name")
@@ -27,7 +27,7 @@ final class Galaxy: Model {
     init() { }
 
     // Creates a new Galaxy with all properties set.
-    init(id: Int? = nil, name: String) {
+    init(id: UUID? = nil, name: String) {
         self.id = id
         self.name = name
     }
@@ -52,11 +52,13 @@ This property tells Fluent which table or collection the model corresponds to. T
 The next requirement is an identifier field named `id`. 
 
 ```swift
-@ID(key: "id")
-var id: Int?
+@ID(key: .id)
+var id: UUID?
 ```
 
-This field must use the `@ID` property wrapper where the `key` specifies the id field's name in the database. The value can be any Swift type that is both codable and hashable.
+This field must use the `@ID` property wrapper. Fluent recommends using `UUID` and the special `.id` field key since this is compatible with all of Fluent's drivers. 
+
+If you want to use a custom ID key or type, use the `@ID(custom:)` overload. 
 
 ### Fields
 
@@ -78,7 +80,7 @@ init() { }
 Finally, you can add a convenience init for your model that sets all of its properties.
 
 ```swift
-init(id: Int? = nil, name: String) {
+init(id: UUID? = nil, name: String) {
     self.id = id
     self.name = name
 }
@@ -111,7 +113,7 @@ struct CreateGalaxy: Migration {
     // Prepares the database for storing Galaxy models.
     func prepare(on database: Database) -> EventLoopFuture<Void> {
         database.schema("galaxies")
-            .field("id", .int, .identifier(auto: true))
+            .id()
             .field("name", .string)
             // These are necessary if you have added timestamps in your models
             .field("created_at", .datetime)
@@ -138,7 +140,7 @@ Each field added to the builder has a name, type, and optional constraints.
 field(<name>, <type>, <optional constraints>)
 ```
 
-For the `id` field, the identifier constraint is added to signify that this field uniquely identifies the model. Setting `auto` to true tells the database to automatically generate identifiers for models when they are saved. 
+There is a convenience `id()` method for adding `@ID` properties using Fluent's recommended defaults.
 
 Reverting the migration undoes any changes made in the prepare method. In this case, that means deleting the Galaxy's schema.
 
@@ -223,7 +225,7 @@ You should get the created model back with an identifier as the response.
 
 ```json
 {
-    "id": 1,
+    "id": ...,
     "name": "Milky Way"
 }
 ```
@@ -241,8 +243,8 @@ final class Star: Model, Content {
     static let schema = "stars"
 
     // Unique identifier for this Star.
-    @ID(key: "id")
-    var id: Int?
+    @ID(key: .id)
+    var id: UUID?
 
     // The Star's name.
     @Field(key: "name")
@@ -256,7 +258,7 @@ final class Star: Model, Content {
     init() { }
 
     // Creates a new Star with all properties set.
-    init(id: Int? = nil, name: String, galaxyID: Int) {
+    init(id: UUID? = nil, name: String, galaxyID: UUID) {
         self.id = id
         self.name = name
         self.$galaxy.id = galaxyID
@@ -294,9 +296,9 @@ struct CreateStar: Migration {
     // Prepares the database for storing Star models.
     func prepare(on database: Database) -> EventLoopFuture<Void> {
         database.schema("stars")
-            .field("id", .int, .identifier(auto: true))
+            .id()
             .field("name", .string)
-            .field("galaxy_id", .int, .references("galaxies", "id"))
+            .field("galaxy_id", .uuid, .references("galaxies", "id"))
             .create()
     }
 
@@ -310,7 +312,7 @@ struct CreateStar: Migration {
 This is mostly the same as galaxy's migration except for the additional field to store the parent galaxy's identifier.
 
 ```swift
-field("galaxy_id", .int, .references("galaxies", "id"))
+field("galaxy_id", .uuid, .references("galaxies", "id"))
 ```
 
 This field specifies an optional constraint telling the database that the field's value references the field "id" in the "galaxies" schema. This is also known as a foreign key and helps ensure data integrity.
@@ -344,7 +346,7 @@ content-type: application/json
 {
     "name": "Sun",
     "galaxy": { 
-        "id": 1 
+        "id": ... 
     }
 }
 ```
@@ -353,10 +355,10 @@ You should see the newly created star returned with a unique identifier.
 
 ```json
 {
-    "id": 1,
+    "id": ...,
     "name": "Sun",
     "galaxy": { 
-        "id": 1 
+        "id": ...
     }
 }
 ```
@@ -388,14 +390,14 @@ A key-path to the `@Children` relation is passed to `with` to tell Fluent to aut
 ```json
 [
     {
-        "id": 1,
+        "id": ...,
         "name": "Milky Way",
         "stars": [
             {
-                "id": 1,
+                "id": ...,
                 "name": "Sun",
                 "galaxy": {
-                    "id": 1
+                    "id": ...
                 }
             }
         ]
@@ -410,20 +412,25 @@ The last type of relationship is many-to-many, or sibling relationship.  Create 
 
 ```swift
 final class Tag: Model, Content {
-    
+    // Name of the table or collection.
     static let schema: String = "tags"
     
-    @ID(key: "id") var id: Int?
+    // Unique identifier for this Tag.
+    @ID(key: .id) 
+    var id: UUID?
     
-    @Field(key: "name") var name: String
+    // The Tag's name.
+    @Field(key: "name") 
+    var name: String
         
+    // Creates a new, empty Tag.
     init() {}
     
-    init(id: Int? = nil, name: String) {
+    // Creates a new Tag with all properties set.
+    init(id: UUID? = nil, name: String) {
         self.id = id
         self.name = name
     }
-    
 }
 ```
 
@@ -431,18 +438,26 @@ A tag can have many stars and a star can have many tags making them siblings.  A
 
 ```swift
 final class StarTag: Model {
-    
+    // Name of the table or collection.
     static let schema: String = "star_tag"
     
-    @ID(key: "id") var id: Int?
+    // Unique identifier for this pivot.
+    @ID(key: .id) 
+    var id: UUID?
     
-    @Parent(key: "tag_id") var tag: Tag
+    // Reference to the Tag this pivot relates.
+    @Parent(key: "tag_id") 
+    var tag: Tag
     
-    @Parent(key: "star_id") var star: Star
+    // Reference to the Star this pivot relates.
+    @Parent(key: "star_id") 
+    var star: Star
         
+    // Creates a new, empty pivot.
     init() {}
     
-    init(tagID: Int, starID: Int) {
+    // Creates a new pivot with all properties set.
+    init(tagID: UUID, starID: UUID) {
         self.$tag.id = tagID
         self.$star.id = starID
     }
@@ -469,29 +484,29 @@ These siblings properties rely on `StarTag` for storage so we don't need to upda
 ```swift
 struct CreateTag: Migration {
     func prepare(on database: Database) -> EventLoopFuture<Void> {
-        return database.schema("tags")
-            .field("id", .int, .identifier(auto: true))
+        database.schema("tags")
+            .id()
             .field("name", .string)
-        .create()
+            .create()
     }
     
     func revert(on database: Database) -> EventLoopFuture<Void> {
-        return database.schema("tags").delete()
+        database.schema("tags").delete()
     }
 
 }
 
 struct CreateStarTag: Migration {
     func prepare(on database: Database) -> EventLoopFuture<Void> {
-        return database.schema("star_tag")
-            .field("id", .int, .identifier(auto: true))
-            .field("star_id", .int, .required)
-            .field("tag_id", .int, .required)
-        .create()
+        database.schema("star_tag")
+            .id()
+            .field("star_id", .uuid, .required, .references("star", "id"))
+            .field("tag_id", .uuid, .required, .references("star", "id"))
+            .create()
     }
     
     func revert(on database: Database) -> EventLoopFuture<Void> {
-        return database.schema("star_tag").delete()
+        database.schema("star_tag").delete()
     }
 }
 ```
@@ -511,8 +526,8 @@ app.post("star", ":starID", "tag", ":tagID") { req -> EventLoopFuture<HTTPStatus
         .unwrap(or: Abort(.notFound))
     let tag = Tag.find(req.parameters.get("tagID"), on: req.db)
         .unwrap(or: Abort(.notFound))
-    return star.and(tag).flatMap { (aStar, aTag) in
-        aStar.$tags.attach(aTag, on: req.db)
+    return star.and(tag).flatMap { (star, tag) in
+        star.$tags.attach(tag, on: req.db)
     }.transform(to: .ok)
 }
 ```
@@ -600,7 +615,7 @@ Similar to created and deleted timestamps, to enable soft deletion in a model ju
 
 ```swift
 @Timestamp(key: "deleted_at", on: .delete)
-    var deletedAt: Date?
+var deletedAt: Date?
 ```
 
 Calling `Model.delete(on:)` on a model that has a delete timestamp property will automatically soft delete it.
@@ -609,10 +624,9 @@ If you need to perform a query that includes the soft deleted items, you can use
 
 ```swift
 // Find the first soft deleted Galaxy
-Galaxy.query(on: db).withDeleted().first().flatMap{ g -> EventLoopFuture<Void> in
-    guard g != nil else { return db.eventLoop.future() }
+Galaxy.query(on: db).withDeleted().first().unwrap(or: ...).flatMap { galaxy in
     // Restore galaxy
-    return g.restore(on: db)
+    galaxy.restore(on: db)
 }
 ```
 
@@ -620,10 +634,9 @@ It is also equally easy to permanently delete items with the `force` parameter:
 
 ```swift
 // Find the first soft deleted Galaxy
-Galaxy.query(on: db).withDeleted().first().flatMap{ g -> EventLoopFuture<Void> in
-    guard g != nil else { return db.eventLoop.future() }
+Galaxy.query(on: db).withDeleted().first().unwrap(or: ...).flatMap { galaxy in
     // Permanently delete
-    return g.delete(force: true, on: db)
+    galaxy.delete(force: true, on: db)
 }
 ```
 

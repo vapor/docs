@@ -30,7 +30,10 @@ You will need to enable `FileMiddleware` in your `configure.swift` file before V
 
 ```swift
 // Serves files from `Public/` directory
-middlewares.use(app.make(FileMiddleware.self))
+let fileMiddleware = FileMiddleware(
+    publicDirectory: app.directory.publicDirectory
+)
+app.middleware.use(fileMiddleware)
 ```
 
 ## Sources

@@ -21,8 +21,8 @@ import Vapor
 final class User: Model, Content {
     static let schema = "users"
 
-    @ID(key: "id")
-    var id: Int?
+    @ID(key: .id)
+    var id: UUID?
 
     @Field(key: "name")
     var name: String
@@ -35,7 +35,7 @@ final class User: Model, Content {
 
     init() { }
 
-    init(id: Int? = nil, name: String, email: String, passwordHash: String) {
+    init(id: UUID? = nil, name: String, email: String, passwordHash: String) {
         self.id = id
         self.name = name
         self.email = email
@@ -56,7 +56,7 @@ extension User {
 
         func prepare(on database: Database) -> EventLoopFuture<Void> {
             database.schema("users")
-                .field("id", .int, .identifier(auto: true))
+                .id()
                 .field("name", .string, .required)
                 .field("email", .string, .required)
                 .field("password_hash", .string, .required)
@@ -196,8 +196,8 @@ import Vapor
 final class UserToken: Model, Content {
     static let schema = "user_tokens"
 
-    @ID(key: "id")
-    var id: Int?
+    @ID(key: .id)
+    var id: UUID?
 
     @Field(key: "value")
     var value: String
@@ -207,7 +207,7 @@ final class UserToken: Model, Content {
 
     init() { }
 
-    init(id: Int? = nil, value: String, userID: User.IDValue) {
+    init(id: UUID? = nil, value: String, userID: User.IDValue) {
         self.id = id
         self.value = value
         self.$user.id = userID
@@ -228,9 +228,9 @@ extension UserToken {
         
         func prepare(on database: Database) -> EventLoopFuture<Void> {
             database.schema("user_tokens")
-                .field("id", .int, .identifier(auto: true))
+                .id()
                 .field("value", .string, .required)
-                .field("user_id", .int, .required, .references("users", "id"))
+                .field("user_id", .uuid, .required, .references("users", "id"))
                 .unique(on: "value")
                 .create()
         }
