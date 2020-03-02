@@ -88,22 +88,6 @@ init(id: UUID? = nil, name: String) {
 
 Using convenience inits is especially helpful if you add new properties to your model as you can get compile-time errors if the init method changes.
 
-### Timestamps
-
-Fluent provides the ability to track creation and update times on models by specifying `Timestamp` fields in your model. Fluent automatically sets the fields when necessary. You can add these like so:
-
-```swift
-@Timestamp(key: "created_at", on: .create)
-var createdAt: Date?
-    
-@Timestamp(key: "updated_at", on: .update)
-var updatedAt: Date?
-```
-
-!!! Info
-    You can use any name/key for these fields. `created_at` / `updated_at`, are only for illustration purposes
-
-
 ## Migrations
 
 If your database uses pre-defined schemas, like SQL databases, you will need a migration to prepare the database for your model. Migrations are also useful for seeding databases with data. To create a migration, define a new type conforming to the `Migration` protocol. Take a look at the following migration for the previously defined `Galaxy` model.
@@ -115,9 +99,6 @@ struct CreateGalaxy: Migration {
         database.schema("galaxies")
             .id()
             .field("name", .string)
-            // These are necessary if you have added timestamps in your models
-            .field("created_at", .datetime)
-            .field("updated_at", .datetime)
             .create()
     }
 
@@ -607,7 +588,32 @@ Once you have created your middleware, you must register it with the `Applicatio
 app.databases.middleware.use(GalaxyMiddleware(), on: .psql)
 ```
 
-## Soft Delete
+## Timestamps
+
+Fluent provides the ability to track creation and update times on models by specifying `Timestamp` fields in your model. Fluent automatically sets the fields when necessary. You can add these like so:
+
+```swift
+@Timestamp(key: "created_at", on: .create)
+var createdAt: Date?
+    
+@Timestamp(key: "updated_at", on: .update)
+var updatedAt: Date?
+```
+
+!!! Info
+    You can use any name/key for these fields. `created_at` / `updated_at`, are only for illustration purposes
+
+Timestamps are added as fields in a migration using the `.datetime` data type.
+
+```swift
+database.schema(...)
+    ...
+    .field("created_at", .datetime)
+    .field("updated_at", .datetime)
+    .create()
+```
+
+### Soft Delete
 
 Soft deletion marks an item as deleted in the database but doesn't actually remove it. This can be useful when you have data retention requirements, for example. In Fluent, it works by setting a deletion timestamp. By default, soft deleted items won't appear in queries and can be restored at any time.
 
@@ -620,24 +626,25 @@ var deletedAt: Date?
 
 Calling `Model.delete(on:)` on a model that has a delete timestamp property will automatically soft delete it.
 
-If you need to perform a query that includes the soft deleted items, you can use `withDeleted()` in your query. You can easily restore soft deleted items with `restore(on:)`:
+If you need to perform a query that includes the soft deleted items, you can use `withDeleted()` in your query. 
 
 ```swift
-// Find the first soft deleted Galaxy
-Galaxy.query(on: db).withDeleted().first().unwrap(or: ...).flatMap { galaxy in
-    // Restore galaxy
-    galaxy.restore(on: db)
-}
+// Get all galaxies including soft-deleted ones.
+Galaxy.query(on: db).withDeleted().all()
 ```
 
-It is also equally easy to permanently delete items with the `force` parameter:
+You can restore a soft deleted model with `restore(on:)`:
 
 ```swift
-// Find the first soft deleted Galaxy
-Galaxy.query(on: db).withDeleted().first().unwrap(or: ...).flatMap { galaxy in
-    // Permanently delete
-    galaxy.delete(force: true, on: db)
-}
+// Restore galaxy
+galaxy.restore(on: db)
+```
+
+To permanently delete an item with an on-delete timestamp, use the `force` parameter:
+
+```swift
+// Permanently delete
+galaxy.delete(force: true, on: db)
 ```
 
 ## Next Steps
