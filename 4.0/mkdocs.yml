@@ -44,6 +44,7 @@ nav:
   - 'Authentication': 'fluent/authentication.md'
 - 'Security':
   - 'Authentication': 'authentication.md'
+  - 'Crypto': 'crypto.md'
 - 'Deploy':
   - 'DigitalOcean': 'deploy/digital-ocean.md'
   - 'Supervisor': 'deploy/supervisor.md'
