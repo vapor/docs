@@ -54,3 +54,4 @@ nav:
     - '2.0': 'version/2_0.md'
     - '3.0': 'version/3_0.md'
     - '4.0': 'version/4_0.md'
+    - 'Upgrading': 'upgrading.md'
