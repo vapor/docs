@@ -308,8 +308,8 @@ Accessing `app.storage` can be wrapped in a settable computed property to create
 ```swift
 extension Application {
 	var myNumber: Int? {
-		get { app.storage[MyNumber.self] }
-		set { app.storage[MyNumber.self] = newValue }
+		get { self.storage[MyNumber.self] }
+		set { self.storage[MyNumber.self] = newValue }
 	}
 }
 
