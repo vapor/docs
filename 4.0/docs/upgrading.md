@@ -338,7 +338,7 @@ Methods prefixed with `new`, like `newPromise` have been changed to `make` to be
 
 ```diff
 - let promise = eventLoop.newPromise(String.self)
-- let promise = eventLoop.makePromise(of: String.self)
++ let promise = eventLoop.makePromise(of: String.self)
 ```
 
 `catchMap` is no longer available, but NIO's methods like `mapError` and `flatMapErrorThrowing` will work instead. 
