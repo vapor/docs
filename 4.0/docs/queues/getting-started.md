@@ -19,7 +19,7 @@ This package is similar to [Ruby Sidekiq](https://github.com/mperham/sidekiq). I
 - Uses NIO to utilize all available cores and EventLoops for jobs.
 - Allows users to schedule repeating tasks
 
-Jobs currently has one officially supported driver which interfaces with the main protocol:
+Queues currently has one officially supported driver which interfaces with the main protocol:
 
 - [QueuesRedisDriver](https://github.com/vapor/queues-redis-driver)
 
@@ -35,7 +35,7 @@ Let's take a look at how you can get started using Queues.
 
 ### Package
 
-The first step to using Jobs is adding one of the drivers as a dependency to your project in your SPM package manifest file. In this example, we'll use the Redis driver. 
+The first step to using Queues is adding one of the drivers as a dependency to your project in your SwiftPM package manifest file. In this example, we'll use the Redis driver. 
 
 ```swift
 // swift-tools-version:5.2
@@ -65,7 +65,7 @@ open Package.swift
 
 ### Config
 
-The next step is to configure the Queues in `configure.swift`. We'll use the Redis library as an example:
+The next step is to configure Queues in `configure.swift`. We'll use the Redis library as an example:
 
 ```swift
 try app.queues.use(.redis(url: "redis://127.0.0.1:6379"))
