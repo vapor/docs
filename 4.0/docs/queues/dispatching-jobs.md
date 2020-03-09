@@ -1,11 +1,11 @@
 # Dispatching Jobs
 
-To dispatch a job, you need access to an instance of `Application` or `Request`. You will most likely be dispatching jobs inside of a route handler:
+To dispatch a queue job, you need access to an instance of `Application` or `Request`. You will most likely be dispatching jobs inside of a route handler:
 
 ```swift
 app.get("email") { req -> EventLoopFuture<String> in
     return req
-        .jobs
+        .queue
         .dispatch(
             EmailJob.self, 
             .init(to: "email@email.com", message: "message")
@@ -20,7 +20,7 @@ Jobs will automatically retry themselves upon error if you specify a `maxRetryCo
 ```swift
 app.get("email") { req -> EventLoopFuture<String> in
     return req
-        .jobs
+        .queue
         .dispatch(
             EmailJob.self, 
             .init(to: "email@email.com", message: "message"),
@@ -37,7 +37,7 @@ Jobs can also be set to only run after a certain `Date` has passed. To specify a
 app.get("email") { req -> EventLoopFuture<String> in
     let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // One day
     return req
-        .jobs
+        .queue
         .dispatch(
             EmailJob.self, 
             .init(to: "email@email.com", message: "message"),
@@ -67,7 +67,7 @@ Then, specify the queue type when you retrieve the `jobs` object:
 app.get("email") { req -> EventLoopFuture<String> in
     let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // One day
     return req
-        .jobs(.emails)
+        .queues(.emails)
         .dispatch(
             EmailJob.self, 
             .init(to: "email@email.com", message: "message"),
@@ -77,4 +77,4 @@ app.get("email") { req -> EventLoopFuture<String> in
 }
 ```
 
-If you do not specify a queue the job will be run on the `default` queue. Make sure to follow the instructions in [Getting Started](/jobs/getting-started.md#running-workers) to start workers for each queue type. 
+If you do not specify a queue the job will be run on the `default` queue. Make sure to follow the instructions in [Getting Started](/queues/getting-started.md#running-workers) to start workers for each queue type. 

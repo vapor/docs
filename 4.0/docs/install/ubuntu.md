@@ -1,16 +1,15 @@
 # Install on Ubuntu
 
-To use Vapor on Ubuntu, you will need Swift 5.1 or greater. This can be installed using the toolchains available on [Swift.org](https://swift.org/download/)
+To use Vapor on Ubuntu, you will need Swift 5.2 or greater. This can be installed using the toolchains available on [Swift.org](https://swift.org/download/)
 
 ## Supported Versions
 
-Vapor supports the same versions of Ubuntu that Swift supports.
+Vapor supports the same versions of Ubuntu that Swift 5.2 supports.
 
 | Version | Codename          |
 |---------|-------------------|
 | 18.04   | Bionic Beaver     |
 | 16.04   | Xenial Xerus      |
-| 14.04   | Trusty Tahr       |
 
 ## Installation
 
@@ -44,4 +43,4 @@ You should see a list of available commands.
 
 ## Next
 
-After you have installed Swift, create your first app in [Getting Started &rarr; Hello, world](../getting-started/hello-world.md).
+After you have installed Swift, create your first app in [Getting Started &rarr; Hello, world](../hello-world.md).

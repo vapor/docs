@@ -16,13 +16,13 @@ struct Email: Codable {
 struct EmailJob: Job {
     typealias Payload = Email
     
-    func dequeue(_ context: JobContext, _ payload: Email) -> EventLoopFuture<Void> {
+    func dequeue(_ context: QueueContext, _ payload: Email) -> EventLoopFuture<Void> {
         print(payload.message)
         print(payload.to)
         return context.eventLoop.future()
     }
     
-    func error(_ context: JobContext, _ error: Error, _ payload: Email) -> EventLoopFuture<Void> {
+    func error(_ context: QueueContext, _ error: Error, _ payload: Email) -> EventLoopFuture<Void> {
         // If you don't want to handle errors you can simply return a future. You can also omit this function entirely. 
         return context.eventLoop.future()
     }
@@ -30,4 +30,4 @@ struct EmailJob: Job {
 ```
 
 !!! tip
-    Don't forget to follow the instructions in [Getting Started](/jobs/getting-started.md#registering-a-job) to add this job to your configuration file. 
+    Don't forget to follow the instructions in [Getting Started](/queues/getting-started.md#registering-a-job) to add this job to your configuration file. 

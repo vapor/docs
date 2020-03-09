@@ -6,11 +6,11 @@ The Jobs package also allows you to schedule jobs to occur at certain points in 
 The scheduler requires a separate worker process to be running, similar to the queue worker. You can start the worker by running this command: 
 
 ```sh
-swift run Run jobs --scheduled
+swift run Run queues --scheduled
 ```
 
 !!! tip
-    Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: Run run jobs --scheduled`
+    Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: Run run queues --scheduled`
 
 ## Creating a `ScheduledJob`
 To being, start by creating a new `ScheduledJob`:
@@ -22,7 +22,7 @@ import Jobs
 struct CleanupJob: ScheduledJob {
     // Add extra services here via dependency injection, if you need them.
 
-    func run(context: JobContext) -> EventLoopFuture<Void> {
+    func run(context: QueueContext) -> EventLoopFuture<Void> {
         // Do some work here, perhaps queue up another job.
         return context.eventLoop.makeSucceededFuture(())
     }
@@ -32,7 +32,7 @@ struct CleanupJob: ScheduledJob {
 Then, in your configure code, register the scheduled job: 
 
 ```swift
-app.jobs.schedule(CleanupJob())
+app.queues.schedule(CleanupJob())
     .yearly()
     .in(.may)
     .on(23)

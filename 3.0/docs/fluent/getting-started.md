@@ -27,7 +27,7 @@ And here are community-maintained drivers. These are all open-source Fluent driv
 |DynamoDB|[fluent-dynamodb](https://github.com/Yasumoto/fluent-dynamodb)|3.0.0|`dynamodb`|Amazon's hosted [key-value store](https://aws.amazon.com/dynamodb/) available through AWS|
 
 !!! note
-    Replace any Xcode placholders (`<#...#>`) in the code snippets below with information from the above table.
+    Replace any Xcode placeholders (`<#...#>`) in the code snippets below with information from the above table.
 
 You can search GitHub for the tag [`fluent-database`](https://github.com/topics/fluent-database) for a full list of official and third-party Fluent database drivers.
 
