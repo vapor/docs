@@ -1,6 +1,6 @@
 # The `Job` Protocol
 
-Jobs are defined by the `Job` and protocol.
+Jobs are defined by the `Job` protocol.
 
 ### Modeling a `Job` object:
 ```swift

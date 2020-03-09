@@ -1,6 +1,6 @@
 # Scheduling Jobs
 
-The Jobs package also allows you to schedule jobs to occur at certain points in time.
+The Queues package also allows you to schedule jobs to occur at certain points in time.
 
 ## Starting the scheduler worker
 The scheduler requires a separate worker process to be running, similar to the queue worker. You can start the worker by running this command: 
@@ -58,7 +58,7 @@ There are five main methods that can be called on a scheduler, each of which cre
 | `hourly()`      | `at(_ minute: Minute)`                 | The minute to run the job at. Final method of the chain.                      |
 
 ## Available helpers 
-Jobs ships with some helpers enums to make scheduling a bit easier: 
+Queues ships with some helpers enums to make scheduling easier: 
 
 | Helper Function | Available Helper Enum                 |
 |-----------------|---------------------------------------|
