@@ -17,8 +17,7 @@ struct EmailJob: Job {
     typealias Payload = Email
     
     func dequeue(_ context: QueueContext, _ payload: Email) -> EventLoopFuture<Void> {
-        print(payload.message)
-        print(payload.to)
+        // This is where you would send the email
         return context.eventLoop.future()
     }
     

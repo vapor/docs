@@ -57,11 +57,7 @@ let package = Package(
 )
 ```
 
-Once you have added the dependency, regenerate your Xcode project with the following command:
-
-```sh
-open Package.swift
-```
+If you edit the manifest directly inside Xcode, it will automatically pick up the changes and fetch the new dependency when the file is saved. Otherwise, from Terminal, run `swift package resolve` to fetch the new dependency.
 
 ### Config
 
