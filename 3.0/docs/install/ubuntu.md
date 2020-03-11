@@ -14,50 +14,11 @@ Vapor supports the same versions of Ubuntu that Swift supports.
 | 16.04   | Xenial Xerus      |
 | 14.04   | Trusty Tahr       |
 
-## APT Repo
+## Installation
 
-Add Vapor's APT repo to get access to all of Vapor's Ubuntu packages.
+Visit Swift.org's [Using Downloads](https://swift.org/download/#using-downloads) guide for instructions on how to install Swift on Linux.
 
-### Quick Script
-
-Easily add Vapor's APT repo with this handy script.
-
-```sh
-eval "$(curl -sL https://apt.vapor.sh)"
-```
-
-!!! tip
-	This command requires `curl` which can be installed using `sudo apt-get install curl`
-
-### Dockerfile
-When configuring Ubuntu from a Dockerfile, adding the APT repo can be done via this command:
-```sh
-RUN /bin/bash -c "$(wget -qO- https://apt.vapor.sh)"
-```
-
-### Manual
-
-Or add the repo manually.
-
-```sh
-wget -q https://repo.vapor.codes/apt/keyring.gpg -O- | sudo apt-key add -
-echo "deb https://repo.vapor.codes/apt $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vapor.list
-sudo apt-get update
-```
-
-## Install Vapor
-
-Now that you have added Vapor's APT repo, you can install the required dependencies.
-
-```sh
-sudo apt-get install swift vapor
-```
-
-### Verify Installation
-
-Double check everything worked with the following commands.
-
-#### Swift
+Double check the Swift installation was successful by printing the version.
 
 ```sh
 swift --version
@@ -70,15 +31,34 @@ Apple Swift version 4.1.0 (swiftlang-900.0.69.2 clang-900.0.38)
 Target: x86_64-apple-macosx10.9
 ```
 
-Vapor requires Swift 4.1 or greater.
+## Docker
 
-#### Vapor Toolbox
+You can also use Swift's official Docker images which come with the compiler preinstalled. Learn more at [Swift's Docker Hub](https://hub.docker.com/_/swift).
+
+## Install Toolbox
+
+Now that you have Swift installed, let's install the [Vapor Toolbox](https://github.com/vapor/toolbox). This CLI tool is not required to use Vapor, but it includes helpful utilities. 
+
+On Linux, you will need to build the toolbox from source. View the toolbox's <a href="https://github.com/vapor/toolbox/releases" target="_blank">releases</a> on GitHub to find the latest version.
+
+!!! warning
+	Vapor 3 compatible versions of the toolbox are semver major 3.
+
+```sh
+git clone https://github.com/vapor/toolbox.git
+cd toolbox
+git checkout <desired version>
+swift build -c release --disable-sandbox
+mv .build/release/vapor /usr/local/bin
+```
+
+Double check the installation was successful by printing help.
 
 ```sh
 vapor --help
 ```
 
-You should see a long list of available commands.
+You should see a list of available commands.
 
 ## Done
 
