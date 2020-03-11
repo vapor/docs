@@ -117,7 +117,7 @@ app.post("users") { req -> EventLoopFuture<User> in
     let user = try User(
         name: create.name,
         email: create.email,
-        passwordHash: Bcrypt.hash(password: create.password)
+        passwordHash: Bcrypt.hash(create.password)
     )
     return user.save(on: req.db)
         .map { user }
