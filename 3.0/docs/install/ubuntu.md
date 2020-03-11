@@ -42,7 +42,7 @@ Now that you have Swift installed, let's install the [Vapor Toolbox](https://git
 On Linux, you will need to build the toolbox from source. View the toolbox's <a href="https://github.com/vapor/toolbox/releases" target="_blank">releases</a> on GitHub to find the latest version.
 
 !!! warning
-	Vapor 3 compatible versions of the toolbox are semver major 3.
+    Vapor 3 compatible versions of the toolbox are semver major 3.
 
 ```sh
 git clone https://github.com/vapor/toolbox.git
