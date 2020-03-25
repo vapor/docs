@@ -6,9 +6,6 @@ This guide shows you how to upgrade an existing Vapor 3.x project to 4.0. This g
 
 To use Vapor 4, you will need Xcode 11.4 and macOS 10.15 or greater.
 
-!!! warning
-	At the time of writing, Vapor 4 is still a release candidate and Xcode 11.4 is in beta.
-
 The Install section of the docs goes over installing dependencies.
 
 ## Package.swift
