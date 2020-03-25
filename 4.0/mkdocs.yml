@@ -42,14 +42,15 @@ nav:
   - 'Overview': 'fluent/overview.md'
   - 'Config': 'fluent/config.md'
   - 'Authentication': 'fluent/authentication.md'
+- 'Advanced':
+  - "Queues":
+    - "Getting Started": "queues/getting-started.md"
+    - "Modeling Queue Jobs": "queues/jobs.md"
+    - "Dispatching Queue Jobs": "queues/dispatching-jobs.md"
+    - "Scheduling Queue Jobs": "queues/scheduling-jobs.md"
 - 'Security':
   - 'Authentication': 'authentication.md'
   - 'Crypto': 'crypto.md'
-- "Queues":
-  - "Getting Started": "queues/getting-started.md"
-  - "Modeling Queue Jobs": "queues/jobs.md"
-  - "Dispatching Queue Jobs": "queues/dispatching-jobs.md"
-  - "Scheduling Queue Jobs": "queues/scheduling-jobs.md"
 - 'Deploy':
   - 'DigitalOcean': 'deploy/digital-ocean.md'
   - 'Supervisor': 'deploy/supervisor.md'
