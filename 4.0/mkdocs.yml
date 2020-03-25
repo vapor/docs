@@ -43,11 +43,7 @@ nav:
   - 'Config': 'fluent/config.md'
   - 'Authentication': 'fluent/authentication.md'
 - 'Advanced':
-  - "Queues":
-    - "Getting Started": "queues/getting-started.md"
-    - "Modeling Queue Jobs": "queues/jobs.md"
-    - "Dispatching Queue Jobs": "queues/dispatching-jobs.md"
-    - "Scheduling Queue Jobs": "queues/scheduling-jobs.md"
+  - 'Queues': 'queues/queues.md'
 - 'Security':
   - 'Authentication': 'authentication.md'
   - 'Crypto': 'crypto.md'
