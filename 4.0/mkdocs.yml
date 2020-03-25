@@ -38,6 +38,7 @@ nav:
   - 'Content': 'content.md'
   - 'Client': 'client.md'
   - 'Validation': 'validation.md'
+  - 'Async': 'async.md'
 - 'Fluent':
   - 'Overview': 'fluent/overview.md'
   - 'Config': 'fluent/config.md'
