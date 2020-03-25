@@ -496,7 +496,28 @@ Route parameter usage with models is mentioned in the Fluent section.
 
 ## Middleware
 
-Coming soon.
+`MiddlewareConfig` has been renamed to `MiddlewareConfiguration` and is now a property on Application. You can add middleware to your app using `app.middleware`. 
+
+```diff
+let corsMiddleware = CORSMiddleware(configuration: ...)
+- var middleware = MiddlewareConfig()
+- middleware.use(corsMiddleware)
++ app.middleware.use(corsMiddleware)
+- services.register(middlewares)
+```
+
+Middleware can no longer be registered by type name. Initialize the middleware first before registering.
+
+```diff
+- middleware.use(ErrorMiddleware.self)
++ app.middleware.use(ErrorMiddleware.default(environment: app.environment))
+```
+
+To remove all default middleware, set `app.middleware` to an empty config using:
+
+```swift
+app.middleware = .init()
+```
 
 ## HTTP
 
