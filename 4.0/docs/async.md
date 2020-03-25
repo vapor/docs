@@ -207,7 +207,7 @@ print(string) /// String
 `wait()` can only be used on a background thread or the main thread, i.e., in `configure.swift`. It can _not_ be used on an event loop thread, i.e., in route closures.
 
 !!! warning
-    Attempting to call `wait()` on an event loop thread will cause an assertion.
+    Attempting to call `wait()` on an event loop thread will cause an assertion failure.
 
     
 ## Promise
@@ -242,7 +242,7 @@ When your application boots, it will usually create one event loop for each core
 
 Each time a client connects to your server, it will be assigned to one of the event loops. From that point on, all communication between the server and that client will happen on that same event loop (and by association, that event loop's thread). 
 
-The event loop is responsible for keeping track of each connected client's state. If there is a request from the client waiting to be read, the event loop trigger a read notification, causing the data to be read. Once the entire request is read, any futures waiting for that request's data will be completed. 
+The event loop is responsible for keeping track of each connected client's state. If there is a request from the client waiting to be read, the event loop triggers a read notification, causing the data to be read. Once the entire request is read, any futures waiting for that request's data will be completed. 
 
 In route closures, you can access the current event loop via `Request`. 
 
@@ -251,7 +251,7 @@ req.eventLoop.makePromise(of: ...)
 ```
 
 !!! warning
-    Vapor expects that route closures will stay on `req.eventLoop`. If you hops threads, you must ensure access to `Request` and the final response future all happen on the request's event loop. 
+    Vapor expects that route closures will stay on `req.eventLoop`. If you hop threads, you must ensure access to `Request` and the final response future all happen on the request's event loop. 
 
 Outside of route closures, you can get one of the available event loops via `Application`. 
 
