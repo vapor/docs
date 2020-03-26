@@ -54,8 +54,8 @@ let package = Package(
     	...
         .target(name: "App", dependencies: [
         	...
-        	"Fluent", 
-        	"FluentPostgresDriver", 
+        	"Fluent",
+        	"FluentPostgresDriver",
         ]),
     ]
 )
@@ -102,8 +102,8 @@ let package = Package(
     	...
         .target(name: "App", dependencies: [
         	...
-        	"Fluent", 
-        	"FluentSQLiteDriver", 
+        	"Fluent",
+        	"FluentSQLiteDriver",
         ]),
     ]
 )
@@ -152,8 +152,8 @@ let package = Package(
     	...
         .target(name: "App", dependencies: [
         	...
-        	"Fluent", 
-        	"FluentMySQLDriver", 
+        	"Fluent",
+        	"FluentMySQLDriver",
         ]),
     ]
 )
@@ -178,3 +178,41 @@ You can also parse the credentials from a database connection string.
 ```swift
 try app.databases.use(.mysql(url: "<connection string>"), as: .mysql)
 ```
+
+### MongoDB
+
+MongoDB is a popular schemaless NoSQL database designed for programmers. The driver supports all cloud hosting providers and self-hosted installations from version 3.4 and up.
+
+To use MongoDB, add the following dependencies to your package.
+
+```swift
+// swift-tools-version:5.2
+import PackageDescription
+
+let package = Package(
+	...
+    dependencies: [
+    	...
+        .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0"),
+        .package(url: "https://github.com/vapor/fluent-mongo-driver.git", from: "1.0.0"),
+    ],
+    targets: [
+    	...
+        .target(name: "App", dependencies: [
+        	...
+        	"Fluent",
+        	"FluentMongoDriver",
+        ]),
+    ]
+)
+```
+
+Once the dependencies are added, configure the database's credentials with Fluent using `app.databases.use` in `configure.swift`.
+
+To connect, pass a connection string in the standard MongoDB [connection URI format](https://docs.mongodb.com/master/reference/connection-string/index.html).
+
+```swift
+try app.databases.use(.mongo(connectionString: "<connection string>"), as: .mongo)
+```
+
+[Read more](mongo.md) about MongoDB specific feature.
