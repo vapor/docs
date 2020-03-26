@@ -43,7 +43,7 @@ nav:
   - 'Config': 'fluent/config.md'
   - 'Authentication': 'fluent/authentication.md'
 - 'Advanced':
-  - 'Queues': 'queues/queues.md'
+  - 'Queues': 'queues.md'
 - 'Security':
   - 'Authentication': 'authentication.md'
   - 'Crypto': 'crypto.md'
