@@ -55,6 +55,12 @@ nav:
     - 'Client': 'http/client.md'
     - 'Server': 'http/server.md'
     - 'Message': 'http/message.md'
+- 'Jobs': 
+    - 'Getting Started': 'jobs/getting-started.md'
+    - 'Redis Driver': 'jobs/redis-driver.md'
+    - 'Modeling Jobs': 'jobs/jobs.md'
+    - 'Dispatching Jobs': 'jobs/dispatching-jobs.md'
+    - 'Scheduling Jobs': 'jobs/scheduling-jobs.md'
 - 'JWT':
     - 'Getting Started': 'jwt/getting-started.md'
     - 'Overview': 'jwt/overview.md'
