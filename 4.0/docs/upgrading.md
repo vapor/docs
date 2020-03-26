@@ -543,10 +543,10 @@ You should also remove conformance from `ServiceType` as this no longer exists i
 Instead you should create a `UserRepositoryFactory`:
 ```swift
 struct UserRepositoryFactory {
-    var make: ((Request) -> UserRepository)?
-    mutating func use(_ make: @escaping ((Request) -> UserRepository)) {
-    	self.make = make
-    }
+	var make: ((Request) -> UserRepository)?
+	mutating func use(_ make: @escaping ((Request) -> UserRepository)) {
+		self.make = make
+	}
 }
 ```
 This factory is responsible for returning a `UserRepository` for a `Request`.
