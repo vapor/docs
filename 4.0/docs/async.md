@@ -267,14 +267,9 @@ You can change a future's event loop using `hop`.
 futureString.hop(to: otherEventLoop)
 ```
 
-### Blocking
+## Blocking
 
-Calling blocking code on an event loop thread can prevent your application from responding to incoming requests. 
-
-!!! danger
-    Never make blocking calls directly on an event loop.
-    
-An example of a blocking call would be something like `libc.sleep(_:)`.
+Calling blocking code on an event loop thread can prevent your application from responding to incoming requests in a timely manner. An example of a blocking call would be something like `libc.sleep(_:)`.
 
 ```swift
 router.get("hello") { req in
@@ -286,17 +281,17 @@ router.get("hello") { req in
 }
 ```
 
-`sleep(_:)` is a command that blocks the current thread for the number of seconds supplied. If you do blocking work directly on an event loop, the event loop will be unable to respond to any other clients assigned to it for the duration of the blocking work. In other words, if you do `sleep(5)` on an event loop, all of the other clients connected to that event loop (possibly hundreds or thousands) will be delayed for at least 5 seconds.
+`sleep(_:)` is a command that blocks the current thread for the number of seconds supplied. If you do blocking work like this directly on an event loop, the event loop will be unable to respond to any other clients assigned to it for the duration of the blocking work. In other words, if you do `sleep(5)` on an event loop, all of the other clients connected to that event loop (possibly hundreds or thousands) will be delayed for at least 5 seconds. 
 
 Make sure to run any blocking work in the background. Use promises to notify the event loop when this work is done in a non-blocking way.
 
 ```swift
-router.get("hello") { req -> Future<String> in
+router.get("hello") { req -> EventLoopFuture<String> in
     /// Create a new void promise
     let promise = req.eventLoop.makePromise(of: Void.self)
     
     /// Dispatch some work to happen on a background thread
-    DispatchQueue.global().async {
+    req.application.threadPool.submit { _ in
         /// Puts the background thread to sleep
         /// This will not affect any of the event loops
         sleep(5)
@@ -312,9 +307,23 @@ router.get("hello") { req -> Future<String> in
 }
 ```
 
-Not all blocking calls will be as obvious as `sleep(_:)`. If you are suspicious that a call you are using may be blocking, research the method itself or ask someone. Chances are if the function is doing disk or network IO and uses a synchronous API (no callbacks or futures) it is blocking.
+Not all blocking calls will be as obvious as `sleep(_:)`. If you are suspicious that a call you are using may be blocking, research the method itself or ask someone. The sections below go over how methods can block in more detail.
 
-!!! info
-    If doing blocking work is a central part of your application, you should consider using a `BlockingIOThreadPool` to control the number of threads you create to do blocking work. This will help you avoid starving your event loops from CPU time while blocking work is being done.
+### I/O Bound
 
+I/O bound blocking means waiting on a slow resource like a network or hard disk which can be orders of magnitude slower than the CPU. Blocking the CPU while you wait for these resources results in wasted time. 
+
+!!! danger
+    Never make blocking I/O bound calls directly on an event loop.
+
+All of Vapor's packages are built on SwiftNIO and use non-blocking I/O. However, there are many Swift packages and C libraries in the wild that use blocking I/O. Chances are if a function is doing disk or network IO and uses a synchronous API (no callbacks or futures) it is blocking.
     
+### CPU Bound
+
+Most of the time during a request is spent waiting for external resources like database queries and network requests to load. Because Vapor and SwiftNIO are non-blocking, this downtime can be used for fulfilling other incoming requests. However, some routes in your application may need to do heavy CPU bound work as the result of a request.
+
+While an event loop is processing CPU bound work, it will be unable to respond to other incoming requests. This is normally fine since CPUs are fast and most CPU work web applications do is lightweight. But this can become a problem if routes with long running CPU work are preventing requests to faster routes from being responded to quickly. 
+
+Identifying long running CPU work in your app and moving it to background threads can help improve the reliability and responsiveness of your service. CPU bound work is more of a gray area than I/O bound work, and it is ultimately up to you to determine where you want to draw the line. 
+
+A common example of heavy CPU bound work is Bcrypt hashing during user signup and login. Bcrypt is deliberately very slow and CPU intensive for security reasons. This may be the most CPU intensive work a simple web application actually does. Moving hashing to a background thread can allow the CPU to interleave event loop work while calculating hashes which results in higher concurrency.

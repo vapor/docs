@@ -89,8 +89,8 @@ This guide will install Swift 5.2.0. Visit the [Swift Downloads](https://swift.o
 Download and decompress the Swift toolchain.
 
 ```sh
-wget https://swift.org/builds/swift-5.2.0-release/ubuntu1804/swift-5.2.0-RELEASE/swift-5.2.0-RELEASE-ubuntu18.04.tar.gz
-tar xzf swift-5.2.0-RELEASE-ubuntu18.04.tar.gz
+wget https://swift.org/builds/swift-5.2-release/ubuntu1804/swift-5.2-RELEASE/swift-5.2-RELEASE-ubuntu18.04.tar.gz
+tar xzf swift-5.2-RELEASE-ubuntu18.04.tar.gz
 ```
 
 !!! note
@@ -102,7 +102,7 @@ Move Swift somewhere easy to acess. This guide will use `/swift` with each compi
 
 ```sh
 sudo mkdir /swift
-sudo mv swift-5.2.0-RELEASE-ubuntu18.04 /swift/5.2.0
+sudo mv swift-5.2-RELEASE-ubuntu18.04 /swift/5.2.0
 ```
 
 Add Swift to `/usr/bin` so it can be executed by `vapor` and `root`.

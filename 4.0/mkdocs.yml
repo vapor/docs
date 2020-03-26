@@ -1,21 +1,21 @@
 site_name: Vapor Docs
-site_url: 'https://docs.vapor.codes/4.0/'
+site_url: "https://docs.vapor.codes/4.0/"
 repo_url: http://github.com/vapor/vapor
 edit_uri: https://github.com/vapor/documentation/edit/master/4.0/docs/
 theme:
   name: 'material'
   custom_dir: 'theme/'
   palette:
-    primary: 'black'
-    accent: 'blue'
-  logo: 'logo.png'
+    primary: "black"
+    accent: "blue"
+  logo: "logo.png"
 extra:
   font:
     text: 'Roboto Slab'
     code: 'Source Code Pro'
 google_analytics:
-  - 'UA-76177358-4'
-  - 'auto'
+  - "UA-76177358-4"
+  - "auto"
 markdown_extensions:
   - admonition
   - codehilite:
@@ -44,6 +44,8 @@ nav:
   - 'Config': 'fluent/config.md'
   - 'Authentication': 'fluent/authentication.md'
   - 'MongoDB': 'fluent/mongo.md'
+- 'Advanced':
+  - 'Queues': 'queues.md'
 - 'Security':
   - 'Authentication': 'authentication.md'
   - 'Crypto': 'crypto.md'
