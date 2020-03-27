@@ -39,10 +39,13 @@ nav:
   - 'Client': 'client.md'
   - 'Validation': 'validation.md'
   - 'Async': 'async.md'
+  - 'Logging': 'logging.md'
 - 'Fluent':
   - 'Overview': 'fluent/overview.md'
-  - 'Config': 'fluent/config.md'
-  - 'Authentication': 'fluent/authentication.md'
+  - 'Models': 'fluent/models.md'
+  - 'Migrations': 'fluent/migrations.md'
+  - 'Relations': 'fluent/relations.md'
+  - 'Query Builder': 'fluent/query-builder.md'
 - 'Advanced':
   - 'Queues': 'queues.md'
 - 'Security':
