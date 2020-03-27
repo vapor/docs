@@ -47,6 +47,7 @@ nav:
   - 'Relations': 'fluent/relations.md'
   - 'Query Builder': 'fluent/query-builder.md'
 - 'Advanced':
+  - 'Commands': 'commands.md'
   - 'Queues': 'queues.md'
 - 'Security':
   - 'Authentication': 'authentication.md'

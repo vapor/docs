@@ -44,7 +44,7 @@ let logger = Logger(label: "dev.logger.my")
 logger.info(...)
 ```
 
-While custom loggers will still output to your configured logging backend, they will not have important metadata attached like request uuid. Use the request or application specific loggers wherever possible. 
+While custom loggers will still output to your configured logging backend, they will not have important metadata attached like request UUID. Use the request or application specific loggers wherever possible. 
 
 ## Levels
 
