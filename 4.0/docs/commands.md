@@ -4,7 +4,7 @@ Vapor's Command API allows you to build custom command-line functions and intera
 
 ## Default Commands
 
-You can learn more about Vapor's default commands using the `--help` method. 
+You can learn more about Vapor's default commands using the `--help` option. 
 
 ```sh
 vapor run --help
@@ -59,6 +59,12 @@ You can get access to the current console via the supplied context. Console has 
 ```swift
 let name = context.console.ask("What is your \("name", color: .blue)?")
 context.console.print("Hello, \(name) 👋")
+```
+
+Test your command by running:
+
+```sh
+vapor run hello
 ```
 
 ### Cowsay
