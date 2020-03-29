@@ -11,7 +11,7 @@ Instances of `Logger` are used for outputting log messages. Vapor provides a few
 Each incoming `Request` has a unique logger that you should use for any logs specific to that request.
 
 ```swift
-app.get("hello") { req in
+app.get("hello") { req -> String in
     req.logger.info("Hello, logs!")
     return "Hello, world!"
 }
