@@ -52,7 +52,7 @@ In SQL environments, it's very common to create join tables for relationships be
 
 ### Nested Types
 
-To create a nested type, this type must be a class conforming to Fields. In addition, it must have an empty initialiser for use by Fluent's query system.
+To create a nested type, this type must be a class conforming to `Fields`. In addition, it must have an empty initialiser for use by Fluent's query system.
 
 ```swift
 // A type nested in the User model that contains grouped data
