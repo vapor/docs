@@ -43,7 +43,8 @@ nav:
   - 'Overview': 'fluent/overview.md'
   - 'Config': 'fluent/config.md'
   - 'Authentication': 'fluent/authentication.md'
-  - 'MongoDB': 'fluent/mongo.md'
+  - 'Advanced':
+    - 'MongoDB': 'fluent/advanced/mongo.md'
 - 'Security':
   - 'Authentication': 'authentication.md'
   - 'Crypto': 'crypto.md'
