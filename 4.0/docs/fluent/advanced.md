@@ -1,4 +1,6 @@
-# Fluent MongoDB
+# Advanced
+
+## MongoDB
 
 Fluent MongoDB is an integration between [Fluent](../fluent/overview.md) and the [MongoKitten](https://github.com/OpenKitten/MongoKitten/) driver. It leverages Swift's strong type system and Fluent's database agnostic interface using MongoDB.
 
@@ -34,7 +36,7 @@ final class User: Model {
 }
 ```
 
-## Raw Access
+### Raw Access
 
 To access the raw `MongoDatabase` instance, cast the database instance to `MongoDatabaseRepresentable` as such:
 
@@ -45,3 +47,5 @@ guard let db = req.db as? MongoDatabaseRepresentable else {
 
 let mongodb = db.raw
 ```
+
+From here you can use all of the MongoKitten APIs.
