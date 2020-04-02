@@ -9,7 +9,7 @@ switch app.environment {
 case .production:
     app.databases.use(....)
 default:
-	app.databases.use(...)
+    app.databases.use(...)
 }
 ```
 
@@ -30,7 +30,7 @@ Vapor includes the following environments:
 |testing|test|For unit testing.|
 
 !!! info
-	The `production` environment will default to `notice` level logging unless otherwise specified. All other environments default to `info`. 
+    The `production` environment will default to `notice` level logging unless otherwise specified. All other environments default to `info`. 
 
 You can pass either the full or short name to the `--env` (`-e`) flag.
 
@@ -83,7 +83,7 @@ print(foo) // String?
 ```
 
 !!! info
-	Variables specified in `.env` files will not overwrite variables that already exist in the process environment. 
+    Variables specified in `.env` files will not overwrite variables that already exist in the process environment. 
 
 Alongside `.env`, Vapor will also attempt to load a dotenv file for the current environment. For example, when in the `development` environment, Vapor will load `.env.development`. Any values in the specific environment file will take precedence over the general `.env` file.
 
@@ -101,7 +101,9 @@ vim .env.development
 ```
 
 !!! warning
-	Dotenv files with sensitive information such as passwords should not be committed to version control.
+    Dotenv files with sensitive information such as passwords should not be committed to version control.
+
+If you're having difficulty getting dotenv files to load, try enabling debug logging with `--log debug` for more information. 
 
 ## Custom Environments
 
