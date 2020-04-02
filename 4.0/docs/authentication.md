@@ -225,7 +225,7 @@ Fluent defines two protocols `ModelUser` and `ModelUserToken` which can be added
 
 `ModelUserToken` authenticates with a Bearer token. This is what you use to protect most of your endpoints. `ModelUser` authenticates with username and password and is used by a single endpoint for generating tokens. 
 
-This guide assumes you are familiar with Fluent and have successfully configured your app to use a database. If you are new to Fluent, start with the [overview](overview.md).
+This guide assumes you are familiar with Fluent and have successfully configured your app to use a database. If you are new to Fluent, start with the [overview](fluent/overview.md).
 
 ### User
 
@@ -293,7 +293,7 @@ Don't forget to add the migration to `app.migrations`.
 app.migrations.add(User.Migration())
 ``` 
 
-The first thing you will need is an endpoint to create new users. Let's use `POST /users`. Create a [Content](../content.md) struct representing the data this endpoint expects.
+The first thing you will need is an endpoint to create new users. Let's use `POST /users`. Create a [Content](content.md) struct representing the data this endpoint expects.
 
 ```swift
 import Vapor
@@ -308,7 +308,7 @@ extension User {
 }
 ```
 
-If you like, you can conform this struct to [Validatable](../validation.md) to add validation requirements.
+If you like, you can conform this struct to [Validatable](validation.md) to add validation requirements.
 
 ```swift
 import Vapor
@@ -389,7 +389,7 @@ passwordProtected.post("login") { req -> User in
 }
 ```
 
-`ModelUser` adds a static method `authenticator` for creating an [authenticator](../authentication.md). You can then use `middleware` to generate a middleware from the authenticator.
+`ModelUser` adds a static method `authenticator` for creating an authenticator. You can then use `middleware` to generate a middleware from the authenticator.
 
 Test that this route works by sending the following request.
 
@@ -432,7 +432,7 @@ final class UserToken: Model, Content {
 }
 ```
 
-This model must have a `value` field for storing the token's unique string. It must also have a [parent-relation](overview.md#parent) to the user model. You may add additional properties to this token as you see fit, such as an expiration date. 
+This model must have a `value` field for storing the token's unique string. It must also have a [parent-relation](fluent/overview.md#parent) to the user model. You may add additional properties to this token as you see fit, such as an expiration date. 
 
 Next, create a migration for this model.
 

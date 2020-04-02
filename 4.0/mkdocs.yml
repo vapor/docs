@@ -40,6 +40,7 @@ nav:
   - 'Validation': 'validation.md'
   - 'Async': 'async.md'
   - 'Logging': 'logging.md'
+  - 'Environment': 'environment.md'
 - 'Fluent':
   - 'Overview': 'fluent/overview.md'
   - 'Models': 'fluent/models.md'
