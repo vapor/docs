@@ -49,7 +49,7 @@ RUN swift build \
 	-Xswiftc -g
 ```
 
-Next it pulls in a different image (`vapor/ubuntu:18.04`) as a second stage. The second stage copies what is needed to run your app and omits build-only dependencies. 
+Next, it pulls in a different image (`vapor/ubuntu:18.04`) as a second stage. The second stage copies what is needed to run your app and omits build-only dependencies. 
 ```docker
 # ================================
 # Run image
@@ -108,7 +108,7 @@ Other things to take note of:
 
 - Service dependencies are defined by `depends_on` arrays.
 - Service ports are exposed to the system running the services with `ports` arrays (formatted as `<host_port>:<service_port>`).
-- The `DATABASE_HOST` is defined as `db`. This literally means your app will access the database at `http://db:5432`. That works because Docker is going to spin up a network in use by your services and the internal DNS on that network will route the name `db` to the service named `'db'`.
+- The `DATABASE_HOST` is defined as `db`. This means your app will access the database at `http://db:5432`. That works because Docker is going to spin up a network in use by your services and the internal DNS on that network will route the name `db` to the service named `'db'`.
 - The `CMD` directive in the Dockerfile is overridden in some services with the `command` array. Note that what is specified by `command` is run against the `ENTRYPOINT` in the Dockerfile.
 - In Swarm Mode (more on this below) services will by default be given 1 instance, but the `migrate` and `revert` services are defined as having `deploy` `replicas: 0` so they do not start up by default when running a Swarm.
 
@@ -123,7 +123,7 @@ from the root directory of your app's project (the folder containing `docker-com
 
 You'll see that your app and its dependencies must be built again even if you had previously built them on your development machine. They are being built in the Linux build environment Docker is using so the build artifacts from your development machine are not reusable.
 
-When it is done, you can prove to yourself that is was successful by running
+When it is done, you can test it by running
 ```shell
 docker image ls
 ```
@@ -158,7 +158,7 @@ Of course! We need to run migrations on the database. Press `Ctrl+C` to bring yo
 docker-compose up --detach app
 ```
 
-Now your app is going to start up "detached" (in the background). You can prove to yourself that your app is running with
+Now your app is going to start up "detached" (in the background). You can verify this by running
 ```shell
 docker container ls
 ```
@@ -224,7 +224,7 @@ Just be careful you don't accidentally prune a volume with data you wanted to ke
 Docker will not let you remove volumes that are currently in use by running or stopped containers. You can get a list of running containers with `docker container ls` and you can see stopped containers as well with `docker container ls -a`.
 
 ### Swarm Mode
-In addition to being "the production orchestrator that lost to Kubernetes," Swarm Mode is an easy interface to use when you've got a docker-compose file handy and you want to test how your app scales horizontally. You can read all about Swarm Mode in the pages rooted at the [overview](https://docs.docker.com/engine/swarm/).
+Swarm Mode is an easy interface to use when you've got a docker-compose file handy and you want to test how your app scales horizontally. You can read all about Swarm Mode in the pages rooted at the [overview](https://docs.docker.com/engine/swarm/).
 
 The first thing we need is a manager node for our Swarm. Run
 ```shell
