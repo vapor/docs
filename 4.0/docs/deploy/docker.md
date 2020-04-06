@@ -1,11 +1,11 @@
 # Deploying with Docker
 Using Docker to deploy your Vapor app has several benefits: 
 
-1. Your dockerized app can be spun up reliably using the same commands on any platform with a Docker Daemon written for it -- namely, Linux (CentOS, Debian, Fedora, Ubuntu), macOS, and Windows.
-2. You can use docker-compose or Kubernetes manifests to coordinate launching of your app with launching of other services needed for a full deployment (e.g. Redis, Postgres, nginx, etc.).
+1. Your dockerized app can be spun up reliably using the same commands on any platform with a Docker Daemon -- namely, Linux (CentOS, Debian, Fedora, Ubuntu), macOS, and Windows.
+2. You can use docker-compose or Kubernetes manifests to orchestrate multiple services needed for a full deployment (e.g. Redis, Postgres, nginx, etc.).
 3. It is easy to test your app's ability to scale horizontally, even locally on your development machine.
 
-This guide will stop short of explaining how to get your dockerized app onto a server. The simplest deploy would involve installing Docker on your server and running the same commands you would run on your development machine to spin things up remotely. 
+This guide will stop short of explaining how to get your dockerized app onto a server. The simplest deploy would involve installing Docker on your server and running the same commands you would run on your development machine to spin up your application. 
 
 More complicated and robust deployments are usually different depending on your hosting solution; many popular solutions like AWS have builtin support for Kubernetes and custom database solutions which make it difficult to write best practices in a way that applies to all deployments. 
 
@@ -74,7 +74,7 @@ CMD ["serve", "--env", "production", "--hostname", "0.0.0.0"]
 Both of these can be overridden when the image is used, but by default running your image will result in calling the `serve` command of your app's `Run` target. The full command on launch will be `./Run serve --env production --hostname 0.0.0.0`.
 
 ### docker-compose
-A docker-compose file defines the way Docker should build out multiple services in relation to each other. The docker-compose file in the Vapor App template is a good starting place but it only scratches the surface of the configurability offered. The [full reference](https://docs.docker.com/compose/compose-file/) has details on all of the available options.
+A docker-compose file defines the way Docker should build out multiple services in relation to each other. The docker-compose file in the Vapor App template provides the necessary functionality to deploy your app, but if you want to learn more you should consult the [full reference](https://docs.docker.com/compose/compose-file/) which has details on all of the available options.
 
 !!! note
     If you ultimately plan to use Kubernetes to orchestrate your app, the docker-compose file is not directly relevant. However, Kubernetes manifest files are similar conceptually and there are even projects out there aimed at [porting docker-compose files](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/) to Kubernetes manifests.
@@ -96,7 +96,13 @@ You will see these pulled into multiple services below with the `<<: *shared_env
 The `DATABASE_HOST`, `DATABASE_NAME`, `DATABASE_USERNAME`, and `DATABASE_PASSWORD` variables are hard coded in this example whereas the `LOG_LEVEL` will take its value from the environment running the service or fall back to `'debug'` if that variable is unset.
 
 !!! note
-    Hard-coding the username and password for database access is one of a number of areas where this docker-compose file sets itself up for development use but does _not_ represent best-practices for production deployment.
+    Hard-coding the username and password is acceptable for local development, but you would want to store these variables in a secrets file for production deploys. One way to handle this in production is to export the secrets file to the environment that is running your deploy and use lines like the following in your docker-compose file: 
+
+    ```
+    DATABASE_USERNAME: ${DATABASE_USERNAME}
+    ```
+
+    This passes the environment variable through to the containers as-defined by the host.
 
 Other things to take note of:
 
