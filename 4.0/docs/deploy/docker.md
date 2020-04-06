@@ -168,6 +168,21 @@ docker-compose up migrate
 
 After migrations run, you can visit `http://localhost:8080/todos` again and you will get an empty list of todos instead of an error message.
 
+#### Changing the logging level
+Recall above that the `LOG_LEVEL` environment variable in the docker-compose file will be inherited from the environment where the service is started if available.
+
+You can bring your services up with
+```shell
+LOG_LEVEL=trace docker-compose up app
+```
+to get `trace` level logging (the most granular). You can use this environment variable to set the logging to [any available level](../logging.md#levels).
+
+#### See logs for both your app and database
+If you explicitly specify your database service when you bring containers up then you will see logs for both your database and your app.
+```shell
+docker-compose up app db
+```
+
 #### Bringing Standalone containers down
 Now that you've got containers running "detached" from your host shell, you need to tell them to shut down somehow. It's worth knowing that any running container can be asked to shut down with
 ```shell
@@ -249,3 +264,12 @@ When you want to bring your services down in Swarm Mode, you do so by removing t
 ```shell
 docker stack rm test
 ```
+
+## Deploying your app to production
+As noted at the top, this guide will not go into great detail about deploying your dockerized app to production because the topic is large and varies greatly depending on the hosting service (AWS, Azure, etc.), tooling (Terraform, Ansible, etc.), and orchestration (Docker Swarm, Kubernetes, etc.).
+
+However, the techniques you learn to run your dockerized app locally on your development machine are largely transferable to production environments. A server instance set up to run the docker daemon will accept all the same commands.
+
+Copy your project files to your server, SSH into the server, and run a `docker-compose` or `docker stack deploy` command to get things running remotely.
+
+Alternatively, set your local `DOCKER_HOST` environment variable to point at your server and run the `docker` commands locally on your machine. It is important to note that with this approach, you do not need to copy any of your project files to the server _but_ you do need to host your docker image somewhere your server can pull it from.
