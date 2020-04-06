@@ -123,11 +123,10 @@ from the root directory of your app's project (the folder containing `docker-com
 
 You'll see that your app and its dependencies must be built again even if you had previously built them on your development machine. They are being built in the Linux build environment Docker is using so the build artifacts from your development machine are not reusable.
 
-When it is done, you can test it by running
+When it is done, you will find your app's image when running
 ```shell
 docker image ls
 ```
-and noting the line item for `my-dockerized-app`.
 
 ## Running your app
 ### Standalone
