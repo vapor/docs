@@ -121,7 +121,7 @@ docker-compose build
 ```
 from the root directory of your app's project (the folder containing `docker-compose.yml`).
 
-You'll see that your app and its dependencies must be built again even if you had previously built them on your developer machine. They are being built in the Linux build environment Docker is using so the build artifacts from your developer machine are not reusable.
+You'll see that your app and its dependencies must be built again even if you had previously built them on your development machine. They are being built in the Linux build environment Docker is using so the build artifacts from your development machine are not reusable.
 
 When it is done, you can prove to yourself that is was successful by running
 ```shell
@@ -139,7 +139,7 @@ docker-compose up app
 ```
 and notice that both the `app` and `db` services are started.
 
-Your app is listening on port 80 _inside the Docker container_ but as defined by the docker-compose file, it is accessible on your developer machine at **http://localhost:8080**. 
+Your app is listening on port 80 _inside the Docker container_ but as defined by the docker-compose file, it is accessible on your development machine at **http://localhost:8080**. 
 
 This port mapping distinction is very important because you can run any number of services on the same ports if they are all running in their own containers and they each expose different ports to the host machine.
 
