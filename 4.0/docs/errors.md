@@ -188,4 +188,4 @@ app.middleware = .init()
 app.middleware.use(MyErrorMiddleware())
 ```
 
-Very few middleware should go _before) the error handling middleware. A notable exception to this rule is `CORSMiddleware`.
+Very few middleware should go _before_ the error handling middleware. A notable exception to this rule is `CORSMiddleware`.
