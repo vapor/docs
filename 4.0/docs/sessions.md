@@ -48,7 +48,27 @@ For production use cases, take a look at the other session drivers which utilize
 
 ### Fluent
 
-Coming soon.
+Fluent includes support for storing session data in your application's database. This section assumes you have [configured Fluent](../fluent/overview.md) and can connect to a database. The first step is to enable the Fluent sessions driver.
+
+```swift
+import Fluent
+
+app.sessions.use(.fluent)
+```
+
+This will configure sessions to use the application's default database. To specify a specific database, pass the database's identifier.
+
+```swift
+app.sessions.use(.fluent(.sqlite))
+```
+
+Finally, add `SessionRecord`'s migration to your database's migrations. This will prepare your database for storing session data in the `_fluent_sessions` schema.
+
+```swift
+app.migrations.add(SessionRecord.migration)
+```
+
+Make sure to run your application's migrations after adding the new migration. Sessions will now be stored in your application's database allowing them to persist between restarts and be shared between multiple instances of your app. 
 
 ## Session Data
 
