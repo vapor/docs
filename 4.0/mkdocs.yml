@@ -49,6 +49,7 @@ nav:
   - 'Relations': 'fluent/relations.md'
   - 'Query Builder': 'fluent/query-builder.md'
 - 'Advanced':
+  - 'Middleware': 'middleware.md'
   - 'Commands': 'commands.md'
   - 'Queues': 'queues.md'
   - 'WebSockets': 'websockets.md'
