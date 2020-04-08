@@ -57,6 +57,7 @@ nav:
 - 'Security':
   - 'Authentication': 'authentication.md'
   - 'Crypto': 'crypto.md'
+  - 'Passwords': 'passwords.md'
 - 'Deploy':
   - 'DigitalOcean': 'deploy/digital-ocean.md'
   - 'Supervisor': 'deploy/supervisor.md'
