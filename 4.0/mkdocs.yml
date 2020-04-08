@@ -50,6 +50,7 @@ nav:
   - 'Query Builder': 'fluent/query-builder.md'
 - 'Advanced':
   - 'Middleware': 'middleware.md'
+  - 'Server': 'server.md'
   - 'Commands': 'commands.md'
   - 'Queues': 'queues.md'
   - 'WebSockets': 'websockets.md'
