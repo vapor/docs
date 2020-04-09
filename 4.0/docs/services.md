@@ -4,7 +4,7 @@ Vapor's `Application` and `Request` are built to be extended by your application
 
 ## Read Only
 
-The simplest type of service is "read-only". These services consist of computed variables or methods added to either application or request. 
+The simplest type of service is read-only. These services consist of computed variables or methods added to either application or request. 
 
 ```swift
 import Vapor
