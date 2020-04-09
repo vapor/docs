@@ -56,6 +56,7 @@ nav:
   - 'Queues': 'queues.md'
   - 'WebSockets': 'websockets.md'
   - 'Sessions': 'sessions.md'
+  - 'Services': 'services.md'
 - 'Security':
   - 'Authentication': 'authentication.md'
   - 'Crypto': 'crypto.md'
