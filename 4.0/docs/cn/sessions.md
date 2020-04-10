@@ -48,7 +48,7 @@ For production use cases, take a look at the other session drivers which utilize
 
 ### Fluent
 
-Fluent includes support for storing session data in your application's database. This section assumes you have [configured Fluent](../fluent/overview.md) and can connect to a database. The first step is to enable the Fluent sessions driver.
+Fluent includes support for storing session data in your application's database. This section assumes you have [configured Fluent](fluent/overview.md) and can connect to a database. The first step is to enable the Fluent sessions driver.
 
 ```swift
 import Fluent

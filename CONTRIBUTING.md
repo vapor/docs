@@ -23,8 +23,24 @@ pip install mkdocs-material
 
 Run with `mkdocs serve`
 
-### Maintainers 
-- @0xtim
-- @mcdappdev
 
-See https://github.com/vapor/vapor/blob/master/Docs/maintainers.md for more information. 
+### 4.0
+
+Install and launch Docker.
+
+```
+brew cask install docker
+```
+
+Usage:
+
+```
+docker build -f web.Dockerfile . -t docs
+docker run -d -p 80:80 docs
+```
+
+Then, open a browser and enter the URL: `http://localhost/4.0`
+
+### Maintainers 
+- [Tanner Nelson](mailto:tanner@vapor.codes)
+- [晋先森](mailto:hi@jinxiansen.com)
