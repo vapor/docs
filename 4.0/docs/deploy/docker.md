@@ -1,4 +1,5 @@
-# Deploying with Docker
+# Docker Deploys
+
 Using Docker to deploy your Vapor app has several benefits: 
 
 1. Your dockerized app can be spun up reliably using the same commands on any platform with a Docker Daemon -- namely, Linux (CentOS, Debian, Fedora, Ubuntu), macOS, and Windows.
@@ -11,22 +12,29 @@ More complicated and robust deployments are usually different depending on your 
 
 Nevertheless, using Docker to spin your entire server stack up locally for testing purposes is incredibly valuable for both big and small serverside apps. Additionally, the concepts described in this guide apply in broad strokes to all Docker deployments.
 
-## Getting set up
+## Set Up
+
+You will need to set your developer environment up to run Docker and gain a basic understanding of the resource files that configure Docker stacks.
+
 ### Install Docker
+
 You will need to install Docker for your developer environment. You can find information for any platform in the [Supported Platforms](https://docs.docker.com/install/#supported-platforms) section of the Docker Engine Overview. If you are on Mac OS, you can jump straight to the [Docker for Mac](https://docs.docker.com/docker-for-mac/install/) install page.
 
-### Generate a dockerized Vapor App
+### Generate Template
+
 We suggest using the Vapor template as a starting place. If you already have an App, build the template as described below into a new folder as a point of reference while dockerizing your existing app -- you can copy key resources from the template to your app and tweak them slightly as a jumping off point.
 
 1. Install or build the Vapor Toolbox ([macOS](../install/macos.md#install-toolbox), [Ubuntu](../install/ubuntu.md#install-toolbox)).
 2. Create a new Vapor App with `vapor-beta new my-dockerized-app` and walk through the prompts to enable or disable relevant features. Your answers to these prompts will affect how the Docker resource files are generated.
 
-## Docker resources
+## Docker Resources
+
 It is worthwhile, whether now or in the near future, to familiarize yourself with the [Docker Overview](https://docs.docker.com/engine/docker-overview/). The overview will explain some key terminology that this guide uses. 
 
 The template Vapor App has two key Docker-specific resources: A **Dockerfile** and a **docker-compose** file.
 
 ### Dockerfile
+
 A Dockerfile tells Docker how to build an image of your dockerized app. That image contains both your app's executable and all dependencies needed to run it. The [full reference](https://docs.docker.com/engine/reference/builder/) is worth keeping open when you work on customizing your Dockerfile.
 
 The Dockerfile generated for your Vapor App has two stages.
@@ -73,15 +81,16 @@ CMD ["serve", "--env", "production", "--hostname", "0.0.0.0"]
 
 Both of these can be overridden when the image is used, but by default running your image will result in calling the `serve` command of your app's `Run` target. The full command on launch will be `./Run serve --env production --hostname 0.0.0.0`.
 
-### docker-compose
-A docker-compose file defines the way Docker should build out multiple services in relation to each other. The docker-compose file in the Vapor App template provides the necessary functionality to deploy your app, but if you want to learn more you should consult the [full reference](https://docs.docker.com/compose/compose-file/) which has details on all of the available options.
+### Docker Compose File
+
+A Docker Compose file defines the way Docker should build out multiple services in relation to each other. The Docker Compose file in the Vapor App template provides the necessary functionality to deploy your app, but if you want to learn more you should consult the [full reference](https://docs.docker.com/compose/compose-file/) which has details on all of the available options.
 
 !!! note
-    If you ultimately plan to use Kubernetes to orchestrate your app, the docker-compose file is not directly relevant. However, Kubernetes manifest files are similar conceptually and there are even projects out there aimed at [porting docker-compose files](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/) to Kubernetes manifests.
+    If you ultimately plan to use Kubernetes to orchestrate your app, the Docker Compose file is not directly relevant. However, Kubernetes manifest files are similar conceptually and there are even projects out there aimed at [porting Docker Compose files](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/) to Kubernetes manifests.
 
-The docker-compose file in your new Vapor App will define services for running your app, running migrations or reverting them, and running a database as your app's persistence layer. The exact definitions will vary depending on which database you chose to use when you ran `vapor-beta new`.
+The Docker Compose file in your new Vapor App will define services for running your app, running migrations or reverting them, and running a database as your app's persistence layer. The exact definitions will vary depending on which database you chose to use when you ran `vapor-beta new`.
 
-Note that your docker-compose file has some shared environment variables near the top.
+Note that your Docker Compose file has some shared environment variables near the top.
 ```docker
 x-shared_environment: &shared_environment
   LOG_LEVEL: ${LOG_LEVEL:-debug}
@@ -96,7 +105,7 @@ You will see these pulled into multiple services below with the `<<: *shared_env
 The `DATABASE_HOST`, `DATABASE_NAME`, `DATABASE_USERNAME`, and `DATABASE_PASSWORD` variables are hard coded in this example whereas the `LOG_LEVEL` will take its value from the environment running the service or fall back to `'debug'` if that variable is unset.
 
 !!! note
-    Hard-coding the username and password is acceptable for local development, but you would want to store these variables in a secrets file for production deploys. One way to handle this in production is to export the secrets file to the environment that is running your deploy and use lines like the following in your docker-compose file: 
+    Hard-coding the username and password is acceptable for local development, but you would want to store these variables in a secrets file for production deploys. One way to handle this in production is to export the secrets file to the environment that is running your deploy and use lines like the following in your Docker Compose file: 
 
     ```
     DATABASE_USERNAME: ${DATABASE_USERNAME}
@@ -112,8 +121,9 @@ Other things to take note of:
 - The `CMD` directive in the Dockerfile is overridden in some services with the `command` array. Note that what is specified by `command` is run against the `ENTRYPOINT` in the Dockerfile.
 - In Swarm Mode (more on this below) services will by default be given 1 instance, but the `migrate` and `revert` services are defined as having `deploy` `replicas: 0` so they do not start up by default when running a Swarm.
 
-## Building your app
-The docker-compose file tells Docker how to build your app (by using the Dockerfile in the current directory) and what to name the resulting image (`my-dockerized-app:latest`). The latter is actually the combination of a name (`my-dockerized-app`) and a tag (`latest`) where tags are used to version Docker images.
+## Building
+
+The Docker Compose file tells Docker how to build your app (by using the Dockerfile in the current directory) and what to name the resulting image (`my-dockerized-app:latest`). The latter is actually the combination of a name (`my-dockerized-app`) and a tag (`latest`) where tags are used to version Docker images.
 
 To build a Docker image for your app, run
 ```shell
@@ -128,8 +138,12 @@ When it is done, you will find your app's image when running
 docker image ls
 ```
 
-## Running your app
+## Running
+
+Your stack of services can be run directly from the Docker Compose file or you can use an orchestration layer like Swarm Mode or Kubernetes.
+
 ### Standalone
+
 The simplest way to run your app is to start it as a standalone container. Docker will use the `depends_on` arrays to make sure any dependant services are also started.
 
 First, execute
@@ -138,7 +152,7 @@ docker-compose up app
 ```
 and notice that both the `app` and `db` services are started.
 
-Your app is listening on port 80 _inside the Docker container_ but as defined by the docker-compose file, it is accessible on your development machine at **http://localhost:8080**. 
+Your app is listening on port 80 _inside the Docker container_ but as defined by the Docker Compose file, it is accessible on your development machine at **http://localhost:8080**. 
 
 This port mapping distinction is very important because you can run any number of services on the same ports if they are all running in their own containers and they each expose different ports to the host machine.
 
@@ -173,8 +187,9 @@ docker-compose up migrate
 
 After migrations run, you can visit `http://localhost:8080/todos` again and you will get an empty list of todos instead of an error message.
 
-#### Changing the logging level
-Recall above that the `LOG_LEVEL` environment variable in the docker-compose file will be inherited from the environment where the service is started if available.
+#### Log Levels
+
+Recall above that the `LOG_LEVEL` environment variable in the Docker Compose file will be inherited from the environment where the service is started if available.
 
 You can bring your services up with
 ```shell
@@ -182,13 +197,15 @@ LOG_LEVEL=trace docker-compose up app
 ```
 to get `trace` level logging (the most granular). You can use this environment variable to set the logging to [any available level](../logging.md#levels).
 
-#### See logs for both your app and database
+#### All Service Logs
+
 If you explicitly specify your database service when you bring containers up then you will see logs for both your database and your app.
 ```shell
 docker-compose up app db
 ```
 
-#### Bringing Standalone containers down
+#### Bringing Standalone Containers Down
+
 Now that you've got containers running "detached" from your host shell, you need to tell them to shut down somehow. It's worth knowing that any running container can be asked to shut down with
 ```shell
 docker container stop <container_id>
@@ -198,8 +215,9 @@ but the easiest way to bring these particular containers down is
 docker-compose down
 ```
 
-#### Wiping your database
-The docker-compose file defines a `db_data` volume to persist your database between runs. There are a couple of ways to reset your database.
+#### Wiping The Database
+
+The Docker Compose file defines a `db_data` volume to persist your database between runs. There are a couple of ways to reset your database.
 
 You can remove the `db_data` volume at the same time as bringing your containers down with
 ```shell
@@ -223,14 +241,15 @@ Just be careful you don't accidentally prune a volume with data you wanted to ke
 Docker will not let you remove volumes that are currently in use by running or stopped containers. You can get a list of running containers with `docker container ls` and you can see stopped containers as well with `docker container ls -a`.
 
 ### Swarm Mode
-Swarm Mode is an easy interface to use when you've got a docker-compose file handy and you want to test how your app scales horizontally. You can read all about Swarm Mode in the pages rooted at the [overview](https://docs.docker.com/engine/swarm/).
+
+Swarm Mode is an easy interface to use when you've got a Docker Compose file handy and you want to test how your app scales horizontally. You can read all about Swarm Mode in the pages rooted at the [overview](https://docs.docker.com/engine/swarm/).
 
 The first thing we need is a manager node for our Swarm. Run
 ```shell
 docker swarm init
 ```
 
-Next we will use our docker-compose file to bring up a stack named `'test'` containing our services
+Next we will use our Docker Compose file to bring up a stack named `'test'` containing our services
 ```shell
 docker stack deploy -c docker-compose.yml test
 ```
@@ -264,13 +283,15 @@ You can view (and follow) the logs for your app with
 docker service logs -f test_app
 ```
 
-#### Bringing Swarm services down
+#### Bringing Swarm Services Down
+
 When you want to bring your services down in Swarm Mode, you do so by removing the stack you created earlier.
 ```shell
 docker stack rm test
 ```
 
-## Deploying your app to production
+## Production Deploys
+
 As noted at the top, this guide will not go into great detail about deploying your dockerized app to production because the topic is large and varies greatly depending on the hosting service (AWS, Azure, etc.), tooling (Terraform, Ansible, etc.), and orchestration (Docker Swarm, Kubernetes, etc.).
 
 However, the techniques you learn to run your dockerized app locally on your development machine are largely transferable to production environments. A server instance set up to run the docker daemon will accept all the same commands.
