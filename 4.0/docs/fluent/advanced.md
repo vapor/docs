@@ -4,6 +4,9 @@
 
 Fluent MongoDB is an integration between [Fluent](../fluent/overview.md) and the [MongoKitten](https://github.com/OpenKitten/MongoKitten/) driver. It leverages Swift's strong type system and Fluent's database agnostic interface using MongoDB.
 
+The most common identifier in MongoDB is ObjectId. You can use this for your project using `@ID(custom: .id)`.
+If you need to use the same models with SQL, do not use `ObjectId`. Use `UUID` instead.
+
 ```swift
 final class User: Model {
     // Name of the table or collection.
@@ -34,6 +37,40 @@ final class User: Model {
         self.profile = profile
     }
 }
+```
+
+### Flexible Data
+
+You can add flexible data in MongoDB, but this code will not work in SQL environments.
+To create grouped arbitrary data storage you can use `Document`.
+
+```swift
+@Field(key: "document")
+var document: Document
+```
+
+Fluent cannot support strictly types queries on these values. You can use a dot notated key path in your query for querying.
+This is accepted in MongoDB to access nested values.
+
+```swift
+Something.query(on: db).filter("document.key", .equal, 5).first()
+```
+
+### Flexible Data
+
+You can add flexible data in MongoDB, but this code will not work in SQL environments.
+To create grouped arbitrary data storage you can use `Document`.
+
+```swift
+@Field(key: "document")
+var document: Document
+```
+
+Fluent cannot support strictly types queries on these values. You can use a dot notated key path in your query for querying.
+This is accepted in MongoDB to access nested values.
+
+```swift
+Something.query(on: db).filter("document.key", .equal, 5).first()
 ```
 
 ### Raw Access

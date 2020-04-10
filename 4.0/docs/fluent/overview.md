@@ -142,25 +142,11 @@ MongoDB is a popular schemaless NoSQL database designed for programmers. The dri
 To use MongoDB, add the following dependencies to your package.
 
 ```swift
-// swift-tools-version:5.2
-import PackageDescription
+.package(name: "FluentMongoDriver", url: "https://github.com/vapor/fluent-mongo-driver.git", from: "1.0.0"),
+```
 
-let package = Package(
-	...
-    dependencies: [
-    	...
-        .package(name: "Fluent", url: "https://github.com/vapor/fluent.git", from: "4.0.0"),
-        .package(name: "FluentMongoDriver", url: "https://github.com/vapor/fluent-mongo-driver.git", from: "1.0.0"),
-    ],
-    targets: [
-    	...
-        .target(name: "App", dependencies: [
-        	...
-        	"Fluent",
-        	"FluentMongoDriver",
-        ]),
-    ]
-)
+```swift
+.product(name: "FluentMongoDriver", package: "fluent-mongo-driver")
 ```
 
 Once the dependencies are added, configure the database's credentials with Fluent using `app.databases.use` in `configure.swift`.
@@ -168,6 +154,9 @@ Once the dependencies are added, configure the database's credentials with Fluen
 To connect, pass a connection string in the standard MongoDB [connection URI format](https://docs.mongodb.com/master/reference/connection-string/index.html).
 
 ```swift
+import Fluent
+import FluentMongoDriver
+
 try app.databases.use(.mongo(connectionString: "<connection string>"), as: .mongo)
 ```
 
