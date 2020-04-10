@@ -109,7 +109,7 @@ Jobs are defined by the `Job` protocol.
 ```swift
 import Vapor 
 import Foundation 
-import Jobs 
+import Queues 
 
 struct Email: Codable {
     let to: String

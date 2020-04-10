@@ -6,7 +6,7 @@ Authentication is the act of verifying a user's identity. This is done through t
 
 Vapor's Authentication API provides support for authenticating a user via the `Authorization` header, using [Basic](https://tools.ietf.org/html/rfc7617) and [Bearer](https://tools.ietf.org/html/rfc6750). It also supports authenticating a user via the data decoded from the [Content](/content.md) API.
 
-Authentication is implemented by creating an `Authenticator` which contains the verification logic. An authenticator is then capable of creating middleware which can be used to protect individual route groups or an entire app. The following authenticator helpers ship with Vapor:
+Authentication is implemented by creating an `Authenticator` which contains the verification logic. An authenticator can be used to protect individual route groups or an entire app. The following authenticator helpers ship with Vapor:
 
 |Protocol|Description|
 |-|-|
@@ -16,7 +16,7 @@ Authentication is implemented by creating an `Authenticator` which contains the 
 |`UserTokenAuthenticator`|Authenticates a token type with associated user.|
 |`CredentialsAuthenticator`|Authenticates a credentials payload from the request body.|
 
-If authentication is successful, the authenticator returns the verified user. This user can then be accessed using `req.auth.get(_:)` in routes protected by the authenticator's middleware. If authentication fails, `nil` is returned and the user is not available via `req.auth`. 
+If authentication is successful, the authenticator adds the verified user to `req.auth`. This user can then be accessed using `req.auth.get(_:)` in routes protected by the authenticator. If authentication fails, the user is not added to `req.auth` and any attempts to access it will fail.
 
 ## Authenticatable
 
@@ -34,10 +34,10 @@ Each example below will create an authenticator named `UserAuthenticator`.
 
 ### Route
 
-Authenticators can generate a middleware for protecting routes.
+Authenticators are middleware and be be used for protecting routes.
 
 ```swift
-let protected = app.grouped(UserAuthenticator().middleware())
+let protected = app.grouped(UserAuthenticator())
 protected.get("me") { req -> String in
     try req.auth.require(User.self).name
 }
@@ -50,11 +50,11 @@ protected.get("me") { req -> String in
 You can also use `GuardMiddleware` in your route group to ensure that a user has been authenticated before reaching your route handler.
 
 ```swift
-let protected = app.grouped(UserAuthenticator().middleware())
+let protected = app.grouped(UserAuthenticator())
     .grouped(User.guardMiddleware())
 ```
 
-Requiring authentication is not done by the authenticator's middleware to allow for composition of authenticators. Read more about [composition](#composition) below.
+Requiring authentication is not done by the authenticator middleware to allow for composition of authenticators. Read more about [composition](#composition) below.
 
 ## Basic
 
@@ -147,7 +147,7 @@ If you add this authenticator to your app, and test the route defined above, you
 
 ## Composition
 
-Multiple authenticators can be composed (combined together) to create more complex endpoint authentication. Since an authenticator's middleware will not reject the request if authentication fails, more than one of these middleware can be chained together. Authenticators can composed in two key ways. 
+Multiple authenticators can be composed (combined together) to create more complex endpoint authentication. Since an authenticator middleware will not reject the request if authentication fails, more than one of these middleware can be chained together. Authenticators can composed in two key ways. 
 
 ### Composing Methods
 
@@ -155,8 +155,8 @@ Multiple authenticators can be composed (combined together) to create more compl
 The first method of authentication composition is chaining more than one authenticator for the same user type. Take the following example:
 
 ```swift
-app.grouped(UserPasswordAuthenticator().middleware())
-    .grouped(UserTokenAuthenticator().middleware())
+app.grouped(UserPasswordAuthenticator())
+    .grouped(UserTokenAuthenticator())
     .grouped(User.guardMiddleware())
     .post("login") 
 { req in
@@ -165,7 +165,7 @@ app.grouped(UserPasswordAuthenticator().middleware())
 }
 ```
 
-This example assumes two authenticators `UserPasswordAuthenticator` and `UserTokenAuthenticator` that both authenticate `User`. The middleware for both of these authenticators is added to the route group. Finally, `GuardMiddleware` is added after the authenticators' middleware to require that `User` was successfully authenticated. 
+This example assumes two authenticators `UserPasswordAuthenticator` and `UserTokenAuthenticator` that both authenticate `User`. Both of these authenticators are added to the route group. Finally, `GuardMiddleware` is added after the authenticators to require that `User` was successfully authenticated. 
 
 This composition of authenticators results in a route that can be accessed by either password or token. Such a route could allow a user to login and generate a token, then continue to use that token to generate new tokens.
 
@@ -174,8 +174,8 @@ This composition of authenticators results in a route that can be accessed by ei
 The second method of authentication composition is chaining authenticators for different user types. Take the following example:
 
 ```swift
-app.grouped(AdminAuthenticator().middleware())
-    .grouped(UserAuthenticator().middleware())
+app.grouped(AdminAuthenticator())
+    .grouped(UserAuthenticator())
     .get("secure") 
 { req in
     guard req.auth.has(Admin.self) || req.auth.has(User.self) else {
@@ -185,7 +185,7 @@ app.grouped(AdminAuthenticator().middleware())
 }
 ```
 
-This example assumes two authenticators `AdminAuthenticator` and `UserAuthenticator` that authenticate `Admin` and `User`, respectively. The middleware for both of these authenticators is added to the route group. Instead of using `GuardMiddleware`, a check in the route handler is added to see if either `Admin` or `User` were authenticated. If not, an error is thrown.
+This example assumes two authenticators `AdminAuthenticator` and `UserAuthenticator` that authenticate `Admin` and `User`, respectively. Both of these authenticators are added to the route group. Instead of using `GuardMiddleware`, a check in the route handler is added to see if either `Admin` or `User` were authenticated. If not, an error is thrown.
 
 This composition of authenticators results in a route that can be accessed by two different types of users with potentially different methods of authentication. Such a route could allow for normal user authentication while still giving access to a super-user.
 
@@ -221,11 +221,11 @@ req.auth.logout(User.self)
 
 ## Fluent
 
-Fluent defines two protocols `ModelUser` and `ModelUserToken` which can be added to your existing models. Conforming your models to these protocols allows for the creation of authenticators which generate middleware for protecting endpoints. 
+Fluent defines two protocols `ModelAuthenticatable` and `ModelTokenAuthenticatable` which can be added to your existing models. Conforming your models to these protocols allows for the creation of authenticators for protecting endpoints. 
 
-`ModelUserToken` authenticates with a Bearer token. This is what you use to protect most of your endpoints. `ModelUser` authenticates with username and password and is used by a single endpoint for generating tokens. 
+`ModelTokenAuthenticatable` authenticates with a Bearer token. This is what you use to protect most of your endpoints. `ModelAuthenticatable` authenticates with username and password and is used by a single endpoint for generating tokens. 
 
-This guide assumes you are familiar with Fluent and have successfully configured your app to use a database. If you are new to Fluent, start with the [overview](overview.md).
+This guide assumes you are familiar with Fluent and have successfully configured your app to use a database. If you are new to Fluent, start with the [overview](fluent/overview.md).
 
 ### User
 
@@ -293,7 +293,7 @@ Don't forget to add the migration to `app.migrations`.
 app.migrations.add(User.Migration())
 ``` 
 
-The first thing you will need is an endpoint to create new users. Let's use `POST /users`. Create a [Content](../content.md) struct representing the data this endpoint expects.
+The first thing you will need is an endpoint to create new users. Let's use `POST /users`. Create a [Content](content.md) struct representing the data this endpoint expects.
 
 ```swift
 import Vapor
@@ -308,7 +308,7 @@ extension User {
 }
 ```
 
-If you like, you can conform this struct to [Validatable](../validation.md) to add validation requirements.
+If you like, you can conform this struct to [Validatable](validation.md) to add validation requirements.
 
 ```swift
 import Vapor
@@ -358,15 +358,15 @@ Content-Type: application/json
 }
 ```
 
-#### Authenticator
+#### Model Authenticatable
 
-Now that you have a user model and an endpoint to create new users, let's conform the model to `ModelUser`. This will allow for the model to be authenticated using username and password.
+Now that you have a user model and an endpoint to create new users, let's conform the model to `ModelAuthenticatable`. This will allow for the model to be authenticated using username and password.
 
 ```swift
 import Fluent
 import Vapor
 
-extension User: ModelUser {
+extension User: ModelAuthenticatable {
     static let usernameKey = \User.$email
     static let passwordHashKey = \User.$passwordHash
 
@@ -376,20 +376,20 @@ extension User: ModelUser {
 }
 ```
 
-This extension adds `ModelUser` conformance to `User`. The first two properties specify which fields should be used for storing the username and password hash respectively. The `\` notation creates a key path to the fields that Fluent can use to access them.
+This extension adds `ModelAuthenticatable` conformance to `User`. The first two properties specify which fields should be used for storing the username and password hash respectively. The `\` notation creates a key path to the fields that Fluent can use to access them.
 
 The last requirement is a method for verifying plaintext passwords sent in the Basic authentication header. Since we're using Bcrypt to hash the password during signup, we'll use Bcrypt to verify that the supplied password matches the stored password hash.
 
-Now that the `User` conforms to `ModelUser`, we can create a middleware from the authenticator to protect the login route.
+Now that the `User` conforms to `ModelAuthenticatable`, we can create an authenticator for protecting the login route.
 
 ```swift
-let passwordProtected = app.grouped(User.authenticator().middleware())
+let passwordProtected = app.grouped(User.authenticator())
 passwordProtected.post("login") { req -> User in
     try req.auth.require(User.self)
 }
 ```
 
-`ModelUser` adds a static method `authenticator` for creating an [authenticator](../authentication.md). You can then use `middleware` to generate a middleware from the authenticator.
+`ModelAuthenticatable` adds a static method `authenticator` for creating an authenticator.
 
 Test that this route works by sending the following request.
 
@@ -432,7 +432,7 @@ final class UserToken: Model, Content {
 }
 ```
 
-This model must have a `value` field for storing the token's unique string. It must also have a [parent-relation](overview.md#parent) to the user model. You may add additional properties to this token as you see fit, such as an expiration date. 
+This model must have a `value` field for storing the token's unique string. It must also have a [parent-relation](fluent/overview.md#parent) to the user model. You may add additional properties to this token as you see fit, such as an expiration date. 
 
 Next, create a migration for this model.
 
@@ -485,7 +485,7 @@ Here we're using `[UInt8].random(count:)` to generate a random token value. For 
 Now that you can generate user tokens, update the `POST /login` route to create and return a token.
 
 ```swift
-let passwordProtected = app.grouped(User.authenticator().middleware())
+let passwordProtected = app.grouped(User.authenticator())
 passwordProtected.post("login") { req -> EventLoopFuture<UserToken> in
     let user = try req.auth.require(User.self)
     let token = try user.generateToken()
@@ -502,15 +502,15 @@ Test that this route works by using the same login request from above. You shoul
 
 Hold onto the token you get as we'll use it shortly.
 
-#### Authenticator
+#### Model Token Authenticatable
 
-Conform `UserToken` to `ModelUserToken`. This will allow for tokens to authenticate your `User` model.
+Conform `UserToken` to `ModelTokenAuthenticatable`. This will allow for tokens to authenticate your `User` model.
 
 ```swift
 import Vapor
 import Fluent
 
-extension UserToken: ModelUserToken {
+extension UserToken: ModelTokenAuthenticatable {
     static let valueKey = \UserToken.$value
     static let userKey = \UserToken.$user
 
@@ -524,18 +524,18 @@ The first protocol requirement specifies which field stores the token's unique v
 
 The final requirement is an `isValid` boolean. If this is `false`, the token will be deleted from the database and the user will not be authenticated. For simplicity, we'll make the tokens eternal by hard-coding this to `true`.
 
-Now that the token conforms to `ModelUserToken`, you can create an authenticator and middleware for protecting routes.
+Now that the token conforms to `ModelTokenAuthenticatable`, you can create an authenticator for protecting routes.
 
 Create a new endpoint `GET /me` for getting the currently authenticated user.
 
 ```swift
-let tokenProtected = app.grouped(UserToken.authenticator().middleware())
+let tokenProtected = app.grouped(UserToken.authenticator())
 tokenProtected.get("me") { req -> User in
     try req.auth.require(User.self)
 }
 ```
 
-Similar to `User`, `UserToken` now has a static `authenticator()` method that can generate a middleware with `middleware()`. The middleware will attempt to find a matching `UserToken` using the value provided in the Bearer authentication header. If it finds a match, it will fetch the related `User` and authenticate it. 
+Similar to `User`, `UserToken` now has a static `authenticator()` method that can generate an authenticator. The authenticator will attempt to find a matching `UserToken` using the value provided in the Bearer authentication header. If it finds a match, it will fetch the related `User` and authenticate it. 
 
 Test that this route works by sending the following HTTP request where the token is the value you saved from the `POST /login` request. 
 
@@ -545,3 +545,137 @@ Authorization: Bearer <token>
 ```
 
 You should see the authenticated `User` returned. 
+
+## Session
+
+Vapor's [Session API](sessions.md) can be used to automatically persist user authentication between requests. This works by storing a unique identifier for the user in the request's session data after successful login. On subsequent requests, the user's identifier is fetched from the session and used to authenticate the user before calling your route handler.
+
+Sessions are great for front-end web applications built in Vapor that serve HTML directly to web browsers. For APIs, we recommend using stateless, token-based authentication to persist user data between requests.
+
+### Session Authenticatable
+
+To use session-based authentication, you will need a type that conforms to `SessionAuthenticatable`. For this example, we'll use a simple struct.
+
+```swift
+import Vapor
+
+struct User {
+    var email: String
+}
+```
+
+To conform to `SessionAuthenticatable`, you will need to specify a `sessionID`. This is the value that will be stored in the session data and must uniquely identify the user. 
+
+```swift
+extension User: SessionAuthenticatable {
+    var sessionID: String {
+        self.email
+    }
+}
+```
+
+For our simple `User` type, we'll use the email address as the unique session identifier.
+
+### Session Authenticator
+
+Next, we'll need a `SessionAuthenticator` to handle resolving instances of our User from the persisted session identifier.
+
+
+```swift
+struct UserSessionAuthenticator: SessionAuthenticator {
+    typealias User = App.User
+    func authenticate(sessionID: String, for request: Request) -> EventLoopFuture<Void> {
+        let user = User(email: sessionID)
+        request.auth.login(user)
+        return request.eventLoop.makeSucceededFuture(())
+    }
+}
+```
+
+Since all the information we need to initialize our example `User` is contained in the session identifier, we can create and login the user synchronously. In a real-world application, you would likely use the session identifier to perform a database lookup or API request to fetch the rest of the user data before authenticating. 
+
+Next, let's create a simple bearer authenticator to perform the initial authentication.
+
+```swift
+struct UserBearerAuthenticator: BearerAuthenticator {
+    func authenticate(bearer: BearerAuthorization, for request: Request) -> EventLoopFuture<Void> {
+        if bearer.token == "test" {
+            let user = User(name: "hello@vapor.codes")
+            request.auth.login(user)
+        }
+        return request.eventLoop.makeSucceededFuture(())
+    }
+}
+```
+
+This authenticator will authenticate a user with the email `hello@vapor.codes` when the bearer token `test` is sent.
+
+Finally, let's combine all these pieces together in your application.
+
+```swift
+// Create protected route group which requires user auth.
+let protected = app.routes.grouped([
+    app.sessions.middleware,
+    UserSessionAuthenticator(),
+    UserBearerAuthenticator(),
+    User.guardMiddleware(),
+])
+
+// Add GET /me route for reading user's email.
+protected.get("me") { req -> String in
+    try req.auth.require(User.self).email
+}
+```
+
+`SessionsMiddleware` is added first to enable session support on the application. More information about configuring sessions can be found in the [Session API](sessions.md) section.
+
+Next, the `SessionAuthenticator` is added. This handles authenticating the user if a session is active. 
+
+If the authentication has not been persisted in the session yet, the request will be forwarded to the next authenticator. `UserBearerAuthenticator` will check the bearer token and authenticate the user if it equals `"test"`.
+
+Finally, `User.guardMiddleware()` will ensure that `User` has been authenticated by one of the previous middleware. If the user has not been authenticated, an error will be thrown. 
+
+To test this route, first send the following request:
+
+```http
+GET /me HTTP/1.1
+authorization: Bearer test
+```
+
+This will cause `UserBearerAuthenticator` to authenticate the user. Once authenticated, `UserSessionAuthenticator` will persist the user's identifier in session storage and generate a cookie. Use the cookie from the response in a second request to the route.
+
+```http
+GET /me HTTP/1.1
+cookie: vapor_session=123
+```
+
+This time, `UserSessionAuthenticator` will authenticate the user and you should again see the user's email returned.
+
+### Model Session Authenticatable
+
+Fluent models can generate `SessionAuthenticator`s by conforming to `ModelSessionAuthenticatable`. This will use the model's unique identifier as the session identifier and automatically perform a database lookup to restore the model from the session. 
+
+```swift
+import Fluent
+
+final class User: Model { ... }
+
+// Allow this model to be persisted in sessions.
+extension User: ModelSessionAuthenticatable { }
+```
+
+You can add `ModelSessionAuthenticatable` to any existing model as an empty conformance. Once added, a new static method will be available for creating a `SessionAuthenticator` for that model. 
+
+```swift
+User.sessionAuthenticator()
+```
+
+This will use the application's default database for resolving the user. To specify a database, pass the identifier.
+
+```swift
+User.sessionAuthenticator(.sqlite)
+```
+
+
+
+
