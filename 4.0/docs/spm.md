@@ -93,7 +93,7 @@ Each `.testTarget` corresponds to a folder in the `Tests` folder.
 
 The first time you build your project, SPM will create a `Package.resolved` file that stores the version of each dependency. The next time you build your project, these same versions will be used even if newer versions are available. 
 
-To update your depdencies, run `swift package update`. 
+To update your dependencies, run `swift package update`.
 
 ## Xcode
 
