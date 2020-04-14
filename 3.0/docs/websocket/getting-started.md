@@ -1,6 +1,6 @@
 # Getting Started with WebSocket
 
-WebSocket ([vapor/websocket](https://github.com/vapor/websocket)) is a non-blocking, event-driven WebSocket library built on SwiftNIO. It makes working with SwiftNIO's WebSocket handlers easy and provides integration with [HTTP](../http/getting-started.md) clients and servers. Creating a WebSocket echo server takes just a few lines of code.
+WebSocket ([vapor/websocket-kit](https://github.com/vapor/websocket-kit)) is a non-blocking, event-driven WebSocket library built on SwiftNIO. It makes working with SwiftNIO's WebSocket handlers easy and provides integration with [HTTP](../http/getting-started.md) clients and servers. Creating a WebSocket echo server takes just a few lines of code.
 
 !!! tip
     If you use Vapor, most of WebSocket's APIs will be wrapped by more convenient methods. 
@@ -27,7 +27,7 @@ let package = Package(
     name: "Project",
     dependencies: [
         ...
-        .package(url: "https://github.com/vapor/websocket.git", from: "1.0.0"),
+        .package(url: "https://github.com/vapor/websocket-kit.git", from: "2.0.0"),
     ],
     targets: [
       .target(name: "Project", dependencies: ["WebSocket", ... ])
@@ -35,6 +35,6 @@ let package = Package(
 )
 ```
 
-Use `import WebSocket` to access the APIs.
+Use `import WebSocketKit` to access the APIs.
 
 The rest of this guide will give you an overview of what is available in the WebSocket package. As always, feel free to visit the [API docs](http://api.vapor.codes/websocket/latest/WebSocket/index.html) for more in-depth information.
