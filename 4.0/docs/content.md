@@ -120,29 +120,29 @@ In addition to decoding to a `Content` struct, Vapor also supports fetching sing
 let name: String? = req.query["name"]
 ```
 
-## Sanitize
+## Hooks
 
-Vapor will automatically call the `beforeDecode() throws` and `afterDecode() throws` methods for you. Default implementations are provided which do nothing, but you can use these methods to "clean up" or validate the input.
+Vapor will automatically call `beforeDecode` and `afterDecode` on a `Content` type. Default implementations are provided which do nothing, but you can use these methods to run custom logic.
 
 ```swift
-// Name may not be passed in, but if it is, then it can't be an empty string.
+// Runs after this Content is decoded.
 func afterDecode() throws {
-    let ws = CharacterSet.whitespacesAndNewlines
-    
-    self.name = self.name?.trimmingCharacters(in: ws)
+    // Name may not be passed in, but if it is, then it can't be an empty string.
+    self.name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines)
     if let name = self.name, name.isEmpty {
-        throw Abort(.badRequest, reason: "Name must not be the empty string")
+        throw Abort(.badRequest, reason: "Name must not be empty.")
     }
 }
 
-// Have to *always* pass a name back, and it can't be an empty string.
+// Runs before this Content is encoded.
 func beforeEncode() throws {
-    let ws = CharacterSet.whitespacesAndNewlines
-
-    guard let name = self.name?.trimmingCharacters(in: ws), !name.isEmpty else {
-        throw Abort(.badRequest, reason: "Name must not be the empty string")
+    // Have to *always* pass a name back, and it can't be an empty string.
+    guard 
+        let name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines), 
+	!name.isEmpty 
+    else {
+        throw Abort(.badRequest, reason: "Name must not be empty.")
     }
-    
     self.name = name
 }
 ```
