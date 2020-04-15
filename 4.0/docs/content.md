@@ -22,7 +22,7 @@ The first step to decoding this HTTP message is creating a Codable type that mat
 
 ```swift
 struct Greeting: Content {
-	var hello: String
+    var hello: String
 }
 ```
 
@@ -32,9 +32,9 @@ Once you have the content structure, you can decode it from the incoming request
 
 ```swift
 app.post("greeting") { req in 
-	let greeting = try req.content.decode(Greeting.self)
-	print(greeting.hello) // "world"
-	return HTTPStatus.ok
+    let greeting = try req.content.decode(Greeting.self)
+    print(greeting.hello) // "world"
+    return HTTPStatus.ok
 }
 ```
 
@@ -81,7 +81,7 @@ Just like the APIs for handling HTTP message body content, the first step for pa
 
 ```swift
 struct Hello: Content {
-	var name: String?
+    var name: String?
 }
 ```
 
@@ -91,8 +91,8 @@ Now that you have a `Content` struct for this route's expected query string, you
 
 ```swift
 app.get("hello") { req -> String in 
-	let hello = try req.query.decode(Hello.self)
-	return "Hello, \(hello.name ?? "Anonymous")"
+    let hello = try req.query.decode(Hello.self)
+    return "Hello, \(hello.name ?? "Anonymous")"
 }
 ```
 
@@ -118,6 +118,33 @@ In addition to decoding to a `Content` struct, Vapor also supports fetching sing
 
 ```swift
 let name: String? = req.query["name"]
+```
+
+## Hooks
+
+Vapor will automatically call `beforeDecode` and `afterDecode` on a `Content` type. Default implementations are provided which do nothing, but you can use these methods to run custom logic.
+
+```swift
+// Runs after this Content is decoded.
+func afterDecode() throws {
+    // Name may not be passed in, but if it is, then it can't be an empty string.
+    self.name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines)
+    if let name = self.name, name.isEmpty {
+        throw Abort(.badRequest, reason: "Name must not be empty.")
+    }
+}
+
+// Runs before this Content is encoded.
+func beforeEncode() throws {
+    // Have to *always* pass a name back, and it can't be an empty string.
+    guard 
+        let name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines), 
+        !name.isEmpty 
+    else {
+        throw Abort(.badRequest, reason: "Name must not be empty.")
+    }
+    self.name = name
+}
 ```
 
 ## Override Defaults
@@ -191,4 +218,3 @@ public protocol URLQueryEncoder {
 ```
 
 Conforming to these protocols allows your custom coders to be registered to `ContentConfiguration` for handling URL query strings using the `use(urlEncoder:)` and `use(urlDecoder:)` methods.
-
