@@ -120,6 +120,33 @@ In addition to decoding to a `Content` struct, Vapor also supports fetching sing
 let name: String? = req.query["name"]
 ```
 
+## Sanitize
+
+Vapor will automatically call the `beforeDecode() throws` and `afterDecode() throws` methods for you. Default implementations are provided which do nothing, but you can use these methods to "clean up" or validate the input.
+
+```swift
+// Name may not be passed in, but if it is, then it can't be an empty string.
+func afterDecode() throws {
+    let ws = CharacterSet.whitespacesAndNewlines
+    
+    self.name = self.name?.trimmingCharacters(in: ws)
+    if let name = self.name, name.isEmpty {
+        throw Abort(.badRequest, reason: "Name must not be the empty string")
+    }
+}
+
+// Have to *always* pass a name back, and it can't be an empty string.
+func beforeEncode() throws {
+    let ws = CharacterSet.whitespacesAndNewlines
+
+    guard let name = self.name?.trimmingCharacters(in: ws), !name.isEmpty else {
+        throw Abort(.badRequest, reason: "Name must not be the empty string")
+    }
+    
+    self.name = name
+}
+```
+
 ## Override Defaults
 
 The default encoders and decoders used by Vapor's Content APIs can be configured. 
