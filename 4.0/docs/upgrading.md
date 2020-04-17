@@ -520,14 +520,12 @@ app.middleware = .init()
 As the way services work in Vapor 4 has changed, that also means that the way to do database repositories has changed. You still need a procol such as `UserRepository` but instead of making a `final class` conform to that protocol, you should make a `struct` instead.
 ```diff
 - final class DatabaseUserRepository: UserRepository {
-- 
-- }
 + struct DatabaseUserRepository: UserRepository {
-+     let database: Database
-+     func all() -> EventLoopFuture<[User]> {
-+         return User.query(on: database).all()
-+     }
-+ }
+      let database: Database
+      func all() -> EventLoopFuture<[User]> {
+          return User.query(on: database).all()
+      }
+  }
 ```
 
 You should also remove conformance from `ServiceType` as this no longer exists in Vapor 4. 
