@@ -39,6 +39,12 @@ final class User: Model {
 }
 ```
 
+### Data Modelling
+
+In MongoDB, Models are defined in the same as in any other Fluent environment. The main difference between SQL databases and MongoDB lies in relationships and architecture.
+
+In SQL environments, it's very common to create join tables for relationships between two entities. In MongoDB, however, an array can be used to store related identifiers. Due to the design of MongoDB, it's more efficient and practical to design your models with nested data structures.
+
 ### Flexible Data
 
 You can add flexible data in MongoDB, but this code will not work in SQL environments.
