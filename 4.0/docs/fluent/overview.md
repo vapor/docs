@@ -1,4 +1,4 @@
-# Fluent 
+# Fluent
 
 Fluent is an [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) framework for Swift. It takes advantage of Swift's strong type system to provide an easy-to-use interface for your database. Using Fluent centers around the creation of model types which represent data structures in your database. These models are then used to perform create, read, update, and delete operations instead of writing raw queries.
 
@@ -20,8 +20,8 @@ If you have an existing project that you want to add Fluent to, you will need to
 
 ```swift
 .target(name: "App", dependencies: [
-    .product(name: "Fluent", package: "fluent"), 
-    .product(name: "Fluent<db>Driver", package: "fluent-<db>-driver"), 
+    .product(name: "Fluent", package: "fluent"),
+    .product(name: "Fluent<db>Driver", package: "fluent-<db>-driver"),
     .product(name: "Vapor", package: "vapor"),
 ]),
 ```
@@ -135,6 +135,30 @@ You can also parse the credentials from a database connection string.
 try app.databases.use(.mysql(url: "<connection string>"), as: .mysql)
 ```
 
+#### MongoDB
+
+MongoDB is a popular schemaless NoSQL database designed for programmers. The driver supports all cloud hosting providers and self-hosted installations from version 3.4 and up.
+
+To use MongoDB, add the following dependencies to your package.
+
+```swift
+.package(name: "FluentMongoDriver", url: "https://github.com/vapor/fluent-mongo-driver.git", from: "1.0.0"),
+```
+
+```swift
+.product(name: "FluentMongoDriver", package: "fluent-mongo-driver")
+```
+
+Once the dependencies are added, configure the database's credentials with Fluent using `app.databases.use` in `configure.swift`.
+
+To connect, pass a connection string in the standard MongoDB [connection URI format](https://docs.mongodb.com/master/reference/connection-string/index.html).
+
+```swift
+import Fluent
+import FluentMongoDriver
+
+try app.databases.use(.mongo(connectionString: "<connection string>"), as: .mongo)
+```
 
 ## Models
 
@@ -164,7 +188,7 @@ final class Galaxy: Model {
 }
 ```
 
-To create a new model, create a new class conforming to `Model`. 
+To create a new model, create a new class conforming to `Model`.
 
 !!! tip
     It's recommended to mark model classes `final` to improve performance and simplify conformance requirements.
@@ -179,16 +203,16 @@ This property tells Fluent which table or collection the model corresponds to. T
 
 ### Identifier
 
-The next requirement is an identifier field named `id`. 
+The next requirement is an identifier field named `id`.
 
 ```swift
 @ID(key: .id)
 var id: UUID?
 ```
 
-This field must use the `@ID` property wrapper. Fluent recommends using `UUID` and the special `.id` field key since this is compatible with all of Fluent's drivers. 
+This field must use the `@ID` property wrapper. Fluent recommends using `UUID` and the special `.id` field key since this is compatible with all of Fluent's drivers.
 
-If you want to use a custom ID key or type, use the `@ID(custom:)` overload. 
+If you want to use a custom ID key or type, use the `@ID(custom:)` overload.
 
 ### Fields
 
@@ -239,7 +263,7 @@ struct CreateGalaxy: Migration {
 }
 ```
 
-The `prepare` method is used for preparing the database to store `Galaxy` models. 
+The `prepare` method is used for preparing the database to store `Galaxy` models.
 
 ### Schema
 
@@ -278,7 +302,7 @@ Migration successful
 
 ## Querying
 
-Now that you've successfully created a model and migrated your database, you're ready to make your first query. 
+Now that you've successfully created a model and migrated your database, you're ready to make your first query.
 
 ### All
 
@@ -298,14 +322,14 @@ final class Galaxy: Model, Content {
 }
 ```
 
-`Galaxy.query` is used to create a new query builder for the model. `req.db` is a reference to the default database for your application. Finally, `all()` returns all of the models stored in the database. 
+`Galaxy.query` is used to create a new query builder for the model. `req.db` is a reference to the default database for your application. Finally, `all()` returns all of the models stored in the database.
 
 If you compile and run the project and request `GET /galaxies`, you should see an empty array returned. Let's add a route for creating a new galaxy.
 
 ### Create
 
 
-Following RESTful convention, use the `POST /galaxies` endpoint for creating a new galaxy. Since models are codable, you can decode a galaxy directly from the request body. 
+Following RESTful convention, use the `POST /galaxies` endpoint for creating a new galaxy. Since models are codable, you can decode a galaxy directly from the request body.
 
 ```swift
 app.post("galaxies") { req -> EventLoopFuture<Galaxy> in
@@ -346,7 +370,7 @@ Now, if you query `GET /galaxies` again, you should see the newly created galaxy
 
 ## Relations
 
-What are galaxies without stars! Let's take a quick look at Fluent's powerful relational features by adding a one-to-many relation between `Galaxy` and a new `Star` model. 
+What are galaxies without stars! Let's take a quick look at Fluent's powerful relational features by adding a one-to-many relation between `Galaxy` and a new `Star` model.
 
 ```swift
 final class Star: Model, Content {
@@ -379,7 +403,7 @@ final class Star: Model, Content {
 
 ### Parent
 
-The new `Star` model is very similar to `Galaxy` except for a new field type: `@Parent`. 
+The new `Star` model is very similar to `Galaxy` except for a new field type: `@Parent`.
 
 ```swift
 @Parent(key: "galaxy_id")
@@ -428,7 +452,7 @@ field("galaxy_id", .uuid, .references("galaxies", "id"))
 
 This field specifies an optional constraint telling the database that the field's value references the field "id" in the "galaxies" schema. This is also known as a foreign key and helps ensure data integrity.
 
-Once the migration is created, add it to `app.migrations` after the `CreateGalaxy` migration. 
+Once the migration is created, add it to `app.migrations` after the `CreateGalaxy` migration.
 
 ```swift
 app.migrations.add(CreateGalaxy())
@@ -456,8 +480,8 @@ content-type: application/json
 
 {
     "name": "Sun",
-    "galaxy": { 
-        "id": ... 
+    "galaxy": {
+        "id": ...
     }
 }
 ```
@@ -468,7 +492,7 @@ You should see the newly created star returned with a unique identifier.
 {
     "id": ...,
     "name": "Sun",
-    "galaxy": { 
+    "galaxy": {
         "id": ...
     }
 }
@@ -525,18 +549,18 @@ The last type of relationship is many-to-many, or sibling relationship.  Create 
 final class Tag: Model, Content {
     // Name of the table or collection.
     static let schema: String = "tags"
-    
+
     // Unique identifier for this Tag.
-    @ID(key: .id) 
+    @ID(key: .id)
     var id: UUID?
-    
+
     // The Tag's name.
-    @Field(key: "name") 
+    @Field(key: "name")
     var name: String
-        
+
     // Creates a new, empty Tag.
     init() {}
-    
+
     // Creates a new Tag with all properties set.
     init(id: UUID? = nil, name: String) {
         self.id = id
@@ -551,28 +575,28 @@ A tag can have many stars and a star can have many tags making them siblings.  A
 final class StarTag: Model {
     // Name of the table or collection.
     static let schema: String = "star_tag"
-    
+
     // Unique identifier for this pivot.
-    @ID(key: .id) 
+    @ID(key: .id)
     var id: UUID?
-    
+
     // Reference to the Tag this pivot relates.
-    @Parent(key: "tag_id") 
+    @Parent(key: "tag_id")
     var tag: Tag
-    
+
     // Reference to the Star this pivot relates.
-    @Parent(key: "star_id") 
+    @Parent(key: "star_id")
     var star: Star
-        
+
     // Creates a new, empty pivot.
     init() {}
-    
+
     // Creates a new pivot with all properties set.
     init(tagID: UUID, starID: UUID) {
         self.$tag.id = tagID
         self.$star.id = starID
     }
-    
+
 }
 ```
 
@@ -600,7 +624,7 @@ struct CreateTag: Migration {
             .field("name", .string)
             .create()
     }
-    
+
     func revert(on database: Database) -> EventLoopFuture<Void> {
         database.schema("tags").delete()
     }
@@ -615,7 +639,7 @@ struct CreateStarTag: Migration {
             .field("tag_id", .uuid, .required, .references("star", "id"))
             .create()
     }
-    
+
     func revert(on database: Database) -> EventLoopFuture<Void> {
         database.schema("star_tag").delete()
     }
@@ -665,24 +689,24 @@ struct GalaxyMiddleware: ModelMiddleware {
     func create(model: Galaxy, on db: Database, next: AnyModelResponder) -> EventLoopFuture<Void> {
         return next.create(model, on: db)
     }
-    
+
     // Runs when a model is updated
     func update(model: Galaxy, on db: Database, next: AnyModelResponder) -> EventLoopFuture<Void> {
         return next.update(model, on: db)
     }
-    
-    // Runs when a model is soft deleted 
+
+    // Runs when a model is soft deleted
     func softDelete(model: Galaxy, on db: Database, next: AnyModelResponder) -> EventLoopFuture<Void> {
         return next.softDelete(model, on: db)
     }
-    
+
     // Runs when a soft deleted model is restored
     func restore(model: Galaxy, on db: Database, next: AnyModelResponder) -> EventLoopFuture<Void> {
         return next.restore(model , on: db)
     }
-    
+
     // Runs when a model is deleted
-    // If the "force" parameter is true, the model will be permanently deleted, 
+    // If the "force" parameter is true, the model will be permanently deleted,
     // even when using soft delete timestamps.
     func delete(model: Galaxy, force: Bool, on db: Database, next: AnyModelResponder) -> EventLoopFuture<Void> {
         return next.delete(model, force: force, on: db)
@@ -690,7 +714,7 @@ struct GalaxyMiddleware: ModelMiddleware {
 }
 ```
 
-Each of these methods has a default implementation, so you only need to include the methods you require. You should return the corresponding method on the next `AnyModelResponder` so Fluent continues processing the event. 
+Each of these methods has a default implementation, so you only need to include the methods you require. You should return the corresponding method on the next `AnyModelResponder` so Fluent continues processing the event.
 
 !!! Important
     The middleware will only respond to lifecycle events of the `Model` type provided in the functions. In the above example `GalaxyMiddleware` will respond to events on the Galaxy model.
@@ -700,7 +724,7 @@ Using these methods you can perform actions both before, and after the event com
 ```swift
 struct GalaxyMiddleware: ModelMiddleware {
     func create(model: Galaxy, on db: Database, next: AnyModelResponder) -> EventLoopFuture<Void> {
-        
+
         // The model can be altered here before it is created
         model.name = "<New Galaxy Name>"
 
@@ -725,7 +749,7 @@ Fluent provides the ability to track creation and update times on models by spec
 ```swift
 @Timestamp(key: "created_at", on: .create)
 var createdAt: Date?
-    
+
 @Timestamp(key: "updated_at", on: .update)
 var updatedAt: Date?
 ```
@@ -756,7 +780,7 @@ var deletedAt: Date?
 
 Calling `Model.delete(on:)` on a model that has a delete timestamp property will automatically soft delete it.
 
-If you need to perform a query that includes the soft deleted items, you can use `withDeleted()` in your query. 
+If you need to perform a query that includes the soft deleted items, you can use `withDeleted()` in your query.
 
 ```swift
 // Get all galaxies including soft-deleted ones.

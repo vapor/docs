@@ -48,6 +48,7 @@ nav:
   - 'Migrations': 'fluent/migrations.md'
   - 'Relations': 'fluent/relations.md'
   - 'Query Builder': 'fluent/query-builder.md'
+  - 'Advanced': 'fluent/advanced.md'
 - 'Advanced':
   - 'Middleware': 'middleware.md'
   - 'Testing': 'testing.md'
