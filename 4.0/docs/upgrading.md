@@ -1,6 +1,6 @@
 # Upgrading to 4.0
 
-This guide shows you how to upgrade an existing Vapor 3.x project to 4.0. This guide attempts to cover all of Vapor's official packages as well as some commonly used providers. If you notice anything missing, [Vapor's team chat](https://discord.gg/vapor) is a great place to ask for help. Issues and pull requests are also appreciated.
+This guide shows you how to upgrade an existing Vapor 3.x project to 4.x. This guide attempts to cover all of Vapor's official packages as well as some commonly used providers. If you notice anything missing, [Vapor's team chat](https://discord.gg/vapor) is a great place to ask for help. Issues and pull requests are also appreciated.
 
 ## Dependencies
 
@@ -29,7 +29,7 @@ The first step to upgrading to Vapor 4 is to update your package's dependencies.
 -        .package(url: "https://github.com/vapor/jwt.git", from: "3.0.0"),
 +        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0-rc"),
 -        .package(url: "https://github.com/vapor/vapor.git", from: "3.0.0"),
-+        .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0-rc"),
++        .package(url: "https://github.com/vapor/vapor.git", from: "4.3.0"),
      ],
      targets: [
          .target(name: "App", dependencies: [
@@ -56,7 +56,7 @@ The first step to upgrading to Vapor 4 is to update your package's dependencies.
 All packages that have been upgraded for Vapor 4 will have their major version number incremented by one.
 
 !!! warning
-	The `-rc` pre-release identifier is used since Vapor 4 has not been officially released yet.
+	The `-rc` pre-release identifier is used since some packages of Vapor 4 has not been officially released yet.
 
 ### Old Packages
 
