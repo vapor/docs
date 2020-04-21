@@ -516,6 +516,102 @@ To remove all default middleware, set `app.middleware` to an empty config using:
 app.middleware = .init()
 ```
 
+## Repositories
+As the way services work in Vapor 4 has changed, that also means that the way to do database repositories has changed. You still need a procol such as `UserRepository` but instead of making a `final class` conform to that protocol, you should make a `struct` instead.
+```diff
+- final class DatabaseUserRepository: UserRepository {
++ struct DatabaseUserRepository: UserRepository {
+      let database: Database
+      func all() -> EventLoopFuture<[User]> {
+          return User.query(on: database).all()
+      }
+  }
+```
+
+You should also remove conformance from `ServiceType` as this no longer exists in Vapor 4. 
+```diff
+- extension DatabaseUserRepository {
+-     static let serviceSupports: [Any.Type] = [Athlete.self]
+-     static func makeService(for worker: Container) throws -> Self {
+-         return .init()
+-     }
+- }
+```
+
+Instead you should create a `UserRepositoryFactory`:
+```swift
+struct UserRepositoryFactory {
+    var make: ((Request) -> UserRepository)?
+    mutating func use(_ make: @escaping ((Request) -> UserRepository)) {
+        self.make = make
+    }
+}
+```
+This factory is responsible for returning a `UserRepository` for a `Request`.
+
+Next step is to add an extension to `Application` to specify your factory:
+```swift
+extension Application {
+    private struct UserRepositoryKey: StorageKey { 
+        typealias Value = UserRepositoryFactory 
+    }
+
+    var users: UserRepositoryFactory {
+        get {
+            self.storage[UserRepositoryKey.self] ?? .init()
+        }
+        set {
+            self.storage[UserRepositoryKey.self] = newValue
+        }
+    }
+}
+```
+
+To use the actual repository inside of a `Request` add this extension to `Request`:
+```swift
+extension Request {
+    var users: UserRepository {
+        self.application.users.make!(self)
+    }
+}
+```
+
+Last step is to specify the factory inside `configure.swift`
+```swift
+app.users.use { req in
+    DatabaseUserRepository(database: req.db)
+}
+```
+
+You can now access your repository in your route handlers with: `req.users.all()` and easily replace the factory inside tests.
+If you want to use a mocked repository inside tests, first create a `TestUserRepository`
+```swift
+final class TestUserRepository: UserRepository {
+    var users: [User]
+    let eventLoop: EventLoop
+
+    init(users: [User] = [], eventLoop: EventLoop) {
+        self.users = users
+        self.eventLoop = eventLoop
+    }
+
+    func all() -> EventLoopFuture<[User]> {
+        eventLoop.makeSuccededFuture(self.users)
+    }
+}
+```
+
+You can now use this mocked repository inside your tests as follows:
+```swift
+final class MyTests: XCTestCase {
+    func test() throws {
+        let users: [User] = []
+        app.users.use { TestUserRepository(users: users, eventLoop: $0.eventLoop) }
+        ...
+    }
+}
+```
+
 ## HTTP
 
 Coming soon.
