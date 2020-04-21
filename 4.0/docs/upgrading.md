@@ -190,7 +190,7 @@ To understand this better, let's take a look at a few examples.
 - services.register { container -> NIOServerConfig in
 -     return .default(port: 8281)
 - }
-+ app.server.configuration.port = 8281
++ app.http.server.configuration.port = 8281
 ```
 
 Instead of registering a `NIOServerConfig` to services, server configuration is now exposed as simple properties on Application that can be overridden. 
