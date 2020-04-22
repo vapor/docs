@@ -36,6 +36,9 @@ By default, Vapor will use `vapor_session` as the cookie name.
 
 Session drivers are responsible for storing and retrieving session data by identifier. You can create custom drivers by conforming to the `SessionDriver` protocol.
 
+!!! warning
+	The session driver should be configured _before_ adding `app.sessions.middleware` to your application.
+
 ### In-Memory
 
 Vapor utilizes in-memory sessions by default. In-memory sessions require zero configuration and do not persist between application launches which makes them great for testing. To enable in-memory sessions manually, use `.memory`:
@@ -48,7 +51,7 @@ For production use cases, take a look at the other session drivers which utilize
 
 ### Fluent
 
-Fluent includes support for storing session data in your application's database. This section assumes you have [configured Fluent](../fluent/overview.md) and can connect to a database. The first step is to enable the Fluent sessions driver.
+Fluent includes support for storing session data in your application's database. This section assumes you have [configured Fluent](fluent/overview.md) and can connect to a database. The first step is to enable the Fluent sessions driver.
 
 ```swift
 import Fluent
