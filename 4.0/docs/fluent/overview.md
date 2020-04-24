@@ -636,7 +636,7 @@ struct CreateStarTag: Migration {
         database.schema("star_tag")
             .id()
             .field("star_id", .uuid, .required, .references("stars", "id"))
-            .field("tag_id", .uuid, .required, .references("stars", "id"))
+            .field("tag_id", .uuid, .required, .references("tags", "id"))
             .create()
     }
 
