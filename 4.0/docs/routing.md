@@ -228,15 +228,30 @@ app.get("number", ":x") { req -> String in
 
 ### Body Streaming
 
-When registering a route using the `on` method, you can specify how the request body should be handled. By default, the request body is collected into memory before calling your handler. This is useful since it allows for request content decoding to be synchronous. However, for large requests like file uploads this can potentially strain your system memory. 
+When registering a route using the `on` method, you can specify how the request body should be handled. By default, request bodies are collected into memory before calling your handler. This is useful since it allows for request content decoding to be synchronous even though your application reads incoming requests asynchronously. 
 
-To change how the request body is handled, use the `body` parameter when registering a route. There are two methods:
-
-- `collect`: Collects the request body into memory
-- `stream`: Streams the request body
+By default, Vapor will limit streaming body collection to 16KB in size. You can configure this using `app.routes`.
 
 ```swift
-app.on(.POST, "file-upload", body: .stream) { req in
+app.routes.defaultMaxBodySize = "500kb"
+```
+
+To configure request body collection strategy for an individual route, use the `body` parameter.
+
+```swift
+// Collects streaming bodies (up to 1mb in size) before calling this route.
+app.on(.POST, "listings", body: .collect(maxSize: "1mb")) { req in
+    // Handle request. 
+}
+```
+
+If a `maxSize` is passed to `collect`, it will override the application's default for that route. To use the application's default, omit the `maxSize` argument. 
+
+For large requests, like file uploads, collecting the request body in a buffer can potentially strain your system memory. To prevent the request body from being collected, use the `stream` strategy.
+
+```swift
+// Request body will not be collected into a buffer.
+app.on(.POST, "upload", body: .stream) { req in
     ...
 }
 ```
