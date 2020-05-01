@@ -52,7 +52,7 @@ SwiftLog supports several different logging levels.
 
 |name|description|
 |-|-|
-|trace|Appropriate for messages that contain information only when debugging a program.|
+|trace|Appropriate for messages that contain information normally of use only when tracing the execution of a program.|
 |debug|Appropriate for messages that contain information normally of use only when debugging a program.|
 |info|Appropriate for informational messages.|
 |notice|Appropriate for conditions that are not error conditions, but that may require special handling.|
