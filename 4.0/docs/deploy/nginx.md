@@ -106,8 +106,10 @@ server {
 	...
 
 	# Serve all public/static files via nginx and then fallback to Vapor for the rest
-    try_files $uri @proxy;
-	
+	location / {
+		try_files $uri @proxy;
+	}
+
 	location @proxy {
 		...
 	}
