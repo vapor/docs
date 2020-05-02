@@ -24,6 +24,8 @@ Queues currently has one officially supported driver which interfaces with the m
 - [QueuesRedisDriver](https://github.com/vapor/queues-redis-driver)
 
 Queues also has community-based drivers:
+
+- [QueuesFluentDriver](https://github.com/m-barthelemy/vapor-queues-fluent-driver)
 - [JobsPostgresqlDriver](https://github.com/vapor-community/jobs-postgresql-driver)
 
 !!! tip
