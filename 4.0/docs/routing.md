@@ -215,8 +215,8 @@ app.get("hello", ":name") { req -> String in
 `req.parameters` also supports casting the parameter to `LosslessStringConvertible` types automatically. 
 
 ```swift
-// responds to GET /hello/42
-// responds to GET /hello/1337
+// responds to GET /number/42
+// responds to GET /number/1337
 // ...
 app.get("number", ":x") { req -> String in 
 	guard let int = req.parameters.get("x", as: Int.self) else {
