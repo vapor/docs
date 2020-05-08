@@ -82,7 +82,7 @@ server {
 
     root /home/vapor/Hello/Public/;
 
-    location @proxy {
+    location / {
         proxy_pass http://127.0.0.1:8080;
         proxy_pass_header Server;
         proxy_set_header Host $host;
