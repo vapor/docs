@@ -14,11 +14,21 @@ Install `couscous` through Composer and run `couscous preview`
 
 ### 2.0 and 3.0
 
+Install Homebrew.
+
+See [Homebrew](https://brew.sh)
+
+Install Python 3.
+
+```sh
+brew install python3
+```
+
 Install MkDocs and MkDocs Material theme.
 
 ```sh
-pip install mkdocs
-pip install mkdocs-material
+pip3 install mkdocs
+pip3 install mkdocs-material
 ```
 
 Run with `mkdocs serve`
