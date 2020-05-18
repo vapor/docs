@@ -141,8 +141,8 @@ Each route registration method accepts a variadic list of `PathComponent`. This 
 
 - Constant (`foo`)
 - Parameter (`:foo`)
-- Anything (`:`)
-- Catchall (`*`)
+- Anything (`*`)
+- Catchall (`**`)
 
 #### Constant
 
@@ -176,7 +176,7 @@ This is very similar to parameter except the value is discarded. This path compo
 // responds to GET /foo/bar/baz
 // responds to GET /foo/qux/baz
 // ...
-app.get("foo", ":", "baz") { req in
+app.get("foo", "*", "baz") { req in
 	...
 }
 ```
@@ -189,7 +189,7 @@ This is a dynamic route component that matches one or more components. It is spe
 // responds to GET /foo/bar
 // responds to GET /foo/bar/baz
 // ...
-app.get("foo", "*") { req in 
+app.get("foo", "**") { req in 
     ...
 }
 ```
@@ -233,8 +233,11 @@ When registering a route using the `on` method, you can specify how the request 
 By default, Vapor will limit streaming body collection to 16KB in size. You can configure this using `app.routes`.
 
 ```swift
+// Increases the streaming body collection limit to 500kb
 app.routes.defaultMaxBodySize = "500kb"
 ```
+
+If a streaming body being collected exceeds the configured limit, a `413 Payload Too Large` error will be thrown. 
 
 To configure request body collection strategy for an individual route, use the `body` parameter.
 
