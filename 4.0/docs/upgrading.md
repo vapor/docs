@@ -314,8 +314,6 @@ app.myNumber = 42
 print(app.myNumber) // 42
 ```
 
-Both Application and Request also have `userInfo` dictionaries for storing any data you may need.
-
 ## NIO
 
 Vapor 4 now exposes SwiftNIO's async APIs directly and does not attempt to overload methods like `map` and `flatMap` or alias types like `EventLoopFuture`. Vapor 3 provided overloads and aliases for backward compatibility with early beta versions that were released before SwiftNIO existed. These have been removed to reduce confusion with other SwiftNIO compatible packages and better follow SwiftNIO's best practice recommendations. 
