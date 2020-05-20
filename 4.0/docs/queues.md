@@ -190,11 +190,11 @@ If a job is dequeued before its delay parameter, the job will be re-queued by th
 
 Jobs can be sorted into different queue types/priorities depending on your needs. For example, you may want to open an `email` queue and a `background-processing` queue to sort jobs. 
 
-Start by extending `JobsQueueName`:
+Start by extending `QueueName`:
 
 ```swift
-extension JobsQueueName {
-    static let emails = JobsQueueName(string: "emails")
+extension QueueName {
+    static let emails = QueueName(string: "emails")
 }
 ```
 
