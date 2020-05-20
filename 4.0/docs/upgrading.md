@@ -378,7 +378,7 @@ Maps that _do_ throw must be renamed to `flatMapThrowing`.
 	if ... {
 		throw SomeError()
 	} else {
-		return futureB
+		return b
 	}
 }
 ```
@@ -392,7 +392,7 @@ futureA.flatMap { a in
 }
 ```
 
-Flat-maps that _do_ throw must return a future error.
+Flat-maps that _do_ throw must now instead return a future error.
 
 ```swift
 // Returning a future error.
