@@ -378,7 +378,7 @@ Maps that _do_ throw must be renamed to `flatMapThrowing`.
 	if ... {
 		throw SomeError()
 	} else {
-		return futureB
+		return b
 	}
 }
 ```
@@ -392,20 +392,7 @@ futureA.flatMap { a in
 }
 ```
 
-Flat-maps that _do_ throw must return a future error.
-
-```swift
-// Returning a future error.
-futureA.flatMap { a in
-	if ... {
-		return eventLoop.makeFailedFuture(SomeError())
-	} else {
-		return futureB
-	}
-}
-```
-
-When calling methods that throw, the error can be caught in a do / catch and returned as a future.
+Instead of throwing an error inside a flat-map, return a future error. If the error originates from another throwing method, the error can be caught in a do / catch and returned as a future.
 
 ```swift
 // Returning a caught error as a future.
