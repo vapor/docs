@@ -65,7 +65,7 @@ sudo service nginx restart
 
 Nginx can be started an stopped with the `sudo service nginx ...` commands. You will need something similar to start and stop your Vapor server.
 
-There are many ways to do this, and they depend on which platform you are deploying to. Check out the [Supervisor](supervisor.md) instructions to add commands for starting and stopping your Vapor app.
+There are many ways to do this, and they depend on which platform you are deploying to. Check out the [Supervisor](../deploy/supervisor.md) instructions to add commands for starting and stopping your Vapor app.
 
 ## Configure Proxy
 

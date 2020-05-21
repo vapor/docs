@@ -1,6 +1,6 @@
 # Validation
 
-Vapor's Validation API helps you validate incoming request before using the [Content](content.md) API to decode data. 
+Vapor's Validation API helps you validate incoming request before using the [Content](../basics/content.md) API to decode data. 
 
 ## Introduction 
 
@@ -8,7 +8,7 @@ Vapor's deep integration of Swift's type-safe `Codable` protocol means you don't
 
 ### Human-Readable Errors
 
-Decoding structs using the [Content](content.md) API will yield errors if any of the data is not valid. However, these error messages can sometimes lack human-readability. For example, take the following string-backed enum:
+Decoding structs using the [Content](../basics/content.md) API will yield errors if any of the data is not valid. However, these error messages can sometimes lack human-readability. For example, take the following string-backed enum:
 
 ```swift
 enum Color: String, Codable {
@@ -38,7 +38,7 @@ Furthermore, `Codable` will stop attempting to decode a type as soon as the firs
 
 To validate a request, you will need to generate a `Validations` collection. This is most commonly done by conforming an existing type to `Validatable`. 
 
-Let's take a look at how you could add validation to this simple `POST /users` endpoint. This guide assumes you are already familiar with the [Content](content.md) API.
+Let's take a look at how you could add validation to this simple `POST /users` endpoint. This guide assumes you are already familiar with the [Content](../basics/content.md) API.
 
 ```swift
 enum Color: String, Codable {

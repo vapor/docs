@@ -2,7 +2,7 @@
 
 Controllers are a great way to organize your code. They are collections of methods that accept a request and return a response.
 
-A good place to put your controllers is in the [Controllers](folder-structure.md#controllers) folder.
+A good place to put your controllers is in the [Controllers](../start/folder-structure.md#controllers) folder.
 
 ## Overview
 
@@ -58,7 +58,7 @@ struct TodosController: RouteCollection {
 Controller methods should always accept a `Request` and return something `ResponseEncodable`.
 
 !!! note
-	[EventLoopFuture](async.md) whose expectation is `ResponseEncodable` (i.e, `EventLoopFuture<String>`) is also `ResponseEncodable`.
+	[EventLoopFuture](../basics/async.md) whose expectation is `ResponseEncodable` (i.e, `EventLoopFuture<String>`) is also `ResponseEncodable`.
 
 Finally you need to register the controller in `routes.swift`:
 

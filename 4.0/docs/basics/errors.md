@@ -166,7 +166,7 @@ struct MyError: DebuggableError {
 }
 ```
 
-When your application's [log level](logging.md#level) is set to `.debug` or lower, error stack traces will be included in log output. 
+When your application's [log level](../basics/logging.md#level) is set to `.debug` or lower, error stack traces will be included in log output. 
 
 Stack traces will not be captured when the log level is greater than `.debug`. To override this behavior, set `StackTrace.isCaptureEnabled` manually in `configure`. 
 

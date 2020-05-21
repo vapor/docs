@@ -1,6 +1,6 @@
 # Folder Structure
 
-Now that you've created, built, and run your first Vapor app, let's take a moment to familiarize you with Vapor's folder structure. The structure is based on [SPM](spm.md)'s folder structure, so if you've worked with SPM before it should be familiar. 
+Now that you've created, built, and run your first Vapor app, let's take a moment to familiarize you with Vapor's folder structure. The structure is based on [SPM](../start/spm.md)'s folder structure, so if you've worked with SPM before it should be familiar. 
 
 ```
 .
@@ -40,7 +40,7 @@ app.middleware.use(fileMiddleware)
 
 This folder contains all of the Swift source files for your project. 
 The top level folders, `App` and `Run`, reflect your package's modules, 
-as declared in the [SPM](spm.md) manifest.
+as declared in the [SPM](../start/spm.md) manifest.
 
 ### App
 
@@ -80,5 +80,5 @@ This folder contains the unit tests for code in your `App` module.
 
 ## Package.swift
 
-Finally is [SPM](spm.md)'s package manifest.
+Finally is [SPM](../start/spm.md)'s package manifest.
 

@@ -69,7 +69,7 @@ vapor run hello
 
 ### Cowsay
 
-Take a look at this re-creation of the famous [`cowsay`](https://en.wikipedia.org/wiki/Cowsay) command for an example of using `@Argument` and `@Option`.
+Take a look at this re-creation of the famous [cowsay](https://en.wikipedia.org/wiki/Cowsay) command for an example of using `@Argument` and `@Option`.
 
 ```swift
 import Vapor

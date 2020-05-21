@@ -39,7 +39,7 @@ Each of the Fluent drivers below has more specific instructions for configuratio
 
 ### Drivers
 
-Fluent currently has three officially supported drivers. You can search GitHub for the tag [`fluent-driver`](https://github.com/topics/fluent-database) for a full list of official and third-party Fluent database drivers.
+Fluent currently has three officially supported drivers. You can search GitHub for the tag [fluent-driver](https://github.com/topics/fluent-database) for a full list of official and third-party Fluent database drivers.
 
 #### PostgreSQL
 
@@ -199,7 +199,7 @@ The `Model` protocol's first requirement is the static string `schema`.
 static let schema = "galaxies"
 ```
 
-This property tells Fluent which table or collection the model corresponds to. This can be a table that already exists in the database or one that you will create with a [migration](#migration). The schema is usually `snake_case` and plural.
+This property tells Fluent which table or collection the model corresponds to. This can be a table that already exists in the database or one that you will create with a [migration](#migrations). The schema is usually `snake_case` and plural.
 
 ### Identifier
 

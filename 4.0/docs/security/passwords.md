@@ -14,7 +14,7 @@ app.passwords.use(...)
 
 ### Bcrypt
 
-To use Vapor's [Bcrypt API](crypto.md#bcrypt) for password hashing, specify `.bcrypt`. This is the default.
+To use Vapor's [Bcrypt API](../security/crypto.md#bcrypt) for password hashing, specify `.bcrypt`. This is the default.
 
 ```swift
 app.passwords.use(.bcrypt)
