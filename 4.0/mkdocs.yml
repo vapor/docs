@@ -35,6 +35,7 @@ nav:
   - 'SPM': 'spm.md'
 - 'Basics':
   - 'Routing': 'routing.md'
+  - "Controllers": "controllers.md"
   - 'Content': 'content.md'
   - 'Client': 'client.md'
   - 'Validation': 'validation.md'
