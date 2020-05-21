@@ -195,7 +195,7 @@ You can bring your services up with
 ```shell
 LOG_LEVEL=trace docker-compose up app
 ```
-to get `trace` level logging (the most granular). You can use this environment variable to set the logging to [any available level](../logging.md#levels).
+to get `trace` level logging (the most granular). You can use this environment variable to set the logging to [any available level](../basics/logging.md#levels).
 
 #### All Service Logs
 

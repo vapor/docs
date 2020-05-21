@@ -43,4 +43,4 @@ You should see a list of available commands.
 
 ## Next
 
-After you have installed Swift, create your first app in [Getting Started &rarr; Hello, world](../hello-world.md).
+After you have installed Swift, create your first app in [Getting Started &rarr; Hello, world](../start/hello-world.md).

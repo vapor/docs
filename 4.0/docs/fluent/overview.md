@@ -8,7 +8,7 @@ When creating a project using `vapor new`, answer "yes" to including Fluent and 
 
 ### Existing Project
 
-If you have an existing project that you want to add Fluent to, you will need to add two dependencies to your [package](../spm.md):
+If you have an existing project that you want to add Fluent to, you will need to add two dependencies to your [package](../start/spm.md):
 
 - [vapor/fluent](https://github.com/vapor/fluent)@4.0.0
 - One (or more) Fluent driver(s) of your choice
@@ -340,7 +340,7 @@ app.post("galaxies") { req -> EventLoopFuture<Galaxy> in
 ```
 
 !!! seealso
-    See [Content &rarr; Overview](../content.md) for more information about decoding request bodies.
+    See [Content &rarr; Overview](../basics/content.md) for more information about decoding request bodies.
 
 Once you have an instance of the model, calling `create(on:)` saves the model to the database. This returns an `EventLoopFuture<Void>` which signals that the save has completed. Once the save completes, return the newly created model using `map`.
 

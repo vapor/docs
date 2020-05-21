@@ -65,7 +65,7 @@ try app.test(.GET, "hello") { res in
 
 The first two parameters are the HTTP method and URL to request. The trailing closure accepts the HTTP response which you can verify using `XCTAssert` methods. 
 
-For more complex requests, you can supply a `beforeRequest` closure to modify headers or encode content. Vapor's [Content API](content.md) is available on both the test request and response.
+For more complex requests, you can supply a `beforeRequest` closure to modify headers or encode content. Vapor's [Content API](../basics/content.md) is available on both the test request and response.
 
 ```swift
 try app.test(.POST, "todos", beforeRequest: { req in

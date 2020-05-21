@@ -2,7 +2,7 @@
 
 Sessions allow you to persist a user's data between multiple requests. Sessions work by creating and returning a unique cookie alongside the HTTP response when a new session is initialized. Browsers will automatically detect this cookie and include it in future requests. This allows Vapor to automatically restore a specific user's session in your request handler. 
 
-Sessions are great for front-end web applications built in Vapor that serve HTML directly to web browsers. For APIs, we recommend using stateless, [token-based authentication](authentication.md) to persist user data between requests.
+Sessions are great for front-end web applications built in Vapor that serve HTML directly to web browsers. For APIs, we recommend using stateless, [token-based authentication](../security/authentication.md) to persist user data between requests.
 
 ## Configuration
 
@@ -51,7 +51,7 @@ For production use cases, take a look at the other session drivers which utilize
 
 ### Fluent
 
-Fluent includes support for storing session data in your application's database. This section assumes you have [configured Fluent](fluent/overview.md) and can connect to a database. The first step is to enable the Fluent sessions driver.
+Fluent includes support for storing session data in your application's database. This section assumes you have [configured Fluent](../fluent/overview.md) and can connect to a database. The first step is to enable the Fluent sessions driver.
 
 ```swift
 import Fluent
