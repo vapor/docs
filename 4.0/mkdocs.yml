@@ -1,21 +1,54 @@
-site_name: Vapor Docs
+# Project information
+site_name: "Vapor Docs"
 site_url: "https://docs.vapor.codes/4.0/"
-repo_url: http://github.com/vapor/vapor
-edit_uri: https://github.com/vapor/documentation/edit/master/4.0/docs/
+site_author: "Vapor Community"
+site_description: "Vapor documentation"
+
+# Repository
+repo_name: "GitHub Vapor"
+repo_url: "http://github.com/vapor/vapor"
+edit_uri: "https://github.com/vapor/documentation/edit/master/4.0/docs/"
+
+# Copyright
+copyright: "Copyright &copy; Vapor Community"
+
+# Configuration
 theme:
-  name: 'material'
-  custom_dir: 'theme/'
+  name: "material"
+  custom_dir: "theme/"
+
+  # Language
+  language: "en"
+
   palette:
     primary: "black"
     accent: "blue"
-  logo: "logo.png"
+
+  logo: "assets/logo.png"
+  favicon: "assets/favicon.png"
+
+# Customization
 extra:
+  # Font
   font:
-    text: 'Roboto Slab'
-    code: 'Source Code Pro'
+    text: "Roboto Slab"
+    code: "Source Code Pro"
+
+  # Social
+  social:
+    - icon: "fontawesome/brands/github"
+      link: "https://github.com/vapor"
+    - icon: "fontawesome/brands/twitter"
+      link: "https://twitter.com/codevapor"
+    - icon: "fontawesome/brands/discord"
+      link: "https://discord.gg/vapor"
+    
+# Google Analytics
 google_analytics:
   - "UA-76177358-4"
   - "auto"
+  
+# Extensions
 markdown_extensions:
   - admonition
   - codehilite:
@@ -24,53 +57,55 @@ markdown_extensions:
   - meta
   - toc:
       permalink: true
+      
+# Navbar
 nav:
-- 'Welcome': 'index.md'
-- 'Install':
-  - 'macOS': 'install/macos.md'
-  - 'Ubuntu': 'install/ubuntu.md'
-- 'Getting Started':
-  - 'Hello, world': 'start/hello-world.md'
-  - 'Folder Structure': 'start/folder-structure.md'
-  - 'SPM': 'start/spm.md'
-- 'Basics':
-  - 'Routing': 'basics/routing.md'
-  - "Controllers": "basics/controllers.md"
-  - 'Content': 'basics/content.md'
-  - 'Client': 'basics/client.md'
-  - 'Validation': 'basics/validation.md'
-  - 'Async': 'basics/async.md'
-  - 'Logging': 'basics/logging.md'
-  - 'Environment': 'basics/environment.md'
-  - 'Errors': 'basics/errors.md'
-- 'Fluent':
-  - 'Overview': 'fluent/overview.md'
-  - 'Models': 'fluent/models.md'
-  - 'Migrations': 'fluent/migrations.md'
-  - 'Relations': 'fluent/relations.md'
-  - 'Query Builder': 'fluent/query-builder.md'
-  - 'Advanced': 'fluent/advanced.md'
-- 'Advanced':
-  - 'Middleware': 'advanced/middleware.md'
-  - 'Testing': 'advanced/testing.md'
-  - 'Server': 'advanced/server.md'
-  - 'Commands': 'advanced/commands.md'
-  - 'Queues': 'advanced/queues.md'
-  - 'WebSockets': 'advanced/websockets.md'
-  - 'Sessions': 'advanced/sessions.md'
-  - 'Services': 'advanced/services.md'
-- 'Security':
-  - 'Authentication': 'security/authentication.md'
-  - 'Crypto': 'security/crypto.md'
-  - 'Passwords': 'security/passwords.md'
-- 'Deploy':
-  - 'DigitalOcean': 'deploy/digital-ocean.md'
-  - 'Supervisor': 'deploy/supervisor.md'
-  - 'Nginx': 'deploy/nginx.md'
-  - 'Docker': 'deploy/docker.md'
-- 'Version (4.0)':
-    - '1.5': 'version/1_5.md'
-    - '2.0': 'version/2_0.md'
-    - '3.0': 'version/3_0.md'
-    - '4.0': 'version/4_0.md'
-    - 'Upgrading': 'version/upgrading.md'
+- Welcome: "index.md"
+- Install:
+  - macOS: "install/macos.md"
+  - Ubuntu: "install/ubuntu.md"
+- Getting Started:
+  - Hello, world: "start/hello-world.md"
+  - Folder Structure: "start/folder-structure.md"
+  - SPM: "start/spm.md"
+- Basics:
+  - Routing: "basics/routing.md"
+  - Controllers: "basics/controllers.md"
+  - Content: "basics/content.md"
+  - Client: "basics/client.md"
+  - Validation: "basics/validation.md"
+  - Async: "basics/async.md"
+  - Logging: "basics/logging.md"
+  - Environment: "basics/environment.md"
+  - Errors: "basics/errors.md"
+- Fluent:
+  - Overview: "fluent/overview.md"
+  - Models: "fluent/models.md"
+  - Migrations: "fluent/migrations.md"
+  - Relations: "fluent/relations.md"
+  - Query Builder: "fluent/query-builder.md"
+  - Advanced: "fluent/advanced.md"
+- Advanced:
+  - Middleware: "advanced/middleware.md"
+  - Testing: "advanced/testing.md"
+  - Server: "advanced/server.md"
+  - Commands: "advanced/commands.md"
+  - Queues: "advanced/queues.md"
+  - WebSockets: "advanced/websockets.md"
+  - Sessions: "advanced/sessions.md"
+  - Services: "advanced/services.md"
+- Security:
+  - Authentication: "security/authentication.md"
+  - Crypto: "security/crypto.md"
+  - Passwords: "security/passwords.md"
+- Deploy:
+  - DigitalOcean: "deploy/digital-ocean.md"
+  - Supervisor: "deploy/supervisor.md"
+  - Nginx: "deploy/nginx.md"
+  - Docker: "deploy/docker.md"
+- Version (4.0):
+    - v1.5: "version/1_5.md"
+    - v2.0: "version/2_0.md"
+    - v3.0: "version/3_0.md"
+    - v4.0: "version/4_0.md"
+    - Upgrading: "version/upgrading.md"
