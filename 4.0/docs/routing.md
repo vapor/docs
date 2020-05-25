@@ -22,13 +22,13 @@ http://vapor.codes/hello/vapor
 
 The first part of the request is the HTTP method. `GET` is the most common HTTP method, but there are several you will use often. These HTTP methods are often associated with [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) semantics.
 
-|method|crud|
-|-|-|
-|`GET`|Read|
-|`POST`|Create|
-|`PUT`|Replace|
-|`PATCH`|Update|
-|`DELETE`|Delete|
+| Method   | CRUD    |
+|----------|---------|
+| `GET`    | Read    |
+| `POST`   | Create  |
+| `PUT`    | Replace |
+| `PATCH`  | Update  |
+| `DELETE` | Delete  |
 
 ### Request Path
 
@@ -183,7 +183,7 @@ app.get("foo", "*", "baz") { req in
 
 #### Catchall
 
-This is a dynamic route component that matches one or more components. It is specified using just `**`. Any string at this position or later positions will be allowed in the request. 
+This is a dynamic route component that matches one or more components. It is specified using just `**`. Any string at this position or later positions will be matched in the request. 
 
 ```swift
 // responds to GET /foo/bar
