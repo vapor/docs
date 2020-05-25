@@ -170,7 +170,7 @@ app.get("foo", ":bar", "baz") { req in
 
 #### Anything
 
-This is very similar to parameter except the value is discarded. This path component is specified as just `:`. 
+This is very similar to parameter except the value is discarded. This path component is specified as just `*`. 
 
 ```swift
 // responds to GET /foo/bar/baz
@@ -183,7 +183,7 @@ app.get("foo", "*", "baz") { req in
 
 #### Catchall
 
-This is a dynamic route component that matches one or more components. It is specified using just `*`. Any string at this position or later positions will be allowed in the request. 
+This is a dynamic route component that matches one or more components. It is specified using just `**`. Any string at this position or later positions will be allowed in the request. 
 
 ```swift
 // responds to GET /foo/bar
@@ -191,6 +191,18 @@ This is a dynamic route component that matches one or more components. It is spe
 // ...
 app.get("foo", "**") { req in 
     ...
+}
+```
+
+The values of the URI matched by `**` will be stored in `req.parameters` as `[String]`. You can use `req.parameters.getCatchall()` to access those components. 
+
+```swift
+// responds to GET /hello/foo
+// responds to GET /hello/foo/bar
+// ...
+app.get("hello", "**") { req -> String in
+    let name = req.parameters.getCatchall().joined(separator: " ")
+    return "Hello, \(name)!"
 }
 ```
 
