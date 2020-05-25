@@ -1,20 +1,14 @@
-# Install on Ubuntu
+# Install on CentOS
 
-To use Vapor on Ubuntu, you will need Swift 5.2 or greater. This can be installed using the toolchains available on [Swift.org](https://swift.org/download/)
+To use Vapor on CentOS, you will need Swift 5.2.4 or greater. This can be installed using the toolchains available on [Swift.org](https://swift.org/download/)
 
 ## Supported Versions
 
-Vapor supports the same versions of Ubuntu that Swift 5.2 supports.
-
-| Ubuntu Version | Codename          | Swift Version |
-|----------------|-------------------|---------------|
-| 18.04          | Bionic Beaver     | >= 5.2        |
-| 16.04          | Xenial Xerus      | >= 5.2        |
-| 20.04          | Focal Fossa       | >= 5.2.4      |
+Vapor supports CentOS 8, the same as Swift.
 
 ## Installation
 
-Visit Swift.org's [Using Downloads](https://swift.org/download/#using-downloads) guide for instructions on how to install Swift on Ubuntu.
+Visit Swift.org's [Using Downloads](https://swift.org/download/#using-downloads) guide for instructions on how to install Swift on CentOS.
 
 ## Docker
 

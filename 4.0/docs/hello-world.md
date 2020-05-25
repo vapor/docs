@@ -6,6 +6,8 @@ If you have not yet installed Swift or Vapor Toolbox, check out the install sect
 
 - [Install &rarr; macOS](install/macos.md)
 - [Install &rarr; Ubuntu](install/ubuntu.md)
+- [Install &rarr; CentOS](install/centos.md)
+- [Install &rarr; Amazon Linux](install/amazon-linux.md)
 
 ## New Project
 

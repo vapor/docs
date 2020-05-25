@@ -4,16 +4,16 @@ This guide will walk you through deploying a simple Hello, world Vapor applicati
 
 ## Create Server
 
-Let's start by installing Swift on an Ubuntu server. Use the create menu to create a new Droplet.
+Let's start by installing Swift on a Linux server. Use the create menu to create a new Droplet.
 
 ![Create Droplet](../images/digital-ocean-create-droplet.png)
 
-Under distributions, select Ubuntu 18.04 LTS.
+Under distributions, select Ubuntu 18.04 LTS. The following guide will use this version as an example.
 
 ![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu-18.png)
 
 !!! note 
-	You may select any version of Ubuntu that Swift supports. At the time of writing, Swift 5.2 supports 16.04 and 18.04. You can check which operating systems are officially supported on the [Swift Releases](https://swift.org/download/#releases) page.
+	You may select any Linux distributions with the proper version that Swift supports. At the time of writing, Swift 5.2.4 supports Ubuntu 16.04, 18.04, 20.04, CentOS 8 and Amazon Linux 2. You can check which operating systems are officially supported on the [Swift Releases](https://swift.org/download/#releases) page.
 
 After selecting the distribution, choose any plan and datacenter region you prefer. Then setup an SSH key to access the server after it is created. Finally, click create Droplet and wait for the new server to spin up.
 
