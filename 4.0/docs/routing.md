@@ -194,19 +194,9 @@ app.get("foo", "**") { req in
 }
 ```
 
-The values of the URI matched by `**` will be stored in `req.parameters` as `[String]`. You can use `req.parameters.getCatchall()` to access those components. 
-
-```swift
-// responds to GET /hello/foo
-// responds to GET /hello/foo/bar
-// ...
-app.get("hello", "**") { req -> String in
-    let name = req.parameters.getCatchall().joined(separator: " ")
-    return "Hello, \(name)!"
-}
-```
-
 ### Parameters
+
+#### Parameter
 
 When using a parameter path component (prefixed with `:`), the value of the URI at that position will be stored in `req.parameters`. You can use the name of the path component to access the value. 
 
@@ -224,7 +214,7 @@ app.get("hello", ":name") { req -> String in
     We can be sure that `req.parameters.get` will never return `nil` here since our route path includes `:name`. However, if you are accessing route parameters in middleware or in code triggered by multiple routes, you will want to handle the possibility of `nil`.
 
 
-`req.parameters` also supports casting the parameter to `LosslessStringConvertible` types automatically. 
+`req.parameters.get` also supports casting the parameter to `LosslessStringConvertible` types automatically. 
 
 ```swift
 // responds to GET /number/42
@@ -235,6 +225,20 @@ app.get("number", ":x") { req -> String in
 		throw Abort(.badRequest)
 	}
 	return "\(int) is a great number"
+}
+```
+
+#### Catchall
+
+The values of the URI matched by Catchall (`**`) will be stored in `req.parameters` as `[String]`. You can use `req.parameters.getCatchall` to access those components. 
+
+```swift
+// responds to GET /hello/foo
+// responds to GET /hello/foo/bar
+// ...
+app.get("hello", "**") { req -> String in
+    let name = req.parameters.getCatchall().joined(separator: " ")
+    return "Hello, \(name)!"
 }
 ```
 
