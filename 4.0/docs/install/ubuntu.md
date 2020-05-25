@@ -6,10 +6,10 @@ To use Vapor on Ubuntu, you will need Swift 5.2 or greater. This can be installe
 
 Vapor supports the same versions of Ubuntu that Swift 5.2 supports.
 
-| Version | Codename          |
-|---------|-------------------|
-| 18.04   | Bionic Beaver     |
-| 16.04   | Xenial Xerus      |
+| Version | Codename      |
+|---------|---------------|
+| 18.04   | Bionic Beaver |
+| 16.04   | Xenial Xerus  |
 
 ## Installation
 

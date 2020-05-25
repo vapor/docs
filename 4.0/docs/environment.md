@@ -23,11 +23,11 @@ vapor run serve --env production
 
 Vapor includes the following environments:
 
-|name|short|description|
-|-|-|-|
-|production|prod|Deployed to your users.|
-|development|dev|Local development.|
-|testing|test|For unit testing.|
+| Name        | Short | Description             |
+|-------------|-------|-------------------------|
+| production  | prod  | Deployed to your users. |
+| development | dev   | Local development.      |
+| testing     | test  | Unit testing.           |
 
 !!! info
     The `production` environment will default to `notice` level logging unless otherwise specified. All other environments default to `info`. 

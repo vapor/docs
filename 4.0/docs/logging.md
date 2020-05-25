@@ -50,15 +50,15 @@ While custom loggers will still output to your configured logging backend, they 
 
 SwiftLog supports several different logging levels.
 
-|name|description|
-|-|-|
-|trace|Appropriate for messages that contain information normally of use only when tracing the execution of a program.|
-|debug|Appropriate for messages that contain information normally of use only when debugging a program.|
-|info|Appropriate for informational messages.|
-|notice|Appropriate for conditions that are not error conditions, but that may require special handling.|
-|warning|Appropriate for messages that are not error conditions, but more severe than notice.|
-|error|Appropriate for error conditions.|
-|critical|Appropriate for critical error conditions that usually require immediate attention.|
+| Name     | Description                                                                                                     |
+|----------|-----------------------------------------------------------------------------------------------------------------|
+| trace    | Appropriate for messages that contain information normally of use only when tracing the execution of a program. |
+| debug    | Appropriate for messages that contain information normally of use only when debugging a program.                |
+| info     | Appropriate for informational messages.                                                                         |
+| notice   | Appropriate for conditions that are not error conditions, but that may require special handling.                |
+| warning  | Appropriate for messages that are not error conditions, but more severe than notice.                            |
+| error    | Appropriate for error conditions.                                                                               |
+| critical | Appropriate for critical error conditions that usually require immediate attention.                             |
 
 When a `critical` message is logged, the logging backend is free to perform more heavy-weight operations to capture system state (such as capturing stack traces) to facilitate debugging.
 

@@ -4,10 +4,10 @@ You may have noticed some APIs in Vapor expect or return a generic `EventLoopFut
 
 Promises and futures are related, but distinct, types. Promises are used to _create_ futures. Most of the time, you will be working with futures returned by Vapor's APIs and you will not need to worry about creating promises.
 
-|type|description|mutability|
-|-|-|-|
-|`EventLoopFuture`|Reference to a value that may not be available yet.|read-only|
-|`EventLoopPromise`|A promise to provide some value asynchronously.|read/write|
+| Type               | Description                                         | Mutability |
+|--------------------|-----------------------------------------------------|------------|
+| `EventLoopFuture`  | Reference to a value that may not be available yet. | Read-only  |
+| `EventLoopPromise` | A promise to provide some value asynchronously.     | Read/Write |
 
 Futures are an alternative to callback-based asynchronous APIs. Futures can be chained and transformed in ways that simple closures cannot.
 
@@ -15,12 +15,12 @@ Futures are an alternative to callback-based asynchronous APIs. Futures can be c
 
 Just like optionals and arrays in Swift, futures can be mapped and flat-mapped. These are the most common operations you will perform on futures.
 
-|method|argument|description|
-|-|-|-|
-|[`map`](#map)|`(T) -> U`|Maps a future value to a different value.|
-|[`flatMapThrowing`](#flatmapthrowing)|`(T) throws -> U`|Maps a future value to a different value or an error.|
-|[`flatMap`](#flatmap)|`(T) -> EventLoopFuture<U>`|Maps a future value to different _future_ value.|
-|[`transform`](#transform)|`U`|Maps a future to an already available value.|
+| Method                                | Argument                    | Description                                           |
+|---------------------------------------|-----------------------------|-------------------------------------------------------|
+| [`map`](#map)                         | `(T) -> U`                  | Maps a future value to a different value.             |
+| [`flatMapThrowing`](#flatmapthrowing) | `(T) throws -> U`           | Maps a future value to a different value or an error. |
+| [`flatMap`](#flatmap)                 | `(T) -> EventLoopFuture<U>` | Maps a future value to different _future_ value.      |
+| [`transform`](#transform)             | `U`                         | Maps a future to an already available value.          |
 
 If you look at the method signatures for `map` and `flatMap` on `Optional<T>` and `Array<T>`, you will see that they are very similar to the methods available on `EventLoopFuture<T>`.
 

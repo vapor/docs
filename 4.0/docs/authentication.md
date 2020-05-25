@@ -8,13 +8,13 @@ Vapor's Authentication API provides support for authenticating a user via the `A
 
 Authentication is implemented by creating an `Authenticator` which contains the verification logic. An authenticator can be used to protect individual route groups or an entire app. The following authenticator helpers ship with Vapor:
 
-|Protocol|Description|
-|-|-|
-|`RequestAuthenticator`|Base authenticator capable of creating middleware.|
-|[`BasicAuthenticator`](#basic)|Authenticates Basic authorization header.|
-|[`BearerAuthenticator`](#bearer)|Authenticates Bearer authorization header.|
-|`UserTokenAuthenticator`|Authenticates a token type with associated user.|
-|`CredentialsAuthenticator`|Authenticates a credentials payload from the request body.|
+| Protocol                         | Description                                                |
+|----------------------------------|------------------------------------------------------------|
+| `RequestAuthenticator`           | Base authenticator capable of creating middleware.         |
+| [`BasicAuthenticator`](#basic)   | Authenticates Basic authorization header.                  |
+| [`BearerAuthenticator`](#bearer) | Authenticates Bearer authorization header.                 |
+| `UserTokenAuthenticator`         | Authenticates a token type with associated user.           |
+| `CredentialsAuthenticator`       | Authenticates a credentials payload from the request body. |
 
 If authentication is successful, the authenticator adds the verified user to `req.auth`. This user can then be accessed using `req.auth.get(_:)` in routes protected by the authenticator. If authentication fails, the user is not added to `req.auth` and any attempts to access it will fail.
 

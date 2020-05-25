@@ -166,23 +166,23 @@ validations.add(
 
 Below is a list of the currently supported validators and a brief explanation of what they do.
 
-|Validation|Description|
-|-|-|
-|`.ascii`|Contains only ASCII characters.|
-|`.alphanumeric`|Contains only alphanumeric characters.|
-|`.characterSet(_:)`|Contains only characters from supplied `CharacterSet`.|
-|`.count(_:)`|Collection's count is within supplied bounds.|
-|`.email`|Contains a valid email.|
-|`.empty`|Collection is empty.|
-|`.in(_:)`|Value is in supplied `Collection`.|
-|`.nil`|Value is `null`.|
-|`.range(_:)`|Value is within supplied `Range`.|
-|`.url`|Contains a valid URL.|
+| Validation          | Description                                            |
+|---------------------|--------------------------------------------------------|
+| `.ascii`            | Contains only ASCII characters.                        |
+| `.alphanumeric`     | Contains only alphanumeric characters.                 |
+| `.characterSet(_:)` | Contains only characters from supplied `CharacterSet`. |
+| `.count(_:)`        | Collection's count is within supplied bounds.          |
+| `.email`            | Contains a valid email.                                |
+| `.empty`            | Collection is empty.                                   |
+| `.in(_:)`           | Value is in supplied `Collection`.                     |
+| `.nil`              | Value is `null`.                                       |
+| `.range(_:)`        | Value is within supplied `Range`.                      |
+| `.url`              | Contains a valid URL.                                  |
 
 Validators can also be combined to build complex validations using operators. 
 
-|Operator|Position|Description|
-|-|-|-|
-|`!`|prefix|Inverts a validator, requiring the opposite.|
-|`&&`|infix|Combines two validators, requires both.|
-|`||`|infix|Combines two validators, requires one.|
+| Operator | Position | Description                                  |
+|----------|----------|----------------------------------------------|
+| `!`      | prefix   | Inverts a validator, requiring the opposite. |
+| `&&`     | infix    | Combines two validators, requires both.      |
+| `||`     | infix    | Combines two validators, requires one.       |

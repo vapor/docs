@@ -54,13 +54,13 @@ hello=world
 
 Below are the media types the content API supports by default.
 
-|name|header value|media type|
-|-|-|-|
-|JSON|application/json|`.json`|
-|Multipart|multipart/form-data|`.formData`|
-|URL-Encoded Form|application/x-www-form-urlencoded|`.urlEncodedForm`|
-|Plaintext|text/plain|`.plainText`|
-|HTML|text/html|`.html`|
+| Name             | Header Value (MIME Type)          | Media Type        |
+|------------------|-----------------------------------|-------------------|
+| JSON             | application/json                  | `.json`           |
+| Multipart        | multipart/form-data               | `.formData`       |
+| URL-Encoded Form | application/x-www-form-urlencoded | `.urlEncodedForm` |
+| Plaintext        | text/plain                        | `.plainText`      |
+| HTML             | text/html                         | `.html`           |
 
 Not all media types support all Codable features. For example, JSON does not support top-level fragments and Plaintext does not support nested data.
 
