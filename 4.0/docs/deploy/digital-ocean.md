@@ -13,7 +13,7 @@ Under distributions, select Ubuntu 18.04 LTS. The following guide will use this 
 ![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu-18.png)
 
 !!! note 
-	You may select any Linux distributions with the proper version that Swift supports. At the time of writing, Swift 5.2.4 supports Ubuntu 16.04, 18.04, 20.04, CentOS 8 and Amazon Linux 2. You can check which operating systems are officially supported on the [Swift Releases](https://swift.org/download/#releases) page.
+	You may select any Linux distribution with a version that Swift supports. At the time of writing, Swift 5.2.4 supports Ubuntu 16.04, 18.04, 20.04, CentOS 8 and Amazon Linux 2. You can check which operating systems are officially supported on the [Swift Releases](https://swift.org/download/#releases) page.
 
 After selecting the distribution, choose any plan and datacenter region you prefer. Then setup an SSH key to access the server after it is created. Finally, click create Droplet and wait for the new server to spin up.
 
