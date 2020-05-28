@@ -17,7 +17,7 @@ Just like optionals and arrays in Swift, futures can be mapped and flat-mapped. 
 
 |method|argument|description|
 |-|-|-|
-|[`map`](#map)|`(T) -> U`|Maps a future value to a different value.|
+|[`map](#map)|`(T) -> U`|Maps a future value to a different value.|
 |[`flatMapThrowing`](#flatmapthrowing)|`(T) throws -> U`|Maps a future value to a different value or an error.|
 |[`flatMap`](#flatmap)|`(T) -> EventLoopFuture<U>`|Maps a future value to different _future_ value.|
 |[`transform`](#transform)|`U`|Maps a future to an already available value.|
