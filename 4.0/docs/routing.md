@@ -22,13 +22,13 @@ http://vapor.codes/hello/vapor
 
 The first part of the request is the HTTP method. `GET` is the most common HTTP method, but there are several you will use often. These HTTP methods are often associated with [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) semantics.
 
-| Method   | CRUD    |
-|----------|---------|
-| `GET`    | Read    |
-| `POST`   | Create  |
-| `PUT`    | Replace |
-| `PATCH`  | Update  |
-| `DELETE` | Delete  |
+|Method|CRUD|
+|-|-|
+|`GET`|Read|
+|`POST`|Create|
+|`PUT`|Replace|
+|`PATCH`|Update|
+|`DELETE`|Delete|
 
 ### Request Path
 
