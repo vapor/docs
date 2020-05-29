@@ -4,7 +4,7 @@ To use Vapor, you will need Swift 5.2 or greater. This can be installed using th
 
 ## Supported Distributions and Versions
 
-Vapor supports the same versions of Linux distributions that Swift 5.2 or newer toolchain supports.
+Vapor supports the same versions of Linux distributions that Swift 5.2 or newer versions supports.
 
 !!! note
     The supported versions listed below may be outdated at any time. You can check which operating systems are officially supported on the [Swift Releases](https://swift.org/download/#releases) page.
@@ -19,7 +19,7 @@ Vapor supports the same versions of Linux distributions that Swift 5.2 or newer 
 
 Linux distributions not officially supported may also run Swift by compiling the source code, but Vapor cannot prove stability. Learn more about compiling Swift from the [Swift repo](https://github.com/apple/swift#getting-started).
 
-## Installation
+## Install Swift
 
 Visit Swift.org's [Using Downloads](https://swift.org/download/#using-downloads) guide for instructions on how to install Swift on Linux.
 
