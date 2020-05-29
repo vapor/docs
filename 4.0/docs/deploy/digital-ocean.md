@@ -82,7 +82,7 @@ sudo apt-get install clang libicu-dev libatomic1 build-essential pkg-config
 
 ### Download Toolchain
 
-This guide will install Swift 5.2.4. Visit the [Swift Downloads](https://swift.org/download/#releases) page for a link to latest release. Copy the download link for Ubuntu 18.04.
+This guide will install Swift 5.2.4. Visit the [Swift Releases](https://swift.org/download/#releases) page for a link to latest release. Copy the download link for Ubuntu 18.04.
 
 ![Download Swift](../images/swift-download-ubuntu-18-copy-link.png)
 
@@ -148,7 +148,7 @@ swift build --enable-test-discovery
 
 ### Run
 
-Once the project has finished compiling, run it on your server's IP at port 80.
+Once the project has finished compiling, run it on your server's IP at port 80. The IP address is `157.245.244.228` in this example.
 
 ```sh
 sudo .build/debug/Run serve -b 157.245.244.228:80
