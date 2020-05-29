@@ -196,8 +196,6 @@ app.get("foo", "**") { req in
 
 ### Parameters
 
-#### Parameter
-
 When using a parameter path component (prefixed with `:`), the value of the URI at that position will be stored in `req.parameters`. You can use the name of the path component to access the value. 
 
 ```swift
@@ -227,8 +225,6 @@ app.get("number", ":x") { req -> String in
 	return "\(int) is a great number"
 }
 ```
-
-#### Catchall
 
 The values of the URI matched by Catchall (`**`) will be stored in `req.parameters` as `[String]`. You can use `req.parameters.getCatchall` to access those components. 
 
