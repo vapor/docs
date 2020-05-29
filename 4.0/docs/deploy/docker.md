@@ -24,7 +24,7 @@ You will need to install Docker for your developer environment. You can find inf
 
 We suggest using the Vapor template as a starting place. If you already have an App, build the template as described below into a new folder as a point of reference while dockerizing your existing app -- you can copy key resources from the template to your app and tweak them slightly as a jumping off point.
 
-1. Install or build the Vapor Toolbox ([macOS](../install/macos.md#install-toolbox), [Ubuntu](../install/ubuntu.md#install-toolbox), [CentOS](../install/centos.md#install-toolbox), [Amazon Linux](../install/amazon-linux.md#install-toolbox)).
+1. Install or build the Vapor Toolbox ([macOS](../install/macos.md#install-toolbox), [Linux](../install/linux.md#install-toolbox)).
 2. Create a new Vapor App with `vapor-beta new my-dockerized-app` and walk through the prompts to enable or disable relevant features. Your answers to these prompts will affect how the Docker resource files are generated.
 
 ## Docker Resources
