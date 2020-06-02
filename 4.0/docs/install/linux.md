@@ -10,7 +10,7 @@ Vapor supports the same versions of Linux distributions that Swift 5.2 or newer 
     The supported versions listed below may be outdated at any time. You can check which operating systems are officially supported on the [Swift Releases](https://swift.org/download/#releases) page.
 
 |Distribution|Version|Swift Version|
-|-|-|-|-|
+|-|-|-|
 |Ubuntu|16.04, 18.04|>= 5.2|
 |Ubuntu|20.04|>= 5.2.4|
 |Fedora|>= 30|>= 5.2|
