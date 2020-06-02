@@ -60,7 +60,21 @@ By default, the `@ID` property should use the special `.id` key which resolves t
 
 The `@ID` should also be of type `UUID`. This is the only identifier value currently supported by all database drivers. Fluent will automatically generate new UUID identifiers when models are created. 
 
-### Custom
+`@ID` has an optional value since unsaved models may not yet have an identifier. To get the identifier or throw an error, use `requireID`.
+
+```swift
+let id = try planet.requireID()
+```
+
+### Exists
+
+`@ID` has an `exists` property that represents whether the model exists in the database or not. When you initialize a model, the value is `false`. After you save a model or when you fetch a model from the database, the value is `true`. This property is mutable.
+
+```swift
+print(planet.$id.exists)
+```
+
+### Custom Identifier
 
 Fluent supports custom identifier keys and types using the `@ID(custom:)` overload. 
 
@@ -89,3 +103,106 @@ There are three cases:
 |`.database`|Database is expected to generate a value upon save.|
 
 If the `generatedBy` parameter is omitted, Fluent will attempt to infer an appropriate case based on the `@ID` value type. For example, `Int` will default to `.database` generation unless otherwise specified.
+
+## Initializer
+
+Models must have an empty initializer method.
+
+```swift
+final class Galaxy: Model {
+    // Creates a new, empty Galaxy.
+    init() { }
+}
+```
+
+Fluent requires this method internally to initialize models returned by queries. It is also used for reflection. 
+
+You may also want to add a convenience initializer to your model that accepts all properties. 
+
+```swift
+final class Galaxy: Model {
+    // Creates a new Galaxy with all properties set.
+    init(id: UUID? = nil, name: String) {
+        self.id = id
+        self.name = name
+    }
+}
+```
+
+Using convenience initializers makes it easier to add new properties to the model in the future. 
+
+## Field
+
+Models can have zero or more `@Field` properties for storing data. 
+
+```swift
+final class Galaxy: Model {
+    // The Galaxy's name.
+    @Field(key: "name")
+    var name: String
+}
+```
+
+Fields require the database key to be explicitly defined. This is not required to be the same as the property name. 
+
+!!! tip
+    Fluent recommends using `snake_case` for database keys and `camelCase` for property names. 
+
+Field values can be any type that conforms to `Codable`. Storing nested structures and arrays in `@Field` is supported, but filtering operations are limited. See [`@Group`](#group) for more robust nesting.
+
+For fields that contain an optional value, use `@OptionalField`. 
+
+```swift
+@OptionalField(key: "tag")
+var tag: String?
+```
+
+## Relations
+
+Models can have zero or more relation properties referencing other models like `@Parent`, `@Children`, and `@Siblings`. Learn more about relations in the [Relations](relations.md) section.
+
+## Timestamp
+
+TODO: @Timestamp
+
+## Enum
+
+TODO: @Enum, @OptionalEnum
+
+## Group
+
+TODO: @Group
+
+## Codable
+
+TODO: Codable conformance, DTOs
+
+## Alias
+
+TODO: ModelAlias
+
+## CRUD
+
+TODO: Create, Read, Update, Delete
+
+TODO: hasChanges
+
+## Query
+
+Models expose a static method `query(on:)` that returns a query builder. 
+
+```swift
+Planet.query(on: database).all()
+```
+
+Learn more about querying in the [Query Builder](./query-builder.md) section.
+
+## Find
+
+Models have a static `find(_:on:)` method for looking up a model instance by identifier. 
+
+```swift
+Planet.find(req.parameters.get("id"), on: database)
+```
+
+This method returns `nil` if no model with that identifier was found.
