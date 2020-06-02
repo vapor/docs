@@ -4,17 +4,25 @@
 
 ## Install
 
-Supervisor can be installed through APT on Ubuntu.
+Supervisor can be installed through package managers on Linux.
+
+### Ubuntu
 
 ```sh
 sudo apt-get update
 sudo apt-get install supervisor
 ```
 
-Or through yum on CentOS and Amazon Linux.
+### CentOS and Amazon Linux
 
 ```sh
 sudo yum install supervisor
+```
+
+### Fedora
+
+```sh
+sudo dnf install supervisor
 ```
 
 ## Configure

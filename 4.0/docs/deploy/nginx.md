@@ -38,18 +38,28 @@ Tutorials:
 
 ### Package Managers
 
-Nginx can be installed through APT on Ubuntu.
+Nginx can be installed through package managers on Linux.
+
+#### Ubuntu
 
 ```sh
 sudo apt-get update
 sudo apt-get install nginx
 ```
 
-As well as through yum on CentOS and Amazon Linux.
+#### CentOS and Amazon Linux
 
 ```sh
 sudo yum install nginx
 ```
+
+#### Fedora
+
+```sh
+sudo dnf install nginx
+```
+
+### Validate Installation
 
 Check whether Nginx was installed correctly by visiting your server's IP address in a browser
 
