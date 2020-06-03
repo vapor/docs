@@ -281,7 +281,55 @@ Any enum backed by a `Codable` type, like `String` or `Int`, can be stored in `@
 
 ## Group
 
-TODO: @Group
+`@Group` allows you to store a nested group of fields as a single property on your model. Unlike Codable structs stored in a `@Field`, the fields in a `@Group` are queryable. Fluent achieves this by storing `@Group` as a flat structure in the database.
+
+To use a `@Group`, first define the nested structure you would like to store using the `Fields` protocol. This is very similar to `Model` except no identifier or schema name is required. You can store many properties here that `Model` supports like `@Field`, `@Enum`, or even another `@Group`. 
+
+```swift
+// A pet with name and animal type.
+final class Pet: Fields {
+    // The pet's name.
+    @Field(key: "name")
+    var name: String
+
+    // The type of pet. 
+    @Field(key: "type")
+    var type: String
+
+    // Creates a new, empty Pet.
+    init() { }
+}
+```
+
+After you've created the fields definition, you can use it as the value of a `@Group` property.
+
+```swift
+final class User: Model {
+    // The user's nested pet.
+    @Group(key: "pet")
+    var pet: Pet
+}
+```
+
+A `@Group`'s fields are accessible via dot-syntax.
+
+```swift
+let user: User = ...
+print(user.pet.name) // String
+```
+
+You can query nested fields like normal using dot-syntax on the property wrappers.
+
+```swift
+User.query(on: database).filter(\.$pet.$name == "Zizek").all()
+```
+
+In the database, `@Group` is stored as a flat structure with keys joined by `_`. Below is an example of how `User` would look in the database.
+
+|id|name|pet_name|pet_type|
+|-|-|-|-|
+|1|Vapor|Zizek|Cat|
+|2|Swift|Runa|Dog|
 
 ## Codable
 
