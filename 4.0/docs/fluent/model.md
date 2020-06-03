@@ -422,21 +422,39 @@ app.get("users") { req in
 }
 ```
 
-Even if the DTO's structure is identical to model's `Codable` conformance, having it as a separate type can help keep large projects tidy. If you ever need to make a change to your models properties, you don't have to worry about breaking your app's public API. 
-
-You may also consider putting your DTOs in a separate package that can be shared with consumers of your API. 
+Even if the DTO's structure is identical to model's `Codable` conformance, having it as a separate type can help keep large projects tidy. If you ever need to make a change to your models properties, you don't have to worry about breaking your app's public API. You may also consider putting your DTOs in a separate package that can be shared with consumers of your API. 
 
 For these reasons, we highly recommend using DTOs wherever possible, especially for large projects.
 
 ## Alias
 
-TODO: ModelAlias
+The `ModelAlias` protocol lets you uniquely identify a model being joined multiple times in a query. For more information, see [joins](query.md#join). 
 
-## CRUD
+## Save
 
-TODO: Create, Read, Update, Delete
+To save a model to the database, use the `save(on:)` method.
 
-TODO: hasChanges
+```swift
+planet.save(on: database)
+```
+
+This method will call `create` or `update` internally depending on whether the model already exists in the database.
+
+You can call the `create` method to save a new model to the database.
+
+```swift
+let planet = Planet(name: "Earth")
+planet.create(on: database)
+```
+
+You can call the `update` method to save a model that was fetched from the database.
+
+```swift
+Planet.find(..., on: database).flatMap { planet in
+    planet.name = "Earth"
+    return planet.update(on: database)
+}
+```
 
 ## Query
 
