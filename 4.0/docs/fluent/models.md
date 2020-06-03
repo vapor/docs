@@ -163,7 +163,67 @@ Models can have zero or more relation properties referencing other models like `
 
 ## Timestamp
 
-TODO: @Timestamp
+`@Timestamp` is a special type of `@Field` that stores a `Foundation.Date`. Timestamps are set automatically by Fluent according to the chosen trigger.
+
+```swift
+final class Galaxy: Model {
+    // When this Galaxy was created.
+    @Timestamp(key: "created_at", on: .create)
+    var createdAt: Date?
+
+    // When this Galaxy was last updated.
+    @Timestamp(key: "updated_at", on: .update)
+    var updatedAt: Date?
+}
+```
+
+The timestamp values are optional and should be set to `nil` when initializing a new model. 
+
+|Trigger|Description|
+|-|-|
+|`.create`|Set when a new model instance is saved to the database.|
+|`.update`|Set when an existing model instance is saved to the database.|
+|`.delete`|Set when a model is deleted from the database. See [soft delete](#soft-delete).|
+
+### Soft Delete
+
+Adding a `@Timestamp` that uses the `.delete` trigger to your model will enable soft-deletion.
+
+```swift
+final class Galaxy: Model {
+    // When this Galaxy was deleted.
+    @Timestamp(key: "deleted_at", on: .delete)
+    var deletedAt: Date?
+}
+```
+
+Soft-deleted models still exist in the database after deletion, but will not be returned in queries. 
+
+!!! tip
+    You can manually set an on delete timestamp to a date in the future. This can be used as an expiration date.
+
+To force a soft-deletable model to be removed from the database, use the `force` parameter in `delete`. 
+
+```swift
+// Deletes from the database even if the model 
+// is soft deletable. 
+model.delete(force: true, on: database)
+```
+
+To restore a soft-deleted model, use the `restore` method.
+
+```swift
+// Clears the on delete timestamp allowing this 
+// model to be returned in queries. 
+model.restore(on: database)
+```
+
+To include soft-deleted models in a query, use `withDeleted`. 
+
+```swift
+// Fetches all galaxies including soft deleted.
+Galaxy.query(on: database).withDeleted().all()
+```
 
 ## Enum
 

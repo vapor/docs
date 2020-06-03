@@ -26,7 +26,7 @@ The server configuration's hostname can be overridden by passing the `--hostname
 
 ```sh
 # Override configured hostname.
-vapor run serve --hostname dev.local
+vapor-beta run serve --hostname dev.local
 ```
 
 ### Port
@@ -46,7 +46,7 @@ The server configuration's port can be overridden by passing the `--port` (`-p`)
 
 ```sh
 # Override configured port.
-vapor run serve --port 1337
+vapor-beta run serve --port 1337
 ```
 
 ### Backlog
@@ -164,7 +164,7 @@ app.http.server.configuration.serverName = "vapor"
 To start up Vapor's server, use the `serve` command. This command will run by default if no other commands are specified. 
 
 ```swift
-vapor run serve
+vapor-beta run serve
 ```
 
 The `serve` command accepts the following parameters:
@@ -176,10 +176,10 @@ The `serve` command accepts the following parameters:
 An example using the `--bind` (`-b`) flag:
 
 ```swift
-vapor run serve -b 0.0.0.0:80
+vapor-beta run serve -b 0.0.0.0:80
 ```
 
-Use `vapor run serve --help` for more information.
+Use `vapor-beta run serve --help` for more information.
 
 The `serve` command will listen for `SIGTERM` and `SIGINT` to gracefully shutdown the server. Use `ctrl+c` (`^c`) to send a `SIGINT` signal. When the log level is set to `debug` or lower, information about the status of graceful shutdown will be logged.
 

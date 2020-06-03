@@ -18,7 +18,7 @@ default:
 By default, your app will run in the `development` environment. You can change this by passing the `--env` (`-e`) flag during app boot.
 
 ```swift
-vapor run serve --env production
+vapor-beta run serve --env production
 ```
 
 Vapor includes the following environments:
@@ -35,7 +35,7 @@ Vapor includes the following environments:
 You can pass either the full or short name to the `--env` (`-e`) flag.
 
 ```swift
-vapor run serve -e prod
+vapor-beta run serve -e prod
 ```
 
 ## Process Variables
@@ -58,7 +58,7 @@ When running your app in the terminal, you can set environment variables using `
 
 ```sh
 export FOO=BAR
-vapor run serve
+vapor-beta run serve
 ```
 
 When running your app in Xcode, you can set environment variables by editing the `Run` scheme.

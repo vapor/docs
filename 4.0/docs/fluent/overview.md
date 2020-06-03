@@ -291,7 +291,7 @@ To run migrations, call `vapor run migrate` from the command line or add `migrat
 
 
 ```
-$ vapor run migrate
+$ vapor-beta run migrate
 Migrate Command: Prepare
 The following migration(s) will be prepared:
 + CreateGalaxy on default
