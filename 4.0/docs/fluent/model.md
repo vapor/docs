@@ -254,7 +254,30 @@ Galaxy.query(on: database).withDeleted().all()
 
 ## Enum
 
-TODO: @Enum, @OptionalEnum
+`@Enum` is a special type of `@Field` for storing string representable types as native database enums. Native database enums provide an added layer of type safety to your database and may be more performant than raw enums. 
+
+```swift
+// String representable, Codable enum for animals types.
+enum Animal: String, Codable {
+    case dog, cat
+}
+
+final class Pet: Model {
+    // Stores type of animal as a native database enum.
+    @Enum(key: "type")
+    var type: Animal
+}
+```
+
+Only types conforming to `RawRepresentable` where `RawValue` is `String` are compatible with `@Enum`. `String` backed enums meet this requirement by default.
+
+To store an optional enum, use `@OptionalEnum`. 
+
+The database must be prepared to handle enums via a migration. See [enum builder](migrations.md#enum-builder) for more information.
+
+### Raw Enums
+
+Any enum backed by a `Codable` type, like `String` or `Int`, can be stored in `@Field`. It will be stored in the database as the raw value.
 
 ## Group
 
