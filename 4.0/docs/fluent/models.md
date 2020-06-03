@@ -185,6 +185,33 @@ The timestamp values are optional and should be set to `nil` when initializing a
 |`.update`|Set when an existing model instance is saved to the database.|
 |`.delete`|Set when a model is deleted from the database. See [soft delete](#soft-delete).|
 
+### Timestamp Format
+
+By default, `@Timestamp` will use an efficient datetime encoding based on your database driver. You can customize how the timestamp is stored in the database using the `format` parameter.
+
+```swift
+// Stores an ISO 8601 formatted timestamp representing
+// when this model was last updated.
+@Timestamp(key: "updated_at", on: .update, format: .iso8601)
+var updatedAt: Date?
+```
+
+Available timestamp formats are listed below.
+
+|Format|Description|Type|
+|-|-|-|
+|`.default`|Uses efficient datetime encoding for specific database.|Date|
+|`.iso8601`|[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string. Supports `withMilliseconds` parameter.|String|
+|`.unix`|Seconds since Unix epoch including fraction.|Double|
+
+You can access the raw timestamp value directly using the `timestamp` property.
+
+```swift
+// Manually set the timestamp value on this ISO 8601
+// formatted @Timestamp.
+model.$updatedAt.timestamp = "2020-06-03T16:20:14+00:00"
+```
+
 ### Soft Delete
 
 Adding a `@Timestamp` that uses the `.delete` trigger to your model will enable soft-deletion.
