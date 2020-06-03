@@ -333,7 +333,100 @@ In the database, `@Group` is stored as a flat structure with keys joined by `_`.
 
 ## Codable
 
-TODO: Codable conformance, DTOs
+Models conform to `Codable` by default. This means you can use your models with Vapor's [content API](../content.md).
+
+```swift
+app.get("planets") { req in 
+    // Return an array of all planets.
+    Planet.query(on: req.db).all()
+}
+```
+
+When serializing to / from `Codable`, model properties will use their variable names instead of keys. Relations will serialize as nested structures and any eager loaded data will be included. 
+
+### Data Transfer Object
+
+Model's default `Codable` conformance can make simple usage and prototyping easier. However, it is not suitable for every use case. For certain situations you will need to use a data transfer object (DTO). 
+
+!!! tip
+    A DTO is a separate `Codable` type representing the data structure you would like to encode or decode. 
+
+Assume the following `User` model in the upcoming examples.
+
+```swift
+// Abridged user model for reference.
+final class User: Model {
+    @ID(key: .id)
+    var id: UUID?
+
+    @Field(key: "first_name")
+    var firstName: String
+
+    @Field(key: "last_name")
+    var lastName: String
+}
+```
+
+One common use case for DTOs is in implementing `PATCH` requests. These requests only include values for fields that should be updated. Attempting to decode a `Model` directly from such a request would fail if any of the required fields were missing. In the example below, you can see a DTO being used to decode request data and update a model.
+
+```swift
+// Structure of PATCH /users/:id request.
+struct PatchUser: Decodable {
+    var firstName: String?
+    var lastName: String?
+}
+
+app.patch("users", ":id") { req in 
+    // Decode the request data.
+    let patch = try req.content.decode(PatchUser.self)
+    // Fetch the desired user from the database.
+    return User.find(req.parameters.get("id"), on: req.db)
+        .unwrap(or: Abort(.notFound))
+        .flatMap 
+    { user in
+        // If first name was supplied, update it.
+        if let firstName = patch.firstName {
+            user.firstName = firstName
+        }
+        // If new last name was supplied, update it.
+        if let lastName = patch.lastName {
+            user.lastName = lastName
+        }
+        // Save the user and return it.
+        return user.save(on: req.db)
+            .transform(to: user)
+    }
+}
+```
+
+Another common use case for DTOs is customizing the format of your API responses. The example below shows how a DTO can be used to add a computed field to a response.
+
+```swift
+// Structure of GET /users response.
+struct PublicUser: Content {
+    var id: UUID
+    var name: String
+}
+
+app.get("users") { req in 
+    // Fetch all users from the database.
+    User.query(on: req.db).all().flatMapThrowing { users in
+        try users.map { user in
+            // Convert each user to public return type.
+            try PublicUser(
+                id: user.requireID(),
+                name: "\(user.firstName) \(user.lastName)"
+            )
+        }
+    }
+}
+```
+
+Even if the DTO's structure is identical to model's `Codable` conformance, having it as a separate type can help keep large projects tidy. If you ever need to make a change to your models properties, you don't have to worry about breaking your app's public API. 
+
+You may also consider putting your DTOs in a separate package that can be shared with consumers of your API. 
+
+For these reasons, we highly recommend using DTOs wherever possible, especially for large projects.
 
 ## Alias
 
