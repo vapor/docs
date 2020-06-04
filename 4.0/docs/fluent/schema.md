@@ -80,9 +80,9 @@ Supported field data types are listed below.
 |`.double`|`Double`|
 |`.data`|`Data`|
 |`.uuid`|`UUID`|
-|`.enum`|See [enum](#enum)|
+|`.dictionary`|See [dictionary](#dictionary)|
 |`.array`|See [array](#array)|
-|`.json`|See [json](#json)|
+|`.enum`|See [enum](#enum)|
 
 ### Field Constraint
 
@@ -214,8 +214,54 @@ Below is an example using foreign key actions.
 .foreignKey("star_id", references: "star", "id", onDelete: .cascade)
 ```
 
-## JSON
+## Dictionary
+
+The dictionary data type is capable of storing nested dictionary values. This includes structs that conform to `Codable` and Swift dictionaries with a `Codable` value. 
+
+!!! note
+    Fluent's SQL database drivers store nested dictionaries in JSON columns.
+
+Take the following `Codable` struct.
+
+```swift
+struct Pet: Codable {
+    var name: String
+    var age: Int
+}
+```
+
+This `Pet` struct is stored in a `@Field`.
+
+```swift
+@Field(key: "pet")
+var pet: Pet
+```
+
+This field can be stored using the `.dictionary` data type.
+
+```swift
+.field("pet", .dictionary, .required)
+```
+
+Since `Codable` types are heterogenous dictionaries, we do not specify the `of` parameter.
 
 ## Array
+
+The array data type is capable of storing nested arrays. This includes Swift arrays that contain `Codable` values and `Codable` types that use an unkeyed container.
+
+Take the following `@Field` that stores an array of strings.
+
+```swift
+@Field(key: "tags")
+var tags: [String]
+```
+
+This field can be stored using the `.array` data type.
+
+```swift
+.field("tags", .array(of: .string), .required)
+```
+
+Since the array is homogenous, we specify the `of` parameter. 
 
 ## Enum
