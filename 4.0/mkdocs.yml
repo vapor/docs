@@ -49,8 +49,9 @@ nav:
   - 'Overview': 'fluent/overview.md'
   - 'Model': 'fluent/model.md'
   - 'Migration': 'fluent/migration.md'
-  - 'Relations': 'fluent/relation.md'
+  - 'Relations': 'fluent/relations.md'
   - 'Query': 'fluent/query.md'
+  - 'Schema': 'fluent/schema.md'
   - 'Advanced': 'fluent/advanced.md'
 - 'Advanced':
   - 'Middleware': 'middleware.md'
