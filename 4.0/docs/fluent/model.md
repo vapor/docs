@@ -275,7 +275,7 @@ Only types conforming to `RawRepresentable` where `RawValue` is `String` are com
 
 To store an optional enum, use `@OptionalEnum`. 
 
-The database must be prepared to handle enums via a migration. See [enum builder](migrations.md#enum-builder) for more information.
+The database must be prepared to handle enums via a migration. See [enum](schema.md#enum) for more information.
 
 ### Raw Enums
 

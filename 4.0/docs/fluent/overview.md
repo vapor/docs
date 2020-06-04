@@ -801,6 +801,6 @@ To permanently delete an item with an on-delete timestamp, use the `force` param
 galaxy.delete(force: true, on: db)
 ```
 
-## Next Steps
+## Next steps
 
 Congratulations on creating your first models and migrations and performing basic create and read operations. For more in-depth information on all of these features, check out their respective sections in the Fluent guide.

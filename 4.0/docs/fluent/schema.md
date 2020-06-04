@@ -265,3 +265,96 @@ This field can be stored using the `.array` data type.
 Since the array is homogenous, we specify the `of` parameter. 
 
 ## Enum
+
+The enum data type is capable of storing string backed Swift enums natively. Native database enums provide an added layer of type safety to your database and may be more performant than raw enums.
+
+To define a native database enum, use the `enum` method on `Database`. Use `case` to define each case of the enum.
+
+```swift
+// An example of enum creation.
+database.enum("planet_type")
+    .case("smallRocky")
+    .case("gasGiant")
+    .case("dwarf")
+    .create()
+```
+
+Once an enum has been created, you can use the `read()` method to generate a data type for your schema field.
+
+```swift
+// An example of reading an enum and using it to define a new field.
+database.enum("planet_type").read().flatMap { planetType in
+    database.schema("planets")
+        .field("type", planetType, .required)
+        .update()
+}
+```
+
+To update an enum, call `update()`. Cases can be deleted from existing enums.
+
+```swift
+// An example of enum update.
+database.enum("planet_type")
+    .deleteCase("gasGiant")
+    .update()
+```
+
+To delete an enum, call `delete()`.
+
+```swift
+// An example of enum deletion.
+database.enum("planet_type").delete()
+```
+
+## Model Coupling
+
+Schema building is purposefully decoupled from models. Unlike query building, schema building does not make use of key paths and is completely stringly typed. This is important since schema definitions, especially those written for migrations, may need to reference model properties that no longer exist.
+
+To better understand this, take a look at the following example migration.
+
+```swift
+struct UserMigration: Migration {
+    func prepare(on database: Database) -> EventLoopFuture<Void> {
+        database.schema("users")
+            .field("id", .uuid, .identifier(auto: false))
+            .field("name", .string, .required)
+            .create()
+    }
+
+    func revert(on database: Database) -> EventLoopFuture<Void> {
+        database.schema("users").delete()
+    }
+}
+```
+
+Let's assume that this migration has been has already been pushed to production. Now let's assume we need to make the following change to the User model.
+
+```diff
+- @Field(key: "name")
+- var name: String
++ @Field(key: "first_name")
++ var firstName: String
++
++ @Field(key: "last_name")
++ var lastName: String
+```
+
+We can make the necessary database schema adjustments with the following migration.
+
+```swift
+struct UserNameMigration: Migration {
+    func prepare(on database: Database) -> EventLoopFuture<Void> {
+        database.schema("users")
+            .deleteField("name")
+            .field("first_name", .string)
+            .field("last_name", .string)
+            .create()
+    }
+
+    func revert(on database: Database) -> EventLoopFuture<Void> {
+        database.schema("users").delete()
+    }
+}
+```
+
+Note that for this migration to work, we need to be able to reference both the removed `name` field and the new `firstName` and `lastName` fields at the same time. Furthermore, the original `UserMigration` should continue to be valid. This would not be possible to do with key paths.
