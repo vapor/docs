@@ -15,22 +15,21 @@ To create a `SchemaBuilder`, use the `schema` method on database. Pass in the na
 
 ## Actions
 
-The schema API supports creating, updating, and deleting schemas. Each action supports a subset of the schema builders available methods. 
+The schema API supports creating, updating, and deleting schemas. Each action supports a subset of the API's available methods. 
 
 ### Create
 
 Calling `create()` creates a new table or collection in the database. All methods for defining new fields and constraints are supported. Methods for updates or deletes are ignored. 
 
-If a table or collection with the chosen name already exists, an error will be thrown. To ignore this, use `ignoreExisting`. 
-
 ```swift
 // An example schema creation.
 database.schema("planets")
-    .ignoreExisting()
     .id()
     .field("name", .string, .required)
     .create()
 ```
+
+If a table or collection with the chosen name already exists, an error will be thrown. To ignore this, use `ignoreExisting`. 
 
 ### Update
 
@@ -55,20 +54,168 @@ database.schema("planets").delete()
 
 ## Field
 
-### ID
+Fields can be added when creating or updating a schema. 
+
+```swift
+// Adds a new field
+.field("name", .string, .unique)
+```
+
+The first parameter is the name of the field followed by the field's [data type](#data-type). Finally, zero or more [constraints](#field-constraint) can be added. 
 
 ### Data Type
 
+Supported field data types are listed below.
+
+|DataType|Swift Type|
+|-|-|
+|`.string`|`String`|
+|`.int{8,16,32,64}`|`Int{8,16,32,64}`|
+|`.uint{8,16,32,64}`|`UInt{8,16,32,64}`|
+|`.bool`|`Bool`|
+|`.datetime`|`Date` (recommended)|
+|`.time`|`Date` (omitting day, month, and year)|
+|`.date`|`Date` (omitting time of day)|
+|`.float`|`Float`|
+|`.double`|`Double`|
+|`.data`|`Data`|
+|`.uuid`|`UUID`|
+|`.enum`|See [enum](#enum)|
+|`.array`|See [array](#array)|
+|`.json`|See [json](#json)|
+
 ### Field Constraint
+
+Supported field constraints are listed below. 
+
+|FieldConstraint|Description|
+|-|-|
+|`.required`|Disallows `nil` values.|
+|`.references`|Requires that this field's value match a value in the referenced schema. See [foreign key](#foreign-key)|
+|`.identifier`|Denotes the primary key. See [identifier](#identifier)|
+
+### Identifier
+
+If your model uses a standard `@ID` property, you can use the `id()` helper to create its field. This uses the special `.id` field key and `UUID` value type.
+
+```swift
+// Adds field for default identifier.
+.id()
+```
+
+For custom identifier types, you will need to specify the field manually. 
+
+```swift
+// Adds for for custom identifier.
+.field("id", .int, .identifier(auto: true))
+```
+
+The `identifier` constraint may be used on a single field and denotes the primary key. The `auto` flag determines whether or not the database should generate this value automatically. 
 
 ### Update Field
 
+You can update a fields data type using `updateField`. 
+
+```swift
+// Updates the field to `double` data type.
+.updateField("age", .double)
+```
+
+See [advanced](advanced.md) for more information on advanced schema updates.
+
 ### Delete Field
+
+You can remove a field from a schema using `deleteField`.
+
+```swift
+// Deletes the field "age".
+.deleteField("age")
+```
 
 ## Constraint
 
+Constraints can be added when creating or updating a schema. Unlike [field constraints](#field-constraints), top-level constraints can affect multiple fields.
+
 ### Unique
 
-### Foreign Key
+A unique constraint requires that there are no duplicate values in one or more fields. 
 
-### Delete Constraint
+```swift
+// Disallow duplicate email addresses.
+.unique(on: "email")
+```
+
+If multiple field are constrained, the specific combination of each field's value must be unique.
+
+```swift
+// Disallow users with the same full name.
+.unique(on: "first_name", "last_name")
+```
+
+To delete a unique constraint, use `deleteUnique`. 
+
+```swift
+// Removes duplicate email constraint.
+.deleteUnique(on: "email")
+```
+
+### Constraint Name
+
+Fluent will generate unique constraint names by default. However, you may want to pass a custom constraint name. You can do this using the `name` parameter.
+
+```swift
+// Disallow duplicate email addresses.
+.unique(on: "email", name: "no_duplicate_emails")
+```
+
+To delete a named constraint, you must use `deleteConstraint(name:)`. 
+
+```swift
+// Removes duplicate email constraint.
+.deleteConstraint(name: "no_duplicate_emails")
+```
+
+## Foreign Key
+
+Foreign key constraints require that a field's value match ones of the values in the referenced field. This is useful for preventing invalid data from being saved. Foreign key constraints can be added as either a field or top-level constraint. 
+
+To add a foreign key constraint to a field, use `.references`.
+
+```swift
+// Example of adding a field foreign key constraint.
+.field("star_id", .uuid, .required, .references("stars", "id"))
+```
+
+The above constraint requires that all values in the "star_id" field must match one of the values in Star's "id" field.
+
+This same constraint could be added as a top-level constraint using `foreignKey`.
+
+```swift
+// Example of adding a top-level foreign key constraint.
+.foreignKey("star_id", references: "star", "id")
+```
+
+Unlike field constraints, top-level constraints can be added in a schema update. They can also be [named](#constraint-name). 
+
+Foreign key constraints support optional `onDelete` and `onUpdate` actions.
+
+|ForeignKeyAction|Description|
+|-|-|
+|`.noAction`|Prevents foreign key violations (default).|
+|`.restrict`|Same as `.noAction`.|
+|`.cascade`|Propogates deletes through foreign keys.|
+|`.setNull`|Sets field to null if reference is broken.|
+|`.setDefault`|Sets field to default if reference is broken.|
+
+Below is an example using foreign key actions.
+
+```swift
+// Example of adding a top-level foreign key constraint.
+.foreignKey("star_id", references: "star", "id", onDelete: .cascade)
+```
+
+## JSON
+
+## Array
+
+## Enum
