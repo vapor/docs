@@ -62,7 +62,7 @@ Below are the media types the content API supports by default.
 |Plaintext|text/plain|`.plainText`|
 |HTML|text/html|`.html`|
 
-Not all media types support all Codable features. For example, JSON does not support top-level fragments and Plaintext does not support nested data.
+Not all media types support all `Codable` features. For example, JSON does not support top-level fragments and Plaintext does not support nested data.
 
 ## Query
 
@@ -218,3 +218,43 @@ public protocol URLQueryEncoder {
 ```
 
 Conforming to these protocols allows your custom coders to be registered to `ContentConfiguration` for handling URL query strings using the `use(urlEncoder:)` and `use(urlDecoder:)` methods.
+
+### Custom `ResponseEncodable`
+
+Another approach involves implementing `ResponseEncodable` on your types. Consider this trivial `HTML` wrapper type:
+
+```swift
+struct HTML {
+  let value: String
+}
+```
+
+Then its `ResponseEncodable` implementation would look like this:
+
+```swift
+extension HTML: ResponseEncodable {
+  public func encodeResponse(for request: Request) -> EventLoopFuture<Response> {
+    var headers = HTTPHeaders()
+    headers.add(name: .contentType, value: "text/html")
+    return request.eventLoop.makeSucceededFuture(.init(
+      status: .ok, headers: headers, body: .init(string: value)
+    ))
+  }
+}
+```
+
+Note that this allows customising the `Content-Type` header. See [`HTTPHeaders` reference](http://api.vapor.codes/vapor/4.0.0-alpha.1/Vapor/Extensions/HTTPHeaders.html) for more details.
+
+You can then use `HTML` as a response type in your routes:
+
+```swift
+app.get { _ in
+  HTML(value: """
+  <html>
+    <body>
+      <h1>Hello, World!</h1>
+    </body>
+  </html>
+  """)
+}
+```
