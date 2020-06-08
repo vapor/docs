@@ -197,9 +197,13 @@ DATABASE_URL: postgres://cybntsgadydqzm:2d9dc7f6d964f4750da1518ad71hag2ba729cd45
 Here is an example databsae configuration
 
 ```swift
+if let databaseURL = Environment.get("DATABASE_URL") {
     app.databases.use(try .postgres(
-        url: Environment.get("DATABASE_URL") ?? "some_fallback_url_if_needed"
+        url: databaseURL
     ), as: .psql)
+} else {
+    // ...
+}
 ```
 
 Unverified TLS is required if you are using Heroku Postgres's standard plan.
