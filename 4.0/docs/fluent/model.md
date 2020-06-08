@@ -2,7 +2,7 @@
 
 Models represent data stored in tables or collections in your database. Models have one or more fields that store codable values. All models have a unique identifier. Property wrappers are used to denote identifiers, fields, and relations. 
 
-Below is an example of a simple model with one field. Note that models do not describe the entire database schema, such as constraints, indexes, and foreign keys. Schemas are defined in [migrations](migrations.md). Models are focused on representing the data stored in your database schemas.  
+Below is an example of a simple model with one field. Note that models do not describe the entire database schema, such as constraints, indexes, and foreign keys. Schemas are defined in [migration](migration.md). Models are focused on representing the data stored in your database schemas.  
 
 ```swift
 final class Galaxy: Model {
