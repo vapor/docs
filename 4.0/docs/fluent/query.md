@@ -88,7 +88,45 @@ All [value filter](#value-filter) operators are supported with field filters.
 
 ### Subset Filter
 
+The `filter` method supports checking whether a field's value exists in a given set of values. 
+
+```swift
+// All planets with either gas giant or small rocky type.
+Planet.query(on: database)
+    .filter(\.$type ~~ [.gasGiant, .smallRocky])
+```
+
+The supplied set of values can be any Swift `Collection` whose `Element` type matches the field's value type.
+
+Below is a list of all supported subset operators. 
+
+|Operator|Description|
+|-|-|
+|`~~`|Value in set.|
+|`!~`|Value not in set.|
+
 ### Contains Filter
+
+The `filter` method supports checking whether a string field's value contains a given substring. 
+
+```swift
+// All planets whose name starts with the letter M
+Planet.query(on: database)
+    .filter(\.$name =~ "M")
+```
+
+These operators are only available on fields with string values. 
+
+Below is a list of all supported contains operators. 
+
+|Operator|Description|
+|-|-|
+|`~~`|Contains substring.|
+|`!~`|Does not contain substring.|
+|`=~`|Matches prefix.|
+|`!=~`|Does not match prefix.|
+|`~=`|Matches suffix.|
+|`!~=`|Does not match suffix.|
 
 ### Group
 
