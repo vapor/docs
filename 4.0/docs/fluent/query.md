@@ -218,7 +218,7 @@ User.query(on: database).unique().all(\.$firstName)
 
 ## Range
 
-Query builder's `range` methods allow you to select a subset of the results using Swift ranges.
+Query builder's `range` methods allow you to choose a subset of the results using Swift ranges.
 
 ```swift
 // Fetch the first 5 planets.
@@ -230,25 +230,146 @@ Range values are unsigned integers starting at zero. Learn more about [Swift ran
 
 ```swift
 // Skip the first 2 results.
-range(2...)
+.range(2...)
 ```
 
 ## Join
 
-TODO: join, operators, model alias
+Query builder's `join` method allows you to include another model's fields in your result set. More than one model can be joined to your query. 
+
+```swift
+// Fetches all planets with a star named Sun.
+Planet.query(on: database)
+    .join(Star.self, on: \Star.$id == \Planet.$star.$id)
+    .filter(Star.self, \.$name == "Sun")
+    .all()
+```
+
+The `on` parameter accepts an equality expression between two fields. One of the fields must already exist in the current result set. The other field must exist on the model being joined. These fields must have the same value type.
+
+Most query builder methods, like `filter` and `sort`, support joined models. If a method supports joined models, it will accept the joined model type as the first parameter. 
+
+```swift
+// Sort by joined field "name" on Star model.
+.sort(Star.self, \.$name)
+```
+
+Queries that use joins will still return an array of the base model. To access the joined model, use the `joined` method.
+
+```swift
+// Accessing joined model from query result.
+let planet: Planet = ...
+let star = try planet.joined(Star.self)
+```
+
+### Model Alias
+
+Model aliases allow you to join the same model to a query multiple times. To declare a model alias, create one or more types conforming to `ModelAlias`. 
+
+```swift
+// Example of model aliases.
+final class HomeTeam: ModelAlias {
+    static let name = "home_teams"
+    let model = Team()
+}
+final class AwayTeam: ModelAlias {
+    static let name = "away_teams"
+    let model = Team()
+}
+```
+
+These types reference the model being aliased via the `model` property. Once created, you can use model aliases like normal models in a query builder.
+
+```swift
+// Fetch all matches where the home team's name is Vapor
+// and sort by the away team's name.
+let matches = try Match.query(on: self.database)
+    .join(HomeTeam.self, on: \Match.$homeTeam.$id == \HomeTeam.$id)
+    .join(AwayTeam.self, on: \Match.$awayTeam.$id == \AwayTeam.$id)
+    .filter(HomeTeam.self, \.$name == "Vapor")
+    .sort(AwayTeam.self, \.$name)
+    .all().wait()
+```
+
+All model fields are accessible through the model alias type via `@dynamicMemberLookup`.
+
+```swift
+// Access joined model from result.
+let home = try match.joined(HomeTeam.self)
+print(home.name)
+```
 
 ## Update
 
-TODO: set
+Query builder supports updating more than one model at a time using the `update` method.
+
+```swift
+// Update all planets named "Earth"
+Planet.query(on: database)
+    .set(\.$type, to: .dwarf)
+    .filter(\.$name == "Pluto")
+    .update()
+```
+
+`update` supports the `set`, `filter`, and `range` methods. 
 
 ## Delete
 
-TODO: delete filters
+Query builder supports deleting more than one model at a time using the `delete` method.
+
+```swift
+// Delete all planets named "Vulcan"
+Planet.query(on: database)
+    .filter(\.$name == "Vulcan")
+    .delete()
+```
+
+`delete` supports the `filter` method.
 
 ## Paginate
 
-TODO: paginate results
+Fluent's query API supports automatic result pagination using the `paginate` method. 
+
+```swift
+// Example of request-based pagination.
+app.get("planets") { req in
+    Planet.query(on: req.db).paginate(for: req)
+}
+```
+
+The `paginate(for:)` method will use the `page` and `per` parameters available in the request URI to return the desired set of results. Metadata about current page and total number of results is included in the `metadata` key.
+
+```http
+GET /planets?page=2&per=5 HTTP/1.1
+```
+
+The above request would yield a response structured like the following.
+
+```json
+{
+    "items": [...],
+    "metadata": {
+        "page": 2,
+        "per": 5,
+        "total": 8
+    }
+}
+```
+
+Page numbers start at `1`. You can also make a manual page request.
+
+```swift
+// Example of manual pagination.
+.paginate(PageRequest(page: 1, per: 2))
+```
 
 ## Sort
 
-TODO: sort results
+Query results can be sorted by field values using `sort` method.
+
+```swift
+// Fetch planets sorted by name.
+Planet.query(on: database).sort(\.$name)
+```
+
+Additional sorts may be added as fallbacks in case of a tie. Fallbacks will be used in the order they were added to the query builder.

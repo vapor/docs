@@ -442,12 +442,23 @@ planet.save(on: database)
 
 This method will call `create` or `update` internally depending on whether the model already exists in the database.
 
+### Create
+
 You can call the `create` method to save a new model to the database.
 
 ```swift
 let planet = Planet(name: "Earth")
 planet.create(on: database)
 ```
+
+`create` is also available on an array of models. This saves all of the models to the database in a single batch / query. 
+
+```swift
+// Example of batch create.
+[earth, mars].create(on: database)
+```
+
+### Update
 
 You can call the `update` method to save a model that was fetched from the database.
 
