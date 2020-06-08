@@ -212,4 +212,40 @@ You can set the `value` property manually if needed.
 
 ## Eager Load
 
-TODO: with()
+Fluent's query builder allows you to preload a model's relations when it is fetched from the database. This is called eager loading and allows you to access relations synchronously without needing to call [`load`](#load) or [`get`](#get) first. 
+
+To eager load a relation, pass a key path to the relation to the `with` method on query builder. 
+
+```swift
+// Example of eager loading.
+Planet.query(on: database).with(\.$star).all().map { planets in
+    for planet in planets {
+        // `star` is accessible synchronously here 
+        // since it has been eager loaded.
+        print(planet.star.name)
+    }
+}
+```
+
+In the above example, a key path to the [`@Parent`](#parent) relation named `star` is passed to `with`. This causes the query builder to do an additional query after all of the planets are loaded to fetch all of their related stars. The stars are then accessible synchronously via the `@Parent` property. 
+
+Each relation eager loaded requires only one additional query, no matter how many models are returned. Eager loading is only possible with the `all` and `first` methods of query builder. 
+
+
+### Nested Eager Load
+
+The query builder's `with` method allows you to eager load relations on the model being queried. However, you can also eager load relations on related models. 
+
+```swift
+Planet.query(on: database).with(\.$star) { star in
+    star.with(\.$galaxy)
+}.all().map { planets in
+    for planet in planets {
+        // `star.galaxy` is accessible synchronously here 
+        // since it has been eager loaded.
+        print(planet.star.galaxy.name)
+    }
+}
+```
+
+The `with` method accepts an optional closure as a second parameter. This closure accepts an eager load builder for the chosen relation. There is no limit to how deeply eager loading can be nested. 
