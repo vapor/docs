@@ -207,11 +207,31 @@ if let name = planet.$name.value {
 
 ## Unique
 
-TODO: only unique values
+Query builder's `unique` method causes duplicate results to be omitted. 
+
+```swift
+// Returns all unique user first names. 
+User.query(on: database).unique().all(\.$firstName)
+```
+
+`unique` is especially useful when fetching a single field with `all`. However, you can also select multiple fields using the [`field`](#field) method. Since model identifiers are always unique, you should avoid selecting them when using `unique`. 
 
 ## Range
 
-TODO: range, limit, offset
+Query builder's `range` methods allow you to select a subset of the results using Swift ranges.
+
+```swift
+// Fetch the first 5 planets.
+Planet.query(on: self.database)
+    .range(..<5)
+```
+
+Range values are unsigned integers starting at zero. Learn more about [Swift ranges](https://developer.apple.com/documentation/swift/range).
+
+```swift
+// Skip the first 2 results.
+range(2...)
+```
 
 ## Join
 
