@@ -106,7 +106,7 @@ If your model uses a standard `@ID` property, you can use the `id()` helper to c
 For custom identifier types, you will need to specify the field manually. 
 
 ```swift
-// Adds for for custom identifier.
+// Adds field for custom identifier.
 .field("id", .int, .identifier(auto: true))
 ```
 
