@@ -153,7 +153,7 @@ Planet.query(on: database).count()
 All aggregate methods besides `count` require a key path to a field to be passed.
 
 ```swift
-// First name sorted alphabetically.
+// Lowest name sorted alphabetically.
 Planet.query(on: database).min(\.$name)
 ```
 
