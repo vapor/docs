@@ -5,22 +5,22 @@ Models represent data stored in tables or collections in your database. Models h
 Below is an example of a simple model with one field. Note that models do not describe the entire database schema, such as constraints, indexes, and foreign keys. Schemas are defined in [migration](migration.md). Models are focused on representing the data stored in your database schemas.  
 
 ```swift
-final class Galaxy: Model {
+final class Planet: Model {
     // Name of the table or collection.
-    static let schema = "galaxies"
+    static let schema = "planets"
 
-    // Unique identifier for this Galaxy.
+    // Unique identifier for this Planet.
     @ID(key: .id)
     var id: UUID?
 
-    // The Galaxy's name.
+    // The Planet's name.
     @Field(key: "name")
     var name: String
 
-    // Creates a new, empty Galaxy.
+    // Creates a new, empty Planet.
     init() { }
 
-    // Creates a new Galaxy with all properties set.
+    // Creates a new Planet with all properties set.
     init(id: UUID? = nil, name: String) {
         self.id = id
         self.name = name
@@ -33,13 +33,13 @@ final class Galaxy: Model {
 All models require a static, get-only `schema` property. This string references the name of the table or collection this model represents. 
 
 ```swift
-final class Galaxy: Model {
+final class Planet: Model {
     // Name of the table or collection.
-    static let schema = "galaxies"
+    static let schema = "planets"
 }
 ```
 
-When querying this model, data will be fetched from and stored to the schema named `"galaxies"`.
+When querying this model, data will be fetched from and stored to the schema named `"planets"`.
 
 !!! tip
     The schema name is typically the class name pluralized and lowercased. 
@@ -49,8 +49,8 @@ When querying this model, data will be fetched from and stored to the schema nam
 All models must have an `id` property defined using the `@ID` property wrapper. This field uniquely identifies instances of your model.
 
 ```swift
-final class Galaxy: Model {
-    // Unique identifier for this Galaxy.
+final class Planet: Model {
+    // Unique identifier for this Planet.
     @ID(key: .id)
     var id: UUID?
 }
@@ -79,8 +79,8 @@ print(planet.$id.exists)
 Fluent supports custom identifier keys and types using the `@ID(custom:)` overload. 
 
 ```swift
-final class Galaxy: Model {
-    // Unique identifier for this Galaxy.
+final class Planet: Model {
+    // Unique identifier for this Planet.
     @ID(custom: "foo")
     var id: Int?
 }
@@ -109,8 +109,8 @@ If the `generatedBy` parameter is omitted, Fluent will attempt to infer an appro
 Models must have an empty initializer method.
 
 ```swift
-final class Galaxy: Model {
-    // Creates a new, empty Galaxy.
+final class Planet: Model {
+    // Creates a new, empty Planet.
     init() { }
 }
 ```
@@ -120,8 +120,8 @@ Fluent requires this method internally to initialize models returned by queries.
 You may want to add a convenience initializer to your model that accepts all properties. 
 
 ```swift
-final class Galaxy: Model {
-    // Creates a new Galaxy with all properties set.
+final class Planet: Model {
+    // Creates a new Planet with all properties set.
     init(id: UUID? = nil, name: String) {
         self.id = id
         self.name = name
@@ -136,8 +136,8 @@ Using convenience initializers makes it easier to add new properties to the mode
 Models can have zero or more `@Field` properties for storing data. 
 
 ```swift
-final class Galaxy: Model {
-    // The Galaxy's name.
+final class Planet: Model {
+    // The Planet's name.
     @Field(key: "name")
     var name: String
 }
@@ -166,12 +166,12 @@ Models can have zero or more relation properties referencing other models like `
 `@Timestamp` is a special type of `@Field` that stores a `Foundation.Date`. Timestamps are set automatically by Fluent according to the chosen trigger.
 
 ```swift
-final class Galaxy: Model {
-    // When this Galaxy was created.
+final class Planet: Model {
+    // When this Planet was created.
     @Timestamp(key: "created_at", on: .create)
     var createdAt: Date?
 
-    // When this Galaxy was last updated.
+    // When this Planet was last updated.
     @Timestamp(key: "updated_at", on: .update)
     var updatedAt: Date?
 }
@@ -219,8 +219,8 @@ model.$updatedAt.timestamp = "2020-06-03T16:20:14+00:00"
 Adding a `@Timestamp` that uses the `.delete` trigger to your model will enable soft-deletion.
 
 ```swift
-final class Galaxy: Model {
-    // When this Galaxy was deleted.
+final class Planet: Model {
+    // When this Planet was deleted.
     @Timestamp(key: "deleted_at", on: .delete)
     var deletedAt: Date?
 }
@@ -250,8 +250,8 @@ model.restore(on: database)
 To include soft-deleted models in a query, use `withDeleted`. 
 
 ```swift
-// Fetches all galaxies including soft deleted.
-Galaxy.query(on: database).withDeleted().all()
+// Fetches all planets including soft deleted.
+Planet.query(on: database).withDeleted().all()
 ```
 
 ## Enum
@@ -488,3 +488,41 @@ Planet.find(req.parameters.get("id"), on: database)
 ```
 
 This method returns `nil` if no model with that identifier was found.
+
+## Lifecycle
+
+Model middleware allow you to hook into your model's lifecycle events. The following lifecycle events are supported.
+
+|Method|Description|
+|-|-|
+|`create`|Runs before a model is created.|
+|`update`|Runs before a model is updated.|
+|`delete(force:)`|Runs before a model is deleted.|
+|`softDelete`|Runs before a model is soft deleted.|
+|`restore`|Runs before a model is restored (opposite of soft delete).|
+
+Model middleware are declared using the `ModelMiddleware` protocol. All lifecycle methods have a default implementation, so you only need to implement the methods you require. Each method accepts the model in question, a reference to the database, and the next action in the chain. The middleware can choose to return early, throw an error, or call the next action to continue normally.
+
+Using these methods you can perform actions both before and after the specific event completes. Performing actions after the event completes can be done by mapping the future returned from the next responder.
+
+```swift
+// Example middleware that capitalizes names.
+struct PlanetMiddleware: ModelMiddleware {
+    func create(model: Planet, on db: Database, next: AnyModelResponder) -> EventLoopFuture<Void> {
+        // The model can be altered here before it is created.
+        model.name = model.name.capitalized()
+        return next.create(model, on: db).map {
+            // Once the planet has been created, the code 
+            // here will be executed.
+            print ("Planet \(model.name) was created")
+        }
+    }
+}
+```
+
+Once you have created your middleware, you can enable it using `app.databases.middleware`.
+
+```swift
+// Example of configuring model middleware.
+app.databases.middleware.use(PlanetMiddleware(), on: .psql)
+```
