@@ -25,11 +25,17 @@ cd hello
 open Package.swift
 ```
 
+## Xcode Dependencies
+
+You should now have Xcode open. It will automatically begin downloading Swift Package Manager dependencies.
+
+At the top of the window, to the right of the Play and Stop buttons, click on your project name to select the project's Scheme, and select an appropriate run target—most likely, "My Mac".
+
 ## Build & Run
 
-You should now have Xcode open. Click the play button to build and run your project.
+Once the Swift Package Manager dependencies have finished downloading, click the play button to build and run your project.
 
-You should see the terminal pop up at the bottom of the screen.
+You should see the Console pop up at the bottom of the Xcode window.
 
 ```sh
 [ INFO ] Server starting on http://127.0.0.1:8080
