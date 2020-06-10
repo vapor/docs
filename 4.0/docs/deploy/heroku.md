@@ -1,6 +1,6 @@
 # What is Heroku
 
-Heroku is a popular all in one hosting solution, you can find more at heroku.com
+Heroku is a popular all in one hosting solution, you can find more at [heroku.com](https://www.heroku.com)
 
 ## Signing Up
 
