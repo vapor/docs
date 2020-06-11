@@ -6,11 +6,11 @@ However, you may need to use a feature of your underlying database driver that i
 
 ## SQL
 
-All of Fluent's SQL database drivers use [SQLKit](https://github.com/vapor/sql-kit). This general SQL implementation is shipped with Fluent in the `FluentSQL` module.
+All of Fluent's SQL database drivers are built on [SQLKit](https://github.com/vapor/sql-kit). This general SQL implementation is shipped with Fluent in the `FluentSQL` module.
 
 ### SQL Database
 
-Any Fluent `Database` can be casted to a `SQLDatabase`. This includes `req.db`, `app.db`, the `database` passed to `Migration`, etc. 
+Any Fluent `Database` can be cast to a `SQLDatabase`. This includes `req.db`, `app.db`, the `database` passed to `Migration`, etc. 
 
 ```swift
 import FluentSQL
@@ -52,7 +52,7 @@ Visit the library's README for more information on the database-specific APIs.
 
 ### SQL Custom
 
-Almost all of Fluent's query and schema types support a `.custom` case. This lets you utilize database features that Fluent might not yet support. 
+Almost all of Fluent's query and schema types support a `.custom` case. This lets you utilize database features that Fluent doesn't support yet. 
 
 ```swift
 import FluentPostgresDriver
