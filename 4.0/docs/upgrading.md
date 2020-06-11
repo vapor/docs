@@ -804,39 +804,3 @@ final class MyTests: XCTestCase {
     }
 }
 ```
-
-## HTTP
-
-Coming soon.
-
-## WebSocket
-
-Coming soon.
-
-## Crypto
-
-Coming soon.
-
-## Queues
-
-Coming soon.
-
-## Validation
-
-Coming soon.
-
-## Auth
-
-Coming soon.
-
-## Stripe
-
-Coming soon.
-
-## Mailgun
-
-Coming soon.
-
-## Leaf
-
-Coming soon.
