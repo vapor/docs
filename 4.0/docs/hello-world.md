@@ -5,7 +5,7 @@ This guide will take you step by step through creating a new Vapor project, buil
 If you have not yet installed Swift or Vapor Toolbox, check out the install section.
 
 - [Install &rarr; macOS](install/macos.md)
-- [Install &rarr; Ubuntu](install/ubuntu.md)
+- [Install &rarr; Linux](install/linux.md)
 
 ## New Project
 

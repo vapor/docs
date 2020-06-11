@@ -28,7 +28,7 @@ nav:
 - 'Welcome': 'index.md'
 - 'Install':
   - 'macOS': 'install/macos.md'
-  - 'Ubuntu': 'install/ubuntu.md'
+  - 'Linux': 'install/linux.md'
 - 'Getting Started':
   - 'Hello, world': 'hello-world.md'
   - 'Folder Structure': 'folder-structure.md'
