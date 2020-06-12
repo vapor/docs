@@ -71,9 +71,9 @@ Some Vapor 3 packages have been deprecated, such as:
 - `vapor/url-encoded-form`: Now included in Vapor.
 - `vapor-community/vapor-ext`: Now included in Vapor.
 - `vapor-community/pagination`: Now part of Fluent.
-- `IBM-Swift/LoggerAPI`: Replaced by SwiftLogging.
+- `IBM-Swift/LoggerAPI`: Replaced by SwiftLog.
 
-### Fluent
+### Fluent Dependency
 
 `vapor/fluent` must now be added as a separate dependency to your dependencies list and targets. All database-specific packages have been suffixed with `-driver` to make the requirement on `vapor/fluent` clear.
 

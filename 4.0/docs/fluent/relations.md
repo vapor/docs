@@ -32,6 +32,24 @@ The `key` parameter defines the field key to use for storing the parent's identi
 
 Note that the [`.references`](schema.md#field-constraint) constraint is optional. See [schema](schema.md) for more information.
 
+### Optional Parent
+
+The `@OptionalParent` relation stores an optional reference to another model's `@ID` property. It works similarly to `@Parent`.
+
+```swift
+final class Planet: Model {
+    // Example of an optional parent relation.
+    @OptionalParent(key: "star_id")
+    var star: Star?
+}
+```
+
+The field definition is similar to `@Parent`'s except that the `.required` constraint should be omitted.
+
+```swift
+.field("star_id", .uuid, .references("star", "id"))
+```
+
 ## Children
 
 The `@Children` property creates a one-to-many relation between two models. It does not store any values on the root model. 
@@ -44,7 +62,7 @@ final class Star: Model {
 }
 ```
 
-The `for` parameter accepts a key path to a `@Parent` relation referencing the root model. In this case, we are referencing the `@Parent` relation from the previous [example](#parent). 
+The `for` parameter accepts a key path to a `@Parent` or `@OptionalParent` relation referencing the root model. In this case, we are referencing the `@Parent` relation from the previous [example](#parent). 
 
 New models can be added to this relation using the `create` method.
 
