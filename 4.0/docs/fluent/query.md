@@ -84,7 +84,7 @@ User.query(on: database)
     .filter(\.$firstName == \.$lastName)
 ```
 
-All [value filter](#value-filter) operators are supported with field filters.
+Field filters support the same operators as [value filters](#value-filter).
 
 ### Subset Filter
 
@@ -167,8 +167,7 @@ Below is a list of all available aggregate methods.
 |`min`|Minimum result value.|
 |`max`|Maximum result value.|
 
-All aggregate methods except `count` return the field's value type as a result. `count` always returns an integer. `count` is also the only method that can be called without specifying a field.
-
+All aggregate methods except `count` return the field's value type as a result. `count` always returns an integer.
 
 ## Chunk
 
@@ -373,3 +372,8 @@ Planet.query(on: database).sort(\.$name)
 ```
 
 Additional sorts may be added as fallbacks in case of a tie. Fallbacks will be used in the order they were added to the query builder.
+
+```swift
+// Fetch users sorted by name. If two users have the same name, sort them by age.
+User.query(on: database).sort(\.$name).sort(\.$age)
+```

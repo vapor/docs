@@ -237,13 +237,21 @@ This `Pet` struct is stored in a `@Field`.
 var pet: Pet
 ```
 
-This field can be stored using the `.dictionary` data type.
+This field can be stored using the `.dictionary(of:)` data type.
 
 ```swift
 .field("pet", .dictionary, .required)
 ```
 
-Since `Codable` types are heterogenous dictionaries, we do not specify the `of` parameter.
+Since `Codable` types are heterogenous dictionaries, we do not specify the `of` parameter. 
+
+If the dictionary values were homogenous, for example `[String: Int]`, the `of` parameter would specify the value type.
+
+```swift
+.field("numbers", .dictionary(of: .int), .required)
+```
+
+Dictionary keys must always be strings. 
 
 ## Array
 
@@ -263,6 +271,8 @@ This field can be stored using the `.array` data type.
 ```
 
 Since the array is homogenous, we specify the `of` parameter. 
+
+Codable Swift `Array`s will always have a homogenous value type. Custom `Codable` types that serialize heterogenous values to unkeyed containers are the exception and should use the `.array` data type.
 
 ## Enum
 

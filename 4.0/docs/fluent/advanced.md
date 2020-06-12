@@ -57,7 +57,7 @@ Almost all of Fluent's query and schema types support a `.custom` case. This let
 ```swift
 import FluentPostgresDriver
 
-let query = Planet.query(on: database)
+let query = Planet.query(on: req.db)
 if req.db is PostgresDatabase {
     // ILIKE supported.
     query.filter(\.$name, .custom("ILIKE"), "earth")
@@ -75,7 +75,7 @@ SQL databases support both `String` and `SQLExpression` in all `.custom` cases. 
 ```swift
 import FluentSQL
 
-let query = Planet.query(on: database)
+let query = Planet.query(on: req.db)
 if req.db is SQLDatabase {
     // The underlying database driver is SQL.
     query.filter(.sql(raw: "LOWER(name) = 'earth'"))
