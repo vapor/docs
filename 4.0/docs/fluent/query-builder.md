@@ -1,3 +1,0 @@
-# Query Builder
-
-Coming soon.

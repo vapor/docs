@@ -35,7 +35,9 @@ nav:
   - 'SPM': 'spm.md'
 - 'Basics':
   - 'Routing': 'routing.md'
-  - "Controllers": "controllers.md"
+# TODO: Improve quality
+# Mostly just a code sample with little explanation.
+#  - 'Controllers': 'controllers.md'
   - 'Content': 'content.md'
   - 'Client': 'client.md'
   - 'Validation': 'validation.md'
@@ -45,10 +47,11 @@ nav:
   - 'Errors': 'errors.md'
 - 'Fluent':
   - 'Overview': 'fluent/overview.md'
-  - 'Models': 'fluent/models.md'
-  - 'Migrations': 'fluent/migrations.md'
+  - 'Model': 'fluent/model.md'
   - 'Relations': 'fluent/relations.md'
-  - 'Query Builder': 'fluent/query-builder.md'
+  - 'Migration': 'fluent/migration.md'
+  - 'Query': 'fluent/query.md'
+  - 'Schema': 'fluent/schema.md'
   - 'Advanced': 'fluent/advanced.md'
 - 'Advanced':
   - 'Middleware': 'middleware.md'

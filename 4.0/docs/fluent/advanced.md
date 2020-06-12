@@ -1,5 +1,105 @@
 # Advanced
 
+Fluent strives to create a general, database-agnostic API for working with your data. This makes it easier to learn Fluent regardless of which database driver you are using. Creating generalized APIs can also make working with your database feel more at home in Swift. 
+
+However, you may need to use a feature of your underlying database driver that is not yet supported through Fluent. This guide covers advanced patterns and APIs in Fluent that only work with certain databases.
+
+## SQL
+
+All of Fluent's SQL database drivers are built on [SQLKit](https://github.com/vapor/sql-kit). This general SQL implementation is shipped with Fluent in the `FluentSQL` module.
+
+### SQL Database
+
+Any Fluent `Database` can be cast to a `SQLDatabase`. This includes `req.db`, `app.db`, the `database` passed to `Migration`, etc. 
+
+```swift
+import FluentSQL
+
+if let sql = req.db as? SQLDatabase {
+    // The underlying database driver is SQL.
+    sql.raw("SELECT * FROM planets").all()
+} else {
+    // The underlying database driver is _not_ SQL.
+}
+```
+
+This cast will only work if the underlying database driver is a SQL database. Learn more about `SQLDatabase`'s methods in [SQLKit's README](https://github.com/vapor/sql-kit).
+
+### Specific SQL Database
+
+You can also cast to specific SQL databases by importing the driver. 
+
+```swift
+import FluentPostgresDriver
+
+if let postgres = req.db as? PostgresDatabase {
+    // The underlying database driver is PostgreSQL.
+    postgres.simpleQuery("SELECT * FROM planets").all()
+} else {
+    // The underlying database is _not_ PostgreSQL.
+}
+```
+
+At the time of writing, the following SQL drivers are supported.
+
+|Database|Driver|Library|
+|-|-|-|
+|`PostgresDatabase`|[vapor/fluent-postgres-driver](https://github.com/vapor/fluent-postgres-driver)|[vapor/postgres-nio](https://github.com/vapor/postgres-nio)|
+|`MySQLDatabase`|[vapor/fluent-mysql-driver](https://github.com/vapor/fluent-mysql-driver)|[vapor/mysql-nio](https://github.com/vapor/mysql-nio)|
+|`SQLiteDatabase`|[vapor/fluent-sqlite-driver](https://github.com/vapor/fluent-sqlite-driver)|[vapor/sqlite-nio](https://github.com/vapor/sqlite-nio)|
+
+Visit the library's README for more information on the database-specific APIs.
+
+### SQL Custom
+
+Almost all of Fluent's query and schema types support a `.custom` case. This lets you utilize database features that Fluent doesn't support yet. 
+
+```swift
+import FluentPostgresDriver
+
+let query = Planet.query(on: req.db)
+if req.db is PostgresDatabase {
+    // ILIKE supported.
+    query.filter(\.$name, .custom("ILIKE"), "earth")
+} else {
+    // ILIKE not supported.
+    query.filter(.or) { or in
+        or.filter(\.$name == "earth").filter(\.$name == "Earth")
+    }
+}
+query.all()
+```
+
+SQL databases support both `String` and `SQLExpression` in all `.custom` cases. The `FluentSQL` module provides convenience methods for common use cases.
+
+```swift
+import FluentSQL
+
+let query = Planet.query(on: req.db)
+if req.db is SQLDatabase {
+    // The underlying database driver is SQL.
+    query.filter(.sql(raw: "LOWER(name) = 'earth'"))
+} else {
+    // The underlying database driver is _not_ SQL.
+}
+```
+
+Below is an example of `.custom` via the `.sql(raw:)` convenience being used with the schema builder.
+
+```swift
+import FluentSQL
+
+let builder = database.schema("planets").id()
+if database is MySQLDatabase {
+    // The underlying database driver is MySQL.
+    builder.field("name", .sql(raw: "VARCHAR(64)"), .required)
+} else {
+    // The underlying database driver is _not_ MySQL.
+    builder.field("name", .string, .required)
+}
+builder.create()
+```
+
 ## MongoDB
 
 Fluent MongoDB is an integration between [Fluent](../fluent/overview.md) and the [MongoKitten](https://github.com/OpenKitten/MongoKitten/) driver. It leverages Swift's strong type system and Fluent's database agnostic interface using MongoDB.
