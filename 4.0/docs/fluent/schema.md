@@ -61,7 +61,7 @@ Fields can be added when creating or updating a schema.
 .field("name", .string, .unique)
 ```
 
-The first parameter is the name of the field followed by the field's [data type](#data-type). Finally, zero or more [constraints](#field-constraint) can be added. 
+The first parameter is the name of the field. This should match the key used on the associated model property. The second parameter is the field's [data type](#data-type). Finally, zero or more [constraints](#field-constraint) can be added. 
 
 ### Data Type
 

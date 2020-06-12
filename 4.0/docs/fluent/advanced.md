@@ -162,23 +162,6 @@ This is accepted in MongoDB to access nested values.
 Something.query(on: db).filter("document.key", .equal, 5).first()
 ```
 
-### Flexible Data
-
-You can add flexible data in MongoDB, but this code will not work in SQL environments.
-To create grouped arbitrary data storage you can use `Document`.
-
-```swift
-@Field(key: "document")
-var document: Document
-```
-
-Fluent cannot support strictly types queries on these values. You can use a dot notated key path in your query for querying.
-This is accepted in MongoDB to access nested values.
-
-```swift
-Something.query(on: db).filter("document.key", .equal, 5).first()
-```
-
 ### Raw Access
 
 To access the raw `MongoDatabase` instance, cast the database instance to `MongoDatabaseRepresentable` as such:
