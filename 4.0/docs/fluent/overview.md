@@ -39,7 +39,7 @@ Each of the Fluent drivers below has more specific instructions for configuratio
 
 ### Drivers
 
-Fluent currently has three officially supported drivers. You can search GitHub for the tag [`fluent-driver`](https://github.com/topics/fluent-database) for a full list of official and third-party Fluent database drivers.
+Fluent currently has four officially supported drivers. You can search GitHub for the tag [`fluent-driver`](https://github.com/topics/fluent-driver) for a full list of official and third-party Fluent database drivers.
 
 #### PostgreSQL
 
@@ -199,7 +199,7 @@ The `Model` protocol's first requirement is the static string `schema`.
 static let schema = "galaxies"
 ```
 
-This property tells Fluent which table or collection the model corresponds to. This can be a table that already exists in the database or one that you will create with a [migration](#migration). The schema is usually `snake_case` and plural.
+This property tells Fluent which table or collection the model corresponds to. This can be a table that already exists in the database or one that you will create with a [migration](#migrations). The schema is usually `snake_case` and plural.
 
 ### Identifier
 
@@ -212,7 +212,7 @@ var id: UUID?
 
 This field must use the `@ID` property wrapper. Fluent recommends using `UUID` and the special `.id` field key since this is compatible with all of Fluent's drivers.
 
-If you want to use a custom ID key or type, use the `@ID(custom:)` overload.
+If you want to use a custom ID key or type, use the [`@ID(custom:)`](model.md#custom-identifier) overload.
 
 ### Fields
 

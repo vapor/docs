@@ -29,7 +29,7 @@ database.schema("planets")
     .create()
 ```
 
-If a table or collection with the chosen name already exists, an error will be thrown. To ignore this, use `ignoreExisting`. 
+If a table or collection with the chosen name already exists, an error will be thrown. To ignore this, use `.ignoreExisting()`. 
 
 ### Update
 
@@ -114,14 +114,14 @@ The `identifier` constraint may be used on a single field and denotes the primar
 
 ### Update Field
 
-You can update a fields data type using `updateField`. 
+You can update a field's data type using `updateField`. 
 
 ```swift
 // Updates the field to `double` data type.
 .updateField("age", .double)
 ```
 
-See [advanced](advanced.md) for more information on advanced schema updates.
+See [advanced](advanced.md#sql) for more information on advanced schema updates.
 
 ### Delete Field
 
@@ -134,7 +134,7 @@ You can remove a field from a schema using `deleteField`.
 
 ## Constraint
 
-Constraints can be added when creating or updating a schema. Unlike [field constraints](#field-constraints), top-level constraints can affect multiple fields.
+Constraints can be added when creating or updating a schema. Unlike [field constraints](#field-constraint), top-level constraints can affect multiple fields.
 
 ### Unique
 
@@ -230,7 +230,7 @@ struct Pet: Codable {
 }
 ```
 
-This `Pet` struct is stored in a `@Field`.
+Since this `Pet` struct is `Codable`, it can be stored in a `@Field`.
 
 ```swift
 @Field(key: "pet")
@@ -264,7 +264,7 @@ Take the following `@Field` that stores an array of strings.
 var tags: [String]
 ```
 
-This field can be stored using the `.array` data type.
+This field can be stored using the `.array(of:)` data type.
 
 ```swift
 .field("tags", .array(of: .string), .required)

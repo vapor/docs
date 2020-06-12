@@ -1,6 +1,6 @@
 # Relations
 
-Fluent's model API helps you create and maintain references between your models through relations. Two types of relations are supported:
+Fluent's [model API](model.md) helps you create and maintain references between your models through relations. Two types of relations are supported:
 
 - [Parent](#parent) / [Child](#child) (One-to-many)
 - [Siblings](#siblings) (Many-to-many)
@@ -24,7 +24,7 @@ final class Planet: Model {
 earth.$star.id = sun.id
 ```
 
-The `key` parameter defines the field key to use for storing the parent's identifier. Assuming `Star` has a `UUID` identifier, this `@Parent` relation is compatible with the following field definition.
+The `key` parameter defines the field key to use for storing the parent's identifier. Assuming `Star` has a `UUID` identifier, this `@Parent` relation is compatible with the following [field definition](schema.md#field).
 
 ```swift
 .field("star_id", .uuid, .required, .references("star", "id"))
@@ -34,7 +34,7 @@ Note that the [`.references`](schema.md#field-constraint) constraint is optional
 
 ### Optional Parent
 
-The `@OptionalParent` relation stores an optional reference to another model's `@ID` property. It works similarly to `@Parent`.
+The `@OptionalParent` relation stores an optional reference to another model's `@ID` property. It works similarly to `@Parent` but allows for the relation to be `nil`.
 
 ```swift
 final class Planet: Model {

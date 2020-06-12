@@ -2,7 +2,7 @@
 
 Models represent data stored in tables or collections in your database. Models have one or more fields that store codable values. All models have a unique identifier. Property wrappers are used to denote identifiers, fields, and relations. 
 
-Below is an example of a simple model with one field. Note that models do not describe the entire database schema, such as constraints, indexes, and foreign keys. Schemas are defined in [migration](migration.md). Models are focused on representing the data stored in your database schemas.  
+Below is an example of a simple model with one field. Note that models do not describe the entire database schema, such as constraints, indexes, and foreign keys. Schemas are defined in [migrations](migration.md). Models are focused on representing the data stored in your database schemas.  
 
 ```swift
 final class Planet: Model {
@@ -60,7 +60,7 @@ By default, the `@ID` property should use the special `.id` key which resolves t
 
 The `@ID` should also be of type `UUID`. This is the only identifier value currently supported by all database drivers. Fluent will automatically generate new UUID identifiers when models are created. 
 
-`@ID` has an optional value since unsaved models may not yet have an identifier. To get the identifier or throw an error, use `requireID`.
+`@ID` has an optional value since unsaved models may not have an identifier yet. To get the identifier or throw an error, use `requireID`.
 
 ```swift
 let id = try planet.requireID()
@@ -71,7 +71,9 @@ let id = try planet.requireID()
 `@ID` has an `exists` property that represents whether the model exists in the database or not. When you initialize a model, the value is `false`. After you save a model or when you fetch a model from the database, the value is `true`. This property is mutable.
 
 ```swift
-print(planet.$id.exists)
+if planet.$id.exists {
+    // This model exists in database.
+}
 ```
 
 ### Custom Identifier
@@ -259,7 +261,7 @@ Planet.query(on: database).withDeleted().all()
 `@Enum` is a special type of `@Field` for storing string representable types as native database enums. Native database enums provide an added layer of type safety to your database and may be more performant than raw enums. 
 
 ```swift
-// String representable, Codable enum for animals types.
+// String representable, Codable enum for animal types.
 enum Animal: String, Codable {
     case dog, cat
 }
@@ -330,14 +332,16 @@ In the database, `@Group` is stored as a flat structure with keys joined by `_`.
 
 |id|name|pet_name|pet_type|
 |-|-|-|-|
-|1|Vapor|Zizek|Cat|
-|2|Swift|Runa|Dog|
+|1|Tanner|Zizek|Cat|
+|2|Logan|Runa|Dog|
 
 ## Codable
 
-Models conform to `Codable` by default. This means you can use your models with Vapor's [content API](../content.md).
+Models conform to `Codable` by default. This means you can use your models with Vapor's [content API](../content.md) by adding conformance to the `Content` protocol.
 
 ```swift
+extension Planet: Content { }
+
 app.get("planets") { req in 
     // Return an array of all planets.
     Planet.query(on: req.db).all()
@@ -405,7 +409,7 @@ Another common use case for DTOs is customizing the format of your API responses
 
 ```swift
 // Structure of GET /users response.
-struct PublicUser: Content {
+struct GetUser: Content {
     var id: UUID
     var name: String
 }
@@ -414,8 +418,8 @@ app.get("users") { req in
     // Fetch all users from the database.
     User.query(on: req.db).all().flatMapThrowing { users in
         try users.map { user in
-            // Convert each user to public return type.
-            try PublicUser(
+            // Convert each user to GET return type.
+            try GetUser(
                 id: user.requireID(),
                 name: "\(user.firstName) \(user.lastName)"
             )
