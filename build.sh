@@ -25,5 +25,5 @@ mv 3.0/site site/3.0;
 mv 4.0/site site/4.0;
 # mv 1.5/.couscous/generated site/1.5;
 
-echo "<meta http-equiv=\"refresh\" content=\"0; url=/4.0/\">" > build/index.html;
+echo "<meta http-equiv=\"refresh\" content=\"0; url=/4.0/\">" > site/index.html;
 
