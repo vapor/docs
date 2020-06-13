@@ -12,7 +12,7 @@ Thanks!
 
 Install `couscous` through Composer and run `couscous preview`
 
-### 2.0 and 3.0
+### 2.0+
 
 Install Homebrew.
 
@@ -37,4 +37,4 @@ Run with `mkdocs serve`
 - [@0xtim](https://github.com/0xTim)
 - [@mcdappdev](https://github.com/mcdappdev)
 
-See https://github.com/vapor/vapor/blob/master/Docs/maintainers.md for more information. 
+See https://github.com/vapor/vapor/blob/master/.github/maintainers.md for more information. 
