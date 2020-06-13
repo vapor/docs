@@ -206,7 +206,7 @@ if let name = planet.$name.value {
 
 ## Unique
 
-Query builder's `unique` method causes duplicate results to be omitted. 
+Query builder's `unique` method causes only distinct results (no duplicates) to be returned. 
 
 ```swift
 // Returns all unique user first names. 
