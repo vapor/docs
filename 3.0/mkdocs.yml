@@ -1,7 +1,6 @@
-site_name: 'Vapor Docs'
-copyright: 'Copyright &copy; 2018 Qutheory, LLC'
-site_url: 'https://docs.vapor.codes/3.0/'
-
+site_name: Vapor Docs
+copyright: Copyright &copy; 2018 Qutheory, LLC
+site_url: https://docs.vapor.codes/3.0/
 nav:
 - 'Overview': 'index.md'
 - 'Install':
@@ -125,8 +124,6 @@ nav:
     - '4.0': 'version/4_0.md'
     - 'Upgrading': 'version/upgrading.md'
     - 'Support': 'version/support.md'
-
-
 markdown_extensions:
     - admonition
     - codehilite:
@@ -135,30 +132,27 @@ markdown_extensions:
     - meta
     - toc:
         permalink: true
-
 theme:
-    name: 'material'
-    custom_dir: 'theme/'
+    name: "material"
+    custom_dir: "theme/"
     palette:
-        primary: 'blue'
-        accent: 'purple'
-        #    logo: 'images/droplet-white.svg'
-
+        primary: "blue"
+        accent: "purple"
+        logo: "logo.svg"
 repo_url: http://github.com/vapor/vapor
 edit_uri: https://github.com/vapor/documentation/edit/master/3.0/docs/
 extra:
     social:
-        - type: 'twitter'
+        - icon: fontawesome/brands/twitter
           link: 'https://twitter.com/@codevapor'
-        - type: 'slack'
+        - icon: fontawesome/brands/discord
           link: 'http://vapor.team/'
-        - type: 'github'
+        - icon: fontawesome/brands/github
           link: 'https://github.com/vapor'
     font:
         text: 'Roboto Slab'
         code: 'Source Code Pro'
     disqus: 'vapor-docs'
-
 google_analytics:
     - 'UA-76177358-4'
     - 'auto'
