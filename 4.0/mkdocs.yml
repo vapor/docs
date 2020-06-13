@@ -3,16 +3,16 @@ site_url: https://docs.vapor.codes/4.0/
 repo_url: http://github.com/vapor/vapor
 edit_uri: https://github.com/vapor/documentation/edit/master/4.0/docs/
 theme:
-  name: "material"
-  custom_dir: "theme/"
+  name: material
+  custom_dir: theme/
   palette:
-    primary: "black"
-    accent: "blue"
-  logo: "logo.png"
+    primary: black
+    accent: blue
+  logo: logo.png
 extra:
   font:
-    text: "Roboto Slab"
-    code: "Source Code Pro"
+    text: Roboto Slab
+    code: Source Code Pro
 google_analytics:
   - "UA-76177358-4"
   - "auto"
@@ -24,6 +24,14 @@ markdown_extensions:
   - meta
   - toc:
       permalink: true
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/@codevapor
+    - icon: fontawesome/brands/discord
+      link: http://vapor.team/
+    - icon: fontawesome/brands/github
+      link: https://github.com/vapor
 nav:
 - "Welcome": "index.md"
 - "Install":
