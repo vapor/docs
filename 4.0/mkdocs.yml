@@ -76,7 +76,7 @@ nav:
   - "Passwords": "passwords.md"
 - "Deploy":
   - "DigitalOcean": "deploy/digital-ocean.md"
-  - "Herouku": "deploy/heroku.md"
+  - "Heroku": "deploy/heroku.md"
   - "Supervisor": "deploy/supervisor.md"
   - "Nginx": "deploy/nginx.md"
   - "Docker": "deploy/docker.md"
