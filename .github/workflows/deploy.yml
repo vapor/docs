@@ -1,0 +1,17 @@
+name: deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+ deploy:
+   name: docs.vapor.codes
+   runs-on: ubuntu-latest
+   steps:
+     - name: Deploy docs
+       uses: appleboy/ssh-action@master
+       with:
+         host: vapor.codes
+         username: vapor
+         key: ${{ secrets.VAPOR_CODES_SSH_KEY }}
+         script: ./github-actions/deploy-docs.sh

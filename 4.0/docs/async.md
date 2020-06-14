@@ -287,23 +287,16 @@ Make sure to run any blocking work in the background. Use promises to notify the
 
 ```swift
 router.get("hello") { req -> EventLoopFuture<String> in
-    /// Create a new void promise
-    let promise = req.eventLoop.makePromise(of: Void.self)
-    
     /// Dispatch some work to happen on a background thread
-    req.application.threadPool.submit { _ in
+    return req.application.threadPool.runIfActive(eventLoop: req.eventLoop) {
         /// Puts the background thread to sleep
         /// This will not affect any of the event loops
         sleep(5)
         
         /// When the "blocking work" has completed,
-        /// complete the promise and its associated future.
-        promise.succeed()
+        /// return the result.
+        return "Hello world!"
     }
-    
-    /// Wait for the future to be completed, 
-    /// then transform the result to a simple String
-    return promise.futureResult.transform(to: "Hello, world!")
 }
 ```
 

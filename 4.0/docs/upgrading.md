@@ -1,6 +1,6 @@
 # Upgrading to 4.0
 
-This guide shows you how to upgrade an existing Vapor 3.x project to 4.0. This guide attempts to cover all of Vapor's official packages as well as some commonly used providers. If you notice anything missing, [Vapor's team chat](https://discord.gg/vapor) is a great place to ask for help. Issues and pull requests are also appreciated.
+This guide shows you how to upgrade an existing Vapor 3.x project to 4.x. This guide attempts to cover all of Vapor's official packages as well as some commonly used providers. If you notice anything missing, [Vapor's team chat](https://discord.gg/vapor) is a great place to ask for help. Issues and pull requests are also appreciated.
 
 ## Dependencies
 
@@ -29,7 +29,7 @@ The first step to upgrading to Vapor 4 is to update your package's dependencies.
 -        .package(url: "https://github.com/vapor/jwt.git", from: "3.0.0"),
 +        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0-rc"),
 -        .package(url: "https://github.com/vapor/vapor.git", from: "3.0.0"),
-+        .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0-rc"),
++        .package(url: "https://github.com/vapor/vapor.git", from: "4.3.0"),
      ],
      targets: [
          .target(name: "App", dependencies: [
@@ -56,7 +56,7 @@ The first step to upgrading to Vapor 4 is to update your package's dependencies.
 All packages that have been upgraded for Vapor 4 will have their major version number incremented by one.
 
 !!! warning
-	The `-rc` pre-release identifier is used since Vapor 4 has not been officially released yet.
+    The `-rc` pre-release identifier is used since some packages of Vapor 4 has not been officially released yet.
 
 ### Old Packages
 
@@ -71,9 +71,9 @@ Some Vapor 3 packages have been deprecated, such as:
 - `vapor/url-encoded-form`: Now included in Vapor.
 - `vapor-community/vapor-ext`: Now included in Vapor.
 - `vapor-community/pagination`: Now part of Fluent.
-- `IBM-Swift/LoggerAPI`: Replaced by SwiftLogging.
+- `IBM-Swift/LoggerAPI`: Replaced by SwiftLog.
 
-### Fluent
+### Fluent Dependency
 
 `vapor/fluent` must now be added as a separate dependency to your dependencies list and targets. All database-specific packages have been suffixed with `-driver` to make the requirement on `vapor/fluent` clear.
 
@@ -190,7 +190,7 @@ To understand this better, let's take a look at a few examples.
 - services.register { container -> NIOServerConfig in
 -     return .default(port: 8281)
 - }
-+ app.server.configuration.port = 8281
++ app.http.server.configuration.port = 8281
 ```
 
 Instead of registering a `NIOServerConfig` to services, server configuration is now exposed as simple properties on Application that can be overridden. 
@@ -253,8 +253,8 @@ Custom services conforming to the `Service` protocol and registered to the conta
 
 ```diff
 struct MyAPI {
-	let client: Client
-	func foo() { ... }
+    let client: Client
+    func foo() { ... }
 }
 - extension MyAPI: Service { }
 - services.register { container -> MyAPI in
@@ -282,9 +282,9 @@ Application's new `Lifecycle` helper can be used to register lifecycle handlers.
 
 ```swift
 struct PrintHello: LifecycleHandler {
-	func willBoot(_ app: Application) throws {
-		print("Hello!")
-	}
+    func willBoot(_ app: Application) throws {
+        print("Hello!")
+    }
 }
 
 app.lifecycle.use(PrintHello())
@@ -294,7 +294,7 @@ To store values on Application, you case use the new `Storage` helper.
 
 ```swift
 struct MyNumber: StorageKey {
-	typealias Value = Int
+    typealias Value = Int
 }
 app.storage[MyNumber.self] = 5
 print(app.storage[MyNumber.self]) // 5
@@ -304,17 +304,15 @@ Accessing `app.storage` can be wrapped in a settable computed property to create
 
 ```swift
 extension Application {
-	var myNumber: Int? {
-		get { self.storage[MyNumber.self] }
-		set { self.storage[MyNumber.self] = newValue }
-	}
+    var myNumber: Int? {
+        get { self.storage[MyNumber.self] }
+        set { self.storage[MyNumber.self] = newValue }
+    }
 }
 
 app.myNumber = 42
 print(app.myNumber) // 42
 ```
-
-Both Application and Request also have `userInfo` dictionaries for storing any data you may need.
 
 ## NIO
 
@@ -345,7 +343,7 @@ Vapor 3's global `flatMap` method for combining multiple futures is no longer av
 ```diff
 - flatMap(futureA, futureB) { a, b in 
 + futureA.and(futureB).flatMap { (a, b) in
-	// Do something with a and b.
+    // Do something with a and b.
 }
 ```
 
@@ -368,7 +366,7 @@ Maps that do _not_ throw should continue to work fine.
 ```swift
 // Non-throwing map.
 futureA.map { a in
-	return b
+    return b
 }
 ```
 
@@ -377,11 +375,11 @@ Maps that _do_ throw must be renamed to `flatMapThrowing`.
 ```diff
 - futureA.map { a in
 + futureA.flatMapThrowing { a in
-	if ... {
-		throw SomeError()
-	} else {
-		return futureB
-	}
+    if ... {
+        throw SomeError()
+    } else {
+        return b
+    }
 }
 ```
 
@@ -394,30 +392,17 @@ futureA.flatMap { a in
 }
 ```
 
-Flat-maps that _do_ throw must return a future error.
-
-```swift
-// Returning a future error.
-futureA.flatMap { a in
-	if ... {
-		return eventLoop.makeFailedFuture(SomeError())
-	} else {
-		return futureB
-	}
-}
-```
-
-When calling methods that throw, the error can be caught in a do / catch and returned as a future.
+Instead of throwing an error inside a flat-map, return a future error. If the error originates from another throwing method, the error can be caught in a do / catch and returned as a future.
 
 ```swift
 // Returning a caught error as a future.
 futureA.flatMap { a in
-	do {
-		try doSomething()
-		return futureB
-	} catch {
-		return eventLoop.makeFailedFuture(error)
-	}
+    do {
+        try doSomething()
+        return futureB
+    } catch {
+        return eventLoop.makeFailedFuture(error)
+    }
 }
 ```
 
@@ -426,10 +411,10 @@ Throwing method calls can also be refactored into a `flatMapThrowing` and chaine
 ```swift
 // Refactored throwing method into flatMapThrowing with tuple-chaining.
 futureA.flatMapThrowing { a in
-	try (a, doSomeThing())
+    try (a, doSomeThing())
 }.flatMap { (a, result) in
-	// result is the value of doSomething.
-	return futureB
+    // result is the value of doSomething.
+    return futureB
 }
 ```
 
@@ -458,7 +443,7 @@ This behavior can be overridden by register routes using the `.stream` body coll
 
 ```swift
 app.on(.POST, "streaming", body: .stream) { req in
-	// Request body is now asynchronous.
+    // Request body is now asynchronous.
     req.body.collect().map { buffer in
         HTTPStatus.ok
     }
@@ -472,7 +457,7 @@ Paths must now be comma separated and not contain `/` for consistency.
 ```diff
 - router.get("v1/users/", "posts", "/comments") { req in 
 + app.get("v1", "users", "posts", "comments") { req in
-	// Handle request.
+    // Handle request.
 }
 ```
 
@@ -485,7 +470,7 @@ The `Parameter` protocol has been removed in favor of explicitly named parameter
 -     let id = req.parameters.next(String.self)
 + app.get("planets", ":id") { req in
 +     let id = req.parameters.get("id")
-	  return "Planet id: \(id)"
+      return "Planet id: \(id)"
   }
 ```
 
@@ -516,42 +501,306 @@ To remove all default middleware, set `app.middleware` to an empty config using:
 app.middleware = .init()
 ```
 
-## HTTP
-
-Coming soon.
-
-## WebSocket
-
-Coming soon.
-
 ## Fluent
 
-Coming soon.
+Fluent's API is now database agnostic. You can import just `Fluent`.
 
-## Crypto
+```diff
+- import FluentMySQL
++ import Fluent
+```
 
-Coming soon.
+### Models
 
-## Queues
+All models now use the `Model` protocol and must be classes.
 
-Coming soon.
+```diff
+- struct Planet: MySQLModel {
++ final class Planet: Model {
+```
 
-## Validation
+All fields are declared using `@Field` or `@OptionalField` property wrappers. 
 
-Coming soon.
+```diff
++ @Field(key: "name")
+var name: String
 
-## Auth
++ @OptionalField(key: "age")
+var age: Int?
+```
 
-Coming soon.
+A model's ID must be defined using the `@ID` property wrapper.
 
-## Stripe
+```diff
++ @ID(key: .id)
+var id: UUID?
+```
 
-Coming soon.
+Models using an identifier with a custom key or type must use `@ID(custom:)`.
 
-## Mailgun
+All models must have their table or collection name defined statically.
 
-Coming soon.
+```diff
+final class Planet: Model {
++   static let schema = "Planet"    
+}
+```
 
-## Leaf
+All models must now have an empty initializer. Since all properties use property wrappers, this can be empty.
 
-Coming soon.
+```diff
+final class Planet: Model {
++   init() { }
+}
+```
+
+Model's `save`, `update`, and `create` no longer return the model instance.
+
+```diff
+- model.save(on: ...)
++ model.save(on: ...).map { model }
+```
+
+Models can no longer be used as route path components. Use `find` and `req.parameters.get` instead.
+
+```diff
+- try req.parameters.next(ServerSize.self)
++ ServerSize.find(req.parameters.get("size"), on: req.db)
++     .unwrap(or: Abort(.notFound))
+```
+
+`Model.ID` has been renamed to `Model.IDValue`. 
+
+Model timestamps are now declared using the `@Timestamp` property wrapper.
+
+```diff
+- static var createdAtKey: TimestampKey? = \.createdAt
++ @Timestamp(key: "createdAt", on: .create)
+var createdAt: Date?
+```
+
+### Relations
+
+Relations are now defined using property wrappers.
+
+Parent relations use the `@Parent` property wrapper and contain the field property internally. The key passed to `@Parent` should be the name of the field storing the identifier in the database.
+
+```diff
+- var serverID: Int
+- var server: Parent<App, Server> { 
+-    parent(\.serverID) 
+- }
++ @Parent(key: "serverID") 
++ var server: Server
+```
+
+Children relations use the `@Children` property wrapper with a key path to the related `@Parent`.
+
+```diff
+- var apps: Children<Server, App> { 
+-     children(\.serverID) 
+- }
++ @Children(for: \.$server) 
++ var apps: [App]
+```
+
+Siblings relations use the `@Siblings` property wrapper with key paths to the pivot model.
+
+```diff
+- var users: Siblings<Company, User, Permission> {
+-     siblings()
+- }
++ @Siblings(through: Permission.self, from: \.$user, to: \.$company) 
++ var companies: [Company]
+```
+
+Pivots are now normal models that conform to `Model` with two `@Parent` relations and zero or more additional fields.
+
+### Query
+
+The database context is now accessed via `req.db` in route handlers.
+
+```diff
+- Planet.query(on: req)
++ Planet.query(on: req.db)
+```
+
+`DatabaseConnectable` has been renamed to `Database`.
+
+Key paths to fields are now prefixed with `$` to specify the property wrapper instead of the field value.
+
+```diff
+- filter(\.foo == ...) 
++ filter(\.$foo == ...)
+```
+
+### Migrations
+
+Models no longer support reflection-based auto migrations. All migrations must be written manually. 
+
+```diff
+- extension Planet: Migration { }
++ struct CreatePlanet: Migration {
++     ...
++}
+```
+
+Migrations are now stringly typed and decoupled from models and use the `Migration` protocol. 
+
+```diff
+- struct CreateGalaxy: <#Database#>Migration {
++ struct CreateGalaxy: Migration {
+```
+
+The `prepare` and `revert` methods are no longer static.
+
+```diff
+- static func prepare(on conn: <#Database#>Connection) -> Future<Void> {
++ func prepare(on database: Database) -> EventLoopFuture<Void> 
+```
+
+Creating a schema builder is done via an instance method on `Database`.
+
+```diff
+- <#Database#>Database.create(Galaxy.self, on: conn) { builder in
+-    // Use builder.
+- }
++ var builder = database.schema("Galaxy")
++ // Use builder.
+```
+
+The `create`, `update`, and `delete` methods are now called on the schema builder similar to how query builder works.
+
+Fields definitions are now stringly typed and follow the pattern:
+
+```swift
+field(<name>, <type>, <constraints>)
+```
+
+See the example below.
+
+```diff
+- builder.field(for: \.name)
++ builder.field("name", .string, .required)
+```
+
+Schema building can now be chained like query builder.
+
+```swift
+database.schema("Galaxy")
+    .id()
+    .field("name", .string, .required)
+    .create()
+```
+
+### Fluent Configuration
+
+`DatabasesConfig` has been replaced by `app.databases`.
+
+```swift
+try app.databases.use(.postgres(url: "postgres://..."), as: .psql)
+```
+
+`MigrationsConfig` has  been replaced by `app.migrations`.
+
+```swift
+app.migrations.use(CreatePlanet(), on: .psql)
+```
+
+### Repositories
+
+As the way services work in Vapor 4 has changed, that also means that the way to do database repositories has changed. You still need a procol such as `UserRepository` but instead of making a `final class` conform to that protocol, you should make a `struct` instead.
+
+```diff
+- final class DatabaseUserRepository: UserRepository {
++ struct DatabaseUserRepository: UserRepository {
+      let database: Database
+      func all() -> EventLoopFuture<[User]> {
+          return User.query(on: database).all()
+      }
+  }
+```
+
+You should also remove conformance from `ServiceType` as this no longer exists in Vapor 4. 
+```diff
+- extension DatabaseUserRepository {
+-     static let serviceSupports: [Any.Type] = [Athlete.self]
+-     static func makeService(for worker: Container) throws -> Self {
+-         return .init()
+-     }
+- }
+```
+
+Instead you should create a `UserRepositoryFactory`:
+```swift
+struct UserRepositoryFactory {
+    var make: ((Request) -> UserRepository)?
+    mutating func use(_ make: @escaping ((Request) -> UserRepository)) {
+        self.make = make
+    }
+}
+```
+This factory is responsible for returning a `UserRepository` for a `Request`.
+
+Next step is to add an extension to `Application` to specify your factory:
+```swift
+extension Application {
+    private struct UserRepositoryKey: StorageKey { 
+        typealias Value = UserRepositoryFactory 
+    }
+
+    var users: UserRepositoryFactory {
+        get {
+            self.storage[UserRepositoryKey.self] ?? .init()
+        }
+        set {
+            self.storage[UserRepositoryKey.self] = newValue
+        }
+    }
+}
+```
+
+To use the actual repository inside of a `Request` add this extension to `Request`:
+```swift
+extension Request {
+    var users: UserRepository {
+        self.application.users.make!(self)
+    }
+}
+```
+
+Last step is to specify the factory inside `configure.swift`
+```swift
+app.users.use { req in
+    DatabaseUserRepository(database: req.db)
+}
+```
+
+You can now access your repository in your route handlers with: `req.users.all()` and easily replace the factory inside tests.
+If you want to use a mocked repository inside tests, first create a `TestUserRepository`
+```swift
+final class TestUserRepository: UserRepository {
+    var users: [User]
+    let eventLoop: EventLoop
+
+    init(users: [User] = [], eventLoop: EventLoop) {
+        self.users = users
+        self.eventLoop = eventLoop
+    }
+
+    func all() -> EventLoopFuture<[User]> {
+        eventLoop.makeSuccededFuture(self.users)
+    }
+}
+```
+
+You can now use this mocked repository inside your tests as follows:
+```swift
+final class MyTests: XCTestCase {
+    func test() throws {
+        let users: [User] = []
+        app.users.use { TestUserRepository(users: users, eventLoop: $0.eventLoop) }
+        ...
+    }
+}
+```

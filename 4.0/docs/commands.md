@@ -7,14 +7,24 @@ Vapor's Command API allows you to build custom command-line functions and intera
 You can learn more about Vapor's default commands using the `--help` option. 
 
 ```sh
-vapor run --help
+vapor-beta run --help
 ```
 
 You can use `--help` on a specific command to see what arguments and options it accepts.
 
 ```sh
-vapor run serve --help
+vapor-beta run serve --help
 ```
+
+### Xcode
+
+You can run commands in Xcode by adding arguments to the `Run` scheme. To do this, follow these steps: 
+
+- Choose `Run` scheme (to the right of play/stop buttons)
+- Click "Edit Scheme"
+- Choose "Run" product
+- Select "Arguments" tab
+- Add the name of the command to "Arguments Passed On Launch" (i.e., `serve`)
 
 ## Custom Commands
 
@@ -64,7 +74,7 @@ context.console.print("Hello, \(name) 👋")
 Test your command by running:
 
 ```sh
-vapor run hello
+vapor-beta run hello
 ```
 
 ### Cowsay
@@ -115,5 +125,5 @@ app.commands.use(Cowsay(), as: "cowsay")
 ```
 
 ```sh
-vapor run cowsay sup --eyes ^^ --tongue "U "
+vapor-beta run cowsay sup --eyes ^^ --tongue "U "
 ```

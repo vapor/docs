@@ -79,12 +79,11 @@ struct UserAuthenticator: BasicAuthenticator {
     func authenticate(
         basic: BasicAuthorization,
         for request: Request
-    ) -> EventLoopFuture<User?> {
-       guard basic.username == "test" && basic.password == "secret" else {
-           return request.eventLoop.makeSucceededFuture(nil)
-       }
-       let test = User(name: "Vapor")
-       return request.eventLoop.makeSucceededFuture(test)
+    ) -> EventLoopFuture<Void> {
+        if basic.username == "test" && basic.password == "secret" {
+            request.auth.login(User(name: "Vapor"))
+        }
+        return request.eventLoop.makeSucceededFuture(())
    }
 }
 ```
@@ -96,7 +95,7 @@ In this test authenticator, the username and password are tested against hard-co
 !!! tip
     Passwords should never be stored in a database as plaintext. Always use password hashes for comparison.
 
-If the authentication parameters are correct, in this case matching the hard-coded values, a `User` named Vapor is returned. If the authentication parameters do not match, `nil` is returned, which signifies authentication failed. 
+If the authentication parameters are correct, in this case matching the hard-coded values, a `User` named Vapor is logged in. If the authentication parameters do not match, no user is logged in, which signifies authentication failed. 
 
 If you add this authenticator to your app, and test the route defined above, you should see the name `"Vapor"` returned for a successful login. If the credentials are not correct, you should see a `401 Unauthorized` error.
 
@@ -124,12 +123,11 @@ struct UserAuthenticator: BearerAuthenticator {
     func authenticate(
         bearer: BearerAuthorization,
         for request: Request
-    ) -> EventLoopFuture<User?> {
-       guard bearer.token == "foo" else {
-           return request.eventLoop.makeSucceededFuture(nil)
+    ) -> EventLoopFuture<Void> {
+       if bearer.token == "foo" {
+           request.auth.login(User(name: "Vapor"))
        }
-       let test = User(name: "Vapor")
-       return request.eventLoop.makeSucceededFuture(test)
+       return request.eventLoop.makeSucceededFuture(())
    }
 }
 ```
@@ -141,7 +139,7 @@ In this test authenticator, the token is tested against a hard-coded value. In a
 !!! tip
 	When implementing token verification, it's important to consider horizontal scalability. If your application needs to handle many users concurrently, authentication can be a potential bottlneck. Consider how your design will scale across multiple instances of your application running at once.
 
-If the authentication parameters are correct, in this case matching the hard-coded value, a `User` named Vapor is returned. If the authentication parameters do not match, `nil` is returned, which signifies authentication failed. 
+If the authentication parameters are correct, in this case matching the hard-coded value, a `User` named Vapor is logged in. If the authentication parameters do not match, no user is logged in, which signifies authentication failed. 
 
 If you add this authenticator to your app, and test the route defined above, you should see the name `"Vapor"` returned for a successful login. If the credentials are not correct, you should see a `401 Unauthorized` error.
 
