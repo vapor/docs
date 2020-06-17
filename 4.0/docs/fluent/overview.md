@@ -142,7 +142,7 @@ MongoDB is a popular schemaless NoSQL database designed for programmers. The dri
 To use MongoDB, add the following dependencies to your package.
 
 ```swift
-.package(url: "https://github.com/vapor/fluent-mongo-driver.git", from: "1.0.0-rc"),
+.package(url: "https://github.com/vapor/fluent-mongo-driver.git", from: "1.0.0"),
 ```
 
 ```swift
