@@ -557,8 +557,8 @@ final class Planet: Model {
 Model's `save`, `update`, and `create` no longer return the model instance.
 
 ```diff
-- model.save(on: ...)
-+ model.save(on: ...).map { model }
+- model.save(on: ...).map { model }
++ model.save(on: ...)
 ```
 
 Models can no longer be used as route path components. Use `find` and `req.parameters.get` instead.
