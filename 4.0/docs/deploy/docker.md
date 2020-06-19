@@ -25,7 +25,7 @@ You will need to install Docker for your developer environment. You can find inf
 We suggest using the Vapor template as a starting place. If you already have an App, build the template as described below into a new folder as a point of reference while dockerizing your existing app -- you can copy key resources from the template to your app and tweak them slightly as a jumping off point.
 
 1. Install or build the Vapor Toolbox ([macOS](../install/macos.md#install-toolbox), [Linux](../install/linux.md#install-toolbox)).
-2. Create a new Vapor App with `vapor-beta new my-dockerized-app` and walk through the prompts to enable or disable relevant features. Your answers to these prompts will affect how the Docker resource files are generated.
+2. Create a new Vapor App with `vapor new my-dockerized-app` and walk through the prompts to enable or disable relevant features. Your answers to these prompts will affect how the Docker resource files are generated.
 
 ## Docker Resources
 
@@ -88,7 +88,7 @@ A Docker Compose file defines the way Docker should build out multiple services 
 !!! note
     If you ultimately plan to use Kubernetes to orchestrate your app, the Docker Compose file is not directly relevant. However, Kubernetes manifest files are similar conceptually and there are even projects out there aimed at [porting Docker Compose files](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/) to Kubernetes manifests.
 
-The Docker Compose file in your new Vapor App will define services for running your app, running migrations or reverting them, and running a database as your app's persistence layer. The exact definitions will vary depending on which database you chose to use when you ran `vapor-beta new`.
+The Docker Compose file in your new Vapor App will define services for running your app, running migrations or reverting them, and running a database as your app's persistence layer. The exact definitions will vary depending on which database you chose to use when you ran `vapor new`.
 
 Note that your Docker Compose file has some shared environment variables near the top.
 ```docker

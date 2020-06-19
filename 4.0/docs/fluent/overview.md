@@ -14,7 +14,7 @@ If you have an existing project that you want to add Fluent to, you will need to
 - One (or more) Fluent driver(s) of your choice
 
 ```swift
-.package(url: "https://github.com/vapor/fluent.git", from: "4.0.0-beta"),
+.package(url: "https://github.com/vapor/fluent.git", from: "4.0.0"),
 .package(url: "https://github.com/vapor/fluent-<db>-driver.git", from: <version>),
 ```
 
@@ -48,7 +48,7 @@ PostgreSQL is an open source, standards compliant SQL database. It is easily con
 To use PostgreSQL, add the following dependencies to your package.
 
 ```swift
-.package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0-beta")
+.package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0")
 ```
 
 ```swift
@@ -291,7 +291,7 @@ To run migrations, call `vapor run migrate` from the command line or add `migrat
 
 
 ```
-$ vapor-beta run migrate
+$ vapor run migrate
 Migrate Command: Prepare
 The following migration(s) will be prepared:
 + CreateGalaxy on default
