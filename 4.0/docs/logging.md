@@ -71,14 +71,14 @@ Regardless of environment mode, you can override the logging level to increase o
 The first method is to pass the optional `--log` flag when booting your application.
 
 ```sh
-vapor-beta run serve --log debug
+vapor run serve --log debug
 ```
 
 The second method is to set the `LOG_LEVEL` environment variable.
 
 ```sh
 export LOG_LEVEL=debug
-vapor-beta run serve
+vapor run serve
 ```
 
 Both of these can be done in Xcode by editing the `Run` scheme.

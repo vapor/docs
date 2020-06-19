@@ -99,7 +99,7 @@ Vapor may add additional supported platforms in the future. Your package may sup
 
 Vapor 4 utilizies Xcode 11's native SPM support. This means you will no longer need to generate `.xcodeproj` files. Opening your project's folder in Xcode will automatically recognize SPM and pull in dependencies. 
 
-You can open your project natively in Xcode using `vapor-beta xcode` or `open Package.swift`. 
+You can open your project natively in Xcode using `vapor xcode` or `open Package.swift`. 
 
 Once you've updated Package.swift, you may need to close Xcode and clear the following folders from the root directory:
 
