@@ -4,16 +4,16 @@ This guide will walk you through deploying a simple Hello, world Vapor applicati
 
 ## Create Server
 
-Let's start by installing Swift on an Ubuntu server. Use the create menu to create a new Droplet.
+Let's start by installing Swift on a Linux server. Use the create menu to create a new Droplet.
 
 ![Create Droplet](../images/digital-ocean-create-droplet.png)
 
-Under distributions, select Ubuntu 18.04 LTS.
+Under distributions, select Ubuntu 18.04 LTS. The following guide will use this version as an example.
 
 ![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu-18.png)
 
 !!! note 
-	You may select any version of Ubuntu that Swift supports. At the time of writing, Swift 5.2 supports 16.04 and 18.04. You can check which operating systems are officially supported on the [Swift Releases](https://swift.org/download/#releases) page.
+	You may select any Linux distribution with a version that Swift supports. At the time of writing, Swift 5.2.4 supports Ubuntu 16.04, 18.04, 20.04, CentOS 8, and Amazon Linux 2. You can check which operating systems are officially supported on the [Swift Releases](https://swift.org/download/#releases) page.
 
 After selecting the distribution, choose any plan and datacenter region you prefer. Then setup an SSH key to access the server after it is created. Finally, click create Droplet and wait for the new server to spin up.
 
@@ -82,15 +82,15 @@ sudo apt-get install clang libicu-dev libatomic1 build-essential pkg-config
 
 ### Download Toolchain
 
-This guide will install Swift 5.2.0. Visit the [Swift Downloads](https://swift.org/download/#releases) page for a link to latest release. Copy the download link for Ubuntu 18.04.
+This guide will install Swift 5.2.4. Visit the [Swift Releases](https://swift.org/download/#releases) page for a link to latest release. Copy the download link for Ubuntu 18.04.
 
 ![Download Swift](../images/swift-download-ubuntu-18-copy-link.png)
 
 Download and decompress the Swift toolchain.
 
 ```sh
-wget https://swift.org/builds/swift-5.2-release/ubuntu1804/swift-5.2-RELEASE/swift-5.2-RELEASE-ubuntu18.04.tar.gz
-tar xzf swift-5.2-RELEASE-ubuntu18.04.tar.gz
+wget https://swift.org/builds/swift-5.2.4-release/ubuntu1804/swift-5.2.4-RELEASE/swift-5.2.4-RELEASE-ubuntu18.04.tar.gz
+tar xzf swift-5.2.4-RELEASE-ubuntu18.04.tar.gz
 ```
 
 !!! note
@@ -102,13 +102,13 @@ Move Swift somewhere easy to acess. This guide will use `/swift` with each compi
 
 ```sh
 sudo mkdir /swift
-sudo mv swift-5.2-RELEASE-ubuntu18.04 /swift/5.2.0
+sudo mv swift-5.2.4-RELEASE-ubuntu18.04 /swift/5.2.4
 ```
 
 Add Swift to `/usr/bin` so it can be executed by `vapor` and `root`.
 
 ```sh
-sudo ln -s /swift/5.2.0/usr/bin/swift /usr/bin/swift
+sudo ln -s /swift/5.2.4/usr/bin/swift /usr/bin/swift
 ```
 
 Verify that Swift was installed correctly.
@@ -140,21 +140,21 @@ Now clone the project and build it.
 ```sh
 git clone https://github.com/vapor/api-template.git
 cd api-template
-swift build
+swift build --enable-test-discovery
 ```
 
 !!! tip
-	If you are building this project for production, use `swift build -c release`
+	If you are building this project for production, use `swift build -c release --enable-test-discovery`
 
 ### Run
 
-Once the project has finished compiling, run it on your server's IP at port 80.
+Once the project has finished compiling, run it on your server's IP at port 80. The IP address is `157.245.244.228` in this example.
 
 ```sh
 sudo .build/debug/Run serve -b 157.245.244.228:80
 ```
 
-If you used `swift build -c release`, then you need to run:
+If you used `swift build -c release --enable-test-discovery`, then you need to run:
 ```sh
 sudo .build/release/Run serve -b 157.245.244.228:80
 ```

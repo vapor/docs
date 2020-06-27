@@ -16,6 +16,16 @@ You can use `--help` on a specific command to see what arguments and options it 
 vapor run serve --help
 ```
 
+### Xcode
+
+You can run commands in Xcode by adding arguments to the `Run` scheme. To do this, follow these steps: 
+
+- Choose `Run` scheme (to the right of play/stop buttons)
+- Click "Edit Scheme"
+- Choose "Run" product
+- Select "Arguments" tab
+- Add the name of the command to "Arguments Passed On Launch" (i.e., `serve`)
+
 ## Custom Commands
 
 You can create your own commands by creating types conforming to `Command`. 

@@ -60,7 +60,7 @@ You can configure the underlying HTTP client via the application.
 
 ```swift
 // Disable automatic redirect following.
-app.client.configuration.redirectConfiguration = .disallow
+app.http.client.configuration.redirectConfiguration = .disallow
 ```
 
 Note that you must configure the default client _before_ using it for the first time.

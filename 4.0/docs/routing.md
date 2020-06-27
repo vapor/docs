@@ -259,7 +259,16 @@ app.on(.POST, "upload", body: .stream) { req in
 }
 ```
 
-When the request body is streamed, `req.body.data` will be `nil`. You must use `req.body.drain` to handle each chunk as it is sent to your route. 
+When the request body is streamed, `req.body.data` will be `nil`. You must use `req.body.drain` to handle each chunk as it is sent to your route.
+
+### Case Insensitive Routing
+
+Default behavior for routing is both case-sensitive and case-preserving. `Constant` path componenents can alternately be handled in a case-insensitive and case-preserving manner for the purposes of routing; to enable this behavior, configure prior to application startup:
+```swift
+app.routes.caseInsensitive = true
+```
+No changes are made to the originating request; route handlers will receive the request path components without modification.
+
 
 ### Viewing Routes
 

@@ -1,3 +1,0 @@
-# Migrations
-
-Coming soon.
