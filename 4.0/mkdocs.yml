@@ -1,21 +1,54 @@
+# Project information
 site_name: Vapor Docs
 site_url: https://docs.vapor.codes/4.0/
+site_author: Vapor Community
+site_description: Vapor documentation
+
+# Repository
+repo_name: Vapor GitHub
 repo_url: http://github.com/vapor/vapor
 edit_uri: https://github.com/vapor/documentation/edit/master/4.0/docs/
+
+# Copyright
+copyright: "Copyright &copy; Vapor Community"
+
+# Configuration
 theme:
   name: material
   custom_dir: theme/
+
+  # Language
+  language: en
+
   palette:
     primary: black
     accent: blue
-  logo: logo.png
+  
+  logo: assets/logo.png
+  favicon: assets/favicon.png
+
+# Customization 
 extra:
+  # Font
   font:
     text: Roboto Slab
     code: Source Code Pro
+
+  # Social
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/codevapor
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/vapor
+    - icon: fontawesome/brands/github
+      link: https://github.com/vapor
+
+# Google Analytics
 google_analytics:
   - UA-76177358-4
   - auto
+
+# Extensions
 markdown_extensions:
   - admonition
   - codehilite:
@@ -24,65 +57,58 @@ markdown_extensions:
   - meta
   - toc:
       permalink: true
-extra:
-  social:
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/@codevapor
-    - icon: fontawesome/brands/discord
-      link: http://vapor.team/
-    - icon: fontawesome/brands/github
-      link: https://github.com/vapor
+
 nav:
-- "Welcome": "index.md"
-- "Install":
-  - "macOS": "install/macos.md"
-  - "Linux": "install/linux.md"
-- "Getting Started":
-  - "Hello, world": "hello-world.md"
-  - "Folder Structure": "folder-structure.md"
-  - "SPM": "spm.md"
-- "Basics":
-  - "Routing": "routing.md"
+- Welcome: "index.md"
+- Install:
+  - macOS: "install/macos.md"
+  - Linux: "install/linux.md"
+- Getting Started:
+  - Hello, world: "hello-world.md"
+  - Folder Structure: "folder-structure.md"
+  - SPM: "spm.md"
+- Basics:
+  - Routing: "routing.md"
 # TODO: Improve quality
 # Mostly just a code sample with little explanation.
-#  - "Controllers": "controllers.md"
-  - "Content": "content.md"
-  - "Client": "client.md"
-  - "Validation": "validation.md"
-  - "Async": "async.md"
-  - "Logging": "logging.md"
-  - "Environment": "environment.md"
-  - "Errors": "errors.md"
-- "Fluent":
-  - "Overview": "fluent/overview.md"
-  - "Model": "fluent/model.md"
-  - "Relations": "fluent/relations.md"
-  - "Migration": "fluent/migration.md"
-  - "Query": "fluent/query.md"
-  - "Schema": "fluent/schema.md"
-  - "Advanced": "fluent/advanced.md"
-- "Advanced":
-  - "Middleware": "middleware.md"
-  - "Testing": "testing.md"
-  - "Server": "server.md"
-  - "Commands": "commands.md"
-  - "Queues": "queues.md"
-  - "WebSockets": "websockets.md"
-  - "Sessions": "sessions.md"
-  - "Services": "services.md"
-- "Security":
-  - "Authentication": "authentication.md"
-  - "Crypto": "crypto.md"
-  - "Passwords": "passwords.md"
-- "Deploy":
-  - "DigitalOcean": "deploy/digital-ocean.md"
-  - "Heroku": "deploy/heroku.md"
-  - "Supervisor": "deploy/supervisor.md"
-  - "Nginx": "deploy/nginx.md"
-  - "Docker": "deploy/docker.md"
-- "Version (4.0)":
-    - "1.5": "version/1_5.md"
-    - "2.0": "version/2_0.md"
-    - "3.0": "version/3_0.md"
-    - "4.0": "version/4_0.md"
-    - "Upgrading": "upgrading.md"
+#  - Controllers: "controllers.md"
+  - Content: "content.md"
+  - Client: "client.md"
+  - Validation: "validation.md"
+  - Async: "async.md"
+  - Logging: "logging.md"
+  - Environment: "environment.md"
+  - Errors: "errors.md"
+- Fluent:
+  - Overview: "fluent/overview.md"
+  - Model: "fluent/model.md"
+  - Relations: "fluent/relations.md"
+  - Migration: "fluent/migration.md"
+  - Query: "fluent/query.md"
+  - Schema: "fluent/schema.md"
+  - Advanced: "fluent/advanced.md"
+- Advanced:
+  - Middleware: "middleware.md"
+  - Testing: "testing.md"
+  - Server: "server.md"
+  - Commands: "commands.md"
+  - Queues: "queues.md"
+  - WebSockets: "websockets.md"
+  - Sessions: "sessions.md"
+  - Services: "services.md"
+- Security:
+  - Authentication: "authentication.md"
+  - Crypto: "crypto.md"
+  - Passwords: "passwords.md"
+- Deploy:
+  - DigitalOcean: "deploy/digital-ocean.md"
+  - Heroku: "deploy/heroku.md"
+  - Supervisor: "deploy/supervisor.md"
+  - Nginx: "deploy/nginx.md"
+  - Docker: "deploy/docker.md"
+- Version (4.0):
+    - v1.5: "version/1_5.md"
+    - v2.0: "version/2_0.md"
+    - v3.0: "version/3_0.md"
+    - v4.0: "version/4_0.md"
+    - Upgrading: "upgrading.md"
