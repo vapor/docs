@@ -5,7 +5,7 @@ site_author: "Vapor Community"
 site_description: "Vapor documentation"
 
 # Repository
-repo_name: "GitHub Vapor"
+repo_name: "Vapor GitHub"
 repo_url: "http://github.com/vapor/vapor"
 edit_uri: "https://github.com/vapor/documentation/edit/master/4.0/docs/"
 
@@ -14,18 +14,18 @@ copyright: "Copyright &copy; Vapor Community"
 
 # Configuration
 theme:
-  name: "material"
-  custom_dir: "theme/"
+  name: material
+  custom_dir: theme/
 
   # Language
-  language: "en"
+  language: en
 
   palette:
-    primary: "black"
-    accent: "blue"
+    primary: black
+    accent: blue
 
-  logo: "assets/logo.png"
-  favicon: "assets/favicon.png"
+  logo: assets/logo.png
+  favicon: assets/favicon.png
 
 # Customization
 extra:
@@ -45,8 +45,8 @@ extra:
     
 # Google Analytics
 google_analytics:
-  - "UA-76177358-4"
-  - "auto"
+  - UA-76177358-4
+  - auto
   
 # Extensions
 markdown_extensions:
