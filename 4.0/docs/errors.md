@@ -7,7 +7,7 @@ Vapor builds on Swift's `Error` protocol for error handling. Route handlers can 
 Vapor provides a default error struct named `Abort`. This struct conforms to both `AbortError` and `DebuggableError`. You can initialize it with an HTTP status and optional failure reason.
 
 ```swift
-// 400 error, default "Not Found" reason used.
+// 404 error, default "Not Found" reason used.
 throw Abort(.notFound)
 
 // 401 error, custom reason used.
