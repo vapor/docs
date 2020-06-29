@@ -170,7 +170,7 @@ app.get("foo", ":bar", "baz") { req in
 
 #### Anything
 
-This is very similar to parameter except the value is discarded. This path component is specified as just `:`. 
+This is very similar to parameter except the value is discarded. This path component is specified as just `*`. 
 
 ```swift
 // responds to GET /foo/bar/baz
@@ -183,7 +183,7 @@ app.get("foo", "*", "baz") { req in
 
 #### Catchall
 
-This is a dynamic route component that matches one or more components. It is specified using just `*`. Any string at this position or later positions will be allowed in the request. 
+This is a dynamic route component that matches one or more components. It is specified using just `**`. Any string at this position or later positions will be allowed in the request. 
 
 ```swift
 // responds to GET /foo/bar
