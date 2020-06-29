@@ -126,7 +126,7 @@ Vapor will automatically call `beforeDecode` and `afterDecode` on a `Content` ty
 
 ```swift
 // Runs after this Content is decoded.
-func afterDecode() throws {
+mutating func afterDecode() throws {
     // Name may not be passed in, but if it is, then it can't be an empty string.
     self.name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines)
     if let name = self.name, name.isEmpty {
@@ -135,7 +135,7 @@ func afterDecode() throws {
 }
 
 // Runs before this Content is encoded.
-func beforeEncode() throws {
+mutating func beforeEncode() throws {
     // Have to *always* pass a name back, and it can't be an empty string.
     guard 
         let name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines), 
