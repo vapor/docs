@@ -239,7 +239,7 @@ Query builder's `join` method allows you to include another model's fields in yo
 ```swift
 // Fetches all planets with a star named Sun.
 Planet.query(on: database)
-    .join(Star.self, on: \Star.$id == \Planet.$star.$id)
+    .join(Star.self, on: \Planet.$star.$id == \Star.$id)
     .filter(Star.self, \.$name == "Sun")
     .all()
 ```
