@@ -125,7 +125,7 @@ let name: String? = req.query["name"]
 Vapor will automatically call `beforeDecode` and `afterDecode` on a `Content` type. Default implementations are provided which do nothing, but you can use these methods to run custom logic.
 
 ```swift
-// Runs after this Content is decoded.
+// Runs after this Content is decoded. `mutating` is only required for structs, not classes.
 mutating func afterDecode() throws {
     // Name may not be passed in, but if it is, then it can't be an empty string.
     self.name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -134,7 +134,7 @@ mutating func afterDecode() throws {
     }
 }
 
-// Runs before this Content is encoded.
+// Runs before this Content is encoded. `mutating` is only required for structs, not classes.
 mutating func beforeEncode() throws {
     // Have to *always* pass a name back, and it can't be an empty string.
     guard 
