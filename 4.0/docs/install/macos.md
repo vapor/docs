@@ -32,7 +32,7 @@ Now that you have Swift installed, let us install the [Vapor Toolbox](https://gi
 Toolbox is distributed via Homebrew. If you do not have Homebrew yet, visit <a href="https://brew.sh" target="_blank">brew.sh</a> for install instructions.
 
 ```sh
-brew install vapor/tap/vapor
+brew install vapor
 ```
 
 Double check to ensure that the installation was successful by printing help.
