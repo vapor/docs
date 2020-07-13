@@ -22,7 +22,7 @@ http://vapor.codes/hello/vapor
 
 The first part of the request is the HTTP method. `GET` is the most common HTTP method, but there are several you will use often. These HTTP methods are often associated with [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) semantics.
 
-|method|crud|
+|Method|CRUD|
 |-|-|
 |`GET`|Read|
 |`POST`|Create|
@@ -183,7 +183,7 @@ app.get("foo", "*", "baz") { req in
 
 #### Catchall
 
-This is a dynamic route component that matches one or more components. It is specified using just `**`. Any string at this position or later positions will be allowed in the request. 
+This is a dynamic route component that matches one or more components. It is specified using just `**`. Any string at this position or later positions will be matched in the request. 
 
 ```swift
 // responds to GET /foo/bar
@@ -212,7 +212,7 @@ app.get("hello", ":name") { req -> String in
     We can be sure that `req.parameters.get` will never return `nil` here since our route path includes `:name`. However, if you are accessing route parameters in middleware or in code triggered by multiple routes, you will want to handle the possibility of `nil`.
 
 
-`req.parameters` also supports casting the parameter to `LosslessStringConvertible` types automatically. 
+`req.parameters.get` also supports casting the parameter to `LosslessStringConvertible` types automatically. 
 
 ```swift
 // responds to GET /number/42
@@ -223,6 +223,18 @@ app.get("number", ":x") { req -> String in
 		throw Abort(.badRequest)
 	}
 	return "\(int) is a great number"
+}
+```
+
+The values of the URI matched by Catchall (`**`) will be stored in `req.parameters` as `[String]`. You can use `req.parameters.getCatchall` to access those components. 
+
+```swift
+// responds to GET /hello/foo
+// responds to GET /hello/foo/bar
+// ...
+app.get("hello", "**") { req -> String in
+    let name = req.parameters.getCatchall().joined(separator: " ")
+    return "Hello, \(name)!"
 }
 ```
 
@@ -285,7 +297,7 @@ $ swift run Run routes
 +--------+----------------+
 | GET    | /              |
 +--------+----------------+
-| GET    | /hello/        |
+| GET    | /hello         |
 +--------+----------------+
 | GET    | /todos         |
 +--------+----------------+
