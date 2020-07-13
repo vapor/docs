@@ -100,6 +100,7 @@ pages:
     - '1.5': 'version/1_5.md'
     - '2.0': 'version/2_0.md'
     - '3.0': 'version/3_0.md'
+    - '4.0': 'version/4_0.md'
     - 'Support': 'version/support.md'
 
 markdown_extensions:
@@ -124,10 +125,12 @@ edit_uri: https://github.com/vapor/documentation/edit/master/2.0/docs/
 extra:
     logo: 'images/droplet-white.svg'
     social:
-        - type: 'twitter'
+        - icon: fontawesome/brands/twitter
           link: 'https://twitter.com/@codevapor'
-        - type: 'slack'
+        - icon: fontawesome/brands/discord
           link: 'http://vapor.team/'
+        - icon: fontawesome/brands/github
+          link: 'https://github.com/vapor'
     font:
         text: 'Roboto Slab'
         code: 'Source Code Pro'

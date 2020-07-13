@@ -5,14 +5,14 @@ This guide will take you step by step through creating a new Vapor project, buil
 If you have not yet installed Swift or Vapor Toolbox, check out the install section.
 
 - [Install &rarr; macOS](install/macos.md)
-- [Install &rarr; Ubuntu](install/ubuntu.md)
+- [Install &rarr; Linux](install/linux.md)
 
 ## New Project
 
 The first step is to create a new Vapor project on your computer. Open up your terminal and use Toolbox's new project command. This will create a new folder in the current directory containing the project.
 
 ```sh
-vapor-beta new hello -n
+vapor new hello -n
 ```
 
 !!! tip
@@ -25,11 +25,17 @@ cd hello
 open Package.swift
 ```
 
+## Xcode Dependencies
+
+You should now have Xcode open. It will automatically begin downloading Swift Package Manager dependencies.
+
+At the top of the window, to the right of the Play and Stop buttons, click on your project name to select the project's Scheme, and select an appropriate run target—most likely, "My Mac".
+
 ## Build & Run
 
-You should now have Xcode open. Click the play button to build and run your project.
+Once the Swift Package Manager dependencies have finished downloading, click the play button to build and run your project.
 
-You should see the terminal pop up at the bottom of the screen.
+You should see the Console pop up at the bottom of the Xcode window.
 
 ```sh
 [ INFO ] Server starting on http://127.0.0.1:8080

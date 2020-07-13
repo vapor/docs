@@ -4,8 +4,8 @@ Vapor is the most used web framework for Swift. It provides a beautifully expres
 
 ## Languages
 
-- English [(docs.vapor.codes)](http://docs.vapor.codes)
-- 简体中文 [(cn.docs.vapor.codes)](http://cn.docs.vapor.codes)
+- English [(docs.vapor.codes)](https://docs.vapor.codes)
+- 简体中文 [(cn.docs.vapor.codes)](https://cn.docs.vapor.codes)
 
 ## Getting Started
 
@@ -20,8 +20,8 @@ Here are some other great places to find information about Vapor.
 | name           | description                                      | link                                                            |
 |----------------|--------------------------------------------------|-----------------------------------------------------------------|
 | Vapor Discord  | Chat with thousands of Vapor developers.         | [visit &rarr;](http://vapor.team)                               |
-| API docs       | Auto-generated documentation from code comments. | [visit &rarr;](http://api.vapor.codes)                          |
-| Stack Overflow | Ask and answer questions with the `vapor` tag.   | [visit &rarr;](http://stackoverflow.com/questions/tagged/vapor) |
+| API docs       | Auto-generated documentation from code comments. | [visit &rarr;](https://api.vapor.codes)                          |
+| Stack Overflow | Ask and answer questions with the `vapor` tag.   | [visit &rarr;](https://stackoverflow.com/questions/tagged/vapor) |
 | Swift Forums  | Post in Vapor's section of the Swift.org forums.  | [visit &rarr;](https://forums.swift.org/c/related-projects/vapor)           |
 | Source Code    | Learn how Vapor works under the hood.            | [visit &rarr;](https://github.com/vapor/vapor)                  |
 | GitHub Issues  | Report bugs or request features on GitHub.       | [visit &rarr;](https://github.com/vapor/vapor/issues)           |
