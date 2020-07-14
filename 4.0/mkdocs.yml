@@ -2,7 +2,7 @@
 site_name: Vapor Docs
 site_url: https://docs.vapor.codes/4.0/
 site_author: Vapor Community
-site_description: Vapor documentation
+site_description: Vapor 4's documentation (web framework for Swift).
 
 # Repository
 repo_name: Vapor GitHub
