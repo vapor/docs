@@ -243,7 +243,7 @@ extension HTML: ResponseEncodable {
 }
 ```
 
-Note that this allows customizing the `Content-Type` header. See [`HTTPHeaders` reference](https://api.vapor.codes/vapor/4.0.0-alpha.1/Vapor/Extensions/HTTPHeaders.html) for more details.
+Note that this allows customizing the `Content-Type` header. See [`HTTPHeaders` reference](https://api.vapor.codes/vapor/master/Vapor/) for more details.
 
 You can then use `HTML` as a response type in your routes:
 
