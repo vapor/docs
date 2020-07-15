@@ -19,7 +19,7 @@ Here are some other great places to find information about Vapor.
 
 | name           | description                                      | link                                                            |
 |----------------|--------------------------------------------------|-----------------------------------------------------------------|
-| Vapor Discord  | Chat with thousands of Vapor developers.         | [visit &rarr;](http://vapor.team)                               |
+| Vapor Discord  | Chat with thousands of Vapor developers.         | [visit &rarr;](https://vapor.team)                               |
 | API docs       | Auto-generated documentation from code comments. | [visit &rarr;](https://api.vapor.codes)                          |
 | Stack Overflow | Ask and answer questions with the `vapor` tag.   | [visit &rarr;](https://stackoverflow.com/questions/tagged/vapor) |
 | Swift Forums  | Post in Vapor's section of the Swift.org forums.  | [visit &rarr;](https://forums.swift.org/c/related-projects/vapor)           |
