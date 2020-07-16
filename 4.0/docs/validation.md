@@ -80,12 +80,12 @@ validations.add("email", as: String.self, is: .email)
 
 The first parameter is the value's expected key, in this case `"email"`. This should match the property name on the type being validated. The second parameter, `as`, is the expected type, in this case `String`. The type usually matches the property's type, but not always. Finally, one or more validators can be added after the third parameter, `is`. In this case, we are adding a single validator that checks if the value is an email address.
 
-### Validating Request
+### Validating Request Content
 
-Once you've conformed your type to `Validatable`, the static `validate(_:)` function can be used to validate requests. Add the following line before `req.content.decode(CreateUser.self)` in the route handler.
+Once you've conformed your type to `Validatable`, the static `validate(content:)` function can be used to validate request content. Add the following line before `req.content.decode(CreateUser.self)` in the route handler.
 
 ```swift
-try CreateUser.validate(req)
+try CreateUser.validate(content: req)
 ```
 
 Now, try sending the following request containing an invalid email:
@@ -102,6 +102,27 @@ Content-Type: application/json
     "name": "Foo",
     "username": "foo"
 }
+```
+
+You should see the following error returned:
+
+```
+email is not a valid email address
+```
+
+### Validating Request Query
+
+In adidition, when confirming your type to `Validatable`, the static `validate(query:)` function can be used to validate request queries. Add the following line before `req.content.decode(CreateUser.self)` in the route handler.
+
+```swift
+try CreateUser.validate(query: req)
+```
+
+Now, try sending the following request containing an invalid email:
+
+```http
+GET /users?age=4&email=foo&favoriteColor=green&name=Foo&username=foo HTTP/1.1
+
 ```
 
 You should see the following error returned:
