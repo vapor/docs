@@ -112,13 +112,14 @@ email is not a valid email address
 
 ### Validating Request Query
 
-In adidition, when confirming your type to `Validatable`, the static `validate(query:)` function can be used to validate request queries. Add the following line before `req.content.decode(CreateUser.self)` in the route handler.
+Types conforming to `Validatable` also have `validate(query:)` which can be used to validate a request's query string. Add the following lines to the route handler.
 
 ```swift
 try CreateUser.validate(query: req)
+req.query.decode(CreateUser.self)
 ```
 
-Now, try sending the following request containing an invalid email:
+Now, try sending the following request containing an invalid email in the query string.
 
 ```http
 GET /users?age=4&email=foo&favoriteColor=green&name=Foo&username=foo HTTP/1.1
