@@ -194,7 +194,7 @@ DATABASE_URL: postgres://cybntsgadydqzm:2d9dc7f6d964f4750da1518ad71hag2ba729cd45
 
 **DATABASE_URL** here will represent out postgres database. **NEVER** hard code the static url from this, heroku will rotate it and it will break your application. It is also bad practice.
 
-Here is an example databsae configuration
+Here is an example database configuration
 
 ```swift
 if let databaseURL = Environment.get("DATABASE_URL") {
