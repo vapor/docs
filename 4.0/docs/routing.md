@@ -275,7 +275,7 @@ When the request body is streamed, `req.body.data` will be `nil`. You must use `
 
 ### Case Insensitive Routing
 
-Default behavior for routing is both case-sensitive and case-preserving. `Constant` path componenents can alternately be handled in a case-insensitive and case-preserving manner for the purposes of routing; to enable this behavior, configure prior to application startup:
+Default behavior for routing is both case-sensitive and case-preserving. `Constant` path components can alternately be handled in a case-insensitive and case-preserving manner for the purposes of routing; to enable this behavior, configure prior to application startup:
 ```swift
 app.routes.caseInsensitive = true
 ```
