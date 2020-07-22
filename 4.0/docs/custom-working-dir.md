@@ -1,5 +1,5 @@
 # Setting a Custom Working Directory
-By default XCode will reference a very obscure working directory called DerivedData for various assets which can cause significant problems or confusion. To avoid this, set a *Custom Working Directory* in the Xcode Scheme for your project. 
+By default Xcode will reference a very obscure working directory called DerivedData for various assets which can cause significant problems or confusion. To avoid this, set a *Custom Working Directory* in the Xcode Scheme for your project. 
 
 You will notice it is *not* set when you see this warning in the output: 
 ![Output Warning](../images/set-working-dir-01.png)
