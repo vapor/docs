@@ -65,9 +65,9 @@ nav:
   - Linux: "install/linux.md"
 - Getting Started:
   - Hello, world: "hello-world.md"
-  - Custom Working Directory: "custom-working-dir.md"
   - Folder Structure: "folder-structure.md"
   - SPM: "spm.md"
+  - Xcode: "xcode.md"
 - Basics:
   - Routing: "routing.md"
 # TODO: Improve quality
