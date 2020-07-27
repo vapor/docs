@@ -309,7 +309,7 @@ $ swift run Run routes
 
 ### Metadata
 
-All route registration methods return the created `Route`. This allows you to metadata to the route's `userInfo` dictionary. There are some default methods available, like adding a description.
+All route registration methods return the created `Route`. This allows you to add metadata to the route's `userInfo` dictionary. There are some default methods available, like adding a description.
 
 ```swift
 app.get("hello", ":name") { req in
