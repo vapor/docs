@@ -67,6 +67,7 @@ nav:
   - Hello, world: "hello-world.md"
   - Folder Structure: "folder-structure.md"
   - SPM: "spm.md"
+  - Xcode: "xcode.md"
 - Basics:
   - Routing: "routing.md"
 # TODO: Improve quality
