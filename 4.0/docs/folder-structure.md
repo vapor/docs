@@ -57,10 +57,6 @@ The migrations folder is where your database migrations go if you are using Flue
 
 The models folder is a great place to store your `Content` structs or Fluent `Model`s.
 
-#### main.swift
-
-This file creates and runs a configured instance of your Vapor `Application`.
-
 #### configure.swift
 
 This file contains the `configure(_:)` function. This method is called by `main.swift` to configure the newly created `Application`. This is where you should register services like routes, databases, providers, and more. 
@@ -68,6 +64,14 @@ This file contains the `configure(_:)` function. This method is called by `main.
 #### routes.swift
 
 This file contains the `routes(_:)` function. This method is called near the end of `configure(_:)` to register routes to your `Application`. 
+
+### Run
+
+This is the main executable target, containing just the code needed to get your application up and running.
+
+#### main.swift
+
+This file creates and runs a configured instance of your Vapor `Application`.
 
 ## Tests
 
