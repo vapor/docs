@@ -10,7 +10,6 @@ Now that you've created, built, and run your first Vapor app, let's take a momen
 │   │   ├── Controllers
 │   │   ├── Migrations
 │   │   ├── Models
-│   │   ├── app.swift
 │   │   ├── configure.swift
 │   │   └── routes.swift
 │   └── Run
@@ -58,17 +57,21 @@ The migrations folder is where your database migrations go if you are using Flue
 
 The models folder is a great place to store your `Content` structs or Fluent `Model`s.
 
-#### app.swift
-
-This file contains the `app(_:)` function which creates a configured instance of your Vapor `Application`. This method is used by the `Run` target's `main.swift` file to create and run your application. This method is also used in tests to create an instance of your application for testing.
-
 #### configure.swift
 
-This file contains the `configure(_:)` function. This method is called by `app(_:)` to configure the newly created `Application`. This is where you should register services like routes, databases, providers, and more. 
+This file contains the `configure(_:)` function. This method is called by `main.swift` to configure the newly created `Application`. This is where you should register services like routes, databases, providers, and more. 
 
 #### routes.swift
 
 This file contains the `routes(_:)` function. This method is called near the end of `configure(_:)` to register routes to your `Application`. 
+
+### Run
+
+This is the main executable target, containing just the code needed to get your application up and running.
+
+#### main.swift
+
+This file creates and runs a configured instance of your Vapor `Application`.
 
 ## Tests
 
