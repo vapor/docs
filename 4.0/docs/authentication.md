@@ -351,8 +351,8 @@ Content-Type: application/json
 {
     "name": "Vapor",
     "email": "test@vapor.codes",
-    "password": "secret",
-    "confirmPassword": "secret"
+    "password": "secret42",
+    "confirmPassword": "secret42"
 }
 ```
 
@@ -393,10 +393,10 @@ Test that this route works by sending the following request.
 
 ```http
 POST /login HTTP/1.1
-Authorization: Basic dGVzdEB2YXBvci5jb2RlczpzZWNyZXQ=
+Authorization: Basic dGVzdEB2YXBvci5jb2RlczpzZWNyZXQ0Mg=
 ```
 
-This request passes the username `test@vapor.codes` and password `secret` via the Basic authentication header. You should see the previously created user returned.
+This request passes the username `test@vapor.codes` and password `secret42` via the Basic authentication header. You should see the previously created user returned.
 
 While you could theoretically use Basic authentication to protect all of your endpoints, it's recommended to use a separate token instead. This minimizes how often you must send the user's sensitive password over the Internet. It also makes authentication much faster since you only need to perform password hashing during login.
 
