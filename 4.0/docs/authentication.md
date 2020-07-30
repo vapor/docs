@@ -219,7 +219,7 @@ req.auth.logout(User.self)
 
 ## Fluent
 
-Fluent defines two protocols `ModelAuthenticatable` and `ModelTokenAuthenticatable` which can be added to your existing models. Conforming your models to these protocols allows for the creation of authenticators for protecting endpoints. 
+[Fluent](fluent/overview.md) defines two protocols `ModelAuthenticatable` and `ModelTokenAuthenticatable` which can be added to your existing models. Conforming your models to these protocols allows for the creation of authenticators for protecting endpoints. 
 
 `ModelTokenAuthenticatable` authenticates with a Bearer token. This is what you use to protect most of your endpoints. `ModelAuthenticatable` authenticates with username and password and is used by a single endpoint for generating tokens. 
 
@@ -674,6 +674,39 @@ This will use the application's default database for resolving the user. To spec
 User.sessionAuthenticator(.sqlite)
 ```
 
+## JWT
 
+[JWT](jwt.md) provides a `JWTAuthenticator` that can be used to authenticate JSON Web Tokens in incoming requests. If you are new to JWT, check out the [overview](jwt.md).
 
+First, create a type representing the structure of the JWT payload.
 
+```swift
+// Example JWT payload.
+struct TestUser: Content, Authenticatable, JWTPayload {
+    var name: String
+
+    func verify(using signer: JWTSigner) throws {
+        // Nothing to verify.
+    }
+}
+```
+
+By conforming the payload to `Authenticatable` and `JWTPayload`, you can generate a route authenticator using the `authenticator()` method. Add this to a route group to automatically fetch and verify the JWT before your route is called. 
+
+```swift
+// Create a route group that requires the TestUser JWT.
+let secure = app.grouped(TestUser.authenticator(), TestUser.guardMiddleware())
+```
+
+Adding the optional [guard middleware](#guard-middleware) will require that authorization succeeded.
+
+Inside the protected routes, you can access the authenticated JWT payload using `req.auth`. 
+
+```swift
+// Return the authenticated JWT payload's name field.
+secure.get("me") { req -> HTTPStatus in
+    let user = try req.auth.require(TestUser.self)
+    print(user.name)
+    return .ok
+}
+```

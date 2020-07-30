@@ -227,7 +227,9 @@ try app.jwt.signers.use(.rs256(key: .public(pem: rsaPublicKey)))
 
 ### ECDSA
 
-ECDSA is a more modern algorithm that is similar to RSA. It is considered to be more secure for a given key length than RSA<sup>[1](#1)</sup>. However, you should do your own research before deciding. 
+ECDSA is a more modern algorithm that is similar to RSA. It is considered to be more secure for a given key length than RSA[^1]. However, you should do your own research before deciding. 
+
+[^1]: [https://sectigostore.com/blog/ecdsa-vs-rsa-everything-you-need-to-know/](https://sectigostore.com/blog/ecdsa-vs-rsa-everything-you-need-to-know/)
 
 Like RSA, you can load ECDSA keys using PEM files: 
 
@@ -292,7 +294,7 @@ This will automatically include the signer's name in the JWT header's `"kid"` fi
 let payload = try req.jwt.verify(as: TestPayload.self)
 ```
 
-Note that since [JWKs](#jwk) already contain `kid` values, you do not need to specify them during configuration.
+Since [JWKs](#jwk) already contain `kid` values, you do not need to specify them during configuration.
 
 ```swift
 // JWKs already contain the "kid" field.
