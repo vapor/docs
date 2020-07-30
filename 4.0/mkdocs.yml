@@ -101,6 +101,7 @@ nav:
   - Authentication: "authentication.md"
   - Crypto: "crypto.md"
   - Passwords: "passwords.md"
+  - JWT: "jwt.md"
 - Deploy:
   - DigitalOcean: "deploy/digital-ocean.md"
   - Heroku: "deploy/heroku.md"

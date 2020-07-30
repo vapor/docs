@@ -214,6 +214,10 @@ Below is an example using foreign key actions.
 .foreignKey("star_id", references: "star", "id", onDelete: .cascade)
 ```
 
+!!! warning
+    Foreign key actions happen solely in the database, bypassing Fluent. 
+    This means things like model middleware and soft-delete may not work correctly.
+
 ## Dictionary
 
 The dictionary data type is capable of storing nested dictionary values. This includes structs that conform to `Codable` and Swift dictionaries with a `Codable` value. 
