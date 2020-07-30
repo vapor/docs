@@ -31,7 +31,7 @@ If you edit the manifest directly inside Xcode, it will automatically pick up th
 
 ### Configuration
 
-The JWT module adds a new property `jwt` to `Application` that you can use to configure how your app handles JWTs. To sign or verify JWTs, you will need to configure a signer. The simplest signing algorithm is `HS256` or HMAC with SHA-256. 
+The JWT module adds a new property `jwt` to `Application` that is used for configuration. To sign or verify JWTs, you will need to add a signer. The simplest signing algorithm is `HS256` or HMAC with SHA-256. 
 
 ```swift
 import JWT
@@ -89,7 +89,7 @@ struct TestPayload: JWTPayload {
 
 ### Verify
 
-Now that we have a `JWTPayload`, we can attach it to a request and use the JWT package to fetch and verify it. Add the following route to your project. 
+Now that we have a `JWTPayload`, we can attach the JWT above to a request and use `req.jwt` to fetch and verify it. Add the following route to your project. 
 
 ```swift
 // Fetch and verify JWT from incoming request.
@@ -304,7 +304,7 @@ app.jwt.signers.use(jwk: jwk)
 
 ## Claims
 
-JWTKit includes several helpers for implementing common [JWT claims](https://tools.ietf.org/html/rfc7519#section-4.1). 
+Vapor's JWT package includes several helpers for implementing common [JWT claims](https://tools.ietf.org/html/rfc7519#section-4.1). 
 
 |Claim|Type|Verify Method|
 |---|---|---|
