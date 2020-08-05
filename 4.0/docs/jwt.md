@@ -345,7 +345,7 @@ let jwksData = try Data(
 let jwks = try JSONDecoder().decode(JWKS.self, from: jwksData)
 
 // Create signers and add JWKS.
-try app.signers.use(jwks: jwks)
+try app.jwt.signers.use(jwks: jwks)
 ```
 
 You can now pass JWTs from Apple to the `verify` method. The key identifier (`kid`) in the JWT header will be used to automatically select the correct key for verification.
