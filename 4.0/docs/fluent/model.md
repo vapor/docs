@@ -462,6 +462,16 @@ planet.create(on: database)
 [earth, mars].create(on: database)
 ```
 
+!!! warning
+    Models using [`@ID(custom:)`](#custom-identifier) with the `.database` generator (usually autoincrementing `Int`s) will not have their newly created identifiers accessible after batch create. For situations where you need to access the identifiers, call `create` on each model.
+
+To create an array of models separately, use `map` + `flatten`.
+
+```swift
+[earth, mars].map { $0.create(on: database) }
+    .flatten(on: database.eventLoop)
+```
+
 ### Update
 
 You can call the `update` method to save a model that was fetched from the database.
@@ -471,6 +481,13 @@ Planet.find(..., on: database).flatMap { planet in
     planet.name = "Earth"
     return planet.update(on: database)
 }
+```
+
+To update an array of models, use `map` + `flatten`.
+
+```swift
+[earth, mars].map { $0.update(on: database) }
+    .flatten(on: database.eventLoop)
 ```
 
 ## Query
