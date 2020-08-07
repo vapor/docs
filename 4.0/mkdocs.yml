@@ -92,6 +92,7 @@ nav:
   - Middleware: "middleware.md"
   - Testing: "testing.md"
   - Server: "server.md"
+  - Files: "files.md"
   - Commands: "commands.md"
   - Queues: "queues.md"
   - WebSockets: "websockets.md"

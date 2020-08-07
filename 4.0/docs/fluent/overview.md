@@ -139,6 +139,9 @@ try app.databases.use(.mysql(url: "<connection string>"), as: .mysql)
 
 MongoDB is a popular schemaless NoSQL database designed for programmers. The driver supports all cloud hosting providers and self-hosted installations from version 3.4 and up.
 
+!!! note
+    This driver is powered by a community created and maintained MongoDB client called [MongoKitten](https://github.com/OpenKitten/MongoKitten). For the official MongoDB client, see [mongo-swift-driver](https://github.com/mongodb/mongo-swift-driver).
+
 To use MongoDB, add the following dependencies to your package.
 
 ```swift
