@@ -228,7 +228,7 @@ swift run Run queues --scheduled
 ```
 
 !!! tip
-    Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: Run run queues --scheduled`
+    Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: Run queues --scheduled`
 
 ### Creating a `ScheduledJob`
 To being, start by creating a new `ScheduledJob`:
