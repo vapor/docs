@@ -200,6 +200,12 @@ By default, `@Timestamp` will use an efficient datetime encoding based on your d
 var updatedAt: Date?
 ```
 
+Note that the associated migration for this `.iso8601` example would require storage in `.string` format.
+
+```swift
+.field("updated_at", .string)
+```
+
 Available timestamp formats are listed below.
 
 |Format|Description|Type|
