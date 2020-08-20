@@ -47,8 +47,7 @@ On Linux, you will need to build the toolbox from source. View the toolbox's <a 
 git clone https://github.com/vapor/toolbox.git
 cd toolbox
 git checkout <desired version>
-swift build -c release --disable-sandbox --enable-test-discovery
-mv .build/release/vapor /usr/local/bin
+make install
 ```
 
 Double check the installation was successful by printing help.
