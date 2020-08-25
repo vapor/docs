@@ -303,7 +303,7 @@ print(home.name)
 Query builder supports updating more than one model at a time using the `update` method.
 
 ```swift
-// Update all planets named "Earth"
+// Update all planets named "Pluto"
 Planet.query(on: database)
     .set(\.$type, to: .dwarf)
     .filter(\.$name == "Pluto")
