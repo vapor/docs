@@ -77,7 +77,7 @@ SQLite is an open source, embedded SQL database. Its simplistic nature makes it 
 To use SQLite, add the following dependencies to your package.
 
 ```swift
-.package(url: "https://github.com/vapor/fluent-sqlite-driver.git", from: "4.0.0-beta")
+.package(url: "https://github.com/vapor/fluent-sqlite-driver.git", from: "4.0.0")
 ```
 
 ```swift
