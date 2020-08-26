@@ -98,6 +98,7 @@ nav:
   - WebSockets: "websockets.md"
   - Sessions: "sessions.md"
   - Services: "services.md"
+  - APNS: "apns.md"
 - Security:
   - Authentication: "authentication.md"
   - Crypto: "crypto.md"
