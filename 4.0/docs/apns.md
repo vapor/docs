@@ -42,9 +42,7 @@ import APNS
 // Configure APNS using JWT authentication.
 app.apns.configuration = try .init(
     authenticationMethod: .jwt(
-        key: .private(pem: """
-        <#private key#>
-        """),
+        key: .private(filePath: <#path to .p8#>),
         keyIdentifier: "<#key identifier#>",
         teamIdentifier: "<#team identifier#>"
     ),
@@ -53,11 +51,14 @@ app.apns.configuration = try .init(
 )
 ```
 
-Fill in the placeholders with your credentials. The private key should begin with:
+Fill in the placeholders with your credentials. The above example shows [JWT-based auth](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns) using the `.p8` key you get from Apple's developer portal. For [TLS-based auth](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns) with a certificate, use the `.tls` authentication method: 
 
-```
------BEGIN PRIVATE KEY-----
-...
+```swift
+authenticationMethod: .tls(
+    privateKeyPath: <#path to private key#>,
+    pemPath: <#path to pem file#>,
+    pemPassword: <#optional pem password#>
+)
 ```
 
 ### Send
@@ -82,6 +83,54 @@ app.get("test-push") { req -> EventLoopFuture<HTTPStatus> in
 }
 ```
 
-The first parameter accepts the push notification payload and the second parameter is the target device token. For more information on available methods, see [APNSwift's README](https://github.com/kylebrowning/APNSwift).
+The first parameter accepts the push notification alert and the second parameter is the target device token. 
 
+## Alert
 
+`APNSwiftAlert` is the actual meta data of the push notification alert someone wishes to send. More details on the specifics of each property are provided [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html). They follow a 1-1 naming scheme listed in Apple's documentation
+
+```swift
+let alert = APNSwiftAlert(
+    title: "Hey There", 
+    subtitle: "Full moon sighting", 
+    body: "There was a full moon last night did you see it"
+)
+```
+
+This type can be passed directly to the `send` method and it will be wrapped in an `APNSwiftPayload` automatically.
+
+### Payload
+
+`APNSwiftPayload` is the meta data of the push notification. Things like the alert, badge count. More details on the specifics of each property are provided [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html). They follow a 1-1 naming scheme listed in Apple's documentation
+
+```swift
+let alert = ...
+let aps = APNSwiftPayload(alert: alert, badge: 1, sound: .normal("cow.wav"))
+```
+
+This can be passed to the `send` method.
+
+### Custom Notification Data
+
+Apple provides engineers with the ability to add custom payload data to each notification. In order to facilitate this we have the `APNSwiftNotification`.
+
+```swift
+struct AcmeNotification: APNSwiftNotification {
+    let acme2: [String]
+    let aps: APNSwiftPayload
+
+    init(acme2: [String], aps: APNSwiftPayload) {
+        self.acme2 = acme2
+        self.aps = aps
+    }
+}
+
+let aps: APNSwiftPayload = ...
+let notification = AcmeNotification(acme2: ["bang", "whiz"], aps: aps)
+```
+
+This custom notification type can be passed to the `send` method.
+
+## More Information
+
+For more information on available methods, see [APNSwift's README](https://github.com/kylebrowning/APNSwift).
