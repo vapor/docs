@@ -235,7 +235,7 @@ To being, start by creating a new `ScheduledJob`:
 
 ```swift
 import Vapor
-import Jobs
+import Queues
 
 struct CleanupJob: ScheduledJob {
     // Add extra services here via dependency injection, if you need them.
