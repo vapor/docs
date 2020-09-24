@@ -206,7 +206,18 @@ if let databaseURL = Environment.get("DATABASE_URL") {
 }
 ```
 
-Unverified TLS is required if you are using Heroku Postgres's standard plan.
+Unverified TLS is required if you are using Heroku Postgres's standard plan:
+
+```swift
+if let databaseURL = Environment.get("DATABASE_URL"), var postgresConfig = PostgresConfiguration(url: databaseURL) {
+    postgresConfig.tlsConfiguration = .forClient(certificateVerification: .none)
+    app.databases.use(.postgres(
+        configuration: postgresConfig
+    ), as: .psql)
+} else {
+    // ...
+}
+```
 
 Don't forget to commit these changes
 
