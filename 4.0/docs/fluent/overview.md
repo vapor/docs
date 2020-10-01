@@ -106,6 +106,9 @@ app.migrations.add(CreateTodo())
 try app.autoMigrate().wait()
 ```
 
+!!! tip
+    The SQLite configuration automatically enables foreign key constraints on all created connections, but does not alter foreign key configurations in the database itself. Deleting records in a database directly, might violate foreign key constraints and triggers.
+
 #### MySQL
 
 MySQL is a popular open source SQL database. It is available on many cloud hosting providers. This driver also supports MariaDB.
