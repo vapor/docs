@@ -106,9 +106,6 @@ app.migrations.add(CreateTodo())
 try app.autoMigrate().wait()
 ```
 
-!!! tip
-    The SQLite configuration automatically enables foreign key constraints on all created connections, but does not alter foreign key configurations in the database itself. Deleting records in a database directly, might violate foreign key constraints and triggers.
-
 #### MySQL
 
 MySQL is a popular open source SQL database. It is available on many cloud hosting providers. This driver also supports MariaDB.
@@ -247,6 +244,39 @@ init(id: UUID? = nil, name: String) {
 ```
 
 Using convenience inits is especially helpful if you add new properties to your model as you can get compile-time errors if the init method changes.
+
+### Property Wrappers
+
+Models are created using so called property wrappers, which allows logic to be added to a property. So instead of having to write your own `didSet` and `get` value, `Fluent` provides some easy to use wrappers to lift some of the heavy work. All the provided properties/property wrappers are discussed in the [Model section](https://docs.vapor.codes/4.0/fluent/model/).
+
+An example below by tweaking the `Star` and `Planet` class a little bit.
+```swift
+final class Star: Model {
+    /// Planets that belong to the star.
+    @Children(for: \.$star)
+    var planets: [Planet]
+}
+
+final class Planet: Model {
+    /// The parent star of the planet.
+    @Parent(key: "star")
+    var star: Star
+}
+```
+As you can see, the star now has planets and each planet has a star. If we want to set the `.star` of a `Planet`, you might think of simply setting `planet.star = Star()`, but unfortunately, that doesn't work. 
+> This is caused by the `@Parent` property wrapper, that doesn't allow it to be set directly. There are property wrappers that do allow this.
+
+Since the relation is based on ID's, setting a `Star` object, will break the relation, as a `Star` ≠ `UUID`. So instead, we use the projected value of the property wrapper to update the `.id` of the `.star`. An example writing an initializer for a `Planet`.
+```swift
+final class Planet: Model {
+    init(id: UUID = UUID(), name: String, star: Star) throws {
+        self.id = id
+        self.name = name
+        self.$star.id = try star.requiredID()
+    }
+}
+```
+This time the property wrapper's projected value (the linked `UUID`) is set. You can find more examples of property wrappers and projected values on [this Swift page](https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID617).
 
 ## Migrations
 
