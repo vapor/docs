@@ -4,7 +4,7 @@ Transactions allow you to ensure multiple operations complete succesfully before
 Once a transaction is started, you may run Fluent queries normally. However, no data will be saved to the database until the transaction completes. 
 If an error is thrown at any point during the transaction (by you or the database), none of the changes will take effect.
 
-To perform a transcation, you need access to something that can connect to the database. This is usually an incoming HTTP request. For this, use `req.db.transaction(_ :)`:
+To perform a transaction, you need access to something that can connect to the database. This is usually an incoming HTTP request. For this, use `req.db.transaction(_ :)`:
 ```swift
 req.db.transaction { database in
     // use database
