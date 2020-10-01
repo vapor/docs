@@ -150,6 +150,9 @@ app.databases.use(.mysql(
 ), as: .mysql)
 ```
 
+!!! warning
+    Do not disable certificate verification in production. You should provide a certificate to the `TLSConfiguration` to verify against. 
+
 #### MongoDB
 
 MongoDB is a popular schemaless NoSQL database designed for programmers. The driver supports all cloud hosting providers and self-hosted installations from version 3.4 and up.
