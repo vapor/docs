@@ -138,7 +138,7 @@ You can also parse the credentials from a database connection string.
 try app.databases.use(.mysql(url: "<connection string>"), as: .mysql)
 ```
 
-To configure a local connection without SSL certificate involved, you should disable certificate verification.
+To configure a local connection without SSL certificate involved, you should disable certificate verification. You might need to do this for example if connecting to a MySQL 8 database in Docker.
 
 ```swift
 app.databases.use(.mysql(
