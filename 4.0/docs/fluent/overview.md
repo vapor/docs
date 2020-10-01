@@ -138,6 +138,21 @@ You can also parse the credentials from a database connection string.
 try app.databases.use(.mysql(url: "<connection string>"), as: .mysql)
 ```
 
+To configure a local connection without SSL certificate involved, you should disable certificate verification. You might need to do this for example if connecting to a MySQL 8 database in Docker.
+
+```swift
+app.databases.use(.mysql(
+    hostname: "localhost", 
+    username: "vapor", 
+    password: "vapor", 
+    database: "vapor", 
+    tlsConfiguration: .forClient(certificateVerification: .none)
+), as: .mysql)
+```
+
+!!! warning
+    Do not disable certificate verification in production. You should provide a certificate to the `TLSConfiguration` to verify against. 
+
 #### MongoDB
 
 MongoDB is a popular schemaless NoSQL database designed for programmers. The driver supports all cloud hosting providers and self-hosted installations from version 3.4 and up.
