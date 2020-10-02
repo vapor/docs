@@ -528,7 +528,7 @@ Model middleware allow you to hook into your model's lifecycle events. The follo
 |`softDelete`|Runs before a model is soft deleted.|
 |`restore`|Runs before a model is restored (opposite of soft delete).|
 
-Model middleware are declared using the `ModelMiddleware` protocol. All lifecycle methods have a default implementation, so you only need to implement the methods you require. Each method accepts the model in question, a reference to the database, and the next action in the chain. The middleware can choose to return early, throw an error, or call the next action to continue normally.
+Model middleware are declared using the `ModelMiddleware` protocol. All lifecycle methods have a default implementation, so you only need to implement the methods you require. Each method accepts the model in question, a reference to the database, and the next action in the chain. The middleware can choose to return early, return a failed future, or call the next action to continue normally.
 
 Using these methods you can perform actions both before and after the specific event completes. Performing actions after the event completes can be done by mapping the future returned from the next responder.
 
