@@ -52,9 +52,11 @@ Login with Bcrypt passwords can be implemented by first fetching the user's pass
 
 ## OTP
 
-Vapor supports both HOTP and TOTP one-time passwords. The OTP's work with the SHA-1, SHA-256 and SHA-512 hash functions and can provide six, seven or eight digits of output.
+Vapor supports both HOTP and TOTP one-time passwords. The OTP's work with the SHA-1, SHA-256 and SHA-512 hash functions and can provide six, seven or eight digits of output. An OTP is able to provide authentication by generating a human-readable password, which must only be used once. To do so, parties first agree on a symmetric key (which must be kept private at all times).
 
 #### HOTP
+
+The HOTP is an OTP based on HMAC's. In addition to the symmetric key, both parties also agree on a counter, which is a number, providing uniqueness for the password. After each generation attempt, the counter is increased.
 ```swift
 let key = SymmetricKey(size: .bits128)
 let hotp = HOTP(key: key, digest: .sha256, digits: .six)
@@ -65,6 +67,8 @@ HOTP.generate(key: key, digest: .sha256, digits: .six, counter: 25)
 ```
 
 #### TOTP
+
+A TOTP is an addition to the HOTP. It works the same, but it uses time instead of a counter to generate uniqueness. Due to latency problems, both networks but also humans related, the TOTP is generated over a time interval.
 ```swift
 let key = SymmetricKey(size: .bits128)
 let totp = TOTP(key: key, digest: .sha256, digits: .six, interval: 60)
