@@ -50,7 +50,40 @@ if pass {
 
 Login with Bcrypt passwords can be implemented by first fetching the user's password digest from the database by email or username. The known digest can then be verified against the supplied plaintext password.
 
-## TOTP
+## OTP
 
-Coming soon.
+Vapor supports both HOTP and TOTP one-time passwords. The OTP's work with the SHA-1, SHA-256 and SHA-512 hash functions and can provide six, seven or eight digits of output.
 
+#### HOTP
+```swift
+let key = SymmetricKey(size: .bits128)
+let hotp = HOTP(key: key, digest: .sha256, digits: .six)
+let code = hotp.generate(counter: 25)
+
+// Or using the static generate function
+HOTP.generate(key: key, digest: .sha256, digits: .six, counter: 25)
+```
+
+#### TOTP
+```swift
+let key = SymmetricKey(size: .bits128)
+let totp = TOTP(key: key, digest: .sha256, digits: .six, interval: 60)
+let code = totp.generate(time: Date())
+
+// Or using the static generate function
+TOTP.generate(key: key, digest: .sha256, digits: .six, interval: 60, time: Date())
+```
+
+#### Range
+OTP's are very useful for giving some leeway in validation and out of sync counters. Both OTP implementations have the ability to generate the OTP for an error margin.
+```swift
+let key = SymmetricKey(size: .bits128)
+let hotp = HOTP(key: key, digest: .sha256, digits: .six)
+
+// Generate a window of correct counters
+let codes = hotp.generate(counter: 25, range: 2)
+```
+The example above allows for a margin of 2, which means the HOTP will be calculated for the counter value `23 ... 27` and all of these codes will be returned. 
+
+!!! warning
+    Note: giving a higher margin will reduce the security as an attacker has more time or freedom to perform attacks.
