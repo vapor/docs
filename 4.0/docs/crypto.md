@@ -68,7 +68,7 @@ HOTP.generate(key: key, digest: .sha256, digits: .six, counter: 25)
 
 #### TOTP
 
-A TOTP is an addition to the HOTP. It works the same, but it uses time instead of a counter to generate uniqueness. Due to latency problems, both networks but also humans related, the TOTP is generated over a time interval.
+A TOTP is an addition to the HOTP. It works the same, but it uses time instead of a counter to generate uniqueness. To compensate for minor skews introduced by unsynchronized clocks, network latency and user delay, a TOTP is generated to be valid over a specified time interval.
 ```swift
 let key = SymmetricKey(size: .bits128)
 let totp = TOTP(key: key, digest: .sha256, digits: .six, interval: 60)
