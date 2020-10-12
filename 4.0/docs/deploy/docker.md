@@ -182,7 +182,7 @@ docker logs <container_id>
 
 To run migrations, execute
 ```shell
-docker-compose up migrate
+docker-compose run migrate
 ```
 
 After migrations run, you can visit `http://localhost:8080/todos` again and you will get an empty list of todos instead of an error message.
