@@ -56,7 +56,7 @@ Vapor supports both HOTP and TOTP one-time passwords. OTPs work with the SHA-1, 
 
 #### HOTP
 
-The HOTP is an OTP based on HMAC's. In addition to the symmetric key, both parties also agree on a counter, which is a number, providing uniqueness for the password. After each generation attempt, the counter is increased.
+HOTP is an OTP based on an HMAC signature. In addition to the symmetric key, both parties also agree on a counter, which is a number providing uniqueness for the password. After each generation attempt, the counter is increased.
 ```swift
 let key = SymmetricKey(size: .bits128)
 let hotp = HOTP(key: key, digest: .sha256, digits: .six)
