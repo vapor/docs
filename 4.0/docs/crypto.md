@@ -52,7 +52,7 @@ Login with Bcrypt passwords can be implemented by first fetching the user's pass
 
 ## OTP
 
-Vapor supports both HOTP and TOTP one-time passwords. The OTP's work with the SHA-1, SHA-256 and SHA-512 hash functions and can provide six, seven or eight digits of output. An OTP is able to provide authentication by generating a human-readable password, which must only be used once. To do so, parties first agree on a symmetric key (which must be kept private at all times).
+Vapor supports both HOTP and TOTP one-time passwords. OTPs work with the SHA-1, SHA-256, and SHA-512 hash functions and can provide six, seven, or eight digits of output. An OTP provides authentication by generating a single-use human-readable password. To do so, parties first agree on a symmetric key, which must be kept private at all times to maintain the security of the generated passwords.
 
 #### HOTP
 
@@ -68,7 +68,7 @@ HOTP.generate(key: key, digest: .sha256, digits: .six, counter: 25)
 
 #### TOTP
 
-A TOTP is an addition to the HOTP. It works the same, but it uses time instead of a counter to generate uniqueness. To compensate for minor skews introduced by unsynchronized clocks, network latency and user delay, a TOTP is generated to be valid over a specified time interval.
+A TOTP is a time-based variation of the HOTP. It works mostly the same, but instead of a simple counter, the current time is used to generate uniqueness. To compensate for the inevitable skew introduced by unsynchronized clocks, network latency, user delay, and other confounding factors, a generated TOTP code remains valid over a specified time interval (most commonly, 30 seconds).
 ```swift
 let key = SymmetricKey(size: .bits128)
 let totp = TOTP(key: key, digest: .sha256, digits: .six, interval: 60)
@@ -79,7 +79,7 @@ TOTP.generate(key: key, digest: .sha256, digits: .six, interval: 60, time: Date(
 ```
 
 #### Range
-OTP's are very useful for giving some leeway in validation and out of sync counters. Both OTP implementations have the ability to generate the OTP for an error margin.
+OTPs are very useful for providing leeway in validation and out of sync counters. Both OTP implementations have the ability to generate an OTP with a margin for error.
 ```swift
 let key = SymmetricKey(size: .bits128)
 let hotp = HOTP(key: key, digest: .sha256, digits: .six)
@@ -87,7 +87,7 @@ let hotp = HOTP(key: key, digest: .sha256, digits: .six)
 // Generate a window of correct counters
 let codes = hotp.generate(counter: 25, range: 2)
 ```
-The example above allows for a margin of 2, which means the HOTP will be calculated for the counter value `23 ... 27` and all of these codes will be returned. 
+The example above allows for a margin of 2, which means the HOTP will be calculated for the counter values `23 ... 27`, and all of these codes will be returned. 
 
 !!! warning
-    Note: giving a higher margin will reduce the security as an attacker has more time or freedom to perform attacks.
+    Note: The larger the error margin used, the more time and freedom an attacker has to act, decreasing the security of the algorithm.
