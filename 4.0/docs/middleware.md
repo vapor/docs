@@ -65,7 +65,7 @@ let corsConfiguration = CORSMiddleware.Configuration(
 )
 let cors = CORSMiddleware(configuration: corsConfiguration)
 
-// Only if you want to enable the default per-route loggin
+// Only add this if you want to enable the default per-route logging
 let routeLogging = RouteLoggingMiddleware(logLevel: .info)
 
 // Add the defautl error middleware
