@@ -23,10 +23,11 @@ There can be many different usages of these four elements depending on the tag's
 
 ```leaf
 #(variable)
-#embed("template")
-#set("title") { Welcome to Vapor }
+#extend("template"): I'm added to a base template! #endextend
+#export("title"): Welcome to Vapor #endexport
+#import("body")
 #count(friends)
-#for(friend in friends) { <li>#(friend.name)</li> }
+#for(friend in friends): <li>#(friend.name)</li> #endfor
 ```
 
 Leaf also supports many expressions you are familiar with in Swift.
@@ -38,9 +39,9 @@ Leaf also supports many expressions you are familiar with in Swift.
 - etc.
 
 ```leaf
-#if(1 + 1 == 2) {
+#if(1 + 1 == 2):
     Hello!
-}
+#endif
 ```
 
 ## Context
