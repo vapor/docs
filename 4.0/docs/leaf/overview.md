@@ -17,7 +17,7 @@ Leaf tags are made up of four elements:
 - Token `#`: This signals the leaf parser to begin looking for a tag.
 - Name `count`: that identifies the tag.
 - Parameter List `(users)`: May accept zero or more arguments.
-- Body: An optional body can be supplied to some tags. This is similar to Swift's trailing-closure syntax.
+- Body: An optional body can be supplied to some tags using a semicolon and a closing tag
 
 There can be many different usages of these four elements depending on the tag's implementation. Let's look at a few examples of how Leaf's built-in tags might be used:
 
@@ -53,16 +53,16 @@ struct WelcomeContext: Encodable {
     var title: String
     var numbers: [Int]
 }
-return try req.view().make("home", WelcomeContext(title: "Hello!", numbers: [42, 9001]))
+return try req.view.render("home", WelcomeContext(title: "Hello!", numbers: [42, 9001]))
 ```
 
 That will expose `title` and `numbers` to our Leaf template, which can then be used inside tags. For example:
 
 ```leaf
 <h1>#(title)</h1>
-#for(number in numbers){
+#for(number in numbers):
     <p>#(number)</p>
-}
+#endfor
 ```
 
 ## Usage
@@ -74,43 +74,43 @@ Here are some common Leaf usage examples.
 Leaf is able to evaluate a range of conditions using its `#if` tag. For example, if you provide a variable it will check that variable exists in its context:
 
 ```leaf
-#if(title) {
+#if(title):
     The title is #(title)
-} else {
+#else:
     No title was provided.
-}
+#endif
 ```
 
 You can also write comparisons, for example:
 
 ```leaf
-#if(title == "Welcome") {
+#if(title == "Welcome"):
     This is a friendly web page.
-} else {
+#else:
     No strangers allowed!
-}
+#endif
 ```
 
 If you want to use another tag as part of your condition, you should omit the `#` for the inner tag. For example:
 
 ```leaf
-#if(lowercase(title) == "welcome") {
-    This is a friendly web page.
-} else {
-    No strangers allowed!
-}
+#if(count(users) > 0):
+    You have users!
+#else:
+    There are no users yet :(
+#endif
 ```
 
-Just like in Swift, you can also use `else if` statement.s
+You can also use `#elseif` statement.s
 
 ```leaf
-#if(title == "Welcome") {
-    This is a friendly web page.
-} else if (1 == 2) {
-    What?
-} else {
-    No strangers allowed!
-}
+#if(title == "Welcome"):
+    Hello new user!
+#elseif(title == "Welcome back!"):
+    Hello old user
+#else
+    Unexpected page!
+#endif
 ```
 
 ### Loops
@@ -124,7 +124,7 @@ struct SolarSystem: Codable {
     let planets = ["Venus", "Earth", "Mars"]
 }
 
-return try req.view().render(..., SolarSystem())
+return try req.view.render("solarSystem", SolarSystem())
 ```
 
 We could then loop over them in Leaf like this:
@@ -132,9 +132,9 @@ We could then loop over them in Leaf like this:
 ```leaf
 Planets:
 <ul>
-#for(planet in planets) {
+#for(planet in planets):
     <li>#(planet)</li>
-}
+#endfor
 </ul>
 ```
 
@@ -145,20 +145,6 @@ Planets:
 - Venus
 - Earth
 - Mars
-```
-
-Leaf provides some extra variables inside a `#for` loop to give you more information about the loop's progress:
-
-- The `isFirst` variable is true when the current iteration is the first one.
-- The `isLast` variable is true when it's the last iteration.
-- The `index` variable will be set to the number of the current iteration, counting from 0.
-
-Here's how we could use a loop variable to print just the first name in our array:
-
-```leaf
-#for(planet in planets) {
-    #if(isFirst) { #(planet) is first! }
-}
 ```
 
 ### Embedding templates
