@@ -195,21 +195,7 @@ Here we are using `#get` to fetch the content previously stored in the context. 
 
 ### Comments
 
-You can write single or multiline comments with Leaf. They will be discarded when rendering the view.
-
-```leaf
-#// Say hello to the user
-Hello, #(name)!
-```
-
-Multi-line comments are opened with `#/*` and closed with `*/`.
-
-```leaf
-#/*
-     Say hello to the user
-*/
-Hello, #(name)!
-```
+Coming soon
 
 ### Other tags
 
