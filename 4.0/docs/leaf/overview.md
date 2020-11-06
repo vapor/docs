@@ -213,44 +213,6 @@ Hello, #(name)!
 
 ### Other tags
 
-#### `#date`
-
-The `#date` tag formats dates into a readable string.
-
-```swift
-render(..., ["now": Date()])
-```
-
-```leaf
-The time is #date(now)
-```
-
-You can pass a custom date formatter string as the second argument. See Swift's [`DateFormatter`](https://developer.apple.com/documentation/foundation/dateformatter) for more information.
-
-```leaf
-The date is #date(now, "yyyy-MM-dd")
-```
-
-#### `#capitalize`
-
-The `#capitalize` tag uppercases the first letter of any string.
-
-```leaf
-#capitalize(name)
-```
-
-#### `#contains`
-
-The `#contains` tag accepts an array and a value as its two parameters, and returns true if the array in parameter one contains the value in parameter two.
-
-```leaf
-#if(contains(planets, "Earth")) {
-    Earth is here!
-} else {
-    Earth is not in this array.
-}
-```
-
 #### `#count`
 
 The `#count` tag returns the number of items in an array. For example:
@@ -265,12 +227,4 @@ The `#lowercase` tag lowercases all letters in a string.
 
 ```leaf
 #lowercase(name)
-```
-
-#### `#uppercase`
-
-The `#uppercase` tag uppercases all letters in a string.
-
-```leaf
-#uppercase(name)
 ```
