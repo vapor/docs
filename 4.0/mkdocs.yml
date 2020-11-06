@@ -90,6 +90,7 @@ nav:
   - Schema: "fluent/schema.md"
   - Advanced: "fluent/advanced.md"
 - Leaf:
+  - Getting Started: "leaf/getting-started.md"
   - Overview: "leaf/overview.md"
 - Advanced:
   - Middleware: "middleware.md"
