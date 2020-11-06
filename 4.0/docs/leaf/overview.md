@@ -147,42 +147,42 @@ Planets:
 - Mars
 ```
 
-### Embedding templates
+### Extending templates
 
-Leaf’s `#embed` tag allows you to copy the contents of one template into another. When use this, you should always omit the template file's .leaf extension.
+Leaf’s `#extend` tag allows you to copy the contents of one template into another. When use this, you should always omit the template file's .leaf extension.
 
-Embedding is useful for copying in a standard piece of content, for example a page footer or advert code:
+Extending is useful for copying in a standard piece of content, for example a page footer, advert code or table that's shared across multiple pages:
 
 ```leaf
-#embed("footer")
+#extend("footer")
 ```
 
 This tag is also useful for building one template on top of another. For example, you might have a master.leaf file that includes all the code required to lay out your website – HTML structure, CSS and JavaScript – with some gaps in place that represent where page content varies.
 
-Using this approach, you would construct a child template that fills in its unique content, then embeds the parent template that places the content appropriately. To do this, you can use the `#set` and `#get` tags to store and later retrieve content from the context.
+Using this approach, you would construct a child template that fills in its unique content, then extends the parent template that places the content appropriately. To do this, you can use the `#export` and `#import` tags to store and later retrieve content from the context.
 
-For example, you might create a child.leaf template like this:
+For example, you might create a `child.leaf` template like this:
 
 ```leaf
-#set("body") {
-    <p>Welcome to Vapor!</p>
-}
-
-#embed("master")
+#extend("master"):
+    #export("body"):
+        <p>Welcome to Vapor!</p>
+    #endexport
+#endextend
 ```
 
-This stores some HTML in the context as `body` using `#set`. We then embed master.leaf which will render `body` along with any other context variables passed in from Swift. For example, master.leaf might look like this:
+We call `#export` to store some HTML and make it available to the template we're currently extending. We then render `master.leaf` and use the exported data when required along with any other context variables passed in from Swift. For example, `master.leaf` might look like this:
 
 ```leaf
 <html>
     <head>
         <title>#(title)</title>
     </head>
-    <body>#get(body)</body>
+    <body>#import(body)</body>
 </html>
 ```
 
-Here we are using `#get` to fetch the content previously stored in the context. When passed `["title": "Hi there!"]` from Swift, child.leaf will render as follows:
+Here we are using `#import` to fetch the content passed to the `#extend` tag. When passed `["title": "Hi there!"]` from Swift, `child.leaf` will render as follows:
 
 ```html
 <html>
