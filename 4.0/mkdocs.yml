@@ -92,6 +92,7 @@ nav:
 - Leaf:
   - Getting Started: "leaf/getting-started.md"
   - Overview: "leaf/overview.md"
+  - Custom Tags: "leaf/custom-tags.md"
 - Advanced:
   - Middleware: "middleware.md"
   - Testing: "testing.md"

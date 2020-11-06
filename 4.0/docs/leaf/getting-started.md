@@ -12,6 +12,9 @@ import PackageDescription
 
 let package = Package(
     name: "MyApp",
+    platforms: [
+       .macOS(.v10_15)
+    ],
     dependencies: [
         /// Any other dependencies ...
         .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0"),
@@ -21,26 +24,19 @@ let package = Package(
             .product(name: "Leaf", package: "leaf"),
             // Any other dependencies
         ]),
-        .target(name: "Run", dependencies: ["App"]),
-        .testTarget(name: "AppTests", dependencies: ["App"]),
+        // Other targets
     ]
 )
 ```
 
 ## Configure
 
-Once you have added the package to your project, you can configure Vapor to use it. This is usually done in [`configure.swift`](../getting-started/structure.md#configureswift).
+Once you have added the package to your project, you can configure Vapor to use it. This is usually done in [`configure.swift`](../folder-structure.md#configureswift).
 
 ```swift
 import Leaf
 
-try services.register(LeafProvider())
-```
-
-If your application supports multiple view renderers, you may need to specify that you would like to use Leaf.
-
-```swift
-config.prefer(LeafRenderer.self, for: ViewRenderer.self)
+app.views.use(.leaf)
 ```
 
 ## Folder Structure
@@ -61,34 +57,6 @@ VaporApp
 └── Sources
     └── ...
 ```
-
-## Syntax Highlighting
-
-You may also wish to install one of these third-party packages that provide support for syntax highlighting in Leaf templates.
-
-### Sublime
-
-Install the package [Leaf](https://packagecontrol.io/packages/Leaf) from package control.
-
-### Atom
-
-[language-leaf](https://atom.io/packages/language-leaf) by ButkiewiczP
-
-### Xcode
-
-It is currently not possible to implement Leaf Syntax Highlighting in Xcode, however, using Xcode's HTML Syntax Coloring can help a bit. Select one or more Leaf files and then choose Editor > Syntax Coloring > HTML.  Your selected Leaf files will now use Xcode's HTML Syntax Coloring.  Unfortunately the usefulness of this is limited because this association will be removed when `vapor xcode` is run.
-
-There appears to be a way to [make Xcode file associations persist](http://stackoverflow.com/questions/9050035/how-to-make-xcode-recognize-a-custom-file-extension-as-objective-c-for-syntax-hi) but that requires a bit more kung-fu.
-
-Also, there is a unsupported solution that associates `.leaf`-files in Xcode with HTML syntax coloring automatically: [xcode-leaf-color-schemer](https://github.com/ashokgelal/xcode-leaf-color-schemer) by ashokgelal.
-
-### VS Code
-
-[html-leaf](https://marketplace.visualstudio.com/items?itemName=Francisco.html-leaf) by FranciscoAmado
-
-### CLion & AppCode
-
-Some preliminary work has been done to implement a Leaf Plugin for CLion & AppCode but lack of skill and interest in Java has slowed progress! If you have IntelliJ SDK experience and want to help with this, message Tom Holland on [Vapor Slack](http://vapor.team)
 
 ## Rendering a View
 
