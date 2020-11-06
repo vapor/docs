@@ -39,6 +39,8 @@ import Leaf
 app.views.use(.leaf)
 ```
 
+This tells Vapor to use the `LeafRenderer` when you call `req.view` in your code.
+
 ## Folder Structure
 
 Once you have configured Leaf, you will need to ensure you have a `Views` folder to store your `.leaf` files in. By default, Leaf expects the views folder to be a `./Resources/Views` relative to your project's root.
@@ -69,11 +71,12 @@ Hello, #(name)!
 Then, register a route (usually done in `routes.swift` or a controller) to render the view.
 
 ```swift
-import Leaf
-
 router.get("hello") { req -> Future<View> in
-    return try req.view().render("hello", ["name": "Leaf"])
+    return try req.view.render("hello", ["name": "Leaf"])
 }
 ```
+
+This uses the generic `view` property on `Request` instead of calling Leaf directly. This allows you to switch to a different renderer in your tests.
+
 
 Open your browser and visit `/hello`. You should see `Hello, Leaf!`. Congratulations on rendering your first Leaf view!
