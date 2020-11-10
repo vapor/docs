@@ -193,17 +193,6 @@ Here we are using `#import` to fetch the content passed to the `#extend` tag. Wh
 </html>
 ```
 
-### Comments
-
-You can write comments with Leaf. They will be discarded when rendering the view.
-
-```leaf
-#comment: 
-    Say hello to the user 
-#endcomment
-Hello, #(name)!
-```
-
 ### Other tags
 
 #### `#count`
