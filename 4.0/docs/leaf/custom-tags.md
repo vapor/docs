@@ -9,8 +9,7 @@ To demonstrate this, let's take a look at creating a custom tag `#now` that prin
 First create a class called `NowTag` and conform it to `LeafTag`.
 
 ```swift
-final class NowTag: LeafTag {
-    init() { }
+struct NowTag: LeafTag {
     
     func render(_ ctx: LeafContext) throws -> LeafData {
         ...
