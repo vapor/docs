@@ -45,7 +45,7 @@ This tells Vapor to use the `LeafRenderer` when you call `req.view` in your code
 
 Once you have configured Leaf, you will need to ensure you have a `Views` folder to store your `.leaf` files in. By default, Leaf expects the views folder to be a `./Resources/Views` relative to your project's root.
 
-You will also likely want to enable Vapor's [`FileMiddleware`](https://api.vapor.codes/vapor/latest/Vapor/Classes/FileMiddleware.html) to serve files from your `/Public` folder. 
+You will also likely want to enable Vapor's [`FileMiddleware`](https://api.vapor.codes/vapor/latest/Vapor/Classes/FileMiddleware.html) to serve files from your `/Public` folder if you plan on serving Javascript and CSS files for instance.
 
 ```
 VaporApp
