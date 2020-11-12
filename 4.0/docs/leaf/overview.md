@@ -157,7 +157,7 @@ Extending is useful for copying in a standard piece of content, for example a pa
 #extend("footer")
 ```
 
-This tag is also useful for building one template on top of another. For example, you might have a master.leaf file that includes all the code required to lay out your website – HTML structure, CSS and JavaScript – with some gaps in place that represent where page content varies.
+This tag is also useful for building one template on top of another. For example, you might have a layout.leaf file that includes all the code required to lay out your website – HTML structure, CSS and JavaScript – with some gaps in place that represent where page content varies.
 
 Using this approach, you would construct a child template that fills in its unique content, then extends the parent template that places the content appropriately. To do this, you can use the `#export` and `#import` tags to store and later retrieve content from the context.
 
