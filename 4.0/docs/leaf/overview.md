@@ -149,7 +149,7 @@ Planets:
 
 ### Extending templates
 
-Leaf’s `#extend` tag allows you to copy the contents of one template into another. When use this, you should always omit the template file's .leaf extension.
+Leaf’s `#extend` tag allows you to copy the contents of one template into another. When using this, you should always omit the template file's .leaf extension.
 
 Extending is useful for copying in a standard piece of content, for example a page footer, advert code or table that's shared across multiple pages:
 
