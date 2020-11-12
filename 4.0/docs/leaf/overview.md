@@ -221,7 +221,7 @@ The `#uppercased` tag uppercases all letters in a string.
 
 #### `#capitalized`
 
-The `#capitalized` tag uppercases the first letter of any string.
+The `#capitalized` tag uppercases the first letter in each work of a string and lowercases the others. See [`String.capitalized`](https://developer.apple.com/documentation/foundation/nsstring/1416784-capitalized) for more information.
 
 ```leaf
 #capitalized(name)
@@ -241,7 +241,7 @@ The `#contains` tag accepts an array and a value as its two parameters, and retu
 
 #### `#date`
 
-The `#date` tag formats dates into a readable string.
+The `#date` tag formats dates into a readable string. By default it uses ISO8601 formatting.
 
 ```swift
 render(..., ["now": Date()])
