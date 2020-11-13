@@ -71,8 +71,8 @@ Hello, #(name)!
 Then, register a route (usually done in `routes.swift` or a controller) to render the view.
 
 ```swift
-router.get("hello") { req -> Future<View> in
-    return try req.view.render("hello", ["name": "Leaf"])
+router.get("hello") { req -> EventLoopFuture<View> in
+    return req.view.render("hello", ["name": "Leaf"])
 }
 ```
 

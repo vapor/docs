@@ -53,7 +53,7 @@ struct WelcomeContext: Encodable {
     var title: String
     var numbers: [Int]
 }
-return try req.view.render("home", WelcomeContext(title: "Hello!", numbers: [42, 9001]))
+return req.view.render("home", WelcomeContext(title: "Hello!", numbers: [42, 9001]))
 ```
 
 That will expose `title` and `numbers` to our Leaf template, which can then be used inside tags. For example:
@@ -124,7 +124,7 @@ struct SolarSystem: Codable {
     let planets = ["Venus", "Earth", "Mars"]
 }
 
-return try req.view.render("solarSystem", SolarSystem())
+return req.view.render("solarSystem", SolarSystem())
 ```
 
 We could then loop over them in Leaf like this:
