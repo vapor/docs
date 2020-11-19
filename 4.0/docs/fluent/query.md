@@ -136,7 +136,7 @@ By default, all filters added to a query will be required to match. Query builde
 // All planets whose name is either Earth or Mars
 Planet.query(on: database).group(.or) { group in
     group.filter(\.$name == "Earth").filter(\.$name == "Mars")
-}
+}.all()
 ```
 
 The `group` method supports combining filters by `and` or `or` logic. These groups can be nested indefinitely. Top-level filters can be thought of as being in an `and` group.
