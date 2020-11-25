@@ -49,6 +49,19 @@ app.redis.configuration = try RedisConfiguration(hostname: "localhost")
 
 If you have multiple Redis endpoints, such as a cluster of Redis instances, you'll want to create a [`[SocketAddress]`](https://apple.github.io/swift-nio/docs/current/NIO/Enums/SocketAddress.html#/s:3NIO13SocketAddressO04makeC13ResolvingHost_4portACSS_SitKFZ) collection to pass in the initializer instead.
 
+The most common way of creating a `SocketAddress` is with the [`makeAddressResolvingHost(_:port:)`](https://apple.github.io/swift-nio/docs/current/NIO/Enums/SocketAddress.html#/s:3NIO13SocketAddressO04makeC13ResolvingHost_4portACSS_SitKFZ) static method.
+
+```swift
+let serverAddresses: [SocketAddress] = [
+  try .makeAddressResolvingHost("localhost", port: RedisConnection.Configuration.defaultPort)
+]
+```
+
+For a single Redis endpoint, it can be easier to work with the convenience initializers, as it will handle creating the `SocketAddress` for you:
+
+- [`.init(url:pool)`](https://api.vapor.codes/redis/master/Redis/RedisConfiguration/#redisconfiguration.init(url:pool:)) (with `String` or [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
+- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/master/Redis/RedisConfiguration/#redisconfiguration.init(hostname:port:password:database:pool:))
+
 #### password
 
 If your Redis instance is secured by a password, you will need to pass it as the `password` argument.
