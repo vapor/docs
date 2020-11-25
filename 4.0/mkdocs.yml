@@ -93,6 +93,9 @@ nav:
   - Getting Started: "leaf/getting-started.md"
   - Overview: "leaf/overview.md"
   - Custom Tags: "leaf/custom-tags.md"
+- Redis:
+  - Overview: "redis/overview.md"
+  - Sessions: "redis/sessions.md"
 - Advanced:
   - Middleware: "middleware.md"
   - Testing: "testing.md"
