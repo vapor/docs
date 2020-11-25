@@ -77,7 +77,7 @@ Make sure to run your application's migrations after adding the new migration. S
 
 Redis provides support for storing session data in your configured Redis instance. This section assumes you have [configured Redis](redis/overview.md) and can send commands to the Redis instance.
 
-The first step for enabling the Redis sessions driver:
+To use Redis for Sessions, select it when configuring your application:
 
 ```swift
 import Redis
