@@ -43,37 +43,3 @@ An object that conforms to this protocol can be used to change how `SessionData`
 Only two methods are required to be implemented by a type conforming to the protocol: [`redis(_:storeData:forID:)`](https://api.vapor.codes/redis/master/Redis/RedisSessionsDelegate/#redissessionsdelegate.redis(_:storeData:forID:)) and [`redis(_:fetchDataForID:)`](https://api.vapor.codes/redis/master/Redis/RedisSessionsDelegate/#redissessionsdelegate.redis(_:fetchDataForID:)).
 
 Both are required, as the way you customize writing the session data to Redis is intrinsicly linked to how it is to be read from Redis.
-
-### RedisSessionsDelegate Hash Example
-
-For example, if you wanted to store the session data as a [**Hash** in Redis](https://redis.io/topics/data-types-intro#redis-hashes), you would implement something like the following:
-
-```swift
-func redis<Client: RedisClient>(
-    _ client: Client,
-    storeData data: SessionData,
-    forID id: SessionID
-) -> EventLoopFuture<Void> {
-    // stores each data field as a separate hash field,
-    // with the hash key being the sesson ID
-    return client.hmset(data.storage, in: RedisKey(id.string))
-}
-
-func redis<Client: RedisClient>(
-    _ client: Client,
-    fetchDataForID id: SessionID
-) -> EventLoopFuture<SessionData?> {
-    return client
-        .hgetall(from: RedisKey(id.string))
-        .map { hash in
-            // create a fresh data and loop through each key:value field
-            // storing it in the container
-            var data = SessionData()
-            hash.forEach {
-                guard let value = $0.value.string else { return }
-                data[$0.key] = value
-            }
-            return data
-        }
-}
-```
