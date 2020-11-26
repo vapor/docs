@@ -12,13 +12,16 @@ Unless you implement the [`makeNewID()`](https://api.vapor.codes/redis/master/Re
 
 1. Generate 32 bytes of random characters
 1. base64 encode the value
-1. prefix the value with `vrs-` (**V**apor **R**edis **S**essions)
 
-For example: `vrs-Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
+For example: `Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
 
 ### SessionData Storage
 
 The default implementation of `RedisSessionsDelegate` will store [`SessionData`](https://api.vapor.codes/vapor/master/Vapor/SessionData/) as a simple JSON string value using `Codable`.
+
+Unless you implement the [`makeRedisKey(for:)`](https://api.vapor.codes/redis/master/Redis/RedisSessionsDelegate/#redissessionsdelegate.makeRedisKey(for:)) method in your own `RedisSessionsDelegate`, `SessionData` will be stored in Redis with a key that prefixes the `SessionID` with `vrs-` (**V**apor **R**edis **S**essions)
+
+For example: `vrs-Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
 
 ## Registering A Custom Delegate
 
