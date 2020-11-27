@@ -71,7 +71,23 @@ Finally, add `SessionRecord`'s migration to your database's migrations. This wil
 app.migrations.add(SessionRecord.migration)
 ```
 
-Make sure to run your application's migrations after adding the new migration. Sessions will now be stored in your application's database allowing them to persist between restarts and be shared between multiple instances of your app. 
+Make sure to run your application's migrations after adding the new migration. Sessions will now be stored in your application's database allowing them to persist between restarts and be shared between multiple instances of your app.
+
+### Redis
+
+Redis provides support for storing session data in your configured Redis instance. This section assumes you have [configured Redis](redis/overview.md) and can send commands to the Redis instance.
+
+To use Redis for Sessions, select it when configuring your application:
+
+```swift
+import Redis
+
+app.sessions.use(.redis)
+```
+
+This will configure sessions to use the Redis sessions driver with the default behavior.
+
+> For more detailed information about Redis and Sessions, see [Redis Sessions](redis/sessions.md).
 
 ## Session Data
 
