@@ -87,7 +87,8 @@ app.sessions.use(.redis)
 
 This will configure sessions to use the Redis sessions driver with the default behavior.
 
-> For more detailed information about Redis and Sessions, see [Redis Sessions](redis/sessions.md).
+!!! seealso
+    Refer to [Redis &rarr; Sessions](redis/sessions.md) for more detailed information about Redis and Sessions.
 
 ## Session Data
 
