@@ -165,7 +165,7 @@ Use the `detach` method to remove a model from the relation. This deletes the co
 
 ```swift
 // Removes the model from the relation.
-earth.$tags.detach(inhabited)
+earth.$tags.detach(inhabited, on: database)
 ```
 
 You can check if a model is related or not using the `isAttached` method.
