@@ -2,7 +2,7 @@
 
 Redis can act as a storage provider for caching [session data](../sessions.md#session-data) such as user credentials.
 
-If a custom [`RedisSessionsDelegate`](https://api.vapor.codes/redis/master/Redis/RedisSessionsDelegate/) isn't provided, a default will be used with the following behavior.
+If a custom [`RedisSessionsDelegate`](https://api.vapor.codes/redis/master/Redis/RedisSessionsDelegate/) isn't provided, a default will be used.
 
 ## Default Behavior
 
@@ -43,7 +43,7 @@ app.sessions.use(.redis(delegate: CustomRedisSessionsDelegate()))
 
 An object that conforms to this protocol can be used to change how `SessionData` is stored in Redis.
 
-Only two methods are required to be implemented by a type conforming to the protocol: [`redis(_:storeData:forID:)`](https://api.vapor.codes/redis/master/Redis/RedisSessionsDelegate/#redissessionsdelegate.redis(_:storeData:forID:)) and [`redis(_:fetchDataForID:)`](https://api.vapor.codes/redis/master/Redis/RedisSessionsDelegate/#redissessionsdelegate.redis(_:fetchDataForID:)).
+Only two methods are required to be implemented by a type conforming to the protocol: [`redis(_:store:with:)`](https://api.vapor.codes/redis/master/Redis/RedisSessionsDelegate/#redissessionsdelegate.redis(_:store:with:)) and [`redis(_:fetchDataFor:)`](https://api.vapor.codes/redis/master/Redis/RedisSessionsDelegate/#redissessionsdelegate.redis(_:fetchDataFor:)).
 
 Both are required, as the way you customize writing the session data to Redis is intrinsicly linked to how it is to be read from Redis.
 

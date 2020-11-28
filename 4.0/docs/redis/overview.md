@@ -4,10 +4,11 @@
 
 This library is an integration between Vapor and [**RediStack**](https://gitlab.com/mordil/redistack), which is the underlying driver that communicates with Redis.
 
-> ℹ︎ Most of the capabilities of Redis are provided by **RediStack**.
-> We highly recommend being familiar with its documentation.
->
-> _Links are provided where appropriate._
+!!! note
+    Most of the capabilities of Redis are provided by **RediStack**.
+    We highly recommend being familiar with its documentation.
+    
+    _Links are provided where appropriate._
 
 ## Package
 
@@ -74,13 +75,15 @@ This is the database index you wish to select when each connection is created.
 
 This saves you from having to send the `SELECT` command to Redis yourself.
 
-> **Note:** This database selection is not maintained. Be careful with sending the `SELECT` command on your own.
+!!! warning
+    The database selection is not maintained. Be careful with sending the `SELECT` command on your own.
 
 ### Connection Pool Options
 
 > API Documentation: [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/master/Redis/RedisConfiguration_PoolOptions/)
 
-_Only the most commonly changed options are highlighted here. For all of the options, refer to the API documentation._
+!!! note
+    Only the most commonly changed options are highlighted here. For all of the options, refer to the API documentation.
 
 #### minimumConnectionCount
 
@@ -94,7 +97,8 @@ This is known as a "cold start" connection, and does have some overhead over mai
 
 This option determines the behavior of how the maximum connection count is maintained.
 
-It is recommended to read the [official API documentation](https://docs.redistack.info/Enums/RedisConnectionPoolSize.html) to be familiar with what they offer.
+!!! seealso
+    Refer to the [`RedisConnectionPoolSize`](https://docs.redistack.info/Enums/RedisConnectionPoolSize.html) API to be familiar with what options are available.
 
 ## Sending a Command
 
