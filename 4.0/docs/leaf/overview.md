@@ -178,7 +178,7 @@ We call `#export` to store some HTML and make it available to the template we're
     <head>
         <title>#(title)</title>
     </head>
-    <body>#import(body)</body>
+    <body>#import("body")</body>
 </html>
 ```
 
