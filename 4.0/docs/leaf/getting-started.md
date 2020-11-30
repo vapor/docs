@@ -41,7 +41,7 @@ app.views.use(.leaf)
 
 This tells Vapor to use the `LeafRenderer` when you call `req.view` in your code.
 
-> **Note:** Leaf has an internal cache for renderering pages. When the Application's environment is set to `.development` this is disabled. Changes to a template do not require an application restart. In the `.production` environment caching is enabled, so any template changes require the application to be restarted to be picked up.
+> **Note:** Leaf has an internal cache for renderering pages. When the `Application`'s environment is set to `.development`, this cache is disabled, so that changes to templates take effect immediately. In `.production` and all other environments, the cache is enabled by default; any changes made to templates will not take effect until the application is restarted.
 
 ## Folder Structure
 
