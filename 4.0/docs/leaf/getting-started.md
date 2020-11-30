@@ -41,6 +41,8 @@ app.views.use(.leaf)
 
 This tells Vapor to use the `LeafRenderer` when you call `req.view` in your code.
 
+> **Note:** Leaf has an internal cache for renderering pages. When the Application's environment is set to `.development` this is disabled. Changes to a template do not require an application restart. In the `.production` environment caching is enabled, so any template changes require the application to be restarted to be picked up.
+
 ## Folder Structure
 
 Once you have configured Leaf, you will need to ensure you have a `Views` folder to store your `.leaf` files in. By default, Leaf expects the views folder to be a `./Resources/Views` relative to your project's root.
