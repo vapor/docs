@@ -136,7 +136,7 @@ This protocol requires you to implement `authenticate(bearer:for:)` which will b
 In this test authenticator, the token is tested against a hard-coded value. In a real authenticator, you might verify the token by checking against a database or using cryptographic measures, like is done with JWT. This is why the `authenticate` method allows you to return a future. 
 
 !!! tip
-	When implementing token verification, it's important to consider horizontal scalability. If your application needs to handle many users concurrently, authentication can be a potential bottlneck. Consider how your design will scale across multiple instances of your application running at once.
+	When implementing token verification, it's important to consider horizontal scalability. If your application needs to handle many users concurrently, authentication can be a potential bottleneck. Consider how your design will scale across multiple instances of your application running at once.
 
 If the authentication parameters are correct, in this case matching the hard-coded value, a `User` named Vapor is logged in. If the authentication parameters do not match, no user is logged in, which signifies authentication failed. 
 
