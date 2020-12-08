@@ -136,7 +136,7 @@ This protocol requires you to implement `authenticate(bearer:for:)` which will b
 In this test authenticator, the token is tested against a hard-coded value. In a real authenticator, you might verify the token by checking against a database or using cryptographic measures, like is done with JWT. This is why the `authenticate` method allows you to return a future. 
 
 !!! tip
-	When implementing token verification, it's important to consider horizontal scalability. If your application needs to handle many users concurrently, authentication can be a potential bottlneck. Consider how your design will scale across multiple instances of your application running at once.
+	When implementing token verification, it's important to consider horizontal scalability. If your application needs to handle many users concurrently, authentication can be a potential bottleneck. Consider how your design will scale across multiple instances of your application running at once.
 
 If the authentication parameters are correct, in this case matching the hard-coded value, a `User` named Vapor is logged in. If the authentication parameters do not match, no user is logged in, which signifies authentication failed. 
 
@@ -672,6 +672,77 @@ This will use the application's default database for resolving the user. To spec
 ```swift
 User.sessionAuthenticator(.sqlite)
 ```
+
+## Website Authentication
+
+Websites are a special case for authentication because the use of a browser restricts how you can attach credentials to a browser. This leads to two different authentication scenarios:
+
+* the initial log in via a form
+* subsequent calls authenticated with a session cookie
+
+Vapor and Fluent provides several helpers to make this seamless.
+
+### Session Authentication
+
+Session authentication works as described above. You need to apply the session middleware and session authenticator to all routes that your user will access. These include any protected routes, any routes which are public but you may still want to access the user if they're logged in (to display an account button for instance) **and** login routes.
+
+You can enable this globally in your app in **configure.swift** like so:
+
+```swift
+app.middleware.use(app.sessions.middleware)
+app.middleware.use(User.sessionAuthenticator())
+```
+
+These middlewares do the following:
+
+* the sessions middleware takes the session cookie provided in the request and converts it into a session
+* the session authenticator takes the session and see if there is an authenticated user for that session. If so, the middleware authenticates the request. In the response, the session authenticator sees if the request has an authenticated user and saves them in the session so they're authenticated in the next request.
+
+### Protecting Routes
+
+When protecting routes for an API, you traditionally return an HTTP response with a status code such as **401 Unauthorized** if the request is not authenticated. However, this isn't a very good user experience for someone using a browser. Vapor provides a `RedirectMiddleware` for any `Authenticatable` type to use in this scenario:
+
+```swift
+let protectedRoutes = app.grouped(User.redirectMiddleware(path: "/login?loginRequired=true"))
+```
+
+This works similar to the `GuardMiddleware`. Any requests to routes registered to `protectedRoutes` that aren't authenticated will be redirected to the path provided. This allows you to tell your users to log in, rather than just providing a **401 Unauthorized**.
+
+### Form Log In
+
+To authenticate a user and future requests with a session, you need to log a user in. Vapor provides a `ModelCredentialsAuthenticatable` protocol to conform to. This handles log in via a form. First conform your `User` to this protocol:
+
+```swift
+extension User: ModelCredentialsAuthenticatable {
+    static let usernameKey = \User.$email
+    static let passwordHashKey = \User.$password
+
+    func verify(password: String) throws -> Bool {
+        try Bcrypt.verify(password, created: self.password)
+    }
+}
+```
+
+This is identical to `ModelAuthenticatable` and if you already conform to that then you don't need to do anything else. Next apply this `ModelCredentialsAuthenticator` middleware to your log in form POST request:
+
+```swift
+let credentialsProtectedRoute = sessionRoutes.grouped(User.credentialsAuthenticator())
+credentialsProtectedRoute.post("login", use: loginPostHandler)
+```
+
+This uses the default credentials authenticator to protect the login route. You must send `username` and `password` in the POST request. You can set your form up like so:
+
+```html
+ <form method="POST" action="/login">
+    <label for="username">Username</label>
+    <input type="text" id="username" placeholder="Username" name="username" autocomplete="username" required autofocus>
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Password" name="password" autocomplete="current-password" required>
+    <input type="submit" value="Sign In">    
+</form>
+```
+
+The `CredentialsAuthenticator` extracts the `username` and `password` from the request body, finds the user from the username and verifies the password. If the password is valid, the middleware authenticates the request. The `SessionAuthenticator` then authenticates the session for subsequent requests.
 
 ## JWT
 
