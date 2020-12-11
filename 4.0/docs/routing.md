@@ -95,7 +95,7 @@ Now that you understand the basics, check out each section to learn more about p
 
 ## Routes
 
-A route specifies a request handler for a given HTTP method and URI path. It can also store additional metadata.
+A route specifies a request handler for a given HTTP method and URI path. It can also store additional metadata. All routes are registered in `routes.swift` file.
 
 ### Methods
 
@@ -405,8 +405,11 @@ app.group(RateLimitMiddleware(requestsPerMinute: 5)) { rateLimited in
 This is especially useful for protecting subsets of your routes with different authentication middleware. 
 
 ```swift
-app.post("login") { ... }
-let auth = app.grouped(AuthMiddleware())
-auth.get("dashboard") { ... }
-auth.get("logout") { ... }
+app.post("login") { req in ... }
+
+app.group(AuthMiddleware()) { auth in
+    auth.get("dashboard") { req in ... }
+    auth.get("logout") { req in ... }
+
+}
 ```
