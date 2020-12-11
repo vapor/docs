@@ -410,3 +410,13 @@ let auth = app.grouped(AuthMiddleware())
 auth.get("dashboard") { ... }
 auth.get("logout") { ... }
 ```
+
+## Redirections
+
+Sometimes you need to redirect the user from the old route path to a new one. This is necessary when you already published the website and don't want to lose any gained SEO or maintain backwards compatibility with the new version of your API.
+
+For that purpose, you can use the redirect method found in the `Request` class.
+
+```swift
+app.get("old") { req in req.redirect(to: "new") }
+```
