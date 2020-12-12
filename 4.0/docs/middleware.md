@@ -40,6 +40,54 @@ A request to `GET /hello` will visit middleware in the following order:
 Request → A → B → C → Handler → C → B → A → Response
 ```
 
+## Creating a Middleware
+
+Vapor ships with a few and handy middlewares, but sometimes you would need to create your own because of the requirements of your application. For example you could need a middleware that prevents any non-admin user to reach a group of routes.
+
+> We recommend creating a `Middleware` folder inside your `Sources/App` directory to keep your code organised
+
+Middleware are structs that conforms to Vapor's `Middleware` protocol and passes the request to the next middleware in the chain.
+
+Using the example mentioned before, let's block access to the user if it's not an admin:
+
+```swift
+import Vapor
+
+struct EnsureAdminUserMiddleware: Middleware {
+    public init() {}
+    
+    public func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
+    	
+	if req.auth.require().role != "admin" {
+	    return req.eventLoop.future(Response(status: .unauthorized))
+	}
+	
+	return next.respond(to: request)
+    }
+    
+}
+```
+
+If you want to modify the response, for example to add a custom header to all your outgoing responses from the routes this middleware is applied to, you should wait until the response comes back from the other middlewares:
+
+```swift
+import Vapor
+
+struct AddVersionHeaderMiddleware: Middleware {
+    public init() {}
+    
+    public func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
+
+	return next.respond(to: request) { response in
+	    response.headers.add(name: "My-App-Version", value: "v2.5.9")
+	    
+	    return response
+	}
+    }
+    
+}
+```
+
 ## File Middleware
 
 `FileMiddleware` enables the serving of assets from the Public folder of your project to the client. You might include static files like stylesheets or bitmap images here.
