@@ -413,6 +413,26 @@ auth.get("logout") { ... }
 
 ## Redirections
 
+Redirects are useful in a number of scenarios, such as forwarding old locations to new ones for SEO, redirecting an unauthenticated user to the login page or maintain backwards compatibility with the new version of your API.
+
+To redirect a request, use:
+
+```swift
+req.redirect(to: "/some/new/path")
+\```
+
+You can also specify the type of redirect, for example to redirect a page permanently (for example so that your SEO is updated correctly) use:
+
+```swift
+req.redirect(to: "/some/new/path", type: .permanent)
+\```
+
+The different `RedirectType`s are:
+
+* `.permanent` - returns a **301 Permanent** redirect
+* `.normal` - returns a **303 see other** redirect. This is the default by Vapor and tells the client to follow the redirect with a **GET** request.
+* `.temporary` - returns a **307 Temporary** redirect. This tells the client to preserve the HTTP method used in the request.
+
 Sometimes you need to redirect the user from the old route path to a new one. This is necessary when you already published the website and don't want to lose any gained SEO or maintain backwards compatibility with the new version of your API.
 
 For that purpose, you can use the redirect method found in the `Request` class.
