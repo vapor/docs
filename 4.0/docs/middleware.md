@@ -42,24 +42,23 @@ Request → A → B → C → Handler → C → B → A → Response
 
 ## Creating a Middleware
 
-Vapor ships with a few and handy middlewares, but sometimes you would need to create your own because of the requirements of your application. For example you could need a middleware that prevents any non-admin user to reach a group of routes.
+Vapor ships with a few useful middlewares, but you might need to create your own because of the requirements of your application. For example you can create a middleware that prevents any non-admin user from accessing a group of routes:
 
 > We recommend creating a `Middleware` folder inside your `Sources/App` directory to keep your code organised
 
-Middleware are structs that conforms to Vapor's `Middleware` protocol and passes the request to the next middleware in the chain.
+Middleware are types that conform to Vapor's `Middleware` protocol. They are inserted into the responder chain and can access and manipulate a request before it reaches a route handler and access and manipulate a response before it is returned.
 
-Using the example mentioned before, let's block access to the user if it's not an admin:
+Using the example mentioned above, create a middleware to block access to the user if they're not an admin:
 
 ```swift
 import Vapor
 
 struct EnsureAdminUserMiddleware: Middleware {
-    public init() {}
     
-    public func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
+   func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
     	
-	if req.auth.require().role != "admin" {
-	    return req.eventLoop.future(Response(status: .unauthorized))
+	guard let user = request.auth.get(User.self), user.role == .admin else {
+	    return request.eventLoop.future(error: Abort(.unauthorized))
 	}
 	
 	return next.respond(to: request)
@@ -68,19 +67,17 @@ struct EnsureAdminUserMiddleware: Middleware {
 }
 ```
 
-If you want to modify the response, for example to add a custom header to all your outgoing responses from the routes this middleware is applied to, you should wait until the response comes back from the other middlewares:
+If you want to modify the response, for example to add a custom header, you can use a middleware for this too. Middlewares can wait until the response is received from the responder chain and manipulate the response:
 
 ```swift
 import Vapor
 
 struct AddVersionHeaderMiddleware: Middleware {
-    public init() {}
     
-    public func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
+   func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
 
-	return next.respond(to: request) { response in
+	next.respond(to: request).map { response in
 	    response.headers.add(name: "My-App-Version", value: "v2.5.9")
-	    
 	    return response
 	}
     }
