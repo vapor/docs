@@ -419,13 +419,13 @@ To redirect a request, use:
 
 ```swift
 req.redirect(to: "/some/new/path")
-\```
+```
 
-You can also specify the type of redirect, for example to redirect a page permanently (for example so that your SEO is updated correctly) use:
+You can also specify the type of redirect, for example to redirect a page permanently (so that your SEO is updated correctly) use:
 
 ```swift
 req.redirect(to: "/some/new/path", type: .permanent)
-\```
+```
 
 The different `RedirectType`s are:
 
@@ -433,9 +433,9 @@ The different `RedirectType`s are:
 * `.normal` - returns a **303 see other** redirect. This is the default by Vapor and tells the client to follow the redirect with a **GET** request.
 * `.temporary` - returns a **307 Temporary** redirect. This tells the client to preserve the HTTP method used in the request.
 
-Sometimes you need to redirect the user from the old route path to a new one. This is necessary when you already published the website and don't want to lose any gained SEO or maintain backwards compatibility with the new version of your API.
+> To choose the proper redirection status code check out [the full list](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_redirection)
 
-For that purpose, you can use the redirect method found in the `Request` class.
+Sometimes you need to redirect the user from the old route path to a new one. This is necessary when you already published the website and don't want to lose any gained SEO or maintain backwards compatibility with the new version of your API. This can be done directly in your `routes` using a closure.
 
 ```swift
 app.get("old") { req in req.redirect(to: "new") }
