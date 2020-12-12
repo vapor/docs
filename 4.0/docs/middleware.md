@@ -42,7 +42,7 @@ Request → A → B → C → Handler → C → B → A → Response
 
 ## Creating a Middleware
 
-Vapor ships with a few useful middlewares, but you might need to create your own because of the requirements of your application. For example you can create a middleware that prevents any non-admin user from accessing a group of routes:
+Vapor ships with a few useful middlewares, but you might need to create your own because of the requirements of your application. For example you could create a middleware that prevents any non-admin user from accessing a group of routes.
 
 > We recommend creating a `Middleware` folder inside your `Sources/App` directory to keep your code organised
 
