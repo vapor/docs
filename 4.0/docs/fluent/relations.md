@@ -203,32 +203,7 @@ sun.$planets.query(on: database).filter(\.$name =~ "M").all()
 
 See [query](query.md) for more information.
 
-## Load
-
-Use the `load(on:)` method to load a relation. This allows the related model to be accessed as a local property.
-
-```swift
-// Example of loading a relation.
-planet.$star.load(on: database).map {
-    print(planet.star.name)
-}
-```
-
-To check whether or not a relation has been loaded, use the `value` property.
-
-```swift
-if planet.$star.value != nil {
-    // Relation has been loaded.
-    print(planet.star.name)
-} else {
-    // Relation has not been loaded.
-    // Attempting to access planet.star will fail.
-}
-```
-
-You can set the `value` property manually if needed.
-
-## Eager Load
+## Eager Loading
 
 Fluent's query builder allows you to preload a model's relations when it is fetched from the database. This is called eager loading and allows you to access relations synchronously without needing to call [`load`](#load) or [`get`](#get) first. 
 
@@ -267,3 +242,33 @@ Planet.query(on: database).with(\.$star) { star in
 ```
 
 The `with` method accepts an optional closure as a second parameter. This closure accepts an eager load builder for the chosen relation. There is no limit to how deeply eager loading can be nested. 
+
+## Lazy Eager Loading
+
+In case that you have already retrieved the parent model and you want to load one of it's relations, you can use the `load(on:)` method for that purpose. This will fetch the related model from the database and allows it to be accessed as a local property.
+
+```swift
+planet.$star.load(on: database).map {
+    print(planet.star.name)
+}
+```
+
+To check whether or not a relation has been loaded, use the `value` property.
+
+```swift
+if planet.$star.value != nil {
+    // Relation has been loaded.
+    print(planet.star.name)
+} else {
+    // Relation has not been loaded.
+    // Attempting to access planet.star will fail.
+}
+```
+
+If you already have the related model in a variable, you can set the relation manually using the `value` property mentioned above.
+
+```swift
+planet.$star.value = star
+```
+
+This will attach the related model to the parent as if it was eager loaded or lazy loaded without an extra database query.
