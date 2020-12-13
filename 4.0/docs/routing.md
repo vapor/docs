@@ -95,7 +95,7 @@ Now that you understand the basics, check out each section to learn more about p
 
 ## Routes
 
-A route specifies a request handler for a given HTTP method and URI path. It can also store additional metadata. All routes are registered in `routes.swift` file.
+A route specifies a request handler for a given HTTP method and URI path. It can also store additional metadata. A good starting point for your routes is the `routes.swift` file found in the root of the project. From there you can register your routes one at a time or use `RouteCollection` types to keep them organized.
 
 ### Methods
 
@@ -404,6 +404,17 @@ app.group(RateLimitMiddleware(requestsPerMinute: 5)) { rateLimited in
 
 This is especially useful for protecting subsets of your routes with different authentication middleware. 
 
+
+```swift
+app.post("login") { req in ... }
+
+let auth = app.grouped(AuthMiddleware())
+auth.get("dashboard") { req in ... }
+auth.get("logout") { req in ... }
+```
+
+Or using the closure approach:
+
 ```swift
 app.post("login") { req in ... }
 
@@ -413,3 +424,60 @@ app.group(AuthMiddleware()) { auth in
 
 }
 ```
+
+## Organizing Routes
+
+In larger applications, your routes file could become really long, if you want to keep it simple there's a couple approaches you can use.
+
+### Methods
+
+You can divide your routes in the same file but different methods. With this approach, your routes file would still have a lot of lines, but you can easily spot the method you need to check
+
+```swift
+// routes.swift
+
+func routes(_ app: Application) throws {
+    try routesGuest(app)
+    
+    try routesAuth(app)
+}
+
+func routesGuest(_ app: Application) throws {
+    app.get("login") { req in ... }
+    app.get("register") { req in ...}
+    // ...
+}
+
+func routesAuth(_ app: Application) throws {
+    app.get("dashboard") { req in ... }
+    app.get("logout") { req in ... }
+}
+```
+
+### Route Collections
+
+`RouteCollection` is a type offered by Vapor to help you organize your routes in different files. Using the previous example:
+
+```swift
+// routes.swift
+func routes(_ app: Application) throws {
+    try app.register(collection: GuestRouteCollection())
+    
+    try app.register(collection: AuthRouteCollection())
+}
+
+// Routes/GuestRouteCollection.swift
+struct GuestRouteCollection: RouteCollection {
+    func boot(routes: RoutesBuilder) throws {
+        routes.get("login") { req in ... }
+	routes.get("register") { req in ... }
+    }
+}
+
+// Routes/AuthRouteCollection.swift
+struct AuthRouteCollection: RouteCollection {
+    func boot(routes: RoutesBuilder) throws {
+        routes.get("dashboard") { req in ... }
+	routes.get("logout") { req in ... }
+    }
+}
