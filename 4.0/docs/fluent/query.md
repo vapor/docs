@@ -18,7 +18,8 @@ Query builders are tied to a single model type and can be created using the stat
 database.query(Planet.self)
 ```
 
-!!!tip You must `import Fluent` in the file with your queries so that the compiler can see Fluent's helper functions.
+!!! note
+    You must `import Fluent` in the file with your queries so that the compiler can see Fluent's helper functions.
 
 ## All
 
