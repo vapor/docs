@@ -50,6 +50,16 @@ content-length: 11
 hello=world
 ```
 
+In the case of file uploads, your content property must be of type `Data`
+
+```swift
+struct Profile: Content {
+    var name: String
+    var email: String
+    var image: Data
+}
+```
+
 ### Supported Media Types
 
 Below are the media types the content API supports by default.
