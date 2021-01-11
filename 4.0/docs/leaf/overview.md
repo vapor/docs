@@ -101,7 +101,7 @@ If you want to use another tag as part of your condition, you should omit the `#
 #endif
 ```
 
-You can also use `#elseif` statement:
+You can also use `#elseif` statements:
 
 ```leaf
 #if(title == "Welcome"):
