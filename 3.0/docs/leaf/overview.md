@@ -100,7 +100,7 @@ If you want to use another tag as part of your condition, you should omit the `#
 }
 ```
 
-Just like in Swift, you can also use `else if` statement:
+Just like in Swift, you can also use `else if` statements:
 
 ```leaf
 #if(title == "Welcome") {
