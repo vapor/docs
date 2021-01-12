@@ -597,7 +597,7 @@ Next, let's create a simple bearer authenticator to perform the initial authenti
 struct UserBearerAuthenticator: BearerAuthenticator {
     func authenticate(bearer: BearerAuthorization, for request: Request) -> EventLoopFuture<Void> {
         if bearer.token == "test" {
-            let user = User(name: "hello@vapor.codes")
+            let user = User(email: "hello@vapor.codes")
             request.auth.login(user)
         }
         return request.eventLoop.makeSucceededFuture(())
