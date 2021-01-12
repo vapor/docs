@@ -392,7 +392,7 @@ Test that this route works by sending the following request.
 
 ```http
 POST /login HTTP/1.1
-Authorization: Basic dGVzdEB2YXBvci5jb2RlczpzZWNyZXQ0Mg=
+Authorization: Basic dGVzdEB2YXBvci5jb2RlczpzZWNyZXQ0Mg==
 ```
 
 This request passes the username `test@vapor.codes` and password `secret42` via the Basic authentication header. You should see the previously created user returned.
