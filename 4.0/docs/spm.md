@@ -27,7 +27,7 @@ let package = Package(
         .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
     ],
     targets: [
-        .target(name: "App", dependencies: ["Fluent"]),
+        .target(name: "App", dependencies: [.product(name: "Vapor", package: "vapor")]),
         .target(name: "Run", dependencies: ["App"]),
         .testTarget(name: "AppTests", dependencies: ["App"])
     ]
