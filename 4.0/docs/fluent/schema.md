@@ -192,7 +192,7 @@ This same constraint could be added as a top-level constraint using `foreignKey`
 
 ```swift
 // Example of adding a top-level foreign key constraint.
-.foreignKey("star_id", references: "star", "id")
+.foreignKey("star_id", references: "stars", "id")
 ```
 
 Unlike field constraints, top-level constraints can be added in a schema update. They can also be [named](#constraint-name). 
@@ -211,7 +211,7 @@ Below is an example using foreign key actions.
 
 ```swift
 // Example of adding a top-level foreign key constraint.
-.foreignKey("star_id", references: "star", "id", onDelete: .cascade)
+.foreignKey("star_id", references: "stars", "id", onDelete: .cascade)
 ```
 
 !!! warning
