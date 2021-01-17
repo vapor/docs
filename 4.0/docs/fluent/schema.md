@@ -362,7 +362,7 @@ struct UserNameMigration: Migration {
             .deleteField("name")
             .field("first_name", .string)
             .field("last_name", .string)
-            .create()
+            .update()
     }
 
     func revert(on database: Database) -> EventLoopFuture<Void> {
