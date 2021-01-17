@@ -6,7 +6,7 @@ Fluent's query API allows you to create, read, update, and delete models from th
 // An example of Fluent's query API.
 let planets = Planet.query(on: database)
     .filter(\.$type == .gasGiant)
-    .sort(by: \.$name)
+    .sort(\.$name)
     .with(\.$star)
     .all()
 ```
