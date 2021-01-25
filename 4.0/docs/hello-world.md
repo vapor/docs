@@ -27,7 +27,7 @@ open Package.swift
 
 ## Linux Development
 
-If you are working on Linux, consider to add an empty file called `LinuxMain.swift` under the `Sources/Tests/` folder. This allows the [Language Server Protocol](https://github.com/apple/sourcekit-lsp) included in your Swift toolchain to works properly, and if you are working on an editor that supports it, you can have a better development experience.
+If you are working on Linux, consider adding an empty file called `LinuxMain.swift` under the `Sources/Tests/` folder. This allows the [Language Server Protocol](https://github.com/apple/sourcekit-lsp) included in your Swift toolchain to works properly, so if you are working on an editor that supports it, you can have a better development experience.
 
 ## Xcode Dependencies
 
