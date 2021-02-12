@@ -33,6 +33,7 @@ There can be many different usages of these four elements depending on the tag's
 Leaf also supports many expressions you are familiar with in Swift.
 
 - `+`
+- `%`
 - `>`
 - `==`
 - `||`
@@ -41,6 +42,12 @@ Leaf also supports many expressions you are familiar with in Swift.
 ```leaf
 #if(1 + 1 == 2):
     Hello!
+#endif
+
+#if(index % 2 == 0):
+    This is even index.
+#else:
+    This is odd index.
 #endif
 ```
 
