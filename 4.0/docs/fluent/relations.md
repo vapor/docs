@@ -50,6 +50,47 @@ The field definition is similar to `@Parent`'s except that the `.required` const
 .field("star_id", .uuid, .references("star", "id"))
 ```
 
+## OptionalChild
+
+The `@OptionalChild` property creates a one-to-one relation between the two models. It does not store any values on the root model. 
+
+```swift
+final class Planet: Model {
+    // Example of an optional child relation.
+    @OptionalChild(for: \.$planet)
+    var governor: Governor?
+}
+```
+
+The `for` parameter accepts a key path to a `@Parent` or `@OptionalParent` relation referencing the root model.
+
+A new model can be added to this relation using the `create` method.
+
+```swift
+// Example of adding a new model to a relation.
+let jane = Governor(name: "Jane Doe")
+mars.$governor.create(john, on: database)
+```
+
+This will set the parent id on the child model automatically.
+
+Since this relation does not store any values, no database schema entry is required for the root model.
+
+Child uniqueness should be enforced by `.unique` constraint in child database schema.
+
+```swift
+database.schema(Governor.schema)
+    .id()
+    .field("name", .string, .required)
+    .field("planet_id", .uuid, .required, .references("planets", "id"))
+    // Example of unique constraint
+    .unique(on: "planet_id")
+    .create()
+```
+!!! warning
+    Ommiting child's unique constraint on parent id field can lead to unpredictable results.
+    It means there can potentially exist multiple children while query result will always return the first one.
+
 ## Children
 
 The `@Children` property creates a one-to-many relation between two models. It does not store any values on the root model. 
