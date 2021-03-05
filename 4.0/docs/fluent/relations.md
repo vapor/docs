@@ -76,7 +76,7 @@ This will set the parent id on the child model automatically.
 
 Since this relation does not store any values, no database schema entry is required for the root model.
 
-Child uniqueness should be enforced by `.unique` constraint in child database schema.
+The one-to-one nature of the relation should be enforced in the child model's schema using a `.unique` constraint on the column referencing the parent model.
 
 ```swift
 database.schema(Governor.schema)
@@ -88,7 +88,7 @@ database.schema(Governor.schema)
     .create()
 ```
 !!! warning
-    Ommiting child's unique constraint on parent id field can lead to unpredictable results.
+    Omitting the unique constraint on the parent ID field from the client's schema can lead to unpredictable results.
     It means there can potentially exist multiple children while query result will always return the first one.
 
 ## Children
