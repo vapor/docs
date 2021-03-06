@@ -69,7 +69,7 @@ A new model can be added to this relation using the `create` method.
 ```swift
 // Example of adding a new model to a relation.
 let jane = Governor(name: "Jane Doe")
-mars.$governor.create(john, on: database)
+mars.$governor.create(Jane, on: database)
 ```
 
 This will set the parent id on the child model automatically.
@@ -89,7 +89,7 @@ database.schema(Governor.schema)
 ```
 !!! warning
     Omitting the unique constraint on the parent ID field from the client's schema can lead to unpredictable results.
-    If there is no uniqueness constraint, the child table may wind up containing more than one child row for any given parent; in this case, an @OptionalChild property will still only be able to access one child at a time, with no way of controlling which child is loaded. If you may need to store multiple child rows for any given parent, use @Children instead.
+    If there is no uniqueness constraint, the child table may wind up containing more than one child row for any given parent; in this case, an `@OptionalChild` property will still only be able to access one child at a time, with no way of controlling which child is loaded. If you may need to store multiple child rows for any given parent, use `@Children` instead.
 
 ## Children
 
