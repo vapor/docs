@@ -69,7 +69,7 @@ A new model can be added to this relation using the `create` method.
 ```swift
 // Example of adding a new model to a relation.
 let jane = Governor(name: "Jane Doe")
-mars.$governor.create(Jane, on: database)
+mars.$governor.create(jane, on: database)
 ```
 
 This will set the parent id on the child model automatically.
