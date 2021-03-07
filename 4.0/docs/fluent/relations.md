@@ -2,7 +2,8 @@
 
 Fluent's [model API](model.md) helps you create and maintain references between your models through relations. Two types of relations are supported:
 
-- [Parent](#parent) / [Child](#child) (One-to-many)
+- [Parent](#parent) / [Child](#optional-child) (One-to-one)
+- [Parent](#parent) / [Children](#children) (One-to-many)
 - [Siblings](#siblings) (Many-to-many)
 
 ## Parent
@@ -50,7 +51,7 @@ The field definition is similar to `@Parent`'s except that the `.required` const
 .field("star_id", .uuid, .references("star", "id"))
 ```
 
-## OptionalChild
+## Optional Child
 
 The `@OptionalChild` property creates a one-to-one relation between the two models. It does not store any values on the root model. 
 
@@ -246,7 +247,7 @@ See [query](query.md) for more information.
 
 ## Eager Loading
 
-Fluent's query builder allows you to preload a model's relations when it is fetched from the database. This is called eager loading and allows you to access relations synchronously without needing to call [`load`](#load) or [`get`](#get) first. 
+Fluent's query builder allows you to preload a model's relations when it is fetched from the database. This is called eager loading and allows you to access relations synchronously without needing to call [`load`](#lazy-eager-loading) or [`get`](#get) first. 
 
 To eager load a relation, pass a key path to the relation to the `with` method on query builder. 
 
