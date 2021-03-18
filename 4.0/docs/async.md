@@ -272,7 +272,7 @@ futureString.hop(to: otherEventLoop)
 Calling blocking code on an event loop thread can prevent your application from responding to incoming requests in a timely manner. An example of a blocking call would be something like `libc.sleep(_:)`.
 
 ```swift
-router.get("hello") { req in
+app.get("hello") { req in
     /// Puts the event loop's thread to sleep.
     sleep(5)
     
@@ -286,7 +286,7 @@ router.get("hello") { req in
 Make sure to run any blocking work in the background. Use promises to notify the event loop when this work is done in a non-blocking way.
 
 ```swift
-router.get("hello") { req -> EventLoopFuture<String> in
+app.get("hello") { req -> EventLoopFuture<String> in
     /// Dispatch some work to happen on a background thread
     return req.application.threadPool.runIfActive(eventLoop: req.eventLoop) {
         /// Puts the background thread to sleep
