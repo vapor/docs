@@ -134,6 +134,16 @@ echo "web: Run serve --env production" \
   "--hostname 0.0.0.0 --port \$PORT" > Procfile
 ```
 
+### LinuxMain.swift
+
+`LinuxMain.swift` file is required to be in the `Tests` directory when your app is built on Heroku.
+
+Run following command to generate the file:
+
+```bash
+swift test --generate-linuxmain
+```
+
 ### Commit changes
 
 We just added these files, but they're not committed. If we push, heroku will not find them.
