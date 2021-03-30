@@ -323,7 +323,7 @@ Now you can create the `POST /users` endpoint.
 
 ```swift
 app.post("users") { req -> EventLoopFuture<User> in
-    try User.Create.validate(req)
+    try User.Create.validate(content: req)
     let create = try req.content.decode(User.Create.self)
     guard create.password == create.confirmPassword else {
         throw Abort(.badRequest, reason: "Passwords did not match")
