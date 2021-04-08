@@ -63,7 +63,7 @@ if req.db is PostgresDatabase {
     query.filter(\.$name, .custom("ILIKE"), "earth")
 } else {
     // ILIKE not supported.
-    query.filter(.or) { or in
+    query.group(.or) { or in
         or.filter(\.$name == "earth").filter(\.$name == "Earth")
     }
 }
