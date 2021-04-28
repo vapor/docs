@@ -233,7 +233,7 @@ You can revert or run other commmands on heroku with the `run` command. Vapor's 
 To revert your database:
 
 ```bash
-heroku run Run -- revert --all --yes --env production
+heroku run Run -- migrate --revert --all --yes --env production
 ```
 
 To migrate
