@@ -4,7 +4,7 @@ Middleware is a logic chain between the client and a Vapor route handler. It all
 
 ## Configuration, and ErrorMiddleware
 
-Middleware is registered in your `config.swift` file. `ErrorMiddleware` is a very common example; it will take a thrown error in your software and convert it to a legible HTTP response code.
+Middleware is registered in your `configure.swift` file. `ErrorMiddleware` is a very common example; it will take a thrown error in your software and convert it to a legible HTTP response code.
 
 ```swift
 var middlewares = MiddlewareConfig()
