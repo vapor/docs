@@ -18,24 +18,44 @@ vapor new hello -n
 !!! tip
 	The `-n` flag gives you a bare bones template by automatically answering no to all questions.
 
-Once the command finishes, change into the newly created folder and open Xcode.
+Once the command finishes, change into the newly created folder:
+
 
 ```sh
 cd hello
-open Package.swift
-```
-
-## Xcode Dependencies
-
-You should now have Xcode open. It will automatically begin downloading Swift Package Manager dependencies.
-
-At the top of the window, to the right of the Play and Stop buttons, click on your project name to select the project's Scheme, and select an appropriate run target—most likely, "My Mac".
+``` 
 
 ## Build & Run
 
-Once the Swift Package Manager dependencies have finished downloading, click the play button to build and run your project.
+### Xcode
+
+First, open the project in Xcode:
+
+```sh
+open Package.swift
+```
+
+It will automatically begin downloading Swift Package Manager dependencies. This can take some time the first time you open a project. When dependency resolution is complete Xcode will populate the available schemes. 
+
+At the top of the window, to the right of the Play and Stop buttons, click on your project name to select the project's Scheme, and select an appropriate run target—most likely, "My Mac". Click the play button to build and run your project.
 
 You should see the Console pop up at the bottom of the Xcode window.
+
+```sh
+[ INFO ] Server starting on http://127.0.0.1:8080
+```
+
+### Linux
+
+On Linux and other OSes (and even on macOS if you don't want to use Xcode) you can edit the project in your favorite editor of choice, such as Vim or VSCode. See the [Swift Server Guides](https://github.com/swift-server/guides/blob/main/docs/setup-and-ide-alternatives.md) for up to date details on setting up other IDEs.
+
+To build and run your project, in Terminal run:
+
+```sh
+swift run
+```
+
+THat will build and run the project. The first time you run this it will take some time to fetch and resolve the dependencies. Once running you should see the following in your console:
 
 ```sh
 [ INFO ] Server starting on http://127.0.0.1:8080
