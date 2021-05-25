@@ -30,7 +30,7 @@ There are methods for each of the HTTP verbs like `get`, `post`, and `delete`. T
 
 ### Content
 
-Vapor's [content](./content.md) API is available for handling data in client requests and responses. To encode content or query parameters to the request, use the `beforeSend` closure.
+Vapor's [content](./content.md) API is available for handling data in client requests and responses. To encode content, query parameters or add headers to the request, use the `beforeSend` closure.
 
 ```swift
 req.client.post("https://httpbin.org/status/200") { req in
@@ -39,6 +39,10 @@ req.client.post("https://httpbin.org/status/200") { req in
 
 	// Encode JSON to the request body.
     try req.content.encode(["hello": "world"])
+    
+    // Add auth header to the request
+    let auth = BasicAuthorization(username: "something", password: "somethingelse")
+    req.headers.basicAuthorization = auth
 }.map { res in
     // Handle the response.
 }
