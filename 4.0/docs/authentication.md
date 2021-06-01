@@ -29,7 +29,7 @@ struct User: Authenticatable {
 }
 ```
 
-Each example below will create an authenticator named `UserAuthenticator`. 
+Each example below will use an instance of an authenticator which we created. In these examples, we've called it `UserAuthenticator`.
 
 ### Route
 
