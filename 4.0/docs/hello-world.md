@@ -55,7 +55,7 @@ To build and run your project, in Terminal run:
 swift run
 ```
 
-THat will build and run the project. The first time you run this it will take some time to fetch and resolve the dependencies. Once running you should see the following in your console:
+That will build and run the project. The first time you run this it will take some time to fetch and resolve the dependencies. Once running you should see the following in your console:
 
 ```sh
 [ INFO ] Server starting on http://127.0.0.1:8080
