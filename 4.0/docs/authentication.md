@@ -752,11 +752,22 @@ First, create a type representing the structure of the JWT payload.
 
 ```swift
 // Example JWT payload.
-struct TestUser: Content, Authenticatable, JWTPayload {
-    var name: String
+struct SessionToken: Content, Authenticatable, JWTPayload {
+
+	// Constants
+	let expirationTime = 60 * 15
+    
+    // Token Data
+    var expiration: ExpirationClaim
+    var userId: UUID
+    
+    init(with user: User) throws {
+        self.userId = try user.requireID()
+        self.expiration = ExpirationClaim(value: Date().addingTimeInterval(expirationTime))
+    }
 
     func verify(using signer: JWTSigner) throws {
-        // Nothing to verify.
+        try expiration.verifyNotExpired()
     }
 }
 ```
@@ -764,8 +775,8 @@ struct TestUser: Content, Authenticatable, JWTPayload {
 By conforming the payload to `Authenticatable` and `JWTPayload`, you can generate a route authenticator using the `authenticator()` method. Add this to a route group to automatically fetch and verify the JWT before your route is called. 
 
 ```swift
-// Create a route group that requires the TestUser JWT.
-let secure = app.grouped(TestUser.authenticator(), TestUser.guardMiddleware())
+// Create a route group that requires the SessionToken JWT.
+let secure = app.grouped(SessionToken.authenticator(), SessionToken.guardMiddleware())
 ```
 
 Adding the optional [guard middleware](#guard-middleware) will require that authorization succeeded.
@@ -773,10 +784,13 @@ Adding the optional [guard middleware](#guard-middleware) will require that auth
 Inside the protected routes, you can access the authenticated JWT payload using `req.auth`. 
 
 ```swift
-// Return the authenticated JWT payload's name field.
-secure.get("me") { req -> HTTPStatus in
-    let user = try req.auth.require(TestUser.self)
-    print(user.name)
-    return .ok
+// Return the authenticated JWT token with a userId payload.
+secure.post("login") { req -> [String: String] in
+    let user = try req.auth.require(User.self)
+    let payload = try SessionToken(with: user)
+    // Return the signed JWT
+    return try [
+        "token": req.jwt.sign(payload)
+    ]
 }
 ```
