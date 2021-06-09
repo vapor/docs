@@ -748,24 +748,69 @@ The `CredentialsAuthenticator` extracts the `username` and `password` from the r
 
 [JWT](jwt.md) provides a `JWTAuthenticator` that can be used to authenticate JSON Web Tokens in incoming requests. If you are new to JWT, check out the [overview](jwt.md).
 
-First, create a type representing the structure of the JWT payload.
+First, create a struct representing a JWT payload.
 
 ```swift
 // Example JWT payload.
-struct TestUser: Content, Authenticatable, JWTPayload {
-    var name: String
+struct SessionToken: Content, Authenticatable, JWTPayload {
+
+    // Constants
+    let expirationTime = 60 * 15
+    
+    // Token Data
+    var expiration: ExpirationClaim
+    var userId: UUID
+    
+    init(userId: UUID) {
+        self.userId = userId
+        self.expiration = ExpirationClaim(value: Date().addingTimeInterval(expirationTime))
+    }
+    
+    init(user: User) throws {
+        self.userId = try user.requireID()
+        self.expiration = ExpirationClaim(value: Date().addingTimeInterval(expirationTime))
+    }
 
     func verify(using signer: JWTSigner) throws {
-        // Nothing to verify.
+        try expiration.verifyNotExpired()
     }
+}
+```
+
+Next, we can define a representation of the data contained in a successful login reponse. For now the response will only have one property which is a string representing a signed JWT.
+
+```swift
+struct ClientTokenReponse: Content {
+    var token: String
+}
+```
+
+Using our model for the JWT token and response, we can use a password protected login route which returns a `ClientTokenReponse` and includes a signed `SessionToken`.
+
+```swift
+let passwordProtected = app.grouped(User.authenticator())
+passwordProtected.post("login") { req -> ClientTokenReponse in
+    let user = try req.auth.require(User.self)
+    let payload = try SessionToken(with: user)
+    return ClientTokenReponse(token: try req.jwt.sign(payload))
+}
+```
+
+Alternatively, if you don't want to use an authenticator you can have something that looks like the following.
+```swift
+app.post("login") { req -> ClientTokenReponse in
+    // Validate provided credential for user
+    // Get userId for provided user
+    let payload = try SessionToken(userId: userId)
+    return ClientTokenReponse(token: try req.jwt.sign(payload))
 }
 ```
 
 By conforming the payload to `Authenticatable` and `JWTPayload`, you can generate a route authenticator using the `authenticator()` method. Add this to a route group to automatically fetch and verify the JWT before your route is called. 
 
 ```swift
-// Create a route group that requires the TestUser JWT.
-let secure = app.grouped(TestUser.authenticator(), TestUser.guardMiddleware())
+// Create a route group that requires the SessionToken JWT.
+let secure = app.grouped(SessionToken.authenticator(), SessionToken.guardMiddleware())
 ```
 
 Adding the optional [guard middleware](#guard-middleware) will require that authorization succeeded.
@@ -773,10 +818,10 @@ Adding the optional [guard middleware](#guard-middleware) will require that auth
 Inside the protected routes, you can access the authenticated JWT payload using `req.auth`. 
 
 ```swift
-// Return the authenticated JWT payload's name field.
-secure.get("me") { req -> HTTPStatus in
-    let user = try req.auth.require(TestUser.self)
-    print(user.name)
+// Return ok reponse if the user-provided token is valid.
+secure.post("validateLoggedInUser") { req -> HTTPStatus in
+    let sessionToken = try req.auth.require(SessionToken.self)
+    print(sessionToken.userId)
     return .ok
 }
 ```
