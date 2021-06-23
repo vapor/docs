@@ -119,7 +119,9 @@ If the query string were omitted, like in the following request, the name "Anony
 
 ```http
 GET /hello HTTP/1.1
-content-length: 0
+content-length: 16
+
+Hello, Anonymous
 ```
 
 ### Single Value
