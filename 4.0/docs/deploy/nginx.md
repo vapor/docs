@@ -29,7 +29,7 @@ And that's it. If Nginx is properly configured, you will see your Vapor app resp
 The first step is installing Nginx. One of the great parts of Nginx is the tremendous amount of community resources and documentation surrounding it. Because of this, we will not go into great detail here about installing Nginx as there is almost definitely a tutorial for your specific platform, OS, and provider.
 
 Tutorials:
-
+- [How to Install NGINX Web Server on Ubuntu 21.04](https://www.armanism.com/blog/install-nginx-on-ubuntu)
 - [How To Install Nginx on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04)
 - [How To Install Nginx on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04)
 - [How to Install Nginx on CentOS 8](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-8)
@@ -43,8 +43,8 @@ Nginx can be installed through package managers on Linux.
 #### Ubuntu
 
 ```sh
-sudo apt-get update
-sudo apt-get install nginx
+sudo apt update
+sudo apt install nginx
 ```
 
 #### CentOS and Amazon Linux
