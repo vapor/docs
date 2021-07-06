@@ -51,3 +51,65 @@ And that's it! We can now use our custom tag in Leaf.
 ```leaf
 The time is #now()
 ```
+
+## Context Properties
+
+The `LeafContext` contains two important properties. `parameters` and `data` that has everything we should need.
+
+- `parameters`: An array that contains the parameters of the tag.
+- `data`: A dictionary that contains the data of the view.
+
+### Example Hello Tag
+
+For usage demostration let's implement a simple hello tag using both properties.
+
+#### Using Parameters
+
+We can access the first parameter that would contain the name.
+
+```swift
+struct HelloTagError: Error {}
+
+public func render(_ ctx: LeafContext) throws -> LeafData {
+
+        guard let name = ctx.parameters[0].string else {
+            throw HelloTagError()
+        }
+
+        return LeafData.string("<p>Hello \(name)</p>'")
+    }
+}
+```
+
+```leaf
+#hello("John")
+```
+
+#### Using Data
+
+We can access the name value by using the "name" key inside the data property.
+
+```swift
+struct HelloTagError: Error {}
+
+public func render(_ ctx: LeafContext) throws -> LeafData {
+
+        guard let name = ctx.data["name"]?.string else {
+            throw HelloTagError()
+        }
+
+        return LeafData.string("<p>Hello \(name)</p>'")
+    }
+}
+```
+
+```leaf
+#hello()
+```
+
+_Controller_:
+
+```swift
+return req.view.render("home", ["name": "John"])
+```
+
