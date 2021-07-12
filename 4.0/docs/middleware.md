@@ -40,6 +40,12 @@ A request to `GET /hello` will visit middleware in the following order:
 Request → A → B → C → Handler → C → B → A → Response
 ```
 
+Middleware can be _prepended_ as well, which is useful when you want to add a middleware _before_ the default middleware vapor adds automatically:
+
+```swift
+app.middleware.use(someMiddleware, at: .beginning)
+```
+
 ## Creating a Middleware
 
 Vapor ships with a few useful middlewares, but you might need to create your own because of the requirements of your application. For example you could create a middleware that prevents any non-admin user from accessing a group of routes.
@@ -109,17 +115,8 @@ let corsConfiguration = CORSMiddleware.Configuration(
     allowedHeaders: [.accept, .authorization, .contentType, .origin, .xRequestedWith, .userAgent, .accessControlAllowOrigin]
 )
 let cors = CORSMiddleware(configuration: corsConfiguration)
-
-// Only add this if you want to enable the default per-route logging
-let routeLogging = RouteLoggingMiddleware(logLevel: .info)
-
-// Add the default error middleware
-let error = ErrorMiddleware.default(environment: app.environment)
-// Clear any existing middleware.
-app.middleware = .init()
-app.middleware.use(cors)
-app.middleware.use(routeLogging)
-app.middleware.use(error)
+// cors middleware should come before default error middleware using `at: .beginning`
+app.middleware.use(cors, at: .beginning)
 ```
 
 Given that thrown errors are immediately returned to the client, the `CORSMiddleware` must be listed _before_ the `ErrorMiddleware`. Otherwise, the HTTP error response will be returned without CORS headers, and cannot be read by the browser.
