@@ -115,7 +115,7 @@ You can also use `#elseif` statements:
     Hello new user!
 #elseif(title == "Welcome back!"):
     Hello old user
-#else
+#else:
     Unexpected page!
 #endif
 ```
@@ -241,7 +241,7 @@ The `#contains` tag accepts an array and a value as its two parameters, and retu
 ```leaf
 #if(contains(planets, "Earth")):
     Earth is here!
-#elseif
+#else:
     Earth is not in this array.
 #endif
 ```
