@@ -748,7 +748,7 @@ The `CredentialsAuthenticator` extracts the `username` and `password` from the r
 
 [JWT](jwt.md) provides a `JWTAuthenticator` that can be used to authenticate JSON Web Tokens in incoming requests. If you are new to JWT, check out the [overview](jwt.md).
 
-First, create a struct representing a JWT payload.
+First, create a type representing a JWT payload.
 
 ```swift
 // Example JWT payload.
@@ -788,7 +788,7 @@ struct ClientTokenReponse: Content {
 Using our model for the JWT token and response, we can use a password protected login route which returns a `ClientTokenReponse` and includes a signed `SessionToken`.
 
 ```swift
-let passwordProtected = app.grouped(User.authenticator())
+let passwordProtected = app.grouped(User.authenticator(), User.guardMiddleware())
 passwordProtected.post("login") { req -> ClientTokenReponse in
     let user = try req.auth.require(User.self)
     let payload = try SessionToken(with: user)
