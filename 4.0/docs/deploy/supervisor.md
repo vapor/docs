@@ -44,10 +44,12 @@ The `--env production` flag will disable verbose logging.
 
 ### Environment
 
-You can export variables to your Vapor app with supervisor.
+You can export variables to your Vapor app with supervisor. For exporting multiple environment values, put them all on one line. Per [Supervisor documentation](http://supervisord.org/configuration.html#program-x-section-values):
+
+> Values containing non-alphanumeric characters should be quoted (e.g. KEY="val:123",KEY2="val,456"). Otherwise, quoting the values is optional but recommended.
 
 ```sh
-environment=PORT=8123
+environment=PORT=8123,ANOTHERVALUE="/something/else"
 ```
 
 Exported variables can be used in Vapor using `Environment.get`
