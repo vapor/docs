@@ -263,3 +263,13 @@ You can pass a custom date formatter string as the second argument. See Swift's 
 ```leaf
 The date is #date(now, "yyyy-MM-dd")
 ```
+
+#### `#unsafeHTML`
+
+The `#unsafeHTML` tag acts like a variable tag - e.g. `#(variable)`. However it does not escape any HTML that `variable` may contain:
+
+```leaf
+The time is #unsafeHTML(styledTitle)
+```
+
+**Note:** you should be careful when using this tag to ensure that the variable you provide it does not expose your users to an XSS attack.
