@@ -4,7 +4,7 @@ You can create custom Leaf tags using the [`LeafTag`](https://api.vapor.codes/le
 
 To demonstrate this, let's take a look at creating a custom tag `#now` that prints the current timestamp. The tag will also support a single, optional parameter for specifying the date format.
 
-## Tag Renderer
+## `LeafTag`
 
 First create a class called `NowTag` and conform it to `LeafTag`.
 
@@ -37,6 +37,9 @@ default:
 let dateAsString = formatter.string(from: Date())
 return LeafData.string(dateAsString)
 ```
+
+!!! tip
+	If your custom tag renders HTML you should conform your custom tag to `UnsafeUnescapedLeafTag` so the HTML is not escaped. Remember to check or sanitize any user input.
 
 ## Configure Tag
 
@@ -112,4 +115,3 @@ _Controller_:
 ```swift
 return req.view.render("home", ["name": "John"])
 ```
-
