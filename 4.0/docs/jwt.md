@@ -390,7 +390,7 @@ app.jwt.google.gSuiteDomainName = "..."
 Then, use the `req.jwt.google` helper to fetch and verify a Google JWT. 
 
 ```swift
-// Fetch and verify Microsoft JWT from Authorization header.
+// Fetch and verify Google JWT from Authorization header.
 app.get("google") { req -> EventLoopFuture<HTTPStatus> in
     req.jwt.google.verify().map { token in
         print(token) // GoogleIdentityToken
