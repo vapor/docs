@@ -274,7 +274,7 @@ extension User {
                 .field("name", .string, .required)
                 .field("email", .string, .required)
                 .field("password_hash", .string, .required)
-                .unique(on: "email", name: "no_duplicate_emails")
+                .unique(on: "email")
                 .create()
         }
 
