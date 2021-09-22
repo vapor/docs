@@ -258,7 +258,7 @@ final class User: Model, Content {
 }
 ```
 
-The model must be able to store a username, in this case an email, and a password hash. The corresponding migration for this example model is here:
+The model must be able to store a username, in this case an email, and a password hash. We also set `email` to be a unique field, to avoid duplicate users. The corresponding migration for this example model is here:
 
 ```swift
 import Fluent
@@ -274,6 +274,7 @@ extension User {
                 .field("name", .string, .required)
                 .field("email", .string, .required)
                 .field("password_hash", .string, .required)
+                .unique(on: "email")
                 .create()
         }
 
