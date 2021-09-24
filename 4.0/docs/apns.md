@@ -71,6 +71,12 @@ try app.apns.send(
     .init(title: "Hello", subtitle: "This is a test from vapor/apns"),
     to: "98AAD4A2398DDC58595F02FA307DF9A15C18B6111D1B806949549085A8E6A55D"
 ).wait()
+
+// Or
+try await app.apns.send(
+    .init(title: "Hello", subtitle: "This is a test from vapor/apns"),
+    to: "98AAD4A2398DDC58595F02FA307DF9A15C18B6111D1B806949549085A8E6A55D"
+)
 ```
 
 Use `req.apns` whenever you are inside of a route handler.
@@ -80,6 +86,12 @@ Use `req.apns` whenever you are inside of a route handler.
 app.get("test-push") { req -> EventLoopFuture<HTTPStatus> in
     req.apns.send(..., to: ...)
         .map { .ok }
+}
+
+// Or
+app.get("test-push") { req async throws -> HTTPStatus in
+    try await req.apns.send(..., to: ...) 
+    return .ok
 }
 ```
 

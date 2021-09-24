@@ -8,12 +8,19 @@ The main method for reading a file delivers chunks to a callback handler as they
 
 ```swift
 // Asynchronously reads a file from disk.
-req.fileio.readFile(at: "/path/to/file") { chunk in
+let readComplete: EventLoopFuture<Void> = req.fileio.readFile(at: "/path/to/file") { chunk in
     print(chunk) // ByteBuffer
 }
+
+// Or
+
+try await req.fileio.readFile(at: "/path/to/file") { chunk in
+    print(chunk) // ByteBuffer
+}
+// Read is complete
 ```
 
-The returned future will signal when the read has completed or an error has occured.
+If using `EventLoopFuture`s, the returned future will signal when the read has completed or an error has occured. If using `async`/`await` then once the `await` has return the read has completed. If an error has occurred it will throw an error.
 
 ### Stream
 
@@ -24,6 +31,12 @@ The `streamFile` method converts a streaming file to a `Response`. This method w
 req.fileio.streamFile(at: "/path/to/file").map { res in
     print(res) // Response
 }
+
+// Or
+
+let res = req.fileio.streamFile(at: "/path/to/file")
+print(res)
+
 ```
 
 The result can be returned directly by your route handler. 
@@ -37,6 +50,11 @@ The `collectFile` method reads the specified file into a buffer.
 req.fileio.collectFile(at: "/path/to/file").map { buffer in 
     print(buffer) // ByteBuffer
 }
+
+// or
+
+let buffer = req.fileio.collectFile(at: "/path/to/file")
+print(buffer)
 ```
 
 !!! warning
@@ -63,19 +81,17 @@ For cases that Vapor's API doesn't support, you can use NIO's `NonBlockingFileIO
 
 ```swift
 // Main thread.
-let fileHandle = try app.fileio.openFile(
+let fileHandle = try await app.fileio.openFile(
     path: "/path/to/file", 
     eventLoop: app.eventLoopGroup.next()
-).wait()
+).get()
 print(fileHandle)
 
 // In a route handler.
-req.application.fileio.openFile(
+let fileHandle = try await req.application.fileio.openFile(
     path: "/path/to/file", 
-    eventLoop: req.eventLoop
-).map { fileHandle in
-    print(fileHandle)
-}
+    eventLoop: req.eventLoop)
+print(fileHandle)
 ```
 
 For more information, visit SwiftNIO's [API reference](https://apple.github.io/swift-nio/docs/current/NIO/Structs/NonBlockingFileIO.html).

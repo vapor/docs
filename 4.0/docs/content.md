@@ -253,6 +253,18 @@ extension HTML: ResponseEncodable {
 }
 ```
 
+If you're using `async`/`await` you can use `AsyncResponseEncodable`:
+
+```swift
+extension HTML: AsyncResponseEncodable {
+  public func encodeResponse(for request: Request) async throws -> Response {
+    var headers = HTTPHeaders()
+    headers.add(name: .contentType, value: "text/html")
+    return .init(status: .ok, headers: headers, body: .init(string: value))
+  }
+}
+```
+
 Note that this allows customizing the `Content-Type` header. See [`HTTPHeaders` reference](https://api.vapor.codes/vapor/master/Vapor/) for more details.
 
 You can then use `HTML` as a response type in your routes:

@@ -87,6 +87,25 @@ struct UserAuthenticator: BasicAuthenticator {
 }
 ```
 
+If you're using `async`/`await` you can use `AsyncBasicAuthenticator` instead:
+
+```swift
+import Vapor
+
+struct UserAuthenticator: AsyncBasicAuthenticator {
+    typealias User = App.User
+
+    func authenticate(
+        basic: BasicAuthorization,
+        for request: Request
+    ) async throws {
+        if basic.username == "test" && basic.password == "secret" {
+            request.auth.login(User(name: "Vapor"))
+        }
+   }
+}
+```
+
 This protocol requires you to implement `authenticate(basic:for:)` which will be called when an incoming request contains the `Authorization: Basic ...` header. A `BasicAuthorization` struct containing the username and password is passed to the method.
 
 In this test authenticator, the username and password are tested against hard-coded values. In a real authenticator, you might check against a database or external API. This is why the `authenticate` method allows you to return a future. 
@@ -127,6 +146,25 @@ struct UserAuthenticator: BearerAuthenticator {
            request.auth.login(User(name: "Vapor"))
        }
        return request.eventLoop.makeSucceededFuture(())
+   }
+}
+```
+
+If using `async`/`await` you can use `AsyncBasicAuthenticator` instead:
+
+```swift
+import Vapor
+
+struct UserAuthenticator: AsyncBearerAuthenticator {
+    typealias User = App.User
+
+    func authenticate(
+        bearer: BearerAuthorization,
+        for request: Request
+    ) async throws {
+       if bearer.token == "foo" {
+           request.auth.login(User(name: "Vapor"))
+       }
    }
 }
 ```
@@ -265,11 +303,11 @@ import Fluent
 import Vapor
 
 extension User {
-    struct Migration: Fluent.Migration {
+    struct Migration: AsyncMigration {
         var name: String { "CreateUser" }
 
-        func prepare(on database: Database) -> EventLoopFuture<Void> {
-            database.schema("users")
+        func prepare(on database: Database) async throws {
+            try await database.schema("users")
                 .id()
                 .field("name", .string, .required)
                 .field("email", .string, .required)
@@ -278,8 +316,8 @@ extension User {
                 .create()
         }
 
-        func revert(on database: Database) -> EventLoopFuture<Void> {
-            database.schema("users").delete()
+        func revert(on database: Database) async throws {
+            try await database.schema("users").delete()
         }
     }
 }
@@ -323,7 +361,7 @@ extension User.Create: Validatable {
 Now you can create the `POST /users` endpoint. 
 
 ```swift
-app.post("users") { req -> EventLoopFuture<User> in
+app.post("users") { req async throws -> User in
     try User.Create.validate(content: req)
     let create = try req.content.decode(User.Create.self)
     guard create.password == create.confirmPassword else {
@@ -334,8 +372,8 @@ app.post("users") { req -> EventLoopFuture<User> in
         email: create.email,
         passwordHash: Bcrypt.hash(create.password)
     )
-    return user.save(on: req.db)
-        .map { user }
+    try await user.save(on: req.db)
+    return user
 }
 ```
 
@@ -438,11 +476,11 @@ Next, create a migration for this model.
 import Fluent
 
 extension UserToken {
-    struct Migration: Fluent.Migration {
+    struct Migration: AsyncMigration {
         var name: String { "CreateUserToken" }
         
-        func prepare(on database: Database) -> EventLoopFuture<Void> {
-            database.schema("user_tokens")
+        func prepare(on database: Database) async throws {
+            try await database.schema("user_tokens")
                 .id()
                 .field("value", .string, .required)
                 .field("user_id", .uuid, .required, .references("users", "id"))
@@ -450,8 +488,8 @@ extension UserToken {
                 .create()
         }
 
-        func revert(on database: Database) -> EventLoopFuture<Void> {
-            database.schema("user_tokens").delete()
+        func revert(on database: Database) async throws {
+            try await database.schema("user_tokens").delete()
         }
     }
 }
@@ -484,11 +522,11 @@ Now that you can generate user tokens, update the `POST /login` route to create 
 
 ```swift
 let passwordProtected = app.grouped(User.authenticator())
-passwordProtected.post("login") { req -> EventLoopFuture<UserToken> in
+passwordProtected.post("login") { req async throws -> UserToken in
     let user = try req.auth.require(User.self)
     let token = try user.generateToken()
-    return token.save(on: req.db)
-        .map { token }
+    try await token.save(on: req.db)
+    return token
 }
 ```
 
@@ -590,18 +628,29 @@ struct UserSessionAuthenticator: SessionAuthenticator {
 }
 ```
 
+If you're using `async`/`await` you can use the `AsyncSessionAuthenticator`:
+
+```swift
+struct UserSessionAuthenticator: AsyncSessionAuthenticator {
+    typealias User = App.User
+    func authenticate(sessionID: String, for request: Request) async throws {
+        let user = User(email: sessionID)
+        request.auth.login(user)
+    }
+}
+```
+
 Since all the information we need to initialize our example `User` is contained in the session identifier, we can create and login the user synchronously. In a real-world application, you would likely use the session identifier to perform a database lookup or API request to fetch the rest of the user data before authenticating. 
 
 Next, let's create a simple bearer authenticator to perform the initial authentication.
 
 ```swift
-struct UserBearerAuthenticator: BearerAuthenticator {
-    func authenticate(bearer: BearerAuthorization, for request: Request) -> EventLoopFuture<Void> {
+struct UserBearerAuthenticator: AsyncBearerAuthenticator {
+    func authenticate(bearer: BearerAuthorization, for request: Request) async throws {
         if bearer.token == "test" {
             let user = User(email: "hello@vapor.codes")
             request.auth.login(user)
         }
-        return request.eventLoop.makeSucceededFuture(())
     }
 }
 ```
