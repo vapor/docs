@@ -479,7 +479,7 @@ If using `async`/`await` you can use:
 
 ```swift
 await withTaskGroup(of: Void.self) { taskGroup in
-    [earth, mars].map { model in
+    [earth, mars].forEach { model in
         taskGroup.addTask { try await model.create(on: database) }
     }
 }
