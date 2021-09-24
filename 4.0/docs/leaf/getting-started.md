@@ -78,6 +78,12 @@ Then, register a route (usually done in `routes.swift` or a controller) to rende
 app.get("hello") { req -> EventLoopFuture<View> in
     return req.view.render("hello", ["name": "Leaf"])
 }
+
+// or
+
+app.get("hello") { req async throws -> View in
+    return try await req.view.render("hello", ["name": "Leaf"])
+}
 ```
 
 This uses the generic `view` property on `Request` instead of calling Leaf directly. This allows you to switch to a different renderer in your tests.
