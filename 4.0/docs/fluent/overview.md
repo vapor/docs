@@ -104,6 +104,8 @@ If you use an in-memory database, make sure to set Fluent to migrate automatical
 ```swift
 app.migrations.add(CreateTodo())
 try app.autoMigrate().wait()
+// or
+try await app.autoMigrate()
 ```
 
 !!! tip
@@ -265,21 +267,21 @@ Using convenience inits is especially helpful if you add new properties to your 
 
 ## Migrations
 
-If your database uses pre-defined schemas, like SQL databases, you will need a migration to prepare the database for your model. Migrations are also useful for seeding databases with data. To create a migration, define a new type conforming to the `Migration` protocol. Take a look at the following migration for the previously defined `Galaxy` model.
+If your database uses pre-defined schemas, like SQL databases, you will need a migration to prepare the database for your model. Migrations are also useful for seeding databases with data. To create a migration, define a new type conforming to the `Migration` or `AsyncMigration` protocol. Take a look at the following migration for the previously defined `Galaxy` model.
 
 ```swift
-struct CreateGalaxy: Migration {
+struct CreateGalaxy: AsyncMigration {
     // Prepares the database for storing Galaxy models.
-    func prepare(on database: Database) -> EventLoopFuture<Void> {
-        database.schema("galaxies")
+    func prepare(on database: Database) async throws {
+        try await database.schema("galaxies")
             .id()
             .field("name", .string)
             .create()
     }
 
     // Optionally reverts the changes made in the prepare method.
-    func revert(on database: Database) -> EventLoopFuture<Void> {
-        database.schema("galaxies").delete()
+    func revert(on database: Database) async throws {
+        try await database.schema("galaxies").delete()
     }
 }
 ```
@@ -330,8 +332,8 @@ Now that you've successfully created a model and migrated your database, you're 
 Take a look at the following route which will return an array of all the galaxies in the database.
 
 ```swift
-app.get("galaxies") { req in
-    Galaxy.query(on: req.db).all()
+app.get("galaxies") { req async throws in
+    try await Galaxy.query(on: req.db).all()
 }
 ```
 
@@ -364,6 +366,18 @@ app.post("galaxies") { req -> EventLoopFuture<Galaxy> in
     See [Content &rarr; Overview](../content.md) for more information about decoding request bodies.
 
 Once you have an instance of the model, calling `create(on:)` saves the model to the database. This returns an `EventLoopFuture<Void>` which signals that the save has completed. Once the save completes, return the newly created model using `map`.
+
+If you're using `async`/`await` you can write your code as so:
+
+```swift
+app.post("galaxies") { req async throws -> Galaxy in
+    let galaxy = try req.content.decode(Galaxy.self)
+    try await return galaxy.create(on: req.db)
+    return galaxy
+}
+```
+
+In this case, the async version doesn't return anything, but will return once the save has completed.
 
 Build and run the project and send the following request.
 
@@ -448,10 +462,10 @@ Next, create a migration to prepare the database for handling `Star`.
 
 
 ```swift
-struct CreateStar: Migration {
+struct CreateStar: AsyncMigration {
     // Prepares the database for storing Star models.
-    func prepare(on database: Database) -> EventLoopFuture<Void> {
-        database.schema("stars")
+    func prepare(on database: Database) async throws {
+        try await database.schema("stars")
             .id()
             .field("name", .string)
             .field("galaxy_id", .uuid, .references("galaxies", "id"))
@@ -459,8 +473,8 @@ struct CreateStar: Migration {
     }
 
     // Optionally reverts the changes made in the prepare method.
-    func revert(on database: Database) -> EventLoopFuture<Void> {
-        database.schema("stars").delete()
+    func revert(on database: Database) async throws {
+        try await database.schema("stars").delete()
     }
 }
 ```
@@ -485,10 +499,10 @@ Since migrations run in order, and `CreateStar` references the galaxies schema, 
 Add a route for creating new stars.
 
 ```swift
-app.post("stars") { req -> EventLoopFuture<Star> in
+app.post("stars") { req async throws -> Star in
     let star = try req.content.decode(Star.self)
-    return star.create(on: req.db)
-        .map { star }
+    try await star.create(on: req.db)
+    return star
 }
 ```
 
@@ -537,7 +551,7 @@ Now that the relation is complete, you can use the `with` method on the query bu
 
 ```swift
 app.get("galaxies") { req in
-    Galaxy.query(on: req.db).with(\.$stars).all()
+    try await Galaxy.query(on: req.db).with(\.$stars).all()
 }
 ```
 

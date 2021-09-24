@@ -348,9 +348,9 @@ Models conform to `Codable` by default. This means you can use your models with 
 ```swift
 extension Planet: Content { }
 
-app.get("planets") { req in 
+app.get("planets") { req async throws in 
     // Return an array of all planets.
-    Planet.query(on: req.db).all()
+    try await Planet.query(on: req.db).all()
 }
 ```
 
@@ -388,26 +388,24 @@ struct PatchUser: Decodable {
     var lastName: String?
 }
 
-app.patch("users", ":id") { req in 
+app.patch("users", ":id") { req async throws -> User in 
     // Decode the request data.
     let patch = try req.content.decode(PatchUser.self)
     // Fetch the desired user from the database.
-    return User.find(req.parameters.get("id"), on: req.db)
-        .unwrap(or: Abort(.notFound))
-        .flatMap 
-    { user in
-        // If first name was supplied, update it.
-        if let firstName = patch.firstName {
-            user.firstName = firstName
-        }
-        // If new last name was supplied, update it.
-        if let lastName = patch.lastName {
-            user.lastName = lastName
-        }
-        // Save the user and return it.
-        return user.save(on: req.db)
-            .transform(to: user)
+    guard let user = try await User.find(req.parameters.get("id"), on: req.db) else {
+        throw Abort(.notFound)
     }
+    // If first name was supplied, update it.
+    if let firstName = patch.firstName {
+        user.firstName = firstName
+    }
+    // If new last name was supplied, update it.
+    if let lastName = patch.lastName {
+        user.lastName = lastName
+    }
+    // Save the user and return it.
+    try await user.save(on: req.db)
+    return user
 }
 ```
 
@@ -420,16 +418,15 @@ struct GetUser: Content {
     var name: String
 }
 
-app.get("users") { req in 
+app.get("users") { req async throws -> [GetUser] in 
     // Fetch all users from the database.
-    User.query(on: req.db).all().flatMapThrowing { users in
-        try users.map { user in
-            // Convert each user to GET return type.
-            try GetUser(
-                id: user.requireID(),
-                name: "\(user.firstName) \(user.lastName)"
-            )
-        }
+    let users = try await User.query(on: req.db).all()
+    return try users.map { user in
+        // Convert each user to GET return type.
+        try GetUser(
+            id: user.requireID(),
+            name: "\(user.firstName) \(user.lastName)"
+        )
     }
 }
 ```
@@ -478,15 +475,26 @@ To create an array of models separately, use `map` + `flatten`.
     .flatten(on: database.eventLoop)
 ```
 
+If using `async`/`await` you can use:
+
+```swift
+await withTaskGroup(of: Void.self) { taskGroup in
+    [earth, mars].map { model in
+        taskGroup.addTask { try await model.create(on: database) }
+    }
+}
+```
+
 ### Update
 
 You can call the `update` method to save a model that was fetched from the database.
 
 ```swift
-Planet.find(..., on: database).flatMap { planet in
-    planet.name = "Earth"
-    return planet.update(on: database)
+guard let planet = try await Planet.find(..., on: database) else {
+    throw Abort(.notFound)
 }
+planet.name = "Earth"
+try await planet.update(on: database)
 ```
 
 To update an array of models, use `map` + `flatten`.
@@ -494,6 +502,8 @@ To update an array of models, use `map` + `flatten`.
 ```swift
 [earth, mars].map { $0.update(on: database) }
     .flatten(on: database.eventLoop)
+
+// TOOD
 ```
 
 ## Query
@@ -528,7 +538,7 @@ Model middleware allow you to hook into your model's lifecycle events. The follo
 |`softDelete`|Runs before a model is soft deleted.|
 |`restore`|Runs before a model is restored (opposite of soft delete).|
 
-Model middleware are declared using the `ModelMiddleware` protocol. All lifecycle methods have a default implementation, so you only need to implement the methods you require. Each method accepts the model in question, a reference to the database, and the next action in the chain. The middleware can choose to return early, return a failed future, or call the next action to continue normally.
+Model middleware are declared using the `ModelMiddleware` or `AsyncModelMiddleware` protocol. All lifecycle methods have a default implementation, so you only need to implement the methods you require. Each method accepts the model in question, a reference to the database, and the next action in the chain. The middleware can choose to return early, return a failed future, or call the next action to continue normally.
 
 Using these methods you can perform actions both before and after the specific event completes. Performing actions after the event completes can be done by mapping the future returned from the next responder.
 
@@ -543,6 +553,21 @@ struct PlanetMiddleware: ModelMiddleware {
             // here will be executed.
             print ("Planet \(model.name) was created")
         }
+    }
+}
+```
+
+or if using `async`/`await`:
+
+```swift
+struct PlanetMiddleware: AsyncModelMiddleware {
+    func create(model: Planet, on db: Database, next: AnyModelResponder) async throws {
+        // The model can be altered here before it is created.
+        model.name = model.name.capitalized()
+        try await next.create(model, on: db)
+        // Once the planet has been created, the code 
+        // here will be executed.
+        print ("Planet \(model.name) was created")
     }
 }
 ```

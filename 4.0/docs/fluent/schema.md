@@ -4,7 +4,7 @@ Fluent's schema API allows you to create and update your database schema program
 
 ```swift
 // An example of Fluent's schema API
-database.schema("planets")
+try await database.schema("planets")
     .id()
     .field("name", .string, .required)
     .field("star_id", .uuid, .required, .references("stars", "id"))
@@ -23,7 +23,7 @@ Calling `create()` creates a new table or collection in the database. All method
 
 ```swift
 // An example schema creation.
-database.schema("planets")
+try await database.schema("planets")
     .id()
     .field("name", .string, .required)
     .create()
@@ -37,7 +37,7 @@ Calling `update()` updates an existing table or collection in the database. All 
 
 ```swift
 // An example schema update.
-database.schema("planets")
+try await database.schema("planets")
     .unique(on: "name")
     .deleteField("star_id")
     .update()
@@ -302,6 +302,13 @@ database.enum("planet_type").read().flatMap { planetType in
         .field("type", planetType, .required)
         .update()
 }
+
+// Or
+
+let planetType = try await database.enum("planet_type").read()
+try await database.schema("planets")
+    .field("type", planetType, .required)
+    .update()
 ```
 
 To update an enum, call `update()`. Cases can be deleted from existing enums.
@@ -327,16 +334,16 @@ Schema building is purposefully decoupled from models. Unlike query building, sc
 To better understand this, take a look at the following example migration.
 
 ```swift
-struct UserMigration: Migration {
-    func prepare(on database: Database) -> EventLoopFuture<Void> {
-        database.schema("users")
+struct UserMigration: AsyncMigration {
+    func prepare(on database: Database) async throws {
+        try await database.schema("users")
             .field("id", .uuid, .identifier(auto: false))
             .field("name", .string, .required)
             .create()
     }
 
-    func revert(on database: Database) -> EventLoopFuture<Void> {
-        database.schema("users").delete()
+    func revert(on database: Database) async throws {
+        try await database.schema("users").delete()
     }
 }
 ```
@@ -356,17 +363,17 @@ Let's assume that this migration has been has already been pushed to production.
 We can make the necessary database schema adjustments with the following migration.
 
 ```swift
-struct UserNameMigration: Migration {
-    func prepare(on database: Database) -> EventLoopFuture<Void> {
-        database.schema("users")
+struct UserNameMigration: AsyncMigration {
+    func prepare(on database: Database) async throws {
+        try await database.schema("users")
             .deleteField("name")
             .field("first_name", .string)
             .field("last_name", .string)
             .update()
     }
 
-    func revert(on database: Database) -> EventLoopFuture<Void> {
-        database.schema("users").delete()
+    func revert(on database: Database) async throws {
+        try await database.schema("users").delete()
     }
 }
 ```

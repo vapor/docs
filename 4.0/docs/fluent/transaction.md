@@ -31,3 +31,14 @@ return req.db.transaction { database in
     // use database and perform transaction
 }.transform(to: HTTPStatus.ok)
 ```
+
+## `async`/`await`
+
+If using `async`/`await` you can refactor the code to the following:
+
+```swift
+let transaction = try await req.db.transaction
+try await sun.save(on: transaction)
+try await sirius.save(on: transaction)
+return .ok
+```

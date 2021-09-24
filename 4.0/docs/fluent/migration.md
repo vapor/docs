@@ -15,6 +15,20 @@ struct MyMigration: Migration {
 }
 ```
 
+If you're using `async`/`await` you should implement the `AsyncMigration` protocol:
+
+```swift
+struct MyMigration: AsyncMigration {
+    func prepare(on database: Database) async throws {
+        // Make a change to the database.
+    }
+
+    func revert(on database: Database) async throws {
+    	// Undo the change made in `prepare`, if possible.
+    }
+}
+```
+
 The `prepare` method is where you make changes to the supplied `Database`. These could be changes to the database schema like adding or removing a table or collection, field, or constraint. They could also modify the database content, like creating new model instances, updating field values, or doing cleanup.
 
 The `revert` method is where you undo these changes, if possible. Being able to undo migrations can make prototyping and testing easier. They also give you a backup plan if a deploy to production doesn't go as planned. 
@@ -70,6 +84,9 @@ You can also do this programatically.
 
 ```swift
 try app.autoMigrate().wait()
+
+// or
+try await app.autoMigrate()
 ```
 
 Both of these options exist for reverting as well: `--auto-revert` and `app.autoRevert()`. 
