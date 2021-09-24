@@ -66,6 +66,10 @@ Password hashing algorithms are designed to be slow and CPU intensive. Because o
 req.password.async.hash("vapor").map { digest in
     // Handle digest.
 }
+
+// or
+
+let digest = try await req.password.async.hash("vapor")
 ```
 
 Verifying digests works similarly:
@@ -74,6 +78,10 @@ Verifying digests works similarly:
 req.password.async.verify("vapor", created: digest).map { bool in
     // Handle result.
 }
+
+// or
+
+let result = try await req.password.async.verify("vapor", created: digest)
 ```
 
 Calculating hashes on background threads can free your application's event loops up to handle more incoming requests.

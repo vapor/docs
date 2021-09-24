@@ -12,7 +12,7 @@ import Vapor
 struct MyAPI {
     let client: Client
 
-    func foos() -> EventLoopFuture<[String]> { ... }
+    func foos() async throws -> [String] { ... }
 }
 
 extension Request {
