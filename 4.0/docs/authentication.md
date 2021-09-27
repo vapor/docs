@@ -150,7 +150,7 @@ struct UserAuthenticator: BearerAuthenticator {
 }
 ```
 
-If using `async`/`await` you can use `AsyncBasicAuthenticator` instead:
+If you're using `async`/`await` you can use `AsyncBasicAuthenticator` instead:
 
 ```swift
 import Vapor
@@ -827,7 +827,7 @@ struct SessionToken: Content, Authenticatable, JWTPayload {
 }
 ```
 
-Next, we can define a representation of the data contained in a successful login reponse. For now the response will only have one property which is a string representing a signed JWT.
+Next, we can define a representation of the data contained in a successful login response. For now the response will only have one property which is a string representing a signed JWT.
 
 ```swift
 struct ClientTokenReponse: Content {

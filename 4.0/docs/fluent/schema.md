@@ -203,7 +203,7 @@ Foreign key constraints support optional `onDelete` and `onUpdate` actions.
 |-|-|
 |`.noAction`|Prevents foreign key violations (default).|
 |`.restrict`|Same as `.noAction`.|
-|`.cascade`|Propogates deletes through foreign keys.|
+|`.cascade`|Propagates deletes through foreign keys.|
 |`.setNull`|Sets field to null if reference is broken.|
 |`.setDefault`|Sets field to default if reference is broken.|
 

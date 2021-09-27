@@ -208,7 +208,7 @@ aX4rbSL49Z3dAQn8vQIDAQAB
 let key = RSAKey.public(pem: rsaPublicKey)
 ```
 
-Use `.private` for loading private RSA pem keys. These start with:
+Use `.private` for loading private RSA PEM keys. These start with:
 
 ```
 -----BEGIN RSA PRIVATE KEY-----
@@ -241,11 +241,11 @@ C18ScRb4Z6poMBgJtYlVtd9ly63URv57ZW0Ncs1LiZB7WATb3svu+1c7HQ==
 -----END PUBLIC KEY-----
 """
 
-// Initialize an ECDSA key with public pem.
+// Initialize an ECDSA key with public PEM.
 let key = ECDSAKey.public(pem: ecdsaPublicKey)
 ```
 
-Use `.private` for loading private ECDSA pem keys. These start with:
+Use `.private` for loading private ECDSA PEM keys. These start with:
 
 ```
 -----BEGIN PRIVATE KEY-----

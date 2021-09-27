@@ -191,7 +191,7 @@ final class Planet: Model {
 
 ### Timestamp Format
 
-By default, `@Timestamp` will use an efficient datetime encoding based on your database driver. You can customize how the timestamp is stored in the database using the `format` parameter.
+By default, `@Timestamp` will use an efficient `datetime` encoding based on your database driver. You can customize how the timestamp is stored in the database using the `format` parameter.
 
 ```swift
 // Stores an ISO 8601 formatted timestamp representing
@@ -210,7 +210,7 @@ Available timestamp formats are listed below.
 
 |Format|Description|Type|
 |-|-|-|
-|`.default`|Uses efficient datetime encoding for specific database.|Date|
+|`.default`|Uses efficient `datetime` encoding for specific database.|Date|
 |`.iso8601`|[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string. Supports `withMilliseconds` parameter.|String|
 |`.unix`|Seconds since Unix epoch including fraction.|Double|
 

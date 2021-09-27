@@ -72,7 +72,7 @@ try app.databases.use(.postgres(url: "<connection string>"), as: .psql)
 
 #### SQLite
 
-SQLite is an open source, embedded SQL database. Its simplistic nature makes it a great candiate for prototyping and testing.
+SQLite is an open source, embedded SQL database. Its simplistic nature makes it a great candidate for prototyping and testing.
 
 To use SQLite, add the following dependencies to your package.
 

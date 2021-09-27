@@ -41,7 +41,7 @@ app.views.use(.leaf)
 
 This tells Vapor to use the `LeafRenderer` when you call `req.view` in your code.
 
-> **Note:** Leaf has an internal cache for renderering pages. When the `Application`'s environment is set to `.development`, this cache is disabled, so that changes to templates take effect immediately. In `.production` and all other environments, the cache is enabled by default; any changes made to templates will not take effect until the application is restarted.
+> **Note:** Leaf has an internal cache for rendering pages. When the `Application`'s environment is set to `.development`, this cache is disabled, so that changes to templates take effect immediately. In `.production` and all other environments, the cache is enabled by default; any changes made to templates will not take effect until the application is restarted.
 
 !!!warning For Leaf to be able to find the templates when running from Xcode, you must set the [custom working directory](https://docs.vapor.codes/4.0/xcode/#custom-working-directory) for you Xcode workspace.
 

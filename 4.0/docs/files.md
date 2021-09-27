@@ -20,7 +20,7 @@ try await req.fileio.readFile(at: "/path/to/file") { chunk in
 // Read is complete
 ```
 
-If using `EventLoopFuture`s, the returned future will signal when the read has completed or an error has occured. If using `async`/`await` then once the `await` has return the read has completed. If an error has occurred it will throw an error.
+If using `EventLoopFuture`s, the returned future will signal when the read has completed or an error has occurred. If using `async`/`await` then once the `await` has return the read has completed. If an error has occurred it will throw an error.
 
 ### Stream
 
@@ -69,7 +69,7 @@ The `writeFile` method supports writing a buffer to a file.
 req.fileio.writeFile(ByteBuffer(string: "Hello, world"), at: "/path/to/file")
 ```
 
-The returned future will signal when the write has completed or an error has occured.
+The returned future will signal when the write has completed or an error has occurred.
 
 ## Middleware
 

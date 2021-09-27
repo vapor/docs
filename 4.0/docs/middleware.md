@@ -65,7 +65,6 @@ struct EnsureAdminUserMiddleware: Middleware {
 		guard let user = request.auth.get(User.self), user.role == .admin else {
 			return request.eventLoop.future(error: Abort(.unauthorized))
 		}
-		
 		return next.respond(to: request)
     }
     
@@ -83,7 +82,6 @@ struct EnsureAdminUserMiddleware: AsyncMiddleware {
 		guard let user = request.auth.get(User.self), user.role == .admin else {
 			throw Abort(.unauthorized)
 		}
-		
 		return try await next.respond(to: request)
    }
 }

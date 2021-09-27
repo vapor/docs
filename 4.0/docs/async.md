@@ -2,9 +2,9 @@
 
 ## Async Await
 
-Swift 5.5 introduced concurrecny to the language in the form of `async`/`await`. This provides a first-class way of handling asychronous code in Swift and Vapor applications.
+Swift 5.5 introduced concurrency to the language in the form of `async`/`await`. This provides a first-class way of handling asynchronous code in Swift and Vapor applications.
 
-Vapor is built on top of [SwiftNIO](https://github.com/apple/swift-nio.git), which provides primative types for low-level asynchronous programming. These were (and still are) used throughout Vapor before `async`/`await` arrived. However, most app code can now be written using `async`/`await` instead of using `EventLoopFuture`s. This will simplify your code and make is much easier to reason about.
+Vapor is built on top of [SwiftNIO](https://github.com/apple/swift-nio.git), which provides primitive types for low-level asynchronous programming. These were (and still are) used throughout Vapor before `async`/`await` arrived. However, most app code can now be written using `async`/`await` instead of using `EventLoopFuture`s. This will simplify your code and make it much easier to reason about.
 
 Most of Vapor's APIs now offer both `EventLoopFuture` and `async`/`await` versions for you to choose which is best. In general, you should only use one programming model per route handler and not mix and match in your code. For applications that need explicit control over event loops, or very high performance applications, you should continue to use `EventLoopFuture`s until custom executors are implemented. For everyone else, you should use `async`/`await` as the benefits or readability and maintainability far outweigh any small performance penalty.
 
