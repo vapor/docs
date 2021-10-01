@@ -300,3 +300,43 @@ To use the helper enum, call in to the appropriate modifier on the helper functi
 // Every day at midnight
 .daily().at(.midnight)
 ```
+
+## Event Delegates 
+The Queues package allows you to specify `JobEventDelegate` objects that will receive notifications when the worker takes action on a job. This can be used for monitoring, surfacing insights, or alerting purposes. 
+
+To get started, conform an object to `JobEventDelegate` and implement any required methods
+
+```swift
+struct MyEventDelegate: JobEventDelegate {
+    /// Called when the job is dispatched to the queue worker from a route
+    func dispatched(job: JobEventData, eventLoop: EventLoop) -> EventLoopFuture<Void> {
+        eventLoop.future()
+    }
+
+    /// Called when the job is placed in the processing queue and work begins
+    func didDequeue(jobId: String, eventLoop: EventLoop) -> EventLoopFuture<Void> {
+        eventLoop.future()
+    }
+
+    /// Called when the job has finished processing and has been removed from the queue
+    func success(jobId: String, eventLoop: EventLoop) -> EventLoopFuture<Void> {
+        eventLoop.future()
+    }
+
+    /// Called when the job has finished processing but had an error
+    func error(jobId: String, error: Error, eventLoop: EventLoop) -> EventLoopFuture<Void> {
+        eventLoop.future()
+    }
+}
+```
+
+Then, add it in your configuration file:
+
+```swift
+app.queues.add(MyEventDelegate())
+```
+
+There are a number of third-party packages that use the delegate functionality to provide additional insight into your queue workers:
+
+- [QueuesDatabaseHooks](https://github.com/vapor-community/queues-database-hooks)
+- [QueuesDash](https://github.com/gotranseo/queues-dash)
