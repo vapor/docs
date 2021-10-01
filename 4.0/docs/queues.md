@@ -304,7 +304,7 @@ To use the helper enum, call in to the appropriate modifier on the helper functi
 ## Event Delegates 
 The Queues package allows you to specify `JobEventDelegate` objects that will receive notifications when the worker takes action on a job. This can be used for monitoring, surfacing insights, or alerting purposes. 
 
-To get started, conform an object to JobEventDelegate and implement any of the methods you'd like:
+To get started, conform an object to `JobEventDelegate` and implement any required methods
 
 ```swift
 struct MyEventDelegate: JobEventDelegate {
