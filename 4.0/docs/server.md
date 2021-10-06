@@ -140,12 +140,7 @@ The `tlsConfiguration` parameter controls whether TLS (SSL) is enabled on the se
 ```swift
 // Enable TLS.
 try app.http.server.configuration.tlsConfiguration = .forServer(
-    certificateChain: [
-        .certificate(.init(
-            file: "/path/to/cert.pem",
-            format: .pem
-        ))
-    ],
+    certificateChain: NIOSSLCertificate.fromPEMFile("/path/to/cert.pem").map { .certificate($0) },
     privateKey: .file("/path/to/key.pem")
 )
 ```
