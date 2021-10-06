@@ -145,6 +145,8 @@ try app.http.server.configuration.tlsConfiguration = .forServer(
 )
 ```
 
+For this configuration to compile you need to add `import NIOSSL` at the top of your configuration file. You also might need to add NIOSSL as a dependency in your Package.swift file.
+
 ### Name
 
 The `serverName` parameter controls the `Server` header on outgoing HTTP responses. The default is `nil`.
