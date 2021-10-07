@@ -10,10 +10,10 @@ Authentication is implemented by creating an `Authenticator` which contains the 
 
 |Protocol|Description|
 |-|-|
-|`RequestAuthenticator`|Base authenticator capable of creating middleware.|
-|[`BasicAuthenticator`](#basic)|Authenticates Basic authorization header.|
-|[`BearerAuthenticator`](#bearer)|Authenticates Bearer authorization header.|
-|`CredentialsAuthenticator`|Authenticates a credentials payload from the request body.|
+|`RequestAuthenticator`/`AsyncRequestAuthenticator`|Base authenticator capable of creating middleware.|
+|[`BasicAuthenticator`/`AsyncBasicAuthenticator`](#basic)|Authenticates Basic authorization header.|
+|[`BearerAuthenticator`/`AsyncBearerAuthenticator`](#bearer)|Authenticates Bearer authorization header.|
+|`CredentialsAuthenticator`/`AsyncCredentialsAuthenticator`|Authenticates a credentials payload from the request body.|
 
 If authentication is successful, the authenticator adds the verified user to `req.auth`. This user can then be accessed using `req.auth.get(_:)` in routes protected by the authenticator. If authentication fails, the user is not added to `req.auth` and any attempts to access it will fail.
 
