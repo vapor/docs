@@ -8,6 +8,38 @@ Vapor is built on top of [SwiftNIO](https://github.com/apple/swift-nio.git), whi
 
 Most of Vapor's APIs now offer both `EventLoopFuture` and `async`/`await` versions for you to choose which is best. In general, you should only use one programming model per route handler and not mix and match in your code. For applications that need explicit control over event loops, or very high performance applications, you should continue to use `EventLoopFuture`s until custom executors are implemented. For everyone else, you should use `async`/`await` as the benefits or readability and maintainability far outweigh any small performance penalty.
 
+### Migrating to async/await
+
+There are a few steps needed to migrate to async/await. To start with, if using macOS you must be on macOS 12 Monterey or greater and Xcode 13.1 or greater. For other platforms you need to be running Swift 5.5 or greater. Next, make sure you've updated all your dependencies.
+
+Next you can migrate existing code. Generally functions that return `EventLoopFuture`s are now `async`. For example:
+
+```swift
+routes.get("firstUser") { req -> EventLoopFuture<String> in
+    User.query(on: req.db).first().unwrap(or: Abort(.notFound)).flatMap { user in
+        user.lastAccessed = Date()
+        return user.update(on: req.db).map {
+            return user.name
+        }
+    }
+}
+```
+
+Now becomes:
+
+```swift
+routes.get("firstUser") { req async throws -> String in
+    guard let user = try await User.query(on: req.db).first() else {
+        throw Abort(.notFound)
+    }
+    user.lastAccessed = Date()
+    try await user.update(on: req.db)
+    return user.name
+}
+```
+
+### Working with old and new APIs
+
 If you encounter APIs that don't yet offer an `async`/`await` version, you can call `.get()` on a function that returns an `EventLoopFuture` to convert it.
 
 E.g.
@@ -22,6 +54,22 @@ Can become
 
 ```swift
 let futureResult = try await someMethodThatReturnsAFuture().get()
+```
+
+If you need to go the other way around you can convert
+
+```swift
+let myString = try await someAsyncFunctionThatGetsAString()
+```
+
+to
+
+```swift
+let promise = request.eventLoop.makePromise(of: String.self)
+promise.completeWithTask {
+    try await someAsyncFunctionThatGetsAString()
+}
+let futureString: EventLoopFuture<String> = promise.futureResult
 ```
 
 ## `EventLoopFuture`s
