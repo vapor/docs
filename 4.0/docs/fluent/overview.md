@@ -372,7 +372,7 @@ If you're using `async`/`await` you can write your code as so:
 ```swift
 app.post("galaxies") { req async throws -> Galaxy in
     let galaxy = try req.content.decode(Galaxy.self)
-    try await return galaxy.create(on: req.db)
+    try await galaxy.create(on: req.db)
     return galaxy
 }
 ```

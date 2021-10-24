@@ -274,7 +274,6 @@ for planet in planets {
     // since it has been eager loaded.
     print(planet.star.name)
 }
-}
 ```
 
 In the above example, a key path to the [`@Parent`](#parent) relation named `star` is passed to `with`. This causes the query builder to do an additional query after all of the planets are loaded to fetch all of their related stars. The stars are then accessible synchronously via the `@Parent` property. 
