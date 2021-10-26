@@ -60,14 +60,12 @@ Using the example mentioned above, create a middleware to block access to the us
 import Vapor
 
 struct EnsureAdminUserMiddleware: Middleware {
-    
    func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
-		guard let user = request.auth.get(User.self), user.role == .admin else {
-			return request.eventLoop.future(error: Abort(.unauthorized))
+	   guard let user = request.auth.get(User.self), user.role == .admin else {
+		   return request.eventLoop.future(error: Abort(.unauthorized))
 		}
 		return next.respond(to: request)
-    }
-    
+	}
 }
 ```
 
@@ -77,13 +75,12 @@ Or if using `async`/`await` you can write:
 import Vapor
 
 struct EnsureAdminUserMiddleware: AsyncMiddleware {
-    
    func respond(to request: Request, chainingTo next: AsyncResponder) async throws -> Response {
-		guard let user = request.auth.get(User.self), user.role == .admin else {
-			throw Abort(.unauthorized)
+	   guard let user = request.auth.get(User.self), user.role == .admin else {
+		   throw Abort(.unauthorized)
 		}
 		return try await next.respond(to: request)
-   }
+	}
 }
 ```
 
@@ -93,14 +90,12 @@ If you want to modify the response, for example to add a custom header, you can 
 import Vapor
 
 struct AddVersionHeaderMiddleware: Middleware {
-    
-   func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
+	func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
 		next.respond(to: request).map { response in
 			response.headers.add(name: "My-App-Version", value: "v2.5.9")
 			return response
 		}
-    }
-    
+	}
 }
 ```
 
@@ -110,13 +105,11 @@ Or if using `async`/`await` you can write:
 import Vapor
 
 struct AddVersionHeaderMiddleware: AsyncMiddleware {
-    
-   func respond(to request: Request, chainingTo next: AsyncResponder) async throws -> Response {
-	    let response = try await next.respond(to: request)
+	func respond(to request: Request, chainingTo next: AsyncResponder) async throws -> Response {
+		let response = try await next.respond(to: request)
 		response.headers.add(name: "My-App-Version", value: "v2.5.9")
-	    return response
-    }
-    
+		return response
+	}
 }
 ```
 
