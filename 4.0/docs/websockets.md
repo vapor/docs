@@ -58,6 +58,13 @@ promise.futureResult.whenComplete { result in
 }
 ```
 
+If using `async`/`await` you can `await` on the result
+
+```swift
+// TODO Check this actually works
+let result = try await ws.send(...)
+```
+
 ### Receiving
 
 Incoming messages are handled via the `onText` and `onBinary` callbacks.
@@ -95,6 +102,12 @@ This method returns a future that will be completed when the WebSocket has close
 
 ```swift
 ws.close(promise: nil)
+```
+
+Or `await` on it if using `async`/`await`:
+
+```swift
+try await ws.close()
 ```
 
 To be notified when the peer closes the connection, use `onClose`. This future will be completed when either the client or server closes the WebSocket.

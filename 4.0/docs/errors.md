@@ -14,7 +14,7 @@ throw Abort(.notFound)
 throw Abort(.unauthorized, reason: "Invalid Credentials")
 ```
 
-In asynchronous situations where throwing is not supported, like in a `flatMap` closure, you can return a failed future.
+In old asynchronous situations where throwing is not supported and you must return an `EventLoopFuture`, like in a `flatMap` closure, you can return a failed future.
 
 ```swift
 guard let user = user else {
@@ -34,7 +34,13 @@ User.find(id, on: db)
 }
 ```
 
-If `User.find` returns `nil`, the future will be failed with the supplied error. Otherwise, the `flatMap` will be supplied with a non-optional value.
+If `User.find` returns `nil`, the future will be failed with the supplied error. Otherwise, the `flatMap` will be supplied with a non-optional value. If using `async`/`await` then you can handle optionals as normal:
+
+```swift
+guard let user = try await User.find(id, on: db) {
+    throw Abort(.notFound)
+}
+```
 
 
 ## Abort Error

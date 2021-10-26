@@ -21,9 +21,7 @@ The application's client is useful for making HTTP requests during configuration
 To make a `GET` request, pass the desired URL to the `get` convenience method.
 
 ```swift
-req.client.get("https://httpbin.org/status/200").map { res in
-	// Handle the response.
-}
+let response = try await req.client.get("https://httpbin.org/status/200")
 ```
 
 There are methods for each of the HTTP verbs like `get`, `post`, and `delete`. The client's response is returned as a future and contains the HTTP status, headers, and body.
@@ -33,7 +31,7 @@ There are methods for each of the HTTP verbs like `get`, `post`, and `delete`. T
 Vapor's [content](./content.md) API is available for handling data in client requests and responses. To encode content, query parameters or add headers to the request, use the `beforeSend` closure.
 
 ```swift
-req.client.post("https://httpbin.org/status/200") { req in
+let response = try await req.client.post("https://httpbin.org/status/200") { req in
 	// Encode query string to the request URL.
 	try req.query.encode(["q": "test"])
 
@@ -43,18 +41,24 @@ req.client.post("https://httpbin.org/status/200") { req in
     // Add auth header to the request
     let auth = BasicAuthorization(username: "something", password: "somethingelse")
     req.headers.basicAuthorization = auth
-}.map { res in
-    // Handle the response.
 }
+// Handle the response.
 ```
 
-To decode content from the response, use `flatMapThrowing` on the client's response future.
+You can also decode the response body using `Content` in a similar way:
 
 ```swift
-req.client.get("https://httpbin.org/json").flatMapThrowing { res in
+let response = try await req.client.get("https://httpbin.org/json")
+let json = try response.content.decode(MyJSONResponse.self)
+```
+
+If you're using futures you can use `flatMapThrowing`:
+
+```swift
+return req.client.get("https://httpbin.org/json").flatMapThrowing { res in
 	try res.content.decode(MyJSONResponse.self)
-}.map { json in
-	// Handle the json response.
+}.flatMap { json in
+	// Use JSON here
 }
 ```
 

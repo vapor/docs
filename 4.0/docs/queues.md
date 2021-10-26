@@ -104,9 +104,10 @@ try app.queues.startScheduledJobs()
 
 ## The `Job` Protocol
 
-Jobs are defined by the `Job` protocol.
+Jobs are defined by the `Job` or `AsyncJob` protocol.
 
 ### Modeling a `Job` object:
+
 ```swift
 import Vapor 
 import Foundation 
@@ -132,6 +133,22 @@ struct EmailJob: Job {
 }
 ```
 
+If using `async`/`await` you should use `AsyncJob`:
+
+```swift
+struct EmailJob: AsyncJob {
+    typealias Payload = Email
+    
+    func dequeue(_ context: QueueContext, _ payload: Email) async throws {
+        // This is where you would send the email
+    }
+    
+    func error(_ context: QueueContext, _ error: Error, _ payload: Email) async throws {
+        // If you don't want to handle errors you can simply return. You can also omit this function entirely. 
+    }
+}
+```
+
 !!! tip
     Don't forget to follow the instructions in **Getting Started** to add this job to your configuration file. 
 
@@ -147,6 +164,15 @@ app.get("email") { req -> EventLoopFuture<String> in
             EmailJob.self, 
             .init(to: "email@email.com", message: "message")
         ).map { "done" }
+}
+
+// or
+
+app.get("email") { req async throws -> String in
+    try await req.queue.dispatch(
+        EmailJob.self, 
+        .init(to: "email@email.com", message: "message"))
+    return "done"
 }
 ```
 
@@ -164,6 +190,16 @@ app.get("email") { req -> EventLoopFuture<String> in
             maxRetryCount: 3
         ).map { "done" }
 }
+
+// or
+
+app.get("email") { req async throws -> String in
+    try await req.queue.dispatch(
+        EmailJob.self, 
+        .init(to: "email@email.com", message: "message"),
+        maxRetryCount: 3)
+    return "done"
+}
 ```
 
 ### Specifying a delay
@@ -171,16 +207,14 @@ app.get("email") { req -> EventLoopFuture<String> in
 Jobs can also be set to only run after a certain `Date` has passed. To specify a delay, pass a `Date` into the `delayUntil` parameter in `dispatch`:
 
 ```swift
-app.get("email") { req -> EventLoopFuture<String> in
+app.get("email") { req async throws -> String in
     let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // One day
-    return req
-        .queue
-        .dispatch(
-            EmailJob.self, 
-            .init(to: "email@email.com", message: "message"),
-            maxRetryCount: 3,
-            delayUntil: futureDate
-        ).map { "done" }
+    try await req.queue.dispatch(
+        EmailJob.self, 
+        .init(to: "email@email.com", message: "message"),
+        maxRetryCount: 3,
+        delayUntil: futureDate)
+    return "done"
 }
 ```
 
@@ -212,6 +246,21 @@ app.get("email") { req -> EventLoopFuture<String> in
             delayUntil: futureDate
         ).map { "done" }
 }
+
+// or
+
+app.get("email") { req async throws -> String in
+    let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // One day
+    try await req
+        .queues(.emails)
+        .dispatch(
+            EmailJob.self, 
+            .init(to: "email@email.com", message: "message"),
+            maxRetryCount: 3,
+            delayUntil: futureDate
+        )
+    return "done"
+}
 ```
 
 If you do not specify a queue the job will be run on the `default` queue. Make sure to follow the instructions in **Getting Started** to start workers for each queue type. 
@@ -231,7 +280,8 @@ swift run Run queues --scheduled
     Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: Run queues --scheduled`
 
 ### Creating a `ScheduledJob`
-To begin, start by creating a new `ScheduledJob`:
+
+To begin, start by creating a new `ScheduledJob` or `AsyncScheduledJob`:
 
 ```swift
 import Vapor
@@ -243,6 +293,14 @@ struct CleanupJob: ScheduledJob {
     func run(context: QueueContext) -> EventLoopFuture<Void> {
         // Do some work here, perhaps queue up another job.
         return context.eventLoop.makeSucceededFuture(())
+    }
+}
+
+struct CleanupJob: AsyncScheduledJob {
+    // Add extra services here via dependency injection, if you need them.
+
+    func run(context: QueueContext) async throws {
+        // Do some work here, perhaps queue up another job.
     }
 }
 ```

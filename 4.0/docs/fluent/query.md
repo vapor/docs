@@ -4,7 +4,7 @@ Fluent's query API allows you to create, read, update, and delete models from th
 
 ```swift
 // An example of Fluent's query API.
-let planets = Planet.query(on: database)
+let planets = try await Planet.query(on: database)
     .filter(\.$type == .gasGiant)
     .sort(\.$name)
     .with(\.$star)
@@ -27,14 +27,14 @@ The `all()` method returns an array of models.
 
 ```swift
 // Fetches all planets.
-let planets = Planet.query(on: database).all()
+let planets = try await Planet.query(on: database).all()
 ```
 
 The `all` method also supports fetching only a single field from the result set. 
 
 ```swift
 // Fetches all planet names.
-let names = Planet.query(on: database).all(\.$name)
+let names = try await Planet.query(on: database).all(\.$name)
 ```
 
 ### First
@@ -43,13 +43,13 @@ The `first()` method returns a single, optional model. If the query results in m
 
 ```swift
 // Fetches the first planet named Earth.
-let earth = Planet.query(on: database)
+let earth = try await Planet.query(on: database)
     .filter(\.$name == "Earth")
     .first()
 ```
 
 !!! tip
-    This method can be combined with [`unwrap(or:)`](../errors.md#abort) to return a non-optional model or throw an error. 
+    If using `EventLoopFuture`s, this method can be combined with [`unwrap(or:)`](../errors.md#abort) to return a non-optional model or throw an error. 
 
 ## Filter
 
@@ -285,12 +285,12 @@ These types reference the model being aliased via the `model` property. Once cre
 ```swift
 // Fetch all matches where the home team's name is Vapor
 // and sort by the away team's name.
-let matches = try Match.query(on: self.database)
+let matches = try await Match.query(on: self.database)
     .join(HomeTeam.self, on: \Match.$homeTeam.$id == \HomeTeam.$id)
     .join(AwayTeam.self, on: \Match.$awayTeam.$id == \AwayTeam.$id)
     .filter(HomeTeam.self, \.$name == "Vapor")
     .sort(AwayTeam.self, \.$name)
-    .all().wait()
+    .all()
 ```
 
 All model fields are accessible through the model alias type via `@dynamicMemberLookup`.
@@ -335,7 +335,7 @@ Fluent's query API supports automatic result pagination using the `paginate` met
 ```swift
 // Example of request-based pagination.
 app.get("planets") { req in
-    Planet.query(on: req.db).paginate(for: req)
+    try await Planet.query(on: req.db).paginate(for: req)
 }
 ```
 

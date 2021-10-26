@@ -1,6 +1,6 @@
 # Transactions
 
-Transactions allow you to ensure multiple operations complete succesfully before saving data to your database. 
+Transactions allow you to ensure multiple operations complete successfully before saving data to your database. 
 Once a transaction is started, you may run Fluent queries normally. However, no data will be saved to the database until the transaction completes. 
 If an error is thrown at any point during the transaction (by you or the database), none of the changes will take effect.
 
@@ -30,4 +30,15 @@ Once the transaction completes, the result can be transformed into a different f
 return req.db.transaction { database in
     // use database and perform transaction
 }.transform(to: HTTPStatus.ok)
+```
+
+## `async`/`await`
+
+If using `async`/`await` you can refactor the code to the following:
+
+```swift
+let transaction = try await req.db.transaction
+try await sun.save(on: transaction)
+try await sirius.save(on: transaction)
+return .ok
 ```

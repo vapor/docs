@@ -24,11 +24,11 @@ struct TodosController: RouteCollection {
         }
     }
 
-    func index(req: Request) throws -> String {
+    func index(req: Request) async throws -> String {
         // ...
     }
 
-    func create(req: Request) throws -> String {
+    func create(req: Request) throws -> EventLoopFuture<String> {
         // ...
     }
 
@@ -55,7 +55,7 @@ struct TodosController: RouteCollection {
 }
 ```
 
-Controller methods should always accept a `Request` and return something `ResponseEncodable`.
+Controller methods should always accept a `Request` and return something `ResponseEncodable`. This method can be asynchronous or synchronous (or return an `EventLoopFuture`)
 
 !!! note
 	[EventLoopFuture](async.md) whose expectation is `ResponseEncodable` (i.e, `EventLoopFuture<String>`) is also `ResponseEncodable`.

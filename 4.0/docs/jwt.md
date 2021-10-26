@@ -208,7 +208,7 @@ aX4rbSL49Z3dAQn8vQIDAQAB
 let key = RSAKey.public(pem: rsaPublicKey)
 ```
 
-Use `.private` for loading private RSA pem keys. These start with:
+Use `.private` for loading private RSA PEM keys. These start with:
 
 ```
 -----BEGIN RSA PRIVATE KEY-----
@@ -241,11 +241,11 @@ C18ScRb4Z6poMBgJtYlVtd9ly63URv57ZW0Ncs1LiZB7WATb3svu+1c7HQ==
 -----END PUBLIC KEY-----
 """
 
-// Initialize an ECDSA key with public pem.
+// Initialize an ECDSA key with public PEM.
 let key = ECDSAKey.public(pem: ecdsaPublicKey)
 ```
 
-Use `.private` for loading private ECDSA pem keys. These start with:
+Use `.private` for loading private ECDSA PEM keys. These start with:
 
 ```
 -----BEGIN PRIVATE KEY-----
@@ -375,6 +375,14 @@ app.get("apple") { req -> EventLoopFuture<HTTPStatus> in
         return .ok
     }
 }
+
+// Or
+
+app.get("apple") { req async throws -> HTTPStatus in
+    let token = try await req.jwt.apple.verify()
+    print(token) // AppleIdentityToken
+    return .ok
+}
 ```
 
 ### Google
@@ -397,6 +405,14 @@ app.get("google") { req -> EventLoopFuture<HTTPStatus> in
         return .ok
     }
 }
+
+// or
+
+app.get("google") { req async throws -> HTTPStatus in
+    let token = try await req.jwt.google.verify()
+    print(token) // GoogleIdentityToken
+    return .ok
+}
 ```
 
 ### Microsoft
@@ -417,5 +433,13 @@ app.get("microsoft") { req -> EventLoopFuture<HTTPStatus> in
         print(token) // MicrosoftIdentityToken
         return .ok
     }
+}
+
+// Or
+
+app.get("microsoft") { req async throws -> HTTPStatus in
+    let token = try await req.jwt.microsoft.verify()
+    print(token) // MicrosoftIdentityToken
+    return .ok
 }
 ```

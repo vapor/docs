@@ -70,7 +70,7 @@ A new model can be added to this relation using the `create` method.
 ```swift
 // Example of adding a new model to a relation.
 let jane = Governor(name: "Jane Doe")
-mars.$governor.create(jane, on: database)
+try await mars.$governor.create(jane, on: database)
 ```
 
 This will set the parent id on the child model automatically.
@@ -80,7 +80,7 @@ Since this relation does not store any values, no database schema entry is requi
 The one-to-one nature of the relation should be enforced in the child model's schema using a `.unique` constraint on the column referencing the parent model.
 
 ```swift
-database.schema(Governor.schema)
+try await database.schema(Governor.schema)
     .id()
     .field("name", .string, .required)
     .field("planet_id", .uuid, .required, .references("planets", "id"))
@@ -111,7 +111,7 @@ New models can be added to this relation using the `create` method.
 ```swift
 // Example of adding a new model to a relation.
 let earth = Planet(name: "Earth")
-sun.$planets.create(earth, on: database)
+try await sun.$planets.create(earth, on: database)
 ```
 
 This will set the parent id on the child model automatically.
@@ -193,21 +193,21 @@ Use the `attach` method to add a model to the relation. This creates and saves t
 let earth: Planet = ...
 let inhabited: Tag = ...
 // Adds the model to the relation.
-earth.$tags.attach(inhabited, on: database)
+try await earth.$tags.attach(inhabited, on: database)
 ```
 
 When attaching a single model, you can use the `method` parameter to choose whether or not the relation should be checked before saving.
 
 ```swift
 // Only attaches if the relation doesn't already exist.
-earth.$tags.attach(inhabited, method: .ifNotExists, on: database)
+try await earth.$tags.attach(inhabited, method: .ifNotExists, on: database)
 ```
 
 Use the `detach` method to remove a model from the relation. This deletes the corresponding pivot model.
 
 ```swift
 // Removes the model from the relation.
-earth.$tags.detach(inhabited, on: database)
+try await earth.$tags.detach(inhabited, on: database)
 ```
 
 You can check if a model is related or not using the `isAttached` method.
@@ -226,12 +226,17 @@ Use the `get(on:)` method to fetch a relation's value.
 sun.$planets.get(on: database).map { planets in
     print(planets)
 }
+
+// Or
+
+let planets = try await sun.$planets.get(on: database)
+print(planets)
 ```
 
 Use the `reload` parameter to choose whether or not the relation should be re-fetched from the database if it has already been already loaded. 
 
 ```swift
-sun.$planets.get(reload: true, on: database)
+try await sun.$planets.get(reload: true, on: database)
 ```
 
 ## Query
@@ -240,7 +245,7 @@ Use the `query(on:)` method on a relation to create a query builder for the rela
 
 ```swift
 // Fetch all of the sun's planets that have a naming starting with M.
-sun.$planets.query(on: database).filter(\.$name =~ "M").all()
+try await sun.$planets.query(on: database).filter(\.$name =~ "M").all()
 ```
 
 See [query](query.md) for more information.
@@ -260,6 +265,15 @@ Planet.query(on: database).with(\.$star).all().map { planets in
         print(planet.star.name)
     }
 }
+
+// Or
+
+let planets = try await Planet.query(on: database).with(\.$star).all()
+for planet in planets {
+    // `star` is accessible synchronously here 
+    // since it has been eager loaded.
+    print(planet.star.name)
+}
 ```
 
 In the above example, a key path to the [`@Parent`](#parent) relation named `star` is passed to `with`. This causes the query builder to do an additional query after all of the planets are loaded to fetch all of their related stars. The stars are then accessible synchronously via the `@Parent` property. 
@@ -272,14 +286,13 @@ Each relation eager loaded requires only one additional query, no matter how man
 The query builder's `with` method allows you to eager load relations on the model being queried. However, you can also eager load relations on related models. 
 
 ```swift
-Planet.query(on: database).with(\.$star) { star in
+let planets = try await Planet.query(on: database).with(\.$star) { star in
     star.with(\.$galaxy)
-}.all().map { planets in
-    for planet in planets {
-        // `star.galaxy` is accessible synchronously here 
-        // since it has been eager loaded.
-        print(planet.star.galaxy.name)
-    }
+}.all()
+for planet in planets {
+    // `star.galaxy` is accessible synchronously here 
+    // since it has been eager loaded.
+    print(planet.star.galaxy.name)
 }
 ```
 
@@ -293,6 +306,11 @@ In case that you have already retrieved the parent model and you want to load on
 planet.$star.load(on: database).map {
     print(planet.star.name)
 }
+
+// Or
+
+try await planet.$star.load(on: database)
+print(planet.star.name)
 ```
 
 To check whether or not a relation has been loaded, use the `value` property.

@@ -110,6 +110,12 @@ Any `RedisClient` has several extensions for all of the various [Redis commands]
 let value = try app.redis.get("my_key", as: String.self).wait()
 print(value)
 // Optional("my_value")
+
+// or
+
+let value = try await app.redis.get("my_key", as: String.self)
+print(value)
+// Optional("my_value")
 ```
 
 ### Unsupported Commands
@@ -123,6 +129,12 @@ try app.redis.send(command: "PING", with: ["hello"])
         print($0)
     }
     .wait()
+// "hello"
+
+// or
+
+let res = try await app.redis.send(command: "PING", with: ["hello"])
+print(res)
 // "hello"
 ```
 

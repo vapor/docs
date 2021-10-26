@@ -108,7 +108,7 @@ app.get("foo", "bar", "baz") { req in
 }
 ```
 
-Route handlers support returning anything that is `ResponseEncodable`. This includes `Content` and any `EventLoopFuture`'s where the future value is `ResponseEncodable`.
+Route handlers support returning anything that is `ResponseEncodable`. This includes `Content`, an `async` closure, and any `EventLoopFuture`s where the future value is `ResponseEncodable`.
 
 You can specify the return type of a route using `-> T` before `in`. This can be useful in situations where the compiler cannot determine the return type.
 
