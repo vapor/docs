@@ -60,9 +60,9 @@ Using the example mentioned above, create a middleware to block access to the us
 import Vapor
 
 struct EnsureAdminUserMiddleware: Middleware {
-   func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
-	   guard let user = request.auth.get(User.self), user.role == .admin else {
-		   return request.eventLoop.future(error: Abort(.unauthorized))
+	func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
+		guard let user = request.auth.get(User.self), user.role == .admin else {
+			return request.eventLoop.future(error: Abort(.unauthorized))
 		}
 		return next.respond(to: request)
 	}
