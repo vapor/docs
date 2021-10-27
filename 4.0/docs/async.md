@@ -12,7 +12,30 @@ Most of Vapor's APIs now offer both `EventLoopFuture` and `async`/`await` versio
 
 There are a few steps needed to migrate to async/await. To start with, if using macOS you must be on macOS 12 Monterey or greater and Xcode 13.1 or greater. For other platforms you need to be running Swift 5.5 or greater. Next, make sure you've updated all your dependencies.
 
-Next you can migrate existing code. Generally functions that return `EventLoopFuture`s are now `async`. For example:
+In your Package.swift, set the tools version to 5.5 at the top of the file:
+
+```swift
+// swift-tools-version:5.5
+import PackageDescription
+
+// ...
+```
+
+Next, set the platform version to macOS 12:
+
+```swift
+    platforms: [
+       .macOS(.v12)
+    ],
+```
+
+Finally update the `Run` target to mark it as an executable target:
+
+```swift
+.executableTarget(name: "Run", dependencies: [.target(name: "App")]),
+```
+
+Now you can migrate existing code. Generally functions that return `EventLoopFuture`s are now `async`. For example:
 
 ```swift
 routes.get("firstUser") { req -> EventLoopFuture<String> in
