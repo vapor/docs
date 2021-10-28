@@ -159,6 +159,9 @@ For fields that contain an optional value, use `@OptionalField`.
 var tag: String?
 ```
 
+!!! warning
+    A field that has a `willSet` property observer that references its current value or a `didSet` property observer that references its `oldValue` will result in a fatal error.
+
 ## Relations
 
 Models can have zero or more relation properties referencing other models like `@Parent`, `@Children`, and `@Siblings`. Learn more about relations in the [relations](relations.md) section.
