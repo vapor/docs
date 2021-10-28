@@ -160,7 +160,7 @@ var tag: String?
 ```
 
 !!! warning
-    A field that has a `willSet` property observer that references its current value or a `didSet` property observer that references its `oldValue` will result in a fatal error.
+    A non-optional field that has a `willSet` property observer that references its current value or a `didSet` property observer that references its `oldValue` will result in a fatal error.
 
 ## Relations
 
