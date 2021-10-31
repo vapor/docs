@@ -143,12 +143,15 @@ try app.databases.use(.mysql(url: "<connection string>"), as: .mysql)
 To configure a local connection without SSL certificate involved, you should disable certificate verification. You might need to do this for example if connecting to a MySQL 8 database in Docker.
 
 ```swift
+var tls = TLSConfiguration.makeClientConfiguration()
+tls.certificateVerification = .none
+    
 app.databases.use(.mysql(
-    hostname: "localhost", 
-    username: "vapor", 
-    password: "vapor", 
-    database: "vapor", 
-    tlsConfiguration: .forClient(certificateVerification: .none)
+    hostname: "localhost",
+    username: "vapor",
+    password: "vapor",
+    database: "vapor",
+    tlsConfiguration: tls
 ), as: .mysql)
 ```
 
