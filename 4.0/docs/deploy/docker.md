@@ -37,49 +37,7 @@ The template Vapor App has two key Docker-specific resources: A **Dockerfile** a
 
 A Dockerfile tells Docker how to build an image of your dockerized app. That image contains both your app's executable and all dependencies needed to run it. The [full reference](https://docs.docker.com/engine/reference/builder/) is worth keeping open when you work on customizing your Dockerfile.
 
-The Dockerfile generated for your Vapor App has two stages.
-
-It starts by pulling in another image to build off of (`vapor/swift:5.2`). This base image makes available any build time dependencies needed by your Vapor App. Then it copies your app into the build environment and builds it. 
-```docker
-# ================================
-# Build image
-# ================================
-FROM vapor/swift:5.2 as build
-WORKDIR /build
-
-# Copy entire repo into container
-COPY . .
-
-# Compile with optimizations
-RUN swift build \
-	--enable-test-discovery \
-	-c release \
-	-Xswiftc -g
-```
-
-Next, it pulls in a different image (`vapor/ubuntu:18.04`) as a second stage. The second stage copies what is needed to run your app and omits build-only dependencies. 
-```docker
-# ================================
-# Run image
-# ================================
-FROM vapor/ubuntu:18.04
-WORKDIR /run
-
-# Copy build artifacts
-COPY --from=build /build/.build/release /run
-# Copy Swift runtime libraries
-COPY --from=build /usr/lib/swift/ /usr/lib/swift/
-# Uncomment the next line if you need to load resources from the `Public` directory
-#COPY --from=build /build/Public /run/Public
-```
-
-Finally, the Dockerfile defines an entrypoint and a default command to run.
-```docker
-ENTRYPOINT ["./Run"]
-CMD ["serve", "--env", "production", "--hostname", "0.0.0.0"]
-```
-
-Both of these can be overridden when the image is used, but by default running your image will result in calling the `serve` command of your app's `Run` target. The full command on launch will be `./Run serve --env production --hostname 0.0.0.0`.
+The Dockerfile generated for your Vapor app has two stages. The first stage builds your app and sets up a holding area containing the result. The second stage sets up the basics of a secure runtime environment, transfers everything in the holding area to where it will live in the final image, and sets a default entrypoint and command that will run your app in production mode on the default port (8080). This configuration can be overridden when the image is used.
 
 ### Docker Compose File
 
@@ -90,7 +48,8 @@ A Docker Compose file defines the way Docker should build out multiple services 
 
 The Docker Compose file in your new Vapor App will define services for running your app, running migrations or reverting them, and running a database as your app's persistence layer. The exact definitions will vary depending on which database you chose to use when you ran `vapor new`.
 
-Note that your Docker Compose file has some shared environment variables near the top.
+Note that your Docker Compose file has some shared environment variables near the top. (You may have a different set of default variables depending on whether or not you're using Fluent, and which Fluent driver is in use if you are.)
+
 ```docker
 x-shared_environment: &shared_environment
   LOG_LEVEL: ${LOG_LEVEL:-debug}
@@ -105,7 +64,7 @@ You will see these pulled into multiple services below with the `<<: *shared_env
 The `DATABASE_HOST`, `DATABASE_NAME`, `DATABASE_USERNAME`, and `DATABASE_PASSWORD` variables are hard coded in this example whereas the `LOG_LEVEL` will take its value from the environment running the service or fall back to `'debug'` if that variable is unset.
 
 !!! note
-    Hard-coding the username and password is acceptable for local development, but you would want to store these variables in a secrets file for production deploys. One way to handle this in production is to export the secrets file to the environment that is running your deploy and use lines like the following in your Docker Compose file: 
+    Hard-coding the username and password is acceptable for local development, but you should store these variables in a secrets file for production deployment. One way to handle this in production is to export the secrets file to the environment that is running your deploy and use lines like the following in your Docker Compose file: 
 
     ```
     DATABASE_USERNAME: ${DATABASE_USERNAME}
@@ -127,7 +86,7 @@ The Docker Compose file tells Docker how to build your app (by using the Dockerf
 
 To build a Docker image for your app, run
 ```shell
-docker-compose build
+docker compose build
 ```
 from the root directory of your app's project (the folder containing `docker-compose.yml`).
 
@@ -146,13 +105,13 @@ Your stack of services can be run directly from the Docker Compose file or you c
 
 The simplest way to run your app is to start it as a standalone container. Docker will use the `depends_on` arrays to make sure any dependant services are also started.
 
-First, execute
+First, execute:
 ```shell
-docker-compose up app
+docker compose up app
 ```
 and notice that both the `app` and `db` services are started.
 
-Your app is listening on port 80 _inside the Docker container_ but as defined by the Docker Compose file, it is accessible on your development machine at **http://localhost:8080**. 
+Your app is listening on port 8080 and, as defined by the Docker Compose file, it is made accessible on your development machine at **http://localhost:8080**.
 
 This port mapping distinction is very important because you can run any number of services on the same ports if they are all running in their own containers and they each expose different ports to the host machine.
 
@@ -161,28 +120,28 @@ Visit `http://localhost:8080` and you will see `It works!` but visit `http://loc
 {"error":true,"reason":"Something went wrong."}
 ```
 
-Take a peak at the logs output in the terminal where you ran `docker-compose up app` and you will see
+Take a peak at the logs output in the terminal where you ran `docker compose up app` and you will see:
 ```
 [ ERROR ] relation "todos" does not exist
 ```
 
-Of course! We need to run migrations on the database. Press `Ctrl+C` to bring your app down. We are going to start the app up again but this time with
+Of course! We need to run migrations on the database. Press `Ctrl+C` to bring your app down. We are going to start the app up again but this time with:
 ```shell
-docker-compose up --detach app
+docker compose up --detach app
 ```
 
-Now your app is going to start up "detached" (in the background). You can verify this by running
+Now your app is going to start up "detached" (in the background). You can verify this by running:
 ```shell
 docker container ls
 ```
-where you will see both the database and your app running in containers. You can even check on the logs by running
+where you will see both the database and your app running in containers. You can even check on the logs by running:
 ```shell
 docker logs <container_id>
 ```
 
-To run migrations, execute
+To run migrations, execute:
 ```shell
-docker-compose run migrate
+docker compose run migrate
 ```
 
 After migrations run, you can visit `http://localhost:8080/todos` again and you will get an empty list of todos instead of an error message.
