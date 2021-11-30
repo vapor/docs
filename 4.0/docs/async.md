@@ -35,6 +35,16 @@ Finally update the `Run` target to mark it as an executable target:
 .executableTarget(name: "Run", dependencies: [.target(name: "App")]),
 ```
 
+Note: if you are deploying on Linux make sure you update the version of Swift there as well, e.g. on Heroku or in your Dockerfile. For example your Dockerfile would change to:
+
+```diff
+-FROM swift:5.2-focal as build
++FROM swift:5.5-focal as build
+...
+-FROM swift:5.2-focal-slim
++FROM swift:5.5-focal-slim
+```
+
 Now you can migrate existing code. Generally functions that return `EventLoopFuture`s are now `async`. For example:
 
 ```swift
