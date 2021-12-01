@@ -17,7 +17,7 @@ import FluentSQL
 
 if let sql = req.db as? SQLDatabase {
     // The underlying database driver is SQL.
-    sql.raw("SELECT * FROM planets").all()
+    let planets = try await sql.raw("SELECT * FROM planets").all(decoding: Planet.self)
 } else {
     // The underlying database driver is _not_ SQL.
 }
