@@ -481,7 +481,7 @@ To create an array of models separately, use `map` + `flatten`.
 If using `async`/`await` you can use:
 
 ```swift
-await withTaskGroup(of: Void.self) { taskGroup in
+await withThrowingTaskGroup(of: Void.self) { taskGroup in
     [earth, mars].forEach { model in
         taskGroup.addTask { try await model.create(on: database) }
     }
