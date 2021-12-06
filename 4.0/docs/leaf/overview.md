@@ -272,4 +272,5 @@ The `#unsafeHTML` tag acts like a variable tag - e.g. `#(variable)`. However it 
 The time is #unsafeHTML(styledTitle)
 ```
 
-**Note:** you should be careful when using this tag to ensure that the variable you provide it does not expose your users to an XSS attack.
+!!! note 
+    You should be careful when using this tag to ensure that the variable you provide it does not expose your users to an XSS attack.

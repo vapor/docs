@@ -68,7 +68,8 @@ The asterisk indicates current branch.
   other-branches
 ```
 
-> **Note**: If you don’t see any output and you’ve just performed `git init`. You’ll need to commit your code first then you’ll see output from the `git branch` command.
+!!! note 
+    If you don’t see any output and you’ve just performed `git init`. You’ll need to commit your code first then you’ll see output from the `git branch` command.
 
 
 If you’re _not_ currently on **master**, switch there by entering:
