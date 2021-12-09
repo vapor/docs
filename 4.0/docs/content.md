@@ -132,7 +132,7 @@ let name: String? = req.query["name"]
 
 ## Hooks
 
-Vapor will automatically call `beforeDecode` and `afterDecode` on a `Content` type. Default implementations are provided which do nothing, but you can use these methods to run custom logic.
+Vapor will automatically call `beforeEncode` and `afterDecode` on a `Content` type. Default implementations are provided which do nothing, but you can use these methods to run custom logic.
 
 ```swift
 // Runs after this Content is decoded. `mutating` is only required for structs, not classes.
