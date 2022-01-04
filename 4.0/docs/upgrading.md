@@ -349,7 +349,7 @@ Vapor 3's global `flatMap` method for combining multiple futures is no longer av
 
 ### ByteBuffer
 
-Many methods and properties that previously used `Data` now use NIO's `ByteBuffer`. This type is a more powerful and performant byte storage type. You can read more about its API in [SwiftNIO's ByteBuffer docs](https://apple.github.io/swift-nio/docs/current/NIO/Structs/ByteBuffer.html).
+Many methods and properties that previously used `Data` now use NIO's `ByteBuffer`. This type is a more powerful and performant byte storage type. You can read more about its API in [SwiftNIO's ByteBuffer docs](https://apple.github.io/swift-nio/docs/current/NIOCore/Structs/ByteBuffer.html).
 
 To convert a `ByteBuffer` back to `Data`, use:
 
