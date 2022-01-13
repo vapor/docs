@@ -25,6 +25,16 @@ final class Planet: Model {
 earth.$star.id = sun.id
 ```
 
+For instance, the `Planet` initializer would look like:
+
+```swift
+init(name: String, starID: Star.IDValue) {
+    self.name = name
+    // ...
+    self.$star.id = starID
+}
+```
+
 The `key` parameter defines the field key to use for storing the parent's identifier. Assuming `Star` has a `UUID` identifier, this `@Parent` relation is compatible with the following [field definition](schema.md#field).
 
 ```swift
