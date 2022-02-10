@@ -150,7 +150,7 @@ struct UserAuthenticator: BearerAuthenticator {
 }
 ```
 
-If you're using `async`/`await` you can use `AsyncBasicAuthenticator` instead:
+If you're using `async`/`await` you can use `AsyncBearerAuthenticator` instead:
 
 ```swift
 import Vapor
