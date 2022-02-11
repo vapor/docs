@@ -805,7 +805,7 @@ First, create a type representing a JWT payload.
 struct SessionToken: Content, Authenticatable, JWTPayload {
 
     // Constants
-    let expirationTime = 60 * 15
+    let expirationTime: TimeInterval = 60 * 15
     
     // Token Data
     var expiration: ExpirationClaim
