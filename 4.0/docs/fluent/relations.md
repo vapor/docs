@@ -1,6 +1,6 @@
 # Relations
 
-Fluent's [model API](model.md) helps you create and maintain references between your models through relations. Two types of relations are supported:
+Fluent's [model API](model.md) helps you create and maintain references between your models through relations. Three types of relations are supported:
 
 - [Parent](#parent) / [Child](#optional-child) (One-to-one)
 - [Parent](#parent) / [Children](#children) (One-to-many)
