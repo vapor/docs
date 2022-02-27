@@ -29,7 +29,7 @@ try await database.schema("planets")
     .create()
 ```
 
-If a table or collection with the chosen name already exists, an error will be thrown. To ignore this, use `.ignoreExisting()`.
+If a table or collection with the chosen name already exists, an error will be thrown. To ignore this, use `.ignoreExisting()`. 
 
 ### Update
 
@@ -410,10 +410,10 @@ try await db.schema("stars")
     .create()
 
 // Update the tables with relations    
-try await db.schema("planets")
-    .field("star_ids", .uuid, .required, .references("stars", "id"))
-    .update()
 try await db.schema("stars")
-    .field("planet_id", .uuid, .required, .references("planets", "id"))
+    .field("planet_ids", .uuid, .required, .references("stars", "id"))
+    .update()
+try await db.schema("planets")
+    .field("star_id", .uuid, .required, .references("planets", "id"))
     .update()
 ```
