@@ -342,3 +342,7 @@ planet.$star.value = star
 ```
 
 This will attach the related model to the parent as if it was eager loaded or lazy loaded without an extra database query.
+
+## Migrations
+
+Sometimes setting up relations may require extra work during a migration.  See [schema builder](schema.md) for more info.

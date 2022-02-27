@@ -29,7 +29,7 @@ try await database.schema("planets")
     .create()
 ```
 
-If a table or collection with the chosen name already exists, an error will be thrown. To ignore this, use `.ignoreExisting()`. 
+If a table or collection with the chosen name already exists, an error will be thrown. To ignore this, use `.ignoreExisting()`.
 
 ### Update
 
@@ -379,3 +379,41 @@ struct UserNameMigration: AsyncMigration {
 ```
 
 Note that for this migration to work, we need to be able to reference both the removed `name` field and the new `firstName` and `lastName` fields at the same time. Furthermore, the original `UserMigration` should continue to be valid. This would not be possible to do with key paths.
+
+## Creating Tables with Circular Relations
+
+If a table or collection does not yet exist, and you attempt to reference it, an error will be thrown.
+
+```swift
+// Parent
+try await db.schema("stars")
+    .id()
+    .field("planet_ids", .uuid, .required, .references("stars", "id")) // will fail
+    .create()
+
+// Children
+try await db.schema("planets")
+    .id()
+    .field("star_id", .uuid, .required, .references("planets", "id")) // will fail
+    .create()
+```
+
+To overcome this, restructure your migration to create the required table(s) first and then reference them.
+
+```swift
+// Create the tables
+try await db.schema("planets")
+    .id()
+    .create()
+try await db.schema("stars")
+    .id()
+    .create()
+
+// Update the tables with relations    
+try await db.schema("planets")
+    .field("star_ids", .uuid, .required, .references("stars", "id"))
+    .update()
+try await db.schema("stars")
+    .field("planet_id", .uuid, .required, .references("planets", "id"))
+    .update()
+```
