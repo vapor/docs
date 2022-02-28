@@ -128,7 +128,6 @@ This will set the parent id on the child model automatically.
 
 !!! warning Since this relation does not store any values, no database schema entry is required for the parent table.  Creating one will likely lead to errors like `server: null value in column "planet_ids" of relation "star" violates not-null constraint`.
 
-
 If a table or collection does not yet exist, and you attempt to reference it, an error will be thrown.  You must create the parent table first, then the children table.
 
 ```swift
