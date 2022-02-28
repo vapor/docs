@@ -186,7 +186,7 @@ To add a foreign key constraint to a field, use `.references`.
 .field("star_id", .uuid, .required, .references("stars", "id"))
 ```
 
-The above constraint requires that all values in the "star_id" field must match one of the values in Star's "id" field.
+The above constraint requires that all values in the "star_id" field must match one of the values in Star's "id" field, and that the "stars" table already exist.
 
 This same constraint could be added as a top-level constraint using `foreignKey`.
 
@@ -379,41 +379,3 @@ struct UserNameMigration: AsyncMigration {
 ```
 
 Note that for this migration to work, we need to be able to reference both the removed `name` field and the new `firstName` and `lastName` fields at the same time. Furthermore, the original `UserMigration` should continue to be valid. This would not be possible to do with key paths.
-
-## Creating Tables with Circular Relations
-
-If a table or collection does not yet exist, and you attempt to reference it, an error will be thrown.
-
-```swift
-// Parent
-try await db.schema("stars")
-    .id()
-    .field("planet_ids", .uuid, .required, .references("stars", "id")) // will fail
-    .create()
-
-// Children
-try await db.schema("planets")
-    .id()
-    .field("star_id", .uuid, .required, .references("planets", "id")) // will fail
-    .create()
-```
-
-To overcome this, restructure your migration to create the required table(s) first and then reference them.
-
-```swift
-// Create the tables
-try await db.schema("planets")
-    .id()
-    .create()
-try await db.schema("stars")
-    .id()
-    .create()
-
-// Update the tables with relations    
-try await db.schema("stars")
-    .field("planet_ids", .uuid, .required, .references("stars", "id"))
-    .update()
-try await db.schema("planets")
-    .field("star_id", .uuid, .required, .references("planets", "id"))
-    .update()
-```

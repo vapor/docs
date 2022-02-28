@@ -126,7 +126,21 @@ try await sun.$planets.create(earth, on: database)
 
 This will set the parent id on the child model automatically.
 
-Since this relation does not store any values, no database schema entry is required. 
+!!! warning Since this relation does not store any values, no database schema entry is required for the parent table.  Creating one will likely lead to errors like `server: null value in column "planet_ids" of relation "star" violates not-null constraint`.
+
+
+If a table or collection does not yet exist, and you attempt to reference it, an error will be thrown.  You must create the parent table first, then the children table.
+
+```swift
+// Create the tables
+try await db.schema("stars")
+    .id()
+    .create()
+try await db.schema("planets")
+    .id()
+    .field("star_id", .uuid, .required, .references("stars", "id"))
+    .create()
+```
 
 ## Siblings
 
@@ -342,7 +356,3 @@ planet.$star.value = star
 ```
 
 This will attach the related model to the parent as if it was eager loaded or lazy loaded without an extra database query.
-
-## Migrations
-
-Sometimes setting up relations may require extra work during a migration.  See [schema builder](schema.md) for more info.
