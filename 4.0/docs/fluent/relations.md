@@ -1,6 +1,6 @@
 # Relations
 
-Fluent's [model API](model.md) helps you create and maintain references between your models through relations. Two types of relations are supported:
+Fluent's [model API](model.md) helps you create and maintain references between your models through relations. Three types of relations are supported:
 
 - [Parent](#parent) / [Child](#optional-child) (One-to-one)
 - [Parent](#parent) / [Children](#children) (One-to-many)
@@ -23,6 +23,16 @@ final class Planet: Model {
 ```swift
 // Set parent relation id
 earth.$star.id = sun.id
+```
+
+For instance, the `Planet` initializer would look like:
+
+```swift
+init(name: String, starID: Star.IDValue) {
+    self.name = name
+    // ...
+    self.$star.id = starID
+}
 ```
 
 The `key` parameter defines the field key to use for storing the parent's identifier. Assuming `Star` has a `UUID` identifier, this `@Parent` relation is compatible with the following [field definition](schema.md#field).

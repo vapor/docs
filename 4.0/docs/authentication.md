@@ -150,7 +150,7 @@ struct UserAuthenticator: BearerAuthenticator {
 }
 ```
 
-If you're using `async`/`await` you can use `AsyncBasicAuthenticator` instead:
+If you're using `async`/`await` you can use `AsyncBearerAuthenticator` instead:
 
 ```swift
 import Vapor
@@ -182,7 +182,7 @@ If you add this authenticator to your app, and test the route defined above, you
 
 ## Composition
 
-Multiple authenticators can be composed (combined together) to create more complex endpoint authentication. Since an authenticator middleware will not reject the request if authentication fails, more than one of these middleware can be chained together. Authenticators can composed in two key ways. 
+Multiple authenticators can be composed (combined together) to create more complex endpoint authentication. Since an authenticator middleware will not reject the request if authentication fails, more than one of these middleware can be chained together. Authenticators can be composed in two key ways. 
 
 ### Composing Methods
 
@@ -805,7 +805,7 @@ First, create a type representing a JWT payload.
 struct SessionToken: Content, Authenticatable, JWTPayload {
 
     // Constants
-    let expirationTime = 60 * 15
+    let expirationTime: TimeInterval = 60 * 15
     
     // Token Data
     var expiration: ExpirationClaim
