@@ -18,6 +18,11 @@ vapor new hello -n
 !!! tip
 	The `-n` flag gives you a bare bones template by automatically answering no to all questions.
 
+!!! tip
+	Vapor and the template now uses `async`/`await` by default.
+	If you cannot update to macOS 12 and/or need to continue to use `EventLoopFuture`s, 
+	use flag `--branch macos10-15`.
+
 Once the command finishes, change into the newly created folder:
 
 
