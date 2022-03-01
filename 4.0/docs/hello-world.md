@@ -18,6 +18,10 @@ vapor new hello -n
 !!! tip
 	The `-n` flag gives you a bare bones template by automatically answering no to all questions.
 
+!!! tip
+	Current version of Vapor uses async/await by default as well as the project template does.
+	If you need to stick with EventLoopFutures, use flag `--branch macos10-15`.
+
 Once the command finishes, change into the newly created folder:
 
 
