@@ -193,29 +193,17 @@ This will make output somewhat like this
 DATABASE_URL: postgres://cybntsgadydqzm:2d9dc7f6d964f4750da1518ad71hag2ba729cd4527d4a18c70e024b11cfa8f4b@ec2-54-221-192-231.compute-1.amazonaws.com:5432/dfr89mvoo550b4
 ```
 
-**DATABASE_URL** here will represent out postgres database. **NEVER** hard code the static url from this, heroku will rotate it and it will break your application. It is also bad practice.
+**DATABASE_URL** here will represent out postgres database. **NEVER** hard code the static url from this, heroku will rotate it and it will break your application. It is also bad practice. Instead, read the environment variable at runtime.
 
-Here is an example database configuration
+The Heroku Postgres addon [requires](https://devcenter.heroku.com/changelog-items/2035) all connections to be encrypted. The certificates used by the Postgres servers are internal to Heroku, therefore an **unverified** TLS connection must be set up.
 
-```swift
-if let databaseURL = Environment.get("DATABASE_URL") {
-    app.databases.use(try .postgres(
-        url: databaseURL
-    ), as: .psql)
-} else {
-    // ...
-}
-```
-
-Unverified TLS is required if you are using Heroku Postgres's standard plan:
+The following snippet shows how to achieve both:
 
 ```swift
 if let databaseURL = Environment.get("DATABASE_URL"), var postgresConfig = PostgresConfiguration(url: databaseURL) {
     postgresConfig.tlsConfiguration = .makeClientConfiguration()
     postgresConfig.tlsConfiguration?.certificateVerification = .none
-    app.databases.use(.postgres(
-        configuration: postgresConfig
-    ), as: .psql)
+    app.databases.use(.postgres(configuration: postgresConfig), as: .psql)
 } else {
     // ...
 }
