@@ -1,0 +1,72 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'The documentation for Vapor'
+Parameters:
+  DomainName:
+    Type: String 
+    Description: The domain name for the site 
+    AllowedPattern: (?!-)[a-zA-Z0-9-.]{1,63}(?<!-)
+    ConstraintDescription: Must be a valid DNS zone name.
+  AcmCertificateArn:
+    Type: String
+    Description: the Amazon Resource Name (ARN) of an AWS Certificate Manager (ACM) certificate.
+    AllowedPattern: "arn:aws:acm:.*"
+  S3BucketName:
+    Type: String
+    Description: Name for the bucket 
+Resources:
+  S3BucketForWebsiteContent:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref 'S3BucketName'
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        # Redirect
+        ErrorDocument: /4.0/404.html
+        RoutingRules:
+          - RoutingRuleCondition:
+              HttpErrorCodeReturnedEquals: '404'
+              KeyPrefixEquals: /
+            RedirectRule:
+              HostName: !Ref 'DomainName'
+              ReplaceKeyPrefixWith: 4.0/
+  WebsiteCloudfront:
+    Type: AWS::CloudFront::Distribution
+    Properties: 
+      DistributionConfig:
+        Comment: Cloudfront Distribution pointing to S3 bucket
+        Origins:
+        - DomainName: !Join [ '', !Split [ 'http://', !GetAtt 'S3BucketForWebsiteContent.WebsiteURL' ] ]
+          Id: S3Origin
+          CustomOriginConfig:
+            OriginProtocolPolicy: 'http-only'
+        Enabled: true 
+        HttpVersion: 'http2'
+        Aliases:
+        - !Ref 'DomainName'
+        CustomErrorResponses:
+          - ErrorCode: 403
+            ResponseCode: 404
+            ResponsePagePath: /4.0/404.html
+        DefaultCacheBehavior:
+          AllowedMethods:
+          - GET 
+          - HEAD 
+          - OPTIONS
+          Compress: true 
+          TargetOriginId: S3Origin
+          ForwardedValues:
+            QueryString: false 
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: redirect-to-https
+        PriceClass: PriceClass_All
+        ViewerCertificate:
+          AcmCertificateArn: !Ref 'AcmCertificateArn'
+          SslSupportMethod: sni-only
+Outputs:
+  CloudfrontURL:
+    Description: 'Cloudfront URL'
+    Value: !GetAtt WebsiteCloudfront.DomainName
+  BucketName:
+    Description: 'Name of S3 bucket to hold website content'
+    Value: !Ref 'S3BucketForWebsiteContent'
