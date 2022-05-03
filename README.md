@@ -3,9 +3,15 @@
 Read the docs at [docs.vapor.codes](https://docs.vapor.codes)
 
 ## Contributing
+### *Mistakes*
+---
+If you have found any mistakes in the documentation, feel free to create a PR to fix it.
+
+### *Translating*
+---
+> For now this only applies to the Vapor 4 Documentation.
 
 If you wish to contribute to the Vapor documentation by translating, follow these steps below.
-> For now this only applies to the Vapor 4 Documentation.
 
 To start of, install [Python3](https://www.python.org/download/releases/3.0/). Once you have done that, run `pip install -r requirements.txt` in the root directory of this repository. This will install all the needed dependencies in order to be able to build the documentation.  
 
