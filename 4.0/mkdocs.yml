@@ -43,46 +43,49 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/vapor
 
-# Google Analytics
-google_analytics:
-  - UA-76177358-4
-  - auto
+# Custom code highlighting syntax (uncomment if you want to use this. css is in `docs/stylesheets/extra.css`)
+# extra_css:
+#   - stylesheets/extra.css
 
 # Extensions
 markdown_extensions:
   - admonition
-  - codehilite:
-      guess_lang: false
+  - pymdownx.highlight:
+      use_pygments: false
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
   - footnotes
   - meta
   - toc:
       permalink: true
 
-# # Plugins
-# plugins:
-#   # i18n plugin documentation
-#   # https://github.com/ultrabug/mkdocs-static-i18n
-#   - i18n:
-#       default_language: 'en'
-#       # Add the new languages here. DON'T CHANGE THE DEFAULT LANGUAGE
-#       languages:
-#         en: 
-#           name: English
-#           build: true
-#         nl: 
-#           name: Nederlands
-#           site_name: Vapor Documentatie
-#           build: true
-#         fr:
-#           name: Français
-#           site_name: Documentation Vapor
-#           build: true
-#       # Add navigation translations here
-#       nav_translations:
-#         nl:
-#           Welcome: Welkom
-#         fr: 
-#           Welcome: Bienvenue
+# Plugins
+plugins:
+  - search
+  # i18n plugin documentation
+  # https://github.com/ultrabug/mkdocs-static-i18n
+  - i18n:
+      default_language: 'en'
+      # Add the new languages here. DON'T CHANGE THE DEFAULT LANGUAGE
+      languages:
+        en: 
+          name: English
+          build: true
+        nl: 
+          name: Nederlands
+          site_name: Vapor Documentatie
+          build: true
+        fr:
+          name: Français
+          site_name: Documentation Vapor
+          build: true
+      # Add navigation translations here
+      nav_translations:
+        nl:
+          Welcome: Welkom
+        fr: 
+          Welcome: Bienvenue
 
 
 nav:
