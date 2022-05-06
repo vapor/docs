@@ -1,17 +1,62 @@
-name: deploy
+name: Build and deploy the Vapor documentation
 on:
   push:
     branches:
       - main
 jobs:
- deploy:
-   name: docs.vapor.codes
-   runs-on: ubuntu-latest
-   steps:
-     - name: Deploy docs
-       uses: appleboy/ssh-action@master
-       with:
-         host: vapor.codes
-         username: vapor
-         key: ${{ secrets.VAPOR_CODES_SSH_KEY }}
-         script: ./github-actions/deploy-docs.sh
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository 
+      uses: actions/checkout@v3
+    - name: Install dependencies
+      run: |
+        composer global require couscous/couscous
+        pip install -r requirements.txt
+
+        curl -OSL https://couscous.io/couscous.phar
+        sudo chmod +x couscous.phar 
+        sudo mv couscous.phar /usr/local/bin/couscous
+    - name: Build the website
+      run: |
+        bash ./build.sh
+    - name: Configure AWS credentials
+      id: cred
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.DOCS_DEPLOYER_AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.DOCS_DEPLOYER_AWS_SECRET_ACCESS_KEY }}
+        aws-region: 'eu-west-2'
+    - name: Deploy to AWS Cloudformation
+      id: clouddeploy
+      if: steps.cred.outcome == 'success'
+      uses: aws-actions/aws-cloudformation-github-deploy@v1.0.3
+      with:
+        name: vapor-docs-stack
+        template: stack.yml
+        no-fail-on-empty-changeset: "1"
+        parameter-overrides: >-
+          DomainName=docs.vapor.codes,
+          S3BucketName=vapor-docs-site,
+          AcmCertificateArn=${{ secrets.CERTIFICATE_ARN }}
+    - name: Deploy to S3 
+      id: s3deploy
+      if: steps.clouddeploy.outcome == 'success'
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'vapor-docs-site'
+        AWS_ACCESS_KEY_ID: ${{ secrets.DOCS_DEPLOYER_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.DOCS_DEPLOYER_AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: 'eu-west-2'
+        SOURCE_DIR: 'site'
+    - name: Invalidate CloudFront 
+      uses: awact/cloudfront-action@master 
+      env:
+        SOURCE_PATH: '/*'
+        AWS_REGION: 'eu-west-2'
+        AWS_ACCESS_KEY_ID: ${{ secrets.DOCS_DEPLOYER_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.DOCS_DEPLOYER_AWS_SECRET_ACCESS_KEY }}
+        DISTRIBUTION_ID: ${{ secrets.DOCS_DISTRIBUTION_ID }}

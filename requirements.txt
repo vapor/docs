@@ -20,7 +20,7 @@
 
 # Direct dependencies
 mkdocs>=1
-mkdocs-material>=3
+mkdocs-material>=7.1.0
 Pygments>=2.2
 pymdown-extensions>=4.11
 mkdocs-static-i18n>=0.45
