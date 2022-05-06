@@ -27,6 +27,10 @@ theme:
   logo: assets/logo.png
   favicon: assets/favicon.png
 
+  features:
+    - search.suggest
+    - search.highlight
+
 # Customization 
 extra:
   # Font
