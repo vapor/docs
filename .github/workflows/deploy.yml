@@ -12,13 +12,18 @@ jobs:
       uses: actions/checkout@v3
     - name: Install dependencies
       run: |
+        composer global require couscous/couscous
         pip install -r requirements.txt
+
+        curl -OSL https://couscous.io/couscous.phar
+        chmod +x couscous.phar 
+        sudo mv couscous.phar /usr/local/bin/couscous
     - name: Build the website
       run: |
         bash ./build.sh
     - name: Configure AWS credentials
       id: cred
-      uses: aws-actions/configure-aws-credentails@v1
+      uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.DOCS_DEPLOYER_AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.DOCS_DEPLOYER_AWS_SECRET_ACCESS_KEY }}
@@ -32,8 +37,8 @@ jobs:
         template: stack.yml
         no-fail-on-empty-changeset: "1"
         parameter-overrides: >-
-          DomainName=docs.vapor.codes
-          S3BucketName=vapor-docs-site
+          DomainName=docs.vapor.codes,
+          S3BucketName=vapor-docs-site,
           AcmCertificateArn=${{ secrets.CERTIFICATE_ARN }}
     - name: Deploy to S3 
       id: s3deploy
