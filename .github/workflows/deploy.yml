@@ -16,7 +16,7 @@ jobs:
         pip install -r requirements.txt
 
         curl -OSL https://couscous.io/couscous.phar
-        chmod +x couscous.phar 
+        sudo chmod +x couscous.phar 
         sudo mv couscous.phar /usr/local/bin/couscous
     - name: Build the website
       run: |
