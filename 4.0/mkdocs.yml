@@ -51,7 +51,7 @@ extra:
 markdown_extensions:
   - admonition
   - pymdownx.highlight:
-      use_pygments: false
+      use_pygments: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
