@@ -58,31 +58,31 @@ markdown_extensions:
   - toc:
       permalink: true
 
-# # Plugins
-# plugins:
-#   # i18n plugin documentation
-#   # https://github.com/ultrabug/mkdocs-static-i18n
-#   - i18n:
-#       default_language: 'en'
-#       # Add the new languages here. DON'T CHANGE THE DEFAULT LANGUAGE
-#       languages:
-#         en: 
-#           name: English
-#           build: true
-#         nl: 
-#           name: Nederlands
-#           site_name: Vapor Documentatie
-#           build: true
-#         fr:
-#           name: Français
-#           site_name: Documentation Vapor
-#           build: true
-#       # Add navigation translations here
-#       nav_translations:
-#         nl:
-#           Welcome: Welkom
-#         fr: 
-#           Welcome: Bienvenue
+# Plugins
+plugins:
+  # i18n plugin documentation
+  # https://github.com/ultrabug/mkdocs-static-i18n
+  - i18n:
+      default_language: 'en'
+      # Add the new languages here. DON'T CHANGE THE DEFAULT LANGUAGE
+      languages:
+        en: 
+          name: English
+          build: true
+        nl: 
+          name: Nederlands
+          site_name: Vapor Documentatie
+          build: true
+        fr:
+          name: Français
+          site_name: Documentation Vapor
+          build: true
+      # Add navigation translations here
+      nav_translations:
+        nl:
+          Welcome: Welkom
+        fr: 
+          Welcome: Bienvenue
 
 
 nav:
