@@ -60,7 +60,8 @@ markdown_extensions:
 
 # Plugins
 plugins:
-  - search
+  - search:
+    lang: en
   # i18n plugin documentation
   # https://github.com/ultrabug/mkdocs-static-i18n
   - i18n:
