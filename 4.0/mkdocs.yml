@@ -60,12 +60,12 @@ markdown_extensions:
 
 # Plugins
 plugins:
-  - search:
-    lang: en
+  - search
   # i18n plugin documentation
   # https://github.com/ultrabug/mkdocs-static-i18n
   - i18n:
       default_language: 'en'
+      search_reconfigure: false
       # Add the new languages here. DON'T CHANGE THE DEFAULT LANGUAGE
       languages:
         en: 
