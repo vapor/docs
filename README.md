@@ -5,15 +5,15 @@ Read the docs at [docs.vapor.codes](https://docs.vapor.codes)
 ## Contributing
 ### *Mistakes*
 ---
-If you have found any mistakes in the documentation, feel free to create a PR to fix it.
+If you want to add information to the docs or have found any mistakes you wish to fix, feel free to create a PR  for the change.
 
 ### *Translating*
 ---
 > For now this only applies to the Vapor 4 Documentation.
 
-If you wish to contribute to the Vapor documentation by translating, follow these steps below.
+Localised docs are incredibly useful for allowing people to learn Vapor in their native language. If you wish to contribute to the Vapor documentation by translating, follow the steps below.
 
-To start of, install [Python3](https://www.python.org/download/releases/3.0/). Once you have done that, run `pip install -r requirements.txt` in the root directory of this repository. This will install all the needed dependencies in order to be able to build the documentation.  
+You'll need Python3 to build the docs. You can download this from the [Python Website](https://www.python.org/download/releases/3.0/) or install via Homebrew. Once installed, run `pip install -r requirements.txt` in the root directory of this repository. This will install all the needed dependencies in order to be able to build the documentation.  
 
 Following the installation of the dependencies, check if your language you want to translate to is already included in the `mkdocs.yml` file. If it is not, then you can add it like this:
 ```yaml
@@ -22,15 +22,15 @@ languages:
   <language iso code>:
     name: <The name of the language>
     site_name: <The translated site name>
-    build: true # Whether the documentation gets build or not. Turn this to false for all languages you're not translating if building takes too long
+    build: true # Whether the documentation gets build or not. You can disable this if you don't want to build your language or want to temporarily disable other languages
 
   # Example
   nl:
     name: Nederlands
     site_name: Vapor Documentatie
-    build: false
+    build: true
 ```
-> NOTE: The language iso code you have to insert has to conform to the ISO 639-1 Standard. More information can be found [here](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+> NOTE: The language code you have to add must conform to the ISO 639-1 Standard. More information can be found [here](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
 If there are navigation components that have to be translated, then you can add them under `nav_translations` in the mkdocs file. This is done by specifying a keyword defined in the `nav:` section of the `mkdocs.yml` file and then adding the translation. An example can be found below of how to add those:
 ```yaml
