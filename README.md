@@ -3,13 +3,11 @@
 Read the docs at [docs.vapor.codes](https://docs.vapor.codes)
 
 ## Contributing
-### *Mistakes*
----
+
 If you want to add information to the docs or have found any mistakes you wish to fix, feel free to create a PR  for the change.
 
 ### *Translating*
 ---
-> For now this only applies to the Vapor 4 Documentation.
 
 Localised docs are incredibly useful for allowing people to learn Vapor in their native language. If you wish to contribute to the Vapor documentation by translating, follow the steps below.
 
