@@ -46,6 +46,8 @@ extra:
       link: https://discord.gg/vapor
     - icon: fontawesome/brands/github
       link: https://github.com/vapor
+  search:
+    language: 'en'
 
 # Custom code highlighting syntax (uncomment if you want to use this. css is in `docs/stylesheets/extra.css`)
 extra_css:
