@@ -1,7 +1,7 @@
 site_name: 'Vapor Docs'
 copyright: 'Copyright &copy; 2017 Qutheory, LLC'
 
-pages:
+nav:
 - Overview: 'index.md'
 - Getting started:
     - 'Install: macOS': 'getting-started/install-on-macos.md'
@@ -134,7 +134,3 @@ extra:
     font:
         text: 'Roboto Slab'
         code: 'Source Code Pro'
-    
-google_analytics:
-    - 'UA-76177358-4'
-    - 'auto'
