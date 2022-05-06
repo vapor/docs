@@ -153,6 +153,3 @@ extra:
         text: 'Roboto Slab'
         code: 'Source Code Pro'
     disqus: 'vapor-docs'
-google_analytics:
-    - 'UA-76177358-4'
-    - 'auto'
