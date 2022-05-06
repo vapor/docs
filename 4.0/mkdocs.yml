@@ -44,17 +44,15 @@ extra:
       link: https://github.com/vapor
 
 # Custom code highlighting syntax (uncomment if you want to use this. css is in `docs/stylesheets/extra.css`)
-# extra_css:
-#   - stylesheets/extra.css
+extra_css:
+  - stylesheets/syntax.css
+
+extra_javascript:
+  - javascripts/syntax.js
 
 # Extensions
 markdown_extensions:
   - admonition
-  - pymdownx.highlight:
-      use_pygments: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.superfences
   - footnotes
   - meta
   - toc:
