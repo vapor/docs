@@ -16,9 +16,8 @@ copyright: "Copyright &copy; Vapor Community"
 theme:
   name: material
   custom_dir: theme/
-
-  # Language
   language: en
+  locale: en
 
   palette:
     primary: black
@@ -46,8 +45,6 @@ extra:
       link: https://discord.gg/vapor
     - icon: fontawesome/brands/github
       link: https://github.com/vapor
-  search:
-    language: 'en'
 
 # Custom code highlighting syntax (uncomment if you want to use this. css is in `docs/stylesheets/extra.css`)
 extra_css:
@@ -73,6 +70,7 @@ plugins:
   - i18n:
       default_language: 'en'
       search_reconfigure: false
+      material_alternate: true
       # Add the new languages here. DON'T CHANGE THE DEFAULT LANGUAGE
       languages:
         en: 
