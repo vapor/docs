@@ -23,4 +23,4 @@ mv 4.0/site site/4.0;
 mv 1.5/.couscous/generated site/1.5;
 
 echo "<meta http-equiv=\"refresh\" content=\"0; url=/4.0/\">" > site/index.html;
-
+cp googlefc012e5d94cfa05f.html site/googlefc012e5d94cfa05f.html;
