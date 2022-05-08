@@ -85,12 +85,18 @@ plugins:
           name: Français
           site_name: Documentation Vapor
           build: true
+        de:
+          name: German
+          site_name: Vapor Dokumentation
+          build: true
       # Add navigation translations here
       nav_translations:
         nl:
           Welcome: Welkom
         fr: 
           Welcome: Bienvenue
+        de: 
+          Welcome: Willkommen
 
 
 nav:
