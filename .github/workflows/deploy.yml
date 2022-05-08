@@ -21,7 +21,7 @@ jobs:
     - name: Build the website
       run: |
         bash ./build.sh
-        ./fixSearchIndex.swift
+        swift fixSearchIndex.swift
     - name: Configure AWS credentials
       id: cred
       uses: aws-actions/configure-aws-credentials@v1
