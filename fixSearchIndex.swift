@@ -29,7 +29,7 @@ struct SearchIndexDocs: Codable {
     let title: String
 }
 
-let searchIndexPath = "4.0/site/search/search_index.json"
+let searchIndexPath = "site/4.0/search/search_index.json"
 
 let fileURL = URL(fileURLWithPath: searchIndexPath)
 let indexData = try Data(contentsOf: fileURL)
