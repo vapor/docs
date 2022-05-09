@@ -1,13 +1,13 @@
 # Project information
 site_name: Vapor Docs
-site_url: https://docs.vapor.codes/4.0/
+site_url: https://docs.vapor.codes/
 site_author: Vapor Community
 site_description: Vapor 4's documentation (web framework for Swift).
 
 # Repository
 repo_name: Vapor GitHub
 repo_url: http://github.com/vapor/vapor
-edit_uri: https://github.com/vapor/documentation/edit/main/4.0/docs/
+edit_uri: https://github.com/vapor/documentation/edit/main/docs/
 
 # Copyright
 copyright: "Copyright &copy; Vapor Community"
