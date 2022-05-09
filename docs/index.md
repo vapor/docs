@@ -1,4 +1,4 @@
-Welcome to the Vapor Documentation! Vapor is a web framework for Swift, allowing you to write backends, web apps APIs and HTTP servers in Swift. Swift is a modern, powerful and safe language providing a number of benefits over the more traditional server languages
+Welcome to the Vapor Documentation! Vapor is a web framework for Swift, allowing you to write backends, web apps APIs and HTTP servers in Swift. Vapor is written in Swift, which is a modern, powerful and safe language providing a number of benefits over the more traditional server languages.
 
 ## Getting Started
 
@@ -21,8 +21,8 @@ Here are some other great places to find information about Vapor.
 
 ## Old Documentation
 
-Documentation for versions of Swift that are now end-of-life can be found at [https://legacy.docs.vapor.codes/](https://legacy.docs.vapor.codes/).
+Documentation for deprecated versions of Vapor that are now end-of-life can be found at [https://legacy.docs.vapor.codes/](https://legacy.docs.vapor.codes/).
 
 ## Authors
 
-The [Vapor Core Team](https://github.com/orgs/vapor/teams/core), and the hundreds of members of the Vapor community.
+The Vapor Core Team, and the hundreds of members of the Vapor community.
