@@ -151,8 +151,5 @@ nav:
   - Nginx: "deploy/nginx.md"
   - Docker: "deploy/docker.md"
 - Version (4.0):
-    - v1.5: "version/1_5.md"
-    - v2.0: "version/2_0.md"
-    - v3.0: "version/3_0.md"
-    - v4.0: "version/4_0.md"
+    - Legacy Docs: "version/legacy-docs.md"
     - Upgrading: "upgrading.md"
