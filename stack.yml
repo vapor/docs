@@ -72,27 +72,27 @@ Resources:
         Comment: The Vapor Docs security header policy
         CustomHeadersConfig:
           Items:
-            #- Header: Permissions-Policy
-            #  Value: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()
-            #  Override: false
+            - Header: Permissions-Policy
+              Value: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()
+              Override: false
             - Header: server
               Value: 'Vapor Docs'
               Override: true
             - Header: Content-Security-Policy-Report-Only
-              Value: default-src 'none'; script-src 'self'; img-src 'self'; style-src 'self'; font-src 'self'
+              Value: default-src 'none'; script-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; connect-src 'self'
               Override: false
         SecurityHeadersConfig:
           #ContentSecurityPolicy:
-          #    ContentSecurityPolicy: default-src 'none'; script-src 'self'; img-src 'self'; style-src 'self'; font-src 'self'
+          #    ContentSecurityPolicy: default-src 'none'; script-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; connect-src 'self'
           #    Override: false
           ContentTypeOptions:
             Override: false
           FrameOptions:
             FrameOption: DENY
             Override: false
-          # ReferrerPolicy:
-          #   ReferrerPolicy: strict-origin-when-cross-origin
-          #   Override: false
+          ReferrerPolicy:
+            ReferrerPolicy: strict-origin-when-cross-origin
+            Override: false
           StrictTransportSecurity:
             AccessControlMaxAgeSec: 63072000
             IncludeSubdomains: true
