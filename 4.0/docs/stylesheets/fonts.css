@@ -1,0 +1,76 @@
+/* ==================== */
+/* IMPORT STATIC FONTS  */
+/* ==================== */
+
+/* ----- Roboto ----- */
+@font-face {
+    font-family: "Roboto";
+    src: url('/4.0/assets/fonts/Roboto-Regular.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url('/4.0/assets/fonts/Roboto-Light.ttf') format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url('/4.0/assets/fonts/Roboto-LightItalic.ttf') format("truetype");
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url('/4.0/assets/fonts/Roboto-Italic.ttf') format("truetype");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url('/4.0/assets/fonts/Roboto-Bold.ttf') format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url('/4.0/assets/fonts/Roboto-BoldItalic.ttf') format("truetype");
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* ----- Roboto Mono ----- */
+@font-face {
+    font-family: "Roboto Mono";
+    src: url('/4.0/assets/fonts/RobotoMono-Regular.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto Mono";
+    src: url('/4.0/assets/fonts/RobotoMono-Italic.ttf') format("truetype");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Roboto Mono";
+    src: url('/4.0/assets/fonts/RobotoMono-Bold.ttf') format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url('/4.0/assets/fonts/RobotoMono-BoldItalic.ttf') format("truetype");
+    font-weight: 700;
+    font-style: italic;
+}
+
+:root{
+    --md-text-font: "Roboto";
+    --md-code-font: "Roboto Mono";
+}
