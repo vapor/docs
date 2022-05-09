@@ -33,9 +33,7 @@ theme:
 # Customization 
 extra:
   # Font
-  font:
-    text: Roboto Slab
-    code: Source Code Pro
+  font: false
 
   # Social
   social:
@@ -46,9 +44,9 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/vapor
 
-# Custom code highlighting syntax (uncomment if you want to use this. css is in `docs/stylesheets/extra.css`)
 extra_css:
   - stylesheets/syntax.css
+  - stylesheets/fonts.css
 
 extra_javascript:
   - javascripts/syntax.js
