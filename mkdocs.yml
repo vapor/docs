@@ -1,0 +1,158 @@
+# Project information
+site_name: Vapor Docs
+site_url: https://docs.vapor.codes/
+site_author: Vapor Community
+site_description: Vapor 4's documentation (web framework for Swift).
+
+# Repository
+repo_name: Vapor GitHub
+repo_url: http://github.com/vapor/vapor
+edit_uri: https://github.com/vapor/documentation/edit/main/docs/
+
+# Copyright
+copyright: "Copyright &copy; Vapor Community"
+
+# Configuration
+theme:
+  name: material
+  custom_dir: theme/
+  language: en
+  locale: en
+  font: false
+
+  palette:
+    primary: black
+    accent: blue
+  
+  logo: assets/logo.png
+  favicon: assets/favicon.png
+
+  features:
+    - search.suggest
+    - search.highlight
+
+# Customization 
+extra:
+  # Font
+  font: 
+    text: Roboto Slab
+    code: Source Code Pro
+
+  # Social
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/codevapor
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/vapor
+    - icon: fontawesome/brands/github
+      link: https://github.com/vapor
+
+extra_css:
+  - stylesheets/syntax.css
+  - stylesheets/fonts.css
+
+extra_javascript:
+  - javascripts/syntax.js
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+
+# Plugins
+plugins:
+  - search:
+      lang: en
+  # i18n plugin documentation
+  # https://github.com/ultrabug/mkdocs-static-i18n
+  - i18n:
+      default_language: 'en'
+      search_reconfigure: false
+      material_alternate: true
+      # Add the new languages here. DON'T CHANGE THE DEFAULT LANGUAGE
+      languages:
+        en: 
+          name: English
+          build: true
+        nl: 
+          name: Nederlands
+          site_name: Vapor Documentatie
+          build: true
+        fr:
+          name: Français
+          site_name: Documentation Vapor
+          build: true
+      # Add navigation translations here
+      nav_translations:
+        nl:
+          Welcome: Welkom
+        fr: 
+          Welcome: Bienvenue
+
+
+nav:
+- Welcome: "index.md"
+- Install:
+  - macOS: "install/macos.md"
+  - Linux: "install/linux.md"
+- Getting Started:
+  - Hello, world: "hello-world.md"
+  - Folder Structure: "folder-structure.md"
+  - SPM: "spm.md"
+  - Xcode: "xcode.md"
+- Basics:
+  - Routing: "routing.md"
+# TODO: Improve quality
+# Mostly just a code sample with little explanation.
+#  - Controllers: "controllers.md"
+  - Content: "content.md"
+  - Client: "client.md"
+  - Validation: "validation.md"
+  - Async: "async.md"
+  - Logging: "logging.md"
+  - Environment: "environment.md"
+  - Errors: "errors.md"
+- Fluent:
+  - Overview: "fluent/overview.md"
+  - Model: "fluent/model.md"
+  - Relations: "fluent/relations.md"
+  - Migrations: "fluent/migration.md"
+  - Query: "fluent/query.md"
+  - Transactions: "fluent/transaction.md"
+  - Schema: "fluent/schema.md"
+  - Advanced: "fluent/advanced.md"
+- Leaf:
+  - Getting Started: "leaf/getting-started.md"
+  - Overview: "leaf/overview.md"
+  - Custom Tags: "leaf/custom-tags.md"
+- Redis:
+  - Overview: "redis/overview.md"
+  - Sessions: "redis/sessions.md"
+- Advanced:
+  - Middleware: "middleware.md"
+  - Testing: "testing.md"
+  - Server: "server.md"
+  - Files: "files.md"
+  - Commands: "commands.md"
+  - Queues: "queues.md"
+  - WebSockets: "websockets.md"
+  - Sessions: "sessions.md"
+  - Services: "services.md"
+  - APNS: "apns.md"
+- Security:
+  - Authentication: "authentication.md"
+  - Crypto: "crypto.md"
+  - Passwords: "passwords.md"
+  - JWT: "jwt.md"
+- Deploy:
+  - DigitalOcean: "deploy/digital-ocean.md"
+  - Heroku: "deploy/heroku.md"
+  - Supervisor: "deploy/supervisor.md"
+  - Nginx: "deploy/nginx.md"
+  - Docker: "deploy/docker.md"
+- Version (4.0):
+    - Legacy Docs: "version/legacy-docs.md"
+    - Upgrading: "upgrading.md"

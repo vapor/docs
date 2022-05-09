@@ -1,9 +1,4 @@
-/.couscous
 .sass-cache
 .DS_Store
-leaf-pygment/dist
 /site
-/2.0/site
-/3.0/site
-/4.0/site
 
