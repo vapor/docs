@@ -59,6 +59,7 @@ Resources:
             Cookies:
               Forward: none
           ViewerProtocolPolicy: redirect-to-https
+          ResponseHeadersPolicyId: !Ref WebsiteCloudFrontPolicies
         PriceClass: PriceClass_All
         ViewerCertificate:
           AcmCertificateArn: !Ref 'AcmCertificateArn'
