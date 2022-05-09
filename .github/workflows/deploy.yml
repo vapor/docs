@@ -12,16 +12,12 @@ jobs:
       uses: actions/checkout@v3
     - name: Install dependencies
       run: |
-        composer global require couscous/couscous
         pip install -r requirements.txt
-
-        curl -OSL https://couscous.io/couscous.phar
-        sudo chmod +x couscous.phar 
-        sudo mv couscous.phar /usr/local/bin/couscous
     - name: Build the website
       run: |
-        bash ./build.sh
+        mkdocs build
         swift fixSearchIndex.swift
+        cp googlefc012e5d94cfa05f.html site/googlefc012e5d94cfa05f.html;
     - name: Configure AWS credentials
       id: cred
       uses: aws-actions/configure-aws-credentials@v1

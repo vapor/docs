@@ -118,7 +118,7 @@ MySQL is a popular open source SQL database. It is available on many cloud hosti
 To use MySQL, add the following dependencies to your package.
 
 ```swift
-.package(url: "https://github.com/vapor/fluent-mysql-driver.git", from: "4.0.0-beta")
+.package(url: "https://github.com/vapor/fluent-mysql-driver.git", from: "4.0.0")
 ```
 
 ```swift
