@@ -18,6 +18,7 @@ theme:
   custom_dir: theme/
   language: en
   locale: en
+  font: false
 
   palette:
     primary: black
@@ -33,7 +34,9 @@ theme:
 # Customization 
 extra:
   # Font
-  font: false
+  font: 
+    text: Roboto Slab
+    code: Source Code Pro
 
   # Social
   social:
