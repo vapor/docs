@@ -1,11 +1,4 @@
-This is the documentation for Vapor, a web framework for Swift.
-
-Vapor is the most used web framework for Swift. It provides a beautifully expressive and easy to use foundation for your next website or API.
-
-## Languages
-
-- English [(docs.vapor.codes)](https://docs.vapor.codes)
-- 简体中文 [(cn.docs.vapor.codes)](https://cn.docs.vapor.codes)
+Welcome to the Vapor Documentation! Vapor is a web framework for Swift, allowing you to write backends, web apps APIs and HTTP servers in Swift. Swift is a modern, powerful and safe language providing a number of benefits over the more traditional server languages
 
 ## Getting Started
 
@@ -17,16 +10,19 @@ Once you have Vapor installed, check out [Getting Started → Hello, world](hell
 
 Here are some other great places to find information about Vapor.
 
-| name           | description                                      | link                                                            |
-|----------------|--------------------------------------------------|-----------------------------------------------------------------|
-| Vapor Discord  | Chat with thousands of Vapor developers.         | [visit &rarr;](https://vapor.team)                               |
-| API docs       | Auto-generated documentation from code comments. | [visit &rarr;](https://api.vapor.codes)                          |
-| Stack Overflow | Ask and answer questions with the `vapor` tag.   | [visit &rarr;](https://stackoverflow.com/questions/tagged/vapor) |
-| Swift Forums  | Post in Vapor's section of the Swift.org forums.  | [visit &rarr;](https://forums.swift.org/c/related-projects/vapor)           |
-| Source Code    | Learn how Vapor works under the hood.            | [visit &rarr;](https://github.com/vapor/vapor)                  |
-| GitHub Issues  | Report bugs or request features on GitHub.       | [visit &rarr;](https://github.com/vapor/vapor/issues)           |
+| name           | description                                      | link                                                              |
+|----------------|--------------------------------------------------|-------------------------------------------------------------------|
+| Vapor Discord  | Chat with thousands of Vapor developers.         | [visit &rarr;](https://vapor.team)                                |
+| API docs       | Auto-generated documentation from code comments. | [visit &rarr;](https://api.vapor.codes)                           |
+| Stack Overflow | Ask and answer questions with the `vapor` tag.   | [visit &rarr;](https://stackoverflow.com/questions/tagged/vapor)  |
+| Swift Forums   | Post in Vapor's section of the Swift.org forums. | [visit &rarr;](https://forums.swift.org/c/related-projects/vapor) |
+| Source Code    | Learn how Vapor works under the hood.            | [visit &rarr;](https://github.com/vapor/vapor)                    |
+| GitHub Issues  | Report bugs or request features on GitHub.       | [visit &rarr;](https://github.com/vapor/vapor/issues)             |
 
+## Old Documentation
+
+Documentation for versions of Swift that are now end-of-life can be found at [https://legacy.docs.vapor.codes/](https://legacy.docs.vapor.codes/).
 
 ## Authors
 
-[Tanner Nelson](mailto:tanner@vapor.codes), [Logan Wright](mailto:logan@vapor.codes), and the hundreds of members of the Vapor community.
+The [Vapor Core Team](https://github.com/orgs/vapor/teams/core), and the hundreds of members of the Vapor community.
