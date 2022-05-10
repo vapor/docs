@@ -1,0 +1,26 @@
+name: Build docs and check cloudformation
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: build docs
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository 
+      uses: actions/checkout@v3.0.0
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+    - name: Build documentation
+      run: |
+        mkdocs build
+    - name: Setup cloudformation linter 
+      uses: ScottBrenner/cfn-lint-action@v2.2.1
+    - name: Run cloudformation lint 
+      run: cfn-lint -t stack.yml
+    - name: Spellcheck
+      uses: igsekor/pyspelling-any@v1.0.4
