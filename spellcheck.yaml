@@ -1,11 +1,10 @@
 matrix:
 - name: Markdown
-  sources: '**/*.md'
+  sources: 'docs/**/*.md'
   default_encoding: utf-8
   aspell:
     lang:
       - en
-      - nl
   pipeline:
   - pyspelling.filters.markdown:
   - pyspelling.filters.html:
