@@ -22,5 +22,3 @@ jobs:
       uses: ScottBrenner/cfn-lint-action@v2.2.1
     - name: Run cloudformation lint 
       run: cfn-lint -t stack.yml
-    - name: Spellcheck
-      uses: igsekor/pyspelling-any@v1.0.4
