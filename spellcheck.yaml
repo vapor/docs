@@ -5,9 +5,3 @@ matrix:
   aspell:
     lang:
       - en
-  pipeline:
-  - pyspelling.filters.markdown:
-      comments: false
-      ignores:
-      - code 
-      - pre
