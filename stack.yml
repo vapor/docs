@@ -28,6 +28,13 @@ Resources:
               KeyPrefixEquals: /
             RedirectRule:
               HostName: !Ref 'DomainName'
+          - RoutingRuleCondition: 
+              KeyPrefixEquals: "4.0/"
+            RedirectRule: 
+              HostName: !Ref 'DomainName'
+              HttpRedirectCode: 301
+              Protocol: "https"
+              ReplaceKeyPrefixWith: ""
   WebsiteCloudfront:
     Type: AWS::CloudFront::Distribution
     Properties: 
