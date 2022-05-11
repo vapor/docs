@@ -584,7 +584,7 @@ app.databases.middleware.use(PlanetMiddleware(), on: .psql)
 
 ## Database Space
 
-Fluent supports the setting of a space for a Model, which allows the partitioning of individual Fluent models between PostgreSQL schemas, MySQL databases, and multiple attached SQLite databases. To define a space other than the default one add a new static property to the model:
+Fluent supports the setting of a space for a Model, which allows the partitioning of individual Fluent models between PostgreSQL schemas, MySQL databases, and multiple attached SQLite databases. MongoDB does not support spaces at the time of this writing. To place a model in a space other than the default, add a new static property to the model:
 
 ```swift
 public static let schema = "planets"
