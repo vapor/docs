@@ -1,11 +1,6 @@
-# Dokumentation
+# Willkommen
 
-Die Dokumentation behandelt das beliebte Web-Framework _Vapor_. Mit Vapor kannst du beeindruckende Webseiten und APIs in _Swift_ schreiben.
-
-## Übersetzung
-
-Die deutsche Übersetzung orientiert sich an der [englische Version](https://docs.vapor.codes). Sollte dennoch ein Abschnitt fehlen, kannst du auf die Version ausweichen oder uns einen Hinweis in _Discord_ geben. Wir bemühen uns die Dokumentation so aktuell wie möglich zu halten.
-
+Willkommen zur Dokumentation von Vapor! Vapor ist ein Web-Framework für Swift, mit das du Webseiten, ganze Webserver oder APIs schreiben kannst. Vapor selbst ist in Swift geschrieben, welche eine moderne, leistungsstarke und sichere Sprache ist und die gegenüber anderen Serversprachen eine Vielzahl von Vorteilen bietet.
 
 ## Einstieg
 
@@ -24,7 +19,10 @@ Mehr Informationen zum Web-Framework findest du unter anderem hier:
 | Source Code    | Der ganze Quellcode von Vapor auf Github.                    | [visit &rarr;](https://github.com/vapor/vapor)                   |
 | GitHub Issues  | Melde Fehler oder reiche deine Ideen auf Github ein.         | [visit &rarr;](https://github.com/vapor/vapor/issues)            |
 
+## Altversionen
+
+Die Dokumentationen zu älteren Versionen von Vapor findest du unter [https://legacy.docs.vapor.codes/](https://legacy.docs.vapor.codes/).
 
 ## Authoren
 
-[Tanner Nelson](mailto:tanner@vapor.codes), [Logan Wright](mailto:logan@vapor.codes) und viele weitere Mitglieder der Vapor-Community.
+Das Vapor-Kernteam und viele weitere Mitglieder der Vapor-Community.
