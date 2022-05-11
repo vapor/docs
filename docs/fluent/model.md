@@ -581,3 +581,16 @@ Once you have created your middleware, you can enable it using `app.databases.mi
 // Example of configuring model middleware.
 app.databases.middleware.use(PlanetMiddleware(), on: .psql)
 ```
+
+## Database Space
+
+Fluent supports the setting of a space for a Model, which allows the partitioning of individual Fluent models between PostgreSQL schemas, MySQL databases, and multiple attached SQLite databases. MongoDB does not support spaces at the time of this writing. To place a model in a space other than the default, add a new static property to the model:
+
+```swift
+public static let schema = "planets"
+public static let space: String? = "mirror_universe"
+
+// ...
+```
+
+Fluent will use this when building all database queries. 
