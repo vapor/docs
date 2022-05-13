@@ -2,7 +2,7 @@
 
 Controllers are a great way to organize your code. They are collections of methods that accept a request and return a response.
 
-A good place to put your controllers is in the [Controllers](folder-structure.md#controllers) folder.
+A good place to put your controllers is in the [Controllers](../gettingstarted/folder-structure.md#controllers) folder.
 
 ## Overview
 

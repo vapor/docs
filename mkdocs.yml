@@ -77,6 +77,10 @@ plugins:
         en: 
           name: English
           build: true
+        zh:
+          name: 简体中文
+          site_name: Vapor 中文文档
+          build: true
         nl: 
           name: Nederlands
           site_name: Vapor Documentatie
@@ -97,6 +101,55 @@ plugins:
           Welcome: Bienvenue
         de: 
           Welcome: Willkommen
+        zh:
+          Welcome: 序言
+          Install: 安装
+          Getting Started: 开始
+          Hello, world: 你好世界
+          Folder Structure: 项目结构
+          SPM: SPM
+          Xcode: Xcode
+          Basics: 入门
+          Routing: 路由
+          Content: 内容
+          Client: 客户端
+          Validation: 验证
+          Async: 异步
+          Logging: 日志
+          Environment: 环境
+          Errors: 错误
+          Fluent: Fluent
+          Overview: 概述
+          Model: 模型
+          Relations: 关联
+          Migrations: 迁移
+          Query: 查询
+          Transactions: 事务
+          Schema: 模式
+          Leaf: Leaf
+          Redis: Redis
+          Advanced: 进阶
+          Middleware: 中间件
+          Testing: 测试
+          Server: 服务
+          Files: 文件
+          Commands: 命令
+          Queues: 队列
+          WebSockets: 即时通讯
+          Sessions: 会话
+          Services: 拓展
+          Security: 安全
+          APNS: 推送
+          Deploy: 部署
+          Authentication: 认证
+          Crypto: 加密
+          Passwords: 密码
+          JWT: 认证
+          Version (4.0): 版本
+
+
+
+
 
 
 nav:
@@ -105,22 +158,22 @@ nav:
   - macOS: "install/macos.md"
   - Linux: "install/linux.md"
 - Getting Started:
-  - Hello, world: "hello-world.md"
-  - Folder Structure: "folder-structure.md"
-  - SPM: "spm.md"
-  - Xcode: "xcode.md"
+  - Hello, world: "gettingstarted/hello-world.md"
+  - Folder Structure: "gettingstarted/folder-structure.md"
+  - SPM: "gettingstarted/spm.md"
+  - Xcode: "gettingstarted/xcode.md"
 - Basics:
-  - Routing: "routing.md"
+  - Routing: "basics/routing.md"
 # TODO: Improve quality
 # Mostly just a code sample with little explanation.
 #  - Controllers: "controllers.md"
-  - Content: "content.md"
-  - Client: "client.md"
-  - Validation: "validation.md"
-  - Async: "async.md"
-  - Logging: "logging.md"
-  - Environment: "environment.md"
-  - Errors: "errors.md"
+  - Content: "basics/content.md"
+  - Client: "basics/client.md"
+  - Validation: "basics/validation.md"
+  - Async: "basics/async.md"
+  - Logging: "basics/logging.md"
+  - Environment: "basics/environment.md"
+  - Errors: "basics/errors.md"
 - Fluent:
   - Overview: "fluent/overview.md"
   - Model: "fluent/model.md"
@@ -138,21 +191,21 @@ nav:
   - Overview: "redis/overview.md"
   - Sessions: "redis/sessions.md"
 - Advanced:
-  - Middleware: "middleware.md"
-  - Testing: "testing.md"
-  - Server: "server.md"
-  - Files: "files.md"
-  - Commands: "commands.md"
-  - Queues: "queues.md"
-  - WebSockets: "websockets.md"
-  - Sessions: "sessions.md"
-  - Services: "services.md"
-  - APNS: "apns.md"
+  - Middleware: "advanced/middleware.md"
+  - Testing: "advanced/testing.md"
+  - Server: "advanced/server.md"
+  - Files: "advanced/files.md"
+  - Commands: "advanced/commands.md"
+  - Queues: "advanced/queues.md"
+  - WebSockets: "advanced/websockets.md"
+  - Sessions: "advanced/sessions.md"
+  - Services: "advanced/services.md"
+  - APNS: "advanced/apns.md"
 - Security:
-  - Authentication: "authentication.md"
-  - Crypto: "crypto.md"
-  - Passwords: "passwords.md"
-  - JWT: "jwt.md"
+  - Authentication: "security/authentication.md"
+  - Crypto: "security/crypto.md"
+  - Passwords: "security/passwords.md"
+  - JWT: "security/jwt.md"
 - Deploy:
   - DigitalOcean: "deploy/digital-ocean.md"
   - Heroku: "deploy/heroku.md"

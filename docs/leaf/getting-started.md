@@ -31,7 +31,7 @@ let package = Package(
 
 ## Configure
 
-Once you have added the package to your project, you can configure Vapor to use it. This is usually done in [`configure.swift`](../folder-structure.md#configureswift).
+Once you have added the package to your project, you can configure Vapor to use it. This is usually done in [`configure.swift`](../gettingstarted/folder-structure.md#configureswift).
 
 ```swift
 import Leaf

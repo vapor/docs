@@ -346,7 +346,7 @@ In the database, `@Group` is stored as a flat structure with keys joined by `_`.
 
 ## Codable
 
-Models conform to `Codable` by default. This means you can use your models with Vapor's [content API](../content.md) by adding conformance to the `Content` protocol.
+Models conform to `Codable` by default. This means you can use your models with Vapor's [content API](../basics/content.md) by adding conformance to the `Content` protocol.
 
 ```swift
 extension Planet: Content { }

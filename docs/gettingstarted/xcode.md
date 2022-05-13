@@ -16,15 +16,15 @@ To fix this, set a custom working directory in the Xcode scheme for your project
 
 First, edit your project's scheme by clicking on the scheme selector by the play and stop buttons. 
 
-![Xcode Scheme Area](images/xcode-scheme-area.png)
+![Xcode Scheme Area](../images/xcode-scheme-area.png)
 
 Select _Edit Scheme..._ from the dropdown.
 
-![Xcode Scheme Menu](images/xcode-scheme-menu.png)
+![Xcode Scheme Menu](../images/xcode-scheme-menu.png)
 
 In the scheme editor, choose the _Run_ action and the _Options_ tab. Check _Use custom working directory_ and enter the path to your project's root folder.
 
-![Xcode Scheme Options](images/xcode-scheme-options.png)
+![Xcode Scheme Options](../images/xcode-scheme-options.png)
 
 You can get the full path to your project's root by running `pwd` from a terminal window open there.
 

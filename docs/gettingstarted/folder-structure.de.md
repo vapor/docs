@@ -41,7 +41,7 @@ Der Ordner _App_ beinhaltet die Anwendungslogik.
 
 #### Controllers
 
-Der Ordner _Controllers_ beinhaltet die Definitionen der Endpunkte der Anwendung. Mehr dazu findest du im Abschnitt [Controllers](controllers.md).
+Der Ordner _Controllers_ beinhaltet die Definitionen der Endpunkte der Anwendung. Mehr dazu findest du im Abschnitt [Controllers](../basics/controllers.md).
 
 #### Migrations
 

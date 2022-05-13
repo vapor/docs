@@ -29,4 +29,4 @@ brew install vapor
 
 ##
 
-Nach den Installationen kannst du mit der Erstellung deiner ersten Vapor-Anwendung beginnen. Folge dazu den Anweisungen im Abschnitt [Erste Schritte → Hello, world](../hello-world.de.md).
+Nach den Installationen kannst du mit der Erstellung deiner ersten Vapor-Anwendung beginnen. Folge dazu den Anweisungen im Abschnitt [Erste Schritte → Hello, world](../gettingstarted/hello-world.de.md).

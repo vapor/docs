@@ -1,6 +1,6 @@
 # Redis & Sessions
 
-Redis can act as a storage provider for caching [session data](../sessions.md#session-data) such as user credentials.
+Redis can act as a storage provider for caching [session data](../advanced/sessions.md#session-data) such as user credentials.
 
 If a custom [`RedisSessionsDelegate`](https://api.vapor.codes/redis/master/Redis/RedisSessionsDelegate/) isn't provided, a default will be used.
 
