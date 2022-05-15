@@ -38,7 +38,8 @@ var newSearchIndex = searchIndex
 var searchIndexDocs = [SearchIndexDocs]()
 
 for doc in newSearchIndex.docs {
-    if !doc.location.starts(with: "en/") 
+    if !doc.location.starts(with: "en/")
+      && !doc.location.starts(with: "zh/")
       && !doc.location.starts(with: "de/")
       && !doc.location.starts(with: "fr/") 
       && !doc.location.starts(with: "nl/") {
