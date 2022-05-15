@@ -49,7 +49,7 @@ let earth = try await Planet.query(on: database)
 ```
 
 !!! tip
-    If using `EventLoopFuture`s, this method can be combined with [`unwrap(or:)`](../errors.md#abort) to return a non-optional model or throw an error. 
+    If using `EventLoopFuture`s, this method can be combined with [`unwrap(or:)`](../basics/errors.md#abort) to return a non-optional model or throw an error. 
 
 ## Filter
 

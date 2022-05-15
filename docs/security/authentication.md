@@ -4,7 +4,7 @@ Authentication is the act of verifying a user's identity. This is done through t
 
 ## Introduction
 
-Vapor's Authentication API provides support for authenticating a user via the `Authorization` header, using [Basic](https://tools.ietf.org/html/rfc7617) and [Bearer](https://tools.ietf.org/html/rfc6750). It also supports authenticating a user via the data decoded from the [Content](/content.md) API.
+Vapor's Authentication API provides support for authenticating a user via the `Authorization` header, using [Basic](https://tools.ietf.org/html/rfc7617) and [Bearer](https://tools.ietf.org/html/rfc6750). It also supports authenticating a user via the data decoded from the [Content](../basics/content.md) API.
 
 Authentication is implemented by creating an `Authenticator` which contains the verification logic. An authenticator can be used to protect individual route groups or an entire app. The following authenticator helpers ship with Vapor:
 
@@ -256,11 +256,11 @@ req.auth.logout(User.self)
 
 ## Fluent
 
-[Fluent](fluent/overview.md) defines two protocols `ModelAuthenticatable` and `ModelTokenAuthenticatable` which can be added to your existing models. Conforming your models to these protocols allows for the creation of authenticators for protecting endpoints. 
+[Fluent](../fluent/overview.md) defines two protocols `ModelAuthenticatable` and `ModelTokenAuthenticatable` which can be added to your existing models. Conforming your models to these protocols allows for the creation of authenticators for protecting endpoints. 
 
 `ModelTokenAuthenticatable` authenticates with a Bearer token. This is what you use to protect most of your endpoints. `ModelAuthenticatable` authenticates with username and password and is used by a single endpoint for generating tokens. 
 
-This guide assumes you are familiar with Fluent and have successfully configured your app to use a database. If you are new to Fluent, start with the [overview](fluent/overview.md).
+This guide assumes you are familiar with Fluent and have successfully configured your app to use a database. If you are new to Fluent, start with the [overview](../fluent/overview.md).
 
 ### User
 
@@ -329,7 +329,7 @@ Don't forget to add the migration to `app.migrations`.
 app.migrations.add(User.Migration())
 ``` 
 
-The first thing you will need is an endpoint to create new users. Let's use `POST /users`. Create a [Content](content.md) struct representing the data this endpoint expects.
+The first thing you will need is an endpoint to create new users. Let's use `POST /users`. Create a [Content](../basics/content.md) struct representing the data this endpoint expects.
 
 ```swift
 import Vapor
@@ -344,7 +344,7 @@ extension User {
 }
 ```
 
-If you like, you can conform this struct to [Validatable](validation.md) to add validation requirements.
+If you like, you can conform this struct to [Validatable](../basics/validation.md) to add validation requirements.
 
 ```swift
 import Vapor
@@ -468,7 +468,7 @@ final class UserToken: Model, Content {
 }
 ```
 
-This model must have a `value` field for storing the token's unique string. It must also have a [parent-relation](fluent/overview.md#parent) to the user model. You may add additional properties to this token as you see fit, such as an expiration date. 
+This model must have a `value` field for storing the token's unique string. It must also have a [parent-relation](../fluent/overview.md#parent) to the user model. You may add additional properties to this token as you see fit, such as an expiration date. 
 
 Next, create a migration for this model.
 
@@ -584,7 +584,7 @@ You should see the authenticated `User` returned.
 
 ## Session
 
-Vapor's [Session API](sessions.md) can be used to automatically persist user authentication between requests. This works by storing a unique identifier for the user in the request's session data after successful login. On subsequent requests, the user's identifier is fetched from the session and used to authenticate the user before calling your route handler.
+Vapor's [Session API](../advanced/sessions.md) can be used to automatically persist user authentication between requests. This works by storing a unique identifier for the user in the request's session data after successful login. On subsequent requests, the user's identifier is fetched from the session and used to authenticate the user before calling your route handler.
 
 Sessions are great for front-end web applications built in Vapor that serve HTML directly to web browsers. For APIs, we recommend using stateless, token-based authentication to persist user data between requests.
 
@@ -674,7 +674,7 @@ protected.get("me") { req -> String in
 }
 ```
 
-`SessionsMiddleware` is added first to enable session support on the application. More information about configuring sessions can be found in the [Session API](sessions.md) section.
+`SessionsMiddleware` is added first to enable session support on the application. More information about configuring sessions can be found in the [Session API](../advanced/sessions.md) section.
 
 Next, the `SessionAuthenticator` is added. This handles authenticating the user if a session is active. 
 

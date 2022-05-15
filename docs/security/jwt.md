@@ -5,7 +5,7 @@ JSON Web Token (JWT) is an open standard ([RFC 7519](https://tools.ietf.org/html
 
 ## Getting Started
 
-The first step to using JWT is adding the dependency to your [Package.swift](spm.md#package-manifest).
+The first step to using JWT is adding the dependency to your [Package.swift](../gettingstarted/spm.md#package-manifest).
 
 ```swift
 // swift-tools-version:5.2

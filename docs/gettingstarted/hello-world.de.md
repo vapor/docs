@@ -1,6 +1,6 @@
 # Hallo Welt!
 
-In diesem Abschnitt erklären wir dir Schritt für Schritt, wie du ein Vapor-Projekt erstellst und ausführst. Sollte dir _Swift_ oder die _Vapor Toolbox_ noch fehlen, werfe zuerst einen Blick in die beiden Abschnitte [Installation &rarr; macOS](install/macos.md) und [Installation &rarr; Linux](install/linux.md).
+In diesem Abschnitt erklären wir dir Schritt für Schritt, wie du ein Vapor-Projekt erstellst und ausführst. Sollte dir _Swift_ oder die _Vapor Toolbox_ noch fehlen, werfe zuerst einen Blick in die beiden Abschnitte [Installation &rarr; macOS](../install/macos.md) und [Installation &rarr; Linux](../install/linux.md).
 
 
 ## Projekt erstellen

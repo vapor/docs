@@ -60,7 +60,7 @@ To migrate your database, run the `migrate` command.
 vapor run migrate
 ```
 
-You can also run this [command through Xcode](../commands.md#xcode). The migrate command will check the database to see if any new migrations have been registered since it was last run. If there are new migrations, it will ask for a confirmation before running them.
+You can also run this [command through Xcode](../advanced/commands.md#xcode). The migrate command will check the database to see if any new migrations have been registered since it was last run. If there are new migrations, it will ask for a confirmation before running them.
 
 ### Revert
 
