@@ -62,4 +62,4 @@ vapor --help
 
 ## 下一步
 
-在你安装完 Swift 之后，通过 [开始 &rarr; Hello, world](../gettingstarted/hello-world.md) 来学习创建你的第一个应用。
+在你安装完 Swift 之后，通过 [开始 &rarr; Hello, world](../getting-started/hello-world.md) 来学习创建你的第一个应用。

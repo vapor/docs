@@ -2,7 +2,7 @@
 
 `Controller` 是将应用程序的不同逻辑进行分组的优秀方案，大多数 Controller 都具备接受多种请求的功能，并根据需要进行响应。
 
-建议将其放在 [Controllers](../gettingstarted/folder-structure.md#controllers) 文件夹下，具体情况可以根据需求划分模块。
+建议将其放在 [Controllers](../getting-started/folder-structure.md#controllers) 文件夹下，具体情况可以根据需求划分模块。
 
 
 ## 概述

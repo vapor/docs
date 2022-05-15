@@ -158,10 +158,10 @@ nav:
   - macOS: "install/macos.md"
   - Linux: "install/linux.md"
 - Getting Started:
-  - Hello, world: "gettingstarted/hello-world.md"
-  - Folder Structure: "gettingstarted/folder-structure.md"
-  - SPM: "gettingstarted/spm.md"
-  - Xcode: "gettingstarted/xcode.md"
+  - Hello, world: "getting-started/hello-world.md"
+  - Folder Structure: "getting-started/folder-structure.md"
+  - SPM: "getting-started/spm.md"
+  - Xcode: "getting-started/xcode.md"
 - Basics:
   - Routing: "basics/routing.md"
 # TODO: Improve quality

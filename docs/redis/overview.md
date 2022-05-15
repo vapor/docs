@@ -14,7 +14,7 @@ This library is an integration between Vapor and [**RediStack**](https://gitlab.
 
 The first step to using Redis is adding it as a dependency to your project in your Swift package manifest.
 
-> This example is for an existing package. For help on starting a new project, see the main [Getting Started](../gettingstarted/hello-world.md) guide.
+> This example is for an existing package. For help on starting a new project, see the main [Getting Started](../getting-started/hello-world.md) guide.
 
 ```swift
 dependencies: [
