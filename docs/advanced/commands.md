@@ -44,7 +44,7 @@ Adding the custom command to `app.commands` will make it available via `vapor ru
 app.commands.use(HelloCommand(), as: "hello")
 ```
 
-To conform to `Command`, you must implement the `run` method. This requires declaring a `Signature`. You must also provide default help text.
+To conform to `AsyncCommand`, you must implement the `run` method. This requires declaring a `Signature`. You must also provide default help text.
 
 ```swift
 import Vapor

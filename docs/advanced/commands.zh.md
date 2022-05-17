@@ -28,12 +28,12 @@ vapor run serve --help
 
 ## 自定义指令
 
-你可以通过一个符合 `Command` 协议的类型创建你自己的命令
+你可以通过一个符合 `AsyncCommand` 协议的类型创建你自己的命令
 
 ```swift
 import Vapor
 
-struct HelloCommand: Command { 
+struct HelloCommand: AsyncCommand { 
 	...
 }
 ```
@@ -44,19 +44,19 @@ struct HelloCommand: Command {
 app.commands.use(HelloCommand(), as: "hello")
 ```
 
-为了符合 `Command` ，你必须实现 `run` 方法。这个方法需要你定义一个 `Signature` 。你还需要提供一个默认的帮助文本。
+为了符合 `AsyncCommand` ，你必须实现 `run` 方法。这个方法需要你定义一个 `Signature` 。你还需要提供一个默认的帮助文本。
 
 ```swift
 import Vapor
 
-struct HelloCommand: Command {
+struct HelloCommand: AsyncCommand {
     struct Signature: CommandSignature { }
 
     var help: String {
         "Says hello"
     }
 
-    func run(using context: CommandContext, signature: Signature) throws {
+    func run(using context: CommandContext, signature: Signature) async throws {
         context.console.print("Hello, world!")
     }
 }
@@ -84,7 +84,7 @@ vapor run hello
 ```swift
 import Vapor
 
-struct Cowsay: Command {
+struct Cowsay: AsyncCommand {
     struct Signature: CommandSignature {
         @Argument(name: "message")
         var message: String
@@ -100,7 +100,7 @@ struct Cowsay: Command {
         "Generates ASCII picture of a cow with a message."
     }
 
-    func run(using context: CommandContext, signature: Signature) throws {
+    func run(using context: CommandContext, signature: Signature) async throws {
         let eyes = signature.eyes ?? "oo"
         let tongue = signature.tongue ?? "  "
         let cow = #"""
