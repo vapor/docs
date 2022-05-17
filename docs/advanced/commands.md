@@ -28,12 +28,12 @@ You can run commands in Xcode by adding arguments to the `Run` scheme. To do thi
 
 ## Custom Commands
 
-You can create your own commands by creating types conforming to `Command`. 
+You can create your own commands by creating types conforming to `AsyncCommand`. 
 
 ```swift
 import Vapor
 
-struct HelloCommand: Command { 
+struct HelloCommand: AsyncCommand { 
 	...
 }
 ```
@@ -49,14 +49,14 @@ To conform to `Command`, you must implement the `run` method. This requires decl
 ```swift
 import Vapor
 
-struct HelloCommand: Command {
+struct HelloCommand: AsyncCommand {
     struct Signature: CommandSignature { }
 
     var help: String {
         "Says hello"
     }
 
-    func run(using context: CommandContext, signature: Signature) throws {
+    func run(using context: CommandContext, signature: Signature) async throws {
         context.console.print("Hello, world!")
     }
 }
@@ -84,7 +84,7 @@ Take a look at this re-creation of the famous [`cowsay`](https://en.wikipedia.or
 ```swift
 import Vapor
 
-struct Cowsay: Command {
+struct Cowsay: AsyncCommand {
     struct Signature: CommandSignature {
         @Argument(name: "message")
         var message: String
@@ -100,7 +100,7 @@ struct Cowsay: Command {
         "Generates ASCII picture of a cow with a message."
     }
 
-    func run(using context: CommandContext, signature: Signature) throws {
+    func run(using context: CommandContext, signature: Signature) async throws {
         let eyes = signature.eyes ?? "oo"
         let tongue = signature.tongue ?? "  "
         let cow = #"""
