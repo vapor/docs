@@ -18,6 +18,7 @@ jobs:
         mkdocs build
         swift fixSearchIndex.swift
         cp googlefc012e5d94cfa05f.html site/googlefc012e5d94cfa05f.html;
+        swift setUpRedirects.swift
     - name: Configure AWS credentials
       id: cred
       uses: aws-actions/configure-aws-credentials@v1
