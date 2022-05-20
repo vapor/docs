@@ -57,7 +57,7 @@ for directory in securityDirectories {
 }
 
 func createRedirect(directory: String, newDirectory: String) throws {
-    let redirectString = "<meta http-equiv=\"refresh\" content=\"0; url=/\(newDirectory)\(directory)\">"
+    let redirectString = "<meta http-equiv=\"refresh\" content=\"0; url=/\(newDirectory)/\(directory)\">"
     let fileURL = URL(fileURLWithPath: "site/\(directory)/index.html")
     try FileManager.default.createDirectory(atPath: "site/\(directory)", withIntermediateDirectories: true, attributes: nil)
     try redirectString.write(to: fileURL, atomically: true, encoding: .utf8)
