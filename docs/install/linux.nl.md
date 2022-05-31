@@ -50,7 +50,7 @@ git checkout <desired version>
 make install
 ```
 
-Controlleer of de installatie is gelukt door het help commando te gebruiken.
+Controleer of de installatie is gelukt door het help commando te gebruiken.
 
 ```sh
 vapor --help
