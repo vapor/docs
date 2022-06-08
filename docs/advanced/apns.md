@@ -18,7 +18,7 @@ let package = Package(
     name: "my-app",
     dependencies: [
          // Other dependencies...
-        .package(url: "https://github.com/vapor/apns.git", from: "2.0.0"),
+        .package(url: "https://github.com/vapor/apns.git", from: "3.0.0"),
     ],
     targets: [
         .target(name: "App", dependencies: [
