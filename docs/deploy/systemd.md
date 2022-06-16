@@ -47,7 +47,7 @@ The `--env production` flag will disable verbose logging.
 ### Environment
 Otherwise, quoting the values is optional but recommended.
 
-You can export variables in two ways via systemd, either by creating an environment file with all the variables set in it, or you can add them directly to the service file under `[service]
+You can export variables in two ways via systemd. Either by creating an environment file with all the variables set in it:
 
 ```sh
 EnvironmentFile=/path/to/environment/file1
