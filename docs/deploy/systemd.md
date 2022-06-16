@@ -69,10 +69,12 @@ let port = Environment.get("PORT")
 
 ## Start
 
-You can now load and start your app.
+You can now load, enable, start, stop and restart your app by running the following as root.
 
 ```sh
 systemctl daemon-reload
 systemctl enable hello
 systemctl start hello
+systemctl stop hello
+systemctl restart hello
 ```
