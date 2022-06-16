@@ -4,7 +4,7 @@ Systemd is the default system and service manager on most Linux distributions. I
 
 ## Configure
 
-Each Vapor app on your server should have its own service file. For an example `Hello` project, the configuration file would be located at `/etc/systemd/system/hello.service`
+Each Vapor app on your server should have its own service file. For an example `Hello` project, the configuration file would be located at `/etc/systemd/system/hello.service`. This file should look like the following:
 
 ```sh
 [Unit]
