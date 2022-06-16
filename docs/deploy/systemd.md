@@ -40,7 +40,7 @@ SyslogIdentifier=vapor-hello
 WantedBy=multi-user.target
 ```
 
-As specified in our configuration file the `Hello` project is located in the home folder for the user `vapor`. Make sure `directory` points to the root directory of your project where the `Package.swift` file is.
+As specified in our configuration file the `Hello` project is located in the home folder for the user `vapor`. Make sure `WorkingDirectory` points to the root directory of your project where the `Package.swift` file is.
 
 The `--env production` flag will disable verbose logging.
 
