@@ -43,7 +43,7 @@ EnvironmentFile=/path/to/environment/file2
 ```
 
 
-Or you can add them directly to the service file under `[service]`
+Or you can add them directly to the service file under `[service]`:
 
 ```sh
 Environment="PORT=8123"
