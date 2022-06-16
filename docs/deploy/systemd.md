@@ -1,10 +1,6 @@
 # Systemd
 
-Systemd is the default system and service manager on most Linux distributions
-
-## Install
-
-Systemd is usually install by default on Linux, so no installation is necessary
+Systemd is the default system and service manager on most Linux distributions. It is usually installed by default so no installation is needed on supported Swift distributions.
 
 ### Ubuntu
 
