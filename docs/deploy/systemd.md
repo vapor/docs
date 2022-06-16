@@ -2,18 +2,6 @@
 
 Systemd is the default system and service manager on most Linux distributions. It is usually installed by default so no installation is needed on supported Swift distributions.
 
-### Ubuntu
-
-Default system and service manager
-
-### CentOS and Amazon Linux
-
-Default system and service manager
-
-### Fedora
-
-Default system and service manager
-
 ## Configure
 
 Each Vapor app on your server should have its own service file. For an example `Hello` project, the configuration file would be located at `/etc/systemd/system/hello.service`
