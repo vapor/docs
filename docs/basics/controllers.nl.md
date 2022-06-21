@@ -57,7 +57,7 @@ struct TodosController: RouteCollection {
 
 Controller methodes moeten altijd een `Request` accepteren en iets `ResponseEncodable` teruggeven. Deze methode kan asynchroon of synchroon zijn (of een `EventLoopFuture` teruggeven).
 
-!!! note
+!!! opmerking
 	[EventLoopFuture](async.md) waarvan de verwachting `ResponseEncodable` is (d.w.z. `EventLoopFuture<String>`) is ook `ResponseEncodable`.
 
 Tenslotte moet je de controller registreren in `routes.swift`:
