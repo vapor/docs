@@ -1,10 +1,10 @@
 # Fluent
 
-Fluent 是 Swift 的一个 [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) 框架。它利用 Swift 强大的类型系统为你的数据库提供易于使用的接口。使用 Fluent 的中心是创建表示数据库中数据结构的模型类型。然后使用这些模型执行创建、读取、更新和删除操作，而不是编写原始查询。
+Fluent 是服务于 Swift 的 [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) 框架，它利用 Swift 的强类型特性为你的数据库操作提供简易使用的接口。使用 Fluent 的核心是创建用于表示数据库中数据结构的模型，然后通过这些模型来执行创建、读取、更新和删除等操作，而不必编写原始的 SQL 查询语句。
 
 ## 配置
 
-当使用 `vapor new`创建项目时，对包含 Fluent 回答“是”并选择要使用的数据库驱动程序。这将自动将依赖项添加到你的新项目以及配置代码示例。
+当在终端使用 `vapor new` 命令来创建项目时，对于包含询问 Fluent 的问答选项，请选择 'Yes'，并选择要使用的数据库驱动程序，之后将自动生成依赖项添加到你的新项目以及配置示例代码。
 
 ### 现有项目
 
@@ -45,7 +45,7 @@ Fluent 目前有四个官方支持的驱动程序。你可以在 GitHub 上搜�
 
 PostgreSQL 是一个开源的、符合标准的 SQL 数据库。 它很容易在大多数云托管提供商上进行配置。这是 Fluent **推荐**的数据库驱动程序。
 
-要使用PostgreSQL，请将以下依赖项添加到 package 中。
+要使用 PostgreSQL，请将以下依赖项添加到 package 中。
 
 ```swift
 .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0")
@@ -187,7 +187,7 @@ import FluentMongoDriver
 try app.databases.use(.mongo(connectionString: "<connection string>"), as: .mongo)
 ```
 
-## 模型
+## Models
 
 模型表示数据库中固定的数据结构，如表或集合。模型有一个或多个存储可编码值的字段。所有模型都有一个唯一的标识符。属性包装器用于表示标识符和字段以及后面提到的更复杂的映射。看看下面这个代表星系的模型。
 
@@ -228,7 +228,7 @@ static let schema = "galaxies"
 
 此属性告诉 Fluent 模型对应于哪个表或集合。这可以是数据库中已经存在的表，也可以是你将通过 [migration](#migrations) 创建的表。schema 通常是 `snake_case` 复数形式.
 
-### 标识符
+### Identifier
 
 下一个要求是一个名为 `id` 的标识符字段。
 
@@ -241,7 +241,7 @@ var id: UUID?
 
 如果要使用自定义 ID 键或类型， 请使用 [`@ID(custom:)`](model.md#custom-identifier) 重载。
 
-### 字段
+### Fields
 
 添加标识符之后，你可以添加任意多的字段来存储额外的信息。在本例中，唯一的附加字段是星系的名称。
 
@@ -269,9 +269,9 @@ init(id: UUID? = nil, name: String) {
 
 如果你向模型添加新属性，则使用便捷的 inits 尤其有用，因为如果 init 方法发生更改，你可能会收到编译时错误。
 
-## 迁移
+## Migrations
 
-如果数据库使用预定义的模式，如 SQL 数据库，则需要进行迁移，以便为模型准备数据库。迁移对于用数据播种数据库也很有用。要创建一个迁移，定义一个符合 `migration` 或 `AsyncMigration` 协议的新类型。看看下面对之前定义的 `Galaxy` 模型的迁移。
+如果数据库使用预定义的模式，如 SQL 数据库，则需要进行迁移，以便为模型准备数据库。迁移对于用数据填充数据库也很有用。要创建一个迁移，定义一个符合 `migration` 或 `AsyncMigration` 协议的新类型。看看下面对之前定义的 `Galaxy` 模型的迁移。
 
 ```swift
 struct CreateGalaxy: AsyncMigration {
@@ -292,7 +292,7 @@ struct CreateGalaxy: AsyncMigration {
 
 该 `prepare` 方法用于准备数据库以存储 `Galaxy` 模型。
 
-### 模式
+### Schema
 
 在此方法中，`database.schema(_:)` 用来创建一个新的 `schembuilder`。然后，在调用 `create()` 创建模式之前，将一个或多个 `字段` 添加到构建器中。
 
@@ -312,7 +312,7 @@ field(<name>, <type>, <optional constraints>)
 app.migrations.add(CreateGalaxy())
 ```
 
-### 迁移
+### Migrate
 
 要运行迁移，在命令行中调用 `vapor run migrate` 或者添加 `migrate` 参数到 Xcode 的运行方案中。
 
@@ -327,11 +327,11 @@ y/n> y
 Migration successful
 ```
 
-## 查询
+## Querying
 
 现在你已经成功地创建了一个模型并迁移了你的数据库，你可以进行第一次查询了。
 
-### 全部
+### All
 
 看看下面的路由，它将返回一个包含数据库中所有星系的数组。
 
@@ -353,7 +353,7 @@ final class Galaxy: Model, Content {
 
 如果你编译并运行项目并请求 `GET /galaxies`， 你会看到返回一个空数组。 让我们添加一个创建新星系的路由。
 
-### 创建
+### Create
 
 
 根据 RESTful 约定，使用 `POST /galaxies` 端点创建新星系。 由于模型是可编码的，因此你可以直接从请求正文中解码星系。
@@ -367,7 +367,7 @@ app.post("galaxies") { req -> EventLoopFuture<Galaxy> in
 ```
 
 !!! 也可以看看
-    有关解码请求正文的更多信息，请参阅 [内容 &rarr; 概述](../basics/content.md)。
+    有关解码请求正文的更多信息，请参阅 [内容 → 概述](../basics/content.md)。
 
 一旦有了模型的实例，调用 `create(on:)` 就会将模型保存到数据库中。这将返回一个 `EventLoopFuture<Void>` 表示保存已完成的信号。保存完成后，使用 `map` 返回新创建的模型。
 
@@ -407,7 +407,7 @@ content-type: application/json
 现在，如果你 `GET /galaxies` 再次查询，你应该会看到数组中返回了新创建的星系。
 
 
-## 关系
+## Relations
 
 没有恒星的星系算什么! 让我们通过在 `Galaxy` 和新的 `Star` 模型之间添加一对多关系来快速了解一下 `Fluent` 强大的关系特性。
 
@@ -440,7 +440,7 @@ final class Star: Model, Content {
 }
 ```
 
-### 父亲
+### Parent
 
 除了 `@Parent` 新字段类型，新的 `Star` 模型与 `Galaxy` 非常相似。
 
@@ -535,7 +535,7 @@ content-type: application/json
 }
 ```
 
-### 孩子
+### Children
 
 现在让我们看看如何利用 Fluent 的预加载功能自动返回 `GET /galaxies` 路由中的星系恒星。将以下属性添加到 `Galaxy`模型中。
 
@@ -548,7 +548,7 @@ var stars: [Star]
 `@Children` 属性包装器与 `@Parent`相反。它采用子 `@Parent` 字段的键路径作为 `for`参数。它的值是一个子模型数组，因为可能存在零个或多个子模型。星系的迁移不需要改变，因为这种关系所需的所有信息都存储在`恒星`上。
 
 
-### 预加载
+### Eager Load
 
 现在关系已经完成，你可以在查询构建器上使用 `with` 方法来自动获取和序列化星系-星型关系。
 
