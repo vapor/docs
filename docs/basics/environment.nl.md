@@ -100,7 +100,7 @@ cp .env .env.development
 vim .env.development
 ```
 
-!!! waarschuwing
+!!! warning
     Dotenv bestanden met gevoelige informatie zoals wachtwoorden mogen niet worden vastgelegd in versiebeheer.
 
 Als je problemen hebt met het laden van dotenv bestanden, probeer dan debug logging in te schakelen met `--log debug` voor meer informatie. 
