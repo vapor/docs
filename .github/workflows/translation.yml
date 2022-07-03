@@ -1,0 +1,23 @@
+name: Check PR and create issue for translation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create:
+    name: Create issue
+    runs-on: ubuntu-latest
+    steps:
+    - name: Find PR
+      uses: jwalton/gh-find-current-pr@v1
+      id: find-pr
+      with:
+        state: all
+    - name: Create issue
+      if: steps.find-pr.outputs.number && !contains(steps.find-pr.outputs.body, 'no-doc-update')
+      uses: nashmaniac/create-issue-action@v1.1
+      with:
+        title: Need translation for ${{ '#' }}${{steps.find-pr.outputs.pr}}
+        body: Need translation for ${{ '#' }}${{steps.find-pr.outputs.pr}}
