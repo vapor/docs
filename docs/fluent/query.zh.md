@@ -3,7 +3,7 @@
 Fluent 的查询 API 允许你从数据库中创建、读取、更新和删除模型。它支持过滤结果、连接、分块、聚合等。
 
 ```swift
-// An example of Fluent's query API.
+// Fluent 查询 API 示例。
 let planets = try await Planet.query(on: database)
     .filter(\.$type == .gasGiant)
     .sort(\.$name)
@@ -14,26 +14,26 @@ let planets = try await Planet.query(on: database)
 查询构建器与单个模型类型相关联，可以使用静态 [`query`](model.zh.md#query) 方法创建。也可以通过将模型类型传递给数据库对象上的 `query` 方法来创建它们。
 
 ```swift
-// Also creates a query builder.
+// 也可这样创建查询构建器。
 database.query(Planet.self)
 ```
 
-!!! 笔记
-    你必须在你的查询文件中 `import Fluent`，这样编译器就可以看到 Fluent 的辅助函数。
+!!! 注意
+    你需要在使用 query 语句的文件中使用 `import Fluent` 导入此框架，之后编译器便可以识别/提示相关联的函数。
 
 ## All
 
 `all()` 方法返回一个模型数组。
 
 ```swift
-// Fetches all planets.
+// 获取所有的行星。
 let planets = try await Planet.query(on: database).all()
 ```
 
 `all` 方法还支持从结果集中仅获取单个字段。
 
 ```swift
-// Fetches all planet names.
+// 获取所有行星的名称。
 let names = try await Planet.query(on: database).all(\.$name)
 ```
 
@@ -42,7 +42,7 @@ let names = try await Planet.query(on: database).all(\.$name)
 `first()` 方法返回单个可选模型。如果查询结果有多个模型，则仅返回第一个模型。如果没有查询到结果，则返回 `nil`。
 
 ```swift
-// Fetches the first planet named Earth.
+// 获取名称为地球的第一个行星。
 let earth = try await Planet.query(on: database)
     .filter(\.$name == "Earth")
     .first()
@@ -60,11 +60,11 @@ let earth = try await Planet.query(on: database)
 最常用的 `filter` 方法接受带有值的运算符表达式。
 
 ```swift
-// An example of field value filtering.
+// 字段值过滤示例。
 Planet.query(on: database).filter(\.$type == .gasGiant)
 ```
 
-这些运算符表达式接受左侧的字段键路径和右侧的值。所提供的值必须与字段的预期值类型相匹配，并绑定到结果查询。过滤表达式是强类型的，允许使用前导点语法。
+这些运算符表达式接受左侧的字段键路径和右侧的值。所提供的值必须与字段的预期值类型相匹配，并绑定到结果查询。过滤表达式是强关联类型的，支持使用点语法。
 
 以下是所有受支持的值运算符的列表。
 
@@ -82,19 +82,19 @@ Planet.query(on: database).filter(\.$type == .gasGiant)
 `filter` 方法支持比较两个字段。
 
 ```swift
-// All users with same first and last name.
+// 查询姓和名相同的用户。
 User.query(on: database)
     .filter(\.$firstName == \.$lastName)
 ```
 
-字段过滤器支持与[值过滤](#value-filter)相同的运算符。
+字段过滤器支持与[值过滤](#_2)相同的运算符。
 
 ### 子集过滤
 
 `filter` 方法支持检查字段的值是否存在于给定的一组值中。
 
 ```swift
-// All planets with either gas giant or small rocky type.
+// 查询所有气态行星或者小型岩石类型的行星。
 Planet.query(on: database)
     .filter(\.$type ~~ [.gasGiant, .smallRocky])
 ```
@@ -113,7 +113,7 @@ Planet.query(on: database)
 `filter` 方法支持检查字符串字段的值是否包含给定的子字符串。
 
 ```swift
-// All planets whose name starts with the letter M
+// 查询所有名字以字母 M 开头的行星。
 Planet.query(on: database)
     .filter(\.$name =~ "M")
 ```
@@ -136,7 +136,7 @@ Planet.query(on: database)
 默认情况下，添加到查询中的所有过滤器都必须匹配。查询构建器支持创建一组过滤器且有一个过滤器必须匹配。
 
 ```swift
-// All planets whose name is either Earth or Mars
+// 查询的行星要么是地球要么是火星。
 Planet.query(on: database).group(.or) { group in
     group.filter(\.$name == "Earth").filter(\.$name == "Mars")
 }.all()
@@ -149,14 +149,14 @@ Planet.query(on: database).group(.or) { group in
 查询构建器支持多种方法来对一组值执行计算，例如计数或平均值。
 
 ```swift
-// Number of planets in database. 
+// 数据库中存储的行星数量总和。
 Planet.query(on: database).count()
 ```
 
 除了 `count` 之外，所有聚合方法都需要传递一个指向字段的键路径。
 
 ```swift
-// Lowest name sorted alphabetically.
+// 查询按名称排序后的最小值。
 Planet.query(on: database).min(\.$name)
 ```
 
@@ -177,9 +177,9 @@ Planet.query(on: database).min(\.$name)
 查询构建器支持将结果集作为单独的块返回。这有助于你在处理大型数据库读取时控制内存使用。
 
 ```swift
-// Fetches all planets in chunks of at most 64 at a time.
+// 一次最多查询出64颗行星。
 Planet.query(on: self.database).chunk(max: 64) { planets in
-    // Handle chunk of planets.
+    // 处理查询到的行星数据
 }
 ```
 
@@ -190,7 +190,7 @@ Planet.query(on: self.database).chunk(max: 64) { planets in
 默认情况下，查询将从数据库中读取模型的所有字段。你可以选择使用 `field` 方法仅选择模型字段的子集。
 
 ```swift
-// Select only the planet's id and name field
+// 只选择行星的 id 和 name 字段进行查询
 Planet.query(on: database)
     .field(\.$id).field(\.$name)
     .all()
@@ -200,10 +200,10 @@ Planet.query(on: database)
 
 ```swift
 if let name = planet.$name.value {
-    // Name was fetched.
+    // 行星名称有值
 } else {
-    // Name was not fetched.
-    // Accessing `planet.name` will fail.
+    // 行星名称没有值
+    // 访问 `planet.name` 会失败.
 }
 ```
 
@@ -212,7 +212,7 @@ if let name = planet.$name.value {
 查询构建器的 `unique` 方法只返回不同的结果（去重）。
 
 ```swift
-// Returns all unique user first names. 
+// 去重后返回所有用户的名字。
 User.query(on: database).unique().all(\.$firstName)
 ```
 
@@ -223,7 +223,7 @@ User.query(on: database).unique().all(\.$firstName)
 查询构建器的 `range` 方法允许你使用 Swift ranges 选择结果的子集。
 
 ```swift
-// Fetch the first 5 planets.
+// 查询前5颗行星。
 Planet.query(on: self.database)
     .range(..<5)
 ```
@@ -231,7 +231,7 @@ Planet.query(on: self.database)
 范围值是从零开始的无符号整数。了解有关 [Swift ranges](https://developer.apple.com/documentation/swift/range) 的更多信息。
 
 ```swift
-// Skip the first 2 results.
+// 跳过前2个结果。
 .range(2...)
 ```
 
@@ -240,7 +240,7 @@ Planet.query(on: self.database)
 查询构建器的 `join` 方法允许你在结果集中包含另一个模型的字段。可以将多个模型加入到你的查询中。
 
 ```swift
-// Fetches all planets with a star named Sun.
+// 获取所有有太阳恒星的行星。
 Planet.query(on: database)
     .join(Star.self, on: \Planet.$star.$id == \Star.$id)
     .filter(Star.self, \.$name == "Sun")
@@ -252,14 +252,14 @@ Planet.query(on: database)
 大多数查询构建器方法，如 `filter` 和 `sort` 都支持连接模型。如果一个方法支持连接模型，它将接受连接模型类型作为第一个参数。
 
 ```swift
-// Sort by joined field "name" on Star model.
+// 按 Star 模型上的 ”name“ 连接字段进行排序。
 .sort(Star.self, \.$name)
 ```
 
 使用连接的查询仍将返回基本模型的数组。要访问连接模型，请使用 `joined` 方法。
 
 ```swift
-// Accessing joined model from query result.
+// 从查询结果中访问连接模型。
 let planet: Planet = ...
 let star = try planet.joined(Star.self)
 ```
@@ -269,7 +269,7 @@ let star = try planet.joined(Star.self)
 模型别名允许你多次将同一模型加入查询。要声明模型别名，请创建一个或多个遵循 `ModelAlias`协议的类型。
 
 ```swift
-// Example of model aliases.
+// 模型别名示例。
 final class HomeTeam: ModelAlias {
     static let name = "home_teams"
     let model = Team()
@@ -283,8 +283,8 @@ final class AwayTeam: ModelAlias {
 这些类型引用通过 `model` 属性别名的模型。创建之后，就可以像在查询构建器中使用普通模型一样使用模型别名。
 
 ```swift
-// Fetch all matches where the home team's name is Vapor
-// and sort by the away team's name.
+// 获取主队名为 Vapor 的匹配项
+// 并按客场球队的名字排序。
 let matches = try await Match.query(on: self.database)
     .join(HomeTeam.self, on: \Match.$homeTeam.$id == \HomeTeam.$id)
     .join(AwayTeam.self, on: \Match.$awayTeam.$id == \AwayTeam.$id)
@@ -296,7 +296,7 @@ let matches = try await Match.query(on: self.database)
 所有模型字段都可以通过 `@dynamicMemberLookup` 通过模型别名类型访问。
 
 ```swift
-// Access joined model from result.
+// 从查询结果中访问连接模型。
 let home = try match.joined(HomeTeam.self)
 print(home.name)
 ```
@@ -306,7 +306,7 @@ print(home.name)
 查询构建器支持使用 `update` 方法一次更新多个模型。
 
 ```swift
-// Update all planets named "Pluto"
+// 更新所有名称为 ”Pluto“ 的行星。
 Planet.query(on: database)
     .set(\.$type, to: .dwarf)
     .filter(\.$name == "Pluto")
@@ -320,7 +320,7 @@ Planet.query(on: database)
 查询构建器支持使用 `delete` 方法一次删除多个模型。
 
 ```swift
-// Delete all planets named "Vulcan"
+// 删除所有名称为 ”Vulcan“ 的行星。
 Planet.query(on: database)
     .filter(\.$name == "Vulcan")
     .delete()
@@ -333,7 +333,7 @@ Planet.query(on: database)
 Fluent 的查询 API 支持使用 `paginate` 方法进行自动结果分页。
 
 ```swift
-// Example of request-based pagination.
+// 基于请求的分页示例。
 app.get("planets") { req in
     try await Planet.query(on: req.db).paginate(for: req)
 }
@@ -361,7 +361,7 @@ GET /planets?page=2&per=5 HTTP/1.1
 页码从`1`开始。你也可以手动请求页面。
 
 ```swift
-// Example of manual pagination.
+// 手动分页请求示例。
 .paginate(PageRequest(page: 1, per: 2))
 ```
 
@@ -370,13 +370,13 @@ GET /planets?page=2&per=5 HTTP/1.1
 查询结果可以使用 `sort` 方法按字段值排序。
 
 ```swift
-// Fetch planets sorted by name.
+// 查询所有行星按照名称进行排序。
 Planet.query(on: database).sort(\.$name)
 ```
 
 如果出现并列相等，可以添加额外的排序作为后备。回退将按照它们添加到查询构建器的顺序使用。
 
 ```swift
-// Fetch users sorted by name. If two users have the same name, sort them by age.
+// 查询所有用户并按姓名进行排序，如果姓名相同，在按照年龄排序。
 User.query(on: database).sort(\.$name).sort(\.$age)
 ```
