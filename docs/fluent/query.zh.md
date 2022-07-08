@@ -11,7 +11,7 @@ let planets = try await Planet.query(on: database)
     .all()
 ```
 
-查询构建器与单个模型类型相关联，可以使用静态 [`query`](model.zh.md#query) 方法创建。也可以通过将模型类型传递给数据库对象上的 `query` 方法来创建它们。
+查询构建器与单个模型类型相关联，可以使用静态 [`query`](model.md#query) 方法创建。也可以通过将模型类型传递给数据库对象上的 `query` 方法来创建它们。
 
 ```swift
 // 也可这样创建查询构建器。
@@ -49,13 +49,13 @@ let earth = try await Planet.query(on: database)
 ```
 
 !!! 建议
-    如果使用`EventLoopFuture`，此方法可以与 [`unwrap(or:)`](../basics/errors.zh.md#abort) 组合使用以返回非可选模型或抛出错误。
+    如果使用`EventLoopFuture`，此方法可以与 [`unwrap(or:)`](../basics/errors.md#abort) 组合使用以返回非可选模型或抛出错误。
 
 ## Filter
 
 `filter` 方法允许你约束结果集中包含的模型。此方法有几个重载方法。
 
-### 值过滤
+### Value Filter
 
 最常用的 `filter` 方法接受带有值的运算符表达式。
 
@@ -77,7 +77,7 @@ Planet.query(on: database).filter(\.$type == .gasGiant)
 |`<`|小于。|
 |`<=`|小于或等于。|
 
-### 字段过滤
+### Field Filter
 
 `filter` 方法支持比较两个字段。
 
@@ -87,9 +87,9 @@ User.query(on: database)
     .filter(\.$firstName == \.$lastName)
 ```
 
-字段过滤器支持与[值过滤](#_2)相同的运算符。
+字段过滤器支持与[值过滤](#value-filter)相同的运算符。
 
-### 子集过滤
+### Subset Filter
 
 `filter` 方法支持检查字段的值是否存在于给定的一组值中。
 
@@ -108,7 +108,7 @@ Planet.query(on: database)
 |`~~`|值在集中。|
 |`!~`|值不在集中。|
 
-### 包含过滤
+### Contains Filter
 
 `filter` 方法支持检查字符串字段的值是否包含给定的子字符串。
 
@@ -131,7 +131,7 @@ Planet.query(on: database)
 |`~=`|配后后缀。|
 |`!~=`|不匹配后缀。|
 
-### 组
+### Group
 
 默认情况下，添加到查询中的所有过滤器都必须匹配。查询构建器支持创建一组过滤器且有一个过滤器必须匹配。
 
