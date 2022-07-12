@@ -23,5 +23,4 @@ jobs:
         PR_NUMBER: ${{ steps.find-pr.outputs.number }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        assignees: vapor/translations
         filename: .github/workflows/translation-issue-template.md
