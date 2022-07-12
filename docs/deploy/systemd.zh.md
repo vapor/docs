@@ -34,9 +34,9 @@ WantedBy=multi-user.target
 
 ### 环境
 
-否则，引用的这些值是可选的，但推荐使用
+此外，以下部分是可选配置，但建议使用。
 
-你可以通过 systemd 以两种方式导出变量。通过创建一个设置了所有变量的环境文件：
+你可以通过 systemd 以下面其中一种方式导出变量，或通过创建一个包含所有环境变量的文件：
 
 ```sh
 EnvironmentFile=/path/to/environment/file1
