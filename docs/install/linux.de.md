@@ -54,4 +54,4 @@ vapor --help
 
 ausführst. Dir sollten nun mehrere Befehl der Toolbox angezeigt werden.
 
-Nach der Swift-Installation kannst du mit der Erstellung deiner ersten Vapor-Anwendung beginnen. Folge dazu den Anweisungen im Abschnitt [Erste Schritte &rarr; Hello, world](/hallo-world.de.md).
+Nach der Swift-Installation kannst du mit der Erstellung deiner ersten Vapor-Anwendung beginnen. Folge dazu den Anweisungen im Abschnitt [Erste Schritte &rarr; Hello, world](../getting-started/hello-world.de.md).

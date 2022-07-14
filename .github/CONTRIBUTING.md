@@ -37,4 +37,4 @@ Run with `mkdocs serve`
 - [@0xtim](https://github.com/0xTim)
 - [@mcdappdev](https://github.com/mcdappdev)
 
-See https://github.com/vapor/vapor/blob/master/.github/maintainers.md for more information. 
+See https://github.com/vapor/vapor/blob/main/.github/maintainers.md for more information. 
