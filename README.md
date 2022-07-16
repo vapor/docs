@@ -2,6 +2,21 @@
 
 Read the docs at [docs.vapor.codes](https://docs.vapor.codes)
 
+# Start with Docker 
+* Prerequisite for this setup, you must have docker and docker compose installed on the system 
+
+1. first clone the repo 
+
+2. then run 
+```
+docker compose up 
+```
+3. then open from the browser on the port 8000 
+e.g.  
+```
+http://127.0.1.1:8000
+```
+
 ## Contributing
 
 If you want to add information to the docs or have found any mistakes you wish to fix, feel free to create a PR  for the change.
