@@ -2,7 +2,7 @@
 site_name: Vapor Docs
 site_url: https://docs.vapor.codes/
 site_author: Vapor Community
-site_description: Vapor 4's documentation (web framework for Swift).
+site_description: Vapors documentation (web framework for Swift).
 
 # Repository
 repo_name: Vapor GitHub
@@ -107,7 +107,7 @@ plugins:
           Getting Started: 开始
           Hello, world: 你好世界
           Folder Structure: 项目结构
-          SPM: SPM
+          SwiftPM: SwiftPM
           Xcode: Xcode
           Basics: 入门
           Routing: 路由
@@ -145,11 +145,9 @@ plugins:
           Crypto: 加密
           Passwords: 密码
           JWT: 认证
+          Contributing: 贡献
+          Contributing Guide: 贡献指南
           Version (4.0): 版本
-
-
-
-
 
 
 nav:
@@ -160,7 +158,7 @@ nav:
 - Getting Started:
   - Hello, world: "getting-started/hello-world.md"
   - Folder Structure: "getting-started/folder-structure.md"
-  - SPM: "getting-started/spm.md"
+  - SwiftPM: "getting-started/spm.md"
   - Xcode: "getting-started/xcode.md"
 - Basics:
   - Routing: "basics/routing.md"
@@ -213,6 +211,8 @@ nav:
   - Systemd: "deploy/systemd.md"
   - Nginx: "deploy/nginx.md"
   - Docker: "deploy/docker.md"
+- Contributing:
+  - Contributing Guide: "contributing/contributing.md"
 - Version (4.0):
     - Legacy Docs: "version/legacy-docs.md"
     - Upgrading: "upgrading.md"
