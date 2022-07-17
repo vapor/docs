@@ -1,12 +1,12 @@
 # 进阶
 
-Fluent 致力于创建一个通用的、与数据库无关的 API 来处理数据。无论你使用哪种数据库驱动程序，都可以轻松的学习 Fluent。创建通用 API 还可以让你在 Swift 中使用数据库感觉更自在。
+Fluent 致力于创建一个通用的、与数据库无关的 API 来处理数据。无论你使用哪种数据库驱动程序，都可以轻松的学习 Fluent。创建通用 API 还可以让你在 Swift 中更轻松自在的使用数据库。
 
-然而，你可能需要使用底层数据库驱动程序的某个特性，而该特性还不受 Fluent 的支持。本指南涵盖了 Fluent 中仅适用于某些数据库的高级模式和 API。
+然而，你可能需要使用 Fluent 尚不支持的某个功能来驱动底层数据库。本指南涵盖了 Fluent 中仅适用于某些数据库的高级模式和 API。
 
 ## SQL
 
-Fluent 的所有 SQL 数据库驱动程序都是建立在 [SQLKit](https://github.com/vapor/sql-kit) 之上。此通用 SQL 实现是在 Fluent 的 `FluentSQL` 模块中的提供的。
+Fluent 的所有 SQL 数据库驱动程序都是建立在 [SQLKit](https://github.com/vapor/sql-kit) 之上。此通用 SQL 实现是在 Fluent 的 `FluentSQL` 模块中提供的。
 
 ### SQL 数据库
 
@@ -154,7 +154,7 @@ final class User: Model {
 var document: Document
 ```
 
-Fluent 不支持对这些值进行严格的类型查询。你可以在查询中使用点键路径进行查询。MongoDB 中接受这样的参数，用以访问嵌套值。
+Fluent 不支持对这些值进行严格的类型查询。你可以在查询中使用 .key 路径进行查询。MongoDB 中接受这样的参数，用以访问嵌套值。
 
 ```swift
 Something.query(on: db).filter("document.key", .equal, 5).first()
