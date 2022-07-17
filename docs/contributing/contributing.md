@@ -6,7 +6,7 @@ Any contribution you make is useful! Even small things like fixing typos make a 
 
 ## Code of Conduct
 
-Vapor has adopted Swift's Code of Conduct which can be found at https://www.swift.org/code-of-conduct/. All contributors are expected to follow the code of conduct.
+Vapor has adopted Swift's Code of Conduct which can be found at [https://www.swift.org/code-of-conduct/](https://www.swift.org/code-of-conduct/). All contributors are expected to follow the code of conduct.
 
 ## What to work on
 
