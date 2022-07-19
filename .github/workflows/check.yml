@@ -24,7 +24,7 @@ jobs:
       run: cfn-lint -t stack.yml
     - name: Setup markdown link check 
       run: |
-        echo -e "{\"ignorePatterns\": [{\"pattern\": \".*(localhost|127.0.0.1).*\"}]}" >> markdown-link-check-config.yaml   # To exclude links irrelevant to the inspection
+        echo -e "{\"ignorePatterns\": [{\"pattern\": \".*(localhost|127.0.0.1).*\"}], \"aliveStatusCodes\": [403, 429, 200]}" >> markdown-link-check-config.yaml   # To exclude links(localhost, 127.0.0.1) and status code(403, 429) irrelevant to the inspection 
     - name: Check dead links 
       uses: gaurav-nelson/github-action-markdown-link-check@v1
       with:
