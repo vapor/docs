@@ -24,7 +24,10 @@ jobs:
       run: cfn-lint -t stack.yml
     - name: Setup markdown link check 
       run: |
-        npm install --location=global markdown-link-check@3
         echo -e "{\"ignorePatterns\": [{\"pattern\": \".*(localhost|127.0.0.1).*\"}]}" >> markdown-link-check-config.yaml   # To exclude links irrelevant to the inspection
     - name: Check dead links 
-      run: find . -name \*.md -print0 | xargs -0 -n1 markdown-link-check -q -c markdown-link-check-config.yaml
+      uses: gaurav-nelson/github-action-markdown-link-check@v1
+      with:
+        folder-path: '.'
+        config-file: 'markdown-link-check-config.yaml'
+        use-quiet-mode: 'yes'
