@@ -30,4 +30,5 @@ jobs:
       with:
         folder-path: '.'
         config-file: 'markdown-link-check-config.yaml'
+        use-verbose-mode: 'yes'
         use-quiet-mode: 'yes'
