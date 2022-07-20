@@ -1,6 +1,6 @@
 # Client
 
-Vapor's client API allows you to make HTTP calls to external resources. It is built on [async-http-client](https://github.com/swift-server/async-http-client) and integrates with the [content](./content.md) API.
+Vapor's client API allows you to make HTTP calls to external resources. It is built on [async-http-client](https://github.com/swift-server/async-http-client) and integrates with the [content](content.md) API.
 
 ## Overview
 
@@ -28,7 +28,7 @@ There are methods for each of the HTTP verbs like `get`, `post`, and `delete`. T
 
 ### Content
 
-Vapor's [content](./content.md) API is available for handling data in client requests and responses. To encode content, query parameters or add headers to the request, use the `beforeSend` closure.
+Vapor's [content](content.md) API is available for handling data in client requests and responses. To encode content, query parameters or add headers to the request, use the `beforeSend` closure.
 
 ```swift
 let response = try await req.client.post("https://httpbin.org/status/200") { req in

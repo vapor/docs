@@ -1,6 +1,6 @@
 # Client
 
-Vapor的 `Client` API 允许您使用 HTTP 调用外部资源，它基于 [async-http-client](https://github.com/swift-server/async-http-client) 构建，并集成了 [Content](./content.md) API。
+Vapor的 `Client` API 允许您使用 HTTP 调用外部资源，它基于 [async-http-client](https://github.com/swift-server/async-http-client) 构建，并集成了 [Content](content.md) API。
 
 
 ## 概述
@@ -32,7 +32,7 @@ HTTP 的常用方法(例如 `get`, `post`, `delete`)都有便捷的调用方式�
 
 ### Content
 
-Vapor 的 [Content](./content.md) API 可用于处理客户请求和响应中的数据，如果要在请求体中添加参数或编码，请在 `beforeSend` 闭包中进行。
+Vapor 的 [Content](content.md) API 可用于处理客户请求和响应中的数据，如果要在请求体中添加参数或编码，请在 `beforeSend` 闭包中进行。
 
 ```swift
 let response = try await req.client.post("https://httpbin.org/status/200") { req in
