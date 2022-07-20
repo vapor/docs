@@ -93,10 +93,6 @@ try await app.autoMigrate()
 
 ## 下一步
 
-<<<<<<< HEAD
 请查看[schema builder](schema.md) 和 [query builder](query.md) 指南，以了解更多迁移相关的信息。
-=======
-请查看[schema builder](schema.md) 和 [query builder](query.zh.md) 指南，以了解更多迁移相关的信息。
->>>>>>> main
 
 
