@@ -127,6 +127,7 @@ plugins:
           Transactions: 事务
           Schema: 模式
           Leaf: Leaf
+          Custom Tags: 自定义标签
           Redis: Redis
           Advanced: 进阶
           Middleware: 中间件
