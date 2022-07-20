@@ -102,7 +102,7 @@ builder.create()
 
 ## MongoDB
 
-Fluent MongoDB 是一个集成了 [Fluent](../fluent/overview.zh.md) 和 [MongoKitten](https://github.com/OpenKitten/MongoKitten/) 的驱动程序。它利用 Swift 的强类型特性以及 Fluent 使用与 MongoDB 数据库无关的接口。
+Fluent MongoDB 是一个集成了 [Fluent](../fluent/overview.md) 和 [MongoKitten](https://github.com/OpenKitten/MongoKitten/) 的驱动程序。它利用 Swift 的强类型特性以及 Fluent 使用与 MongoDB 数据库无关的接口。
 
 MongoDB 中最常见的标识符是 ObjectId。你可以在项目中使用 `@ID(custom: .id)` 自定义标志符。
 如果需要在 SQL 中使用相同的模型，请不要使用 `ObjectId`。改为使用 `UUID`。
