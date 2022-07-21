@@ -1,4 +1,4 @@
-name: Build docs and check cloudformation
+name: Build docs and check cloudformation and dead links
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  check:
     name: build docs
     runs-on: ubuntu-latest
     steps:
@@ -22,3 +22,10 @@ jobs:
       uses: ScottBrenner/cfn-lint-action@v2.2.1
     - name: Run cloudformation lint 
       run: cfn-lint -t stack.yml
+    - name: Check dead links 
+      uses: gaurav-nelson/github-action-markdown-link-check@v1
+      with:
+        folder-path: '.'
+        config-file: 'markdown-link-check-config.yml'
+        use-verbose-mode: 'yes'
+        use-quiet-mode: 'yes'

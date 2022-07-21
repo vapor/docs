@@ -31,7 +31,7 @@ let package = Package(
 
 ## 配置
 
-将包添加到项目后，通常在 [`configure.swift`](../getting-started/folder-structure.zh.md#configureswift) 中进行配置，这样 Vapor 就可以使用它了。
+将包添加到项目后，通常在 [`configure.swift`](../getting-started/folder-structure.md#configureswift) 中进行配置，这样 Vapor 就可以使用它了。
 
 ```swift
 import Leaf
@@ -45,7 +45,7 @@ app.views.use(.leaf)
     Leaf 有一个用于渲染页面的内部缓存。当 `Application` 的运行环境设置为 `.development` 时，此缓存被禁用，因此对模板的更改会立即生效。在 `.production` 环境和所有的其它环境中，默认启用缓存；应用重启之前，对模板所做的任何更改都不会生效。
 
 !!! 警告 
-    从 Xcode 运行项目时为了 Leaf 能够找到模板，你必须为你的 Xcode 工作区设置[自定义工作目录](../getting-started/xcode.zh.md#working-directory)。
+    从 Xcode 运行项目时为了 Leaf 能够找到模板，你必须为你的 Xcode 工作区设置[自定义工作目录](../getting-started/xcode.md#working-directory)。
 
 ## 目录结构
 
