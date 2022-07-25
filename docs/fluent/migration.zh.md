@@ -60,7 +60,7 @@ app.migrations.add(MyMigration(), to: .myDatabase)
 vapor run migrate
 ```
 
-你也可以[通过 Xcode 运行这个命令](../advanced/commands.zh.md#xcode)。migrate 命令将检查数据库，查看自上次运行以来是否注册了新的迁移。如果有新的迁移，运行它之前会要求确认。
+你也可以[通过 Xcode 运行这个命令](../advanced/commands.md#xcode)。migrate 命令将检查数据库，查看自上次运行以来是否注册了新的迁移。如果有新的迁移，运行它之前会要求确认。
 
 ### 撤销
 
@@ -93,6 +93,6 @@ try await app.autoMigrate()
 
 ## 下一步
 
-请查看[schema builder](schema.md) 和 [query builder](query.zh.md) 指南，以了解更多迁移相关的信息。
+请查看[schema builder](schema.md) 和 [query builder](query.md) 指南，以了解更多迁移相关的信息。
 
 

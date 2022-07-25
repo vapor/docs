@@ -517,7 +517,7 @@ Models expose a static method `query(on:)` that returns a query builder.
 Planet.query(on: database).all()
 ```
 
-Learn more about querying in the [query](./query.md) section.
+Learn more about querying in the [query](query.md) section.
 
 ## Find
 

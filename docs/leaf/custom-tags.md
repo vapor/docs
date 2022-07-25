@@ -1,6 +1,6 @@
 # Custom Tags
 
-You can create custom Leaf tags using the [`LeafTag`](https://api.vapor.codes/leaf-kit/latest/LeafKit/LeafSyntax/LeafTag.html) protocol. 
+You can create custom Leaf tags using the [`LeafTag`](https://api.vapor.codes/leaf-kit/main/LeafKit/LeafTag) protocol. 
 
 To demonstrate this, let's take a look at creating a custom tag `#now` that prints the current timestamp. The tag will also support a single, optional parameter for specifying the date format.
 
