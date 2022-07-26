@@ -33,7 +33,7 @@ Each example below will use an instance of an authenticator which we created. In
 
 ### Route
 
-Authenticators are middleware and be be used for protecting routes.
+Authenticators are middleware and can be used for protecting routes.
 
 ```swift
 let protected = app.grouped(UserAuthenticator())
