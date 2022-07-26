@@ -79,7 +79,7 @@ try await app.apns.send(
 )
 ```
 
-每当你在路由处理内部时，使用 `req.apns` 发送推送通知。
+每当你在路由内部处理时，使用 `req.apns` 发送推送通知。
 
 ```swift
 // 发送推送通知
