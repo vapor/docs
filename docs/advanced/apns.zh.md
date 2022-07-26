@@ -1,14 +1,14 @@
 # APNS
 
-Vapor 的 Apple 推送通知服务 (APNS) API 可以轻松验证身份并将推送通知发送到 Apple 设备。它是在 [APNSwift](https://github.com/kylebrowning/APNSwift) 之上构建的。
+在 Vapor 中使用基于 [APNSwift](https://github.com/kylebrowning/APNSwift) 构建的 API，可以轻松实现 Apple 推送通知服务(APNS) 的身份验证并将推送通知发送到 Apple 设备。
 
 ## 入门
 
-让我们看看如何开始使用 APNS。
+让我们看看如何使用 APNS。
 
 ### Package
 
-使用 APNS 的第一步是将包添加到你的依赖项中。
+使用 APNS 的第一步是将此依赖项添加到你的 Package.swift 文件中。
 
 ```swift
 // swift-tools-version:5.2
@@ -51,7 +51,7 @@ app.apns.configuration = try .init(
 )
 ```
 
-在占位符中填写你的凭据。上面的示例显示了[基于 JWT 的认证](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns)方式，使用从 Apple 开发人员门户网站获得的 `.p8` 密钥。对于[基于 TLS 的认证](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns)，请使用 `.tls` 身份验证方法：
+在占位符中填写你的凭据。上面的示例显示了[基于 JWT 的认证](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns)方式，使用从 Apple 开发者官网获得的 `.p8` 密钥。对于[基于 TLS 的认证](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns)，请使用 `.tls` 身份验证方法：
 
 ```swift
 authenticationMethod: .tls(
@@ -66,13 +66,13 @@ authenticationMethod: .tls(
 配置 APNS 后，你可以使用 `apns.send` 方法在 `Application` 或 `Request` 中发送推送通知。
 
 ```swift
-// Send a push notification.
+// 发送一条推送。
 try app.apns.send(
     .init(title: "Hello", subtitle: "This is a test from vapor/apns"),
     to: "98AAD4A2398DDC58595F02FA307DF9A15C18B6111D1B806949549085A8E6A55D"
 ).wait()
 
-// Or
+// 或者
 try await app.apns.send(
     .init(title: "Hello", subtitle: "This is a test from vapor/apns"),
     to: "98AAD4A2398DDC58595F02FA307DF9A15C18B6111D1B806949549085A8E6A55D"
@@ -88,7 +88,7 @@ app.get("test-push") { req -> EventLoopFuture<HTTPStatus> in
         .map { .ok }
 }
 
-// Or
+// 或者
 app.get("test-push") { req async throws -> HTTPStatus in
     try await req.apns.send(..., to: ...) 
     return .ok
