@@ -99,7 +99,7 @@ app.http.server.configuration.responseCompression = .enabled
 app.http.server.configuration.requestDecompression = .enabled
 ```
 
-要指定减压限制，请使用 `limit` 参数。默认值为 `.ratio(10)`。
+要指定解压限制，请使用 `limit` 参数。默认值为 `.ratio(10)`。
 
 ```swift
 // 无解压大小限制

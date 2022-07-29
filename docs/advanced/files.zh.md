@@ -1,6 +1,6 @@
 # 文件
 
-Vapor 提供了一个简单的 API，用于在路由内部处理异步读取和写入文件。API 是在 NIO 的  [`NonBlockingFileIO`](https://apple.github.io/swift-nio/docs/current/NIOPosix/Structs/NonBlockingFileIO.html) 类型上构建的。
+Vapor 提供了基于 [NIO](https://apple.github.io/swift-nio/docs/current/NIOPosix/Structs/NonBlockingFileIO.html) 构建的 API，用于异步处理路由内部的文件读取和写入。
 
 ## 读取
 
