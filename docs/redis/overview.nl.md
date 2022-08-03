@@ -61,7 +61,7 @@ let serverAddresses: [SocketAddress] = [
 Voor een enkel Redis endpoint, kan het makkelijker zijn om met de convenience initializers te werken, omdat die het `SocketAddress` voor je aanmaken:
 
 - [`.init(url:pool)`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration/#redisconfiguration.init(url:pool:)) (met `String` of [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
-- - [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration/#redisconfiguration.init(hostname:port:password:database:pool:))
+- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration/#redisconfiguration.init(hostname:port:password:database:pool:))
 
 #### wachtwoord
 
