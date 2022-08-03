@@ -8,7 +8,7 @@ Redis 可以作为一个存储提供程序，用于缓存[会话数据](../advan
 
 ### 创建 SessionID 
 
-除非在你自己的 [`RedisSessionsDelegate`](# RedisSessionsDelegate) 中实现 [`makeNewID()`](https://api.vapor.codes/redis/main/Redis/RedisSessionsDelegate/#redissessionsdelegate.makeNewID()) 方法，否则所有的 ['SessionID`](https://api.vapor.codes/vapor/main/Vapor/SessionID/) 值将通过以下操作创建:
+除非在你自己的 [`RedisSessionsDelegate`](#redissessionsdelegate) 中实现 [`makeNewID()`](https://api.vapor.codes/redis/main/Redis/RedisSessionsDelegate/#redissessionsdelegate.makeNewID()) 方法，否则所有的 ['SessionID`](https://api.vapor.codes/vapor/main/Vapor/SessionID/) 值将通过以下操作创建:
 
 1. 生成32字节的随机字符
 1. base64 编码该值

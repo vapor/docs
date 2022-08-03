@@ -14,7 +14,7 @@
 
 使用 Redis 的第一步是将它作为依赖项添加到你的 Package.swift 文件中。
 
-> 本例针对的是一个现有的包。要获得启动新项目的帮助，请参阅[入门指南](../getting-started/hello-world.zh.md)。
+> 本示例针对已有项目，要了解如何构建新项目，请参阅[入门指南](../getting-started/hello-world.zh.md)。
 
 ```swift
 dependencies: [
@@ -123,7 +123,7 @@ print(value)
 如果 **RediStack** 不支持带有扩展方法的命令，你仍然可以手动发送它。
 
 ```swift
-// each value after the command is the positional argument that Redis expects
+// command 后的每个值都是 Redis 期望的位置参数
 try app.redis.send(command: "PING", with: ["hello"])
     .map {
         print($0)
@@ -153,12 +153,12 @@ Redis 支持进入[发布/订阅模式](https://redis.io/topics/pubsub)，其中
 你可以选择为 `onSubscribe` 和 `onUnsubscribe`  提供一个 [`RedisSubscriptionChangeHandler`](https://docs.redistack.info/Typealiases.html#/s:9RediStack30RedisSubscriptionChangeHandlera) 来处理它们各自的生命周期事件。
 
 ```swift
-// creates 2 subscriptions, one for each given channel
+// 创建2个订阅，每个给定频道一个订阅
 app.redis.subscribe
   to: "channel_1", "channel_2",
   messageReceiver: { channel, message in
     switch channel {
-    case "channel_1": // do something with the message
+    case "channel_1": // 处理消息
     default: break
     }
   },
