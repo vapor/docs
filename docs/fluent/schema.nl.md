@@ -1,6 +1,6 @@
 # Schema
 
-Fluent's schema API stelt u in staat om uw database schema programmatisch aan te maken en te updaten. Het wordt vaak gebruikt in combinatie met [migraties](migratie.md) om de database voor te bereiden voor gebruik met [modellen](model.md).
+Fluent's schema API stelt u in staat om uw database schema programmatisch aan te maken en te updaten. Het wordt vaak gebruikt in combinatie met [migraties](migration.md) om de database voor te bereiden voor gebruik met [modellen](model.md).
 
 ```swift
 // Een voorbeeld van Fluent's schema API
