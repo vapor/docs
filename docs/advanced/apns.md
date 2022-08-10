@@ -1,5 +1,8 @@
 # APNS
 
+!!! note "Opmerking"
+    Deze pagina zal op een later tijdstip vertaald worden. Dit omdat men grote veranderingen aan het uitvoeren is, waardoor deze pagina geupdate zal moeten worden.
+
 Vapor's Apple Push Notification Service (APNS) API makes it easy to authenticate and send push notifications to Apple devices. It's built on top of [APNSwift](https://github.com/kylebrowning/APNSwift).
 
 ## Getting Started
