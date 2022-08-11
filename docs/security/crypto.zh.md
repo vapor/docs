@@ -1,6 +1,6 @@
 # 加密
 
-Vapor 中包括 [SwiftCrypto](https://github.com/apple/swift-crypto/) 库，这是苹果 CryptoKit 库的 Linux 兼容端口。SwiftCrypto 还没有公开一些额外的加密 API，比如 [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt) 和 [TOTP](https://en.wikipedia.org/wiki/Time-based_One-time_Password_algorithm)。
+Vapor 中包含 [SwiftCrypto](https://github.com/apple/swift-crypto/) 库，这是苹果 CryptoKit 库的 Linux 兼容端口。SwiftCrypto 还没有公开一些额外的加密 API，比如 [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt) 和 [TOTP](https://en.wikipedia.org/wiki/Time-based_One-time_Password_algorithm)。
 
 ## SwiftCrypto
 
