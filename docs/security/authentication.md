@@ -756,7 +756,21 @@ When protecting routes for an API, you traditionally return an HTTP response wit
 let protectedRoutes = app.grouped(User.redirectMiddleware(path: "/login?loginRequired=true"))
 ```
 
+The `RedirectMiddleware` object also supports passing a closure that returns a `String` during creation for advanced url handling. For instance, uncluding the path redirected from as query paramater to the redirect target for state management.
+
+```swift
+let redirectMiddleware = User.redirectMiddleware { req -> String in
+  return "/login?authRequired=true&next=\(req.url.path)"
+}
+```
+
 This works similar to the `GuardMiddleware`. Any requests to routes registered to `protectedRoutes` that aren't authenticated will be redirected to the path provided. This allows you to tell your users to log in, rather than just providing a **401 Unauthorized**.
+
+Be sure to include a Session Authenticator before the `RedirectMiddleware` to prevent subsequent requests to the protected routes from asking for a password.
+
+```swift
+let protectedRoutes = app.grouped([User.SessionAuthenticator(), redirecteMiddleware])
+```
 
 ### Form Log In
 
