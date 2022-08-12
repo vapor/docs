@@ -32,12 +32,12 @@ app.sessions.configuration.cookieFactory = { sessionID in
 
 Standaard zal Vapor `vapor_session` gebruiken als cookie naam.
 
-## Drivers
+## Stuurprogramma's
 
-Sessie drivers zijn verantwoordelijk voor het opslaan en ophalen van sessie gegevens op basis van een identifier. U kunt aangepaste drivers maken door te voldoen aan het `SessionDriver` protocol.
+Sessie stuurprogramma's zijn verantwoordelijk voor het opslaan en ophalen van sessie gegevens op basis van een identifier. U kunt aangepaste stuurprogramma's maken door te voldoen aan het `SessionDriver` protocol.
 
 !!! warning "Waarschuwing"
-	De sessie driver moet worden geconfigureerd _voordat_ u `app.sessions.middleware` toevoegt aan uw applicatie.
+	Het sessie stuurprogramma moet worden geconfigureerd _voordat_ u `app.sessions.middleware` toevoegt aan uw applicatie.
 
 ### In-Memory
 
@@ -47,7 +47,7 @@ Vapor maakt standaard gebruik van in-memory sessies. In-memory sessies vereisen 
 app.sessions.use(.memory)
 ```
 
-Voor productie gebruik, kijk eens naar de andere sessie drivers die databases gebruiken om sessies te bewaren en te delen over meerdere instances van je app.
+Voor productie gebruik, kijk eens naar de andere sessie stuurprogramma's die databases gebruiken om sessies te bewaren en te delen over meerdere instances van je app.
 
 ### Fluent
 

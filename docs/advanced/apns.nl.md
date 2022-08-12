@@ -124,7 +124,7 @@ Dit kan worden doorgegeven aan de `send` methode.
 
 ### Aangepaste Notification Data
 
-Apple biedt ingenieurs de mogelijkheid om aangepaste payload data toe te voegen aan elke notificatie. Om dit mogelijk te maken hebben we de `APNSwiftNotification`.
+Apple biedt ontwikkelaars de mogelijkheid om aangepaste payload data toe te voegen aan elke notificatie. Om dit mogelijk te maken hebben we de `APNSwiftNotification`.
 
 ```swift
 struct AcmeNotification: APNSwiftNotification {

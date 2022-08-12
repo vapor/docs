@@ -141,4 +141,4 @@ let cors = CORSMiddleware(configuration: corsConfiguration)
 app.middleware.use(cors, at: .beginning)
 ```
 
-Aangezien gegooide fouten onmiddellijk worden teruggestuurd naar de client, moet de `CORSMiddleware` _vóór_ de `ErrorMiddleware` worden vermeld. Anders zal de HTTP foutmelding worden teruggestuurd zonder CORS headers, en kan deze niet worden gelezen door de browser.
+Aangezien `throws` onmiddellijk worden teruggestuurd naar de client, moet de `CORSMiddleware` _vóór_ de `ErrorMiddleware` worden vermeld. Anders zal de HTTP foutmelding worden teruggestuurd zonder CORS headers, en kan deze niet worden gelezen door de browser.
