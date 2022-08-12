@@ -97,7 +97,42 @@ plugins:
       nav_translations:
         nl:
           Welcome: Welkom
-        fr:
+          Install: Installeren
+          Getting Started: Aan De Slag
+          Hello, world: Hallo, wereld
+          Folder Structure: Folder Structuur
+          Basics: Basis
+          Routing: Routering
+          Content: Inhoud
+          Validation: Validatie
+          Async: Asynchroon
+          Logging: Loggen
+          Environment: Omgeving
+          Overview: Overzicht
+          Relations: Relaties
+          Migrations: Migraties
+          Query: Opvragen
+          Transactions: Transacties
+          Schema: Schema
+          Advanced: Geavanceerd
+          Testing: Testen
+          Files: Bestanden
+          Commands: Commando's
+          Queues: Wachtrijen
+          Sessions: Sessies
+          Services: Diensten
+          Security: Veiligheid
+          Authentication: Authenticatie
+          Crypto: Encryptie
+          Passwords: Wachtwoorden
+          Deploy: Opzetten
+          Version (4.0): Versie (4.0)
+          Legacy Docs: Oude Documentatie
+          Upgrading: Upgraden
+          Custom Tags: Zelfgemaakte Tags
+          Contributing: Bijdragen
+          Contributing Guide: Gids Bijdragen
+        fr: 
           Welcome: Bienvenue
         de:
           Welcome: Willkommen
