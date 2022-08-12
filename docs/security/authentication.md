@@ -756,7 +756,7 @@ When protecting routes for an API, you traditionally return an HTTP response wit
 let protectedRoutes = app.grouped(User.redirectMiddleware(path: "/login?loginRequired=true"))
 ```
 
-The `RedirectMiddleware` object also supports passing a closure that returns a `String` during creation for advanced url handling. For instance, uncluding the path redirected from as query paramater to the redirect target for state management.
+The `RedirectMiddleware` object also supports passing a closure that returns the redirect path as a `String` during creation for advanced url handling. For instance, including the path redirected from as query parameter to the redirect target for state management.
 
 ```swift
 let redirectMiddleware = User.redirectMiddleware { req -> String in
