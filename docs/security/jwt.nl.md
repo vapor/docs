@@ -229,7 +229,7 @@ try app.jwt.signers.use(.rs256(key: .public(pem: rsaPublicKey)))
 
 ECDSA is een moderner algoritme dat lijkt op RSA. Het wordt geacht veiliger te zijn voor een gegeven sleutellengte dan RSA[^1]. U moet echter uw eigen onderzoek doen voordat u een beslissing neemt. 
 
-[^1]: [https://sectigostore.com/blog/ecdsa-vs-rsa-everything-you-need-to-know/](https://sectigostore.com/blog/ecdsa-vs-rsa-everything-you-need-to-know/)
+[^1]: https://sectigostore.com/blog/ecdsa-vs-rsa-everything-you-need-to-know/
 
 Net als RSA kunt u ECDSA-sleutels inladen met PEM-bestanden: 
 

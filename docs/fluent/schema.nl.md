@@ -382,7 +382,7 @@ Merk op dat om deze migratie te laten werken, we tegelijkertijd moeten kunnen ve
 
 ## Instellen Model Space
 
-Om de [ruimte voor een model](/fluent/model/#database-space) te definiëren, geef de ruimte door aan de `schema(_:space:)` bij het maken van de tabel. Bijv.
+Om de [ruimte voor een model](model.md#database-space) te definiëren, geef de ruimte door aan de `schema(_:space:)` bij het maken van de tabel. Bijv.
 
 ```swift
 try await db.schema("planets", space: "mirror_universe")

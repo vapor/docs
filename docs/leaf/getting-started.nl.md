@@ -45,13 +45,13 @@ Dit vertelt Vapor om de `LeafRenderer` te gebruiken wanneer u `req.view` aanroep
     Leaf heeft een interne cache voor het renderen van pagina's. Wanneer de omgeving van de `Application` is ingesteld op `.development`, is deze cache uitgeschakeld, zodat wijzigingen in sjablonen direct worden doorgevoerd. In `.production` en alle andere omgevingen is de cache standaard ingeschakeld; wijzigingen in sjablonen worden pas van kracht als de applicatie opnieuw wordt opgestart.
 
 !!! warning "Waarschuwing"
-    Om ervoor te zorgen dat Leaf de sjablonen kan vinden wanneer het vanuit Xcode werkt, moet u de [custom-working-directory](/xcode/#custom-working-directory) instellen voor uw Xcode werkruimte.
+    Om ervoor te zorgen dat Leaf de sjablonen kan vinden wanneer het vanuit Xcode werkt, moet u de [custom-working-directory](../getting-started/xcode.md#custom-working-directory) instellen voor uw Xcode werkruimte.
 
 ## Folder Structuur
 
 Zodra je Leaf hebt geconfigureerd, moet je er voor zorgen dat je een `Views` map hebt om je `.leaf` bestanden in op te slaan. Standaard verwacht Leaf dat de views map een `./Resources/Views` is relatief aan de root van je project.
 
-U zult waarschijnlijk ook Vapor's [`FileMiddleware`](https://api.vapor.codes/vapor/latest/Vapor/Classes/FileMiddleware.html) willen inschakelen om bestanden uit uw `/Public` folder te serveren als u van plan bent om bijvoorbeeld Javascript en CSS bestanden te serveren.
+U zult waarschijnlijk ook Vapor's [`FileMiddleware`](https://api.vapor.codes/vapor/main/Vapor/FileMiddleware/) willen inschakelen om bestanden uit uw `/Public` folder te serveren als u van plan bent om bijvoorbeeld Javascript en CSS bestanden te serveren.
 
 ```
 VaporApp

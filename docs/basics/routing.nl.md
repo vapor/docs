@@ -212,7 +212,7 @@ app.get("hello", ":name") { req -> String in
     We kunnen er zeker van zijn dat `req.parameters.get` hier nooit `nil` zal teruggeven, omdat ons route pad `:name` bevat. Echter, als u route parameters benadert in middleware of in code die getriggerd wordt door meerdere routes, zult u de mogelijkheid van `nil` willen behandelen.
 
 !!! tip
-    Als je URL query params wilt ophalen, bijvoorbeeld `/hello/?name=foo` moet je Vapor's Content APIs gebruiken om URL gecodeerde data in de URL's query string te verwerken. Zie [`Content` referentie](/content/) voor meer details.
+    Als je URL query params wilt ophalen, bijvoorbeeld `/hello/?name=foo` moet je Vapor's Content APIs gebruiken om URL gecodeerde data in de URL's query string te verwerken. Zie [`Content` referentie](content.md) voor meer details.
 
 `req.parameters.get` ondersteunt ook het automatisch casten van de parameter naar `LosslessStringConvertible` types. 
 
