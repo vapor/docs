@@ -766,7 +766,7 @@ let redirectMiddleware = User.redirectMiddleware { req -> String in
 
 This works similar to the `GuardMiddleware`. Any requests to routes registered to `protectedRoutes` that aren't authenticated will be redirected to the path provided. This allows you to tell your users to log in, rather than just providing a **401 Unauthorized**.
 
-Be sure to include a Session Authenticator before the `RedirectMiddleware` to prevent subsequent requests to the protected routes from asking for a password.
+Be sure to include a Session Authenticator before the `RedirectMiddleware` to ensure the authenticated user is loaded before running through the `RedirectMiddleware`.
 
 ```swift
 let protectedRoutes = app.grouped([User.SessionAuthenticator(), redirecteMiddleware])
