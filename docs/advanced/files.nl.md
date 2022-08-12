@@ -24,7 +24,7 @@ Bij gebruik van `EventLoopFuture` zal de geretourneerde future signaleren wannee
 
 ### Stream
 
-De `streamFile` methode converteert een streaming bestand naar een `Response`. Deze methode stelt automatisch de juiste headers in, zoals `ETag` en `Content-Type`.
+De `streamFile` methode verpakt de stream in een `Response`. Deze methode stelt automatisch de juiste headers in, zoals `ETag` en `Content-Type`.
 
 ```swift
 // Streamt asynchroon bestand als HTTP antwoord.
