@@ -382,7 +382,7 @@ Note that for this migration to work, we need to be able to reference both the r
 
 ## Setting Model Space
 
-To define the [space for a model](/fluent/model/#database-space), pass the space to the `schema(_:space:)` when creating the table. E.g.
+To define the [space for a model](model.md#database-space), pass the space to the `schema(_:space:)` when creating the table. E.g.
 
 ```swift
 try await db.schema("planets", space: "mirror_universe")

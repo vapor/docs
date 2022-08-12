@@ -10,7 +10,7 @@ The Install section of the docs goes over installing dependencies.
 
 ## Package.swift
 
-The first step to upgrading to Vapor 4 is to update your package's dependencies. Below is an example of an upgraded Package.swift file. You can also check out the updated [template Package.swift](https://github.com/vapor/template/blob/master/Package.swift).
+The first step to upgrading to Vapor 4 is to update your package's dependencies. Below is an example of an upgraded Package.swift file. You can also check out the updated [template Package.swift](https://github.com/vapor/template/blob/main/Package.swift).
 
 ```diff
 -// swift-tools-version:4.0
