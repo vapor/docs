@@ -148,7 +148,8 @@ struct EmailJob: AsyncJob {
     }
 }
 ```
-
+!!! info
+    Make sure your `Payload` type implements the `Codable` protocol.
 !!! tip
     Don't forget to follow the instructions in **Getting Started** to add this job to your configuration file. 
 
