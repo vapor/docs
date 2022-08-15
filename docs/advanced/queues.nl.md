@@ -149,6 +149,8 @@ struct EmailJob: AsyncJob {
 }
 ```
 
+!!! info
+    Zorg ervoor dat uw `Payload` type het `Codable` protocol implementeert.
 !!! tip
     Vergeet niet de instructies in **Aan De Slag** te volgen om deze taak aan uw configuratiebestand toe te voegen. 
 
