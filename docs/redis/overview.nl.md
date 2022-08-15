@@ -32,7 +32,7 @@ targets: [
 
 ## Configuratie
 
-Vapor gebruikt een pooling strategie voor [`RedisConnection`](https://docs.redistack.info/Classes/RedisConnection.html) instanties, en er zijn verschillende opties om zowel individuele verbindingen als de pools zelf te configureren.
+Vapor gebruikt een pooling strategie voor [`RedisConnection`](https://swiftpackageindex.com/mordil/redistack/master/documentation/redistack/redisconnection) instanties, en er zijn verschillende opties om zowel individuele verbindingen als de pools zelf te configureren.
 
 Het absolute minimum dat nodig is voor het configureren van Redis is het opgeven van een URL om verbinding mee te maken:
 
@@ -98,11 +98,11 @@ Dit staat bekend als een "koude start" verbinding, en heeft wel enige overhead t
 Deze optie bepaalt het gedrag van hoe het maximum aantal verbindingen wordt bijgehouden.
 
 !!! seealso "Zie ook"
-    Raadpleeg de [`RedisConnectionPoolSize`](https://docs.redistack.info/Enums/RedisConnectionPoolSize.html) API om te weten welke mogelijkheden beschikbaar zijn.
+    Raadpleeg de `RedisConnectionPoolSize` API om te weten welke mogelijkheden beschikbaar zijn.
 
 ## Een commando versturen
 
-Je kunt commando's sturen met de `.redis` eigenschap op elke [`Application`](https://api.vapor.codes/vapor/main/Vapor/Application/) of [`Request`](https://api.vapor.codes/vapor/main/Vapor/Request/) instantie, die je toegang geeft tot een [`RedisClient`](https://docs.redistack.info/Protocols/RedisClient.html).
+Je kunt commando's sturen met de `.redis` eigenschap op elke [`Application`](https://api.vapor.codes/vapor/main/Vapor/Application/) of [`Request`](https://api.vapor.codes/vapor/main/Vapor/Request/) instantie, die je toegang geeft tot een [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/master/documentation/redistack/redisclient).
 
 Elke `RedisClient` heeft verschillende extensies voor alle verschillende [Redis commando's](https://redis.io/commands).
 
@@ -148,9 +148,9 @@ Er is een bepaalde levenscyclus voor een abonnement:
 1. **message**: 0+ keer aangeroepen als berichten worden gepubliceerd in de geabonneerde kanalen
 1. **unsubscribe**: eenmaal aangeroepen wanneer het abonnement eindigt, hetzij door een verzoek, hetzij doordat de verbinding wordt verbroken
 
-Wanneer je een abonnement aanmaakt, moet je minstens een [`messageReceiver`](https://docs.redistack.info/Typealiases.html#/s:9RediStack32RedisSubscriptionMessageReceiver) voorzien om alle berichten te behandelen die gepubliceerd worden door het geabonneerde kanaal.
+Wanneer je een abonnement aanmaakt, moet je minstens een [`messageReceiver`](https://swiftpackageindex.com/mordil/redistack/master/documentation/redistack/redissubscriptionmessagereceiver) voorzien om alle berichten te behandelen die gepubliceerd worden door het geabonneerde kanaal.
 
-U kunt optioneel een [`RedisSubscriptionChangeHandler`](https://docs.redistack.info/Typealiases.html#/s:9RediStack30RedisSubscriptionChangeHandlera) opgeven voor `onSubscribe` en `onUnsubscribe` om hun respectievelijke lifecycle events af te handelen.
+U kunt optioneel een `RedisSubscriptionChangeHandler` opgeven voor `onSubscribe` en `onUnsubscribe` om hun respectievelijke lifecycle events af te handelen.
 
 ```swift
 // creëert 2 abonnementen, een voor elk gegeven kanaal
