@@ -32,7 +32,7 @@ targets: [
 
 ## 配置
 
-Vapor 对 [`RedisConnection`](https://docs.redistack.info/Classes/RedisConnection.html) 实例采用池化策略，并且有几个选项可以配置单个连接以及池本身。
+Vapor 对 [`RedisConnection`](https://swiftpackageindex.com/mordil/redistack/master/documentation/redistack/redisconnection) 实例采用池化策略，并且有几个选项可以配置单个连接以及池本身。
 
 配置 Redis 的最低要求是提供一个 URL 来连接：
 
@@ -98,11 +98,11 @@ let serverAddresses: [SocketAddress] = [
 此选项确定如何维护最大连接数的行为。
 
 !!! 也可以看看
-    请参阅 [`RedisConnectionPoolSize`](https://docs.redistack.info/Enums/RedisConnectionPoolSize.html) API 文档以熟悉更多可用选项。
+    请参阅 `RedisConnectionPoolSize` API 文档以熟悉更多可用选项。
 
 ## 发送命令
 
-你可以使用  [`Application`](https://api.vapor.codes/vapor/main/Vapor/Application/) 或 [`Request`](https://api.vapor.codes/vapor/main/Vapor/Request/) 实例上的 `.redis` 属性发送命令，这使得你可以访问 [`RedisClient`](https://docs.redistack.info/Protocols/RedisClient.html)。
+你可以使用  [`Application`](https://api.vapor.codes/vapor/main/Vapor/Application/) 或 [`Request`](https://api.vapor.codes/vapor/main/Vapor/Request/) 实例上的 `.redis` 属性发送命令，这使得你可以访问 [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/master/documentation/redistack/redisclient)。
 
 对于各别的 [Redis 命令](https://redis.io/commands)，`RedisClient` 都有其对应的扩展。
 
@@ -148,9 +148,9 @@ Redis 支持进入[发布/订阅模式](https://redis.io/topics/pubsub)，其中
 1. **message**：在消息发布到订阅频道时调用 0+ 次
 1. **unsubscribe**：订阅结束时调用一次，无论是通过请求还是连接丢失
 
-创建订阅时，你必须至少提供一个 [`messageReceiver`](https://docs.redistack.info/Typealiases.html#/s:9RediStack32RedisSubscriptionMessageReceiver) 来处理订阅频道发布的所有消息。
+创建订阅时，你必须至少提供一个 [`messageReceiver`](https://swiftpackageindex.com/mordil/redistack/master/documentation/redistack/redissubscriptionmessagereceiver) 来处理订阅频道发布的所有消息。
 
-你可以选择为 `onSubscribe` 和 `onUnsubscribe`  提供一个 [`RedisSubscriptionChangeHandler`](https://docs.redistack.info/Typealiases.html#/s:9RediStack30RedisSubscriptionChangeHandlera) 来处理它们各自的生命周期事件。
+你可以选择为 `onSubscribe` 和 `onUnsubscribe`  提供一个 `RedisSubscriptionChangeHandler` 来处理它们各自的生命周期事件。
 
 ```swift
 // 创建2个订阅，每个给定频道一个订阅
