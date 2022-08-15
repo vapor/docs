@@ -239,7 +239,8 @@ Then, specify the queue type when you retrieve the `jobs` object:
 app.get("email") { req -> EventLoopFuture<String> in
     let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // One day
     return req
-        .queues(.emails)
+        .queues
+        .queue(.emails)
         .dispatch(
             EmailJob.self, 
             .init(to: "email@email.com", message: "message"),
@@ -253,7 +254,8 @@ app.get("email") { req -> EventLoopFuture<String> in
 app.get("email") { req async throws -> String in
     let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // One day
     try await req
-        .queues(.emails)
+        .queues
+        .queue(.emails)
         .dispatch(
             EmailJob.self, 
             .init(to: "email@email.com", message: "message"),
