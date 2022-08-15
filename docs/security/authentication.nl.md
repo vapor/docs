@@ -756,7 +756,21 @@ Bij het beveiligen van routes voor een API, retourneer je traditioneel een HTTP 
 let protectedRoutes = app.grouped(User.redirectMiddleware(path: "/login?loginRequired=true"))
 ```
 
+Het `RedirectMiddleware` object ondersteunt ook het doorgeven van een closure die het redirect pad als een `String` retourneert tijdens het aanmaken voor geavanceerde url afhandeling. Bijvoorbeeld, het opnemen van het pad waar vandaan omgeleid wordt als query parameter naar het redirect doel voor state management.
+
+```swift
+let redirectMiddleware = User.redirectMiddleware { req -> String in
+  return "/login?authRequired=true&next=\(req.url.path)"
+}
+```
+
 Dit werkt vergelijkbaar met de `GuardMiddleware`. Alle verzoeken naar routes geregistreerd bij `protectedRoutes` die niet geauthenticeerd zijn, worden doorgestuurd naar het opgegeven pad. Hiermee kunt u uw gebruikers vertellen dat ze moeten inloggen, in plaats van alleen een **401 Unauthorized** te geven.
+
+Zorg ervoor dat je een Session Authenticator toevoegt voor de `RedirectMiddleware` om er zeker van te zijn dat de geauthenticeerde gebruiker geladen is voordat hij door de `RedirectMiddleware` gaat.
+
+```swift
+let protectedRoutes = app.grouped([User.SessionAuthenticator(), redirecteMiddleware])
+```
 
 ### Formulier Aanmelden
 
