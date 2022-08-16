@@ -177,6 +177,24 @@ app.get("email") { req async throws -> String in
 }
 ```
 
+If you, instead, need to dispatch a job from a context where the `Request` object is not available (like, for example, from within a `Command`), you will need to use the `queues` property inside the `Application` object, such as:
+
+```swift
+struct SendEmailCommand: AsyncCommand {
+    func run(using context: CommandContext, signature: Signature) async throws {
+        context
+            .application
+            .queues
+            .queue
+            .dispatch(
+                EmailJob.self, 
+                .init(to: "email@email.com", message: "message")
+            )
+    }
+}
+```
+
+
 ### Setting `maxRetryCount`
 
 Jobs will automatically retry themselves upon error if you specify a `maxRetryCount`. For example: 
@@ -263,6 +281,27 @@ app.get("email") { req async throws -> String in
     return "done"
 }
 ```
+
+When accessing from within the `Application` object you should do as follows:
+
+```swift
+struct SendEmailCommand: AsyncCommand {
+    func run(using context: CommandContext, signature: Signature) async throws {
+        context
+            .application
+            .queues
+            .queue(.emails)
+            .dispatch(
+                EmailJob.self, 
+                .init(to: "email@email.com", message: "message"),
+                maxRetryCount: 3,
+                delayUntil: futureDate
+            )
+    }
+}
+```
+
+
 
 If you do not specify a queue the job will be run on the `default` queue. Make sure to follow the instructions in **Getting Started** to start workers for each queue type. 
 
