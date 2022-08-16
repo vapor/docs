@@ -400,11 +400,11 @@ app.patch("users", ":id") { req async throws -> User in
     if let firstName = patch.firstName {
         user.firstName = firstName
     }
-    // 如果提供了新的姓氏，请更新它。
+    // 如果提供了新的姓氏，则更新它。
     if let lastName = patch.lastName {
         user.lastName = lastName
     }
-    // 保存并返回改用户
+    // 保存并返回用户信息
     try await user.save(on: req.db)
     return user
 }
