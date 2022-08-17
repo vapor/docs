@@ -8,7 +8,7 @@ Fluent 是服务于 Swift 的 [ORM](https://en.wikipedia.org/wiki/Object-relatio
 
 ### 现有项目
 
-如果你想为现有项目添加 Fluent，你需要在 [package](../getting-started/spm.md) 中添加两个依赖项：
+如果你想为现有项目添加 Fluent，你需要在 [package](../getting-started/spm.zh.md) 中添加两个依赖项：
 
 - [vapor/fluent](https://github.com/vapor/fluent)@4.0.0
 - 你选择的一个（或多个）Fluent 驱动程序
@@ -193,21 +193,21 @@ try app.databases.use(.mongo(connectionString: "<connection string>"), as: .mong
 
 ```swift
 final class Galaxy: Model {
-    // Name of the table or collection.
+    // 表或集合名。
     static let schema = "galaxies"
 
-    // Unique identifier for this Galaxy.
+    // 星系唯一标识符。
     @ID(key: .id)
     var id: UUID?
 
-    // The Galaxy's name.
+    // 星系名称。
     @Field(key: "name")
     var name: String
 
-    // Creates a new, empty Galaxy.
+    // 创建一个空的星系。
     init() { }
 
-    // Creates a new Galaxy with all properties set.
+    // 创建一个新的星系并设置所有属性。
     init(id: UUID? = nil, name: String) {
         self.id = id
         self.name = name
@@ -239,7 +239,7 @@ var id: UUID?
 
 该字段必须使用 `@ID` 属性包装器。Fluent 建议使用 `UUID` 和 特殊 `.id` 字段键，因为它兼容 Fluent 的所有驱动程序。
 
-如果要使用自定义 ID 键或类型， 请使用 [`@ID(custom:)`](model.md#custom-identifier) 重载。
+如果要使用自定义 ID 键或类型， 请使用 [`@ID(custom:)`](model.zh.md#custom-identifier) 重载。
 
 ### Fields
 
@@ -275,7 +275,7 @@ init(id: UUID? = nil, name: String) {
 
 ```swift
 struct CreateGalaxy: AsyncMigration {
-    // Prepares the database for storing Galaxy models.
+    // 为存储 Galaxy 模型准备数据库。
     func prepare(on database: Database) async throws {
         try await database.schema("galaxies")
             .id()
@@ -283,7 +283,7 @@ struct CreateGalaxy: AsyncMigration {
             .create()
     }
 
-    // Optionally reverts the changes made in the prepare method.
+    // 可选地恢复 prepare 方法中所做的更改。
     func revert(on database: Database) async throws {
         try await database.schema("galaxies").delete()
     }
@@ -367,7 +367,7 @@ app.post("galaxies") { req -> EventLoopFuture<Galaxy> in
 ```
 
 !!! 也可以看看
-    有关解码请求正文的更多信息，请参阅 [内容 → 概述](../basics/content.md)。
+    有关解码请求正文的更多信息，请参阅 [内容 → 概述](../basics/content.zh.md)。
 
 一旦有了模型的实例，调用 `create(on:)` 就会将模型保存到数据库中。这将返回一个 `EventLoopFuture<Void>` 表示保存已完成的信号。保存完成后，使用 `map` 返回新创建的模型。
 
@@ -413,25 +413,25 @@ content-type: application/json
 
 ```swift
 final class Star: Model, Content {
-    // Name of the table or collection.
+    // 表或集合名。
     static let schema = "stars"
 
-    // Unique identifier for this Star.
+    // Star 唯一标识符。
     @ID(key: .id)
     var id: UUID?
 
-    // The Star's name.
+    // Star 名称
     @Field(key: "name")
     var name: String
 
-    // Reference to the Galaxy this Star is in.
+    // 引用这颗恒星所在的星系。
     @Parent(key: "galaxy_id")
     var galaxy: Galaxy
 
-    // Creates a new, empty Star.
+    // 创建一个空的 Star。
     init() { }
 
-    // Creates a new Star with all properties set.
+    // 创建一个新的 Star，设置所有属性。
     init(id: UUID? = nil, name: String, galaxyID: UUID) {
         self.id = id
         self.name = name
@@ -466,7 +466,7 @@ self.$galaxy.id = galaxyID
 
 ```swift
 struct CreateStar: AsyncMigration {
-    // Prepares the database for storing Star models.
+    // 为存储 Star 模型准备数据库。
     func prepare(on database: Database) async throws {
         try await database.schema("stars")
             .id()
@@ -475,7 +475,7 @@ struct CreateStar: AsyncMigration {
             .create()
     }
 
-    // Optionally reverts the changes made in the prepare method.
+    // 可选地恢复 prepare 方法中所做的更改。
     func revert(on database: Database) async throws {
         try await database.schema("stars").delete()
     }
@@ -540,7 +540,7 @@ content-type: application/json
 现在让我们看看如何利用 Fluent 的预加载功能自动返回 `GET /galaxies` 路由中的星系恒星。将以下属性添加到 `Galaxy`模型中。
 
 ```swift
-// All the Stars in this Galaxy.
+// 这个星系的所有恒星。
 @Children(for: \.$galaxy)
 var stars: [Star]
 ```
@@ -577,6 +577,18 @@ app.get("galaxies") { req in
     }
 ]
 ```
+
+## 查询日志
+
+Fluent 驱动程序在日志级别为 debug 时会记录生成的 SQL 语句。一些驱动程序，如 FluentPostgreSQL，允许在配置数据库时进行配置。
+
+要设置日志级别，请在 **configure.swift**（或你设置应用程序的位置）文件中添加：
+
+```swift
+app.logger.logLevel = .debug
+```
+
+这会将日志级别设置为 debug。下次构建和运行应用程序时，Fluent 生成的 SQL 语句会在控制台输出。
 
 ## 下一步
 
