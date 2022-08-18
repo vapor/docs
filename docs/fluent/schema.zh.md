@@ -382,7 +382,7 @@ struct UserNameMigration: AsyncMigration {
 
 ## 设置模型空间
 
-要定义[模型空间](/fluent/model.zh/#database-space)，请在创建表时将空间传递给 `schema(_：space：)`。例如。
+要定义[模型空间](/fluent/model.zh.md/#database-space)，请在创建表时将空间传递给 `schema(_：space：)`。例如。
 
 ```swift
 try await db.schema("planets", space: "mirror_universe")

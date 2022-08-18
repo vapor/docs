@@ -47,7 +47,7 @@ logger.info(...)
 
 尽管自定义的日志记录器仍将输出你配置的后端日志记录，但是他们没有附带重要的元数据，比如 `request` 的 `UUID`。所以尽量使用 `application` 或者 `request` 的日志记录器。
 
-## 日志级别
+## 日志级别(Level)
 
 `SwiftLog` 支持多种日志级别。
 <!-- ~~SwiftLog supports several different logging levels.~~ -->
