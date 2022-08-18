@@ -272,5 +272,15 @@ The `#unsafeHTML` tag acts like a variable tag - e.g. `#(variable)`. However it 
 The time is #unsafeHTML(styledTitle)
 ```
 
-!!! note 
+!!! note
     You should be careful when using this tag to ensure that the variable you provide it does not expose your users to an XSS attack.
+
+#### `#dumpContext`
+
+The `#dumpContext` tag renders the whole context to a human readable string. Use this tag to debug what is being
+provided as context to the current rendering.
+
+```leaf
+Hello, world!
+#dumpContext
+```
