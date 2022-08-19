@@ -1,6 +1,6 @@
 # 错误
 
-Vapor 的错误处理是建立在 Swift 的 `Error` 协议之上。路由处理可以是 `throw` 错误或返回失败的 `EventLoopFuture`。抛出或返回 Swift 的 `Error` 将导致`500`状态响应并记录错误。`AbortError` 和 `DebuggableError` 分别用于更改响应结果和记录日志。错误的处理由 `ErrorMiddleware` 中间件完成。此中间件默认添加到应用程序中，如果需要，可以用自定义逻辑替换
+Vapor 的错误处理基于 Swift 的 `Error` 协议。路由处理可以通过 `throw` 抛出或返回 `EventLoopFuture` 对象。抛出或返回 Swift 的 `Error` 将导致`500`状态响应并记录错误。`AbortError` 和 `DebuggableError` 分别用于更改响应结果和记录日志。错误的处理由 `ErrorMiddleware` 中间件完成。此中间件默认添加到应用程序中，如果需要，可以用自定义逻辑替换
 
 ## 中断
 
@@ -23,7 +23,7 @@ guard let user = user else {
 return user.save()
 ```
 
-Vapor 提供了一个辅助扩展，用于可选值展开期货：`unwrap(or:)`。
+Vapor 提供了一个辅助扩展，用于解包具有可选值的 future 对象：`unwrap(or:)`。
 
 ```swift
 User.find(id, on: db)
