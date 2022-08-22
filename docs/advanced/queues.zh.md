@@ -224,7 +224,7 @@ app.get("email") { req async throws -> String in
 
 ### 指定延迟
 
-还也可以将 job 设置为仅在某个特定 `Date` 过后运行。要指定延迟，将 `Date` 传入 `Dispatch` 中的 `delayUntil` 参数中：
+还可以将 job 设置为仅在某个特定 `Date` 过后运行。要指定延迟，将 `Date` 传入 `Dispatch` 中的 `delayUntil` 参数中：
 
 ```swift
 app.get("email") { req async throws -> String in
@@ -405,7 +405,7 @@ app.queues.schedule(CleanupJob())
 
 Queues 包允许你指定 `JobEventDelegate` 对象， 当 worker 对 job 执行操作时接收通知。这可用于监控、显示见解或报警目的。
 
-首先，对象需要遵循 `JobEventDelegate` 协议并实现任何所需的方法
+首先，对象需要遵循 `JobEventDelegate` 协议并实现所需的方法
 
 ```swift
 struct MyEventDelegate: JobEventDelegate {
@@ -419,7 +419,7 @@ struct MyEventDelegate: JobEventDelegate {
         eventLoop.future()
     }
 
-    /// 当作 job 成处理并从队列中删除时调用
+    /// 当 job 完成处理并从队列中删除时调用
     func success(jobId: String, eventLoop: EventLoop) -> EventLoopFuture<Void> {
         eventLoop.future()
     }
