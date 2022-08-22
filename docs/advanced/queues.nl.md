@@ -178,6 +178,23 @@ app.get("email") { req async throws -> String in
 }
 ```
 
+Als u in plaats daarvan een opdracht moet verzenden vanuit een context waar het `Request` object niet beschikbaar is (zoals bijvoorbeeld vanuit een `Command`), dan moet u de `queues` eigenschap binnen het `Application` object gebruiken, zoals bijvoorbeeld:
+
+```swift
+struct SendEmailCommand: AsyncCommand {
+    func run(using context: CommandContext, signature: Signature) async throws {
+        context
+            .application
+            .queues
+            .queue
+            .dispatch(
+                EmailJob.self, 
+                .init(to: "email@email.com", message: "message")
+            )
+    }
+}
+```
+
 ### Instelling `maxRetryCount`
 
 Jobs zullen zichzelf automatisch opnieuw proberen bij een fout als je een `maxRetryCount` opgeeft. Bijvoorbeeld: 
@@ -262,6 +279,25 @@ app.get("email") { req async throws -> String in
             delayUntil: futureDate
         )
     return "done"
+}
+```
+
+Bij het benaderen vanuit het `Application` object moet je als volgt te werk gaan:
+
+```swift
+struct SendEmailCommand: AsyncCommand {
+    func run(using context: CommandContext, signature: Signature) async throws {
+        context
+            .application
+            .queues
+            .queue(.emails)
+            .dispatch(
+                EmailJob.self, 
+                .init(to: "email@email.com", message: "message"),
+                maxRetryCount: 3,
+                delayUntil: futureDate
+            )
+    }
 }
 ```
 
