@@ -403,7 +403,7 @@ app.queues.schedule(CleanupJob())
 
 ## 事件委托
 
-Queues 包允许你指定 `JobEventDelegate` 对象， 当 worker 对 job 执行操作时接收通知。这可用于监控、显示见解或报警目的。
+Queues 包允许你指定 `JobEventDelegate` 对象， 当 worker 对 job 执行操作时接收通知。这可用于监控、追踪或报警等目的。
 
 首先，对象需要遵循 `JobEventDelegate` 协议并实现所需的方法
 
