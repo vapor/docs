@@ -274,3 +274,13 @@ The time is #unsafeHTML(styledTitle)
 
 !!! note "Opmerking"
     Je moet voorzichtig zijn met het gebruik van deze tag om er zeker van te zijn dat de variabele die je meegeeft je gebruikers niet blootstelt aan een XSS-aanval.
+
+#### `#dumpContext`
+
+De `#dumpContext` tag geeft de hele context weer in een door mensen leesbare string. Gebruik deze tag om te debuggen wat er wordt
+wordt geleverd als context voor de huidige rendering.
+
+```leaf
+Hello, world!
+#dumpContext
+```
