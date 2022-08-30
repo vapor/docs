@@ -35,7 +35,7 @@ Vapor 应用模板有两个针对 Docker 的关键资源：一个 **Dockerfile**
 
 ### Dockerfile
 
-Dockerfile 告诉 Docker 如何构建 dockerized 应用程序的镜像。该镜像包含你应用程序的可执行文件和运行它所需的所有依赖项。当你自定义 Dockerfile 时，[完整的参考文档](https://docs.docker.com/engine/reference/builder/)保持打开是值得的。
+Dockerfile 告诉 Docker 如何构建 dockerized 应用程序的镜像。该镜像包含你应用程序的可执行文件和运行它所需的所有依赖项。当你自定义 Dockerfile 时，请查阅此[参考文档](https://docs.docker.com/engine/reference/builder/)。
 
 为你的 Vapor 应用程序生成的 Dockerfile 有两个阶段。第一阶段构建你的应用程序并设置一个包含结果的保存区域。第二阶段设置安全运行时的基础环境，将保存区域中的所有内容传输到最终镜像中的位置，并设置默认入口点和命令，在默认端口（8080）上以生产模式运行你的应用程序。使用镜像时可以覆盖此配置。
 
@@ -44,7 +44,7 @@ Dockerfile 告诉 Docker 如何构建 dockerized 应用程序的镜像。该镜�
 Docker Compose 文件定义了 Docker 应该如何构建彼此相关的多个服务。Vapor 应用程序模板中的 Docker Compose 文件提供了部署应用程序所需的功能，但如果你想了解更多信息，请参考[完整文档](https://docs.docker.com/compose/compose-file/)，其中包含所有可用选项的详细信息。
 
 !!! note
-    如果你最终计划使用 Kubernetes 来编排你的应用程序，那么 Docker Compose 文件并不直接相关。然而，Kubernetes 清单文件在概念上是相似的，甚至还有一些项目旨在将 [Docker Compose 文件移植](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/)到 Kubernetes 清单中。
+    如果你最终计划使用 Kubernetes 来部署你的应用程序，虽然它与 Docker Compose 文件并不直接相关。但是 Kubernetes 清单文件和 Docker Compose 文件在概念上是相似的，甚至还有一些项目旨在将 [Docker Compose 文件移植](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/)到 Kubernetes 清单文件中。
 
 新的 Vapor 应用程序中的 Docker Compose 文件将定义用于运行应用程序、运行迁移或恢复它们以及运行数据库作为应用程序持久层的服务。确切的定义将根据你在运行 `vapor new` 命令时选择使用的数据库而有所不同。
 
@@ -118,7 +118,7 @@ docker compose up app
 并注意 `app` 和 `db` 服务都已启动。
 
 
-你的应用程序正在侦听8080端口，并且，正如 Docker Compose 文件所定义的那样，可以在你的开发机上访问 **http://localhost:8080**。
+你的应用程序正在监听8080端口，并且，正如 Docker Compose 文件所定义的那样，可以在你的开发机上访问 **http://localhost:8080**。
 
 这种端口映射区别非常重要，因为你可以在相同的端口上运行任意数量的服务，前提是这些服务都在各自的容器中运行，并且每个服务都向主机公开不同的端口。
 
@@ -128,7 +128,7 @@ docker compose up app
 {"error":true,"reason":"Something went wrong."}
 ```
 
-在你运行 `docker compose up app` 命令的终端中查看日志输出的峰值，你将看到：
+在你运行 `docker compose up app` 命令的终端中查看输出的日志，你将看到：
 
 ```
 [ ERROR ] relation "todos" does not exist
@@ -263,7 +263,7 @@ docker service scale --detach test_migrate=1
 docker service scale test_app=5
 ```
 
-除了观看 docker 扩展你的应用程序之外，通过再次检查 `docker service ls`，你还可以看到5个副本确实在运行。
+除了通过 docker 扩展你的应用程序之外，通过再次检查 `docker service ls`，你还可以看到5个副本确实在运行。
 
 你可以查看（并关注）应用程序的日志
 
@@ -281,7 +281,7 @@ docker stack rm test
 
 ## 生产部署
 
-正如上面提到的，本指南不会详细介绍如何将你的 dockerized 应用程序部署到生产环境，因为该主题很大并且根据托管服务（AWS、Azure 等）、工具（Terraform、Ansible 等）和编排（Docker Swarm、Kubernetes 等）的不同而有很大差异。
+正如上面提到的，本指南不会详细介绍如何将你的 dockerized 应用程序部署到生产环境，因为该部分内容较多并且根据托管服务（AWS、Azure 等）、工具（Terraform、Ansible 等）和编排（Docker Swarm、Kubernetes 等）的不同而有很大差异。
 
 然而，你学习的在开发机上本地运行 dockerized 应用程序的技术在很大程度上可以转移到生产环境中。设置为运行 docker 守护进程的服务器实例接受所有相同的命令。
 
