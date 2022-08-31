@@ -39,7 +39,7 @@ sudo dnf install swift-lang
 
 你也可以使用预装了编译器的 Swift 官方 Docker 镜像，可以在[Swift's Docker Hub](https://hub.docker.com/_/swift)了解更多。
 
-## 安装 Toolbox
+## 安装工具箱(Install Toolbox)
 
 现在你已经安装了Swift，让我们安装 [Vapor Toolbox](https://github.com/vapor/toolbox)。使用 Vapor 不是必须要使用此 CLI 工具，但它包含有用的实用程序。
 
