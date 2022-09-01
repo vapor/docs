@@ -15,11 +15,11 @@ Vapor 的身份认证 API 支持使用 [Basic](https://tools.ietf.org/html/rfc76
 |[`BearerAuthenticator`/`AsyncBearerAuthenticator`](#bearer)|验证 Bearer 授权标头。|
 |`CredentialsAuthenticator`/`AsyncCredentialsAuthenticator`|从请求体中验证凭据 payload。|
 
-如果身份认证成功，则身份验证器将已验证的用户添加到 `req.auth` 中。 然后，可以在认证器保护的路由上使用 `req.auth.get(_:)` 方法访问此用户。如果身份认证失败，则不会添加用户到 `req.auth` 中，任何访问都会失败。
+如果身份认证成功，则身份认证器将已验证的用户添加到 `req.auth` 中。 然后，可以在认证器保护的路由上使用 `req.auth.get(_:)` 方法访问此用户。如果身份认证失败，则不会添加用户到 `req.auth` 中，任何访问都会失败。
 
 ## Authenticatable
 
-要使用认证 API，首先需要一个遵循 `Authenticatable` 协议的 User 类型。它可以是 `struct`、`class`，甚至可以是 Fluent 的 `Model` 类型。下面的示例假定这个简单的`User` 结构有一个属性：`name`。
+要使用认证 API，首先需要一个遵循 `Authenticatable` 协议的 User 类型。它可以是 `struct`、`class`，甚至可以是 Fluent 的 `Model` 类型。下面的示例假定这个简单的  `User` 结构有一个属性：`name`。
 
 ```swift
 import Vapor
@@ -44,7 +44,7 @@ protected.get("me") { req -> String in
 
 `req.auth.require` 方法用于获取经过身份认证的 `User`。如果身份验证失败，此方法将抛出错误，保护路由。
 
-### 防御中间件(Guard Middleware)
+### 守卫中间件(Guard Middleware)
 
 你还可以在路由组中使用 `GuardMiddleware` 中间件，以确保用户在到达路由处理之前已通过身份认证。
 
@@ -178,11 +178,11 @@ struct UserAuthenticator: AsyncBearerAuthenticator {
 
 如果你将此身份认证器添加到你的应用程序中，并测试上面定义的路由，你应该会看到登录成功并返回名为 `"Vapor"` 的用户。如果凭据不正确，你应该会看到 `401 未经授权` 的错误。
 
-## Composition
+## 组合(Composition)
 
 可以组合（组合在一起）多个身份认证器以创建更复杂的端点身份验证。由于身份认证器中间件不会在身份验证失败时拒绝请求，因此可以将多个中间件链接在一起。身份认证器可以通过两种关键方式组成。
 
-### Composing Methods
+### 组合方法
 
 身份认证组合的第一种方法是为同一用户类型链接多个身份认证器。举个例子：
 
@@ -201,7 +201,7 @@ app.grouped(UserPasswordAuthenticator())
 
 身份验证器的这种组合导致可以通过密码或令牌访问的路由。这样的路由可以允许用户登录并生成令牌，然后继续使用该令牌来生成新令牌。
 
-### Composing Users
+### 组合用户
 
 身份认证组合的第二种方法是链接不同用户类型的身份认证器。举个例子：
 
@@ -217,8 +217,6 @@ app.grouped(AdminAuthenticator())
 }
 ```
 
-此示例假设有两个身份验证器，并且分别对AdminAuthenticator和进行身份验证。这两个身份验证器都添加到路由组中。不是使用，而是在路由处理程序中添加检查以查看是否已通过身份验证。如果不是，则抛出错误。UserAuthenticatorAdminUserGuardMiddlewareAdminUser
-
 本例假设有两个认证器 `AdminAuthenticator` 和 `UserAuthenticator`，分别对 `Admin` 和 `User` 进行身份验证。这两个认证器都会添加到路由组中。没有使用`GuardMiddleware`，而是在路由处理中增加了一个检查，看看 `Admin` 或 `User` 是否通过了身份验证。如果不是，则抛出错误。
 
 身份认证器的这种组合导致可以由两种不同类型的用户使用可能不同的身份验证方法访问的路由。这样的路由可以允许正常的用户身份验证，同时仍然允许超级用户访问。
@@ -227,13 +225,13 @@ app.grouped(AdminAuthenticator())
 
 你还可以使用 `req.auth` 方法手动处理身份验证。这对于测试特别有用。
 
-要手动登录用户，请使用 `req.auth.login(_:)`。任何 `Authenticatable` 用户都可以传递给此方法。
+要手动登录用户，请使用 `req.auth.login(_:)` 方法。任何 `Authenticatable` 用户都可以传递给此方法。
 
 ```swift
 req.auth.login(User(name: "Vapor"))
 ```
 
-要获取经过身份验证的用户，请使用 `req.auth.require(_:)` 方法
+要获取经过身份验证的用户，请使用 `req.auth.require(_:)` 方法。
 
 ```swift
 let user: User = try req.auth.require(User.self)
@@ -255,7 +253,7 @@ req.auth.logout(User.self)
 
 ## Fluent
 
-[Fluent](../fluent/overview.zh.md)定义了两个协议 `ModelAuthenticatable` 和 `ModelTokenAuthenticatable` 可以添加到你已有的模型中。通过使你的模型遵循这些协议，可以创建用于保护终端的验证器。
+[Fluent](../fluent/overview.zh.md) 定义了两个协议 `ModelAuthenticatable` 和 `ModelTokenAuthenticatable` 可以添加到你已有的模型中。通过使你的模型遵循这些协议，可以创建用于保护终端的验证器。
 
 `ModelTokenAuthenticatable` 使用 Bearer 令牌进行身份验证。这是你用来保护大多数终端的工具。`ModelAuthenticatable` 使用用户名和密码进行身份验证，并由单个端点用于生成令牌。
 
@@ -587,7 +585,7 @@ Vapor 的 [Session API](../advanced/sessions.zh.md) 可用于在请求之间自�
 
 会话非常适合内置在 Vapor 中的前端 Web 应用程序，这些应用程序直接向 Web 浏览器提供 HTML。对于 API，我们建议使用无状态、基于令牌的身份验证在请求之间保留用户数据。
 
-### 可验证的会话
+### 可认证的会话
 
 要使用基于会话的身份验证，你需要一个遵循 `SessionAuthenticatable` 协议的类型。对于本例，我们将使用一个简单的结构。
 
@@ -611,7 +609,7 @@ extension User: SessionAuthenticatable {
 
 对于我们的简单 `User` 类型，我们将使用电子邮件地址作为唯一会话标识符。
 
-### Session Authenticator
+### 会话认证器
 
 接下来，我们需要一个 `SessionAuthenticator` 来处理从持久会话标识符中解析用户实例。
 
@@ -748,7 +746,7 @@ app.middleware.use(User.sessionAuthenticator())
 
 ### 保护路由
 
-当保护 API 的路由时，如果请求没有经过身份验证，通常会返回一个包含状态码（比如 **401 未经授权**）的 HTTP 响应。然而，对于使用浏览器的用户来说，这并不是一个很好的用户体验。Vapor 为任何了一个 `RedirectMiddleware` 中间件，用于该场景中的任何 `Authenticatable` 类型：
+当保护 API 的路由时，如果请求没有经过身份验证，通常会返回一个包含状态码（比如 **401 未经授权**）的 HTTP 响应。然而，对于使用浏览器的用户来说，这并不是一个很好的用户体验。Vapor 提供了一个 `RedirectMiddleware` 中间件，用于该场景中的任何 `Authenticatable` 类型：
 
 ```swift
 let protectedRoutes = app.grouped(User.redirectMiddleware(path: "/login?loginRequired=true"))
@@ -785,9 +783,7 @@ extension User: ModelCredentialsAuthenticatable {
 }
 ```
 
-这等同于ModelAuthenticatable，如果您已经遵守了，那么您不需要做任何其他事情。接下来将此ModelCredentialsAuthenticator中间件应用于您的登录表单 POST 请求：
-
-这与 `ModelAuthenticatable` 是相同的，如果你已经遵循该协议，那么你不需要做任何事情。接下来，将这个 `ModelCredentialsAuthenticator` 中间件应用到你的表单 POST 请求中:
+这与 `ModelAuthenticatable` 协议是相同的，如果你已经遵循该协议，那么你不需要做任何事情。接下来，将这个 `ModelCredentialsAuthenticator` 中间件应用到你的表单 POST 请求中:
 
 ```swift
 let credentialsProtectedRoute = sessionRoutes.grouped(User.credentialsAuthenticator())
@@ -805,8 +801,6 @@ credentialsProtectedRoute.post("login", use: loginPostHandler)
     <input type="submit" value="Sign In">    
 </form>
 ```
-
-从请求正文中CredentialsAuthenticator提取username和，password从用户名中找到用户并验证密码。如果密码有效，则中间件对请求进行身份验证。然后SessionAuthenticator对后续请求的会话进行身份验证。
 
 `CredentialsAuthenticator` 从请求体中提取 `username` 和 `password`，从用户名中找到用户并验证密码。如果密码有效，中间件将对请求进行身份验证。然后，`SessionAuthenticator` 为后续请求验证会话。
 
@@ -842,7 +836,7 @@ struct SessionToken: Content, Authenticatable, JWTPayload {
     }
 }
 ```
-。
+
 接下来，我们可以定义成功登录响应中包含的数据的表示形式。目前，响应将只有一个属性，即表示已签名的 JWT 的字符串。
 
 ```swift
