@@ -4,7 +4,7 @@
 
 ## 介绍
 
-Vapor 的身份认证 API 支持使用 [Basic](https://tools.ietf.org/html/rfc7617) 和 [Bearer](https://tools.ietf.org/html/rfc6750) 的 `Authorization` 头来对用户进行身份验证。它还支持通过从 [Content](../basics/content.zh.md) API 解码的数据对用户进行身份验证。
+Vapor 的身份认证 API 支持使用 [Basic](https://tools.ietf.org/html/rfc7617) 和 [Bearer](https://tools.ietf.org/html/rfc6750) 通过 `Authorization` 的 header 来对用户进行身份验证。它还支持通过从 [Content](../basics/content.zh.md) API 解码的数据对用户进行身份验证。
 
 身份认证是通过创建一个包含验证逻辑的 `Authenticator` 来实现的。身份认证器可用于保护单个路由组或整个应用程序。Vapor 提供了以下身份认证辅助工具：
 
