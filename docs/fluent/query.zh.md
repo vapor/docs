@@ -18,7 +18,7 @@ let planets = try await Planet.query(on: database)
 database.query(Planet.self)
 ```
 
-!!! 注意
+!!! note "注意" 
     你需要在使用 query 语句的文件中使用 `import Fluent` 导入此框架，之后编译器便可以识别/提示相关联的函数。
 
 ## All
@@ -48,7 +48,7 @@ let earth = try await Planet.query(on: database)
     .first()
 ```
 
-!!! 建议
+!!! tip "建议" 
     如果使用`EventLoopFuture`，此方法可以与 [`unwrap(or:)`](../basics/errors.md#abort) 组合使用以返回非可选模型或抛出错误。
 
 ## Filter

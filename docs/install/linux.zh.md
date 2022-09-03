@@ -7,7 +7,7 @@
 
 Vapor 与 Swift 5.2 或者更高的版本对 Linux 的版本支持保持一致。
 
-!!! 提示
+!!! note "注意"
     下面列出的版本可能会随时过期。你可以到 [Swift Releases](https://swift.org/download/#releases) 官方网站去确认官方支持的操作系统。
 
 |Distribution|Version|Swift Version|

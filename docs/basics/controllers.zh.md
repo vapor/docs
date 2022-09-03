@@ -58,7 +58,7 @@ struct TodosController: RouteCollection {
 
 `Controller` 的方法接受 `Request` 参数，并返回 `ResponseEncodable` 对象。该方法可以是异步或者同步(或者返回一个 `EventLoopFuture`)
 
-!!! 注意
+!!! note "注意" 
 	[EventLoopFuture](async.md) 期望返回值为 `ResponseEncodable` (i.e, `EventLoopFuture<String>`) 或 `ResponseEncodable`.
 
 最后，你需要在 `routes.swift` 中注册 Controller：

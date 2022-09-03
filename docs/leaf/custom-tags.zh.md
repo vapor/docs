@@ -40,7 +40,7 @@ func render(_ ctx: LeafContext) throws -> LeafData {
 }
 ```
 
-!!! 建议
+!!! tip "建议" 
     如果你的自定义标签用来渲染 HTML，你应该使你的自定义标记符合 `UnsafeUnescapedLeafTag`，这样 HTML 就不会被转义。别忘了检查或清除用户的任何输入。
 
 ## 配置标签

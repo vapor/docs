@@ -218,7 +218,7 @@ app.get("hello", ":name") { req -> String in
 }
 ```
 
-!!! 提示
+!!! tip "建议"
     我们可以确定 `req.parameters.get` 在这里绝不会返回 `nil` ，因为我们的路径包含 `:name`。 但是，如果要访问中间件中的路由参数或由多个路由触发的代码中的路由参数，则需要处理 `nil` 的可能性。
 
 `req.parameters.get` 还支持将参数自动转换为 `LosslessStringConvertible` 类型。
