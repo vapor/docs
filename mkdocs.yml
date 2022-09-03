@@ -242,6 +242,7 @@ nav:
   - JWT: "security/jwt.md"
 - Deploy:
   - DigitalOcean: "deploy/digital-ocean.md"
+  - Fly: "deploy/fly.md"
   - Heroku: "deploy/heroku.md"
   - Supervisor: "deploy/supervisor.md"
   - Systemd: "deploy/systemd.md"
