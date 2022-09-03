@@ -163,5 +163,5 @@ You can check your app's live logs using:
 fly logs
 ```
 
-## More
-You can easily scale your apps vertically and horizontally across multiple regions, set up autoscaling, add persistent volumes, and create distributed app clusters. For all of this and more, see the [complete documentation on fly.io](https://fly.io/docs/).
+## Next steps
+Now that your Vapor app is deployed, there is a lot more you can do such as scaling your apps vertically and horizontally across multiple regions, setting up autoscaling, adding persistent volumes, or even creating distributed app clusters. The best place to learn how to do all of this and more is the [Fly documentation](https://fly.io/docs/).
