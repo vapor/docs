@@ -165,18 +165,3 @@ fly logs
 
 ## More
 You can easily scale your apps vertically and horizontally across multiple regions, setup autosaling, add persistent volumes, create distributed app clusters. For all of this and more, see the [complete documentation on fly.io](https://fly.io/docs/).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
