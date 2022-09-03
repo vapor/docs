@@ -40,7 +40,7 @@ Create your new app with the following command, replacing `app-name` with the ap
 vapor new app-name
 ```
 
-This command will display an interactive prompt that will let you configure your Vapor project. It is recommended to select Fluent with a Postgres database type if you need a database; Fly makes it easy to create a managed Postgres database to connect your apps to (see the [dedicated section](#configuring-postgres) below).
+This command will display an interactive prompt that will let you configure your Vapor project. It is recommended to select Fluent with a Postgres database type if you need a database; Fly makes it easy to create a Postgres database to connect your apps to (see the [dedicated section](#configuring-postgres) below).
 
 The created project will contain a Dockerfile ready for use with Vapor and Fly.
 
