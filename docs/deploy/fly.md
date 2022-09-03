@@ -61,7 +61,7 @@ This will start an interactive prompt for multiple of your Fly app's settings, i
 - **Region:** the default is the one that's the closest to you. You can choose to use it or any other in the list. This is easy to change later.
 - **Database:** you can ask Fly to create a database to use with your app. If you prefer, you can always do the same later with the `fly pg create` and `fly pg attach` commands (see the [Configuring Postgres section](#configuring-postgres) for more details).
 
-The `fly launch` automatically creates a `fly.toml` file. It contains settings such as which ports to private/public port mappings, health checks parameters, and many others. If you just created a new project from scratch using `vapor new`, the default values present the `fly.toml` file should be fine. If you have an existing project, chances are `fly.toml` might also be ok with no or minor changes only. You can find more information in [the `fly.toml` docs](https://fly.io/docs/reference/configuration/).
+The `fly launch` automatically creates a `fly.toml` file. It contains settings such as private/public port mappings, health checks parameters, and many others. If you just created a new project from scratch using `vapor new`, the default values present the `fly.toml` file should be fine. If you have an existing project, chances are `fly.toml` might also be ok with no or minor changes only. You can find more information in [the `fly.toml` docs](https://fly.io/docs/reference/configuration/).
 
 Note that if you request Fly to create a database, you will have to wait a bit for it to be created and pass health checks.
 
