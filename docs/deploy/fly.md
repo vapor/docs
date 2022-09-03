@@ -103,7 +103,7 @@ This command will create a database and user destined to your app, and then expo
 ### Connecting your Vapor app to the database
 Once your app is attached to your database, Fly sets the `DATABASE_URL` environment variable to the a connection URL that contains your credentials (it should be treated as a sensitive information).
 
-With most common Vapor project setups, you configure your database in the `config.swift` file. Here is how you might want do this:
+With most common Vapor project setups, you configure your database in the `configure.swift` file. Here is how you might want do this:
 
 ```swift
 if let databaseURL = Environment.get("DATABASE_URL") {
