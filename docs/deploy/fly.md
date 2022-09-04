@@ -97,7 +97,7 @@ fly pg attach name-of-your-postgres-app
 ```
 If you don't know the name of your Postgres app, you can find it with `fly pg list`.
 
-The `fly pg attach` command will create a database and user destined to your app, and then expose it to your app through the `DATABASE_URL` environment variable. 
+The `fly pg attach` command creates a database and user destined to your app, and then exposes it to your app through the `DATABASE_URL` environment variable. 
 
 > Note that the difference between `fly pg create` and `fly pg attach` is that the former allocates and configures a Fly app that will be able to host Postgres databases, while the latter creates an actual database and user destined to the app of your choice. A single Postgres Fly app can host multiple databases used by various apps. When you ask fly to create a database app in `fly launch`, it does the equivalent of calling both `fly pg create` and `fly pg attach`.
 
