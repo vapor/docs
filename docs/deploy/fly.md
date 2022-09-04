@@ -95,6 +95,7 @@ Once your database app is created, go to your Vapor app's root directory and run
 ```bash
 fly pg attach name-of-your-postgres-app
 ```
+If you don't know the name of your Postgres app, you can find it with `fly pg list`.
 
 This command will create a database and user destined to your app, and then expose it to your app through the `DATABASE_URL` environment variable. 
 
