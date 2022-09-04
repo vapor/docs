@@ -165,4 +165,4 @@ fly logs
 ```
 
 ## Next steps
-Now that your Vapor app is deployed, there is a lot more you can do such as scaling your apps vertically and horizontally across multiple regions, setting up autoscaling, adding persistent volumes, or even creating distributed app clusters. The best place to learn how to do all of this and more is the [Fly documentation](https://fly.io/docs/).
+Now that your Vapor app is deployed, there is a lot more you can do such as scaling your apps vertically and horizontally across multiple regions, setting up autoscaling, adding persistent volumes, or even creating distributed app clusters. The best place to learn how to do all of this and more is the [Fly documentation website](https://fly.io/docs/).
