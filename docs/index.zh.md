@@ -1,10 +1,5 @@
 
-Vapor 是 Swift 最流行的 Web 网络框架。它可以为你的网站或 API 提供精美的页面展示和简易的使用方式。
-
-
-!!! 招募-翻译爱好者
-	Vapor 中文翻译小组现招募翻译爱好者参与文档的翻译和校对，你可以查看中文节点下尚未完成的部分，然后选一篇你感兴趣的文档进行翻译，之后 [在此](https://github.com/vapor/docs) 提交 PR，我们将在校对无误后同步更新在这个文档。
-
+欢迎来到 Vapor 文档！Vapor 是 Swift 最流行的 Web 网络框架，你可以使用 Swift 编写后端、Web 应用程序 API 和 HTTP 服务器。Vapor 是用 Swift 编写的，它是一种现代、强大且安全的语言，与传统的服务器语言相比具有许多优点。
 
 ## 开始
 
@@ -19,12 +14,12 @@ Vapor 安装完成后，请查看 [开始 → 你好，世界](getting-started/h
 
 | 名称          | 描述                                      | 链接                                          |
 |----------------|--------------------------------------------------|-----------------------------------------------------------------|
-| Vapor Discord  | 与数千名 Vapor 开发人员交流。         | [访问 &rarr;](http://vapor.team)                               |
+| Vapor Discord  | 与数千名 Vapor 开发人员交流。         | [访问 →](http://vapor.team)                               |
 | API docs       | 通过代码注释自动生成的文档。 | [访问 &rarr;](http://api.vapor.codes)                          |
-| Stack Overflow | 使用 `Vapor` 标签提问和回答相关问题。  | [访问 &rarr;](http://stackoverflow.com/questions/tagged/vapor) |
-| Swift Forums  |在 Swift.org 论坛的 Vapor 专题发布。   | [访问 &rarr;](https://forums.swift.org/c/related-projects/vapor)           |
-| Source Code    | 了解 Vapor 的工作原理。              | [访问 &rarr;](https://github.com/vapor/vapor)                  |
-| GitHub Issues  | 在 GitHub 上报告错误或提交功能。      | [访问 &rarr;](https://github.com/vapor/vapor/issues)           |
+| Stack Overflow | 使用 `Vapor` 标签提问和回答相关问题。  | [访问 →](http://stackoverflow.com/questions/tagged/vapor) |
+| Swift Forums  |在 Swift.org 论坛的 Vapor 专题发布。   | [访问 →](https://forums.swift.org/c/related-projects/vapor)           |
+| Source Code    | 了解 Vapor 的工作原理。              | [访问 →](https://github.com/vapor/vapor)                  |
+| GitHub Issues  | 在 GitHub 上报告错误或提交功能。      | [访问 →](https://github.com/vapor/vapor/issues)           |
 
 
 ## 旧版文档
