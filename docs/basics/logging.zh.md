@@ -23,7 +23,7 @@ app.get("hello") { req -> String in
 [ INFO ] Hello, logs! [request-id: C637065A-8CB0-4502-91DC-9B8615C5D315] (App/routes.swift:10)
 ```
 
-!!! info
+!!! info "信息"
     日志记录器的元数据仅在调试日志级别或者更低级别显示。
     
 

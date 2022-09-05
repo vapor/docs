@@ -154,7 +154,7 @@ print(futureInt) // EventLoopFuture<Int>
 
 `flatMapThrowing` 方法允许你把一个 future 值转换成另一个值 _或者_ 抛出一个错误。
 
-!!! 信息
+!!! info "信息"
     因为抛出错误必须在内部创建一个新的 future，所以这个方法前缀为 `flatMap`，即使闭包不接受 future 返回。
 
 ```swift
@@ -195,7 +195,7 @@ let futureResponse = futureString.flatMap { string in
 print(futureResponse) // EventLoopFuture<ClientResponse>
 ```
 
-!!! 信息
+!!! info "信息"
     如果我们在上面的例子中使用 `map`，我们将会得到：`EventLoopFuture<EventLoopFuture<ClientResponse>>`。
 
 要在 `flatMap` 中调用一个抛出方法，使用 Swift 的 `do` / `catch` 关键字并创建一个 [completed future](#makefuture)。
@@ -218,7 +218,7 @@ let futureResponse = futureString.flatMap { string in
 ### transform
 `transform` 方法允许你修改 future 的值，而忽略现有值。这对于转换 `EventLoopFuture<Void>` 的结果特别有用，在这种情况下 future 的实际值并不重要。
 
-!!! 建议
+!!! tip "建议" 
     `EventLoopFuture<Void>`，有时也被称为信号，是一个 future，它唯一目的是通知你某些异步操作的完成或失败。
 
 ```swift
@@ -295,7 +295,7 @@ futureString.whenComplete { result in
 }
 ```
 
-!!! note
+!!! note "注意"
     你可以向 future 添加任意数量的回调。
     
 ### Wait
@@ -313,7 +313,7 @@ print(string) /// String
 
 `wait()` 方法只能在后台线程或主线程中使用，也就是在 `configure.swift` 中。它 _不能_ 用于事件循环线程，也就是在路由闭包中。
 
-!!! 警告
+!!! warning "警告"
     试图在事件循环线程上调用 `wait()` 方法将导致断言失败。
 
     
@@ -338,7 +338,7 @@ promiseString.succeed("Hello")
 promiseString.fail(...)
 ```
 
-!!! info
+!!! info "信息"
     一个 promise 只能完成一次。任何后续的完成都将被忽略。
 
 任何线程都可以完成 promise（`成功`/`失败`）。这就是 promise 需要初始化事件循环的原因。promise 确保完成操作返回到它的事件循环中执行。
@@ -357,7 +357,7 @@ promiseString.fail(...)
 req.eventLoop.makePromise(of: ...)
 ```
 
-!!! warning
+!!! warning "警告"
     Vapor 预期路由闭包将保持在 `req.eventLoop` 上。如果你跳转线程，你必须确保对 `Request` 的访问和最终的响应都发生在请求的事件循环中。
 
 在路由闭包之外，你可以通过 `Application` 获得一个可用的事件循环。
@@ -414,7 +414,7 @@ app.get("hello") { req -> EventLoopFuture<String> in
 
 I/O 约束阻塞意味着等待较慢的资源，如网络或硬盘，这些资源可能比 CPU 慢几个数量级。在等待这些资源时阻塞 CPU 会导致时间的浪费。
 
-!!! danger
+!!! danger "危险"
     不要在事件循环中直接进行阻塞 I/O 约束调用.
 
 所有的 Vapor 包都构建在 SwiftNIO 上，并使用非阻塞 I/O。然而，现在有很多 Swift 包和 C 库使用了阻塞 I/O。如果一个函数正在进行磁盘或网络 IO 并使用同步 API（没有使用回调或 future），那么它很有可能是阻塞的。

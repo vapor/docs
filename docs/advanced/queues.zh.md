@@ -27,7 +27,7 @@ Queues 也有基于社区的驱动程序：
 - [QueuesMongoDriver](https://github.com/vapor-community/queues-mongo-driver)
 - [QueuesFluentDriver](https://github.com/m-barthelemy/vapor-queues-fluent-driver)
 
-!!! Tip
+!!! tip "建议"
     你不应该直接安装 `vapor/queues` 包，除非你正在构建一个新的驱动程序。安装其中一个驱动软件包即可。
 
 ## 入门
@@ -82,7 +82,7 @@ app.queues.add(emailJob)
 
 要启动新的队列 worker，请在终端运行 `vapor run queues`。 你还可以指定一个特定类型的 worker 来运行 `vapor run queues --queue emails`。
 
-!!! Tip
+!!! tip "建议"
     生产环境应该保持 worker 一直运行。咨询你的托管提供商，了解如何保持长时间运行的进程处于活动状态。例如，Heroku 允许你在 Procfile 中指定这样的 “worker” dynos：`worker: Run queues`。有了这个，你可以在仪表板/资源选项卡上启动 worker，或者使用 `heroku ps:scale worker=1`（或首选的任何数量的 dynos）。
 
 ### 进程中运行 Worker
@@ -99,7 +99,7 @@ try app.queues.startInProcessJobs(on: .default)
 try app.queues.startScheduledJobs()
 ```
 
-!!! Warning
+!!! warning "警告"
     如果你不通过命令行或进程内 worker 启动队列，job 将不会派发。
 
 ## `Job` 协议
@@ -149,9 +149,9 @@ struct EmailJob: AsyncJob {
 }
 ```
 
-!!! Info
+!!! info "信息"
     确保你的 `Payload` 类型遵循 `Codable` 协议。
-!!! Tip
+!!! tip "建议"
     不要忘记按照**入门**中的说明将此 job 添加到你的配置文件中。
 
 ## 派发 Job
@@ -316,7 +316,7 @@ Queues 包还允许你安排在特定时间点发生的 job。
 swift run Run queues --scheduled
 ```
 
-!!! Tip
+!!! tip "建议"
     生产环境应该保持 worker 一直运行。请咨询你的服务托管提供商，了解如何使长时间运行的进程保持活动状态。例如，Heroku 允许你在 Procfile 中像这样指定  “worker” dynos：`worker: Run queues --scheduled`
 
 ### 创建一个 `ScheduledJob`
@@ -357,7 +357,7 @@ app.queues.schedule(CleanupJob())
 
 上述示例中的 job 将在每年5月23日中午12:00运行。
 
-!!! Tip
+!!! tip "建议"
     调度程序采用你服务器的时区。
 
 ### 可用的构建器方法
