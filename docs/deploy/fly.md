@@ -20,7 +20,7 @@ brew install flyctl
 curl -L https://fly.io/install.sh | sh
 ```
 
-### Other options
+### Other install options
 For more options and details, see [the flyctl installation docs](https://fly.io/docs/hands-on/install-flyctl/).
 
 ## Logging in
@@ -45,7 +45,7 @@ This command will display an interactive prompt that will let you configure your
 The created project will contain a Dockerfile ready for use with Vapor and Fly.
 
 ### Existing Vapor project
-If you have an existing Vapor project, make sure you have a properly configured `Dockerfile` present at the root of your directory; the [Vapor docs about using Docker](../deploy/docker.md) might come in handy.
+If you have an existing Vapor project, make sure you have a properly configured `Dockerfile` present at the root of your directory; the [Vapor docs about using Docker](../deploy/docker.md) and [Fly docs about deploying an app via Dockerfile](https://fly.io/docs/getting-started/dockerfile/) might come in handy.
 
 ## Launch your app on Fly
 Once your Vapor project is ready, you can launch it on Fly.
@@ -61,7 +61,7 @@ This will start an interactive prompt for multiple of your Fly app's settings, i
 - **Region:** the default is the one that's the closest to you. You can choose to use it or any other in the list. This is easy to change later.
 - **Database:** you can ask Fly to create a database to use with your app. If you prefer, you can always do the same later with the `fly pg create` and `fly pg attach` commands (see the [Configuring Postgres section](#configuring-postgres) for more details).
 
-The `fly launch` automatically creates a `fly.toml` file. It contains settings such as private/public port mappings, health checks parameters, and many others. If you just created a new project from scratch using `vapor new`, the default `fly.toml` file should be fine. If you have an existing project, chances are `fly.toml` might also be ok with no or minor changes only. You can find more information in [the `fly.toml` docs](https://fly.io/docs/reference/configuration/).
+The `fly launch` command automatically creates a `fly.toml` file. It contains settings such as private/public port mappings, health checks parameters, and many others. If you just created a new project from scratch using `vapor new`, the default `fly.toml` file should be fine. If you have an existing project, chances are `fly.toml` might also be ok with no or minor changes only. You can find more information in [the `fly.toml` docs](https://fly.io/docs/reference/configuration/).
 
 Note that if you request Fly to create a database, you will have to wait a bit for it to be created and pass health checks.
 
@@ -89,7 +89,7 @@ If you didn't create a database app when you first launched your app, you can do
 fly pg create
 ```
 
-This command creates a Fly app that will be able to host databases available to your other apps on Fly. This app can be configured as a cluster for improved performance and redundancy.
+This command creates a Fly app that will be able to host databases available to your other apps on Fly, see the [dedicated Fly docs](https://fly.io/docs/reference/postgres/) for more details.
 
 Once your database app is created, go to your Vapor app's root directory and run:
 ```bash
@@ -99,7 +99,7 @@ If you don't know the name of your Postgres app, you can find it with `fly pg li
 
 The `fly pg attach` command creates a database and user destined to your app, and then exposes it to your app through the `DATABASE_URL` environment variable. 
 
-> Note that the difference between `fly pg create` and `fly pg attach` is that the former allocates and configures a Fly app that will be able to host Postgres databases, while the latter creates an actual database and user destined to the app of your choice. A single Postgres Fly app can host multiple databases used by various apps. When you ask fly to create a database app in `fly launch`, it does the equivalent of calling both `fly pg create` and `fly pg attach`.
+> Note that the difference between `fly pg create` and `fly pg attach` is that the former allocates and configures a Fly app that will be able to host Postgres databases, while the latter creates an actual database and user destined to the app of your choice. Provided it suits your requirements, a single Postgres Fly app could host multiple databases used by various apps. When you ask fly to create a database app in `fly launch`, it does the equivalent of calling both `fly pg create` and `fly pg attach`.
 
 ### Connecting your Vapor app to the database
 Once your app is attached to your database, Fly sets the `DATABASE_URL` environment variable to the connection URL that contains your credentials (it should be treated as sensitive information).
@@ -165,4 +165,4 @@ fly logs
 ```
 
 ## Next steps
-Now that your Vapor app is deployed, there is a lot more you can do such as scaling your apps vertically and horizontally across multiple regions, setting up autoscaling, adding persistent volumes, or even creating distributed app clusters. The best place to learn how to do all of this and more is the [Fly.io docs website](https://fly.io/docs/).
+Now that your Vapor app is deployed, there is a lot more you can do such as scaling your apps vertically and horizontally across multiple regions, adding persistent volumes, setting up continuous deployment, or even creating distributed app clusters. The best place to learn how to do all of this and more is the [Fly.io docs website](https://fly.io/docs/).
