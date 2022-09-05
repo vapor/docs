@@ -57,7 +57,7 @@ let buffer = req.fileio.collectFile(at: "/path/to/file")
 print(buffer)
 ```
 
-!!! 警告
+!!! warning "警告"
     此方法要求整个文件一次性加载到内存中。使用分块或流式读取来限制内存使用。
 
 ## 写入

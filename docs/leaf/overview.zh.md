@@ -273,7 +273,7 @@ The date is #date(now, "yyyy-MM-dd")
 The time is #unsafeHTML(styledTitle)
 ```
 
-!!! 注意 
+!!! note "注意"  
     使用此标签时应小心，确保你提供的变量不会使你的用户受到 XSS 攻击。
 
 #### `#dumpContext`

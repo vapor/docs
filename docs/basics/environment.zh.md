@@ -30,7 +30,7 @@ Vapor 包含下列环境：
 |development|dev|Local development.|
 |testing|test|For unit testing.|
 
-!!! info
+!!! info "信息"
     `production` 环境将默认为 `notice` 级别的日志记录，除非另有说明。所有其他环境默认为 `info`。
 
 您可以将全名或短名传递给`--env` (`-e`)标志。
@@ -84,7 +84,7 @@ let foo = Environment.get("FOO")
 print(foo) // String?
 ```
 
-!!! info
+!!! info "信息"
     在 `.env` 文件中指定的变量不会覆盖进程环境中已经存在的变量。
 
 在`.env`旁边，Vapor 还将尝试为当前环境加载一个dotenv文件。例如，在 `development` 环境中，蒸汽将加载 `.env.development`。特定环境文件中的任何值都将优先于 `.env` 文件内的值。
@@ -102,7 +102,7 @@ cp .env .env.development
 vim .env.development
 ```
 
-!!! warning
+!!! warning "警告"
     带有敏感信息(如密码)的Dotenv文件不应提交给版本控制。
 
 如果你在加载dotenv文件时遇到了困难，尝试使用 `--log debug` 来启用调试日志以获取更多信息。

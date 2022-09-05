@@ -108,7 +108,7 @@ try app.autoMigrate().wait()
 try await app.autoMigrate()
 ```
 
-!!! 提示
+!!! tip "建议"
     SQLite 配置自动对所有创建的连接启用外键约束，但不会更改数据库本身的外键配置。直接删除数据库中的记录可能会违反外键约束和触发器。
 
 #### MySQL
@@ -155,14 +155,14 @@ app.databases.use(.mysql(
 ), as: .mysql)
 ```
 
-!!! 警告
+!!! warning "警告"
     不要在生产中禁用证书验证。你应该向 `TLSConfiguration` 提供一个证书以进行验证。
 
 #### MongoDB
 
 MongoDB 是一种流行的无模式 NoSQL 数据库，专为程序员设计。该驱动程序支持 3.4 及更高版本的所有云托管提供商和自托管安装。
 
-!!! 注意
+!!! note "注意" 
     该驱动程序由一个名为 [MongoKitten](https://github.com/OpenKitten/MongoKitten) 的社区创建和维护的 MongoDB 客户端提供支持。MongoDB 维护着一个官方客户端，[mongo-swift-driver](https://github.com/mongodb/mongo-swift-driver) 以及 Vapor 集成的 [mongodb-vapor](https://github.com/mongodb/mongodb-vapor)。
 
 要使用 MongoDB，请将以下依赖项添加到你的 package 中。
@@ -217,7 +217,7 @@ final class Galaxy: Model {
 
 要创建一个新的模型，请创建一个遵循 `Model` 协议的类。
 
-!!! 建议
+!!! tip "建议" 
     建议将模型类标记为 `final`，以提高性能并简化一致性要求。
 
 `Model` 协议第一个要求是静态字符串 `schema`。
@@ -366,7 +366,7 @@ app.post("galaxies") { req -> EventLoopFuture<Galaxy> in
 }
 ```
 
-!!! 也可以看看
+!!! seealso "也可以看看"
     有关解码请求正文的更多信息，请参阅 [内容 → 概述](../basics/content.zh.md)。
 
 一旦有了模型的实例，调用 `create(on:)` 就会将模型保存到数据库中。这将返回一个 `EventLoopFuture<Void>` 表示保存已完成的信号。保存完成后，使用 `map` 返回新创建的模型。
@@ -459,7 +459,7 @@ self.$galaxy.id = galaxyID
 
 通过为父属性的名称添加前缀 `$`，你可以访问底层属性包装器。这是访问 `@Field` 存储实际标识符值的内部所必需的。
 
-!!! 也可以看看
+!!! seealso "也可以看看"
     查看 Swift Evolution 关于属性包装器的提案以获得更多信息:[[SE-0258] Property Wrappers](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md)
 
 接下来，创建一个迁移以准备数据库来处理 `Star`。

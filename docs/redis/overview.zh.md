@@ -4,7 +4,7 @@
 
 这个库是 Vapor 和 [**RediStack**](https://gitlab.com/mordil/redistack) 的集成，它是与 Redis 通信的底层驱动程序。
 
-!!! 注意
+!!! note "注意" 
     Redis 的大部分功能都是由 **RediStack** 提供的。我们强烈建议你熟悉其文档。
 
     _链接稍后提供。_
@@ -75,14 +75,14 @@ let serverAddresses: [SocketAddress] = [
 
 这使你不必自己将 `SELECT` 命令发送到 Redis。
 
-!!! 警告
+!!! warning "警告"
     未维护数据库选择。在自己发送 `SELECT` 命令时要小心。
 
 ### 连接池选项
 
 > API 文档：[`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration_PoolOptions/)
 
-!!! 注意
+!!! note "注意" 
     这里只突出显示最常更改的选项。对于所有选项，请参考 API 文档。
 
 #### 最小连接数
@@ -97,7 +97,7 @@ let serverAddresses: [SocketAddress] = [
 
 此选项确定如何维护最大连接数的行为。
 
-!!! 也可以看看
+!!! seealso "也可以看看"
     请参阅 `RedisConnectionPoolSize` API 文档以熟悉更多可用选项。
 
 ## 发送命令

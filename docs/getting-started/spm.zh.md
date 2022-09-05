@@ -63,7 +63,7 @@ dependencies 字段代表项目需要依赖的 package。所有 Vapor 应用都�
 
 Targets 是你的 package 里包含 modules、executables 以及 tests 总和。虽然可以添加任意多的 targets 来组织代码，但大部分 Vapor 应用有 3 个 target 就足够了。每个 target 声明了它依赖的 module。为了在代码中可以 import 这些 modules ，你必须在这里添加 module 名字。一个 target 可以依赖于工程中其它的 target 或者任意你添加在 [dependencies](#dependencies) 数组中且暴露出来的 modules。
 
-!!! tip
+!!! tip "建议"
     可运行 targets (包含 `main.swift` 文件的 target) 不能被其它 modules 导入。这就是为什么 Vapor 会有 `App` 和 `Run` 两种 target。任何包含在 App 中的代码都可以在 `AppTests` 中被测试验证。
 
 ## Folder Structure

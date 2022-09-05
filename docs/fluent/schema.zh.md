@@ -215,14 +215,14 @@ database.schema("planets").delete()
 .foreignKey("star_id", references: "stars", "id", onDelete: .cascade)
 ```
 
-!!! 警告
+!!! warning "警告"
     外键操作仅发生在数据库中，绕过 Fluent。这意味着模型中间件和软删除之类的东西可能无法正常工作。
 
 ## 字典(Dictionary)
 
 字典数据类型能够存储嵌套的字典值。这包括遵循 `Codable` 协议的结构和具有 `Codable` 值的 Swift 字典。
 
-!!! 注意
+!!! note "注意" 
     Fluent 的 SQL 数据库驱动程序将嵌套字典存储在 JSON 列中。
 
 采用以下 `Codable` 结构。
