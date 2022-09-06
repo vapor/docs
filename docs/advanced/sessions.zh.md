@@ -36,7 +36,7 @@ app.sessions.configuration.cookieFactory = { sessionID in
 
 会话驱动程序负责按标识符存储和检索会话数据。你可以通过遵循 `SessionDriver` 协议来创建自定义驱动程序。
 
-!!! 警告
+!!! warning "警告"
     应用程序中的会话驱动程序应在添加 `app.sessions.middleware` 前进行配置。
 
 ### 内存中
@@ -87,7 +87,7 @@ app.sessions.use(.redis)
 
 这将配置会话以使用具有默认行为的 Redis 会话驱动程序。
 
-!!! 也可以看看
+!!! seealso "也可以看看"
     了解有关 Redis 和 Sessions 的更多信息，请参阅[Redis → Sessions](../redis/sessions.zh.md)。
 
 ## 会话数据

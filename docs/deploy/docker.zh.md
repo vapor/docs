@@ -43,7 +43,7 @@ Dockerfile 告诉 Docker 如何构建 dockerized 应用程序的镜像。该镜�
 
 Docker Compose 文件定义了 Docker 应该如何构建彼此相关的多个服务。Vapor 应用程序模板中的 Docker Compose 文件提供了部署应用程序所需的功能，但如果你想了解更多信息，请参考[完整文档](https://docs.docker.com/compose/compose-file/)，其中包含所有可用选项的详细信息。
 
-!!! note
+!!! note "注意"
     如果你最终计划使用 Kubernetes 来部署你的应用程序，虽然它与 Docker Compose 文件并不直接相关。但是 Kubernetes 清单文件和 Docker Compose 文件在概念上是相似的，甚至还有一些项目旨在将 [Docker Compose 文件移植](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/)到 Kubernetes 清单文件中。
 
 新的 Vapor 应用程序中的 Docker Compose 文件将定义用于运行应用程序、运行迁移或恢复它们以及运行数据库作为应用程序持久层的服务。确切的定义将根据你在运行 `vapor new` 命令时选择使用的数据库而有所不同。
@@ -63,7 +63,7 @@ x-shared_environment: &shared_environment
 
 在此示例中 `DATABASE_HOST`，`DATABASE_NAME`，`DATABASE_USERNAME` 和 `DATABASE_PASSWORD` 变量是硬编码的，而 `LOG_LEVEL` 将从运行服务的环境中获取其值，或者如果未设置该变量，则回退到 `'debug'` 级别。
 
-!!! note
+!!! note "注意"
     对于本地开发来说，硬编码用户名和密码是可以接受的，但是你应该将这些变量存储在一个机密文件中，以便进行生产部署。在生产中处理此问题的一种方法是将机密文件导出到运行部署的环境中，并在 Docker Compose 文件中使用如下行：
 
     ```
@@ -252,7 +252,7 @@ docker service ls
 docker service scale --detach test_migrate=1
 ```
 
-!!! note
+!!! note "注意"
     我们刚刚将一个短服务扩展到1个副本，它将成功扩展、运行，然后退出。但是，这将使它与`0/1`副本一起运行。 在我们想再次运行迁移之前，这没什么大不了的，但如果它已经存在，我们不能告诉它“扩展到1个副本”。 这个设置的一个注意点是，下次我们想在同一个 Swarm 运行时中运行迁移时，我们需要先将服务缩减到 `0`，然后再回到 `1`。
 
 在这篇简短的指南中，我们的困扰得到了解决，现在我们可以将应用程序扩展到任何我们想要的范围，以测试它处理数据库争用、崩溃等问题的能力。

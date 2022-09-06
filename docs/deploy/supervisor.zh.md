@@ -68,5 +68,5 @@ supervisorctl add hello
 supervisorctl start hello
 ```
 
-!!! 注意
+!!! note "注意" 
 	`add` 命令可能已经启动了你的应用程序。

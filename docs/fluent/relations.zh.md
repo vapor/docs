@@ -99,7 +99,7 @@ try await database.schema(Governor.schema)
     .create()
 ```
 
-!!! 警告
+!!! warning "警告"
     从客户端模式中省略父 ID 字段的唯一性约束可能会导致不可预知的结果。如果没有唯一性约束，则子表可能最终包含任何给定父表的多个子行；在这种情况下，`@OptionalChild` 属性一次只能访问一个子级，无法控制加载哪个子级。如果你可能需要为任何给定的父级存储多个子行，请使用 `@Children`。
 
 ## Children
