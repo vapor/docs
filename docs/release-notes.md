@@ -4,6 +4,13 @@ Because it is hard, if not impossible to keep the documentation up-to-date const
 
 ## vapor 
 
+### v1.3.1 now this should work  
+#### a test
+
+another tes\\'ts 
+Link: [https://github.com/BennyDeBock/vapor/releases/tag/v1.3.1](https://github.com/BennyDeBock/vapor/releases/tag/v1.3.1) 
+
+
 
 
 ## Routing Kit
