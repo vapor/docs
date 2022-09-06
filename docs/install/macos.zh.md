@@ -45,4 +45,4 @@ vapor --help
 
 ## 下一步
 
-现在你已经安装了 Swift and Vapor Toolbox，在 [开始 &rarr; 你好，世界](../getting-started/hello-world.md) 中创建你的第一个 Vapor 应用程序。
+现在你已经安装了 Swift 和 Vapor Toolbox，在 [开始 → 你好，世界](../getting-started/hello-world.md) 中创建你的第一个 Vapor 应用程序。
