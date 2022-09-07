@@ -1,24 +1,95 @@
 # Vapor Release Notes
 
-Because it is hard, if not impossible to keep the documentation up-to-date constantly, here is where you will find release notes of various different packages linked to the Vapor ecosystem.
+Because it is hard, if not impossible to keep the documentation up-to-date constantly, here you will find release notes of various different packages linked to the Vapor ecosystem.
 
 ## vapor 
 
 
-
-## Routing Kit
-1.14.2 Extend routing-kit async options
+## fluent
 
 
+## fluent-kit
 
-## Console Kit
 
-<!--Store updated release-notes in temp file -->
-```bash
-awk '/<Title that the text should be under>/ {print; print "1.14.2 Extend routing-kit async options"; next}1' release-notes.md > test.txt
-```
+## leaf
 
-<!--Replace release-notes with updated release notes -->
-```bash
-awk test.txt > release-notes.md
-```
+
+## leaf-kit
+
+
+## fluent-postgres-driver
+
+
+## fluent-mysql-driver
+
+
+## fluent-sqlite-driver
+
+
+## fluent-mongo-driver
+
+
+## postgres-nio
+
+
+## mysql-nio
+
+
+## sqlite-nio
+
+
+## postgres-kit
+
+
+## mysql-kit
+
+
+## sqlite-kit
+
+
+## sql-kit
+
+
+## apns
+
+
+## queues
+
+
+## queues-redis-driver
+
+
+## redis
+
+
+## jwt
+
+
+## jwt-kit
+
+
+## websocket-kit
+
+
+## routing-kit
+
+
+## console-kit
+
+
+## async-kit
+
+
+## multipart-kit
+
+
+## toolbox
+
+
+## core
+
+
+## swift-codecov-action
+
+
+## api-docs
