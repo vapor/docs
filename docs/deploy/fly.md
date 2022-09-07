@@ -50,12 +50,12 @@ If you have an existing Vapor project, make sure you have a properly configured 
 ## Launch your app on Fly
 Once your Vapor project is ready, you can launch it on Fly.
 
-First, make sure your current directory is set to the root of your Vapor repository and run the following command:
+First, make sure your current directory is set to the root directory of your Vapor application and run the following command:
 ```bash
 fly launch
 ```
 
-This will start an interactive prompt for multiple of your Fly app's settings, including:
+This will start an interactive prompt to configure your Fly application settings:
 
 - **Name:** you can type one or keep it blank to get an automatically generated name.
 - **Region:** the default is the one that's the closest to you. You can choose to use it or any other in the list. This is easy to change later.
@@ -68,9 +68,6 @@ Note that if you request Fly to create a database, you will have to wait a bit f
 Before exiting, the `fly launch` command will ask you if you would like to deploy your app immediately. You can accept it or do it later using `fly deploy`.
 
 > Tip: when your current directory is in your app's root, the fly CLI tool automatically detects the presence of a `fly.toml` file which lets Fly know which app your commands are targetting. If you want to target a specific app no matter your current directory, you can append `-a name-of-your-app` to most Fly commands.
-
-
-
 
 ## Deploying
 You run the `fly deploy` command whenever you need to deploy new changes to Fly.
