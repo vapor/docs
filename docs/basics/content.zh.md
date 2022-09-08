@@ -1,9 +1,9 @@
 # 内容
 
-基于 Vapor 的 content API，你可以轻松地对 HTTP 消息中的可编码结构进行编码/解码。默认使用 [JSON](https://tools.ietf.org/html/rfc7159) 编码，并支持 [URL-Encoded Form](https://en.wikipedia.org/wiki/Percent-encoding#The_application/x-www-form-urlencoded_type) 和 [Multipart](https://tools.ietf.org/html/rfc2388)。content API 可以灵活配置，允许你为某些 HTTP 请求类型添加、修改或替换编码策略。
+基于 Vapor 的 content API，你可以轻松地对 HTTP 消息中的可编码结构进行编码/解码。默认使用 [JSON](https://tools.ietf.org/html/rfc7159) 编码，并支持 [URL-Encoded Form](https://en.wikipedia.org/wiki/Percent-encoding#The_application/x-www-form-urlencoded_type) 和 [Multipart](https://tools.ietf.org/html/rfc2388)。Content API 可以灵活配置，允许你为某些 HTTP 请求类型添加、修改或替换编码策略。
 
 
-## 总览
+## 概述
 
 要了解 Vapor 的 content API 是如何工作的，你应该先了解一些关于 HTTP 的基础知识。
 看看下面这个请求的示例：
@@ -16,11 +16,11 @@ content-length: 18
 {"hello": "world"}
 ```
 
-该请求表明，它包含使用 `content-type` 标头和 `application/json` 媒体类型的JSON编码数据。如前所述，JSON 数据在正文中的标头之后。
+该请求表明，它包含使用 `content-type` 标头和 `application/json` 媒体类型的 JSON 编码数据。如前所述，JSON 数据在正文中的标头之后。
 
 ### 内容结构
 
-解码此HTTP消息的第一步是创建匹配预期结构的可编码类型。
+解码此 HTTP 消息的第一步是创建匹配预期结构的可编码类型。
 
 ```swift
 struct Greeting: Content {
@@ -42,7 +42,7 @@ app.post("greeting") { req in
 
 解码方法使用请求的 content 类型来寻找合适的解码器，如果没有找到解码器，或者请求中不包含 content 类型标头，将抛出 `415` 错误。
 
-这意味着该路由自动接受所有其他支持的内容类型，如url编码形式:
+这意味着该路由自动接受所有其他支持的内容类型，如 url-encoded form 形式:
 
 ```http
 POST /greeting HTTP/1.1
@@ -50,6 +50,16 @@ content-type: application/x-www-form-urlencoded
 content-length: 11
 
 hello=world
+```
+
+在文件上传的情况下，你的内容属性必须是 `Data` 类型。
+
+```swift
+struct Profile: Content {
+    var name: String
+    var email: String
+    var image: Data
+}
 ```
 
 ### 支持的媒体类型
@@ -64,11 +74,11 @@ hello=world
 |Plaintext|text/plain|`.plainText`|
 |HTML|text/html|`.html`|
 
-不是所有的媒体类型都支持所有的 Codable 协议。例如，JSON 不支持顶层片段，Plaintext 不支持嵌套数据。
+不是所有的媒体类型都支持所有的 `Codable` 协议。例如，JSON 不支持顶层片段，Plaintext 不支持嵌套数据。
 
 ## 查询
 
-Vapor的 Content API 支持处理 URL 查询字符串中的 URL 编码数据。
+Vapor 的 Content API 支持处理 URL 查询字符串中的 URL 编码数据。
 
 ### 解码
 
@@ -87,7 +97,7 @@ struct Hello: Content {
 }
 ```
 
-注意：`name` 是一个可选的 `String`，因为 URL 查询字符串应该是可选的。如果你需要一个参数，请用路由参数代替。
+注意 `name` 是一个可选的 `String`，因为 URL 查询字符串应该是可选的。如果你需要一个参数，请用路由参数代替。
 
 现在，你已经为该路由的预期查询字符串提供了 `Content` 结构，可以对其进行解码了。
 
@@ -222,7 +232,7 @@ public protocol URLQueryEncoder {
 
 遵循这些协议，可以将你的自定义编码器注册到 `ContentConfiguration` 中，以使用 `use(urlEncoder:)` 和 `use(urlDecoder:)` 方法处理 URL 查询字符串。
 
-### Custom `ResponseEncodable`
+### 自定义 `ResponseEncodable`
 
 另一种方法涉及到在你的类型上实现 `ResponseEncodable`，请看下面这个 `HTML` 包装类型。
 
@@ -257,9 +267,9 @@ extension HTML: AsyncResponseEncodable {
   }
 }
 ```
-注意，它允许自定义“Content-Type”头，查看更多请查阅 [`HTTPHeaders` reference](https://api.vapor.codes/vapor/main/Vapor/)
+注意，它允许自定义 `Content-Type` 头，查看更多请查阅 [`HTTPHeaders` 文档](https://api.vapor.codes/vapor/main/Vapor/)
 
-接下来，你可以在你的路由中使用 `HTML` 作为 response：
+接下来，你可以在你的路由中使用 `HTML` 作为响应类型：
 
 ```swift
 app.get { _ in
