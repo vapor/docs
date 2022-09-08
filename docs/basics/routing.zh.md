@@ -13,7 +13,7 @@ host: vapor.codes
 content-length: 0
 ```
 
-这是对 URL `/hello/vapor` 的一个简单的 HTTP 请求。 如果你将其指向以下 URL，则浏览器将发出这样的 HTTP 请求：
+这是对 URL `/hello/vapor` 的一个简单的 `GET` HTTP 请求。 如果你将其指向以下 URL，则浏览器将发出这样的 HTTP 请求：
 
 ```
 http://vapor.codes/hello/vapor
@@ -21,7 +21,7 @@ http://vapor.codes/hello/vapor
 
 ### HTTP 方法
 
-请求的第一部分是 HTTP 方法。其中 GET 是最常见的 HTTP 方法，以下这些是经常会使用几种方法，这些 HTTP 方法通常与 [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) 语义相关联。
+请求的第一部分是 HTTP 方法。其中 `GET` 是最常见的 HTTP 方法，以下这些是经常会使用几种方法，这些 HTTP 方法通常与 [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) 语义相关联。
 
 
 |Method|CURD|
@@ -110,7 +110,7 @@ Hello, swift!
 可以使用多种 HTTP 方法帮助程序将路由直接注册到你的 `Application` 。
 
 ```swift
-// responds to GET /foo/bar/baz
+// 响应到 GET /foo/bar/baz
 app.get("foo", "bar", "baz") { req in
 	...
 }
@@ -137,7 +137,7 @@ app.get("foo") { req -> String in
 除了 HTTP 方法协助程序外，还有一个 `on` 函数可以接受 HTTP 方法作为输入参数。
 
 ```swift
-// responds to OPTIONS /foo/bar/baz
+// 响应到 OPTIONS /foo/bar/baz
 app.on(.OPTIONS, "foo", "bar", "baz") { req in
 	...
 }
@@ -158,7 +158,7 @@ app.on(.OPTIONS, "foo", "bar", "baz") { req in
 这是静态路由组件。仅允许在此位置具有完全匹配的字符串的请求。
 
 ```swift
-// responds to GET /foo/bar/baz
+// 响应到 GET /foo/bar/baz
 app.get("foo", "bar", "baz") { req in
 	...
 }
@@ -169,8 +169,8 @@ app.get("foo", "bar", "baz") { req in
 这是一个动态路由组件。此位置的任何字符串都将被允许。参数路径组件以 `:` 前缀指定。`:` 后面的字符串将用作参数名称。你可以使用该名称稍后从请求中获取参数值。
 
 ```swift
-// responds to GET /foo/bar/baz
-// responds to GET /foo/qux/baz
+// 响应到 GET /foo/bar/baz
+// 响应到 GET /foo/qux/baz
 // ...
 app.get("foo", ":bar", "baz") { req in
 	...
@@ -182,8 +182,8 @@ app.get("foo", ":bar", "baz") { req in
 除了丢弃值之外，这与参数路径非常相似。此路径组件仅需指定为 `*` 。
 
 ```swift
-// responds to GET /foo/bar/baz
-// responds to GET /foo/qux/baz
+// 响应到 GET /foo/bar/baz
+// 响应到 GET /foo/qux/baz
 // ...
 app.get("foo", "*", "baz") { req in
 	...
@@ -192,11 +192,11 @@ app.get("foo", "*", "baz") { req in
 
 #### 通配路径
 
-这是与一个或多个组件匹配的动态路由组件，仅使用 `**` 指定。请求中将允许匹配此位置或更高位置的任何字符串。
+这是与一个或多个组件匹配的动态路由组件，仅使用 `**` 指定。请求中将允许匹配此位置或之后位置的任何字符串。
 
 ```swift
-// responds to GET /foo/bar
-// responds to GET /foo/bar/baz
+// 响应到 GET /foo/bar
+// 响应到 GET /foo/bar/baz
 // ...
 app.get("foo", "**") { req in 
     ...
@@ -205,12 +205,12 @@ app.get("foo", "**") { req in
 
 ### 参数
 
-使用参数路径组件（以 `:` 前缀）时，该位置的 URI 值将存储在 `req.parameters` 中。 你可以使用路径组件中的名称来访问。
+使用参数路径组件（以 `:` 前缀）时，该位置的 URI 值将存储在 `req.parameters` 中。 你可以使用路径组件中的名称来访问该值。
 
 
 ```swift
-// responds to GET /hello/foo
-// responds to GET /hello/bar
+// 响应到 GET /hello/foo
+// 响应到 GET /hello/bar
 // ...
 app.get("hello", ":name") { req -> String in
     let name = req.parameters.get("name")!
@@ -221,12 +221,15 @@ app.get("hello", ":name") { req -> String in
 !!! tip "建议"
     我们可以确定 `req.parameters.get` 在这里绝不会返回 `nil` ，因为我们的路径包含 `:name`。 但是，如果要访问中间件中的路由参数或由多个路由触发的代码中的路由参数，则需要处理 `nil` 的可能性。
 
+!!! tip "建议"
+    如果你想检索 URL 中的查询参数，例如：`/hello/?name=foo`，则需要使用 Vapor 的 Content API 来处理 URL 查询字符串中的 URL 编码数据。请参阅 [Content 文档](content.zh.md)了解更多细节。
+
 `req.parameters.get` 还支持将参数自动转换为 `LosslessStringConvertible` 类型。
 
 
 ```swift
-// responds to GET /number/42
-// responds to GET /number/1337
+// 响应到 GET /number/42
+// 响应到 GET /number/1337
 // ...
 app.get("number", ":x") { req -> String in 
 	guard let int = req.parameters.get("x", as: Int.self) else {
@@ -236,14 +239,26 @@ app.get("number", ":x") { req -> String in
 }
 ```
 
+通过 Catchall (`**`) 匹配的 URI 的值将以 `[String]` 的形式存储在 `req.parameters` 中。你可以使用 `req.parameters.getCatchall` 方法来访问这些组件。
+
+```swift
+// 响应到 GET /hello/foo
+// 响应到 GET /hello/foo/bar
+// ...
+app.get("hello", "**") { req -> String in
+    let name = req.parameters.getCatchall().joined(separator: " ")
+    return "Hello, \(name)!"
+}
+```
+
 ### Body 数据流
 
-当使用 `on` 方法注册一个路由时，你可以设置 request body 应该如何被处理。默认情况下，request bodies 被收集到内存中在调用你的 handler 之前。这很有用，因为它允许同步解码请求内容，即使您的应用程序异步读取传入请求。
+当使用 `on` 方法注册一个路由时，你可以设置 request body 应该如何被处理。默认情况下，在调用你的 handler 之前 request bodies 被收集到内存中。这很有用，因为它允许同步解码请求内容，即使你的应用程序异步读取传入请求。
 
 默认情况下，Vapor 将会限制 streaming body collection 的大小为16KB，你可以使用 `app.routes` 来配置它。
 
 ```swift
-// Increases the streaming body collection limit to 500kb
+// 将流体收集限制增加到500kb
 app.routes.defaultMaxBodySize = "500kb"
 ```
 如果收集到的 streaming body 大小超过了配置的限制，`413 Payload Too Large` 错误将会被抛出。
@@ -251,17 +266,17 @@ app.routes.defaultMaxBodySize = "500kb"
 使用 `body` 参数来为一个单独的路由设置 request body 收集策略。
 
 ```swift
-// Collects streaming bodies (up to 1mb in size) before calling this route.
+// 在调用此路由之前收集流体（大小不超过1mb）。
 app.on(.POST, "listings", body: .collect(maxSize: "1mb")) { req in
-    // Handle request. 
+    // 处理请求。
 }
 ```
-如果一个 `maxSize` 被传到 `collect`，它将会覆盖应用的默认配置对这个路由。如果要使用应用的默认配置，请忽略 `maxSize` 参数.
+如果一个 `maxSize` 被传到 `collect`，对这个路由它将会覆盖应用的默认配置。如果要使用应用的默认配置，请忽略 `maxSize` 参数.
 
 对于像文件上传这样的大请求，在缓冲区中收集 request body 可能会占用系统内存。为了防止 request body 收集，使用 `stream` 策略。
 
 ```swift
-// Request body will not be collected into a buffer.
+// 请求正文不会被收集到缓冲区中。
 app.on(.POST, "upload", body: .stream) { req in
     ...
 }
@@ -270,8 +285,7 @@ app.on(.POST, "upload", body: .stream) { req in
 
 ### 大小写敏感
 
-路由的默认行为是区分大小写和保留大小写的。
-若想不区分大小写方式处理`常量`路径组件；启用此行为，请在应用程序启动之前进行配置：
+路由的默认行为是区分大小写和保留大小写的。若想不区分大小写方式处理`常量`路径组件；要启用此行为，请在应用程序启动之前配置:
 ```swift
 app.routes.caseInsensitive = true
 ```
@@ -407,7 +421,7 @@ auth.get("logout") { ... }
 
 ## 重定向
 
-重定向在很多场景中很有用，像转发旧页面到新页面为了 SEO，把未认证的用户转发到登录页面或保持与API的新版本的向后兼容性。
+重定向在很多场景中很有用，像转发旧页面到新页面为了 SEO，把未认证的用户转发到登录页面或保持与 API 的新版本的向后兼容性。
 
 要转发一个请求，请用：
 
@@ -425,6 +439,6 @@ req.redirect(to: "/some/new/path", type: .permanent)
 
 * `.permanent` - 返回一个 **301 Permanent** 重定向。 
 * `.normal` - 返回一个 **303 see other** 重定向。这是 Vapor 的默认行为，来告诉客户端去使用一个 **GET** 请求来重定向。
-* `.temporary` - 返回一个 **307 Temporary** 重定向. 这告诉客户端保留请求中使用的HTTP方法。
+* `.temporary` - 返回一个 **307 Temporary** 重定向. 这告诉客户端保留请求中使用的 HTTP 方法。
 
 > 要选择正确的重定向状态码，请参考 [the full list](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_redirection)
