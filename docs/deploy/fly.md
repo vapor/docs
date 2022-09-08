@@ -2,7 +2,8 @@
 
 Fly is a hosting platform that enables running servers and databases with a focus on edge computing. See [their website](https://fly.io/) for more information.
 
-> Commands specified in this document are subject to [Fly's pricing](https://fly.io/docs/about/pricing/), make sure you understand it properly before continuing.
+!!! note
+    Commands specified in this document are subject to [Fly's pricing](https://fly.io/docs/about/pricing/), make sure you understand it properly before continuing.
 
 ## Signing up
 If you don't have an account, you will need to [create one](https://fly.io/app/sign-up).
@@ -67,7 +68,8 @@ Note that if you request Fly to create a database, you will have to wait a bit f
 
 Before exiting, the `fly launch` command will ask you if you would like to deploy your app immediately. You can accept it or do it later using `fly deploy`.
 
-> Tip: when your current directory is in your app's root, the fly CLI tool automatically detects the presence of a `fly.toml` file which lets Fly know which app your commands are targetting. If you want to target a specific app no matter your current directory, you can append `-a name-of-your-app` to most Fly commands.
+!!! tip
+    When your current directory is in your app's root, the fly CLI tool automatically detects the presence of a `fly.toml` file which lets Fly know which app your commands are targetting. If you want to target a specific app no matter your current directory, you can append `-a name-of-your-app` to most Fly commands.
 
 ## Deploying
 You run the `fly deploy` command whenever you need to deploy new changes to Fly.
@@ -96,7 +98,8 @@ If you don't know the name of your Postgres app, you can find it with `fly pg li
 
 The `fly pg attach` command creates a database and user destined to your app, and then exposes it to your app through the `DATABASE_URL` environment variable. 
 
-> Note that the difference between `fly pg create` and `fly pg attach` is that the former allocates and configures a Fly app that will be able to host Postgres databases, while the latter creates an actual database and user destined to the app of your choice. Provided it suits your requirements, a single Postgres Fly app could host multiple databases used by various apps. When you ask fly to create a database app in `fly launch`, it does the equivalent of calling both `fly pg create` and `fly pg attach`.
+!!! note
+    The difference between `fly pg create` and `fly pg attach` is that the former allocates and configures a Fly app that will be able to host Postgres databases, while the latter creates an actual database and user destined to the app of your choice. Provided it suits your requirements, a single Postgres Fly app could host multiple databases used by various apps. When you ask Fly to create a database app in `fly launch`, it does the equivalent of calling both `fly pg create` and `fly pg attach`.
 
 ### Connecting your Vapor app to the database
 Once your app is attached to your database, Fly sets the `DATABASE_URL` environment variable to the connection URL that contains your credentials (it should be treated as sensitive information).
@@ -124,7 +127,8 @@ With `fly.toml`'s `release_command`, you can ask Fly to run a certain command be
  release_command = "migrate -y"
 ```
 
-> The code snippet above assumes you are using the default Vapor Dockerfile which sets your app `ENTRYPOINT` to `./Run`. Concretely, this means that when you set `release_command` to `migrate -y`, Fly will call `./Run migrate -y`. If your `ENTRYPOINT` is set to a different value, you will need to adapt the value of `release_command`.
+!!! note
+    The code snippet above assumes you are using the default Vapor Dockerfile which sets your app `ENTRYPOINT` to `./Run`. Concretely, this means that when you set `release_command` to `migrate -y`, Fly will call `./Run migrate -y`. If your `ENTRYPOINT` is set to a different value, you will need to adapt the value of `release_command`.
 
 Fly will run your release command in a temporary instance that has access to your internal Fly network, secrets, and environment variables.
 
@@ -140,7 +144,8 @@ Use secrets to set any sensitive environment variable.
  fly secrets set MYSECRET=A_SUPER_SECRET_VALUE
 ```
 
-> Tip: Keep in mind that most shells keep an history of the commands you typed. Be cautious about this when setting secrets this way. Some shells can be configured to not remember commands that are prefixed by a whitespace.
+!!! warning
+    Keep in mind that most shells keep an history of the commands you typed. Be cautious about this when setting secrets this way. Some shells can be configured to not remember commands that are prefixed by a whitespace. See also the [`fly secrets import` command](https://fly.io/docs/flyctl/secrets-import/).
 
 For more information, see the [documentation of fly secrets](https://fly.io/docs/reference/secrets/).
 
