@@ -130,6 +130,9 @@ Fly will run your release command in a temporary instance that has access to you
 
 If your release command fails, the deployment won't continue.
 
+### Other databases
+While Fly makes it easy to create a Postgres database app, it is possible to host other types of databases as well (for instance, see ["Use a MySQL database"](https://fly.io/docs/app-guides/mysql-on-fly/) on Fly.io Docs).
+
 ## Secrets and environment variables
 ### Secrets
 Use secrets to set any sensitive environment variable.
