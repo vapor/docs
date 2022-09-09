@@ -31,19 +31,26 @@ fly auth login
 ```
 
 ## Configuring your Vapor project
-Before deploying to Fly, you must make sure you have a Vapor project with an adequately configured Dockerfile since it is required by Fly to build your app. In most cases, this should be very easy since the default Vapor template already contains one.
+Before deploying to Fly, you must make sure you have a Vapor project with an adequately configured Dockerfile since it is required by Fly to build your app. In most cases, this should be very easy since the default Vapor templates already contain one.
 
 ### New Vapor project
-If you want to create a new project from scratch, first ensure you have installed the Vapor toolbox (see install the instructions for [macOS](../install/macos.md#install-toolbox) or [Linux](../install/linux.md#install-toolbox)).
+To easiest way to create a new project is to start with a template. You can create one using GitHub templates or the Vapor toolbox. If you need a database, it is recommended to use Fluent with Postgres; Fly makes it easy to create a Postgres database to connect your apps to (see the [dedicated section](#configuring-postgres) below).
 
+#### Using GitHub templates
+Choose the template that best suits your needs in the following list. You can either clone it locally using Git or create a GitHub project with the "Use this template" button.
+
+- [Barebones template](https://github.com/vapor/template-bare)
+- [Fluent/Postgres template](https://github.com/vapor/template-fluent-postgres)
+- [Fluent/Postgres + Leaf template](https://github.com/vapor/template-fluent-postgres-leaf)
+
+#### Using the Vapor toolbox
+First, ensure you have installed the Vapor toolbox (see install the instructions for [macOS](../install/macos.md#install-toolbox) or [Linux](../install/linux.md#install-toolbox)).
 Create your new app with the following command, replacing `app-name` with the app name you desire:
 ```bash
 vapor new app-name
 ```
 
-This command will display an interactive prompt that will let you configure your Vapor project. It is recommended to select Fluent with a Postgres database type if you need a database; Fly makes it easy to create a Postgres database to connect your apps to (see the [dedicated section](#configuring-postgres) below).
-
-The created project will contain a Dockerfile ready for use with Vapor and Fly.
+This command will display an interactive prompt that will let you configure your Vapor project, this is where you can select Fluent and Postgres if you need them.
 
 ### Existing Vapor project
 If you have an existing Vapor project, make sure you have a properly configured `Dockerfile` present at the root of your directory; the [Vapor docs about using Docker](../deploy/docker.md) and [Fly docs about deploying an app via Dockerfile](https://fly.io/docs/getting-started/dockerfile/) might come in handy.
@@ -147,7 +154,7 @@ Use secrets to set any sensitive environment variable.
 !!! warning
     Keep in mind that most shells keep an history of the commands you typed. Be cautious about this when setting secrets this way. Some shells can be configured to not remember commands that are prefixed by a whitespace. See also the [`fly secrets import` command](https://fly.io/docs/flyctl/secrets-import/).
 
-For more information, see the [documentation of fly secrets](https://fly.io/docs/reference/secrets/).
+For more information, see the [documentation of `fly secrets`](https://fly.io/docs/reference/secrets/).
 
 ### Environment variables
 You can set other non-sensitive [environment variables in `fly.toml`](https://fly.io/docs/reference/configuration/#the-env-variables-section), for instance:
