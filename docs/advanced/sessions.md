@@ -29,6 +29,8 @@ app.sessions.configuration.cookieName = "foo"
 app.sessions.configuration.cookieFactory = { sessionID in
     .init(string: sessionID.string, isSecure: true)
 }
+
+app.middleware.use(app.sessions.middleware)
 ```
 
 By default, Vapor will use `vapor_session` as the cookie name.
