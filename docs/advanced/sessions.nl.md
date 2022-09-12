@@ -6,7 +6,7 @@ Sessies zijn geweldig voor front-end webapplicaties gebouwd in Vapor die HTML di
 
 ## Configuratie
 
-Om sessies in een route te gebruiken, moet het verzoek door `SessionsMiddleware` gaan. De makkelijkste manier om dit te bereiken is door deze middleware globaal toe te voegen.
+Om sessies in een route te gebruiken, moet het verzoek door `SessionsMiddleware` gaan. De makkelijkste manier om dit te bereiken is door deze middleware globaal toe te voegen. Het is aanbevolen dat u dit toevoegt nadat u de cookie-fabriek hebt gedeclareerd. Dit komt omdat Sessions een struct is, en daarom is het een value type, en geen reference type. Omdat het een value type is, moet je de waarde instellen voordat je `SessionsMiddleware` gebruikt.
 
 ```swift
 app.middleware.use(app.sessions.middleware)
@@ -28,6 +28,8 @@ app.sessions.configuration.cookieName = "foo"
 app.sessions.configuration.cookieFactory = { sessionID in
     .init(string: sessionID.string, isSecure: true)
 }
+
+app.middleware.use(app.sessions.middleware)
 ```
 
 Standaard zal Vapor `vapor_session` gebruiken als cookie naam.
