@@ -2,7 +2,7 @@
 
 Vapor 的错误处理基于 Swift 的 `Error` 协议。路由处理可以通过 `throw` 抛出或返回 `EventLoopFuture` 对象。抛出或返回 Swift 的 `Error` 将导致`500`状态响应并记录错误。`AbortError` 和 `DebuggableError` 分别用于更改响应结果和记录日志。错误的处理由 `ErrorMiddleware` 中间件完成。此中间件默认添加到应用程序中，如果需要，可以用自定义逻辑替换
 
-## 中断
+## 中断(Abort)
 
 Vapor 提供了名为 `Abort` 的默认错误结构。该结构遵循 `AbortError` 和 `DebuggableError` 协议。你可以使用 HTTP 状态和可选的失败原因对其进行初始化。
 

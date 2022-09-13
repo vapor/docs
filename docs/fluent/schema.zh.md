@@ -196,7 +196,7 @@ database.schema("planets").delete()
 .foreignKey("star_id", references: "stars", "id")
 ```
 
-与字段约束不同，可以在模式更新中添加顶级约束。它们也可以被[命名](#Constraint-Name)。
+与字段约束不同，可以在模式更新中添加顶级约束。它们也可以被[命名](#constraint-name)。
 
 外键约束支持可选 `onDelete` 和 `onUpdate` 操作。
 

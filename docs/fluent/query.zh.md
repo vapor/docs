@@ -11,7 +11,7 @@ let planets = try await Planet.query(on: database)
     .all()
 ```
 
-查询构建器与单个模型类型相关联，可以使用静态 [`query`](model.md#query) 方法创建。也可以通过将模型类型传递给数据库对象上的 `query` 方法来创建它们。
+查询构建器与单个模型类型相关联，可以使用静态 [`query`](model.zh.md#query) 方法创建。也可以通过将模型类型传递给数据库对象上的 `query` 方法来创建它们。
 
 ```swift
 // 也可这样创建查询构建器。
@@ -49,7 +49,7 @@ let earth = try await Planet.query(on: database)
 ```
 
 !!! tip "建议" 
-    如果使用`EventLoopFuture`，此方法可以与 [`unwrap(or:)`](../basics/errors.md#abort) 组合使用以返回非可选模型或抛出错误。
+    如果使用`EventLoopFuture`，此方法可以与 [`unwrap(or:)`](../basics/errors.zh.md#abort) 组合使用以返回非可选模型或抛出错误。
 
 ## Filter
 
