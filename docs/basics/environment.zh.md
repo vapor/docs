@@ -67,7 +67,7 @@ vapor run serve
 
 Dotenv 文件包含一个键值对列表，这些键值对将自动加载到环境中。这些文件使配置环境变量变得很容易，而不需要手动设置它们。
 
-Vapor 将在当前工作目录中查找 dotenv 文件。如果你使用 Xcode，确保通过编辑 `Run` scheme 设置工作目录。
+Vapor 将在当前工作目录中查找 `.env` 文件。如果你使用 Xcode，确保通过编辑 `Run` scheme 设置工作目录。
 
 假设以下 `.env` 文件放在你的项目根文件夹中:
 
@@ -85,7 +85,7 @@ print(foo) // String?
 !!! info "信息"
     在 `.env` 文件中指定的变量不会覆盖进程环境中已经存在的变量。
 
-除了 `.env`，Vapor 还将尝试为当前环境加载一个 dotenv 文件。例如，在 `development` 环境中，Vapor 将加载 `.env.development`。特定环境文件中的任何值都将优先于 `.env` 文件内的值。
+除了 `.env`，Vapor 还将尝试为当前环境加载一个 `.env.environment` 文件。例如，在 `development` 环境中，Vapor 将加载 `.env.development`。特定环境文件中的任何值都将优先于 `.env` 文件内的值。
 
 一个典型的模式是项目包含一个 `.env` 文件作为带有默认值的模板。在 `.gitignore` 中使用以下模式忽略特定的环境文件
 
@@ -101,9 +101,9 @@ vim .env.development
 ```
 
 !!! warning "警告"
-    带有敏感信息(如密码)的 Dotenv 文件不应提交给版本控制。
+    不应提交包含密码等敏感信息的 `.env` 文件到版本控制。
 
-如果你在加载 dotenv 文件时遇到了困难，尝试使用 `--log debug` 来启用调试日志以获取更多信息。
+如果你在加载 `.env` 文件时遇到了困难，尝试使用 `--log debug` 来启用调试日志以获取更多信息。
 
 ## 自定义环境
 
