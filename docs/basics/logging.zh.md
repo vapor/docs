@@ -83,11 +83,11 @@ export LOG_LEVEL=debug
 vapor run serve
 ```
 
-这两种方法可以在 Xcode 中编辑 `Run` (scheme)模式进行修改。
+这两种方法可以在 Xcode 中编辑 `Run`（scheme）模式进行修改。
 
 ## 配置
 
-`SwiftLog` 可以通过每次进程启动 `LoggingSystem` 时进行配置。Vapor 项目通常在 `main.swift` 执行操作。
+SwiftLog 可以通过每次进程启动 `LoggingSystem` 时进行配置。Vapor 项目通常在 `main.swift` 执行操作。
 
 ```swift
 import Vapor
