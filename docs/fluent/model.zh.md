@@ -507,7 +507,7 @@ try await planet.update(on: database)
 // TOOD
 ```
 
-## 查询
+## 查询(Query)
 
 模型公开了一个 `query(on:)` 静态方法返回查询构建器。
 
