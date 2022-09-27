@@ -562,7 +562,7 @@ struct PlanetMiddleware: ModelMiddleware {
 
 ```swift
 struct PlanetMiddleware: AsyncModelMiddleware {
-    func create(model: Planet, on db: Database, next: AnyModelResponder) async throws {
+    func create(model: Planet, on db: Database, next: AnyAsyncModelResponder) async throws {
         // 在创建模型之前，可以在这里修改模型。
         model.name = model.name.capitalized()
         try await next.create(model, on: db)
