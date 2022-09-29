@@ -136,6 +136,8 @@ plugins:
           Welcome: Bienvenue
         de:
           Welcome: Willkommen
+          Contributing: Mitwirken
+          Contributing Guide: Leitfaden für Beiträge
         zh:
           Welcome: 序言
           Install: 安装
