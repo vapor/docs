@@ -565,7 +565,7 @@ of als je `async`/`await` gebruikt:
 
 ```swift
 struct PlanetMiddleware: AsyncModelMiddleware {
-    func create(model: Planet, on db: Database, next: AnyModelResponder) async throws {
+    func create(model: Planet, on db: Database, next: AnyAsyncModelResponder) async throws {
         // Het model kan hier worden gewijzigd voordat het wordt gemaakt.
         model.name = model.name.capitalized()
         try await next.create(model, on: db)
