@@ -12,22 +12,24 @@ Somit stehen dir in Vapor beide Möglichkeiten zur Verfügung. Es ist dir überl
 
 Für die Migration sind ein paar Schritte zu beachten. Für macOS-Anwender ist macOS 12 Monterey (oder aktueller) und Xcode 13.1 (oder aktueller)Vorraussetzung. Für alle anderen Betriebssysteme ist Swift 5.5 (oder aktueller) Vorraussetzung. Zugleich sollten alle Abhängigkeit auf dem aktuellen Stand sein.
 
-Ändere die Swift-Tools-Version auf 5.5 in der ersten Zeile und die Plattformversion auf _v.12_ in der Datei _Package.swift_.
+In your Package.swift, set the tools version to 5.5 at the top of the file:
 
 ```swift
-/// [Package.swift]
-
 // swift-tools-version:5.5
 import PackageDescription
 
 // ...
+```
 
+Next, set the platform version to macOS 12:
+
+```swift
     platforms: [
        .macOS(.v12)
     ],
 ```
 
-Im letzten Schritt ändere das Ziel _Run_ zu einem _.executableTarget_
+Finally update the `Run` target to mark it as an executable target:
 
 ```swift
 .executableTarget(name: "Run", dependencies: [.target(name: "App")]),
@@ -107,7 +109,7 @@ let futureString: EventLoopFuture<String> = promise.futureResult
 
 Wie du vielleicht schon mitbekommen hast, erwarten oder liefern manche Stellen in Vapor einen Object von Typ _EventLoopFuture_. Beim ersten Mal kann das Thema verständlichlerweise verwirrent sein, weshalb wir hier nochmal auf das Thema _Futures_ eingehen möchten.
 
-_Promises_ und _Futures_. Mit _Promises_ werden _Futures_ erstellt. Futures are an alternative to callback-based asynchronous APIs. Futures can be chained and transformed in ways that simple closures cannot. Die meiste Zeit wirst du mit _Futures_ arbeiten, und weniger mit _Promises_
+_Promises_ and _futures_ are related, but distinct, types. Mit _Promises_ werden _Futures_ erstellt. Futures are an alternative to callback-based asynchronous APIs. Futures can be chained and transformed in ways that simple closures cannot. Die meiste Zeit wirst du mit _Futures_ arbeiten, und weniger mit _Promises_
 
 |Art              |Beschreibung                                       |Zugriff   |
 |-----------------|---------------------------------------------------|----------|
@@ -118,7 +120,7 @@ _Promises_ und _Futures_. Mit _Promises_ werden _Futures_ erstellt. Futures are 
 
 Ebenso wie _Optionals_ oder _Arrays_ in Swift, können _Futures_ gemapped oder geflatmapped werden. Hauptsächlich wirst du auch diese beiden Wandler nutzen, jedoch gibt es noch mehr Wandler, die nützlich sein könnten:
 
-|Methode                              |Argument                   |Beschreibung                                         |
+|Wandler                              |Argument                   |Beschreibung                                         |
 |-------------------------------------|---------------------------|-----------------------------------------------------|
 |[`map`](#map)                        |`(T) -> U`                 |Maps a future value to a different value.            |
 |[`flatMapThrowing`](#flatmapthrowing)|`(T) throws -> U`          |Maps a future value to a different value or an error.|
@@ -308,7 +310,7 @@ print(string) /// String
 
 ## Vesprechen
 
-Manchmal kann es vorkommen, dass du ein _Promises_ erstellen musst. Zum Erstellen, benötigst du eine Ereignisschleife. Abhängig vom von der Platzierung kannst du über die Instanzen _Application_ oder _Request_ auf ein solche Schleife zugreifen.
+Manchmal kann es vorkommen, dass du ein _Vesprechen_ erstellen musst. Zum Erstellen, benötigst du eine Ereignisschleife. Abhängig von der Platzierung kannst du über die Instanzen _Application_ oder _Request_ auf ein solche Schleife zugreifen.
 
 Beispiel:
 
@@ -332,17 +334,15 @@ promiseString.fail(...)
 !!! info
     A promise can only be completed once. Any subsequent completions will be ignored.
 
-Versprechen können mit _succeed_ oder _fail_ abschließen und ist der Grund, warum für die Erstellung eine Ereignisschleife benötigt wird. Damit das Ergebnis nach Abschluss durch die Schleife ausgeführt werden kann.
+Versprechen können mit dem Status _succeed_ oder _fail_ abschließen und ist der Grund, warum für die Erstellung, eine Ereignisschleife benötigt wird. Damit das Ergebnis nach Abschluss durch die Schleife ausgeführt werden kann.
 
 ## Event Loop
 
-When your application boots, it will usually create one event loop for each core in the CPU it is running on. Each event loop has exactly one thread. If you are familiar with event loops from Node.js, the ones in Vapor are similar. The main difference is that Vapor can run multiple event loops in one process since Swift supports multi-threading.
+Mit dem Starten deiner Anwendung wird für jeden Prozessorkern einen Ereignisschleife erstellt. Jede Ereignisschleife hat genau einen Thread. Die Ereignisschleifen in Vapor sind ähnlich zu den Ereignisschleifen in Node.js, außer das Vapor durch Swift`s Multi-Threading mehrere Schleifen gleichzeitig verarbeiten kann.
 
-Each time a client connects to your server, it will be assigned to one of the event loops. From that point on, all communication between the server and that client will happen on that same event loop (and by association, that event loop's thread). 
+Jede Verbindung zum Server wird einer Ereignisschleife zugewiesen. Ab dem Zeitpunkt läuft die Kommunikation zwischen Server und Client immer über die selbe Schleife.
 
-The event loop is responsible for keeping track of each connected client's state. If there is a request from the client waiting to be read, the event loop triggers a read notification, causing the data to be read. Once the entire request is read, any futures waiting for that request's data will be completed. 
-
-In route closures, you can access the current event loop via `Request`. 
+Die Ereignischleife ist für die Überwachung des Zustands verantwortlich. Sollte einen Anfrage vom Client darauf warten gelesen zu werden, macht sich die Schleife bemerkbar, wodurch anschließend die Daten gelesen werden. Once the entire request is read, any futures waiting for that request's data will be completed.  
 
 ```swift
 req.eventLoop.makePromise(of: ...)
@@ -357,9 +357,9 @@ Outside of route closures, you can get one of the available event loops via `App
 app.eventLoopGroup.next().makePromise(of: ...)
 ```
 
-### hop
+### Hüpfen
 
-You can change a future's event loop using `hop`.
+Mit der Methode _hop_ kannst du die Ereignisschleife wechseln.
 
 ```swift
 futureString.hop(to: otherEventLoop)
@@ -367,7 +367,9 @@ futureString.hop(to: otherEventLoop)
 
 ## Blocking
 
-Calling blocking code on an event loop thread can prevent your application from responding to incoming requests in a timely manner. An example of a blocking call would be something like `libc.sleep(_:)`.
+Die Verwendung von Blocking Code auf einem Thread der Ereignisschleife, kann dazu führen, dass die Anwendung nicht in angemessener Zeit auf die eingehende Anfrage reagieren kann.
+
+Ein Beispiel für Blocking Code ist:
 
 ```swift
 app.get("hello") { req in
@@ -378,6 +380,8 @@ app.get("hello") { req in
     return "Hello, world!"
 }
 ```
+
+Die Methode `sleep(_:)` blockiert den aktuellen Thread für zu angegebenen Sekunden. Durch die Verwendung auf einer Ereignisschleife, kann die Schleife nicht
 
 `sleep(_:)` is a command that blocks the current thread for the number of seconds supplied. If you do blocking work like this directly on an event loop, the event loop will be unable to respond to any other clients assigned to it for the duration of the blocking work. In other words, if you do `sleep(5)` on an event loop, all of the other clients connected to that event loop (possibly hundreds or thousands) will be delayed for at least 5 seconds. 
 
@@ -402,6 +406,8 @@ Not all blocking calls will be as obvious as `sleep(_:)`. If you are suspicious 
 
 ### I/O Bound
 
+Blockieren von I/O Bound bedeutet warten auf einer
+
 I/O bound blocking means waiting on a slow resource like a network or hard disk which can be orders of magnitude slower than the CPU. Blocking the CPU while you wait for these resources results in wasted time. 
 
 !!! danger
@@ -414,7 +420,7 @@ All of Vapor's packages are built on SwiftNIO and use non-blocking I/O. However,
 Meist während einer Serveranfrage wird auf das Ergebnis weiterer Datenbank- oder Netzwerkanfrage gewartet. Vapor und SwiftNIO sind non-blocking, was bedeutet, dass eben diese Wartezeit für die Bearbeitung anderer Anfragen genutzt werden kann. Jedoch kann es auch zu leistungsintensiven Anfragen kommen.
 
 Wenn eine Ereignisschleife eben ein solche leistungsintensive Arbeit verrichtet, ist sie nicht in der Lage auf andere eingehende Anfragen zu reagieren. Normalerweise ist das kein Problem, da heutzutage Prozessoren schnell sind und Webanwendungen weniger prozessorlastige Arbeiten verrichten.
-Aber es kann zu einem Problem werden, wenn diese Anfrage, andere Anfragen blockiert.
+Aber es kann zu einem Problem werden, wenn eine Anfrage, andere Anfragen blockiert.
 
 Das Auffinden leistungsintensiver Anfragen und Verlagern auf einem Thread im Hintergrund kann die Zuverlässigkeit und Reaktionsfähigkeit deiner Anwendungen verbessern. CPU bound work is more of a gray area than I/O bound work, and it is ultimately up to you to determine where you want to draw the line. 
 
