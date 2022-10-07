@@ -38,7 +38,7 @@ port 选项控制服务器将在指定地址上的哪个端口接受新连接。
 app.http.server.configuration.port = 1337
 ```
 
-!!! 资料
+!!! info "信息"
     绑定小于`1024`的端口可能需要 `sudo` 提权。不支持大于`65535`的端口。
 
 终端运行 `serve` 命令添加 `--port` (`-p`) 标志来修改服务器端口或将 `port` 参数传递给 `app.server.start(...)` 来修改配置。

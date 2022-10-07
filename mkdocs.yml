@@ -136,6 +136,8 @@ plugins:
           Welcome: Bienvenue
         de:
           Welcome: Willkommen
+          Contributing: Mitwirken
+          Contributing Guide: Leitfaden für Beiträge
         zh:
           Welcome: 序言
           Install: 安装
@@ -252,3 +254,4 @@ nav:
 - Version (4.0):
     - Legacy Docs: "version/legacy-docs.md"
     - Upgrading: "upgrading.md"
+- Release Notes: "release-notes.md"

@@ -6,7 +6,7 @@
 
 ## 配置
 
-要在路由中使用会话，请求必须通过 `SessionsMiddleware` 中间件。 最简单的实现方式是全局添加此中间件。
+要在路由中使用会话，请求必须通过 `SessionsMiddleware` 中间件。 最简单的实现方式是全局添加此中间件。建议你在声明 Cookie 后添加此代码。这是因为 Sessions 是一个结构体，它是一个值类型，而不是引用类型。因为它是值类型，所以必须先设置该值才能使用 `SessionsMiddleware`。
 
 ```swift
 app.middleware.use(app.sessions.middleware)
@@ -28,6 +28,8 @@ app.sessions.configuration.cookieName = "foo"
 app.sessions.configuration.cookieFactory = { sessionID in
     .init(string: sessionID.string, isSecure: true)
 }
+
+app.middleware.use(app.sessions.middleware)
 ```
 
 默认情况下，Vapor 将 `vapor_session` 作为 cookie 名称。
@@ -36,7 +38,7 @@ app.sessions.configuration.cookieFactory = { sessionID in
 
 会话驱动程序负责按标识符存储和检索会话数据。你可以通过遵循 `SessionDriver` 协议来创建自定义驱动程序。
 
-!!! 警告
+!!! warning "警告"
     应用程序中的会话驱动程序应在添加 `app.sessions.middleware` 前进行配置。
 
 ### 内存中
@@ -87,7 +89,7 @@ app.sessions.use(.redis)
 
 这将配置会话以使用具有默认行为的 Redis 会话驱动程序。
 
-!!! 也可以看看
+!!! seealso "也可以看看"
     了解有关 Redis 和 Sessions 的更多信息，请参阅[Redis → Sessions](../redis/sessions.zh.md)。
 
 ## 会话数据

@@ -12,7 +12,7 @@
 
 ![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu-18.png)
 
-!!! 注意 
+!!! note "注意"  
 	你也可以选择 Swift 支持的其它 Linux 发行版。在撰写本文时， Swift 5.2.4 支持 Ubuntu 16.04、18.04、20.04、CentOS 8, 和 Amazon Linux 2。你可以在 [Swift Releases](https://swift.org/download/#releases) 页面上查看官方支持哪些操作系统。
 
 选择完发行版后，选择你喜欢的套餐和数据中心所在区域。然后设置一个 SSH 密钥以在创建服务器后访问它。最后， 点击创建 Droplet 并等待新服务器启动。
@@ -93,7 +93,7 @@ wget https://swift.org/builds/swift-5.2.4-release/ubuntu1804/swift-5.2.4-RELEASE
 tar xzf swift-5.2.4-RELEASE-ubuntu18.04.tar.gz
 ```
 
-!!! 注意
+!!! note "注意" 
 	Swift 的[使用下载指南](https://swift.org/download/#using-downloads)包含有关如何使用 PGP 签名验证下载的信息。
 
 ### 安装 Toolchain
@@ -143,7 +143,7 @@ cd api-template
 swift build --enable-test-discovery
 ```
 
-!!! 建议
+!!! tip "建议" 
 	如果生产环境进行构建， 请使用 `swift build -c release --enable-test-discovery`
 
 ### 运行

@@ -1,8 +1,6 @@
 # 项目结构
 
-现在，你已经创建并运行了第一个 Vapor 应用程序，让我们稍微花点时间熟悉一下 Vapor 的项目结构。
-
-该结构是在 [SPM](spm.md) 的基础上演化而来；因此，如果你曾经使用过 SPM，应该会很熟悉。
+现在，你已经创建并运行了第一个 Vapor 应用程序，让我们稍微花点时间熟悉一下 Vapor 的项目结构。该结构是在 [SPM](spm.zh.md) 的基础上演化而来；因此，如果你曾经使用过 SPM，应该会很熟悉。
 
 
 ```
@@ -27,9 +25,7 @@
 
 ## Public
 
-如果你使用了 `FileMiddleware` 中间件，那么此文件夹包含你的应用程序提供的所有公共文件，通常是图片、`.css`样式和浏览器脚本等。 
-
-例如，对 `localhost:8080/favicon.ico` 发起的请求将检查是否存在 `Public/favicon.ico` 图片并回应。
+如果你使用了 `FileMiddleware` 中间件，那么此文件夹包含你的应用程序提供的所有公共文件，通常是图片、`.css` 样式和浏览器脚本等。 例如，对 `localhost:8080/favicon.ico` 发起的请求将检查是否存在 `Public/favicon.ico` 图片并回应。
 
 在 Vapor 可以提供公共文件之前，你需要在 `configure.swift` 文件中启用`FileMiddleware`，参考如下所示：
 
@@ -43,7 +39,7 @@ app.middleware.use(fileMiddleware)
 
 ## Sources
 
-该文件夹包含项目的所有 Swift 代码源文件。文件夹 `App`和 `Run`反应软件包的模块，例如这篇 [SPM](spm.md) 文章中所述。
+该文件夹包含项目的所有 Swift 代码源文件。文件夹 `App` 和 `Run` 反应软件包的模块，例如这篇 [SPM](spm.zh.md) 文章中所述。
 
 ### App
 
@@ -73,12 +69,13 @@ models 文件夹常用于存放 `Content` 和 Fluent `Model` 的类或结构体�
 
 这是主要的可执行目标，只包含启动和运行应用程序所需的代码。
 
+#### main.swift
+
+这个文件创建并运行一个配置好的 `Application` 实例。
+
 ## Tests
 
- `Sources` 文件夹中的每个不可运行的模块在 `Tests` 中都可以创建一个对应的文件夹，包含 `XCTest` 模块上构建的用例，用来测试你的代码。
- 
- 可以在命令行使用 `swift test`或在 Xcode 中按 `⌘+U` 来进行测试。
-
+`Sources` 文件夹中的每个不可运行的模块在 `Tests` 中都可以创建一个对应的文件夹，包含 `XCTest` 模块上构建的用例，用来测试你的代码。可以在命令行使用 `swift test`或在 Xcode 中按 `⌘+U` 来进行测试。
 
 ### AppTests
 
@@ -86,5 +83,6 @@ models 文件夹常用于存放 `Content` 和 Fluent `Model` 的类或结构体�
 
 ## Package.swift
 
-最后，是这个项目运行所依赖的第三方库配置。
+最后是 [SPM](spm.zh.md) 文件，是这个项目运行所依赖的第三方库配置。
+
 
