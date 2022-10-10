@@ -140,11 +140,11 @@ Now clone the project and build it.
 ```sh
 git clone https://github.com/vapor/api-template.git
 cd api-template
-swift build --enable-test-discovery
+swift build
 ```
 
 !!! tip
-	If you are building this project for production, use `swift build -c release --enable-test-discovery`
+	If you are building this project for production, use `swift build -c release`
 
 ### Run
 
