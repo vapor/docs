@@ -140,11 +140,11 @@ sudo ufw allow http
 ```sh
 git clone https://github.com/vapor/api-template.git
 cd api-template
-swift build --enable-test-discovery
+swift build
 ```
 
 !!! tip "建议" 
-	如果生产环境进行构建， 请使用 `swift build -c release --enable-test-discovery`
+	如果生产环境进行构建， 请使用 `swift build -c release`
 
 ### 运行
 
@@ -154,7 +154,7 @@ swift build --enable-test-discovery
 sudo .build/debug/Run serve -b 157.245.244.228:80
 ```
 
-如果你使用 `swift build -c release --enable-test-discovery`进行构建, 然后你需要运行：
+如果你使用 `swift build -c release` 进行构建, 然后你需要运行：
 ```sh
 sudo .build/release/Run serve -b 157.245.244.228:80
 ```
