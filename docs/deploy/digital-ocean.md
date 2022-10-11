@@ -140,11 +140,11 @@ Now clone the project and build it.
 ```sh
 git clone https://github.com/vapor/api-template.git
 cd api-template
-swift build --enable-test-discovery
+swift build
 ```
 
 !!! tip
-	If you are building this project for production, use `swift build -c release --enable-test-discovery`
+	If you are building this project for production, use `swift build -c release`
 
 ### Run
 
@@ -154,7 +154,7 @@ Once the project has finished compiling, run it on your server's IP at port 80. 
 sudo .build/debug/Run serve -b 157.245.244.228:80
 ```
 
-If you used `swift build -c release --enable-test-discovery`, then you need to run:
+If you used `swift build -c release`, then you need to run:
 ```sh
 sudo .build/release/Run serve -b 157.245.244.228:80
 ```
