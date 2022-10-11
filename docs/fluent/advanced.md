@@ -165,7 +165,7 @@ Something.query(on: db).filter("document.key", .equal, 5).first()
 
 You can query MongoDB using the `.custom()` case, and passing a regular expression. [MongoDB](https://www.mongodb.com/docs/manual/reference/operator/query/regex/) accepts Perl compatible regular expressions. 
 
-For example, you can query for case insensitive characters under the field `name`
+For example, you can query for case insensitive characters under the field `name`:
 
 ```swift
 import FluentMongoDriver
@@ -175,9 +175,9 @@ queryDocument["name"]["$regex"] = "e"
 queryDocument["name"]["$options"] = "i"
 
 let planets = try Planet.query(on: req.db).filter(.custom(nameDocument)).all()
-        
 ```
-This will return planets containing 'e' and 'E'. You can also create any other complex RegEx accepted by MongoDB
+
+This will return planets containing 'e' and 'E'. You can also create any other complex RegEx accepted by MongoDB.
 
 ### Raw Access
 
