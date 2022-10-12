@@ -162,6 +162,23 @@ Dit wordt in MongoDB geaccepteerd om toegang te krijgen tot geneste waarden.
 Something.query(on: db).filter("document.key", .equal, 5).first()
 ```
 
+### Gebruik van reguliere expressies
+
+Door een reguliere expressie door te geven met de `.custom()` case, kan U de MongoDB raadplegen. [MongoDB](https://www.mongodb.com/docs/manual/reference/operator/query/regex/) accepteert reguliere expressies die compatibel zijn met Perl. 
+
+Zo kan U bijvoorbeeld zoeken naar hoofdletterongevoelige tekens onder het veld `naam`:
+
+```swift
+import FluentMongoDriver
+       
+var queryDocument = Document()
+queryDocument["name"]["$regex"] = "e"
+queryDocument["name"]["$options"] = "i"
+let planets = try Planet.query(on: req.db).filter(.custom(nameDocument)).all()
+```
+
+Dit geeft planeten terug die 'e' en 'E' bevatten. U kunt ook elke andere complexe RegEx maken die door MongoDB wordt geaccepteerd.
+
 ### Raw Access
 
 Om toegang te krijgen tot de ruwe `MongoDatabase` instantie, cast je de database instantie naar `MongoDatabaseRepresentable` als zodanig:
