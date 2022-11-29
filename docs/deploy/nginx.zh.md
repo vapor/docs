@@ -3,7 +3,7 @@
 Nginx 是一款高性能、高可靠性、易于配置的 HTTP 服务器和 HTTP 反向代理服务器。
 尽管 Vapor 可以直接处理 HTTP 请求，并且支持 TLS。但将 Vapor 应用置于 Nginx 反向代理之后，可以提高性能、安全性、以及易用性。
 
-!!! note
+!!! note "注意"
     我们推荐你将 Vapor 应用配置在 Nginx 的反向代理之后。
 
 ## 概述
@@ -18,7 +18,7 @@ HTTP 反向代理是什么意思？简而言之，反向代理服务器就是外
 
 默认的接收 HTTP 请求的端口是 `80` (HTTPS 是 `443`)。如果你将 Vapor 服务器绑定到 `80` 端口，它就可以直接处理和响应 HTTP 请求。如果你想要使用反向代理 (比如 Nginx)，你就需要将 Vapor 服务器绑定到一个内部端口上，比如 `8080`。
 
-!!! note
+!!! note "注意"
     绑定到大于 1024 的端口号无需使用 `sudo` 命令。
 
 一旦你的 Vapor 应用被绑定到 `80` 或 `443` 以外的端口，那么外部网络将无法直接访问它 (没有配置防火墙的情况下，带上端口号仍然可以访问)。然后将 Nginx 服务器绑定到 `80` 端口上，并配置它转发请求到 `8080` 端口上的 Vapor 应用。
@@ -90,7 +90,6 @@ server {
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_pass_header Server;
         proxy_connect_timeout 3s;
         proxy_read_timeout 10s;
     }

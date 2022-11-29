@@ -212,7 +212,7 @@ app.get("hello", ":name") { req -> String in
     We can be sure that `req.parameters.get` will never return `nil` here since our route path includes `:name`. However, if you are accessing route parameters in middleware or in code triggered by multiple routes, you will want to handle the possibility of `nil`.
 
 !!! tip
-    If you want to retrieve URL query params, e.g. `/hello/?name=foo` you need to use Vapor's Content APIs to handle URL encoded data in the URL's query string. See [`Content` reference](/content/) for more details.
+    If you want to retrieve URL query params, e.g. `/hello/?name=foo` you need to use Vapor's Content APIs to handle URL encoded data in the URL's query string. See [`Content` reference](content.md) for more details.
 
 `req.parameters.get` also supports casting the parameter to `LosslessStringConvertible` types automatically. 
 

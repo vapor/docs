@@ -53,7 +53,7 @@ Leaf also supports many expressions you are familiar with in Swift.
 
 ## Context
 
-In the example from [Getting Started](./getting-started.md), we used a `[String: String]` dictionary to pass data to Leaf. However, you can pass anything that conforms to `Encodable`. It's actually preferred to use `Encodable` structs since `[String: Any]` is not supported. This means you *can not* pass in an array, and should instead wrap it in a struct:
+In the example from [Getting Started](getting-started.md), we used a `[String: String]` dictionary to pass data to Leaf. However, you can pass anything that conforms to `Encodable`. It's actually preferred to use `Encodable` structs since `[String: Any]` is not supported. This means you *can not* pass in an array, and should instead wrap it in a struct:
 
 ```swift
 struct WelcomeContext: Encodable {
@@ -272,5 +272,15 @@ The `#unsafeHTML` tag acts like a variable tag - e.g. `#(variable)`. However it 
 The time is #unsafeHTML(styledTitle)
 ```
 
-!!! note 
+!!! note
     You should be careful when using this tag to ensure that the variable you provide it does not expose your users to an XSS attack.
+
+#### `#dumpContext`
+
+The `#dumpContext` tag renders the whole context to a human readable string. Use this tag to debug what is being
+provided as context to the current rendering.
+
+```leaf
+Hello, world!
+#dumpContext
+```

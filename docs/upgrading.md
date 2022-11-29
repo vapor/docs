@@ -10,7 +10,7 @@ The Install section of the docs goes over installing dependencies.
 
 ## Package.swift
 
-The first step to upgrading to Vapor 4 is to update your package's dependencies. Below is an example of an upgraded Package.swift file. You can also check out the updated [template Package.swift](https://github.com/vapor/template/blob/master/Package.swift).
+The first step to upgrading to Vapor 4 is to update your package's dependencies. Below is an example of an upgraded Package.swift file. You can also check out the updated [template Package.swift](https://github.com/vapor/template/blob/main/Package.swift).
 
 ```diff
 -// swift-tools-version:4.0
@@ -24,10 +24,10 @@ The first step to upgrading to Vapor 4 is to update your package's dependencies.
 +    ],
      dependencies: [
 -        .package(url: "https://github.com/vapor/fluent-postgresql.git", from: "1.0.0"),
-+        .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0-rc"),
-+        .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0-rc"),
++        .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0"),
++        .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0"),
 -        .package(url: "https://github.com/vapor/jwt.git", from: "3.0.0"),
-+        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0-rc"),
++        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0"),
 -        .package(url: "https://github.com/vapor/vapor.git", from: "3.0.0"),
 +        .package(url: "https://github.com/vapor/vapor.git", from: "4.3.0"),
      ],
@@ -60,13 +60,11 @@ All packages that have been upgraded for Vapor 4 will have their major version n
 
 ### Old Packages
 
-Some packages may not be upgraded yet. If you encounter any, file an issue to let the author know. 
-
 Some Vapor 3 packages have been deprecated, such as:
 
 - `vapor/auth`: Now included in Vapor.
 - `vapor/core`: Absorbed into several modules. 
-- `vapor/crypto`: Replaced by SwiftCrypto.
+- `vapor/crypto`: Replaced by SwiftCrypto (Now included in Vapor).
 - `vapor/multipart`: Now included in Vapor.
 - `vapor/url-encoded-form`: Now included in Vapor.
 - `vapor-community/vapor-ext`: Now included in Vapor.
@@ -79,8 +77,8 @@ Some Vapor 3 packages have been deprecated, such as:
 
 ```diff
 - .package(url: "https://github.com/vapor/fluent-postgresql.git", from: "1.0.0"),
-+ .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0-rc"),
-+ .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0-rc"),
++ .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0"),
++ .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0"),
 ```
 
 ### Platforms

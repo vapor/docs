@@ -23,7 +23,7 @@ app.get("hello") { req -> String in
 [ INFO ] Hello, logs! [request-id: C637065A-8CB0-4502-91DC-9B8615C5D315] (App/routes.swift:10)
 ```
 
-!!! info
+!!! info "信息"
     日志记录器的元数据仅在调试日志级别或者更低级别显示。
     
 
@@ -47,7 +47,7 @@ logger.info(...)
 
 尽管自定义的日志记录器仍将输出你配置的后端日志记录，但是他们没有附带重要的元数据，比如 `request` 的 `UUID`。所以尽量使用 `application` 或者 `request` 的日志记录器。
 
-## 日志级别
+## 日志级别(Level)
 
 `SwiftLog` 支持多种日志级别。
 <!-- ~~SwiftLog supports several different logging levels.~~ -->
@@ -83,11 +83,11 @@ export LOG_LEVEL=debug
 vapor run serve
 ```
 
-这两种方法可以在 Xcode 中编辑 `Run` (scheme)模式进行修改。
+这两种方法可以在 Xcode 中编辑 `Run`（scheme）模式进行修改。
 
 ## 配置
 
-`SwiftLog` 可以通过每次进程启动 `LoggingSystem` 时进行配置。Vapor 项目通常在 `main.swift` 执行操作。
+SwiftLog 可以通过每次进程启动 `LoggingSystem` 时进行配置。Vapor 项目通常在 `main.swift` 执行操作。
 
 ```swift
 import Vapor

@@ -25,7 +25,7 @@ Target: x86_64-apple-darwin19.0.0
 
 Vapor 4 需要 Swift 5.2 或更高版本。
 
-## 安装 Toolbox
+## 安装工具箱(Install Toolbox)
 
 现在你已经安装了 Swift，让我们安装 [Vapor Toolbox](https://github.com/vapor/toolbox)。 使用 Vapor 不需要此 CLI 工具，但是它包含一些实用的程序，例如新项目创建。
 
@@ -45,4 +45,4 @@ vapor --help
 
 ## 下一步
 
-现在你已经安装了 Swift and Vapor Toolbox，在 [开始 &rarr; 你好，世界](../getting-started/hello-world.md) 中创建你的第一个 Vapor 应用程序。
+现在你已经安装了 Swift 和 Vapor Toolbox，在 [开始 → 你好，世界](../getting-started/hello-world.md) 中创建你的第一个 Vapor 应用程序。
