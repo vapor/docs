@@ -41,7 +41,7 @@ final class Planet: Model {
 
 在查询该模型时，数据将从名为 `planets` 的模式中获取并存储到该模式中。
 
-!!! 建议
+!!! tip "建议" 
     模式名称通常是复数和小写的类名称。
 
 ## 标识符
@@ -147,7 +147,7 @@ final class Planet: Model {
 
 字段需要明确定义数据库键。这不需要与属性名称相同。
 
-!!! 建议
+!!! tip "建议" 
     Fluent 建议使用 `蛇形命名法` 命名数据库键和 `驼峰命名法` 命名属性名称。
 
 字段值可以是任何遵循 `Codable` 协议类型。`@Field` 支持存储嵌套结构和数组，但过滤操作受到限制。请参阅 [@Group](#group) 替代方案。
@@ -159,7 +159,7 @@ final class Planet: Model {
 var tag: String?
 ```
 
-!!! 警告
+!!! warning "警告"
     一个非可选字段如果有一个引用其当前值的 `willSet` 属性观察者，或者一个引用其 `oldValue` 属性的 `didSet` 属性观察者，将导致致命错误。
 
 ## 关系
@@ -239,7 +239,7 @@ final class Planet: Model {
 
 软删除的模型在删除后仍然存在于数据库中，但不会在查询中返回。
 
-!!! 建议
+!!! tip "建议" 
     你可以手动将删除时间戳设置为将来的日期。这可以用作到期日期。
 
 要强制从数据库中删除可软删除的模型，请使用 `delete` 方法的 `force` 参数。
@@ -361,7 +361,7 @@ app.get("planets") { req async throws in
 
 模型默认遵循 `Codable` 协议的一致性使它变得易于使用且原型制作更容易。然而，它并不适用于每一个用例。在某些情况下，需要使用数据传输对象 (DTO)。
 
-!!! 建议
+!!! tip "建议" 
     DTO 是一种单独的 `Codable` 类型，表示你想要编码或解码的数据结构。
 
 接下来的示例中，`User` 模型如下所示。
@@ -466,7 +466,7 @@ planet.create(on: database)
 [earth, mars].create(on: database)
 ```
 
-!!! 警告
+!!! warning "警告"
     模型使用 [`@ID(custom:)`](#custom-identifier) 和 `.database` 生成器(通常是自动递增的 `Int` 型)时在批处理创建后将无法访问其新创建的标识符。对于需要访问标识符的情况，在每个模型上调用 `create` 方法。
 
 要单独创建模型数组，请使用 `map` + `flatten`。
@@ -507,7 +507,7 @@ try await planet.update(on: database)
 // TOOD
 ```
 
-## 查询
+## 查询(Query)
 
 模型公开了一个 `query(on:)` 静态方法返回查询构建器。
 
@@ -562,7 +562,7 @@ struct PlanetMiddleware: ModelMiddleware {
 
 ```swift
 struct PlanetMiddleware: AsyncModelMiddleware {
-    func create(model: Planet, on db: Database, next: AnyModelResponder) async throws {
+    func create(model: Planet, on db: Database, next: AnyAsyncModelResponder) async throws {
         // 在创建模型之前，可以在这里修改模型。
         model.name = model.name.capitalized()
         try await next.create(model, on: db)

@@ -1,6 +1,6 @@
 # Client
 
-Vapor的 `Client` API 允许您使用 HTTP 调用外部资源，它基于 [async-http-client](https://github.com/swift-server/async-http-client) 构建，并集成了 [Content](content.md) API。
+Vapor 的 client API 允许你使用 HTTP 调用外部资源，它基于 [async-http-client](https://github.com/swift-server/async-http-client) 构建，并集成了 [Content](content.zh.md) API。
 
 
 ## 概述
@@ -27,7 +27,7 @@ app.get("test") { req in
 let response = try await req.client.get("https://httpbin.org/status/200")
 ```
 
-HTTP 的常用方法(例如 `get`, `post`, `delete`)都有便捷的调用方式，`client` 的响应会以一个 future 的形式返回，它包含了 HTTP 返回的状态、头部信息和内容。
+HTTP 的常用方法（例如 `get`, `post`, `delete`）都有便捷的调用方式，Client 的响应会以一个 future 的形式返回，它包含了 HTTP 返回的状态、头部信息和内容。
 
 
 ### Content
@@ -36,17 +36,17 @@ Vapor 的 [Content](content.md) API 可用于处理客户请求和响应中的�
 
 ```swift
 let response = try await req.client.post("https://httpbin.org/status/200") { req in
-	// Encode query string to the request URL.
+	// 请求 URL 中编码查询字符串。
 	try req.query.encode(["q": "test"])
 
-	// Encode JSON to the request body.
+	// 使用 JSON 编码请求体。
     try req.content.encode(["hello": "world"])
     
-    // Add auth header to the request
+    // 在请求头中添加认证头。
     let auth = BasicAuthorization(username: "something", password: "somethingelse")
     req.headers.basicAuthorization = auth
 }
-// Handle the response.
+// 处理响应。
 ```
 
 你可以用 `Content` 对 response body 解码采用熟悉的方式：

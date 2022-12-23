@@ -273,5 +273,14 @@ The date is #date(now, "yyyy-MM-dd")
 The time is #unsafeHTML(styledTitle)
 ```
 
-!!! 注意 
+!!! note "注意"  
     使用此标签时应小心，确保你提供的变量不会使你的用户受到 XSS 攻击。
+
+#### `#dumpContext`
+
+`#dumpContext` 标签将整个上下文渲染为可读的字符串。使用此标记来调试作为上下文提供给当前渲染的内容。
+
+```leaf
+Hello, world!
+#dumpContext
+```

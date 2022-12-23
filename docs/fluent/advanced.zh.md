@@ -160,6 +160,24 @@ Fluent 不支持对这些值进行严格的类型查询。你可以在查询中�
 Something.query(on: db).filter("document.key", .equal, 5).first()
 ```
 
+### 使用正则表达式
+
+你可以使用 `.custom()` 方法，并传递一个正则表达式来查询 MongoDB。[MongoDB](https://www.mongodb.com/docs/manual/reference/operator/query/regex/) 接受与 Perl 兼容的正则表达式。
+
+例如，你可以在字段 `name` 下查询不区分大小写的字符:
+
+```swift
+import FluentMongoDriver
+       
+var queryDocument = Document()
+queryDocument["name"]["$regex"] = "e"
+queryDocument["name"]["$options"] = "i"
+
+let planets = try Planet.query(on: req.db).filter(.custom(nameDocument)).all()
+```
+
+这将返回包含 'e' 和 'E' 的行星。你还可以创建 MongoDB 接受的任何其他复杂的 RegEx。
+
 ### 访问原始数据
 
 要访问原始的 `MongoDatabase` 实例，将数据库实例转换为 `MongoDatabaseRepresentable`，如下所示：

@@ -22,9 +22,7 @@ group.get("foo") { req in
 ### Order
 
 Middleware 的添加顺序非常重要。进入应用程序的请求将按照在 middleware 添加的顺序依次执行。
-离开应用程序的响应将以相反的顺序通过 Middleware 返回。特定的路由 Middleware 始终在应用程序 Middleware 之后运行。
-
-请看以下示例：
+离开应用程序的响应将以相反的顺序通过 Middleware 返回。特定的路由 Middleware 始终在应用程序 Middleware 之后运行。请看以下示例：
 
 ```swift
 app.middleware.use(MiddlewareA())
@@ -43,11 +41,84 @@ app.group(MiddlewareC()) {
 Request → A → B → C → Handler → C → B → A → Response
 ```
 
+中间件也可以 _预先_ 添加，当你想在 vapor 自动添加的默认中间件 _之前_ 添加一个中间件时，这很有用:
+
+```swift
+app.middleware.use(someMiddleware, at: .beginning)
+```
+
+## 创建一个中间件
+
+Vapor 附带了一些有用的中间件，但你可以根据需要创建自己的中间件。例如，你可以创建一个中间件来阻止任何非管理员用户访问一组路由。
+
+> 我们建议在 `Sources/App` 目录中创建一个 `Middleware` 文件夹，来组织你的代码。
+ 
+中间件类型遵循 `Middleware` 协议或 `AsyncMiddleware` 协议。它们被插入到响应链中，可以在请求到达路由处理之前访问和操作请求，也可以在返回响应之前访问和操作响应。
+
+使用上面提到的例子，创建一个中间件来阻止非管理员用户的访问:
+
+```swift
+import Vapor
+
+struct EnsureAdminUserMiddleware: Middleware {
+    func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
+        guard let user = request.auth.get(User.self), user.role == .admin else {
+            return request.eventLoop.future(error: Abort(.unauthorized))
+        }
+        return next.respond(to: request)
+    }
+}
+```
+
+或者使用 `async`/`await` 你可以这样写：
+
+```swift
+import Vapor
+
+struct EnsureAdminUserMiddleware: AsyncMiddleware {
+    func respond(to request: Request, chainingTo next: AsyncResponder) async throws -> Response {
+        guard let user = request.auth.get(User.self), user.role == .admin else {
+            throw Abort(.unauthorized)
+        }
+        return try await next.respond(to: request)
+    }
+}
+```
+
+如果你想修改响应，例如添加一个自定义 header，你也可以为此使用一个中间件。中间件可以等待，直到从响应链接收到响应，然后对响应进行操作：
+
+```swift
+import Vapor
+
+struct AddVersionHeaderMiddleware: Middleware {
+    func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
+        next.respond(to: request).map { response in
+            response.headers.add(name: "My-App-Version", value: "v2.5.9")
+            return response
+        }
+    }
+}
+```
+
+或者使用 `async`/`await` 你可以这么写：
+
+```swift
+import Vapor
+
+struct AddVersionHeaderMiddleware: AsyncMiddleware {
+    func respond(to request: Request, chainingTo next: AsyncResponder) async throws -> Response {
+        let response = try await next.respond(to: request)
+        response.headers.add(name: "My-App-Version", value: "v2.5.9")
+        return response
+    }
+}
+```
+
 ## File Middleware
 
 `FileMiddleware` 允许从项目的 Public 文件夹向 client 提供资源。你可以在这里存放 css 或者位图图片等静态文件。
 
-```swif
+```swift
 let file = FileMiddleware(publicDirectory: app.directory.publicDirectory)
 app.middleware.use(file)
 ```
