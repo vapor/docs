@@ -765,7 +765,7 @@ let redirectMiddleware = User.redirectMiddleware { req -> String in
 确保在 `RedirectMiddleware` 之前包含一个会话认证器，以确保在运行 `RedirectMiddleware` 中间件之前加载经过身份验证的用户。
 
 ```swift
-let protectedRoutes = app.grouped([User.SessionAuthenticator(), redirecteMiddleware])
+let protectedRoutes = app.grouped([User.sessionAuthenticator(), redirectMiddleware])
 ```
 
 ### 表单登录

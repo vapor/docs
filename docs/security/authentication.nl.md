@@ -769,7 +769,7 @@ Dit werkt vergelijkbaar met de `GuardMiddleware`. Alle verzoeken naar routes ger
 Zorg ervoor dat je een Session Authenticator toevoegt voor de `RedirectMiddleware` om er zeker van te zijn dat de geauthenticeerde gebruiker geladen is voordat hij door de `RedirectMiddleware` gaat.
 
 ```swift
-let protectedRoutes = app.grouped([User.SessionAuthenticator(), redirecteMiddleware])
+let protectedRoutes = app.grouped([User.sessionAuthenticator(), redirectMiddleware])
 ```
 
 ### Formulier Aanmelden
