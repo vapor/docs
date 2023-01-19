@@ -8,11 +8,11 @@ struct SearchIndex: Codable {
 }
 
 struct SearchIndexConfig: Codable {
-    let indexing: String
+    let indexing: String?
     let lang: [String]
-    let minSearchLength: Int
-    let prebuildIndex: Bool
-    let separator: String
+    let minSearchLength: Int?
+    let prebuildIndex: Bool?
+    let separator: String?
 
     enum CodingKeys: String, CodingKey {
         case indexing
