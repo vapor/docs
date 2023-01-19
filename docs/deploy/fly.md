@@ -36,13 +36,6 @@ Before deploying to Fly, you must make sure you have a Vapor project with an ade
 ### New Vapor project
 To easiest way to create a new project is to start with a template. You can create one using GitHub templates or the Vapor toolbox. If you need a database, it is recommended to use Fluent with Postgres; Fly makes it easy to create a Postgres database to connect your apps to (see the [dedicated section](#configuring-postgres) below).
 
-#### Using GitHub templates
-Choose the template that best suits your needs in the following list. You can either clone it locally using Git or create a GitHub project with the "Use this template" button.
-
-- [Barebones template](https://github.com/vapor/template-bare)
-- [Fluent/Postgres template](https://github.com/vapor/template-fluent-postgres)
-- [Fluent/Postgres + Leaf template](https://github.com/vapor/template-fluent-postgres-leaf)
-
 #### Using the Vapor toolbox
 First, ensure you have installed the Vapor toolbox (see install the instructions for [macOS](../install/macos.md#install-toolbox) or [Linux](../install/linux.md#install-toolbox)).
 Create your new app with the following command, replacing `app-name` with the app name you desire:
@@ -51,6 +44,13 @@ vapor new app-name
 ```
 
 This command will display an interactive prompt that will let you configure your Vapor project, this is where you can select Fluent and Postgres if you need them.
+
+#### Using GitHub templates
+Choose the template that best suits your needs in the following list. You can either clone it locally using Git or create a GitHub project with the "Use this template" button.
+
+- [Barebones template](https://github.com/vapor/template-bare)
+- [Fluent/Postgres template](https://github.com/vapor/template-fluent-postgres)
+- [Fluent/Postgres + Leaf template](https://github.com/vapor/template-fluent-postgres-leaf)
 
 ### Existing Vapor project
 If you have an existing Vapor project, make sure you have a properly configured `Dockerfile` present at the root of your directory; the [Vapor docs about using Docker](../deploy/docker.md) and [Fly docs about deploying an app via a Dockerfile](https://fly.io/docs/getting-started/dockerfile/) might come in handy.
