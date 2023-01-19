@@ -173,7 +173,7 @@ var queryDocument = Document()
 queryDocument["name"]["$regex"] = "e"
 queryDocument["name"]["$options"] = "i"
 
-let planets = try Planet.query(on: req.db).filter(.custom(nameDocument)).all()
+let planets = try Planet.query(on: req.db).filter(.custom(queryDocument)).all()
 ```
 
 这将返回包含 'e' 和 'E' 的行星。你还可以创建 MongoDB 接受的任何其他复杂的 RegEx。
