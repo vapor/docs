@@ -174,7 +174,7 @@ import FluentMongoDriver
 var queryDocument = Document()
 queryDocument["name"]["$regex"] = "e"
 queryDocument["name"]["$options"] = "i"
-let planets = try Planet.query(on: req.db).filter(.custom(nameDocument)).all()
+let planets = try Planet.query(on: req.db).filter(.custom(queryDocument)).all()
 ```
 
 Dit geeft planeten terug die 'e' en 'E' bevatten. U kunt ook elke andere complexe RegEx maken die door MongoDB wordt geaccepteerd.
