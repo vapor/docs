@@ -174,7 +174,7 @@ var queryDocument = Document()
 queryDocument["name"]["$regex"] = "e"
 queryDocument["name"]["$options"] = "i"
 
-let planets = try Planet.query(on: req.db).filter(.custom(nameDocument)).all()
+let planets = try Planet.query(on: req.db).filter(.custom(queryDocument)).all()
 ```
 
 This will return planets containing 'e' and 'E'. You can also create any other complex RegEx accepted by MongoDB.
