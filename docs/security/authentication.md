@@ -748,7 +748,7 @@ These middlewares do the following:
 * the sessions middleware takes the session cookie provided in the request and converts it into a session
 * the session authenticator takes the session and see if there is an authenticated user for that session. If so, the middleware authenticates the request. In the response, the session authenticator sees if the request has an authenticated user and saves them in the session so they're authenticated in the next request.
 
-!!! tip
+!!! note
     The session cookie is not set to `secure` and `httpOnly` by default. Check Vapor's [Session API](../advanced/sessions.md#configuration) how to configure cookies.
 
 ### Protecting Routes
