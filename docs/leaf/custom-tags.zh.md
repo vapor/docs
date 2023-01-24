@@ -4,13 +4,15 @@
 
 为了演示这一点，让我们看看创建一个 `#now` 标签来打印当前时间戳。标签还支持一个可选参数来指定日期格式。
 
+!!! tip "建议" 
+    如果你的自定义标签用来渲染 HTML，你应该使你的自定义标记符合 `UnsafeUnescapedLeafTag`，这样 HTML 就不会被转义。别忘了检查或清除用户的任何输入。
+
 ## `LeafTag`
 
 首先创建一个名为 `NowTag` 的类并遵循 `LeafTag` 协议。
 
 ```swift
 struct NowTag: LeafTag {
-    
     func render(_ ctx: LeafContext) throws -> LeafData {
         ...
     }
@@ -20,28 +22,31 @@ struct NowTag: LeafTag {
 现在我们来实现 `render(_:)` 方法。传递给该方法的 `LeafContext` 参数包含了我们需要的所有内容。
 
 ```swift
-struct NowTagError: Error {}
+enum NowTagError: Error {
+    case invalidFormatParameter
+    case tooManyParameters
+}
 
-func render(_ ctx: LeafContext) throws -> LeafData {
-    let formatter = DateFormatter()
-    switch ctx.parameters.count {
-    case 0: formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    case 1:
-	     guard let string = ctx.parameters[0].string else {
-	         throw NowTagError()
-	     }
-	     formatter.dateFormat = string
-    default:
-	     throw NowTagError()
-	 }
+struct NowTag: LeafTag {
+    func render(_ ctx: LeafContext) throws -> LeafData {
+        let formatter = DateFormatter()
+        switch ctx.parameters.count {
+        case 0: formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        case 1:
+            guard let string = ctx.parameters[0].string else {
+                throw NowTagError.invalidFormatParameter
+            }
+
+            formatter.dateFormat = string
+        default:
+            throw NowTagError.tooManyParameters
+	    }
     
-    let dateAsString = formatter.string(from: Date())
-    return LeafData.string(dateAsString)
+        let dateAsString = formatter.string(from: Date())
+        return LeafData.string(dateAsString)
+    }
 }
 ```
-
-!!! tip "建议" 
-    如果你的自定义标签用来渲染 HTML，你应该使你的自定义标记符合 `UnsafeUnescapedLeafTag`，这样 HTML 就不会被转义。别忘了检查或清除用户的任何输入。
 
 ## 配置标签
 
@@ -74,15 +79,17 @@ The time is #now()
 我们可以访问包含名称的第一个参数。
 
 ```swift
-struct HelloTagError: Error {}
+enum HelloTagError: Error {
+    case missingNameParameter
+}
 
-public func render(_ ctx: LeafContext) throws -> LeafData {
-
+struct HelloTag: UnsafeUnescapedLeafTag {
+    func render(_ ctx: LeafContext) throws -> LeafData {
         guard let name = ctx.parameters[0].string else {
-            throw HelloTagError()
+            throw HelloTagError.missingNameParameter
         }
 
-        return LeafData.string("<p>Hello \(name)</p>'")
+        return LeafData.string("<p>Hello \(name)</p>")
     }
 }
 ```
@@ -96,15 +103,17 @@ public func render(_ ctx: LeafContext) throws -> LeafData {
 我们可以通过使用 data 属性中的 ”name“ 键来访问 name 值。
 
 ```swift
-struct HelloTagError: Error {}
+enum HelloTagError: Error {
+    case nameNotFound
+}
 
-public func render(_ ctx: LeafContext) throws -> LeafData {
-
+struct HelloTag: UnsafeUnescapedLeafTag {
+    func render(_ ctx: LeafContext) throws -> LeafData {
         guard let name = ctx.data["name"]?.string else {
-            throw HelloTagError()
+            throw HelloTagError.nameNotFound
         }
 
-        return LeafData.string("<p>Hello \(name)</p>'")
+        return LeafData.string("<p>Hello \(name)</p>")
     }
 }
 ```
@@ -116,5 +125,5 @@ public func render(_ ctx: LeafContext) throws -> LeafData {
 控制器：
 
 ```swift
-return req.view.render("home", ["name": "John"])
+return try await req.view.render("home", ["name": "John"])
 ```
