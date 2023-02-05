@@ -167,31 +167,31 @@ cd HelloWorld
 
 ### Open HTTP Port
 
-In order to access Vapor on your server, open the HTTP port.
+In order to access Vapor on your server, open an HTTP port.
 
 ```sh
-sudo ufw allow http
+sudo ufw allow 8080
 ```
 
 ### Run
 
-Now that Vapor is setup and we have port 80 open, let's run it. 
+Now that Vapor is setup and we have an open port, let's run it. 
 
 ```sh
-vapor run serve --hostname 0.0.0.0 --port 80 &
+vapor run serve --hostname 0.0.0.0 --port 8080
 ```
 
 Visit your server's IP via browser or local terminal and you should see "It works!". The IP address is `134.122.126.139` in this example.
 
 ```
-$ curl http://134.122.126.139
+$ curl http://134.122.126.139:8080
 It works!
 ```
 
 Back on your server, you should see logs for the test request.
 
 ```
-[ NOTICE ] Server starting on http://0.0.0.0:80
+[ NOTICE ] Server starting on http://0.0.0.0:8080
 [ INFO ] GET /
 ```
 
