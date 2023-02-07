@@ -124,6 +124,16 @@ app.middleware.use(file)
 
 Once `FileMiddleware` is registered, a file like `Public/images/logo.png` can be linked from a Leaf template as `<img src="/images/logo.png"/>`.
 
+If your server is contained in an Xcode Project, use this instead:
+
+```swift
+let file = try FileMiddleware(bundle: .main, publicDirectory: "Public")
+```
+
+Note that in this case Leaf won't recognise the Public directory.
+
+Also make sure to use Folder References instead of Groups in Xcode to maintain folder structure in resources after building the application.
+
 ## CORS Middleware
 
 Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. REST APIs built in Vapor will require a CORS policy in order to safely return requests to modern web browsers.
