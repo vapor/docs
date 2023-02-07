@@ -28,7 +28,7 @@ app.middleware.use(MiddlewareA())
 app.middleware.use(MiddlewareB())
 
 app.group(MiddlewareC()) {
-	$0.get("hello") { req in 
+	$0.get("hello") { req in
 		"Hello, middleware."
 	}
 }
