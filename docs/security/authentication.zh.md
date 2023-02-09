@@ -744,6 +744,10 @@ app.middleware.use(User.sessionAuthenticator())
 * 会话中间件获取请求中提供的会话 cookie 并将其转换为会话
 * 会话身份认证器获取会话，并查看该会话是否有经过身份验证的用户。如果是，中间件对请求进行身份验证。在响应中，会话身份认证器查看请求是否具有经过身份验证的用户，并将其保存在会话中，以便在下一个请求中对其进行身份验证。
 
+!!! note "注意"
+    默认情况下会话 cookie 不会设置为 `secure` 和 `httpOnly`。查看 [Session API](../advanced/sessions.zh.md#configuration) 获取更多关于配置 cookie 的信息。
+
+
 ### 保护路由
 
 当保护 API 的路由时，如果请求没有经过身份验证，通常会返回一个包含状态码（比如 **401 未经授权**）的 HTTP 响应。然而，对于使用浏览器的用户来说，这并不是一个很好的用户体验。Vapor 提供了一个 `RedirectMiddleware` 中间件，用于该场景中的任何 `Authenticatable` 类型：
