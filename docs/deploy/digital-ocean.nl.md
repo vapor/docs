@@ -10,7 +10,7 @@ Laten we beginnen met het installeren van Swift op een Linux server. Gebruik het
 
 Onder distributies, selecteer Ubuntu 18.04 LTS. De volgende gids zal deze versie als voorbeeld gebruiken.
 
-![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu-18.png)
+![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu.png)
 
 !!! note  "Opmerking"
 	U kunt elke Linux distributie kiezen met een versie die Swift ondersteunt. Op het moment van schrijven ondersteunt Swift 5.2.4 Ubuntu 16.04, 18.04, 20.04, CentOS 8, en Amazon Linux 2. U kunt controleren welke besturingssystemen officieel worden ondersteund op de [Swift Releases](https://swift.org/download/#releases) pagina.
@@ -84,7 +84,7 @@ sudo apt-get install clang libicu-dev libatomic1 build-essential pkg-config
 
 Deze handleiding installeert Swift 5.2.4. Bezoek de [Swift Releases](https://swift.org/download/#releases) pagina voor een link naar de laatste release. Kopieer de download link voor Ubuntu 18.04.
 
-![Download Swift](../images/swift-download-ubuntu-18-copy-link.png)
+![Download Swift](../images/swift-download-ubuntu-copy-link.png)
 
 Download en decomprimeer de Swift toolchain.
 

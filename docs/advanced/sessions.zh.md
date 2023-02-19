@@ -4,7 +4,7 @@
 
 会话非常适合内置在 Vapor 中的前端应用程序，这些应用程序直接向浏览器提供 HTML。对于 API，在请求之间保留用户数据，我们建议使用无状态、[基于令牌的身份验证](../security/authentication.md)方式。
 
-## 配置
+## 配置(Configuration)
 
 要在路由中使用会话，请求必须通过 `SessionsMiddleware` 中间件。 最简单的实现方式是全局添加此中间件。建议你在声明 Cookie 后添加此代码。这是因为 Sessions 是一个结构体，它是一个值类型，而不是引用类型。因为它是值类型，所以必须先设置该值才能使用 `SessionsMiddleware`。
 

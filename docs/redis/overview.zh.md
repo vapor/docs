@@ -44,13 +44,13 @@ app.redis.configuration = try RedisConfiguration(hostname: "localhost")
 
 ### Redis 配置
 
-> API 文档：[`RedisConfiguration`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration/)
+> API 文档：[`RedisConfiguration`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration)
 
 #### 服务器地址
 
-如果你有多个 Redis 端点，比如一个 Redis 实例集群，你需要创建一个 [`[SocketAddress]`](https://apple.github.io/swift-nio/docs/current/NIOCore/Enums/SocketAddress.html#/s:3NIO13SocketAddressO04makeC13ResolvingHost_4portACSS_SitKFZ) 集合来传递给初始化器。
+如果你有多个 Redis 端点，比如一个 Redis 实例集群，你需要创建一个 [`[SocketAddress]`](https://swiftpackageindex.com/apple/swift-nio/main/documentation/niocore/socketaddress) 集合来传递给初始化器。
 
-创建 `SocketAddress` 最常见的方法是使用  [`makeAddressResolvingHost(_:port:)`](https://apple.github.io/swift-nio/docs/current/NIOCore/Enums/SocketAddress.html#/s:3NIO13SocketAddressO04makeC13ResolvingHost_4portACSS_SitKFZ) 静态方法。
+创建 `SocketAddress` 最常见的方法是使用  [`makeAddressResolvingHost(_:port:)`](https://swiftpackageindex.com/apple/swift-nio/main/documentation/niocore/socketaddress/makeaddressresolvinghost(_:port:)) 静态方法。
 
 ```swift
 let serverAddresses: [SocketAddress] = [
@@ -60,8 +60,8 @@ let serverAddresses: [SocketAddress] = [
 
 对于单个 Redis 端点，使用便利构造器初始化更容易，因为它将为你创建 `SocketAddress`：
 
-- [`.init(url:pool)`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration/#redisconfiguration.init(url:pool:)) (带 `String` 或 [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
-- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration/#redisconfiguration.init(hostname:port:password:database:pool:))
+- [`.init(url:pool)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (带 `String` 或 [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
+- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
 
 #### 密码
 
@@ -80,7 +80,7 @@ let serverAddresses: [SocketAddress] = [
 
 ### 连接池选项
 
-> API 文档：[`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration_PoolOptions/)
+> API 文档：[`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/pooloptions)
 
 !!! note "注意" 
     这里只突出显示最常更改的选项。对于所有选项，请参考 API 文档。
@@ -102,7 +102,7 @@ let serverAddresses: [SocketAddress] = [
 
 ## 发送命令
 
-你可以使用  [`Application`](https://api.vapor.codes/vapor/main/Vapor/Application/) 或 [`Request`](https://api.vapor.codes/vapor/main/Vapor/Request/) 实例上的 `.redis` 属性发送命令，这使得你可以访问 [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisclient)。
+你可以使用  [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) 或 [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) 实例上的 `.redis` 属性发送命令，这使得你可以访问 [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisclient)。
 
 对于各别的 [Redis 命令](https://redis.io/commands)，`RedisClient` 都有其对应的扩展。
 
