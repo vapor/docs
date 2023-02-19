@@ -1,6 +1,6 @@
 # 文件
 
-Vapor 提供了基于 [NIO](https://apple.github.io/swift-nio/docs/current/NIOPosix/Structs/NonBlockingFileIO.html) 构建的 API，用于异步处理路由内部的文件读取和写入。
+Vapor 提供了基于 [NIO](https://swiftpackageindex.com/apple/swift-nio/main/documentation/nioposix/nonblockingfileio) 构建的 API，用于异步处理路由内部的文件读取和写入。
 
 ## 读取
 
@@ -94,4 +94,4 @@ let fileHandle = try await req.application.fileio.openFile(
 print(fileHandle)
 ```
 
-了解更多信息，请参阅 SwiftNIO 的 [API 文档](https://apple.github.io/swift-nio/docs/current/NIOPosix/Structs/NonBlockingFileIO.html)。
+了解更多信息，请参阅 SwiftNIO 的 [API 文档](https://swiftpackageindex.com/apple/swift-nio/main/documentation/nioposix/nonblockingfileio)。

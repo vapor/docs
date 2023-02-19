@@ -1,6 +1,6 @@
 # Bestanden
 
-Vapor biedt een eenvoudige API voor het asynchroon lezen en schrijven van bestanden binnen route handlers. Deze API is gebouwd op NIO's [`NonBlockingFileIO`](https://apple.github.io/swift-nio/docs/current/NIOPosix/Structs/NonBlockingFileIO.html) type.
+Vapor biedt een eenvoudige API voor het asynchroon lezen en schrijven van bestanden binnen route handlers. Deze API is gebouwd op NIO's [`NonBlockingFileIO`](https://swiftpackageindex.com/apple/swift-nio/main/documentation/nioposix/nonblockingfileio) type.
 
 ## Lezen
 
@@ -94,4 +94,4 @@ let fileHandle = try await req.application.fileio.openFile(
 print(fileHandle)
 ```
 
-Ga voor meer informatie naar SwiftNIO's [API referentie](https://apple.github.io/swift-nio/docs/current/NIOPosix/Structs/NonBlockingFileIO.html).
+Ga voor meer informatie naar SwiftNIO's [API referentie](https://swiftpackageindex.com/apple/swift-nio/main/documentation/nioposix/nonblockingfileio).

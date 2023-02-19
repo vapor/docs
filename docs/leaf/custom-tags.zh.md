@@ -1,6 +1,6 @@
 # 自定义标签
 
-你可以遵循 [`LeafTag`](https://api.vapor.codes/leaf-kit/main/LeafKit/LeafTag/) 协议来创建自定义的 Leaf 标签。
+你可以遵循 [`LeafTag`](https://api.vapor.codes/leafkit/documentation/leafkit/leaftag) 协议来创建自定义的 Leaf 标签。
 
 为了演示这一点，让我们看看创建一个 `#now` 标签来打印当前时间戳。标签还支持一个可选参数来指定日期格式。
 

@@ -44,13 +44,13 @@ app.redis.configuration = try RedisConfiguration(hostname: "localhost")
 
 ### Redis Configuratie
 
-> API Documentatie: [`RedisConfiguration`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration/)
+> API Documentatie: [`RedisConfiguration`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration)
 
 #### serverAddresses
 
-Als u meerdere Redis eindpunten heeft, zoals een cluster van Redis instanties, dan kunt u beter een [`[SocketAddress]`](https://apple.github.io/swift-nio/docs/current/NIOCore/Enums/SocketAddress.html#/s:3NIO13SocketAddressO04makeC13ResolvingHost_4portACSS_SitKFZ) verzameling maken om in plaats daarvan de initializer mee te geven.
+Als u meerdere Redis eindpunten heeft, zoals een cluster van Redis instanties, dan kunt u beter een [`[SocketAddress]`](https://swiftpackageindex.com/apple/swift-nio/main/documentation/niocore/socketaddress) verzameling maken om in plaats daarvan de initializer mee te geven.
 
-De meest gebruikelijke manier om een `SocketAddress` aan te maken is met de [`makeAddressResolvingHost(_:port:)`](https://apple.github.io/swift-nio/docs/current/NIOCore/Enums/SocketAddress.html#/s:3NIO13SocketAddressO04makeC13ResolvingHost_4portACSS_SitKFZ) statische methode.
+De meest gebruikelijke manier om een `SocketAddress` aan te maken is met de [`makeAddressResolvingHost(_:port:)`](https://swiftpackageindex.com/apple/swift-nio/main/documentation/niocore/socketaddress/makeaddressresolvinghost(_:port:)) statische methode.
 
 ```swift
 let serverAddresses: [SocketAddress] = [
@@ -60,8 +60,8 @@ let serverAddresses: [SocketAddress] = [
 
 Voor een enkel Redis endpoint, kan het makkelijker zijn om met de convenience initializers te werken, omdat die het `SocketAddress` voor je aanmaken:
 
-- [`.init(url:pool)`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration/#redisconfiguration.init(url:pool:)) (met `String` of [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
-- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration/#redisconfiguration.init(hostname:port:password:database:pool:))
+- [`.init(url:pool)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (met `String` of [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
+- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
 
 #### wachtwoord
 
@@ -80,7 +80,7 @@ Dit bespaart u het `SELECT` commando zelf naar Redis te moeten sturen.
 
 ### Connection Pool Opties
 
-> API Documentatie: [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration_PoolOptions/)
+> API Documentatie: [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/pooloptions)
 
 !!! note
     Alleen de opties die het meest worden gewijzigd worden hier uitgelicht. Voor alle opties, raadpleeg de API documentatie.
@@ -102,7 +102,7 @@ Deze optie bepaalt het gedrag van hoe het maximum aantal verbindingen wordt bijg
 
 ## Een commando versturen
 
-Je kunt commando's sturen met de `.redis` eigenschap op elke [`Application`](https://api.vapor.codes/vapor/main/Vapor/Application/) of [`Request`](https://api.vapor.codes/vapor/main/Vapor/Request/) instantie, die je toegang geeft tot een [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisclient).
+Je kunt commando's sturen met de `.redis` eigenschap op elke [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) of [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) instantie, die je toegang geeft tot een [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisclient).
 
 Elke `RedisClient` heeft verschillende extensies voor alle verschillende [Redis commando's](https://redis.io/commands).
 
