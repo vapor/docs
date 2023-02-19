@@ -1,6 +1,6 @@
 # Aangepaste Tags
 
-U kunt aangepaste Leaf tags maken met het [`LeafTag`](https://api.vapor.codes/leaf-kit/main/LeafKit/LeafTag/) protocol. 
+U kunt aangepaste Leaf tags maken met het [`LeafTag`](https://api.vapor.codes/leafkit/documentation/leafkit/leaftag) protocol. 
 
 Om dit te demonstreren, laten we eens kijken naar het maken van een aangepaste tag `#now` die de huidige tijdstempel afdrukt. De tag ondersteunt ook een enkele, optionele parameter voor het specificeren van het datumformaat.
 
