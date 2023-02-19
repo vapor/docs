@@ -48,9 +48,9 @@ app.redis.configuration = try RedisConfiguration(hostname: "localhost")
 
 #### serverAddresses
 
-If you have multiple Redis endpoints, such as a cluster of Redis instances, you'll want to create a [`[SocketAddress]`](https://apple.github.io/swift-nio/docs/current/NIOCore/Enums/SocketAddress.html#/s:3NIO13SocketAddressO04makeC13ResolvingHost_4portACSS_SitKFZ) collection to pass in the initializer instead.
+If you have multiple Redis endpoints, such as a cluster of Redis instances, you'll want to create a [`[SocketAddress]`](https://swiftpackageindex.com/apple/swift-nio/main/documentation/niocore/socketaddress) collection to pass in the initializer instead.
 
-The most common way of creating a `SocketAddress` is with the [`makeAddressResolvingHost(_:port:)`](https://apple.github.io/swift-nio/docs/current/NIOCore/Enums/SocketAddress.html#/s:3NIO13SocketAddressO04makeC13ResolvingHost_4portACSS_SitKFZ) static method.
+The most common way of creating a `SocketAddress` is with the [`makeAddressResolvingHost(_:port:)`](https://swiftpackageindex.com/apple/swift-nio/main/documentation/niocore/socketaddress/makeaddressresolvinghost(_:port:)) static method.
 
 ```swift
 let serverAddresses: [SocketAddress] = [

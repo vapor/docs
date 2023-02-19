@@ -349,7 +349,7 @@ Vapor 3's globale `flatMap` methode voor het combineren van meerdere futures is 
 
 ### ByteBuffer
 
-Veel methoden en eigenschappen die voorheen `Data` gebruikten, gebruiken nu NIO's `ByteBuffer`. Dit type is een krachtiger en performanter byte opslagtype. U kunt meer lezen over de API in [SwiftNIO's ByteBuffer docs](https://apple.github.io/swift-nio/docs/current/NIOCore/Structs/ByteBuffer.html).
+Veel methoden en eigenschappen die voorheen `Data` gebruikten, gebruiken nu NIO's `ByteBuffer`. Dit type is een krachtiger en performanter byte opslagtype. U kunt meer lezen over de API in [SwiftNIO's ByteBuffer docs](https://swiftpackageindex.com/apple/swift-nio/main/documentation/niocore/bytebuffer).
 
 Om een `ByteBuffer` terug te converteren naar `Data`, gebruik je:
 
