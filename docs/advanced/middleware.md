@@ -124,7 +124,7 @@ app.middleware.use(file)
 
 Once `FileMiddleware` is registered, a file like `Public/images/logo.png` can be linked from a Leaf template as `<img src="/images/logo.png"/>`.
 
-If your server is contained in an Xcode Project, use this instead:
+If your server is contained in an Xcode Project, such as an iOS app, use this instead:
 
 ```swift
 let file = try FileMiddleware(bundle: .main, publicDirectory: "Public")
