@@ -102,7 +102,7 @@ let serverAddresses: [SocketAddress] = [
 
 ## 发送命令
 
-你可以使用  [`Application`](https://api.vapor.codes/vapor/main/Vapor/Application/) 或 [`Request`](https://api.vapor.codes/vapor/main/Vapor/Request/) 实例上的 `.redis` 属性发送命令，这使得你可以访问 [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisclient)。
+你可以使用  [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) 或 [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) 实例上的 `.redis` 属性发送命令，这使得你可以访问 [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisclient)。
 
 对于各别的 [Redis 命令](https://redis.io/commands)，`RedisClient` 都有其对应的扩展。
 

@@ -102,7 +102,7 @@ This option determines the behavior of how the maximum connection count is maint
 
 ## Sending a Command
 
-You can send commands using the `.redis` property on any [`Application`](https://api.vapor.codes/vapor/main/Vapor/Application/) or [`Request`](https://api.vapor.codes/vapor/main/Vapor/Request/) instance, which will give you access to a [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisclient).
+You can send commands using the `.redis` property on any [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) or [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) instance, which will give you access to a [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisclient).
 
 Any `RedisClient` has several extensions for all of the various [Redis commands](https://redis.io/commands).
 

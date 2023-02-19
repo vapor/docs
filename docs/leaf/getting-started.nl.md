@@ -51,7 +51,7 @@ Dit vertelt Vapor om de `LeafRenderer` te gebruiken wanneer u `req.view` aanroep
 
 Zodra je Leaf hebt geconfigureerd, moet je er voor zorgen dat je een `Views` map hebt om je `.leaf` bestanden in op te slaan. Standaard verwacht Leaf dat de views map een `./Resources/Views` is relatief aan de root van je project.
 
-U zult waarschijnlijk ook Vapor's [`FileMiddleware`](https://api.vapor.codes/vapor/main/Vapor/FileMiddleware/) willen inschakelen om bestanden uit uw `/Public` folder te serveren als u van plan bent om bijvoorbeeld Javascript en CSS bestanden te serveren.
+U zult waarschijnlijk ook Vapor's [`FileMiddleware`](https://api.vapor.codes/vapor/documentation/vapor/filemiddleware) willen inschakelen om bestanden uit uw `/Public` folder te serveren als u van plan bent om bijvoorbeeld Javascript en CSS bestanden te serveren.
 
 ```
 VaporApp

@@ -102,7 +102,7 @@ Deze optie bepaalt het gedrag van hoe het maximum aantal verbindingen wordt bijg
 
 ## Een commando versturen
 
-Je kunt commando's sturen met de `.redis` eigenschap op elke [`Application`](https://api.vapor.codes/vapor/main/Vapor/Application/) of [`Request`](https://api.vapor.codes/vapor/main/Vapor/Request/) instantie, die je toegang geeft tot een [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisclient).
+Je kunt commando's sturen met de `.redis` eigenschap op elke [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) of [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) instantie, die je toegang geeft tot een [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisclient).
 
 Elke `RedisClient` heeft verschillende extensies voor alle verschillende [Redis commando's](https://redis.io/commands).
 

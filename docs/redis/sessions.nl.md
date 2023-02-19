@@ -8,7 +8,7 @@ Als er geen aangepaste [`RedisSessionsDelegate`](https://api.vapor.codes/redis/m
 
 ### SessionID Creatie
 
-Tenzij je de [`makeNewID()`](https://api.vapor.codes/redis/main/Redis/RedisSessionsDelegate/#redissessionsdelegate.makeNewID()) methode implementeert in [je eigen `RedisSessionsDelegate`](#RedisSessionsDelegate), zullen alle [`SessionID`](https://api.vapor.codes/vapor/main/Vapor/SessionID/) waarden aangemaakt worden door het volgende te doen:
+Tenzij je de [`makeNewID()`](https://api.vapor.codes/redis/main/Redis/RedisSessionsDelegate/#redissessionsdelegate.makeNewID()) methode implementeert in [je eigen `RedisSessionsDelegate`](#RedisSessionsDelegate), zullen alle [`SessionID`](https://api.vapor.codes/vapor/documentation/vapor/sessionid) waarden aangemaakt worden door het volgende te doen:
 
 1. Genereer 32 bytes van willekeurige tekens
 2. base64 codeer de waarde
@@ -17,7 +17,7 @@ Bijvoorbeeld: `Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
 
 ### SessionData Opslag
 
-De standaard implementatie van `RedisSessionsDelegate` slaat [`SessionData`](https://api.vapor.codes/vapor/main/Vapor/SessionData/) op als een eenvoudige JSON string waarde met behulp van `Codable`.
+De standaard implementatie van `RedisSessionsDelegate` slaat [`SessionData`](https://api.vapor.codes/vapor/documentation/vapor/sessiondata) op als een eenvoudige JSON string waarde met behulp van `Codable`.
 
 Tenzij u de [`makeRedisKey(for:)`](https://api.vapor.codes/redis/main/Redis/RedisSessionsDelegate/#redissessionsdelegate.makeRedisKey(for:)) methode implementeert in uw eigen `RedisSessionsDelegate`, zal `SessionData` worden opgeslagen in Redis met een sleutel die de `SessionID` voorvoegt met `vrs-` (**V**apor **R**edis **S**essions)
 

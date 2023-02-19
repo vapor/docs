@@ -8,7 +8,7 @@ Redis 可以作为一个存储提供程序，用于缓存[会话数据](../advan
 
 ### 创建 SessionID 
 
-除非在你自己的 [`RedisSessionsDelegate`](#redissessionsdelegate) 中实现 [`makeNewID()`](https://api.vapor.codes/redis/main/Redis/RedisSessionsDelegate/#redissessionsdelegate.makeNewID()) 方法，否则所有的 ['SessionID`](https://api.vapor.codes/vapor/main/Vapor/SessionID/) 值将通过以下操作创建:
+除非在你自己的 [`RedisSessionsDelegate`](#redissessionsdelegate) 中实现 [`makeNewID()`](https://api.vapor.codes/redis/main/Redis/RedisSessionsDelegate/#redissessionsdelegate.makeNewID()) 方法，否则所有的 ['SessionID`](https://api.vapor.codes/vapor/documentation/vapor/sessionid) 值将通过以下操作创建:
 
 1. 生成32字节的随机字符
 1. base64 编码该值
@@ -17,7 +17,7 @@ Redis 可以作为一个存储提供程序，用于缓存[会话数据](../advan
 
 ### 存储会话数据
 
-`RedisSessionsDelegate` 的默认实现将使用 `Codable` 将 [`SessionData`](https://api.vapor.codes/vapor/main/Vapor/SessionData/) 存储为一个简单的JSON字符串值。
+`RedisSessionsDelegate` 的默认实现将使用 `Codable` 将 [`SessionData`](https://api.vapor.codes/vapor/documentation/vapor/sessiondata) 存储为一个简单的JSON字符串值。
 
 除非在你自己的 `RedisSessionsDelegate` 中实现了 [`makeRedisKey(for:)`](https://api.vapor.codes/redis/main/Redis/RedisSessionsDelegate/#redissessionsdelegate.makeRedisKey(for:)) 方法，`SessionData` 将存储在 Redis 中，其中的键会在 `SessionID` 前加上前缀 `vrs-` (**V**apor **R**edis **S**essions)。
 
