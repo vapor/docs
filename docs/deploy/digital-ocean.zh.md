@@ -8,12 +8,12 @@
 
 ![Create Droplet](../images/digital-ocean-create-droplet.png)
 
-在发行版下，选择 Ubuntu 18.04 LTS。以下指南将以此版本为例。
+在发行版下，选择 Ubuntu 22.04 LTS。以下指南将以此版本为例。
 
 ![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu.png)
 
 !!! note "注意"  
-	你也可以选择 Swift 支持的其它 Linux 发行版。在撰写本文时， Swift 5.2.4 支持 Ubuntu 16.04、18.04、20.04、CentOS 8, 和 Amazon Linux 2。你可以在 [Swift Releases](https://swift.org/download/#releases) 页面上查看官方支持哪些操作系统。
+	你也可以选择 Swift 支持的其它 Linux 发行版。在撰写本文时， Swift 5.7.3 支持 Ubuntu 18.04、20.04、22.04、CentOS 7, 和 Amazon Linux 2。你可以在 [Swift Releases](https://swift.org/download/#releases) 页面上查看官方支持哪些操作系统。
 
 选择完发行版后，选择你喜欢的套餐和数据中心所在区域。然后设置一个 SSH 密钥以在创建服务器后访问它。最后， 点击创建 Droplet 并等待新服务器启动。
 
@@ -29,7 +29,7 @@
 ssh root@your_server_ip
 ```
 
-在 [Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04) 上初始化服务器设置，DigitalOcean 提供了深入指南。 本指南将快速介绍一些基础知识。
+在 [Ubuntu 22.04](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04) 上初始化服务器设置，DigitalOcean 提供了深入指南。 本指南将快速介绍一些基础知识。
 
 ### 配置防火墙
 
@@ -77,38 +77,40 @@ ssh vapor@your_server_ip
 
 ```sh
 sudo apt-get update
-sudo apt-get install clang libicu-dev libatomic1 build-essential pkg-config
+sudo apt-get install binutils git gnupg2 libc6-dev libcurl4-openssl-dev 
+	 \ libedit2 libgcc-9-dev libpython3.8 libsqlite3-0 libstdc++-9-dev 
+	 \ libxml2-dev libz3-dev pkg-config tzdata unzip zlib1g-dev
 ```
 
-### 下载 Toolchain
+### 下载 Swift Toolchain
 
-本指南将安装 Swift 5.2.4。访问 [Swift Releases](https://swift.org/download/#releases) 页面获取最新版本的链接。复制 Ubuntu 18.04 的下载链接。
+本指南将安装 Swift 5.7.3。访问 [Swift Releases](https://swift.org/download/#releases) 页面获取最新版本的链接。复制 Ubuntu 22.04 的下载链接。
 
 ![Download Swift](../images/swift-download-ubuntu-copy-link.png)
 
 下载并解压 Swift toolchain。
 
 ```sh
-wget https://swift.org/builds/swift-5.2.4-release/ubuntu1804/swift-5.2.4-RELEASE/swift-5.2.4-RELEASE-ubuntu18.04.tar.gz
-tar xzf swift-5.2.4-RELEASE-ubuntu18.04.tar.gz
+wget https://download.swift.org/swift-5.7.3-release/ubuntu2204/swift-5.7.3-RELEASE/swift-5.7.3-RELEASE-ubuntu22.04.tar.gz
+tar xzf swift-5.7.3-RELEASE-ubuntu22.04.tar.gz
 ```
 
 !!! note "注意" 
 	Swift 的[使用下载指南](https://swift.org/download/#using-downloads)包含有关如何使用 PGP 签名验证下载的信息。
 
-### 安装 Toolchain
+### 安装 Swift Toolchain
 
 将 Swift 移到易于访问的地方。本指南将 `/swift` 与子文件夹中的每个编译器版本一起使用。
 
 ```sh
 sudo mkdir /swift
-sudo mv swift-5.2.4-RELEASE-ubuntu18.04 /swift/5.2.4
+sudo mv swift-5.7.3-RELEASE-ubuntu22.04 /swift/5.7.3
 ```
 
 将 Swift 添加到 `/usr/bin` 以便 `vapor` 和 `root` 用户可以执行。
 
 ```sh
-sudo ln -s /swift/5.2.4/usr/bin/swift /usr/bin/swift
+sudo ln -s /swift/5.7.3/usr/bin/swift /usr/bin/swift
 ```
 
 验证 Swift 是否正确安装。
@@ -117,52 +119,72 @@ sudo ln -s /swift/5.2.4/usr/bin/swift /usr/bin/swift
 swift --version
 ```
 
-## 设置项目
+## 使用 Vapor 工具箱安装 Vapor
 
-现在已经安装了 Swift，让我们克隆并编译项目。本示例，我们使用 Vapor 的 [API 模板](https://github.com/vapor/api-template/)。
+现在已经安装了 Swift，让我们 Vapor工具箱来安装 Vapor。你需要通过源码在构建工具箱。在 GitHub 上查看工具箱的[发布](https://github.com/vapor/toolbox/releases)版本，以查找最新版本。在本例中，我们使用 18.6.0 版本。
 
-首先安装 Vapor 的系统依赖项。
+### 克隆并构建 Vapor
+
+克隆 Vapor 工具箱仓库。
 
 ```sh
-sudo apt-get install openssl libssl-dev zlib1g-dev libsqlite3-dev
+git clone https://github.com/vapor/toolbox.git
 ```
 
-允许 HTTP 通过防火墙。
+切换到最近的发布版本。
 
 ```sh
-sudo ufw allow http
+cd toolbox
+git checkout 18.6.0
 ```
 
-### 克隆和构建
-
-现在克隆项目并构建它。
+构建 Vapor 并将二进制文件移动到你的 path 中。
 
 ```sh
-git clone https://github.com/vapor/api-template.git
-cd api-template
-swift build
+swift build -c release --disable-sandbox --enable-test-discovery
+sudo mv .build/release/vapor /usr/local/bin
+```
+
+### 创建 Vapor 项目
+
+使用工具箱的 new 命令初始化项目。
+
+```sh
+vapor new HelloWorld -n
 ```
 
 !!! tip "建议" 
-	如果生产环境进行构建， 请使用 `swift build -c release`
+	`-n` 标志表示自动回答所有问题为 no，并提供一个基础的模板。
+
+
+![Vapor Splash](../images/vapor-splash.png)
+
+命令执行完成后，切换到新创建的文件夹:
+
+```sh
+cd HelloWorld
+```
+
+### 打开 HTTP 端口
+
+为了访问服务器上的 Vapor 程序，需要开启相应 HTTP 端口。
+
+```sh
+sudo ufw allow 8080
+```
 
 ### 运行
 
-项目编译完成后，在服务器的 IP 端口80上运行它。本示例的 IP 地址为 `157.245.244.228`。
+现在 Vapor 已经设置好了，并且有了公开的端口，让我们启动它吧。
 
 ```sh
-sudo .build/debug/Run serve -b 157.245.244.228:80
+vapor run serve --hostname 0.0.0.0 --port 8080
 ```
 
-如果你使用 `swift build -c release` 进行构建, 然后你需要运行：
-```sh
-sudo .build/release/Run serve -b 157.245.244.228:80
-```
-
-通过浏览器或者本地终端访问服务器的 IP， 你应该会看到 “It works!”。
+通过浏览器或者本地终端访问服务器的 IP， 你应该会看到 “It works!”。本例中的 IP 地址为 `134.122.126.139`。
 
 ```
-$ curl http://157.245.244.228
+$ curl http://134.122.126.139:8080
 It works!
 ```
 
