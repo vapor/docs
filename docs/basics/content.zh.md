@@ -267,7 +267,7 @@ extension HTML: AsyncResponseEncodable {
   }
 }
 ```
-注意，它允许自定义 `Content-Type` 头，查看更多请查阅 [`HTTPHeaders` 文档](https://api.vapor.codes/vapor/main/Vapor/)
+注意，它允许自定义 `Content-Type` 头，查看更多请查阅 [`HTTPHeaders` 文档](https://api.vapor.codes/vapor/documentation/vapor/response/headers)
 
 接下来，你可以在你的路由中使用 `HTML` 作为响应类型：
 

@@ -51,7 +51,7 @@ app.views.use(.leaf)
 
 一旦你配置了 Leaf，你需要确保有一个 `Views` 文件夹来存储 `.leaf` 文件。默认情况下，Leaf 期望文件夹位于相对于项目根目录的 `./Resources/Views` 中。
 
-例如，如果你计划提供 Javascript 和 CSS 文件，你可能还希望启用 Vapor 的 [`FileMiddleware`](https://api.vapor.codes/vapor/main/Vapor/FileMiddleware/) 服务来提供 `/Public` 文件夹中的文件。
+例如，如果你计划提供 Javascript 和 CSS 文件，你可能还希望启用 Vapor 的 [`FileMiddleware`](https://api.vapor.codes/vapor/documentation/vapor/filemiddleware) 服务来提供 `/Public` 文件夹中的文件。
 
 ```
 VaporApp

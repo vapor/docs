@@ -10,7 +10,7 @@
 
 在发行版下，选择 Ubuntu 18.04 LTS。以下指南将以此版本为例。
 
-![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu-18.png)
+![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu.png)
 
 !!! note "注意"  
 	你也可以选择 Swift 支持的其它 Linux 发行版。在撰写本文时， Swift 5.2.4 支持 Ubuntu 16.04、18.04、20.04、CentOS 8, 和 Amazon Linux 2。你可以在 [Swift Releases](https://swift.org/download/#releases) 页面上查看官方支持哪些操作系统。
@@ -84,7 +84,7 @@ sudo apt-get install clang libicu-dev libatomic1 build-essential pkg-config
 
 本指南将安装 Swift 5.2.4。访问 [Swift Releases](https://swift.org/download/#releases) 页面获取最新版本的链接。复制 Ubuntu 18.04 的下载链接。
 
-![Download Swift](../images/swift-download-ubuntu-18-copy-link.png)
+![Download Swift](../images/swift-download-ubuntu-copy-link.png)
 
 下载并解压 Swift toolchain。
 
