@@ -44,7 +44,7 @@ app.redis.configuration = try RedisConfiguration(hostname: "localhost")
 
 ### Redis Configuratie
 
-> API Documentatie: [`RedisConfiguration`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration/)
+> API Documentatie: [`RedisConfiguration`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration)
 
 #### serverAddresses
 
@@ -60,8 +60,8 @@ let serverAddresses: [SocketAddress] = [
 
 Voor een enkel Redis endpoint, kan het makkelijker zijn om met de convenience initializers te werken, omdat die het `SocketAddress` voor je aanmaken:
 
-- [`.init(url:pool)`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration/#redisconfiguration.init(url:pool:)) (met `String` of [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
-- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration/#redisconfiguration.init(hostname:port:password:database:pool:))
+- [`.init(url:pool)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (met `String` of [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
+- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
 
 #### wachtwoord
 
@@ -80,7 +80,7 @@ Dit bespaart u het `SELECT` commando zelf naar Redis te moeten sturen.
 
 ### Connection Pool Opties
 
-> API Documentatie: [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration_PoolOptions/)
+> API Documentatie: [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/pooloptions)
 
 !!! note
     Alleen de opties die het meest worden gewijzigd worden hier uitgelicht. Voor alle opties, raadpleeg de API documentatie.
