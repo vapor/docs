@@ -135,7 +135,31 @@ plugins:
         fr: 
           Welcome: Bienvenue
         de:
-          Welcome: Willkommen
+          Welcome: Begrüßung
+          Install: Installation
+          Getting Started: Einführung
+          Basics: Grundlagen
+          Hello, world: Hallo Welt
+          Folder Structure: Verzeichnis
+          Validation: Validierung
+          Logging: Protokollierung
+          Environment: Umgebung
+          Errors: Fehlerbehandlung
+          Model: Models
+          Overview: Übersicht
+          Relations: Beziehungen
+          Migrations: Migrationen
+          Query: Abfrage
+          Transactions: Transaktionen
+          Sessions: Sitzungen
+          Advanced: Erweitert
+          Testing: Testen
+          Files: Dateien
+          Commands: Befehle
+          Services: Dienste
+          Authentication: Authentifzierung
+          Security: Sicherheit
+          Deploy: Bereitstellung
           Contributing: Mitwirken
           Contributing Guide: Leitfaden für Beiträge
         zh:
