@@ -18,11 +18,11 @@ Für alle anderen Anwendungen empfehlen wir _async/await_ zu verwenden, da die V
 
 Für die Migration auf _async/await_ sind ein paar Dinge zu beachten. 
 
-Für Anwender von macOS ist macOS 12 Monterey (oder aktueller) und Xcode 13.1 (oder aktueller) erforderlich. 
+Für Anwender von macOS ist macOS 12 Monterey (oder aktueller) und Xcode 13.1 (oder aktueller) erforderlich. Für alle anderen Betriebssysteme ist Swift 5.5 (oder aktueller) Vorraussetzung. 
 
-Für alle anderen Betriebssysteme ist Swift 5.5 (oder aktueller) Vorraussetzung. Zugleich sollten alle Abhängigkeit auf dem aktuellen Stand sein.
+Zugleich sollten alle Abhängigkeit auf dem aktuellen Stand sein.
 
-In your Package.swift, set the tools version to 5.5 at the top of the file:
+Hebe die Mindestversion für Swift Tools in der ersten Zeile deiner Paketbeschreibung auf 5.5 an.
 
 ```swift
 // swift-tools-version:5.5
@@ -31,7 +31,7 @@ import PackageDescription
 // ...
 ```
 
-Next, set the platform version to macOS 12:
+Hebe die Mindestversion für den Parameter Platforms auf macOS 12 an.
 
 ```swift
     platforms: [
@@ -55,7 +55,9 @@ Finally update the `Run` target to mark it as an executable target:
 +FROM swift:5.5-focal-slim
 ```
 
-Nun kannst du mit den eigentlichen Anpassungen beginnen. Grundsätzlich kann man sagen, jede Funktion, die ein Object von Typ _EventLoopFuture_ zurückgibt, sollte mit dem Schlüsselwort _async_ versehen werden.
+Nun kannst du mit den eigentlichen Anpassungen beginnen. 
+
+Grundsätzlich kann man sagen, jede Funktion, die ein Object von Typ _EventLoopFuture_ zurückgibt, sollte mit dem Schlüsselwort _async_ versehen werden.
 
 ```swift
 /// EventLoopFuture
@@ -82,8 +84,6 @@ routes.get("firstUser") { req async throws -> String in
 ### Alt und Neu
 
 Solltest du in Vapor auf Stellen treffen, die noch kein ... kannst du die Methode _get_ verwenden, um den Wert zu wandeln.
-
-Beispiel:
 
 ```swift
 return someMethodCallThatReturnsAFuture().flatMap { futureResult in
@@ -115,9 +115,13 @@ let futureString: EventLoopFuture<String> = promise.futureResult
 
 ## EventLoopFuture
 
-Wie du vielleicht schon mitbekommen hast, erwarten oder liefern manche Stellen in Vapor einen Object von Typ _EventLoopFuture_. Beim ersten Mal kann das Thema verständlichlerweise verwirrent sein, weshalb wir hier nochmal auf das Thema _Futures_ eingehen möchten.
+Wie du vielleicht schon an der ein oder anderen Stelle gesehen hast, erwarten oder liefern manche Methoden in Vapor einen Object von Typ _EventLoopFuture_. 
 
-_Promises_ and _futures_ are related, but distinct, types. Mit _Promises_ werden _Futures_ erstellt. Futures are an alternative to callback-based asynchronous APIs. Futures can be chained and transformed in ways that simple closures cannot. Die meiste Zeit wirst du mit _Futures_ arbeiten, und weniger mit _Promises_
+Beim ersten Mal kann das Thema verständlichlerweise verwirrent sein, weshalb wir hier nochmal auf das Thema _Futures_ eingehen möchten.
+
+_Promises_ and _futures_ are related, but distinct, types. 
+
+Mit _Promises_ werden _Futures_ erstellt. Futures are an alternative to callback-based asynchronous APIs. Futures can be chained and transformed in ways that simple closures cannot. Die meiste Zeit wirst du mit _Futures_ arbeiten, und weniger mit _Promises_
 
 |Art              |Beschreibung                                       |Zugriff   |
 |-----------------|---------------------------------------------------|----------|
@@ -126,7 +130,7 @@ _Promises_ and _futures_ are related, but distinct, types. Mit _Promises_ werden
 
 ## Wandler
 
-Ebenso wie _Optionals_ oder _Arrays_ in Swift, können _Futures_ gemapped oder geflatmapped werden. Hauptsächlich wirst du auch diese beiden Wandler nutzen, jedoch gibt es noch mehr Wandler, die nützlich sein könnten:
+Ebenso wie _Optionals_ oder _Arrays_ in Swift, können _Futures_ gemapped oder geflatmapped werden. Hauptsächlich wirst du diese beiden Wandler nutzen, jedoch gibt es noch weitere Wandler, die für dich nützlich sein könnten:
 
 |Wandler                              |Argument                   |Beschreibung                                         |
 |-------------------------------------|---------------------------|-----------------------------------------------------|
@@ -137,7 +141,7 @@ Ebenso wie _Optionals_ oder _Arrays_ in Swift, können _Futures_ gemapped oder g
 
 ### map
 
-Die Methode _map_ wandelt den zukünftigen Wert in ein anderen Wert um. Da der zukünftige Wert möglicherweise noch nicht existiert (als Ergebnis der asynchronen Ausführung), greifen wir mittels Closure auf den Wert zu.
+Die Methode _map_ wandelt den zukünftigen Wert in ein anderen Wert um. Da der zukünftige Wert möglicherweise noch nicht existiert (als Ergebnis der asynchronen Ausführung), greifen wir in der Klammer auf den Wert zu.
 
 ```swift
 /// Assume we get a future string back from some API
@@ -425,9 +429,15 @@ All of Vapor's packages are built on SwiftNIO and use non-blocking I/O. However,
     
 ### CPU Bound
 
-Meist während einer Serveranfrage wird auf das Ergebnis weiterer Datenbank- oder Netzwerkanfrage gewartet. Vapor und SwiftNIO sind non-blocking, was bedeutet, dass eben diese Wartezeit für die Bearbeitung anderer Anfragen genutzt werden kann. Jedoch kann es auch zu leistungsintensiven Anfragen kommen.
+Meist während einer Serveranfrage wird auf das Ergebnis weiterer Datenbank- oder Netzwerkanfrage gewartet. 
 
-Wenn eine Ereignisschleife eben ein solche leistungsintensive Arbeit verrichtet, ist sie nicht in der Lage auf andere eingehende Anfragen zu reagieren. Normalerweise ist das kein Problem, da heutzutage Prozessoren schnell sind und Webanwendungen weniger prozessorlastige Arbeiten verrichten.
+Vapor und SwiftNIO sind non-blocking, was bedeutet, dass eben diese Wartezeit für die Bearbeitung anderer Anfragen genutzt werden kann. 
+
+Jedoch kann es auch zu leistungsintensiveren Anfragen kommen.
+
+Wenn eine Ereignisschleife eben ein solche leistungsintensive Arbeit verrichtet, ist sie nicht in der Lage auf andere eingehende Anfragen zu reagieren. 
+
+Normalerweise ist das kein Problem, da heutzutage Prozessoren schnell sind und Webanwendungen weniger prozessorlastige Arbeiten verrichten.
 Aber es kann zu einem Problem werden, wenn eine Anfrage, andere Anfragen blockiert.
 
 Das Auffinden leistungsintensiver Anfragen und Verlagern auf einem Thread im Hintergrund kann die Zuverlässigkeit und Reaktionsfähigkeit deiner Anwendungen verbessern. CPU bound work is more of a gray area than I/O bound work, and it is ultimately up to you to determine where you want to draw the line. 
