@@ -1,17 +1,17 @@
 # Umgebung
 
-In Vapor gibt es mehrere Umgebungen mit denen du Einstellungen individuell vordefinieren kannst. Mit dem Wechsel der Umgebung ändert sich dann das Verhalten deiner Anwendung. Du kannst aber auch Werte direkt aus dem aktuellen Prozess abrufen oder aus einer .env-Datei laden.
+In Vapor gibt es mehrere Umgebungen mit denen wir Standardwerte individuell für die Umgebung vordefinieren können. Mit dem Wechsel der Umgebung ändert sich automatisch das Verhalten der Anwendung. Wir können aber auch Werte direkt aus dem aktuellen Prozess abrufen oder aus einer sogenannten Umgebungsdatei (*.env) laden.
 
 | Umgebung              | Kurzform   | Beschreibung                                |
 |-----------------------|------------|---------------------------------------------|
 | production            | prod       | Umgebung bei Veröffentlichung.              |
-| development (default) | dev        | Umgebung für Entwicklung.                   |
+| development (default) | dev        | Umgebung für die Entwicklung.               |
 | testing               | test       | Umgebung zum Testen.                        |
 | Vapor nutzt standardmäßig die Umgebung _Development_.                            |
 
 ## Eigenschaft
 
-Du kannst über die Eigenschaft _Environment_ auf die laufenden Umgebung zugreifen oder zwischen den Umgebungen wechseln.
+Wir können über die Eigenschaft _Environment_ auf die laufenden Umgebung zugreifen oder zwischen den Umgebungen wechseln.
 
 ```swift
 /// [configure.swift]
@@ -43,64 +43,40 @@ let foo = Environment.get("FOO")
 print(foo) // String?
 ```
 
-Zusätzlich kannst du den Wert aber auch dynamisch über die Eigenschaft _process_ abrufen.
+Zusätzlich können wir den Wert auch dynamisch über die Eigenschaft _process_ abrufen.
 
 ```swift
 let foo = Environment.process.FOO
 print(foo) // String?
 ```
 
-#### - Definieren
+#### - Bestimmen
 
-In Xcode kannst du die eine Prozessvariable über das Schema _Run_ festlegen. Im Terminal benutze den Befehl _export_.
+In Xcode können wir eine Prozessvariable über das Schema _Run_ festlegen. 
+
+Im Terminal gibt es hierzu den Befehl _export_:
 
 ```sh
 export FOO=BAR
 vapor run serve
 ```
 
-### .env (dotenv)
+### Umgebungsdatei
 
-Eine .env-Datei beinhaltet Schlüssel-Wert-Paare, welche entsprechend der Umgebung geladen werden. Auf dieser Art müssen die Umgebungsvariablen nicht manuell angelegt werden. Vapor lädt die Datei aus dem Arbeitsverzeichnis.
+Eine Umgebungsdatei besteht aus Schlüssel-Wert-Paare, welche entsprechend der Umgebung geladen werden. Auf dieser Weise müssen die Umgebungsvariablen nicht manuell angelegt werden. Vapor lädt die Datei beim Starten aus dem Arbeitsverzeichnis.
 
 ```sh
 # Key=Value
 FOO=BAR
 ```
 
-When your application boots, you will be able to access the contents of this file like other process environment variables.
+Nach dem Starten können wir auf die angegeben Umgebungsvariablen zugreifen. Bestehende Umgebungsvariablen werden nicht durch Variablen aus der Umgebungsdatei überschrieben.
 
-```swift
-let foo = Environment.get("FOO")
-print(foo) // String?
-```
+Neben der allgemeinen Umgebungsdatei _.env_, versucht Vapor zusätzlich die Umgebungsdatei für die aktuelle Umgebung zu laden. Wenn sich die Anwendung zum Beispiel in der Umgebung _Entwicklung_ befindet, wird Vapor versuchen die Datei _.env.development_ zu laden. Umgebungsvariablen aus der Umgebungsdatei _.env.development_ werden von Vapor höher als die Variablen der allgemeinen Umgebungsdatei eingestuft.
 
-!!! info
-    Variables specified in `.env` files will not overwrite variables that already exist in the process environment. 
+##  Benutzerdefinierte Umgebungen
 
-Alongside `.env`, Vapor will also attempt to load a dotenv file for the current environment. For example, when in the `development` environment, Vapor will load `.env.development`. Any values in the specific environment file will take precedence over the general `.env` file.
-
-A typical pattern is for projects to include a `.env` file as a template with default values. Specific environment files are ignored with the following pattern in `.gitignore`:
-
-```gitignore
-.env.*
-```
-
-When the project is cloned to a new computer, the template `.env` file can be copied and have the correct values inserted. 
-
-```sh
-cp .env .env.development
-vim .env.development
-```
-
-!!! warning
-    Dotenv files with sensitive information such as passwords should not be committed to version control.
-
-If you're having difficulty getting dotenv files to load, try enabling debug logging with `--log debug` for more information. 
-
-## Custom Environments
-
-To define a custom environment name, extend `Environment`.
+In Vapor können wir eigene Umgebungen anlegen. Hierzu müssen wir nur die Klasse _Environment_  entsprechend erweitern:
 
 ```swift
 extension Environment {
@@ -110,9 +86,11 @@ extension Environment {
 }
 ```
 
-The application's environment is usually set in `main.swift` using `Environment.detect()`.
+Die laufende Umgebung wird standardmäßig in der Datei _main_ über die Methode _detect()_ erkannt und gesetzt:
 
 ```swift
+// [main.swift]
+
 import Vapor
 
 var env = try Environment.detect()
@@ -122,10 +100,12 @@ let app = Application(env)
 defer { app.shutdown() }
 ```
 
-The `detect` method uses the process's command line arguments and parses the `--env` flag automatically. You can override this behavior by initializing a custom `Environment` struct.
+Die Methode greift auf die Argumente der Befehlzeile zu und zieht sich den entsprechenden Wert für das Argument _--env_. 
+
+Wir können das Standardverhalten überschreiben, indem wir die Methode durch eine neue Umgebungsdefinition ersetzen:
 
 ```swift
 let env = Environment(name: "testing", arguments: ["vapor"])
 ```
 
-The arguments array must contain at least one argument which represents the executable name. Further arguments can be supplied to simulate passing arguments via the command line. This is especially useful for testing.
+Das Array für die Argumente muss mindestens den Wert _vapor_ behinalten.
