@@ -34,11 +34,9 @@ Ganz am Anfang der Serveranfrage steht die Anfragemethode. Wie im Beispiel, ist 
 
 Auf die Methode folgt der Zielpfad der Anfrage. Die Zielpfad besteht aus einem Pfad und einer optionalen Zeichenabfolge `?`. Vapor benutzt beides um die Anfrage an den richtigen Endpunkt weiterzuleiten. 
 
-### Endpunkte
+### Endpunktmethoden
 
 Vapor stellt alle Anfragemethoden als Methoden über die Application-Instanz zur Verfügung. Die Methoden akzeptieren einen oder mehrere Pfadangaben vom Typ _String_, die nachfolgend mit einem '/' getrennt zu einem Pfad zusammengestellt werden.
-
-Beispiel:
 
 ```swift
 /// [controller.swift]
@@ -50,8 +48,6 @@ app.get("hello", "vapor") { req in
 /// Die .on()-Variante ist ebenfalls möglich.
 app.on(.GET, "hello", "vapor") { ... }
 ```
-
-Ergebnis:
 
 ```http
 HTTP/1.1 200 OK
@@ -96,7 +92,6 @@ Nachdem wir uns die Einführung angesehen haben, können wir uns den nachfolgend
 
 Endpunkte können der Anwendung über die Instanz _Application_ und den Methoden bekannt gemacht werden.
 
-Beispiel:
 ```swift
 // [controllers.swift]
 
@@ -105,7 +100,7 @@ app.get("foo", "bar", "baz") { req in
 }
 ```
 
-Die Methode kann auch mit einem Rückgabewert versehen werden. Der Rückgabewert muss zwingend vom Typ *ResponseEncodable* sein. Das betrifft [Content](), jede Asyncklammer und jede EventLoopFuture, deren Wert vom Typ *ResponseEncodable* ist. Wir können den Rückgabewert einer Methode festlegen, indem. Das kann in Situation hilfreich sein, in denen der Compiler den Wert nicht bestimmen kann. 
+Die Methode kann auch mit einem Rückgabewert versehen werden. Der Rückgabewert muss zwingend vom Typ *ResponseEncodable* sein.
 
 ```swift
 app.get("foo") { req -> String in
@@ -126,8 +121,8 @@ Die Endpunktmethoden akzeptieren eine Vielzahl von Argumenten. Es gibt vier Arte
 
 - [Konstanten](#constant)
 - [Parameter](#parameter)
-- [Anything](#anything)
-- [Catchall](#catchall)
+- [Sternchen](#sternchen)
+- [Doppelsternchen](#doppelsternchen)
 
 #### Konstante
 
@@ -142,7 +137,7 @@ app.get("foo", "bar", "baz") { req in
 
 #### Parameter
 
-Beim Parameter handelt sich um eine variable Angabe. Somit werden jegliche Angaben entgegegen genommen. Dem Parameter muss ein *:* vorangesetzt werden. Die Deklaration nach dem Doppelpunkt steht für den Parameternamen. Mit dem Namen können wir später den Wert abfragen.
+Beim Parameter handelt sich um eine variable Angabe. Somit werden jegliche Angaben entgegegen genommen. Dem Parameter muss ein Doppelpunkt vorangestellt werden. Die Deklaration nach dem Doppelpunkt steht für den Parameternamen. Mit dem Namen können wir später den Wert abfragen.
 
 ```swift
 // responds to GET /foo/bar/baz
@@ -187,7 +182,7 @@ app.get("number", ":x") { req -> String in
 
 #### Sternchen
 
-Asterisk verhält sich ähnlich zu den Parametern, allerdings wird der Wert verworfen.
+Für eine beliebige Angabe in einem Pfadabschnitt kann ein einfacher Asterisk angegeben werden. Es verhält sich ähnlich zu einer Parameterangabe, allerdings wird in diesem Fall der Wert verworfen.
 
 ```swift
 // responds to GET /foo/bar/baz
@@ -200,7 +195,7 @@ app.get("foo", "*", "baz") { req in
 
 #### Doppelsternchen
 
-Beim Catchall handelt es sich um eine variable Angabe.
+Für eine beliebige Angabe über mehrere Pfadabschnitte hinweg, können zwei Asterisk angegeben werden.
 
 ```swift
 // responds to GET /foo/bar
@@ -211,7 +206,7 @@ app.get("foo", "**") { req in
 }
 ```
 
-The values of the URI matched by Catchall (`**`) will be stored in `req.parameters` as `[String]`. You can use `req.parameters.getCatchall` to access those components. 
+Werte, die mit dem Pfadabschnitt übereinstimmen werden in der Eigenschaft _parameters_ abgelegt und können mit der Methode _getCatchall(:)_ abgerufen werden. 
 
 ```swift
 // responds to GET /hello/foo
@@ -225,7 +220,7 @@ app.get("hello", "**") { req -> String in
 
 ### Verarbeitung
 
-Wenn wir einen Endpunkt mit der Methode *on(_:)* festlegen, können wir definieren, wie mit dem Inhalt umgegangen werden soll. Standardmäßig wird der Inhalt zwischengespeichert, bevor er an den Endpunkt übergeben wird. Das ist hilfreich, da Vapor den Anfrageinhalt nacheinander arbeiten kann, während zeitlgeich neue Anfrage eintreffen.
+Wenn wir einen Endpunkt mit der Methode *on(:)* festlegen, können wir definieren, wie mit dem Inhalt umgegangen werden soll. Standardmäßig wird der Inhalt zwischengespeichert, bevor er an den Endpunkt übergeben wird. Das ist hilfreich, da Vapor den Anfrageinhalt nacheinander arbeiten kann, während zeitlgeich neue Anfrage eintreffen.
 
 Vapor hat standardmäßig das Limit auf 16 KB festgelegt. Wir können allerdings den Wert mit der Eigenschaft *Routes* für alle Endpunkte überschreiben:
 
@@ -259,8 +254,6 @@ app.on(.POST, "upload", body: .stream) { req in
 Grundsätzlich muss bei Endpunkten die Groß- und Kleinschreibung beachten werden. Bei *Konstanten* kann allerdings eine Ausnahme gemacht werden.
 
 ```swift
-/// [configure.swift]
-
 app.routes.caseInsensitive = true
 ```
 
@@ -301,11 +294,7 @@ app.get("hello", ":name") { req in
 
 ## Endpunktgruppen
 
-Endpunkte können zu Gruppen zusammengefasst werden.
-
-### Pfadabschnitt
-
-Mit einem Pfadabschnitt können wir Endpunkte zu einer Gruppe zusammenfassen. Der Name der Gruppe wird als Pfadabschnitt den enhaltenen Endpunkten vorangestellt.
+Endpunkte können zu Gruppen zusammengefasst werden. Der Name der Gruppe wird als Pfadabschnitt den enhaltenen Endpunkten vorangestellt.
 
 ```swift
 let users = app.grouped("users")
@@ -366,7 +355,7 @@ app.group("users") { users in
 
 ### Middleware
 
-Gruppen können mit [Middlewwares]() versehen werden.
+Gruppen können zudem mit Middlewares versehen werden.
 
 ```swift
 app.get("fast-thing") { req in
@@ -388,10 +377,9 @@ auth.get("logout") { ... }
 
 ## Weiterleitung
 
-Für eine Weiterleitung kann es verschiedenste Gründe geben. Mit der Methode *redirect(_:)* über die Instanz *Request*. können wir die Anfrage weiterleiten.
+Für eine Weiterleitung kann es verschiedenste Gründe geben. Mit der Methode *redirect(_:)* über die Instanz *Request* können wir die Anfrage weiterleiten.
 
 ```swift
-
 req.redirect(to: "/some/new/path")
 
 /// redirect a page permanently
