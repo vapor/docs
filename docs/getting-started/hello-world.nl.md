@@ -65,7 +65,7 @@ Dat zal het project bouwen en uitvoeren. De eerste keer dat je dit uitvoert zal 
 
 ## Bezoek Localhost
 
-Open je webbrowser, en bezoek <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello</a> of <a href="http://127.0.0.1:8080" target="_blank">http://127.0.0.1:8080</a>
+Open je webbrowser, en bezoek <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello</a> of <a href="http://127.0.0.1:8080/hello" target="_blank">http://127.0.0.1:8080/hello</a>
 
 Je zou de volgende pagina moeten zien.
 

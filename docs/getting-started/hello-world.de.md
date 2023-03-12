@@ -53,6 +53,6 @@ Bei der Erstausführung werden die Paketverweise nachgeladen. Dementsprechend ka
 
 ## Aufruf im Browser
 
-Rufe die Seite über den Link <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello</a> oder <a href="http://127.0.0.1:8080" target="_blank">http://127.0.0.1:8080</a> im Browser auf. Als Ergebnis sollte "Hello World" im Browser erscheinen.
+Rufe die Seite über den Link <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello</a> oder <a href="http://127.0.0.1:8080/hello" target="_blank">http://127.0.0.1:8080/hello</a> im Browser auf. Als Ergebnis sollte "Hello World" im Browser erscheinen.
 
 Das wars! Geschafft! Gratulation zur ersten Vapor-Anwendung. 🎉

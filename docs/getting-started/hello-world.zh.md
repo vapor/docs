@@ -66,7 +66,7 @@ swift run
 
 ## 访问 Localhost
 
-打开你的浏览器，然后访问 <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello</a> 或者 <a href="http://127.0.0.1:8080" target="_blank">http://127.0.0.1:8080</a>
+打开你的浏览器，然后访问 <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello</a> 或者 <a href="http://127.0.0.1:8080/hello" target="_blank">http://127.0.0.1:8080/hello</a>
 
 你将看见以下页面
 

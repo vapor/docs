@@ -68,7 +68,7 @@ That will build and run the project. The first time you run this it will take so
 
 ## Visit Localhost
 
-Open your web browser, and visit <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello</a> or <a href="http://127.0.0.1:8080" target="_blank">http://127.0.0.1:8080</a>
+Open your web browser, and visit <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello</a> or <a href="http://127.0.0.1:8080/hello" target="_blank">http://127.0.0.1:8080/hello</a>
 
 You should see the following page.
 
