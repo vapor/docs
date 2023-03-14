@@ -373,6 +373,7 @@ app.queues.schedule(CleanupJob())
 |                 | `at(_ hour: Hour24, _ minute: Minute)`| 运行 job 的小时和分钟。链中的最终方法。|
 |                 | `at(_ hour: Hour12, _ minute: Minute, _ period: HourPeriod)` |运行 job 的小时、分钟和时间段。链中的最终方法。|
 | `hourly()`      | `at(_ minute: Minute)`                 |运行 job 的分钟。链中的最终方法。|
+| `minutely()`    | `at(_ second: Second)`                 |  |
 
 ### 可用辅助函数
 
