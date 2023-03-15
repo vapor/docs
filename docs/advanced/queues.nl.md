@@ -370,6 +370,7 @@ Er zijn vijf hoofdmethoden die aangeroepen kunnen worden op een scheduler, die e
 |                 | `at(_ hour: Hour24, _ minute: Minute)`| Het uur en de minuten om de job uit te voeren. Laatste methode in de keten.              |
 |                 | `at(_ hour: Hour12, _ minute: Minute, _ period: HourPeriod)` | Het uur, de minuten en de periode om de job uit te voeren. Eindmethode van de keten |
 | `hourly()`      | `at(_ minute: Minute)`                 | De minuut om de opdracht uit te voeren. De laatste methode van de ketting.                      |
+| `minutely()`    | `at(_ second: Second)`                 | De seconde om de opdracht uit te voeren. De laatste methode van de ketting.                      |
 
 ### Beschikbare helpers 
 Wachtrijen worden geleverd met enkele helpers enums om het plannen te vergemakkelijken: 
