@@ -4,17 +4,15 @@ Mit der Validierung kann der Inhalt oder die Zeichenfolge einer eingehenden Serv
 
 ## Grundlagen 
 
-Dank der Einbindung von Swift's Protokoll _Codable_ müssen wir uns nicht viel mehr Gedanken zur Validierung von Daten machen, wie bei anderen dynamischen Sprachen auch. Nicht desto trotz gibt es ein paar gute Gründe die Validerung von Vapor zu nutzen:
+Dank Swift's Protokoll _Codable_ müssen wir uns nicht viel mehr Gedanken zur Validierung von Daten machen, wie eben bei anderen dynamischen Sprachen auch. Nicht desto trotz gibt es einige gute Gründe, die für die Validierung in Vapor sprechen.
 
-- [Lesbare Fehlermeldungen]()
-- [Vollständige Lesung]()
-- [Werteüberprüfung]()
+- Lesbare Fehlermeldungen
+- Vollständige Lesung
+- Werteüberprüfung
 
 **Lesbare Fehlermeldungen**
 
-Beim Binden der Anfrage an das Datenobjekt werden Fehler zurückgegegeben, sollte der Inhalt nicht mit dem Objekt übereinstimmen. Dabei kann es natürlich vorkommen, dass die Fehlermeldung nicht immer ganz aussagekräftig und verständlich für den Anwender ist.
-
-Beispiel:
+Sollte der Inhalt nicht mit dem Objekt übereinstimmen, werden beim Binden der Anfrage an das Datenobjekt Fehler zurückgegegeben. Dabei kann es natürlich vorkommen, dass die Fehlermeldungen nicht immer aussagekräftig und verständlich für den Anwender sind.
 
 ```swift
 enum Color: String, Codable {
@@ -22,15 +20,13 @@ enum Color: String, Codable {
 }
 ```
 
-Beim Versuch den String *purple* an die Eigenschaft vom Typ *Color* zu übergeben, wird folgender Fehler ausgegeben:
+Beispielsweise beim Versuch den String *purple* an die Eigenschaft vom Typ *Color* zu übergeben, wird folgender Fehler ausgegeben:
 
 ```
 Cannot initialize Color from invalid String value purple for key favoriteColor
 ```
 
-Auch wenn der Fehler technisch korrekt und der Endpunkt vor einer Falscheingabe bewahrt wird, kann es hilfreich sein, den Anwender über den Fehler zu informieren und ihm mögliche Lösungen anzubieten.
-
-Mit Vapor's Validierung können wir den folgende Fehler erstellen:
+Auch wenn die Fehlermeldung technisch korrekt und der Endpunkt vor einer Falscheingabe bewahrt wird, kann es hilfreich sein, dem Anwender über gewisse Fehler zu informieren und ihm mögliche Lösungen aufzuzeigen. Mit Vapor's Validierung können wir beispielsweise folgenden Fehler ausgeben:
 
 ```
 favoriteColor is not red, blue, or green
@@ -42,36 +38,24 @@ Des Weiteren würde durch das Protokoll _Codable_ das Binden bereits beim Auftre
 
 **Werteüberprüfung**
 
-Auch wenn das Protokoll gut validiert, gibt es Situationen in denen man den Wert gegenprüfen möchte. Vapor besitzt mehrere [Bedingungen](#bedingungen) um zum Beispiel Emailadressen, Zeichensätze, Wertebereiche usw. zu prüfen.
+Auch wenn die Validierung mittels Protokoll gut funktioniert, gibt es Situationen in denen man eher den Wert prüfen möchte. Vapor besitzt mehrere Bedingungen um zum Beispiel Emailadressen, Zeichensätze, Wertebereiche usw. zu prüfen.
 
 ## Regelsammlung
 
-Zur Überprüfung einer Anfrage, müssen wir ein Sammlung von Regeln anlegen. Das machen wir, indem wir dem Datenobjekt das Protokoll *Validtable* mitgeben.
+Zur Überprüfung einer Anfrage müssen wir ein Art Regelsammlung anlegen. Das machen wir, indem wir dem Datenobjekt das Protokoll *Validatable* mitgeben. Mittels der Methode *add(_:)* können wir Regeln hinzufügen.
 
 ```swift
 extension CreateUser: Validatable {
 
     static func validations(_ validations: inout Validations) {
-        // Validations go here.
+        validations.add("email", as: String.self, is: .email)
     }
 }
 ```
 
-### Hinzufügen von Regeln
-
-Mit der Methode *add(_:)* können wir der [Regeln]() hinzufügen.
-
-```swift
-    static func validations(_ validations: inout Validations) {
-        validations.add("email", as: String.self, is: .email)
-    }
-```
-
-Der erste Parameter der Methode zu erwartende Name. Der Name sollte mit dem Namen im Objekt übereinstimmen. Der zweite Parameter _as:_ ist der zu erwartende Typ. In den meisten Fällen stimmt der Typ mit dem Typ im Objekt überein. Beim dritten Parameter _is:_ können ein oder mehrere Bedingungen mit angegeben werden.
+Der erste Parameter der Methode ist der zu erwartende Name. Der Name sollte mit dem Feldnamen des Datenobjekts übereinstimmen. Der zweite Parameter _as:_ ist der zu erwartende Typ. In den meisten Fällen stimmt der Typ ebenfalls mit dem Datentyp des Feldes im Objekt überein. Beim dritten Parameter _is:_ können mehrere Bedingungen angegeben werden.
 
 ### Bedingungen
-
-Zur Überprüfung können verschiedenste Bedingungen verwendet werden.
 
 |Bedingung       |Beschreibung                                           |
 |----------------|-------------------------------------------------------|
@@ -88,7 +72,7 @@ Zur Überprüfung können verschiedenste Bedingungen verwendet werden.
 
 ### Operatoren
 
-Mit Operatoren kannst du Bedingungen miteinander verknüpfen, um so komplexere Regeln zu bauen.
+Mit Operatoren kannst du Bedingungen miteinander verknüpfen, um so komplexere Regeln zu bilden.
 
 |Operatoren|Position|Beschreibung                                               |
 |----------|--------|-----------------------------------------------------------|
@@ -98,7 +82,7 @@ Mit Operatoren kannst du Bedingungen miteinander verknüpfen, um so komplexere R
 
 ### Benutzerdefinierte Fehlerbeschreibung
 
-Mit dem Parameter _customFailureDescription_ kannst du die standardmäßige Fehlermeldung überschreiben und eine Eigene zurückgeben.
+Mit dem Parameter _customFailureDescription_ kannst du die Standardfehlermeldung überschreiben.
 
 ```swift
 validations.add("name", as: String.self, is: !.empty, customFailureDescription: "Provided name is empty!")
@@ -116,7 +100,7 @@ try CreateUser.validate(content: req)
 req.content.decode(CreateUser.self)
 ```
 
-Würdest wir jetzt eine Anfrage mit einer ungültigen Emailadresse stellen, würde wir folgenden Fehler erhalten:
+Bei einer Anfrage mit einer ungültigen Emailadresse, würden wir folgenden Fehler erhalten:
 
 ```http
 POST /users HTTP/1.1
@@ -138,7 +122,7 @@ email is not a valid email address
 
 ### Überprüfung der Zeichenfolge
 
-Die Methode *validate(query:)* überprüft die Zeichenabfolge der Anfrage auf Korrektheit. Die Methode sollte vor dem Binden der Abfolge aufgerufen werden.
+Die Methode *validate(query:)* überprüft die Zeichenfolge der Anfrage auf Korrektheit. Die Methode sollte vor dem Binden der Abfolge aufgerufen werden.
 
 ```swift
 try CreateUser.validate(query: req)
@@ -146,7 +130,7 @@ try CreateUser.validate(query: req)
 req.query.decode(CreateUser.self)
 ```
 
-Würdest wir jetzt eine Anfrage mit einer ungültigen Emailadresse in der Zeichenabfolge stellen, würde wir folgende Fehler erhalten:
+Bei einer Anfrage mit einer ungültigen Emailadresse in der Zeichenfolge, würde wir folgende Fehler erhalten:
 
 ```http
 GET /users?age=4&email=foo&favoriteColor=green&name=Foo&username=foo HTTP/1.1
