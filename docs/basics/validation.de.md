@@ -6,10 +6,6 @@ Mit der Validierung kann der Inhalt oder die Zeichenfolge einer eingehenden Serv
 
 Dank Swift's Protokoll _Codable_ müssen wir uns nicht viel mehr Gedanken zur Validierung von Daten machen, wie eben bei anderen dynamischen Sprachen auch. Nicht desto trotz gibt es einige gute Gründe, die für die Validierung in Vapor sprechen.
 
-- Lesbare Fehlermeldungen
-- Vollständige Lesung
-- Werteüberprüfung
-
 **Lesbare Fehlermeldungen**
 
 Sollte der Inhalt nicht mit dem Objekt übereinstimmen, werden beim Binden der Anfrage an das Datenobjekt Fehler zurückgegegeben. Dabei kann es natürlich vorkommen, dass die Fehlermeldungen nicht immer aussagekräftig und verständlich für den Anwender sind.
@@ -57,6 +53,8 @@ Der erste Parameter der Methode ist der zu erwartende Name. Der Name sollte mit 
 
 ### Bedingungen
 
+Mit Bedingungen können wir Anweisungen für eine Regel festlegen.
+
 |Bedingung       |Beschreibung                                           |
 |----------------|-------------------------------------------------------|
 |ascii           |Der Wert besteht nur aus ASCII Zeichen.                |
@@ -72,7 +70,7 @@ Der erste Parameter der Methode ist der zu erwartende Name. Der Name sollte mit 
 
 ### Operatoren
 
-Mit Operatoren kannst du Bedingungen miteinander verknüpfen, um so komplexere Regeln zu bilden.
+Mit Operatoren können wir Bedingungen miteinander verknüpfen, um so komplexere Regeln zu bilden.
 
 |Operatoren|Position|Beschreibung                                               |
 |----------|--------|-----------------------------------------------------------|
@@ -82,7 +80,7 @@ Mit Operatoren kannst du Bedingungen miteinander verknüpfen, um so komplexere R
 
 ### Benutzerdefinierte Fehlerbeschreibung
 
-Mit dem Parameter _customFailureDescription_ kannst du die Standardfehlermeldung überschreiben.
+Mit dem Parameter _customFailureDescription_ können wir die Standardfehlermeldung von Vapor überschreiben.
 
 ```swift
 validations.add("name", as: String.self, is: !.empty, customFailureDescription: "Provided name is empty!")
@@ -144,9 +142,9 @@ email is not a valid email address
 ### Überprüfung des Wertes
 
 
-**Wert vom Typ *Int***
+**am Beispiel vom Typ *Integer***
 
-Im folgenden Beispiel überprüfen wir, ob der Werte des Alters größer gleich 13 ist.
+Im folgenden Beispiel überprüfen wir, ob der Wert größer gleich 13 ist.
 
 ```swift
 validations.add("age", as: Int.self, is: .range(13...))
@@ -156,9 +154,7 @@ validations.add("age", as: Int.self, is: .range(13...))
 age is less than minimum of 13, email is not a valid email address
 ```
 
-**Wert vom Typ *String***
-
-Beispiel:
+**am Beispiel vom Typ *String***
 
 ```swift
 validations.add("name", as: String.self, is: !.empty)
@@ -167,9 +163,7 @@ validations.add("username", as: String.self, is: .count(3...) && .alphanumeric)
 
 Die erste Überprüfung verwendet `!` als Operator, was bedingt, dass der Wert nicht leer sein darf. Die zweite Überprüfung verknüpft zwei Bedingungen miteinander, was bedingt, dass der Wert größer als drei Zeichen und nur aus Buchstaben besteht.
 
-**Wert vom Typ *Enum***
-
-Finally, let's take a look at a slightly more advanced validation to check that the supplied `favoriteColor` is valid.
+**am Beispiel vom Typ *Enum***
 
 ```swift
 validations.add("favoriteColor", as: String.self, is: .in("red", "blue", "green"), required: false)
