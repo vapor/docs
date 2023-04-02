@@ -68,7 +68,7 @@ export LOG_LEVEL=debug
 vapor run serve
 ```
 
-Beides kann über das Schema _Run_ in Xcode eingestellt werden. Im Abschnitt [Xcode](/docs/getting-started/xcode.md) erklären wir dir, wie du ein Schema bearbeitest.
+Beides kann über das Schema _Run_ in Xcode eingestellt werden. Im Abschnitt [Xcode](../getting-started/xcode.md) erklären wir dir, wie du ein Schema bearbeitest.
 
 ## Einrichtung
 
