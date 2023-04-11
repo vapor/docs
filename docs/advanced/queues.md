@@ -372,6 +372,7 @@ There are five main methods that can be called on a scheduler, each of which cre
 |                 | `at(_ hour: Hour24, _ minute: Minute)`| The hour and minute to run the job on. Final method in the chain.              |
 |                 | `at(_ hour: Hour12, _ minute: Minute, _ period: HourPeriod)` | The hour, minute, and period to run the job on. Final method of the chain |
 | `hourly()`      | `at(_ minute: Minute)`                 | The minute to run the job at. Final method of the chain.                      |
+| `minutely()`    | `at(_ second: Second)`                 | The second to run the job at. Final method of the chain.                      |
 
 ### Available helpers 
 Queues ships with some helpers enums to make scheduling easier: 

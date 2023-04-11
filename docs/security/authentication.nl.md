@@ -748,6 +748,9 @@ Deze middlewares doen het volgende:
 * de sessies middleware neemt de sessie cookie uit het verzoek en converteert het in een sessie
 * de sessie-authenticator neemt de sessie en kijkt of er een geauthenticeerde gebruiker voor die sessie is. Zo ja, dan authenticeert de middleware het verzoek. In het antwoord kijkt de sessie-authenticator of het verzoek een geauthenticeerde gebruiker heeft en slaat die op in de sessie, zodat hij bij het volgende verzoek geauthenticeerd is.
 
+!!! opmerking
+    De sessie cookie is niet standaard ingesteld op `secure` en `httpOnly`. Raadpleeg Vapor's [Session API](../advanced/sessions.md#configuration) voor meer informatie over het configureren van cookies.
+
 ### Routes Beschermen
 
 Bij het beveiligen van routes voor een API, retourneer je traditioneel een HTTP antwoord met een status code zoals **401 Unauthorized** als het verzoek niet is geauthenticeerd. Dit is echter geen goede gebruikerservaring voor iemand die een browser gebruikt. Vapor biedt een `RedirectMiddleware` voor elk `Authenticatable` type om te gebruiken in dit scenario:
