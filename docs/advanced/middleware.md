@@ -130,8 +130,6 @@ If your server is contained in an Xcode Project, such as an iOS app, use this in
 let file = try FileMiddleware(bundle: .main, publicDirectory: "Public")
 ```
 
-Note that in this case Leaf won't recognise the Public directory.
-
 Also make sure to use Folder References instead of Groups in Xcode to maintain folder structure in resources after building the application.
 
 ## CORS Middleware
