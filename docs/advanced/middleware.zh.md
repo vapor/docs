@@ -125,6 +125,14 @@ app.middleware.use(file)
 
 一旦注册 `FileMiddleware`，比如 `Public/images/logo.png` 的文件可以在 Leaf 模板通过 `<img src="/images/logo.png"/>` 方式引用。
 
+如果你的服务器包含在一个 Xcode 项目中，比如一个 iOS 应用，可以使用以下代码代替：
+
+```swift
+let file = try FileMiddleware(bundle: .main, publicDirectory: "Public")
+```
+
+同时，请确保在 Xcode 中使用文件夹引用（Folder References）而不是 Xcode 中的组（Groups）来保持资源文件夹结构在构建应用程序后不变。
+
 
 ## CORS Middleware
 
