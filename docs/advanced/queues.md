@@ -309,6 +309,9 @@ If you do not specify a queue the job will be run on the `default` queue. Make s
 
 The Queues package also allows you to schedule jobs to occur at certain points in time.
 
+!!! warning
+    Scheduled jobs only work when set up before the application boots up, such as in `configure.swift`. They will not work in route handlers.
+
 ### Starting the scheduler worker
 The scheduler requires a separate worker process to be running, similar to the queue worker. You can start the worker by running this command: 
 
