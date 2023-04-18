@@ -308,6 +308,9 @@ struct SendEmailCommand: AsyncCommand {
 
 Queues 包还允许你安排在特定时间点发生的 job。
 
+!!! warning "警告"
+    调度 job 只有在应用程序启动之前设置，例如在 `configure.swift` 中设置时才能正常工作。它们无法在路由处理中工作。
+
 ### 启动调度 worker
 
 调度程序需要一个独立的 worker 进程来运行，类似于队列 worker 进程。可以通过以下命令启动 worker：
