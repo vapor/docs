@@ -1,4 +1,4 @@
-# Vapor Notes de Sorties
+# Vapor Release Notes
 
 Because it is hard, if not impossible to keep the documentation up-to-date constantly, here you will find release notes of various different packages linked to the Vapor ecosystem.
 
