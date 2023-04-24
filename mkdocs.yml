@@ -134,6 +134,38 @@ plugins:
           Contributing Guide: Gids Bijdragen
         fr: 
           Welcome: Bienvenue
+          Install: Installer
+          Getting Started: Commencer
+          Hello, world: Bonjour, monde
+          Basis: Bases
+          Folder Structure: Strucutre du Dossier
+          Content: Contenu
+          Validation: Validation
+          Async: Asynchrone
+          Environment: Environement
+          Overview: Aperçu
+          Relataions: Relations
+          Migrations: Migrations
+          Query: Requête
+          Transactions: Transactions
+          Schema: Schema
+          Advanced: Avancé
+          Testing: Test
+          Files: Fichiers
+          Commands: Commandes
+          Queues: Files d'attente
+          Sessions: Sessions
+          Services: Sercvies
+          Security: Securité
+          Authentication: Authentication
+          Passwords: Mots de passe
+          Deploy: Deployer
+          Version (4.0): Version (4.0)
+          Legacy Docs: Documents hérité
+          Upgrading: Mettre à jour
+          Custom Tags: Tags customisés
+          Contributing: Contribuer
+          Contributing Guide: Guide de la contribution
         de:
           Welcome: Begrüßung
           Install: Installation
