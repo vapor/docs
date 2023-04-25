@@ -4,11 +4,10 @@ Bienvenue sur la documentation de Vapor ! Vapor est un framework web pour Swift,
 
 Si c'est la première fois que vous utiliser Vapor, naviguer vers [Installer → macOS](install/macos.md) pour installer Swift et Vapor.
 
-Une fois que Vapor à été installé, regargez [Getting Started → Hello, world](getting-started/hello-world.md) pour créer votre première app Vapor !
+Une fois que Vapor à été installé, regargez [Commencer → Bonjour, monde](getting-started/hello-world.md) pour créer votre première app Vapor !
 
 ## Autres sources
 
-Here are some other great places to find information about Vapor.
 Ici vous avez quelques autres bons endroits où trouver des informations sur Vapor.
 
 | name           | description                                                       | link                                                             |
