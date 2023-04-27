@@ -39,7 +39,7 @@ Let's take a look at how you can get started using Queues.
 The first step to using Queues is adding one of the drivers as a dependency to your project in your SwiftPM package manifest file. In this example, we'll use the Redis driver. 
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
@@ -49,10 +49,10 @@ let package = Package(
         .package(url: "https://github.com/vapor/queues-redis-driver.git", from: "1.0.0"),
     ],
     targets: [
-        .target(name: "App", dependencies: [
+        .executableTarget(name: "App", dependencies: [
+            // Other dependencies
             .product(name: "QueuesRedisDriver", package: "queues-redis-driver")
         ]),
-        .target(name: "Run", dependencies: [.target(name: "App")]),
         .testTarget(name: "AppTests", dependencies: [.target(name: "App")]),
     ]
 )
@@ -316,11 +316,11 @@ The Queues package also allows you to schedule jobs to occur at certain points i
 The scheduler requires a separate worker process to be running, similar to the queue worker. You can start the worker by running this command: 
 
 ```sh
-swift run Run queues --scheduled
+swift run App queues --scheduled
 ```
 
 !!! tip
-    Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: Run queues --scheduled`
+    Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: App queues --scheduled`
 
 ### Creating a `ScheduledJob`
 

@@ -18,11 +18,11 @@ vapor run serve --help
 
 ### Xcode
 
-你可以通过加入参数到 Xcode 的  `Run` scheme 以运行指令。通过一下三步做到这点：
+你可以通过加入参数到 Xcode 的  `App` scheme 以运行指令。通过一下三步做到这点：
 
-- 选择 `Run` scheme (在 运行/停止 按钮的右边)
+- 选择 `App` scheme (在 运行/停止 按钮的右边)
 - 选择 "Edit Scheme"
-- 选择 "Run"
+- 选择 "App"
 - 选择 "Arguments" 这一栏
 - 将指令的名词添加到 "Arguments Passed On Launch" (例如， `serve`)
 

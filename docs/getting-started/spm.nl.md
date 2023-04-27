@@ -11,28 +11,30 @@ De eerste plaats waar SPM kijkt in uw project is het package manifest. Dit moet 
 Een voorbeeld van een package manifest kan hieronder gevonden worden.
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
-    name: "app",
+    name: "MyApp",
     platforms: [
-       .macOS(.v10_15)
-    ],
-    products: [
-        .executable(name: "Run", targets: ["Run"]),
-        .library(name: "App", targets: ["App"]),
+       .macOS(.v12)
     ],
     dependencies: [
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.76.0"),
     ],
     targets: [
-        .target(name: "App", dependencies: [.product(name: "Vapor", package: "vapor")]),
-        .target(name: "Run", dependencies: ["App"]),
-        .testTarget(name: "AppTests", dependencies: ["App"])
+        .executableTarget(
+            name: "App",
+            dependencies: [
+                .product(name: "Vapor", package: "vapor")
+            ]
+        ),
+        .testTarget(name: "AppTests", dependencies: [
+            .target(name: "App"),
+            .product(name: "XCTVapor", package: "vapor"),
+        ])
     ]
 )
-
 ```
 
 Elk onderdeel van het manifest wordt in de volgende secties toegelicht.
@@ -47,11 +49,7 @@ Het eerste argument voor `Package` is de naam van het pakket. Als het pakket pub
 
 ### Platforms
 
-De `platforms` array specificeert welke platformen dit pakket ondersteunt. Door `.macOS(.v10_14)` op te geven heeft dit pakket macOS Mojave of hoger nodig. Wanneer Xcode dit project laadt, zal het automatisch de minimale deployment versie op 10.14 zetten, zodat je alle beschikbare APIs kunt gebruiken.
-
-### Products
-
-Producten zijn targets die je package produceert als het gebouwd is. In dit pakket zijn er twee targets. Een bibliotheek en een uitvoerbaar bestand.
+De `platforms` array specificeert welke platformen dit pakket ondersteunt. Door `.macOS(.v12)` op te geven heeft dit pakket macOS 12 of hoger nodig. Wanneer Xcode dit project laadt, zal het automatisch de minimale deployment versie op macOS 12 zetten, zodat je alle beschikbare APIs kunt gebruiken.
 
 ### Dependencies
 
@@ -62,13 +60,8 @@ de nieuw beschikbare modules.
 
 ### Targets
 
-Targets zijn alle modules, executables, en testen die je package bevat. De meeste Vapor applicaties zullen drie targets hebben, hoewel je er zoveel kunt toevoegen als je wilt om je code te organiseren. Elke target verklaart van welke modules het afhankelijk is. Je moet hier namen van modules toevoegen om ze te kunnen importeren in je code. Een target kan afhangen van andere targets in je project of van modules die je hebt toegevoegd aan
+Targets zijn alle modules, executables, en testen die je package bevat. De meeste Vapor applicaties zullen twee targets hebben, hoewel je er zoveel kunt toevoegen als je wilt om je code te organiseren. Elke target verklaart van welke modules het afhankelijk is. Je moet hier namen van modules toevoegen om ze te kunnen importeren in je code. Een target kan afhangen van andere targets in je project of van modules die je hebt toegevoegd aan
 de [main dependencies](#dependencies) array.
-
-!!! tip
-    Executable targets (targets die een `main.swift` bestand bevatten) kunnen niet door andere modules worden geïmporteerd.
-    Dit is de reden waarom Vapor zowel een `App` als een `Run` target heeft.
-    Alle code die u in `App` opneemt kan getest worden in de `AppTests`.
 
 ## Folder Structure
 
@@ -77,16 +70,14 @@ Hieronder ziet u de typische mappenstructuur voor een SPM-pakket.
 ```
 .
 ├── Sources
-│   ├── App
-│   │   └── (Source code)
-│   └── Run
-│       └── main.swift
+│   └── App
+│       └── (Source code)
 ├── Tests
 │   └── AppTests
 └── Package.swift
 ```
 
-Elk `.target` komt overeen met een map in de `Sources` map. 
+Elk `.target` of `.executableTarget` komt overeen met een map in de `Sources` map. 
 Elk `.testTarget` komt overeen met een map in de `Tests` map.
 
 ## Package.resolved

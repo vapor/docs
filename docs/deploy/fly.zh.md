@@ -133,7 +133,7 @@ if let databaseURL = Environment.get("DATABASE_URL") {
 ```
 
 !!! note "注意"
-    上面的代码片段假设你正在使用默认的 Vapor Dockerfile，该文件将你的应用程序 `ENTRYPOINT` 设置为 `./Run`。具体来说，这意味着当你将 `release_command` 设置为 `migrate -y` 时，Fly 将调用 `./Run migrate -y`。如果你的 `ENTRYPOINT` 设置为其他值，则需要调整 `release_command` 的值。
+    上面的代码片段假设你正在使用默认的 Vapor Dockerfile，该文件将你的应用程序 `ENTRYPOINT` 设置为 `./App`。具体来说，这意味着当你将 `release_command` 设置为 `migrate -y` 时，Fly 将调用 `./App migrate -y`。如果你的 `ENTRYPOINT` 设置为其他值，则需要调整 `release_command` 的值。
 
 Fly 将在具有访问 Fly 内部网络、密钥和环境变量的临时实例中运行你的发布命令。
 

@@ -125,13 +125,13 @@ This creates **.swift-version** with `5.2.1` as its contents.
 Heroku uses the **Procfile** to know how to run your app, in our case it needs to look like this:
 
 ```
-web: Run serve --env production --hostname 0.0.0.0 --port $PORT
+web: App serve --env production --hostname 0.0.0.0 --port $PORT
 ```
 
 we can create this with the following terminal command
 
 ```bash
-echo "web: Run serve --env production" \
+echo "web: App serve --env production" \
   "--hostname 0.0.0.0 --port \$PORT" > Procfile
 ```
 
@@ -218,16 +218,16 @@ git commit -m "configured heroku database"
 
 ### Reverting your database
 
-You can revert or run other commmands on heroku with the `run` command. Vapor's project is by default also named `Run`, so it reads a little funny.
+You can revert or run other commmands on heroku with the `run` command.
 
 To revert your database:
 
 ```bash
-heroku run Run -- migrate --revert --all --yes --env production
+heroku run App -- migrate --revert --all --yes --env production
 ```
 
 To migrate
 
 ```bash
-heroku run Run -- migrate --env production
+heroku run App -- migrate --env production
 ```

@@ -135,7 +135,7 @@ With `fly.toml`'s `release_command`, you can ask Fly to run a certain command be
 ```
 
 !!! note
-    The code snippet above assumes you are using the default Vapor Dockerfile which sets your app `ENTRYPOINT` to `./Run`. Concretely, this means that when you set `release_command` to `migrate -y`, Fly will call `./Run migrate -y`. If your `ENTRYPOINT` is set to a different value, you will need to adapt the value of `release_command`.
+    The code snippet above assumes you are using the default Vapor Dockerfile which sets your app `ENTRYPOINT` to `./App`. Concretely, this means that when you set `release_command` to `migrate -y`, Fly will call `./App migrate -y`. If your `ENTRYPOINT` is set to a different value, you will need to adapt the value of `release_command`.
 
 Fly will run your release command in a temporary instance that has access to your internal Fly network, secrets, and environment variables.
 

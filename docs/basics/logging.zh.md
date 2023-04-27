@@ -83,7 +83,7 @@ export LOG_LEVEL=debug
 vapor run serve
 ```
 
-这两种方法可以在 Xcode 中编辑 `Run`（scheme）模式进行修改。
+这两种方法可以在 Xcode 中编辑 `App`（scheme）模式进行修改。
 
 ## 配置
 

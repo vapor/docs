@@ -18,11 +18,11 @@ vapor run serve --help
 
 ### Xcode
 
-U kunt in Xcode commando's uitvoeren door argumenten toe te voegen aan het `Run` schema. Om dit te doen volgt u deze stappen: 
+U kunt in Xcode commando's uitvoeren door argumenten toe te voegen aan het `App` schema. Om dit te doen volgt u deze stappen: 
 
-- Kies `Run` schema (rechts van de play/stop knoppen)
+- Kies `App` schema (rechts van de play/stop knoppen)
 - Klik op "Edit Scheme"
-- Kies "Run" product
+- Kies "App" product
 - Selecteer het tabblad "Arguments"
 - Voeg de naam van het commando toe aan "Arguments Passed On Launch" (d.w.z. `serve`)
 

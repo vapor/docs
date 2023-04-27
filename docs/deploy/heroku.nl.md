@@ -130,7 +130,7 @@ web: Run serve --env production --hostname 0.0.0.0 --port $PORT
 we kunnen dit maken met het volgende terminal commando
 
 ```bash
-echo "web: Run serve --env production" \
+echo "web: App serve --env production" \
   "--hostname 0.0.0.0 --port \$PORT" > Procfile
 ```
 
@@ -217,16 +217,16 @@ git commit -m "configured heroku database"
 
 ### Uw Database Terugdraaien
 
-U kunt andere commando's op heroku terugdraaien of uitvoeren met het `run` commando. Het project van Vapor heet standaard ook `Run`, dus het leest een beetje raar.
+U kunt andere commando's op heroku terugdraaien of uitvoeren met het `run` commando.
 
 Om uw database terug te zetten:
 
 ```bash
-heroku run Run -- migrate --revert --all --yes --env production
+heroku run App -- migrate --revert --all --yes --env production
 ```
 
 Om te migreren
 
 ```bash
-heroku run Run -- migrate --env production
+heroku run App -- migrate --env production
 ```

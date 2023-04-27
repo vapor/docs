@@ -61,13 +61,13 @@ export FOO=BAR
 vapor run serve
 ```
 
-当在 Xcode 中运行应用程序时，你可以通过编辑 `Run` scheme 来设置环境变量。
+当在 Xcode 中运行应用程序时，你可以通过编辑 `App` scheme 来设置环境变量。
 
 ## .env (dotenv)
 
 Dotenv 文件包含一个键值对列表，这些键值对将自动加载到环境中。这些文件使配置环境变量变得很容易，而不需要手动设置它们。
 
-Vapor 将在当前工作目录中查找 `.env` 文件。如果你使用 Xcode，确保通过编辑 `Run` scheme 设置工作目录。
+Vapor 将在当前工作目录中查找 `.env` 文件。如果你使用 Xcode，确保通过编辑 `App` scheme 设置工作目录。
 
 假设以下 `.env` 文件放在你的项目根文件夹中:
 

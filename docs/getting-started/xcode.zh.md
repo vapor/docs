@@ -22,7 +22,7 @@ Xcode 将默认在 _DerivedData_ 目录运行项目。这与项目的根目录�
 
 ![Xcode Scheme Menu](../images/xcode-scheme-menu.png)
 
-在 scheme 编辑器中，选择 _Run_ action 以及 _Options_ tab 页。选中 _Use custom working directory_ 然后输入你项目根目录。
+在 scheme 编辑器中，选择 _App_ action 以及 _Options_ tab 页。选中 _Use custom working directory_ 然后输入你项目根目录。
 
 ![Xcode Scheme Options](../images/xcode-scheme-options.png)
 

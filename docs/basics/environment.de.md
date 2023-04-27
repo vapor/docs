@@ -52,7 +52,7 @@ print(foo) // String?
 
 #### - Bestimmen
 
-In Xcode können wir eine Prozessvariable über das Schema _Run_ festlegen. 
+In Xcode können wir eine Prozessvariable über das Schema _App_ festlegen. 
 
 Im Terminal gibt es hierzu den Befehl _export_:
 

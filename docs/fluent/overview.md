@@ -313,7 +313,7 @@ app.migrations.add(CreateGalaxy())
 
 ### Migrate
 
-To run migrations, call `vapor run migrate` from the command line or add `migrate` as an argument to Xcode's Run scheme.
+To run migrations, call `vapor run migrate` from the command line or add `migrate` as an argument to Xcode's App scheme.
 
 
 ```

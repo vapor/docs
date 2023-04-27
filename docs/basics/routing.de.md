@@ -268,7 +268,7 @@ print(app.routes.all) // [Route]
 Vapor also ships with a `routes` command that prints all available routes in an ASCII formatted table. 
 
 ```sh
-$ swift run Run routes
+$ swift run App routes
 +--------+----------------+
 | GET    | /              |
 +--------+----------------+

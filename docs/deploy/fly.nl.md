@@ -136,7 +136,7 @@ Met `fly.toml`'s `release_command` kun je Fly vragen om een bepaald commando uit
 ```
 
 !!! opmerking
-    De bovenstaande code snippet gaat ervan uit dat je de standaard Vapor Dockerfile gebruikt die je app `ENTRYPOINT` op `./Run` zet. Concreet betekent dit dat wanneer je `release_command` instelt op `migrate -y`, Fly `./Run migrate -y` zal aanroepen. Als je `ENTRYPOINT` op een andere waarde is ingesteld, moet je de waarde van `release_command` aanpassen.
+    De bovenstaande code snippet gaat ervan uit dat je de standaard Vapor Dockerfile gebruikt die je app `ENTRYPOINT` op `./App` zet. Concreet betekent dit dat wanneer je `release_command` instelt op `migrate -y`, Fly `./App migrate -y` zal aanroepen. Als je `ENTRYPOINT` op een andere waarde is ingesteld, moet je de waarde van `release_command` aanpassen.
 
 Fly zal uw release commando uitvoeren in een tijdelijke instantie die toegang heeft tot uw interne Fly netwerk, geheimen en omgevingsvariabelen.
 

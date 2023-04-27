@@ -22,7 +22,7 @@ Selecteer _Edit Scheme..._ in de dropdown.
 
 ![Xcode Scheme Menu](../images/xcode-scheme-menu.png)
 
-Kies in de schema editor de actie _Run_ en het tabblad _Options_. Vink _Use custom working directory_ aan en voer het pad in naar de hoofdmap van uw project.
+Kies in de schema editor de actie _App_ en het tabblad _Options_. Vink _Use custom working directory_ aan en voer het pad in naar de hoofdmap van uw project.
 
 ![Xcode Scheme Options](../images/xcode-scheme-options.png)
 
