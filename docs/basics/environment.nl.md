@@ -117,16 +117,22 @@ extension Environment {
 }
 ```
 
-De omgeving van de applicatie wordt meestal ingesteld in `main.swift` met `Environment.detect()`.
+De omgeving van de applicatie wordt meestal ingesteld in `entrypoint.swift` met `Environment.detect()`.
 
 ```swift
-import Vapor
-
-var env = try Environment.detect()
-try LoggingSystem.bootstrap(from: &env)
-
-let app = Application(env)
-defer { app.shutdown() }
+@main
+enum Entrypoint {
+    static func main() async throws {
+        var env = try Environment.detect()
+        try LoggingSystem.bootstrap(from: &env)
+        
+        let app = Application(env)
+        defer { app.shutdown() }
+        
+        try await configure(app)
+        try await app.runFromAsyncMainEntrypoint()
+    }
+}
 ```
 
 De `detect` methode gebruikt de commandoregel argumenten van het proces en parst de `--env` vlag automatisch. Je kunt dit gedrag opheffen door een aangepaste `Environment` struct te initialiseren.

@@ -59,7 +59,7 @@ De models map is een goede plaats om uw `Content` structs of Fluent `Model`s op 
 
 #### configure.swift
 
-Dit bestand bevat de `configure(_:)` functie. Deze methode wordt aangeroepen door `main.swift` om de nieuw aangemaakte `Application` te configureren. Dit is waar je services zoals routes, databases, providers, en meer moet registreren.
+Dit bestand bevat de `configure(_:)` functie. Deze methode wordt aangeroepen door `entrypoint.swift` om de nieuw aangemaakte `Application` te configureren. Dit is waar je services zoals routes, databases, providers, en meer moet registreren.
 
 #### entrypoint.swift
 
