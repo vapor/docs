@@ -87,11 +87,9 @@ vapor run serve
 
 ## 配置
 
-SwiftLog 可以通过每次进程启动 `LoggingSystem` 时进行配置。Vapor 项目通常在 `main.swift` 执行操作。
+SwiftLog 可以通过每次进程启动 `LoggingSystem` 时进行配置。Vapor 项目通常在 `entrypoint.swift` 执行操作。
 
 ```swift
-import Vapor
-
 var env = try Environment.detect()
 try LoggingSystem.bootstrap(from: &env)
 ```

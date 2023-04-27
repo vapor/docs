@@ -86,11 +86,9 @@ Beide kunnen worden gedaan in Xcode door het `App` schema te bewerken.
 
 ## Configuratie
 
-SwiftLog wordt geconfigureerd door het `LoggingSystem` één keer per proces te bootstrappen. Vapor projecten doen dit meestal in `main.swift`.
+SwiftLog wordt geconfigureerd door het `LoggingSystem` één keer per proces te bootstrappen. Vapor projecten doen dit meestal in `entrypoint.swift`.
 
 ```swift
-import Vapor
-
 var env = try Environment.detect()
 try LoggingSystem.bootstrap(from: &env)
 ```

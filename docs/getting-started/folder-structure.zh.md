@@ -58,7 +58,7 @@ models 文件夹常用于存放 `Content` 和 Fluent `Model` 的类或结构体�
 
 #### configure.swift
 
-这个文件包含 `configure(_:)` 函数，`main.swift` 调用这个方法用以配置新创建的 `Application` 实例。你可以在这里注册诸如路由、数据库、providers 等服务。
+这个文件包含 `configure(_:)` 函数，`entrypoint.swift` 调用这个方法用以配置新创建的 `Application` 实例。你可以在这里注册诸如路由、数据库、providers 等服务。
 
 #### entrypoint.swift
 

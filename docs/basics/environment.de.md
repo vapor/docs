@@ -86,18 +86,22 @@ extension Environment {
 }
 ```
 
-Die laufende Umgebung wird standardmäßig in der Datei _main_ über die Methode _detect()_ erkannt und gesetzt:
+Die laufende Umgebung wird standardmäßig in der Datei _entrypoint_ über die Methode _detect()_ erkannt und gesetzt:
 
 ```swift
-// [main.swift]
-
-import Vapor
-
-var env = try Environment.detect()
-try LoggingSystem.bootstrap(from: &env)
-
-let app = Application(env)
-defer { app.shutdown() }
+@main
+enum Entrypoint {
+    static func main() async throws {
+        var env = try Environment.detect()
+        try LoggingSystem.bootstrap(from: &env)
+        
+        let app = Application(env)
+        defer { app.shutdown() }
+        
+        try await configure(app)
+        try await app.runFromAsyncMainEntrypoint()
+    }
+}
 ```
 
 Die Methode greift auf die Argumente der Befehlzeile zu und zieht sich den entsprechenden Wert für das Argument _--env_. 

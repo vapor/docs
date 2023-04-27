@@ -59,7 +59,7 @@ The models folder is a great place to store your `Content` structs or Fluent `Mo
 
 #### configure.swift
 
-This file contains the `configure(_:)` function. This method is called by `main.swift` to configure the newly created `Application`. This is where you should register services like routes, databases, providers, and more. 
+This file contains the `configure(_:)` function. This method is called by `entrypoint.swift` to configure the newly created `Application`. This is where you should register services like routes, databases, providers, and more. 
 
 #### entrypoint.swift
 

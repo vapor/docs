@@ -55,7 +55,7 @@ Der Ordner _Models_ beinhaltet die Klassendefinitionen für die Entitäten.
 
 #### configure.swift
 
-Die Datei _configure.swift_ umfasst die Methode `configure(_:)`. Sie wird in der Datei `main.swift` aufgerufen um die Anwendung mit entsprechenden Angaben zu Endpunkten, zur Datenbank oder zu Providern zu konfigurieren.
+Die Datei _configure.swift_ umfasst die Methode `configure(_:)`. Sie wird in der Datei `entrypoint.swift` aufgerufen um die Anwendung mit entsprechenden Angaben zu Endpunkten, zur Datenbank oder zu Providern zu konfigurieren.
 
 #### entrypoint.swift
 

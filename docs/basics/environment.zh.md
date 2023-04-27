@@ -117,16 +117,22 @@ extension Environment {
 }
 ```
 
-应用程序的环境通常使用 `main.swift` 中的 `environment .detect()` 来设置。
+应用程序的环境通常使用 `entrypoint.swift` 中的 `environment .detect()` 来设置。
 
 ```swift
-import Vapor
-
-var env = try Environment.detect()
-try LoggingSystem.bootstrap(from: &env)
-
-let app = Application(env)
-defer { app.shutdown() }
+@main
+enum Entrypoint {
+    static func main() async throws {
+        var env = try Environment.detect()
+        try LoggingSystem.bootstrap(from: &env)
+        
+        let app = Application(env)
+        defer { app.shutdown() }
+        
+        try await configure(app)
+        try await app.runFromAsyncMainEntrypoint()
+    }
+}
 ```
 
 `detect` 方法使用进程的命令行参数并自动解析 `--env` 标志。你可以通过初始化自定义的 `Environment` 结构来覆盖此行为。
