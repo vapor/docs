@@ -63,7 +63,7 @@ vapor run serve
 
 ### Umgebungsdatei
 
-Eine Umgebungsdatei besteht aus Schlüssel-Wert-Paare, welche entsprechend der Umgebung geladen werden. Auf dieser Weise müssen die Umgebungsvariablen nicht manuell angelegt werden. Vapor lädt die Datei beim Starten aus dem Arbeitsverzeichnis.
+Eine Umgebungsdatei besteht aus Schlüssel-Wert-Paare, welche entsprechend der Umgebung geladen werden. Auf dieser Weise müssen die Umgebungsvariablen nicht manuell angelegt werden. Vapor lädt die Datei beim Starten aus dem Arbeitsverzeichnis. Für den Fall, dass du Xcode verwendest, denke daran das Arbeitsverzeichnis im Schema _App_ zu hinterlegen.
 
 ```sh
 # Key=Value
@@ -108,4 +108,4 @@ Wir können das Standardverhalten überschreiben, indem wir die Methode durch ei
 let env = Environment(name: "testing", arguments: ["vapor"])
 ```
 
-Das Array für die Argumente muss mindestens den Wert _vapor_ behinalten.
+Das Array für die Argumente muss mindestens den Wert _vapor_ beinhalten.

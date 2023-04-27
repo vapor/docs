@@ -43,7 +43,7 @@ Der Parameter _Name_ legt den Paketnamen fest.
 
 #### - Platforms
 
-Der Parameter _Platforms_ beschreibt für welche Systeme letzten Endes das Paket sein soll. Wenn z.B. als Plattform `.macOS(.v12)` angegeben wird, wird macOS 12 oder neuer erwartet.
+Der Parameter _Platforms_ beschreibt für welche Systeme letzten Endes das Paket sein soll. Wenn z.B. als Plattform `.macOS(.v12)` angegeben ist, wird macOS 12 (oder aktueller) erwartet.
 
 #### - Dependencies
 
