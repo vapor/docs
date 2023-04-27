@@ -124,13 +124,13 @@ echo "5.2.1" > .swift-version
 Heroku 使用 **Procfile** 来知道如何运行你的应用程序，在我们的示例中它需要这样配置：
 
 ```
-web: Run serve --env production --hostname 0.0.0.0 --port $PORT
+web: App serve --env production --hostname 0.0.0.0 --port $PORT
 ```
 
 我们可以使用以下终端命令来创建它
 
 ```bash
-echo "web: Run serve --env production" \
+echo "web: App serve --env production" \
   "--hostname 0.0.0.0 --port \$PORT" > Procfile
 ```
 
@@ -217,15 +217,15 @@ git commit -m "configured heroku database"
 
 ### 重置你的数据库
 
-你可以使用 `run` 命令在 heroku 上恢复或运行其他命令。 Vapor 的项目默认也被命名为 `Run`，所以读起来有点怪。
+你可以使用 `run` 命令在 heroku 上恢复或运行其他命令。
 要重置你的数据库请运行：
 
 ```bash
-heroku run Run -- revert --all --yes --env production
+heroku run App -- revert --all --yes --env production
 ```
 
 如要迁移请运行以下命令：
 
 ```bash
-heroku run Run -- migrate --env production
+heroku run App -- migrate --env production
 ```

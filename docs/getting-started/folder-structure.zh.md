@@ -11,11 +11,10 @@
 │   │   ├── Controllers
 │   │   ├── Migrations
 │   │   ├── Models
-│   │   ├── app.swift
-│   │   ├── configure.swift
+│   │   ├── configure.swift 
+│   │   ├── entrypoint.swift
 │   │   └── routes.swift
-│   └── Run
-│       └── main.swift
+│       
 ├── Tests
 │   └── AppTests
 └── Package.swift
@@ -39,7 +38,7 @@ app.middleware.use(fileMiddleware)
 
 ## Sources
 
-该文件夹包含项目的所有 Swift 代码源文件。文件夹 `App` 和 `Run` 反应软件包的模块，例如这篇 [SPM](spm.zh.md) 文章中所述。
+此文件夹包含项目的所有 Swift 源文件。 顶级文件夹“App”反映了您的包的模块，如 [SwiftPM](spm.md) 清单中声明的那样。
 
 ### App
 
@@ -61,17 +60,13 @@ models 文件夹常用于存放 `Content` 和 Fluent `Model` 的类或结构体�
 
 这个文件包含 `configure(_:)` 函数，`main.swift` 调用这个方法用以配置新创建的 `Application` 实例。你可以在这里注册诸如路由、数据库、providers 等服务。
 
+#### entrypoint.swift
+
+该文件包含用于设置、配置和运行 Vapor 应用程序的应用程序的“@main”入口点。
+
 #### routes.swift
 
 这个文件包含 `routes(_:)` 方法，它会在 `configure(_:)` 结尾处被调用，用以将路由注册到你的`Application`。
-
-### Run
-
-这是主要的可执行目标，只包含启动和运行应用程序所需的代码。
-
-#### main.swift
-
-这个文件创建并运行一个配置好的 `Application` 实例。
 
 ## Tests
 

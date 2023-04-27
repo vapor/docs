@@ -10,7 +10,7 @@
  [ WARNING ] No custom working directory set for this scheme, using /path/to/DerivedData/project-abcdef/Build/
  ```
 
- Um das Problem zu lösen, musst du den Pfad zu deinem Projekt in Schemen-Editor hinterlegen. Rufe über die den Menüpunkte _Products > Scheme > Edit Scheme..._  den Editor auf und wähle das Schema _Run_ aus.
+ Um das Problem zu lösen, musst du den Pfad zu deinem Projekt in Schemen-Editor hinterlegen. Rufe über die den Menüpunkte _Products > Scheme > Edit Scheme..._  den Editor auf und wähle das Schema _App_ aus.
  
  Klicke in der rechten Fensterhälfte auf den Reiter _Options_ und gebe unter dem Punkt _Working Directory_ den Pfad zu deinem Projekt mit an.
 

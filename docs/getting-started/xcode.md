@@ -22,7 +22,7 @@ Select _Edit Scheme..._ from the dropdown.
 
 ![Xcode Scheme Menu](../images/xcode-scheme-menu.png)
 
-In the scheme editor, choose the _Run_ action and the _Options_ tab. Check _Use custom working directory_ and enter the path to your project's root folder.
+In the scheme editor, choose the _App_ action and the _Options_ tab. Check _Use custom working directory_ and enter the path to your project's root folder.
 
 ![Xcode Scheme Options](../images/xcode-scheme-options.png)
 

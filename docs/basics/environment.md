@@ -61,13 +61,13 @@ export FOO=BAR
 vapor run serve
 ```
 
-When running your app in Xcode, you can set environment variables by editing the `Run` scheme.
+When running your app in Xcode, you can set environment variables by editing the `App` scheme.
 
 ## .env (dotenv)
 
 Dotenv files contain a list of key-value pairs to be automatically loaded into the environment. These files make it easy to configure environment variables without needing to set them manually.
 
-Vapor will look for dotenv files in the current working directory. If you're using Xcode, make sure to set the working directory by editing the `Run` scheme.
+Vapor will look for dotenv files in the current working directory. If you're using Xcode, make sure to set the working directory by editing the `App` scheme.
 
 Assume the following `.env` file placed in your projects root folder:
 

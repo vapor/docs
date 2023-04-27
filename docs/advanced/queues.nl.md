@@ -39,20 +39,20 @@ Laten we eens kijken hoe je aan de slag kunt met wachtrijen.
 De eerste stap om Queues te gebruiken is het toevoegen van een van de stuurprogramma's als een afhankelijkheid van je project in je SwiftPM package manifest bestand. In dit voorbeeld gebruiken we het Redis stuurprogramma. 
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
     name: "MyApp",
     dependencies: [
-        /// Alle andere afhankelijkheden ...
+        /// Any other dependencies ...
         .package(url: "https://github.com/vapor/queues-redis-driver.git", from: "1.0.0"),
     ],
     targets: [
-        .target(name: "App", dependencies: [
+        .executableTarget(name: "App", dependencies: [
+            // Other dependencies
             .product(name: "QueuesRedisDriver", package: "queues-redis-driver")
         ]),
-        .target(name: "Run", dependencies: [.target(name: "App")]),
         .testTarget(name: "AppTests", dependencies: [.target(name: "App")]),
     ]
 )
@@ -311,11 +311,11 @@ Met het pakket Queues kunt u ook taken plannen die op bepaalde tijdstippen moete
 De scheduler vereist dat een afzonderlijk workerproces draait, gelijkaardig aan de queue worker. U kunt de worker starten door dit commando uit te voeren: 
 
 ```sh
-swift run Run queues --scheduled
+swift run App queues --scheduled
 ```
 
 !!! tip
-    Workers moeten blijven draaien in productie. Raadpleeg uw hosting provider om uit te vinden hoe u langlopende processen in leven kunt houden. Heroku, bijvoorbeeld, staat je toe om "worker" dyno's te specificeren zoals dit in je Procfile: `worker: Run queues --scheduled`
+    Workers moeten blijven draaien in productie. Raadpleeg uw hosting provider om uit te vinden hoe u langlopende processen in leven kunt houden. Heroku, bijvoorbeeld, staat je toe om "worker" dyno's te specificeren zoals dit in je Procfile: `worker: App queues --scheduled`
 
 ### Een `ScheduledJob` Maken
 

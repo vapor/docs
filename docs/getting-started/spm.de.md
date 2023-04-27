@@ -7,27 +7,28 @@
 Das Herzstück des Paketmanagers ist die Paketbeschreibung. Sie befindet sich im Hauptverzeichnis eines Paketes. Die Beschreibung beinhaltet unter anderem Angaben zu Swift-Tools, den Paketnamen, dem Paketinhalt und die Abhängigkeiten.
 
 ```swift
-/// [Package.swift]
-
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
-    name: "app",
+    name: "MyApp",
     platforms: [
-       .macOS(.v10_15)
-    ],
-    products: [
-        .executable(name: "Run", targets: ["Run"]),
-        .library(name: "App", targets: ["App"]),
+       .macOS(.v12)
     ],
     dependencies: [
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.76.0"),
     ],
     targets: [
-        .target(name: "App", dependencies: [.product(name: "Vapor", package: "vapor")]),
-        .target(name: "Run", dependencies: ["App"]),
-        .testTarget(name: "AppTests", dependencies: ["App"])
+        .executableTarget(
+            name: "App",
+            dependencies: [
+                .product(name: "Vapor", package: "vapor")
+            ]
+        ),
+        .testTarget(name: "AppTests", dependencies: [
+            .target(name: "App"),
+            .product(name: "XCTVapor", package: "vapor"),
+        ])
     ]
 )
 ```
@@ -42,11 +43,7 @@ Der Parameter _Name_ legt den Paketnamen fest.
 
 #### - Platforms
 
-Der Parameter _Platforms_ beschreibt für welche Systeme letzten Endes das Paket sein soll. Wenn z.B. als Plattform `.macOS(.v10.14)` angegeben wird, wird macOS Mojave oder neuer erwartet.
-
-#### - Products
-
-Der Parameter _Products_ fasst die Targets zusammen.
+Der Parameter _Platforms_ beschreibt für welche Systeme letzten Endes das Paket sein soll. Wenn z.B. als Plattform `.macOS(.v12)` angegeben wird, wird macOS 12 oder neuer erwartet.
 
 #### - Dependencies
 
@@ -54,7 +51,7 @@ Dependencies sind Paketverweise, auf die das Paket aufbaut und daher für die Au
 
 #### - Targets
 
-Targets sind Module, Dateien oder Tests. Vapor-Anwendungen beinhalten bis zu drei Targets.
+Targets sind Module, Dateien oder Tests. Vapor-Anwendungen beinhalten bis zu zwei Targets.
 
 ### Ordnerstruktur
 
@@ -63,10 +60,8 @@ Die Ordnerstruktur eines Paketes sieht wie folgt aus:
 ```
 .
 ├── Sources
-│   ├── App
-│   │   └── (Source code)
-│   └── Run
-│       └── main.swift
+│   └── App
+│       └── (Source code)
 ├── Tests
 │   └── AppTests
 └── Package.swift

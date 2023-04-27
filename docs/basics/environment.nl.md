@@ -61,13 +61,13 @@ export FOO=BAR
 vapor run serve
 ```
 
-Wanneer u uw app in Xcode uitvoert, kunt u omgevingsvariabelen instellen door het `Run` schema te bewerken.
+Wanneer u uw app in Xcode uitvoert, kunt u omgevingsvariabelen instellen door het `App` schema te bewerken.
 
 ## .env (dotenv)
 
 Dotenv bestanden bevatten een lijst van sleutel-waarde paren die automatisch in de omgeving geladen worden. Deze bestanden maken het gemakkelijk om omgevingsvariabelen te configureren zonder ze handmatig te hoeven instellen.
 
-Vapor zal zoeken naar dotenv bestanden in de huidige werkmap. Als u Xcode gebruikt, zorg er dan voor dat u de werkdirectory instelt door het `Run` schema aan te passen.
+Vapor zal zoeken naar dotenv bestanden in de huidige werkmap. Als u Xcode gebruikt, zorg er dan voor dat u de werkdirectory instelt door het `App` schema aan te passen.
 
 Veronderstel dat het volgende `.env` bestand in de hoofdmap van je project staat:
 

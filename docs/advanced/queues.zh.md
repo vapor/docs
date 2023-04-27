@@ -39,7 +39,7 @@ Queues 也有基于社区的驱动程序：
 使用队列的第一步是在 SwiftPM 文件中添加一个驱动程序作为项目的依赖项。在本例中，我们将使用 Redis 驱动程序。
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
@@ -49,10 +49,10 @@ let package = Package(
         .package(url: "https://github.com/vapor/queues-redis-driver.git", from: "1.0.0"),
     ],
     targets: [
-        .target(name: "App", dependencies: [
+        .executableTarget(name: "App", dependencies: [
+            // Other dependencies
             .product(name: "QueuesRedisDriver", package: "queues-redis-driver")
         ]),
-        .target(name: "Run", dependencies: [.target(name: "App")]),
         .testTarget(name: "AppTests", dependencies: [.target(name: "App")]),
     ]
 )
@@ -316,11 +316,11 @@ Queues 包还允许你安排在特定时间点发生的 job。
 调度程序需要一个独立的 worker 进程来运行，类似于队列 worker 进程。可以通过以下命令启动 worker：
 
 ```sh
-swift run Run queues --scheduled
+swift run App queues --scheduled
 ```
 
 !!! tip "建议"
-    生产环境应该保持 worker 一直运行。请咨询你的服务托管提供商，了解如何使长时间运行的进程保持活动状态。例如，Heroku 允许你在 Procfile 中像这样指定  “worker” dynos：`worker: Run queues --scheduled`
+    生产环境应该保持 worker 一直运行。请咨询你的服务托管提供商，了解如何使长时间运行的进程保持活动状态。例如，Heroku 允许你在 Procfile 中像这样指定  “worker” dynos：`worker: App queues --scheduled`
 
 ### 创建一个 `ScheduledJob`
 

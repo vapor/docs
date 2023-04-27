@@ -10,10 +10,10 @@ Lass uns einen Blick auf die Ordnerstruktur von Vapor werfen. Die Ordnerstruktur
 │   │   ├── Controllers
 │   │   ├── Migrations
 │   │   ├── Models
-│   │   ├── configure.swift
+│   │   ├── configure.swift 
+│   │   ├── entrypoint.swift
 │   │   └── routes.swift
-│   └── Run
-│       └── main.swift
+│       
 ├── Tests
 │   └── AppTests
 └── Package.swift
@@ -33,7 +33,9 @@ app.middleware.use(fileMiddleware)
 
 ## Sources
 
-Im Ordner _Sources_ befinden sich die eigentlichen Anwendungsdateien, unterteilt in die Unterordner _App_ und _Run_. Die beiden Unterordnern stellen Paketmodule dar. Mehr dazu findest du im Abschnitt [Swift Package Manager](spm.md).
+Dieser Ordner enthält alle Swift-Quelldateien für Ihr Projekt.
+Der Ordner der obersten Ebene, "App", spiegelt das Modul Ihres Pakets wider,
+wie im [SwiftPM-Manifest](spm.md) angegeben.
 
 ### App
 
@@ -55,17 +57,13 @@ Der Ordner _Models_ beinhaltet die Klassendefinitionen für die Entitäten.
 
 Die Datei _configure.swift_ umfasst die Methode `configure(_:)`. Sie wird in der Datei `main.swift` aufgerufen um die Anwendung mit entsprechenden Angaben zu Endpunkten, zur Datenbank oder zu Providern zu konfigurieren.
 
+#### entrypoint.swift
+
+Diese Datei enthält den `@main`-Einstiegspunkt für die Anwendung, die Ihre Vapor-Anwendung einrichtet, konfiguriert und ausführt.
+
 #### routes.swift
 
 Die Datei _routes.swift_ beinhaltet die Methode `routes(_:)`. Sie wird am Ende von der `configure(_:)`-Methode aufgerufen um die Endpunkte zu registrieren. 
-
-### Run
-
-Der Ordner _Run_ stellt die Ausführungsdatei dar.
-
-#### main.swift
-
-Die Datei _main.swift_ erstellt eine Instanz der Anwendung und führt diese aus.
 
 ## Tests
 

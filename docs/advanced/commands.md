@@ -18,11 +18,11 @@ vapor run serve --help
 
 ### Xcode
 
-You can run commands in Xcode by adding arguments to the `Run` scheme. To do this, follow these steps: 
+You can run commands in Xcode by adding arguments to the `App` scheme. To do this, follow these steps: 
 
-- Choose `Run` scheme (to the right of play/stop buttons)
+- Choose `App` scheme (to the right of play/stop buttons)
 - Click "Edit Scheme"
-- Choose "Run" product
+- Choose "App" product
 - Select "Arguments" tab
 - Add the name of the command to "Arguments Passed On Launch" (i.e., `serve`)
 

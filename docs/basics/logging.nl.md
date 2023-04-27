@@ -82,7 +82,7 @@ export LOG_LEVEL=debug
 vapor run serve
 ```
 
-Beide kunnen worden gedaan in Xcode door het `Run` schema te bewerken.
+Beide kunnen worden gedaan in Xcode door het `App` schema te bewerken.
 
 ## Configuratie
 

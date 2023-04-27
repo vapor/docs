@@ -29,7 +29,7 @@ Je nach System oder Entwicklungsumgebung muss das Projekt unterschiedlich ausgef
 open Package.swift
 ```
 
-Xcode öffnet sich und lädt zu Beginn alle notwendigen Paketverweise. Nach dem Laden sollte dir Xcode zur Verfügung stehen. Wähle anschließend in der Mitte eine Schema (oft einfach nur "My Mac") aus. Starte nun das Projekt über die Menüpunkte _Product_ > _Run_. Du solltest nun in der Konsole einen Eintrag wie diesen sehen:
+Xcode öffnet sich und lädt zu Beginn alle notwendigen Paketverweise. Nach dem Laden sollte dir Xcode zur Verfügung stehen. Wähle anschließend in der Mitte eine Schema (oft einfach nur "My Mac") aus. Starte nun das Projekt über die Menüpunkte _Product_ > _App_. Du solltest nun in der Konsole einen Eintrag wie diesen sehen:
 
 ```sh
 [ INFO ] Server starting on http://127.0.0.1:8080
