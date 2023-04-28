@@ -7,13 +7,13 @@ Vapor's Command API staat u toe om aangepaste command-line functies te bouwen en
 U kunt meer te weten komen over de standaard commando's van Vapor door de `--help` optie te gebruiken. 
 
 ```sh
-vapor run --help
+swift run App --help
 ```
 
 Je kunt `--help` gebruiken voor een specifiek commando om te zien welke argumenten en opties het accepteert.
 
 ```sh
-vapor run serve --help
+swift run App serve --help
 ```
 
 ### Xcode
@@ -38,7 +38,7 @@ struct HelloCommand: Command {
 }
 ```
 
-Het toevoegen van het aangepaste commando aan `app.commands` maakt het beschikbaar via `vapor run`. 
+Het toevoegen van het aangepaste commando aan `app.commands` maakt het beschikbaar via `swift run`. 
 
 ```swift
 app.commands.use(HelloCommand(), as: "hello")
@@ -74,7 +74,7 @@ context.console.print("Hello, \(name) 👋")
 Test je commando door het volgende uit te voeren:
 
 ```sh
-vapor run hello
+swift run App hello
 ```
 
 ### Cowsay
@@ -125,5 +125,5 @@ app.commands.use(Cowsay(), as: "cowsay")
 ```
 
 ```sh
-vapor run cowsay sup --eyes ^^ --tongue "U "
+swift run App cowsay sup --eyes ^^ --tongue "U "
 ```

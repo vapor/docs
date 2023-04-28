@@ -80,7 +80,7 @@ app.queues.add(emailJob)
 
 ### Workers Uitvoeren Als Processen
 
-Om een nieuwe wachtrijwerker te starten, voer `vapor run queues` uit. U kunt ook een specifiek type werker specificeren om te draaien: `vapor run queues --queue emails`.
+Om een nieuwe wachtrijwerker te starten, voer `swift run App queues` uit. U kunt ook een specifiek type werker specificeren om te draaien: `swift run App queues --queue emails`.
 
 !!! tip
     Workers moeten blijven draaien in productie. Raadpleeg uw hosting provider om uit te vinden hoe u langlopende processen in leven kunt houden. Heroku, bijvoorbeeld, staat je toe om "worker" dyno's te specificeren zoals dit in je Procfile: `worker: Run queues`. Met dit in plaats, kun je workers starten op het Dashboard/Resources tab, of met `heroku ps:scale worker=1` (of elk gewenst aantal dynos).

@@ -178,7 +178,7 @@ sudo ufw allow 8080
 现在 Vapor 已经设置好了，并且有了公开的端口，让我们启动它吧。
 
 ```sh
-vapor run serve --hostname 0.0.0.0 --port 8080
+swift run App serve --hostname 0.0.0.0 --port 8080
 ```
 
 通过浏览器或者本地终端访问服务器的 IP， 你应该会看到 “It works!”。本例中的 IP 地址为 `134.122.126.139`。

@@ -7,13 +7,13 @@ Vapor's Command API allows you to build custom command-line functions and intera
 You can learn more about Vapor's default commands using the `--help` option. 
 
 ```sh
-vapor run --help
+swift run App --help
 ```
 
 You can use `--help` on a specific command to see what arguments and options it accepts.
 
 ```sh
-vapor run serve --help
+swift run App serve --help
 ```
 
 ### Xcode
@@ -38,7 +38,7 @@ struct HelloCommand: Command {
 }
 ```
 
-Adding the custom command to `app.commands` will make it available via `vapor run`. 
+Adding the custom command to `app.commands` will make it available via `swift run`. 
 
 ```swift
 app.commands.use(HelloCommand(), as: "hello")
@@ -74,7 +74,7 @@ context.console.print("Hello, \(name) 👋")
 Test your command by running:
 
 ```sh
-vapor run hello
+swift run App hello
 ```
 
 ### Cowsay
@@ -125,5 +125,5 @@ app.commands.use(Cowsay(), as: "cowsay")
 ```
 
 ```sh
-vapor run cowsay sup --eyes ^^ --tongue "U "
+swift run App cowsay sup --eyes ^^ --tongue "U "
 ```

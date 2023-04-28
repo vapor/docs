@@ -313,10 +313,10 @@ app.migrations.add(CreateGalaxy())
 
 ### Migreren
 
-Om migraties uit te voeren, roep `vapor run migrate` op vanaf de commandoregel of voeg `migrate` toe als argument aan Xcode's App schema.
+Om migraties uit te voeren, roep `swift run App migrate` op vanaf de commandoregel of voeg `migrate` toe als argument aan Xcode's App schema.
 
 ```
-$ vapor run migrate
+$ swift run App migrate
 Migrate Command: Prepare
 The following migration(s) will be prepared:
 + CreateGalaxy on default

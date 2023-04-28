@@ -26,7 +26,7 @@ De hostnaam van de serverconfiguratie kan worden veranderd door de `--hostname` 
 
 ```sh
 # Overschrijf geconfigureerde hostnaam.
-vapor run serve --hostname dev.local
+swift run App serve --hostname dev.local
 ```
 
 ### Poort
@@ -46,7 +46,7 @@ De poort van de server configuratie kan overschreven worden door de `--port` (`-
 
 ```sh
 # Overschrijf geconfigureerde poort.
-vapor run serve --port 1337
+swift run App serve --port 1337
 ```
 
 ### Backlog
@@ -161,7 +161,7 @@ app.http.server.configuration.serverName = "vapor"
 Om de server van Vapor op te starten, gebruik het `serve` commando. Dit commando wordt standaard uitgevoerd als er geen andere commando's zijn opgegeven. 
 
 ```swift
-vapor run serve
+swift run App serve
 ```
 
 Het `serve` commando accepteert de volgende parameters:
@@ -173,10 +173,10 @@ Het `serve` commando accepteert de volgende parameters:
 Een voorbeeld met de `--bind` (`-b`) vlag:
 
 ```swift
-vapor run serve -b 0.0.0.0:80
+swift run App serve -b 0.0.0.0:80
 ```
 
-Gebruik `vapor run serve --help` voor meer informatie.
+Gebruik `swift run App serve --help` voor meer informatie.
 
 Het `serve` commando zal luisteren naar `SIGTERM` en `SIGINT` om de server netjes af te sluiten. Gebruik `ctrl+c` (`^c`) om een `SIGINT` signaal te sturen. Als het log level is ingesteld op `debug` of lager, zal informatie over de status van graceful shutdown worden gelogd.
 

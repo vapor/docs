@@ -176,7 +176,7 @@ sudo ufw allow 8080
 Nu dat Vapor klaar is en we een open poort hebben, laten we het commando runnen.
 
 ```sh
-vapor run serve --hostname 0.0.0.0 --port 8080
+swift run App serve --hostname 0.0.0.0 --port 8080
 ```
 
 Bezoek de IP van uw server via een browser of lokale terminal en u zou moeten zien "It works!". Het IP address in dit voorbeeld is `134.122.126.139`.

@@ -80,7 +80,7 @@ app.queues.add(emailJob)
 
 ### Worker 作为进程运行
 
-要启动新的队列 worker，请在终端运行 `vapor run queues`。 你还可以指定一个特定类型的 worker 来运行 `vapor run queues --queue emails`。
+要启动新的队列 worker，请在终端运行 `swift run App queues`。 你还可以指定一个特定类型的 worker 来运行 `swift run App queues --queue emails`。
 
 !!! tip "建议"
     生产环境应该保持 worker 一直运行。咨询你的托管提供商，了解如何保持长时间运行的进程处于活动状态。例如，Heroku 允许你在 Procfile 中指定这样的 “worker” dynos：`worker: Run queues`。有了这个，你可以在仪表板/资源选项卡上启动 worker，或者使用 `heroku ps:scale worker=1`（或首选的任何数量的 dynos）。

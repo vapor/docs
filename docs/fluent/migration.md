@@ -57,7 +57,7 @@ Migrations should be listed in order of dependency. For example, if `MigrationB`
 To migrate your database, run the `migrate` command.
 
 ```sh
-vapor run migrate
+swift run App migrate
 ```
 
 You can also run this [command through Xcode](../advanced/commands.md#xcode). The migrate command will check the database to see if any new migrations have been registered since it was last run. If there are new migrations, it will ask for a confirmation before running them.
@@ -67,7 +67,7 @@ You can also run this [command through Xcode](../advanced/commands.md#xcode). Th
 To undo a migration on your database, run `migrate` with the `--revert` flag.
 
 ```sh
-vapor run migrate --revert
+swift run App migrate --revert
 ```
 
 The command will check the database to see which batch of migrations was last run and ask for a confirmation before reverting them.
@@ -77,7 +77,7 @@ The command will check the database to see which batch of migrations was last ru
 If you would like migrations to run automatically before running other commands, you can pass the `--auto-migrate` flag. 
 
 ```sh
-vapor run serve --auto-migrate
+swift run App serve --auto-migrate
 ```
 
 You can also do this programatically. 
