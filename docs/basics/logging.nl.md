@@ -72,14 +72,14 @@ Ongeacht de omgevingsmodus, kunt u het log-niveau aanpassen om de hoeveelheid ge
 De eerste methode is om de optionele `--log` vlag mee te geven bij het opstarten van je applicatie. 
 
 ```sh
-vapor run serve --log debug
+swift run App serve --log debug
 ```
 
 De tweede methode is het instellen van de `LOG_LEVEL` omgevingsvariabele.
 
 ```sh
 export LOG_LEVEL=debug
-vapor run serve
+swift run App serve
 ```
 
 Beide kunnen worden gedaan in Xcode door het `App` schema te bewerken.

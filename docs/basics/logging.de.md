@@ -58,14 +58,14 @@ Protokollstufen steuern den Informationsumfang. Vapor protokolliert standardmä�
 Unhabhängig von der Umgebung können wir Protokollstufen mit Hilfe des Parameters _--log_ oder der Umgebungsvariable _LOG_LEVEL_ festlegen.
 
 ```sh
-vapor run serve --log debug
+swift run App serve --log debug
 ```
 
 oder 
 
 ```sh
 export LOG_LEVEL=debug
-vapor run serve
+swift run App serve
 ```
 
 Beides kann über das Schema _App_ in Xcode eingestellt werden. Im Abschnitt [Xcode](../getting-started/xcode.md) erklären wir dir, wie du ein Schema bearbeitest.

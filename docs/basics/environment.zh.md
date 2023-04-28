@@ -18,7 +18,7 @@ default:
 默认情况下，你的应用程序将在 `development` 环境中运行。你可以通过在应用程序引导期间传递 `--env` (`-e`) 标志来改变这一点。
 
 ```swift
-vapor run serve --env production
+swift run App serve --env production
 ```
 
 Vapor 包含下列环境：
@@ -35,7 +35,7 @@ Vapor 包含下列环境：
 你可以将全名或短名传递给`--env` (`-e`) 标志。
 
 ```swift
-vapor run serve -e prod
+swift run App serve -e prod
 ```
 
 ## 进程变量
@@ -58,7 +58,7 @@ print(foo) // String?
 
 ```sh
 export FOO=BAR
-vapor run serve
+swift run App serve
 ```
 
 当在 Xcode 中运行应用程序时，你可以通过编辑 `App` scheme 来设置环境变量。

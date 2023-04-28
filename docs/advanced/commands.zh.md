@@ -7,13 +7,13 @@ Vapor 的 Command API 允许你打造自定义命令行函数并且与终端进�
 通过 `--help` 选项你可以了解更多 Vapor 的默认指令。
 
 ```sh
-vapor run --help
+swift run App --help
 ```
 
 你同样可以使用 `--help` 在特定的指令上以查看这个指令接受的参数和选项。
 
 ```sh
-vapor run serve --help
+swift run App serve --help
 ```
 
 ### Xcode
@@ -38,7 +38,7 @@ struct HelloCommand: Command {
 }
 ```
 
-将自定义指令加入到 `app.commands` 将允许你使用这个指令通过 `vapor run`。
+将自定义指令加入到 `app.commands` 将允许你使用这个指令通过 `swift run`。
 
 ```swift
 app.commands.use(HelloCommand(), as: "hello")
@@ -74,7 +74,7 @@ context.console.print("Hello, \(name) 👋")
 通过运行你的命令来测试:
 
 ```sh
-vapor run hello
+swift run App hello
 ```
 
 ### Cowsay
@@ -125,5 +125,5 @@ app.commands.use(Cowsay(), as: "cowsay")
 ```
 
 ```sh
-vapor run cowsay sup --eyes ^^ --tongue "U "
+swift run App cowsay sup --eyes ^^ --tongue "U "
 ```

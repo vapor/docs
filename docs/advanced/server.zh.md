@@ -26,7 +26,7 @@ app.http.server.configuration.hostname = "dev.local"
 
 ```sh
 # 重写主机名配置
-vapor run serve --hostname dev.local
+swift run App serve --hostname dev.local
 ```
 
 ### 端口
@@ -45,7 +45,7 @@ app.http.server.configuration.port = 1337
 
 ```sh
 # 重写端口配置
-vapor run serve --port 1337
+swift run App serve --port 1337
 ```
 
 ### Backlog
@@ -160,7 +160,7 @@ app.http.server.configuration.serverName = "vapor"
 要启动 Vapor 的服务器，请在终端使用 `serve` 命令。如果没有指定其他命令，该命令将默认运行。
 
 ```swift
-vapor run serve
+swift run App serve
 ```
 
 `serve` 命令接受以下参数：
@@ -172,10 +172,10 @@ vapor run serve
 下面是使用 `--bind` (`-b`) 标志的一个示例：
 
 ```swift
-vapor run serve -b 0.0.0.0:80
+swift run App serve -b 0.0.0.0:80
 ```
 
-使用 `vapor run serve --help` 以获取更多信息。
+使用 `swift run App serve --help` 以获取更多信息。
 
 `serve` 命令将侦听 `SIGTERM` 和 `SIGINT` 信号，以正常关闭服务器。使用 `ctrl+c` (`^c`) 发送 `SIGINT` 信号。当日志级别设置为 `debug` 或更低时，将记录有关安全关机状态的信息。
 

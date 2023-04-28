@@ -57,7 +57,7 @@ app.migrations.add(MyMigration(), to: .myDatabase)
 要迁移你的数据库，请在终端运行 `migrate` 命令。
 
 ```sh
-vapor run migrate
+swift run App migrate
 ```
 
 你也可以[通过 Xcode 运行这个命令](../advanced/commands.md#xcode)。migrate 命令将检查数据库，查看自上次运行以来是否注册了新的迁移。如果有新的迁移，运行它之前会要求确认。
@@ -67,7 +67,7 @@ vapor run migrate
 要撤消数据库上的迁移，终端运行 `migrate` 命令时添加 `--revert` 标志。
 
 ```sh
-vapor run migrate --revert
+swift run App migrate --revert
 ```
 
 该命令将检查数据库以查看上次运行的迁移是哪一批，并在恢复之前要求确认。
@@ -77,7 +77,7 @@ vapor run migrate --revert
 如果你希望在运行其他命令之前自动运行迁移，可以添加 `--auto-migrate` 标志。
 
 ```sh
-vapor run serve --auto-migrate
+swift run App serve --auto-migrate
 ```
 
 你也可以通过编程来实现。

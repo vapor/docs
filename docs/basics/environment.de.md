@@ -27,7 +27,7 @@ default:
 ## Wechsel
 
 ```swift
-vapor run serve --env production
+swift run App serve --env production
 ```
 
 ## Umgebungsvariable
@@ -58,7 +58,7 @@ Im Terminal gibt es hierzu den Befehl _export_:
 
 ```sh
 export FOO=BAR
-vapor run serve
+swift run App serve
 ```
 
 ### Umgebungsdatei

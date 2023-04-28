@@ -314,11 +314,11 @@ app.migrations.add(CreateGalaxy())
 
 ### Migrate
 
-要运行迁移，在命令行中调用 `vapor run migrate` 或者添加 `migrate` 参数到 Xcode 的运行方案中。
+要运行迁移，在命令行中调用 `swift run App migrate` 或者添加 `migrate` 参数到 Xcode 的运行方案中。
 
 
 ```
-$ vapor run migrate
+$ swift run App migrate
 Migrate Command: Prepare
 The following migration(s) will be prepared:
 + CreateGalaxy on default

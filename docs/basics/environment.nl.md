@@ -18,7 +18,7 @@ default:
 Standaard zal uw app in de `development` omgeving draaien. U kunt dit veranderen door de `--env` (`-e`) vlag mee te geven tijdens het opstarten van de app.
 
 ```swift
-vapor run serve --env production
+swift run App serve --env production
 ```
 
 Vapor omvat de volgende omgevingen:
@@ -35,7 +35,7 @@ Vapor omvat de volgende omgevingen:
 Je kunt de volledige of korte naam doorgeven aan de `--env` (`-e`) vlag.
 
 ```swift
-vapor run serve -e prod
+swift run App serve -e prod
 ```
 
 ## Procesvariabelen
@@ -58,7 +58,7 @@ Wanneer u uw app in de terminal draait, kunt u omgevingsvariabelen instellen met
 
 ```sh
 export FOO=BAR
-vapor run serve
+swift run App serve
 ```
 
 Wanneer u uw app in Xcode uitvoert, kunt u omgevingsvariabelen instellen door het `App` schema te bewerken.
