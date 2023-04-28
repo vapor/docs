@@ -33,13 +33,11 @@ app.middleware.use(fileMiddleware)
 
 ## Sources
 
-Dieser Ordner enthält alle Swift-Quelldateien für Ihr Projekt.
-Der Ordner der obersten Ebene, "App", spiegelt das Modul Ihres Pakets wider,
-wie im [SwiftPM-Manifest](spm.md) angegeben.
+Im Ordner _Sources_ befinden sich die eigentlichen Anwendungsdateien deines Projektes.
 
 ### App
 
-Der Ordner _App_ beinhaltet die Anwendungslogik.
+Der Ordner _App_ beinhaltet die Anwendungslogik und stellt zudem, wie in der [Paketbeschreibung](../getting-started/spm.md) angegeben, das Modul des Paketes dar.
 
 #### Controllers
 
@@ -55,11 +53,11 @@ Der Ordner _Models_ beinhaltet die Klassendefinitionen für die Entitäten.
 
 #### configure.swift
 
-Die Datei _configure.swift_ umfasst die Methode `configure(_:)`. Sie wird in der Datei `entrypoint.swift` aufgerufen um die Anwendung mit entsprechenden Angaben zu Endpunkten, zur Datenbank oder zu Providern zu konfigurieren.
+Die Datei _configure.swift_ umfasst die Methode `configure(_:)`. Sie wird vom Einstiegspunkt aufgerufen um die Anwendung mit entsprechenden Angaben zu Endpunkten, zur Datenbank oder zu Providern zu konfigurieren.
 
 #### entrypoint.swift
 
-Diese Datei enthält den `@main`-Einstiegspunkt für die Anwendung, die Ihre Vapor-Anwendung einrichtet, konfiguriert und ausführt.
+In der Datei _entrypoint.swift_ befindet sich der Einstiegspunkt (`@main`) für die Anwendung, von dem aus die Anwendung eingerichtet, konfiguriert und gestartet wird.
 
 #### routes.swift
 
