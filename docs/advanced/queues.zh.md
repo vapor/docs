@@ -65,6 +65,8 @@ let package = Package(
 下一步是在 `configure.swift` 文件中配置队列，我们将使用 Redis 库作为示例：
 
 ```swift
+import QueuesRedisDriver
+
 try app.queues.use(.redis(url: "redis://127.0.0.1:6379"))
 ```
 

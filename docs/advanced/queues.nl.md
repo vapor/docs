@@ -65,6 +65,8 @@ Als u het manifest direct in Xcode bewerkt, zal het automatisch de wijzigingen o
 De volgende stap is het configureren van wachtrijen in `configure.swift`. We gebruiken de Redis bibliotheek als voorbeeld:
 
 ```swift
+import QueuesRedisDriver
+
 try app.queues.use(.redis(url: "redis://127.0.0.1:6379"))
 ```
 

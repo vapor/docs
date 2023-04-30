@@ -65,6 +65,8 @@ If you edit the manifest directly inside Xcode, it will automatically pick up th
 The next step is to configure Queues in `configure.swift`. We'll use the Redis library as an example:
 
 ```swift
+import QueuesRedisDriver
+
 try app.queues.use(.redis(url: "redis://127.0.0.1:6379"))
 ```
 
