@@ -11,28 +11,30 @@ SPM 在项目中查找的第一项是 package 清单。它应始终位于项目�
 看一下这个示例：
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
-    name: "app",
+    name: "MyApp",
     platforms: [
-       .macOS(.v10_15)
-    ],
-    products: [
-        .executable(name: "Run", targets: ["Run"]),
-        .library(name: "App", targets: ["App"]),
+       .macOS(.v12)
     ],
     dependencies: [
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.76.0"),
     ],
     targets: [
-        .target(name: "App", dependencies: [.product(name: "Vapor", package: "vapor")]),
-        .target(name: "Run", dependencies: ["App"]),
-        .testTarget(name: "AppTests", dependencies: ["App"])
+        .executableTarget(
+            name: "App",
+            dependencies: [
+                .product(name: "Vapor", package: "vapor")
+            ]
+        ),
+        .testTarget(name: "AppTests", dependencies: [
+            .target(name: "App"),
+            .product(name: "XCTVapor", package: "vapor"),
+        ])
     ]
 )
-
 ```
 
 下面将对这段代码的各部分进行说明。
@@ -47,11 +49,7 @@ let package = Package(
 
 ### Platforms
 
-`platforms` 数组指定此程序包支持的平台和版本。通过指定 `.macOS（.v10_14）`，说明此软件包需要 macOS Mojave 或更高版本。 Xcode 加载该项目时，它将最低部署版本设置为 10.14，以便你可以使用所有可用的 API。
-
-### Products
-
-products 字段代表 package 构建的时候要生成的 targets。示例中，有两个 target，一个是库，另一个是可执行文件。
+`platforms` 数组指定此程序包支持的平台和版本。通过指定 `.macOS（.v12`，说明此软件包需要 macOS 12 或更高版本。 Xcode 加载该项目时，它将最低部署版本设置为 macOS 12，以便你可以使用所有可用的 API。
 
 ### Dependencies
 
@@ -61,10 +59,7 @@ dependencies 字段代表项目需要依赖的 package。所有 Vapor 应用都�
 
 ### Targets
 
-Targets 是你的 package 里包含 modules、executables 以及 tests 总和。虽然可以添加任意多的 targets 来组织代码，但大部分 Vapor 应用有 3 个 target 就足够了。每个 target 声明了它依赖的 module。为了在代码中可以 import 这些 modules ，你必须在这里添加 module 名字。一个 target 可以依赖于工程中其它的 target 或者任意你添加在 [dependencies](#dependencies) 数组中且暴露出来的 modules。
-
-!!! tip "建议"
-    可运行 targets（包含 `main.swift` 文件的 target）不能被其它 modules 导入。这就是为什么 Vapor 会有 `App` 和 `Run` 两种 target。任何包含在 App 中的代码都可以在 `AppTests` 中被测试验证。
+Targets 是你的 package 里包含 modules、executables 以及 tests 总和。虽然可以添加任意多的 targets 来组织代码，但大部分 Vapor 应用有 2 个 target 就足够了。每个 target 声明了它依赖的 module。为了在代码中可以 import 这些 modules ，你必须在这里添加 module 名字。一个 target 可以依赖于工程中其它的 target 或者任意你添加在 [dependencies](#dependencies) 数组中且暴露出来的 modules。
 
 ## 目录结构
 
@@ -73,16 +68,14 @@ Targets 是你的 package 里包含 modules、executables 以及 tests 总和。
 ```
 .
 ├── Sources
-│   ├── App
-│   │   └── (Source code)
-│   └── Run
-│       └── main.swift
+│   └── App
+│       └── (Source code)
 ├── Tests
 │   └── AppTests
 └── Package.swift
 ```
 
-每个 `.target` 对应 `Sources` 中的一个文件夹。
+每个 `.target` 或 `.executableTarget` 对应于 `Sources` 中的一个文件夹。
 每个 `.testTarget` 对应 `Tests` 中的一个文件夹。
 
 ## Package.resolved

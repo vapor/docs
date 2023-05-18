@@ -303,7 +303,7 @@ print(app.routes.all) // [Route]
 Vapor 还附带了一个 `routes` 命令，该命令以 ASCII 格式的表格打印所有可用的路由。
 
 ```sh
-$ swift run Run routes
+$ swift run App routes
 +--------+----------------+
 | GET    | /              |
 +--------+----------------+

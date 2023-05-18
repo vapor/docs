@@ -39,20 +39,20 @@ Laten we eens kijken hoe je aan de slag kunt met wachtrijen.
 De eerste stap om Queues te gebruiken is het toevoegen van een van de stuurprogramma's als een afhankelijkheid van je project in je SwiftPM package manifest bestand. In dit voorbeeld gebruiken we het Redis stuurprogramma. 
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
     name: "MyApp",
     dependencies: [
-        /// Alle andere afhankelijkheden ...
+        /// Any other dependencies ...
         .package(url: "https://github.com/vapor/queues-redis-driver.git", from: "1.0.0"),
     ],
     targets: [
-        .target(name: "App", dependencies: [
+        .executableTarget(name: "App", dependencies: [
+            // Other dependencies
             .product(name: "QueuesRedisDriver", package: "queues-redis-driver")
         ]),
-        .target(name: "Run", dependencies: [.target(name: "App")]),
         .testTarget(name: "AppTests", dependencies: [.target(name: "App")]),
     ]
 )
@@ -65,6 +65,8 @@ Als u het manifest direct in Xcode bewerkt, zal het automatisch de wijzigingen o
 De volgende stap is het configureren van wachtrijen in `configure.swift`. We gebruiken de Redis bibliotheek als voorbeeld:
 
 ```swift
+import QueuesRedisDriver
+
 try app.queues.use(.redis(url: "redis://127.0.0.1:6379"))
 ```
 
@@ -80,7 +82,7 @@ app.queues.add(emailJob)
 
 ### Workers Uitvoeren Als Processen
 
-Om een nieuwe wachtrijwerker te starten, voer `vapor run queues` uit. U kunt ook een specifiek type werker specificeren om te draaien: `vapor run queues --queue emails`.
+Om een nieuwe wachtrijwerker te starten, voer `swift run App queues` uit. U kunt ook een specifiek type werker specificeren om te draaien: `swift run App queues --queue emails`.
 
 !!! tip
     Workers moeten blijven draaien in productie. Raadpleeg uw hosting provider om uit te vinden hoe u langlopende processen in leven kunt houden. Heroku, bijvoorbeeld, staat je toe om "worker" dyno's te specificeren zoals dit in je Procfile: `worker: Run queues`. Met dit in plaats, kun je workers starten op het Dashboard/Resources tab, of met `heroku ps:scale worker=1` (of elk gewenst aantal dynos).
@@ -311,11 +313,11 @@ Met het pakket Queues kunt u ook taken plannen die op bepaalde tijdstippen moete
 De scheduler vereist dat een afzonderlijk workerproces draait, gelijkaardig aan de queue worker. U kunt de worker starten door dit commando uit te voeren: 
 
 ```sh
-swift run Run queues --scheduled
+swift run App queues --scheduled
 ```
 
 !!! tip
-    Workers moeten blijven draaien in productie. Raadpleeg uw hosting provider om uit te vinden hoe u langlopende processen in leven kunt houden. Heroku, bijvoorbeeld, staat je toe om "worker" dyno's te specificeren zoals dit in je Procfile: `worker: Run queues --scheduled`
+    Workers moeten blijven draaien in productie. Raadpleeg uw hosting provider om uit te vinden hoe u langlopende processen in leven kunt houden. Heroku, bijvoorbeeld, staat je toe om "worker" dyno's te specificeren zoals dit in je Procfile: `worker: App queues --scheduled`
 
 ### Een `ScheduledJob` Maken
 
@@ -370,6 +372,7 @@ Er zijn vijf hoofdmethoden die aangeroepen kunnen worden op een scheduler, die e
 |                 | `at(_ hour: Hour24, _ minute: Minute)`| Het uur en de minuten om de job uit te voeren. Laatste methode in de keten.              |
 |                 | `at(_ hour: Hour12, _ minute: Minute, _ period: HourPeriod)` | Het uur, de minuten en de periode om de job uit te voeren. Eindmethode van de keten |
 | `hourly()`      | `at(_ minute: Minute)`                 | De minuut om de opdracht uit te voeren. De laatste methode van de ketting.                      |
+| `minutely()`    | `at(_ second: Second)`                 | De seconde om de opdracht uit te voeren. De laatste methode van de ketting.                      |
 
 ### Beschikbare helpers 
 Wachtrijen worden geleverd met enkele helpers enums om het plannen te vergemakkelijken: 

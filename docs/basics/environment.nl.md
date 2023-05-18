@@ -18,7 +18,7 @@ default:
 Standaard zal uw app in de `development` omgeving draaien. U kunt dit veranderen door de `--env` (`-e`) vlag mee te geven tijdens het opstarten van de app.
 
 ```swift
-vapor run serve --env production
+swift run App serve --env production
 ```
 
 Vapor omvat de volgende omgevingen:
@@ -35,7 +35,7 @@ Vapor omvat de volgende omgevingen:
 Je kunt de volledige of korte naam doorgeven aan de `--env` (`-e`) vlag.
 
 ```swift
-vapor run serve -e prod
+swift run App serve -e prod
 ```
 
 ## Procesvariabelen
@@ -58,16 +58,16 @@ Wanneer u uw app in de terminal draait, kunt u omgevingsvariabelen instellen met
 
 ```sh
 export FOO=BAR
-vapor run serve
+swift run App serve
 ```
 
-Wanneer u uw app in Xcode uitvoert, kunt u omgevingsvariabelen instellen door het `Run` schema te bewerken.
+Wanneer u uw app in Xcode uitvoert, kunt u omgevingsvariabelen instellen door het `App` schema te bewerken.
 
 ## .env (dotenv)
 
 Dotenv bestanden bevatten een lijst van sleutel-waarde paren die automatisch in de omgeving geladen worden. Deze bestanden maken het gemakkelijk om omgevingsvariabelen te configureren zonder ze handmatig te hoeven instellen.
 
-Vapor zal zoeken naar dotenv bestanden in de huidige werkmap. Als u Xcode gebruikt, zorg er dan voor dat u de werkdirectory instelt door het `Run` schema aan te passen.
+Vapor zal zoeken naar dotenv bestanden in de huidige werkmap. Als u Xcode gebruikt, zorg er dan voor dat u de werkdirectory instelt door het `App` schema aan te passen.
 
 Veronderstel dat het volgende `.env` bestand in de hoofdmap van je project staat:
 
@@ -117,16 +117,22 @@ extension Environment {
 }
 ```
 
-De omgeving van de applicatie wordt meestal ingesteld in `main.swift` met `Environment.detect()`.
+De omgeving van de applicatie wordt meestal ingesteld in `entrypoint.swift` met `Environment.detect()`.
 
 ```swift
-import Vapor
-
-var env = try Environment.detect()
-try LoggingSystem.bootstrap(from: &env)
-
-let app = Application(env)
-defer { app.shutdown() }
+@main
+enum Entrypoint {
+    static func main() async throws {
+        var env = try Environment.detect()
+        try LoggingSystem.bootstrap(from: &env)
+        
+        let app = Application(env)
+        defer { app.shutdown() }
+        
+        try await configure(app)
+        try await app.runFromAsyncMainEntrypoint()
+    }
+}
 ```
 
 De `detect` methode gebruikt de commandoregel argumenten van het proces en parst de `--env` vlag automatisch. Je kunt dit gedrag opheffen door een aangepaste `Environment` struct te initialiseren.

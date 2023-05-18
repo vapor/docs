@@ -11,28 +11,30 @@ The first place SPM looks in your project is the package manifest. This should a
 Take a look at this example Package manifest.
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
-    name: "app",
+    name: "MyApp",
     platforms: [
-       .macOS(.v10_15)
-    ],
-    products: [
-        .executable(name: "Run", targets: ["Run"]),
-        .library(name: "App", targets: ["App"]),
+       .macOS(.v12)
     ],
     dependencies: [
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.76.0"),
     ],
     targets: [
-        .target(name: "App", dependencies: [.product(name: "Vapor", package: "vapor")]),
-        .target(name: "Run", dependencies: ["App"]),
-        .testTarget(name: "AppTests", dependencies: ["App"])
+        .executableTarget(
+            name: "App",
+            dependencies: [
+                .product(name: "Vapor", package: "vapor")
+            ]
+        ),
+        .testTarget(name: "AppTests", dependencies: [
+            .target(name: "App"),
+            .product(name: "XCTVapor", package: "vapor"),
+        ])
     ]
 )
-
 ```
 
 Each part of the manifest is explained in the following sections.
@@ -47,28 +49,19 @@ The first argument to `Package` is the package's name. If the package is public,
 
 ### Platforms
 
-The `platforms` array specifies which platforms this package supports. By specifying `.macOS(.v10_14)` this package requires macOS Mojave or greater. When Xcode loads this project, it will automatically set the minimum deployment version to 10.14 so that you can use all available APIs.
-
-### Products
-
-Products are targets that your package produces when built. In this package, there are two targets. A library and an executable. 
+The `platforms` array specifies which platforms this package supports. By specifying `.macOS(.v12)` this package requires macOS 12 or later. When Xcode loads this project, it will automatically set the minimum deployment version to macOS 12 so that you can use all available APIs.
 
 ### Dependencies
 
 Dependencies are other SPM packages that your package relies on. All Vapor applications rely on the Vapor package, but you can add as many other dependencies as you want.
 
-In the above example, you can see [vapor/vapor](https://github.com/vapor/vapor) version 4.0.0 or later is a dependency of this package. When you add a dependency to your package, you must next signal which [targets](#targets) depend on
+In the above example, you can see [vapor/vapor](https://github.com/vapor/vapor) version 4.76.0 or later is a dependency of this package. When you add a dependency to your package, you must next signal which [targets](#targets) depend on
 the newly available modules.
 
 ### Targets
 
-Targets are all of the modules, executables, and tests that your package contains. Most Vapor apps will have three targets, although you can add as many as you like to organize your code. Each target declares which modules it depends on. You must add module names here in order to import them in your code. A target can depend on other targets in your project or any modules exposed by packages you've added to
+Targets are all of the modules, executables, and tests that your package contains. Most Vapor apps will have two targets, although you can add as many as you like to organize your code. Each target declares which modules it depends on. You must add module names here in order to import them in your code. A target can depend on other targets in your project or any modules exposed by packages you've added to
 the [main dependencies](#dependencies) array.
-
-!!! tip
-    Executable targets (targets that contain a `main.swift` file) cannot be imported by other modules.
-    This is why Vapor has both an `App` and a `Run` target.
-    Any code you include in `App` can be tested in the `AppTests`.
 
 ## Folder Structure
 
@@ -77,16 +70,14 @@ Below is the typical folder structure for an SPM package.
 ```
 .
 ├── Sources
-│   ├── App
-│   │   └── (Source code)
-│   └── Run
-│       └── main.swift
+│   └── App
+│       └── (Source code)
 ├── Tests
 │   └── AppTests
 └── Package.swift
 ```
 
-Each `.target` corresponds to a folder in the `Sources` folder. 
+Each `.target` or `.executableTarget` corresponds to a folder in the `Sources` folder. 
 Each `.testTarget` corresponds to a folder in the `Tests` folder.
 
 ## Package.resolved

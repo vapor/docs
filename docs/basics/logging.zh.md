@@ -73,25 +73,23 @@ logger.info(...)
 第一种方法，在启动应用程序时传递可选参数 `--log` 标志：
 
 ```sh
-vapor run serve --log debug
+swift run App serve --log debug
 ```
 
 第二种方法，通过设置 `LOG_LEVEL` 环境变量：
 
 ```sh
 export LOG_LEVEL=debug
-vapor run serve
+swift run App serve
 ```
 
-这两种方法可以在 Xcode 中编辑 `Run`（scheme）模式进行修改。
+这两种方法可以在 Xcode 中编辑 `App`（scheme）模式进行修改。
 
 ## 配置
 
-SwiftLog 可以通过每次进程启动 `LoggingSystem` 时进行配置。Vapor 项目通常在 `main.swift` 执行操作。
+SwiftLog 可以通过每次进程启动 `LoggingSystem` 时进行配置。Vapor 项目通常在 `entrypoint.swift` 执行操作。
 
 ```swift
-import Vapor
-
 var env = try Environment.detect()
 try LoggingSystem.bootstrap(from: &env)
 ```

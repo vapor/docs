@@ -1,8 +1,11 @@
 # Aangepaste Tags
 
-U kunt aangepaste Leaf tags maken met het [`LeafTag`](https://api.vapor.codes/leaf-kit/main/LeafKit/LeafTag/) protocol. 
+U kunt aangepaste Leaf tags maken met het [`LeafTag`](https://api.vapor.codes/leafkit/documentation/leafkit/leaftag) protocol. 
 
 Om dit te demonstreren, laten we eens kijken naar het maken van een aangepaste tag `#now` die de huidige tijdstempel afdrukt. De tag ondersteunt ook een enkele, optionele parameter voor het specificeren van het datumformaat.
+
+!!! tip
+	Als je aangepaste tag HTML rendert, moet je je tag conformeren aan `UnsafeUnescapedLeafTag` zodat de HTML niet ge-escaped wordt. Vergeet niet om alle gebruikersinvoer te controleren of te zuiveren.
 
 ## `LeafTag`
 
@@ -10,7 +13,6 @@ Maak eerst een klasse genaamd `NowTag` en conformeer deze aan `LeafTag`.
 
 ```swift
 struct NowTag: LeafTag {
-    
     func render(_ ctx: LeafContext) throws -> LeafData {
         ...
     }
@@ -20,26 +22,31 @@ struct NowTag: LeafTag {
 Laten we nu de `render(_:)` methode implementeren. De `LeafContext` context die aan deze methode wordt doorgegeven heeft alles wat we nodig zouden moeten hebben.
 
 ```swift
-struct NowTagError: Error {}
-
-let formatter = DateFormatter()
-switch ctx.parameters.count {
-case 0: formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-case 1:
-    guard let string = ctx.parameters[0].string else {
-        throw NowTagError()
-    }
-    formatter.dateFormat = string
-default:
-    throw NowTagError()
+enum NowTagError: Error {
+    case invalidFormatParameter
+    case tooManyParameters
 }
 
-let dateAsString = formatter.string(from: Date())
-return LeafData.string(dateAsString)
-```
+struct NowTag: LeafTag {
+    func render(_ ctx: LeafContext) throws -> LeafData {
+        let formatter = DateFormatter()
+        switch ctx.parameters.count {
+        case 0: formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        case 1:
+            guard let string = ctx.parameters[0].string else {
+                throw NowTagError.invalidFormatParameter
+            }
 
-!!! tip
-	Als je aangepaste tag HTML rendert, moet je je tag conformeren aan `UnsafeUnescapedLeafTag` zodat de HTML niet ge-escaped wordt. Vergeet niet om alle gebruikersinvoer te controleren of te zuiveren.
+            formatter.dateFormat = string
+        default:
+            throw NowTagError.tooManyParameters
+	    }
+    
+        let dateAsString = formatter.string(from: Date())
+        return LeafData.string(dateAsString)
+    }
+}
+```
 
 ## Tag Configureren
 
@@ -71,15 +78,17 @@ Om te zien hoe dit te gebruiken, laten we een eenvoudige "hello" tag implementer
 We hebben toegang tot de eerste parameter die de naam zou bevatten.
 
 ```swift
-struct HelloTagError: Error {}
+enum HelloTagError: Error {
+    case missingNameParameter
+}
 
-public func render(_ ctx: LeafContext) throws -> LeafData {
-
+struct HelloTag: UnsafeUnescapedLeafTag {
+    func render(_ ctx: LeafContext) throws -> LeafData {
         guard let name = ctx.parameters[0].string else {
-            throw HelloTagError()
+            throw HelloTagError.missingNameParameter
         }
 
-        return LeafData.string("<p>Hello \(name)</p>'")
+        return LeafData.string("<p>Hello \(name)</p>")
     }
 }
 ```
@@ -93,15 +102,17 @@ public func render(_ ctx: LeafContext) throws -> LeafData {
 We kunnen de waarde van de naam benaderen door de sleutel "name" te gebruiken in de data property.
 
 ```swift
-struct HelloTagError: Error {}
+enum HelloTagError: Error {
+    case nameNotFound
+}
 
-public func render(_ ctx: LeafContext) throws -> LeafData {
-
+struct HelloTag: UnsafeUnescapedLeafTag {
+    func render(_ ctx: LeafContext) throws -> LeafData {
         guard let name = ctx.data["name"]?.string else {
-            throw HelloTagError()
+            throw HelloTagError.nameNotFound
         }
 
-        return LeafData.string("<p>Hello \(name)</p>'")
+        return LeafData.string("<p>Hello \(name)</p>")
     }
 }
 ```
@@ -113,5 +124,5 @@ public func render(_ ctx: LeafContext) throws -> LeafData {
 _Controller_:
 
 ```swift
-return req.view.render("home", ["name": "John"])
+return try await req.view.render("home", ["name": "John"])
 ```

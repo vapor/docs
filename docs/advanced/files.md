@@ -1,6 +1,6 @@
 # Files
 
-Vapor offers a simple API for reading and writing files asynchronously within route handlers. This API is built on top of NIO's [`NonBlockingFileIO`](https://apple.github.io/swift-nio/docs/current/NIOPosix/Structs/NonBlockingFileIO.html) type.
+Vapor offers a simple API for reading and writing files asynchronously within route handlers. This API is built on top of NIO's [`NonBlockingFileIO`](https://swiftpackageindex.com/apple/swift-nio/main/documentation/nioposix/nonblockingfileio) type.
 
 ## Read
 
@@ -94,4 +94,4 @@ let fileHandle = try await req.application.fileio.openFile(
 print(fileHandle)
 ```
 
-For more information, visit SwiftNIO's [API reference](https://apple.github.io/swift-nio/docs/current/NIOPosix/Structs/NonBlockingFileIO.html).
+For more information, visit SwiftNIO's [API reference](https://swiftpackageindex.com/apple/swift-nio/main/documentation/nioposix/nonblockingfileio).

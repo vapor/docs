@@ -10,10 +10,10 @@ Now that you've created, built, and run your first Vapor app, let's take a momen
 │   │   ├── Controllers
 │   │   ├── Migrations
 │   │   ├── Models
-│   │   ├── configure.swift
+│   │   ├── configure.swift 
+│   │   ├── entrypoint.swift
 │   │   └── routes.swift
-│   └── Run
-│       └── main.swift
+│       
 ├── Tests
 │   └── AppTests
 └── Package.swift
@@ -38,8 +38,8 @@ app.middleware.use(fileMiddleware)
 ## Sources
 
 This folder contains all of the Swift source files for your project. 
-The top level folders, `App` and `Run`, reflect your package's modules, 
-as declared in the [SPM](spm.md) manifest.
+The top level folder, `App`, reflect your package's module, 
+as declared in the [SwiftPM](spm.md) manifest.
 
 ### App
 
@@ -59,19 +59,15 @@ The models folder is a great place to store your `Content` structs or Fluent `Mo
 
 #### configure.swift
 
-This file contains the `configure(_:)` function. This method is called by `main.swift` to configure the newly created `Application`. This is where you should register services like routes, databases, providers, and more. 
+This file contains the `configure(_:)` function. This method is called by `entrypoint.swift` to configure the newly created `Application`. This is where you should register services like routes, databases, providers, and more. 
+
+#### entrypoint.swift
+
+This file contains the `@main` entry point for the application that sets up, configures and runs your Vapor application.
 
 #### routes.swift
 
 This file contains the `routes(_:)` function. This method is called near the end of `configure(_:)` to register routes to your `Application`. 
-
-### Run
-
-This is the main executable target, containing just the code needed to get your application up and running.
-
-#### main.swift
-
-This file creates and runs a configured instance of your Vapor `Application`.
 
 ## Tests
 

@@ -24,10 +24,10 @@ The first step to upgrading to Vapor 4 is to update your package's dependencies.
 +    ],
      dependencies: [
 -        .package(url: "https://github.com/vapor/fluent-postgresql.git", from: "1.0.0"),
-+        .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0-rc"),
-+        .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0-rc"),
++        .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0"),
++        .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0"),
 -        .package(url: "https://github.com/vapor/jwt.git", from: "3.0.0"),
-+        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0-rc"),
++        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0"),
 -        .package(url: "https://github.com/vapor/vapor.git", from: "3.0.0"),
 +        .package(url: "https://github.com/vapor/vapor.git", from: "4.3.0"),
      ],
@@ -60,13 +60,11 @@ All packages that have been upgraded for Vapor 4 will have their major version n
 
 ### Old Packages
 
-Some packages may not be upgraded yet. If you encounter any, file an issue to let the author know. 
-
 Some Vapor 3 packages have been deprecated, such as:
 
 - `vapor/auth`: Now included in Vapor.
 - `vapor/core`: Absorbed into several modules. 
-- `vapor/crypto`: Replaced by SwiftCrypto.
+- `vapor/crypto`: Replaced by SwiftCrypto (Now included in Vapor).
 - `vapor/multipart`: Now included in Vapor.
 - `vapor/url-encoded-form`: Now included in Vapor.
 - `vapor-community/vapor-ext`: Now included in Vapor.
@@ -79,8 +77,8 @@ Some Vapor 3 packages have been deprecated, such as:
 
 ```diff
 - .package(url: "https://github.com/vapor/fluent-postgresql.git", from: "1.0.0"),
-+ .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0-rc"),
-+ .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0-rc"),
++ .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0"),
++ .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0"),
 ```
 
 ### Platforms
@@ -349,7 +347,7 @@ Vapor 3's global `flatMap` method for combining multiple futures is no longer av
 
 ### ByteBuffer
 
-Many methods and properties that previously used `Data` now use NIO's `ByteBuffer`. This type is a more powerful and performant byte storage type. You can read more about its API in [SwiftNIO's ByteBuffer docs](https://apple.github.io/swift-nio/docs/current/NIOCore/Structs/ByteBuffer.html).
+Many methods and properties that previously used `Data` now use NIO's `ByteBuffer`. This type is a more powerful and performant byte storage type. You can read more about its API in [SwiftNIO's ByteBuffer docs](https://swiftpackageindex.com/apple/swift-nio/main/documentation/niocore/bytebuffer).
 
 To convert a `ByteBuffer` back to `Data`, use:
 

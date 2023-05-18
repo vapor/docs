@@ -8,12 +8,12 @@ Laten we beginnen met het installeren van Swift op een Linux server. Gebruik het
 
 ![Create Droplet](../images/digital-ocean-create-droplet.png)
 
-Onder distributies, selecteer Ubuntu 18.04 LTS. De volgende gids zal deze versie als voorbeeld gebruiken.
+Onder distributies, selecteer Ubuntu 22.04 LTS. De volgende gids zal deze versie als voorbeeld gebruiken.
 
-![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu-18.png)
+![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu.png)
 
 !!! note  "Opmerking"
-	U kunt elke Linux distributie kiezen met een versie die Swift ondersteunt. Op het moment van schrijven ondersteunt Swift 5.2.4 Ubuntu 16.04, 18.04, 20.04, CentOS 8, en Amazon Linux 2. U kunt controleren welke besturingssystemen officieel worden ondersteund op de [Swift Releases](https://swift.org/download/#releases) pagina.
+	U kunt elke Linux distributie kiezen met een versie die Swift ondersteunt. Op het moment van schrijven ondersteunt Swift 5.7.3 Ubuntu 18.04, 20.04, 22.04, CentOS 7, en Amazon Linux 2. U kunt controleren welke besturingssystemen officieel worden ondersteund op de [Swift Releases](https://swift.org/download/#releases) pagina.
 
 Na het selecteren van de distributie, kies een plan en datacenter regio van uw voorkeur. Stel dan een SSH sleutel in om toegang te krijgen tot de server nadat deze is aangemaakt. Klik tenslotte op Droplet aanmaken en wacht tot de nieuwe server is opgestart.
 
@@ -29,7 +29,7 @@ Open uw terminal en maak verbinding met de server als root met SSH.
 ssh root@your_server_ip
 ```
 
-DigitalOcean heeft een diepgaande gids voor [initiële serverinstallatie op Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04). Deze gids zal snel de basis behandelen.
+DigitalOcean heeft een diepgaande gids voor [initiële serverinstallatie op Ubuntu 22.04](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04). Deze gids zal snel de basis behandelen.
 
 ### Configureer Firewall
 
@@ -77,38 +77,40 @@ Installeer de vereiste afhankelijkheden van Swift.
 
 ```sh
 sudo apt-get update
-sudo apt-get install clang libicu-dev libatomic1 build-essential pkg-config
+sudo apt-get install binutils git gnupg2 libc6-dev libcurl4-openssl-dev 
+ 	\ libedit2 libgcc-9-dev libpython3.8 libsqlite3-0 libstdc++-9-dev 
+ 	\ libxml2-dev libz3-dev pkg-config tzdata unzip zlib1g-dev
 ```
 
-### Toolchain Downloaden
+### Swift Toolchain Downloaden
 
-Deze handleiding installeert Swift 5.2.4. Bezoek de [Swift Releases](https://swift.org/download/#releases) pagina voor een link naar de laatste release. Kopieer de download link voor Ubuntu 18.04.
+Deze handleiding installeert Swift 5.7.3. Bezoek de [Swift Releases](https://swift.org/download/#releases) pagina voor een link naar de laatste release. Kopieer de download link voor Ubuntu 22.04.
 
-![Download Swift](../images/swift-download-ubuntu-18-copy-link.png)
+![Download Swift](../images/swift-download-ubuntu-copy-link.png)
 
 Download en decomprimeer de Swift toolchain.
 
 ```sh
-wget https://swift.org/builds/swift-5.2.4-release/ubuntu1804/swift-5.2.4-RELEASE/swift-5.2.4-RELEASE-ubuntu18.04.tar.gz
-tar xzf swift-5.2.4-RELEASE-ubuntu18.04.tar.gz
+wget https://download.swift.org/swift-5.7.3-release/ubuntu2204/swift-5.7.3-RELEASE/swift-5.7.3-RELEASE-ubuntu22.04.tar.gz
+tar xzf swift-5.7.3-RELEASE-ubuntu22.04.tar.gz
 ```
 
 !!! note "Opmerking"
 	Swift's [Downloads gebruiken](https://swift.org/download/#using-downloads) gids bevat informatie over hoe downloads te verifiëren met PGP-handtekeningen.
 
-### Installeer Toolchain
+### Installeer Swift Toolchain
 
 Zet Swift ergens waar het makkelijk toegankelijk is. Deze gids zal `/swift` gebruiken met elke compiler versie in een submap. 
 
 ```sh
 sudo mkdir /swift
-sudo mv swift-5.2.4-RELEASE-ubuntu18.04 /swift/5.2.4
+sudo mv swift-5.7.3-RELEASE-ubuntu22.04 /swift/5.7.3
 ```
 
 Voeg Swift toe aan `/usr/bin` zodat het kan worden uitgevoerd door `vapor` en `root`.
 
 ```sh
-sudo ln -s /swift/5.2.4/usr/bin/swift /usr/bin/swift
+sudo ln -s /swift/5.7.3/usr/bin/swift /usr/bin/swift
 ```
 
 Controleer of Swift correct is geïnstalleerd.
@@ -117,49 +119,68 @@ Controleer of Swift correct is geïnstalleerd.
 swift --version
 ```
 
-## Opzet Project
+## Installeer Vapor met de Vapor Toolbox
 
-Nu Swift geïnstalleerd is, laten we je project klonen en compileren. Voor dit voorbeeld zullen we gebruik maken van Vapor's [API sjabloon](https://github.com/vapor/api-template/).
+Nu Swift geïnstalleerd is, laten we Vapor installeren door de Vapor Toolbox te gebruiken. U moet via de broncode de toolbox bouwen. Bekijk de toolbox [releases](https://github.com/vapor/toolbox/releases) op Github om de laatste versie te vinden. In dit voorbeeld gebruiken we versie 18.6.0.
 
-Laten we eerst de systeemafhankelijkheden van Vapor installeren.
+### Clone & Build Vapor
 
+Kloon de Vapor Toolbox repository
 ```sh
-sudo apt-get install openssl libssl-dev zlib1g-dev libsqlite3-dev
+git clone https://github.com/vapor/toolbox.git
 ```
 
-Sta HTTP toe door de firewall.
+Haal de laatste release op.
 
 ```sh
-sudo ufw allow http
+cd toolbox
+git checkout 18.6.0
 ```
 
-### Clone & Build
-
-Kloon nu het project en bouw het.
+Bouw Vapor en verplaats de binary in je pad.
 
 ```sh
-git clone https://github.com/vapor/api-template.git
-cd api-template
-swift build --enable-test-discovery
+swift build -c release --disable-sandbox --enable-test-discovery
+sudo mv .build/release/vapor /usr/local/bin
+```
+
+### Maak een Vapor Project
+
+Gebruik het `new` commando van de Toolbox om een nieuw project aan te maken
+
+```sh
+vapor new HelloWorld -n
 ```
 
 !!! tip
-	Als u dit project bouwt voor productie, gebruik dan `swift build -c release --enable-test-discovery`.
+	De `-n` vlag geeft je een barebones sjabloon door automatisch nee te antwoorden op alle vragen
+
+![Vapor Splash](../images/vapor-splash.png)
+
+Eens het commando gedaan is kan je naar de nieuw gemaakte folder gaan:
+
+```sh
+cd HelloWorld
+```
+
+### Open HTTP Port
+
+Om je Vapor applicatie te kunnen gebruiken, moet je een HTTP poort openzetten.
+
+```sh
+sudo ufw allow 8080
+```
 
 ### Run
 
-Once the project has finished compiling, run it on your server's IP at port 80. The IP address is `157.245.244.228` in this example.
+Nu dat Vapor klaar is en we een open poort hebben, laten we het commando runnen.
 
 ```sh
-sudo .build/debug/Run serve -b 157.245.244.228:80
+swift run App serve --hostname 0.0.0.0 --port 8080
 ```
 
-Als u `swift build -c release --enable-test-discovery` heeft gebruikt, dan moet u volgend commando uitvoeren:
-```sh
-sudo .build/release/Run serve -b 157.245.244.228:80
-```
+Bezoek de IP van uw server via een browser of lokale terminal en u zou moeten zien "It works!". Het IP address in dit voorbeeld is `134.122.126.139`.
 
-Bezoek de IP van uw server via een browser of lokale terminal en u zou moeten zien "It works!".
 ```
 $ curl http://157.245.244.228
 It works!
@@ -168,7 +189,7 @@ It works!
 Terug op je server, zou je logs moeten zien voor het test verzoek.
 
 ```
-[ NOTICE ] Server starting on http://157.245.244.228:80
+[ NOTICE ] Server starting on http://0.0.0.0:8080
 [ INFO ] GET /
 ```
 

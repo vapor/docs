@@ -748,6 +748,9 @@ These middlewares do the following:
 * the sessions middleware takes the session cookie provided in the request and converts it into a session
 * the session authenticator takes the session and see if there is an authenticated user for that session. If so, the middleware authenticates the request. In the response, the session authenticator sees if the request has an authenticated user and saves them in the session so they're authenticated in the next request.
 
+!!! note
+    The session cookie is not set to `secure` and `httpOnly` by default. Check Vapor's [Session API](../advanced/sessions.md#configuration) for more information on how to configure cookies.
+
 ### Protecting Routes
 
 When protecting routes for an API, you traditionally return an HTTP response with a status code such as **401 Unauthorized** if the request is not authenticated. However, this isn't a very good user experience for someone using a browser. Vapor provides a `RedirectMiddleware` for any `Authenticatable` type to use in this scenario:
@@ -769,7 +772,7 @@ This works similar to the `GuardMiddleware`. Any requests to routes registered t
 Be sure to include a Session Authenticator before the `RedirectMiddleware` to ensure the authenticated user is loaded before running through the `RedirectMiddleware`.
 
 ```swift
-let protectedRoutes = app.grouped([User.SessionAuthenticator(), redirecteMiddleware])
+let protectedRoutes = app.grouped([User.sessionAuthenticator(), redirectMiddleware])
 ```
 
 ### Form Log In

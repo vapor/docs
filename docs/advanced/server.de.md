@@ -177,17 +177,17 @@ try app.server.onShutdown.wait()
 Um den Server zu starten, kannst du Terminal-Befehl _serve_ verwenden. Der Befehl wird automatisch ausgeführt, wenn keine anderen Befehle mitangegeben werden.
 
 ```swift
-vapor run serve
+swift run App serve
 ```
 
 Es können folgende Parameter mitangegeben werden:
 
 | Name          	| Befehl         | Beschreibung                         		| Beispiel 			| 
 |-----------------------|----------------|------------------------------------------------------|-------------------------------| 
-| hostname           	| -H             | Überschreibt den vordefinierten Hostname		| vapor run serve -H dev.local	|
-| port           	| -p             | Überschreibt den vordefinierten Port			| vapor run serve -p 1337	|
-| bind           	| -b             | Überschreibt den vordefinierten Hostnamen und Port	| vapor run serve -b 0.0.0.0:80	|
-| help           	| --help         | Hilfe						| vapor run serve --help	|
+| hostname           	| -H             | Überschreibt den vordefinierten Hostname		| swift run App serve -H dev.local	|
+| port           	| -p             | Überschreibt den vordefinierten Port			| swift run App serve -p 1337	|
+| bind           	| -b             | Überschreibt den vordefinierten Hostnamen und Port	| swift run App serve -b 0.0.0.0:80	|
+| help           	| --help         | Hilfe						| swift run App serve --help	|
 
 ## Hinweis
 

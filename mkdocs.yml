@@ -134,8 +134,64 @@ plugins:
           Contributing Guide: Gids Bijdragen
         fr: 
           Welcome: Bienvenue
+          Install: Installer
+          Getting Started: Commencer
+          Hello, world: Bonjour, monde
+          Basis: Bases
+          Folder Structure: Strucutre du Dossier
+          Content: Contenu
+          Validation: Validation
+          Async: Asynchrone
+          Environment: Environement
+          Overview: Aperçu
+          Relataions: Relations
+          Migrations: Migrations
+          Query: Requête
+          Transactions: Transactions
+          Schema: Schema
+          Advanced: Avancé
+          Testing: Test
+          Files: Fichiers
+          Commands: Commandes
+          Queues: Files d'attente
+          Sessions: Sessions
+          Services: Sercvies
+          Security: Securité
+          Authentication: Authentication
+          Passwords: Mots de passe
+          Deploy: Deployer
+          Version (4.0): Version (4.0)
+          Legacy Docs: Documents hérité
+          Upgrading: Mettre à jour
+          Custom Tags: Tags customisés
+          Contributing: Contribuer
+          Contributing Guide: Guide de la contribution
         de:
-          Welcome: Willkommen
+          Welcome: Begrüßung
+          Install: Installation
+          Getting Started: Einführung
+          Basics: Grundlagen
+          Hello, world: Hallo Welt
+          Folder Structure: Verzeichnis
+          Validation: Validierung
+          Logging: Protokollierung
+          Environment: Umgebung
+          Errors: Fehlerbehandlung
+          Model: Models
+          Overview: Übersicht
+          Relations: Beziehungen
+          Migrations: Migrationen
+          Query: Abfrage
+          Transactions: Transaktionen
+          Sessions: Sitzungen
+          Advanced: Erweitert
+          Testing: Testen
+          Files: Dateien
+          Commands: Befehle
+          Services: Dienste
+          Authentication: Authentifzierung
+          Security: Sicherheit
+          Deploy: Bereitstellung
           Contributing: Mitwirken
           Contributing Guide: Leitfaden für Beiträge
         zh:
@@ -244,6 +300,7 @@ nav:
   - JWT: "security/jwt.md"
 - Deploy:
   - DigitalOcean: "deploy/digital-ocean.md"
+  - Fly: "deploy/fly.md"
   - Heroku: "deploy/heroku.md"
   - Supervisor: "deploy/supervisor.md"
   - Systemd: "deploy/systemd.md"

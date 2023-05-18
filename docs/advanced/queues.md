@@ -39,7 +39,7 @@ Let's take a look at how you can get started using Queues.
 The first step to using Queues is adding one of the drivers as a dependency to your project in your SwiftPM package manifest file. In this example, we'll use the Redis driver. 
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
@@ -49,10 +49,10 @@ let package = Package(
         .package(url: "https://github.com/vapor/queues-redis-driver.git", from: "1.0.0"),
     ],
     targets: [
-        .target(name: "App", dependencies: [
+        .executableTarget(name: "App", dependencies: [
+            // Other dependencies
             .product(name: "QueuesRedisDriver", package: "queues-redis-driver")
         ]),
-        .target(name: "Run", dependencies: [.target(name: "App")]),
         .testTarget(name: "AppTests", dependencies: [.target(name: "App")]),
     ]
 )
@@ -65,6 +65,8 @@ If you edit the manifest directly inside Xcode, it will automatically pick up th
 The next step is to configure Queues in `configure.swift`. We'll use the Redis library as an example:
 
 ```swift
+import QueuesRedisDriver
+
 try app.queues.use(.redis(url: "redis://127.0.0.1:6379"))
 ```
 
@@ -80,7 +82,7 @@ app.queues.add(emailJob)
 
 ### Running Workers as Processes
 
-To start a new queue worker, run `vapor run queues`. You can also specify a specific type of worker to run: `vapor run queues --queue emails`.
+To start a new queue worker, run `swift run App queues`. You can also specify a specific type of worker to run: `swift run App queues --queue emails`.
 
 !!! tip
     Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: Run queues`. With this in place, you can start workers on the Dashboard/Resources tab, or with `heroku ps:scale worker=1` (or any number of dynos preferred).
@@ -309,15 +311,18 @@ If you do not specify a queue the job will be run on the `default` queue. Make s
 
 The Queues package also allows you to schedule jobs to occur at certain points in time.
 
+!!! warning
+    Scheduled jobs only work when set up before the application boots up, such as in `configure.swift`. They will not work in route handlers.
+
 ### Starting the scheduler worker
 The scheduler requires a separate worker process to be running, similar to the queue worker. You can start the worker by running this command: 
 
 ```sh
-swift run Run queues --scheduled
+swift run App queues --scheduled
 ```
 
 !!! tip
-    Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: Run queues --scheduled`
+    Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: App queues --scheduled`
 
 ### Creating a `ScheduledJob`
 
@@ -372,6 +377,7 @@ There are five main methods that can be called on a scheduler, each of which cre
 |                 | `at(_ hour: Hour24, _ minute: Minute)`| The hour and minute to run the job on. Final method in the chain.              |
 |                 | `at(_ hour: Hour12, _ minute: Minute, _ period: HourPeriod)` | The hour, minute, and period to run the job on. Final method of the chain |
 | `hourly()`      | `at(_ minute: Minute)`                 | The minute to run the job at. Final method of the chain.                      |
+| `minutely()`    | `at(_ second: Second)`                 | The second to run the job at. Final method of the chain.                      |
 
 ### Available helpers 
 Queues ships with some helpers enums to make scheduling easier: 

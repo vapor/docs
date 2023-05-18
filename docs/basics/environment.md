@@ -18,7 +18,7 @@ default:
 By default, your app will run in the `development` environment. You can change this by passing the `--env` (`-e`) flag during app boot.
 
 ```swift
-vapor run serve --env production
+swift run App serve --env production
 ```
 
 Vapor includes the following environments:
@@ -35,7 +35,7 @@ Vapor includes the following environments:
 You can pass either the full or short name to the `--env` (`-e`) flag.
 
 ```swift
-vapor run serve -e prod
+swift run App serve -e prod
 ```
 
 ## Process Variables
@@ -58,16 +58,16 @@ When running your app in the terminal, you can set environment variables using `
 
 ```sh
 export FOO=BAR
-vapor run serve
+swift run App serve
 ```
 
-When running your app in Xcode, you can set environment variables by editing the `Run` scheme.
+When running your app in Xcode, you can set environment variables by editing the `App` scheme.
 
 ## .env (dotenv)
 
 Dotenv files contain a list of key-value pairs to be automatically loaded into the environment. These files make it easy to configure environment variables without needing to set them manually.
 
-Vapor will look for dotenv files in the current working directory. If you're using Xcode, make sure to set the working directory by editing the `Run` scheme.
+Vapor will look for dotenv files in the current working directory. If you're using Xcode, make sure to set the working directory by editing the `App` scheme.
 
 Assume the following `.env` file placed in your projects root folder:
 
@@ -117,16 +117,22 @@ extension Environment {
 }
 ```
 
-The application's environment is usually set in `main.swift` using `Environment.detect()`.
+The application's environment is usually set in `entrypoint.swift` using `Environment.detect()`.
 
 ```swift
-import Vapor
-
-var env = try Environment.detect()
-try LoggingSystem.bootstrap(from: &env)
-
-let app = Application(env)
-defer { app.shutdown() }
+@main
+enum Entrypoint {
+    static func main() async throws {
+        var env = try Environment.detect()
+        try LoggingSystem.bootstrap(from: &env)
+        
+        let app = Application(env)
+        defer { app.shutdown() }
+        
+        try await configure(app)
+        try await app.runFromAsyncMainEntrypoint()
+    }
+}
 ```
 
 The `detect` method uses the process's command line arguments and parses the `--env` flag automatically. You can override this behavior by initializing a custom `Environment` struct.

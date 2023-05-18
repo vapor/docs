@@ -57,7 +57,7 @@ Migraties moeten worden vermeld in volgorde van afhankelijkheid. Bijvoorbeeld, a
 Om uw database te migreren, voert u het `migrate` commando uit.
 
 ```sh
-vapor run migrate
+swift run App migrate
 ```
 
 Je kunt ook dit [commando via Xcode] uitvoeren(../advanced/commands.md#xcode). Het migrate commando controleert de database om te zien of er nieuwe migraties zijn geregistreerd sinds de laatste keer dat het commando werd uitgevoerd. Als er nieuwe migraties zijn, vraagt het om een bevestiging voordat het wordt uitgevoerd.
@@ -67,7 +67,7 @@ Je kunt ook dit [commando via Xcode] uitvoeren(../advanced/commands.md#xcode). H
 Om een migratie op uw database ongedaan te maken, voert u `migrate` uit met de `--revert` vlag.
 
 ```sh
-vapor run migrate --revert
+swift run App migrate --revert
 ```
 
 Het commando controleert de database om te zien welke batch van migraties het laatst is uitgevoerd en vraagt om een bevestiging voordat ze worden teruggedraaid.
@@ -77,7 +77,7 @@ Het commando controleert de database om te zien welke batch van migraties het la
 Als u wilt dat migraties automatisch worden uitgevoerd voordat andere commando's worden uitgevoerd, kunt u de `--auto-migrate` vlag meegeven. 
 
 ```sh
-vapor run serve --auto-migrate
+swift run App serve --auto-migrate
 ```
 
 U kunt dit ook programmatisch doen. 

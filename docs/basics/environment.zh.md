@@ -18,7 +18,7 @@ default:
 默认情况下，你的应用程序将在 `development` 环境中运行。你可以通过在应用程序引导期间传递 `--env` (`-e`) 标志来改变这一点。
 
 ```swift
-vapor run serve --env production
+swift run App serve --env production
 ```
 
 Vapor 包含下列环境：
@@ -35,7 +35,7 @@ Vapor 包含下列环境：
 你可以将全名或短名传递给`--env` (`-e`) 标志。
 
 ```swift
-vapor run serve -e prod
+swift run App serve -e prod
 ```
 
 ## 进程变量
@@ -58,16 +58,16 @@ print(foo) // String?
 
 ```sh
 export FOO=BAR
-vapor run serve
+swift run App serve
 ```
 
-当在 Xcode 中运行应用程序时，你可以通过编辑 `Run` scheme 来设置环境变量。
+当在 Xcode 中运行应用程序时，你可以通过编辑 `App` scheme 来设置环境变量。
 
 ## .env (dotenv)
 
 Dotenv 文件包含一个键值对列表，这些键值对将自动加载到环境中。这些文件使配置环境变量变得很容易，而不需要手动设置它们。
 
-Vapor 将在当前工作目录中查找 `.env` 文件。如果你使用 Xcode，确保通过编辑 `Run` scheme 设置工作目录。
+Vapor 将在当前工作目录中查找 `.env` 文件。如果你使用 Xcode，确保通过编辑 `App` scheme 设置工作目录。
 
 假设以下 `.env` 文件放在你的项目根文件夹中:
 
@@ -117,16 +117,22 @@ extension Environment {
 }
 ```
 
-应用程序的环境通常使用 `main.swift` 中的 `environment .detect()` 来设置。
+应用程序的环境通常使用 `entrypoint.swift` 中的 `environment .detect()` 来设置。
 
 ```swift
-import Vapor
-
-var env = try Environment.detect()
-try LoggingSystem.bootstrap(from: &env)
-
-let app = Application(env)
-defer { app.shutdown() }
+@main
+enum Entrypoint {
+    static func main() async throws {
+        var env = try Environment.detect()
+        try LoggingSystem.bootstrap(from: &env)
+        
+        let app = Application(env)
+        defer { app.shutdown() }
+        
+        try await configure(app)
+        try await app.runFromAsyncMainEntrypoint()
+    }
+}
 ```
 
 `detect` 方法使用进程的命令行参数并自动解析 `--env` 标志。你可以通过初始化自定义的 `Environment` 结构来覆盖此行为。

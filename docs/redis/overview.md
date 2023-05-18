@@ -32,7 +32,7 @@ targets: [
 
 ## Configure
 
-Vapor employs a pooling strategy for [`RedisConnection`](https://swiftpackageindex.com/mordil/redistack/master/documentation/redistack/redisconnection) instances, and there are several options to configure individual connections as well as the pools themselves.
+Vapor employs a pooling strategy for [`RedisConnection`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisconnection) instances, and there are several options to configure individual connections as well as the pools themselves.
 
 The bare minimum required for configuring Redis is to provide a URL to connect to:
 
@@ -44,13 +44,13 @@ app.redis.configuration = try RedisConfiguration(hostname: "localhost")
 
 ### Redis Configuration
 
-> API Documentation: [`RedisConfiguration`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration/)
+> API Documentation: [`RedisConfiguration`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration)
 
 #### serverAddresses
 
-If you have multiple Redis endpoints, such as a cluster of Redis instances, you'll want to create a [`[SocketAddress]`](https://apple.github.io/swift-nio/docs/current/NIOCore/Enums/SocketAddress.html#/s:3NIO13SocketAddressO04makeC13ResolvingHost_4portACSS_SitKFZ) collection to pass in the initializer instead.
+If you have multiple Redis endpoints, such as a cluster of Redis instances, you'll want to create a [`[SocketAddress]`](https://swiftpackageindex.com/apple/swift-nio/main/documentation/niocore/socketaddress) collection to pass in the initializer instead.
 
-The most common way of creating a `SocketAddress` is with the [`makeAddressResolvingHost(_:port:)`](https://apple.github.io/swift-nio/docs/current/NIOCore/Enums/SocketAddress.html#/s:3NIO13SocketAddressO04makeC13ResolvingHost_4portACSS_SitKFZ) static method.
+The most common way of creating a `SocketAddress` is with the [`makeAddressResolvingHost(_:port:)`](https://swiftpackageindex.com/apple/swift-nio/main/documentation/niocore/socketaddress/makeaddressresolvinghost(_:port:)) static method.
 
 ```swift
 let serverAddresses: [SocketAddress] = [
@@ -60,8 +60,8 @@ let serverAddresses: [SocketAddress] = [
 
 For a single Redis endpoint, it can be easier to work with the convenience initializers, as it will handle creating the `SocketAddress` for you:
 
-- [`.init(url:pool)`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration/#redisconfiguration.init(url:pool:)) (with `String` or [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
-- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration/#redisconfiguration.init(hostname:port:password:database:pool:))
+- [`.init(url:pool)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (with `String` or [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
+- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
 
 #### password
 
@@ -80,7 +80,7 @@ This saves you from having to send the `SELECT` command to Redis yourself.
 
 ### Connection Pool Options
 
-> API Documentation: [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/main/Redis/RedisConfiguration_PoolOptions/)
+> API Documentation: [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/pooloptions)
 
 !!! note
     Only the most commonly changed options are highlighted here. For all of the options, refer to the API documentation.
@@ -102,7 +102,7 @@ This option determines the behavior of how the maximum connection count is maint
 
 ## Sending a Command
 
-You can send commands using the `.redis` property on any [`Application`](https://api.vapor.codes/vapor/main/Vapor/Application/) or [`Request`](https://api.vapor.codes/vapor/main/Vapor/Request/) instance, which will give you access to a [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/master/documentation/redistack/redisclient).
+You can send commands using the `.redis` property on any [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) or [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) instance, which will give you access to a [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisclient).
 
 Any `RedisClient` has several extensions for all of the various [Redis commands](https://redis.io/commands).
 
@@ -148,7 +148,7 @@ There is a defined lifecycle to a subscription:
 1. **message**: invoked 0+ times as messages are published to the subscribed channels
 1. **unsubscribe**: invoked once when the subscription ends, either by request or the connection being lost
 
-When you create a subscription, you must provide at least a [`messageReceiver`](https://swiftpackageindex.com/mordil/redistack/master/documentation/redistack/redissubscriptionmessagereceiver) to handle all messages that are published by the subscribed channel.
+When you create a subscription, you must provide at least a [`messageReceiver`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redissubscriptionmessagereceiver) to handle all messages that are published by the subscribed channel.
 
 You can optionally provide a `RedisSubscriptionChangeHandler` for `onSubscribe` and `onUnsubscribe` to handle their respective lifecycle events.
 

@@ -1,8 +1,11 @@
 # Custom Tags
 
-You can create custom Leaf tags using the [`LeafTag`](https://api.vapor.codes/leaf-kit/main/LeafKit/LeafTag) protocol. 
+You can create custom Leaf tags using the [`LeafTag`](https://api.vapor.codes/leafkit/documentation/leafkit/leaftag) protocol. 
 
 To demonstrate this, let's take a look at creating a custom tag `#now` that prints the current timestamp. The tag will also support a single, optional parameter for specifying the date format.
+
+!!! tip
+	If your custom tag renders HTML you should conform your custom tag to `UnsafeUnescapedLeafTag` so the HTML is not escaped. Remember to check or sanitize any user input.
 
 ## `LeafTag`
 
@@ -10,7 +13,6 @@ First create a class called `NowTag` and conform it to `LeafTag`.
 
 ```swift
 struct NowTag: LeafTag {
-    
     func render(_ ctx: LeafContext) throws -> LeafData {
         ...
     }
@@ -20,28 +22,31 @@ struct NowTag: LeafTag {
 Now let's implement the `render(_:)` method. The `LeafContext` context passed to this method has everything we should need.
 
 ```swift
-struct NowTagError: Error {}
+enum NowTagError: Error {
+    case invalidFormatParameter
+    case tooManyParameters
+}
 
-func render(_ ctx: LeafContext) throws -> LeafData {
-    let formatter = DateFormatter()
-    switch ctx.parameters.count {
-    case 0: formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    case 1:
-	     guard let string = ctx.parameters[0].string else {
-	         throw NowTagError()
-	     }
-	     formatter.dateFormat = string
-    default:
-	     throw NowTagError()
-	 }
+struct NowTag: LeafTag {
+    func render(_ ctx: LeafContext) throws -> LeafData {
+        let formatter = DateFormatter()
+        switch ctx.parameters.count {
+        case 0: formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        case 1:
+            guard let string = ctx.parameters[0].string else {
+                throw NowTagError.invalidFormatParameter
+            }
+
+            formatter.dateFormat = string
+        default:
+            throw NowTagError.tooManyParameters
+	    }
     
-    let dateAsString = formatter.string(from: Date())
-    return LeafData.string(dateAsString)
+        let dateAsString = formatter.string(from: Date())
+        return LeafData.string(dateAsString)
+    }
 }
 ```
-
-!!! tip
-	If your custom tag renders HTML you should conform your custom tag to `UnsafeUnescapedLeafTag` so the HTML is not escaped. Remember to check or sanitize any user input.
 
 ## Configure Tag
 
@@ -73,15 +78,17 @@ To do see how to use this, let's implement a simple hello tag using both propert
 We can access the first parameter that would contain the name.
 
 ```swift
-struct HelloTagError: Error {}
+enum HelloTagError: Error {
+    case missingNameParameter
+}
 
-public func render(_ ctx: LeafContext) throws -> LeafData {
-
+struct HelloTag: UnsafeUnescapedLeafTag {
+    func render(_ ctx: LeafContext) throws -> LeafData {
         guard let name = ctx.parameters[0].string else {
-            throw HelloTagError()
+            throw HelloTagError.missingNameParameter
         }
 
-        return LeafData.string("<p>Hello \(name)</p>'")
+        return LeafData.string("<p>Hello \(name)</p>")
     }
 }
 ```
@@ -95,15 +102,17 @@ public func render(_ ctx: LeafContext) throws -> LeafData {
 We can access the name value by using the "name" key inside the data property.
 
 ```swift
-struct HelloTagError: Error {}
+enum HelloTagError: Error {
+    case nameNotFound
+}
 
-public func render(_ ctx: LeafContext) throws -> LeafData {
-
+struct HelloTag: UnsafeUnescapedLeafTag {
+    func render(_ ctx: LeafContext) throws -> LeafData {
         guard let name = ctx.data["name"]?.string else {
-            throw HelloTagError()
+            throw HelloTagError.nameNotFound
         }
 
-        return LeafData.string("<p>Hello \(name)</p>'")
+        return LeafData.string("<p>Hello \(name)</p>")
     }
 }
 ```
@@ -115,5 +124,5 @@ public func render(_ ctx: LeafContext) throws -> LeafData {
 _Controller_:
 
 ```swift
-return req.view.render("home", ["name": "John"])
+return try await req.view.render("home", ["name": "John"])
 ```

@@ -39,7 +39,7 @@ Queues 也有基于社区的驱动程序：
 使用队列的第一步是在 SwiftPM 文件中添加一个驱动程序作为项目的依赖项。在本例中，我们将使用 Redis 驱动程序。
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
@@ -49,10 +49,10 @@ let package = Package(
         .package(url: "https://github.com/vapor/queues-redis-driver.git", from: "1.0.0"),
     ],
     targets: [
-        .target(name: "App", dependencies: [
+        .executableTarget(name: "App", dependencies: [
+            // Other dependencies
             .product(name: "QueuesRedisDriver", package: "queues-redis-driver")
         ]),
-        .target(name: "Run", dependencies: [.target(name: "App")]),
         .testTarget(name: "AppTests", dependencies: [.target(name: "App")]),
     ]
 )
@@ -65,6 +65,8 @@ let package = Package(
 下一步是在 `configure.swift` 文件中配置队列，我们将使用 Redis 库作为示例：
 
 ```swift
+import QueuesRedisDriver
+
 try app.queues.use(.redis(url: "redis://127.0.0.1:6379"))
 ```
 
@@ -80,7 +82,7 @@ app.queues.add(emailJob)
 
 ### Worker 作为进程运行
 
-要启动新的队列 worker，请在终端运行 `vapor run queues`。 你还可以指定一个特定类型的 worker 来运行 `vapor run queues --queue emails`。
+要启动新的队列 worker，请在终端运行 `swift run App queues`。 你还可以指定一个特定类型的 worker 来运行 `swift run App queues --queue emails`。
 
 !!! tip "建议"
     生产环境应该保持 worker 一直运行。咨询你的托管提供商，了解如何保持长时间运行的进程处于活动状态。例如，Heroku 允许你在 Procfile 中指定这样的 “worker” dynos：`worker: Run queues`。有了这个，你可以在仪表板/资源选项卡上启动 worker，或者使用 `heroku ps:scale worker=1`（或首选的任何数量的 dynos）。
@@ -308,16 +310,19 @@ struct SendEmailCommand: AsyncCommand {
 
 Queues 包还允许你安排在特定时间点发生的 job。
 
+!!! warning "警告"
+    调度 job 只有在应用程序启动之前设置，例如在 `configure.swift` 中设置时才能正常工作。它们无法在路由处理中工作。
+
 ### 启动调度 worker
 
 调度程序需要一个独立的 worker 进程来运行，类似于队列 worker 进程。可以通过以下命令启动 worker：
 
 ```sh
-swift run Run queues --scheduled
+swift run App queues --scheduled
 ```
 
 !!! tip "建议"
-    生产环境应该保持 worker 一直运行。请咨询你的服务托管提供商，了解如何使长时间运行的进程保持活动状态。例如，Heroku 允许你在 Procfile 中像这样指定  “worker” dynos：`worker: Run queues --scheduled`
+    生产环境应该保持 worker 一直运行。请咨询你的服务托管提供商，了解如何使长时间运行的进程保持活动状态。例如，Heroku 允许你在 Procfile 中像这样指定  “worker” dynos：`worker: App queues --scheduled`
 
 ### 创建一个 `ScheduledJob`
 
@@ -373,6 +378,7 @@ app.queues.schedule(CleanupJob())
 |                 | `at(_ hour: Hour24, _ minute: Minute)`| 运行 job 的小时和分钟。链中的最终方法。|
 |                 | `at(_ hour: Hour12, _ minute: Minute, _ period: HourPeriod)` |运行 job 的小时、分钟和时间段。链中的最终方法。|
 | `hourly()`      | `at(_ minute: Minute)`                 |运行 job 的分钟。链中的最终方法。|
+| `minutely()`    | `at(_ second: Second)`                 | 运行 job 的秒数。链中的最终方法。 |
 
 ### 可用辅助函数
 

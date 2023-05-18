@@ -10,10 +10,10 @@ Nu dat je je eerste Vapor app hebt gemaakt, gebouwd en uitgevoerd, laten we een 
 │   │   ├── Controllers
 │   │   ├── Migrations
 │   │   ├── Models
-│   │   ├── configure.swift
+│   │   ├── configure.swift 
+│   │   ├── entrypoint.swift
 │   │   └── routes.swift
-│   └── Run
-│       └── main.swift
+│       
 ├── Tests
 │   └── AppTests
 └── Package.swift
@@ -59,19 +59,15 @@ De models map is een goede plaats om uw `Content` structs of Fluent `Model`s op 
 
 #### configure.swift
 
-Dit bestand bevat de `configure(_:)` functie. Deze methode wordt aangeroepen door `main.swift` om de nieuw aangemaakte `Application` te configureren. Dit is waar je services zoals routes, databases, providers, en meer moet registreren.
+Dit bestand bevat de `configure(_:)` functie. Deze methode wordt aangeroepen door `entrypoint.swift` om de nieuw aangemaakte `Application` te configureren. Dit is waar je services zoals routes, databases, providers, en meer moet registreren.
+
+#### entrypoint.swift
+
+Dit bestand bevat het `@main`-toegangspunt voor de toepassing die uw Vapor-toepassing instelt, configureert en uitvoert.
 
 #### routes.swift
 
 Dit bestand bevat de `routes(_:)` functie. Deze methode wordt aangeroepen aan het einde van `configure(_:)` om routes te registreren voor je `Application`. 
-
-### Run
-
-Dit het het belangrijkste uitvoerbare doel, dat enkel de code bevat die nodig is om je applicatie aan de gang te krijgen.
-
-#### main.swift
-
-Dit bestand maakt een geconfigureerde instantie van uw Vapor `Application` aan en voert deze uit.
 
 ## Tests
 
