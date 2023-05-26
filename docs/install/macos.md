@@ -1,10 +1,10 @@
 # Install on macOS
 
-To use Vapor on macOS, you will need Swift 5.2 or greater. Swift and all of its dependencies come bundled with Xcode.
+To use Vapor on macOS, you will need Swift 5.6 or greater. Swift and all of its dependencies come bundled with Xcode.
 
 ## Install Xcode
 
-Install [Xcode 11.4 or greater](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) from the Mac App Store.
+Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) from the Mac App Store.
 
 ![Xcode in Mac App Store](../images/xcode-mac-app-store.png)
 
@@ -19,11 +19,11 @@ swift --version
 You should see Swift's version information printed.
 
 ```sh
-Apple Swift version 5.2 (swiftlang-1100.0.270.13 clang-1100.0.33.7)
-Target: x86_64-apple-darwin19.0.0
+swift-driver version: 1.75.2 Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)
+Target: x86_64-apple-macosx13.0
 ```
 
-Vapor 4 requires Swift 5.2 or greater.
+Vapor 4 requires Swift 5.6 or greater.
 
 ## Install Toolbox
 
