@@ -20,7 +20,7 @@ You should see Swift's version information printed.
 
 ```sh
 swift-driver version: 1.75.2 Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)
-Target: x86_64-apple-macosx13.0
+Target: arm64-apple-macosx13.0
 ```
 
 Vapor 4 requires Swift 5.6 or greater.
