@@ -69,5 +69,7 @@ You can check it out by running `mkdocs serve` in the terminal. Once you are sat
 
 > NOTE: If a file isn't translated, it will just default to the default language file. So you don't have to translate everything all at once.
 
+Finally, you should add the new language to the [issue template](https://github.com/vapor/docs/blob/main/.github/workflows/translation-issue-template.md) to ensure that any future changes are applied to the new translation.
+
 
   
