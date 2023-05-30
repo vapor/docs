@@ -1,6 +1,6 @@
 # Ciao, mondo
 
-Questa guida vi mostrerà, passo dopo passo, come creare, compilare ed eseguire il vostro primo progetto Vapor.
+Questa guida vi mostrerà, passo dopo passo, come creare, compilare ed eseguire il vostro primo progetto con Vapor.
 
 Se non avete ancora installato Swift o la Toolbox Vapor, seguite la guida di installazione prima di continuare.
 
@@ -29,7 +29,7 @@ Una volta terminato il comando, entrate nella cartella appena creata:
 cd hello
 ```
 
-## Compilazione sed Esecuzione
+## Compilazione ed Esecuzione
 
 ### Xcode
 
@@ -51,7 +51,7 @@ Dovreste ora veder apparire la Console nella parte inferiore della finestra di X
 
 ### Linux
 
-Su Linux e altri sistemi operativi (e anche su macOS se non volete utilizzare Xcode) potete modificare il progetto nel vostro editor preferito, come Vim o VSCode. Per maggiori dettagli su come configurare altri IDE, consultate le [Guide di Swift lato Server](https://github.com/swift-server/guides/blob/main/docs/setup-and-ide-alternatives.md)
+Su Linux e altri sistemi operativi (e anche su macOS se non volete utilizzare Xcode) potete modificare il progetto nel vostro editor preferito, come Vim o VSCode. Per maggiori dettagli su come configurare altri IDE, consultate le [Guide di Swift sul Server](https://github.com/swift-server/guides/blob/main/docs/setup-and-ide-alternatives.md)
 
 Per compilare ed eseguire il progetto, nel Terminale eseguite:
 
@@ -59,10 +59,10 @@ Per compilare ed eseguire il progetto, nel Terminale eseguite:
 swift run
 ```
 
-Questo comando compilerà ed eseguirà il progetto. La prima volta che lo eseguite ci vorrà un po' di tempo per scaricare e indicizzare le dipendenze. Una volta avviato, dovrebbe apparire qualcosa del genere nel terminale:
+Questo comando compilerà ed eseguirà il progetto. La prima volta che lo eseguite ci vorrà un po' di tempo per scaricare e indicizzare le dipendenze. Una volta avviato, dovrebbe apparire il seguente codice nel terminale:
 
 ```sh
-[ INFO ] Server starting on http://
+[ INFO ] Server starting on http://127.0.0.1:8080
 ```
 
 ## Visitare Localhost
@@ -75,4 +75,4 @@ Dovrebbe apparire la seguente pagina:
 Hello, world!
 ```
 
-Congratulazione per aver creato, compilato ed eseguito il vostro primo progetto Vapor! 🎉
+Congratulazioni per aver creato, compilato ed eseguito il vostro primo progetto Vapor! 🎉

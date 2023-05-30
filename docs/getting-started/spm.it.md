@@ -38,7 +38,7 @@ let package = Package(
 )
 ```
 
-Nelle sezioni seguenti ogni vengono spiegate tutte le parti del manifesto.
+Nelle sezioni seguenti vengono spiegate tutte le parti del manifesto.
 
 ### Versione degli Strumenti
 
@@ -54,14 +54,14 @@ L'array `platforms` specifica quali piattaforme il pacchetto supporta. Specifica
 
 ### Dipendenze
 
-Le dipendenze sono altri pacchetti SPM su cui il pacchetto dipende. Tutte le applicazioni Vapor si basano sul pacchetto Vapor, ma se ne possono aggiungere senza limiti.
+Le dipendenze sono altri pacchetti SPM da cui il pacchetto dipende. Tutte le applicazioni Vapor si basano sul pacchetto Vapor, ma se ne possono aggiungere senza limiti.
 
 Nell'esempio precedente, si può notare che il pacchetto dipende da [vapor/vapor](https://github.com/vapor/vapor), versione 4.76.0 o successive. Nel momento in cui si aggiunge una dipendenza al pacchetto, bisogna segnalare quali [target](#targets) dipendono dai moduli appena inseriti.
 
 ### Target
 
-I target sono i moduli che compongono il vostro pacchetto. I target possono essere eseguibili, librerie o test. In genere un progetto Vapor ha due target, tuttavia se ne possono aggiungere in modo da organizzare il codice.
-Ogni target dichiara i moduli da cui dipende. Per poter importare ed usare i vari moduli nel codice bisogna dichiarare qui i loro nomi. Un target può dipendere da altri target nello stesso pacchetto o da qualsiasi modulo presente nei pacchetti aggiunto all'array delle [dipendenze principali](#dependencies) array.
+I target sono i moduli che compongono il vostro pacchetto. I target possono essere eseguibili, librerie o test. Solitamente un progetto Vapor ha due target, tuttavia se ne possono aggiungere in modo da organizzare il codice.
+Ogni target dichiara i moduli da cui dipende. Per poter importare ed usare i vari moduli nel codice bisogna dichiarare qui i loro nomi. Un target può dipendere da altri target nello stesso pacchetto o da qualsiasi modulo presente nei pacchetti aggiunto all'array delle [dipendenze principali](#dependencies).
 
 ## Struttura della Cartella
 
@@ -92,4 +92,4 @@ Usando Xcode qualsiasi cambiamento a dipendenze, target, prodotti ecc. sarà aut
 
 Per aggiornare le dipendenze, basta andare su File &rarr; Swift Packages &rarr; Update to Latest Package Versions.
 
-È in genere una buona idea aggiungere il file `.swiftpm` al `.gitignore`. Questo file contiene la configurazione del progetto di Xcode.
+In genere è consigliabile aggiungere il file `.swiftpm` al `.gitignore`. Questo file contiene la configurazione del progetto di Xcode.

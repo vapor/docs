@@ -1,6 +1,6 @@
 # Struttura della Cartella
 
-Dopo aver creato, compilato ed eseguito la vostra prima applicazione, è il momento di dare un'occhiata a come Vapor struttura la cartella. La struttura si basa su [SwiftPM](spm.md), quindi se avete già familiarità con SwiftPM, vi sentirete a casa.
+Dopo aver creato, compilato ed eseguito la vostra prima applicazione, è il momento di dare un'occhiata a come Vapor struttura la cartella del progetto. La struttura si basa su [SwiftPM](spm.md), quindi se avete già familiarità con SwiftPM vi sentirete a casa.
 
 ```
 .
@@ -23,7 +23,7 @@ Le seguenti sezioni spiegano in maggior dettaglio la struttura della cartella.
 
 ## Public
 
-Questa cartella contiene tutti i file pubblici che saranno messi a disposizione dall' applicazione se `FileMiddleware` è abilitato. In genere si tratta di immagini, fogli di stile e script del browser. Ad esempio, una richiesta a `localhost:8080/favicon.ico` controlla se `Public/favicon.ico` esiste e lo restituisce.
+Questa cartella contiene tutti i file pubblici che saranno messi a disposizione dall'applicazione se `FileMiddleware` è abilitato. In genere si tratta di immagini, fogli di stile e script del browser. Ad esempio, una richiesta a `localhost:8080/favicon.ico` controlla se `Public/favicon.ico` esiste e lo restituisce.
 
 Perché Vapor possa servire i file pubblici, bisognerà abilitare `FileMiddleware` nel file `configure.swift`.
 
@@ -54,7 +54,7 @@ Se si utilizza Fluent, questa cartella contiene le migrazioni del database.
 
 #### Models
 
-La cartella dei modelli è un ottimo luogo per memorizzare le strutture `Content` e i modelli di Fluent.
+La cartella dei modelli è un ottimo posto per memorizzare le strutture `Content` e i modelli di Fluent.
 
 #### configure.swift
 
@@ -66,7 +66,7 @@ Questo file contiene la funzione `main(_:)`. Questo metodo viene chiamato dal si
 
 #### routes.swift
 
-Questo file contiene la funzione `routes(_:)`. Tale metodo viene chiamato da `configure(_:)` per registrare gli endpoints dell'applicazione.
+Questo file contiene la funzione `routes(_:)`. Questo metodo viene chiamato da `configure(_:)` per registrare gli endpoints dell'applicazione.
 
 ## Tests
 
