@@ -52,8 +52,7 @@ extra_css:
   - stylesheets/fonts.css
 
 extra_javascript:
-  - javascripts/highlight.min.js
-  - javascripts/startSyntaxHighligting.js
+  - javascripts/syntax.js
 
 # Extensions
 markdown_extensions:
