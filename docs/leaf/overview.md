@@ -17,7 +17,7 @@ Leaf tags are made up of four elements:
 - Token `#`: This signals the leaf parser to begin looking for a tag.
 - Name `count`: that identifies the tag.
 - Parameter List `(users)`: May accept zero or more arguments.
-- Body: An optional body can be supplied to some tags using a semicolon and a closing tag
+- Body: An optional body can be supplied to some tags using a colon and a closing tag
 
 There can be many different usages of these four elements depending on the tag's implementation. Let's look at a few examples of how Leaf's built-in tags might be used:
 
