@@ -93,6 +93,10 @@ plugins:
           name: German
           site_name: Vapor Dokumentation
           build: true
+        it:
+          name: Italiano
+          site_name: Documentazione di Vapor
+          build: true
       # Add navigation translations here
       nav_translations:
         nl:
@@ -132,7 +136,7 @@ plugins:
           Custom Tags: Zelfgemaakte Tags
           Contributing: Bijdragen
           Contributing Guide: Gids Bijdragen
-        fr: 
+        fr:
           Welcome: Bienvenue
           Install: Installer
           Getting Started: Commencer
@@ -242,7 +246,56 @@ plugins:
           Contributing: 贡献
           Contributing Guide: 贡献指南
           Version (4.0): 版本 (4.0)
-
+        it:
+          Welcome: Benvenuto
+          Install: Installazione
+          Getting Started: Inizio
+          Hello, world: Ciao, mondo
+          Folder Structure: Struttura della Cartella
+          SwiftPM: SwiftPM
+          Xcode: Xcode
+          Basics: Basi
+          Routing: Routing
+          Content: Contenuto
+          Client: Client
+          Validation: Validazione
+          Async: Asincrono
+          Logging: Logging
+          Environment: Ambiente
+          Errors: Errori
+          Fluent: Fluent
+          Overview: Panoramica
+          Model: Modello
+          Relations: Relazioni
+          Migrations: Migrazioni
+          Query: Query
+          Transactions: Transazioni
+          Schema: Schema
+          Leaf: Leaf
+          Custom Tags: Tag Personalizzati
+          Redis: Redis
+          Advanced: Avanzate
+          Middleware: Middleware
+          Testing: Test
+          Server: Server
+          Files: File
+          Commands: Comandi
+          Queues: Code
+          WebSockets: WebSockets
+          Sessions: Sessioni
+          Services: Servizi
+          Security: Sicurezza
+          APNS: APNS
+          Deploy: Deploy
+          Authentication: Autenticazione
+          Crypto: Crittografia
+          Passwords: Password
+          JWT: JWT
+          Contributing: Contribuire
+          Contributing Guide: Guida alla Contribuzione
+          Version (4.0): Versione (4.0)
+          Legacy Docs: Documentazione Legacy
+          Upgrading: Aggiornamento
 
 nav:
 - Welcome: "index.md"

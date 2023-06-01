@@ -11,15 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository 
-      uses: actions/checkout@v3.0.0
+      uses: actions/checkout@v3
     - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
+      run: pip install -r requirements.txt
     - name: Build documentation
-      run: |
-        mkdocs build
+      run: mkdocs build
     - name: Setup cloudformation linter 
-      uses: ScottBrenner/cfn-lint-action@v2.2.1
+      uses: ScottBrenner/cfn-lint-action@v2
     - name: Run cloudformation lint 
       run: cfn-lint -t stack.yml
     - name: Check dead links 
