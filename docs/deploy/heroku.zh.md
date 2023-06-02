@@ -198,9 +198,14 @@ DATABASE_URL: postgres://cybntsgadydqzm:2d9dc7f6d964f4750da1518ad71hag2ba729cd45
 
 ```swift
 if let databaseURL = Environment.get("DATABASE_URL") {
-    app.databases.use(try .postgres(
-        url: databaseURL
-    ), as: .psql)
+    var tlsConfig: TLSConfiguration = .makeClientConfiguration()
+    tlsConfig.certificateVerification = .none
+    let nioSSLContext = try NIOSSLContext(configuration: tlsConfig)
+
+    var postgresConfig = try SQLPostgresConfiguration(url: databaseURL)
+    postgresConfig.coreConfiguration.tls = .require(nioSSLContext)
+
+    app.databases.use(.postgres(configuration: postgresConfig), as: .psql)
 } else {
     // ...
 }
