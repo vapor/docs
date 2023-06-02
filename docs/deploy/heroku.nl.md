@@ -199,9 +199,14 @@ De Heroku Postgres addon [vereist](https://devcenter.heroku.com/changelog-items/
 Het volgende fragment laat zien hoe beide bereikt kunnen worden:
 
 ```swift
-if let databaseURL = Environment.get("DATABASE_URL"), var postgresConfig = PostgresConfiguration(url: databaseURL) {
-    postgresConfig.tlsConfiguration = .makeClientConfiguration()
-    postgresConfig.tlsConfiguration?.certificateVerification = .none
+if let databaseURL = Environment.get("DATABASE_URL") {
+    var tlsConfig: TLSConfiguration = .makeClientConfiguration()
+    tlsConfig.certificateVerification = .none
+    let nioSSLContext = try NIOSSLContext(configuration: tlsConfig)
+
+    var postgresConfig = try SQLPostgresConfiguration(url: databaseURL)
+    postgresConfig.coreConfiguration.tls = .require(nioSSLContext)
+
     app.databases.use(.postgres(configuration: postgresConfig), as: .psql)
 } else {
     // ...
