@@ -158,7 +158,7 @@ final class PlanetTag: Model {
 }
 ```
 
-Pivots are normal models that contain two `@Parent` relations. One for each of the models to be related. Additional properties can be stored on the pivot if desired. 
+Pivots are normal models that contain two `@Parent` relations. One for each of the models to be related. Additional properties can be stored on the pivot if desired, such as @Field or @Enum.
 
 Adding a [unique](schema.md#unique) constraint to the pivot model can help prevent redundant entries. See [schema](schema.md) for more information.
 
@@ -197,13 +197,18 @@ final class Tag: Model {
 
 The `@Siblings` property has methods adding and removing models from the relation. 
 
-Use the `attach` method to add a model to the relation. This creates and saves the pivot model automatically.
+Use the `attach` method to add a model to the relation. This creates and saves the pivot model automatically. Additionally you have a callback within the method to populate additional properties.
 
 ```swift
 let earth: Planet = ...
 let inhabited: Tag = ...
 // Adds the model to the relation.
 try await earth.$tags.attach(inhabited, on: database)
+// Populate pivot attributes when establishing the relation.
+try await earth.$tags.attach(inhabited, on: database) { pivot in
+    pivot.comments = "This is a life-bearing planet."
+    pivot.status = .accepted
+}
 ```
 
 When attaching a single model, you can use the `method` parameter to choose whether or not the relation should be checked before saving.
