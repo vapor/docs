@@ -1,25 +1,20 @@
- /*
-XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
-*/
-
-.md-typeset
-.hljs,
-.hljs {
+.md-typeset .hljs {
   display: block;
   overflow-x: auto;
-  padding: 0.5em;
-  background: #292A30;
-  color: #ffffff;
+  backdrop-filter: blur(20px);
+  /* background: radial-gradient(97.68% 221.36% at 97.68% 100%, rgba(35, 172, 240, 0.052) 0%, rgba(35, 172, 240, 0) 100%), #FAFAFD; */
+  /* border: 1px solid #DFE0EB; */
+  color: #666880;
 }
 
 /* Gray DOCTYPE selectors like WebKit */
 .xml .hljs-meta {
-  color: #7F8C98;
+  color: #a6e3ff;
 }
 
 .hljs-comment,
 .hljs-quote {
-  color: #7F8C98;
+  color: #9FA1BF;
 }
 
 .hljs-tag,
@@ -28,7 +23,7 @@ XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
 .hljs-selector-tag,
 .hljs-literal,
 .hljs-name {
-  color: #FF7AB2;
+  color: #ea7efc;
 }
 
 .hljs-keyword {
@@ -43,7 +38,7 @@ XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
 .hljs-code,
 .hljs-string,
 .hljs-meta-string {
-  color: #FF8170;
+  color: #B11FCC;
 }
 
 .hljs-regexp,
@@ -55,7 +50,7 @@ XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
 .hljs-symbol,
 .hljs-bullet,
 .hljs-number {
-  color: #4EB0CC;
+  color: #40c4ff;
 }
 
 .hljs-section,
@@ -63,20 +58,19 @@ XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
   color: #643820;
 }
 
-
 .hljs-class .hljs-title,
 .hljs-type {
-  color: #ACF2E4;
+  color: #094867;
 }
 
 .hljs-built_in,
 .hljs-builtin-name,
 .hljs-params {
-  color: #78C2B3;
+  color: #0073ac;
 }
 
 .hljs-attr {
-  color: #836C28;
+  color: #701980;
 }
 
 .hljs-subst {
@@ -108,4 +102,26 @@ XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
 
 .hljs-emphasis {
   font-style: italic;
+}
+
+.hljs-ln-n {
+  padding-left: 20px;
+  padding-right: 8px;
+  color: #8385A3;
+}
+
+.hljs-ln-numbers {
+  border-right: 1px solid #DFE0EB;
+}
+
+.hljs-ln-code {
+  padding-left: 20px;
+}
+
+.hljs-ln {
+  border-collapse: collapse;
+}
+
+.hljs-ln .hljs-ln-n:before {
+  content: attr(data-line-number);
 }
