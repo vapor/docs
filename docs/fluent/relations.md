@@ -135,6 +135,8 @@ The `@Siblings` property creates a many-to-many relation between two models. It 
 Let's take a look at an example of a many-to-many relation between a `Planet` and a `Tag`.
 
 ```swift
+enum PlanetTagStatus: String, Codable { case accepted, pending }
+
 // Example of a pivot model.
 final class PlanetTag: Model {
     static let schema = "planet+tag"
@@ -148,17 +150,25 @@ final class PlanetTag: Model {
     @Parent(key: "tag_id")
     var tag: Tag
 
+    @OptionalField(key: "comments")
+    var comments: String?
+
+    @OptionalEnum(key: "status")
+    var status: PlanetTagStatus?
+
     init() { }
 
-    init(id: UUID? = nil, planet: Planet, tag: Tag) throws {
+    init(id: UUID? = nil, planet: Planet, tag: Tag, comments: String?, status: PlanetTagStatus?) throws {
         self.id = id
         self.$planet.id = try planet.requireID()
         self.$tag.id = try tag.requireID()
+        self.comments = comments
+        self.status = status
     }
 }
 ```
 
-Pivots are normal models that contain two `@Parent` relations. One for each of the models to be related. Additional properties can be stored on the pivot if desired. 
+Any model which includes at least two `@Parent` relations, one for each model to be related, can be used as a pivot. The model may contain additional properties, such as its ID, and may even contain other `@Parent` relations.
 
 Adding a [unique](schema.md#unique) constraint to the pivot model can help prevent redundant entries. See [schema](schema.md) for more information.
 
@@ -197,13 +207,24 @@ final class Tag: Model {
 
 The `@Siblings` property has methods adding and removing models from the relation. 
 
-Use the `attach` method to add a model to the relation. This creates and saves the pivot model automatically.
+Use the `attach()` method to add a single model or an array of models to the relation. Pivot models are created and saved automatically as needed. A callback closure may be specified to populate additional properties of each pivot created:
 
 ```swift
 let earth: Planet = ...
 let inhabited: Tag = ...
 // Adds the model to the relation.
 try await earth.$tags.attach(inhabited, on: database)
+// Populate pivot attributes when establishing the relation.
+try await earth.$tags.attach(inhabited, on: database) { pivot in
+    pivot.comments = "This is a life-bearing planet."
+    pivot.status = .accepted
+}
+// Add multiple models with attributes to the relation.
+let volcanic: Tag = ..., oceanic: Tag = ...
+try await earth.$tags.attach([volcanic, oceanic], on: database) { pivot in
+    pivot.comments = "This planet has a tag named \(pivot.$tag.name)."
+    pivot.status = .pending
+}
 ```
 
 When attaching a single model, you can use the `method` parameter to choose whether or not the relation should be checked before saving.
