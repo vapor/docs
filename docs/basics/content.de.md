@@ -1,10 +1,10 @@
 # Content
 
-Mit Content können wir den Inhalt und die Zeichenfolge einer Serveranfrage an einen vordefiniertes Datenobjekt binden.
+Mit Content können wir den Inhalt oder die Zeichenfolge einer Serveranfrage an einen vordefiniertes Datenobjekt binden.
 
 ## Grundlagen
 
-Um das Ganze besser zu verstehen, werfen wir einen Blick auf den Aufbau einer solchen Serveranfrage.
+Um das Binden besser zu verstehen, werfen wir einen Blick auf den Aufbau einer solchen Serveranfrage.
 
 ```http
 POST /greeting HTTP/1.1
@@ -14,11 +14,11 @@ content-length: 18
 {"hello": "world"}
 ```
 
-Die Angaben _content-type_ und _application/json_ weisen daraufhin, dass die Anfrage JSON-Daten behinhaltet. 
+Die Angabe _content-type: application/json_ in der zweiten Zeile der Anfrage weist darauf hin, dass sie JSON-Daten behinhaltet. 
 
 ## Binden des Inhalts
 
-Für das Binden der Inhalts müssen wir eine Struktur vom Typ *Codable* anlegen. Indem wir das Objekt mit dem Protokoll *Content* versehen, werden neben den Bindungsmethoden, der Typ vererbt.
+Zum Binden des Inhalts müssen wir zuerst eine Struktur vom Typ *Codable* anlegen. Indem wir das Objekt mit dem Vapor Protokoll *Content* versehen, werden neben den Bindungsmethoden (Encode und Decode), zudem der Typ *Codable* mitvererbt.
 
 ```swift
 struct Greeting: Content {
@@ -26,7 +26,7 @@ struct Greeting: Content {
 }
 ```
 
-Über die Eigenschaft *content* kannst du die Methode *decode(_:)* verwendet, um den Inhalt an das eben erstelle Objekt zu binden.
+Über die Eigenschaft *content* können wir dann anschließend die Methode *decode(_:)* verwenden, um den Inhalt an das soeben von uns erstellte Objekt zu binden.
 
 ```swift
 app.post("greeting") { req in 
@@ -36,13 +36,15 @@ app.post("greeting") { req in
 }
 ```
 
-Die Methode *decode(_:)* benutzt die Angabe *Content-Type* in der Serveranfrage um den passenden *Decoder* aufzurufen. Sollte kein passender *Decoder* gefunden werden oder die Anfrage keine Angaben zum Content-Type besitzen, wird der Fehler 415 (415 Unsupported Media Type) zurückgeliefert.
+Die Methode *decode(_:)* benutzt die entsprechende Angabe in der Serveranfrage um den passenden *Decoder* aufzurufen.
+
+Sollte kein passender *Decoder* gefunden werden oder die Anfrage keine Angaben zum Content-Type besitzen, wird der Fehler 415 (415 Unsupported Media Type) zurückgeliefert.
 
 ### Unterstützte Medien
 
-Folgende Medien werden unterstützt:
+Folgende Medien werden von Vapor standardmäßig unterstützt:
 
-|Bezeichnung     |header value                     |Typ              |
+|Bezeichnung     |Feldwert                    |Typ              |
 |----------------|---------------------------------|-----------------|
 |JSON            |application/json                 |`.json`          |
 |Multipart       |multipart/form-data              |`.formData`      |
@@ -50,7 +52,7 @@ Folgende Medien werden unterstützt:
 |Plaintext       |text/plain                       |`.plainText`     |
 |HTML            |text/html                        |`.html`          |
 
-Nicht alle Medien werden von _Codable_ unterstützt. Beispielweise unterstützt JSON keinen Top-Level-Fragments oder Plaintext unterstützt keinen nested-data.
+_Codable_ unterstützt leider nicht alle Medien. Beispielweise unterstützt JSON keinen Top-Level-Fragments oder Plaintext unterstützt beispielweise keinen nested-data.
 
 ## Binden der Zeichenfolge
 
@@ -59,7 +61,7 @@ GET /hello?name=Vapor HTTP/1.1
 content-length: 0
 ```
 
-Ähnlich wie beim Binden des Inhalts müssen wir eine Struktur anlegen und es mit dem Protokoll *Content* versehen. Zusätzlich müssen wir die Eigenschaft *name* als optional deklarieren, da Parameter in der Zeichenfolge immer optional sind.
+Ähnlich wie beim Binden des Inhalts müssen wir eine Struktur anlegen und es mit dem Protokoll *Content* versehen. Zusätzlich müssen wir die Eigenschaft *name* als optional deklarieren, da Parameter in einer Zeichenfolge immer optional sind.
 
 ```swift
 struct Hello: Content {
@@ -112,7 +114,7 @@ mutating func beforeEncode() throws {
 
 ## Override Defaults
 
-Der Encoder und Decoder von Vapor kann überschrieben werden.
+Der Standardencoder und -decoder von Vapor kann überschrieben werden.
 
 ### Global
 
@@ -144,9 +146,7 @@ let hello = try req.content.decode(Hello.self, using: decoder)
 
 ## Benutzerdefinierte Bindung
 
-Applications and third-party packages can add support for media types that Vapor does not support by default by creating custom coders.
-
-Du kannst einen eigenen Coder erstellen 
+Anwendungen- und Drittanwendungen können neben den Standard, weitere Medientypen hinzufügen, indem benutzerdefinierte Coder angelegt werden.
 
 ### Inhalt
 
