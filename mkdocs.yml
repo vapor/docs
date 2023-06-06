@@ -98,6 +98,10 @@ plugins:
           name: Italiano
           site_name: Documentazione di Vapor
           build: true
+        es:
+          name: Español
+          site_name: Documentación de Vapor
+          build: true
       # Add navigation translations here
       nav_translations:
         nl:
@@ -297,6 +301,56 @@ plugins:
           Version (4.0): Versione (4.0)
           Legacy Docs: Documentazione Legacy
           Upgrading: Aggiornamento
+        es:
+          Welcome: Bienvenido
+          Install: Instalación
+          Getting Started: Comenzando
+          Hello, world: Hola, mundo
+          Folder Structure: Estructura de carpetas
+          SwiftPM: SwiftPM
+          Xcode: Xcode
+          Basics: Fundamentos
+          Routing: Routing
+          Content: Content
+          Client: Client
+          Validation: Validación
+          Async: Async
+          Logging: Logging
+          Environment: Ambiente
+          Errors: Errores
+          Fluent: Fluent
+          Overview: Presentación
+          Model: Modelo
+          Relations: Relaciones
+          Migrations: Migraciones
+          Query: Consultas
+          Transactions: Transacciones
+          Schema: Esquema
+          Leaf: Leaf
+          Custom Tags: Etiquetas Personalizadas
+          Redis: Redis
+          Advanced: Avanzado
+          Middleware: Middleware
+          Testing: Testing
+          Server: Servidor
+          Files: Ficheros
+          Commands: Comandos
+          Queues: Colas
+          WebSockets: WebSockets
+          Sessions: Sesiones
+          Services: Servicios
+          Security: Seguridad
+          APNS: APNS
+          Deploy: Desplegar
+          Authentication: Autenticación
+          Crypto: Criptografía
+          Passwords: Contraseñas
+          JWT: JWT
+          Contributing: Colaborar
+          Contributing Guide: Guía pra colaborar
+          Version (4.0): Versión (4.0)
+          Legacy Docs: Documentación Legacy
+          Upgrading: Actualizar
 
 nav:
 - Welcome: "index.md"
