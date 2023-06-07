@@ -4,7 +4,7 @@ El [Swift Package Manager](https://swift.org/package-manager/) (SPM) es usado pa
 
 SPM es similar a Cocoapods, Ruby gems y NPM. Puedes usar SPM desde la línea de comandos con comandos como `swift build` y `swift test`, o con IDEs compatibles. Sin embargo, a diferencia de otros package managers, no hay un índice de paquete central para los paquetes de SPM. En su lugar, SPM utiliza URLs de repositorios Git y dependencias de versiones utilizando [Git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging). 
 
-## Manifiesto del Paquete
+## Package Manifest
 
 El primer lugar en el que SPM mira en tu proyecto es el manifiesto del paquete. Éste debería estar alojado siempre en el directorio raíz de tu proyecto y llamarse `Package.swift`.
 
