@@ -2,7 +2,7 @@
 
 El [Swift Package Manager](https://swift.org/package-manager/) (SPM) es usado para compilar el código fuente y las dependencias de tu proyecto. Dado que Vapor depende en gran medida de SPM, entender su funcionamiento básico es una buena idea.
 
-SPM es similar a Cocoapods, Ruby gems y NPM. Puedes usar SPM desde la línea de comandos con comandos como `swift build` y `swift test`, o con IDEs compatibles. Sin embargo, a diferencia de otros package managers, no hay un índice de paquete central para los paquetes de SPM. En su lugar, SPM aprovecha URLs hacia repositorios Git y dependencias de versiones utilizando [Git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging). 
+SPM es similar a Cocoapods, Ruby gems y NPM. Puedes usar SPM desde la línea de comandos con comandos como `swift build` y `swift test`, o con IDEs compatibles. Sin embargo, a diferencia de otros package managers, no hay un índice de paquete central para los paquetes de SPM. En su lugar, SPM utiliza URLs de repositorios Git y dependencias de versiones utilizando [Git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging). 
 
 ## Manifiesto del Paquete
 
