@@ -15,13 +15,13 @@ El primer paso es crear un nuevo proyecto de Vapor en tu computadora. Abre el te
 vapor new hello -n
 ```
 
-!!! consejo
+!!! tip "Consejo"
 	La marca `-n` te da una plantilla básica contestando negativamente a todas las preguntas de manera automática.
 
-!!! tip
+!!! tip "Consejo"
     También puedes obtener la plantilla más reciente desde GitHub sin usar Vapor Toolbox clonando [template respository](https://github.com/vapor/template-bare)
 
-!!! tip
+!!! tip "Consejo"
 	Vapor y la plantilla ahora usan `async`/`await` por defecto.
 	Si no puedes actualizar a macOS 12 y/o necesitas seguir usando los `EventLoopFuture`, 
 	usa la marca `--branch macos10-15`.
