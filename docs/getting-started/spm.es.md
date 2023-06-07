@@ -6,7 +6,7 @@ SPM es similar a Cocoapods, Ruby gems y NPM. Puedes usar SPM desde la línea de 
 
 ## Package Manifest
 
-El primer lugar en el que SPM mira en tu proyecto es el manifiesto del paquete. Éste debería estar alojado siempre en el directorio raíz de tu proyecto y llamarse `Package.swift`.
+El primer lugar en el que SPM busca en tu proyecto es el package manifest. Éste debería estar alojado siempre en el directorio raíz de tu proyecto y llamarse `Package.swift`.
 
 Echa un vistazo a este ejemplo de manifiesto de paquete.
 
