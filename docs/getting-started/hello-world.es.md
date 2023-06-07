@@ -15,7 +15,7 @@ El primer paso es crear un nuevo proyecto de Vapor en tu computadora. Abre el te
 vapor new hello -n
 ```
 
-!!! tip
+!!! consejo
 	La marca `-n` te da una plantilla básica contestando negativamente a todas las preguntas de manera automática.
 
 !!! tip
