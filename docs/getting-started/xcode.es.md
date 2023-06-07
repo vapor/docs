@@ -2,7 +2,7 @@
 
 Esta página repasa algunos trucos y consejos para usar Xcode. Si usas un entorno de desarrollo distinto, puedes omitir esta parte.
 
-## Directorio de Trabajo Personalizado
+## Custom Working Directory
 
 Por defecto, Xcode ejecutará tu proyecto desde la carpeta _DerivedData_. Esta carpeta es otra distinta a la carpeta raíz de tu proyecto (donde se encuentra tu fichero _Package.swift_). Esto quiere decir que Vapor no será capaz de encontrar ficheros y carpetas como _.env_ o _Public_.
 
