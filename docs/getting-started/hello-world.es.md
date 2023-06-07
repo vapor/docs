@@ -55,7 +55,7 @@ Deberías ver la consola aparecer en la parte inferior de la ventana de Xcode.
 
 ### Linux
 
-En Linux y otros sistemas operativos (e inclusive en macOS si no quieres usar Xcode) puedes editar el projecto en el editor que prefieras, por ejemplo Vim o VSCode. Visita [Swift Server Guides](https://github.com/swift-server/guides/blob/main/docs/setup-and-ide-alternatives.md) para detalles actualizados sobre cómo configurar otros IDEs.
+En Linux y otros sistemas operativos (e inclusive en macOS si no quieres usar Xcode) puedes editar el proyecto en el editor que prefieras, por ejemplo Vim o VSCode. Visita [Swift Server Guides](https://github.com/swift-server/guides/blob/main/docs/setup-and-ide-alternatives.md) para detalles actualizados sobre cómo configurar otros IDEs.
 
 Para construir y ejecutar tu proyecto, ejecuta en el Terminal:
 
