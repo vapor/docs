@@ -55,7 +55,7 @@ En esta carpeta es donde se ubican las migraciones de tu base de datos si estás
 
 #### Models
 
-La carpeta de modelos es un buen lugar en el que guardar los structs `Content` o los `Model` de Fluent.
+La carpeta **models** es un buen lugar en el que guardar los structs `Content` o los `Model` de Fluent.
 
 #### configure.swift
 
