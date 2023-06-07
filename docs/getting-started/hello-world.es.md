@@ -4,8 +4,8 @@ Esta guía te llevará paso a paso por el proceso de creación, construcción y 
 
 Si todavía no has instalado Swift o Vapor Toolbox, echa un vistazo a la sección de instalaciones.
 
-- [Install &rarr; macOS](../install/macos.md)
-- [Install &rarr; Linux](../install/linux.md)
+- [Instalación &rarr; macOS](../install/macos.md)
+- [Instalación &rarr; Linux](../install/linux.md)
 
 ## Nuevo Proyecto
 
