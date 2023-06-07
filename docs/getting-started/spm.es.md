@@ -41,7 +41,7 @@ Cada parte del manifiesto se explica en las secciones a continuación.
 
 ### Versión de Herramientas
 
-La primera línea del manifiesto del paquete indica la versión requerida de las herramientas de Swift. Esto especifica la versión mínima de Swift que el paquete soporta. La API de descripción del paquete puede sufrir cambios entre versiones de Swift, así que esta línea asegura que Swift sepa analizar tu manifiesto. 
+La primera línea del package manifest indica la versión requerida de las herramientas de Swift. Esto especifica la versión mínima de Swift que el paquete soporta. La API de descripción del paquete puede sufrir cambios entre versiones de Swift, así que esta línea asegura que Swift sepa analizar tu manifiesto. 
 
 ### Nombre del Paquete
 
