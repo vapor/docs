@@ -79,4 +79,4 @@ Deberías ver la página a continuación.
 Hello, world!
 ```
 
-¡Enhorabuena! ¡Has creado, construido y ejecutado tu primera app de Vapor! 🎉
+¡Enhorabuena! ¡Has creado, compilado y ejecutado tu primera app de Vapor! 🎉
