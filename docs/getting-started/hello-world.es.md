@@ -33,7 +33,7 @@ Cuando el comando haya terminado, cambia a la nueva carpeta recién creada:
 cd hello
 ```
 
-## Construir y Ejecutar
+## Compilar y Ejecutar
 
 ### Xcode
 
