@@ -71,7 +71,7 @@ Este fichero contiene la función `routes(_:)`. Este método es llamado casi al 
 
 ## Tests
 
-Cada módulo no ejecutable en tu carpeta `Sources` puede tener una carpeta correspondiente en `Tests`. Esto contiene código creado en el módulo `XCTest` para hacer testing a tu package. Los tests pueden ser ejecutados usando `swift test` en la línea de comandos o pulsando ⌘+U en Xcode. 
+Cada módulo no ejecutable en tu carpeta `Sources` puede tener una carpeta correspondiente en `Tests`. Contiene código del módulo `XCTest` para hacer testing a tu package. Los tests pueden ser ejecutados usando `swift test` en la línea de comandos o pulsando ⌘+U en Xcode. 
 
 ### AppTests
 
