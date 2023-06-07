@@ -63,7 +63,7 @@ Para construir y ejecutar tu proyecto, ejecuta en el Terminal:
 swift run
 ```
 
-Eso construirá y ejecutará tu proyecto. La primera vez que lo ejecutes necesitará un tiempo para buscar y resolver las dependencias. Una vez esté ejecutándose deberías ver en la consola lo siguiente:
+Eso compilará y ejecutará tu proyecto. La primera vez que lo ejecutes necesitará un tiempo para buscar y resolver las dependencias. Una vez esté ejecutándose deberías ver en la consola lo siguiente:
 
 ```sh
 [ INFO ] Server starting on http://127.0.0.1:8080
