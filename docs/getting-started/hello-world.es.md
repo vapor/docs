@@ -47,7 +47,7 @@ Automáticamente comenzará a descargar las dependencias de Swift Package Manage
 
 En la parte superior de la ventana, a la derecha de los botones Play y Stop, pulsa en el nombre de tu proyecto para seleccionar el esquema (Scheme) del proyecto, y selecciona un target de ejecución apropiado—preferiblemente, "My Mac". Pulsa en el botón de play para compilar y ejecutar tu proyecto.
 
-Deberías ver la consola aparecer en la parte inferior de la ventana de Xcode.
+La consola debería aparecer en la parte inferior de la ventana de Xcode.
 
 ```sh
 [ INFO ] Server starting on http://127.0.0.1:8080
