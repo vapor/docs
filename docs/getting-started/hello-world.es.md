@@ -22,7 +22,7 @@ vapor new hello -n
     También puedes obtener la plantilla más reciente desde GitHub sin usar Vapor Toolbox clonando [template respository](https://github.com/vapor/template-bare)
 
 !!! tip
-	Vapor ay la plantilla ahora usan `async`/`await` por defecto.
+	Vapor y la plantilla ahora usan `async`/`await` por defecto.
 	Si no puedes actualizar a macOS 12 y/o necesitas seguir usando los `EventLoopFuture`, 
 	usa la marca `--branch macos10-15`.
 
