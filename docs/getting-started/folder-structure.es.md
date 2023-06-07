@@ -1,6 +1,6 @@
 # Estructura de Carpetas
 
-Una vez has creado, construido y ejecutado tu primera app de Vapor, vamos a familiarizarte con la estructura de carpetas de Vapor. La estructura está basada en la utilizada por [SPM](spm.md), así que si has trabajado anteriormente con SPM debería ser algo conocido. 
+Una vez has creado, compilado y ejecutado tu primera app de Vapor, vamos a familiarizarte con la estructura de carpetas de Vapor. La estructura está basada en la utilizada por [SPM](spm.md), así que si has trabajado anteriormente con SPM debería ser algo conocido. 
 
 ```
 .
