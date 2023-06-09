@@ -4,7 +4,7 @@ Mit Content können wir den Inhalt oder die Zeichenfolge einer Serveranfrage an 
 
 ## Grundlagen
 
-Um das Binden besser zu verstehen, werfen wir einen Blick auf den Aufbau einer solchen Serveranfrage.
+Um das Binden besser zu verstehen, werfen wir einen kurzen Blick auf den Aufbau einer solchen Serveranfrage.
 
 ```http
 POST /greeting HTTP/1.1
@@ -14,11 +14,13 @@ content-length: 18
 {"hello": "world"}
 ```
 
-Die Angabe _content-type: application/json_ in der zweiten Zeile der Anfrage weist darauf hin, dass sie JSON-Daten behinhaltet. 
+Die Angabe _content-type_ in der Kopfzeile gibt Aufschluss über die Art des Inhaltes der Anfrage. Vapor nutzt die Angabe um den richtigen En- und Decoder zum Binden zu finden.
+
+Im Beispiel können wir erkennen, dass es sich bei dem Inhalt um JSON-Daten handelt.
 
 ## Binden des Inhalts
 
-Zum Binden des Inhalts müssen wir zuerst eine Struktur vom Typ *Codable* anlegen. Indem wir das Objekt mit dem Vapor Protokoll *Content* versehen, werden neben den Bindungsmethoden (Encode und Decode), zudem der Typ *Codable* mitvererbt.
+Zum Binden des Inhalts müssen wir zuerst eine Struktur vom Typ *Codable* anlegen. Indem wir das Objekt mit Vapor's Protokoll *Content* versehen, werden neben den eigentlichen Bindungsmethoden, der Typ mitvererbt.
 
 ```swift
 struct Greeting: Content {
@@ -26,7 +28,7 @@ struct Greeting: Content {
 }
 ```
 
-Über die Eigenschaft *content* können wir dann anschließend die Methode *decode(_:)* verwenden, um den Inhalt an das soeben von uns erstellte Objekt zu binden.
+Über die Eigenschaft *content* können wir anschließend die Methode *decode(_:)* verwenden.
 
 ```swift
 app.post("greeting") { req in 
@@ -52,7 +54,7 @@ Folgende Medien werden von Vapor standardmäßig unterstützt:
 |Plaintext       |text/plain                       |`.plainText`     |
 |HTML            |text/html                        |`.html`          |
 
-_Codable_ unterstützt leider nicht alle Medien. Beispielweise unterstützt JSON keinen Top-Level-Fragments oder Plaintext unterstützt beispielweise keinen nested-data.
+_Codable_ unterstützt leider nicht alle Medien. 
 
 ## Binden der Zeichenfolge
 
@@ -61,7 +63,9 @@ GET /hello?name=Vapor HTTP/1.1
 content-length: 0
 ```
 
-Ähnlich wie beim Binden des Inhalts müssen wir eine Struktur anlegen und es mit dem Protokoll *Content* versehen. Zusätzlich müssen wir die Eigenschaft *name* als optional deklarieren, da Parameter in einer Zeichenfolge immer optional sind.
+Ähnlich wie beim Binden des Inhalts müssen wir für das Binden der Zeichenfolge eine Struktur anlegen und es mit dem Protokoll *Content* versehen. 
+
+Zusätzlich müssen wir die Eigenschaft *name* als optional deklarieren, da Parameter in einer Zeichenfolge immer optional sind.
 
 ```swift
 struct Hello: Content {
@@ -76,7 +80,7 @@ app.get("hello") { req -> String in
 }
 ```
 
-Zudem kannst du mit Vapor Einzelwerten aus der Zeichenabfolge ziehen:
+Zudem kannst du mit Vapor Einzelwerte aus der Zeichenabfolge ziehen:
 
 ```swift
 app.get("hello") { req -> String in 
@@ -87,21 +91,12 @@ app.get("hello") { req -> String in
 
 ## Hooks
 
-Vapor ruft automatisch die Methoden _beforeEncode_ und _afterDecode_ eines Objectes von Typ _Content_ auf. Die Methoden sind zwar standardmäßig leer, aber können für benutzerdefinierte Abfolgen überschrieben werden.
+Vapor ruft automatisch die beiden Methoden _beforeEncode_ und _afterDecode_ eines Objektes von Typ _Content_ auf. Die Methoden sind funktionslos und können im Bedarfsfall überschrieben werden.
 
 ```swift
-// Runs after this Content is decoded. `mutating` is only required for structs, not classes.
-mutating func afterDecode() throws {
-    // Name may not be passed in, but if it is, then it can't be an empty string.
-    self.name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines)
-    if let name = self.name, name.isEmpty {
-        throw Abort(.badRequest, reason: "Name must not be empty.")
-    }
-}
-
 // Runs before this Content is encoded. `mutating` is only required for structs, not classes.
 mutating func beforeEncode() throws {
-    // Have to *always* pass a name back, and it can't be an empty string.
+
     guard 
         let name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines), 
         !name.isEmpty 
@@ -110,9 +105,18 @@ mutating func beforeEncode() throws {
     }
     self.name = name
 }
+
+// Runs after this Content is decoded. `mutating` is only required for structs, not classes.
+mutating func afterDecode() throws {
+
+    self.name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines)
+    if let name = self.name, name.isEmpty {
+        throw Abort(.badRequest, reason: "Name must not be empty.")
+    }
+}
 ```
 
-## Override Defaults
+## Standard überschreiben
 
 Der Standardencoder und -decoder von Vapor kann überschrieben werden.
 
@@ -131,7 +135,7 @@ ContentConfiguration.global.use(encoder: encoder, for: .json)
 
 Mutating `ContentConfiguration` is usually done in `configure.swift`. 
 
-### Manuelle Bindung
+### Situationsabhängig
 
 Calls to encoding and decoding methods like `req.content.decode` support passing in custom coders for one-off usages.
 
@@ -144,13 +148,13 @@ decoder.dateDecodingStrategy = .secondsSince1970
 let hello = try req.content.decode(Hello.self, using: decoder)
 ```
 
-## Benutzerdefinierte Bindung
+## Benutzerdefinierte Bindungung
 
-Anwendungen- und Drittanwendungen können neben den Standard, weitere Medientypen hinzufügen, indem benutzerdefinierte Coder angelegt werden.
+Anwendungen- und Drittanwendungen können neben den Standardmedien, weitere Medien hinzufügen.
 
-### Inhalt
+### für Inhalt
 
-Vapor specifies two protocols for coders capable of handling content in HTTP message bodies: `ContentDecoder` and `ContentEncoder`.
+Vapor hat die folgenden zwei Protokolle zum Binden von Inhalt vordefiniert.
 
 ```swift
 public protocol ContentEncoder {
@@ -164,11 +168,11 @@ public protocol ContentDecoder {
 }
 ```
 
-Conforming to these protocols allows your custom coders to be registered to `ContentConfiguration` as specified above.
+Indem wir einen unseren eigenen Kodierer mit diese beiden Protokolle versehen, kann er von der ContentConfiguration entgegengenommen werden.
 
-### Zeichenfolge
+### für Zeichenfolge
 
-Vapor specifies two protocols for coders capable of handling content in URL query strings: `URLQueryDecoder` and `URLQueryEncoder`.
+Für das Binden einer Zeichenabfolge hat Vapor die folgenden zwei Protokolle vordefiniert.
 
 ```swift
 public protocol URLQueryDecoder {
@@ -181,8 +185,6 @@ public protocol URLQueryEncoder {
         where E: Encodable
 }
 ```
-
-Conforming to these protocols allows your custom coders to be registered to `ContentConfiguration` for handling URL query strings using the `use(urlEncoder:)` and `use(urlDecoder:)` methods.
 
 ### Custom `ResponseEncodable`
 
