@@ -1,6 +1,6 @@
-# Content
+# Modelbindung
 
-Mit Content können wir den Inhalt oder die Zeichenfolge einer Serveranfrage an einen vordefiniertes Datenobjekt binden.
+Mit der Modelbindung können wir den Inhalt oder die Zeichenfolge einer Serveranfrage an einen vordefiniertes Datenobjekt binden.
 
 ## Grundlagen
 
@@ -14,7 +14,7 @@ content-length: 18
 {"hello": "world"}
 ```
 
-Die Angabe _content-type_ in der Kopfzeile gibt Aufschluss über die Art des Inhaltes der Anfrage. Vapor nutzt die Angabe um den richtigen En- und Decoder zum Binden zu finden.
+Die Angabe _content-type_ in der Kopfzeile gibt Aufschluss über die Art des Inhaltes der Anfrage. Vapor nutzt die Angabe um den richtigen Kodierer zum Binden zu finden.
 
 Im Beispiel können wir erkennen, dass es sich bei dem Inhalt um JSON-Daten handelt.
 
@@ -38,9 +38,9 @@ app.post("greeting") { req in
 }
 ```
 
-Die Methode *decode(_:)* benutzt die entsprechende Angabe in der Serveranfrage um den passenden *Decoder* aufzurufen.
+Die Methode *decode(_:)* benutzt die entsprechende Angabe in der Serveranfrage um den passenden Kodierer aufzurufen.
 
-Sollte kein passender *Decoder* gefunden werden oder die Anfrage keine Angaben zum Content-Type besitzen, wird der Fehler 415 (415 Unsupported Media Type) zurückgeliefert.
+Sollte kein passender Kodierer gefunden werden oder die Anfrage keine Angaben zum Inhalt besitzen, wird der Fehler 415 (415 Unsupported Media Type) zurückgeliefert.
 
 ### Unterstützte Medien
 
@@ -80,7 +80,7 @@ app.get("hello") { req -> String in
 }
 ```
 
-Zudem kannst du mit Vapor Einzelwerte aus der Zeichenabfolge ziehen:
+Zudem können wir auch Einzelwerte aus der Zeichenabfolge abrufen:
 
 ```swift
 app.get("hello") { req -> String in 
@@ -91,7 +91,9 @@ app.get("hello") { req -> String in
 
 ## Hooks
 
-Vapor ruft automatisch die beiden Methoden _beforeEncode_ und _afterDecode_ eines Objektes von Typ _Content_ auf. Die Methoden sind funktionslos und können im Bedarfsfall überschrieben werden.
+Vapor ruft automatisch jeweils die beiden Methoden _beforeEncode_ und _afterDecode_ eines Objektes von Typ _Content_ auf. 
+
+Die Methoden sind standardmäßig funktionslos, können aber im Bedarfsfall überschrieben werden.
 
 ```swift
 // Runs before this Content is encoded. `mutating` is only required for structs, not classes.
@@ -118,11 +120,11 @@ mutating func afterDecode() throws {
 
 ## Standard überschreiben
 
-Der Standardencoder und -decoder von Vapor kann überschrieben werden.
+Vapor's Standardkodierer kann global oder situationsabhängig überschrieben werden.
 
 ### Global
 
-`ContentConfiguration.global` lets you change the encoders and decoders Vapor uses by default. This is useful for changing how your entire application parses and serializes data.
+Für eine globale Verwendung eines eigenen Kodierer müssen wir ihn der _ContentConfiguration.global_ mitgeben.
 
 ```swift
 // create a new JSON encoder that uses unix-timestamp dates
@@ -133,11 +135,9 @@ encoder.dateEncodingStrategy = .secondsSince1970
 ContentConfiguration.global.use(encoder: encoder, for: .json)
 ```
 
-Mutating `ContentConfiguration` is usually done in `configure.swift`. 
-
 ### Situationsabhängig
 
-Calls to encoding and decoding methods like `req.content.decode` support passing in custom coders for one-off usages.
+Wir können aber auch den Bindungsmethoden abhängig von der Situation einen Kodierer mitgeben.
 
 ```swift
 // create a new JSON decoder that uses unix-timestamp dates
@@ -148,11 +148,9 @@ decoder.dateDecodingStrategy = .secondsSince1970
 let hello = try req.content.decode(Hello.self, using: decoder)
 ```
 
-## Benutzerdefinierte Bindungung
+## Benutzerdefinierte Kodierer
 
-Anwendungen- und Drittanwendungen können neben den Standardmedien, weitere Medien hinzufügen.
-
-### für Inhalt
+### Kodierer für Inhalt
 
 Vapor hat die folgenden zwei Protokolle zum Binden von Inhalt vordefiniert.
 
@@ -168,9 +166,9 @@ public protocol ContentDecoder {
 }
 ```
 
-Indem wir einen unseren eigenen Kodierer mit diese beiden Protokolle versehen, kann er von der ContentConfiguration entgegengenommen werden.
+Indem wir einen unseren eigenen Kodierer mit diese beiden Protokolle versehen, kann er von _ContentConfiguration_ entgegengenommen werden.
 
-### für Zeichenfolge
+### Kodierer für Zeichenfolge
 
 Für das Binden einer Zeichenabfolge hat Vapor die folgenden zwei Protokolle vordefiniert.
 
@@ -186,7 +184,7 @@ public protocol URLQueryEncoder {
 }
 ```
 
-### Custom `ResponseEncodable`
+### `ResponseEncodable`
 
 Another approach involves implementing `ResponseEncodable` on your types. Consider this trivial `HTML` wrapper type:
 
