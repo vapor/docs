@@ -30,7 +30,7 @@ Los usuarios de Fedora pueden simplemente utilizar el siguiente comando para ins
 sudo dnf install swift-lang
 ```
 
-Si utilizas Fedora 30, deberás agregar EPEL 8 para obtener Swift 5.2 o versiones más nuevas.
+Si utilizas Fedora 30, deberás agregar EPEL 8 para obtener Swift 5.6 o versiones más nuevas.
 
 ## Docker
 
