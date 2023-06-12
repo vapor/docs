@@ -1,6 +1,6 @@
 # Routing
 
-Routing es el proceso de encontrar el nombre apropiado de controlador para una petición entrante. En el núcleo del routing de Vapor se encuentra el router de tres nodos de alto rendimiento de [RoutingKit](https://github.com/vapor/routing-kit).
+El enrutamiento (o routing) consiste en encontrar el controlador apropiado para una petición entrante. El núcleo del routing de Vapor lo compone el router de tres nodos de alto rendimiento de [RoutingKit](https://github.com/vapor/routing-kit).
 
 ## Presentación 
 
@@ -30,9 +30,9 @@ La primera parte de la petición es el método de HTTP. `GET` es el método más
 |`PATCH`|Actualizar|
 |`DELETE`|Borrar|
 
-### petición de Ruta (Path)
+### Ruta de Petición (Path)
 
-Justo después del método HTTP está la URI de la petición. Consiste en una ruta que comienza en `/` y una cadena de consulta opcional luego de `?`. El método HTTP y la ruta son los que usa Vapor para las peticiones de rutas.
+Justo después del método HTTP está la URI (identificador de recursos uniforme) de la petición. Consiste en una ruta que comienza en `/` y una cadena de consulta opcional detrás de `?`. El método HTTP y la ruta son los que usa Vapor para enrutar las peticiones.
 
 Después de la URI está la versión HTTP seguida de cero o más encabezados (headers) y finalmente el cuerpo de la respuesta (body). Dado que se trata de una petición `GET`, no hay cuerpo.
 
@@ -137,7 +137,7 @@ app.on(.OPTIONS, "foo", "bar", "baz") { req in
 
 ### Componente de Ruta
 
-Cada método de registro de ruta acepta una lista variádica de `PathComponent`. Este tipo es expresable por un string literal y posee cuatro casos:
+Cada método de registro de ruta acepta una lista variádica de `PathComponent`. Este tipo es expresable por un string literal y consta de cuatro casos:
 
 - Constante (`foo`)
 - Parámetro (`:foo`)
@@ -146,7 +146,7 @@ Cada método de registro de ruta acepta una lista variádica de `PathComponent`.
 
 #### Constante
 
-Este es un componente de ruta estática. Solo va a permitir peticiones con una cadena que coincida exactamente en esta posición.
+Este es un componente de ruta estático. Solo permitirá peticiones con una cadena que coincida exactamente en valor y posición con la especificada en la ruta.
 
 ```swift
 // responde a GET /foo/bar/baz
@@ -157,7 +157,7 @@ app.get("foo", "bar", "baz") { req in
 
 #### Parámetro
 
-Este es un componente de ruta dinámica. Se va a permitir que cualquier cadena esté en esta posición. Un componente de ruta de parámetro se especifica con el prefijo `:`. La cadena que sigue a `:` se usará como el nombre del parámetro. Puedes usar su nombre para obtener más tarde el valor de los parámetros de la petición.
+Este es un componente de ruta dinámico. Se permitirá cualquier cadena en esta posición. Un componente de ruta de parámetro se especifica con el prefijo `:`. La cadena que sigue a `:` será el nombre del parámetro, el cual podrás usar para obtener su valor en la petición.
 
 ```swift
 // responde a GET /foo/bar/baz
@@ -183,7 +183,7 @@ app.get("foo", "*", "baz") { req in
 
 #### Comodín
 
-Este es un componente de ruta dinámico que coincide con uno o más componentes. Se especifica usando simplemente `**`. Cualqueir cadena en esta posición o en posiciones posteriores coincidirá con la petición.
+Este es un componente de ruta dinámico que coincide con uno o más componentes. Se especifica usando simplemente `**`. Cualquier cadena en esta posición o en posiciones posteriores coincidirá con la petición.
 
 ```swift
 // responde a GET /foo/bar
@@ -244,14 +244,14 @@ app.get("hello", "**") { req -> String in
 
 Al registrar una ruta utilizando el método `on`, puedes especificar cómo se debe manejar la petición de Body (el cuerpo de la respuesta). Por defecto, los cuerpos de las peticiones se recopilan en memoria antes de llamar a su controlador correspondiente. Esto es útil ya que permite que la decodificación del contenido sea síncrona aunque su aplicación lea las peticiones entrantes de forma asíncrona.
 
-Por defecto. Vapor limitará la recopilación de la transmición del Body a un tamaño de 16KB. Puedes configurar esto usando `app.routes`.
+Por defecto. Vapor limitará la recopilación de la transmisión del Body a un tamaño de 16KB. Puedes configurar esto usando `app.routes`.
 
 ```swift
 // Aumenta el límite de recopilación de la transmisión de Body hasta 500kb
 app.routes.defaultMaxBodySize = "500kb"
 ```
 
-Si una transmisión de Body que se está recopilando excede el límite configurado, se hará un throw de un error `413 Payload Too Large`.
+Si una transmisión de Body que se está recopilando excede el límite configurado, se lanzará un error `413 Payload Too Large`.
 
 Para configurar la estrategia de recopilación de Body en una ruta individual, usa el parámetro `body`.
 
@@ -262,7 +262,7 @@ app.on(.POST, "listings", body: .collect(maxSize: "1mb")) { req in
 }
 ```
 
-Si se pasa el `maxSize` al realizar el `collect` (la recopilación), se sobreescribirá el valor predeterminado de la aplicación para esa ruta. Para utilizar el valor por defecto de la aplicación, omita el argumento `maxSize`.
+Si se proporciona el `maxSize` (tamaño máximo) al realizar el `collect` (la recopilación), se sobrescribirá el valor predeterminado de la aplicación para esa ruta. Para utilizar el valor por defecto de la aplicación, omita el argumento `maxSize`.
 
 Para peticiones grandes, como subida de archivos, recopilar el Body en un búfer puede sobrecargar la memoria del sistema. Para evitar que se recopile el Body de la petición, usa la estrategia `stream`.
 
@@ -312,7 +312,7 @@ $ swift run App routes
 
 ### Metadata
 
-Todos los registro de métodos de rutas retornan la ruta creada (`Route`). Esto te permite agregar metadaatos al diccionario `userInfo` de la ruta. Hay algunos métodos predeterminados disponibles, como agregar una descripción a la ruta.
+Todos los registro de métodos de rutas retornan la ruta creada (`Route`). Esto te permite agregar metadatos al diccionario `userInfo` de la ruta. Hay algunos métodos predeterminados disponibles, como agregar una descripción a la ruta.
 
 ```swift
 app.get("hello", ":name") { req in
@@ -324,7 +324,7 @@ app.get("hello", ":name") { req in
 
 La agrupación de rutas permite crear un conjunto de rutas con un prefijo o un middleware específico. La agrupación admite una sintaxis basada en builders y closures.
 
-Todos los métodos de agrupación devuelven un `RouteBuilder`, lo que significa que se pueden mezclar, combinar y anidar infinitamente sus grupos con otros métodos de creación de rutas.
+Todos los métodos de agrupación devuelven un `RouteBuilder`, permitiendo mezclar, combinar y anidar infinitamente sus grupos con otros métodos de creación de rutas.
 
 ### Prefijo de Ruta
 
@@ -347,7 +347,7 @@ users.get(":id") { req in
 }
 ```
 
-Cualquier componente de ruta que puedas pasar como `get` o `post` puede pasarse dentro de un `grouped`. También hay una sintaxis alternativa, basada en sintaxis de closure.
+Cualquier componente de ruta que puedas pasar como `get` o `post` puede pasarse dentro de un `grouped`. También hay una sintaxis alternativa basada en closures.
 
 ```swift
 app.group("users") { users in
