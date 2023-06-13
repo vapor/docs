@@ -306,7 +306,7 @@ plugins:
           Install: Instalación
           Getting Started: Comenzando
           Hello, world: Hola, mundo
-          Folder Structure: Estructura de carpetas
+          Folder Structure: Estructura de Carpetas
           SwiftPM: SwiftPM
           Xcode: Xcode
           Basics: Fundamentos
@@ -347,7 +347,7 @@ plugins:
           Passwords: Contraseñas
           JWT: JWT
           Contributing: Colaborar
-          Contributing Guide: Guía pra colaborar
+          Contributing Guide: Guía para Colaborar
           Version (4.0): Versión (4.0)
           Legacy Docs: Documentación Legacy
           Upgrading: Actualizar
