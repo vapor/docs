@@ -43,7 +43,7 @@ final class MyTests: XCTestCase {
 
 ## 可测试的应用程序
 
-使用 `.testing` 环境初始化一个 `Application` 实例。你必须在此应用程序初始化之前，调用 `app.shutdown()`。
+使用 `.testing` 环境初始化一个 `Application` 的实例。在此应用程序被销毁之前，你必须调用 `app.shutdown()`。关闭操作是为了释放应用程序所占用的资源。特别重要的是释放应用程序在启动时请求的线程。如果你在每个单元测试后没有调用 `shutdown()` 方法，可能会在为 `Application` 的新实例分配线程时导致测试套件崩溃，出现先决条件失败。
 
 ```swift
 let app = Application(.testing)
