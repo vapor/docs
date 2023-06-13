@@ -203,6 +203,7 @@ plugins:
           Deploy: Bereitstellung
           Contributing: Mitwirken
           Contributing Guide: Leitfaden für Beiträge
+          Content: Modelbindung
         zh:
           Welcome: 序言
           Install: 安装
