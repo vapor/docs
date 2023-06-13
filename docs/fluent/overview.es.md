@@ -8,7 +8,7 @@ Al crear un nuevo proyecto, habiendo utilizando el comando `vapor new`, responde
 
 ### Proyecto Existente
 
-Si ya se dispone de un proyecto al que se quiere agregar Fluent, se deberán de agregar dos dependencias al paquete [package](../getting-started/spm.es.md):
+Si ya se dispone de un proyecto al que se quiere agregar Fluent, se deberán de agregar dos dependencias al paquete [package](../getting-started/spm.md):
 
 - [vapor/fluent](https://github.com/vapor/fluent)@4.0.0
 - Uno (o más) controladores de Fluent que se deseen seleccionar
@@ -238,7 +238,7 @@ var id: UUID?
 
 Este campo debe usar el property wrapper `@ID`. Fluent recomienda usar `UUID` y el campo especial `.id` ya que esto es compatible con todos los controladores de Fluent.
 
-Si se desea utilizar una clave o tipo de ID personalizado, se debe de usar la sobrecarga de [`@ID(custom:)`](model.es.md#custom-identifier).
+Si se desea utilizar una clave o tipo de ID personalizado, se debe de usar la sobrecarga de [`@ID(custom:)`](model.md#custom-identifier).
 
 ### Campos
 
@@ -364,7 +364,7 @@ app.post("galaxies") { req -> EventLoopFuture<Galaxy> in
 ```
 
 !!! seealso Ver también
-    Consulta [Content &rarr; Overview](../basics/content.es.md) para obtener más información sobre la decodificación de los cuerpos de las solicitudes.
+    Consulta [Content &rarr; Overview](../basics/content.md) para obtener más información sobre la decodificación de los cuerpos de las solicitudes.
 
 Una vez se tiene una instancia del modelo, llamar a `create(on:)` guarda el modelo en la base de datos. Esto devuelve un `EventLoopFuture<Void>` que indica que el guardado se ha completado. Una vez que se completa el guardado, devuelve el modelo recién creado utilizando `map`.
 
