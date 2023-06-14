@@ -162,7 +162,7 @@ app.databases.use(.mysql(
 
 MongoDB es una base de datos popular NoSQL y sin esquemas diseñada para los programadores. El controlador es compatible con todos los proveedores de alojamiento en la nube y con las instalaciones en un hospedaje propio a partir de la versión 3.4 y en adelante.
 
-!!! note Nota
+!!! note "Nota"
     Este controlador está impulsado por un cliente de MongoDB creado y mantenido por la comunidad llamado [MongoKitten](https://github.com/OpenKitten/MongoKitten). MongoDB mantiene un cliente oficial, [mongo-swift-driver](https://github.com/mongodb/mongo-swift-driver), junto con una integración de Vapor, mongodb-vapor.
 
 Para usar MongoDB, se deben de agregar las siguientes dependencias al paquete.
@@ -216,7 +216,7 @@ final class Galaxy: Model {
 
 Para crear un nuevo modelo, crea una nueva clase que conforme a `Model`.
 
-!!! tip Consejo
+!!! tip "Consejo"
     Se recomienda marcar las clases de modelos como `final` para mejorar el rendimiento y simplificar los requisitos de conformidad.
 
 El primer requisito del protocolo `Model` es la cadena estática `schema`.
@@ -363,7 +363,7 @@ app.post("galaxies") { req -> EventLoopFuture<Galaxy> in
 }
 ```
 
-!!! seealso Ver también
+!!! seealso "Ver también"
     Consulta [Content &rarr; Overview](../basics/content.md) para obtener más información sobre la decodificación de los cuerpos de las solicitudes.
 
 Una vez se tiene una instancia del modelo, llamar a `create(on:)` guarda el modelo en la base de datos. Esto devuelve un `EventLoopFuture<Void>` que indica que el guardado se ha completado. Una vez que se completa el guardado, devuelve el modelo recién creado utilizando `map`.
@@ -455,7 +455,7 @@ self.$galaxy.id = galaxyID
 
 Al anteponer el nombre de la propiedad padre con `$`, se accede al envoltorio de propiedad subyacente. Esto es necesario para acceder al `@Field` interno que almacena el valor real del identificador.
 
-!!! seealso Ver También
+!!! seealso "Ver También"
     Consultar la propuesta de Evolución de Swift sobre envoltorios de propiedad, para obtener más información: [[SE-0258] Property Wrappers](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md)
 
 A continuación, crear una migración para preparar la base de datos para manejar las `Star`.
