@@ -188,7 +188,7 @@ try app.databases.use(.mongo(connectionString: "<connection string>"), as: .mong
 
 ## Modelos
 
-Los modelos representan estructuras de datos fijas en la base de datos, como tablas o colecciones. Los modelos tienen uno o más campos que almacenan valores codificables. Todos los modelos también tienen un identificador único. Los Property Wrappers se utilizan para denotar identificadores y campos, así como mapeos más complejos mencionados posteriormente. Observar el siguiente modelo de ejemplo que representa una galaxia.
+Los modelos representan estructuras de datos fijas en la base de datos, como tablas o colecciones. Los modelos tienen uno o más campos que almacenan valores codificables. Todos los modelos también tienen un identificador único. Los Property Wrappers se utilizan para denotar identificadores y campos, así como mapeos más complejos mencionados posteriormente. El modelo de ejemplo a continuación representa una galaxia.
 
 ```swift
 final class Galaxy: Model {
@@ -270,7 +270,7 @@ El uso de inicializadores de conveniencia es especialmente útil si se agregan n
 
 ## Migraciones
 
-Si las base de datos utiliza esquemas predefinidos, como las bases de datos SQL, se necesita una migración para preparar la base de datos para el modelo. Las migraciones también son útiles para poblar las bases de datos con datos. Para crear una migración, definir un nuevo tipo que se ajuste al protocolo `Migration` o `AsyncMigration`. Comprobar la siguiente migración para el modelo de Galaxia previamente definido.
+Si las base de datos utiliza esquemas predefinidos, como las bases de datos SQL, se necesita una migración para preparar la base de datos para el modelo. Las migraciones también son útiles para poblar las bases de datos con datos. Para crear una migración, define un nuevo tipo que se ajuste al protocolo `Migration` o `AsyncMigration`. Esta sería la siguiente migración para el modelo de Galaxia previamente definido.
 
 ```swift
 struct CreateGalaxy: AsyncMigration {
@@ -313,7 +313,7 @@ app.migrations.add(CreateGalaxy())
 
 ### Migrar
 
-Para ejecutar migraciones, ejecutar `swift run App migrate` desde la línea de comandos o agregar `migrate` como argumento al esquema de la aplicación en Xcode.
+Para realizar migraciones, ejecuta `swift run App migrate` desde la línea de comandos o agrega `migrate` como argumento al esquema de la aplicación en Xcode.
 
 ```
 $ swift run App migrate
