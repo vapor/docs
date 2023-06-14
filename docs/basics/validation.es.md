@@ -62,7 +62,7 @@ app.post("users") { req -> CreateUser in
 
 ### Añadiendo Validaciones
 
-El primer caso es conformar el tipo que estás decodificando, en este caso `CreateUser`, a `Validatable`. Esto puede hacerse en una extensión.
+El primer paso es conformar el tipo que estás decodificando, en este caso `CreateUser`, a `Validatable`. Esto puede hacerse en una extensión.
 
 ```swift
 extension CreateUser: Validatable {
