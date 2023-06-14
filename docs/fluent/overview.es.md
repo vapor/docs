@@ -1,6 +1,6 @@
 # Fluent
 
-Fluent es un framework [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) para Swift. Aprovecha el sólido sistema de tipado de Swift para proporcionar una interfaz fácil de usar para el manejo de bases de datos. El uso de Fluent se centra en la creación de tipos de modelo que representan estrucuras de datos en la base de datos. Estos modelos se utilizan para realizar operaciones de creación, lectura, actualización y eliminación en lugar de escribir consultas directas a la base de datos.
+Fluent es un framework [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) para Swift. Aprovecha el sólido sistema de tipado de Swift para proporcionar una interfaz fácil de usar para el manejo de bases de datos. El uso de Fluent se centra en la creación de tipos de modelo que representan estructuras de datos en la base de datos. Estos modelos se utilizan para realizar operaciones de creación, lectura, actualización y eliminación en lugar de escribir consultas directas a la base de datos.
 
 ## Configuración
 
@@ -26,7 +26,7 @@ Si ya se dispone de un proyecto al que se quiere agregar Fluent, se deberán de 
 ]),
 ```
 
-Una vez que se agregan los paquetes como dependencias, las bases de datos se configuran usando `app.databases` en  `configure.swift`.
+Una vez agregados los paquetes como dependencias, las bases de datos se configuran usando `app.databases` en  `configure.swift`.
 
 ```swift
 import Fluent
@@ -55,7 +55,7 @@ Para usar PostgreSQL, agregar las siguientes dependencias al paquete.
 .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver")
 ```
 
-Una vez que se hayan agregado las dependencias, configurar la base de datos con Fluent utilizando `app.databases.use` en `configure.swift`.
+Una vez agregadas las dependencias, configura la base de datos con Fluent utilizando `app.databases.use` en `configure.swift`.
 
 ```swift
 import Fluent
@@ -84,7 +84,7 @@ Para usar SQLite, se deben de agregar las siguientes dependencias al paquete.
 .product(name: "FluentSQLiteDriver", package: "fluent-sqlite-driver")
 ```
 
-Una vez que se hayan agregado las dependencias, configurar la base de datos con Fluent utilizando `app.databases.use` en `configure.swift`.
+Una vez agregadas las dependencias, configura la base de datos con Fluent utilizando `app.databases.use` en `configure.swift`.
 
 ```swift
 import Fluent
@@ -93,7 +93,7 @@ import FluentSQLiteDriver
 app.databases.use(.sqlite(.file("db.sqlite")), as: .sqlite)
 ```
 
-También es posible configurar SQLite, de forma que el almacenamiento de la base de datos tan solo se realiza en memoria.
+También es posible configurar SQLite para que el almacenamiento de la base de datos tan solo se realice en memoria.
 
 ```swift
 app.databases.use(.sqlite(.memory), as: .sqlite)
@@ -331,7 +331,7 @@ Ahora que el modelo ha sido creado exitosamente y migrado a la base de datos, es
 
 ### All
 
-Observar la siguiente ruta que devolverá una matriz de todas las galaxias en la base de datos.
+La siguiente ruta devolverá una colección de todas las galaxias en la base de datos.
 
 ```swift
 app.get("galaxies") { req async throws in
@@ -349,7 +349,7 @@ final class Galaxy: Model, Content {
 
 `Galaxy.query` se utiliza para crear un nuevo generador de consultas para el modelo.  `req.db` es una referencia a la base de datos predeterminada de la aplicación. Por último, `all()` devuelve todos los modelos almacenados en la base de datos.
 
-Si tras compilar y ejecutar el proyecto, se realiza una solicitud de tipo `GET /galaxies`, se devolverá una matriz vacía. Por lo tnato, se tendrá que agregar una ruta para crear una nueva galaxia.
+Si tras compilar y ejecutar el proyecto, se realiza una solicitud de tipo `GET /galaxies`, se devolverá una colección vacía. Por lo tanto, se tendrá que agregar una ruta para crear una nueva galaxia.
 
 ### Creación
 
@@ -378,7 +378,7 @@ app.post("galaxies") { req async throws -> Galaxy in
 }
 ```
 
-En este caso, la versión async no devuelve nada, pero devolverá una vez que se complete el guardado.
+En este caso, la operación async no tiene valor de retorno. La instancia se devolverá una vez que se complete el guardado.
 
 Compilar, ejecutar el proyecto y envíar la siguiente solicitud.
 
@@ -401,7 +401,7 @@ Devolverá el modelo creado con un identificador como respuesta.
 }
 ```
 
-Ahora, si se consulta otra vez `GET /galaxies`, se debería de ver la galaxia recién creada devuelta en la matriz.
+Ahora, si se consulta otra vez `GET /galaxies`, se debería de ver la galaxia recién creada devuelta en la colección.
 
 ## Relaciones
 
@@ -520,7 +520,7 @@ content-type: application/json
 }
 ```
 
-Deberíade devolverse la creación de la nueva estrella con un identificador único.
+Debería devolver la creación de la nueva estrella con un identificador único.
 
 ```json
 {
