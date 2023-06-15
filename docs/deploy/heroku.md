@@ -13,7 +13,7 @@ Make sure that you've installed the heroku cli tool.
 ### HomeBrew
 
 ```bash
-brew install heroku/brew/heroku
+brew tap heroku/brew && brew install heroku
 ```
 
 ### Other Install Options
@@ -52,7 +52,7 @@ git init
 
 #### Master
 
-By default, Heroku deploys the **master** branch. Make sure all changes are checked into this branch before pushing.
+You should decide for one branch and stick to that for deploying to Heroku, like the **main** or **master** branch. Make sure all changes are checked into this branch before pushing.
 
 Check your current branch with
 
@@ -63,7 +63,7 @@ git branch
 The asterisk indicates current branch.
 
 ```bash
-* master
+* main
   commander
   other-branches
 ```
@@ -72,10 +72,10 @@ The asterisk indicates current branch.
     If you don’t see any output and you’ve just performed `git init`. You’ll need to commit your code first then you’ll see output from the `git branch` command.
 
 
-If you’re _not_ currently on **master**, switch there by entering:
+If you’re _not_ currently on the right branch, switch there by entering (for **main**):
 
 ```bash
-git checkout master
+git checkout main
 ```
 
 #### Commit changes
@@ -111,13 +111,13 @@ heroku buildpacks:set vapor/vapor
 
 ### Swift version file
 
-The buildpack we added looks for a **.swift-version** file to know which version of swift to use. (replace 5.2.1 with whatever version your project requires.)
+The buildpack we added looks for a **.swift-version** file to know which version of swift to use. (replace 5.8.1 with whatever version your project requires.)
 
 ```bash
-echo "5.2.1" > .swift-version
+echo "5.8.1" > .swift-version
 ```
 
-This creates **.swift-version** with `5.2.1` as its contents.
+This creates **.swift-version** with `5.8.1` as its contents.
 
 
 ### Procfile
@@ -151,12 +151,12 @@ git commit -m "adding heroku build files"
 You're ready to deploy, run this from the terminal. It may take a while to build, this is normal.
 
 ```none
-git push heroku master
+git push heroku main
 ```
 
 ### Scale Up
 
-Once you've built successfully, you need to add at least one server, one web is free and you can get it with the following:
+Once you've built successfully, you need to add at least one server. Prices start at $5/month for the Eco plan (see [pricing](https://www.heroku.com/pricing#containers)), make sure you have payment configured on Heroku. Then for a single web worker:
 
 ```bash
 heroku ps:scale web=1
@@ -164,7 +164,7 @@ heroku ps:scale web=1
 
 ### Continued Deployment
 
-Any time you want to update, just get the latest changes into master and push to heroku and it will redeploy
+Any time you want to update, just get the latest changes into main and push to heroku and it will redeploy
 
 ## Postgres
 
@@ -172,9 +172,9 @@ Any time you want to update, just get the latest changes into master and push to
 
 Visit your application at dashboard.heroku.com and go to the **Add-ons** section.
 
-From here enter `postgress` and you'll see an option for `Heroku Postgres`. Select it.
+From here enter `postgres` and you'll see an option for `Heroku Postgres`. Select it.
 
-Choose the hobby dev free plan, and provision. Heroku will do the rest.
+Choose the Eco plan for $5/month (see [pricing](https://www.heroku.com/pricing#data-services)), and provision. Heroku will do the rest.
 
 Once you finish, you’ll see the database appears under the **Resources** tab.
 
