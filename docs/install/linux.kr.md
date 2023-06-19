@@ -6,9 +6,8 @@ Vapor를 사용하려면 Swift 5.6 이상이 필요합니다. 리눅스에 Swift
 
 Vapor는 Swift 5.6 이상을 지원하는 Linux 배포판의 동일한 버전을 지원합니다.
 
-!!! 주의
-
-아래에 나열된 지원되는 버전은 언제든지 최신 정보가 아닐 수 있습니다. 공식적으로 지원되는 운영 체제는 [Swift Releases](https://swift.org/download/#releases) 페이지에서 확인할 수 있습니다.
+!!! 노트
+    아래에 나열된 지원되는 버전은 언제든지 최신 정보가 아닐 수 있습니다. 공식적으로 지원되는 운영 체제는 [Swift Releases](https://swift.org/download/#releases) 페이지에서 확인할 수 있습니다.
 
 |배포판|버전|Swift 버전|
 |-|-|-|
