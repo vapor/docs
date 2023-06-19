@@ -360,16 +360,18 @@ plugins:
           Welcome: 환영합니다
           Install: 설치
           Getting Started: 시작하기
-          Hello, world: Hello, world
           Folder Structure: 폴더 구조
           Basics: 기본 사항
           Routing: 라우팅
-          Content: 콘텐츠
+          Content: 컨텐츠
+          Client: 클라이언트
           Validation: 유효성 검사
           Async: 비동기 처리
           Logging: 로깅
           Environment: 환경 설정
+          Errors: 에러
           Overview: 개요
+          Model: 모델
           Relations: 관계
           Migrations: 마이그레이션
           Query: 쿼리
@@ -380,6 +382,7 @@ plugins:
           Files: 파일
           Commands: 명령어
           Queues: 대기열
+          WebSockets: 웹소켓
           Sessions: 세션
           Services: 서비스
           Security: 보안
