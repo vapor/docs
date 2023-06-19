@@ -102,6 +102,10 @@ plugins:
           name: Español
           site_name: Documentación de Vapor
           build: true
+        kr:
+          name: 한국어
+          site_name: Vapor 문서
+          build: true
       # Add navigation translations here
       nav_translations:
         nl:
@@ -352,6 +356,43 @@ plugins:
           Version (4.0): Versión (4.0)
           Legacy Docs: Documentación Legacy
           Upgrading: Actualizar
+        kr:
+          Welcome: 환영합니다
+          Install: 설치
+          Getting Started: 시작하기
+          Hello, world: Hello, world
+          Folder Structure: 폴더 구조
+          Basics: 기본 사항
+          Routing: 라우팅
+          Content: 콘텐츠
+          Validation: 유효성 검사
+          Async: 비동기 처리
+          Logging: 로깅
+          Environment: 환경 설정
+          Overview: 개요
+          Relations: 관계
+          Migrations: 마이그레이션
+          Query: 쿼리
+          Transactions: 트랜잭션
+          Schema: 스키마
+          Advanced: 고급
+          Testing: 테스트
+          Files: 파일
+          Commands: 명령어
+          Queues: 대기열
+          Sessions: 세션
+          Services: 서비스
+          Security: 보안
+          Authentication: 인증
+          Crypto: 암호화
+          Passwords: 비밀번호
+          Deploy: 배포
+          Version (4.0): Version (4.0)
+          Legacy Docs: 이전 문서
+          Upgrading: 업그레이드
+          Custom Tags: 사용자 정의 태그
+          Contributing: 기여하기
+          Contributing Guide: 기여 가이드
 
 nav:
 - Welcome: "index.md"
