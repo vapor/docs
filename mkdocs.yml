@@ -313,7 +313,7 @@ plugins:
           Basics: Fundamentos
           Routing: Routing
           Content: Content
-          Client: Client
+          Client: Cliente
           Validation: Validación
           Async: Async
           Logging: Logging
