@@ -78,7 +78,7 @@ El método estático `validations(_:)` se llamará cuando `CreateUser` sea valid
 validations.add("email", as: String.self, is: .email)
 ```
 
-El primer parámetro es la clave esperada del valor, en este caso, `"email"`. Esta clave debería ser igual al nombre de la propiedad del tipo que se está validando. El segundo parámetro, `as`, es el tipo esperado, en este caso, `String`. Suele coincidir con el tipo de la propiedad, pero no siempre. Finalmente, pueden añadirse uno o más validadores después del tercer parámetro, `is`. En este caso,estamos añadiendo un único validador que comprueba si el valor es una dirección de email.
+El primer parámetro es la clave esperada del valor, en este caso, `"email"`. Esta clave debería ser igual al nombre de la propiedad del tipo que se está validando. El segundo parámetro, `as`, es el tipo esperado, en este caso, `String`. Suele coincidir con el tipo de la propiedad, pero no siempre. Finalmente, pueden añadirse uno o más validadores después en el tercer parámetro, `is`. En este caso estamos añadiendo un único validador que comprueba si el valor es una dirección de email.
 
 ### Validando contenido de peticiones
 
