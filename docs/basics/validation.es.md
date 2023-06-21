@@ -171,7 +171,7 @@ validations.add(
 )
 ```
 
-Como no es posible decodificar un `Color` desde un valor no válido, esta validación usa `String` como tipo base. Utiliza en validador `.in` para verificar que el valor es una opción válida: red, blue, o green. Como este valor es opcional, `required` se establece a `false` para indicar que la validación no debería fallar si esta clave no se encuentra en los datos de la petición.
+Como no es posible decodificar un `Color` desde un valor no válido, esta validación usa `String` como tipo base. Utiliza en validador `.in` para verificar que el valor es una opción válida: red, blue o green. Como este valor es opcional, `required` se establece a `false` para indicar que la validación no debería fallar si esta clave no se encuentra en los datos de la petición.
 
 Ten en cuenta que, aunque la validación de `favoriteColor` pasará si la clave falta, no pasará si se proporciona `null` (nulo). Si quieres soportar `null`, cambia el tipo de la validación a `String?` y usa el operador de conveniencia `.nil ||` (leer como: "es nil (nulo) o ...").
 
