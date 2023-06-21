@@ -38,7 +38,7 @@ Es más, `Codable` interrumpirá la decodificación de un tipo en cuanto reciba 
 
 Para validar una petición, deberás generar una colección de `Validations`. La manera más común de hacerlo es conformar un tipo existente a `Validatable`. 
 
-Echemos un vistazo a cómo podrías añadir validación a este simple endpoint de `POST /users`. Está guí asume que ya estás familiarizado con la API [Content](content.md).
+Echemos un vistazo a cómo podrías añadir validación a este simple endpoint de `POST /users`. Esta guía asume que ya estás familiarizado con la API [Content](content.md).
 
 ```swift
 enum Color: String, Codable {
