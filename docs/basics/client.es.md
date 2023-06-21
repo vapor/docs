@@ -32,7 +32,7 @@ La API [content](content.md) de Vapor está disponible para el manejo de datos e
 
 ```swift
 let response = try await req.client.post("https://httpbin.org/status/200") { req in
-	// Cdifica la cadena de consulta (query) a la petición URL.
+	// Codifica la cadena de consulta (query) a la petición URL.
 	try req.query.encode(["q": "test"])
 
 	// Codifica un JSON en el cuerpo de la petición.
