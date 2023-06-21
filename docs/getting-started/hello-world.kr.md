@@ -19,10 +19,10 @@ vapor new hello -n
 	`-n` 플래그를 사용하면 모든 질문에 자동으로 "no"로 대답하여 기본 템플릿을 얻을 수 있습니다.
 
 !!! 팁
-    Vapor Toolbox 없이도 [템플릿 저장소](https://github.com/vapor/template-bare)를 클론하여 GitHub에서 최신 템플릿을 사용할 수 있습니다.
+	Vapor Toolbox 없이도 [템플릿 저장소](https://github.com/vapor/template-bare)를 클론하여 GitHub에서 최신 템플릿을 사용할 수 있습니다.
 
 !!! 팁
-  Vapor와 템플릿은 이제 기본적으로 `async`/`await`을 사용합니다. macOS 12로 업데이트할 수 없거나 EventLoopFuture를 계속 사용해야 하는 경우 `--branch macos10-15` 플래그를 사용하세요.
+	Vapor와 템플릿은 이제 기본적으로 `async`/`await`을 사용합니다. macOS 12로 업데이트할 수 없거나 EventLoopFuture를 계속 사용해야 하는 경우 `--branch macos10-15` 플래그를 사용하세요.
   
 명령이 완료되면 새로 생성된 폴더로 이동하세요.
 
