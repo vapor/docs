@@ -28,7 +28,7 @@ Aunque este error es técnicamente correcto y ha protegido con éxito el endpoin
 favoriteColor is not red, blue, or green
 ```
 
-Es más, `Codable` interrumpirá la decodificación de un tipo en cuanto reciba el primer error. Esto implica que, aunque varias de las propiedades de la petición sean inválidas, el usuario solo verá el primer error.La API Validation informará sobre todos los errores de validación en una única petición.
+Es más, `Codable` interrumpirá la decodificación de un tipo en cuanto reciba el primer error. Esto implica que, aunque varias de las propiedades de la petición sean inválidas, el usuario solo verá el primer error. La API Validation informará sobre todos los errores de validación en una única petición.
 
 ### Validación específica
 
