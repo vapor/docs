@@ -76,7 +76,7 @@ No todos los tipos de contenido son compatibles con todas las funciones `Codable
 
 ## Consultas (Query)
 
-Las API de contenido de Vapor admiten el manejo de datos codificados de URL en la cadena de consulta de la URL.
+Las API de contenido de Vapor admiten el manejo de datos URL codificados en la cadena de consulta.
 
 ### Decodificación
 
