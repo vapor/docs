@@ -72,7 +72,7 @@ A continuación se muestran los media types que admite la API de contenido de fo
 |Plaintext|text/plain|`.plainText`|
 |HTML|text/html|`.html`|
 
-No todos los media types son compatibles con todas las funciones `Codable`. Por ejemplo, JSON no admite fragmentos de nivel top-level y Plaintext no admite datos anidados.
+No todos los tipos de contenido son compatibles con todas las funciones `Codable`. Por ejemplo, JSON no admite fragmentos de nivel superior (top-level) y Plaintext no admite datos anidados.
 
 ## Consultas (Query)
 
