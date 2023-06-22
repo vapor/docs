@@ -124,7 +124,7 @@ content-length: 0
 
 ### Valores Simples
 
-Además de decodificar a un struct `Content`, Vapor también admite la obtención de valores únicos de la cadena de consulta mediante subíndices.
+Además de decodificar a un struct `Content`, Vapor también soporta la obtención de valores individuales de la cadena de consulta mediante subíndices.
 
 ```swift
 let name: String? = req.query["name"]
