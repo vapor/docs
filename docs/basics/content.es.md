@@ -26,7 +26,7 @@ struct Greeting: Content {
 }
 ```
 
-Conformando el tipo con `Content` agregará automáticamente la conformidad con `Codable` junto con utilidades adicionales para trabajar con la API de contenido.
+Conformar el tipo con `Content` agregará automáticamente la conformidad con `Codable`, junto con utilidades adicionales para trabajar con la API de contenido.
 
 Una vez que tengas la estructura del contenido, puedes decodificarlo desde la solicitud entrante usando `req.content`.
 
