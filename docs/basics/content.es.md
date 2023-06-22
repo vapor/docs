@@ -38,7 +38,7 @@ app.post("greeting") { req in
 }
 ```
 
-El método de decodificación utiliza el tipo de contenido de la solicitud para encontrar un decodificador apropiado. Si no se encuentra un decodificador, o la solicitud no contiene el header del tipo de contenido, se generará un error `415`.
+El método de decodificación `decode` utiliza el tipo de contenido de la solicitud para encontrar un decodificador apropiado. Si no se encuentra un decodificador, o la solicitud no contiene el header del tipo de contenido, se lanzará un error `415`.
 
 Eso significa que esta ruta acepta automáticamente todos los demás tipos de contenido admitidos, como el formulario url-encoded:
 
