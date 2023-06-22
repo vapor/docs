@@ -1,6 +1,6 @@
 # Content
 
-La API de contenido de Vapor nos permite codificar / decodificar fácilmente estructuras Codable hacia / desde mensajes HTTP. La codificación [JSON](https://tools.ietf.org/html/rfc7159) se usa por defecto con soporte preparado para usar para [Formulario URL-Encoded](https://en.wikipedia.org/wiki/Percent-encoding#The_application/x-www-form-urlencoded_type) y [Multipart](https://tools.ietf.org/html/rfc2388). La API también se puede configurar, permitiéndote agregar, modificar o reemplazar estrategias de codificación para ciertos tipos de contenido HTTP.
+La API de contenido de Vapor nos permite codificar / decodificar fácilmente estructuras Codable en / desde mensajes HTTP. La codificación [JSON](https://tools.ietf.org/html/rfc7159) se usa por defecto con soporte preparado para [Formulario URL-Encoded](https://en.wikipedia.org/wiki/Percent-encoding#The_application/x-www-form-urlencoded_type) y [Multipart](https://tools.ietf.org/html/rfc2388). La API también se puede configurar, permitiéndote agregar, modificar o reemplazar estrategias de codificación para ciertos tipos de contenido HTTP.
 
 ## Presentación
 
