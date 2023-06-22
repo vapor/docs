@@ -60,9 +60,9 @@ struct Profile: Content {
 }
 ```
 
-### Media Types Soportados
+### Tipos de Contenido Soportados
 
-A continuación se muestran los tipos de contenido que la API admite por defecto.
+A continuación se muestran los tipos de contenido (media types) que la API admite por defecto.
 
 |nombre|valor de header|media type|
 |-|-|-|
