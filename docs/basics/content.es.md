@@ -106,7 +106,7 @@ app.get("hello") { req -> String in
 }
 ```
 
-Esta ruta daría como resultado la siguiente respuesta dada la solicitud de ejemplo anterior:
+Esta ruta daría como resultado la siguiente respuesta a la solicitud de ejemplo anterior:
 
 ```http
 HTTP/1.1 200 OK
