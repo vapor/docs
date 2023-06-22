@@ -191,7 +191,7 @@ let hello = try req.content.decode(Hello.self, using: decoder)
 
 ## Codificadores Personalizados
 
-Las aplicaciones y paquetes de terceros pueden agregar soporte para media types que Vapor no admite de forma predeterminada mediante la creación de codificadores personalizados.
+Las aplicaciones y paquetes de terceros pueden agregar soporte para tipos de contenido que Vapor no admite de forma predeterminada mediante la creación de codificadores personalizados.
 
 ### Content
 
