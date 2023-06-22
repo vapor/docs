@@ -14,7 +14,7 @@ content-length: 18
 {"hello": "world"}
 ```
 
-Esta solicitud indica que contiene datos codificados en JSON utilizando el header `content-type` y el media type `application/json`. Como se prometió, algunos datos JSON siguen después de los headers en el body.
+Esta petición indica que contiene datos codificados en JSON utilizando la cabecera (header) `content-type` y el tipo de contenido (media type) `application/json`. A continuación, algunos datos JSON se hayan en el cuerpo (body) de la petición, después de las cabeceras.
 
 ### Estructura del Contenido
 
