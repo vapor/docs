@@ -101,7 +101,7 @@ vim .env.development
 ```
 
 !!! warning "Aviso"
-    Los ficheros dotenv con información sensible como contraseñas no deberían añadirse en los commits del control de versiones.
+    Los ficheros dotenv con información sensible como contraseñas no deben añadirse en los commits del control de versiones.
 
 Si estás teniendo dificultades en la carga de ficheros dotenv, prueba a habilitar el registro de depuración (debug logging) con `--log debug` para obtener más información. 
 
