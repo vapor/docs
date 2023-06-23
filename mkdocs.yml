@@ -317,7 +317,7 @@ plugins:
           Validation: Validación
           Async: Async
           Logging: Logging
-          Environment: Ambiente
+          Environment: Entorno
           Errors: Errores
           Fluent: Fluent
           Overview: Presentación
