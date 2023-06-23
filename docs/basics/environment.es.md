@@ -47,7 +47,7 @@ let foo = Environment.get("FOO")
 print(foo) // String?
 ```
 
-Además del método `get`, `Environment` ofrece una API de búsqueda dinñamica de miembros (dynamic member lookup) mediante `process`.
+Además del método `get`, `Environment` ofrece una API de búsqueda dinámica de miembros (dynamic member lookup) mediante `process`.
 
 ```swift
 let foo = Environment.process.FOO
