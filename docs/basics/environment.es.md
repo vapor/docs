@@ -65,7 +65,7 @@ Al ejecutar tu app en Xcode, puedes estableces variables de entorno editando el 
 
 ## .env (dotenv)
 
-Los fichero Dotenv contienen una lista de pares clave-valor para ser cargados automáticamente en el entorno. Estos ficheros facilitan la configuración de variables de entorno sin necesidad de establecerlas manualmente.
+Los fichero dotenv contienen una lista de pares clave-valor para ser cargados automáticamente en el entorno. Estos ficheros facilitan la configuración de variables de entorno sin necesidad de establecerlas manualmente.
 
 Vapor buscará ficheros dotenv en el directorio de trabajo actual (current working directory). Si estás usando Xcode, asegúrate de configurar el directorio de trabajo (working directory) editando el esquema (scheme) de la `App`.
 
