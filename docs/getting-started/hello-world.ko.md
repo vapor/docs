@@ -4,8 +4,8 @@
 
 아직 Swift 또는 Vapor Toolbox를 설치하지 않았다면 하단에 운영체제에 맞게 설치하기 문서를 확인하세요.
 
-- [Install &rarr; macOS](../install/macos.kr.md)
-- [Install &rarr; Linux](../install/linux.kr.md)
+- [Install &rarr; macOS](../install/macos.ko.md)
+- [Install &rarr; Linux](../install/linux.ko.md)
 
 ## 새 프로젝트 생성하기
 

@@ -2,9 +2,9 @@ Vapor 문서에 오신 걸 환영합니다! Vapor는 Swift를 사용하여 백�
 
 ## 시작하기
 
-Vapor를 처음 사용하시는 경우, [설치 → macOS](install/macos.kr.md) 로 이동하여 Swift와 Vapor를 설치하세요.
+Vapor를 처음 사용하시는 경우, [설치 → macOS](install/macos.ko.md) 로 이동하여 Swift와 Vapor를 설치하세요.
 
-Vapor를 설치한 후에는, [시작하기 → Hello, world](getting-started/hello-world.kr.md)를 확인하여 첫 번째 Vapor 앱을 생성해보세요!
+Vapor를 설치한 후에는, [시작하기 → Hello, world](getting-started/hello-world.ko.md)를 확인하여 첫 번째 Vapor 앱을 생성해보세요!
 
 ## 추가 정보
 

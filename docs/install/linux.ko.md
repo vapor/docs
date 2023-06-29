@@ -59,4 +59,4 @@ vapor --help
 
 ## 다음 단계
 
-Swift를 설치한 후 [시작하기 &rarr; Hello, world](../getting-started/hello-world.kr.md)에서 첫 번째 앱을 생성하세요.
+Swift를 설치한 후 [시작하기 &rarr; Hello, world](../getting-started/hello-world.ko.md)에서 첫 번째 앱을 생성하세요.

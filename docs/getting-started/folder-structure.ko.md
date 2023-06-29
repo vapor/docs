@@ -1,6 +1,6 @@
 # 폴더 구조
 
-이제 첫 번째 Vapor 앱을 만들고 빌드하고 실행했으니, Vapor의 폴더 구조에 익숙해지는 시간을 가져보겠습니다. 이 구조는 SPM의 폴더 구조를 기반으로 하기 때문에, 이전에 [SPM](spm.kr.md)을 사용한 적이 있다면 익숙할 것입니다.
+이제 첫 번째 Vapor 앱을 만들고 빌드하고 실행했으니, Vapor의 폴더 구조에 익숙해지는 시간을 가져보겠습니다. 이 구조는 SPM의 폴더 구조를 기반으로 하기 때문에, 이전에 [SPM](spm.ko.md)을 사용한 적이 있다면 익숙할 것입니다.
 
 ```
 .
@@ -40,7 +40,7 @@ app.middleware.use(fileMiddleware)
 ## Sources
 
 이 폴더에는 프로젝트의 모든 Swift 소스 파일이 포함됩니다.
-최상위 폴더인 `App`은 [SwiftPM](spm.kr.md) 매니페스트에서 선언된 패키지 모듈을 반영합니다.
+최상위 폴더인 `App`은 [SwiftPM](spm.ko.md) 매니페스트에서 선언된 패키지 모듈을 반영합니다.
 
 ### App
 
@@ -80,4 +80,4 @@ app.middleware.use(fileMiddleware)
 
 ## Package.swift
 
-마지막으로 [SPM](spm.kr.md)의 패키지 매니페스트가 있습니다.
+마지막으로 [SPM](spm.ko.md)의 패키지 매니페스트가 있습니다.

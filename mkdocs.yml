@@ -102,7 +102,7 @@ plugins:
           name: Español
           site_name: Documentación de Vapor
           build: true
-        kr:
+        ko:
           name: 한국어
           site_name: Vapor 문서
           build: true
@@ -356,7 +356,7 @@ plugins:
           Version (4.0): Versión (4.0)
           Legacy Docs: Documentación Legacy
           Upgrading: Actualizar
-        kr:
+        ko:
           Welcome: 환영합니다
           Install: 설치
           Getting Started: 시작하기
