@@ -390,7 +390,7 @@ plugins:
           Crypto: 암호화
           Passwords: 비밀번호
           Deploy: 배포
-          Version (4.0): Version (4.0)
+          Version (4.0): 버전 (4.0)
           Legacy Docs: 이전 문서
           Upgrading: 업그레이드
           Custom Tags: 사용자 정의 태그
