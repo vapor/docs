@@ -102,6 +102,10 @@ plugins:
           name: Español
           site_name: Documentación de Vapor
           build: true
+        pl:
+          name: Polski
+          site_name: Dokumentacja Vapor
+          build: true
       # Add navigation translations here
       nav_translations:
         nl:
@@ -352,7 +356,57 @@ plugins:
           Version (4.0): Versión (4.0)
           Legacy Docs: Documentación Legacy
           Upgrading: Actualizar
-
+        pl:
+          Welcome: Witaj 
+          Install: Instalacja
+          Getting Started: Jak zacząć
+          Hello, world: Witaj, świecie
+          Folder Structure: Struktura folderów
+          SwiftPM: SwiftPM
+          Xcode: Xcode
+          Basics: Podstawy
+          Routing: Kierowanie ruchem
+          Content: Kontent
+          Client: Klient
+          Validation: Walidacja
+          Async: Asynchroniczność
+          Logging: Logowanie 
+          Environment: Środowisko
+          Errors: Błędy
+          Fluent: Fluent
+          Overview: Prezentacja
+          Model: Model
+          Relations: Relacje
+          Migrations: Migracje
+          Query: Zapytania
+          Transactions: Transakcje
+          Schema: Schematy
+          Leaf: Leaf
+          Custom Tags: Własne tagi
+          Redis: Redis
+          Advanced: Zaawansowane
+          Middleware: Middleware
+          Testing: Testowanie
+          Server: Serwer
+          Files: Pliki
+          Commands: Komendy
+          Queues: Kolejki
+          WebSockets: WebSockety
+          Sessions: Sesje
+          Services: Serwisy
+          Security: Bezpieczeństwo
+          APNS: APNS
+          Deploy: Wdrożenie
+          Authentication: Autentykacja
+          Crypto: Kryptografia
+          Passwords: Hasła
+          JWT: JWT
+          Contributing: Kontrybucja
+          Contributing Guide: Przewodnik do kontrybucji
+          Version (4.0): Wersja (4.0)
+          Legacy Docs: Przestażała dokumentacja
+          Upgrading: Aktualizacja
+          Release Notes: Informacja o wersji
 nav:
 - Welcome: "index.md"
 - Install:
