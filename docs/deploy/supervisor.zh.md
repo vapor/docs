@@ -31,7 +31,7 @@ sudo dnf install supervisor
 
 ```sh
 [program:hello]
-command=/home/vapor/hello/.build/release/Run serve --env production
+command=/home/vapor/hello/.build/release/App serve --env production
 directory=/home/vapor/hello/
 user=vapor
 stdout_logfile=/var/log/supervisor/%(program_name)-stdout.log

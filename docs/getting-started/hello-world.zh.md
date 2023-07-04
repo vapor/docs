@@ -20,6 +20,9 @@ vapor new hello -n
 	使用 `-n` 为所有的问题自动选择 no 来为您提供一个基本的模板。
 
 !!! tip "建议"
+	你也可以不使用 Vapor Toolbox，直接从 GitHub 克隆[模板库](https://github.com/vapor/template-bare)来获取最新的模板。
+
+!!! tip "建议"
 	Vapor 以及自带的模板默认使用 `async`/`await`。如果你的系统不能更新到 macOS 12 或者想继续使用 `EventLoopFuture`。运行命令时可以添加此标志 `--branch macos10-15`。
 
 命令完成后，切换到新创建的文件夹
