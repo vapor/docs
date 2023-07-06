@@ -11,6 +11,7 @@ Languages:
 - [ ] Dutch
 - [ ] Italian
 - [ ] Spanish
+- [ ] Polish
 - [ ] Korean
 
 Assigned to @vapor/translators - please submit a PR with the relevant updates and check the box once merged. Please ensure you tag your PR with the `translation-update` so it doesn't create a new issue!
