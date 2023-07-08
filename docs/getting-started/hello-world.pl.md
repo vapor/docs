@@ -78,4 +78,4 @@ Powinieneś widzieć następująca stronę.
 Hello, world!
 ```
 
-Gratulujemy stworzenia, zbudowania i uruchomienia twojej pierwszej aplikacji Vapor! 🎉🎉
+Gratulujemy stworzenia, zbudowania i uruchomienia twojej pierwszej aplikacji z użyciem Vapora! 🎉🎉
