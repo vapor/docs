@@ -39,10 +39,14 @@ var searchIndexDocs = [SearchIndexDocs]()
 
 for doc in newSearchIndex.docs {
     if !doc.location.starts(with: "en/")
-      && !doc.location.starts(with: "zh/")
       && !doc.location.starts(with: "de/")
+      && !doc.location.starts(with: "es/")
       && !doc.location.starts(with: "fr/") 
-      && !doc.location.starts(with: "nl/") {
+      && !doc.location.starts(with: "it/") 
+      && !doc.location.starts(with: "ko/") 
+      && !doc.location.starts(with: "nl/") 
+      && !doc.location.starts(with: "pl/") 
+      && !doc.location.starts(with: "zk/") {
           searchIndexDocs.append(doc)
     }
 }
