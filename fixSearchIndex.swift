@@ -37,13 +37,22 @@ let searchIndex = try JSONDecoder().decode(SearchIndex.self, from: indexData)
 var newSearchIndex = searchIndex
 var searchIndexDocs = [SearchIndexDocs]()
 
+let knownLanguages = [
+        "en",
+        "de",
+        "es",
+        "fr",
+        "it",
+        "ko",
+        "nl",
+        "pl",
+        "zh",
+    ].map { "\($0)/" }
+
+
 for doc in newSearchIndex.docs {
-    if !doc.location.starts(with: "en/")
-      && !doc.location.starts(with: "zh/")
-      && !doc.location.starts(with: "de/")
-      && !doc.location.starts(with: "fr/") 
-      && !doc.location.starts(with: "nl/") {
-          searchIndexDocs.append(doc)
+    if !knownLanguages.contains(where: { doc.location.starts(with: $0) }) {
+        searchIndexDocs.append(doc)
     }
 }
 
