@@ -13,7 +13,7 @@ Heroku 是一个一站式程序托管平台，你可以通过[heroku.com](https:
 ### HomeBrew
 
 ```bash
-brew install heroku/brew/heroku
+brew tap heroku/brew && brew install heroku
 ```
 
 ### 其他安装方式
@@ -52,7 +52,7 @@ git init
 
 #### Master
 
-默认情况下，Heroku 部署 **master** 分支。 确保在推送之前将所有更改都加入此分支。
+你应该选择一个分支，并坚持将其用于部署到 Heroku，比如 **main** 或 **master** 分支。确保在推送之前将所有更改都加入此分支。
 
 通过以下命令检查你当前的分支：
 
@@ -63,7 +63,7 @@ git branch
 星号表示当前分支。
 
 ```bash
-* master
+* main
   commander
   other-branches
 ```
@@ -71,10 +71,10 @@ git branch
 > **提示**：如果你没有看到任何输出并且你刚刚执行了 `git init`。 你需要先提交（commit）你的代码，然后你会看到 `git branch` 命令的输出。
 
 
-如果你当前 _不在_ **master** 上，请输入以下命令来切换：
+如果你当前 _不在_ 正确的分支上，请输入以下命令来切换（针对 **main** 分支来说）：
 
 ```bash
-git checkout master
+git checkout main
 ```
 
 #### 提交更改
@@ -110,13 +110,13 @@ heroku buildpacks:set vapor/vapor
 
 ### Swift 版本文件
 
-我们添加的运行包会查找 **.swift-version** 文件以了解要使用的 swift 版本。 （将 5.2.1 替换为你的项目需要的任何版本。）
+我们添加的运行包会查找 **.swift-version** 文件以了解要使用的 swift 版本。 （将 5.8.1 替换为你的项目需要的任何版本。）
 
 ```bash
-echo "5.2.1" > .swift-version
+echo "5.8.1" > .swift-version
 ```
 
-这将创建 **.swift-version** ，内容为 `5.2.1`。
+这将创建 **.swift-version** ，内容为 `5.8.1`。
 
 
 ### Procfile
@@ -150,12 +150,12 @@ git commit -m "adding heroku build files"
 你已准备好开始部署，从终端运行以下命令。 构建过程可能会需要一些时间，不必担心。
 
 ```none
-git push heroku master
+git push heroku main
 ```
 
 ### 扩展
 
-成功构建后，你需要添加至少一台服务器，一个网站服务是免费的，你可以通过以下方式获得它：
+成功构建后，你需要添加至少一台服务器，Eco 计划的价格从每月$5起（参见[定价](https://www.heroku.com/pricing#containers)），请确保在 Heroku 上配置了付款方式。然后，针对单个 web worker 执行下面命令：
 
 ```bash
 heroku ps:scale web=1
@@ -163,7 +163,7 @@ heroku ps:scale web=1
 
 ### 继续部署
 
-当你想更新时只需将最新的更改推入 master 分支并推送到 heroku，它就会重新部署。
+当你想更新时只需将最新的更改推入 main 分支并推送到 heroku，它就会重新部署。
 
 ## Postgres
 
@@ -171,9 +171,9 @@ heroku ps:scale web=1
 
 在 dashboard.heroku.com 上访问你的应用程序，然后转到 **Add-ons** 部分。
 
-从这里输入`postgress`，你会看到`Heroku Postgres`的选项。 选择它。
+从这里输入`postgres`，你会看到`Heroku Postgres`的选项。 选择它。
 
-选择爱好开发免费计划（hobby dev free plan）。 Heroku 将自动完成剩下的工作。
+选择每月$5的 Eco 计划（参见[定价](https://www.heroku.com/pricing#data-services)），并进行预配。剩下的交给 Heroku 处理。
 
 完成后，你会看到数据库出现在 **Resources** 选项卡下。
 

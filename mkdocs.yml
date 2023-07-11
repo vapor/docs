@@ -102,6 +102,13 @@ plugins:
           name: Español
           site_name: Documentación de Vapor
           build: true
+        pl:
+          name: Polski
+          site_name: Dokumentacja Vapor
+        ko:
+          name: 한국어
+          site_name: Vapor 문서
+          build: true
       # Add navigation translations here
       nav_translations:
         nl:
@@ -317,7 +324,7 @@ plugins:
           Validation: Validación
           Async: Async
           Logging: Logging
-          Environment: Ambiente
+          Environment: Entorno
           Errors: Errores
           Fluent: Fluent
           Overview: Presentación
@@ -352,7 +359,97 @@ plugins:
           Version (4.0): Versión (4.0)
           Legacy Docs: Documentación Legacy
           Upgrading: Actualizar
-
+        pl:
+          Welcome: Witaj 
+          Install: Instalacja
+          Getting Started: Jak zacząć
+          Hello, world: Witaj, świecie
+          Folder Structure: Struktura folderów
+          SwiftPM: SwiftPM
+          Xcode: Xcode
+          Basics: Podstawy
+          Routing: Kierowanie ruchem
+          Content: Kontent
+          Client: Klient
+          Validation: Walidacja
+          Async: Asynchroniczność
+          Logging: Logowanie 
+          Environment: Środowisko
+          Errors: Błędy
+          Fluent: Fluent
+          Overview: Prezentacja
+          Model: Model
+          Relations: Relacje
+          Migrations: Migracje
+          Query: Zapytania
+          Transactions: Transakcje
+          Schema: Schematy
+          Leaf: Leaf
+          Custom Tags: Własne tagi
+          Redis: Redis
+          Advanced: Zaawansowane
+          Middleware: Middleware
+          Testing: Testowanie
+          Server: Serwer
+          Files: Pliki
+          Commands: Komendy
+          Queues: Kolejki
+          WebSockets: WebSockety
+          Sessions: Sesje
+          Services: Serwisy
+          Security: Bezpieczeństwo
+          APNS: APNS
+          Deploy: Wdrożenie
+          Authentication: Autentykacja
+          Crypto: Kryptografia
+          Passwords: Hasła
+          JWT: JWT
+          Contributing: Kontrybucja
+          Contributing Guide: Przewodnik do kontrybucji
+          Version (4.0): Wersja (4.0)
+          Legacy Docs: Przestażała dokumentacja
+          Upgrading: Aktualizacja
+          Release Notes: Informacja o wersji
+        ko:
+          Welcome: 환영합니다
+          Install: 설치
+          Getting Started: 시작하기
+          Folder Structure: 폴더 구조
+          Basics: 기본 사항
+          Routing: 라우팅
+          Content: 컨텐츠
+          Client: 클라이언트
+          Validation: 유효성 검사
+          Async: 비동기 처리
+          Logging: 로깅
+          Environment: 환경 설정
+          Errors: 에러
+          Overview: 개요
+          Model: 모델
+          Relations: 관계
+          Migrations: 마이그레이션
+          Query: 쿼리
+          Transactions: 트랜잭션
+          Schema: 스키마
+          Advanced: 고급
+          Testing: 테스트
+          Files: 파일
+          Commands: 명령어
+          Queues: 대기열
+          WebSockets: 웹소켓
+          Sessions: 세션
+          Services: 서비스
+          Security: 보안
+          Authentication: 인증
+          Crypto: 암호화
+          Passwords: 비밀번호
+          Deploy: 배포
+          Version (4.0): 버전 (4.0)
+          Legacy Docs: 이전 문서
+          Upgrading: 업그레이드
+          Custom Tags: 사용자 정의 태그
+          Contributing: 기여하기
+          Contributing Guide: 기여 가이드
 nav:
 - Welcome: "index.md"
 - Install:
