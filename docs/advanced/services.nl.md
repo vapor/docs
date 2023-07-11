@@ -81,6 +81,16 @@ struct Hello: LifecycleHandler {
     func willBoot(_ app: Application) throws {
         app.logger.info("Hello!")
     }
+
+    // Wordt aangeroepen nadat de applicatie is opgestart.
+    func didBoot(_ app: Application) throws {
+        app.logger.info("Server is running")
+    }
+
+    // Wordt aangeroepen voordat de applicatie wordt afgesloten.
+    func shutdown(_ app: Application) {
+        app.logger.info("Goodbye!")
+    }
 }
 
 // Voeg levenscyclus handler toe.
