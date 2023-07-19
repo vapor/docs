@@ -49,13 +49,13 @@ let package = Package(
 
 ### Platforms
 
-`platforms` 数组指定此程序包支持的平台和版本。通过指定 `.macOS（.v12`，说明此软件包需要 macOS 12 或更高版本。 Xcode 加载该项目时，它将最低部署版本设置为 macOS 12，以便你可以使用所有可用的 API。
+`platforms` 数组指定此程序包支持的平台和版本。通过指定 `.macOS（.v12)`，说明此软件包需要 macOS 12 或更高版本。 Xcode 加载该项目时，它将最低部署版本设置为 macOS 12，以便你可以使用所有可用的 API。
 
 ### Dependencies
 
 dependencies 字段代表项目需要依赖的 package。所有 Vapor 应用都依赖 Vapor package ，但是你也可以添加其它想要的依赖库。
 
-如上面这个示例，[vapor/vapor](https://github.com/vapor/vapor) 4.0 或以上版本是这个 package 的 dependency。当在 package 中添加了 dependency 后，接下来你必须设置是哪个 targets 依赖了新的可用模块。
+如上面这个示例，[vapor/vapor](https://github.com/vapor/vapor) 4.76.0 或以上版本是这个 package 的 dependency。当在 package 中添加了 dependency 后，接下来你必须设置是哪个 targets 依赖了新的可用模块。
 
 ### Targets
 
