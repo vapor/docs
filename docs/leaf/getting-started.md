@@ -73,6 +73,9 @@ Now that Leaf is configured, let's render your first template. Inside of the `Re
 Hello, #(name)!
 ```
 
+!!! tip
+    If you're using VSCode as your code editor, we recommend installing _the_ syntax highlighting extension for Leaf: [Leaf HTML](https://marketplace.visualstudio.com/items?itemName=Francisco.html-leaf).
+
 Then, register a route (usually done in `routes.swift` or a controller) to render the view.
 
 ```swift
