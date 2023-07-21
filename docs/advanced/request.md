@@ -9,13 +9,9 @@ app.get("hello", ":name") { req -> String in
 }
 ```
 
-It is the main window into the rest of Vapor's functionality. It contains APIs for the [request body](../basics/content.md), [query parameters](../basics/content.md#query), [logger](../basics/logging.md), [HTTP client](../basics/client.md), and more. Accessing this functionality through the request keeps computation on the correct event loop and allows it to be mocked for testing. You can even add your own services to the `Request` with extensions.
+It is the main window into the rest of Vapor's functionality. It contains APIs for the [request body](../basics/content.md), [query parameters](../basics/content.md#query), [logger](../basics/logging.md), [HTTP client](../basics/client.md), and more. Accessing this functionality through the request keeps computation on the correct event loop and allows it to be mocked for testing. You can even add your own [services](../advanced/services.md) to the `Request` with extensions.
 
 The full API documentation for `Request` can be found [here](https://api.vapor.codes/vapor/documentation/vapor/request).
-
-## Application
-
-The `Request.application` property holds a reference to the [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application). This object contains all of the configuration and core functionality for the application. Much of it should only be set in `configure.swift` before the application fully starts, and many of the lower level APIs won't be needed in most applications. One of the most useful properties is `Application.eventLoopGroup` which can be used to get an `EventLoop` for processes that need a new one via the `next()` method. It also contains the [`Environment`](../basics/environment.md).
 
 ## Authentication
 
@@ -54,7 +50,7 @@ An `HTTPHeaders` object can be accessed at `Request.headers`. This contains all 
 
 ```swift
 app.get("json") { req -> String in
-    guard let contentType = req.headers.first(name: .contentType) else {
+    guard let contentType = req.headers.first(name: "Content-Type") else {
         throw Abort(.badRequest)
     }
     return "JSON"
@@ -64,6 +60,14 @@ See further documentation for `HTTPHeaders` [here](https://swiftpackageindex.com
 
 ## IP Address
 
-The `SocketAddress` representing the client can be accessed via `Request.remoteAddress`, which may be useful for logging or rate limiting using the string representation `Request.remoteAddress.ipAddress`. It may not accurately represent the client's IP address if the application is behind a reverse proxy. See further documentation for `SocketAddress` [here](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niocore/socketaddress).
+The `SocketAddress` representing the client can be accessed via `Request.remoteAddress`, which may be useful for logging or rate limiting using the string representation `Request.remoteAddress.ipAddress`. It may not accurately represent the client's IP address if the application is behind a reverse proxy. 
+
+```swift
+app.get("ip") { req -> String in
+    return req.remoteAddress.ipAddress
+}
+```
+
+See further documentation for `SocketAddress` [here](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niocore/socketaddress).
 
 
