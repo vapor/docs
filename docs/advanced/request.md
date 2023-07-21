@@ -9,7 +9,7 @@ app.get("hello", ":name") { req -> String in
 }
 ```
 
-It is the main window into the rest of Vapor's functionality. It contains APIs for the [request body](../basics/content.md), [query parameters](../basics/content.md#query), [logger](../basics/logging.md), [HTTP client](../basics/client.md), and more. Accessing this functionality through the request keeps computation on the correct event loop and allows it to be mocked for testing.
+It is the main window into the rest of Vapor's functionality. It contains APIs for the [request body](../basics/content.md), [query parameters](../basics/content.md#query), [logger](../basics/logging.md), [HTTP client](../basics/client.md), and more. Accessing this functionality through the request keeps computation on the correct event loop and allows it to be mocked for testing. You can even add your own services to the `Request` with extensions.
 
 The full API documentation for `Request` can be found [here](https://api.vapor.codes/vapor/documentation/vapor/request).
 
