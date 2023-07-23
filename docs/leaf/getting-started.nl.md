@@ -74,6 +74,9 @@ Nu Leaf is geconfigureerd, laten we je eerste template renderen. Maak in de map 
 Hello, #(name)!
 ```
 
+!!! tip
+    Als je VSCode als code editor gebruikt, raden we aan de Leaf extensie te installeren om syntax highlighting mogelijk te maken: [Leaf HTML](https://marketplace.visualstudio.com/items?itemName=Francisco.html-leaf).
+
 Registreer dan een route (meestal gedaan in `routes.swift` of een controller) om de view te renderen.
 
 ```swift
