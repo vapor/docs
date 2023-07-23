@@ -19,13 +19,16 @@ vapor new hello -n
 	De `-n` vlag geeft je een kaal sjabloon door automatisch nee te antwoorden op alle vragen.
 
 !!! tip
+    Je kan ook de laatste template van Github halen zonder de Vapor Toolbox te installeren door de [template repository](https://github.com/vapor/template-bare) te clonen.
+
+!!! tip
     Vapor en het sjabloon gebruiken nu standaard `async`/`await`. Als je niet kunt updaten naar macOS 12 en/of `EventLoopFuture` wilt blijven gebruiken, gebruik dan de vlag `--branch macos10-15`.
 
 Eens het commando voltooid is, navigeer naar de nieuw aangemaakt map:
 
 ```sh
 cd hello
-``` 
+```
 
 ## Bouwen en uitvoeren
 
