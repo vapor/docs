@@ -155,7 +155,7 @@ git push heroku main
 
 ### Scale Up
 
-Als je eenmaal succesvol hebt gebouwd, moet je ten minste één server toevoegen. Prijzen starten vanaf $5/maand voor het Eco plan (zie [prijzen](https://www.heroku.com/pricing#containers)). Maak zeker dat je betaalgegevens geconfigureerd zijn op Heroku. Dan, voor een enkele web worker:
+Als je eenmaal succesvol hebt gebouwd, moet je ten minste één server toevoegen. Prijzen starten vanaf $5/maand voor het Eco plan (zie [prijzen](https://www.heroku.com/pricing#containers)). Zorg ervoor dat jouw betaalgegevens geconfigureerd zijn op Heroku. Dan, voor een enkele web worker:
 
 ```bash
 heroku ps:scale web=1
