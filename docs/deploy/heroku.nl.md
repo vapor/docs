@@ -52,7 +52,7 @@ git init
 
 #### Master/Main
 
-Best verkies je één branch voor te deployen en daar hou je je aan, zoals de **main** of **master** branch. Zorg ervoor dat alle wijzigingen in deze branch zijn gecontroleerd voordat je gaat pushen.
+Je kunt het beste één branch behouden voor deployments naar Heroku, zoals de **main** of **master** branch. Zorg ervoor dat alle wijzigingen in deze branch zijn gecontroleerd voordat je gaat pushen.
 
 Controleer uw huidige branch met
 
