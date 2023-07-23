@@ -309,6 +309,9 @@ Als u geen wachtrij opgeeft, wordt de taak uitgevoerd op de `standaard` wachtrij
 
 Met het pakket Queues kunt u ook taken plannen die op bepaalde tijdstippen moeten worden uitgevoerd.
 
+!!! warning "Waarschuwing"
+    Geplande taken werken alleen als ze zijn ingesteld voordat de applicatie opstart, zoals in `configure.swift`. Ze werken niet in route handlers.
+
 ### De planner starten
 De scheduler vereist dat een afzonderlijk workerproces draait, gelijkaardig aan de queue worker. U kunt de worker starten door dit commando uit te voeren: 
 
