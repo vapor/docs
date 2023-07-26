@@ -28,7 +28,7 @@ app.middleware.use(MiddlewareA())
 app.middleware.use(MiddlewareB())
 
 app.group(MiddlewareC()) {
-	$0.get("hello") { req in 
+	$0.get("hello") { req in
 		"Hello, middleware."
 	}
 }
@@ -123,6 +123,14 @@ app.middleware.use(file)
 ```
 
 Zodra `FileMiddleware` is geregistreerd, kan een bestand als `Public/images/logo.png` worden gekoppeld vanuit een Leaf template als `<img src="/images/logo.png"/>`.
+
+Als je server is opgenomen in een Xcode Project, zoals een iOS app, gebruik dan dit in de plaats:
+
+```swift
+let file = try FileMiddleware(bundle: .main, publicDirectory: "Public")
+```
+
+Zorg er ook voor dat je Folder References gebruikt in plaats van Groups in Xcode om de mappenstructuur in resources te behouden na het bouwen van de applicatie.
 
 ## CORS Middleware
 
