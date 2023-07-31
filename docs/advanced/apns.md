@@ -11,7 +11,7 @@ Let's take a look at how you can get started using APNS.
 The first step to using APNS is adding the package to your dependencies.
 
 ```swift
-// swift-tools-version:5.6
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
