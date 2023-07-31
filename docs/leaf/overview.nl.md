@@ -17,7 +17,7 @@ Leaf tags bestaan uit vier elementen::
 - Token `#`: Dit geeft de leaf parser het signaal om te beginnen zoeken naar een tag.
 - Naam `count`: die de tag identificeert.
 - Parameter Lijst `(users)`: Kan nul of meer argumenten aanvaarden.
-- Body: Een optionele body kan aan sommige tags worden toegevoegd met behulp van een puntkomma en een afsluitende tag
+- Body: Een optionele body kan aan sommige tags worden toegevoegd met behulp van een dubbelpunt en een afsluitende tag
 
 Er kunnen veel verschillende toepassingen zijn voor deze vier elementen, afhankelijk van de implementatie van de tag. Laten we eens kijken naar een paar voorbeelden van hoe de ingebouwde tags van Leaf gebruikt kunnen worden:
 

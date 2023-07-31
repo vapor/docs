@@ -38,7 +38,7 @@ app.middleware.use(fileMiddleware)
 
 ## Sources
 
-此文件夹包含项目的所有 Swift 源文件。 顶级文件夹“App”反映了您的包的模块，如 [SwiftPM](spm.md) 清单中声明的那样。
+此文件夹包含项目的所有 Swift 源文件。 顶级文件夹 `App` 反映了你的包的模块，如 [SwiftPM](spm.md) 清单中声明的那样。
 
 ### App
 
@@ -62,11 +62,11 @@ models 文件夹常用于存放 `Content` 和 Fluent `Model` 的类或结构体�
 
 #### entrypoint.swift
 
-该文件包含用于设置、配置和运行 Vapor 应用程序的应用程序的“@main”入口点。
+该文件包含应用程序的 `@main` 入口点，用于设置、配置和运行 Vapor 应用程序。
 
 #### routes.swift
 
-这个文件包含 `routes(_:)` 方法，它会在 `configure(_:)` 结尾处被调用，用以将路由注册到你的`Application`。
+这个文件包含 `routes(_:)` 方法，它会在 `configure(_:)` 结尾处被调用，用以将路由注册到你的 `Application`。
 
 ## Tests
 

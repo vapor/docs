@@ -135,6 +135,8 @@ De `@Siblings` eigenschap creëert een veel-op-veel relatie tussen twee modellen
 Laten we eens kijken naar een voorbeeld van een veel-op-veel relatie tussen een `Planet` en een `Tag`.
 
 ```swift
+enum PlanetTagStatus: String, Codable { case accepted, pending }
+
 // Voorbeeld van een pivot model.
 final class PlanetTag: Model {
     static let schema = "planet+tag"
@@ -148,17 +150,25 @@ final class PlanetTag: Model {
     @Parent(key: "tag_id")
     var tag: Tag
 
+    @OptionalField(key: "comments")
+    var comments: String?
+
+    @OptionalEnum(key: "status")
+    var status: PlanetTagStatus?
+
     init() { }
 
-    init(id: UUID? = nil, planet: Planet, tag: Tag) throws {
+    init(id: UUID? = nil, planet: Planet, tag: Tag, comments: String?, status: PlanetTagStatus?) throws {
         self.id = id
         self.$planet.id = try planet.requireID()
         self.$tag.id = try tag.requireID()
+        self.comments = comments
+        self.status = status
     }
 }
 ```
 
-Pivots zijn normale modellen die twee `@Parent` relaties bevatten. Één voor elk van de modellen die gerelateerd moeten worden. Extra eigenschappen kunnen worden opgeslagen op de pivot indien gewenst. 
+Elk model dat tenminste twee `@Parent` relaties bevat, één voor elk model dat gerelateerd moet worden, kan gebruikt worden als pivot. Het model kan aanvullende eigenschappen bevatten, zoals zijn ID, en kan zelfs andere `@Parent` relaties bevatten.
 
 Het toevoegen van een [unieke](schema.md#unique) constraint aan het pivot model kan helpen om overbodige entries te voorkomen. Zie [schema](schema.md) voor meer informatie.
 
@@ -197,13 +207,24 @@ final class Tag: Model {
 
 De `@Siblings` eigenschap heeft methoden voor het toevoegen en verwijderen van modellen uit de relatie. 
 
-Gebruik de `attach` methode om een model aan de relatie toe te voegen. Hierdoor wordt het pivot model automatisch aangemaakt en opgeslagen.
+Gebruik de `attach()` methode om een enkel model of een array van modellen toe te voegen aan de relatie. Pivot modellen worden indien nodig automatisch aangemaakt en opgeslagen. Er kan een callback closure worden gespecificeerd om aanvullende eigenschappen van elke gecreëerde pivot in te vullen:
 
 ```swift
 let earth: Planet = ...
 let inhabited: Tag = ...
 // Voegt het model toe aan de relatie.
 try await earth.$tags.attach(inhabited, on: database)
+// Vul de pivot attributen in bij het maken van de relatie.
+try await earth.$tags.attach(inhabited, on: database) { pivot in
+    pivot.comments = "This is a life-bearing planet."
+    pivot.status = .accepted
+}
+// Voeg meerdere modellen met attributen toe aan de relatie.
+let volcanic: Tag = ..., oceanic: Tag = ...
+try await earth.$tags.attach([volcanic, oceanic], on: database) { pivot in
+    pivot.comments = "This planet has a tag named \(pivot.$tag.name)."
+    pivot.status = .pending
+}
 ```
 
 Bij het koppelen van een enkel model, kunt u de `method` parameter gebruiken om te kiezen of de relatie wel of niet gecontroleerd moet worden voor het opslaan.

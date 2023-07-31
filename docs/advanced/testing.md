@@ -34,7 +34,7 @@ final class MyTests: XCTestCase {
 }
 ```
 
-Each function beginning with `test` will run automatically when your app is tested. 
+Each function beginning with `test` will run automatically when your app is tested.
 
 ### Running Tests
 
@@ -42,7 +42,8 @@ Use `cmd+u` with the `-Package` scheme selected to run tests in Xcode. Use `swif
 
 ## Testable Application
 
-Initialize an instance of `Application` using the `.testing` environment. You must call `app.shutdown()` before this application deinitializes. 
+Initialize an instance of `Application` using the `.testing` environment. You must call `app.shutdown()` before this application deinitializes.  
+The shutdown is necessary to help release the resources that the app has claimed. In particular it is important to release the threads the application requests at startup. If you do not call `shutdown()` on the app after each unit test, you may find your test suite crash with a precondition failure when allocating threads for a new instance of `Application`.
 
 ```swift
 let app = Application(.testing)
@@ -63,7 +64,7 @@ try app.test(.GET, "hello") { res in
 }
 ```
 
-The first two parameters are the HTTP method and URL to request. The trailing closure accepts the HTTP response which you can verify using `XCTAssert` methods. 
+The first two parameters are the HTTP method and URL to request. The trailing closure accepts the HTTP response which you can verify using `XCTAssert` methods.
 
 For more complex requests, you can supply a `beforeRequest` closure to modify headers or encode content. Vapor's [Content API](../basics/content.md) is available on both the test request and response.
 
@@ -89,7 +90,7 @@ app.testable(method: .inMemory).test(...)
 app.testable(method: .running).test(...)
 ```
 
-The `inMemory` option is used by default. 
+The `inMemory` option is used by default.
 
 The `running` option supports passing a specific port to use. By default `8080` is used.
 

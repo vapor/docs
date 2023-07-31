@@ -19,6 +19,9 @@ vapor new hello -n
 	The `-n` flag gives you a bare bones template by automatically answering no to all questions.
 
 !!! tip
+    You can also get the latest template from GitHub without Vapor Toolbox by cloning the [template respository](https://github.com/vapor/template-bare)
+
+!!! tip
 	Vapor and the template now uses `async`/`await` by default.
 	If you cannot update to macOS 12 and/or need to continue to use `EventLoopFuture`s, 
 	use flag `--branch macos10-15`.
@@ -28,7 +31,7 @@ Once the command finishes, change into the newly created folder:
 
 ```sh
 cd hello
-``` 
+```
 
 ## Build & Run
 

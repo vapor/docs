@@ -135,6 +135,8 @@ try await sun.$planets.create(earth, on: database)
 让我们看一个 `Planet` 和 `Tag` 之间的多对多关系的例子。
 
 ```swift
+enum PlanetTagStatus: String, Codable { case accepted, pending }
+
 // pivot 模型示例。
 final class PlanetTag: Model {
     static let schema = "planet+tag"
@@ -150,7 +152,7 @@ final class PlanetTag: Model {
 
     init() { }
 
-    init(id: UUID? = nil, planet: Planet, tag: Tag) throws {
+    init(id: UUID? = nil, planet: Planet, tag: Tag, comments: String?, status: PlanetTagStatus?) throws {
         self.id = id
         self.$planet.id = try planet.requireID()
         self.$tag.id = try tag.requireID()
@@ -158,7 +160,7 @@ final class PlanetTag: Model {
 }
 ```
 
-Pivots 是包含两个 `@Parent` 关系的一般模型。一个用于每个要关联的模型。如果需要，可以将其他属性存储在 pivot 上。
+任何包含至少两个 `@Parent` 关系的模型，每个关系对应两个要关联的模型，可以作为一个枢纽（pivot）。该模型可以包含其他属性，例如其 ID，甚至可以包含其他 `@Parent` 关系。
 
 向 pivot 模型添加 [unique](schema.zh.md#unique) 约束有助于防止冗余条目。请参阅[模式](schema.zh.md)了解更多信息。
 
@@ -197,13 +199,24 @@ final class Tag: Model {
 
 `@Siblings` 属性具有从关系中添加和删除模型的方法。
 
-使用 `attach` 方法向关系添加一个模型。这将自动创建并保存 `pivot` 模型。
+使用 `attach()` 方法将单个模型或模型数组添加到关系中。需要时，会自动创建并保存枢纽模型。可以指定回调闭包以填充每个创建的枢纽模型的其他属性。
 
 ```swift
 let earth: Planet = ...
 let inhabited: Tag = ...
 // 添加模型到关系中。
 try await earth.$tags.attach(inhabited, on: database)
+// 在建立关联时填充枢纽模型的属性。
+try await earth.$tags.attach(inhabited, on: database) { pivot in
+    pivot.comments = "This is a life-bearing planet."
+    pivot.status = .accepted
+}
+// 将带有属性的多个模型添加到关系中。
+let volcanic: Tag = ..., oceanic: Tag = ...
+try await earth.$tags.attach([volcanic, oceanic], on: database) { pivot in
+    pivot.comments = "This planet has a tag named \(pivot.$tag.name)."
+    pivot.status = .pending
+}
 ```
 
 附加单个模型时，你可以使用 `method` 参数选择是否在保存之前检查关系。

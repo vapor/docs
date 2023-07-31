@@ -13,7 +13,7 @@ Zorg ervoor dat je de heroku cli tool hebt geïnstalleerd.
 ### HomeBrew
 
 ```bash
-brew install heroku/brew/heroku
+brew tap heroku/brew && brew install heroku
 ```
 
 ### Andere Installatiemogelijkheden
@@ -52,7 +52,7 @@ git init
 
 #### Master/Main
 
-Standaard deponeert Heroku de **master/main** branch. Zorg ervoor dat alle wijzigingen in deze branch zijn gecontroleerd voordat u gaat pushen.
+Je kunt het beste één branch behouden voor deployments naar Heroku, zoals de **main** of **master** branch. Zorg ervoor dat alle wijzigingen in deze branch zijn gecontroleerd voordat je gaat pushen.
 
 Controleer uw huidige branch met
 
@@ -63,7 +63,7 @@ git branch
 De asterisk geeft de huidige branch aan.
 
 ```bash
-* master
+* main
   commander
   other-branches
 ```
@@ -71,10 +71,10 @@ De asterisk geeft de huidige branch aan.
 !!! note "Opmerking"
     Als je geen uitvoer ziet en je hebt net `git init` uitgevoerd. Je moet eerst je code committen, daarna krijg je uitvoer te zien van het `git branch` commando.
 
-Als u momenteel _niet_ op **master/main** bent, schakel daar dan over door in te voeren:
+Als u momenteel _niet_ op de juiste branch bent, schakel daar dan naar over door in te voeren in de terminal (voor branch **main**):
 
 ```bash
-git checkout master
+git checkout main
 ```
 
 #### Veranderingen Vastleggen
@@ -110,10 +110,10 @@ heroku buildpacks:set vapor/vapor
 
 ### Swift versie bestand
 
-Het buildpack dat we hebben toegevoegd zoekt naar een **.swift-version** bestand om te weten welke versie van swift gebruikt moet worden. (vervang 5.2.1 door de versie die uw project nodig heeft).
+Het buildpack dat we hebben toegevoegd zoekt naar een **.swift-version** bestand om te weten welke versie van swift gebruikt moet worden. (vervang 5.8.1 door de versie die uw project nodig heeft).
 
 ```bash
-echo "5.2.1" > .swift-version
+echo "5.8.1" > .swift-version
 ```
 
 Dit creëert **.swift-version** met `5.2.1` als inhoud.
@@ -150,12 +150,12 @@ git commit -m "adding heroku build files"
 Je bent klaar om uit te rollen, voer dit uit vanaf de terminal. Het kan een tijdje duren om te bouwen, dit is normaal.
 
 ```none
-git push heroku master
+git push heroku main
 ```
 
 ### Scale Up
 
-Als je eenmaal succesvol hebt gebouwd, moet je ten minste één server toevoegen, één web is gratis en je kunt het krijgen met het volgende:
+Als je eenmaal succesvol hebt gebouwd, moet je ten minste één server toevoegen. Prijzen starten vanaf $5/maand voor het Eco plan (zie [prijzen](https://www.heroku.com/pricing#containers)). Zorg ervoor dat jouw betaalgegevens geconfigureerd zijn op Heroku. Dan, voor een enkele web worker:
 
 ```bash
 heroku ps:scale web=1
@@ -163,7 +163,7 @@ heroku ps:scale web=1
 
 ### Continued Deployment
 
-Elke keer dat je wil updaten, zet je gewoon de laatste veranderingen in master en push je naar heroku en het zal opnieuw deployen
+Elke keer dat je wil updaten, zet je gewoon de laatste veranderingen in main en push je naar heroku en het zal opnieuw deployen
 
 ## Postgres
 
@@ -171,9 +171,9 @@ Elke keer dat je wil updaten, zet je gewoon de laatste veranderingen in master e
 
 Bezoek uw applicatie op dashboard.heroku.com en ga naar de **Add-ons** sectie.
 
-Voer hier `postgress` in en u zult een optie zien voor `Heroku Postgres`. Selecteer deze.
+Voer hier `postgres` in en u zult een optie zien voor `Heroku Postgres`. Selecteer deze.
 
-Kies het hobby dev free plan, en provision. Heroku zal de rest doen.
+Kies het Eco plan voor $5/maand (zie [prijzen](https://www.heroku.com/pricing#data-services)), en provision. Heroku zal de rest doen.
 
 Zodra je klaar bent, zie je de database verschijnen onder de **Resources** tab.
 
@@ -199,9 +199,14 @@ De Heroku Postgres addon [vereist](https://devcenter.heroku.com/changelog-items/
 Het volgende fragment laat zien hoe beide bereikt kunnen worden:
 
 ```swift
-if let databaseURL = Environment.get("DATABASE_URL"), var postgresConfig = PostgresConfiguration(url: databaseURL) {
-    postgresConfig.tlsConfiguration = .makeClientConfiguration()
-    postgresConfig.tlsConfiguration?.certificateVerification = .none
+if let databaseURL = Environment.get("DATABASE_URL") {
+    var tlsConfig: TLSConfiguration = .makeClientConfiguration()
+    tlsConfig.certificateVerification = .none
+    let nioSSLContext = try NIOSSLContext(configuration: tlsConfig)
+
+    var postgresConfig = try SQLPostgresConfiguration(url: databaseURL)
+    postgresConfig.coreConfiguration.tls = .require(nioSSLContext)
+
     app.databases.use(.postgres(configuration: postgresConfig), as: .psql)
 } else {
     // ...
