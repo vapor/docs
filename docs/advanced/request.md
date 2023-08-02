@@ -9,20 +9,13 @@ app.get("hello", ":name") { req -> String in
 }
 ```
 
-It is the main window into the rest of Vapor's functionality. It contains APIs for the [request body](../basics/content.md), [query parameters](../basics/content.md#query), [logger](../basics/logging.md), [HTTP client](../basics/client.md), and more. Accessing this functionality through the request keeps computation on the correct event loop and allows it to be mocked for testing. You can even add your own [services](../advanced/services.md) to the `Request` with extensions.
+It is the main window into the rest of Vapor's functionality. It contains APIs for the [request body](../basics/content.md), [query parameters](../basics/content.md#query), [logger](../basics/logging.md), [HTTP client](../basics/client.md), [Authenticator](../security/authentication.md), and more. Accessing this functionality through the request keeps computation on the correct event loop and allows it to be mocked for testing. You can even add your own [services](../advanced/services.md) to the `Request` with extensions.
 
 The full API documentation for `Request` can be found [here](https://api.vapor.codes/vapor/documentation/vapor/request).
 
-## Authentication
+## Application
 
-Once you have set up an [authentication strategy](../security/authentication.md), `Request.auth.require()` can be used to get the object associated with the authenticator for the route.
-
-```swift
-let authenticated = app.grouped(User.authenticator())
-authenticated.get("me") { req -> User in
-    return try req.auth.require(User.self)
-}
-```
+The `Request.application` property holds a reference to the [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application). This object contains all of the configuration and core functionality for the application. Much of it should only be set in `configure.swift` before the application fully starts, and many of the lower level APIs won't be needed in most applications. One of the most useful properties is `Application.eventLoopGroup` which can be used to get an `EventLoop` for processes that need a new one via the `next()` method. It also contains the [`Environment`](../basics/environment.md).
 
 ## Body
 
