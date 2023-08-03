@@ -15,7 +15,7 @@ The full API documentation for `Request` can be found [here](https://api.vapor.c
 
 ## Application
 
-The `Request.application` property holds a reference to the [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application). This object contains all of the configuration and core functionality for the application. Much of it should only be set in `configure.swift` before the application fully starts, and many of the lower level APIs won't be needed in most applications. One of the most useful properties is `Application.eventLoopGroup` which can be used to get an `EventLoop` for processes that need a new one via the `next()` method. It also contains the [`Environment`](../basics/environment.md).
+The `Request.application` property holds a reference to the [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application). This object contains all of the configuration and core functionality for the application. Most of it should only be set in `configure.swift`, before the application fully starts, and many of the lower level APIs won't be needed in most applications. One of the most useful properties is `Application.eventLoopGroup`, which can be used to get an `EventLoop` for processes that need a new one via the `any()` method. It also contains the [`Environment`](../basics/environment.md).
 
 ## Body
 
