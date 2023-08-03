@@ -478,7 +478,7 @@ nav:
   - Routing: "basics/routing.md"
 # TODO: Improve quality
 # Mostly just a code sample with little explanation.
-#  - Controllers: "controllers.md"
+  - Controllers: "basics/controllers.md"
   - Content: "basics/content.md"
   - Client: "basics/client.md"
   - Validation: "basics/validation.md"
