@@ -43,7 +43,7 @@ An `HTTPHeaders` object can be accessed at `Request.headers`. This contains all 
 
 ```swift
 app.get("json") { req -> String in
-    guard let contentType = req.headers.first(name: "Content-Type") else {
+    guard let contentType = req.headers.contentType, contentType == .json else {
         throw Abort(.badRequest)
     }
     return "JSON"
