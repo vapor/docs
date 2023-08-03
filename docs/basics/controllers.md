@@ -12,7 +12,7 @@ Let's take a look at an example controller.
 import Vapor
 
 struct TodosController: RouteCollection {
-    func boot(routes: RoutesBuilder)  throws {
+    func boot(routes: RoutesBuilder) throws {
         let todos = routes.grouped("todos")
         todos.get(use: index)
         todos.post(use: create)
