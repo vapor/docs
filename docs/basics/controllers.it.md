@@ -1,12 +1,12 @@
-# Controllers
+# Controller
 
-Controllers are a great way to organize your code. They are collections of methods that accept a request and return a response.
+I controller sono un ottimo modo per organizzare il codice. Sono collezioni di metodi che prendono una richiesta e ritornano una risposta, e sono a tutti gli effetti gli endpoint dell'applicazione.
 
-A good place to put your controllers is in the [Controllers](../getting-started/folder-structure.md#controllers) folder.
+Il luogo migliore in cui mettere i controller è nella loro [cartella](../getting-started/folder-structure.it.md#controllers).
 
-## Overview
+## Panoramica
 
-Let's take a look at an example controller.
+Diamo un'occhiata ad un esempio di controller.
 
 ```swift
 import Vapor
@@ -61,10 +61,9 @@ struct TodosController: RouteCollection {
 }
 ```
 
-Controller methods should always accept a `Request` and return something `ResponseEncodable`. This method can be asynchronous or synchronous.
+I metodi dei controller prendono sempre in input una `Request` e ritornano un qualsiasi `ResponseEncodable`. Tali metodi possono essere asincroni o sincroni.
 
-
-Finally you need to register the controller in `routes.swift`:
+Infine, il controller viene registrato nel `routes.swift`:
 
 ```swift
 try app.register(collection: TodosController())
