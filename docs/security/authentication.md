@@ -329,6 +329,9 @@ Don't forget to add the migration to `app.migrations`.
 app.migrations.add(User.Migration())
 ``` 
 
+!!! tip
+     Because email addresses are not case sensitive, you may want to add a [`Middleware`](../fluent/model.md#lifecycle) that coerces the email address to lowercase before saving it to the database. Be aware, though, that `ModelAuthenticatable` uses a case sensitive comparison, so if you do this you'll want to make sure the user's input is all lower case, either with case coercion in the client, or with a custom authenticator.
+
 The first thing you will need is an endpoint to create new users. Let's use `POST /users`. Create a [Content](../basics/content.md) struct representing the data this endpoint expects.
 
 ```swift
