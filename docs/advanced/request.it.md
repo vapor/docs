@@ -62,4 +62,4 @@ app.get("ip") { req -> String in
 }
 ```
 
-Si può vedere la documentazione completa per `SocketAddress` [qui](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niotls/socketaddress).
+Si può vedere la documentazione completa per `SocketAddress` [qui](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niocore/socketaddress).
