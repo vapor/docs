@@ -94,6 +94,9 @@ Supported field constraints are listed below.
 |`.references`|Requires that this field's value match a value in the referenced schema. See [foreign key](#foreign-key)|
 |`.identifier`|Denotes the primary key. See [identifier](#identifier)|
 
+!!! tip
+    If you're using a `.required` field, especially if you're updating a schema rather than creating it, you might need to set a default value, this is done via `.sql(.default("default value"))`.
+
 ### Identifier
 
 If your model uses a standard `@ID` property, you can use the `id()` helper to create its field. This uses the special `.id` field key and `UUID` value type.
