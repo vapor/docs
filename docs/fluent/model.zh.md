@@ -527,7 +527,7 @@ Planet.find(req.parameters.get("id"), on: database)
 
 如果没有找到具有该标识符的模型，则返回 `nil`。
 
-## 生命周期
+## 生命周期(Lifecycle)
 
 模型中间件允许你监听模型的生命周期事件。支持以下生命周期事件。
 
