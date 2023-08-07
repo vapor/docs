@@ -94,9 +94,6 @@ Supported field constraints are listed below.
 |`.references`|Requires that this field's value match a value in the referenced schema. See [foreign key](#foreign-key)|
 |`.identifier`|Denotes the primary key. See [identifier](#identifier)|
 
-!!! tip
-    If you're using a `.required` field, especially if you're updating a schema rather than creating it, you might need to set a default value, this is done via `.sql(.default("default value"))`.
-
 ### Identifier
 
 If your model uses a standard `@ID` property, you can use the `id()` helper to create its field. This uses the special `.id` field key and `UUID` value type.
@@ -220,6 +217,21 @@ Below is an example using foreign key actions.
 !!! warning
     Foreign key actions happen solely in the database, bypassing Fluent. 
     This means things like model middleware and soft-delete may not work correctly.
+
+## SQL
+
+The `.sql` parameter allows you to add arbitrary SQL to your schema. This is useful for adding specific constraints or data types.
+Quite a common use case is defining a default value for a field:
+
+```swift
+.field("active", .bool, .required, .sql(.default(true)))
+```
+
+or even a default value for a timestamp:
+
+```swift
+.field("created_at", .datetime, .required, .sql(.default(SQLFunction("now"))))
+```
 
 ## Dictionary
 
