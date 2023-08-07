@@ -326,6 +326,10 @@ extension User {
 app.migrations.add(User.Migration())
 ``` 
 
+!!! tip "建议"
+     由于电子邮件地址是不区分大小写的，你可能希望在将其保存到数据库之前添加一个[`中间件`](../fluent/model.md#lifecycle)，将电子邮件地址强制转换为小写。但是要注意，`ModelAuthenticatable` 使用区分大小写的比较，如果你这样做的话，你需要确保用户的输入都是小写，要么在客户端使用大小写强制转换，要么使用自定义身份验证器。
+
+
 首先需要一个端点来创建新用户。让我们使用 `POST /users`。创建一个 [Content](../basics/content.zh.md) 的结构体，表示这个端点期望的数据。
 
 ```swift
