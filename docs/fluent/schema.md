@@ -221,7 +221,7 @@ Below is an example using foreign key actions.
 ## SQL
 
 The `.sql` parameter allows you to add arbitrary SQL to your schema. This is useful for adding specific constraints or data types.
-Quite a common use case is defining a default value for a field:
+A common use case is defining a default value for a field:
 
 ```swift
 .field("active", .bool, .required, .sql(.default(true)))
