@@ -383,7 +383,7 @@ plugins:
           Xcode: Xcode
           Basics: Podstawy
           Routing: Kierowanie ruchem
-          Content: Kontent
+          Content: Content
           Client: Klient
           Validation: Walidacja
           Async: Asynchroniczność
