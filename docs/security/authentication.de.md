@@ -40,7 +40,7 @@ protected.get("me") { req -> String in
 }
 ```
 
-Mit der Methode _require(:)_ können wir die Benutzeridentität abfragen. Sollte die Authentifizierung fehlschlagen, wird ein entsprechender Fehler ausgegeben und der Endpunkt bleibt unberührt.
+Mit der Methode `req.auth.require` können wir die Benutzeridentität abfragen. Sollte die Authentifizierung fehlschlagen, wird ein entsprechender Fehler ausgegeben und der Endpunkt bleibt unberührt.
 
 ### Guard Middleware
 
