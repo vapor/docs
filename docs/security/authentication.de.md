@@ -62,7 +62,7 @@ GET /me HTTP/1.1
 Authorization: Basic dGVzdDpzZWNyZXQ=
 ```
 
-Die Basisauthentifierzung wird nur einmalig verwendet, um nach der erfolgreichen Authentifizierung einen Token zu erzeugen.
+Die Basis Authentifizierung wird nur einmalig verwendet, um nach der erfolgreichen Authentifizierung einen Token zu erzeugen.
 
 Durch den Token wird die Häufigkeit einer notwendigen Übermittlung des Passwortes verringert. Zudem sollte die Basis Authentifizierung nie im Klartext oder über eine unverschlüsselte Verbindung erfolgen.
 
