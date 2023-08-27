@@ -44,7 +44,7 @@ Mit der Methode `req.auth.require` können wir die Benutzeridentität abfragen. 
 
 ### Guard Middleware
 
-Mit der Methode _guardMiddleware()_ gehen wir auf Nummer sich gehen und 
+Wir können auch `GuardMiddleware` in der Routengruppe verwenden, um sicherzustellen, dass ein Benutzer authentifiziert wurde, bevor er den Routenhandler erreicht.
 
 ```swift
 let protected = app.grouped(UserAuthenticator())
