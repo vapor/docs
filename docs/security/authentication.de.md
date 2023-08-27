@@ -10,10 +10,10 @@ Vapor ermöglicht die [Basis](https://tools.ietf.org/html/rfc7617)- und [Bearer]
 Die Authentifizierung erfolgt durch einen sogenannten `Authenticator`, der die eigentliche Logik beinhaltet und dazu verwendet wird um, einzelne Endpunkte oder auch die gesamte Anwendung zu sichern. Ein `Authenticator` kann entweder einzelne Routengruppen schützen oder auch die ganze App. Die folgenden Authenticator-Helfer werden mit Vapor ausgeliefert:
 | Protokoll                                                   | Beschreibung                                             |
 |-------------------------------------------------------------|----------------------------------------------------------|
-| `RequestAuthenticator`/`AsyncRequestAuthenticator`          | Base authenticator capable of creating middleware.       |
-| [`BasicAuthenticator`/`AsyncBasicAuthenticator`](#basis)    |Authenticates Basic authorization header.                 |
-| [`BearerAuthenticator`/`AsyncBearerAuthenticator`](#bearer) |Authenticates Bearer authorization header.                |
-| `CredentialsAuthenticator`/`AsyncCredentialsAuthenticator`  |Authenticates a credentials payload from the request body.|
+| `RequestAuthenticator`/`AsyncRequestAuthenticator`          |Basis Authentifizierung, der Middleware erstellen kann.      |
+| [`BasicAuthenticator`/`AsyncBasicAuthenticator`](#basis)    |Authentifiziert den Basic authorization header.           |
+| [`BearerAuthenticator`/`AsyncBearerAuthenticator`](#bearer) |Authentifiziert den Bearer-Autorisierungs-Header.         |
+| `CredentialsAuthenticator`/`AsyncCredentialsAuthenticator`  |Authentifiziert einen Credentials Payload aus dem Request Body.|
 
 Bei erfolgreicher Authentifizierung übergibt der Authenticator die Benutzeridentität an die Eigenschaft `req.auth`. Mit der Methode `get(_:)` können wir auf die Identität zugreifen. Wenn die Authentifizierung fehl schlägt wird keine Identität übergeben und jeglicher Versuch, darauf zuzugreifen, schlägt fehl.
 
@@ -51,7 +51,7 @@ let protected = app.grouped(UserAuthenticator())
     .grouped(User.guardMiddleware())
 ```
 
-Requiring authentication is not done by the authenticator middleware to allow for composition of authenticators. Read more about [composition](#composition) below.
+Die Authentifizierung wird nicht von der Authentifikator-Middleware durchgeführt, um die Komposition von Authentifikatoren zu ermöglichen. Lies unten mehr über [composition](#composition) weiter.
 
 ## Basis
 
@@ -173,7 +173,7 @@ app.grouped(UserPasswordAuthenticator())
     .post("login") 
 { req in
     let user = try req.auth.require(User.self)
-    // Do something with user.
+    // Mach etwas mit dem Benutzer.
 }
 ```
 
@@ -197,13 +197,13 @@ app.grouped(AdminAuthenticator())
     guard req.auth.has(Admin.self) || req.auth.has(User.self) else {
         throw Abort(.unauthorized)
     }
-    // Do something.
+    // Mach etwas.
 }
 ```
 
-This example assumes two authenticators `AdminAuthenticator` and `UserAuthenticator` that authenticate `Admin` and `User`, respectively. Both of these authenticators are added to the route group. Instead of using `GuardMiddleware`, a check in the route handler is added to see if either `Admin` or `User` were authenticated. If not, an error is thrown.
+In diesem Beispiel werden zwei Authentifikatoren `AdminAuthenticator` und `UserAuthenticator` angenommen, die jeweils `Admin` und `User` authentifizieren. Diese beiden Authentifikatoren werden der Routengruppe hinzugefügt. Anstatt `GuardMiddleware` zu verwenden, wird eine Prüfung im Routehandler hinzugefügt, um zu sehen, ob entweder `Admin` oder `User` authentifiziert wurden. Wenn nicht, wird ein Fehler ausgelöst.
 
-This composition of authenticators results in a route that can be accessed by two different types of users with potentially different methods of authentication. Such a route could allow for normal user authentication while still giving access to a super-user.
+Diese Zusammensetzung von Authentifikatoren führt zu einer Route, die von zwei verschiedenen Nutzertypen mit potenziell unterschiedlichen Authentifizierungsmethoden genutzt werden kann. Ein solcher Weg könnte eine normale Benutzerauthentifizierung ermöglichen und gleichzeitig einem Superuser Zugang gewähren.
 
 ## Anleitung
 
@@ -241,7 +241,7 @@ req.auth.logout(User.self)
 
 _ModelTokenAuthenicatable_ ist für die Authentifizierung mit einem Bearer-Token. _ModelAuthenticatable_ ist für die Authentifizierung mittels Anmeldeinformationen und wird in den meisten Fällen nur auf einen einzigen Endpunkt angewendet, um eben einen solchen Bearer-Token zu erstellen.
 
-This guide assumes you are familiar with Fluent and have successfully configured your app to use a database. If you are new to Fluent, start with the [overview](../fluent/overview.md).
+In dieser Anleitung wird davon ausgegangen, dass du mit Fluent vertraut bist und deine App erfolgreich für die Verwendung einer Datenbank konfiguriert hast. Wenn du neu in Fluent bist, beginne mit der [Übersicht](../fluent/overview.md).
 
 ### Benutzer-Authentifizierung
 
@@ -277,7 +277,7 @@ final class User: Model, Content {
 }
 ```
 
-Das Model. Das Feld _Email_ sollte unique sein, um Redundanzen zu vermeiden. Somit würde die Migration für das obere Beispiel so aussehen.
+Das Model. Das Feld _Email_ sollte einzigartig sein, um Redundanzen zu vermeiden. Somit würde die Migration für das obere Beispiel so aussehen.
 
 ```swift
 import Fluent
@@ -417,7 +417,7 @@ Authorization: Basic dGVzdEB2YXBvci5jb2RlczpzZWNyZXQ0Mg==
 
 Die Anfragen übergibt als Benutzernamen _test@vapor.codes_ und als Passwort _secret42_: 
 
-This request passes the username `test@vapor.codes` and password `secret42` via the Basic authentication header. You should see the previously created user returned.
+Diese Anfrage übergibt den Benutzernamen `test@vapor.codes` und das Passwort `secret42` über den Basic Authentication Header. Du solltest den zuvor erstellten Benutzer zurückbekommen.
 
 In der Theorie können wir alle Endpunkte mit der Standardauthentifizierung versehen, was allerdings weniger ratsam wäre. Mit der Token-Authentifizierung übertragen wir viel seltener die sensiblen Daten über das Internet. Zumal ist die Authentifizierung um einiges schneller, da nur das Passwort-Hashing durchgeführt wird.
 
@@ -643,7 +643,7 @@ Dieser Authentifikator authentifiziert einen Benutzer mit der E-Mail `hello@vapo
 Zum Schluss fügen wir all diese Teile in deiner Anwendung zusammen.
 
 ```swift
-// Create protected route group which requires user auth.
+// Erstelle eine geschützte Routengruppe, die eine Benutzeranmeldung erfordert.
 let protected = app.routes.grouped([
     app.sessions.middleware,
     UserSessionAuthenticator(),
@@ -651,7 +651,7 @@ let protected = app.routes.grouped([
     User.guardMiddleware(),
 ])
 
-// Add GET /me route for reading user's email.
+// Füge eine GET /me Route hinzu, um die E-Mail des Benutzers zu lesen.
 protected.get("me") { req -> String in
     try req.auth.require(User.self).email
 }
@@ -690,7 +690,7 @@ import Fluent
 
 final class User: Model { ... }
 
-// Allow this model to be persisted in sessions.
+// Erlaube, dass dieses Modell in Sitzungen bestehen bleibt.
 extension User: ModelSessionAuthenticatable { }
 ```
 
@@ -803,13 +803,13 @@ Der `CredentialsAuthenticator` extrahiert den `Benutzernamen` und das `Passwort`
 Erstelle zunächst einen Typ, der eine JWT-Nutzlast repräsentiert.
 
 ```swift
-// Example JWT payload.
+// Beispiel JWT-Payload.
 struct SessionToken: Content, Authenticatable, JWTPayload {
 
-    // Constants
+    // Konstanten
     let expirationTime: TimeInterval = 60 * 15
     
-    // Token Data
+    // Token Daten
     var expiration: ExpirationClaim
     var userId: UUID
     
@@ -852,8 +852,8 @@ Wenn du keinen Authentifikator verwenden willst, kannst du auch etwas haben, das
 
 ```swift
 app.post("login") { req -> ClientTokenReponse in
-    // Validate provided credential for user
-    // Get userId for provided user
+    // Überprüfe die angegebenen Anmeldeinformationen für den Benutzer
+    // UserId für den angegebenen Benutzer abrufen
     let payload = try SessionToken(userId: userId)
     return ClientTokenReponse(token: try req.jwt.sign(payload))
 }
@@ -862,7 +862,7 @@ app.post("login") { req -> ClientTokenReponse in
 Indem du die Payload an `Authenticatable` und `JWTPayload` anpasst, kannst du mit der Methode `authenticator()` einen Routen-Authentifikator erzeugen. Füge diesen zu einer Routengruppe hinzu, um den JWT automatisch abzurufen und zu verifizieren, bevor deine Route aufgerufen wird.
 
 ```swift
-// Create a route group that requires the SessionToken JWT.
+// Erstelle eine Routengruppe, die das SessionToken JWT benötigt.
 let secure = app.grouped(SessionToken.authenticator(), SessionToken.guardMiddleware())
 ```
 
@@ -871,7 +871,7 @@ Das Hinzufügen der optionalen [guard middleware](#guard-middleware) setzt vorau
 Innerhalb der geschützten Routen kannst du mit `req.auth` auf die authentifizierten JWT-Nutzdaten zugreifen.
 
 ```swift
-// Return ok reponse if the user-provided token is valid.
+// Gibt eine ok-Antwort zurück, wenn das vom Benutzer bereitgestellte Token gültig ist.
 secure.post("validateLoggedInUser") { req -> HTTPStatus in
     let sessionToken = try req.auth.require(SessionToken.self)
     print(sessionToken.userId)
