@@ -1,6 +1,7 @@
 # Authentifizierung
 
-Bei der Authentifzierung handelt sich um die Überprüfung einer Benutzeridentität, zum Beispiel anhand von Anmeldeinformationen oder einem Token. Die Authentifizierung unterscheidet sich von der Authentisierung. Bei Authentisierung geht es mehr um die Überprüfung von Berechtigungen eines Benutzers.
+Bei der Authentifizierung handelt es sich um die Überprüfung einer Benutzeridentität, zum Beispiel anhand von Anmeldeinformationen oder einem Token. Die Authentifizierung unterscheidet sich von der Autorisierung, bei der die Berechtigung eines zuvor authentifizierten Benutzers zur Durchführung bestimmter Aufgaben überprüft wird.
+
 
 ## Einführung
 
