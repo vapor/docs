@@ -55,7 +55,7 @@ Requiring authentication is not done by the authenticator middleware to allow fo
 
 ## Basis
 
-Die Basisauthentifierung überträgt mittels Authorization-Header Benutzername und Passwort an den Server. Benutzername und Passwort werden dabei mit einem semikolon-getrennt in eine Base64-Zeichenfolge gewandelt und mit dem Prefix `Basic`versehen.
+Die Basis Authentifizierung überträgt mittels Authorization-Header Benutzername und Passwort an den Server. Benutzername und Passwort werden dabei mit einem Doppelpunkt-verkettet (z.B. `test:secret`), base-64 kodiert und mit dem Präfix `"Basic"` versehen. Die folgende Beispielanfrage kodiert den Benutzernamen "test" mit dem Passwort "secret".
 
 ```http
 GET /me HTTP/1.1
