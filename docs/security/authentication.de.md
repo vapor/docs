@@ -87,6 +87,8 @@ struct UserAuthenticator: BasicAuthenticator {
 }
 ```
 
+Wenn Sie `async`/`await` verwenden, können Sie stattdessen `AsyncBasicAuthenticator` benutzen:
+
 ```swift
 import Vapor
 
