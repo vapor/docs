@@ -25,4 +25,4 @@ Die Dokumentationen zu älteren Versionen von Vapor findest du unter [https://le
 
 ## Authoren
 
-Das Vapor-Kernteam und viele weitere Mitglieder der Vapor-Community.
+Das Vapor Kernteam und viele andere Mitglieder der Vapor Community.
