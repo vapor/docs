@@ -512,6 +512,7 @@ nav:
   - WebSockets: "advanced/websockets.md"
   - Sessions: "advanced/sessions.md"
   - Services: "advanced/services.md"
+  - Request: "advanced/request.md"
   - APNS: "advanced/apns.md"
 - Security:
   - Authentication: "security/authentication.md"
