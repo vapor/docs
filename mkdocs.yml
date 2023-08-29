@@ -84,386 +84,394 @@ plugins:
   # i18n plugin documentation
   # https://github.com/ultrabug/mkdocs-static-i18n
   - i18n:
-      default_language: 'en'
-      search_reconfigure: false
-      material_alternate: true
-      # Add the new languages here. DON'T CHANGE THE DEFAULT LANGUAGE
+      docs_structure: suffix
+      fallback_to_default: true
       languages:
-        en:
+        - build: true
+          default: true
+          locale: en
           name: English
-          build: true
-        zh:
+        - build: true
+          default: false
+          locale: zh
           name: 简体中文
+          nav_translations:
+            APNS: 苹果推送服务
+            Advanced: 进阶
+            Async: 异步
+            Authentication: 认证
+            Basics: 入门
+            Client: 客户端
+            Commands: 命令
+            Content: 内容
+            Contributing: 贡献
+            Contributing Guide: 贡献指南
+            Crypto: 加密
+            Custom Tags: 自定义标签
+            Deploy: 部署
+            Environment: 环境
+            Errors: 错误
+            Files: 文件
+            Fluent: Fluent
+            Folder Structure: 项目结构
+            Getting Started: 开始
+            Hello, world: 你好世界
+            Install: 安装
+            JWT: JWT
+            Leaf: Leaf
+            Logging: 日志
+            Middleware: 中间件
+            Migrations: 迁移
+            Model: 模型
+            Overview: 概述
+            Passwords: 密码
+            Query: 查询
+            Queues: 队列
+            Redis: Redis
+            Relations: 关联
+            Routing: 路由
+            Schema: 模式
+            Security: 安全
+            Server: 服务器
+            Services: 服务
+            Sessions: 会话
+            SwiftPM: Swift 包管理器
+            Testing: 测试
+            Transactions: 事务
+            Validation: 验证
+            Version (4.0): 版本 (4.0)
+            WebSockets: 即时通讯
+            Welcome: 序言
+            Xcode: Xcode
           site_name: Vapor 中文文档
-          build: true
-        nl:
+        - build: true
+          default: false
+          locale: nl
           name: Nederlands
+          nav_translations:
+            Advanced: Geavanceerd
+            Async: Asynchroon
+            Authentication: Authenticatie
+            Basics: Basis
+            Commands: Commando's
+            Content: Inhoud
+            Contributing: Bijdragen
+            Contributing Guide: Gids Bijdragen
+            Crypto: Encryptie
+            Custom Tags: Zelfgemaakte Tags
+            Deploy: Opzetten
+            Environment: Omgeving
+            Files: Bestanden
+            Folder Structure: Folder Structuur
+            Getting Started: Aan De Slag
+            Hello, world: Hallo, wereld
+            Install: Installeren
+            Legacy Docs: Oude Documentatie
+            Logging: Loggen
+            Migrations: Migraties
+            Overview: Overzicht
+            Passwords: Wachtwoorden
+            Query: Opvragen
+            Queues: Wachtrijen
+            Relations: Relaties
+            Routing: Routering
+            Schema: Schema
+            Security: Veiligheid
+            Services: Diensten
+            Sessions: Sessies
+            Testing: Testen
+            Transactions: Transacties
+            Upgrading: Upgraden
+            Validation: Validatie
+            Version (4.0): Versie (4.0)
+            Welcome: Welkom
           site_name: Vapor Documentatie
-          build: true
-        fr:
+        - build: true
+          default: false
+          locale: fr
           name: Français
+          nav_translations:
+            Advanced: Avancé
+            Async: Asynchrone
+            Authentication: Authentication
+            Basis: Bases
+            Commands: Commandes
+            Content: Contenu
+            Contributing: Contribuer
+            Contributing Guide: Guide de la contribution
+            Custom Tags: Tags customisés
+            Deploy: Deployer
+            Environment: Environement
+            Files: Fichiers
+            Folder Structure: Strucutre du Dossier
+            Getting Started: Commencer
+            Hello, world: Bonjour, monde
+            Install: Installer
+            Legacy Docs: Documents hérité
+            Migrations: Migrations
+            Overview: Aperçu
+            Passwords: Mots de passe
+            Query: Requête
+            Queues: Files d'attente
+            Relataions: Relations
+            Schema: Schema
+            Security: Securité
+            Services: Sercvies
+            Sessions: Sessions
+            Testing: Test
+            Transactions: Transactions
+            Upgrading: Mettre à jour
+            Validation: Validation
+            Version (4.0): Version (4.0)
+            Welcome: Bienvenue
           site_name: Documentation Vapor
-          build: true
-        de:
+        - build: true
+          default: false
+          locale: de
           name: German
+          nav_translations:
+            Advanced: Erweitert
+            Authentication: Authentifzierung
+            Basics: Grundlagen
+            Commands: Befehle
+            Content: Modelbindung
+            Contributing: Mitwirken
+            Contributing Guide: Leitfaden für Beiträge
+            Deploy: Bereitstellung
+            Environment: Umgebung
+            Errors: Fehlerbehandlung
+            Files: Dateien
+            Folder Structure: Verzeichnis
+            Getting Started: Einführung
+            Hello, world: Hallo Welt
+            Install: Installation
+            Logging: Protokollierung
+            Migrations: Migrationen
+            Model: Models
+            Overview: Übersicht
+            Query: Abfrage
+            Relations: Beziehungen
+            Security: Sicherheit
+            Services: Dienste
+            Sessions: Sitzungen
+            Testing: Testen
+            Transactions: Transaktionen
+            Validation: Validierung
+            Welcome: Begrüßung
           site_name: Vapor Dokumentation
-          build: true
-        it:
+        - build: true
+          default: false
+          locale: it
           name: Italiano
+          nav_translations:
+            APNS: APNS
+            Advanced: Avanzate
+            Async: Asincrono
+            Authentication: Autenticazione
+            Basics: Basi
+            Client: Client
+            Commands: Comandi
+            Content: Contenuto
+            Contributing: Contribuire
+            Contributing Guide: Guida alla Contribuzione
+            Crypto: Crittografia
+            Custom Tags: Tag Personalizzati
+            Deploy: Deploy
+            Environment: Ambiente
+            Errors: Errori
+            Files: File
+            Fluent: Fluent
+            Folder Structure: Struttura della Cartella
+            Getting Started: Inizio
+            Hello, world: Ciao, mondo
+            Install: Installazione
+            JWT: JWT
+            Leaf: Leaf
+            Legacy Docs: Documentazione Legacy
+            Logging: Logging
+            Middleware: Middleware
+            Migrations: Migrazioni
+            Model: Modello
+            Overview: Panoramica
+            Passwords: Password
+            Query: Query
+            Queues: Code
+            Redis: Redis
+            Relations: Relazioni
+            Routing: Routing
+            Schema: Schema
+            Security: Sicurezza
+            Server: Server
+            Services: Servizi
+            Sessions: Sessioni
+            SwiftPM: SwiftPM
+            Testing: Test
+            Transactions: Transazioni
+            Upgrading: Aggiornamento
+            Validation: Validazione
+            Version (4.0): Versione (4.0)
+            WebSockets: WebSockets
+            Welcome: Benvenuto
+            Xcode: Xcode
           site_name: Documentazione di Vapor
-          build: true
-        es:
+        - build: true
+          default: false
+          locale: es
           name: Español
+          nav_translations:
+            APNS: APNS
+            Advanced: Avanzado
+            Async: Async
+            Authentication: Autenticación
+            Basics: Fundamentos
+            Client: Cliente
+            Commands: Comandos
+            Content: Content
+            Contributing: Colaborar
+            Contributing Guide: Guía para Colaborar
+            Crypto: Criptografía
+            Custom Tags: Etiquetas Personalizadas
+            Deploy: Desplegar
+            Environment: Entorno
+            Errors: Errores
+            Files: Ficheros
+            Fluent: Fluent
+            Folder Structure: Estructura de Carpetas
+            Getting Started: Comenzando
+            Hello, world: Hola, mundo
+            Install: Instalación
+            JWT: JWT
+            Leaf: Leaf
+            Legacy Docs: Documentación Legacy
+            Logging: Logging
+            Middleware: Middleware
+            Migrations: Migraciones
+            Model: Modelo
+            Overview: Presentación
+            Passwords: Contraseñas
+            Query: Consultas
+            Queues: Colas
+            Redis: Redis
+            Relations: Relaciones
+            Routing: Routing
+            Schema: Esquema
+            Security: Seguridad
+            Server: Servidor
+            Services: Servicios
+            Sessions: Sesiones
+            SwiftPM: SwiftPM
+            Testing: Testing
+            Transactions: Transacciones
+            Upgrading: Actualizar
+            Validation: Validación
+            Version (4.0): Versión (4.0)
+            WebSockets: WebSockets
+            Welcome: Bienvenido
+            Xcode: Xcode
           site_name: Documentación de Vapor
-          build: true
-        pl:
+        - build: true
+          default: false
+          locale: pl
           name: Polski
+          nav_translations:
+            APNS: APNS
+            Advanced: Zaawansowane
+            Async: Asynchroniczność
+            Authentication: Autentykacja
+            Basics: Podstawy
+            Client: Klient
+            Commands: Komendy
+            Content: Kontent
+            Contributing: Kontrybucja
+            Contributing Guide: Przewodnik do kontrybucji
+            Crypto: Kryptografia
+            Custom Tags: Własne tagi
+            Deploy: Wdrożenie
+            Environment: Środowisko
+            Errors: Błędy
+            Files: Pliki
+            Fluent: Fluent
+            Folder Structure: Struktura folderów
+            Getting Started: Jak zacząć
+            Hello, world: Witaj, świecie
+            Install: Instalacja
+            JWT: JWT
+            Leaf: Leaf
+            Legacy Docs: Przestażała dokumentacja
+            Logging: Logowanie
+            Middleware: Middleware
+            Migrations: Migracje
+            Model: Model
+            Overview: Prezentacja
+            Passwords: Hasła
+            Query: Zapytania
+            Queues: Kolejki
+            Redis: Redis
+            Relations: Relacje
+            Release Notes: Informacja o wersji
+            Routing: Kierowanie ruchem
+            Schema: Schematy
+            Security: Bezpieczeństwo
+            Server: Serwer
+            Services: Serwisy
+            Sessions: Sesje
+            SwiftPM: SwiftPM
+            Testing: Testowanie
+            Transactions: Transakcje
+            Upgrading: Aktualizacja
+            Validation: Walidacja
+            Version (4.0): Wersja (4.0)
+            WebSockets: WebSockety
+            Welcome: Witaj
+            Xcode: Xcode
           site_name: Dokumentacja Vapor
-        ko:
+        - build: true
+          default: false
+          locale: ko
           name: 한국어
+          nav_translations:
+            Advanced: 고급
+            Async: 비동기 처리
+            Authentication: 인증
+            Basics: 기본 사항
+            Client: 클라이언트
+            Commands: 명령어
+            Content: 컨텐츠
+            Contributing: 기여하기
+            Contributing Guide: 기여 가이드
+            Crypto: 암호화
+            Custom Tags: 사용자 정의 태그
+            Deploy: 배포
+            Environment: 환경 설정
+            Errors: 에러
+            Files: 파일
+            Folder Structure: 폴더 구조
+            Getting Started: 시작하기
+            Install: 설치
+            Legacy Docs: 이전 문서
+            Logging: 로깅
+            Migrations: 마이그레이션
+            Model: 모델
+            Overview: 개요
+            Passwords: 비밀번호
+            Query: 쿼리
+            Queues: 대기열
+            Relations: 관계
+            Routing: 라우팅
+            Schema: 스키마
+            Security: 보안
+            Services: 서비스
+            Sessions: 세션
+            Testing: 테스트
+            Transactions: 트랜잭션
+            Upgrading: 업그레이드
+            Validation: 유효성 검사
+            Version (4.0): 버전 (4.0)
+            WebSockets: 웹소켓
+            Welcome: 환영합니다
           site_name: Vapor 문서
-          build: true
-      # Add navigation translations here
-      nav_translations:
-        nl:
-          Welcome: Welkom
-          Install: Installeren
-          Getting Started: Aan De Slag
-          Hello, world: Hallo, wereld
-          Folder Structure: Folder Structuur
-          Basics: Basis
-          Routing: Routering
-          Content: Inhoud
-          Validation: Validatie
-          Async: Asynchroon
-          Logging: Loggen
-          Environment: Omgeving
-          Overview: Overzicht
-          Relations: Relaties
-          Migrations: Migraties
-          Query: Opvragen
-          Transactions: Transacties
-          Schema: Schema
-          Advanced: Geavanceerd
-          Testing: Testen
-          Files: Bestanden
-          Commands: Commando's
-          Queues: Wachtrijen
-          Sessions: Sessies
-          Services: Diensten
-          Security: Veiligheid
-          Authentication: Authenticatie
-          Crypto: Encryptie
-          Passwords: Wachtwoorden
-          Deploy: Opzetten
-          Version (4.0): Versie (4.0)
-          Legacy Docs: Oude Documentatie
-          Upgrading: Upgraden
-          Custom Tags: Zelfgemaakte Tags
-          Contributing: Bijdragen
-          Contributing Guide: Gids Bijdragen
-        fr:
-          Welcome: Bienvenue
-          Install: Installer
-          Getting Started: Commencer
-          Hello, world: Bonjour, monde
-          Basis: Bases
-          Folder Structure: Strucutre du Dossier
-          Content: Contenu
-          Validation: Validation
-          Async: Asynchrone
-          Environment: Environement
-          Overview: Aperçu
-          Relataions: Relations
-          Migrations: Migrations
-          Query: Requête
-          Transactions: Transactions
-          Schema: Schema
-          Advanced: Avancé
-          Testing: Test
-          Files: Fichiers
-          Commands: Commandes
-          Queues: Files d'attente
-          Sessions: Sessions
-          Services: Sercvies
-          Security: Securité
-          Authentication: Authentication
-          Passwords: Mots de passe
-          Deploy: Deployer
-          Version (4.0): Version (4.0)
-          Legacy Docs: Documents hérité
-          Upgrading: Mettre à jour
-          Custom Tags: Tags customisés
-          Contributing: Contribuer
-          Contributing Guide: Guide de la contribution
-        de:
-          Welcome: Begrüßung
-          Install: Installation
-          Getting Started: Einführung
-          Basics: Grundlagen
-          Hello, world: Hallo Welt
-          Folder Structure: Verzeichnis
-          Validation: Validierung
-          Logging: Protokollierung
-          Environment: Umgebung
-          Errors: Fehlerbehandlung
-          Model: Models
-          Overview: Übersicht
-          Relations: Beziehungen
-          Migrations: Migrationen
-          Query: Abfrage
-          Transactions: Transaktionen
-          Sessions: Sitzungen
-          Advanced: Erweitert
-          Testing: Testen
-          Files: Dateien
-          Commands: Befehle
-          Services: Dienste
-          Authentication: Authentifzierung
-          Security: Sicherheit
-          Deploy: Bereitstellung
-          Contributing: Mitwirken
-          Contributing Guide: Leitfaden für Beiträge
-          Content: Modelbindung
-        zh:
-          Welcome: 序言
-          Install: 安装
-          Getting Started: 开始
-          Hello, world: 你好世界
-          Folder Structure: 项目结构
-          SwiftPM: Swift 包管理器
-          Xcode: Xcode
-          Basics: 入门
-          Routing: 路由
-          Content: 内容
-          Client: 客户端
-          Validation: 验证
-          Async: 异步
-          Logging: 日志
-          Environment: 环境
-          Errors: 错误
-          Fluent: Fluent
-          Overview: 概述
-          Model: 模型
-          Relations: 关联
-          Migrations: 迁移
-          Query: 查询
-          Transactions: 事务
-          Schema: 模式
-          Leaf: Leaf
-          Custom Tags: 自定义标签
-          Redis: Redis
-          Advanced: 进阶
-          Middleware: 中间件
-          Testing: 测试
-          Server: 服务器
-          Files: 文件
-          Commands: 命令
-          Queues: 队列
-          WebSockets: 即时通讯
-          Sessions: 会话
-          Services: 服务
-          Security: 安全
-          APNS: 苹果推送服务
-          Deploy: 部署
-          Authentication: 认证
-          Crypto: 加密
-          Passwords: 密码
-          JWT: JWT
-          Contributing: 贡献
-          Contributing Guide: 贡献指南
-          Version (4.0): 版本 (4.0)
-        it:
-          Welcome: Benvenuto
-          Install: Installazione
-          Getting Started: Inizio
-          Hello, world: Ciao, mondo
-          Folder Structure: Struttura della Cartella
-          SwiftPM: SwiftPM
-          Xcode: Xcode
-          Basics: Basi
-          Routing: Routing
-          Content: Contenuto
-          Client: Client
-          Validation: Validazione
-          Async: Asincrono
-          Logging: Logging
-          Environment: Ambiente
-          Errors: Errori
-          Fluent: Fluent
-          Overview: Panoramica
-          Model: Modello
-          Relations: Relazioni
-          Migrations: Migrazioni
-          Query: Query
-          Transactions: Transazioni
-          Schema: Schema
-          Leaf: Leaf
-          Custom Tags: Tag Personalizzati
-          Redis: Redis
-          Advanced: Avanzate
-          Middleware: Middleware
-          Testing: Test
-          Server: Server
-          Files: File
-          Commands: Comandi
-          Queues: Code
-          WebSockets: WebSockets
-          Sessions: Sessioni
-          Services: Servizi
-          Security: Sicurezza
-          APNS: APNS
-          Deploy: Deploy
-          Authentication: Autenticazione
-          Crypto: Crittografia
-          Passwords: Password
-          JWT: JWT
-          Contributing: Contribuire
-          Contributing Guide: Guida alla Contribuzione
-          Version (4.0): Versione (4.0)
-          Legacy Docs: Documentazione Legacy
-          Upgrading: Aggiornamento
-        es:
-          Welcome: Bienvenido
-          Install: Instalación
-          Getting Started: Comenzando
-          Hello, world: Hola, mundo
-          Folder Structure: Estructura de Carpetas
-          SwiftPM: SwiftPM
-          Xcode: Xcode
-          Basics: Fundamentos
-          Routing: Routing
-          Content: Content
-          Client: Cliente
-          Validation: Validación
-          Async: Async
-          Logging: Logging
-          Environment: Entorno
-          Errors: Errores
-          Fluent: Fluent
-          Overview: Presentación
-          Model: Modelo
-          Relations: Relaciones
-          Migrations: Migraciones
-          Query: Consultas
-          Transactions: Transacciones
-          Schema: Esquema
-          Leaf: Leaf
-          Custom Tags: Etiquetas Personalizadas
-          Redis: Redis
-          Advanced: Avanzado
-          Middleware: Middleware
-          Testing: Testing
-          Server: Servidor
-          Files: Ficheros
-          Commands: Comandos
-          Queues: Colas
-          WebSockets: WebSockets
-          Sessions: Sesiones
-          Services: Servicios
-          Security: Seguridad
-          APNS: APNS
-          Deploy: Desplegar
-          Authentication: Autenticación
-          Crypto: Criptografía
-          Passwords: Contraseñas
-          JWT: JWT
-          Contributing: Colaborar
-          Contributing Guide: Guía para Colaborar
-          Version (4.0): Versión (4.0)
-          Legacy Docs: Documentación Legacy
-          Upgrading: Actualizar
-        pl:
-          Welcome: Witaj 
-          Install: Instalacja
-          Getting Started: Jak zacząć
-          Hello, world: Witaj, świecie
-          Folder Structure: Struktura folderów
-          SwiftPM: SwiftPM
-          Xcode: Xcode
-          Basics: Podstawy
-          Routing: Kierowanie ruchem
-          Content: Kontent
-          Client: Klient
-          Validation: Walidacja
-          Async: Asynchroniczność
-          Logging: Logowanie 
-          Environment: Środowisko
-          Errors: Błędy
-          Fluent: Fluent
-          Overview: Prezentacja
-          Model: Model
-          Relations: Relacje
-          Migrations: Migracje
-          Query: Zapytania
-          Transactions: Transakcje
-          Schema: Schematy
-          Leaf: Leaf
-          Custom Tags: Własne tagi
-          Redis: Redis
-          Advanced: Zaawansowane
-          Middleware: Middleware
-          Testing: Testowanie
-          Server: Serwer
-          Files: Pliki
-          Commands: Komendy
-          Queues: Kolejki
-          WebSockets: WebSockety
-          Sessions: Sesje
-          Services: Serwisy
-          Security: Bezpieczeństwo
-          APNS: APNS
-          Deploy: Wdrożenie
-          Authentication: Autentykacja
-          Crypto: Kryptografia
-          Passwords: Hasła
-          JWT: JWT
-          Contributing: Kontrybucja
-          Contributing Guide: Przewodnik do kontrybucji
-          Version (4.0): Wersja (4.0)
-          Legacy Docs: Przestażała dokumentacja
-          Upgrading: Aktualizacja
-          Release Notes: Informacja o wersji
-        ko:
-          Welcome: 환영합니다
-          Install: 설치
-          Getting Started: 시작하기
-          Folder Structure: 폴더 구조
-          Basics: 기본 사항
-          Routing: 라우팅
-          Content: 컨텐츠
-          Client: 클라이언트
-          Validation: 유효성 검사
-          Async: 비동기 처리
-          Logging: 로깅
-          Environment: 환경 설정
-          Errors: 에러
-          Overview: 개요
-          Model: 모델
-          Relations: 관계
-          Migrations: 마이그레이션
-          Query: 쿼리
-          Transactions: 트랜잭션
-          Schema: 스키마
-          Advanced: 고급
-          Testing: 테스트
-          Files: 파일
-          Commands: 명령어
-          Queues: 대기열
-          WebSockets: 웹소켓
-          Sessions: 세션
-          Services: 서비스
-          Security: 보안
-          Authentication: 인증
-          Crypto: 암호화
-          Passwords: 비밀번호
-          Deploy: 배포
-          Version (4.0): 버전 (4.0)
-          Legacy Docs: 이전 문서
-          Upgrading: 업그레이드
-          Custom Tags: 사용자 정의 태그
-          Contributing: 기여하기
-          Contributing Guide: 기여 가이드
+      reconfigure_material: true
+      reconfigure_search: false
 nav:
 - Welcome: "index.md"
 - Install:
