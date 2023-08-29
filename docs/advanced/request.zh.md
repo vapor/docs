@@ -19,7 +19,7 @@ app.get("hello", ":name") { req -> String in
 
 ## Body
 
-如果你想以 `ByteBuffer` 的形式直接访问请求体，可以使用 `Request.body.data`。这可以用于从请求体流式传输数据到文件（尽管在这种情况下应该使用请求的 [fileio](../advanced/files.m) 属性），或者传输到另一个 HTTP 客户端。
+如果你想以 `ByteBuffer` 的形式直接访问请求体，可以使用 `Request.body.data`。这可以用于从请求体流式传输数据到文件（尽管在这种情况下应该使用请求的 [fileio](../advanced/files.md) 属性），或者传输到另一个 HTTP 客户端。
 
 ## Cookies
 
