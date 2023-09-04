@@ -36,7 +36,7 @@ app.middleware.use(fileMiddleware)
 ```
 
 If running from Xcode please set the project schema run option working directory.
-See [here](https://docs.vapor.codes/getting-started/xcode/#custom-working-directory) for more information.
+See [here](xcode.md#custom-working-directory) for more information.
 
 To see the `favicon.ico` in action prepare a route in `/Sources/App/routes.swift` like this:
 
