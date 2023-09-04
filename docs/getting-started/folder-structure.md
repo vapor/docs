@@ -35,6 +35,35 @@ let fileMiddleware = FileMiddleware(
 app.middleware.use(fileMiddleware)
 ```
 
+If running from Xcode please set the project schema run option working directory.
+See [here](https://docs.vapor.codes/getting-started/xcode/#custom-working-directory) for more information.
+
+To see the `favicon.ico` in action prepare a route in `/Sources/App/routes.swift` like this:
+
+```swift
+import Vapor
+
+func routes(_ app: Application) throws {
+    app.get { req async in
+        Response(
+            status: .ok,
+            headers: ["Content-Type": "text/html"],
+            body:
+                """
+                <html>
+                    <head>
+                        <link rel="shortcut icon" href="/favicon.ico">
+                    </head>
+                    <body>
+                        It works!
+                    </body>
+                </html>
+                """
+        )
+    }
+}
+```
+
 ## Sources
 
 This folder contains all of the Swift source files for your project. 
