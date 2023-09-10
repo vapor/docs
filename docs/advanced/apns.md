@@ -37,7 +37,7 @@ If you edit the manifest directly inside Xcode, it will automatically pick up th
 The APNS module adds a new property `apns` to `Application`. To send push notifications, you will need to set the `configuration` property with your credentials.
 
 ```swift
-import APNS
+import VaporAPNS
 
 // Configure APNS using JWT authentication.
 let apnsConfig = APNSClientConfiguration(
