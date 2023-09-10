@@ -13,7 +13,7 @@ Vapor に関する情報を見つけるには、他にも素晴らしい場所�
 
 | 名前           | 説明                                      | リンク                                                              |
 |----------------|--------------------------------------------------|-------------------------------------------------------------------|
-| Vapor Discord  | 数千の Vapor 開発者とチャットします         | [visit &rarr;](https://vapor.team)                                |
+| Vapor Discord  | 数千人の Vapor 開発者とチャットします         | [visit &rarr;](https://vapor.team)                                |
 | API ドキュメント       | コードコメントから自動生成されたドキュメント | [visit &rarr;](https://api.vapor.codes)                           |
 | Stack Overflow | `vapor` タグで質問し回答します   | [visit &rarr;](https://stackoverflow.com/questions/tagged/vapor)  |
 | Swift フォーラム   | Swift.org フォーラムの Vapor セクションに投稿します | [visit &rarr;](https://forums.swift.org/c/related-projects/vapor) |
