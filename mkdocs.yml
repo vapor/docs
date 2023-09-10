@@ -502,6 +502,7 @@ plugins:
             Query: クエリ
             Queues: 列
             Relations: 関係
+            Release Notes: リリースノート
             Routing: ルーティング
             Schema: スキーマ
             Security: セキュリティ
