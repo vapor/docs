@@ -2,9 +2,9 @@ Vapor ドキュメントへようこそ！ Vapor は Swift のWeb フレーム�
 
 ## はじめに
 
-もし、Vapor を使うのが初めてならば、Swift と Vapor をインストールするために[インストール → macOS](install/macos.ja.md)に進んでください。
+もし、Vapor を使うのが初めてならば、Swift と Vapor をインストールするために[インストール → macOS](install/macos.md)に進んでください。
 
-Vapor をインストールしたら、初めての Vapor アプリを作成するために[はじめに → Hello, world](getting-started/hello-world.ja.md)をチェックしてください！
+Vapor をインストールしたら、初めての Vapor アプリを作成するために[はじめに → Hello, world](getting-started/hello-world.md)をチェックしてください！
 
 
 ## その他の情報源
