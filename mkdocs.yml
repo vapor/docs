@@ -470,6 +470,50 @@ plugins:
             WebSockets: 웹소켓
             Welcome: 환영합니다
           site_name: Vapor 문서
+        - build: true
+          default: false
+          locale: ja
+          name: 日本語
+          nav_translations:
+            Advanced: 上級
+            Async: 非同期
+            Authentication: 認証
+            Basics: 基礎
+            Client: クライアント
+            Commands: コマンド
+            Content: 内容
+            Contributing: 貢献
+            Contributing Guide: 貢献ガイド
+            Crypto: 暗号
+            Custom Tags: カスタムタグ
+            Deploy: デプロイ
+            Environment: 環境
+            Errors: エラー
+            Files: ファイル
+            Folder Structure: フォルダ構造
+            Getting Started: はじめに
+            Install: インストール
+            Legacy Docs: レガシードキュメント
+            Logging: ロギング
+            Migrations: マイグレーション
+            Model: モデル
+            Overview: 概要
+            Passwords: パスワード
+            Query: クエリ
+            Queues: 列
+            Relations: 関係
+            Release Notes: リリースノート
+            Routing: ルーティング
+            Schema: スキーマ
+            Security: セキュリティ
+            Services: サービス
+            Sessions: セッション
+            Testing: テスト
+            Transactions: トランザクション
+            Upgrading: アップグレード
+            Validation: バリデーション
+            Welcome: ようこそ
+          site_name: Vapor ドキュメント
       reconfigure_material: true
       reconfigure_search: false
 nav:

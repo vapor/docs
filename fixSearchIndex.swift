@@ -43,6 +43,7 @@ let knownLanguages = [
         "es",
         "fr",
         "it",
+        "ja",
         "ko",
         "nl",
         "pl",
