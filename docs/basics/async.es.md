@@ -258,7 +258,6 @@ let futureResponse = futureString.flatMapThrowing { string in
 print(futureResponse) // EventLoopFuture<ClientResponse>
 ```
 
-After the initial call to map, there is a temporary `EventLoopFuture<URL>` created. This future is then immediately flat-mapped to a `EventLoopFuture<Response>`
 Después de la llamada inicial a map, se crea un `EventLoopFuture<URL>` temporal. Este futuro se asigna inmediatamente a un `EventLoopFuture<Response>`
     
 ## Futuro
