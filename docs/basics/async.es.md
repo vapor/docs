@@ -310,7 +310,6 @@ let string = try futureString.wait()
 print(string) /// String
 ```
 
-`wait()` can only be used on a background thread or the main thread, i.e., in `configure.swift`. It can _not_ be used on an event loop thread, i.e., in route closures.
 `wait()` solo se puede usar en un hilo en segundo plano o en el hilo principal, por ejemplo, en `configure.swift`. _No_ se puede utilizar en un subproceso de bucle de eventos, es decir, en closures de rutas.
 
 !!! warning "Advertencia"
