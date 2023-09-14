@@ -299,7 +299,7 @@ futureString.whenComplete { result in
     
 ### Esperar
 
-Puedes utilizar `.wait()` para esperar sincrónicamente a que se complete el futuro. Dado que un futuro puede fracasar, este llamado es desechado.
+Puedes utilizar `.wait()` para esperar sincrónicamente a que se complete el futuro. Dado que un futuro puede fracasar, esta función puede lanzar errores (throwing).
 
 ```swift
 /// Supongamos que recuperamos una cadena futura de alguna API
