@@ -2,7 +2,7 @@
 
 Los modelos representan datos guardados en tablas o colecciones en tu base de datos. Los modelos tienen uno o más campos que guardan valores codificables. Todos los modelos tienen un identificador único. Los empaquetadores de propiedades (property wrappers) se usan para denotar identificadores, campos y relaciones. 
 
-A conntinuación hay un ejemplo de un modelo simple con un campo. Cabe destacar que los modelos no describen el esquema completo (restricciones, índices, claves foráneas...) de la base de datos. Los esquemas se definen en [migraciones](migration.es.md). Los modelos se centran en representar los datos guardados en los esquemas de tu base de datos.  
+A conntinuación hay un ejemplo de un modelo simple con un campo. Cabe destacar que los modelos no describen el esquema completo (restricciones, índices, claves foráneas...) de la base de datos. Los esquemas se definen en [migraciones](migration.md). Los modelos se centran en representar los datos guardados en los esquemas de tu base de datos.  
 
 ```swift
 final class Planet: Model {
