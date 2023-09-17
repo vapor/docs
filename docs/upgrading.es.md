@@ -707,7 +707,7 @@ app.migrations.use(CreatePlanet(), on: .psql)
 
 ### Repositories
 
-Como la forma en que funcionan los servicios en Vapor 4 ha cambiado, eso también significa que la forma de hacer repositorios de bases de datos ha cambiado. Aún necesitas un protocolo como `UserRepository`, pero en lugar de hacer que una `final class` se ajuste a ese protocolo, debes crear una `struct`.
+Como la forma en que funcionan los servicios en Vapor 4 ha cambiado, la manera de hacer repositorios de bases de datos también. Aún necesitas un protocolo como `UserRepository`, pero en lugar de hacer que una `final class` se ajuste a ese protocolo, debes crear una `struct`.
 
 ```diff
 - final class DatabaseUserRepository: UserRepository {
