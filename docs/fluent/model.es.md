@@ -164,7 +164,7 @@ var tag: String?
 
 ## Relaciones
 
-Los modelos pueden tener ninguna o más propiedades relacionales referenciando otros modelos, `@Parent`, `@Children` y `@Siblings`. Aprende más sobre las relaciones en la sección de [relaciones](relations.es.md).
+Los modelos pueden tener ninguna o más propiedades relacionales referenciando otros modelos, `@Parent`, `@Children` y `@Siblings`. Aprende más sobre las relaciones en la sección de [relaciones](relations.md).
 
 ## Timestamp
 
