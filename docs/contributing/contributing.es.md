@@ -1,6 +1,6 @@
 # Colaborar con Vapor
 
-Vapor es un proyecto impulsado por la comunidad y las contribuciones de los miembros de la comunidad constituyen una parte importante del desarrollo de Vapor. ¡Esta guía te ayudará a comprender el proceso de colaboración y te ayudará a realizar tus primeros commits en Vapor!
+Vapor es un proyecto impulsado por la comunidad y las contribuciones de los miembros constituyen una parte importante de su desarrollo. Esta guía te ayudará a comprender el proceso de colaboración y a realizar tus primeros commits en Vapor.
 
 ¡Cualquier aporte que hagas es útil! Incluso cosas pequeñas como corregir errores tipográficos marcan una gran diferencia para las personas que usan Vapor.
 
