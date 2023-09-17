@@ -318,7 +318,7 @@ Vapor 4 ahora expone las APIs asíncronas de SwiftNIO directamente y no intenta 
 
 ### Cambios de nombres asíncronos
 
-El cambio más obvio es que se ha eliminado el alias de tipo `Future` en pos de `EventLoopFuture`. Esto se puede solucionar con bastante facilidad buscando y reemplazando.
+El cambio más obvio es la eliminación del alias de tipo `Future` para `EventLoopFuture`. Esto se puede solucionar con bastante facilidad buscando y reemplazando.
 
 Además, NIO no admite las etiquetas `to:` que agregó Vapor 3. Dada la inferencia de tipos mejorada de Swift 5.2, `to:` ahora es menos necesario de todos modos.
 
