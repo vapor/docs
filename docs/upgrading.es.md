@@ -705,7 +705,7 @@ try app.databases.use(.postgres(url: "postgres://..."), as: .psql)
 app.migrations.use(CreatePlanet(), on: .psql)
 ```
 
-### Repositories
+### Repositorios
 
 Como la forma en que funcionan los servicios en Vapor 4 ha cambiado, la manera de hacer repositorios de bases de datos también. Aún necesitas un protocolo como `UserRepository`, pero en lugar de hacer que una `final class` se ajuste a ese protocolo, debes crear una `struct`.
 
