@@ -440,7 +440,7 @@ Por estas razones, recomendamos encarecidamente usar DTO siempre que sea posible
 
 ## Alias
 
-El protocolo `ModelAlias` te permite identificar de manera unívoca un modelo unido varias veces en una consulta. Para más información, consulta [uniones](query.es.md#join). 
+El protocolo `ModelAlias` te permite identificar de manera unívoca un modelo unido varias veces en una consulta. Para más información, consulta [uniones](query.md#join). 
 
 ## Guardar
 
