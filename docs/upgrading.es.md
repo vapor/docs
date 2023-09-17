@@ -357,7 +357,7 @@ Data(buffer.readableBytesView)
 
 ### Throwing map / flatMap
 
-El cambio más difícil es que `map` y `flatMap` ya no se pueden devolver en throw. `map` tiene una versión de throw llamada (de manera algo confusa) `flatMapThrowing`. Sin embargo, `flatMap` no tiene contraparte de throw. Esto puede requerir que tengas que reestructurar algo de código asincrónico.
+El cambio más difícil es que `map` y `flatMap` ya no lanzan errores (throw). `map` tiene una versión throw llamada (de manera algo confusa) `flatMapThrowing`. Sin embargo, `flatMap` no tiene contrapartida throw. Esto puede requerir que tengas que reestructurar algo de código asincrónico.
 
 Los maps que _no_ hacen throw deberían seguir funcionando bien.
 
