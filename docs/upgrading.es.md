@@ -179,7 +179,6 @@ A continuación se menciona más información sobre los cambios en la sintaxis d
 
 ## Servicios
 
-Vapor 4's services APIs have been simplified to make it easier for you to discover and use services. Services are now exposed as methods and properties on `Application` and `Request` which allows the compiler to help you use them. 
 Las APIs de servicios de Vapor 4 se han simplificado para que resulte más fácil descubrir y utilizar los servicios. Los servicios ahora están expuestos como métodos y propiedades en `Application` y `Request`, lo que permite al compilador ayudar a usarlos.
 
 Para entender esto mejor, echemos un vistazo a algunos ejemplos.
