@@ -493,7 +493,7 @@ El middleware ya no se puede registrar por nombre de tipo. Primero debes inicial
 + app.middleware.use(ErrorMiddleware.default(environment: app.environment))
 ```
 
-Para eliminar todo el middleware predeterminado, configura `app.middleware` en una configuración vacía usando:
+Para eliminar todo el middleware predeterminado, establece `app.middleware` en una configuración vacía usando:
 
 ```swift
 app.middleware = .init()
