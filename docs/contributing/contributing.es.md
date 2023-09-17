@@ -18,7 +18,7 @@ Si descubres un problema de seguridad y deseas informarlo o ayudar a solucionarl
 
 ### Pequeños problemas
 
-Si encuentras un pequeño problema, error o error tipográfico, no dudes en seguir adelante y crear una pull request para solucionarlo. Si soluciona un issue abierto en cualquiera de los repositorios, puedes vincularlo en la pull request en la barra lateral para que se cierre automáticamente cuando se hacer el merge.
+Si encuentras un pequeño problema, error o error tipográfico, no dudes en seguir adelante y crear una pull request para solucionarlo. Si soluciona un issue abierto en cualquiera de los repositorios, puedes vincularlo en la pull request en la barra lateral para que se cierre automáticamente cuando se hace el merge.
 
 ![GitHub Link Issue](../images/github-link-issue.png)
 
