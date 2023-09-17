@@ -552,7 +552,7 @@ final class Planet: Model {
 }
 ```
 
-`save`, `update`, y `create` del modelo ya no devuelven la instancia del modelo.
+Los métodos `save`, `update`, y `create` del modelo ya no devuelven la instancia del modelo.
 
 ```diff
 - model.save(on: ...)
