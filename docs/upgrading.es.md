@@ -544,7 +544,7 @@ final class Planet: Model {
 }
 ```
 
-Todos los modelos ahora deben tener un inicializador vacío. Dado que todas las propiedades usan property wrappers, esto puede estar vacío.
+Todos los modelos ahora deben tener un inicializador vacío. Dado que todas las propiedades usan property wrappers, puede estar vacío.
 
 ```diff
 final class Planet: Model {
