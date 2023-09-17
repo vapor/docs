@@ -517,7 +517,7 @@ Los modelos exponen un método estático llamado `query(on:)` que devuelve un co
 Planet.query(on: database).all()
 ```
 
-Aprende más sobre las consultas en la sección de [consulta](query.es.md).
+Aprende más sobre las consultas en la sección de [consulta](query.md).
 
 ## Encontrar
 
