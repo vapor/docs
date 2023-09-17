@@ -247,7 +247,6 @@ Se puede acceder al entorno actual (producción, desarrollo, etc.) a través de 
 
 ### Servicios Personalizados
 
-Custom services conforming to the `Service` protocol and registered to the container in Vapor 3 can be now be expressed as extensions to either Application or Request.
 Los servicios personalizados que cumplen con el protocolo `Service` y están registrados en el contenedor en Vapor 3 ahora se pueden expresar como extensiones de Application o Request.
 
 ```diff
