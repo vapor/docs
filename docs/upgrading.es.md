@@ -719,7 +719,7 @@ Como la forma en que funcionan los servicios en Vapor 4 ha cambiado, la manera d
   }
 ```
 
-También debes eliminar la conformidad de `ServiceType`, ya que ya no existe en Vapor 4.
+También debes eliminar la conformidad de `ServiceType`, puesto que ya no existe en Vapor 4.
 
 ```diff
 - extension DatabaseUserRepository {
