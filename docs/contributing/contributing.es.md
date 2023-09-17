@@ -10,7 +10,7 @@ Vapor ha adoptado el Código de Conducta de Swift, que se puede encontrar en [ht
 
 ## ¿En que trabajar?
 
-¡Decir en qué trabajar puede ser un gran obstáculo cuando se trata de comenzar con el código abierto! Por lo general, las mejores cosas en las que trabajar son los problemas que encuentres o las funciones que desees. Sin embargo, Vapor tiene algunas cosas útiles que te ayudarán a colaborar.
+Decidir en qué trabajar puede ser un gran obstáculo cuando se trata de comenzar con el código abierto. Por lo general, las mejores cosas en las que trabajar son los problemas que encuentres o las funciones que desees. Sin embargo, Vapor tiene algunas cosas útiles que te ayudarán a colaborar.
 
 ### Problemas de Seguridad
 
