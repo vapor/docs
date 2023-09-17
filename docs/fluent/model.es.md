@@ -286,7 +286,7 @@ Solo los tipos conformados a `RawRepresentable` donde el `RawValue` es `String` 
 
 Para guardar una enumeración opcional, usa `@OptionalEnum`. 
 
-La base de datos debe prepararse para manejar enumeraciones via una migración. Ver [enum](schema.es.md#enum) para más información.
+La base de datos debe prepararse para manejar enumeraciones via una migración. Ver [enum](schema.md#enum) para más información.
 
 ### Raw Enums
 
