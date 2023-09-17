@@ -24,7 +24,7 @@ Si encuentras un pequeño problema, error o error tipográfico, no dudes en segu
 
 ### Nuevas funcionalidades
 
-Si deseas proponer cambios más importantes, como nuevas funcionalidades o correcciones de errores que cambian cantidades significativas de código, primero abre un issue o publíquelo en el canal `#development` en Discord. Esto nos permite discutir el cambio contigo, ya que puede haber algún contexto que debamos aplicar o podemos ofrecerte sugerencias. ¡No queremos que pierdas el tiempo si una función no encaja con nuestros planes!
+Si deseas proponer cambios más importantes, como nuevas funcionalidades o correcciones de errores que cambian cantidades significativas de código, primero abre un issue o publícalo en el canal `#development` en Discord. Esto nos permite discutir el cambio contigo, ponerlo en contexto y ofrecerte sugerencias. ¡No queremos que pierdas el tiempo si una función no encaja con nuestros planes!
 
 ### Tableros de Vapor
 
