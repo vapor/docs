@@ -106,7 +106,7 @@ El parámetro `generatedBy` soporta estos casos:
 
 Si el parámetro `generatedBy` se omite, Fluent intentará inferir un caso apropiado basado en el tipo de valor del `@ID`. Por ejemplo, `Int` usará por defecto la generación `.database` si no se especifica lo contrario.
 
-## Initializador
+## Inicializador
 
 Los modelos deben tener un método inicializador (init) vacío.
 
