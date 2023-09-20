@@ -321,7 +321,7 @@ plugins:
           nav_translations:
             APNS: APNS
             Advanced: Avanzado
-            Async: Async
+            Async: Asincronía
             Authentication: Autenticación
             Basics: Fundamentos
             Client: Cliente
@@ -329,6 +329,7 @@ plugins:
             Content: Content
             Contributing: Colaborar
             Contributing Guide: Guía para Colaborar
+            Controllers: Controladores
             Crypto: Criptografía
             Custom Tags: Etiquetas Personalizadas
             Deploy: Desplegar

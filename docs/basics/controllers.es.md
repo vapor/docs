@@ -24,41 +24,44 @@ struct TodosController: RouteCollection {
         }
     }
 
-    func index(req: Request) async throws -> String {
-        // ...
+    func index(req: Request) async throws -> [Todo] {
+        try await Todo.query(on: req.db).all()
     }
 
-    func create(req: Request) throws -> EventLoopFuture<String> {
-        // ...
+    func create(req: Request) async throws -> Todo {
+        let todo = try req.content.decode(Todo.self)
+        try await todo.save(on: req.db)
+        return todo
     }
 
-    func show(req: Request) throws -> String {
-        guard let id = req.parameters.get("id") else {
-            throw Abort(.internalServerError)
+    func show(req: Request) async throws -> Todo {
+        guard let todo = try await Todo.find(req.parameters.get("id"), on: req.db) else {
+            throw Abort(.notFound)
         }
-        // ...
+        return todo
     }
 
-    func update(req: Request) throws -> String {
-        guard let id = req.parameters.get("id") else {
-            throw Abort(.internalServerError)
+    func update(req: Request) async throws -> Todo {
+        guard let todo = try await Todo.find(req.parameters.get("id"), on: req.db) else {
+            throw Abort(.notFound)
         }
-        // ...
+        let updatedTodo = try req.content.decode(Todo.self)
+        todo.title = updatedTodo.title
+        try await todo.save(on: req.db)
+        return todo
     }
 
-    func delete(req: Request) throws -> String {
-        guard let id = req.parameters.get("id") else {
-            throw Abort(.internalServerError)
+    func delete(req: Request) async throws -> HTTPStatus {
+        guard let todo = try await Todo.find(req.parameters.get("id"), on: req.db) {
+            throw Abort(.notFound)
         }
-        // ...
+        try await todo.delete(on: req.db)
+        return .ok
     }
 }
 ```
 
-Los métodos de un controlador deben aceptar siempre una `Request` (petición) y devolver algo `ResponseEncodable`. Este método puede ser síncrono o asíncrono (o devolver un `EventLoopFuture`).
-
-!!! note "Nota"
-	Un [EventLoopFuture](async.md) cuya expectativa es `ResponseEncodable` (por ejemplo, `EventLoopFuture<String>`) es también `ResponseEncodable`.
+Los métodos de un controlador deben aceptar siempre una `Request` (petición) y devolver algo `ResponseEncodable`. Este método puede ser síncrono o asíncrono.
 
 Finalmente necesitas registrar el controlador en `routes.swift`:
 
