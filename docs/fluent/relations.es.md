@@ -198,7 +198,7 @@ La propiedad `@Siblings` inversa en el modelo conectado completa la relación.
 
 ```swift
 final class Tag: Model {
-    // Example of a siblings relation.
+    // Ejemplo de una relación sibling.
     @Siblings(through: PlanetTag.self, from: \.$tag, to: \.$planet)
     public var planets: [Planet]
 }
