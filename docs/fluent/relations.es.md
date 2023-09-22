@@ -94,7 +94,7 @@ try await database.schema(Governor.schema)
     .id()
     .field("name", .string, .required)
     .field("planet_id", .uuid, .required, .references("planets", "id"))
-    // Example of unique constraint
+    // Ejemplo de una restricción única
     .unique(on: "planet_id")
     .create()
 ```
