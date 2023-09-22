@@ -98,6 +98,7 @@ try await database.schema(Governor.schema)
     .unique(on: "planet_id")
     .create()
 ```
+
 !!! warning "Advertencia"
     Omitir la restricción de unicidad en el campo del identificador del parent en el esquema del cliente puede ocasionar resultados impredecibles.
     Si no hay una restricción de unicidad, la tabla child puede llegar a contener más de una fila child para un solo parent; en este caso, una propiedad `@OptionalChild` seguirá pudiendo acceder a un único child, sin manera de controlar cuál de ellos carga. Si necesitaras guardas varias filas child para un único parent, usa `@Children`.
