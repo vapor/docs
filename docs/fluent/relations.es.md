@@ -330,7 +330,7 @@ El método `with` acepta un closure opcional como segundo parámetro. Este closu
 
 ## Lazy Eager Loading
 
-En caso de que ya hayas recuperado el modelo del parent y quieres cargar una de sus relaciones, puedes usar el método `load(on:)` para hacerlo. Esto recuperará el modelo conectado de la base de datps y permitirá acceder a él como una propiedad local.
+En caso de que ya hayas recuperado el modelo del parent y quieres cargar una de sus relaciones, puedes usar el método `load(on:)` para hacerlo. Esto recuperará el modelo conectado de la base de datos y permitirá acceder a él como una propiedad local.
 
 ```swift
 planet.$star.load(on: database).map {
