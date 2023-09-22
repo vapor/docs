@@ -361,4 +361,4 @@ Si ya tienes el modelo conectado en una variable, puedes establecer la relación
 planet.$star.value = star
 ```
 
-Esto unirá el modelo conectado al modelo parent como si hubiera sido "eager loaded" o "lazy loaded", sin necesitar una consulta extra a la base de datos.
+Esto unirá el modelo conectado al modelo parent como si hubiera sido cargado como "eager loaded" o como "lazy loaded", sin necesitar una consulta extra a la base de datos.
