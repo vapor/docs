@@ -24,7 +24,7 @@ struct MyMigration: AsyncMigration {
     }
 
     func revert(on database: Database) async throws {
-    	// Deshaz el cambio hecho en `prepare`, si es posible.
+        // Deshaz el cambio hecho en `prepare`, si es posible.
     }
 }
 ```
