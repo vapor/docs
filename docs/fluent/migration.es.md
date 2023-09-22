@@ -85,7 +85,7 @@ También puedes hacerlo de manera programática.
 ```swift
 try app.autoMigrate().wait()
 
-// or
+// o
 try await app.autoMigrate()
 ```
 
