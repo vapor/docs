@@ -308,7 +308,7 @@ for planet in planets {
 }
 ```
 
-En el ejemplo anterior,se le ha pasado un key path a la relación [`@Parent`](#parent) llamada `star` con `with`. Esto provoca que el constructor de consultas haga una consulta adicional después de cargar todos los planetas para recuperar todas las estrellas conectadas a éstos. Las estrellas son accesibles de manera sincrónica mediante la propiedad `@Parent`. 
+En el ejemplo anterior, se le ha pasado un key path a la relación [`@Parent`](#parent) llamada `star` con `with`. Esto provoca que el constructor de consultas haga una consulta adicional después de cargar todos los planetas para recuperar todas las estrellas conectadas a éstos. Las estrellas son accesibles de manera sincrónica mediante la propiedad `@Parent`. 
 
 Cada relación precargada (eager loaded) necesita una única consulta adicional, sin importar cuántos modelos se hayan devuelto. La precarga (eager loading) sólo es posible con los métodos de constructor de consultas `all` y `first`. 
 
