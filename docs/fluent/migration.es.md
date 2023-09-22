@@ -1,6 +1,6 @@
 # Migraciones
 
-Las migraciones son una especie de control de versiones para tu base de datos. Cada migración define un cambio en la base de datos y cómo deshacerlo. Modificando tu base de datos mediante migraciones creas una manera consistente, testable y fácil de compartir de evolucionar tu base de datos a lo largo del tiempo. 
+Las migraciones son una especie de control de versiones para tu base de datos. Cada migración define un cambio en la base de datos y cómo deshacerlo. Modificando tu base de datos mediante migraciones creas una manera consistente, testable y fácil de compartir, de evolucionar tu base de datos a lo largo del tiempo.
 
 ```swift
 // Una migración de ejemplo.
