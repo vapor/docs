@@ -10,7 +10,7 @@ struct MyMigration: Migration {
     }
 
     func revert(on database: Database) -> EventLoopFuture<Void> {
-    	// Deshaz el cambio hecho en `prepare`, si es posible.
+        // Deshaz el cambio hecho en `prepare`, si es posible.
     }
 }
 ```
