@@ -192,7 +192,7 @@ La propiedad `@Siblings` requiere de tres parámetros:
 
 - `through`: El tipo del modelo pivote.
 - `from`: El key path del pivote a la relación parent referenciando el modelo raíz.
-- `to`: El key path el pivote a la relación parent referenciando el modelo conectado.
+- `to`: El key path del pivote a la relación parent referenciando el modelo conectado.
 
 La propiedad `@Siblings` inversa en el modelo conectado completa la relación.
 
