@@ -204,7 +204,7 @@ final class Tag: Model {
 }
 ```
 
-### Vincular Siblings
+### Añadir a Siblings
 
 La propiedad `@Siblings` tiene métodos para añadir o quitar modelos de la relación. 
 
