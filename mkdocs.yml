@@ -281,13 +281,13 @@ plugins:
             Errors: Errori
             Files: File
             Fluent: Fluent
-            Folder Structure: Struttura della Cartella
+            Folder Structure: Struttura delle Cartelle
             Getting Started: Inizio
             Hello, world: Ciao, mondo
             Install: Installazione
             JWT: JWT
             Leaf: Leaf
-            Legacy Docs: Documentazione Legacy
+            Legacy Docs: Documentazione Obsoleta
             Logging: Logging
             Middleware: Middleware
             Migrations: Migrazioni
@@ -298,6 +298,7 @@ plugins:
             Queues: Code
             Redis: Redis
             Relations: Relazioni
+            Release Notes: Note sulla Versione
             Routing: Routing
             Schema: Schema
             Security: Sicurezza

@@ -1,12 +1,12 @@
 # Swift Package Manager
 
-Il [Swift Package Manager](https://swift.org/package-manager/) (SPM) è utilizzato per la compilazione del codice sorgente e delle dipendenze del vostro progetto. Poiché Vapor si basa molto su SPM, è una buona idea capire i suoi funzionamenti di base.
+Il [Swift Package Manager](https://swift.org/package-manager/) (SPM) è utilizzato per la compilazione del codice sorgente e delle dipendenze del tuo progetto. Poiché Vapor si basa molto su SPM, è una buona idea capire i suoi funzionamenti di base.
 
 SPM è simile a Cocoapods, Ruby gems e NPM. Si può utilizzare SPM dalla riga di comando con comandi come `swift build` e `swift test` o con IDE compatibili. Tuttavia, a differenza di alcuni altri package manager, non esiste un indice centrale dei pacchetti SPM. Esso sfrutta invece gli URL delle repository Git e le dipendenze delle versioni utilizzando i [tag Git](https://git-scm.com/book/en/v2/Git-Basics-Tagging).
 
 ## Manifesto del Pacchetto
 
-Il primo posto in cui SPM cerca nel vostro progetto è il manifesto del pacchetto. Questo dovrebbe sempre essere situato nella directory principale del vostro progetto e chiamarsi `Package.swift`.
+Il primo posto che SPM cerca nel tuo progetto è il manifesto del pacchetto. Questo dovrebbe sempre essere situato nella directory principale del tuo progetto e chiamarsi `Package.swift`.
 
 Diamo un'occhiata a questo esempio di manifesto del pacchetto.
 
@@ -60,18 +60,18 @@ Nell'esempio precedente, si può notare che il pacchetto dipende da [vapor/vapor
 
 ### Target
 
-I target sono i moduli che compongono il vostro pacchetto. I target possono essere eseguibili, librerie o test. Solitamente un progetto Vapor ha due target, tuttavia se ne possono aggiungere in modo da organizzare il codice.
+I target sono i moduli che compongono il tuo pacchetto. I target possono essere eseguibili, librerie o test. Solitamente un progetto Vapor ha due target, tuttavia se ne possono aggiungere in modo da organizzare il codice.
 Ogni target dichiara i moduli da cui dipende. Per poter importare ed usare i vari moduli nel codice bisogna dichiarare qui i loro nomi. Un target può dipendere da altri target nello stesso pacchetto o da qualsiasi modulo presente nei pacchetti aggiunto all'array delle [dipendenze principali](#dependencies).
 
-## Struttura della Cartella
+## Struttura delle Cartelle
 
-Questa è la tipica struttura di una cartella di un pacchetto SPM:
+Questa è la tipica struttura delle cartelle di un pacchetto SPM:
 
 ```
 .
 ├── Sources
 │   └── App
-│       └── (Source code)
+│       └── (Codice sorgente)
 ├── Tests
 │   └── AppTests
 └── Package.swift
@@ -88,7 +88,7 @@ Per aggiornare le dipendenze basta eseguire `swift package update` e SPM aggiorn
 
 # Xcode
 
-Usando Xcode qualsiasi cambiamento a dipendenze, target, prodotti ecc. sarà automatico non appena si salva il file `Package.swift`.
+Usando Xcode qualsiasi cambiamento a dipendenze, target, prodotti, ecc. sarà automatico non appena si salva il file `Package.swift`.
 
 Per aggiornare le dipendenze, basta andare su File &rarr; Swift Packages &rarr; Update to Latest Package Versions.
 

@@ -1,6 +1,6 @@
-# Struttura della Cartella
+# Struttura delle Cartelle
 
-Dopo aver creato, compilato ed eseguito la vostra prima applicazione, è il momento di dare un'occhiata a come Vapor struttura la cartella del progetto. La struttura si basa su [SwiftPM](spm.md), quindi se avete già familiarità con SwiftPM vi sentirete a casa.
+Dopo aver creato, compilato ed eseguito la tua prima applicazione, è il momento di dare un'occhiata a come Vapor struttura le cartelle del progetto. La struttura si basa su [SwiftPM](spm.md), quindi se hai già familiarità con SwiftPM ti sentirai a casa.
 
 ```
 .
@@ -19,13 +19,13 @@ Dopo aver creato, compilato ed eseguito la vostra prima applicazione, è il mome
 └── Package.swift
 ```
 
-Le seguenti sezioni spiegano in maggior dettaglio la struttura della cartella.
+Le seguenti sezioni spiegano in maggior dettaglio la struttura delle cartelle.
 
 ## Public
 
-Questa cartella contiene tutti i file pubblici che saranno messi a disposizione dall'applicazione se `FileMiddleware` è abilitato. In genere si tratta di immagini, fogli di stile e script del browser. Ad esempio, una richiesta a `localhost:8080/favicon.ico` controlla se `Public/favicon.ico` esiste e lo restituisce.
+Questa cartella contiene tutti i file pubblici che saranno messi a disposizione dall'applicazione se `FileMiddleware` è abilitato. In genere si tratta di immagini, style sheet e script del browser. Ad esempio, una richiesta a `localhost:8080/favicon.ico` controlla se `Public/favicon.ico` esiste e lo restituisce.
 
-Perché Vapor possa servire i file pubblici, bisognerà abilitare `FileMiddleware` nel file `configure.swift`.
+Affinché Vapor possa servire i file pubblici, bisognerà abilitare `FileMiddleware` nel file `configure.swift`.
 
 ```swift
 // Fornisce i file dalla cartella `Public/`
@@ -38,7 +38,7 @@ app.middleware.use(fileMiddleware)
 ## Sources
 
 Questa cartella contiene tutti i file sorgente Swift che verranno utilizzati dal progetto.
-La cartella di primo livello, `App`, riflette il modulo del vostro pacchetto, come dichiarato nel manifesto [SwiftPM](spm.md).
+La cartella di primo livello, `App`, riflette il modulo del tuo pacchetto, come dichiarato nel manifesto [SwiftPM](spm.md).
 
 ### App
 
@@ -66,15 +66,15 @@ Questo file contiene la funzione `main(_:)`. Questo metodo viene chiamato dal si
 
 #### routes.swift
 
-Questo file contiene la funzione `routes(_:)`. Questo metodo viene chiamato da `configure(_:)` per registrare gli endpoints dell'applicazione.
+Questo file contiene la funzione `routes(_:)`. Questo metodo viene chiamato da `configure(_:)` per registrare gli endpoint dell'applicazione.
 
 ## Tests
 
-Per ogni mdulo non eseguibile nella cartella `Sources` si può avere una cartella corrispondente in `Tests`. Essa conterrà i test per quel modulo scritti sulla base del modulo di testing `XCTest`. I test possono essere eseguiti utilizzando `swift test` da riga di comando o premendo ⌘+U in Xcode.
+Per ogni modulo non eseguibile nella cartella `Sources` si può avere una cartella corrispondente in `Tests`. Essa conterrà i test per quel modulo scritti sulla base del modulo di testing `XCTest`. I test possono essere eseguiti utilizzando `swift test` da riga di comando o premendo ⌘+U in Xcode.
 
 ### AppTests
 
-Questa cartella contiene gli unit tests per il codice del modulo `App`.
+Questa cartella contiene gli unit test per il codice del modulo `App`.
 
 ## Package.swift
 
