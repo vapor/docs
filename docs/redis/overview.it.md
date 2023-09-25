@@ -1,6 +1,6 @@
 # Redis
 
-[Redis](https://redis.io/) è uno dei più popolari store di strutture dati residente in memoria comunemente usato come cache o broker di messaggi.
+[Redis](https://redis.io/) è uno dei più popolari archivi di strutture dati residente in memoria comunemente usato come cache o broker di messaggi.
 
 Questa libreria è un'integrazione tra Vapor e [**RediStack**](https://github.com/swift-server/RediStack), che è il driver sottostante che comunica con Redis.
 
