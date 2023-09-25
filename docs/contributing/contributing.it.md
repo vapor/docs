@@ -32,7 +32,7 @@ Se vuoi solo contribuire ma non hai idea su cosa lavorare, fantastico! Vapor ha 
 
 La prima bachecha è la [bacheca delle buone prime issue](https://github.com/orgs/vapor/projects/10). Ogni issue nell'organizzazione GitHub di Vapor che è taggata come `good first issue` sarà aggiunta alla bacheca. Queste sono issue che pensiamo possano essere buone per persone relativamente nuove a Vapor per lavorarci su, in quanto non richiedono molta esperienza sul codice.
 
-La seconda bacheca è la [bacheca dell'aiuto cercasi](https://github.com/orgs/vapor/projects/11). Questa contiene issue taggate `help wanted`. Queste sono issue che potrebbero essere aggiustate, ma la squadra principale al momento ha altre priorità. Queste issue di solito richiedono un po' più di conoscenza se non sono anche taggate `good first issue`, ma potrebbero essere un progetto divertente su cui lavorare!
+La seconda bacheca è la [bacheca del "Cercasi aiuto"](https://github.com/orgs/vapor/projects/11). Questa contiene issue taggate `help wanted`. Queste sono issue che potrebbero essere aggiustate, ma la squadra principale al momento ha altre priorità. Queste issue di solito richiedono un po' più di conoscenza se non sono anche taggate `good first issue`, ma potrebbero essere un progetto divertente su cui lavorare!
 
 ### Traduzioni
 
