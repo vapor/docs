@@ -45,7 +45,7 @@ Questo dice a Vapor di usare `LeafRenderer` quando chiami `req.view` nel tuo cod
     Leaf ha una cache interna per renderizzare le pagine. Quando l'ambiente di `Application` è impostato su `.development` questa cache è disabilitata, così che i cambiamenti ai template abbiano effetto immediatamente. In `.production` e tutti gli altri ambienti la cache è abilitata di default; qualsiasi cambiamento fatto ai template non avrà effetto finché l'applicazione non viene riavviata.
 
 !!! warning 
-    Per fare in modo che Leaf trovi i template quando gira su Xcode, devi settare la [directory di lavoro personalizzata](../getting-started/xcode.md#custom-working-directory) per il tuo ambiente di lavoro Xcode.
+    Per fare in modo che Leaf trovi i template quando gira su Xcode, devi impostare la [directory di lavoro personalizzata](../getting-started/xcode.md#custom-working-directory) per il tuo ambiente di lavoro Xcode.
 ## Struttura delle Cartelle
 
 Non appena hai configurato Leaf, devi assicurarti di avere una cartella `Views` dove salvare i tuoi file `.leaf`. Di default, Leaf si aspetta che la cartella delle view sia `./Resources/Views`, relativamente alla radice del tuo progetto.
