@@ -9,7 +9,7 @@ Per mostrare come funziona, diamo un'occhiata alla creazione di un tag personali
 
 ## `LeafTag`
 
-Prima crea una classe chiamata `NowTag` e conformala a `LeafTag`.
+Prima creiamo una classe chiamata `NowTag` e conformiamola a `LeafTag`.
 
 ```swift
 struct NowTag: LeafTag {
