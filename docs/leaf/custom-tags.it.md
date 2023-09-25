@@ -99,7 +99,7 @@ struct HelloTag: UnsafeUnescapedLeafTag {
 
 #### Usando i Dati
 
-Possiamo accedere al valore del nome usando la chiame "name" dentro la proprietà dei dati.
+Possiamo accedere al valore del nome usando la chiave "name" dentro la proprietà dei dati.
 
 ```swift
 enum HelloTagError: Error {
