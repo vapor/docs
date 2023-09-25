@@ -24,7 +24,7 @@ Se trovi un piccolo problema, bug o errore di battitura, sentiti libero di proce
 
 ### Nuove funzionalità
 
-Se vuoi proporre cambiamenti più grandi, come nuove funzionalità o bug fix che cambiano quantità significative di codice, allora perfavore apri una issue prima o fai un post nel canale `#development` di Discord. Questo ci permette di discutere il cambiamento con te in quanto potrebbe esserci del contesto che dobbiamo applicare o possiamo darti delle indicazioni. Non vogliamo farti perdere tempo se una funzionalità non rientra nei nostri piani!
+Se vuoi proporre cambiamenti più grandi, come nuove funzionalità o bug fix che cambiano quantità significative di codice, allora per favore apri una issue prima o fai un post nel canale `#development` di Discord. Questo ci permetterà di discutere il cambiamento con te in quanto potrebbe esserci del contesto da aggiungere o delle indicazioni da darti. Non vogliamo farti perdere tempo se una funzionalità non rientra nei nostri piani!
 
 ### Bacheca di Vapor
 
