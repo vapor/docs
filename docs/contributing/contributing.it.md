@@ -48,7 +48,7 @@ A questo punto puoi fare cambiamenti nella tua fork con il solito processo di co
 
 ## Presentare una Pull Request
 
-Quando presenti una pull request delle cose che dovresti controllare:
+Quando presenti una pull request ci sono delle cose che dovresti controllare:
 
 * Che tutti i test passino
 * Che ci siano nuovi test aggiunti per ogni nuovo comportamento o bug fixato
