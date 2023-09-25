@@ -66,7 +66,7 @@ The time is #now()
 
 Il `LeafContext` contiene due proprietà importanti: `parameters` e `data`, che hanno tutto quello che ci dovrebbe servire.
 
-- `parameters`: Un array che contiene i parametri del tag.
+- `parameters`: Un array che contiene i parametri del tag;
 - `data`: Un dizionario che contiene i dati della view passata a `render(_:_:)` come contesto.
 
 ### Tag Hello di Esempio
