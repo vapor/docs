@@ -28,7 +28,7 @@ Se vuoi proporre cambiamenti più grandi, come nuove funzionalità o bug fix che
 
 ### Bacheca di Vapor
 
-Se vuoi solo contribuire ma non hai idea su cosa lavorare, fantastico! Vapor ha un paio di bacheche che possono aiutarti. Vapor ha circa 40 repository che sono attivamente sviluppate e cercare fra tutte queste per trovare qualcosa su cui lavorare non è fattibile, quindi delle bacheche per aggregarle.
+Se vuoi solo contribuire ma non hai idea su cosa lavorare, fantastico! Vapor ha un paio di bacheche che possono aiutarti. Vapor ha circa 40 repository che sono attivamente sviluppate e cercare fra tutte queste per trovare qualcosa su cui lavorare non è fattibile, quindi usiamo le bacheche per aggregarle.
 
 La prima bachecha è la [bacheca delle buone prime issue](https://github.com/orgs/vapor/projects/10). Ogni issue nell'organizzazione GitHub di Vapor che è taggata come `good first issue` sarà aggiunta alla bacheca. Queste sono issue che pensiamo possano essere buone per persone relativamente nuove a Vapor per lavorarci su, in quanto non richiedono molta esperienza sul codice.
 
