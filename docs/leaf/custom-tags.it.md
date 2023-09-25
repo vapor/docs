@@ -64,7 +64,7 @@ The time is #now()
 
 ## Proprietà del Contesto
 
-Il `LeafContext` contiene due proprietà importanti. `parameters` e `data` che ha tutto quello che ci dovrebbe servire.
+Il `LeafContext` contiene due proprietà importanti: `parameters` e `data`, che hanno tutto quello che ci dovrebbe servire.
 
 - `parameters`: Un array che contiene i parametri del tag.
 - `data`: Un dizionario che contiene i dati della view passata a `render(_:_:)` come contesto.
