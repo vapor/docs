@@ -46,7 +46,7 @@ Questo dice a Vapor di usare `LeafRenderer` quando chiami `req.view` nel tuo cod
 
 !!! warning 
     Per fare in modo che Leaf trovi i template quando gira su Xcode, devi impostare la [directory di lavoro personalizzata](../getting-started/xcode.md#custom-working-directory) per il tuo ambiente di lavoro Xcode.
-## Struttura delle Cartelle
+## Struttura della Cartella
 
 Non appena hai configurato Leaf, devi assicurarti di avere una cartella `Views` dove salvare i tuoi file `.leaf`. Di default, Leaf si aspetta che la cartella delle view sia `./Resources/Views`, relativamente alla radice del tuo progetto.
 

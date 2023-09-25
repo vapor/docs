@@ -63,9 +63,9 @@ Nell'esempio precedente, si può notare che il pacchetto dipende da [vapor/vapor
 I target sono i moduli che compongono il tuo pacchetto. I target possono essere eseguibili, librerie o test. Solitamente un progetto Vapor ha due target, tuttavia se ne possono aggiungere in modo da organizzare il codice.
 Ogni target dichiara i moduli da cui dipende. Per poter importare ed usare i vari moduli nel codice bisogna dichiarare qui i loro nomi. Un target può dipendere da altri target nello stesso pacchetto o da qualsiasi modulo presente nei pacchetti aggiunto all'array delle [dipendenze principali](#dependencies).
 
-## Struttura delle Cartelle
+## Struttura della Cartella
 
-Questa è la tipica struttura delle cartelle di un pacchetto SPM:
+Questa è la tipica struttura della cartella di un pacchetto SPM:
 
 ```
 .

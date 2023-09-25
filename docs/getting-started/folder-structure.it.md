@@ -1,4 +1,4 @@
-# Struttura delle Cartelle
+# Struttura della Cartella
 
 Dopo aver creato, compilato ed eseguito la tua prima applicazione, è il momento di dare un'occhiata a come Vapor struttura le cartelle del progetto. La struttura si basa su [SwiftPM](spm.md), quindi se hai già familiarità con SwiftPM ti sentirai a casa.
 
@@ -19,7 +19,7 @@ Dopo aver creato, compilato ed eseguito la tua prima applicazione, è il momento
 └── Package.swift
 ```
 
-Le seguenti sezioni spiegano in maggior dettaglio la struttura delle cartelle.
+Le seguenti sezioni spiegano in maggior dettaglio la struttura della cartella.
 
 ## Public
 
