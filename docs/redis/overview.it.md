@@ -148,7 +148,7 @@ Un abbonamento ha un ciclo di vita ben definito:
 1. **message**: invocato da 0 a più volte man mano che i messaggi sono pubbicati ai canali abbonati
 1. **unsubscribe**: invocato una volta quando l'abbonamento finisce, o su richiesta o quando la connessione viene persa
 
-Quando crei un abbonamento, devi fornire al meno un [`messageReceiver`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redissubscriptionmessagereceiver) per gestire tutti i messaggi che sono pubblicati dai canali abbonati.
+Quando crei un abbonamento, devi fornire almeno un [`messageReceiver`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redissubscriptionmessagereceiver) per gestire tutti i messaggi che sono pubblicati dai canali abbonati.
 
 Puoi facoltativamente fornire un `RedisSubscriptionChangeHandler` per `onSubscribe` e `onUnsubscribe` per gestire i loro rispettivi eventi di ciclo di vita.
 
