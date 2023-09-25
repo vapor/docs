@@ -18,7 +18,7 @@ Se scopri un problema di sicurezza e vuoi riferirlo o aiutare a risolverlo perfa
 
 ### Piccoli problemi
 
-Se trovi un piccolo problema, bug o errore di battitura, sentiti libero di procedere e creare una pull request per risolverlo. Se risolve una issue aperta su una qualsiasi delle repo puoi linkarla nella pull request nella barra laterale in modo che la issue viene automaticamente chiusa quando la pull request viene unita.
+Se trovi un piccolo problema, bug o errore di battitura, sentiti libero di procedere e creare una pull request per risolverlo. Se risolve una issue aperta su una qualsiasi delle repo puoi linkarla nella pull request nella barra laterale in modo che la issue venga automaticamente chiusa quando la pull request viene unita.
 
 ![GitHub Link Issue](../images/github-link-issue.png)
 
