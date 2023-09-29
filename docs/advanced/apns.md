@@ -11,19 +11,19 @@ Let's take a look at how you can get started using APNS.
 The first step to using APNS is adding the package to your dependencies.
 
 ```swift
-// swift-tools-version:5.8
+// swift-tools-version:5.9
 import PackageDescription
 
 let package = Package(
     name: "my-app",
     dependencies: [
          // Other dependencies...
-        .package(url: "https://github.com/vapor/apns.git", from: "5.0.0"),
+        .package(url: "https://github.com/vapor/apns.git", from: "4.0.0"),
     ],
     targets: [
         .target(name: "App", dependencies: [
             // Other dependencies...
-            .product(name: "APNS", package: "apns")
+            .product(name: "VaporAPNS", package: "apns")
         ]),
         // Other targets...
     ]
@@ -37,16 +37,17 @@ If you edit the manifest directly inside Xcode, it will automatically pick up th
 The APNS module adds a new property `apns` to `Application`. To send push notifications, you will need to set the `configuration` property with your credentials.
 
 ```swift
-import APNS
+import aporAPNS
+import VaporAPNS
 
 // Configure APNS using JWT authentication.
 let apnsConfig = APNSClientConfiguration(
     authenticationMethod: .jwt(
-        privateKey: try .loadFrom(filePath: "<#path to .p8#>")!,
-        keyIdentifier: "<#key identifier#>",
-        teamIdentifier: "<#team identifier#>"
+        privateKey: try .loadFrom(filePath: "<#APNS_PRIVATE_KEY#>"),
+        keyIdentifier: "<#KEY_IDENTIFIER#>",
+        teamIdentifier: "<#TEAM_IDENTIFIER#>"
     ),
-    environment: .sandbox
+    environment: app.environment == .production ? .production : .sandbox
 )
 app.apns.containers.use(
     apnsConfig,
@@ -73,6 +74,8 @@ authenticationMethod: .tls(
 Once APNS is configured, you can send push notifications using `apns.send` method on `Application` or `Request`. 
 
 ```swift
+import APNSCore
+
 // Custom Codable Payload
 struct Payload: Codable {
     let acme1: String
@@ -88,14 +91,13 @@ let alert = APNSAlertNotification(
     ),
     expiration: .immediately,
     priority: .immediately,
-    topic: "<#my topic#>",
+    topic: "<#APP_BUNDLE_ID#>",
     payload: payload
 )
 // Send the notification
 try! await req.apns.client.sendAlertNotification(
     alert, 
-    deviceToken: dt, 
-    deadline: .distantFuture
+    deviceToken: dt
 )
 ```
 
@@ -123,7 +125,7 @@ let alert = APNSAlertNotification(
     ),
     expiration: .immediately,
     priority: .immediately,
-    topic: "<#my topic#>",
+    topic: "<#APP_BUNDLE_ID#>",
     payload: payload
 )
 ```
