@@ -81,6 +81,16 @@ struct Hello: LifecycleHandler {
     func willBoot(_ app: Application) throws {
         app.logger.info("Hello!")
     }
+
+    // 应用程序启动后调用。
+    func didBoot(_ app: Application) throws {
+        app.logger.info("Server is running")
+    }
+
+    // 在应用程序关闭前调用。
+    func shutdown(_ app: Application) {
+        app.logger.info("Goodbye!")
+    }
 }
 
 // 添加生命周期处理程序。

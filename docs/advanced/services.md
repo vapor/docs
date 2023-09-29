@@ -82,6 +82,16 @@ struct Hello: LifecycleHandler {
     func willBoot(_ app: Application) throws {
         app.logger.info("Hello!")
     }
+
+    // Called after application boots.
+    func didBoot(_ app: Application) throws {
+        app.logger.info("Server is running")
+    }
+
+    // Called before application shutdown.
+    func shutdown(_ app: Application) {
+        app.logger.info("Goodbye!")
+    }
 }
 
 // Add lifecycle handler.

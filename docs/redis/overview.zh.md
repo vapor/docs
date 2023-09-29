@@ -2,7 +2,7 @@
 
 [Redis](https://redis.io/) 是一种最流行的内存数据结构存储，通常用作缓存或消息代理。
 
-这个库是 Vapor 和 [**RediStack**](https://gitlab.com/mordil/redistack) 的集成，它是与 Redis 通信的底层驱动程序。
+这个库是 Vapor 和 [**RediStack**](https://github.com/swift-server/RediStack) 的集成，它是与 Redis 通信的底层驱动程序。
 
 !!! note "注意" 
     Redis 的大部分功能都是由 **RediStack** 提供的。我们强烈建议你熟悉其文档。
@@ -32,7 +32,7 @@ targets: [
 
 ## 配置
 
-Vapor 对 [`RedisConnection`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisconnection) 实例采用池化策略，并且有几个选项可以配置单个连接以及池本身。
+Vapor 对 [`RedisConnection`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisconnection) 实例采用池化策略，并且有几个选项可以配置单个连接以及池本身。
 
 配置 Redis 的最低要求是提供一个 URL 来连接：
 
@@ -102,7 +102,7 @@ let serverAddresses: [SocketAddress] = [
 
 ## 发送命令
 
-你可以使用  [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) 或 [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) 实例上的 `.redis` 属性发送命令，这使得你可以访问 [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisclient)。
+你可以使用  [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) 或 [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) 实例上的 `.redis` 属性发送命令，这使得你可以访问 [`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisclient)。
 
 对于各别的 [Redis 命令](https://redis.io/commands)，`RedisClient` 都有其对应的扩展。
 
@@ -148,7 +148,7 @@ Redis 支持进入[发布/订阅模式](https://redis.io/topics/pubsub)，其中
 1. **message**：在消息发布到订阅频道时调用 0+ 次
 1. **unsubscribe**：订阅结束时调用一次，无论是通过请求还是连接丢失
 
-创建订阅时，你必须至少提供一个 [`messageReceiver`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redissubscriptionmessagereceiver) 来处理订阅频道发布的所有消息。
+创建订阅时，你必须至少提供一个 [`messageReceiver`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redissubscriptionmessagereceiver) 来处理订阅频道发布的所有消息。
 
 你可以选择为 `onSubscribe` 和 `onUnsubscribe`  提供一个 `RedisSubscriptionChangeHandler` 来处理它们各自的生命周期事件。
 

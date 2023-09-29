@@ -2,7 +2,7 @@
 
 [Redis](https://redis.io/) is een van de populairste in-memory data structuur opslagplaatsen die vaak gebruikt worden als een cache of message broker.
 
-Deze bibliotheek is een integratie tussen Vapor en [**RediStack**](https://gitlab.com/mordil/redistack), wat de onderliggende driver is die communiceert met Redis.
+Deze bibliotheek is een integratie tussen Vapor en [**RediStack**](https://github.com/swift-server/RediStack), wat de onderliggende driver is die communiceert met Redis.
 
 !!! note
     De meeste mogelijkheden van Redis worden geleverd door **RediStack**.
@@ -32,7 +32,7 @@ targets: [
 
 ## Configuratie
 
-Vapor gebruikt een pooling strategie voor [`RedisConnection`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisconnection) instanties, en er zijn verschillende opties om zowel individuele verbindingen als de pools zelf te configureren.
+Vapor gebruikt een pooling strategie voor [`RedisConnection`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisconnection) instanties, en er zijn verschillende opties om zowel individuele verbindingen als de pools zelf te configureren.
 
 Het absolute minimum dat nodig is voor het configureren van Redis is het opgeven van een URL om verbinding mee te maken:
 
@@ -102,7 +102,7 @@ Deze optie bepaalt het gedrag van hoe het maximum aantal verbindingen wordt bijg
 
 ## Een commando versturen
 
-Je kunt commando's sturen met de `.redis` eigenschap op elke [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) of [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) instantie, die je toegang geeft tot een [`RedisClient`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redisclient).
+Je kunt commando's sturen met de `.redis` eigenschap op elke [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) of [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) instantie, die je toegang geeft tot een [`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisclient).
 
 Elke `RedisClient` heeft verschillende extensies voor alle verschillende [Redis commando's](https://redis.io/commands).
 
@@ -148,7 +148,7 @@ Er is een bepaalde levenscyclus voor een abonnement:
 1. **message**: 0+ keer aangeroepen als berichten worden gepubliceerd in de geabonneerde kanalen
 1. **unsubscribe**: eenmaal aangeroepen wanneer het abonnement eindigt, hetzij door een verzoek, hetzij doordat de verbinding wordt verbroken
 
-Wanneer je een abonnement aanmaakt, moet je minstens een [`messageReceiver`](https://swiftpackageindex.com/mordil/redistack/1.3.2/documentation/redistack/redissubscriptionmessagereceiver) voorzien om alle berichten te behandelen die gepubliceerd worden door het geabonneerde kanaal.
+Wanneer je een abonnement aanmaakt, moet je minstens een [`messageReceiver`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redissubscriptionmessagereceiver) voorzien om alle berichten te behandelen die gepubliceerd worden door het geabonneerde kanaal.
 
 U kunt optioneel een `RedisSubscriptionChangeHandler` opgeven voor `onSubscribe` en `onUnsubscribe` om hun respectievelijke lifecycle events af te handelen.
 
