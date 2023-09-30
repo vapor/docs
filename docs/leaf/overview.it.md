@@ -78,7 +78,7 @@ Ecco alcuni esempi di utilizzo comune di Leaf.
 
 ### Condizioni
 
-Leaf è capace di valutare una serie di condizioni usando il suo tag `#if`. Per esempio, se gli fornisci una variabile controllerà che la variabile esiste nel suo contesto:
+Leaf è capace di valutare una serie di condizioni usando il suo tag `#if`. Per esempio, se gli fornisci una variabile controllerà che la variabile esista nel suo contesto:
 
 ```leaf
 #if(title):
