@@ -258,7 +258,7 @@ render(..., ["now": Date()])
 The time is #date(now)
 ```
 
-Puoi passare una stringa di formato di data personalizzato come secondo argomento. Guarda il [`DateFormatter`](https://developer.apple.com/documentation/foundation/dateformatter) di Swift per più informazioni.
+Puoi passare una stringa in un formato di data personalizzato come secondo argomento. Guarda il [`DateFormatter`](https://developer.apple.com/documentation/foundation/dateformatter) di Swift per più informazioni.
 
 ```leaf
 The date is #date(now, "yyyy-MM-dd")
