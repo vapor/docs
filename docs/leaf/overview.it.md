@@ -273,7 +273,7 @@ The time is #unsafeHTML(styledTitle)
 ```
 
 !!! note
-    Dovresti fare attenzione quando usi questo tag per assicurarti che la variabile che gli fornisci non espone i tuoi utenti a un attacco XSS.
+    Dovresti fare attenzione quando usi questo tag per assicurarti che la variabile che gli fornisci non esponga i tuoi utenti a un attacco XSS.
 
 #### `#dumpContext`
 
