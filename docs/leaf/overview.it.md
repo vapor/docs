@@ -122,7 +122,7 @@ Puoi usare anche dichiarazioni `#elseif`:
 
 ### Cicli
 
-Se fornisci un array di oggetti, Leaf può iterare su essi e permetterti di manipolare ciascun oggetto individualmente usando il suo tag `#for`.
+Se fornisci un array di oggetti, Leaf può iterare su di essi e permetterti di manipolare ciascun oggetto individualmente usando il suo tag `#for`.
 
 Per esempio, possiamo aggiornaree il nostro codice Swift per fornire una lista di pianeti:
 
