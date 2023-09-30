@@ -88,7 +88,7 @@ Leaf è capace di valutare una serie di condizioni usando il suo tag `#if`. Per 
 #endif
 ```
 
-Puoi anche scrivere confornti, per esempio:
+Puoi anche utilizzare confronti, per esempio:
 
 ```leaf
 #if(title == "Welcome"):
