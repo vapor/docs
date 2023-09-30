@@ -134,7 +134,7 @@ struct SolarSystem: Codable {
 return req.view.render("solarSystem", SolarSystem())
 ```
 
-Possiamo iterare su essi in Leaf così:
+In Leaf, possiamo iterare su di essi così:
 
 ```leaf
 Planets:
