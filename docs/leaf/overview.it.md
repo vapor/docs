@@ -266,7 +266,7 @@ The date is #date(now, "yyyy-MM-dd")
 
 #### `#unsafeHTML`
 
-Il tag `#unsafeHTML` agisce come un tag di variabile - e.g. `#(variable)`. Però non evade nessun HTML che `variable` potrebbe contenere:
+Il tag `#unsafeHTML` agisce come un tag di variabile - p.es. `#(variable)`. Però non evade nessun HTML che `variable` potrebbe contenere:
 
 ```leaf
 The time is #unsafeHTML(styledTitle)
