@@ -730,7 +730,7 @@ Questi middleware svolgono le seguenti funzioni:
 * l'autenticatore di sessione prende la sessione e verifica se esiste un utente autenticato per quella sessione. In caso affermativo, il middleware autentica la richiesta. Nella risposta, l'autenticatore di sessione vede se la richiesta ha un utente autenticato e lo salva nella sessione, in modo che sia autenticato nella richiesta successiva.
 
 !!! note
-    Di predefinito, il cookie di sessione non è impostato su `secure` e/o `httpOnly`. Per ulteriori informazioni su come configurare i cookie, consultare le [API di sessione](../advanced/sessions.md#configuration) di Vapor.
+    Di default, il cookie di sessione non è impostato su `secure` e/o `httpOnly`. Per ulteriori informazioni su come configurare i cookie, consultare le [API di sessione](../advanced/sessions.md#configuration) di Vapor.
 
 ### Protezione delle Route
 
