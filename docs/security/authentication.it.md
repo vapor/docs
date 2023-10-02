@@ -65,7 +65,7 @@ GET /me HTTP/1.1
 Authorization: Basic dGVzdDpzZWNyZXQ=
 ``` 
 
-In genere, l'autenticazione di base viene utilizzata una sola volta per registrare un utente e generare un token. Questo riduce al minimo la frequenza di invio della password sensibile dell'utente. Non si dovrebbe mai inviare l'autorizzazione di base su una connessione TLS in chiaro o non verificata.
+In genere, l'autenticazione di base viene utilizzata una sola volta per registrare un utente e generare un token. Questo riduce al minimo la frequenza di invio della password sensibile dell'utente. Non si dovrebbe mai inviare l'autorizzazione di base in chiaro o su una connessione TLS non verificata.
 
 Per implementare l'autenticazione di base nella tua applicazione, puoi creare un nuovo autenticatore conforme a `BasicAuthenticator`. Di seguito è riportato un esempio di autenticatore codificato per verificare la richiesta di cui sopra.
 
