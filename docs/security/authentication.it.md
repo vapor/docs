@@ -715,7 +715,7 @@ Vapor e Fluent forniscono diversi aiutanti per rendere tutto ciò semplice.
 
 ### Autenticazione di Sessione
 
-L'autenticazione di sessione funziona come descritto sopra. Devi applicare il middleware di sessione e l'autenticatore di sessione a tutte le route a cui l'utente accederà. Queste includono tutte le route protette, le route che sono pubbliche ma alle quali vuoi che l'utente acceduto possa accedere (ad esempio, per visualizzare un pulsante per l'account) **e** le route di login.
+L'autenticazione di sessione funziona come descritto sopra. Devi applicare il middleware di sessione e l'autenticatore di sessione a tutte le route a cui l'utente accederà. Queste includono tutte le route protette, le route che sono pubbliche, ma per le quali vuoi accedere all'utente se è loggato (ad esempio, per visualizzare un pulsante per l'account), **e** le route di login.
 
 È possibile attivarlo globalmente nella propria applicazione in `configure.swift` in questo modo:
 
