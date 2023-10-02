@@ -698,7 +698,7 @@ Puoi aggiungere `ModelSessionAuthenticatable` a qualsiasi modello esistente come
 User.sessionAuthenticator()
 ```
 
-Quest utilizzerà il database predefinito dell'applicazione per la risoluzione dell'utente. Per specificare un database, passa l'identificatore:
+Questo utilizzerà il database predefinito dell'applicazione per la risoluzione dell'utente. Per specificare un database, passa l'identificatore.
 
 ```swift
 User.sessionAuthenticator(.sqlite)
