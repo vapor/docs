@@ -361,7 +361,7 @@ app.post("users") { req async throws -> User in
 
 Questo endpoint convalida la richiesta in arrivo, decodifica la struttura `User.Create` e controlla che le password corrispondano. Utilizza quindi i dati decodificati per creare un nuovo `User` e lo salva nel database. La password in chiaro viene sottoposta a hash con `Bcrypt` prima di essere salvata nel database.
 
-Compila ed esegui il progetto, assicurandoti di (prima) eseguire le migrazioni sul database, quindi utilizza la seguente richiesta per creare un nuovo utente.
+Compila ed esegui il progetto, assicurandoti di eseguire prima le migrazioni sul database, quindi utilizza la seguente richiesta per creare un nuovo utente.
 
 ```http
 POST /users HTTP/1.1
