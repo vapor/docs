@@ -54,7 +54,7 @@ let protected = app.grouped(UserAuthenticator())
     .grouped(User.guardMiddleware())
 ```
 
-La richiesta di autenticazione non viene effettuata dal middleware dell'autenticatore per consentire la composizione degli autenticatori. Per saperne di più su [composizione](#composition) si veda sotto.
+La richiesta di autenticazione non viene effettuata dal middleware dell'autenticatore per consentire la composizione degli autenticatori. Per saperne di più sulla [composizione](#composition) leggi più sotto.
 
 ## Basic
 
