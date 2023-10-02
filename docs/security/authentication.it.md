@@ -171,7 +171,7 @@ struct UserAuthenticator: AsyncBearerAuthenticator {
 
 Questo protocollo richiede l'implementazione di `authenticate(bearer:for:)` che verrà richiamata quando una richiesta in arrivo contiene l'intestazione `Authorization: Bearer ...`. Al metodo viene passata una struct `BearerAuthorization` contenente il token.
 
-In questo autenticatore di prova, il token viene testato rispetto a un valore codificato. In un vero autenticatore, potresti voler verificare il token confrontandolo con un database o usando misure crittografiche, come si fa con JWT. Ecco perché il metodo `authenticate` consente di restituire un futuro.
+In questo autenticatore di prova, il token viene testato rispetto a un valore codificato. In un vero autenticatore, potresti voler verificare il token confrontandolo con un database o usando misure crittografiche, come si fa con JWT. Ecco perché il metodo `authenticate` consente di restituire una future.
 
 !!! tip
     Quando si implementa la verifica dei token, è importante considerare la scalabilità orizzontale. Se l'applicazione deve gestire molti utenti contemporaneamente, l'autenticazione può essere un potenziale collo di bottiglia. Considera il modo in cui il tuo progetto scalerà su più istanze dell'applicazione in esecuzione contemporaneamente.
