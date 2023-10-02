@@ -394,7 +394,7 @@ extension User: ModelAuthenticatable {
 }
 ```
 
-Questa estensione aggiunge la conformità `ModelAuthenticatable` a `User`. Le prime due proprietà specificano quali campi devono essere utilizzati per memorizzare rispettivamente gli hash del nome utente e della password. La notazione `\` crea un percorso chiave per i campi, che Fluent può usare per accedervi.
+Questa estensione aggiunge la conformità `ModelAuthenticatable` a `User`. Le prime due proprietà specificano quali campi devono essere utilizzati per memorizzare rispettivamente il nome utente e l'hash della password. La notazione `\` crea un percorso chiave per i campi che Fluent può usare per accedervi.
 
 L'ultimo requisito è un metodo per verificare le password in chiaro inviate nell'intestazione di autenticazione Basic. Poiché usiamo Bcrypt per l'hash della password durante la registrazione, useremo Bcrypt per verificare che la password fornita corrisponda all'hash della password memorizzata.
 
