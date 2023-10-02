@@ -477,7 +477,7 @@ extension UserToken {
 }
 ```
 
-Nota che questa migrazione rende unico il campo `valore`. Inoltre, crea un riferimento a chiave esterna tra il campo `user_id` e la tabella utenti.
+Nota che questa migrazione rende unico il campo `value`. Inoltre, crea un riferimento a chiave esterna tra il campo `user_id` e la tabella utenti.
 
 Non dimenticare di aggiungere la migrazione a `app.migrations`.
 
