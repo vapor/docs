@@ -108,7 +108,7 @@ struct UserAuthenticator: AsyncBasicAuthenticator {
 
 Questo protocollo richiede che implementi il metodo `authenticate(basic:for:)`, che sarà richiamato quando una richiesta in arrivo contiene l'intestazione `Authorization: Basic ...`. Al metodo viene passata una struct `BasicAuthorization` contenente il nome utente e la password.
 
-In questo autenticatore di prova, il nome utente e la password vengono verificati rispetto ai valori codificati. In un autenticatore reale, potresti voler effettuare un controllo su un database o su un'API esterna, per questo motivo il metodo `authenticate` consente di restituire un futuro.
+In questo autenticatore di prova, il nome utente e la password vengono verificati rispetto ai valori codificati. In un autenticatore reale, potresti voler effettuare un controllo su un database o su un'API esterna, per questo motivo il metodo `authenticate` consente di restituire una future.
 
 !!! tip
     Le password non devono mai essere memorizzate in un database in chiaro. Utilizzate sempre gli hash delle password per il confronto.
