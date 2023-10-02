@@ -199,6 +199,26 @@ app.grouped(UserPasswordAuthenticator())
 }
 ```
 
+Questo esempio presuppone due autenticatori `UserPasswordAuthenticator` e `UserTokenAuthenticator` che autenticano entrambi `User`. Entrambi gli autenticatori sono aggiunti al gruppo di route. Infine, `GuardMiddleware` viene aggiunto dopo gli autenticatori per richiedere che `User` sia stato autenticato con successo. 
+
+Questa composizione di autenticatori dà come risultato una route a cui si può accedere sia tramite password che tramite token. Una route di questo tipo potrebbe consentire a un utente di effettuare il login e generare un token, per poi continuare a usare quel token per generare nuovi token.
+
+### Composizione di Utenti
+
+Il secondo metodo di composizione dell'autenticazione consiste nel concatenare gli autenticatori per diversi tipi di utenti. Prendiamo il seguente esempio:
+
+```swift
+app.grouped(AdminAuthenticator())
+    .grouped(UserAuthenticator())
+    .get("secure") 
+{ req in
+    guard req.auth.has(Admin.self) || req.auth.has(User.self) else {
+        throw Abort(.unauthorized)
+    }
+    // Fai qualcosa.
+}
+```
+
 Questo esempio presuppone due autenticatori `AdminAuthenticator` e `UserAuthenticator` che autenticano rispettivamente `Admin` e `User`. Entrambi gli autenticatori sono aggiunti al gruppo di route. Invece di usare `GuardMiddleware`, viene aggiunto un controllo nel gestore di route per vedere se `Admin` o `User` sono stati autenticati. In caso contrario, viene lanciato un errore.
 
 Questa composizione di autenticatori dà luogo a un percorso a cui possono accedere due tipi diversi di utenti con metodi di autenticazione potenzialmente diversi. Un percorso di questo tipo potrebbe consentire l'autenticazione di un utente normale, pur consentendo l'accesso a un super-utente.
