@@ -15,7 +15,8 @@ Die Authentifizierung erfolgt durch einen sogenannten `Authenticator`, der die e
 | [`BearerAuthenticator`/`AsyncBearerAuthenticator`](#bearer) |Authentifiziert den Bearer-Autorisierungs-Header.         |
 | `CredentialsAuthenticator`/`AsyncCredentialsAuthenticator`  |Authentifiziert einen Credentials Payload aus dem Request Body.|
 
-Bei erfolgreicher Authentifizierung übergibt der Authenticator die Benutzeridentität an die Eigenschaft `req.auth`. Mit der Methode `get(_:)` können wir auf die Identität zugreifen. Wenn die Authentifizierung fehl schlägt wird keine Identität übergeben und jeglicher Versuch, darauf zuzugreifen, schlägt fehl.
+Bei erfolgreicher Authentifizierung übergibt der Authenticator die Benutzeridentität an die Eigenschaft `req.auth`. Mit der Methode `get(_:)` können wir auf die Identität zugreifen. Wenn die Authentifizierung fehlschlägt wird keine Identität übergeben und jeglicher Versuch, darauf zuzugreifen, scheitert.
+
 
 ## Authentifizierbar
 
