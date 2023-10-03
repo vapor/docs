@@ -736,7 +736,8 @@ Diese Middlewares tun Folgendes:
 
 ### Routen schützen
 
-Wenn du Routen für eine API schützt, gibst du traditionell eine HTTP-Antwort mit einem Statuscode wie **401 Unautorisiert** zurück, wenn die Anfrage nicht authentifiziert ist. Das ist jedoch keine gute Benutzererfahrung für jemanden, der einen Browser benutzt. Vapor bietet eine `RedirectMiddleware` für jeden `Authenticatable` Typ, die in diesem Szenario verwendet werden kann:
+Geschütze Anwendungsendpunkte, zum Beispiel einer API, geben traditionell bei fehlgeschlagener Authentifizierung eine Serverantwort mit entsprechenden Status wie **401 Unautorisiert** zurück. Das ist jedoch für jemanden, der einen Browser benutzt, keine gute Benutzererfahrung, weswegen Vapor für jedes Objekt vom Typ _Authenticatable_ eine _RedirectMiddleware_ anbietet:
+
 
 ```swift
 let protectedRoutes = app.grouped(User.redirectMiddleware(path: "/login?loginRequired=true"))
