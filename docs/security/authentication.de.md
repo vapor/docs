@@ -7,7 +7,7 @@ Bei der Authentifizierung handelt es sich um die Überprüfung einer Benutzeride
 
 Vapor ermöglicht die [Basis](https://tools.ietf.org/html/rfc7617)- und [Bearer](https://tools.ietf.org/html/rfc6750) Authentifizierung mittels dem `Authorization` Header. Man kann auch einen User mit den Daten die in der [Content](../basics/content.de.md) API sind authentifizieren.
 
-Die Authentifizierung erfolgt durch einen sogenannten `Authenticator`, der die eigentliche Logik beinhaltet und dazu verwendet wird um, einzelne Endpunkte oder auch die gesamte Anwendung zu sichern. Ein `Authenticator` kann entweder einzelne Routengruppen schützen oder auch die ganze App. Die folgenden Authenticator-Helfer werden mit Vapor ausgeliefert:
+Die Authentifizierung erfolgt durch einen sogenannten `Authenticator`, der die eigentliche Logik beinhaltet und dazu verwendet wird, einzelne Anwendungsendpunkte oder auch die gesamte Anwendung zu schützen. Vapor besitzt bereits mehrere `Authenticator`, die dir bei der Implementierung helfen:
 | Protokoll                                                   | Beschreibung                                             |
 |-------------------------------------------------------------|----------------------------------------------------------|
 | `RequestAuthenticator`/`AsyncRequestAuthenticator`          |Basis Authentifizierung, der Middleware erstellen kann.      |
