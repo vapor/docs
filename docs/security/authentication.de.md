@@ -760,10 +760,6 @@ Achte darauf, einen Session Authenticator vor der `RedirectMiddleware` einzubind
 let protectedRoutes = app.grouped([User.SessionAuthenticator(), redirecteMiddleware])
 ```
 
-### Formularanfrage
-
-Für die Authentifizierung und spätere Sitzungen, die Anmeldung erfolgt meistens über ein Formular.
-
 Um einen Benutzer und bestehende Sitzungen zu authentifizieren, muss sich zuerst ein Benutzer anmelden. Vapor stellt uns für die Anmeldungsabwicklung das Protokoll _ModelCredentialsAuthenticatable_ zur Verfügung, mit das wir unser Objekt _User_ versehen. 
 
 ```swift
