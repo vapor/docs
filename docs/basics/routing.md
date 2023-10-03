@@ -424,7 +424,7 @@ req.redirect(to: "/some/new/path")
 You can also specify the type of redirect, for example to redirect a page permanently (so that your SEO is updated correctly) use:
 
 ```swift
-req.redirect(to: "/some/new/path", type: .permanent)
+req.redirect(to: "/some/new/path", redirectType: .permanent)
 ```
 
 The different `RedirectType`s are:
