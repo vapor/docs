@@ -56,7 +56,7 @@ Die Authentifizierung wird nicht von der Authentifikator-Middleware durchgeführ
 
 ## Basis
 
-Die Basis Authentifizierung überträgt mittels Authorization-Header Benutzername und Passwort an den Server. Benutzername und Passwort werden dabei mit einem Doppelpunkt-verkettet (z.B. `test:secret`), base-64 kodiert und mit dem Präfix `"Basic"` versehen. Die folgende Beispielanfrage kodiert den Benutzernamen "test" mit dem Passwort "secret".
+Die Basis-Authentifizierung überträgt mittels Authorization-Header Benutzername und Passwort an den Server. Die beiden Angaben werden dabei durch einen Doppelpunkt miteinander verkettet (z.B. `test:secret`), in eine Base64-Zeichenfolge umgewandelt und mit dem Präfix `"Basic "` versehen. Das folgende Beispiel einer Anfrage verschlüsselt den Benutzernamen "test" mit dem Passwort "secret".
 
 ```http
 GET /me HTTP/1.1
