@@ -717,7 +717,8 @@ Vapor und Fluent bieten verschiedene Hilfsmittel, um dies nahtlos zu ermögliche
 
 ### Cookie-Authentifizierung
 
-Die Sitzungsauthentifizierung funktioniert wie oben beschrieben. Du musst die Sitzungs-Middleware und den Sitzungsauthentifikator auf alle Routen anwenden, auf die dein Nutzer zugreifen wird. Dazu gehören alle geschützten Routen, alle Routen, die zwar öffentlich sind, auf die du aber trotzdem zugreifen willst, wenn der Benutzer eingeloggt ist (um z. B. einen Konto-Button anzuzeigen) **und** Login-Routen.
+Die Sitzungsauthentifizierung funktioniert wie oben beschrieben. Wir müssen die Sitzungs-Middleware und den Sitzungsauthentifikator auf allen Anwendungsendpunkten anwenden, auf die unser Nutzer zugreifen wird. Dazu gehören sowohl alle geschützten Endpunkte, Endpunkte für die Anmeldung, sowie auch alle öffentlich zugänglichen Endpunkte auf die nach der Anmeldung zugegriffen wird. (um z. B. einen Konto-Button anzuzeigen).
+
 
 Du kannst dies global in deiner App in **configure.swift** wie folgt aktivieren:
 
