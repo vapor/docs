@@ -67,8 +67,7 @@ Die Basis Authentifizierung wird nur einmalig verwendet, um nach der erfolgreich
 
 Durch den Token wird die Häufigkeit einer notwendigen Übermittlung des Passwortes verringert. Zudem sollte die Basis Authentifizierung nie im Klartext oder über eine unverschlüsselte Verbindung erfolgen.
 
-
-Damit wir die Basis - Authentifizierung in unserer Anwendung verwenden können, müssen wir eine Struktur anlegen und diese mit dem Protokoll `BasicAuthenticator versehen. Nachfolgend ist ein Beispiel für einen Authenticator zu sehen, der fest programmiert ist, um die obige Anfrage zu verifizieren.
+Damit wir die Basis-Authentifizierung in unserer Anwendung verwenden können, müssen wir zuerst eine Struktur anlegen und diese mit dem Protokoll `BasicAuthenticator` versehen.
 
 ```swift
 import Vapor
