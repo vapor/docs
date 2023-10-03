@@ -706,7 +706,7 @@ Damit wird die Standarddatenbank der Anwendung für die Auflösung des Benutzers
 User.sessionAuthenticator(.sqlite)
 ```
 
-## Website-Authentifizierung
+## Webseiten-Authentifizierung
 
 Websites sind ein Sonderfall für die Authentifizierung, denn die Verwendung eines Browsers schränkt die Möglichkeit ein, Anmeldeinformationen mit einem Browser zu verknüpfen. Das führt zu zwei verschiedenen Authentifizierungsszenarien:
 
