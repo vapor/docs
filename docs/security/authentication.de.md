@@ -762,7 +762,7 @@ let protectedRoutes = app.grouped([User.SessionAuthenticator(), redirecteMiddlew
 
 Für die Authentifizierung und spätere Sitzungen, die Anmeldung erfolgt meistens über ein Formular.
 
-Um einen Benutzer und zukünftige Anfragen mit einer Sitzung zu authentifizieren, musst du einen Benutzer anmelden. Vapor bietet ein `ModelCredentialsAuthenticatable`-Protokoll, dem du entsprechen musst. Damit kannst du dich über ein Formular anmelden. Zuerst musst du deinen "User" an dieses Protokoll anpassen:
+Um einen Benutzer und bestehende Sitzungen zu authentifizieren, muss sich zuerst ein Benutzer anmelden. Vapor stellt uns für die Anmeldungsabwicklung das Protokoll _ModelCredentialsAuthenticatable_ zur Verfügung, mit das wir unser Objekt _User_ versehen. 
 
 ```swift
 extension User: ModelCredentialsAuthenticatable {
