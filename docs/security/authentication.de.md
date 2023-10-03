@@ -708,7 +708,7 @@ User.sessionAuthenticator(.sqlite)
 
 ## Webseiten-Authentifizierung
 
-Websites sind ein Sonderfall für die Authentifizierung, denn die Verwendung eines Browsers schränkt die Möglichkeit ein, Anmeldeinformationen mit einem Browser zu verknüpfen. Das führt zu zwei verschiedenen Authentifizierungsszenarien:
+Webseiten sind im Bezug auf die Authentifizierung ein Sonderfall, denn die Verwendung eines Browsers schränkt die Möglichkeiten zur Verknüpfung von Anmeldeinformationen mit dem Browser ein. Was zu zwei verschiedenen Authentifizierungsszenarien führt:
 
 * die Erstanmeldung über ein Formular
 * nachfolgende Aufrufe, die mit einem Session-Cookie authentifiziert werden
