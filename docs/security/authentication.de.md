@@ -29,9 +29,9 @@ struct User: Authenticatable {
 }
 ```
 
-### Endpunkt
+### Anwendungsendpunkt
 
-Endpunkte können mit Authentikatoren versehen werden.
+Anwendungsendpunkte können mit den eingangs erwähnten Authenticator versehen werden um sie entsprechend zu schützen.
 
 ```swift
 let protected = app.grouped(UserAuthenticator())
