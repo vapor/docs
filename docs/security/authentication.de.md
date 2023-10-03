@@ -734,7 +734,7 @@ Diese Middlewares tun Folgendes:
 * Die Sitzung-Middleware nimmt das Session-Cookie aus der Anfrage und wandelt es in eine Session um.
 * der Sitzungs Authenticator nimmt die Session und prüft, ob es einen authentifizierten Benutzer für diese Session gibt. Wenn ja, authentifiziert die Middleware die Anfrage. In der Antwort sieht der Session Authenticator, ob die Anfrage einen authentifizierten Benutzer hat und speichert ihn in der Session, damit er bei der nächsten Anfrage authentifiziert ist.
 
-### Routen schützen
+### Anwendungsendpunkte schützen
 
 Geschütze Anwendungsendpunkte, zum Beispiel einer API, geben traditionell bei fehlgeschlagener Authentifizierung eine Serverantwort mit entsprechenden Status wie **401 Unautorisiert** zurück. Das ist jedoch für jemanden, der einen Browser benutzt, keine gute Benutzererfahrung, weswegen Vapor für jedes Objekt vom Typ _Authenticatable_ eine _RedirectMiddleware_ anbietet:
 
