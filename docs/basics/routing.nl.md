@@ -423,7 +423,7 @@ req.redirect(to: "/some/new/path")
 U kunt ook het type omleiding specificeren, bijvoorbeeld om een pagina permanent om te leiden (zodat uw SEO correct wordt bijgewerkt) gebruiken we:
 
 ```swift
-req.redirect(to: "/some/new/path", type: .permanent)
+req.redirect(to: "/some/new/path", redirectType: .permanent)
 ```
 
 De verschillende `RedirectType`s zijn:

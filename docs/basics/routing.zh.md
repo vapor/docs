@@ -432,7 +432,7 @@ req.redirect(to: "/some/new/path")
 你可以设置重定向的类型，比如说永久的重定向一个页面（来使你的 SEO 正确的更新），请使用：
 
 ```swift
-req.redirect(to: "/some/new/path", type: .permanent)
+req.redirect(to: "/some/new/path", redirectType: .permanent)
 ```
 
 不同的 `RedirectType` 有：
