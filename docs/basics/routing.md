@@ -427,7 +427,7 @@ You can also specify the type of redirect, for example to redirect a page perman
 req.redirect(to: "/some/new/path", redirectType: .permanent)
 ```
 
-The different `RedirectType`s are:
+The different `Redirect`s are:
 
 * `.permanent` - returns a **301 Permanent** redirect
 * `.normal` - returns a **303 see other** redirect. This is the default by Vapor and tells the client to follow the redirect with a **GET** request.

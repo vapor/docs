@@ -435,7 +435,7 @@ req.redirect(to: "/some/new/path")
 req.redirect(to: "/some/new/path", redirectType: .permanent)
 ```
 
-不同的 `RedirectType` 有：
+不同的 `Redirect` 有：
 
 * `.permanent` - 返回一个 **301 Permanent** 重定向。 
 * `.normal` - 返回一个 **303 see other** 重定向。这是 Vapor 的默认行为，来告诉客户端去使用一个 **GET** 请求来重定向。
