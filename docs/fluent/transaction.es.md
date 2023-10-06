@@ -5,6 +5,7 @@ Una vez una transacción ha empezado, puedes ejecutar consultas de Fluent de man
 Si se lanza un error en algún momento durante la transacción (por ti o por la base de datos), no se efectuará ningún cambio.
 
 Para llevar a cabo una transacción, necesitas acceso a algo que pueda conectar con la base de datos. Normalmente, esto es una petición HTTP entrante. Para esto, usa `req.db.transaction(_ :)`:
+
 ```swift
 req.db.transaction { database in
     // usar la base de datos
