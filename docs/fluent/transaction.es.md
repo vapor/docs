@@ -15,6 +15,7 @@ req.db.transaction { database in
 Una vez dentro del closure de la transacción, debes usar la base de datos proporcionada en el parámetro del closure (llamado `database` en el ejemplo) para hacer consultas.
 
 Cuando este closure devuelva de manera exitosa, se hará la transacción.
+
 ```swift
 var sun: Star = ...
 var sirius: Star = ...
