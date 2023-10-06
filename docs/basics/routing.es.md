@@ -424,10 +424,10 @@ req.redirect(to: "/some/new/path")
 También puedes especificar el tipo de redirección, por ejemplo para redirigir una página de forma permanente (para que su SEO se actualice correctamente) usa:
 
 ```swift
-req.redirect(to: "/some/new/path", type: .permanent)
+req.redirect(to: "/some/new/path", redirectType: .permanent)
 ```
 
-Los diferentes `RedirectType` son:
+Los diferentes `Redirect` son:
 
 * `.permanent` - devuelve una redirección **301 Moved Permanently**
 * `.normal` - devuelve una redirección **303 See Other**. Este es el valor por defecto de Vapor y le dice al cliente que siga la redirección con una petición **GET**.
