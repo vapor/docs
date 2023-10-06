@@ -26,6 +26,7 @@ return req.db.transaction { database in
     }
 }
 ```
+
 El ejemplo anterior guardará `sun` y *después* `sirius` antes de completar la transacción. Si falla el guardado de cualquiera de las estrellas, ninguna se guardará.
 
 Una vez la transacción se haya completado, el resultado puede transformarse en un futuro diferente, como un estatus HTTP que indique la finalización, de manera similar al siguiente ejemplo:
