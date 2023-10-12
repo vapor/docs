@@ -10,7 +10,7 @@ repo_url: http://github.com/vapor/vapor
 edit_uri: https://github.com/vapor/documentation/edit/main/docs/
 
 # Copyright
-copyright: "Copyright &copy; Vapor Community"
+copyright: "Vapor Documentation &copy; 2023 by Vapor is licensed under CC BY-NC-SA 4.0"
 
 # Configuration
 theme:
@@ -60,6 +60,8 @@ extra:
       link: https://discord.gg/vapor
     - icon: fontawesome/brands/github
       link: https://github.com/vapor
+    - icon: fontawesome/brands/mastodon
+      link: https://hachyderm.io/@codevapor
 
 extra_css:
   - stylesheets/syntax.css
