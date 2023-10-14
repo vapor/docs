@@ -84,7 +84,7 @@ if req.db is SQLDatabase {
 }
 ```
 
-A continuación tienes un ejemplo de `.custom` usando la conveniencia `.sql(raw:)` con el constructor del esquema.
+A continuación tienes un ejemplo de `.custom` usando el método `.sql(raw:)` con el constructor del esquema.
 
 ```swift
 import FluentSQL
