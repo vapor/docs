@@ -1,6 +1,6 @@
 # Avanzado
 
-Fluent se esfuerza por crear una API general y no anclada a ninguna base de datos que te permita trabajar con tus datos. Esto facilita el proceso de aprendizaje de Fluent, sin importar el conector de base de datos que uses. Crear APIs generalizadas también puede hacer que trabajar con tu base de datos en Swift se sienta más cómodo. 
+Fluent se esfuerza por crear una API general e independiente de cualquier base de datos que te permita trabajar con tus datos. Esto facilita el proceso de aprendizaje de Fluent, sin importar el conector de base de datos que uses. Crear APIs generalizadas también puede hacer que trabajar con tu base de datos en Swift se sienta más cómodo. 
 
 Sin embargo, puede que necesites usar una característica de tu base de datos subyacente que todavía no tenga soporte en Fluent. Esta guía cubre APIs y patrones avanzados en Fluent que solo funcionan con ciertas bases de datos.
 
