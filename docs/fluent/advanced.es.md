@@ -70,7 +70,7 @@ if req.db is PostgresDatabase {
 query.all()
 ```
 
-Las bases de datos SQL soportan tanto `String` como `SQLExpression` en todos los casos `.custom`. El módulo `FluentSQL` ofrece métodos de conveniencia para casos de usos comunes.
+Las bases de datos SQL soportan tanto `String` como `SQLExpression` en todos los casos `.custom`. El módulo `FluentSQL` ofrece métodos convenientes para casos de uso comunes.
 
 ```swift
 import FluentSQL
