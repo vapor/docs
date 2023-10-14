@@ -52,7 +52,7 @@ Visita los README de la librerías para más información sobre las APIs especí
 
 ### SQL Personalizado
 
-Casi todos los tipos de consultas y esquemas de Fluent soportan un caso `.custom`. Esto te permite utilizar características de bases de datos que Fluent no soporta todavía.
+Casi todos los tipos de consultas y esquemas de Fluent soportan la opción `.custom`. Esto te permite utilizar características de bases de datos que Fluent todavía no soporta.
 
 ```swift
 import FluentPostgresDriver
