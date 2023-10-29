@@ -1,6 +1,6 @@
 # Install on Linux
 
-To use Vapor, you will need Swift 5.6 or greater. This can be installed using the toolchains available on [Swift.org](https://swift.org/download/)
+To use Vapor, you will need Swift 5.6 or greater. This can be installed using the CLI tool [Swiftly](https://swift-server.github.io/swiftly/) provided by the Swift Server Workgroup (reccommended), or the toolchains available on [Swift.org](https://swift.org/download/).
 
 ## Supported Distributions and Versions
 
@@ -19,6 +19,29 @@ Vapor supports the same versions of Linux distributions that Swift 5.6 or newer 
 Linux distributions not officially supported may also run Swift by compiling the source code, but Vapor cannot prove stability. Learn more about compiling Swift from the [Swift repo](https://github.com/apple/swift#getting-started).
 
 ## Install Swift
+
+### Automated installation using Swiftly CLI tool (recommended)
+
+Visit the [Swiflty website](https://swift-server.github.io/swiftly/) for instructions on how to install Swiftly and Swift on Linux. After that, install Swift with the following command:
+
+#### Basic usage
+
+```sh
+$ swiftly install latest
+
+Fetching the latest stable Swift release...
+Installing Swift 5.8.1
+Downloaded 488.5 MiB of 488.5 MiB
+Extracting toolchain...
+Swift 5.8.1 installed successfully!
+
+$ swift --version
+
+Swift version 5.8.1 (swift-5.8.1-RELEASE)
+Target: x86_64-unknown-linux-gnu
+```
+
+### Manual installation with the toolchain
 
 Visit Swift.org's [Using Downloads](https://swift.org/download/#using-downloads) guide for instructions on how to install Swift on Linux.
 

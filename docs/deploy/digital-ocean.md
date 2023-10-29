@@ -71,52 +71,25 @@ ssh vapor@your_server_ip
 
 Now that you've created a new Ubuntu server and logged in as a non-root user you can install Swift. 
 
-### Swift Dependencies
+### Automated installation using Swiftly CLI tool (recommended)
 
-Install Swift's required dependencies.
+Visit the [Swiflty website](https://swift-server.github.io/swiftly/) for instructions on how to install Swiftly and Swift on Linux. After that, install Swift with the following command:
 
-```sh
-sudo apt-get update
-sudo apt-get install binutils git gnupg2 libc6-dev libcurl4-openssl-dev 
-	 \ libedit2 libgcc-9-dev libpython3.8 libsqlite3-0 libstdc++-9-dev 
-	 \ libxml2-dev libz3-dev pkg-config tzdata unzip zlib1g-dev
-```
-
-### Download Swift Toolchain
-
-This guide will install Swift 5.7.3. Visit the [Swift Releases](https://swift.org/download/#releases) page for a link to latest release. Copy the download link for Ubuntu 22.04.
-
-![Download Swift](../images/swift-download-ubuntu-copy-link.png)
-
-Download and decompress the Swift toolchain.
+#### Basic usage
 
 ```sh
-wget https://download.swift.org/swift-5.7.3-release/ubuntu2204/swift-5.7.3-RELEASE/swift-5.7.3-RELEASE-ubuntu22.04.tar.gz
-tar xzf swift-5.7.3-RELEASE-ubuntu22.04.tar.gz
-```
+$ swiftly install latest
 
-!!! note
-	Swift's [Using Downloads](https://swift.org/download/#using-downloads) guide includes information on how to verify downloads using PGP signatures.
+Fetching the latest stable Swift release...
+Installing Swift 5.8.1
+Downloaded 488.5 MiB of 488.5 MiB
+Extracting toolchain...
+Swift 5.8.1 installed successfully!
 
-### Install Swift Toolchain
+$ swift --version
 
-Move Swift somewhere easy to acess. This guide will use `/swift` with each compiler version in a subfolder. 
-
-```sh
-sudo mkdir /swift
-sudo mv swift-5.7.3-RELEASE-ubuntu22.04 /swift/5.7.3
-```
-
-Add Swift to `/usr/bin` so it can be executed by `vapor` and `root`.
-
-```sh
-sudo ln -s /swift/5.7.3/usr/bin/swift /usr/bin/swift
-```
-
-Verify that Swift was installed correctly.
-
-```sh
-swift --version
+Swift version 5.8.1 (swift-5.8.1-RELEASE)
+Target: x86_64-unknown-linux-gnu
 ```
 
 ## Install Vapor Using the Vapor Toolbox
