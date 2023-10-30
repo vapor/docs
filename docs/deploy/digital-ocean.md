@@ -81,14 +81,14 @@ Visit the [Swiflty website](https://swift-server.github.io/swiftly/) for instruc
 $ swiftly install latest
 
 Fetching the latest stable Swift release...
-Installing Swift 5.8.1
+Installing Swift 5.9.1
 Downloaded 488.5 MiB of 488.5 MiB
 Extracting toolchain...
-Swift 5.8.1 installed successfully!
+Swift 5.9.1 installed successfully!
 
 $ swift --version
 
-Swift version 5.8.1 (swift-5.8.1-RELEASE)
+Swift version 5.9.1 (swift-5.9.1-RELEASE)
 Target: x86_64-unknown-linux-gnu
 ```
 
