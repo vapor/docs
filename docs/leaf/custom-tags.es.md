@@ -5,7 +5,7 @@ Puedes crear etiquetas personalizadas de Leaf utilizando el protocolo [`LeafTag`
 Para demostrarlo, vamos a crear una etiqueta personalizada `#now` que muestra la marca de tiempo actual. La etiqueta también soportará un único parámetro opcional para especificar el formato de fecha.
 
 !!! tip "Consejo"
-	Si tu etiqueta personalizada muestra HTML, deberías hacer que tu etiqueta personalizada cumpla con `UnsafeUnescapedLeafTag` para que el HTML no se escape. Recuerda verificar o sanitizar cualquier entrada del usuario.
+	Si tu etiqueta personalizada muestra HTML, deberías hacer que tu etiqueta personalizada cumpla con `UnsafeUnescapedLeafTag` para que el HTML no se escape. Recuerda verificar o sanear cualquier entrada del usuario.
 
 ## `LeafTag`
 
