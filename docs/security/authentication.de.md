@@ -183,9 +183,7 @@ Im folgenden Beispiel folgt das Objekt _UserTokenAuthenticator_ dem _UserPasswor
 
 In diesem Beispiel wird von zwei Authentifikatoren `UserPasswordAuthenticator` und `UserTokenAuthenticator` ausgegangen, die beide `User` authentifizieren. Diese beiden Authentifikatoren werden der Routengruppe hinzugefügt. Schließlich wird `GuardMiddleware` nach den Authentifikatoren hinzugefügt, um sicherzustellen, dass `User` erfolgreich authentifiziert wurde.
 
-Die Zusammenstellung der Authentikator macht es möglich, dass der Benutzer sich 
-
-Diese Zusammensetzung von Authentifikatoren führt zu einer Route, auf die entweder mit einem Passwort oder einem Token zugegriffen werden kann. Ein solcher Weg könnte es einem Benutzer ermöglichen, sich anzumelden und ein Token zu generieren, das er dann weiter zur Generierung neuer Token verwenden kann.
+Die Kombination aus den beiden oben genannten Authentifikatoren ermöglicht den Zugriff mit einem Passwort oder einem Token. Auf dieser Weise kann sich ein Benutzer anmelden um wiederum regelmäßig einen Token zu generieren.
 
 ### Kombinieren von Benutzern
 
