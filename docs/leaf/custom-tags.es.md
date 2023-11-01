@@ -9,7 +9,6 @@ Para demostrarlo, vamos a crear una etiqueta personalizada `#now` que muestra la
 
 ## `LeafTag`
 
-First create a class called `NowTag` and conform it to `LeafTag`.
 Primero, crea una clase llamada `NowTag` y hazla cumplir con `LeafTag`.
 
 ```swift
