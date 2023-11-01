@@ -1,6 +1,6 @@
 # Presentación
 
-Leaf es un potente lenguaje de plantillas con una sintaxis inspirada en Swift. Puedes usarlo para generar páginas HTML dinámicas para un sitio web frontal o generar correos electrónicos enriquecidos para enviar desde una API.
+Leaf es un potente lenguaje de plantillas con una sintaxis inspirada en Swift. Puedes usarlo para generar páginas HTML dinámicas destinadas a un portal web o generar correos electrónicos enriquecidos para enviar desde una API.
 
 Esta guía te proporcionará una visión general de la sintaxis de Leaf y las etiquetas disponibles.
 
