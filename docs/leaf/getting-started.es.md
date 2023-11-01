@@ -91,6 +91,6 @@ app.get("hello") { req async throws -> View in
 }
 ```
 
-Esto utiliza la propiedad genérica `view` en `Request` en lugar de llamar directamente a Leaf. Esto te permite cambiar a otro renderizador en tus pruebas.
+Esto utiliza la propiedad genérica `view` en `Request` en lugar de llamar directamente a Leaf, permitiéndote cambiar a otro renderizador en tus pruebas.
 
 Abre tu navegador y visita `/hello`. Deberías ver `Hello, Leaf!`. ¡Felicidades por renderizar tu primera vista Leaf!
