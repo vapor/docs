@@ -110,7 +110,8 @@ Das Protokoll verlangt, dass wir die Methode _authenticate(basic:for:)_ anlegen.
 
 ## Bearer
 
-Die Bearerauthentifierzung sendet einen Token an den Server. Der Token wird mit dem Prefix `Bearer` versehen.
+Die Bearerauthentifizierung sendet einen Token an den Server. Der Token wird mit dem Prefix `Bearer` versehen.
+
 
 ```http
 GET /me HTTP/1.1
