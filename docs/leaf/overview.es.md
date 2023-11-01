@@ -200,7 +200,7 @@ Aquí estamos usando `#import` para obtener el contenido pasado a la etiqueta `#
 </html>
 ```
 
-### Otros tags
+### Otras etiquetas
 
 #### `#count`
 
