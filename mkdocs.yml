@@ -10,7 +10,7 @@ repo_url: http://github.com/vapor/vapor
 edit_uri: https://github.com/vapor/documentation/edit/main/docs/
 
 # Copyright
-copyright: "Copyright &copy; Vapor Community"
+copyright: "Vapor Documentation &copy; 2023 by Vapor is licensed under CC BY-NC-SA 4.0"
 
 # Configuration
 theme:
@@ -60,6 +60,8 @@ extra:
       link: https://discord.gg/vapor
     - icon: fontawesome/brands/github
       link: https://github.com/vapor
+    - icon: fontawesome/brands/mastodon
+      link: https://hachyderm.io/@codevapor
 
 extra_css:
   - stylesheets/syntax.css
@@ -193,17 +195,19 @@ plugins:
           nav_translations:
             Advanced: Avancé
             Async: Asynchrone
-            Authentication: Authentication
-            Basis: Bases
+            Authentication: Authentification
+            Basics: Bases
             Commands: Commandes
             Content: Contenu
             Contributing: Contribuer
-            Contributing Guide: Guide de la contribution
+            Contributing Guide: Guide de contribution
+            Controllers: Contrôleurs
             Custom Tags: Tags customisés
+            Errors: Erreurs
             Deploy: Deployer
             Environment: Environement
             Files: Fichiers
-            Folder Structure: Strucutre du Dossier
+            Folder Structure: Structure du Dossier
             Getting Started: Commencer
             Hello, world: Bonjour, monde
             Install: Installer
@@ -214,9 +218,12 @@ plugins:
             Query: Requête
             Queues: Files d'attente
             Relataions: Relations
+            Release Notes: Notes de Version
+            Request: Requête
+            Routing: Routage
             Schema: Schema
             Security: Securité
-            Services: Sercvies
+            Services: Services
             Sessions: Sessions
             Testing: Test
             Transactions: Transactions

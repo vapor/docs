@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository 
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
@@ -21,7 +21,7 @@ jobs:
         swift setUpRedirects.swift
     - name: Configure AWS credentials
       id: cred
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v4
       with:
         aws-access-key-id: ${{ secrets.DOCS_DEPLOYER_AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.DOCS_DEPLOYER_AWS_SECRET_ACCESS_KEY }}
@@ -29,7 +29,7 @@ jobs:
     - name: Deploy to AWS Cloudformation
       id: clouddeploy
       if: steps.cred.outcome == 'success'
-      uses: aws-actions/aws-cloudformation-github-deploy@v1.0.3
+      uses: aws-actions/aws-cloudformation-github-deploy@v1.2.0
       with:
         name: vapor-docs-stack
         template: stack.yml

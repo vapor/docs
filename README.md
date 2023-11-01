@@ -71,5 +71,9 @@ You can check it out by running `mkdocs serve` in the terminal. Once you are sat
 
 Finally, you should add the new language to the [issue template](https://github.com/vapor/docs/blob/main/.github/translation_needed.description.leaf) to ensure that any future changes are applied to the new translation and to the [search index script](https://github.com/vapor/docs/blob/main/fixSearchIndex.swift) to ensure search works correctly.
 
+## Licensing
 
-  
+<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
+Except where otherwise noted, <a property="dct:title" rel="cc:attributionURL" href="https://github.com/vapor/docs">Vapor Documentation</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://vapor.codes">Vapor</a> is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener noreferrer">CC BY-NC-SA 4.0 <img style="height: 16px;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"> <img style="height: 16px" src="https://mirrors.creativecommons.org/presskit/icons/by.svg"> <img style="height: 16px" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg"> <img style="height: 16px;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg"></a>
+</p>
+ 
