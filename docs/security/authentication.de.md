@@ -117,7 +117,7 @@ GET /me HTTP/1.1
 Authorization: Bearer foo
 ``` 
 
-Die Bearerauthentifierzung wird für die Authentifizerung von API-Endpunkten verwendet. Dabei fragt der User nach einem Token, indem er Benutzername und Passwort an einen Login-Endpunkt schickt. Der Token ist anschließend für einen gewissen Zeitraum gültig. 
+Die Bearerauthentifizierung wird in der Regel für die Authentifizierung von API-Endpunkten verwendet. Dabei fragt der Benutzer nach einem Token, indem er Anmeldeinformationen wie z. B. Benutzername und Passwort an einen entsprechenden API-Endpunkt schickt und daraufhin eine Token zurück erhält. Der Token ist anschließend für einen gewissen Zeitraum gültig. 
 
 Innerhalb der Gültigkeit kann der Benutzer den Token an Stelle der eigentlichen Anmeldeinformationen verwenden. Mit dem Ablauf des Tokens, muss über den Endpunkt einer neuer Token angefordert werden.
 
