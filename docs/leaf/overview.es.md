@@ -258,7 +258,7 @@ render(..., ["now": Date()])
 The time is #date(now)
 ```
 
-Puede pasar una cadena personalizada de formato de fecha como segundo argumento. Puedes ver [`DateFormatter`](https://developer.apple.com/documentation/foundation/dateformatter) de Swift para más información.
+Puede pasar una cadena de formateado de fecha personalizada como segundo argumento. Ve a [`DateFormatter`](https://developer.apple.com/documentation/foundation/dateformatter) de Swift para más información.
 
 ```leaf
 The date is #date(now, "yyyy-MM-dd")
