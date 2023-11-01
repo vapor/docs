@@ -1,4 +1,4 @@
-# *Routing* - Instradamento
+# Routing - Instradamento
 
 Per *Routing*, in italiano *Instradamento*, si intende il procedimento che permette l'instradamento di una richiesta in arrivo verso la sua corretta gestione. La parte centrale del sistema di instradamento di Vapor è un router ad elevate prestazioni basato su [trie](https://it.wikipedia.org/wiki/Trie) presente in [RoutingKit](https://github.com/vapor/routing-kit).
 
@@ -66,7 +66,7 @@ Hello, vapor!
 
 ### Parametri di instradamento
 
-Adesso che abbiamo instradato con successo una richiesta basata su un metodo HTTP ed un percorso, proviamo a rendere variabile o dinamico il percorso. Notiamo che il nome "vapor" è fissato nel codice sia del percorso che della risposta. Rendiamolo variabile così che si possa visitare `/hello/<un nome qualunque>` ed ottenere una risposta.
+Adesso che abbiamo instradato con successo una richiesta basata su un metodo HTTP ed un percorso, proviamo a rendere variabile o dinamico il percorso. Notiamo che il nome "vapor" è fissato nel codice sia del percorso che della risposta. Rendiamolo variabile così che si possa visitare `/hello/<qualunque nome>` ed ottenere una risposta.
 
 ```swift
 app.get("hello", ":name") { req -> String in
@@ -93,22 +93,22 @@ Hello, swift!
 
 Adesso che comprendi le basi, puoi sfogliare ogni sezione per imparare di più a proposito di parametri, gruppi e altro ancora.
 
-## *Route* - Instradamento
+## Route - Instradamento
 
-Una *route* specifica un elemento che gestisce una richiesta per uno specifico metodo HTTP e un percorso URI. Può anche incorporare metadati aggiuntivi.
+Un route specifica un elemento che gestisce una richiesta per uno specifico metodo HTTP e un percorso URI. Può anche incorporare metadati aggiuntivi.
 
-### Metodi
+### Methods
 
-Le *Routes* possono essere registrate direttamente in `Application` utilizzando vari metodi HTTP predefiniti.
+Routes can be registered directly to your `Application` using various HTTP method helpers. 
 
 ```swift
-// risponde a GET /foo/bar/baz
+// responds to GET /foo/bar/baz
 app.get("foo", "bar", "baz") { req in
 	...
 }
 ```
 
-I metodi per gestire le *Routes* possono restituire in risultato qualunque cosa sia `ResponseEncodable`. Ciò include `Content`, una `async` *closure*, e qualunque `EventLoopFuture`s il cui valore promesso sarà `ResponseEncodable`.
+Route handlers support returning anything that is `ResponseEncodable`. This includes `Content`, an `async` closure, and any `EventLoopFuture`s where the future value is `ResponseEncodable`.
 
 You can specify the return type of a route using `-> T` before `in`. This can be useful in situations where the compiler cannot determine the return type.
 
