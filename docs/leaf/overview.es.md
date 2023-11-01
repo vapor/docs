@@ -53,7 +53,7 @@ Leaf también admite muchas expresiones con las que estás familiarizado en Swif
 
 ## Contexto
 
-En el ejemplo de [Comenzando](getting-started.md), usamos un diccionario `[String: String]` para pasar datos a Leaf. Sin embargo, puedes pasar cualquier cosa que conforme con `Encodable`. Es preferible usar estructuras `Encodable` ya que `[String: Any]` no está soportado. Esto significa que *no puedes* pasar un array directamente, y en su lugar deberías envolverlo en una estructura:
+En el ejemplo de [Comenzando](getting-started.md), usamos un diccionario `[String: String]` para pasar datos a Leaf. Sin embargo, puedes pasar cualquier cosa conformada con `Encodable`. Es preferible usar estructuras `Encodable` ya que `[String: Any]` no está soportado. Esto significa que *no puedes* pasar un array directamente, y en su lugar deberías envolverlo en una estructura:
 
 ```swift
 struct WelcomeContext: Encodable {
