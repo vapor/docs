@@ -140,7 +140,7 @@ print(res)
 
 ## Modo Pub/Sub
 
-Redis admite la capacidad de entrar en un [modo "Pub/Sub"](https://redis.io/topics/pubsub) donde una conexión puede escuchar "canales" específicos y ejecutar cierres específicos cuando los canales suscritos publican un "mensaje" (algún valor de datos).
+Redis admite la capacidad de entrar en un [modo "Pub/Sub"](https://redis.io/topics/pubsub) donde una conexión puede escuchar "canales" específicos y ejecutar closures (métodos) específicos cuando los canales suscritos publican un "mensaje" (algún valor de datos).
 
 Hay un ciclo de vida definido para una suscripción:
 
