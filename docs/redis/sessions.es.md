@@ -25,7 +25,7 @@ Por ejemplo: `vrs-Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
 
 ## Registrando un Delegado Personalizado
 
-Para personalizar cómo se lee y se escriben los datos en Redis, registra tu propio objeto `RedisSessionsDelegate` de la siguiente manera:
+Para personalizar cómo se leen y se escriben los datos en Redis, registra tu propio objeto `RedisSessionsDelegate` de la siguiente manera:
 
 ```swift
 import Redis
