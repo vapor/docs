@@ -150,7 +150,7 @@ Hay un ciclo de vida definido para una suscripción:
 
 Cuando creas una suscripción, debes proporcionar al menos un [`messageReceiver`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redissubscriptionmessagereceiver) para manejar todos los mensajes que son publicados por el canal suscrito.
 
-Opcionalmente, puedes proporcionar un `RedisSubscriptionChangeHandler` para `onSubscribe` y `onUnsubscribe` para manejar sus respectivos eventos del ciclo de vida.
+Opcionalmente, puedes proporcionar un `RedisSubscriptionChangeHandler` para `onSubscribe` y `onUnsubscribe` que maneje sus respectivos eventos del ciclo de vida.
 
 ```swift
 // crea 2 suscripciones, una para cada canal
