@@ -43,7 +43,7 @@ app.sessions.use(.redis(delegate: CustomRedisSessionsDelegate()))
 
 Un objeto que cumple con este protocolo puede usarse para cambiar cómo `SessionData` se almacena en Redis.
 
-Solo dos métodos son requeridos para ser implementados por un tipo que cumpla con el protocolo: [`redis(_:store:with:)`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/redis(_:store:with:)) y [`redis(_:fetchDataFor:)`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/redis(_:fetchdatafor:)).
+Solo dos métodos requieren de implementación en un tipo que cumpla con el protocolo: [`redis(_:store:with:)`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/redis(_:store:with:)) y [`redis(_:fetchDataFor:)`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/redis(_:fetchdatafor:)).
 
 Ambos son obligatorios, ya que la forma en que personalizas la escritura de los datos de sesión en Redis está intrínsecamente vinculada a cómo se lee de Redis.
 
