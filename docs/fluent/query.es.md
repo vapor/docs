@@ -87,7 +87,7 @@ User.query(on: database)
     .filter(\.$firstName == \.$lastName)
 ```
 
-El filtrado por campo soporta los mismos operadores que el [filtrado por valor](#value-filter).
+El filtrado por campo soporta los mismos operadores que el [filtrado por valor](#filtrado-por-valor).
 
 ### Filtrado por Subconjunto
 
