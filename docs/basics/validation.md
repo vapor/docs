@@ -227,3 +227,65 @@ Validators can also be combined to build complex validations using operators.
 |`!`|prefix|Inverts a validator, requiring the opposite.|
 |`&&`|infix|Combines two validators, requires both.|
 |`||`|infix|Combines two validators, requires one.|
+
+
+
+## Custom Validator
+
+
+
+To create a custom validator for validating a zip code, Here is the steps:
+
+First let's create a struct to for `ZipCode` validator.
+
+```swift
+extension ValidatorResults {
+    /// `ValidatorResult` of a validator that validates whether a `String` is a valid zip code.
+    public struct ZipCode {
+        /// The input is a valid zip code
+        public let isValidZipCode: Bool
+    }
+}
+```
+Next, comform the `ZipCode` to `ValidatorResult`
+
+```swift
+extension ValidatorResults.ZipCode: ValidatorResult {
+    public var isFailure: Bool {
+        !self.isValidZipCode
+    }
+    
+    public var successDescription: String? {
+        "is a valid zip code"
+    }
+    
+    public var failureDescription: String? {
+        "is not a valid zip code"
+    }
+}
+```
+Finally let's write the validation logic
+```swift
+private let zipCodeRegex: String = "^\\d{5}(?:[-\\s]\\d{4})?$"
+
+extension Validator where T == String {
+    /// Validates whether a `String` is a valid zip code.
+    public static var zipCode: Validator<T> {
+        .init {
+            guard
+                let range = $0.range(of: zipCodeRegex, options: [.regularExpression]),
+                range.lowerBound == $0.startIndex && range.upperBound == $0.endIndex
+            else {
+                return ValidatorResults.ZipCode(isValidZipCode: false)
+            }
+            return ValidatorResults.ZipCode(isValidZipCode: true)
+        }
+    }
+}
+```
+
+Now we can use it
+
+```swift
+validations.add("zipCode", as: ZipCode.self, is: .zipCode, required: true)
+```
