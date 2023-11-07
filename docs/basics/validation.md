@@ -287,5 +287,5 @@ extension Validator where T == String {
 Now we can use it
 
 ```swift
-validations.add("zipCode", as: String.self, is: .zipCode, required: true)
+validations.add("zipCode", as: String.self, is: .zipCode)
 ```
