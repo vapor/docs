@@ -230,24 +230,25 @@ Validators can also be combined to build complex validations using operators.
 
 
 
-## Custom Validator
+## Custom Validators
 
+Creating a custom validator for zip codes allows you to extend the functionality of your validation framework. In this section, we'll walk you through the steps to create a custom validator for validating zip codes.
 
+First step is to define the ZipCode Validator
 
-To create a custom validator for validating a zip code, Here is the steps:
-
-First let's create a struct to for `ZipCode` validator.
+To begin, let's create a struct to represent the `ZipCode` validator. This struct will be responsible for checking whether a given string is a valid zip code.
 
 ```swift
 extension ValidatorResults {
-    /// `ValidatorResult` of a validator that validates whether a `String` is a valid zip code.
+    /// Represents the result of a validator that checks if a string is a valid zip code.
     public struct ZipCode {
-        /// The input is a valid zip code
+        /// Indicates whether the input is a valid zip code.
         public let isValidZipCode: Bool
     }
 }
 ```
-Next, comform the `ZipCode` to `ValidatorResult`
+
+The `ZipCode` should conform to the `ValidatorResult` protocol, which defines the behavior expected from a custom validator.
 
 ```swift
 extension ValidatorResults.ZipCode: ValidatorResult {
@@ -264,17 +265,18 @@ extension ValidatorResults.ZipCode: ValidatorResult {
     }
 }
 ```
-Finally let's write the validation logic
+
+Now, let's implement the validation logic for zip codes. We'll use a regular expression to check whether the input string matches the format of a zip code.
+
 ```swift
 private let zipCodeRegex: String = "^\\d{5}(?:[-\\s]\\d{4})?$"
 
 extension Validator where T == String {
     /// Validates whether a `String` is a valid zip code.
     public static var zipCode: Validator<T> {
-        .init {
-            guard
-                let range = $0.range(of: zipCodeRegex, options: [.regularExpression]),
-                range.lowerBound == $0.startIndex && range.upperBound == $0.endIndex
+        .init { input in
+            guard let range = input.range(of: zipCodeRegex, options: [.regularExpression]),
+                  range.lowerBound == input.startIndex && range.upperBound == input.endIndex
             else {
                 return ValidatorResults.ZipCode(isValidZipCode: false)
             }
@@ -284,8 +286,9 @@ extension Validator where T == String {
 }
 ```
 
-Now we can use it
+Now that you've defined the custom `zipCode` validator, you can use it to validate zip codes in your application. Simply add the following line to your validation code:
 
 ```swift
 validations.add("zipCode", as: String.self, is: .zipCode)
 ```
+
