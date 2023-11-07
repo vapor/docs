@@ -33,7 +33,7 @@ Tal y como está especificado en nuestro fichero de configuración, el proyecto 
 La marca (flag) `--env production`deshabilitará el registro detallado.
 
 ### Entorno
-De lo contrario, citar los valores es opcional, pero recomendado.
+De lo contrario, entrecomillar los valores es opcional pero recomendado.
 
 Puedes exportar variables de dos maneras via systemd. Puedes crear un fichero de entorno con todas las variables establecidas en él:
 
