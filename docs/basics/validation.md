@@ -234,8 +234,6 @@ Validators can also be combined to build complex validations using operators.
 
 Creating a custom validator for zip codes allows you to extend the functionality of your validation framework. In this section, we'll walk you through the steps to create a custom validator for validating zip codes.
 
-First step is to define the ZipCode Validator
-
 First create a new type to represent the `ZipCode` validation results. This struct will be responsible for reporting whether a given string is a valid zip code.
 
 ```swift
