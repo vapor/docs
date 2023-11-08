@@ -236,7 +236,7 @@ Creating a custom validator for zip codes allows you to extend the functionality
 
 First step is to define the ZipCode Validator
 
-To begin, let's create a struct to represent the `ZipCode` validator. This struct will be responsible for checking whether a given string is a valid zip code.
+First create a new type to represent the `ZipCode` validation results. This struct will be responsible for reporting whether a given string is a valid zip code.
 
 ```swift
 extension ValidatorResults {
@@ -248,7 +248,7 @@ extension ValidatorResults {
 }
 ```
 
-The `ZipCode` should conform to the `ValidatorResult` protocol, which defines the behavior expected from a custom validator.
+Next, conform the new type to `ValidatorResult`, which defines the behavior expected from a custom validator.
 
 ```swift
 extension ValidatorResults.ZipCode: ValidatorResult {
@@ -266,7 +266,7 @@ extension ValidatorResults.ZipCode: ValidatorResult {
 }
 ```
 
-Now, let's implement the validation logic for zip codes. We'll use a regular expression to check whether the input string matches the format of a zip code.
+Finally, implement the validation logic for zip codes. Use a regular expression to check whether the input string matches the format of a USA zip code.
 
 ```swift
 private let zipCodeRegex: String = "^\\d{5}(?:[-\\s]\\d{4})?$"
