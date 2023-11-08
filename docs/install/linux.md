@@ -1,24 +1,37 @@
 # Install on Linux
 
-To use Vapor, you will need Swift 5.6 or greater. This can be installed using the toolchains available on [Swift.org](https://swift.org/download/)
+To use Vapor, you will need Swift 5.7 or greater. This can be installed using the CLI tool [Swiftly](https://swift-server.github.io/swiftly/) provided by the Swift Server Workgroup (recommended), or the toolchains available on [Swift.org](https://swift.org/download/).
 
 ## Supported Distributions and Versions
 
-Vapor supports the same versions of Linux distributions that Swift 5.6 or newer versions supports.
-
-!!! note
-    The supported versions listed below may be outdated at any time. You can check which operating systems are officially supported on the [Swift Releases](https://swift.org/download/#releases) page.
-
-|Distribution|Version|Swift Version|
-|-|-|-|
-|Ubuntu|20.04|>= 5.6|
-|Fedora|>= 30|>= 5.6|
-|CentOS|8|>= 5.6|
-|Amazon Linux|2|>= 5.6|
+Vapor supports the same versions of Linux distributions that Swift 5.7 or newer versions supports. Please refer to the [official support page](https://www.swift.org/platform-support/) in order to find updated information about which operating systems are officially supported.
 
 Linux distributions not officially supported may also run Swift by compiling the source code, but Vapor cannot prove stability. Learn more about compiling Swift from the [Swift repo](https://github.com/apple/swift#getting-started).
 
 ## Install Swift
+
+### Automated installation using Swiftly CLI tool (recommended)
+
+Visit the [Swiflty website](https://swift-server.github.io/swiftly/) for instructions on how to install Swiftly and Swift on Linux. After that, install Swift with the following command:
+
+#### Basic usage
+
+```sh
+$ swiftly install latest
+
+Fetching the latest stable Swift release...
+Installing Swift 5.9.1
+Downloaded 488.5 MiB of 488.5 MiB
+Extracting toolchain...
+Swift 5.9.1 installed successfully!
+
+$ swift --version
+
+Swift version 5.9.1 (swift-5.9.1-RELEASE)
+Target: x86_64-unknown-linux-gnu
+```
+
+### Manual installation with the toolchain
 
 Visit Swift.org's [Using Downloads](https://swift.org/download/#using-downloads) guide for instructions on how to install Swift on Linux.
 
@@ -30,7 +43,7 @@ Fedora users can simply use the following command to install Swift:
 sudo dnf install swift-lang
 ```
 
-If you're using Fedora 30, you'll need to add EPEL 8 to get Swift 5.6 or newer versions. 
+If you're using Fedora 35, you'll need to add EPEL 8 to get Swift 5.7 or newer versions. 
 
 ## Docker
 

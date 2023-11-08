@@ -383,7 +383,7 @@ Für eine Weiterleitung kann es verschiedenste Gründe geben. Mit der Methode *r
 req.redirect(to: "/some/new/path")
 
 /// redirect a page permanently
-req.redirect(to: "/some/new/path", type: .permanent)
+req.redirect(to: "/some/new/path", redirectType: .permanent)
 ```
 
 Es gibt verschiedene Arten von Weiterleitungen:

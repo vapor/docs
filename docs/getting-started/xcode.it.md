@@ -1,12 +1,12 @@
 # Xcode
 
-Questa pagina contiene alcuni consigli e trucchi per l'utilizzo di Xcode. Non è necessaria se si preferisce usare un ambiente di sviluppo diverso.
+Questa pagina contiene alcuni consigli e trucchi per l'utilizzo di Xcode. Puoi saltarla se preferisci usare un ambiente di sviluppo diverso.
 
 ## Directory di lavoro personalizzata
 
 Di default Xcode eseguirà il progetto dalla cartella _DerivedData_. Questa cartella non è la stessa della cartella principale del progetto (dove si trova il file _Package.swift_). Questo significa che Vapor non sarà in grado di trovare file e cartelle come _.env_ o _Public_.
 
-Si può notare che questo sta accadendo se si vede il seguente avviso quando si esegue il progetto.
+Si capisce se questo sta accadendo se si vede il seguente avviso quando si esegue il progetto.
 
 ```fish
 [ WARNING ] No custom working directory set for this scheme, using /path/to/DerivedData/project-abcdef/Build/
@@ -40,5 +40,5 @@ Si dovrebbe vedere un output simile al seguente.
 ```
 framework: 4.x.x
 toolbox: 18.x.x
-/path/to/project
+/percorso/al/progetto
 ```

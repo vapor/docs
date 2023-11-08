@@ -1,16 +1,16 @@
 # Aggiornamento a 4.0
 
-Questa guida vi mostrerà come aggiornare un progetto Vapor 3.x a Vapor 4.x. La guida cercherà di coprire tutti i cambiamenti riguardanti i pacchetti Vapor e anche alcuni dei più comuni pacchetti di terze parti. Se notate qualcosa di mancante, non esitate a chiedere aiuto nella [chat del team Vapor](https://discord.gg/vapor). Anche issues e pull requests su GitHub sono ben accette.
+Questa guida ti mostrerà come aggiornare un progetto Vapor 3.x a Vapor 4.x. La guida cercherà di coprire tutti i cambiamenti riguardanti i pacchetti Vapor e anche alcuni dei più comuni pacchetti di terze parti. Se noti che manca qualcosa, non esitare a chiedere aiuto nella [chat del team Vapor](https://discord.gg/vapor). Anche issues e pull requests su GitHub sono ben accette.
 
 ## Dipendenze
 
-Per usare Vapor 4, avrete bisogno di almeno Xcode 11.4 e macOS 10.15.
+Per usare Vapor 4, avrai bisogno di almeno Xcode 11.4 e macOS 10.15.
 
 La sezione Installazione della documentazione contiene le istruzioni per installare le dipendenze.
 
 ## Package.swift
 
-Il primo passo per aggiornare a Vapor 4 è aggiornare il file delle dipendenze del pacchetto. Qui è riportato un esempio di un `Package.swift` aggiornato. Potete anche visitare il [template Package.swift aggiornato](https://github.com/vapor/template/blob/main/Package.swift).
+Il primo passo per aggiornare a Vapor 4 è aggiornare il file delle dipendenze del pacchetto. Qui è riportato un esempio di un `Package.swift` aggiornato. Puoi anche visitare il [template Package.swift aggiornato](https://github.com/vapor/template/blob/main/Package.swift).
 
 ```diff
 -// swift-tools-version:4.0
@@ -97,14 +97,14 @@ Vapor potrebbe eventualmente aggiungere il supporto per piattaforme aggiuntive i
 
 Vapor 4 utilizza il supporto nativo di SPM di Xcode 11. Ciò significa che non ci sarà più bisogno di generare il file `.xcodeproj`. Per aprire un progetto Vapor 4 in Xcode, basterà aprire il file `Package.swift` tramite `vapor xcode` o `open Package.swift`, Xcode poi procederà a scaricare le dipendenze.
 
-Una volta aggiornato il Package.swift, potreste dover chiudere Xcode e rimuovere i seguenti file dalla directory del progetto:
+Una volta aggiornato il Package.swift, potresti dover chiudere Xcode e rimuovere i seguenti file dalla directory del progetto:
 
 - `Package.resolved`
 - `.build`
 - `.swiftpm`
 - `*.xcodeproj`
 
-Una volta che le nuove dipendenze sono state scaricate, noterete errori di compilazione, probabilmente più di qualcuno. Non vi preoccupate! Vi mostreremo come risolverli.
+Una volta che le nuove dipendenze sono state scaricate, noterai errori di compilazione, probabilmente un bel po'. Non ti preoccupare! Ti mostreremo come risolverli.
 
 ## Run
 
@@ -126,7 +126,7 @@ Il file `main.swift` andrà a sostituire il file `app.swift`, quindi potete rimu
 
 ## App
 
-Diamo un'occhiata a come aggiornare la strutura di base di App.
+Diamo un'occhiata a come aggiornare la struttura di base di App.
 
 ### configure.swift
 
@@ -158,9 +158,9 @@ public func configure(_ app: Application) throws {
 }
 ```
 
-Cambiamenti di sintassi per cose come routing, middleware, fluent ecc. sono menzionati nelle sezioni seguenti.
+Cambiamenti di sintassi per cose come routing, middleware, fluent, ecc. sono menzionati nelle sezioni seguenti.
 
-### routes.swift
+### boot.swift
 
 Il contenuto di `boot` può essere inserito nel metodo `configure` dal momento che ora accetta un'istanza di `Application`.
 
@@ -212,13 +212,13 @@ Invece che registrare un `MiddlewareConfig` ai servizi, i middleware possono ess
 + req.client.get("https://vapor.codes")
 ```
 
-Come Application, anche Request espone servizi come proprietà e metodi. È fortemente consigliato l'uso di servizi specifici alla Request da dentro le chiusure dei route handler.
+Come Application, anche Request espone servizi come proprietà e metodi. È fortemente consigliato l'uso di servizi specifici alla Request da dentro le closure dei route handler.
 
 Questo nuovo pattern va a sostituire il vecchio pattern di `Container` e `Service` e `Config` che era usato in Vapor 3.
 
-### Providers 
+### Provider
 
-I providers sono stati rimossi in Vapor 4. I providers erano usati per registrare servizi e configurazioni ai servizi. Ora i pacchetti possono estendere direttamente `Application` e `Request` per registrare servizi e configurazioni.
+I provider sono stati rimossi in Vapor 4. I provider erano usati per registrare servizi e configurazioni ai servizi. Ora i pacchetti possono estendere direttamente `Application` e `Request` per registrare servizi e configurazioni.
 
 Diamo un'occhiata a come è configurato Leaf in Vapor 4.
 
@@ -241,7 +241,7 @@ Per usare Leaf, basta usare `app.leaf`.
 
 ### Ambiente
 
-Si può accedere all'ambiente attuale (produzione, sviluppo ecc) tramite la proprietà `app.environment`.
+Si può accedere all'ambiente attuale (produzione, sviluppo, ecc.) tramite la proprietà `app.environment`.
 
 ### Servizi Personalizzati
 
@@ -294,7 +294,7 @@ app.storage[MyNumber.self] = 5
 print(app.storage[MyNumber.self]) // 5
 ```
 
-L'accsso a `Application.storage` può essere avvolto in una proprietà computata per rendere il codice più leggibile:
+L'accesso a `Application.storage` può essere avvolto in una proprietà computata per rendere il codice più leggibile:
 
 ```swift
 extension Application {
@@ -316,7 +316,7 @@ Vapor 4 utilizza le API asincrone di SwiftNIO direttamente senza fare l'overload
 
 Il cambiamento più ovvio è che il typealias `Future` di `EventLoopFuture` è stato rimosso. Si può risolvere questo problema semplicemente usando "trova e sostituisci".
 
-In più NIO non supporta il label `to:` che veniva usato da Vapor 3, che comunque dato il  nuovo sistema di inferenza dei tipi di Swift 5.2, non è più necessario.
+In più NIO non supporta il label `to:` che veniva usato da Vapor 3, che comunque dato il nuovo sistema di inferenza dei tipi di Swift 5.2 non è più necessario.
 
 ```diff
 - futureA.map(to: String.self) { ... }
@@ -338,7 +338,7 @@ Il `flatMap` globale di Vapor 3 per combinare diversi futuri non è più disponi
 ```diff
 - flatMap(futureA, futureB) { a, b in 
 + futureA.and(futureB).flatMap { (a, b) in
-    // Do something with a and b.
+    // Fai qualcosa con a e b.
 }
 ```
 
@@ -346,7 +346,7 @@ Il `flatMap` globale di Vapor 3 per combinare diversi futuri non è più disponi
 
 Molti metodi e proprietà che utilizzavano `Data` ora usano `ByteBuffer`, un tipo di storage di byte più potente e performante. Potete leggere di più su `ByteBuffer` nella [documentazione di SwiftNIO](https://swiftpackageindex.com/apple/swift-nio/main/documentation/niocore/bytebuffer).
 
-Per convertire un `ByteBuffer` a `Data` si può usare:
+Per convertire un `ByteBuffer` in `Data` si può usare:
 
 ```swift
 Data(buffer.readableBytesView)
@@ -415,7 +415,7 @@ futureA.flatMapThrowing { a in
 
 ## Routing
 
-Ora le routes sono registrate direttamente su Application.
+Ora le route sono registrate direttamente su Application.
 
 ```swift
 app.get("hello") { req in
@@ -423,9 +423,9 @@ app.get("hello") { req in
 }
 ```
 
-Ciò significa che non c'è più bisogno di registrare un router ai servizi. Basta passare l'istanza di `Application` al metodo `routes` e si può cominciare ad aggiungere endpoints. Tutti i metodi disponibili sul `RoutesBuilder` sono disponibili su `Application`.
+Ciò significa che non c'è più bisogno di registrare un router ai servizi. Basta passare l'istanza di `Application` al metodo `routes` e si può cominciare ad aggiungere endpoint. Tutti i metodi disponibili sul `RoutesBuilder` sono disponibili su `Application`.
 
-### Content Sincrono
+### Contenuto Sincrono
 
 La decodifica delle richieste è ora sincrona.
 
@@ -458,7 +458,7 @@ In Vapor 4 gli URL sono divisi da virgole e non devono contenere `/`.
 
 ### Parametri di una route
 
-Il protocollo `Parameter` è stato rimosso per promuovere l'uso di parametri chiamati esplicitamente. In questo modo si evitano problemi di parametri duplicati e il fetching non ordinato dei parametri nei middleware e nei gestori delle routes.
+Il protocollo `Parameter` è stato rimosso per promuovere l'uso di parametri chiamati esplicitamente. In questo modo si evitano problemi di parametri duplicati e il fetching non ordinato dei parametri nei middleware e nei gestori delle route.
 
 ```diff
 - router.get("planets", String.parameter) { req in 
@@ -505,7 +505,7 @@ Ora l'API di Fluent è indipendente dal database su cui viene utilizzata. Basta 
 + import Fluent
 ```
 
-### Models
+### Modelli
 
 I modelli utilizzano il protocollo `Model` e devono essere delle classi:
 
@@ -604,7 +604,7 @@ Le tabelle pivot sono modelli normali che conformano a `Model` con due propriet�
 
 ### Query
 
-Si può accedere al contesto del database utilizzando `req.db` nei route handlers.
+Si può accedere al contesto del database utilizzando `req.db` nei route handler.
 
 ```diff
 - Planet.query(on: req)
@@ -620,7 +620,7 @@ Ora i key path ai campi hanno il prefisso `$` per specificare che si tratta del 
 + filter(\.$foo == ...)
 ```
 
-### Migrations
+### Migrazioni
 
 Le migrazioni devono essere scritte manualmente e non si basano più sul concetto di reflection:
 
@@ -645,19 +645,19 @@ I metodi `prepare` e `revert` non sono più statici.
 + func prepare(on database: Database) -> EventLoopFuture<Void> 
 ```
 
-La creazione di uno schema builder è fatta tramite un metodo su `Database`.
+La creazione di un costruttore di schema è fatta tramite un metodo su `Database`.
 
 ```diff
 - <#Database#>Database.create(Galaxy.self, on: conn) { builder in
--    // Use builder.
+-    // Usa builder.
 - }
 + var builder = database.schema("Galaxy")
-+ // Use builder.
++ // Usa builder.
 ```
 
-I metodi `create`, `update` e `delete` sono metodi dello schema builder e assomigliano al funzionamento di un query builder.
+I metodi `create`, `update` e `delete` sono metodi del costruttore di schema e assomigliano al funzionamento di un costruttore di query.
 
-La definizione dei campi è tipata tramite stringhe e segue il seguente pattern: 
+La definizione dei campi è tipata tramite stringhe e usa il seguente pattern: 
 
 ```swift
 field(<name>, <type>, <constraints>)
@@ -668,7 +668,7 @@ field(<name>, <type>, <constraints>)
 + builder.field("name", .string, .required)
 ```
 
-La costruzione degli schemi può essere concatenata come un query builder: 
+La costruzione degli schemi può essere concatenata come un costruttore di query: 
 
 ```swift
 database.schema("Galaxy")
@@ -765,7 +765,7 @@ app.users.use { req in
 }
 ```
 
-Si può ora accedere alla repository nei route handlers con `req.users.all()` e si può facilmente sostituire la repository con una mock per i test. Basta creare un nuovo file `TestUserRepository`:
+Si può ora accedere alla repository nei route handler con `req.users.all()` e si può facilmente sostituire la repository con una simulata per i test. Basta creare un nuovo file `TestUserRepository`:
 ```swift
 final class TestUserRepository: UserRepository {
     var users: [User]
