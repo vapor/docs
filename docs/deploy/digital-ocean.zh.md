@@ -71,52 +71,25 @@ ssh vapor@your_server_ip
 
 现在你已经创建了一个新的 Ubuntu 服务器并且通过非 root 身份登录到服务器，你可以安装 Swift。 
 
-### Swift 依赖项
+### 使用 Swiftly CLI 工具自动安装(推荐)
 
-安装 Swift 所需要的依赖项。
+访问 [Swiflty 网站](https://swift-server.github.io/swiftly/)获取在 Linux 上安装 Swiftly 和 Swift 的说明。之后，安装 Swift 使用如下命令：
 
-```sh
-sudo apt-get update
-sudo apt-get install binutils git gnupg2 libc6-dev libcurl4-openssl-dev 
-	 \ libedit2 libgcc-9-dev libpython3.8 libsqlite3-0 libstdc++-9-dev 
-	 \ libxml2-dev libz3-dev pkg-config tzdata unzip zlib1g-dev
-```
-
-### 下载 Swift Toolchain
-
-本指南将安装 Swift 5.7.3。访问 [Swift Releases](https://swift.org/download/#releases) 页面获取最新版本的链接。复制 Ubuntu 22.04 的下载链接。
-
-![Download Swift](../images/swift-download-ubuntu-copy-link.png)
-
-下载并解压 Swift toolchain。
+#### 基本用法
 
 ```sh
-wget https://download.swift.org/swift-5.7.3-release/ubuntu2204/swift-5.7.3-RELEASE/swift-5.7.3-RELEASE-ubuntu22.04.tar.gz
-tar xzf swift-5.7.3-RELEASE-ubuntu22.04.tar.gz
-```
+$ swiftly install latest
 
-!!! note "注意" 
-	Swift 的[使用下载指南](https://swift.org/download/#using-downloads)包含有关如何使用 PGP 签名验证下载的信息。
+Fetching the latest stable Swift release...
+Installing Swift 5.9.1
+Downloaded 488.5 MiB of 488.5 MiB
+Extracting toolchain...
+Swift 5.9.1 installed successfully!
 
-### 安装 Swift Toolchain
+$ swift --version
 
-将 Swift 移到易于访问的地方。本指南将 `/swift` 与子文件夹中的每个编译器版本一起使用。
-
-```sh
-sudo mkdir /swift
-sudo mv swift-5.7.3-RELEASE-ubuntu22.04 /swift/5.7.3
-```
-
-将 Swift 添加到 `/usr/bin` 以便 `vapor` 和 `root` 用户可以执行。
-
-```sh
-sudo ln -s /swift/5.7.3/usr/bin/swift /usr/bin/swift
-```
-
-验证 Swift 是否正确安装。
-
-```sh
-swift --version
+Swift version 5.9.1 (swift-5.9.1-RELEASE)
+Target: x86_64-unknown-linux-gnu
 ```
 
 ## 使用 Vapor 工具箱安装 Vapor

@@ -1,25 +1,38 @@
 
 # 在 Linux 上面安装
 
-你需要 Swift 5.6 或更高版本来使用 Vapor。可以通过 [Swift.org](https://swift.org/download/) 上面的工具链来安装。
+你需要 Swift 5.7 或更高版本来使用 Vapor。你可以使用 Swift Server Workgroup 提供的 CLI 工具 [Swiftly](https://swift-server.github.io/swiftly/) 来安装（推荐），也可以通过 [Swift.org](https://swift.org/download/) 上面的工具链来安装。
 
 ## 支持的发行版和版本
 
-Vapor 与 Swift 5.6 或者更高的版本对 Linux 的版本支持保持一致。
-
-!!! note "注意"
-    下面列出的版本可能会随时过期。你可以到 [Swift Releases](https://swift.org/download/#releases) 官方网站去确认官方支持的操作系统。
-
-|Distribution|Version|Swift Version|
-|-|-|-|
-|Ubuntu|20.04|>= 5.6|
-|Fedora|>= 30|>= 5.6|
-|CentOS|8|>= 5.6|
-|Amazon Linux|2|>= 5.6|
+Vapor 支持的发行版的版本与 Swift 5.7 或更新版本支持的 Linux 发行版的版本相同。请参阅[官方支持页面](https://www.swift.org/platform-support/)查找有关官方支持的操作系统的最新信息。
 
 不受官方支持的 Linux 发行版也可以通过编译源代码来运行 Swift，但是 Vapor 不能保证其稳定性。可以在 [Swift repo](https://github.com/apple/swift#getting-started) 学习更多关于编译 Swift 的信息。
 
 ## 安装 Swift
+
+### 使用 Swiftly CLI 工具自动安装(推荐)
+
+访问 [Swifty 网站](https://swift-server.github.io/swiftly/)获取在Linux上安装 Swiftly 和 Swift 的说明。之后，使用以下命令安装 Swift:
+
+#### 基本使用
+
+```sh
+$ swiftly install latest
+
+Fetching the latest stable Swift release...
+Installing Swift 5.9.1
+Downloaded 488.5 MiB of 488.5 MiB
+Extracting toolchain...
+Swift 5.9.1 installed successfully!
+
+$ swift --version
+
+Swift version 5.9.1 (swift-5.9.1-RELEASE)
+Target: x86_64-unknown-linux-gnu
+```
+
+### 使用 toolchain 手动安装
 
 访问 Swift.org 的 [Using Downloads](https://swift.org/download/#using-downloads) 手册来学习如何在 Linux 安装 Swift。
 
@@ -31,7 +44,7 @@ Fedora 用户可以简单的通过下面的命令来安装 Swift：
 sudo dnf install swift-lang
 ```
 
-如果你正在使用 Fedora 30，你需要添加添加 EPEL 8 来获取 Swift 5.6 或更新的版本。
+如果你正在使用 Fedora 35，你需要添加添加 EPEL 8 来获取 Swift 5.7 或更新的版本。
 
 
 ## Docker
