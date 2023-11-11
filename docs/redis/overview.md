@@ -32,7 +32,7 @@ targets: [
 
 ## Configure
 
-Vapor employs a pooling strategy for [`RedisConnection`](https://swiftpackageindex.com/swift-server/RediStack/1.4.1/documentation/redistack/redisconnection) instances, and there are several options to configure individual connections as well as the pools themselves.
+Vapor employs a pooling strategy for [`RedisConnection`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisconnection) instances, and there are several options to configure individual connections as well as the pools themselves.
 
 The bare minimum required for configuring Redis is to provide a URL to connect to:
 
@@ -102,7 +102,7 @@ This option determines the behavior of how the maximum connection count is maint
 
 ## Sending a Command
 
-You can send commands using the `.redis` property on any [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) or [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) instance, which will give you access to a [`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/1.4.1/documentation/redistack/redisclient).
+You can send commands using the `.redis` property on any [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) or [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) instance, which will give you access to a [`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisclient).
 
 Any `RedisClient` has several extensions for all of the various [Redis commands](https://redis.io/commands).
 
@@ -148,7 +148,7 @@ There is a defined lifecycle to a subscription:
 1. **message**: invoked 0+ times as messages are published to the subscribed channels
 1. **unsubscribe**: invoked once when the subscription ends, either by request or the connection being lost
 
-When you create a subscription, you must provide at least a [`messageReceiver`](https://swiftpackageindex.com/swift-server/RediStack/1.4.1/documentation/redistack/redissubscriptionmessagereceiver) to handle all messages that are published by the subscribed channel.
+When you create a subscription, you must provide at least a [`messageReceiver`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redissubscriptionmessagereceiver) to handle all messages that are published by the subscribed channel.
 
 You can optionally provide a `RedisSubscriptionChangeHandler` for `onSubscribe` and `onUnsubscribe` to handle their respective lifecycle events.
 

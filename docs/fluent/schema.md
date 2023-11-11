@@ -218,6 +218,21 @@ Below is an example using foreign key actions.
     Foreign key actions happen solely in the database, bypassing Fluent. 
     This means things like model middleware and soft-delete may not work correctly.
 
+## SQL
+
+The `.sql` parameter allows you to add arbitrary SQL to your schema. This is useful for adding specific constraints or data types.
+A common use case is defining a default value for a field:
+
+```swift
+.field("active", .bool, .required, .sql(.default(true)))
+```
+
+or even a default value for a timestamp:
+
+```swift
+.field("created_at", .datetime, .required, .sql(.default(SQLFunction("now"))))
+```
+
 ## Dictionary
 
 The dictionary data type is capable of storing nested dictionary values. This includes structs that conform to `Codable` and Swift dictionaries with a `Codable` value. 

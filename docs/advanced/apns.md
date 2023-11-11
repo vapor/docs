@@ -1,6 +1,6 @@
 # APNS
 
-Vapor's Apple Push Notification Service (APNS) API makes it easy to authenticate and send push notifications to Apple devices. It's built on top of [APNSwift](https://github.com/kylebrowning/APNSwift).
+Vapor's Apple Push Notification Service (APNS) API makes it easy to authenticate and send push notifications to Apple devices. It's built on top of [APNSwift](https://github.com/swift-server-community/APNSwift).
 
 ## Getting Started
 
@@ -11,14 +11,14 @@ Let's take a look at how you can get started using APNS.
 The first step to using APNS is adding the package to your dependencies.
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
     name: "my-app",
     dependencies: [
          // Other dependencies...
-        .package(url: "https://github.com/vapor/apns.git", from: "3.0.0"),
+        .package(url: "https://github.com/vapor/apns.git", from: "5.0.0"),
     ],
     targets: [
         .target(name: "App", dependencies: [
@@ -40,14 +40,21 @@ The APNS module adds a new property `apns` to `Application`. To send push notifi
 import APNS
 
 // Configure APNS using JWT authentication.
-app.apns.configuration = try .init(
+let apnsConfig = APNSClientConfiguration(
     authenticationMethod: .jwt(
-        key: .private(filePath: <#path to .p8#>),
+        privateKey: try .loadFrom(filePath: "<#path to .p8#>")!,
         keyIdentifier: "<#key identifier#>",
         teamIdentifier: "<#team identifier#>"
     ),
-    topic: "<#topic#>",
     environment: .sandbox
+)
+app.apns.containers.use(
+    apnsConfig,
+    eventLoopGroupProvider: .shared(app.eventLoopGroup),
+    responseDecoder: JSONDecoder(),
+    requestEncoder: JSONEncoder(),
+    backgroundActivityLogger: app.logger,
+    as: .default
 )
 ```
 
@@ -66,16 +73,29 @@ authenticationMethod: .tls(
 Once APNS is configured, you can send push notifications using `apns.send` method on `Application` or `Request`. 
 
 ```swift
-// Send a push notification.
-try app.apns.send(
-    .init(title: "Hello", subtitle: "This is a test from vapor/apns"),
-    to: "98AAD4A2398DDC58595F02FA307DF9A15C18B6111D1B806949549085A8E6A55D"
-).wait()
-
-// Or
-try await app.apns.send(
-    .init(title: "Hello", subtitle: "This is a test from vapor/apns"),
-    to: "98AAD4A2398DDC58595F02FA307DF9A15C18B6111D1B806949549085A8E6A55D"
+// Custom Codable Payload
+struct Payload: Codable {
+    let acme1: String
+    let acme2: Int
+}
+// Create push notification Alert
+let dt = "70075697aa918ebddd64efb165f5b9cb92ce095f1c4c76d995b384c623a258bb"
+let payload = Payload(acme1: "hey", acme2: 2)
+let alert = APNSAlertNotification(
+    alert: .init(
+        title: .raw("Hello"),
+        subtitle: .raw("This is a test from vapor/apns")
+    ),
+    expiration: .immediately,
+    priority: .immediately,
+    topic: "<#my topic#>",
+    payload: payload
+)
+// Send the notification
+try! await req.apns.client.sendAlertNotification(
+    alert, 
+    deviceToken: dt, 
+    deadline: .distantFuture
 )
 ```
 
@@ -83,12 +103,6 @@ Use `req.apns` whenever you are inside of a route handler.
 
 ```swift
 // Sends a push notification.
-app.get("test-push") { req -> EventLoopFuture<HTTPStatus> in
-    req.apns.send(..., to: ...)
-        .map { .ok }
-}
-
-// Or
 app.get("test-push") { req async throws -> HTTPStatus in
     try await req.apns.send(..., to: ...) 
     return .ok
@@ -99,50 +113,36 @@ The first parameter accepts the push notification alert and the second parameter
 
 ## Alert
 
-`APNSwiftAlert` is the actual metadata of the push notification alert to send. More details on the specifics of each property are provided [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html). They follow a one-to-one naming scheme listed in Apple's documentation
+`APNSAlertNotification` is the actual metadata of the push notification alert to send. More details on the specifics of each property are provided [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html). They follow a one-to-one naming scheme listed in Apple's documentation
 
 ```swift
-let alert = APNSwiftAlert(
-    title: "Hey There", 
-    subtitle: "Full moon sighting", 
-    body: "There was a full moon last night did you see it"
+let alert = APNSAlertNotification(
+    alert: .init(
+        title: .raw("Hello"),
+        subtitle: .raw("This is a test from vapor/apns")
+    ),
+    expiration: .immediately,
+    priority: .immediately,
+    topic: "<#my topic#>",
+    payload: payload
 )
 ```
 
-This type can be passed directly to the `send` method and it will be wrapped in an `APNSwiftPayload` automatically.
+This type can be passed directly to the `send` method.
 
-### Payload
-
-`APNSwiftPayload` is the metadata of the push notification. Things like the alert, badge count. More details on the specifics of each property are provided [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html). They follow a one-to-one naming scheme listed in Apple's documentation
-
-```swift
-let alert = ...
-let aps = APNSwiftPayload(alert: alert, badge: 1, sound: .normal("cow.wav"))
-```
-
-This can be passed to the `send` method.
 
 ### Custom Notification Data
 
-Apple provides engineers with the ability to add custom payload data to each notification. In order to facilitate this we have the `APNSwiftNotification`.
+Apple provides engineers with the ability to add custom payload data to each notification. In order to facilitate this we accept `Codable` conformance to the payload parameter on all `send` apis.
 
 ```swift
-struct AcmeNotification: APNSwiftNotification {
-    let acme2: [String]
-    let aps: APNSwiftPayload
-
-    init(acme2: [String], aps: APNSwiftPayload) {
-        self.acme2 = acme2
-        self.aps = aps
-    }
+// Custom Codable Payload
+struct Payload: Codable {
+    let acme1: String
+    let acme2: Int
 }
-
-let aps: APNSwiftPayload = ...
-let notification = AcmeNotification(acme2: ["bang", "whiz"], aps: aps)
 ```
-
-This custom notification type can be passed to the `send` method.
 
 ## More Information
 
-For more information on available methods, see [APNSwift's README](https://github.com/kylebrowning/APNSwift).
+For more information on available methods, see [APNSwift's README](https://github.com/swift-server-community/APNSwift).

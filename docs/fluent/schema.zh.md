@@ -218,6 +218,21 @@ database.schema("planets").delete()
 !!! warning "警告"
     外键操作仅发生在数据库中，绕过 Fluent。这意味着模型中间件和软删除之类的东西可能无法正常工作。
 
+## SQL
+
+`.sql` 参数允许你向 schema 中添加任意的 SQL。这对于添加特定的约束或数据类型非常有用。
+一个常见的用例是为字段定义默认值：
+
+```swift
+.field("active", .bool, .required, .sql(.default(true)))
+```
+
+甚至可以为时间戳字段定义默认值：
+
+```swift
+.field("created_at", .datetime, .required, .sql(.default(SQLFunction("now"))))
+```
+
 ## 字典(Dictionary)
 
 字典数据类型能够存储嵌套的字典值。这包括遵循 `Codable` 协议的结构和具有 `Codable` 值的 Swift 字典。

@@ -1,60 +1,49 @@
 name: Build and deploy the Vapor documentation
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 on:
   push:
     branches:
       - main
+
 jobs:
   deploy:
     name: Build and deploy
     runs-on: ubuntu-latest
+    permissions: { id-token: write, contents: read }
+    env: { AWS_PAGER: '' }
     steps:
-    - name: Checkout repository 
-      uses: actions/checkout@v3
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-    - name: Build the website
-      run: |
-        mkdocs build
-        swift fixSearchIndex.swift
-        cp googlefc012e5d94cfa05f.html site/googlefc012e5d94cfa05f.html;
-        swift setUpRedirects.swift
-    - name: Configure AWS credentials
-      id: cred
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.DOCS_DEPLOYER_AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.DOCS_DEPLOYER_AWS_SECRET_ACCESS_KEY }}
-        aws-region: 'eu-west-2'
-    - name: Deploy to AWS Cloudformation
-      id: clouddeploy
-      if: steps.cred.outcome == 'success'
-      uses: aws-actions/aws-cloudformation-github-deploy@v1.0.3
-      with:
-        name: vapor-docs-stack
-        template: stack.yml
-        no-fail-on-empty-changeset: "1"
-        parameter-overrides: >-
-          DomainName=docs.vapor.codes,
-          S3BucketName=vapor-docs-site,
-          AcmCertificateArn=${{ secrets.CERTIFICATE_ARN }}
-    - name: Deploy to S3 
-      id: s3deploy
-      if: steps.clouddeploy.outcome == 'success'
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'vapor-docs-site'
-        AWS_ACCESS_KEY_ID: ${{ secrets.DOCS_DEPLOYER_AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.DOCS_DEPLOYER_AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'eu-west-2'
-        SOURCE_DIR: 'site'
-    - name: Invalidate CloudFront 
-      uses: awact/cloudfront-action@master 
-      env:
-        SOURCE_PATH: '/*'
-        AWS_REGION: 'eu-west-2'
-        AWS_ACCESS_KEY_ID: ${{ secrets.DOCS_DEPLOYER_AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.DOCS_DEPLOYER_AWS_SECRET_ACCESS_KEY }}
-        DISTRIBUTION_ID: ${{ secrets.DOCS_DISTRIBUTION_ID }}
+      - name: Checkout repository 
+        uses: actions/checkout@v4
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build the website
+        run: |
+          mkdocs build
+          swift fixSearchIndex.swift
+          cp googlefc012e5d94cfa05f.html site/googlefc012e5d94cfa05f.html
+          swift setUpRedirects.swift
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.OIDC_ROLE_ARN }}
+          aws-region: ${{ vars.OIDC_ROLE_REGION }}
+      - name: Deploy CloudFormation stack
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: vapor-docs-stack
+          template: stack.yml
+          no-fail-on-empty-changeset: '1'
+          parameter-overrides: >-
+            DomainName=docs.vapor.codes,
+            S3BucketName=${{ secrets.DOCS_S3_BUCKET_NAME }},
+            AcmCertificateArn=${{ secrets.CERTIFICATE_ARN }}
+      - name: Upload data to S3
+        run: |
+          aws s3 sync ./site 's3://${{ secrets.DOCS_S3_BUCKET_NAME }}' --no-progress --acl public-read
+      - name: Invalidate CloudFront
+        run: |
+          aws cloudfront create-invalidation --distribution-id '${{ secrets.DOCS_DISTRIBUTION_ID }}' --paths '/*'
