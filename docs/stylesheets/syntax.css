@@ -125,3 +125,56 @@
 .hljs-ln .hljs-ln-n:before {
   content: attr(data-line-number);
 }
+
+@media (prefers-color-scheme: dark) {
+
+  .md-typeset .hljs {
+    color: #8194F7;
+  }
+
+  .hljs-class .hljs-title,
+  .hljs-type {
+    color: #a6e3ff;
+  }
+
+  .hljs-code,
+  .hljs-string,
+  .hljs-meta-string {
+    color: #F9ECFB;
+  }
+
+  .hljs-function {
+    color: #F9ECFB;
+  }
+
+  .hljs-variable,
+  .hljs-template-variable {
+    color: #40c4ff;
+  }
+
+  .hljs-attr {
+    color: #DF3EFB
+  }
+
+  .hljs-section {
+    color: #F9ECFB;
+  }
+
+  .hljs-meta {
+    color: #c0764e;
+  }
+
+  .hljs-subst {
+    color: #F9ECFB
+  }
+
+  .hljs-addition {
+    background-color: transparent;
+    color: #60e260;
+  }
+
+  .hljs-deletion {
+    background-color: transparent;
+    color: #ff7b72;
+  }
+}

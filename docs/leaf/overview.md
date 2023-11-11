@@ -14,7 +14,7 @@ There are #count(users) users.
 
 Leaf tags are made up of four elements:
 
-- Token `#`: This signals the leaf parser to begin looking for a tag.
+- Token `#`: This signals the Leaf parser to begin looking for a tag.
 - Name `count`: that identifies the tag.
 - Parameter List `(users)`: May accept zero or more arguments.
 - Body: An optional body can be supplied to some tags using a colon and a closing tag

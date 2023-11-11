@@ -25,41 +25,44 @@ struct TodosController: RouteCollection {
         }
     }
 
-    func index(req: Request) async throws -> String {
-        // ...
+    func index(req: Request) async throws -> [Todo] {
+        try await Todo.query(on: req.db).all()
     }
 
-    func create(req: Request) throws -> EventLoopFuture<String> {
-        // ...
+    func create(req: Request) async throws -> Todo {
+        let todo = try req.content.decode(Todo.self)
+        try await todo.save(on: req.db)
+        return todo
     }
 
-    func show(req: Request) throws -> String {
-        guard let id = req.parameters.get("id") else {
-            throw Abort(.internalServerError)
+    func show(req: Request) async throws -> Todo {
+        guard let todo = try await Todo.find(req.parameters.get("id"), on: req.db) else {
+            throw Abort(.notFound)
         }
-        // ...
+        return todo
     }
 
-    func update(req: Request) throws -> String {
-        guard let id = req.parameters.get("id") else {
-            throw Abort(.internalServerError)
+    func update(req: Request) async throws -> Todo {
+        guard let todo = try await Todo.find(req.parameters.get("id"), on: req.db) else {
+            throw Abort(.notFound)
         }
-        // ...
+        let updatedTodo = try req.content.decode(Todo.self)
+        todo.title = updatedTodo.title
+        try await todo.save(on: req.db)
+        return todo
     }
 
-    func delete(req: Request) throws -> String {
-        guard let id = req.parameters.get("id") else {
-            throw Abort(.internalServerError)
+    func delete(req: Request) async throws -> HTTPStatus {
+        guard let todo = try await Todo.find(req.parameters.get("id"), on: req.db) {
+            throw Abort(.notFound)
         }
-        // ...
+        try await todo.delete(on: req.db)
+        return .ok
     }
 }
 ```
 
-`Controller` 的方法接受 `Request` 参数，并返回 `ResponseEncodable` 对象。该方法可以是异步或者同步(或者返回一个 `EventLoopFuture`)
-
-!!! note "注意" 
-	[EventLoopFuture](async.md) 期望返回值为 `ResponseEncodable` (i.e, `EventLoopFuture<String>`) 或 `ResponseEncodable`.
+`Controller` 的方法接受 `Request` 参数，并返回 `ResponseEncodable` 对象。该方法可以是异步或者同步。	
 
 最后，你需要在 `routes.swift` 中注册 Controller：
 

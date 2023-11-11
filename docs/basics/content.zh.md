@@ -76,7 +76,7 @@ struct Profile: Content {
 
 不是所有的媒体类型都支持所有的 `Codable` 协议。例如，JSON 不支持顶层片段，Plaintext 不支持嵌套数据。
 
-## 查询
+## 查询(Query)
 
 Vapor 的 Content API 支持处理 URL 查询字符串中的 URL 编码数据。
 
