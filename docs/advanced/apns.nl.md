@@ -18,12 +18,12 @@ let package = Package(
     name: "my-app",
     dependencies: [
          // Andere afhankelijkheden...
-        .package(url: "https://github.com/vapor/apns.git", from: "3.0.0"),
+        .package(url: "https://github.com/vapor/apns.git", from: "4.0.0"),
     ],
     targets: [
         .target(name: "App", dependencies: [
             // Andere afhankelijkheden...
-            .product(name: "APNS", package: "apns")
+            .product(name: "VaporAPNS", package: "apns")
         ]),
         // Andere targets...
     ]
@@ -38,6 +38,8 @@ De APNS module voegt een nieuwe eigenschap `apns` toe aan `Application`. Om push
 
 ```swift
 import APNS
+import VaporAPNS
+import APNSCore
 
 // Configureer APNS met JWT-authenticatie.
 app.apns.configuration = try .init(

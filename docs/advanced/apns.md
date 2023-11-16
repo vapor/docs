@@ -39,6 +39,7 @@ The APNS module adds a new property `apns` to `Application`. To send push notifi
 ```swift
 import APNS
 import VaporAPNS
+import APNSCore
 
 // Configure APNS using JWT authentication.
 let apnsConfig = APNSClientConfiguration(
