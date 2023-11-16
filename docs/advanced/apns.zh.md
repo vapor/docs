@@ -18,12 +18,12 @@ let package = Package(
     name: "my-app",
     dependencies: [
          // Other dependencies...
-        .package(url: "https://github.com/vapor/apns.git", from: "5.0.0"),
+        .package(url: "https://github.com/vapor/apns.git", from: "4.0.0"),
     ],
     targets: [
         .target(name: "App", dependencies: [
             // Other dependencies...
-            .product(name: "APNS", package: "apns")
+            .product(name: "VaporAPNS", package: "apns")
         ]),
         // Other targets...
     ]
@@ -38,6 +38,8 @@ APNS 模块为 `Application` 添加了一个 `apns` 新属性。要发送推送�
 
 ```swift
 import APNS
+import VaporAPNS
+import APNSCore
 
 // 使用 JWT 认证 配置 APNS。
 let apnsConfig = APNSClientConfiguration(
