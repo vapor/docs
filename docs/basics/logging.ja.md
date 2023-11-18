@@ -1,14 +1,14 @@
 # Logging 
 
-Vapor の ロギング API は [SwiftLog](https://github.com/apple/swift-log) を基に構築されています。これは、Vapor が SwiftLog の[バックエンド実装](https://github.com/apple/swift-log#backends)と互換性があることを示しています。
+Vapor の Logging API は [SwiftLog](https://github.com/apple/swift-log) を基に構築されています。これは、Vapor が SwiftLog の[バックエンド実装](https://github.com/apple/swift-log#backends)と互換性があることを示しています。
 
 ## Logger
 
-`Logger` のインスタンスはログメッセージを出力するために使用されます。Vapor はロガーにアクセスするためのいくつかの簡単な方法を提供しています。
+`Logger` のインスタンスはログメッセージを出力するために使用されます。Vapor は Logger にアクセスするためのいくつかの簡単な方法を提供しています。
 
 ### Request
 
-各入力 `Request` には、そのリクエストに固有のログを使用するためのユニークなロガーがあります。
+各入力 `Request` には、そのリクエストに固有のログを使用するためのユニークな Logger があります。
 
 ```swift
 app.get("hello") { req -> String in
@@ -17,18 +17,18 @@ app.get("hello") { req -> String in
 }
 ```
 
-リクエストロガーには、ログの追跡を容易にするために、入力リクエストを識別するユニークな UUID が含まれています。
+リクエスト Logger には、ログの追跡を容易にするために、入力リクエストを識別するユニークな UUID が含まれています。
 
 ```
 [ INFO ] Hello, logs! [request-id: C637065A-8CB0-4502-91DC-9B8615C5D315] (App/routes.swift:10)
 ```
 
 !!! info
-    ロガーメタデータは、デバッグログレベルまたはそれ以下でのみ表示されます。
+    Logger メタデータは、デバッグログレベルまたはそれ以下でのみ表示されます。
 
 ### Application
 
-アプリの起動や設定中のログメッセージには、`Application` のロガーを使用します。
+アプリの起動や設定中のログメッセージには、`Application` の Logger を使用します。
 
 ```swift
 app.logger.info("Setting up migrations...")
@@ -44,7 +44,7 @@ let logger = Logger(label: "dev.logger.my")
 logger.info(...)
 ```
 
-カスタムロガーは設定されたロギングバックエンドに出力されますが、リクエスト UUID のような重要なメタデータは付加されません。可能な限りリクエストやアプリケーション固有のロガーを使用してください。
+カスタム Logger は設定された Logging バックエンドに出力されますが、リクエスト UUID のような重要なメタデータは付加されません。可能な限りリクエストやアプリケーション固有の Logger を使用してください。
 
 ## Level
 
