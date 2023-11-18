@@ -1,4 +1,4 @@
-# Routing
+# ルーティング
 
 ルーティングは、入ってきたリクエストに対して適切なリクエストハンドラを見つける処理です。Vapor のルーティングの核心には、[RoutingKit](https://github.com/vapor/routing-kit) からの高性能なトライノードルータがあります。
 
@@ -34,7 +34,6 @@ http://vapor.codes/hello/vapor
 
 HTTP メソッドの直後には、リクエストの URI があります。これは、`/` で始まるパスと、`?` の後のオプションのクエリ文字列で構成されています。HTTP メソッドとパスは、Vapor がリクエストをルーティングするために使用するものです。
 
-After the URI is the HTTP version followed by zero or more headers and finally a body. Since this is a `GET` request, it does not have a body.
 URI の後には HTTP バージョン、0個以上のヘッダが続き、最後にボディが続きます。これは `GET` リクエストなので、ボディはありません。
 
 ### ルーターメソッド
