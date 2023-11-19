@@ -229,3 +229,63 @@ validations.add(
 |`!`|前置|バリデーターを反転させ、反対のものを要求します。|
 |`&&`|中置|2つのバリデーターを組み合わせ、両方を要求する。|
 |`||`|中置|2つのバリデーターを組み合わせ、1つを要求する。|
+
+## カスタムバリデーション
+
+郵便番号のカスタムバリデーターを作成することで、バリデーションフレームワークの機能を拡張できます。このセクションでは、郵便番号を検証するカスタムバリデーターを作成する手順を説明します。
+
+まず、`ZipCode` 検証結果を表す新しいタイプを作成します。この構造体は、特定の文字列が有効な郵便番号であるかどうかを報告する役割を担います。
+
+```swift
+extension ValidatorResults {
+    /// Represents the result of a validator that checks if a string is a valid zip code.
+    public struct ZipCode {
+        /// Indicates whether the input is a valid zip code.
+        public let isValidZipCode: Bool
+    }
+}
+```
+
+次に、新しいタイプを `ValidatorResult` に適合させます。これは、カスタムバリデーターから期待される振る舞いを定義します。
+
+```swift
+extension ValidatorResults.ZipCode: ValidatorResult {
+    public var isFailure: Bool {
+        !self.isValidZipCode
+    }
+    
+    public var successDescription: String? {
+        "is a valid zip code"
+    }
+    
+    public var failureDescription: String? {
+        "is not a valid zip code"
+    }
+}
+```
+
+最後に、郵便番号のバリデーションロジックを実装します。正規表現を使用して、入力文字列がアメリカの郵便番号の形式に一致しているかをチェックします。
+
+```swift
+private let zipCodeRegex: String = "^\\d{5}(?:[-\\s]\\d{4})?$"
+
+extension Validator where T == String {
+    /// Validates whether a `String` is a valid zip code.
+    public static var zipCode: Validator<T> {
+        .init { input in
+            guard let range = input.range(of: zipCodeRegex, options: [.regularExpression]),
+                  range.lowerBound == input.startIndex && range.upperBound == input.endIndex
+            else {
+                return ValidatorResults.ZipCode(isValidZipCode: false)
+            }
+            return ValidatorResults.ZipCode(isValidZipCode: true)
+        }
+    }
+}
+```
+
+カスタムの `zipCode` バリデーターを定義したので、アプリケーションで郵便番号を検証する際にこれを使用できます。バリデーションコードに以下の行を追加するだけです：
+
+```swift
+validations.add("zipCode", as: String.self, is: .zipCode)
+```
