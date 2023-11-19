@@ -19,6 +19,7 @@ Package.swiftで、ファイルの先頭にあるツールバージョンを5.5�
 import PackageDescription
 
 // ...
+```
 
 次に、プラットフォームバージョンをmacOS 12 に設定します。：
 

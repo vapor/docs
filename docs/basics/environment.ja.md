@@ -11,6 +11,7 @@ case .production:
 default:
     app.databases.use(...)
 }
+```
 
 ## 環境の変化
 
@@ -30,7 +31,7 @@ Vapor は以下の環境を含みます。:
 
 !!! info
     `production` 環境は、特に指定されていない場合、デフォルトで `notice` レベルのログになります。他の環境はデフォルトでinfoです。
-    
+
 
 `--env`（`-e`）フラグには、フルネームか略称のどちらかを渡すことができます。
 
@@ -126,10 +127,10 @@ enum Entrypoint {
     static func main() async throws {
         var env = try Environment.detect()
         try LoggingSystem.bootstrap(from: &env)
-        
+
         let app = Application(env)
         defer { app.shutdown() }
-        
+
         try await configure(app)
         try await app.runFromAsyncMainEntrypoint()
     }
