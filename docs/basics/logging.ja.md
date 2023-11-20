@@ -1,12 +1,12 @@
-# Logging 
+# ロギング 
 
-Vapor の ロギング API は [SwiftLog](https://github.com/apple/swift-log) を基に構築されています。これは、Vapor が SwiftLog の[バックエンド実装](https://github.com/apple/swift-log#backends)と互換性があることを示しています。
+Vapor のロギング API は [SwiftLog](https://github.com/apple/swift-log) を基に構築されています。これは、Vapor が SwiftLog の[バックエンド実装](https://github.com/apple/swift-log#backends)と互換性があることを示しています。
 
-## Logger
+## ロガー
 
 `Logger` のインスタンスはログメッセージを出力するために使用されます。Vapor はロガーにアクセスするためのいくつかの簡単な方法を提供しています。
 
-### Request
+### リクエスト
 
 各入力 `Request` には、そのリクエストに固有のログを使用するためのユニークなロガーがあります。
 
@@ -26,7 +26,7 @@ app.get("hello") { req -> String in
 !!! info
     ロガーメタデータは、デバッグログレベルまたはそれ以下でのみ表示されます。
 
-### Application
+### アプリケーション
 
 アプリの起動や設定中のログメッセージには、`Application` のロガーを使用します。
 
@@ -35,7 +35,7 @@ app.logger.info("Setting up migrations...")
 app.migrations.use(...)
 ```
 
-### Custom Logger
+### カスタムロガー
 
 `Application` や `Request` にアクセスできない状況では、新しい `Logger` を初期化できます。
 
@@ -46,7 +46,7 @@ logger.info(...)
 
 カスタムロガーは設定されたロギングバックエンドに出力されますが、リクエスト UUID のような重要なメタデータは付加されません。可能な限りリクエストやアプリケーション固有のロガーを使用してください。
 
-## Level
+## レベル
 
 SwiftLog はいくつかの異なるログレベルをサポートしています。
 
@@ -64,7 +64,7 @@ SwiftLog はいくつかの異なるログレベルをサポートしていま�
 
 デフォルトでは、Vapor は `info` レベルのログを使用します。`production` 環境で実行する場合は、パフォーマンス向上のためにnoticeが使用されます。
 
-### Log Level の変更
+### ログレベルの変更
 
 環境モードに関係なく、ログの量を増減するためにログレベルをオーバーライドできます。
 
