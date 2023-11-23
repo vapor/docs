@@ -491,9 +491,10 @@ plugins:
             Basics: 基礎
             Client: クライアント
             Commands: コマンド
-            Content: 内容
+            Content: コンテンツ
             Contributing: 貢献
             Contributing Guide: 貢献ガイド
+            Controllers: コントローラー
             Crypto: 暗号
             Custom Tags: カスタムタグ
             Deploy: デプロイ
