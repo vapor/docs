@@ -44,7 +44,7 @@ import APNSCore
 // Configure APNS using JWT authentication.
 let apnsConfig = APNSClientConfiguration(
     authenticationMethod: .jwt(
-        privateKey: try! .loadFrom(string: "<#path to .p8#>"),
+        privateKey: try! .loadFrom(string: "<#key.p8 content#>"),
         keyIdentifier: "<#key identifier#>",
         teamIdentifier: "<#team identifier#>"
     ),
