@@ -44,7 +44,7 @@ import APNSCore
 // Configurazione di APNS utilizzando l'autenticazione tramite JWT.
 let apnsConfig = APNSClientConfiguration(
     authenticationMethod: .jwt(
-        privateKey: try .loadFrom(filePath: "<#path to .p8#>")!,
+        privateKey: try .loadFrom(string: "<#key.p8 content#>"),
         keyIdentifier: "<#key identifier#>",
         teamIdentifier: "<#team identifier#>"
     ),
@@ -55,7 +55,6 @@ app.apns.containers.use(
     eventLoopGroupProvider: .shared(app.eventLoopGroup),
     responseDecoder: JSONDecoder(),
     requestEncoder: JSONEncoder(),
-    backgroundActivityLogger: app.logger,
     as: .default
 )
 ```
@@ -107,7 +106,7 @@ Dall'interno di un route handler si può utilizzare `req.apns`.
 ```swift
 // Invia una notifica push.
 app.get("test-push") { req async throws -> HTTPStatus in
-    try await req.apns.send(..., to: ...) 
+    try await req.apns.client.send(...) 
     return .ok
 }
 ```
