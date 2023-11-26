@@ -42,18 +42,24 @@ import VaporAPNS
 import APNSCore
 
 // Configureer APNS met JWT-authenticatie.
-app.apns.configuration = try .init(
+let apnsConfig = APNSClientConfiguration(
     authenticationMethod: .jwt(
-        key: .private(filePath: <#path to .p8#>),
+        privateKey: try .loadFrom(string: "<#key.p8 content#>"),
         keyIdentifier: "<#key identifier#>",
         teamIdentifier: "<#team identifier#>"
     ),
-    topic: "<#topic#>",
     environment: .sandbox
+)
+app.apns.containers.use(
+    apnsConfig,
+    eventLoopGroupProvider: .shared(app.eventLoopGroup),
+    responseDecoder: JSONDecoder(),
+    requestEncoder: JSONEncoder(),
+    as: .default
 )
 ```
 
-Vul de plaatsaanduidingen in met uw referenties. Het bovenstaande voorbeeld toont [JWT-gebaseerde auth](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns) met behulp van de `.p8` sleutel die je krijgt van Apple's ontwikkelaarsportaal. Voor [TLS-gebaseerde auth](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns) met een certificaat, gebruik de `.tls` authenticatie methode: 
+Vul de plaatsaanduidingen in met uw referenties. Het bovenstaande voorbeeld toont [JWT-gebaseerde auth](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns) met behulp van de `.p8` sleutel die je krijgt van Apple's ontwikkelaarsportaal. Voor [TLS-gebaseerde auth](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns) met een certificaat, gebruik de `.tls` authenticatie methode:
 
 ```swift
 authenticationMethod: .tls(
@@ -65,19 +71,32 @@ authenticationMethod: .tls(
 
 ### Verzenden
 
-Zodra APNS is geconfigureerd, kunt u push notificaties versturen met `apns.send` methode op `Application` of `Request`. 
+Zodra APNS is geconfigureerd, kunt u push notificaties versturen met `apns.send` methode op `Application` of `Request`.
 
 ```swift
-// Stuur een push notificatie.
-try app.apns.send(
-    .init(title: "Hello", subtitle: "This is a test from vapor/apns"),
-    to: "98AAD4A2398DDC58595F02FA307DF9A15C18B6111D1B806949549085A8E6A55D"
-).wait()
-
-// Of
-try await app.apns.send(
-    .init(title: "Hello", subtitle: "This is a test from vapor/apns"),
-    to: "98AAD4A2398DDC58595F02FA307DF9A15C18B6111D1B806949549085A8E6A55D"
+// Aangepaste codeerbare lading
+struct Payload: Codable {
+    let acme1: String
+    let acme2: Int
+}
+// Maak een pushmeldingswaarschuwing
+let dt = "70075697aa918ebddd64efb165f5b9cb92ce095f1c4c76d995b384c623a258bb"
+let payload = Payload(acme1: "hey", acme2: 2)
+let alert = APNSAlertNotification(
+    alert: .init(
+        title: .raw("Hello"),
+        subtitle: .raw("This is a test from vapor/apns")
+    ),
+    expiration: .immediately,
+    priority: .immediately,
+    topic: "<#my topic#>",
+    payload: payload
+)
+// Verzend de melding
+try! await req.apns.client.sendAlertNotification(
+    alert,
+    deviceToken: dt,
+    deadline: .distantFuture
 )
 ```
 
@@ -85,66 +104,45 @@ Gebruik `req.apns` wanneer je in een route handler zit.
 
 ```swift
 // Stuur een push notificatie.
-app.get("test-push") { req -> EventLoopFuture<HTTPStatus> in
-    req.apns.send(..., to: ...)
-        .map { .ok }
-}
-
-// Of
 app.get("test-push") { req async throws -> HTTPStatus in
-    try await req.apns.send(..., to: ...) 
+    try await req.apns.client.send(...)
     return .ok
 }
 ```
 
-De eerste parameter accepteert de push notificatie melding en de tweede parameter is het doel apparaat token. 
+De eerste parameter accepteert de push notificatie melding en de tweede parameter is het doel apparaat token.
 
 ## Alert
 
-`APNSwiftAlert` is de eigenlijke metadata van de te verzenden push notification alert. Meer details over de specifieke kenmerken van elke eigenschap worden [hier](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html) gegeven. Ze volgen een één-op-één naamgeving schema zoals vermeld in Apple's documentatie
+`APNSAlertNotification` is de eigenlijke metadata van de te verzenden push notification alert. Meer details over de specifieke kenmerken van elke eigenschap worden [hier](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html) gegeven. Ze volgen een één-op-één naamgeving schema zoals vermeld in Apple's documentatie
 
 ```swift
-let alert = APNSwiftAlert(
-    title: "Hey There", 
-    subtitle: "Full moon sighting", 
-    body: "There was a full moon last night did you see it"
+let alert = APNSAlertNotification(
+    alert: .init(
+        title: .raw("Hello"),
+        subtitle: .raw("This is a test from vapor/apns")
+    ),
+    expiration: .immediately,
+    priority: .immediately,
+    topic: "<#my topic#>",
+    payload: payload
 )
 ```
 
 Dit type kan direct worden doorgegeven aan de `send` methode en het zal automatisch worden verpakt in een `APNSwiftPayload`.
 
-### Payload
-
-`APNSwiftPayload` is de metadata van de push notificatie. Dingen zoals de waarschuwing, badge count. Meer details over de specifieke kenmerken van elke eigenschap worden [hier](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html) gegeven. Ze volgen een één-op-één naamgeving schema zoals vermeld in Apple's documentatie
-
-```swift
-let alert = ...
-let aps = APNSwiftPayload(alert: alert, badge: 1, sound: .normal("cow.wav"))
-```
-
-Dit kan worden doorgegeven aan de `send` methode.
-
 ### Aangepaste Notification Data
 
-Apple biedt ontwikkelaars de mogelijkheid om aangepaste payload data toe te voegen aan elke notificatie. Om dit mogelijk te maken hebben we de `APNSwiftNotification`.
+Apple biedt ontwikkelaars de mogelijkheid om aangepaste payload data toe te voegen aan elke notificatie. Om dit te vergemakkelijken accepteren we `Codable`-conformiteit met de payload-parameter op alle `send`-apis.
 
 ```swift
-struct AcmeNotification: APNSwiftNotification {
-    let acme2: [String]
-    let aps: APNSwiftPayload
-
-    init(acme2: [String], aps: APNSwiftPayload) {
-        self.acme2 = acme2
-        self.aps = aps
-    }
+// Aangepaste codeerbare lading
+struct Payload: Codable {
+    let acme1: String
+    let acme2: Int
 }
-
-let aps: APNSwiftPayload = ...
-let notification = AcmeNotification(acme2: ["bang", "whiz"], aps: aps)
 ```
-
-Dit aangepaste notificatie type kan worden doorgegeven aan de `send` methode.
 
 ## More Information
 
-Voor meer informatie over beschikbare methodes, zie [APNSwift's README](https://github.com/kylebrowning/APNSwift).
+Voor meer informatie over beschikbare methodes, zie [APNSwift's README](https://github.com/swift-server-community/APNSwift).

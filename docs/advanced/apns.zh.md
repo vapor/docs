@@ -44,7 +44,7 @@ import APNSCore
 // 使用 JWT 认证 配置 APNS。
 let apnsConfig = APNSClientConfiguration(
     authenticationMethod: .jwt(
-        privateKey: try .loadFrom(filePath: "<#path to .p8#>")!,
+        privateKey: try .loadFrom(string: "<#key.p8 content#>"),
         keyIdentifier: "<#key identifier#>",
         teamIdentifier: "<#team identifier#>"
     ),
@@ -55,7 +55,6 @@ app.apns.containers.use(
     eventLoopGroupProvider: .shared(app.eventLoopGroup),
     responseDecoder: JSONDecoder(),
     requestEncoder: JSONEncoder(),
-    backgroundActivityLogger: app.logger,
     as: .default
 )
 ```
@@ -110,7 +109,7 @@ try! await req.apns.client.sendAlertNotification(
 ```swift
 // 发送通知
 app.get("test-push") { req async throws -> HTTPStatus in
-    try await req.apns.send(..., to: ...) 
+    try await req.apns.client.send(...) 
     return .ok
 }
 ```
