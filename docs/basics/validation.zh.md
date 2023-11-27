@@ -229,3 +229,68 @@ validations.add(
 |`!`|前面|反转验证器，要求相反|
 |`&&`|中间|组合两个验证器，需要同时满足|
 |`||`|中间|组合两个验证器，至少满足一个|
+
+## 自定义验证器
+
+创建一个自定义的验证器用于验证邮政编码，允许你通过扩展验证器框架的功能来实现。本节中，我们将引导你完成创建用于验证邮政编码的自定义验证器的步骤。
+
+首先，创建一个新类型用于表示 `ZipCode` 的验证结果。这个结构体负责报告给定的字符串是否是有效的邮政编码。
+
+
+```swift
+extension ValidatorResults {
+    /// 表示验证器的结果，该验证器检查一个字符串是否为有效的邮政编码。
+    public struct ZipCode {
+        /// 指示输入是否为有效的邮政编码。
+        public let isValidZipCode: Bool
+    }
+}
+```
+
+接下来，使新类型遵循 `ValidatorResult` 协议，该接口定义了自定义验证器所期望的行为。
+
+
+```swift
+extension ValidatorResults.ZipCode: ValidatorResult {
+    public var isFailure: Bool {
+        !self.isValidZipCode
+    }
+    
+    public var successDescription: String? {
+        "is a valid zip code"
+    }
+    
+    public var failureDescription: String? {
+        "is not a valid zip code"
+    }
+}
+```
+
+最后，实现邮政编码的验证逻辑。使用正则表达式检查输入字符串是否与美国邮政编码的格式匹配。
+
+
+```swift
+private let zipCodeRegex: String = "^\\d{5}(?:[-\\s]\\d{4})?$"
+
+extension Validator where T == String {
+    /// 验证一个 `String` 是否是有效的邮政编码。
+    public static var zipCode: Validator<T> {
+        .init { input in
+            guard let range = input.range(of: zipCodeRegex, options: [.regularExpression]),
+                  range.lowerBound == input.startIndex && range.upperBound == input.endIndex
+            else {
+                return ValidatorResults.ZipCode(isValidZipCode: false)
+            }
+            return ValidatorResults.ZipCode(isValidZipCode: true)
+        }
+    }
+}
+```
+
+现在你已经定义了自定义的 `zipCode` 验证器，你可以在应用程序中使用它来验证邮政编码。只需将以下行添加到你的验证代码中：
+
+
+```swift
+validations.add("zipCode", as: String.self, is: .zipCode)
+```
+
