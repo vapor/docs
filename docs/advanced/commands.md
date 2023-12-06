@@ -1,10 +1,10 @@
 # Commands
 
-Vapor's Command API allows you to build custom command-line functions and interact with the terminal. It is what Vapor's default commands like `serve`, `routes`, and `migrate` are built on. 
+Vapor's Command API allows you to build custom command-line functions and interact with the terminal. It is what Vapor's default commands like `serve`, `routes`, and `migrate` are built on.
 
 ## Default Commands
 
-You can learn more about Vapor's default commands using the `--help` option. 
+You can learn more about Vapor's default commands using the `--help` option.
 
 ```sh
 swift run App --help
@@ -18,7 +18,7 @@ swift run App serve --help
 
 ### Xcode
 
-You can run commands in Xcode by adding arguments to the `App` scheme. To do this, follow these steps: 
+You can run commands in Xcode by adding arguments to the `App` scheme. To do this, follow these steps:
 
 - Choose `App` scheme (to the right of play/stop buttons)
 - Click "Edit Scheme"
@@ -28,35 +28,35 @@ You can run commands in Xcode by adding arguments to the `App` scheme. To do thi
 
 ## Custom Commands
 
-You can create your own commands by creating types conforming to `Command`. 
+You can create your own commands by creating types conforming to `AsyncCommand`.
 
 ```swift
 import Vapor
 
-struct HelloCommand: Command { 
+struct HelloCommand: AsyncCommand {
 	...
 }
 ```
 
-Adding the custom command to `app.commands` will make it available via `swift run`. 
+Adding the custom command to `app.asyncCommands` will make it available via `swift run`.
 
 ```swift
-app.commands.use(HelloCommand(), as: "hello")
+app.asyncCommands.use(HelloCommand(), as: "hello")
 ```
 
-To conform to `Command`, you must implement the `run` method. This requires declaring a `Signature`. You must also provide default help text.
+To conform to `AsyncCommand`, you must implement the `run` method. This requires declaring a `Signature`. You must also provide default help text.
 
 ```swift
 import Vapor
 
-struct HelloCommand: Command {
+struct HelloCommand: AsyncCommand {
     struct Signature: CommandSignature { }
 
     var help: String {
         "Says hello"
     }
 
-    func run(using context: CommandContext, signature: Signature) throws {
+    func run(using context: CommandContext, signature: Signature) async throws {
         context.console.print("Hello, world!")
     }
 }
@@ -64,7 +64,7 @@ struct HelloCommand: Command {
 
 This simple command example has no arguments or options, so leave the signature empty.
 
-You can get access to the current console via the supplied context. Console has many helpful methods for prompting user input, output formatting, and more. 
+You can get access to the current console via the supplied context. Console has many helpful methods for prompting user input, output formatting, and more.
 
 ```swift
 let name = context.console.ask("What is your \("name", color: .blue)?")
@@ -84,7 +84,7 @@ Take a look at this re-creation of the famous [`cowsay`](https://en.wikipedia.or
 ```swift
 import Vapor
 
-struct Cowsay: Command {
+struct Cowsay: AsyncCommand {
     struct Signature: CommandSignature {
         @Argument(name: "message")
         var message: String
@@ -100,7 +100,7 @@ struct Cowsay: Command {
         "Generates ASCII picture of a cow with a message."
     }
 
-    func run(using context: CommandContext, signature: Signature) throws {
+    func run(using context: CommandContext, signature: Signature) async throws {
         let eyes = signature.eyes ?? "oo"
         let tongue = signature.tongue ?? "  "
         let cow = #"""
@@ -121,7 +121,7 @@ struct Cowsay: Command {
 Try adding this to your application and running it.
 
 ```swift
-app.commands.use(Cowsay(), as: "cowsay")
+app.asyncCommands.use(Cowsay(), as: "cowsay")
 ```
 
 ```sh
