@@ -139,8 +139,8 @@ De `tlsConfiguration` parameter regelt of TLS (SSL) is ingeschakeld op de server
 
 ```swift
 // Schakel TLS in.
-try app.http.server.configuration.tlsConfiguration = .forServer(
-    certificateChain: NIOSSLCertificate.fromPEMFile("/path/to/cert.pem").map { .certificate($0) },
+app.http.server.configuration.tlsConfiguration = .makeServerConfiguration(
+    certificateChain: try NIOSSLCertificate.fromPEMFile("/path/to/cert.pem").map { .certificate($0) },
     privateKey: .file("/path/to/key.pem")
 )
 ```
