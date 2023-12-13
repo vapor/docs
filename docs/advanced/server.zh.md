@@ -138,8 +138,8 @@ app.http.server.configuration.supportVersions = [.two]
 
 ```swift
 // 启用 TLS.
-try app.http.server.configuration.tlsConfiguration = .forServer(
-    certificateChain: NIOSSLCertificate.fromPEMFile("/path/to/cert.pem").map { .certificate($0) },
+app.http.server.configuration.tlsConfiguration = .makeServerConfiguration(
+    certificateChain: try NIOSSLCertificate.fromPEMFile("/path/to/cert.pem").map { .certificate($0) },
     privateKey: .file("/path/to/key.pem")
 )
 ```

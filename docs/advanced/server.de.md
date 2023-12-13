@@ -130,8 +130,8 @@ Der Parameter _tlsConfiguration_ legt fest, ob TLS (SSL) verwendet werden soll. 
 /// [configure.swift]
 
 // Enable TLS.
-try app.http.server.configuration.tlsConfiguration = .forServer(
-    certificateChain: NIOSSLCertificate.fromPEMFile("/path/to/cert.pem").map { .certificate($0) },
+app.http.server.configuration.tlsConfiguration = .makeServerConfiguration(
+    certificateChain: try NIOSSLCertificate.fromPEMFile("/path/to/cert.pem").map { .certificate($0) },
     privateKey: .file("/path/to/key.pem")
 )
 ```
