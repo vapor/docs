@@ -52,7 +52,7 @@ struct TodosController: RouteCollection {
     }
 
     func delete(req: Request) async throws -> HTTPStatus {
-        guard let todo = try await Todo.find(req.parameters.get("id"), on: req.db) {
+        guard let todo = try await Todo.find(req.parameters.get("id"), on: req.db) else {
             throw Abort(.notFound)
         }
         try await todo.delete(on: req.db)
