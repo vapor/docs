@@ -331,7 +331,7 @@ The `with` method accepts an optional closure as a second parameter. This closur
 
 ## Lazy Eager Loading
 
-In case that you have already retrieved the parent model and you want to load one of it's relations, you can use the `get(on:)` method for that purpose. This will fetch the related model from the database (or cache, if available) and allows it to be accessed as a local property.
+In case that you have already retrieved the parent model and you want to load one of it's relations, you can use the `get(reload:on:)` method for that purpose. This will fetch the related model from the database (or cache, if available) and allows it to be accessed as a local property.
 
 ```swift
 planet.$star.get(on: database).map {
@@ -341,6 +341,13 @@ planet.$star.get(on: database).map {
 // Or
 
 try await planet.$star.get(on: database)
+print(planet.star.name)
+```
+
+In case you want to ensure that the data you receive is not pulled from cache, use the `reload:` parameter.
+
+```swift
+try await planet.$star.get(reload: true, on: database)
 print(planet.star.name)
 ```
 
