@@ -283,7 +283,7 @@ See [query](query.md) for more information.
 
 ## Eager Loading
 
-Fluent's query builder allows you to preload a model's relations when it is fetched from the database. This is called eager loading and allows you to access relations synchronously without needing to call [`load`](#lazy-eager-loading) or [`get`](#get) first. 
+Fluent's query builder allows you to preload a model's relations when it is fetched from the database. This is called eager loading and allows you to access relations synchronously without needing to call [`get`](#get) first.
 
 To eager load a relation, pass a key path to the relation to the `with` method on query builder. 
 
@@ -331,16 +331,23 @@ The `with` method accepts an optional closure as a second parameter. This closur
 
 ## Lazy Eager Loading
 
-In case that you have already retrieved the parent model and you want to load one of it's relations, you can use the `load(on:)` method for that purpose. This will fetch the related model from the database and allows it to be accessed as a local property.
+In case that you have already retrieved the parent model and you want to load one of it's relations, you can use the `get(reload:on:)` method for that purpose. This will fetch the related model from the database (or cache, if available) and allows it to be accessed as a local property.
 
 ```swift
-planet.$star.load(on: database).map {
+planet.$star.get(on: database).map {
     print(planet.star.name)
 }
 
 // Or
 
-try await planet.$star.load(on: database)
+try await planet.$star.get(on: database)
+print(planet.star.name)
+```
+
+In case you want to ensure that the data you receive is not pulled from cache, use the `reload:` parameter.
+
+```swift
+try await planet.$star.get(reload: true, on: database)
 print(planet.star.name)
 ```
 
