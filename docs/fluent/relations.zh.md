@@ -275,7 +275,7 @@ try await sun.$planets.query(on: database).filter(\.$name =~ "M").all()
 
 ## Eager Loading
 
-当从数据库中获取模型关系时，可以使用 Fluent 的查询构建器预加载模型关系。这被称为预加载，允许你同步访问关系，而不需要首先调用[`load`](#lazy-eager-loading) 方法或者 [`get`](#get)方法。
+当从数据库中获取模型关系时，可以使用 Fluent 的查询构建器预加载模型关系。这被称为预加载，它允许你同步访问关系，而不需要首先调用[`get`](#get)方法。
 
 要预加载关系，请将关系的键路径传递给查询构建器上 `with` 方法。
 
@@ -323,19 +323,24 @@ for planet in planets {
 
 ## Lazy Eager Loading
 
-如果你已经检索了父模型，并且你想加载它的一个关系，你可以使用 `load(on:)` 方法来实现这个目的。这将从数据库中获取相关的模型，并允许它作为本地属性访问。
+如果你已经检索了父模型，并且你想加载它的一个关系，你可以使用 `get(reload:on:)` 方法来实现这个目的。这将从数据库（或可用缓存）中获取相关的模型，并允许它作为本地属性访问。
 
 ```swift
-planet.$star.load(on: database).map {
+planet.$star.get(on: database).map {
     print(planet.star.name)
 }
 
 // Or
 
-try await planet.$star.load(on: database)
+try await planet.$star.get(on: database)
 print(planet.star.name)
 ```
 
+使用`realod: `参数可以确保取回的数据并非来自缓存。
+```swift
+try await planet.$star.get(reload: true, on: database)
+print(planet.star.name)
+```
 要检查是否已加载关系，请使用 `value` 属性。
 
 ```swift
