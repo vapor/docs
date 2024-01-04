@@ -73,7 +73,7 @@ Now that you've created a new Ubuntu server and logged in as a non-root user you
 
 ### Automated installation using Swiftly CLI tool (recommended)
 
-Visit the [Swiflty website](https://swift-server.github.io/swiftly/) for instructions on how to install Swiftly and Swift on Linux. After that, install Swift with the following command:
+Visit the [Swiftly website](https://swift-server.github.io/swiftly/) for instructions on how to install Swiftly and Swift on Linux. After that, install Swift with the following command:
 
 #### Basic usage
 
