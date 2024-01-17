@@ -75,7 +75,7 @@ Debajo hay un listado con los tipos de datos soportados.
 |`.bool`|`Bool`|
 |`.datetime`|`Date` (recomendado)|
 |`.time`|`Date` (omitiendo día, mes y año)|
-|`.date`|`Date` (omitiendo tiempo del día)|
+|`.date`|`Date` (omitiendo hora y minutos del día)|
 |`.float`|`Float`|
 |`.double`|`Double`|
 |`.data`|`Data`|
