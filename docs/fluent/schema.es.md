@@ -15,7 +15,7 @@ Para crear un `SchemaBuilder`, usa el método `schema` en "database". Pásale el
 
 ## Acciones
 
-La API de esquema soporta crear, actualizar y borrar esquemas. Cada acción soporta un subconjunto de los métodos de la API disponibles. 
+La API de schema soporta crear, actualizar y borrar esquemas. Cada acción soporta un subconjunto de los métodos de la API disponibles. 
 
 ### Crear
 
