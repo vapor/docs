@@ -274,7 +274,7 @@ Las claves de los diccionarios deben ser siempre cadenas (strings).
 
 ## Array
 
-El tipo de dato array es capaz de guardar arrays anidados. Esto incluye arrays de Swiftque contengan valores `Codable` y tipos `Codable` que usen un contenedor sin clave.
+El tipo de dato array es capaz de guardar arrays anidados. Esto incluye arrays de Swift que contengan valores `Codable` y tipos `Codable` que usen un contenedor sin clave.
 
 Toma el siguiente `@Field` que guarda un array de cadenas.
 
