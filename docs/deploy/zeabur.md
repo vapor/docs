@@ -48,4 +48,4 @@ After the deployment is completed, you may need to configure the domain for your
 
 Open the "Domain" tab of the service page, and then click "Generate Domain" or "Custom Domain".
 
-For more information on how to bind a domain to your service, please refer to Zeabur's Docs on [Domain Binding](/deploy/domain-binding).
+For more information on how to bind a domain to your service, please refer to Zeabur's Docs on [Domain Binding](https://zeabur.com/docs/deploy/domain-binding).
