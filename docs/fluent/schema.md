@@ -381,14 +381,33 @@ We can make the necessary database schema adjustments with the following migrati
 struct UserNameMigration: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("users")
+            .field("first_name", .string, .required)
+            .field("last_name", .string, .required)
+            .update()
+
+        // It is not currently possible to express this update without using custom SQL.
+        // This also doesn't try to deal with splitting the name into first and last,
+        // as that requires database-specific syntax.
+        try await User.query(on: database)
+            .set(["first_name": .sql(embed: "name"))
+            .run()
+            
+        try await database.schema("users")
             .deleteField("name")
-            .field("first_name", .string)
-            .field("last_name", .string)
             .update()
     }
 
     func revert(on database: Database) async throws {
-        try await database.schema("users").delete()
+        try await database.schema("users")
+            .field("name", .string, .required)
+            .update()
+        try await User.query(on: database)
+            .set(["name": .sql(embed: "concat(first_name, ' ', last_name)"))
+            .run()
+        try await database.schema("users")
+            .deleteField("first_name")
+            .deleteField("last_name")
+            .update()
     }
 }
 ```
