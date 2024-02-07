@@ -381,14 +381,31 @@ struct UserMigration: AsyncMigration {
 struct UserNameMigration: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("users")
+            .field("first_name", .string, .required)
+            .field("last_name", .string, .required)
+            .update()
+        // 目前仍只能通过自定义SQL语句进行更改
+        // 这里也不会尝试把name分割成first_name和last_name两部分,因为这么做需要考虑不同数据库的语法差异
+        try await User.query(on: database)
+            .set(["first_name": .sql(embed: "name"))
+            .run()
+
+        try await database.schema("users")
             .deleteField("name")
-            .field("first_name", .string)
-            .field("last_name", .string)
             .update()
     }
 
     func revert(on database: Database) async throws {
-        try await database.schema("users").delete()
+        try await database.schema("users")
+            .field("name", .string, .required)
+            .update()
+        try await User.query(on: database)
+            .set(["name": .sql(embed: "concat(first_name, ' ', last_name)"))
+            .run()
+        try await database.schema("users")
+            .deleteField("first_name")
+            .deleteField("last_name")
+            .update()
     }
 }
 ```
