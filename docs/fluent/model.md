@@ -359,12 +359,14 @@ app.get("planets") { req async throws in
 
 When serializing to / from `Codable`, model properties will use their variable names instead of keys. Relations will serialize as nested structures and any eager loaded data will be included. 
 
+!!! info
+    We recommend that for almost all cases you use a DTO instead of a model for your API responses and request bodies. See [Data Transfer Object](#data-transfer-object) for more information.
+
 ### Data Transfer Object
 
-Model's default `Codable` conformance can make simple usage and prototyping easier. However, it is not suitable for every use case. For certain situations you will need to use a data transfer object (DTO). 
+Model's default `Codable` conformance can make simple usage and prototyping easier. However, it exposes the underlying database information to the API. This is usually not desirable from both a security standpoint - returning sensitive fields such as a user's password hash is a bad idea - and a usability point of view. It makes it difficult to change the database schema without breaking the API, accept or return data in a different format, or to add or remove fields from the API.
 
-!!! tip
-    A DTO is a separate `Codable` type representing the data structure you would like to encode or decode. 
+For most cases you use use a DTO, or data transfer object instead of a model (this is also known as a domain transfer object). A DTO is a separate `Codable` type representing the data structure you would like to encode or decode. These decouple your API from your database schema and allow you to make changes to your models without breaking your app's public API, have different versions and make your API nicer to use for your clients.
 
 Assume the following `User` model in the upcoming examples.
 
@@ -434,9 +436,9 @@ app.get("users") { req async throws -> [GetUser] in
 }
 ```
 
-Even if the DTO's structure is identical to model's `Codable` conformance, having it as a separate type can help keep large projects tidy. If you ever need to make a change to your models properties, you don't have to worry about breaking your app's public API. You may also consider putting your DTOs in a separate package that can be shared with consumers of your API. 
+Another common use case is when dealing with relations, such as parent relations or children relations. See [the Parent documentation](relations.md##encoding-and-decoding-of-parents) for an example of how to use a DTO to make it easy to decode a model with a `@Parent` relation.
 
-For these reasons, we highly recommend using DTOs wherever possible, especially for large projects.
+Even if the DTO's structure is identical to model's `Codable` conformance, having it as a separate type can help keep large projects tidy. If you ever need to make a change to your models properties, you don't have to worry about breaking your app's public API. You may also consider putting your DTOs in a separate package that can be shared with consumers of your API and adding `Content` conformance in your Vapor app.
 
 ## Alias
 
