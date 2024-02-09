@@ -61,6 +61,39 @@ The field definition is similar to `@Parent`'s except that the `.required` const
 .field("star_id", .uuid, .references("star", "id"))
 ```
 
+### Encoding and Decoding of Parents
+
+One thing to watch out for when working with `@Parent` relations is the way that you send and receive them. For example, in JSON, a `@Parent` for a `Planet` model might look like this:
+
+```json
+{
+    "id": "A616B398-A963-4EC7-9D1D-B1AA8A6F1107",
+    "star": {
+        "id": "A1B2C3D4-1234-5678-90AB-CDEF12345678"
+    }
+}
+```
+
+Note how the `star` property is an object rather than the ID that you might expect. When sending the model as an HTTP body, it needs to match this for decoding to work. For this reason, we strongly recommend using a DTO to represent the model when sending it over the network. For example:
+
+```swift
+struct PlanetDTO: Content {
+    var id: UUID?
+    var name: String
+    var star: Star.IDValue
+}
+```
+
+Then you can decode the DTO and convert it into a model:
+
+```swift
+let planetData = try req.content.decode(PlanetDTO.self)
+let planet = Planet(id: planetData.id, name: planetData.name, starID: planetData.star)
+try await planet.create(on: req.db)
+```
+
+The same applies when returning the model to clients. Your clients either need to be able to handle the nested structure, or you need to convert the model into a DTO before returning it. For more information about DTOs, see the [Model documentation](model/#data-transfer-object)
+
 ## Optional Child
 
 The `@OptionalChild` property creates a one-to-one relation between the two models. It does not store any values on the root model. 
