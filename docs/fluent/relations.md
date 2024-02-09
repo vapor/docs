@@ -92,7 +92,7 @@ let planet = Planet(id: planetData.id, name: planetData.name, starID: planetData
 try await planet.create(on: req.db)
 ```
 
-The same applies when returning the model to clients. Your clients either need to be able to handle the nested structure, or you need to convert the model into a DTO before returning it. For more information about DTOs, see the [Model documentation](model/#data-transfer-object)
+The same applies when returning the model to clients. Your clients either need to be able to handle the nested structure, or you need to convert the model into a DTO before returning it. For more information about DTOs, see the [Model documentation](model.md#data-transfer-object)
 
 ## Optional Child
 
