@@ -366,7 +366,7 @@ When serializing to / from `Codable`, model properties will use their variable n
 
 Model's default `Codable` conformance can make simple usage and prototyping easier. However, it exposes the underlying database information to the API. This is usually not desirable from both a security standpoint - returning sensitive fields such as a user's password hash is a bad idea - and a usability point of view. It makes it difficult to change the database schema without breaking the API, accept or return data in a different format, or to add or remove fields from the API.
 
-For most cases you use use a DTO, or data transfer object instead of a model (this is also known as a domain transfer object). A DTO is a separate `Codable` type representing the data structure you would like to encode or decode. These decouple your API from your database schema and allow you to make changes to your models without breaking your app's public API, have different versions and make your API nicer to use for your clients.
+For most cases you shoud use a DTO, or data transfer object instead of a model (this is also known as a domain transfer object). A DTO is a separate `Codable` type representing the data structure you would like to encode or decode. These decouple your API from your database schema and allow you to make changes to your models without breaking your app's public API, have different versions and make your API nicer to use for your clients.
 
 Assume the following `User` model in the upcoming examples.
 
