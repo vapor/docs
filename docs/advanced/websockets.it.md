@@ -1,6 +1,6 @@
 # WebSocket
 
-I WebSocket sono un protocollo di comunicazione bidirezionale usato per trasmettere messaggi tra client e server. A differenza di HTTP, che utilizza un pattern di richiesta-risposta, i WebSocket consentono di inviare un numero arbitrario di messaggi in entrambe le direzioni. L'API WebSocket di Vapor ti permette di creare sia client che server che gestiscono messaggi in modo asincrono.
+I [WebSocket](https://it.wikipedia.org/wiki/WebSocket) sono un protocollo di comunicazione bidirezionale usato per trasmettere messaggi tra client e server. A differenza di HTTP, che utilizza un pattern di richiesta-risposta, i WebSocket consentono di inviare un numero arbitrario di messaggi in entrambe le direzioni. L'API WebSocket di Vapor ti permette di creare sia client che server che gestiscono messaggi in modo asincrono.
 
 ## Server
 
