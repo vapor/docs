@@ -80,7 +80,7 @@ ws.onBinary { ws, binary in
 }
 ```
 
-Per evitare la creazione di cicli di riferimento, il WebSocket stesso è passato come primo argomento al blocco di callback. Questo consente di accedere al WebSocket all'interno del blocco senza creare un riferimento circolare.
+Il primo argomento del blocco di callback è il WebSocket stesso. Questo permette l'accesso al WebSocket all'interno del callback senza creazione di riferimenti circolari.
 
 ```swift
 // Stampa il messagio ricevuto
@@ -109,7 +109,7 @@ Oppure puoi attendere la chiusura del WebSocket utilizzando `await`.
 try await ws.close()
 ```
 
-Per essere notificato quando il WebSocket è stato chiuso, puoi ascoltare l'evento `onClose`.
+Per essere notificato quando il WebSocket è stato chiuso, dal server o dal client che sia, puoi ascoltare l'evento `onClose`.
 
 ```swift
 ws.onClose.whenComplete { result in
