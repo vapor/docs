@@ -97,7 +97,7 @@ Per chiudere il WebSocket, chiama il metodo `close`.
 ws.close()
 ```
 
-Questo metodo ritorna un futuro che si completa quando la connessione è stata chiusa. Come per l'invio di messaggi, puoi fornire una `EventLoopPromise` per essere notificato quando la connessione è stata chiusa.
+Questo metodo ritorna un future che si completa quando la connessione è stata chiusa. Come per l'invio di messaggi, puoi fornire una `EventLoopPromise` per essere notificato quando la connessione è stata chiusa.
 
 ```swift
 ws.close(promise: nil)
