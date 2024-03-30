@@ -91,7 +91,7 @@ ws.onText { ws, text in
 
 ## Chiusura
 
-Per chiudere il WebSocket, chiamare il metodo `close`.
+Per chiudere il WebSocket, chiama il metodo `close`.
 
 ```swift
 ws.close()
