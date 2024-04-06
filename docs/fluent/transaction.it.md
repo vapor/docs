@@ -1,8 +1,8 @@
 # Transazioni
 
-Le transazioni ti permettono di assicurare che diverse operazioni sono completate con successo prima di salvare dati sul tuo database. 
-Non appena una transazione inizia, puoi eseguire query di Fluent normalmente. Però, nessun dato verrà salvato sul database finché la transazione non è completata. 
-Se viene lanciato un errore in qualsiasi momento durante la transazione (da te o dal database), nessuna modifica avrà effetto.
+Le transazioni garantiscono che varie operazioni vengano eseguite con successo prima di effettuare l'aggiornamento dei dati sul tuo database. 
+Una volta avviata una transazione, puoi procedere con le query Fluent come al solito, tuttavia i dati non verranno effettivamente salvati sul database fino al completamento della transazione. 
+In caso di errore durante la transazione, che sia scaturito da te o dal sistema di gestione del database, le modifiche proposte non saranno applicate.
 
 Per eseguire una transazione, devi accedere a qualcosa che si può connettere al database. Questo solitamente è una richiesta HTTP. In questo caso, usa `req.db.transaction(_ :)`:
 ```swift
