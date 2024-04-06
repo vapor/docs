@@ -38,7 +38,7 @@ Ciascuna funzione che inizia con `test` sarà eseguita automaticamente quando la
 
 ### Eseguire i Test
 
-Usa `cmd+u` con lo schema `-Package` selezionato per eseguire i test in Xcode. Usa `swift test --enable-test-discovery` per testare attraverso l'interfaccia a riga di comando.
+Per eseguire i test su Xcode, usa `cmd+u` con `-Package` come schema. Usa `swift test --enable-test-discovery` per testare attraverso l'interfaccia a riga di comando.
 
 ## Applicazione Testabile
 
