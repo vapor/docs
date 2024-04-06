@@ -40,7 +40,7 @@ Ciascuna funzione che inizia con `test` sarà eseguita automaticamente quando la
 
 Per eseguire i test su Xcode, usa `cmd+u` con `-Package` come schema. Usa `swift test --enable-test-discovery` per testare attraverso l'interfaccia a riga di comando.
 
-## Applicazione Testabile
+## Application Testabile
 
 Inizializza un'instanza di `Application` usando l'ambiente `.testing`. Devi chiamare `app.shutdown()` prima che questa applicazione si deinizializzi.  
 Lo shutdown è necessario per aiutare a rilasciare le risorse che l'app ha reclamato, in particolare è importante rilasciare i thread richiesti all'avvio dell'applicazione. Se non chiami `shutdown()` sull'app dopo ogni test, potresti vedere la tua suite di test crashare con un fallimento di precondizione quando alloca thread per una nuova istanza di `Application`.

@@ -14,16 +14,16 @@ Una volta dentro la chiusura della transazione, devi usare il database fornito n
 
 Quando questa chiusura ritorna con successo, la transazione sarà confermata.
 ```swift
-var sole: Stella = ...
-var sirio: Stella = ...
+var sun: Star = ...
+var sirius: Star = ...
 
 return req.db.transaction { database in
-    return sole.save(on: database).flatMap { _ in
-        return sirio.save(on: database)
+    return sun.save(on: database).flatMap { _ in
+        return sirius.save(on: database)
     }
 }
 ```
-L'esempio qui sopra salverà `sole` e *dopo* `sirio` prima di completare la transazione. Se il salvataggio di una delle due stelle fallisce, nessuna delle due verrà salvata.
+L'esempio qui sopra salverà `sun` e *dopo* `sirius` prima di completare la transazione. Se il salvataggio di una delle due `Star` fallisce, nessuna delle due verrà salvata.
 
 Quando la transazione è completa, il risultato può essere trasformato in una future diversa, per esempio in uno status HTTP per indicare il completamento come mostrato qui sotto:
 ```swift
@@ -38,8 +38,8 @@ Se usi `async`/`await` puoi ristrutturare il codice come segue:
 
 ```swift
 try await req.db.transaction { database in
-    try await sole.save(on: database)
-    try await sirio.save(on: database)
+    try await sun.save(on: database)
+    try await sirius.save(on: database)
 }
 return .ok
 ```
