@@ -1,6 +1,6 @@
 # Migrazioni
 
-Le migrazioni sono come un sistema di controllo versione per il tuo database. Ogni migrazione definisce un cambiamento al database e come disfarlo. Modificando il tuo database con le migrazioni, crei un modo consistente, testabile, e condivisibile per evolvere nel tempo i tuoi database. 
+Le migrazioni sono come un sistema di controllo versione per il tuo database. Ogni migrazione definisce un cambiamento al database e come disfarlo. Utilizzando le migrazioni per applicare modifiche al database, stabilisci un approccio coeso, testabile, e condivisibile per evolvere nel tempo i tuoi database.
 
 ```swift
 // Un esempio di migrazione.
