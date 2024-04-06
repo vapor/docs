@@ -50,47 +50,47 @@ Puoi aggiungere una migrazione a un database specifico usando il parametro `to`,
 app.migrations.add(MyMigration(), to: .myDatabase)
 ```
 
-Migrations should be listed in order of dependency. For example, if `MigrationB` depends on `MigrationA`, it should be added to `app.migrations` second.
+Le migrazioni dovrebbero essere listate in ordine di dipendenza. Per esempio, se `MigrationB` dipende da `MigrationA`, deve essere aggiunto a `app.migrations` per secondo.
 
-## Migrate
+## Migra
 
-To migrate your database, run the `migrate` command.
+Per migrare il tuo database, esegui il comando `migrate`.
 
 ```sh
 swift run App migrate
 ```
 
-You can also run this [command through Xcode](../advanced/commands.md#xcode). The migrate command will check the database to see if any new migrations have been registered since it was last run. If there are new migrations, it will ask for a confirmation before running them.
+Puoi anche eseguire questo [comando attraverso Xcode](../advanced/commands.md#xcode). Il comando di migrazione controllerà il database per vedere se sono state registrate nuove migrazioni dall'ultima volta in cui è stato eseguito. Se ci sono nuove migrazioni, chiederà una conferma prima di eseguirle.
 
-### Revert
+### Ripristinare
 
-To undo a migration on your database, run `migrate` with the `--revert` flag.
+Per disfare una migrazione sul tuo database, esegui `migrate` con la flag `--revert`.
 
 ```sh
 swift run App migrate --revert
 ```
 
-The command will check the database to see which batch of migrations was last run and ask for a confirmation before reverting them.
+Il comando controllerà il database per vedere quale gruppo di migrazioni è stato eseguito per ultimo e chiederà conferma prima di ripristinarle.
 
-### Auto Migrate
+### Migra Automaticamente
 
-If you would like migrations to run automatically before running other commands, you can pass the `--auto-migrate` flag. 
+Se vuoi che le migrazioni vengano eseguite automaticamente prima degli altri comandi, puoi passare la flag `--auto-migrate`. 
 
 ```sh
 swift run App serve --auto-migrate
 ```
 
-You can also do this programatically. 
+Puoi farlo anche programmaticamente. 
 
 ```swift
 try app.autoMigrate().wait()
 
-// or
+// oppure
 try await app.autoMigrate()
 ```
 
-Both of these options exist for reverting as well: `--auto-revert` and `app.autoRevert()`. 
+Entrambe queste opzioni esistono anche per ripristinare: `--auto-revert` e `app.autoRevert()`. 
 
-## Next Steps
+## Prossimi Passi
 
-Take a look at the [schema builder](schema.md) and [query builder](query.md) guides for more information about what to put inside your migrations. 
+Guarda le guide per [costruire gli schemi](schema.md) e per [costruire le query](query.md) per avere più informazioni riguardo a cosa mettere dentro le tue migrazioni. 
