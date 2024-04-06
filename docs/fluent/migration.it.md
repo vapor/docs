@@ -93,4 +93,4 @@ Entrambe queste opzioni esistono anche per ripristinare: `--auto-revert` e `app.
 
 ## Prossimi Passi
 
-Guarda le guide per [costruire gli schemi](schema.md) e per [costruire le query](query.md) per avere più informazioni riguardo a cosa mettere dentro le tue migrazioni. 
+Per avere più informazioni riguardo a cosa mettere dentro le tue migrazioni, consulta le guide per [costruire gli schemi](schema.md) e per [costruire le query](query.md).
