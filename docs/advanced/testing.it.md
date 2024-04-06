@@ -40,10 +40,10 @@ Ciascuna funzione che inizia con `test` sarà eseguita automaticamente quando la
 
 Usa `cmd+u` con lo schema `-Package` selezionato per eseguire i test in Xcode. Usa `swift test --enable-test-discovery` per testare attraverso l'interfaccia a riga di comando.
 
-## Testable Application
+## Applicazione Testabile
 
-Initialize an instance of `Application` using the `.testing` environment. You must call `app.shutdown()` before this application deinitializes.  
-The shutdown is necessary to help release the resources that the app has claimed. In particular it is important to release the threads the application requests at startup. If you do not call `shutdown()` on the app after each unit test, you may find your test suite crash with a precondition failure when allocating threads for a new instance of `Application`.
+Inizializza un'instanza di `Application` usando l'ambiente `.testing`. Devi chiamare `app.shutdown()` prima che questa applicazione si deinizializzi.  
+Lo shutdown è necessario per aiutare a rilasciare le risorse che l'app ha reclamato. In particolare è importante rilasciare i thread che l'applicazione richiede all'avvio. Se non chiami `shutdown()` sull'app dopo ogni test, potresti vedere la tua suite di test crashare con un fallimento di precondizione quando alloca thread per una nuova instanza di `Application`.
 
 ```swift
 let app = Application(.testing)
@@ -51,26 +51,26 @@ defer { app.shutdown() }
 try configure(app)
 ```
 
-Pass the `Application` to your package's `configure(_:)` method to apply your configuration. Any test-only configurations can be applied after.
+Passa la `Application` al metodo `configure(_:)` del tuo pacchetto per applicare la tua configurazione. Qualsiasi configurazione relativa ai soli test può essere applicata successivamente.
 
-### Send Request
+### Invia Richiesta
 
-To send a test request to your application, use the `test` method.
+Per inviare una richiesta di test alla tua applicazione, usa il metodo `test`.
 
 ```swift
-try app.test(.GET, "hello") { res in
+try app.test(.GET, "ciao") { res in
     XCTAssertEqual(res.status, .ok)
-    XCTAssertEqual(res.body.string, "Hello, world!")
+    XCTAssertEqual(res.body.string, "Ciao, mondo!")
 }
 ```
 
-The first two parameters are the HTTP method and URL to request. The trailing closure accepts the HTTP response which you can verify using `XCTAssert` methods.
+I primi due parametri sono il metodo HTTP e l'URL da interrogare. La chiusura successiva accetta la risposta HTTP che puoi verificare usando i metodi `XCTAssert`.
 
-For more complex requests, you can supply a `beforeRequest` closure to modify headers or encode content. Vapor's [Content API](../basics/content.md) is available on both the test request and response.
+Per richieste più complesse, puoi fornire una chiusura `beforeRequest` per modificare gli header o per codificare il contenuto. L'[API Content](../basics/content.md) di Vapor è disponibile sia sulla richiesta che sulla risposta di test.
 
 ```swift
-try app.test(.POST, "todos", beforeRequest: { req in
-	try req.content.encode(["title": "Test"])
+try app.test(.POST, "promemoria", beforeRequest: { req in
+	try req.content.encode(["titolo": "Test"])
 }, afterResponse: { res in
     XCTAssertEqual(res.status, .created)
     let todo = try res.content.decode(Todo.self)
@@ -78,21 +78,21 @@ try app.test(.POST, "todos", beforeRequest: { req in
 })
 ```
 
-### Testable Method
+### Metodo Testable
 
-Vapor's testing API supports sending test requests programmatically and via a live HTTP server. You can specify which method you would like to use by using the `testable` method.
+L'API di testing di Vapor supporta l'invio di richieste di test programmaticamente e attraverso un server HTTP attivo. Puoi specificare quale metodo vorresti usare utilizzando il metodo `testable`.
 
 ```swift
-// Use programmatic testing.
+// Usa il testing programmatico.
 app.testable(method: .inMemory).test(...)
 
-// Run tests through a live HTTP server.
+// Esegui i test attraverso un server HTTP attivo.
 app.testable(method: .running).test(...)
 ```
 
-The `inMemory` option is used by default.
+L'opzione `inMemory` è usata di default.
 
-The `running` option supports passing a specific port to use. By default `8080` is used.
+L'opzione `running` supporta il passaggio di una porta specifica da utilizzare. Di default è usata la `8080`.
 
 ```swift
 .running(port: 8123)
