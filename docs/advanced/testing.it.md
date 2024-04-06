@@ -22,7 +22,7 @@ let package = Package(
 )
 ```
 
-Dopo di che, aggiungi `import XCTVapor` in cima ai file dei tuoi test. Crea classe che estendono `XCTestCase` per scrivere dei test.
+Dopodiché, aggiungi `import XCTVapor` in cima ai file dei tuoi test. Per scrivere dei test, crea classi che estendono `XCTestCase`.
 
 ```swift
 import XCTVapor
