@@ -43,7 +43,7 @@ Per eseguire i test su Xcode, usa `cmd+u` con `-Package` come schema. Usa `swift
 ## Applicazione Testabile
 
 Inizializza un'instanza di `Application` usando l'ambiente `.testing`. Devi chiamare `app.shutdown()` prima che questa applicazione si deinizializzi.  
-Lo shutdown è necessario per aiutare a rilasciare le risorse che l'app ha reclamato. In particolare è importante rilasciare i thread che l'applicazione richiede all'avvio. Se non chiami `shutdown()` sull'app dopo ogni test, potresti vedere la tua suite di test crashare con un fallimento di precondizione quando alloca thread per una nuova instanza di `Application`.
+Lo shutdown è necessario per aiutare a rilasciare le risorse che l'app ha reclamato, in particolare è importante rilasciare i thread richiesti all'avvio dell'applicazione. Se non chiami `shutdown()` sull'app dopo ogni test, potresti vedere la tua suite di test crashare con un fallimento di precondizione quando alloca thread per una nuova istanza di `Application`.
 
 ```swift
 let app = Application(.testing)
