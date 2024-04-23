@@ -61,7 +61,18 @@ Una vez agregadas las dependencias, configura la base de datos con Fluent utiliz
 import Fluent
 import FluentPostgresDriver
 
-app.databases.use(.postgres(hostname: "localhost", username: "vapor", password: "vapor", database: "vapor"), as: .psql)
+app.databases.use(
+    .postgres(
+        configuration: .init(
+            hostname: "localhost",
+            username: "vapor",
+            password: "vapor",
+            database: "vapor",
+            tls: .disable
+        )
+    ),
+    as: .psql
+)
 ```
 
 También se pueden expecificar las credenciales mediante una cadena de texto que defina la conexión a la base de datos.
