@@ -170,3 +170,66 @@ validations.add("favoriteColor", as: String.self, is: .in("red", "blue", "green"
 ```
 
 Die Überprüfung verwendet die Bedingung *in*, was bedingt, dass der Wert mit einer der Angaben im Beispiel (red, blue, green) übereinstimmen muss. Mit dem Parameter *required:* legen wir fest, dass die Überprüfung nicht fehlschlägt, sollte der Wert in der Anfrage fehlen.
+
+## Benutzerdefinierte Validatoren
+
+Durch die Erstellung eines benutzerdefinierten Validators für Postleitzahlen kann die Funktionalität des Validierungs-Frameworks erweitert werden. In diesem Abschnitt erklären wir die Schritte zum Erstellen eines benutzerdefinierten Validators zur Validierung von Postleitzahlen.
+
+Zunächst wird ein neuer Typ erstellt, um die Ergebnisse der `ZipCode`-Validierung darzustellen. Diese Struktur ist dafür verantwortlich, zu melden, ob eine bestimmte Zeichenfolge eine gültige Postleitzahl ist.
+
+```swift
+extension ValidatorResults {
+    /// Represents the result of a validator that checks if a string is a valid zip code.
+    public struct ZipCode {
+        /// Indicates whether the input is a valid zip code.
+        public let isValidZipCode: Bool
+    }
+}
+```
+
+Als Nächstes wird der neue Typ an `ValidatorResult` angepasst, das das von einem benutzerdefinierten Validator erwartete Verhalten definiert.
+
+```swift
+extension ValidatorResults.ZipCode: ValidatorResult {
+    public var isFailure: Bool {
+        !self.isValidZipCode
+    }
+    
+    public var successDescription: String? {
+        "is a valid zip code"
+    }
+    
+    public var failureDescription: String? {
+        "is not a valid zip code"
+    }
+}
+```
+
+Finally, implement the validation logic for zip codes. Use a regular expression to check whether the input string matches the format of a USA zip code.
+
+Abschließend wird die Validierungslogik für Postleitzahlen implementiert. Dabei wird ein regulärer Ausdruck verwendet, um zu prüfen, ob die Eingabezeichenfolge dem Format einer US-amerikanischen Postleitzahl entspricht.
+
+```swift
+private let zipCodeRegex: String = "^\\d{5}(?:[-\\s]\\d{4})?$"
+
+extension Validator where T == String {
+    /// Validates whether a `String` is a valid zip code.
+    public static var zipCode: Validator<T> {
+        .init { input in
+            guard let range = input.range(of: zipCodeRegex, options: [.regularExpression]),
+                  range.lowerBound == input.startIndex && range.upperBound == input.endIndex
+            else {
+                return ValidatorResults.ZipCode(isValidZipCode: false)
+            }
+            return ValidatorResults.ZipCode(isValidZipCode: true)
+        }
+    }
+}
+```
+
+Nachdem der benutzerdefinierte `zipCode`-Validator definiert wurde, kann er zum Validieren von Postleitzahlen in einer Anwendung verwendet werden. Dazu muss einfach die folgende Zeile zum Validierungscode hinzugefügt werden:
+
+```swift
+validations.add("zipCode", as: String.self, is: .zipCode)
+```
+
