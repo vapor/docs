@@ -205,8 +205,6 @@ extension ValidatorResults.ZipCode: ValidatorResult {
 }
 ```
 
-Finally, implement the validation logic for zip codes. Use a regular expression to check whether the input string matches the format of a USA zip code.
-
 Abschließend wird die Validierungslogik für Postleitzahlen implementiert. Dabei wird ein regulärer Ausdruck verwendet, um zu prüfen, ob die Eingabezeichenfolge dem Format einer US-amerikanischen Postleitzahl entspricht.
 
 ```swift
