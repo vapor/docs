@@ -61,7 +61,18 @@ PostgreSQL 是一个开源的、符合标准的 SQL 数据库。 它很容易在
 import Fluent
 import FluentPostgresDriver
 
-app.databases.use(.postgres(hostname: "localhost", username: "vapor", password: "vapor", database: "vapor"), as: .psql)
+app.databases.use(
+    .postgres(
+        configuration: .init(
+            hostname: "localhost",
+            username: "vapor",
+            password: "vapor",
+            database: "vapor",
+            tls: .disable
+        )
+    ),
+    as: .psql
+)
 ```
 
 还可以从数据库连接字符串解析凭证。

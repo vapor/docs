@@ -61,7 +61,18 @@ Once the dependencies are added, configure the database's credentials with Fluen
 import Fluent
 import FluentPostgresDriver
 
-app.databases.use(.postgres(hostname: "localhost", username: "vapor", password: "vapor", database: "vapor"), as: .psql)
+app.databases.use(
+    .postgres(
+        configuration: .init(
+            hostname: "localhost",
+            username: "vapor",
+            password: "vapor",
+            database: "vapor",
+            tls: .disable
+        )
+    ),
+    as: .psql
+)
 ```
 
 You can also parse the credentials from a database connection string.
