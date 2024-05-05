@@ -1,6 +1,6 @@
 # WebSockets
 
-[WebSockets](https://zh.wikipedia.org/wiki/WebSocket) 允许客户端和服务器之间进行双向通信。与 HTTP 的请求和响应模式不同，WebSocket 可以在两端之间发送任意数量的消息。Vapor的WebSocket API允许你创建异步处理消息的客户端和服务器。
+[WebSockets](https://zh.wikipedia.org/wiki/WebSocket) 允许客户端和服务器之间进行双向通信。与 HTTP 的请求和响应模式不同，WebSocket 可以在两端之间发送任意数量的消息。Vapor 的 WebSocket API 允许你创建异步处理消息的客户端和服务器。
 
 ## 服务器
 
@@ -56,6 +56,12 @@ ws.send(..., promise: promise)
 promise.futureResult.whenComplete { result in
     // 发送成功或失败。
 }
+```
+
+如果使用 `async`/`await`，你可以使用 `await` 来等待异步操作完成。
+
+```swift
+try await ws.send(...)
 ```
 
 ### 接收
