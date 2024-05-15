@@ -1,6 +1,5 @@
 # JWT
 
-
 JSON Web Token (JWT) is an open standard ([RFC 7519](https://tools.ietf.org/html/rfc7519)) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA or ECDSA.
 
 ## Getting Started
@@ -15,7 +14,7 @@ let package = Package(
     name: "my-app",
     dependencies: [
 		 // Other dependencies...
-        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0"),
+        .package(url: "https://github.com/vapor/jwt.git", from: "5.0.0-beta"),
     ],
     targets: [
         .target(name: "App", dependencies: [
@@ -31,14 +30,17 @@ If you edit the manifest directly inside Xcode, it will automatically pick up th
 
 ### Configuration
 
-The JWT module adds a new property `jwt` to `Application` that is used for configuration. To sign or verify JWTs, you will need to add a signer. The simplest signing algorithm is `HS256` or HMAC with SHA-256. 
+The JWT module adds a new property `jwt` to `Application` that is used for configuration. To sign or verify JWTs, you will need to add a key. The simplest signing algorithm is `HS256` or HMAC with SHA-256. 
 
 ```swift
 import JWT
 
 // Add HMAC with SHA-256 signer.
-app.jwt.signers.use(.hs256(key: "secret"))
+await app.jwt.keys.addHMAC(key: "secret", digestAlgorithm: .sha256)
 ```
+
+!!! note
+    The `await` keyword is required because the key collection is an `actor`.
 
 The `HS256` signer requires a key to initialize. Unlike other signers, this single key is used for both signing _and_ verifying tokens. Learn more about the available [algorithms](#algorithms) below.
 
@@ -81,7 +83,7 @@ struct TestPayload: JWTPayload {
     // signature verification here.
     // Since we have an ExpirationClaim, we will
     // call its verify method.
-    func verify(using signer: JWTSigner) throws {
+    func verify(using algorithm: some JWTAlgorithm) async throws {
         try self.expiration.verifyNotExpired()
     }
 }
@@ -93,8 +95,8 @@ Now that we have a `JWTPayload`, we can attach the JWT above to a request and us
 
 ```swift
 // Fetch and verify JWT from incoming request.
-app.get("me") { req -> HTTPStatus in
-    let payload = try req.jwt.verify(as: TestPayload.self)
+app.get("me") { req async throws -> HTTPStatus in
+    let payload = try await req.jwt.verify(as: TestPayload.self)
     print(payload)
     return .ok
 }
@@ -125,7 +127,7 @@ This package can also _generate_ JWTs, also known as signing. To demonstrate thi
 
 ```swift
 // Generate and return a new JWT.
-app.post("login") { req -> [String: String] in
+app.post("login") { req async throws -> [String: String] in
     // Create a new instance of our JWTPayload
     let payload = TestPayload(
         subject: "vapor",
@@ -133,8 +135,8 @@ app.post("login") { req -> [String: String] in
         isAdmin: true
     )
     // Return the signed JWT
-    return try [
-        "token": req.jwt.sign(payload)
+    return try await [
+        "token": req.jwt.sign(payload, kid: "a"),
     ]
 }
 ```
@@ -167,28 +169,39 @@ Vapor's JWT API supports verifying and signing tokens using the following algori
 
 HMAC is the simplest JWT signing algorithm. It uses a single key that can both sign and verify tokens. The key can be any length.
 
-- `hs256`: HMAC with SHA-256
-- `hs384`: HMAC with SHA-384
-- `hs512`: HMAC with SHA-512
+- `HS256`: HMAC with SHA-256
+- `HS384`: HMAC with SHA-384
+- `HS512`: HMAC with SHA-512
 
 ```swift
 // Add HMAC with SHA-256 signer.
-app.jwt.signers.use(.hs256(key: "secret"))
+await app.jwt.keys.addHMAC(key: "secret", digestAlgorithm: .sha256)
 ```
 
 ### RSA
 
 RSA is the most commonly used JWT signing algorithm. It supports distinct public and private keys. This means that a public key can be distributed for verifying JWTs are authentic while the private key that generates them is kept secret.
 
+!!! warning 
+    Vapor's JWT package does not support RSA keys with a size less than 2048 bits. In addition to this, since RSA is no longer recommended by NIST due to security reasons, RSA keys are gated behind an `Insecure` namespace to discourage their use.
+
 To create an RSA signer, first initialize an `RSAKey`. This can be done by passing in the components.
 
 ```swift
-// Initialize an RSA key with components.
-let key = RSAKey(
-    modulus: "...",
-    exponent: "...",
-    // Only included in private keys.
-    privateExponent: "..."
+// Initialize an RSA private key with components.
+let key = try Insecure.RSA.PrivateKey(
+    modulus: modulus, 
+    exponent: publicExponent, 
+    privateExponent: privateExponent
+)
+```
+The initializer for the public key is similar. 
+
+```swift
+// Initialize an RSA public key with components.
+let key = try Insecure.RSA.PublicKey(
+    modulus: modulus, 
+    exponent: publicExponent
 )
 ```
 
@@ -205,24 +218,34 @@ aX4rbSL49Z3dAQn8vQIDAQAB
 """
 
 // Initialize an RSA key with public pem.
-let key = RSAKey.public(pem: rsaPublicKey)
+let key = try Insecure.RSA.PublicKey(pem: rsaPublicKey)
 ```
 
-Use `.private` for loading private RSA PEM keys. These start with:
+Use `Insecure.RSA.PrivateKey` for loading private RSA PEM keys. These start with:
 
 ```
 -----BEGIN RSA PRIVATE KEY-----
 ```
 
-Once you have the RSAKey, you can use it to create an RSA signer.
-
-- `rs256`: RSA with SHA-256
-- `rs384`: RSA with SHA-384
-- `rs512`: RSA with SHA-512
+Once you have the RSA key, you can add it using the `addRSA` method.
 
 ```swift
 // Add RSA with SHA-256 signer.
-try app.jwt.signers.use(.rs256(key: .public(pem: rsaPublicKey)))
+try await app.jwt.keys.addRSA(
+    key: Insecure.RSA.PublicKey(pem: rsaPublicKey),
+    digestAlgorithm: .sha256
+)
+```
+
+### PSS
+
+In addition to standard RSA, Vapor's JWT package also supports RSA with PSS padding. 
+This is considered more secure than standard RSA, however it is still discouraged in favor of other asymmetric algorithms like ECDSA.
+While PSS just uses a different padding scheme than standard RSA, the key generation and usage is the same as RSA.
+
+```swift
+let key = Insecure.RSA.PublicKey(pem: publicKey)
+try app.jwt.keys.addPSS(key: key, digestAlgorithm: .sha256)
 ```
 
 ### ECDSA
@@ -242,30 +265,28 @@ C18ScRb4Z6poMBgJtYlVtd9ly63URv57ZW0Ncs1LiZB7WATb3svu+1c7HQ==
 """
 
 // Initialize an ECDSA key with public PEM.
-let key = ECDSAKey.public(pem: ecdsaPublicKey)
+let key = try ES256PublicKey(pem: ecdsaPublicKey)
 ```
 
-Use `.private` for loading private ECDSA PEM keys. These start with:
+There are three ECDSA algorithms available, depending on the curve used:
+- `ES256`: ECDSA with a P-256 curve and SHA-256
+- `ES384`: ECDSA with a P-384 curve and SHA-384
+- `ES512`: ECDSA with a P-521 curve and SHA-512
 
-```
------BEGIN PRIVATE KEY-----
-```
+All algorithms provide botha public key and a private key,
+such as `ES256PublicKey` and `ES256PrivateKey`.
 
-You can also generate random ECDSA using the `generate()` method. This is useful for testing.
+You can also generate random ECDSA using the empty initializer. This is useful for testing.
 
 ```swift
-let key = try ECDSAKey.generate()
+let key = ES256PrivateKey()
 ```
 
-Once you have the ECDSAKey, you can use it to create an ECDSA signer.
-
-- `es256`: ECDSA with SHA-256
-- `es384`: ECDSA with SHA-384
-- `es512`: ECDSA with SHA-512
+Once you have the ECDSAKey, you can add it to the key collection using the `addECDSA` method.
 
 ```swift
 // Add ECDSA with SHA-256 signer.
-try app.jwt.signers.use(.es256(key: .public(pem: ecdsaPublicKey)))
+try await app.jwt.keys.addECDSA(key: ES256PublicKey(pem: ecdsaPublicKey))
 ```
 
 ### Key Identifier (kid)
@@ -274,16 +295,16 @@ If you are using multiple algorithms, you can use key identifiers (`kid`s) to di
 
 ```swift
 // Add HMAC with SHA-256 signer named "a".
-app.jwt.signers.use(.hs256(key: "foo"), kid: "a")
+await app.jwt.keys.addHMAC(key: "foo", digestAlgorithm: .sha256, kid: "a")
 // Add HMAC with SHA-256 signer named "b".
-app.jwt.signers.use(.hs256(key: "bar"), kid: "b")
+await app.jwt.keys.addHMAC(key: "bar", digestAlgorithm: .sha256, kid: "b")
 ```
 
 When signing JWTs, pass the `kid` parameter for the desired signer.
 
 ```swift
 // Sign using signer "a"
-req.jwt.sign(payload, kid: "a")
+try await req.jwt.sign(payload, kid: "a")
 ```
 
 This will automatically include the signer's name in the JWT header's `"kid"` field. When verifying the JWT, this field will be used to look up the appropriate signer. 
@@ -291,7 +312,7 @@ This will automatically include the signer's name in the JWT header's `"kid"` fi
 ```swift
 // Verify using signer specified by "kid" header.
 // If no "kid" header is present, default signer will be used.
-let payload = try req.jwt.verify(as: TestPayload.self)
+let payload = try await req.jwt.verify(as: TestPayload.self)
 ```
 
 Since [JWKs](#jwk) already contain `kid` values, you do not need to specify them during configuration.
@@ -299,7 +320,7 @@ Since [JWKs](#jwk) already contain `kid` values, you do not need to specify them
 ```swift
 // JWKs already contain the "kid" field.
 let jwk: JWK = ...
-app.jwt.signers.use(jwk: jwk)
+try await app.jwt.keys.use(jwk: jwk)
 ```
 
 ## Claims
@@ -330,27 +351,9 @@ GET https://appleid.apple.com/auth/keys
 ```
 
 You can add this JSON Web Key Set (JWKS) to your `JWTSigners`. 
+You can then pass JWTs from Apple to the `verify` method. The key identifier (`kid`) in the JWT header will be used to automatically select the correct key for verification.
 
-```swift
-import JWT
-import Vapor
-
-// Download the JWKS.
-// This could be done asynchronously if needed.
-let jwksData = try Data(
-    contentsOf: URL(string: "https://appleid.apple.com/auth/keys")!
-)
-
-// Decode the downloaded JSON.
-let jwks = try JSONDecoder().decode(JWKS.self, from: jwksData)
-
-// Create signers and add JWKS.
-try app.jwt.signers.use(jwks: jwks)
-```
-
-You can now pass JWTs from Apple to the `verify` method. The key identifier (`kid`) in the JWT header will be used to automatically select the correct key for verification.
-
-As of writing, JWK only supports RSA keys. Additionally, JWT issuers may rotate their JWKS meaning you need to re-download occasionally. See Vapor's supported JWT [Vendors](#vendors) list below for APIs that do this automatically.
+JWT issuers may rotate their JWKS meaning you need to re-download occasionally. See Vapor's supported JWT [Vendors](#vendors) list below for APIs that do this automatically.
 
 ## Vendors
 
@@ -369,15 +372,6 @@ Then, use the `req.jwt.apple` helper to fetch and verify an Apple JWT.
 
 ```swift
 // Fetch and verify Apple JWT from Authorization header.
-app.get("apple") { req -> EventLoopFuture<HTTPStatus> in
-    req.jwt.apple.verify().map { token in
-        print(token) // AppleIdentityToken
-        return .ok
-    }
-}
-
-// Or
-
 app.get("apple") { req async throws -> HTTPStatus in
     let token = try await req.jwt.apple.verify()
     print(token) // AppleIdentityToken
@@ -399,15 +393,6 @@ Then, use the `req.jwt.google` helper to fetch and verify a Google JWT.
 
 ```swift
 // Fetch and verify Google JWT from Authorization header.
-app.get("google") { req -> EventLoopFuture<HTTPStatus> in
-    req.jwt.google.verify().map { token in
-        print(token) // GoogleIdentityToken
-        return .ok
-    }
-}
-
-// or
-
 app.get("google") { req async throws -> HTTPStatus in
     let token = try await req.jwt.google.verify()
     print(token) // GoogleIdentityToken
@@ -428,15 +413,6 @@ Then, use the `req.jwt.microsoft` helper to fetch and verify a Microsoft JWT.
 
 ```swift
 // Fetch and verify Microsoft JWT from Authorization header.
-app.get("microsoft") { req -> EventLoopFuture<HTTPStatus> in
-    req.jwt.microsoft.verify().map { token in
-        print(token) // MicrosoftIdentityToken
-        return .ok
-    }
-}
-
-// Or
-
 app.get("microsoft") { req async throws -> HTTPStatus in
     let token = try await req.jwt.microsoft.verify()
     print(token) // MicrosoftIdentityToken

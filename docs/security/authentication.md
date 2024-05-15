@@ -841,7 +841,7 @@ struct SessionToken: Content, Authenticatable, JWTPayload {
         self.expiration = ExpirationClaim(value: Date().addingTimeInterval(expirationTime))
     }
 
-    func verify(using signer: JWTSigner) throws {
+    func verify(using algorithm: some JWTAlgorithm) throws {
         try expiration.verifyNotExpired()
     }
 }
@@ -859,20 +859,20 @@ Using our model for the JWT token and response, we can use a password protected 
 
 ```swift
 let passwordProtected = app.grouped(User.authenticator(), User.guardMiddleware())
-passwordProtected.post("login") { req -> ClientTokenReponse in
+passwordProtected.post("login") { req async throws -> ClientTokenReponse in
     let user = try req.auth.require(User.self)
     let payload = try SessionToken(with: user)
-    return ClientTokenReponse(token: try req.jwt.sign(payload))
+    return ClientTokenReponse(token: try await req.jwt.sign(payload))
 }
 ```
 
 Alternatively, if you don't want to use an authenticator you can have something that looks like the following.
 ```swift
-app.post("login") { req -> ClientTokenReponse in
+app.post("login") { req async throws -> ClientTokenReponse in
     // Validate provided credential for user
     // Get userId for provided user
     let payload = try SessionToken(userId: userId)
-    return ClientTokenReponse(token: try req.jwt.sign(payload))
+    return ClientTokenReponse(token: try await req.jwt.sign(payload))
 }
 ```
 
