@@ -12,7 +12,7 @@ app.webSocket("echo") { req, ws in
 }
 ```
 
-WebSocket routes können wie normale Routen durch Middleware gruppiert und geschützt werden.
+WebSocket-Endpunkte können, wie gewöhnliche Endpunkte, ebenfalls durch eine Middleware gruppiert und geschützt werden.
 
 WebSocket-Handler akzeptieren nicht nur die eingehende HTTP-Request, sondern auch die neu eingerichtete WebSocket-Verbindung. Weitere Informationen zur Verwendung dieses WebSockets zum Senden und Lesen von Nachrichten findest du weiter unten.
 ## Client
