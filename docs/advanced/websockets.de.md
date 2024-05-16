@@ -113,7 +113,7 @@ ws.onClose.whenComplete { result in
 Die Property `closeCode` wird festgelegt, wenn der WebSocket geschlossen wird. Dies kann verwendet werden, um festzustellen, warum der Peer die Verbindung geschlossen hat.
 ## Ping / Pong
 
-Ping- und Pong-Nachrichten werden vom Client und Server automatisch gesendet, um WebSocket-Verbindungen aufrechtzuerhalten. Deine Anwendung kann mithilfe der Callbacks `onPing` und `onPong` auf diese Ereignisse warten.
+Ping- und Pong-Nachrichten werden automatisch vom Client und Server gesendet, um die Verbindung aufrechtzuerhalten. Unsere Anwendung kann mithilfe der Rückruf-Funktionen `onPing` und `onPong` auf diese Ereignisse reagieren.
 
 ```swift
 ws.onPing { ws in 
