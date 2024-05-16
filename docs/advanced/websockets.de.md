@@ -3,7 +3,7 @@
 [WebSockets](https://en.wikipedia.org/wiki/WebSocket) ermöglichen eine bidirektionale Kommunikation zwischen einem Client und einem Server. Im Gegensatz zu HTTP, das auf dem Anfrage-Antwort-Prinzip basiert, können WebSocket-Peers - also sozusagen Kommunikationsendpunkte - eine beliebige Anzahl von Nachrichten in beide Richtungen senden. Mit Vapor kannst du sowohl Clients als auch Server erstellen und Nachrichten asynchron verarbeiten lassen.
 ## Server
 
-WebSocket endpoints, können mithilfe der Routing-API zu Ihrer vorhandenen Vapor-Anwendung hinzugefügt werden. Verwende dafür die `webSocket`-Methode wie `get` oder `post`.
+WebSocket-Endpunkte können mithilfe der Routing-API zu einer bestehenden Vapor-Anwendung hinzugefügt werden. Hierzu verwenden wir die `webSocket`-Methode ähnlich wie `get` oder `post`.
 
 ```swift
 app.webSocket("echo") { req, ws in
