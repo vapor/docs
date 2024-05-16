@@ -1,6 +1,6 @@
 # WebSockets
 
-[WebSockets](https://en.wikipedia.org/wiki/WebSocket) ermöglicht eine bidirektionale Kommunikation zwischen einem Client und einem Server. Im Gegensatz zu HTTP, das über ein Request- und Response muster verfügt, können WebSocket-Peers eine beliebige Anzahl von Nachrichten in beide Richtungen senden. Mit der WebSocket-API von Vapor kannst du sowohl Clients als auch Server erstellen und die Nachrichten asynchron verarbeiten.
+[WebSockets](https://en.wikipedia.org/wiki/WebSocket) ermöglichen eine bidirektionale Kommunikation zwischen einem Client und einem Server. Im Gegensatz zu HTTP, das auf dem Anfrage-Antwort-Prinzip basiert, können WebSocket-Peers - also sozusagen Kommunikationsendpunkte - eine beliebige Anzahl von Nachrichten in beide Richtungen senden. Mit Vapor kannst du sowohl Clients als auch Server erstellen und Nachrichten asynchron verarbeiten lassen.
 ## Server
 
 WebSocket endpoints, können mithilfe der Routing-API zu Ihrer vorhandenen Vapor-Anwendung hinzugefügt werden. Verwende dafür die `webSocket`-Methode wie `get` oder `post`.
