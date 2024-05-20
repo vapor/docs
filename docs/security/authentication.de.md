@@ -816,7 +816,7 @@ struct SessionToken: Content, Authenticatable, JWTPayload {
         self.expiration = ExpirationClaim(value: Date().addingTimeInterval(expirationTime))
     }
     
-    init(user: User) throws {
+    init(with user: User) throws {
         self.userId = try user.requireID()
         self.expiration = ExpirationClaim(value: Date().addingTimeInterval(expirationTime))
     }
@@ -830,30 +830,30 @@ struct SessionToken: Content, Authenticatable, JWTPayload {
 Als Nächstes können wir eine Darstellung der Daten definieren, die in einer erfolgreichen Anmeldeantwort enthalten sind. Zunächst wird die Antwort nur eine Eigenschaft haben, nämlich einen String, der ein signiertes JWT darstellt.
 
 ```swift
-struct ClientTokenReponse: Content {
+struct ClientTokenResponse: Content {
     var token: String
 }
 ```
 
-Mit unserem Modell für das JWT-Token und die Antwort können wir eine passwortgeschützte Login-Route verwenden, die eine "ClientTokenReponse" zurückgibt und ein signiertes "SessionToken" enthält.
+Mit unserem Modell für das JWT-Token und die Antwort können wir eine passwortgeschützte Login-Route verwenden, die eine "ClientTokenResponse" zurückgibt und ein signiertes "SessionToken" enthält.
 
 ```swift
 let passwordProtected = app.grouped(User.authenticator(), User.guardMiddleware())
-passwordProtected.post("login") { req -> ClientTokenReponse in
+passwordProtected.post("login") { req -> ClientTokenResponse in
     let user = try req.auth.require(User.self)
     let payload = try SessionToken(with: user)
-    return ClientTokenReponse(token: try req.jwt.sign(payload))
+    return ClientTokenResponse(token: try req.jwt.sign(payload))
 }
 ```
 
 Wenn du keinen Authentifikator verwenden willst, kannst du auch etwas haben, das wie folgt aussieht.
 
 ```swift
-app.post("login") { req -> ClientTokenReponse in
+app.post("login") { req -> ClientTokenResponse in
     // Überprüfe die angegebenen Anmeldeinformationen für den Benutzer
     // UserId für den angegebenen Benutzer abrufen
     let payload = try SessionToken(userId: userId)
-    return ClientTokenReponse(token: try req.jwt.sign(payload))
+    return ClientTokenResponse(token: try req.jwt.sign(payload))
 }
 ```
 
