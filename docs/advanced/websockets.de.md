@@ -58,7 +58,7 @@ Wenn du `async`/`await` verwendest, wird mit `await` auf den Abschluss des async
 try await ws.send(...)
 ```
 
-### Receiving
+### Nachrichteneingang
 
 Eingehende Nachrichten werden über die Rückrufe `onText` und `onBinary` verarbeitet.
 
