@@ -834,7 +834,7 @@ struct SessionToken: Content, Authenticatable, JWTPayload {
         self.expiration = ExpirationClaim(value: Date().addingTimeInterval(expirationTime))
     }
     
-    init(user: User) throws {
+    init(with user: User) throws {
         self.userId = try user.requireID()
         self.expiration = ExpirationClaim(value: Date().addingTimeInterval(expirationTime))
     }
@@ -848,30 +848,30 @@ struct SessionToken: Content, Authenticatable, JWTPayload {
 接下来，我们可以定义成功登录响应中包含的数据的表示形式。目前，响应将只有一个属性，即表示已签名的 JWT 的字符串。
 
 ```swift
-struct ClientTokenReponse: Content {
+struct ClientTokenResponse: Content {
     var token: String
 }
 ```
 
-使用我们的 JWT 令牌和响应模型，我们可以使用受密码保护的登录路由，该路由返回一个 `ClientTokenReponse` 并包含一个已签名的 `SessionToken`。
+使用我们的 JWT 令牌和响应模型，我们可以使用受密码保护的登录路由，该路由返回一个 `ClientTokenResponse` 并包含一个已签名的 `SessionToken`。
 
 ```swift
 let passwordProtected = app.grouped(User.authenticator(), User.guardMiddleware())
-passwordProtected.post("login") { req -> ClientTokenReponse in
+passwordProtected.post("login") { req -> ClientTokenResponse in
     let user = try req.auth.require(User.self)
     let payload = try SessionToken(with: user)
-    return ClientTokenReponse(token: try req.jwt.sign(payload))
+    return ClientTokenResponse(token: try req.jwt.sign(payload))
 }
 ```
 
 或者，如果你不想使用身份认证器，则可以使用如下所示的内容。
 
 ```swift
-app.post("login") { req -> ClientTokenReponse in
+app.post("login") { req -> ClientTokenResponse in
     // 验证为用户提供的凭据
     // 获取提供的用户的 userId
     let payload = try SessionToken(userId: userId)
-    return ClientTokenReponse(token: try req.jwt.sign(payload))
+    return ClientTokenResponse(token: try req.jwt.sign(payload))
 }
 ```
 
