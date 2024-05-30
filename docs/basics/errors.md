@@ -183,13 +183,14 @@ StackTrace.isCaptureEnabled = true
 
 ## Error Middleware
 
-`ErrorMiddleware` is the only middleware added to your application by default. This middleware converts Swift errors that have been thrown or returned by your route handlers into HTTP responses. Without this middleware, errors thrown will result in the connection being closed without a response. 
+`ErrorMiddleware` is one of the only two middlewares added to your application by default. This middleware converts Swift errors that have been thrown or returned by your route handlers into HTTP responses. Without this middleware, errors thrown will result in the connection being closed without a response. 
 
-To customize error handling beyond what `AbortError` and `DebuggableError` provide, you can replace `ErrorMiddleware` with your own error handling logic. To do this, first remove the default error middleware by setting `app.middleware` to an empty configuration. Then, add your own error handling middleware as the first middleware to your application.
+To customize error handling beyond what `AbortError` and `DebuggableError` provide, you can replace `ErrorMiddleware` with your own error handling logic. To do this, first remove the default error middleware by manually initializing `app.middleware`. Then, add your own error handling middleware as the first middleware to your application.
 
 ```swift
-// Remove all existing middleware.
+// Clear all default middleware (then, add back route logging)
 app.middleware = .init()
+app.middleware.use(RouteLoggingMiddleware(logLevel: .info))
 // Add custom error handling middleware first.
 app.middleware.use(MyErrorMiddleware())
 ```
