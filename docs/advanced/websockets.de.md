@@ -43,7 +43,7 @@ Die Übergabe eines `String` an diese Methode führt zum Senden einer Textnachri
 ws.send([1, 2, 3])
 ```
 
-Der Nachrichtenversand erfolgt asynchron. Du kannst der Sendemethode ein `EventLoopPromise` übergeben, um benachrichtigt zu werden, wenn der Versand der Nachricht abgeschlossen ist oder der Versand fehlgeschlagen ist.
+Der Nachrichtenversand erfolgt asynchron. Du kannst der Sendemethode ein `EventLoopPromise` übergeben, um benachrichtigt zu werden, wenn der Versand der Nachricht abgeschlossen oder fehlgeschlagen ist.
 
 ```swift
 let promise = eventLoop.makePromise(of: Void.self)
