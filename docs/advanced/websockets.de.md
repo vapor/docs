@@ -26,7 +26,7 @@ WebSocket.connect(to: "ws://echo.websocket.org", on: eventLoop) { ws in
 }
 ```
 
-Die Methode `connect` gibt einen Future zurück, der abgeschlossen wird, wenn die Verbindung hergestellt ist. Sobald die Verbindung hergestellt ist, wird der bereitgestellte Anschluss mit dem neu verbundenen WebSocket aufgerufen. Weitere Informationen zur Verwendung dieses WebSockets zum Senden und Lesen von Nachrichten findest du weiter unten.
+Die Methode `connect` gibt einen Future zurück, der abgeschlossen wird, sobald die Verbindung hergestellt ist. Mit Bestehen der Verbindung, wird der bereitgestellte Funktionsabschluss mit dem neu verbundenen WebSocket aufgerufen. Weitere Informationen zur Verwendung dieses WebSockets zum Senden und Lesen von Nachrichten findest du weiter unten.
 ## Nachrichtenverkehr
 
 Die Klasse `WebSocket` verfügt über Methoden zum Senden und Empfangen von Nachrichten, sowie zum Abhören von Ereignissen wie dem Abschluss. WebSockets können Daten über zwei Protokolle übertragen: Text und Binär. Textnachrichten werden als UTF-8-Strings interpretiert, während Binärdaten als Array von Bytes interpretiert werden.
