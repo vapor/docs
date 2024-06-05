@@ -14,7 +14,7 @@ app.webSocket("echo") { req, ws in
 
 WebSocket-Endpunkte können, wie gewöhnliche Endpunkte, ebenfalls durch eine Middleware gruppiert und geschützt werden.
 
-WebSocket-Handler akzeptieren nicht nur die eingehende HTTP-Request, sondern auch die neu eingerichtete WebSocket-Verbindung. Weitere Informationen zur Verwendung dieses WebSockets zum Senden und Lesen von Nachrichten findest du weiter unten.
+WebSocket-Handler akzeptieren neben den eingehenden Anfragen, nun auch die neu eingerichtete WebSocket-Verbindung. Weitere Informationen zur Verwendung dieses WebSockets zum Senden und Lesen von Nachrichten findest du weiter unten.
 ## Client
 
 Um eine solche Verbindung zu einem entfernen WebSocket-Endpunkt herzustellen, benutzen wir `WebSocket.connect`.
