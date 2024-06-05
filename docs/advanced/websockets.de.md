@@ -103,7 +103,7 @@ Oder du verwendest `await` und benutzt `async`/`await`:
 try await ws.close()
 ```
 
-Um benachrichtigt zu werden, wenn der Peer die Verbindung schließt, verwende `onClose`. Dieses future wird abgeschlossen, wenn entweder der Client oder der Server den WebSocket schließt.
+Um benachrichtigt zu werden, wenn der Peer die Verbindung schließt, verwende `onClose`. Dieses Future wird abgeschlossen, wenn entweder der Client oder der Server den WebSocket schließt.
 ```swift
 ws.onClose.whenComplete { result in
     // Succeeded or failed to close.
