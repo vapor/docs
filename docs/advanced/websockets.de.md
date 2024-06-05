@@ -53,7 +53,7 @@ promise.futureResult.whenComplete { result in
 }
 ```
 
-Wenn du `async`/`await` verwendest, wird mit `await` auf den Abschluss des asynchronen Vorgangs zu gewartet
+Wenn du `async`/`await` verwendest, wird mit `await` auf den Abschluss des asynchronen Vorgangs gewartet.
 ```swift
 try await ws.send(...)
 ```
