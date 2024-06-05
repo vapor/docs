@@ -17,7 +17,7 @@ WebSocket-Endpunkte können, wie gewöhnliche Endpunkte, ebenfalls durch eine Mi
 WebSocket-Handler akzeptieren neben den eingehenden Anfragen, nun auch die neu eingerichtete WebSocket-Verbindung. Weitere Informationen zur Verwendung dieses WebSockets zum Senden und Lesen von Nachrichten findest du weiter unten.
 ## Client
 
-Um eine solche Verbindung zu einem entfernen WebSocket-Endpunkt herzustellen, benutzen wir `WebSocket.connect`.
+Um eine solche Verbindung zu einem entfernten WebSocket-Endpunkt herzustellen, benutzen wir `WebSocket.connect`.
 
 ```swift
 WebSocket.connect(to: "ws://echo.websocket.org", on: eventLoop) { ws in
