@@ -73,7 +73,7 @@ ssh vapor@your_server_ip
 
 ### 使用 Swiftly CLI 工具自动安装(推荐)
 
-访问 [Swiftly 网站](https://swift-server.github.io/swiftly/)获取在 Linux 上安装 Swiftly 和 Swift 的说明。之后，安装 Swift 使用如下命令：
+访问 [Swiftly 网站](https://swiftlang.github.io/swiftly/)获取在 Linux 上安装 Swiftly 和 Swift 的说明。之后，安装 Swift 使用如下命令：
 
 #### 基本用法
 
