@@ -40,7 +40,7 @@ Una solicitud `GET /hello` visitará el middleware en el siguiente orden:
 Solicitud → A → B → C → Controlador → C → B → A → Respuesta
 ```
 
-Middleware tambien puede ser _antepuesto_, lo cual es útil cuando desea agregar un middleware antes de que el middleware predeterminado se agregue automáticamente:
+Middleware también puede ser _antepuesto_, lo cual es útil cuando desea agregar un middleware antes de que el middleware predeterminado se agregue automáticamente:
 
 ```swift
 app.middleware.use(someMiddleware, at: .beginning)
@@ -84,7 +84,7 @@ struct EnsureAdminUserMiddleware: AsyncMiddleware {
 }
 ```
 
-Si deseas modificar la respuesta, por ejemplo, añadir un cabecero personalizado, puedes usar un middleware para esto tambien. Middlewares pueden esperar hasta que la respuesta sea recibida por parte de la cadena de respuesta y manipular la respuesta:
+Si deseas modificar la respuesta, por ejemplo, añadir un cabecero personalizado, puedes usar un middleware para esto también. Middlewares pueden esperar hasta que la respuesta sea recibida por parte de la cadena de respuesta y manipular la respuesta:
 
 ```swift
 import Vapor
@@ -122,9 +122,9 @@ let file = FileMiddleware(publicDirectory: app.directory.publicDirectory)
 app.middleware.use(file)
 ```
 
-Una vez que `FileMiddleware` este registrado, un archivo como `Public/images/logo.png` se puede vincular desde una plantilla Leaf como `<img src="/images/logo.png"/>`.
+Una vez que `FileMiddleware` esté registrado, un archivo como `Public/images/logo.png` se puede vincular desde una plantilla Leaf como `<img src="/images/logo.png"/>`.
 
-Si tu servidor está contenido en un projecto Xcode, como una applicación de iOS, use esto en su lugar:
+Si tu servidor está almacenado en un projecto Xcode, como una applicación de iOS, use esto en su lugar:
 
 ```swift
 let file = try FileMiddleware(bundle: .main, publicDirectory: "Public")
