@@ -1,10 +1,10 @@
 # Middleware
 
-Middleware es una cadena lógica entre el cliente y el controlador de ruta de Vapor. Le permite realizar operaciones en solicitudes entrantes antes de que lleguen al controlador de ruta y en respuestas salientes antes de que lleguen al cliente. 
+Middleware es una cadena lógica entre el cliente y el controlador de ruta de Vapor. Le permite realizar operaciones en solicitudes entrantes antes de que lleguen al controlador de ruta y en respuestas antes de que lleguen al cliente. 
 
 ## Configuración
 
-Middleware se puede registrar globalmente (en cada ruta) en `configure(_:)` usando `app.middleware`.
+Middleware se puede registrar de forma global (en cada ruta) en la función `configure(_:)` usando `app.middleware`.
 
 ```swift
 app.middleware.use(MyMiddleware())
@@ -52,7 +52,7 @@ Vapor viene con algunos middlewares útiles, pero es posible que necesites crear
 
 > Recomendamos crear una carpeta llamada `Middleware` dentro del directorio `Sources/App` para mantener tu codigo organizado
 
-Middleware son tipos que se ajustan al protocolo `Middleware` o `AsyncMiddleware` de Vapor. Son insertandos en la cadena de respuesta y pueden acceder y manipular una solicitud antes de que llegue a un controlador de ruta y manipular una respuesta antes de que se devuelva.
+Middleware son tipos que se ajustan al protocolo `Middleware` o `AsyncMiddleware` de Vapor. Se insertan en la cadena de respuesta y pueden acceder y manipular una solicitud antes de que llegue a un controlador de ruta y modificar una respuesta antes de que se devuelva.
 
 Usando el ejemplo mencionado anteriormente, cree un middleware para bloquear acceso al usuario si no es administrador:
 
@@ -84,7 +84,7 @@ struct EnsureAdminUserMiddleware: AsyncMiddleware {
 }
 ```
 
-Si deseas modificar la respuesta, por ejemplo, añadir un cabecero personalizado, puedes usar un middleware para esto también. Middlewares pueden esperar hasta que la respuesta sea recibida por parte de la cadena de respuesta y manipular la respuesta:
+Si deseas modificar la respuesta, por ejemplo, para añadir un cabecero personalizado, puedes usar un middleware para esto también. Middlewares pueden esperar hasta que la respuesta sea recibida por parte de la cadena de respuesta y manipular la respuesta:
 
 ```swift
 import Vapor
