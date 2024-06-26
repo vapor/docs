@@ -31,7 +31,7 @@ swift run App serve --hostname dev.local
 
 ### Port
 
-La port controla en qué puerto de la dirección especificada el servidor aceptará nuevas conexiones. El valor predeterminado es `8080`.
+La opción port controla en qué puerto de la dirección especificada el servidor aceptará nuevas conexiones. El valor predeterminado es `8080`.
 
 ```swift
 // Configura un port personalizado.
