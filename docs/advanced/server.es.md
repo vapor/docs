@@ -167,7 +167,7 @@ El comando `serve` acepta los siguientes parámetros:
 
 - `hostname` (`-H`): Sobrescribe el nombre de host configurado.
 - `port` (`-p`): Sobresribe el puerto configurado.
-- `bind` (`-b`): anula el nombre de host configurado y el puerto unidos por `:`.
+- `bind` (`-b`): Sobrescribe el nombre de host configurado y el puerto unidos por `:`.
 
 Un ejemplo que utiliza el flag `--bind` (`-b`):
 
