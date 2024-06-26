@@ -165,7 +165,7 @@ swift run App serve
 
 El comando `serve` acepta los siguientes parámetros:
 
-- `hostname` (`-H`): anula el nombre de host configurado.
+- `hostname` (`-H`): Sobrescribe el nombre de host configurado.
 - `port` (`-p`): Anula el puerto configurado.
 - `bind` (`-b`): anula el nombre de host configurado y el puerto unidos por `:`.
 
