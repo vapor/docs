@@ -41,7 +41,7 @@ app.http.server.configuration.port = 1337
 !!! info "Información"
     Es posible que se requiera `sudo` para vincular puertos inferiores a `1024`. No se admiten puertos superiores a `65535`.
 
-El puerto de la configuración del servidor se puede anular pasando el flag `--port` (`-p`) al comando `serve` o pasando el parámetro `port` a `app.server.start(...)`.
+El puerto de la configuración del servidor se puede sobrescribir pasando el flag `--port` (`-p`) al comando `serve` o pasando el parámetro `port` a `app.server.start(...)`.
 
 ```sh
 # Sobreescribiendo la configuración de port.
