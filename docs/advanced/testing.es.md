@@ -34,7 +34,7 @@ final class MyTests: XCTestCase {
 }
 ```
 
-Cada función que comience con `test` se ejecutará automáticamente cuando se prueba la aplicación.
+Cada función que comience con `test` se ejecutará automáticamente cuando se pruebe tu aplicación.
 
 ### Ejecutando Pruebas
 
