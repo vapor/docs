@@ -56,7 +56,7 @@ Pasa `Application` al método `configure(_:)` de tu paquete para aplicar su conf
 
 ### Enviar una Petición
 
-Para enviar una solicitud de prueba a su aplicación, utilice el método `test`.
+Para enviar una solicitud de prueba a tu aplicación, utiliza el método `test`.
 
 ```swift
 try app.test(.GET, "hello") { res in
