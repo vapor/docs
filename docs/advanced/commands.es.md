@@ -24,7 +24,7 @@ Puede ejecutar comandos en Xcode agregando argumentos al esquema `App`. Para hac
 - Haz clic en "Edit Scheme"
 - Elige el producto "App"
 - Selecciona la pestaña "Arguments"
-- Agrega el nombre del comando a "Arguments Passed On Launch" (es decir, `serve`)
+- Agrega el nombre del comando a "Arguments Passed On Launch" (por ejemplo, `serve`)
 
 ## Comandos Personalizados
 
