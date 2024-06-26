@@ -52,7 +52,7 @@ defer { app.shutdown() }
 try configure(app)
 ```
 
-Pase `Application` al método `configure(_:)` de su paquete para aplicar su configuración. Cualquier configuración de "solo prueba" se puede aplicar después.
+Pasa `Application` al método `configure(_:)` de tu paquete para aplicar su configuración. Cualquier configuración de "solo prueba" se puede aplicar después.
 
 ### Enviar una Petición
 
