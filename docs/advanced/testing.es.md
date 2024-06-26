@@ -1,6 +1,6 @@
 # Testing
 
-Vapor incluye un módulo llamado `XCTVapor` que proporciona ayudas de prueba integradas en `XCTest`. Estos helpers de prueba te permiten enviar solicitudes de prueba a tu aplicación Vapor mediante programación o ejecutándose a través de un servidor HTTP.
+Vapor incluye un módulo llamado `XCTVapor` que proporciona ayudas de prueba basadas en `XCTest`. Estas ayudas te permiten enviar solicitudes de prueba a tu aplicación Vapor de manera programática o ejecutándose a través de un servidor HTTP.
 
 ## Comenzando
 
