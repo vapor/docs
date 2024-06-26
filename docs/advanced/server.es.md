@@ -90,7 +90,7 @@ Para especificar una capacidad de búfer inicial, utiliza el parámetro `initial
 .enabled(initialByteBufferCapacity: 1024)
 ```
 
-### Descompresión de Respuesta
+### Descompresión de Solicitudes
 
 El parámetro `requestDecompression` controla la descompresión de solicitudes HTTP mediante gzip. El valor predeterminado es `.disabled`.
 
