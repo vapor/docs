@@ -44,7 +44,7 @@ Utiliza `cmd+u` con el esquema `-Package` seleccionado para ejecutar pruebas en 
 
 Inicializa una instancia de `Application` utilizando el entorno `.testing`. Debes llamar a `app.shutdown()` antes de que esta aplicación se desinicialice.
 
-El cierre (shutdown) es necesario para ayudar a liberar los recursos que ha reclamado la aplicación. En particular, es importante liberar los subprocesos que la aplicación solicita al inicio. Si no llama a `shutdown()` en la aplicación después de cada prueba unitaria, es posible que su conjunto de pruebas falle con una condición previa fallida al asignar subprocesos para una nueva instancia de `Application`.
+El cierre (shutdown) es necesario para ayudar a liberar los recursos que ha reclamado la aplicación. En particular, es importante liberar los subprocesos que la aplicación solicita al inicio. Si no llamas a `shutdown()` en la aplicación después de cada prueba unitaria, es posible que el conjunto de pruebas falle con una condición previa fallida al asignar subprocesos para una nueva instancia de `Application`.
 
 ```swift
 let app = Application(.testing)
