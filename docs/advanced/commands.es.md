@@ -1,6 +1,5 @@
 # Comandos
 
-Vapor's Command API allows you to build custom command-line functions and interact with the terminal. It is what Vapor's default commands like `serve`, `routes`, and `migrate` are built on.
 La API de comandos de Vapor te permite crear funciones de línea de comandos personalizadas e interactuar con la consola (terminal). Es en lo que se basan los comandos predeterminados de Vapor como `serve`, `routes` y `migrate`.
 
 ## Comandos Predeterminados
