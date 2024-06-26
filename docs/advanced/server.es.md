@@ -22,7 +22,7 @@ El hostname controla en qué dirección el servidor aceptará nuevas conexiones.
 app.http.server.configuration.hostname = "dev.local"
 ```
 
-El hostname de la configuración del servidor se puede anular pasando el flag `--hostname` (`-H`) al comando `serve` o pasando el parámetro `hostname` a `app.server.start(...)`.
+El hostname de la configuración del servidor se puede sobrescribir pasando el flag `--hostname` (`-H`) al comando `serve` o pasando el parámetro `hostname` a `app.server.start(...)`.
 
 ```sh
 # Sobreescribiendo la configuración de hostname.
