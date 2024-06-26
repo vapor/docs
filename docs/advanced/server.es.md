@@ -216,7 +216,7 @@ app.servers.use { app in
 }
 ```
 
-Los servidores personalizados pueden extender `Application.Servers.Provider` para una otro formato de sintaxis.
+Los servidores personalizados pueden extender `Application.Servers.Provider` para usar la sintaxis de punto.
 
 ```swift
 extension Application.Servers.Provider {
