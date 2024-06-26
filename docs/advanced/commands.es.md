@@ -10,7 +10,7 @@ Puedes obtener más información sobre los comandos predeterminados de Vapor usa
 swift run App --help
 ```
 
-Puede usar `--help` en un comando específico para ver qué argumentos y opciones acepta.
+Puedes usar `--help` en un comando específico para ver qué argumentos y opciones acepta.
 
 ```sh
 swift run App serve --help
@@ -18,7 +18,7 @@ swift run App serve --help
 
 ### Xcode
 
-Puede ejecutar comandos en Xcode agregando argumentos al esquema `App`. Para hacer esto, siga estos pasos:
+Puedes ejecutar comandos en Xcode agregando argumentos al esquema `App`. Para hacerlo, sigue estos pasos:
 
 - Elige el esquema `App` (a la derecha de los botones play/stop)
 - Haz clic en "Edit Scheme"
@@ -79,7 +79,7 @@ swift run App hello
 
 ### Cowsay
 
-Echa un vistazo a esta recreación del famoso comando [`cowsay`](https://en.wikipedia.org/wiki/Cowsay) para ver un ejemplo de como usar `@Argument` y `@Option`.
+Aquí tienes una recreación del famoso comando [`cowsay`](https://en.wikipedia.org/wiki/Cowsay) para ver un ejemplo de cómo usar `@Argument` y `@Option`.
 
 ```swift
 import Vapor
@@ -118,7 +118,7 @@ struct Cowsay: AsyncCommand {
 }
 ```
 
-Intenta agregar esto a su aplicación y ejecútalo.
+Intenta agregar esto a tu aplicación y ejecútalo.
 
 ```swift
 app.asyncCommands.use(Cowsay(), as: "cowsay")
