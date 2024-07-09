@@ -264,6 +264,12 @@ You can pass a custom date formatter string as the second argument. See Swift's 
 The date is #date(now, "yyyy-MM-dd")
 ```
 
+You can also pass a time zone ID for the date formatter as the third argument. See Swift's [`DateFormatter.timeZone`](https://developer.apple.com/documentation/foundation/dateformatter/1411406-timezone) and [`TimeZone`](https://developer.apple.com/documentation/foundation/timezone) for more information.
+
+```leaf
+The date is #date(now, "yyyy-MM-dd", "America/New_York")
+```
+
 #### `#unsafeHTML`
 
 The `#unsafeHTML` tag acts like a variable tag - e.g. `#(variable)`. However it does not escape any HTML that `variable` may contain:
