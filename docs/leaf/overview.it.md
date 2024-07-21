@@ -264,6 +264,12 @@ Puoi passare una stringa in un formato di data personalizzato come secondo argom
 The date is #date(now, "yyyy-MM-dd")
 ```
 
+Puoi anche passare l'ID di un fuso orario come terzo argomento. Guarda [`DateFormatter.timeZone`](https://developer.apple.com/documentation/foundation/dateformatter/1411406-timezone) e [`TimeZone`](https://developer.apple.com/documentation/foundation/timezone) di Swift per più informazioni.
+
+```leaf
+The date is #date(now, "yyyy-MM-dd", "America/New_York")
+```
+
 #### `#unsafeHTML`
 
 Il tag `#unsafeHTML` agisce come un tag di variabile - p.es. `#(variable)`. Però non evade nessun HTML che `variable` potrebbe contenere:
