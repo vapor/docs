@@ -7,7 +7,7 @@ Leaf is a powerful templating language with Swift-inspired syntax. You can use i
 The first step to using Leaf is adding it as a dependency to your project in your SPM package manifest file.
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
@@ -17,7 +17,7 @@ let package = Package(
     ],
     dependencies: [
         /// Any other dependencies ...
-        .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0"),
+        .package(url: "https://github.com/vapor/leaf.git", from: "4.4.0"),
     ],
     targets: [
         .target(name: "App", dependencies: [
