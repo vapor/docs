@@ -34,8 +34,8 @@ Elke Vapor toepassing op uw server zou zijn eigen configuratiebestand moeten heb
 command=/home/vapor/hello/.build/release/App serve --env production
 directory=/home/vapor/hello/
 user=vapor
-stdout_logfile=/var/log/supervisor/%(program_name)-stdout.log
-stderr_logfile=/var/log/supervisor/%(program_name)-stderr.log
+stdout_logfile=/var/log/supervisor/%(program_name)s-stdout.log
+stderr_logfile=/var/log/supervisor/%(program_name)s-stderr.log
 ```
 
 Zoals gespecificeerd in ons configuratie bestand staat het `Hello` project in de thuismap van de gebruiker `vapor`. Zorg ervoor dat `directory` wijst naar de root directory van uw project waar het `Package.swift` bestand staat.

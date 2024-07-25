@@ -34,8 +34,8 @@ Each Vapor app on your server should have its own configuration file. For an exa
 command=/home/vapor/hello/.build/release/App serve --env production
 directory=/home/vapor/hello/
 user=vapor
-stdout_logfile=/var/log/supervisor/%(program_name)-stdout.log
-stderr_logfile=/var/log/supervisor/%(program_name)-stderr.log
+stdout_logfile=/var/log/supervisor/%(program_name)s-stdout.log
+stderr_logfile=/var/log/supervisor/%(program_name)s-stderr.log
 ```
 
 As specified in our configuration file the `Hello` project is located in the home folder for the user `vapor`. Make sure `directory` points to the root directory of your project where the `Package.swift` file is.

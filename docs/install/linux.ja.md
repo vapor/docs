@@ -1,6 +1,6 @@
 # Linux にインストール
 
-Vapor を使うには、Swift 5.7 以上が必要です。これは Swift Server Workgroup が提供する CLI ツール [Swiftly](https://swift-server.github.io/swiftly/) を使ってインストールできます（推奨）。または、[Swift.org](https://swift.org/download/) で利用可能なツールチェーンを使用してインストールできます。
+Vapor を使うには、Swift 5.7 以上が必要です。これは Swift Server Workgroup が提供する CLI ツール [Swiftly](https://swiftlang.github.io/swiftly/) を使ってインストールできます（推奨）。または、[Swift.org](https://swift.org/download/) で利用可能なツールチェーンを使用してインストールできます。
 
 ## サポートされているディストリビューションとバージョン
 Vapor は、Swift 5.7 またはそれ以上の新しいバージョンがサポートする Linux ディストリビューションと同じバージョンをサポートしています。公式にサポートされているオペレーティングシステムの最新情報については、[公式サポートページ](https://www.swift.org/platform-support/)を参照してください。
@@ -12,7 +12,7 @@ Vapor は、Swift 5.7 またはそれ以上の新しいバージョンがサポ�
 
 ### Swiftly CLI ツールを使用した自動インストール (推奨)
 
-Linux で Swiftly と Swift をインストールする手順については、[Swifty のウェブサイト](https://swift-server.github.io/swiftly/)をご覧ください。その手順に従った後、次のコマンドで Swift をインストールします。
+Linux で Swiftly と Swift をインストールする手順については、[Swifty のウェブサイト](https://swiftlang.github.io/swiftly/)をご覧ください。その手順に従った後、次のコマンドで Swift をインストールします。
 
 #### 基本的な使い方
 
