@@ -175,8 +175,7 @@ Die Überprüfung verwendet die Bedingung *in*, was bedingt, dass der Wert mit e
 
 Durch die Erstellung eines benutzerdefinierten Validators für Postleitzahlen kann die Funktionalität des Validierungs-Frameworks erweitert werden. In diesem Abschnitt erklären wir die Schritte zum Erstellen eines benutzerdefinierten Validators zur Validierung von Postleitzahlen.
 
-Zunächst wird ein neuer Typ erstellt, um die Ergebnisse der `ZipCode`-Validierung darzustellen. Diese Struktur ist dafür verantwortlich, zu melden, ob eine bestimmte Zeichenfolge eine gültige Postleitzahl ist.
-
+Zunächst erstellen wir einen neuen Typ, um die Ergebnisse der Validierung darzustellen. Diese Struktur ist dafür verantwortlich, zu melden, ob eine bestimmte Zeichenfolge eine gültige Postleitzahl ist.
 ```swift
 extension ValidatorResults {
     /// Represents the result of a validator that checks if a string is a valid zip code.
@@ -225,7 +224,7 @@ extension Validator where T == String {
 }
 ```
 
-Nachdem der benutzerdefinierte `zipCode`-Validator definiert wurde, kann er zum Validieren von Postleitzahlen in einer Anwendung verwendet werden. Dazu muss einfach die folgende Zeile zum Validierungscode hinzugefügt werden:
+Nachdem die neue Vorlage definiert wurde, kann sie in der Anwendung verwendet werden:
 
 ```swift
 validations.add("zipCode", as: String.self, is: .zipCode)
