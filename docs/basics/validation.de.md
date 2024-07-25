@@ -224,6 +224,7 @@ extension Validator where T == String {
 }
 ```
 
+
 Nachdem die neue Vorlage definiert wurde, kann sie in der Anwendung verwendet werden:
 
 ```swift
