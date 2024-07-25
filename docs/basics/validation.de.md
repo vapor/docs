@@ -173,7 +173,7 @@ Die Überprüfung verwendet die Bedingung *in*, was bedingt, dass der Wert mit e
 
 ## Benutzerdefinierte Validatoren
 
-Durch die Erstellung eines benutzerdefinierten Validators für Postleitzahlen kann die Funktionalität des Validierungs-Frameworks erweitert werden. In diesem Abschnitt erklären wir die Schritte zum Erstellen eines benutzerdefinierten Validators zur Validierung von Postleitzahlen.
+Durch die Erstellung einer eigenen Regelvorlage können wir Vapors bestehendes Regelwerk erweitern.  Im folgenden Abschnitt erstellen wir eine neue Vorlage, um eine Postleitzahl zu gegenzuprüfen.
 
 Zunächst erstellen wir einen neuen Typ, um die Ergebnisse der Validierung darzustellen. Diese Struktur ist dafür verantwortlich, zu melden, ob eine bestimmte Zeichenfolge eine gültige Postleitzahl ist.
 ```swift
