@@ -357,7 +357,7 @@ Konfiguriere zunächst die Kennung deiner Apple-Anwendung.
 app.jwt.apple.applicationIdentifier = "..."
 ```
 
-Verwenden Sie dann die Hilfsfunktion `req.jwt.apple`, um ein Apple JWT abzurufen und zu überprüfen.
+Verwende dann die Hilfsfunktion `req.jwt.apple`, um ein Apple JWT abzurufen und zu überprüfen.
 
 ```swift
 // Apple JWT aus dem Autorisierungs-Header abrufen und überprüfen.
