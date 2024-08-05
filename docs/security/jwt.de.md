@@ -350,7 +350,7 @@ Vapor bietet APIs für die Verarbeitung von JWTs von den unten aufgeführten pop
 
 ### Apple
 
-Konfigurieren Sie zunächst die Kennung Ihrer Apple-Anwendung.
+Konfiguriere zunächst die Kennung deiner Apple-Anwendung.
 
 ```swift
 // Konfigurieren Sie die Apple-App-Kennung.
