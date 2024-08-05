@@ -304,7 +304,7 @@ Dadurch wird der Name des Unterzeichners automatisch in das Feld `"kid"` des JWT
 let payload = try await req.jwt.verify(as: TestPayload.self)
 ```
 
-Da [JWKs](#jwk) bereits `kid` Werte enthalten, müssen Sie diese bei der Konfiguration nicht angeben.
+Da [JWKs](#jwk) bereits `kid` Werte enthalten, musst du diese bei der Konfiguration nicht angeben.
 
 ```swift
 // JWKs enthalten bereits das "kid"-Feld.
