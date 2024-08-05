@@ -281,7 +281,7 @@ try await app.jwt.keys.addECDSA(key: ES256PublicKey(pem: ecdsaPublicKey))
 
 ### Schlüsselidentifikator (kid)
 
-Wenn Sie mehrere Algorithmen verwenden, können Sie Schlüsselbezeichner (`kid`) verwenden, um sie zu unterscheiden. Wenn Sie einen Algorithmus konfigurieren, übergeben Sie den Parameter "kid".
+Wenn du mehrere Algorithmen verwendest, kannst du Schlüsselbezeichner (`kid`) verwenden, um sie zu unterscheiden. Wenn du einen Algorithmus konfigurierst, übergebe den `kid` Parameter.
 
 ```swift
 // HMAC mit SHA-256 Unterzeichner namens "a" hinzufügen.
