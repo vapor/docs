@@ -244,7 +244,7 @@ try app.jwt.keys.addPSS(key: key, digestAlgorithm: .sha256)
 ECDSA ist ein modernerer Algorithmus, der mit RSA vergleichbar ist. Er gilt bei einer bestimmten Schlüssellänge als sicherer als RSA[^1]. Sie sollten jedoch eigene Nachforschungen anstellen, bevor Sie sich entscheiden.
 [^1]: https://www.ssl.com/article/comparing-ecdsa-vs-rsa/
 
-Wie bei RSA können Sie ECDSA-Schlüssel über PEM-Dateien laden:
+Wie bei RSA kannst du ECDSA-Schlüssel über PEM-Dateien laden:
 
 ```swift
 let ecdsaPublicKey = """
