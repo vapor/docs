@@ -339,8 +339,8 @@ Zum Beispiel hostet Apple sein _Sign in with Apple_ JWKS unter der folgenden URL
 GET https://appleid.apple.com/auth/keys
 ```
 
-Sie können dieses JSON Web Key Set (JWKS) zu Ihren `JWTSigners` hinzufügen.
-Sie können dann JWTs von Apple an die Methode `verify` übergeben. Der Schlüsselbezeichner (`kid`) im JWT-Header wird verwendet, um automatisch den richtigen Schlüssel für die Verifizierung auszuwählen.
+Du kannst dieses JSON Web Key Set (JWKS) zu `JWTKeyCollection` hinzufügen.
+Du kannst dann JWTs von Apple an die Methode `verify` übergeben. Der Schlüsselbezeichner (`kid`) im JWT-Header wird verwendet, um automatisch den richtigen Schlüssel für die Verifizierung auszuwählen.
 
 JWT-Herausgeber können ihre JWKS rotieren, was bedeutet, dass Sie gelegentlich einen neuen Download durchführen müssen. Siehe Vapor's unterstützte JWT [Vendors](#vendors) Liste unten für APIs, die dies automatisch tun.
 
