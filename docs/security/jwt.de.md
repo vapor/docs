@@ -47,7 +47,7 @@ Versuchen wir, das folgende JWT-Beispiel zu überprüfen.
 ```swift
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ2YXBvciIsImV4cCI6NjQwOTIyMTEyMDAsImFkbWluIjp0cnVlfQ.lS5lpwfRNSZDvpGQk6x5JI1g40gkYCOWqbc3J_ghowo
 ```
-Sie können den Inhalt dieses Tokens überprüfen, indem Sie [jwt.io](https://jwt.io) besuchen und das Token in den Debugger einfügen. Setzen Sie den Schlüssel im Abschnitt "Verify Signature" auf `secret`.
+Du kannst den Inhalt dieses Tokens überprüfen, indem du [jwt.io](https://jwt.io) besuchst und das Token in den Debugger einfügst. Setz den Schlüssel im Abschnitt "Verify Signature" auf `secret`.
 
 Wir müssen eine Struktur erstellen, die mit `JWTPayload` konform ist und die Struktur des JWT darstellt. Wir werden die in JWT enthaltenen [claims](#claims) verwenden, um gängige Felder wie `sub` und `exp` zu behandeln.
 
