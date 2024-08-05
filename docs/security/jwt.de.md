@@ -290,7 +290,7 @@ await app.jwt.keys.addHMAC(key: "foo", digestAlgorithm: .sha256, kid: "a")
 await app.jwt.keys.addHMAC(key: "bar", digestAlgorithm: .sha256, kid: "b")
 ```
 
-Wenn Sie JWTs signieren, übergeben Sie den Parameter `kid` für den gewünschten Unterzeichner.
+Wenn du JWTs signierst, übergebe den `kid` Parameter für den gewünschten Unterzeichner.
 
 ```swift
 // Unterschreiben mit Unterzeichner "a"
