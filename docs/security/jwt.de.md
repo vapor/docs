@@ -152,7 +152,7 @@ Du solltest das neu erzeugte Token in einer _200 OK_ Antwort zurückerhalten.
 
 ## Authentifizierung
 
-Weitere Informationen zur Verwendung von JWT mit Vapors Authentifizierungs-API finden Sie unter [Authentifizierung &rarr; JWT](authentication.md#jwt).
+Weitere Informationen zur Verwendung von JWT mit Vapors Authentifizierungs-API findest du unter [Authentifizierung &rarr; JWT](authentication.md#jwt).
 
 ## Algorithmen
 
