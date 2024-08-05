@@ -394,7 +394,7 @@ app.get("google") { req async throws -> HTTPStatus in
 Konfiguriere zunächst die Kennung deiner Microsoft-Anwendung.
 
 ```swift
-// Konfigurieren Sie die Kennung der Microsoft-App.
+// Konfiguriere die Kennung der Microsoft-App.
 app.jwt.microsoft.applicationIdentifier = "..."
 ```
 
