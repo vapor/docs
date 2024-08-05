@@ -26,7 +26,7 @@ let package = Package(
 Wenn du das Manifest direkt in Xcode bearbeitest, werden die Änderungen automatisch übernommen und die neue Abhängigkeit wird beim Speichern der Datei abgerufen. Andernfalls führe `swift package resolve` aus, um die neue Abhängigkeit abzurufen.
 ### Konfiguration
 
-Das JWT-Modul fügt `Application` eine neue Eigenschaft `jwt hinzu, die für die Konfiguration verwendet wird. Um JWTs zu signieren oder zu verifizieren, musst du einen Schlüssel hinzufügen. Der einfachste Signieralgorithmus ist HS256 oder HMAC mit SHA-256.
+Das JWT-Modul fügt `Application` eine neue Eigenschaft `jwt` hinzu, die für die Konfiguration verwendet wird. Um JWTs zu signieren oder zu verifizieren, musst du einen Schlüssel hinzufügen. Der einfachste Signieralgorithmus ist HS256 oder HMAC mit SHA-256.
 
 ```swift
 import JWT
