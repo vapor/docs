@@ -190,7 +190,7 @@ let key = try Insecure.RSA.PrivateKey(
 Der Initialisierer für den öffentlichen Schlüssel ist ähnlich.
 
 ```swift
-// Initialisieren Sie einen öffentlichen RSA-Schlüssel mit Komponenten.
+// Initialisiere einen öffentlichen RSA-Schlüssel mit Komponenten.
 let key = try Insecure.RSA.PublicKey(
     modulus: modulus, 
     exponent: publicExponent
