@@ -180,7 +180,7 @@ RSA ist der am häufigsten verwendete JWT-Signieralgorithmus. Er unterstützt un
 
 Um einen RSA-Signierer zu erstellen, muss zunächst ein `RSAKey` initialisiert werden. Dies kann durch Übergabe der Komponenten geschehen.
 ```swift
-// Initialisieren Sie einen privaten RSA-Schlüssel mit Komponenten.
+// Initialisiere einen privaten RSA-Schlüssel mit Komponenten.
 let key = try Insecure.RSA.PrivateKey(
     modulus: modulus, 
     exponent: publicExponent, 
