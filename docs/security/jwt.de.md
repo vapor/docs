@@ -39,7 +39,7 @@ await app.jwt.keys.addHMAC(key: "secret", digestAlgorithm: .sha256)
     Das `await` Schlüsselwort ist erforderlich, da die Schlüsselsammlung ein `actor` ist.
 
 
-Der `HS256` Unterzeichnern benötigt einen Schlüssel zur Initialisierung. Im Gegensatz zu anderen Unterzeichnern wird dieser eine Schlüssel sowohl zum Signieren _als auch_ zum Verifizieren von Tokens verwendet. Erfahre mehr über die verfügbaren [Algorithmen](#Algorithmen) unten.
+Der `HS256` Unterzeichner benötigt einen Schlüssel zur Initialisierung. Im Gegensatz zu anderen Unterzeichnern wird dieser eine Schlüssel sowohl zum Signieren _als auch_ zum Verifizieren von Tokens verwendet. Erfahre mehr über die verfügbaren [Algorithmen](#Algorithmen) unten.
 ### Payload
 
 Versuchen wir, das folgende JWT-Beispiel zu überprüfen.
