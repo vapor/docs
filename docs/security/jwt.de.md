@@ -327,7 +327,7 @@ Das JWT-Paket von Vapor enthält mehrere Hilfsprogramme für die Implementierung
 |`nbf`|`NotBeforeClaim`|`verifyNotBefore(currentDate:)`|
 |`sub`|`SubjectClaim`|n/a|
 
-Alle Ansprüche sollten mit der Methode `JWTPayload.verify` überprüft werden. Wenn der Anspruch eine spezielle verify-Methode hat, können Sie diese verwenden. Andernfalls greifen Sie mit `value` auf den Wert des Anspruchs zu und prüfen, ob er gültig ist.
+Alle Ansprüche sollten mit der Methode `JWTPayload.verify` überprüft werden. Wenn der Anspruch eine spezielle verify-Methode hat, kannst du diese verwenden. Andernfalls greife mit `value` auf den Wert des Anspruchs zu und prüfen, ob er gültig ist.
 
 ## JWK
 
