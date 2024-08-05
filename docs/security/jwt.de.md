@@ -254,7 +254,7 @@ C18ScRb4Z6poMBgJtYlVtd9ly63URv57ZW0Ncs1LiZB7WATb3svu+1c7HQ==
 -----END PUBLIC KEY-----
 """
 
-// Initialisieren Sie einen ECDSA-Schlüssel mit öffentlichem PEM.
+// Initialisiere einen ECDSA-Schlüssel mit öffentlichem PEM.
 let key = try ES256PublicKey(pem: ecdsaPublicKey)
 ```
 
