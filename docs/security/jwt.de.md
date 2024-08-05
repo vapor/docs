@@ -373,7 +373,7 @@ app.get("apple") { req async throws -> HTTPStatus in
 Konfiguriere zunächst Ihre Google-Anwendungskennung und den G Suite-Domänennamen.
 
 ```swift
-// Konfigurieren Sie den Bezeichner der Google-App und den Domänennamen.
+// Konfiguriere den Bezeichner der Google-App und den Domänennamen.
 app.jwt.google.applicationIdentifier = "..."
 app.jwt.google.gSuiteDomainName = "..."
 ```
