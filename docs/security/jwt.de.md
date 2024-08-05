@@ -266,7 +266,7 @@ Es gibt drei ECDSA-Algorithmen, je nach verwendeter Kurve:
 Alle Algorithmen bieten sowohl einen öffentlichen Schlüssel als auch einen privaten Schlüssel,
 wie z. B. `ES256PublicKey` und `ES256PrivateKey`.
 
-Sie können auch einen zufälligen ECDSA-Schlüssel erzeugen, indem Sie den leeren Initialisierer verwenden. Dies ist für Tests nützlich.
+Du kannst auch einen zufälligen ECDSA-Schlüssel erzeugen, indem du den leeren Initialisierer verwendest. Dies ist für Tests nützlich.
 
 ```swift
 let key = ES256PrivateKey()
