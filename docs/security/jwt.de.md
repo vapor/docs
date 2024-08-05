@@ -218,7 +218,7 @@ Verwende `Insecure.RSA.PrivateKey`, um private RSA-PEM-Schlüssel zu laden. Dies
 -----BEGIN RSA PRIVATE KEY-----
 ```
 
-Sobald Sie den RSA-Schlüssel haben, können Sie ihn mit der Methode `addRSA` hinzufügen.
+Sobald du den RSA-Schlüssel hast, kannst du ihn mit der Methode `addRSA` hinzufügen.
 
 ```swift
 // RSA mit SHA-256 Signierer hinzufügen.
