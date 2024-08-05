@@ -272,7 +272,7 @@ Sie können auch einen zufälligen ECDSA-Schlüssel erzeugen, indem Sie den leer
 let key = ES256PrivateKey()
 ```
 
-Sobald Sie den ECDSAKey haben, können Sie ihn mit der Methode `addECDSA` zur Schlüsselsammlung hinzufügen.
+Sobald du den ECDSAKey hast, kannst du ihn mit der Methode `addECDSA` zur Schlüsselsammlung hinzufügen.
 
 ```swift
 // ECDSA mit SHA-256 Unterzeichner hinzufügen.
