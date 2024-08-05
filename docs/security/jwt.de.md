@@ -342,7 +342,7 @@ GET https://appleid.apple.com/auth/keys
 Du kannst dieses JSON Web Key Set (JWKS) zu `JWTKeyCollection` hinzufügen.
 Du kannst dann JWTs von Apple an die Methode `verify` übergeben. Der Schlüsselbezeichner (`kid`) im JWT-Header wird verwendet, um automatisch den richtigen Schlüssel für die Verifizierung auszuwählen.
 
-JWT-Herausgeber können ihre JWKS rotieren, was bedeutet, dass Sie gelegentlich einen neuen Download durchführen müssen. Siehe Vapor's unterstützte JWT [Vendors](#vendors) Liste unten für APIs, die dies automatisch tun.
+JWT-Herausgeber können deine JWKS rotieren, was bedeutet, dass du gelegentlich einen neuen Download durchführen musst. Siehe Vapor's unterstützte JWT [Vendors](#vendors) Liste unten für APIs, die dies automatisch tun.
 
 ## Vendors
 
@@ -378,7 +378,7 @@ app.jwt.google.applicationIdentifier = "..."
 app.jwt.google.gSuiteDomainName = "..."
 ```
 
-Verwenden Sie dann die Hilfe `req.jwt.google`, um ein Google JWT zu holen und zu überprüfen.
+Verwenden dann die Hilfe `req.jwt.google`, um ein Google JWT zu holen und zu überprüfen.
 
 ```swift
 // Google JWT aus der Autorisierungskopfzeile abrufen und überprüfen.
@@ -391,14 +391,14 @@ app.get("google") { req async throws -> HTTPStatus in
 
 ### Microsoft
 
-Konfigurieren Sie zunächst die Kennung Ihrer Microsoft-Anwendung.
+Konfiguriere zunächst die Kennung deiner Microsoft-Anwendung.
 
 ```swift
 // Konfigurieren Sie die Kennung der Microsoft-App.
 app.jwt.microsoft.applicationIdentifier = "..."
 ```
 
-Verwenden Sie dann die Hilfsfunktion `req.jwt.microsoft`, um ein Microsoft JWT abzurufen und zu überprüfen.
+Verwende dann die Hilfsfunktion `req.jwt.microsoft`, um ein Microsoft JWT abzurufen und zu überprüfen.
 
 ```swift
 // Microsoft JWT aus dem Autorisierungs-Header abrufen und überprüfen.
