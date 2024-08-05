@@ -175,9 +175,8 @@ await app.jwt.keys.addHMAC(key: "secret", digestAlgorithm: .sha256)
 
 RSA ist der am häufigsten verwendete JWT-Signieralgorithmus. Er unterstützt unterschiedliche öffentliche und private Schlüssel. Das bedeutet, dass ein öffentlicher Schlüssel verteilt werden kann, um die Authentizität der JWTs zu überprüfen, während der private Schlüssel, der sie erzeugt, geheim gehalten wird.
 
-!!! Warnung
-
-Das JWT-Paket von Vapor unterstützt keine RSA-Schlüssel mit einer Größe von weniger als 2048 Bit. Da RSA aus Sicherheitsgründen von der NIST nicht mehr empfohlen wird, sind RSA-Schlüssel hinter einem `Insecure`-Namensraum eingeschlossen, um von ihrer Verwendung abzuschrecken.
+!!! warning "Warnung"
+    Das JWT-Paket von Vapor unterstützt keine RSA-Schlüssel mit einer Größe von weniger als 2048 Bit. Da RSA aus Sicherheitsgründen von der NIST nicht mehr empfohlen wird, sind RSA-Schlüssel hinter einem `Insecure`-Namensraum eingeschlossen, um von ihrer Verwendung abzuschrecken.
 
 Um einen RSA-Signierer zu erstellen, muss zunächst ein `RSAKey` initialisiert werden. Dies kann durch Übergabe der Komponenten geschehen.
 ```swift
