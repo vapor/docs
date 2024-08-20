@@ -40,7 +40,7 @@ Ein Request an `GET /hello` wird die Middleware in der folgenden Reihenfolge dur
 Request → A → B → C → Handler → C → B → A → Response
 ```
 
-Middleware kann auch _vorangestellt_ werden, was nützlich ist, wenn Sie eine Middleware _vor_ der Standard-Middleware hinzufügen möchten, die Vapor automatisch hinzufügt:
+Middleware kann auch _vorangestellt_ werden, was nützlich ist, wenn du eine Middleware _vor_ der Standard-Middleware hinzufügen möchtest, die Vapor automatisch hinzufügt:
 
 ```swift
 app.middleware.use(someMiddleware, at: .beginning)
