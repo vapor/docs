@@ -145,7 +145,7 @@ let corsConfiguration = CORSMiddleware.Configuration(
     allowedHeaders: [.accept, .authorization, .contentType, .origin, .xRequestedWith, .userAgent, .accessControlAllowOrigin]
 )
 let cors = CORSMiddleware(configuration: corsConfiguration)
-// cors middleware should come before default error middleware using `at: .beginning`
+// cors-Middleware sollte vor der Standard-Fehler-Middleware mit `at: .beginning` stehen
 app.middleware.use(cors, at: .beginning)
 ```
 
