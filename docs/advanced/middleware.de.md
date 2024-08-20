@@ -69,7 +69,7 @@ struct EnsureAdminUserMiddleware: Middleware {
 }
 ```
 
-Wenn du async/await verwendest, verwende folgendes Beispiel:
+Wenn du `async`/`await` verwendest, verwende folgendes Beispiel:
 
 ```swift
 import Vapor
