@@ -34,7 +34,7 @@ app.group(MiddlewareC()) {
 }
 ```
 
-Ein Request an GET /hello wird die Middleware in der folgenden Reihenfolge durchlaufen:
+Ein Request an `GET /hello` wird die Middleware in der folgenden Reihenfolge durchlaufen:
 
 ```
 Request → A → B → C → Handler → C → B → A → Response
