@@ -21,7 +21,7 @@ group.get("foo") { req in
 
 ### Reihenfolge
 
-Die Reihenfolge, in der Middleware hinzugefügt wird, ist wichtig. Requests, die in Ihre Anwendung kommen, durchlaufen die Middleware in der Reihenfolge, in der sie hinzugefügt werden. Responses, die Ihre Anwendung verlassen, gehen in umgekehrter Reihenfolge durch die Middleware zurück. Route-spezifische Middleware wird immer nach der Application-Middleware ausgeführt. Folgendes Beispiel erklärt den Sachverhalt:
+Die Reihenfolge, in der Middleware hinzugefügt wird, ist wichtig. Requests, die in die Application eingehen, durchlaufen die Middleware in der Reihenfolge in der sie hinzugefügt werden. Responses, die die Application verlassen, gehen in umgekehrter Reihenfolge durch die Middleware zurück. Route-spezifische Middleware wird immer nach der Application-Middleware ausgeführt. Folgendes Beispiel erklärt den Sachverhalt:
 
 ```swift
 app.middleware.use(MiddlewareA())
