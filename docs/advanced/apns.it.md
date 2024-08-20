@@ -48,7 +48,7 @@ let apnsConfig = APNSClientConfiguration(
         keyIdentifier: "<#key identifier#>",
         teamIdentifier: "<#team identifier#>"
     ),
-    environment: .sandbox
+    environment: .development
 )
 app.apns.containers.use(
     apnsConfig,
