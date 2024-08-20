@@ -1,6 +1,6 @@
 # Middleware
 
-Middleware ist eine Logikkette zwischen dem Client und einem Vapor-Route-Handler. Es ermöglicht Ihnen, Operationen an eingehenden Requests durchzuführen, bevor sie den Route-Handler erreichen, und an ausgehenden Responses, bevor sie zum Client gesendet werden.
+Middleware ist eine Logikkette zwischen dem Client und einem Vapor-Route-Handler. Es ermöglicht dir, Operationen an eingehenden Requests durchzuführen, bevor sie den Route-Handler erreichen, und an ausgehenden Responses, bevor sie zum Client gesendet werden.
 
 ## Konfiguration
 
