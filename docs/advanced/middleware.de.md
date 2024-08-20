@@ -149,4 +149,4 @@ let cors = CORSMiddleware(configuration: corsConfiguration)
 app.middleware.use(cors, at: .beginning)
 ```
 
-Da geworfene Fehler sofort an den Client zurückgegeben werden, muss die CORSMiddleware vor der ErrorMiddleware aufgeführt werden. Andernfalls wird die HTTP-Fehlerantwort ohne CORS-Header zurückgegeben und kann nicht vom Browser gelesen werden.
+Da geworfene Fehler sofort an den Client zurückgegeben werden, muss die `CORSMiddleware` vor der `ErrorMiddleware` aufgeführt werden. Andernfalls wird die HTTP-Fehlerantwort ohne CORS-Header zurückgegeben und kann nicht vom Browser gelesen werden.
