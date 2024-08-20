@@ -122,7 +122,7 @@ let file = FileMiddleware(publicDirectory: app.directory.publicDirectory)
 app.middleware.use(file)
 ```
 
-Sobald FileMiddleware registriert ist, kann eine Datei wie Public/images/logo.png von einer Leaf-Vorlage aus verlinkt werden als <img src="/images/logo.png"/>.
+Sobald FileMiddleware registriert ist, kann eine Datei wie `Public/images/logo.png` von einer Leaf-Vorlage aus verlinkt werden als `<img src="/images/logo.png"/>`.
 
 Wenn dein Server in einem Xcode-Projekt enthalten ist, z. B. in einer iOS-App, verwende stattdessen Folgendes:
 
