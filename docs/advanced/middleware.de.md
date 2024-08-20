@@ -10,7 +10,7 @@ Middleware kann global (für jede Route) in `configure(_:)` mit `app.middleware`
 app.middleware.use(MyMiddleware())
 ```
 
-Middleware kann auch zu idividuellen Routen hinzugefügt werden, in dem Route-Gruppen verwedet werden.
+Middleware kann auch zu individuellen Routen hinzugefügt werden, in dem Route-Gruppen verwendet werden.
 
 ```swift
 let group = app.grouped(MyMiddleware())
