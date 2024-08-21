@@ -42,7 +42,7 @@ To sign or verify JWTs, you will need to add a key to the collection. This is us
 import JWT
 
 // Add HMAC with SHA-256 signer.
-await app.jwt.keys.addHMAC(key: "secret", digestAlgorithm: .sha256)
+await app.jwt.keys.add(hmac: "secret", digestAlgorithm: .sha256)
 ```
 
 This adds an HMAC key with SHA-256 as the digest algorithm to the keychain, or HS256 in JWA notation. Check out the [algorithms](#algorithms) section below for more information on the available algorithms.
@@ -102,7 +102,7 @@ app.post("login") { req async throws -> [String: String]
 }
 ```
 
-When a request is made to this endpoing, it will return the signed JWT as a `String` in the response body, and if everything went according to plan, you'll see something like this:
+When a request is made to this endpoint, it will return the signed JWT as a `String` in the response body, and if everything went according to plan, you'll see something like this:
 
 ```json
 {
@@ -283,7 +283,7 @@ When adding a key to the key collection, you can also specify a key identifier (
 
 ```swift
 // Add HMAC with SHA-256 key named "a".
-await app.jwt.keys.addHMAC(key: "foo", digestAlgorithm: .sha256, kid: "a")
+await app.jwt.keys.add(hmac: "foo", digestAlgorithm: .sha256, kid: "a")
 ```
 
 If you don't specify a `kid`, the key will be assigned as the default key.
