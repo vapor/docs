@@ -3,7 +3,7 @@
 JSON Web Token (JWT) is an open standard ([RFC 7519](https://tools.ietf.org/html/rfc7519)) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed.
 JWTs are particularly useful in web applications, where they are commonly used for stateless authentication/authorization and information exchange. You can read more about the theory behind JWTs in the spec linked above or on [jwt.io](https://jwt.io/introduction).
 
-Vapor provides first-class support for JWTs through the `JWT` module. This module is built on top of the `JWTKit` library, which is a Swift implementation of the JWT standard based on [SwiftCrypto](https://github.com/apple/swift-crypto).
+Vapor provides first-class support for JWTs through the `JWT` module. This module is built on top of the `JWTKit` library, which is a Swift implementation of the JWT standard based on [SwiftCrypto](https://github.com/apple/swift-crypto). JWTKit provides signers and verifiers for a variety of algorithms, including HMAC, ECDSA, EdDSA, and RSA.
 
 ## Getting Started
 
@@ -31,10 +31,10 @@ let package = Package(
 
 ### Configuration
 
-After adding the dependency, you can start using the `JWT` module in your application. The JWT module adds a new `jwt` property to `Application` that is used for configuration.
+After adding the dependency, you can start using the `JWT` module in your application. The JWT module adds a new `jwt` property to `Application` that is used for configuration, of which the internals are provided by the [JWTKit](https://github.com/vapor/jwt-kit) library.
 
 #### Key Collection
-The `jwt` object comes with a `keys` property which is a `JWTKeyCollection`. This collection is used to store and manage the keys used to sign and verify JWTs. The `JWTKeyCollection` is an `actor`, which means that all operations on the collection are serialized and thread-safe.
+The `jwt` object comes with a `keys` property, which is an instance of JWTKit's `JWTKeyCollection`. This collection is used to store and manage the keys used to sign and verify JWTs. The `JWTKeyCollection` is an `actor`, which means that all operations on the collection are serialized and thread-safe.
 
 To sign or verify JWTs, you will need to add a key to the collection. This is usually done in your `configure.swift` file:
 
@@ -110,7 +110,7 @@ When a request is made to this endpoint, it will return the signed JWT as a `Str
 }
 ```
 
-which you can decode and verify using the [`jwt.io` debugger](https://jwt.io/#debugger). The debugger will show you the payload (which should be the data you specified earlier) and header of the JWT, and you can verify the signature using the secret key you used to sign the JWT.
+You can decode and verify this token using the [`jwt.io` debugger](https://jwt.io/#debugger). The debugger will show you the payload (which should be the data you specified earlier) and header of the JWT, and you can verify the signature using the secret key you used to sign the JWT.
 
 ### Verifying
 
@@ -125,7 +125,7 @@ app.get("me") { req async throws -> HTTPStatus in
 }
 ```
 
-The req.jwt.verify helper will check the `Authorization` header for a bearer token. If one exists, it will parse the JWT and verify its signature and claims. If any of these steps fail, a 401 Unauthorized error will be thrown.
+The `req.jwt.verify` helper will check the `Authorization` header for a bearer token. If one exists, it will parse the JWT and verify its signature and claims. If any of these steps fail, a 401 Unauthorized error will be thrown.
 Test the route by sending the following HTTP request:
 
 ```http
@@ -133,7 +133,7 @@ GET /me HTTP/1.1
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ2YXBvciIsImV4cCI6NjQwOTIyMTEyMDAsImFkbWluIjp0cnVlfQ.lS5lpwfRNSZDvpGQk6x5JI1g40gkYCOWqbc3J_ghowo
 ```
 
-If everything worked, a 200 OK response will be returned and the payload printed:
+If everything worked, a `200 OK` response will be returned and the payload printed:
 
 ```swift
 TestPayload(
