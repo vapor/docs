@@ -28,7 +28,7 @@ Queuesには、メインプロトコルとインターフェースする正式�
 - [QueuesFluentDriver](https://github.com/m-barthelemy/vapor-queues-fluent-driver)
 
 !!! tip
-   `vapor/queues`パッケージは、ドライバを新規に構築している場合を除き、直接依存パッケージに追加しないでください。代わりにドライバパッケージのいずれかを追加してください。
+    `vapor/queues`パッケージは、ドライバを新規に構築している場合を除き、直接依存パッケージに追加しないでください。代わりにドライバパッケージのいずれかを追加してください。
 
 ## Getting Started
 
