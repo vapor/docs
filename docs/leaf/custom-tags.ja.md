@@ -50,7 +50,7 @@ struct NowTag: LeafTag {
 
 ## タグの設定
 
-`NowTag` を実装したので、Leaf にそれを伝えるだけです。このようにして、別のパッケージから来るタグでも追加することができます。通常、これを `configure.swift` で行います：
+`NowTag` を実装したので、Leaf にそれを伝えるだけです。このようにして、たとえ別のパッケージで定義されたタグでも追加することができます。通常、これを `configure.swift` で行います：
 
 ```swift
 app.leaf.tags["now"] = NowTag()
@@ -64,19 +64,18 @@ The time is #now()
 
 ## コンテキストプロパティ
 
-The `LeafContext` contains two important properties. `parameters` and `data` that has everything we should need.
 `LeafContext` には、重要なプロパティが 2 つあります。それが `parameters` と `data` です。この 2 つで必要な情報はすべて揃っています。
 
 - `parameters`: タグのパラメータを含む配列です
 - `data`: コンテキストとして `render(_:_:)` に渡されたビューのデータを含む辞書です
 
-### サンプルの Hello タグ
+### Hello タグによる実例
 
 これを理解するために、両方のプロパティを使ったシンプルな hello タグを実装してみましょう。
 
-#### パラメータの使用
+#### parameters の使用
 
-最初のパラメータに名前が含まれていることを想定しています。
+nameの値が提供される、1つ目のパラメータにアクセスできます
 
 ```swift
 enum HelloTagError: Error {
@@ -100,7 +99,7 @@ struct HelloTag: UnsafeUnescapedLeafTag {
 
 #### データの使用
 
-データプロパティの中の "name" キーを使って名前の値にアクセスします。
+data プロパティの中の "name" キーを使って名前の値にアクセスします。
 
 ```swift
 enum HelloTagError: Error {
