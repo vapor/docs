@@ -48,9 +48,9 @@ app.views.use(.leaf)
     Xcode から実行する際に Leaf がテンプレートを見つけられるようにするためには、 Xcode ワークスペースの [custom working directory](../getting-started/xcode.md#custom-working-directory) を設定する必要があります。
 ## フォルダ構成
 
-Leaf を設定したら、`.leaf` ファイルを格納するための `Views` フォルダを用紙する必要があります。デフォルトでは、Leaf はプロジェクトのルートに対して `./Resources/Views` というフォルダを期待します。
+Leaf を設定したら、`.leaf` ファイルを格納するための `Views` フォルダを用意する必要があります。デフォルトでは、Leaf はプロジェクトのルートに対して `./Resources/Views` というフォルダを要求します。
 
-JavaScript や CSS ファイルを提供する予定がある場合は、Vapor の [`FileMiddleware`](https://api.vapor.codes/vapor/documentation/vapor/filemiddleware) を有効にして、 `/Public` フォルダからファイルを提供できるようにすることをお勧めします。
+JavaScript や CSS ファイルを提供する予定がある場合は、Vapor の [`FileMiddleware`](https://api.vapor.codes/vapor/documentation/vapor/filemiddleware) を有効にして、 `/Public` フォルダからファイルを提供できるようにすることも可能です。
 
 ```
 VaporApp
@@ -74,7 +74,7 @@ Hello, #(name)!
 ```
 
 !!! tip
-    もし、コードエディタとして VSCode を使用している場合、シンタックスハイライトを有効にするために、Leaf 拡張機能をインストールすることをお勧めします：Leaf HTML](https://marketplace.visualstudio.com/items?itemName=Francisco.html-leaf)
+    もし、コードエディタとして VSCode を使用している場合、シンタックスハイライトを有効にするために、Leaf 拡張機能をインストールすることをお勧めします：[Leaf HTML](https://marketplace.visualstudio.com/items?itemName=Francisco.html-leaf)
 
 次に、View をレンダリングするルートを登録します。(通常は、`routes.swift` やコントローラで行います)
 
@@ -90,6 +90,6 @@ app.get("hello") { req async throws -> View in
 }
 ```
 
-これにより、Leaf を直接呼び出すのではなく、`Request` の汎用 `view` プロパティを使用します。これにより、テスト時に別のレンダラーに切り替えることができます。
+ここでは、Leaf を直接呼び出すのではなく、`Request` の汎用 `view` プロパティを使用します。これにより、テスト時に別のレンダラーに切り替えることができます。
 
 ブラウザを開き、`/hello` にアクセスしてください。 `Hello, Leaf!` と表示されているはずです。これで最初の Leaf ビューのレンダリングが完了です！
