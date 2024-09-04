@@ -97,7 +97,7 @@ struct HelloTag: UnsafeUnescapedLeafTag {
 #hello("John")
 ```
 
-#### データの使用
+#### data の使用
 
 data プロパティの中の "name" キーを使って名前の値にアクセスします。
 
