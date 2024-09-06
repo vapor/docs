@@ -45,7 +45,7 @@ app.views.use(.leaf)
     Leaf には、ページをレンダリングするための内部キャッシュがあります。`Application` の環境が `.development` に設定されている場合、このキャッシュは無効になり、テンプレートへの変更が即座に反映されます。`.production` やその他の環境では、キャッシュがデフォルトで有効になっており、テンプレートに加えた変更はアプリケーションを再起動するまで反映されません。
 
 !!! warning 
-    Xcode から実行する際に Leaf がテンプレートを見つけられるようにするためには、 Xcode ワークスペースの [custom working directory](../getting-started/xcode/#_1) を設定する必要があります。
+    Xcode から実行する際に Leaf がテンプレートを見つけられるようにするためには、 Xcode ワークスペースの [custom working directory](../../getting-started/xcode/#_1) を設定する必要があります。
 ## フォルダ構成
 
 Leaf を設定したら、`.leaf` ファイルを格納するための `Views` フォルダを用意する必要があります。デフォルトでは、Leaf はプロジェクトのルートに対して `./Resources/Views` というフォルダを要求します。
