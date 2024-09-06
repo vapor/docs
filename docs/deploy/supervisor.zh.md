@@ -34,8 +34,8 @@ sudo dnf install supervisor
 command=/home/vapor/hello/.build/release/App serve --env production
 directory=/home/vapor/hello/
 user=vapor
-stdout_logfile=/var/log/supervisor/%(program_name)-stdout.log
-stderr_logfile=/var/log/supervisor/%(program_name)-stderr.log
+stdout_logfile=/var/log/supervisor/%(program_name)s-stdout.log
+stderr_logfile=/var/log/supervisor/%(program_name)s-stderr.log
 ```
 
 正如我们的配置文件中所指定的， `Hello` 项目位于用户 `vapor` 的主文件夹中。确保 `directory` 指向 `Package.swift` 文件所在项目的根目录。

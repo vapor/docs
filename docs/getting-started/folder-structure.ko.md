@@ -24,7 +24,7 @@
 ## Public
 
 이 폴더에는 `FileMiddleware`가 활성화된 경우 앱에서 제공되는 공개 파일이 포함됩니다. 일반적으로 이미지, 스타일 시트 및 브라우저 스크립트가 여기에 포함됩니다. 예를 들어, `localhost:8080/favicon.ico`로의 요청은 `Public/favicon.ico` 파일의 존재 여부를 확인하고 해당 파일을 반환합니다. 
-해당 [https://vapor.codes/favicon.ico](https://vapor.codes/favicon.ico)에 접속하면 Vapor로고 이미지를 확인할 수 있습니다. 
+해당 [https://design.vapor.codes/favicons/favicon.ico](https://design.vapor.codes/favicons/favicon.ico)에 접속하면 Vapor로고 이미지를 확인할 수 있습니다. 
 
 Vapor가 공개 파일을 제공하기 위해선 `configure.swift` 파일에서 `FileMiddleware`를 활성화해야 합니다.
 
