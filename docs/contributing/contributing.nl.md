@@ -30,9 +30,9 @@ Als je grotere veranderingen wilt voorstellen zoals nieuwe functies of bug fixes
 
 Als je gewoon wilt bijdragen maar geen idee hebt waar je aan moet werken, is dat geweldig! Vapor heeft een aantal forums die kunnen helpen. Vapor heeft ongeveer 40 repositories die actief ontwikkeld worden en ze allemaal doorzoeken om iets te vinden om aan te werken is niet praktisch, dus gebruiken we boards om deze samen te voegen.
 
-Het eerste board is het [good first issue board](https://github.com/orgs/vapor/projects/10). Elk issue in Vapor's GitHub org dat getagged is met `good first issue` zal aan dit board worden toegevoegd zodat u het kunt vinden. Dit zijn problemen waarvan we denken dat ze goed zijn voor mensen die relatief nieuw zijn met Vapor om aan te werken, omdat ze niet veel ervaring met de code vereisen.
+Het eerste board is het [good first issue board](https://github.com/orgs/vapor/projects/14). Elk issue in Vapor's GitHub org dat getagged is met `good first issue` zal aan dit board worden toegevoegd zodat u het kunt vinden. Dit zijn problemen waarvan we denken dat ze goed zijn voor mensen die relatief nieuw zijn met Vapor om aan te werken, omdat ze niet veel ervaring met de code vereisen.
 
-Het tweede bord is het [help gezocht bord](https://github.com/orgs/vapor/projects/11). Dit haalt problemen binnen met het label `help wanted`. Dit zijn problemen die goed zouden kunnen zijn om op te lossen, maar het core team heeft op dit moment andere prioriteiten. Deze problemen vereisen meestal een beetje meer kennis als ze niet ook gemarkeerd zijn met `good first issue`, maar het kunnen leuke projecten zijn om aan te werken!
+Het tweede bord is het [help gezocht bord](https://github.com/orgs/vapor/projects/13). Dit haalt problemen binnen met het label `help wanted`. Dit zijn problemen die goed zouden kunnen zijn om op te lossen, maar het core team heeft op dit moment andere prioriteiten. Deze problemen vereisen meestal een beetje meer kennis als ze niet ook gemarkeerd zijn met `good first issue`, maar het kunnen leuke projecten zijn om aan te werken!
 
 ### Vertalingen
 
