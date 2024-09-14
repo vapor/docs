@@ -120,7 +120,7 @@ try await app.autoMigrate()
 ```
 
 !!! tip
-SQLite の設定では、作成されたすべての接続で外部キー制約が自動的に有効になりますが、データベース内の外部キー設定は変更されません。データベースで直接レコードを削除すると、外部キー制約やトリガーに違反する可能性があります。
+    SQLite の設定では、作成されたすべての接続で外部キー制約が自動的に有効になりますが、データベース内の外部キー設定は変更されません。データベースで直接レコードを削除すると、外部キー制約やトリガーに違反する可能性があります。
 
 #### MySQL
 
@@ -167,14 +167,14 @@ app.databases.use(.mysql(
 ```
 
 !!! warning
-本番環境では証明書の検証を無効にしないでください。検証に使用する証明書を `TLSConfiguration` に提供する必要があります。
+    本番環境では証明書の検証を無効にしないでください。検証に使用する証明書を `TLSConfiguration` に提供する必要があります。
 
 #### MongoDB
 
 MongoDB は、プログラマー向けに設計された人気のあるスキーマレス NoSQL データベースです。このドライバーは、バージョン 3.4 以降のすべてのクラウドホスティングプロバイダーおよびセルフホストインストールをサポートしています。
 
 !!! note
-このドライバーは、コミュニティによって作成およびメンテナンスされている MongoDB クライアント [MongoKitten](https://github.com/OpenKitten/MongoKitten) によって動作しています。MongoDB は、公式クライアントの [mongo-swift-driver](https://github.com/mongodb/mongo-swift-driver) と、Vapor との統合 [mongodb-vapor](https://github.com/mongodb/mongodb-vapor) をメンテナンスしています。
+    このドライバーは、コミュニティによって作成およびメンテナンスされている MongoDB クライアント [MongoKitten](https://github.com/OpenKitten/MongoKitten) によって動作しています。MongoDB は、公式クライアントの [mongo-swift-driver](https://github.com/mongodb/mongo-swift-driver) と、Vapor との統合 [mongodb-vapor](https://github.com/mongodb/mongodb-vapor) をメンテナンスしています。
 
 MongoDB を使用するには、次の依存関係をパッケージに追加します。
 
@@ -228,7 +228,7 @@ final class Galaxy: Model {
 新しいモデルを作成するには、`Model` に準拠する新しいクラスを作成します。
 
 !!! tip
-パフォーマンスを向上させ、準拠要件を簡素化するために、モデルクラスを `final` としてマークすることをお勧めします。
+    パフォーマンスを向上させ、準拠要件を簡素化するために、モデルクラスを `final` としてマークすることをお勧めします。
 
 `Model` プロトコルの最初の要件は、静的な文字列 `schema` です。
 
@@ -377,7 +377,7 @@ app.post("galaxies") { req -> EventLoopFuture<Galaxy> in
 ```
 
 !!! seealso
-リクエストボディのデコードに関する詳細は、[コンテンツ &rarr; 概要](../basics/content.md) を参照してください。
+    リクエストボディのデコードに関する詳細は、[コンテンツ &rarr; 概要](../basics/content.md) を参照してください。
 
 モデルのインスタンスを取得したら、`create(on:)` を呼び出してモデルをデータベースに保存します。これにより、保存が完了したことを示す `EventLoopFuture<Void>` が返されます。保存が完了したら、`map` を使用して新しく作成されたモデルを返します。
 
@@ -470,7 +470,7 @@ self.$galaxy.id = galaxyID
 親プロパティ名の前に `$` を付けることで、基になるプロパティラッパーにアクセスします。これは、実際の識別子の値を格納する内部の `@Field` にアクセスするために必要です。
 
 !!! seealso
-プロパティラッパーに関する詳細については、Swift Evolution の提案 [[SE-0258] Property Wrappers](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md) を参照してください。
+    プロパティラッパーに関する詳細については、Swift Evolution の提案 [[SE-0258] Property Wrappers](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md) を参照してください。
 
 次に、`Star` を処理するためのデータベースを準備するためにマイグレーションを作成します。
 
