@@ -30,7 +30,7 @@ Queues には、メインプロトコルとインターフェースする正式�
 !!! tip
     `vapor/queues` パッケージは、ドライバを新規に構築している場合を除き、直接依存パッケージに追加しないでください。代わりにドライバパッケージのいずれかを追加してください。
 
-## Getting Started
+## はじめに {#getting-started}
 
 Queues の使用を開始する方法を見てみましょう。
 
@@ -60,7 +60,7 @@ let package = Package(
 
 Xcode 内でマニフェストを直接編集した場合、ファイルを保存すると自動的に変更を検出し、新しい依存関係を取得します。それ以外の場合は、ターミナルから `swift package resolve` を実行して新しい依存関係を取得します。
 
-### Config
+### 設定 {#config}
 
 次のステップは、`configure.swift` で Queues を設定することです。ここでは、Redis ライブラリを例として使用します:
 
@@ -70,7 +70,7 @@ import QueuesRedisDriver
 try app.queues.use(.redis(url: "redis://127.0.0.1:6379"))
 ```
 
-### Registering a `Job`
+### `Job` の登録 {#registering-a-job}
 
 ジョブをモデリングした後、次のように configuration セクションに追加する必要があります:
 
@@ -80,14 +80,14 @@ let emailJob = EmailJob()
 app.queues.add(emailJob)
 ```
 
-### Running Workers as Processes
+### プロセスとしてワーカーを実行 {#running-workers-as-processes}
 
 新しいキューワーカーを開始するには、`swift run App queues` を実行します。特定の種類のワーカーを実行する場合は、`swift run App queues --queue emails` と指定することもできます。
 
 !!! tip
     ワーカーは本番環境で実行し続ける必要があります。長時間実行するプロセスを維持する方法については、ホスティングプロバイダーに従ってください。例えば、Heroku では、Procfile に `worker: Run queues` のように "worker" dyno を指定できます。これを設定すると、ダッシュボードのリソースタブや `heroku ps:scale worker=1`（または任意の dyno 数）でワーカーを開始できます。
 
-### Running Workers in-process
+### プロセス内でワーカーを実行 {#running-workers-in-process}
 
 アプリケーションと同じプロセスでワーカーを実行するには（別のサーバーを起動して処理する代わりに）、`Application` の便利なメソッドを呼び出します:
 
@@ -104,11 +104,11 @@ try app.queues.startScheduledJobs()
 !!! warning
     キューワーカーをコマンドラインまたはプロセス内ワーカー経由で起動しない場合、ジョブはディスパッチされません。
 
-## The `Job` Protocol
+## `Job` プロトコル {#the-job-protocol}
 
 ジョブは `Job` または `AsyncJob` プロトコルで定義されます。
 
-### Modeling a `Job` object:
+### `Job` オブジェクトのモデリング {#modeling-a-job-object}
 
 ```swift
 import Vapor 
@@ -155,7 +155,7 @@ struct EmailJob: AsyncJob {
 !!! tip
     **Getting Started** の指示に従って、このジョブを設定ファイルに追加することを忘れないでください。
 
-## Dispatching Jobs
+## ジョブのディスパッチ {#dispatching-jobs}
 
 キュージョブをディスパッチするには、`Application` または `Request` のインスタンスにアクセスする必要があります。ジョブをディスパッチするのは主にルートハンドラー内になるでしょう:
 
@@ -197,7 +197,7 @@ struct SendEmailCommand: AsyncCommand {
 ```
 
 
-### Setting `maxRetryCount`
+### `maxRetryCount` の設定 {#setting-maxretrycount}
 
 `maxRetryCount` を指定した場合、エラーが発生するとジョブは自動的に再試行されます。例えば:
 
@@ -223,7 +223,7 @@ app.get("email") { req async throws -> String in
 }
 ```
 
-### Specifying a delay
+### 遅延の指定 {#specifying-a-delay}
 
 ジョブを指定した `Date` が経過してからのみ実行するように設定できます。遅延を指定するには、`dispatch` の `delayUntil` パラメータに `Date` を渡します:
 
@@ -241,7 +241,7 @@ app.get("email") { req async throws -> String in
 
 ジョブが `delay` パラメータの前にデキューされた場合、ドライバによってジョブが再キューされます。
 
-### Specify a priority
+### 優先度の指定 {#specify-a-priority}
 
 ジョブは必要に応じて異なるキュータイプ/プライオリティに分類できます。例えば、`email` キューと `background-processing` キューを開いてジョブを分類したい場合があります。
 
@@ -307,14 +307,14 @@ struct SendEmailCommand: AsyncCommand {
 
 キューを指定しない場合、ジョブは `default` キューで実行されます。各キュータイプのワーカーを起動する手順については、**Getting Started** の指示に従ってください。
 
-## Scheduling Jobs
+## ジョブのスケジューリング {#scheduling-jobs}
 
 Queues パッケージは、ジョブを特定の時点にスケジュールすることもできます。
 
 !!! warning
     スケジュールされたジョブは、アプリケーションの起動前に `configure.swift` などで設定する必要があります。ルートハンドラー内では動作しません。
 
-### Starting the scheduler worker
+### スケジューラワーカーの起動 {#starting-the-scheduler-worker}
 スケジューラには、キューワーカーと同様に、別のワーカープロセスが必要です。このコマンドを実行してワーカーを起動できます:
 
 ```sh
@@ -324,7 +324,7 @@ swift run App queues --scheduled
 !!! tip
     ワーカーは本番環境で実行し続ける必要があります。長時間実行するプロセスを維持する方法については、ホスティングプロバイダーに従ってください。例えば、Heroku では、Procfile に `worker: App queues --scheduled` と指定することで「worker」 dyno を指定できます。
 
-### Creating a `ScheduledJob`
+### `ScheduledJob` の作成 {#creating-a-scheduledjob}
 
 まず、新しい `ScheduledJob` または `AsyncScheduledJob` を作成します:
 
@@ -365,7 +365,7 @@ app.queues.schedule(CleanupJob())
 !!! tip
     スケジューラはサーバーのタイムゾーンを考慮します。
 
-### Available builder methods
+### 利用可能なビルダーメソッド {#available-builder-methods}
 スケジューラには 5 つの主なメソッドがあり、それぞれがさらにヘルパーメソッドを含むビルダーオブジェクトを作成します。コンパイラが未使用の結果に関する警告を出さなくなるまで、スケジューラオブジェクトを構築し続けます。利用可能なすべてのメソッドは以下のとおりです:
 
 | ヘルパー関数       | 利用可能な修飾子                                                     | 説明                                        |
@@ -379,7 +379,7 @@ app.queues.schedule(CleanupJob())
 | `hourly()`   | `at(_ minute: Minute)`                                       | 実行する分。チェーンの最終メソッド。                        |
 | `minutely()` | `at(_ second: Second)`                                       | 実行する秒。チェーンの最終メソッド。                        |
 
-### Available helpers
+### 利用可能なヘルパー {#available-helpers}
 Queues には、スケジューリングを容易にするためのいくつかのヘルパー enum が付属しています:
 
 | ヘルパー関数      | 利用可能なヘルパー enum                        |
@@ -405,7 +405,7 @@ Queues には、スケジューリングを容易にするためのいくつか�
 .daily().at(.midnight)
 ```
 
-## Event Delegates
+## イベントデリゲート {#event-delegates}
 Queues パッケージでは、ワーカーがジョブに対してアクションを取ったときに通知を受け取る `JobEventDelegate` オブジェクトを指定することができます。これは、モニタリング、インサイトの表示、またはアラートの目的で使用できます。
 
 始めるには、オブジェクトを `JobEventDelegate` に準拠させ、必要なメソッドを実装します:
