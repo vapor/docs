@@ -35,6 +35,10 @@ let fileMiddleware = FileMiddleware(
 app.middleware.use(fileMiddleware)
 ```
 
+If running from Xcode please set the project schema run option working directory.
+See [here](xcode.md#custom-working-directory) for more information.
+
+
 ## Sources
 
 This folder contains all of the Swift source files for your project. 
