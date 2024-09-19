@@ -30,9 +30,9 @@ If you want to propose larger changes like new features or bug fixes that change
 
 If you just want to contribute but don't have an idea of what to work on, that's awesome! Vapor has a couple of boards that can help. Vapor has around 40 repositories that are actively developed and looking through them all to find something to work on is not practical so we use boards to aggregate these.
 
-The first board is the [good first issue board](https://github.com/orgs/vapor/projects/10). Any issue in Vapor's GitHub org that's tagged with `good first issue` will be added to the board for you to find. These are issues that we think will be good for people relatively new to Vapor to work on as they don't require much experience of the code.
+The first board is the [good first issue board](https://github.com/orgs/vapor/projects/14). Any issue in Vapor's GitHub org that's tagged with `good first issue` will be added to the board for you to find. These are issues that we think will be good for people relatively new to Vapor to work on as they don't require much experience of the code.
 
-The second board is the [help wanted board](https://github.com/orgs/vapor/projects/11). This pulls in issues labelled `help wanted`. These are issues that could be good to fix but the core team currently has other priorities. These issues usually require a bit more knowledge if they aren't also marked with `good first issue`, but they could be fun projects to work on!
+The second board is the [help wanted board](https://github.com/orgs/vapor/projects/13). This pulls in issues labelled `help wanted`. These are issues that could be good to fix but the core team currently has other priorities. These issues usually require a bit more knowledge if they aren't also marked with `good first issue`, but they could be fun projects to work on!
 
 ### Translations
 
