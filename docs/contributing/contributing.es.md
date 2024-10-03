@@ -30,9 +30,9 @@ Si deseas proponer cambios más importantes, como nuevas funcionalidades o corre
 
 Si solo quieres contribuir pero no tienes idea de en qué trabajar, ¡eso es fantástico! Vapor tiene un par de tableros que pueden ayudar. Vapor tiene alrededor de 40 repositorios que se desarrollan activamente y revisarlos todos para encontrar algo en lo que trabajar no es práctico, por lo que usamos tableros para organizar dichas tareas.
 
-El primer tablero es el [tablero de good first issue](https://github.com/orgs/vapor/projects/10). Cualquier problema en la organización GitHub de Vapor que esté etiquetado como `good first issue` se agregará al tablero para que lo encuentres. Estos son temas que creemos que serán buenos para que trabajen las personas relativamente nuevas en Vapor, ya que no requieren mucha experiencia con el código.
+El primer tablero es el [tablero de good first issue](https://github.com/orgs/vapor/projects/14). Cualquier problema en la organización GitHub de Vapor que esté etiquetado como `good first issue` se agregará al tablero para que lo encuentres. Estos son temas que creemos que serán buenos para que trabajen las personas relativamente nuevas en Vapor, ya que no requieren mucha experiencia con el código.
 
-El segundo tablero es el [tablero de help wanted](https://github.com/orgs/vapor/projects/11). Esto genera issues etiquetados como `help wanted`. Estos son problemas que podrían solucionarse, pero el equipo central actualmente tiene otras prioridades. Estos problemas generalmente requieren un poco más de conocimiento si no están marcados con `good first issue`, ¡pero podrían ser proyectos divertidos en los que trabajar!
+El segundo tablero es el [tablero de help wanted](https://github.com/orgs/vapor/projects/13). Esto genera issues etiquetados como `help wanted`. Estos son problemas que podrían solucionarse, pero el equipo central actualmente tiene otras prioridades. Estos problemas generalmente requieren un poco más de conocimiento si no están marcados con `good first issue`, ¡pero podrían ser proyectos divertidos en los que trabajar!
 
 ### Traducciones
 
