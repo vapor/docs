@@ -14,10 +14,12 @@ jobs:
     steps:
     - name: Checkout repository 
       uses: actions/checkout@v4
+    - name: Create virtual environment
+      run: python3 -m venv venv
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: venv/bin/pip install -r requirements.txt
     - name: Build documentation
-      run: mkdocs build
+      run: venv/bin/mkdocs build
     - name: Setup cloudformation linter 
       uses: ScottBrenner/cfn-lint-action@v2
     - name: Run cloudformation lint 

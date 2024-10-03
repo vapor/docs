@@ -17,11 +17,13 @@ jobs:
       - name: Checkout repository 
         uses: actions/checkout@v4
       
+      - name: Create virtual environment
+        run: python3 -m venv venv
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: venv/bin/pip install -r requirements.txt
       - name: Build the website
         run: |
-          mkdocs build
+          venv/bin/mkdocs build
           swift fixSearchIndex.swift
           cp googlefc012e5d94cfa05f.html site/googlefc012e5d94cfa05f.html
           swift setUpRedirects.swift
