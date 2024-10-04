@@ -76,6 +76,7 @@ markdown_extensions:
   - admonition
   - footnotes
   - meta
+  - attr_list
   - toc:
       permalink: true
 
@@ -511,7 +512,7 @@ plugins:
             Overview: 概要
             Passwords: パスワード
             Query: クエリ
-            Queues: 列
+            Queues: キュー
             Relations: 関係
             Release Notes: リリースノート
             Routing: ルーティング
