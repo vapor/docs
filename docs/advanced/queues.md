@@ -25,7 +25,7 @@ Queues currently has one officially supported driver which interfaces with the m
 
 Queues also has community-based drivers:
 - [QueuesMongoDriver](https://github.com/vapor-community/queues-mongo-driver)
-- [QueuesFluentDriver](https://github.com/m-barthelemy/vapor-queues-fluent-driver)
+- [QueuesFluentDriver](https://github.com/vapor-community/vapor-queues-fluent-driver)
 
 !!! tip
     You should not install the `vapor/queues` package directly unless you are building a new driver. Install one of the driver packages instead. 
@@ -444,3 +444,30 @@ There are a number of third-party packages that use the delegate functionality t
 
 - [QueuesDatabaseHooks](https://github.com/vapor-community/queues-database-hooks)
 - [QueuesDash](https://github.com/gotranseo/queues-dash)
+
+## Testing
+
+To avoid syncronization problems and get a deterministic testing, the Queues package provides an XCTQueue library and an AsyncTestQueuesDriver driver dedicated to testing. that you can use as follows:
+
+```swift
+final class UserCreationServiceTests: XCTestCase {
+    var app: Application!
+
+    override func setUp() async throws {
+        self.app = try await Application.make(.testing)
+        try await configure(app)
+
+        // Override the driver being used for testing
+        app.queues.use(.asyncTest)
+    }
+
+    override func tearDown() async throws {
+        try await self.app.asyncShutdown()
+        self.app = nil
+    }
+}
+```
+
+See more in the Blog post from [Romain puclet](https://romain.codes/2024/10/08/using-and-testing-vapor-queues/)
+
+
