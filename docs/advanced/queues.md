@@ -447,7 +447,7 @@ There are a number of third-party packages that use the delegate functionality t
 
 ## Testing
 
-To avoid syncronization problems and get a deterministic testing, the Queues package provides an XCTQueue library and an AsyncTestQueuesDriver driver dedicated to testing. that you can use as follows:
+To avoid synchronization problems and ensure deterministic testing, the Queues package provides an `XCTQueue` library and an `AsyncTestQueuesDriver` driver dedicated to testing which you can use as follows:
 
 ```swift
 final class UserCreationServiceTests: XCTestCase {
@@ -468,6 +468,6 @@ final class UserCreationServiceTests: XCTestCase {
 }
 ```
 
-See more in the Blog post from [Romain puclet](https://romain.codes/2024/10/08/using-and-testing-vapor-queues/)
+See more details in [Romain Pouclet's blog post](https://romain.codes/2024/10/08/using-and-testing-vapor-queues/).
 
 
