@@ -444,3 +444,30 @@ There are a number of third-party packages that use the delegate functionality t
 
 - [QueuesDatabaseHooks](https://github.com/vapor-community/queues-database-hooks)
 - [QueuesDash](https://github.com/gotranseo/queues-dash)
+
+## Testing
+
+To avoid synchronization problems and ensure deterministic testing, the Queues package provides an `XCTQueue` library and an `AsyncTestQueuesDriver` driver dedicated to testing which you can use as follows:
+
+```swift
+final class UserCreationServiceTests: XCTestCase {
+    var app: Application!
+
+    override func setUp() async throws {
+        self.app = try await Application.make(.testing)
+        try await configure(app)
+
+        // Override the driver being used for testing
+        app.queues.use(.asyncTest)
+    }
+
+    override func tearDown() async throws {
+        try await self.app.asyncShutdown()
+        self.app = nil
+    }
+}
+```
+
+See more details in [Romain Pouclet's blog post](https://romain.codes/2024/10/08/using-and-testing-vapor-queues/).
+
+
