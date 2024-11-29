@@ -300,6 +300,9 @@ futureString.whenComplete { result in
     
 ### Wait
 
+!!! warning
+    Usage of `wait()` is discouraged, see [`Get`](#get) for a more modern approach.
+
 You can use `.wait()` to synchronously wait for the future to be completed. Since a future may fail, this call is throwing.
 
 ```swift
@@ -316,6 +319,18 @@ print(string) /// String
 !!! warning
     Attempting to call `wait()` on an event loop thread will cause an assertion failure.
 
+### Get
+
+In case there is no concurrency-based alternative to an API, you can wait for the future's value using `try await future.get()`.
+
+```swift
+/// Assume we get a future string back from some API
+let futureString: EventLoopFuture<String> = ...
+
+/// Wait for the string to be ready
+let string = try await futureString.get()
+print(string) /// String
+```
     
 ## Promise
 
