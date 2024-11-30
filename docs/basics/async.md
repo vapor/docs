@@ -313,7 +313,7 @@ print(string) /// String
     
 ### Wait
 
-!!! caution
+!!! warning
     The `wait()` function is obsolete, see [`Get`](#get) for the recommended approach.
 
 You can use `.wait()` to synchronously wait for the future to be completed. Since a future may fail, this call is throwing.
