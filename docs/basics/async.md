@@ -300,14 +300,14 @@ futureString.whenComplete { result in
 
 ### Get
 
-In case there is no concurrency-based alternative to an API, you can wait for the future's value using `try await future.get()`.
+In case there is no concurrency-based alternative to an API, you can await for the future's value using `try await future.get()`.
 
 ```swift
 /// Assume we get a future string back from some API
 let futureString: EventLoopFuture<String> = ...
 
 /// Wait for the string to be ready
-let string = try await futureString.get()
+let string: String = try await futureString.get()
 print(string) /// String
 ```
     
