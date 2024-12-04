@@ -319,7 +319,7 @@ struct Employee: Content {
   var role: String
 
   static func validations(_ validations: inout Validations) {
-    v.add(
+    validations.add(
       "nameAndSurname",
       as: String.self,
       is: .custom(
