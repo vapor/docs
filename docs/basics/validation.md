@@ -298,7 +298,7 @@ validations.add("zipCode", as: String.self, is: .zipCode)
 The `Custom` validator is best suited for cases where you want to validate a property in only one `Content` object. This implementation has the following two advantages compared to extending the Validation API:
 
 - Simpler to implement custom validation logic.
-- Shorter syntax
+- Shorter syntax.
 
 In this section, we'll walk you through the steps to create a custom validator for checking whether an employee is part of our company by looking at the `nameAndSurname` property. 
 
