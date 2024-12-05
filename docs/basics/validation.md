@@ -322,9 +322,7 @@ struct Employee: Content {
     validations.add(
       "nameAndSurname",
       as: String.self,
-      is: .custom(
-        validationDescription: "Validates whether employee is part of XYZ company by looking at name and surname."
-      ) { nameAndSurname in
+      is: .custom("Validates whether employee is part of XYZ company by looking at name and surname.") { nameAndSurname in
           for employee in allCompanyEmployees {
             if employee == nameAndSurname {
               return true
