@@ -296,8 +296,24 @@ futureString.whenComplete { result in
 
 !!! note "Nota"
     Puedes agregar tantos callbacks a un futuro como desees.
-    
+
+### Get
+
+En caso de que no exista una alternativa basada en concurrencia a una API, puedes esperar el valor futuro usando `try await future.get()`.
+
+```swift
+/// Supongamos que recibimos una cadena futura de alguna API
+let futureString: EventLoopFuture<String> = ...
+
+/// Esperemos a que la cadena esté lista
+let string: String = try await futureString.get()
+print(string) /// String
+```
+
 ### Esperar
+
+!!! Warning Advertencia
+    La función `wait()` está obsoleta, ver [`Get`](#get) para el enfoque recomendado.
 
 Puedes utilizar `.wait()` para esperar sincrónicamente a que se complete el futuro. Dado que un futuro puede fracasar, esta función puede lanzar errores (throwing).
 
@@ -315,7 +331,6 @@ print(string) /// String
 !!! warning "Advertencia"
     Intentar llamar a `wait()` en un hilo de bucle de eventos provocará un error de aserción.
 
-    
 ## Promesa
 
 La mayoría de las veces, transformarás los futuros devueltos desde llamadas a APIs de Vapor. Sin embargo, en algún momento es posible que necesites crear una promesa propia.
