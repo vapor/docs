@@ -299,21 +299,21 @@ futureString.whenComplete { result in
 
 ### Get
 
-In case there is no concurrency-based alternative to an API, you can await for the future's value using `try await future.get()`.
+En caso de que no exista una alternativa basada en concurrencia a una API, puedes esperar el valor futuro usando `try await future.get()`.
 
 ```swift
-/// Assume we get a future string back from some API
+/// Supongamos que recibimos una cadena futura de alguna API
 let futureString: EventLoopFuture<String> = ...
 
-/// Wait for the string to be ready
+/// Esperemos a que la cadena esté lista
 let string: String = try await futureString.get()
 print(string) /// String
 ```
 
 ### Esperar
 
-!!! warning
-    The `wait()` function is obsolete, see [`Get`](#get) for the recommended approach.
+!!! warning Advertencia
+    La función `wait()` está obsoleta, ver [`Get`](#get) para el enfoque recomendado.
 
 Puedes utilizar `.wait()` para esperar sincrónicamente a que se complete el futuro. Dado que un futuro puede fracasar, esta función puede lanzar errores (throwing).
 
