@@ -26,7 +26,7 @@ Si se utiliza `EventLoopFuture`, el futuro devuelto indicará cuándo ha complet
 El método `streamFile` convierte un archivo de transmisión en una respuesta `Response`. Este método establecerá automáticamente los encabezados apropiados, como `ETag` y `Content-Type`.
 
 ```swift
-// Ttransmite el archivo como una respuesta HTTP de forma asíncrona.
+// Transmite el archivo como una respuesta HTTP de forma asíncrona.
 req.fileio.streamFile(at: "/path/to/file").map { res in
     print(res) // Response
 }
@@ -53,7 +53,7 @@ let buffer = req.fileio.collectFile(at: "/path/to/file")
 print(buffer)
 ```
 
-!!! Warning "Advertencia"
+!!! warning "Advertencia"
     Este método requiere que el archivo entero esté en la memoria desde el inicio. Utilice una lectura por fragmentos (chunked) o flujo contínuo (streaming) para limitar el uso de memoria.
 
 ## Escritura
