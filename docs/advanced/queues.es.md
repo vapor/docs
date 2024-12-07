@@ -460,7 +460,7 @@ final class UserCreationServiceTests: XCTestCase {
         self.app = try await Application.make(.testing)
         try await configure(app)
 
-        // Sobrescribe el controlador utilizado para pruebas
+        // Sobreescribe el controlador utilizado para pruebas
         app.queues.use(.asyncTest)
     }
 
