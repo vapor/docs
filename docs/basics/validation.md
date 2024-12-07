@@ -1,6 +1,6 @@
 # Validation
 
-Vapor's Validation API helps you validate incoming request before using the [Content](content.md) API to decode data. 
+Vapor's Validation API helps you validate the body and query parameters of an incoming request before using the [Content](content.md) API to decode data. 
 
 ## Introduction 
 
