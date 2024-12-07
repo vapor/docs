@@ -76,7 +76,7 @@ try app.queues.use(.redis(url: "redis://127.0.0.1:6379"))
 Después de modelar un trabajo, debes añadirlo a tu sección de configuración de la siguiente manera:
 
 ```swift
-//Registrar trabajos
+// Registrar trabajos
 let emailJob = EmailJob()
 app.queues.add(emailJob)
 ```
