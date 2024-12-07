@@ -1,42 +1,43 @@
-# Queues
+# Colas (Queues)
 
-Vapor Queues ([vapor/queues](https://github.com/vapor/queues)) is a pure Swift queuing system that allows you to offload task responsibility to a side worker. 
+Vapor Queues ([vapor/queues](https://github.com/vapor/queues)) es un sistema de colas desarrollado completamente en Swift que permite descargar la responsabilidad de ciertas tareas a un proceso paralelo.
 
-Some of the tasks this package works well for:
+Algunas de las tareas para las que funciona bien este paquete:
 
-- Sending emails outside of the main request thread
-- Performing complex or long-running database operations 
-- Ensuring job integrity and resilience 
-- Speeding up response time by delaying non-critical processing
-- Scheduling jobs to occur at a specific time
+- Enviar emails fuera del hilo de principal de solicitudes
+- Realizar operaciones complejas o de larga duración en base de datos
+- Asegurar la integridad y la resiliencia de los trabajos
+- Acelerar el tiempo de respuesta retrasando el procesamiento no crítico
+- Programar trabajos para que se realicen en un momento específico
 
-This package is similar to [Ruby Sidekiq](https://github.com/mperham/sidekiq). It provides the following features:
+Este paquete es similar a [Ruby Sidekiq](https://github.com/mperham/sidekiq). Ofrece las siguientes características:
 
-- Safe handling of `SIGTERM` and `SIGINT` signals sent by hosting providers to indicate a shutdown, restart, or new deploy.
-- Different queue priorities. For example, you can specify a queue job to be run on the email queue and another job to be run on the data-processing queue.
-- Implements the reliable queue process to help with unexpected failures.
-- Includes a `maxRetryCount` feature that will repeat the job until it succeeds up until a specified count.
-- Uses NIO to utilize all available cores and EventLoops for jobs.
-- Allows users to schedule repeating tasks
+- Manejo seguro de las señales `SIGTERM` y `SIGINT` enviadas por los proveedores de alojamiento para indicar un apagado, reinicio, o un nuevo despliegue.
+- Prioridades diferentes para colas. Por ejemplo, puedes especificar que un trabajo se ejecute en la cola de correos electrónicos y otro en la cola de procesamiento de datos.
+- Implementa el proceso de cola confiable para manejar fallos inesperados.
+- Incluye la característica `maxRetryCount`, que reintenta el trabajo hasta que se complete correctamente o hasta que se alcance un número máximo de intentos.
+- Utiliza NIO para aprovechar todos los núcleos disponibles y EventLoops para trabajos.
+- Permite a los usuarios programar tareas repetitivas.
 
-Queues currently has one officially supported driver which interfaces with the main protocol:
+Actualmente, Queues tiene oficialmente un controlador compatible que interactúa con el protocolo principal:
 
 - [QueuesRedisDriver](https://github.com/vapor/queues-redis-driver)
 
-Queues also has community-based drivers:
+Queues también tiene controladores basados en la comunidad:
+
 - [QueuesMongoDriver](https://github.com/vapor-community/queues-mongo-driver)
 - [QueuesFluentDriver](https://github.com/m-barthelemy/vapor-queues-fluent-driver)
 
-!!! tip
-    You should not install the `vapor/queues` package directly unless you are building a new driver. Install one of the driver packages instead. 
+!!! tip "Consejo"
+    No deberías instalar el paquete `vapor/queues` directamente a menos que estés desarrollando un controlador nuevo. En su lugar, instala uno de los controladores existentes.
 
-## Getting Started
+## Primeros pasos
 
-Let's take a look at how you can get started using Queues.
+Veamos cómo puedes comenzar a usar Queues.
 
-### Package
+### Paquete
 
-The first step to using Queues is adding one of the drivers as a dependency to your project in your SwiftPM package manifest file. In this example, we'll use the Redis driver. 
+El primer paso para usar Queues es añadir uno de los controladores como dependencia a tu proyecto en tu archivo de manifiesto del paquete SwiftPM. En este ejemplo, utilizaremos el controlador Redis.
 
 ```swift
 // swift-tools-version:5.8
@@ -45,12 +46,12 @@ import PackageDescription
 let package = Package(
     name: "MyApp",
     dependencies: [
-        /// Any other dependencies ...
+        /// Cualquier otra dependencia ...
         .package(url: "https://github.com/vapor/queues-redis-driver.git", from: "1.0.0"),
     ],
     targets: [
         .executableTarget(name: "App", dependencies: [
-            // Other dependencies
+            // Otras dependencias
             .product(name: "QueuesRedisDriver", package: "queues-redis-driver")
         ]),
         .testTarget(name: "AppTests", dependencies: [.target(name: "App")]),
@@ -58,11 +59,11 @@ let package = Package(
 )
 ```
 
-If you edit the manifest directly inside Xcode, it will automatically pick up the changes and fetch the new dependency when the file is saved. Otherwise, from Terminal, run `swift package resolve` to fetch the new dependency.
+Si editas el archivo de manifiesto directamente dentro de Xcode, este detectará automáticamente los cambios y descargará la dependencia nueva al guardar el archivo. Si no, desde Terminal, ejecuta `swift package resolve` para descargar la dependencia.
 
-### Config
+### Configuración
 
-The next step is to configure Queues in `configure.swift`. We'll use the Redis library as an example:
+El próximo paso es configurar Queues en `configure.swift`. Utilizaremos la librería Redis como ejemplo:
 
 ```swift
 import QueuesRedisDriver
@@ -70,45 +71,45 @@ import QueuesRedisDriver
 try app.queues.use(.redis(url: "redis://127.0.0.1:6379"))
 ```
 
-### Registering a `Job`
+### Registrando un trabajo (`Job`)
 
-After modeling a job you must add it to your configuration section like this:
+Después de modelar un trabajo, debes añadirlo a tu sección de configuración de la siguiente manera:
 
 ```swift
-//Register jobs
+//Registrar trabajos
 let emailJob = EmailJob()
 app.queues.add(emailJob)
 ```
 
-### Running Workers as Processes
+### Ejecutar Workers como procesos
 
-To start a new queue worker, run `swift run App queues`. You can also specify a specific type of worker to run: `swift run App queues --queue emails`.
+Para iniciar una nueva cola de workers, ejecuta `swift run App queues`. También puedes especificar un tipo concreto de worker: `swift run App queues --queue emails`.
 
-!!! tip
-    Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: Run queues`. With this in place, you can start workers on the Dashboard/Resources tab, or with `heroku ps:scale worker=1` (or any number of dynos preferred).
+!!! tip "Consejo"
+    Los workers deben permanecer ejecutándose en producción. Consulta a tu proveedor de alojamiento para averiguar cómo mantener activos procesos de larga duración. Por ejemplo, Heroku permite configurar un "worker" dynos en el archivo Procfile: `worker: Run queues`. Una vez configurado, puedes iniciar los workers desde el panel de control en la pestaña de recursos, o con `heroku ps:scale worker=1` (o el número de dynos que prefieras).
 
-### Running Workers in-process
+### Ejecutar Workers en el proceso principal
 
-To run a worker in the same process as your application (as opposed to starting a whole separate server to handle it), call the convenience methods on `Application`:
+Para ejecutar un worker en el mismo proceso que tu aplicación (en lugar de iniciar un servidor independiente para manejarlo), llama a los métodos de conveniencia en `Application`:
 
 ```swift
 try app.queues.startInProcessJobs(on: .default)
 ```
 
-To run scheduled jobs in process, call the following method:
+Para ejecutar trabajos programados en el mismo proceso, llama al siguiente método:
 
 ```swift
 try app.queues.startScheduledJobs()
 ```
 
-!!! warning
-    If you don't start the queue worker either via command line or the in-process worker the jobs will not dispatch. 
+!!! warning "Advertencia"
+    Si no inicias el worker de la cola desde la línea de comandos o en el mismo proceso principal, los trabajos no se ejecutarán.
 
-## The `Job` Protocol
+## El Protocolo `Job`
 
-Jobs are defined by the `Job` or `AsyncJob` protocol.
+Los trabajos se definen utilizando los protocolos `Job` o `AsyncJob`.
 
-### Modeling a `Job` object:
+### Modelando un objeto `Job`:
 
 ```swift
 import Vapor 
@@ -124,40 +125,42 @@ struct EmailJob: Job {
     typealias Payload = Email
     
     func dequeue(_ context: QueueContext, _ payload: Email) -> EventLoopFuture<Void> {
-        // This is where you would send the email
+        // Aquí es donde enviarías el email
         return context.eventLoop.future()
     }
     
     func error(_ context: QueueContext, _ error: Error, _ payload: Email) -> EventLoopFuture<Void> {
-        // If you don't want to handle errors you can simply return a future. You can also omit this function entirely. 
+        // Si no deseas manejar errores, simplemente devuelve un futuro vacío. También puedes omitir esta función por completo.
         return context.eventLoop.future()
     }
 }
 ```
 
-If using `async`/`await` you should use `AsyncJob`:
+Si utilizas `async`/`await`, deberías usar `AsyncJob`:
 
 ```swift
 struct EmailJob: AsyncJob {
     typealias Payload = Email
     
     func dequeue(_ context: QueueContext, _ payload: Email) async throws {
-        // This is where you would send the email
+        // Aquí es donde enviarías el email
     }
     
     func error(_ context: QueueContext, _ error: Error, _ payload: Email) async throws {
-        // If you don't want to handle errors you can simply return. You can also omit this function entirely. 
+        // Si no deseas manejar errores, simplemente haz un return. También puedes omitir esta función por completo.
     }
 }
 ```
-!!! info
-    Make sure your `Payload` type implements the `Codable` protocol.
-!!! tip
-    Don't forget to follow the instructions in **Getting Started** to add this job to your configuration file. 
 
-## Dispatching Jobs
+!!! info "Información"
+    Asegúrate de que tu tipo `Payload` implemente el protocolo `Codable`.
 
-To dispatch a queue job, you need access to an instance of `Application` or `Request`. You will most likely be dispatching jobs inside of a route handler:
+!!! tip "Consejo"
+    No olvides seguir las instrucciones en **Primeros pasos** para añadir este trabajo a tu archivo de configuración.
+
+## Enviando trabajos
+
+Para enviar un trabajo a la cola, necesitas acceso a una instancia de `Application` o `Request`. Lo más probable es que envíes trabajos dentro de un manejador de ruta:
 
 ```swift
 app.get("email") { req -> EventLoopFuture<String> in
@@ -165,21 +168,21 @@ app.get("email") { req -> EventLoopFuture<String> in
         .queue
         .dispatch(
             EmailJob.self, 
-            .init(to: "email@email.com", message: "message")
-        ).map { "done" }
+            .init(to: "email@email.com", message: "mensaje")
+        ).map { "hecho" }
 }
 
-// or
+// o
 
 app.get("email") { req async throws -> String in
     try await req.queue.dispatch(
         EmailJob.self, 
-        .init(to: "email@email.com", message: "message"))
-    return "done"
+        .init(to: "email@email.com", message: "mensaje"))
+    return "hecho"
 }
 ```
 
-If you, instead, need to dispatch a job from a context where the `Request` object is not available (like, for example, from within a `Command`), you will need to use the `queues` property inside the `Application` object, such as:
+En cambio, si necesitas enviar un trabajo desde un contexto en el que el objeto `Request` no está disponible (como, por ejemplo, desde dentro de un `Command`), tendrás que utilizar la propiedad `queues` dentro del objeto `Application`, como:
 
 ```swift
 struct SendEmailCommand: AsyncCommand {
@@ -190,16 +193,15 @@ struct SendEmailCommand: AsyncCommand {
             .queue
             .dispatch(
                 EmailJob.self, 
-                .init(to: "email@email.com", message: "message")
+                .init(to: "email@email.com", message: "mensaje")
             )
     }
 }
 ```
 
+### Configurar `maxRetryCount`
 
-### Setting `maxRetryCount`
-
-Jobs will automatically retry themselves upon error if you specify a `maxRetryCount`. For example: 
+Los trabajos se reintentarán automáticamente en caso de error si especificas un `maxRetryCount`. Por ejemplo:
 
 ```swift
 app.get("email") { req -> EventLoopFuture<String> in
@@ -207,45 +209,45 @@ app.get("email") { req -> EventLoopFuture<String> in
         .queue
         .dispatch(
             EmailJob.self, 
-            .init(to: "email@email.com", message: "message"),
+            .init(to: "email@email.com", message: "mensaje"),
             maxRetryCount: 3
-        ).map { "done" }
+        ).map { "hecho" }
 }
 
-// or
+// o
 
 app.get("email") { req async throws -> String in
     try await req.queue.dispatch(
         EmailJob.self, 
-        .init(to: "email@email.com", message: "message"),
+        .init(to: "email@email.com", message: "mensaje"),
         maxRetryCount: 3)
-    return "done"
+    return "hecho"
 }
 ```
 
-### Specifying a delay
+### Especificar un retraso
 
-Jobs can also be set to only run after a certain `Date` has passed. To specify a delay, pass a `Date` into the `delayUntil` parameter in `dispatch`:
+Puedes configurar que los trabajos se ejecuten únicamente tras una fecha determinada. Para especificar un retraso, pasa una fecha en el parámetro `delayUntil` de `dispatch`:
 
 ```swift
 app.get("email") { req async throws -> String in
-    let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // One day
+    let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // Un día
     try await req.queue.dispatch(
         EmailJob.self, 
-        .init(to: "email@email.com", message: "message"),
+        .init(to: "email@email.com", message: "mensaje"),
         maxRetryCount: 3,
         delayUntil: futureDate)
-    return "done"
+    return "hecho"
 }
 ```
 
-If a job is dequeued before its delay parameter, the job will be re-queued by the driver. 
+Si un trabajo se saca de la cola antes de su parámetro de retraso, el controlador volverá a ponerlo en cola.
 
-### Specify a priority 
+### Especificar una prioridad
 
-Jobs can be sorted into different queue types/priorities depending on your needs. For example, you may want to open an `email` queue and a `background-processing` queue to sort jobs. 
+Los trabajos pueden clasificarse en diferentes tipos de colas/prioridades en función de tus necesidades. Por ejemplo, puede que desees abrir una cola de `email` y una cola de `background-processing` para ordenar los trabajos.
 
-Start by extending `QueueName`:
+Empieza por ampliar `QueueName`:
 
 ```swift
 extension QueueName {
@@ -253,38 +255,38 @@ extension QueueName {
 }
 ```
 
-Then, specify the queue type when you retrieve the `jobs` object:
+A continuación, especifique el tipo de cola cuando recupere el objeto `jobs`:
 
 ```swift
 app.get("email") { req -> EventLoopFuture<String> in
-    let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // One day
+    let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // Un día
     return req
         .queues(.emails)
         .dispatch(
             EmailJob.self, 
-            .init(to: "email@email.com", message: "message"),
+            .init(to: "email@email.com", message: "mensaje"),
             maxRetryCount: 3,
             delayUntil: futureDate
-        ).map { "done" }
+        ).map { "hecho" }
 }
 
-// or
+// o
 
 app.get("email") { req async throws -> String in
-    let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // One day
+    let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // Un día
     try await req
         .queues(.emails)
         .dispatch(
             EmailJob.self, 
-            .init(to: "email@email.com", message: "message"),
+            .init(to: "email@email.com", message: "mensaje"),
             maxRetryCount: 3,
             delayUntil: futureDate
         )
-    return "done"
+    return "hecho"
 }
 ```
 
-When accessing from within the `Application` object you should do as follows:
+Cuando accedes desde el objeto `Application` deberás hacer lo siguiente:
 
 ```swift
 struct SendEmailCommand: AsyncCommand {
@@ -295,7 +297,7 @@ struct SendEmailCommand: AsyncCommand {
             .queue(.emails)
             .dispatch(
                 EmailJob.self, 
-                .init(to: "email@email.com", message: "message"),
+                .init(to: "email@email.com", message: "mensaje"),
                 maxRetryCount: 3,
                 delayUntil: futureDate
             )
@@ -303,54 +305,53 @@ struct SendEmailCommand: AsyncCommand {
 }
 ```
 
+Si no especificas una cola, el trabajo se ejecutará en la cola por defecto. Asegúrate de seguir las instrucciones de **Primeros pasos** para iniciar los workers para cada tipo de cola.
 
+## Programando trabajos
 
-If you do not specify a queue the job will be run on the `default` queue. Make sure to follow the instructions in **Getting Started** to start workers for each queue type. 
+El paquete Queues también permite programar trabajos para que se ejecuten en determinados momentos.
 
-## Scheduling Jobs
+!!! warning "Advertencia"
+    Los trabajos programados solo funcionan si se configuran antes de que la aplicación se inicie, como en el archivo `configure.swift`. No funcionarán en manejadores de rutas.
 
-The Queues package also allows you to schedule jobs to occur at certain points in time.
+### Iniciando el planificador de workers
 
-!!! warning
-    Scheduled jobs only work when set up before the application boots up, such as in `configure.swift`. They will not work in route handlers.
-
-### Starting the scheduler worker
-The scheduler requires a separate worker process to be running, similar to the queue worker. You can start the worker by running this command: 
+El planificador requiere que se ejecute un proceso worker independiente, similar al worker de colas. Puedes iniciar el worker ejecutando este comando: 
 
 ```sh
 swift run App queues --scheduled
 ```
 
-!!! tip
-    Workers should stay running in production. Consult your hosting provider to find out how to keep long-running processes alive. Heroku, for example, allows you to specify "worker" dynos like this in your Procfile: `worker: App queues --scheduled`
+!!! tip "Consejo"
+    Los workers deben permanecer en ejecución en producción. Consulta con tu proveedor de alojamiento para saber cómo mantener vivos los procesos de larga duración. Por ejemplo, Heroku permite especificar dynos "worker" como este en tu archivo Procfile: `worker: App queues --scheduled`
 
-### Creating a `ScheduledJob`
+### Creando un `ScheduledJob`
 
-To begin, start by creating a new `ScheduledJob` or `AsyncScheduledJob`:
+Para empezar, crea un nuevo `ScheduledJob` o `AsyncScheduledJob`:
 
 ```swift
 import Vapor
 import Queues
 
 struct CleanupJob: ScheduledJob {
-    // Add extra services here via dependency injection, if you need them.
+    // Añade servicios adicionales aquí usando inyección de dependencias, si los necesitas.
 
     func run(context: QueueContext) -> EventLoopFuture<Void> {
-        // Do some work here, perhaps queue up another job.
+        // Haz algún trabajo aquí, tal vez encolando otro trabajo.
         return context.eventLoop.makeSucceededFuture(())
     }
 }
 
 struct CleanupJob: AsyncScheduledJob {
-    // Add extra services here via dependency injection, if you need them.
+    // Añade servicios adicionales aquí usando inyección de dependencias, si los necesitas.
 
     func run(context: QueueContext) async throws {
-        // Do some work here, perhaps queue up another job.
+        // Haz algún trabajo aquí, tal vez encolando otro trabajo.
     }
 }
 ```
 
-Then, in your configure code, register the scheduled job: 
+Luego, en el código de configuración, registra el trabajo programado:
 
 ```swift
 app.queues.schedule(CleanupJob())
@@ -360,94 +361,96 @@ app.queues.schedule(CleanupJob())
     .at(.noon)
 ```
 
-The job in the example above will be run every year on May 23rd at 12:00 PM.
+El trabajo del ejemplo anterior se ejecutará cada año el 23 de mayo a las 12:00 PM.
 
-!!! tip
-    The Scheduler takes the timezone of your server.
+!!! tip "Consejo"
+    El planificador toma la zona horaria del servidor.
 
-### Available builder methods
-There are five main methods that can be called on a scheduler, each of which creates its respective builder object that contains more helper methods. You should continue building out a scheduler object until the compiler does not give you a warning about an unused result. See below for all available methods:
+### Métodos disponibles para el constructor
 
-| Helper Function | Available Modifiers                   | Description                                                                    |
-|-----------------|---------------------------------------|--------------------------------------------------------------------------------|
-| `yearly()`      | `in(_ month: Month) -> Monthly`       | The month to run the job in. Returns a `Monthly` object for further building.  |
-| `monthly()`     | `on(_ day: Day) -> Daily`             | The day to run the job in. Returns a `Daily` object for further building.      |
-| `weekly()`      | `on(_ weekday: Weekday) -> Daily` | The day of the week to run the job on. Returns a `Daily` object.               |
-| `daily()`       | `at(_ time: Time)`                    | The time to run the job on. Final method in the chain.                         |
-|                 | `at(_ hour: Hour24, _ minute: Minute)`| The hour and minute to run the job on. Final method in the chain.              |
-|                 | `at(_ hour: Hour12, _ minute: Minute, _ period: HourPeriod)` | The hour, minute, and period to run the job on. Final method of the chain |
-| `hourly()`      | `at(_ minute: Minute)`                 | The minute to run the job at. Final method of the chain.                      |
-| `minutely()`    | `at(_ second: Second)`                 | The second to run the job at. Final method of the chain.                      |
+Hay cinco métodos principales que pueden ser llamados en un planificador, cada uno de los cuales crea su respectivo objeto constructor que contiene más métodos de ayuda. Debes continuar construyendo un objeto planificador hasta que el compilador no dé una advertencia sobre un resultado no utilizado. A continuación se listan todos los métodos disponibles:
 
-### Available helpers 
-Queues ships with some helpers enums to make scheduling easier: 
+| Función auxiliar | Modificadores disponibles             | Descripción                                                                      |
+|------------------|---------------------------------------|----------------------------------------------------------------------------------|
+| `yearly()`       | `in(_ month: Month) -> Monthly`       | Mes en el que se ejecutará el trabajo. Devuelve un objeto `Monthly` para su posterior construcción.  |
+| `monthly()`      | `on(_ day: Day) -> Daily`             | Día en el que se ejecutará el trabajo. Devuelve un objeto `Daily` para su posterior construcción.  |
+| `weekly()`       | `on(_ weekday: Weekday) -> Daily`     | Día de la semana en el que se ejecutará el trabajo. Devuelve un objeto `Daily`.  |
+| `daily()`        | `at(_ time: Time)`                    | Hora a la que se ejecutará el trabajo. Último método de la cadena.               |
+|                  | `at(_ hour: Hour24, _ minute: Minute)`| Hora y minuto en los que se ejecutará el trabajo. Último método de la cadena.    |
+|                  | `at(_ hour: Hour12, _ minute: Minute, _ period: HourPeriod)` | Hora, minuto y período en los que se ejecutará el trabajo. Último método.  |
+| `hourly()`       | `at(_ minute: Minute)`                 | Minuto en que se ejecutará el trabajo. Último método.                           |
+| `minutely()`     | `at(_ second: Second)`                 | Segundo en que se ejecutará el trabajo. Último método.                          |
 
-| Helper Function | Available Helper Enum                 |
-|-----------------|---------------------------------------|
-| `yearly()`      | `.january`, `.february`, `.march`, ...|
-| `monthly()`     | `.first`, `.last`, `.exact(1)`        |
-| `weekly()`      | `.sunday`, `.monday`, `.tuesday`, ... |
-| `daily()`       | `.midnight`, `.noon`                  |
+### Ayudas disponibles
 
-To use the helper enum, call in to the appropriate modifier on the helper function and pass the value. For example:
+Las colas vienen con algunos enums de ayuda para facilitar la planificación: 
+
+| Función auxiliar	| Enum disponibles de ayuda             |
+|-------------------|---------------------------------------|
+| `yearly()`        | `.january`, `.february`, `.march`, ...|
+| `monthly()`       | `.first`, `.last`, `.exact(1)`        |
+| `weekly()`        | `.sunday`, `.monday`, `.tuesday`, ... |
+| `daily()`         | `.midnight`, `.noon`                  |
+
+Para utilizar el enum de ayuda, llama al modificador apropiado en la función de ayuda y pasa el valor. Por ejemplo:
 
 ```swift
-// Every year in January 
+// Cada año en enero
 .yearly().in(.january)
 
-// Every month on the first day 
+// El primer día de cada mes
 .monthly().on(.first)
 
-// Every week on Sunday 
+// Cada domingo de la semana
 .weekly().on(.sunday)
 
-// Every day at midnight
+// Cada día a medianoche
 .daily().at(.midnight)
 ```
 
-## Event Delegates 
-The Queues package allows you to specify `JobEventDelegate` objects that will receive notifications when the worker takes action on a job. This can be used for monitoring, surfacing insights, or alerting purposes. 
+## Delegados de Evento (Event Delegates)
+El paquete Queues permite especificar objetos `JobEventDelegate` que recibirán notificaciones cuando el trabajador realice una acción en un trabajo. Esto puede utilizarse con fines de supervisión, información o alerta.
 
-To get started, conform an object to `JobEventDelegate` and implement any required methods
+Para empezar, conforma un objeto a `JobEventDelegate` e implementa los métodos necesarios
 
 ```swift
 struct MyEventDelegate: JobEventDelegate {
-    /// Called when the job is dispatched to the queue worker from a route
+    /// Se llama cuando el trabajo es enviado al queue worker desde una ruta
     func dispatched(job: JobEventData, eventLoop: EventLoop) -> EventLoopFuture<Void> {
         eventLoop.future()
     }
 
-    /// Called when the job is placed in the processing queue and work begins
+    /// Se llama cuando el trabajo se coloca en la cola de procesamiento y comienza a trabajar
     func didDequeue(jobId: String, eventLoop: EventLoop) -> EventLoopFuture<Void> {
         eventLoop.future()
     }
 
-    /// Called when the job has finished processing and has been removed from the queue
+    /// Se llama cuando el trabajo ha terminado de procesarse y se ha eliminado de la cola
     func success(jobId: String, eventLoop: EventLoop) -> EventLoopFuture<Void> {
         eventLoop.future()
     }
 
-    /// Called when the job has finished processing but had an error
+    /// Se llama cuando el trabajo ha terminado de procesarse pero ha tenido un error
     func error(jobId: String, error: Error, eventLoop: EventLoop) -> EventLoopFuture<Void> {
         eventLoop.future()
     }
 }
 ```
 
-Then, add it in your configuration file:
+Entonces, añádelo en tu archivo de configuración:
 
 ```swift
 app.queues.add(MyEventDelegate())
 ```
 
-There are a number of third-party packages that use the delegate functionality to provide additional insight into your queue workers:
+Hay una serie de paquetes de terceros que utilizan la funcionalidad del delegado para proporcionar información adicional sobre sus workers de colas:
 
 - [QueuesDatabaseHooks](https://github.com/vapor-community/queues-database-hooks)
 - [QueuesDash](https://github.com/gotranseo/queues-dash)
 
-## Testing
+## Pruebas (Testing)
 
-To avoid synchronization problems and ensure deterministic testing, the Queues package provides an `XCTQueue` library and an `AsyncTestQueuesDriver` driver dedicated to testing which you can use as follows:
+Para evitar problemas de sincronización y garantizar pruebas deterministas, el paquete Queues proporciona una librería `XCTQueue` y un driver `AsyncTestQueuesDriver` dedicado a pruebas que puedes utilizar de la siguiente manera:
 
 ```swift
 final class UserCreationServiceTests: XCTestCase {
@@ -457,7 +460,7 @@ final class UserCreationServiceTests: XCTestCase {
         self.app = try await Application.make(.testing)
         try await configure(app)
 
-        // Override the driver being used for testing
+        // Sobrescribe el controlador utilizado para pruebas
         app.queues.use(.asyncTest)
     }
 
@@ -468,6 +471,4 @@ final class UserCreationServiceTests: XCTestCase {
 }
 ```
 
-See more details in [Romain Pouclet's blog post](https://romain.codes/2024/10/08/using-and-testing-vapor-queues/).
-
-
+Más detalles en [la entrada del blog de Romain Pouclet](https://romain.codes/2024/10/08/using-and-testing-vapor-queues/).
