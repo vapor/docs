@@ -151,8 +151,10 @@ struct EmailJob: AsyncJob {
     }
 }
 ```
+
 !!! info
     `Payload` 型が `Codable` プロトコルを実装していることを確認してください。
+
 !!! tip
     **Getting Started** の指示に従って、このジョブを設定ファイルに追加することを忘れないでください。
 
