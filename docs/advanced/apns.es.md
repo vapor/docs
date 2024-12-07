@@ -1,14 +1,14 @@
 # APNS
 
-Vapor's Apple Push Notification Service (APNS) API makes it easy to authenticate and send push notifications to Apple devices. It's built on top of [APNSwift](https://github.com/swift-server-community/APNSwift).
+ La API del Servicio de Notificaciones Push de Apple (APNS) facilita la autenticación y envío de notificaciones push a dispositivos Apple. Está construida sobre [APNSwift](https://github.com/swift-server-community/APNSwift).
 
-## Getting Started
+## Primeros Pasos
 
-Let's take a look at how you can get started using APNS.
+Veamos cómo puedes empezar a usar APNS.
 
-### Package
+### Paquete
 
-The first step to using APNS is adding the package to your dependencies.
+El primer paso para usar APNS es añadir el paquete a tus dependencias.
 
 ```swift
 // swift-tools-version:5.8
@@ -17,31 +17,31 @@ import PackageDescription
 let package = Package(
     name: "my-app",
     dependencies: [
-         // Other dependencies...
+         // Otras dependencias...
         .package(url: "https://github.com/vapor/apns.git", from: "4.0.0"),
     ],
     targets: [
         .target(name: "App", dependencies: [
-            // Other dependencies...
+            // Otras dependencias...
             .product(name: "VaporAPNS", package: "apns")
         ]),
-        // Other targets...
+        // Otros targets...
     ]
 )
 ```
 
-If you edit the manifest directly inside Xcode, it will automatically pick up the changes and fetch the new dependency when the file is saved. Otherwise, from Terminal, run `swift package resolve` to fetch the new dependency.
+Si editas directamente el manifiesto desde Xcode, automáticamente tomará los cambios y obtendrá la nueva dependencia cuando se guarde el archivo. De lo contrario, desde un terminal, ejecuta `swift package resolve` para obtener la nueva dependencia.
 
-### Configuration
+### Configuración
 
-The APNS module adds a new property `apns` to `Application`. To send push notifications, you will need to set the `configuration` property with your credentials.
+El módulo APNS añade una propiedad nueva `apns` a `Application`. Para enviar notificaciones push, necesitarás establecer la propiedad `configuration` con tus credenciales.
 
 ```swift
 import APNS
 import VaporAPNS
 import APNSCore
 
-// Configure APNS using JWT authentication.
+// Configura APNS usando autenticación JWT.
 let apnsConfig = APNSClientConfiguration(
     authenticationMethod: .jwt(
         privateKey: try .loadFrom(string: "<#key.p8 content#>"),
@@ -59,7 +59,7 @@ app.apns.containers.use(
 )
 ```
 
-Fill in the placeholders with your credentials. The above example shows [JWT-based auth](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns) using the `.p8` key you get from Apple's developer portal. For [TLS-based auth](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns) with a certificate, use the `.tls` authentication method: 
+Rellena los marcadores de posición con tus credenciales. El ejemplo anterior muestra [autenticación basada en JWT](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns) utilizando la clave `.p8` que se obtiene del portal para desarrolladores de Apple. Para [autenticación basada en TLS](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns) con un certificado, utiliza el método de autenticación `.tls`: 
 
 ```swift
 authenticationMethod: .tls(
@@ -69,17 +69,17 @@ authenticationMethod: .tls(
 )
 ```
 
-### Send
+### Enviar
 
-Once APNS is configured, you can send push notifications using `apns.send` method on `Application` or `Request`. 
+Una vez que APNS está configurado, puedes enviar notificaciones push usando el método `apns.send` en `Application` o `Request`. 
 
 ```swift
-// Custom Codable Payload
+// Carga útil codificable personalizada
 struct Payload: Codable {
     let acme1: String
     let acme2: Int
 }
-// Create push notification Alert
+// Crear alerta de notificación push
 let dt = "70075697aa918ebddd64efb165f5b9cb92ce095f1c4c76d995b384c623a258bb"
 let payload = Payload(acme1: "hey", acme2: 2)
 let alert = APNSAlertNotification(
@@ -92,7 +92,7 @@ let alert = APNSAlertNotification(
     topic: "<#my topic#>",
     payload: payload
 )
-// Send the notification
+// Enviar la notificación
 try! await req.apns.client.sendAlertNotification(
     alert, 
     deviceToken: dt, 
@@ -100,21 +100,21 @@ try! await req.apns.client.sendAlertNotification(
 )
 ```
 
-Use `req.apns` whenever you are inside of a route handler.
+Usa `req.apns` siempre que estés dentro de un manejador de rutas.
 
 ```swift
-// Sends a push notification.
+// Envía una notificación push.
 app.get("test-push") { req async throws -> HTTPStatus in
     try await req.apns.client.send(...)
     return .ok
 }
 ```
 
-The first parameter accepts the push notification alert and the second parameter is the target device token. 
+El primer parámetro acepta la alerta de notificación push y el segundo parámetro es el token del dispositivo de destino. 
 
-## Alert
+## Alerta
 
-`APNSAlertNotification` is the actual metadata of the push notification alert to send. More details on the specifics of each property are provided [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html). They follow a one-to-one naming scheme listed in Apple's documentation
+`APNSAlertNotification` son los metadatos reales de la alerta de notificación push a enviar. Más detalles sobre las especificaciones de cada propiedad se proporcionan [aquí](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html). Siguen un esquema de nomenclatura uno a uno que figura en la documentación de Apple.
 
 ```swift
 let alert = APNSAlertNotification(
@@ -129,21 +129,20 @@ let alert = APNSAlertNotification(
 )
 ```
 
-This type can be passed directly to the `send` method.
+Este tipo se puede pasar directamente al método `send`.
 
+### Datos de Notificación Personalizados
 
-### Custom Notification Data
-
-Apple provides engineers with the ability to add custom payload data to each notification. In order to facilitate this we accept `Codable` conformance to the payload parameter on all `send` apis.
+Apple ofrece a los ingenieros la posibilidad de agregar datos de carga (payload) personalizados a cada notificación. Para facilitar eso, aceptamos la conformidad `Codable` con el parámetro de carga (payload) en todas las apis `send`.
 
 ```swift
-// Custom Codable Payload
+// Carga útil codificable personalizada
 struct Payload: Codable {
     let acme1: String
     let acme2: Int
 }
 ```
 
-## More Information
+## Más Información
 
-For more information on available methods, see [APNSwift's README](https://github.com/swift-server-community/APNSwift).
+Para obtener más información sobre los métodos disponibles, consulte el [README de APNSwift](https://github.com/swift-server-community/APNSwift).
