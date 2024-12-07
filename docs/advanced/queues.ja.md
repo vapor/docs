@@ -24,6 +24,7 @@ Queues には、メインプロトコルとインターフェースする正式�
 - [QueuesRedisDriver](https://github.com/vapor/queues-redis-driver)
 
 また、コミュニティベースのドライバもあります:
+
 - [QueuesMongoDriver](https://github.com/vapor-community/queues-mongo-driver)
 - [QueuesFluentDriver](https://github.com/m-barthelemy/vapor-queues-fluent-driver)
 
@@ -150,8 +151,10 @@ struct EmailJob: AsyncJob {
     }
 }
 ```
+
 !!! info
     `Payload` 型が `Codable` プロトコルを実装していることを確認してください。
+
 !!! tip
     **Getting Started** の指示に従って、このジョブを設定ファイルに追加することを忘れないでください。
 

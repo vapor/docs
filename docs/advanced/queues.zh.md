@@ -24,6 +24,7 @@ Vapor Queues ([vapor/queues](https://github.com/vapor/queues)) 是一个纯 Swif
 - [QueuesRedisDriver](https://github.com/vapor/queues-redis-driver)
 
 Queues 也有基于社区的驱动程序：
+
 - [QueuesMongoDriver](https://github.com/vapor-community/queues-mongo-driver)
 - [QueuesFluentDriver](https://github.com/m-barthelemy/vapor-queues-fluent-driver)
 
@@ -153,6 +154,7 @@ struct EmailJob: AsyncJob {
 
 !!! info "信息"
     确保你的 `Payload` 类型遵循 `Codable` 协议。
+
 !!! tip "建议"
     不要忘记按照**入门**中的说明将此 job 添加到你的配置文件中。
 
