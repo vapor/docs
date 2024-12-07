@@ -114,7 +114,7 @@ The first parameter accepts the push notification alert and the second parameter
 
 ## Alert
 
-`APNSAlertNotification` is the actual metadata of the push notification alert to send. More details on the specifics of each property are provided [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html). They follow a one-to-one naming scheme listed in Apple's documentation
+`APNSAlertNotification` is the actual metadata of the push notification alert to send. More details on the specifics of each property are provided [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html). They follow a one-to-one naming scheme listed in Apple's documentation.
 
 ```swift
 let alert = APNSAlertNotification(
@@ -130,7 +130,6 @@ let alert = APNSAlertNotification(
 ```
 
 This type can be passed directly to the `send` method.
-
 
 ### Custom Notification Data
 
