@@ -1,6 +1,6 @@
 # Installation unter macOS
 
-Die Mindestvoraussetzung für Vapor unter macOS ist Swift 5.6 (oder aktueller).
+Die Mindestvoraussetzung für Vapor unter macOS ist Swift 5.9 (oder aktueller).
 
 ## Xcode
 
