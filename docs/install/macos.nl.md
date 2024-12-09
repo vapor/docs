@@ -1,6 +1,6 @@
 # Installeren op macOS
 
-Om Vapor te gebruiken op macOS, zal je Swift 9 of hoger nodig hebben. Swift en al zijn afhankelijkheden komen gebundeld met Xcode.
+Om Vapor te gebruiken op macOS, zal je Swift 5.9 of hoger nodig hebben. Swift en al zijn afhankelijkheden komen gebundeld met Xcode.
 
 ## Installeer Xcode
 

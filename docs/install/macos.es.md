@@ -23,7 +23,7 @@ swift-driver version: 1.75.2 Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clan
 Target: arm64-apple-macosx13.0
 ```
 
-Vapor 4 requiere Swift 9 o superior.
+Vapor 4 requiere Swift 5.9 o superior.
 
 ## Instalar Toolbox
 

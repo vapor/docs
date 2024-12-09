@@ -11,7 +11,7 @@ Vapor는 Swift 5.9 이상을 지원하는 Linux 배포판의 동일한 버전을
 
 |배포판|버전|Swift 버전|
 |-|-|-|
-|Ubuntu|20.04|>= 9|
+|Ubuntu|20.04|>= 5.9|
 |Fedora|>= 30|>= 5.9|
 |CentOS|8|>= 5.9|
 |Amazon Linux|2|>= 5.9|

@@ -1,6 +1,6 @@
 # Linux にインストール
 
-Vapor を使うには、Swift 9 以上が必要です。これは Swift Server Workgroup が提供する CLI ツール [Swiftly](https://swiftlang.github.io/swiftly/) を使ってインストールできます（推奨）。または、[Swift.org](https://swift.org/download/) で利用可能なツールチェーンを使用してインストールできます。
+Vapor を使うには、Swift 5.9 以上が必要です。これは Swift Server Workgroup が提供する CLI ツール [Swiftly](https://swiftlang.github.io/swiftly/) を使ってインストールできます（推奨）。または、[Swift.org](https://swift.org/download/) で利用可能なツールチェーンを使用してインストールできます。
 
 ## サポートされているディストリビューションとバージョン
 Vapor は、Swift 5.9 またはそれ以上の新しいバージョンがサポートする Linux ディストリビューションと同じバージョンをサポートしています。公式にサポートされているオペレーティングシステムの最新情報については、[公式サポートページ](https://www.swift.org/platform-support/)を参照してください。
