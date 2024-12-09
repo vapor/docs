@@ -24,6 +24,7 @@ Queues currently has one officially supported driver which interfaces with the m
 - [QueuesRedisDriver](https://github.com/vapor/queues-redis-driver)
 
 Queues also has community-based drivers:
+
 - [QueuesMongoDriver](https://github.com/vapor-community/queues-mongo-driver)
 - [QueuesFluentDriver](https://github.com/m-barthelemy/vapor-queues-fluent-driver)
 
@@ -75,7 +76,7 @@ try app.queues.use(.redis(url: "redis://127.0.0.1:6379"))
 After modeling a job you must add it to your configuration section like this:
 
 ```swift
-//Register jobs
+// Register jobs
 let emailJob = EmailJob()
 app.queues.add(emailJob)
 ```
@@ -150,8 +151,10 @@ struct EmailJob: AsyncJob {
     }
 }
 ```
+
 !!! info
     Make sure your `Payload` type implements the `Codable` protocol.
+
 !!! tip
     Don't forget to follow the instructions in **Getting Started** to add this job to your configuration file. 
 
