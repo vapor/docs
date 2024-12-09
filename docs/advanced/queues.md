@@ -76,7 +76,7 @@ try app.queues.use(.redis(url: "redis://127.0.0.1:6379"))
 After modeling a job you must add it to your configuration section like this:
 
 ```swift
-//Register jobs
+// Register jobs
 let emailJob = EmailJob()
 app.queues.add(emailJob)
 ```
