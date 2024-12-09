@@ -7,6 +7,9 @@ If you have not yet installed Swift or Vapor Toolbox, check out the install sect
 - [Install &rarr; macOS](../install/macos.md)
 - [Install &rarr; Linux](../install/linux.md)
 
+!!! tip
+	The template used by the Vapor Toolbox requires Swift 6.0 or later
+
 ## New Project
 
 The first step is to create a new Vapor project on your computer. Open up your terminal and use Toolbox's new project command. This will create a new folder in the current directory containing the project.
