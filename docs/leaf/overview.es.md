@@ -264,6 +264,12 @@ Puede pasar una cadena de formateado de fecha personalizada como segundo argumen
 The date is #date(now, "yyyy-MM-dd")
 ```
 
+También puedes pasar un ID de zona horaria para el formateador de fechas como tercer argumento. Consulta la documentación de Swift sobre [`DateFormatter.timeZone`](https://developer.apple.com/documentation/foundation/dateformatter/1411406-timezone) y [`TimeZone`](https://developer.apple.com/documentation/foundation/timezone) para más información.
+
+```leaf
+The date is #date(now, "yyyy-MM-dd", "America/New_York")
+```
+
 #### `#unsafeHTML`
 
 La etiqueta `#unsafeHTML` actúa como una etiqueta variable - p. ej. `#(variable)`. Sin embargo, no escapa ningún HTML que `variable` pueda contener:
