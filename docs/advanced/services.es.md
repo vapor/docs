@@ -1,10 +1,10 @@
-# Services
+# Servicios
 
-Vapor's `Application` and `Request` are built to be extended by your application and third-party packages. New functionality added to these types are often called services. 
+`Application` y `Request` de Vapor están construidos para ser extendidos por tu aplicación y por paquetes de terceros. Las nuevas funcionalidades añadidas a estos tipos a menudo se denominan servicios.
 
-## Read Only
+## Sólo Lectura
 
-The simplest type of service is read-only. These services consist of computed variables or methods added to either application or request. 
+El tipo de servicio más simple es el de sólo lectura. Estos servicios consisten en variables computadas o métodos añadidos a la aplicación o a la petición.
 
 ```swift
 import Vapor
@@ -22,15 +22,15 @@ extension Request {
 }
 ```
 
-Read-only services can depend on any pre-existing services, like `client` in this example. Once the extension has been added, your custom service can be used like any other property on request.
+Los servicios de sólo lectura pueden depender de cualquier servicio preexistente, como `client` en este ejemplo. Una vez añadida la extensión, tu servicio personalizado se puede usar como cualquier otra propiedad bajo petición.
 
 ```swift
 req.myAPI.foos()
 ```
 
-## Writable
+## Escribible
 
-Services that need state or configuration can utilize `Application` and `Request` storage for storing data. Let's assume you want to add the following `MyConfiguration` struct to your application.
+Los servicios que necesitan estado o configuración pueden utilizar `Application` y `Request` para almacenar datos. Supongamos que quieres añadir la siguiente estructura `MyConfiguration` a tu aplicación.
 
 ```swift
 struct MyConfiguration {
@@ -38,7 +38,7 @@ struct MyConfiguration {
 }
 ```
 
-To use storage, you must declare a `StorageKey`. 
+Para utilizar el almacenamiento, debes declarar una `StorageKey`.
 
 ```swift
 struct MyConfigurationKey: StorageKey {
@@ -46,9 +46,9 @@ struct MyConfigurationKey: StorageKey {
 }
 ```
 
-This is an empty struct with a `Value` typealias specifying which type is being stored. By using an empty type as the key, you can control what code is able to access your storage value. If the type is internal or private, only your code will be able to modify the associated value in storage.
+Esta es una estructura vacía con un typealias `Value` que especifica qué tipo se está almacenando. Al utilizar un tipo vacío como clave, puedes controlar qué código puede acceder a su valor de almacenamiento. Si el tipo es interno o privado, sólo tu código podrá modificar el valor asociado en el almacenamiento.
 
-Finally, add an extension to `Application` for getting and setting the `MyConfiguration` struct.
+Finalmente, añade una extensión a `Application` para obtener y configurar la estructura `MyConfiguration`.
 
 ```swift
 extension Application {
@@ -63,68 +63,67 @@ extension Application {
 }
 ```
 
-Once the extension is added, you can use `myConfiguration` like a normal property on `Application`.
-
+Una vez añadida la extensión, puedes usar `myConfiguration` como una propiedad normal en `Application`.
 
 ```swift
 app.myConfiguration = .init(apiKey: ...)
 print(app.myConfiguration?.apiKey)
 ```
 
-## Lifecycle
+## Ciclo De Vida
 
-Vapor's `Application` allows you to register lifecycle handlers. These let you hook into events such as boot and shutdown.
+`Application` de Vapor te permite registrar manejadores del ciclo de vida. Estos permiten conectarte a eventos como el arranque y el apagado.
 
 ```swift
-// Prints hello during boot.
+// Imprime Hello! durante el arranque.
 struct Hello: LifecycleHandler {
-    // Called before application boots.
+    // Se llama antes de que se inicie la aplicación.
     func willBoot(_ app: Application) throws {
         app.logger.info("Hello!")
     }
 
-    // Called after application boots.
+    // Se llama después de que se inicie la aplicación.
     func didBoot(_ app: Application) throws {
         app.logger.info("Server is running")
     }
 
-    // Called before application shutdown.
+    // Se llama antes de que se apague la aplicación.
     func shutdown(_ app: Application) {
         app.logger.info("Goodbye!")
     }
 }
 
-// Add lifecycle handler.
+// Añade el manejador del ciclo de vida
 app.lifecycle.use(Hello())
 ```
 
-## Locks
+## Bloqueos
 
-Vapor's `Application` includes conveniences for synchronizing code using locks. By declaring a `LockKey`, you can get a unique, shared lock to synchronize access to your code. 
+`Application` de Vapor incluye facilidades para sincronizar código usando bloqueos. Declarando un `LockKey`, puedes obtener un único bloqueo compartido para sincronizar el acceso a tu código.
 
 ```swift
 struct TestKey: LockKey { }
 
 let test = app.locks.lock(for: TestKey.self)
 test.withLock {
-    // Do something.
+    // Hacer algo.
 }
 ```
 
-Each call to `lock(for:)` with the same `LockKey` will return the same lock. This method is thread-safe.
+Cada llamada a `lock(for:)` con la misma `LockKey` devolverá el mismo bloqueo. Este método es seguro para hilos (subprocesos concurrentes).
 
-For an application-wide lock, you can use `app.sync`. 
+Para un bloqueo a nivel de aplicación, puedes usar `app.sync`.
 
 ```swift
 app.sync.withLock {
-    // Do something.
+    // Hacer algo.
 }
 ```
 
-## Request
+## Solicitudes
 
-Services that are intended to be used in route handlers should be added to `Request`. Request services should use the request's logger and event loop. It is important that a request stay on the same event loop or an assertion will be hit when the response is returned to Vapor. 
+Los servicios que están destinados a ser utilizados en los manejadores de ruta se deben añadir a `Request`. Los servicios de solicitudes deben usar el registrador de la solicitud y el bucle de eventos. Es importante que una solicitud permanezca en el mismo bucle de eventos o se producirá una aserción cuando se devuelva la respuesta a Vapor.
 
-If a service must leave the request's event loop to do work, it should make sure to return to the event loop before finishing. This can be done using the `hop(to:)` on `EventLoopFuture`. 
+Si un servicio debe abandonar el bucle de eventos de la solicitud para realizar un trabajo, debes asegurarte de volver al bucle de eventos antes de terminar. Esto puede hacerse usando `hop(to:)` en `EventLoopFuture`.
 
-Request services that need access to application services, such as configurations, can use `req.application`. Take care to consider thread-safety when accessing the application from a route handler. Generally, only read operations should be performed by requests. Write operations must be protected by locks. 
+Los servicios de solicitud que necesitan acceder a servicios de aplicación, como las configuraciones, pueden usar `req.application`. Ten cuidado de considerar la seguridad de los subprocesos al acceder a la aplicación desde un manejador de ruta. Generalmente, sólo las solicitudes deben realizar operaciones de lectura. Las operaciones de escritura deben estar protegidas por bloqueos.
