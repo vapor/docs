@@ -1,6 +1,6 @@
 # Criptografía
 
-Vapor incluye [SwiftCrypto](https://github.com/apple/swift-crypto/), que es un port compatible con Linux de la biblioteca CryptoKit de Apple. Se exponen algunas APIs criptográficas adicionales para funciones que SwiftCrypto aún no incluye, como [Bcrypt](https://es.wikipedia.org/wiki/Bcrypt) y [TOTP](https://es.wikipedia.org/wiki/Algoritmo_de_contraseña_de_un_solo_uso_basada_en_el_tiempo).
+Vapor incluye [SwiftCrypto](https://github.com/apple/swift-crypto/), que es un port compatible con Linux de la biblioteca CryptoKit de Apple. Se exponen algunas APIs criptográficas adicionales para funciones que SwiftCrypto aún no incluye, como [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt) y [TOTP](https://es.wikipedia.org/wiki/Algoritmo_de_contraseña_de_un_solo_uso_basada_en_el_tiempo).
 
 ## SwiftCrypto
 
