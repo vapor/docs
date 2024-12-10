@@ -361,10 +361,9 @@ Al serializar desde/hacia `Codable`, las propiedades del modelo usarán sus nomb
 
 ### Data Transfer Object
 
-La conformidad por defecto del modelo a `Codable` puede facilitar el prototipado y usos simples. Sin embargo, no se ajusta a todos los casos de uso. Para ciertas situaciones necesitarás usar un data transfer object (DTO). 
+La conformidad por defecto del modelo a `Codable` puede facilitar el prototipado y usos simples. Sin embargo, expone la información subyacente de la base de datos a la API. Esto generalmente no es deseable desde un punto de vista de seguridad —devolver campos sensibles como el hash de la contraseña de un usuario es una mala idea— y desde una perspectiva de usabilidad. Hace difícil cambiar el esquema de la base de datos sin romper la API, aceptar o devolver datos en un formato diferente, o agregar o eliminar campos de la API.
 
-!!! tip "Consejo"
-    Un DTO es un tipo `Codable` aparte que representa la estructura de datos que quieres codificar/descodificar. 
+En la mayoría de los casos, deberías usar un DTO o data transfer object (objeto de transferencia de datos) en lugar de un modelo (también conocido como domain transfer object). Un DTO es un tipo `Codable` separado que representa la estructura de datos que deseas codificar o decodificar. Esto desacopla tu API del esquema de la base de datos y te permite realizar cambios en tus modelos sin romper la API pública de tu aplicación, tener diferentes versiones y hacer que tu API sea más agradable de usar para tus clientes.
 
 Toma como base el siguiente modelo de `User` para los ejemplos a continuación.
 
@@ -434,9 +433,9 @@ app.get("users") { req async throws -> [GetUser] in
 }
 ```
 
-Aunque la estructura del DTO sea idéntica a la del modelo conformado con `Codable`, tenerlo como tipo aparte puede ayudar a mantener los proyectos grandes ordenados. Si necesitaras hacer un cambio en las propiedades de tu modelo, no tienes que preocuparte de si rompes la API pública de tu app. Puedes considerar agrupar tus DTO en un package aparte que puedas compartir con los consumidores de tu API. 
+Otro caso de uso común es al trabajar con relaciones, como relaciones de padre o de hijos. Consulta [la documentación de Parent](relations.es.md#codificación-y-decodificación-de-relaciones-parent) para ver un ejemplo de cómo usar un DTO para facilitar la decodificación de un modelo con una relación `@Parent`.
 
-Por estas razones, recomendamos encarecidamente usar DTO siempre que sea posible, especialmente en proyectos grandes.
+Incluso si la estructura del DTO es idéntica a la conformidad `Codable` del modelo, tenerlo como un tipo separado puede ayudar a mantener organizados los proyectos grandes. Si alguna vez necesitas realizar un cambio en las propiedades de tus modelos, no tendrás que preocuparte por romper la API pública de tu aplicación. También puedes considerar colocar tus DTOs en un paquete separado que pueda ser compartido con los consumidores de tu API y agregar conformidad a `Content` en tu aplicación Vapor.
 
 ## Alias
 

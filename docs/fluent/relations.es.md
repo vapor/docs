@@ -61,6 +61,39 @@ La definición del campo es similar a la de `@Parent`, excepto la constraint `.r
 .field("star_id", .uuid, .references("star", "id"))
 ```
 
+### Codificación y Decodificación de Relaciones Parent
+
+Algo a tener en cuenta al trabajar con relaciones `@Parent` es la forma en que se envían y reciben. Por ejemplo, en JSON, una relación `@Parent` para un modelo `Planet` podría verse así:
+
+```json
+{
+    "id": "A616B398-A963-4EC7-9D1D-B1AA8A6F1107",
+    "star": {
+        "id": "A1B2C3D4-1234-5678-90AB-CDEF12345678"
+    }
+}
+```
+
+Nota cómo la propiedad `star` es un objeto en lugar del ID que podrías esperar. Al enviar el modelo como un cuerpo HTTP, debe coincidir con esta estructura para que la decodificación funcione. Por esta razón, recomendamos encarecidamente usar un DTO para representar el modelo al enviarlo por la red. Por ejemplo:
+
+```swift
+struct PlanetDTO: Content {
+    var id: UUID?
+    var name: String
+    var star: Star.IDValue
+}
+```
+
+Luego puedes decodificar el DTO y convertirlo en un modelo:
+
+```swift
+let planetData = try req.content.decode(PlanetDTO.self)
+let planet = Planet(id: planetData.id, name: planetData.name, starID: planetData.star)
+try await planet.create(on: req.db)
+```
+
+Lo mismo aplica al devolver el modelo a los clientes. Tus clientes deben poder manejar la estructura anidada o necesitas convertir el modelo en un DTO antes de devolverlo. Para más información sobre los DTOs, consulta la [documentación del modelo](model.es.md#data-transfer-object).
+
 ## Optional Child
 
 La propiedad `@OptionalChild` crea una relación uno a uno entre dos modelos. No guarda ningún valor en el modelo raíz. 
