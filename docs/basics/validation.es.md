@@ -227,3 +227,63 @@ Los validadores también pueden combinarse mediante operadores para construir va
 |`!`|prefijo|Invierte un validador, requiriendo lo opuesto.|
 |`&&`|infijo|Combina dos validadores, requiere ambos.|
 |`||`|infijo|Combina dos validadores, requiere al menos uno.|
+
+## Validadores Personalizados
+
+Crear un validador personalizado para códigos postales te permite extender la funcionalidad del marco de validación. En esta sección, te guiaremos a través de los pasos para crear un validador personalizado que valide códigos postales.
+
+Primero, crea un nuevo tipo para representar los resultados de la validación de `ZipCode`. Esta estructura será responsable de informar si una cadena dada es un código postal válido.
+
+```swift
+extension ValidatorResults {
+    /// Representa el resultado de un validador que verifica si una cadena es un código postal válido.
+    public struct ZipCode {
+        /// Indica si la entrada es un código postal válido.
+        public let isValidZipCode: Bool
+    }
+}
+```
+
+A continuación, haz que el nuevo tipo cumpla con `ValidatorResult`, que define el comportamiento esperado de un validador personalizado.
+
+```swift
+extension ValidatorResults.ZipCode: ValidatorResult {
+    public var isFailure: Bool {
+        !self.isValidZipCode
+    }
+
+    public var successDescription: String? {
+        "is a valid zip code"
+    }
+
+    public var failureDescription: String? {
+        "is not a valid zip code"
+    }
+}
+```
+
+Finalmente, implementa la lógica de validación para los códigos postales. Usa una expresión regular para verificar si la cadena de entrada coincide con el formato de un código postal de EE.UU.
+
+```swift
+private let zipCodeRegex: String = "^\\d{5}(?:[-\\s]\\d{4})?$"
+
+extension Validator where T == String {
+    /// Valida si una cadena es un código postal válido.
+    public static var zipCode: Validator<T> {
+        .init { input in
+            guard let range = input.range(of: zipCodeRegex, options: [.regularExpression]),
+                  range.lowerBound == input.startIndex && range.upperBound == input.endIndex
+            else {
+                return ValidatorResults.ZipCode(isValidZipCode: false)
+            }
+            return ValidatorResults.ZipCode(isValidZipCode: true)
+        }
+    }
+}
+```
+
+Ahora que has definido el validador personalizado `zipCode`, puedes usarlo para validar códigos postales en tu aplicación. Simplemente agrega la siguiente línea a tu código de validación:
+
+```swift
+validations.add("zipCode", as: String.self, is: .zipCode)
+```

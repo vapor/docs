@@ -61,6 +61,39 @@ La definición del campo es similar a la de `@Parent`, excepto la constraint `.r
 .field("star_id", .uuid, .references("star", "id"))
 ```
 
+### Codificación y Decodificación de Relaciones Parent
+
+Algo a tener en cuenta al trabajar con relaciones `@Parent` es la forma en que se envían y reciben. Por ejemplo, en JSON, una relación `@Parent` para un modelo `Planet` podría verse así:
+
+```json
+{
+    "id": "A616B398-A963-4EC7-9D1D-B1AA8A6F1107",
+    "star": {
+        "id": "A1B2C3D4-1234-5678-90AB-CDEF12345678"
+    }
+}
+```
+
+Nota cómo la propiedad `star` es un objeto en lugar del ID que podrías esperar. Al enviar el modelo como un cuerpo HTTP, debe coincidir con esta estructura para que la decodificación funcione. Por esta razón, recomendamos encarecidamente usar un DTO para representar el modelo al enviarlo por la red. Por ejemplo:
+
+```swift
+struct PlanetDTO: Content {
+    var id: UUID?
+    var name: String
+    var star: Star.IDValue
+}
+```
+
+Luego puedes decodificar el DTO y convertirlo en un modelo:
+
+```swift
+let planetData = try req.content.decode(PlanetDTO.self)
+let planet = Planet(id: planetData.id, name: planetData.name, starID: planetData.star)
+try await planet.create(on: req.db)
+```
+
+Lo mismo aplica al devolver el modelo a los clientes. Tus clientes deben poder manejar la estructura anidada o necesitas convertir el modelo en un DTO antes de devolverlo. Para más información sobre los DTOs, consulta la [documentación del modelo](model.es.md#data-transfer-object).
+
 ## Optional Child
 
 La propiedad `@OptionalChild` crea una relación uno a uno entre dos modelos. No guarda ningún valor en el modelo raíz. 
@@ -284,7 +317,7 @@ Ver [query](query.md) para más información.
 
 ## Eager Loading
 
-El constructor de consultas (query builder) de Fluent te permite precargar las relaciones de un modelo cuando es recuperado de la base de datos. Esto se conoce como "eager loading" y te permite acceder a las relaciones de manera sincrónica sin la necesidad de llamar previamente a [`load`](#lazy-eager-loading) o [`get`](#get) . 
+El constructor de consultas (query builder) de Fluent te permite precargar las relaciones de un modelo cuando es recuperado de la base de datos. Esto se conoce como "eager loading" y te permite acceder a las relaciones de manera sincrónica sin la necesidad de llamar a [`get`](#get) primero.
 
 Para hacer un "eager load" de una relación, pasa un key path a la relación con el método `with` en el constructor de consultas. 
 
@@ -311,6 +344,7 @@ for planet in planets {
 En el ejemplo anterior, se le ha pasado un key path a la relación [`@Parent`](#parent) llamada `star` con `with`. Esto provoca que el constructor de consultas haga una consulta adicional después de cargar todos los planetas para recuperar todas las estrellas conectadas a éstos. Las estrellas son accesibles de manera sincrónica mediante la propiedad `@Parent`. 
 
 Cada relación precargada (eager loaded) necesita una única consulta adicional, sin importar cuántos modelos se hayan devuelto. La precarga (eager loading) sólo es posible con los métodos de constructor de consultas `all` y `first`. 
+
 ### Nested Eager Load
 
 El método de constructor de consultas `with` te permite precargar relaciones en el modelo que está siendo consultado. Sin embargo, también puedes precargar relaciones en los modelos conectados. 
@@ -330,16 +364,23 @@ El método `with` acepta un closure opcional como segundo parámetro. Este closu
 
 ## Lazy Eager Loading
 
-En caso de que ya hayas recuperado el modelo del parent y quieres cargar una de sus relaciones, puedes usar el método `load(on:)` para hacerlo. Esto recuperará el modelo conectado de la base de datos y permitirá acceder a él como una propiedad local.
+En caso de que ya hayas recuperado el modelo del parent y quieres cargar una de sus relaciones, puedes usar el método `get(reload:on:)` para hacerlo. Esto recuperará el modelo conectado de la base de datos (o de la caché, si está disponible) y permitirá acceder a él como una propiedad local.
 
 ```swift
-planet.$star.load(on: database).map {
+planet.$star.get(on: database).map {
     print(planet.star.name)
 }
 
 // O
 
-try await planet.$star.load(on: database)
+try await planet.$star.get(on: database)
+print(planet.star.name)
+```
+
+En caso de que quieras asegurarte de que los datos que recibes no se obtienen desde la caché, utiliza el parámetro `reload:`.
+
+```swift
+try await planet.$star.get(reload: true, on: database)
 print(planet.star.name)
 ```
 
