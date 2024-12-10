@@ -1,6 +1,6 @@
 # Instalación en Linux
 
-Para usar Vapor, necesitas Swift 5.9 o superior. Esto se puede instalar utilizando la herramienta CLI [Swiftly](https://swift-server.github.io/swiftly/) proporcionada por el Swift Server Workgroup (recomendado), o las toolchains disponibles en [Swift.org](https://swift.org/download/).
+Para usar Vapor, necesitas Swift 5.9 o superior. Esto se puede instalar utilizando la herramienta CLI [Swiftly](https://swiftlang.github.io/swiftly/) proporcionada por el Swift Server Workgroup (recomendado), o las toolchains disponibles en [Swift.org](https://swift.org/download/).
 
 ## Distribuciones y Versiones Soportadas
 
@@ -12,7 +12,7 @@ Las distribuciones de Linux que no son oficialmente compatibles también pueden 
 
 ### Instalación automatizada usando la herramienta Swiftly CLI (recomendada)
 
-Visita el [sitio web de Swiftly](https://swift-server.github.io/swiftly/) para obtener instrucciones sobre cómo instalar Swiftly y Swift en Linux. Después de eso, instala Swift con el siguiente comando:
+Visita el [sitio web de Swiftly](https://swiftlang.github.io/swiftly/) para obtener instrucciones sobre cómo instalar Swiftly y Swift en Linux. Después de eso, instala Swift con el siguiente comando:
 
 #### Uso básico
 
