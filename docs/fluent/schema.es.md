@@ -381,14 +381,33 @@ Podemos hacer los ajustes necesarios del esquema de la base de datos con la sigu
 struct UserNameMigration: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("users")
+             .field("first_name", .string, .required)
+             .field("last_name", .string, .required)
+             .update()
+
+         // Actualmente no es posible expresar esta actualización sin usar SQL personalizado.
+         // Esto tampoco intenta dividir el nombre en nombre y apellido,
+         // ya que eso requiere sintaxis específica de la base de datos.
+         try await User.query(on: database)
+             .set(["first_name": .sql(embed: "name"))
+             .run()
+
+        try await database.schema("users")
             .deleteField("name")
-            .field("first_name", .string)
-            .field("last_name", .string)
             .update()
     }
 
     func revert(on database: Database) async throws {
-        try await database.schema("users").delete()
+        try await database.schema("users")
+            .field("name", .string, .required)
+            .update()
+        try await User.query(on: database)
+            .set(["name": .sql(embed: "concat(first_name, ' ', last_name)"))
+            .run()
+        try await database.schema("users")
+            .deleteField("first_name")
+            .deleteField("last_name")
+            .update()
     }
 }
 ```
