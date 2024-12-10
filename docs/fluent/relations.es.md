@@ -284,7 +284,7 @@ Ver [query](query.md) para más información.
 
 ## Eager Loading
 
-El constructor de consultas (query builder) de Fluent te permite precargar las relaciones de un modelo cuando es recuperado de la base de datos. Esto se conoce como "eager loading" y te permite acceder a las relaciones de manera sincrónica sin la necesidad de llamar previamente a [`load`](#lazy-eager-loading) o [`get`](#get) . 
+El constructor de consultas (query builder) de Fluent te permite precargar las relaciones de un modelo cuando es recuperado de la base de datos. Esto se conoce como "eager loading" y te permite acceder a las relaciones de manera sincrónica sin la necesidad de llamar a [`get`](#get) primero.
 
 Para hacer un "eager load" de una relación, pasa un key path a la relación con el método `with` en el constructor de consultas. 
 
@@ -311,6 +311,7 @@ for planet in planets {
 En el ejemplo anterior, se le ha pasado un key path a la relación [`@Parent`](#parent) llamada `star` con `with`. Esto provoca que el constructor de consultas haga una consulta adicional después de cargar todos los planetas para recuperar todas las estrellas conectadas a éstos. Las estrellas son accesibles de manera sincrónica mediante la propiedad `@Parent`. 
 
 Cada relación precargada (eager loaded) necesita una única consulta adicional, sin importar cuántos modelos se hayan devuelto. La precarga (eager loading) sólo es posible con los métodos de constructor de consultas `all` y `first`. 
+
 ### Nested Eager Load
 
 El método de constructor de consultas `with` te permite precargar relaciones en el modelo que está siendo consultado. Sin embargo, también puedes precargar relaciones en los modelos conectados. 
@@ -330,16 +331,23 @@ El método `with` acepta un closure opcional como segundo parámetro. Este closu
 
 ## Lazy Eager Loading
 
-En caso de que ya hayas recuperado el modelo del parent y quieres cargar una de sus relaciones, puedes usar el método `load(on:)` para hacerlo. Esto recuperará el modelo conectado de la base de datos y permitirá acceder a él como una propiedad local.
+En caso de que ya hayas recuperado el modelo del parent y quieres cargar una de sus relaciones, puedes usar el método `get(reload:on:)` para hacerlo. Esto recuperará el modelo conectado de la base de datos (o de la caché, si está disponible) y permitirá acceder a él como una propiedad local.
 
 ```swift
-planet.$star.load(on: database).map {
+planet.$star.get(on: database).map {
     print(planet.star.name)
 }
 
 // O
 
-try await planet.$star.load(on: database)
+try await planet.$star.get(on: database)
+print(planet.star.name)
+```
+
+En caso de que quieras asegurarte de que los datos que recibes no se obtienen desde la caché, utiliza el parámetro `reload:`.
+
+```swift
+try await planet.$star.get(reload: true, on: database)
 print(planet.star.name)
 ```
 
