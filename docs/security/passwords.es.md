@@ -59,9 +59,6 @@ let digest = try app.password.hash("vapor")
 ```
 
 ### Async 
-
-Password hashing algorithms are designed to be slow and CPU intensive. Because of this, you may want to avoid blocking the event loop while hashing passwords. Vapor provides an asynchronous password hashing API that dispatches hashing to a background thread pool. To use the asynchronous API, use the `async` property on a password hasher.
-
 Los algoritmos de hashing de contraseñas están diseñados para ser lentos y consumir muchos recursos de CPU. Por esta razón, es posible que desees evitar bloquear el event loop mientras haces el hashing de contraseñas. Vapor proporciona una API asíncrona para hashing de contraseñas que envía el proceso de hashing a un pool de hilos en segundo plano. Para usar la API asíncrona, utiliza la propiedad `async` en un hasher de contraseñas.
 
 ```swift
