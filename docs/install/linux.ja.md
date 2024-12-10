@@ -1,9 +1,9 @@
 # Linux にインストール
 
-Vapor を使うには、Swift 5.7 以上が必要です。これは Swift Server Workgroup が提供する CLI ツール [Swiftly](https://swiftlang.github.io/swiftly/) を使ってインストールできます（推奨）。または、[Swift.org](https://swift.org/download/) で利用可能なツールチェーンを使用してインストールできます。
+Vapor を使うには、Swift 5.9 以上が必要です。これは Swift Server Workgroup が提供する CLI ツール [Swiftly](https://swiftlang.github.io/swiftly/) を使ってインストールできます（推奨）。または、[Swift.org](https://swift.org/download/) で利用可能なツールチェーンを使用してインストールできます。
 
 ## サポートされているディストリビューションとバージョン
-Vapor は、Swift 5.7 またはそれ以上の新しいバージョンがサポートする Linux ディストリビューションと同じバージョンをサポートしています。公式にサポートされているオペレーティングシステムの最新情報については、[公式サポートページ](https://www.swift.org/platform-support/)を参照してください。
+Vapor は、Swift 5.9 またはそれ以上の新しいバージョンがサポートする Linux ディストリビューションと同じバージョンをサポートしています。公式にサポートされているオペレーティングシステムの最新情報については、[公式サポートページ](https://www.swift.org/platform-support/)を参照してください。
 
 
 公式にはサポートされていない Linux ディストリビューションでも、ソースコードをコンパイルすることで、Swift を実行できるかもしれませんが、Vapor は安定性を保証できません。[Swift repo](https://github.com/apple/swift#getting-started) から Swift のコンパイル方法について詳しく学ぶことができます。
@@ -43,7 +43,7 @@ Fedora ユーザーは、以下のコマンドを使用して Swift を簡単に
 sudo dnf install swift-lang
 ```
 
-Fedora 35 を使用している場合、Swift 5.6 またはそれ以降のバージョンを取得するには、EPEL8 を追加する必要があります。
+Fedora 35 を使用している場合、Swift 5.9 またはそれ以降のバージョンを取得するには、EPEL8 を追加する必要があります。
 
 ## Docker
 

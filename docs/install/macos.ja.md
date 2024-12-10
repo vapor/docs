@@ -1,6 +1,6 @@
 # macOS へのインストール
 
-Vapor を macOS で使用するには、Swift 5.6 以上が必要です。Swift とそれに関連するすべての依存関係は、Xcode にバンドルされています。
+Vapor を macOS で使用するには、Swift 5.9 以上が必要です。Swift とそれに関連するすべての依存関係は、Xcode にバンドルされています。
 
 ## Xcode のインストール
 
@@ -24,7 +24,7 @@ swift-driver version: 1.75.2 Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clan
 Target: arm64-apple-macosx13.0
 ```
 
-Vapor 4 は、Swift 5.6 以上が必要です。
+Vapor 4 は、Swift 5.9 以上が必要です。
 
 ## Toolbox のインストール
 

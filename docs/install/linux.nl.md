@@ -1,20 +1,20 @@
 # Installeren op Linux
 
-Om Vapor te gebruiken op Linux, zal je Swift 5.6 of hoger nodig hebben. Dit kan geïnstalleerd worden met de toolchains te vinden op [Swift.org](https://swift.org/download/).
+Om Vapor te gebruiken op Linux, zal je Swift 5.9 of hoger nodig hebben. Dit kan geïnstalleerd worden met de toolchains te vinden op [Swift.org](https://swift.org/download/).
 
 ## Ondersteunde distributies en versies
 
-Vapor ondersteund dezelfde versies van Linux distributies die Swift 5.6 of hogere versies ook ondersteunen.
+Vapor ondersteund dezelfde versies van Linux distributies die Swift 5.9 of hogere versies ook ondersteunen.
 
 !!! Opmerking
     The ondersteunde versies hieronder kunnen op elke moment verouderd zijn. Je kan zien welke besturingssystemen officiele ondersteuning krijgen op de [Swift Releases](https://swift.org/download/#releases/) pagina.
 
 |Distribution|Version|Swift Version|
 |-|-|-|
-|Ubuntu|20.04|>= 5.6|
-|Fedora|>= 30|>= 5.6|
-|CentOS|8|>= 5.6|
-|Amazon Linux|2|>= 5.6|
+|Ubuntu|20.04|>= 5.9|
+|Fedora|>= 30|>= 5.9|
+|CentOS|8|>= 5.9|
+|Amazon Linux|2|>= 5.9|
 
 Linux distributies die niet officieel ondersteund zijn kunnen mogelijks ook Swift uitvoeren door de broncode te compileren, maar Vapor kan geen stabiliteit garanderen. Meer informatie over het compileren van Swift kan gevonden worden op de [Swift repo](https://github.com/apple/swift#getting-started).
 
@@ -30,7 +30,7 @@ Fedora gebruikers kunnen eenvoudig het volgende commando gebruiken om Swift te i
 sudo dnf install swift-lang
 ```
 
-Als je Fedore 30 gebruikt, dan zal je EPEL 8 moeten toevoegen om Swift 5.6 of nieuwere versies te krijgen.
+Als je Fedore 30 gebruikt, dan zal je EPEL 8 moeten toevoegen om Swift 5.9 of nieuwere versies te krijgen.
 
 ## Docker
 
