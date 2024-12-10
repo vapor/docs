@@ -25,7 +25,7 @@ CryptoKit incluye soporte para:
 
 ## Bcrypt
 
-Bcrypt es un algoritmo de hash para contraseñas que utiliza una sal aleatoria para garantizar que al hashear la misma contraseña varias veces no se obtenga el mismo resultado.
+Bcrypt es un algoritmo de hash para contraseñas que utiliza un 'salt' aleatorio para garantizar que al hashear la misma contraseña varias veces no se obtenga el mismo resultado.
 
 Vapor proporciona un tipo `Bcrypt` para hashear y comparar contraseñas.
 
@@ -35,7 +35,7 @@ import Vapor
 let digest = try Bcrypt.hash("test")
 ```
 
-Debido a que Bcrypt utiliza una sal, los hashes de las contraseñas no se pueden comparar directamente. Se deben verificar juntos la contraseña en texto plano y el hash existente.
+Debido a que Bcrypt utiliza un 'salt', los hashes de las contraseñas no se pueden comparar directamente. Se deben verificar juntos la contraseña en texto plano y el hash existente.
 
 ```swift
 import Vapor
@@ -69,7 +69,6 @@ HOTP.generate(key: key, digest: .sha256, digits: .six, counter: 25)
 
 #### TOTP
 
-A TOTP is a time-based variation of the HOTP. It works mostly the same, but instead of a simple counter, the current time is used to generate uniqueness. To compensate for the inevitable skew introduced by unsynchronized clocks, network latency, user delay, and other confounding factors, a generated TOTP code remains valid over a specified time interval (most commonly, 30 seconds).
 
 TOTP es una variación basada en el tiempo de HOTP. Funciona de forma similar, pero en lugar de usar un contador simple, utiliza la hora actual para generar unicidad. Para compensar los inevitables desfases introducidos por relojes desincronizados, latencia de red, retrasos del usuario y otros factores, un código TOTP generado sigue siendo válido durante un intervalo de tiempo especificado (normalmente, 30 segundos).
 
