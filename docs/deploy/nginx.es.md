@@ -1,6 +1,6 @@
 # Despliegue con Nginx
 
-Nginx es un servidor y proxy HTTP extremadamente rápido, probado en el campo, y fácil de configurar. Aunque Vapor soporta servir peticiones HTTP con o sin TLS directamente, hacer un proxy con Nginx puede proporcionar un aumento en rendimiento, seguridad y facilidad de uso. 
+Nginx es un servidor y proxy HTTP extremadamente rápido, confiable, y fácil de configurar. Aunque Vapor soporta servir peticiones HTTP con o sin TLS directamente, hacer un proxy con Nginx puede proporcionar un aumento en rendimiento, seguridad y facilidad de uso. 
 
 !!! note "Nota"
     Recomendamos hacer un proxy de los servidores HTTP de Vapor con Nginx.
