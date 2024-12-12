@@ -4,7 +4,7 @@
 
 ## Sólo Lectura
 
-El tipo de servicio más simple es el de sólo lectura. Estos servicios consisten en variables computadas o métodos añadidos a la aplicación o a la petición.
+El tipo de servicio más simple es el de sólo lectura. Estos servicios consisten en variables calculadas o métodos añadidos a la aplicación o a la petición.
 
 ```swift
 import Vapor
