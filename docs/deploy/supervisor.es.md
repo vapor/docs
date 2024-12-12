@@ -38,7 +38,7 @@ stdout_logfile=/var/log/supervisor/%(program_name)-stdout.log
 stderr_logfile=/var/log/supervisor/%(program_name)-stderr.log
 ```
 
-Tal y como hemos especificado en nuestro fichero de configuración, el proyecto `Hello` se encuentra en la carpeta "home" del usuario `vapor`. Asegúrate de que `directory` apunta al directorio raíz de tu proyecto, donde el fichero `Package.swift` está.
+Tal y como hemos especificado en nuestro fichero de configuración, el proyecto `Hello` se encuentra en la carpeta "home" del usuario `vapor`. Asegúrate de que `directory` apunta al directorio raíz de tu proyecto, donde está el fichero `Package.swift`.
 
 La marca (flag) `--env production` deshabilitará el registro detallado.
 
