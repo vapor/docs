@@ -140,7 +140,7 @@ El parámetro `tlsConfiguration` controla si TLS (SSL) está habilitado en el se
 // Habilitar TLS.
 app.http.server.configuration.tlsConfiguration = .makeServerConfiguration(
     certificateChain: try NIOSSLCertificate.fromPEMFile("/path/to/cert.pem").map { .certificate($0) },
-    privateKey: .file("/path/to/key.pem")
+    privateKey: try NIOSSLPrivateKey(file: "/path/to/key.pem", format: .pem))
 )
 ```
 
