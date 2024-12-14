@@ -1,6 +1,7 @@
 # JWT
 
 JSON Web Token (JWT) is an open standard ([RFC 7519](https://tools.ietf.org/html/rfc7519)) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed.
+
 JWTs are particularly useful in web applications, where they are commonly used for stateless authentication/authorization and information exchange. You can read more about the theory behind JWTs in the spec linked above or on [jwt.io](https://jwt.io/introduction).
 
 Vapor provides first-class support for JWTs through the `JWT` module. This module is built on top of the `JWTKit` library, which is a Swift implementation of the JWT standard based on [SwiftCrypto](https://github.com/apple/swift-crypto). JWTKit provides signers and verifiers for a variety of algorithms, including HMAC, ECDSA, EdDSA, and RSA.
@@ -34,6 +35,7 @@ let package = Package(
 After adding the dependency, you can start using the `JWT` module in your application. The JWT module adds a new `jwt` property to `Application` that is used for configuration, of which the internals are provided by the [JWTKit](https://github.com/vapor/jwt-kit) library.
 
 #### Key Collection
+
 The `jwt` object comes with a `keys` property, which is an instance of JWTKit's `JWTKeyCollection`. This collection is used to store and manage the keys used to sign and verify JWTs. The `JWTKeyCollection` is an `actor`, which means that all operations on the collection are serialized and thread-safe.
 
 To sign or verify JWTs, you will need to add a key to the collection. This is usually done in your `configure.swift` file:
@@ -52,8 +54,7 @@ This adds an HMAC key with SHA-256 as the digest algorithm to the keychain, or H
 
 ### Signing
 
-The added key can then be used to sign JWTs. To do this,
-you first of all need _something_ to sign, namely a 'payload'. 
+The added key can then be used to sign JWTs. To do this, you first of all need _something_ to sign, namely a 'payload'. 
 This payload is simply a JSON object containing the data you want to transmit. You can create your custom payload by conforming your structure to the `JWTPayload` protocol:
 
 ```swift
@@ -126,6 +127,7 @@ app.get("me") { req async throws -> HTTPStatus in
 ```
 
 The `req.jwt.verify` helper will check the `Authorization` header for a bearer token. If one exists, it will parse the JWT and verify its signature and claims. If any of these steps fail, a 401 Unauthorized error will be thrown.
+
 Test the route by sending the following HTTP request:
 
 ```http
@@ -148,11 +150,13 @@ The whole authentication flow can be found at [Authentication &rarr; JWT](authen
 ## Algorithms
 
 JWTs can be signed using a variety of algorithms. 
+
 To add a key to the keychain, an overload of the `add` method is available for each of the following algorithms:
 
 ### HMAC
 
 HMAC (Hash-based Message Authentication Code) is a symmetric algorithm that uses a secret key to sign and verify the JWT. Vapor supports the following HMAC algorithms:
+
 - `HS256`: HMAC with SHA-256
 - `HS384`: HMAC with SHA-384
 - `HS384`: HMAC with SHA-384
@@ -165,6 +169,7 @@ await app.jwt.keys.add(hmac: "secret", digestAlgorithm: .sha256)
 ### ECDSA
 
 ECDSA (Elliptic Curve Digital Signature Algorithm) is an asymmetric algorithm that uses a public/private key pair to sign and verify the JWT. It's reliance is based on the math around elliptic curves. Vapor supports the following ECDSA algorithms:
+
 - `ES256`: ECDSA with a P-256 curve and SHA-256
 - `ES384`: ECDSA with a P-384 curve and SHA-384
 - `ES512`: ECDSA with a P-521 curve and SHA-512
@@ -228,6 +233,7 @@ RSA (Rivest-Shamir-Adleman) is an asymmetric algorithm that uses a public/privat
     If possible, use any of the other algorithms instead.
 
 Vapor supports the following RSA algorithms:
+
 - `RS256`: RSA with SHA-256
 - `RS384`: RSA with SHA-384
 - `RS512`: RSA with SHA-512
@@ -271,6 +277,7 @@ await app.jwt.keys.add(rsa: key, digestAlgorithm: .sha256)
 ### PSS
 
 In addition to the RSA-PKCS1v1.5 algorithm, Vapor also supports the RSA-PSS algorithm. PSS (Probabilistic Signature Scheme) is a more secure padding scheme for RSA signatures. It is recommended to use PSS over PKCS1v1.5 when possible.
+
 The algorithm only differs in the signature phase, which means that the keys are the same as RSA, however, you need to specify the padding scheme when adding them to the key collection:
 
 ```swift
@@ -317,7 +324,9 @@ Vapor's JWT package includes several helpers for implementing common [JWT claims
 All claims should be verified in the `JWTPayload.verify` method. If the claim has a special verify method, you can use that. Otherwise, access the value of the claim using `value` and check that it is valid.
 
 ## JWK
+
 A JSON Web Key (JWK) is a JSON data structure that represents a cryptographic key ([RFC7517](https://datatracker.ietf.org/doc/html/rfc7517)). These are commonly used to supply clients with keys for verifying JWTs.
+
 For example, Apple hosts their Sign in with Apple JWKS at the following URL.
 
 ```http
