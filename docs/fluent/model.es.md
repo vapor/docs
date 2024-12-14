@@ -359,6 +359,9 @@ app.get("planets") { req async throws in
 
 Al serializar desde/hacia `Codable`, las propiedades del modelo usarán sus nombres de variable en lugar de las claves. Las relaciones serán serializadas como estructuras anidadas y cualquier carga previa (eager loading) de datos será incluida. 
 
+!!! info "Información"
+    Recomendamos que para casi todos los casos utilices un DTO en lugar de un modelo para tus respuestas de API y los cuerpos de tus solicitudes. Consulta [Objeto de transferencia de datos](#data-transfer-object) para obtener más información.
+
 ### Data Transfer Object
 
 La conformidad por defecto del modelo a `Codable` puede facilitar el prototipado y usos simples. Sin embargo, expone la información subyacente de la base de datos a la API. Esto generalmente no es deseable desde un punto de vista de seguridad —devolver campos sensibles como el hash de la contraseña de un usuario es una mala idea— y desde una perspectiva de usabilidad. Hace difícil cambiar el esquema de la base de datos sin romper la API, aceptar o devolver datos en un formato diferente, o agregar o eliminar campos de la API.
