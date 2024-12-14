@@ -22,7 +22,7 @@ curl -L https://fly.io/install.sh | sh
 ```
 
 ### 其它安装选项
-有关更多选项和详细信息，请参阅 [flyctl 文档](https://fly.io/docs/hands-on/install-flyctl/)。
+有关更多选项和详细信息，请参阅 [flyctl 文档](https://fly.io/docs/flyctl/install/)。
 
 ## 登录
 通过终端登录，运行如下命令：
@@ -52,7 +52,7 @@ vapor new app-name
 - [Fluent/Postgres + Leaf template](https://github.com/vapor/template-fluent-postgres-leaf)
 
 ### 已有的 Vapor 项目
-如果你有一个现有的 Vapor 项目，请确保项目的根目录中有一个正确配置的 `Dockerfile` 文件；[Vapor 文档中关于使用 Docker](../deploy/docker.zh.md) 和 [Fly 文档中关于通过 Dockerfile 部署应用程序](https://fly.io/docs/getting-started/dockerfile/)可能会对你有所帮助。
+如果你有一个现有的 Vapor 项目，请确保项目的根目录中有一个正确配置的 `Dockerfile` 文件；[Vapor 文档中关于使用 Docker](../deploy/docker.zh.md) 和 [Fly 文档中关于通过 Dockerfile 部署应用程序](https://fly.io/docs/languages-and-frameworks/dockerfile/)可能会对你有所帮助。
 
 ## 在 Fly 上启动应用
 一旦你的 Vapor 项目准备就绪，就可以在 Fly 上启动它。
@@ -94,7 +94,7 @@ Fly 会读取你的目录中的 `Dockerfile` 和 `fly.toml` 文件来确定如�
 fly pg create
 ```
 
-这个命令创建了一个 Fly 应用程序，可以为其他 Fly 上的应用程序提供数据库服务，详情请参阅 [Fly 文档](https://fly.io/docs/reference/postgres/)。
+这个命令创建了一个 Fly 应用程序，可以为其他 Fly 上的应用程序提供数据库服务，详情请参阅 [Fly 文档](https://fly.io/docs/postgres/)。
 
 创建完数据库应用之后，进入你的 Vapor 应用程序的根目录，运行以下命令：
 ```bash
@@ -153,7 +153,7 @@ Fly 将在具有访问 Fly 内部网络、密钥和环境变量的临时实例�
 !!! warning "警告"
     请注意，大多数 shell 都会保留你输入的命令历史记录。在使用此方式设置密钥时要注意。某些 shell 可以配置为不记录以空格为前缀的命令。请参阅 [`fly secrets import` 命令](https://fly.io/docs/flyctl/secrets-import/)的文档。
 
-更多信息，请参阅 [`fly secrets` 文档](https://fly.io/docs/reference/secrets/) 。
+更多信息，请参阅 [`fly secrets` 文档](https://fly.io/docs/apps/secrets/) 。
 
 ### 环境变量
 你可以在 [`fly.toml`](https://fly.io/docs/reference/configuration/#the-env-variables-section) 中设置其他非敏感的环境变量，例如：
