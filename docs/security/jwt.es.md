@@ -1,13 +1,14 @@
 # JWT
 
-JSON Web Token (JWT) is an open standard ([RFC 7519](https://tools.ietf.org/html/rfc7519)) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed.
-JWTs are particularly useful in web applications, where they are commonly used for stateless authentication/authorization and information exchange. You can read more about the theory behind JWTs in the spec linked above or on [jwt.io](https://jwt.io/introduction).
+JSON Web Token (JWT) es un estándar abierto ([RFC 7519](https://tools.ietf.org/html/rfc7519)) que define una forma compacta y autónoma de transmitir información de forma segura entre partes como un objeto JSON. Esta información se puede verificar y es confiable porque está firmada digitalmente.
 
-Vapor provides first-class support for JWTs through the `JWT` module. This module is built on top of the `JWTKit` library, which is a Swift implementation of the JWT standard based on [SwiftCrypto](https://github.com/apple/swift-crypto). JWTKit provides signers and verifiers for a variety of algorithms, including HMAC, ECDSA, EdDSA, and RSA.
+Los JWT son particularmente útiles en aplicaciones web, donde se usan comúnmente para la autenticación/autorización sin estado y el intercambio de información. Puedes leer más sobre la teoría detrás de los JWT en la especificación vinculada anteriormente o en [jwt.io](https://jwt.io/introduction).
 
-## Getting Started
+Vapor proporciona soporte de primera clase para JWT a través del módulo `JWT`. Este módulo está construido sobre la librería `JWTKit`, que es una implementación Swift del estándar JWT basada en [SwiftCrypto](https://github.com/apple/swift-crypto). JWTKit proporciona firmantes y verificadores para una variedad de algoritmos, incluidos HMAC, ECDSA, EdDSA, y RSA.
 
-The first step to using JWTs in your Vapor application is to add the `JWT` dependency to your project's `Package.swift` file: 
+## Primeros pasos
+
+El primer paso para usar JWT en tu aplicación Vapor es agregar la dependencia `JWT` al archivo `Package.swift` de tu proyecto: 
 
 ```swift
 // swift-tools-version:5.10
@@ -16,80 +17,80 @@ import PackageDescription
 let package = Package(
     name: "my-app",
     dependencies: [
-        // Other dependencies...
-        .package(url: "https://github.com/vapor/jwt.git", from: "5.0.0-rc"),
+        // Otras dependencias...
+        .package(url: "https://github.com/vapor/jwt.git", from: "5.0.0"),
     ],
     targets: [
         .target(name: "App", dependencies: [
-            // Other dependencies...
+            // Otras dependencias...
             .product(name: "JWT", package: "jwt")
         ]),
-        // Other targets...
+        // Otros targets...
     ]
 )
 ```
 
-### Configuration
+### Configuración
 
-After adding the dependency, you can start using the `JWT` module in your application. The JWT module adds a new `jwt` property to `Application` that is used for configuration, of which the internals are provided by the [JWTKit](https://github.com/vapor/jwt-kit) library.
+Después de agregar la dependencia, puedes comenzar a usar el módulo `JWT` en tu aplicación. El módulo JWT agrega una nueva propiedad `jwt` a `Application` que se utiliza para la configuración, cuyas partes internas las proporciona la librería [JWTKit](https://github.com/vapor/jwt-kit).
 
-#### Key Collection
-The `jwt` object comes with a `keys` property, which is an instance of JWTKit's `JWTKeyCollection`. This collection is used to store and manage the keys used to sign and verify JWTs. The `JWTKeyCollection` is an `actor`, which means that all operations on the collection are serialized and thread-safe.
+#### Recogida de llaves
 
-To sign or verify JWTs, you will need to add a key to the collection. This is usually done in your `configure.swift` file:
+El objeto `jwt` viene con una propiedad `keys`, que es una instancia de `JWTKeyCollection` de JWTKit. Esta colección se usa para almacenar y administrar las claves utilizadas para firmar y verificar los JWT. `JWTKeyCollection` es un `actor`, lo que significa que todas las operaciones en la colección están serializadas y son seguras para subprocesos.
+
+Para firmar o verificar JWT, deberás agregar una clave a la colección. Esto se hace generalmente en tu archivo `configure.swift`:
 
 ```swift
 import JWT
 
-// Add HMAC with SHA-256 signer.
+// Agrega HMAC con firmante SHA-256.
 await app.jwt.keys.add(hmac: "secret", digestAlgorithm: .sha256)
 ```
 
-This adds an HMAC key with SHA-256 as the digest algorithm to the keychain, or HS256 in JWA notation. Check out the [algorithms](#algorithms) section below for more information on the available algorithms.
+Esto agrega una clave HMAC con SHA-256 como algoritmo de resumen al llavero, o HS256 en notación JWA. Consulte la sección [algoritmos](#algoritmos) a continuación para obtener más información sobre los algoritmos disponibles.
 
-!!! note 
-    Be sure to replace `"secret"` with an actual secret key. This key should be kept secure, ideally in a configuration file or environment variable.
+!!! note "Nota"
+    Asegúrese de reemplazar `"secret"` con una clave secreta real. Esta clave debe mantenerse segura, idealmente en un archivo de configuración o variable de entorno.
 
-### Signing
+### Firma
 
-The added key can then be used to sign JWTs. To do this,
-you first of all need _something_ to sign, namely a 'payload'. 
-This payload is simply a JSON object containing the data you want to transmit. You can create your custom payload by conforming your structure to the `JWTPayload` protocol:
+La clave agregada luego se puede usar para firmar JWT. Para hacer esto, primero necesitas _algo_ para firmar, es decir, una "carga útil" (payload).
+Esta carga útil es simplemente un objeto JSON que contiene los datos que deseas transmitir. Puedes crear tu carga útil personalizada adaptando tu estructura al protocolo `JWTPayload`:
 
 ```swift
-// JWT payload structure.
+// Estructura de carga útil JWT.
 struct TestPayload: JWTPayload {
-    // Maps the longer Swift property names to the
-    // shortened keys used in the JWT payload.
+    // Asigna los nombres de propiedad Swift más largos a las
+    // claves abreviadas utilizadas en la carga útil JWT.
     enum CodingKeys: String, CodingKey {
         case subject = "sub"
         case expiration = "exp"
         case isAdmin = "admin"
     }
 
-    // The "sub" (subject) claim identifies the principal that is the
-    // subject of the JWT.
+    // El reclamo "sub" (sujeto) identifica al principal que es el
+    // sujeto del JWT.
     var subject: SubjectClaim
 
-    // The "exp" (expiration time) claim identifies the expiration time on
-    // or after which the JWT MUST NOT be accepted for processing.
+    // El reclamo "exp" (tiempo de vencimiento) identifica el tiempo de vencimiento en
+    // o después del cual el JWT NO DEBE aceptarse para tu procesamiento.
     var expiration: ExpirationClaim
 
-    // Custom data.
-    // If true, the user is an admin.
+    // Datos personalizados.
+    // Si es verdadero, el usuario es administrador.
     var isAdmin: Bool
 
-    // Run any additional verification logic beyond
-    // signature verification here.
-    // Since we have an ExpirationClaim, we will
-    // call its verify method.
+    // Ejecuta aquí cualquier lógica de verificación adicional más allá
+    // verificación de firma.
+    // Como tenemos un ExpirationClaim, llamaremos
+    // a su método de verificación.
     func verify(using algorithm: some JWTAlgorithm) async throws {
         try self.expiration.verifyNotExpired()
     }
 }
 ```
 
-Signing the payload is done by calling the `sign` method on the `JWT` module, for example inside of a route handler:
+La firma de la carga útil se realiza llamando al método `sign` en el módulo `JWT`, por ejemplo dentro de un manejador de ruta:
 
 ```swift
 app.post("login") { req async throws -> [String: String]
@@ -102,7 +103,7 @@ app.post("login") { req async throws -> [String: String]
 }
 ```
 
-When a request is made to this endpoint, it will return the signed JWT as a `String` in the response body, and if everything went according to plan, you'll see something like this:
+Cuando se realiza una solicitud a este endpoint, devolverá el JWT firmado como un `String` en el cuerpo de la respuesta y, si todo salió según lo planeado, verá algo como esto:
 
 ```json
 {
@@ -110,14 +111,14 @@ When a request is made to this endpoint, it will return the signed JWT as a `Str
 }
 ```
 
-You can decode and verify this token using the [`jwt.io` debugger](https://jwt.io/#debugger). The debugger will show you the payload (which should be the data you specified earlier) and header of the JWT, and you can verify the signature using the secret key you used to sign the JWT.
+Puedes decodificar y verificar este token usando el [depurador `jwt.io`](https://jwt.io/#debugger). El depurador te mostrará la carga útil (que deberían ser los datos que especificaste anteriormente) y el encabezado del JWT, y podrás verificar la firma utilizando la clave secreta que utilizaste para firmar el JWT.
 
-### Verifying
+### Verificando
 
-When a token is instead sent _to_ your application, you can verify the authenticity of the token by calling the `verify` method on the `JWT` module:
+Cuando se envía un token _a_ tu aplicación, puedes verificar la autenticidad del token llamando al método `verify` en el módulo `JWT`:
 
 ```swift
-// Fetch and verify JWT from incoming request.
+// Recupera y verifica JWT de la solicitud entrante.
 app.get("me") { req async throws -> HTTPStatus in
     let payload = try await req.jwt.verify(as: TestPayload.self)
     print(payload)
@@ -125,15 +126,16 @@ app.get("me") { req async throws -> HTTPStatus in
 }
 ```
 
-The `req.jwt.verify` helper will check the `Authorization` header for a bearer token. If one exists, it will parse the JWT and verify its signature and claims. If any of these steps fail, a 401 Unauthorized error will be thrown.
-Test the route by sending the following HTTP request:
+El asistente `req.jwt.verify` verificará el encabezado `Authorization` en busca del token del portador (bearer token). Si existe uno, analizará el JWT y verificará su firma y sus reclamos. Si alguno de estos pasos falla, se generará un error 401 no autorizado.
+
+Prueba la ruta enviando la siguiente solicitud HTTP:
 
 ```http
 GET /me HTTP/1.1
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ2YXBvciIsImV4cCI6NjQwOTIyMTEyMDAsImFkbWluIjp0cnVlfQ.lS5lpwfRNSZDvpGQk6x5JI1g40gkYCOWqbc3J_ghowo
 ```
 
-If everything worked, a `200 OK` response will be returned and the payload printed:
+Si funcionó todo, se devolverá una respuesta `200 OK` y se imprimirá la carga útil:
 
 ```swift
 TestPayload(
@@ -143,33 +145,36 @@ TestPayload(
 )
 ```
 
-The whole authentication flow can be found at [Authentication &rarr; JWT](authentication.md#jwt).
+El flujo de autenticación completo se puede encontrar en [Autenticación &rarr; JWT](authentication.md#jwt).
 
-## Algorithms
+## Algoritmos
 
-JWTs can be signed using a variety of algorithms. 
-To add a key to the keychain, an overload of the `add` method is available for each of the following algorithms:
+Los JWT se pueden firmar utilizando una variedad de algoritmos.
+
+Para agregar una clave al llavero, hay disponible una sobrecarga del método "add" para cada uno de los siguientes algoritmos:
 
 ### HMAC
 
-HMAC (Hash-based Message Authentication Code) is a symmetric algorithm that uses a secret key to sign and verify the JWT. Vapor supports the following HMAC algorithms:
-- `HS256`: HMAC with SHA-256
-- `HS384`: HMAC with SHA-384
-- `HS384`: HMAC with SHA-384
+HMAC (Hash-based Message Authentication Code o código de autenticación de mensajes basados en hash) es un algoritmo simétrico que utiliza una clave secreta para firmar y verificar el JWT. Vapor admite los siguientes algoritmos HMAC:
+
+- `HS256`: HMAC con SHA-256
+- `HS384`: HMAC con SHA-384
+- `HS384`: HMAC con SHA-384
 
 ```swift
-// Add an HS256 key.
+// Agrega una clave HS256.
 await app.jwt.keys.add(hmac: "secret", digestAlgorithm: .sha256)
 ```
 
 ### ECDSA
 
-ECDSA (Elliptic Curve Digital Signature Algorithm) is an asymmetric algorithm that uses a public/private key pair to sign and verify the JWT. It's reliance is based on the math around elliptic curves. Vapor supports the following ECDSA algorithms:
-- `ES256`: ECDSA with a P-256 curve and SHA-256
-- `ES384`: ECDSA with a P-384 curve and SHA-384
-- `ES512`: ECDSA with a P-521 curve and SHA-512
+ECDSA (Elliptic Curve Digital Signature Algorithm o algoritmo de firma digital de curva elíptica) es un algoritmo asimétrico que utiliza un par de claves pública/privada para firmar y verificar el JWT. Su confianza se basa en las matemáticas relacionadas con curvas elípticas. Vapor admite los siguientes algoritmos ECDSA:
 
-All algorithms provide botha public key and a private key, such as `ES256PublicKey` and `ES256PrivateKey`. You can add ECDSA keys using the PEM format:
+- `ES256`: ECDSA con curva P-256 y SHA-256
+- `ES384`: ECDSA con curva P-384 y SHA-384
+- `ES512`: ECDSA con curva P-521 y SHA-512
+
+Todos los algoritmos proporcionan una clave pública y una clave privada, como `ES256PublicKey` y `ES256PrivateKey`. Puedes agregar claves ECDSA usando el formato PEM:
 
 ```swift
 let ecdsaPublicKey = """
@@ -179,17 +184,17 @@ C18ScRb4Z6poMBgJtYlVtd9ly63URv57ZW0Ncs1LiZB7WATb3svu+1c7HQ==
 -----END PUBLIC KEY-----
 """
 
-// Initialize an ECDSA key with public PEM.
+// Inicializa una clave ECDSA con PEM público.
 let key = try ES256PublicKey(pem: ecdsaPublicKey)
 ```
 
-or generate random ones (useful for testing): 
+o generar aleatorias (útiles para pruebas): 
 
 ```swift
 let key = ES256PrivateKey()
 ```
 
-To add the key to the keychain:
+Para agregar la clave al llavero:
 
 ```swift
 await app.jwt.keys.add(ecdsa: key)
@@ -197,9 +202,9 @@ await app.jwt.keys.add(ecdsa: key)
 
 ### EdDSA
 
-EdDSA (Edwards-curve Digital Signature Algorithm) is an asymmetric algorithm that uses a public/private key pair to sign and verify the JWT. It's similar to ECDSA in that both rely on the DSA algorithm, but EdDSA is based on the Edwards-curve, a different family of elliptic curves, and has slight performance improvements. It's however also newer and therefore less widely supported. Vapor only supports the `EdDSA` algorithm which uses the `Ed25519` curve.
+EdDSA (Edwards-curve Digital Signature Algorithm o algoritmo de firma digital de curva de Edwards) es un algoritmo asimétrico que utiliza un par de claves pública/privada para firmar y verificar el JWT. Es similar a ECDSA en que ambos se basan en el algoritmo DSA, pero EdDSA se basa en la curva de Edwards, una familia diferente de curvas elípticas, y tiene ligeras mejoras de rendimiento. Sin embargo, también es más nuevo y, por lo tanto, tiene menos soporte. Vapor solo admite el algoritmo `EdDSA` que utiliza la curva `Ed25519`.
 
-You can create an EdDSA key using its (base-64 encoded `String`) coordinate, so `x` if it's a public key and `d` if it's a private key:
+Puedes crear una clave EdDSA usando su coordenada (`String` codificada en base 64), donde `x` es una clave pública y `d` una clave privada:
 
 ```swift
 let publicKey = try EdDSA.PublicKey(x: "0ZcEvMCSYqSwR8XIkxOoaYjRQSAO8frTMSCpNbUl4lE", curve: .ed25519)
@@ -207,13 +212,13 @@ let publicKey = try EdDSA.PublicKey(x: "0ZcEvMCSYqSwR8XIkxOoaYjRQSAO8frTMSCpNbUl
 let privateKey = try EdDSA.PrivateKey(d: "d1H3/dcg0V3XyAuZW2TE5Z3rhY20M+4YAfYu/HUQd8w=", curve: .ed25519)
 ```
 
-You can also generate random ones:
+También puedes generar aleatorias:
 
 ```swift
 let key = EdDSA.PrivateKey(curve: .ed25519)
 ```
 
-To add the key to the keychain:
+Para agregar la clave al llavero:
 
 ```swift
 await app.jwt.keys.add(eddsa: key)
@@ -221,18 +226,19 @@ await app.jwt.keys.add(eddsa: key)
 
 ### RSA
 
-RSA (Rivest-Shamir-Adleman) is an asymmetric algorithm that uses a public/private key pair to sign and verify the JWT. 
+RSA (Rivest-Shamir-Adleman) es un algoritmo asimétrico que utiliza un par de claves pública/privada para firmar y verificar el JWT.
 
-!!! warning
-    As you'll see, RSA keys are gated behind an `Insecure` namespace to discourage new users from using them. This is because RSA is considered less secure than ECDSA and EdDSA, and should only be used for compatibility reasons.
-    If possible, use any of the other algorithms instead.
+!!! warning "Advertencia"
+    Como verás, las claves RSA están protegidas detrás de un espacio de nombres `Insecure` para disuadir a los nuevos usuarios de usarlas. Esto se debe a que RSA se considera menos seguro que ECDSA y EdDSA y solo debe usarse por razones de compatibilidad.
+    Si es posible, utiliza cualquiera de los otros algoritmos.
 
-Vapor supports the following RSA algorithms:
-- `RS256`: RSA with SHA-256
-- `RS384`: RSA with SHA-384
-- `RS512`: RSA with SHA-512
+Vapor admite los siguientes algoritmos RSA:
 
-You can create an RSA key using its PEM format:
+- `RS256`: RSA con SHA-256
+- `RS384`: RSA con SHA-384
+- `RS512`: RSA con SHA-512
+
+Puedes crear una clave RSA utilizando su formato PEM:
 
 ```swift
 let rsaPublicKey = """
@@ -244,14 +250,14 @@ aX4rbSL49Z3dAQn8vQIDAQAB
 -----END PUBLIC KEY-----
 """
 
-// Initialize an RSA key with public pem.
+// Inicializa una clave RSA con pem público.
 let key = try Insecure.RSA.PublicKey(pem: rsaPublicKey)
 ```
 
-or usign its components:
+o utilizar sus componentes:
 
 ```swift
-// Initialize an RSA private key with components.
+// Inicializa una clave privada RSA con componentes.
 let key = try Insecure.RSA.PrivateKey(
     modulus: modulus, 
     exponent: publicExponent, 
@@ -259,10 +265,10 @@ let key = try Insecure.RSA.PrivateKey(
 )
 ```
 
-!!! warning
-    The package does not support RSA keys smaller than 2048 bits.
+!!! warning "Advertencia"
+    El paquete no admite claves RSA de menos de 2048 bits.
 
-Then you can add the key to the key collection:
+Luego puedes agregar la clave a la colección de claves:
 
 ```swift
 await app.jwt.keys.add(rsa: key, digestAlgorithm: .sha256)
@@ -270,42 +276,43 @@ await app.jwt.keys.add(rsa: key, digestAlgorithm: .sha256)
 
 ### PSS
 
-In addition to the RSA-PKCS1v1.5 algorithm, Vapor also supports the RSA-PSS algorithm. PSS (Probabilistic Signature Scheme) is a more secure padding scheme for RSA signatures. It is recommended to use PSS over PKCS1v1.5 when possible.
-The algorithm only differs in the signature phase, which means that the keys are the same as RSA, however, you need to specify the padding scheme when adding them to the key collection:
+Además del algoritmo RSA-PKCS1v1.5, Vapor también admite el algoritmo RSA-PSS. PSS (Probabilistic Signature Scheme o esquema de firma probabilística) es un esquema de relleno más seguro para firmas RSA. Se recomienda utilizar PSS sobre PKCS1v1.5 cuando sea posible.
+
+El algoritmo solo difiere en la fase de firma, lo que significa que las claves son las mismas que RSA; sin embargo, debe especificar el esquema de relleno al agregarlas a la colección de claves:
 
 ```swift
 await app.jwt.keys.add(pss: key, digestAlgorithm: .sha256)
 ```
 
-## Key Identifier (kid)
+## Identificador de clave (kid)
 
-When adding a key to the key collection, you can also specify a key identifier (kid). This is a unique identifier for the key that can be used to look up the key in the collection. 
+Al agregar una clave a la colección de claves, también puedes especificar un identificador de clave (kid). Este es un identificador único para la clave que se puede utilizar para buscar la clave en la colección.
 
 ```swift
-// Add HMAC with SHA-256 key named "a".
+// Agregue HMAC con la clave SHA-256 denominada "a".
 await app.jwt.keys.add(hmac: "foo", digestAlgorithm: .sha256, kid: "a")
 ```
 
-If you don't specify a `kid`, the key will be assigned as the default key.
+Si no especifica un `kid`, la clave se asignará como la clave predeterminada.
 
-!!! note
-    The default key will be overridden if you add another key without a `kid`.
+!!! note "Nota"
+    La clave predeterminada se anulará si agrega otra clave sin un `kid`.
 
-When signing a JWT, you can specify the `kid` to use:
+Al firmar un JWT, puedes especificar el `kid` que se usará:
 
 ```swift
 let token = try await req.jwt.sign(payload, kid: "a")
 ```
 
-When verifying on the other hand, the `kid` is automatically extracted from the JWT header and used to look up the key in the collection. There's also a `iteratingKeys` parameter on the verify method that allows you to specify whether to iterate over all keys in the collection if the `kid` is not found.
+Por otro lado, al verificar, el `kid` se extrae automáticamente del encabezado JWT y se usa para buscar la clave en la colección. También hay un parámetro `iteratingKeys` en el método de verificación que le permite especificar si se deben iterar sobre todas las claves de la colección si no se encuentra el `kid`.
 
-## Claims
+## Reclamos
 
-Vapor's JWT package includes several helpers for implementing common [JWT claims](https://tools.ietf.org/html/rfc7519#section-4.1). 
+El paquete JWT de Vapor incluye varios asistentes para implementar [reclamos JWT](https://tools.ietf.org/html/rfc7519#section-4.1) comunes.
 
-|Claim|Type|Verify Method|
+|Reclamo|Tipo|Método de verificación|
 |---|---|---|
-|`aud`|`AudienceClaim`|`verifyIntendedAudience(includes:)`|
+|`aud`|`AudienceClaim`|`verifyIntendedAudience(incluye:)`|
 |`exp`|`ExpirationClaim`|`verifyNotExpired(currentDate:)`|
 |`jti`|`IDClaim`|n/a|
 |`iat`|`IssuedAtClaim`|n/a|
@@ -314,17 +321,19 @@ Vapor's JWT package includes several helpers for implementing common [JWT claims
 |`nbf`|`NotBeforeClaim`|`verifyNotBefore(currentDate:)`|
 |`sub`|`SubjectClaim`|n/a|
 
-All claims should be verified in the `JWTPayload.verify` method. If the claim has a special verify method, you can use that. Otherwise, access the value of the claim using `value` and check that it is valid.
+Todos los reclamos deben verificarse con el método `JWTPayload.verify`. Si el reclamo tiene un método de verificación especial, puedes usarlo. De lo contrario, acceda al valor del reclamo usando `valor` y verifica que sea válido.
 
 ## JWK
-A JSON Web Key (JWK) is a JSON data structure that represents a cryptographic key ([RFC7517](https://datatracker.ietf.org/doc/html/rfc7517)). These are commonly used to supply clients with keys for verifying JWTs.
-For example, Apple hosts their Sign in with Apple JWKS at the following URL.
+
+Una clave web JSON (JWK) es una estructura de datos JSON que representa una clave criptográfica ([RFC7517](https://datatracker.ietf.org/doc/html/rfc7517)). Se utilizan comúnmente para proporcionar a los clientes claves para verificar los JWT.
+
+Por ejemplo, Apple aloja su Iniciar sesión con Apple JWKS en la siguiente URL.
 
 ```http
 GET https://appleid.apple.com/auth/keys
 ```
 
-Vapor provides utilities to add JWKs to the key collection:
+Vapor proporciona utilidades para agregar JWKs a la colección de claves:
 
 ```swift
 let privateKey = """
@@ -343,11 +352,11 @@ let jwk = try JWK(json: privateKey)
 try await app.jwt.keys.use(jwk: jwk)
 ```
 
-This will add the JWK to the key collection, and you can use it to sign and verify JWTs as you would with any other key.
+Esto agregará el JWK a la colección de claves y podrás usarlo para firmar y verificar JWT como lo harías con cualquier otra clave.
 
-### JWKs
+### JWK
 
-If you have multiple JWKs, you can add them just as well:
+Si tienes varios JWK, también puedes agregarlos:
 
 ```swift
 let json = """
@@ -362,23 +371,23 @@ let json = """
 try await app.jwt.keys.use(jwksJSON: json)
 ```
 
-## Vendors
+## Proveedores
 
-Vapor provides APIs for handling JWTs from the popular issuers below.
+Vapor proporciona APIs para manejar JWTs de los emisores más populares que se indican a continuación.
 
 ### Apple
 
-First, configure your Apple application identifier.
+Primero, configura el identificador de tu aplicación Apple.
 
 ```swift
-// Configure Apple app identifier.
+// Configurar el identificador de la aplicación Apple.
 app.jwt.apple.applicationIdentifier = "..."
 ```
 
-Then, use the `req.jwt.apple` helper to fetch and verify an Apple JWT. 
+Luego, usa el asistente `req.jwt.apple` para buscar y verificar un Apple JWT.
 
 ```swift
-// Fetch and verify Apple JWT from Authorization header.
+// Recupera y verifica el JWT de Apple desde el encabezado de Autorización.
 app.get("apple") { req async throws -> HTTPStatus in
     let token = try await req.jwt.apple.verify()
     print(token) // AppleIdentityToken
@@ -388,18 +397,18 @@ app.get("apple") { req async throws -> HTTPStatus in
 
 ### Google
 
-First, configure your Google application identifier and G Suite domain name.
+Primero, configura el identificador de tu aplicación de Google y el nombre de dominio de G Suite.
 
 ```swift
-// Configure Google app identifier and domain name.
+// Configurar el identificador de la aplicación de Google y el nombre de dominio.
 app.jwt.google.applicationIdentifier = "..."
 app.jwt.google.gSuiteDomainName = "..."
 ```
 
-Then, use the `req.jwt.google` helper to fetch and verify a Google JWT. 
+Luego, usa el asistente `req.jwt.google` para buscar y verificar un JWT de Google.
 
 ```swift
-// Fetch and verify Google JWT from Authorization header.
+// Recupera y verifica el JWT de Google desde el encabezado de Autorización.
 app.get("google") { req async throws -> HTTPStatus in
     let token = try await req.jwt.google.verify()
     print(token) // GoogleIdentityToken
@@ -409,17 +418,17 @@ app.get("google") { req async throws -> HTTPStatus in
 
 ### Microsoft
 
-First, configure your Microsoft application identifier.
+Primero, configura el identificador de tu aplicación de Microsoft.
 
 ```swift
-// Configure Microsoft app identifier.
+// Configurar el identificador de la aplicación de Microsoft.
 app.jwt.microsoft.applicationIdentifier = "..."
 ```
 
-Then, use the `req.jwt.microsoft` helper to fetch and verify a Microsoft JWT. 
+Luego, usa el asistente `req.jwt.microsoft` para buscar y verificar un JWT de Microsoft.
 
 ```swift
-// Fetch and verify Microsoft JWT from Authorization header.
+// Recupera y verifica el JWT de Microsoft desde el encabezado de Autorización.
 app.get("microsoft") { req async throws -> HTTPStatus in
     let token = try await req.jwt.microsoft.verify()
     print(token) // MicrosoftIdentityToken
