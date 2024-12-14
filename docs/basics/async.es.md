@@ -312,7 +312,7 @@ print(string) /// String
 
 ### Esperar
 
-!!! warning Advertencia
+!!! warning "Advertencia"
     La función `wait()` está obsoleta, ver [`Get`](#get) para el enfoque recomendado.
 
 Puedes utilizar `.wait()` para esperar sincrónicamente a que se complete el futuro. Dado que un futuro puede fracasar, esta función puede lanzar errores (throwing).
