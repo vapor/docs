@@ -141,7 +141,7 @@ De `tlsConfiguration` parameter regelt of TLS (SSL) is ingeschakeld op de server
 // Schakel TLS in.
 app.http.server.configuration.tlsConfiguration = .makeServerConfiguration(
     certificateChain: try NIOSSLCertificate.fromPEMFile("/path/to/cert.pem").map { .certificate($0) },
-    privateKey: .file("/path/to/key.pem")
+    privateKey: try NIOSSLPrivateKey(file: "/path/to/key.pem", format: .pem))
 )
 ```
 
