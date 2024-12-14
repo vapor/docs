@@ -27,7 +27,7 @@ curl -L https://fly.io/install.sh | sh
 
 ### Otras opciones de instalación
 
-Para más opciones y detalles, consulta la [documentación sobre la instalación de flyctl](https://fly.io/docs/hands-on/install-flyctl/).
+Para más opciones y detalles, consulta la [documentación sobre la instalación de flyctl](https://fly.io/docs/flyctl/install/).
 
 ## Iniciar sesión
 
@@ -67,7 +67,7 @@ Elige la plantilla que mejor se adapte a tus necesidades de la siguiente lista. 
 
 ### Proyecto existente de Vapor
 
-Si ya tienes un proyecto de Vapor, asegúrate de tener un `Dockerfile` configurado adecuadamente en la raíz de tu directorio. La [documentación de Vapor sobre el uso de Docker](../deploy/docker.md) y la [documentación de Fly sobre el despliegue de una app mediante un Dockerfile](https://fly.io/docs/getting-started/dockerfile/) pueden ser útiles.
+Si ya tienes un proyecto de Vapor, asegúrate de tener un `Dockerfile` configurado adecuadamente en la raíz de tu directorio. La [documentación de Vapor sobre el uso de Docker](../deploy/docker.md) y la [documentación de Fly sobre el despliegue de una app mediante un Dockerfile](https://fly.io/docs/languages-and-frameworks/dockerfile/) pueden ser útiles.
 
 ## Lanzando tu aplicación en Fly
 
@@ -114,7 +114,7 @@ Si no creaste una aplicación de base de datos cuando lanzaste tu aplicación po
 fly pg create
 ```
 
-Este comando crea una aplicación de Fly que podrá alojar bases de datos disponibles para tus otras aplicaciones en Fly. Consulta la [documentación dedicada de Fly](https://fly.io/docs/reference/postgres/) para más detalles.
+Este comando crea una aplicación de Fly que podrá alojar bases de datos disponibles para tus otras aplicaciones en Fly. Consulta la [documentación dedicada de Fly](https://fly.io/docs/postgres/) para más detalles.
 
 Una vez que tu aplicación de base de datos esté creada, ve al directorio raíz de tu aplicación de Vapor y ejecuta:
 
@@ -182,11 +182,10 @@ Usa secrets para establecer cualquier valor sensible como variables de entorno.
 !!! warning "Advertencia"
     Ten en cuenta que la mayoría de las shells mantienen un historial de los comandos que escribes. Sé cauteloso al configurar secrets de esta manera. Algunas shells pueden configurarse para no recordar comandos que están precedidos por un espacio. Consulta también el [comando `fly secrets import`](https://fly.io/docs/flyctl/secrets-import/).
 
-Para más información, consulta la [documentación de `fly secrets`](https://fly.io/docs/reference/secrets/).
+Para más información, consulta la [documentación de `fly secrets`](https://fly.io/docs/apps/secrets/).
 
 ### Variables de entorno
 
-You can set other non-sensitive [environment variables in `fly.toml`](https://fly.io/docs/reference/configuration/#the-env-variables-section), for instance:
 Puedes establecer otras [variables de entorno no sensibles en `fly.toml`](https://fly.io/docs/reference/configuration/#the-env-variables-section), por ejemplo:
 
 ```toml
