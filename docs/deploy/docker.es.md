@@ -1,54 +1,54 @@
-# Docker Deploys
+# Despliegues Docker
 
-Using Docker to deploy your Vapor app has several benefits: 
+Usar Docker para desplegar tu aplicación Vapor tiene varios beneficios:
 
-1. Your dockerized app can be spun up reliably using the same commands on any platform with a Docker Daemon -- namely, Linux (CentOS, Debian, Fedora, Ubuntu), macOS, and Windows.
-2. You can use docker-compose or Kubernetes manifests to orchestrate multiple services needed for a full deployment (e.g. Redis, Postgres, nginx, etc.).
-3. It is easy to test your app's ability to scale horizontally, even locally on your development machine.
+1. Tu aplicación dockerizada se puede poner en marcha de manera confiable usando los mismos comandos en cualquier plataforma con un Docker Daemon -es decir, Linux (CentOS, Debian, Fedora, Ubuntu), macOS y Windows-.
+2. Puedes utilizar docker-compose o manifiestos de Kubernetes para orquestar múltiples servicios necesarios para un despliegue completo (por ejemplo, Redis, Postgres, nginx, etc.).
+3. Es fácil probar la capacidad de tu aplicación para escalar horizontalmente, incluso localmente, en tu máquina de desarrollo.
 
-This guide will stop short of explaining how to get your dockerized app onto a server. The simplest deploy would involve installing Docker on your server and running the same commands you would run on your development machine to spin up your application. 
+Esta guía no llegará a explicar cómo colocar tu aplicación dockerizada en un servidor. El despliegue más simple implicaría instalar Docker en tu servidor y ejecutar los mismos comandos que ejecutarías en tu máquina de desarrollo para poner en marcha tu aplicación.
 
-More complicated and robust deployments are usually different depending on your hosting solution; many popular solutions like AWS have builtin support for Kubernetes and custom database solutions which make it difficult to write best practices in a way that applies to all deployments. 
+Los despliegues más complicados y robustos suelen ser diferentes dependiendo de tu solución de alojamiento; muchas soluciones populares como AWS tienen soporte integrado para Kubernetes y soluciones de bases de datos personalizadas, lo que dificulta la redacción de las mejores prácticas de una forma que aplique a todos los despliegues.
 
-Nevertheless, using Docker to spin your entire server stack up locally for testing purposes is incredibly valuable for both big and small serverside apps. Additionally, the concepts described in this guide apply in broad strokes to all Docker deployments.
+Sin embargo, usar Docker para levantar todo el conjunto de servicios y configuraciones (stack) de tu servidor de forma local con fines de prueba es increíblemente valioso tanto para aplicaciones grandes como pequeñas en el lado del servidor. Además, los conceptos descritos en esta guía se aplican en líneas generales a todos los despliegues de Docker.
 
-## Set Up
+## Configuración
 
-You will need to set your developer environment up to run Docker and gain a basic understanding of the resource files that configure Docker stacks.
+Deberás configurar tu entorno de desarrollador para ejecutar Docker y obtener una comprensión básica de los archivos de recursos que configuran el stack de Docker.
 
-### Install Docker
+### Instalar Docker
 
-You will need to install Docker for your developer environment. You can find information for any platform in the [Supported Platforms](https://docs.docker.com/install/#supported-platforms) section of the Docker Engine Overview. If you are on Mac OS, you can jump straight to the [Docker for Mac](https://docs.docker.com/docker-for-mac/install/) install page.
+Deberás instalar Docker para tu entorno de desarrollador. Puedes encontrar información para cualquier plataforma en la sección [Plataformas compatibles](https://docs.docker.com/install/#supported-platforms) de la descripción general de Docker Engine. Si estás en Mac OS, puedes ir directamente a la página de instalación [Docker para Mac](https://docs.docker.com/docker-for-mac/install/).
 
-### Generate Template
+### Plantilla Generadora
 
-We suggest using the Vapor template as a starting place. If you already have an App, build the template as described below into a new folder as a point of reference while dockerizing your existing app -- you can copy key resources from the template to your app and tweak them slightly as a jumping off point.
+Sugerimos utilizar la plantilla de Vapor como punto de partida. Si ya tienes una aplicación, crea la plantilla como se describe a continuación en una carpeta nueva, como punto de referencia, mientras dockerizas tu aplicación existente -puedes copiar recursos clave de la plantilla a tu aplicación y modificarlos ligeramente como punto de partida-.
 
-1. Install or build the Vapor Toolbox ([macOS](../install/macos.md#install-toolbox), [Linux](../install/linux.md#install-toolbox)).
-2. Create a new Vapor App with `vapor new my-dockerized-app` and walk through the prompts to enable or disable relevant features. Your answers to these prompts will affect how the Docker resource files are generated.
+1. Instala o crea Vapor Toolbox ([macOS](../install/macos.md#install-toolbox), [Linux](../install/linux.md#install-toolbox)).
+2. Crea una nueva aplicación Vapor con `vapor new my-dockerized-app` y sigue las indicaciones para habilitar o deshabilitar funciones relevantes. Tus respuestas a estas preguntas afectarán la forma en que se generan los archivos de recursos de Docker.
 
-## Docker Resources
+## Recursos de Docker
 
-It is worthwhile, whether now or in the near future, to familiarize yourself with the [Docker Overview](https://docs.docker.com/engine/docker-overview/). The overview will explain some key terminology that this guide uses. 
+Vale la pena, ya sea ahora o en un futuro próximo, familiarizarse con la [Descripción general de Docker](https://docs.docker.com/engine/docker-overview/). La descripción general explicará algunos términos clave que se utilizan en esta guía.
 
-The template Vapor App has two key Docker-specific resources: A **Dockerfile** and a **docker-compose** file.
+La plantilla Vapor App tiene dos recursos clave específicos de Docker: un archivo **Dockerfile** y un archivo **docker-compose**.
 
-### Dockerfile
+### Archivo Docker
 
-A Dockerfile tells Docker how to build an image of your dockerized app. That image contains both your app's executable and all dependencies needed to run it. The [full reference](https://docs.docker.com/engine/reference/builder/) is worth keeping open when you work on customizing your Dockerfile.
+Un Dockerfile le dice a Docker cómo construir una imagen de tu aplicación dockerizada. Esa imagen contiene tanto el ejecutable de tu aplicación como todas las dependencias necesarias para ejecutarla. Vale la pena mantener abierta la [referencia completa](https://docs.docker.com/engine/reference/builder/) cuando trabajes en la personalización de tu Dockerfile.
 
-The Dockerfile generated for your Vapor app has two stages. The first stage builds your app and sets up a holding area containing the result. The second stage sets up the basics of a secure runtime environment, transfers everything in the holding area to where it will live in the final image, and sets a default entrypoint and command that will run your app in production mode on the default port (8080). This configuration can be overridden when the image is used.
+El Dockerfile generado para tu aplicación Vapor tiene dos etapas. La primera etapa contruye tu aplicación y configura un área de espera que contiene el resultado. La segunda etapa configura los conceptos básicos de un entorno de ejecución seguro, transfiere todo lo que está en el área de espera al lugar donde se ubicará en la imagen final y establece un punto de entrada predeterminado y un comando que ejecutará tu aplicación en modo de producción en el puerto predeterminado (8080). Esta configuración se puede reemplazar cuando se utiliza la imagen.
 
-### Docker Compose File
+### Archivo Docker Compose
 
-A Docker Compose file defines the way Docker should build out multiple services in relation to each other. The Docker Compose file in the Vapor App template provides the necessary functionality to deploy your app, but if you want to learn more you should consult the [full reference](https://docs.docker.com/compose/compose-file/) which has details on all of the available options.
+Un archivo Docker Compose define la forma en que Docker debe construir múltiples servicios relacionados entre sí. El archivo Docker Compose, en la plantilla de la aplicación Vapor, proporciona la funcionalidad necesaria para desplegar tu aplicación, pero si deseas obtener más información, debes consultar la [referencia completa](https://docs.docker.com/compose/compose-file/ ) que tiene detalles sobre todas las opciones disponibles.
 
-!!! note
-    If you ultimately plan to use Kubernetes to orchestrate your app, the Docker Compose file is not directly relevant. However, Kubernetes manifest files are similar conceptually and there are even projects out there aimed at [porting Docker Compose files](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/) to Kubernetes manifests.
+!!! note "Nota"
+    Si finalmente planeas usar Kubernetes para organizar tu aplicación, el archivo Docker Compose no es directamente relevante. Sin embargo, los archivos de manifiesto de Kubernetes son conceptualmente similares e incluso existen proyectos destinados a [portar archivos Docker Compose](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/) a manifiestos de Kubernetes.
 
-The Docker Compose file in your new Vapor App will define services for running your app, running migrations or reverting them, and running a database as your app's persistence layer. The exact definitions will vary depending on which database you chose to use when you ran `vapor new`.
+El archivo Docker Compose en tu nueva aplicación Vapor definirá los servicios para ejecutar tu aplicación, ejecutar migraciones o revertirlas, y ejecutar una base de datos como capa de persistencia de tu aplicación. Las definiciones exactas variarán según la base de datos que hayas elegido usar cuando ejecutaste `vapor new`.
 
-Note that your Docker Compose file has some shared environment variables near the top. (You may have a different set of default variables depending on whether or not you're using Fluent, and which Fluent driver is in use if you are.)
+Ten en cuenta que tu archivo Docker Compose tiene algunas variables de entorno compartidas cerca de la parte superior. (Puedes tener un conjunto diferente de variables predeterminadas dependiendo de si estás usando Fluent o no, y qué controlador de Fluent está en uso si lo estás usando).
 
 ```docker
 x-shared_environment: &shared_environment
@@ -59,202 +59,230 @@ x-shared_environment: &shared_environment
   DATABASE_PASSWORD: vapor_password
 ```
 
-You will see these pulled into multiple services below with the `<<: *shared_environment` YAML reference syntax.
+A continuación, verás cómo estas variables se integran en múltiples servicios con la sintaxis de referencia YAML `<<: *shared_environment`.
 
-The `DATABASE_HOST`, `DATABASE_NAME`, `DATABASE_USERNAME`, and `DATABASE_PASSWORD` variables are hard coded in this example whereas the `LOG_LEVEL` will take its value from the environment running the service or fall back to `'debug'` if that variable is unset.
+Las variables `DATABASE_HOST`, `DATABASE_NAME`, `DATABASE_USERNAME` y `DATABASE_PASSWORD` están codificadas de forma específica en este ejemplo, mientras que `LOG_LEVEL` tomará su valor del entorno que ejecuta el servicio o recurrirá a `'debug'` si la variable no está configurada.
 
-!!! note
-    Hard-coding the username and password is acceptable for local development, but you should store these variables in a secrets file for production deployment. One way to handle this in production is to export the secrets file to the environment that is running your deploy and use lines like the following in your Docker Compose file: 
+!!! note "Nota"
+    Codificar de forma específica el nombre de usuario y la contraseña es aceptable para el desarrollo local, pero debes almacenar estas variables en un archivo de secretos para el despliegue en producción. Una forma de manejar esto en producción es exportar el archivo de secretos al entorno que ejecuta tu despliegue y usar líneas como las siguientes en tu archivo Docker Compose:
 
     ```
     DATABASE_USERNAME: ${DATABASE_USERNAME}
     ```
 
-    This passes the environment variable through to the containers as-defined by the host.
+    Esto pasa la variable de entorno a los contenedores según lo definido por el host.
 
-Other things to take note of:
+Otras cosas a tener en cuenta:
 
-- Service dependencies are defined by `depends_on` arrays.
-- Service ports are exposed to the system running the services with `ports` arrays (formatted as `<host_port>:<service_port>`).
-- The `DATABASE_HOST` is defined as `db`. This means your app will access the database at `http://db:5432`. That works because Docker is going to spin up a network in use by your services and the internal DNS on that network will route the name `db` to the service named `'db'`.
-- The `CMD` directive in the Dockerfile is overridden in some services with the `command` array. Note that what is specified by `command` is run against the `ENTRYPOINT` in the Dockerfile.
-- In Swarm Mode (more on this below) services will by default be given 1 instance, but the `migrate` and `revert` services are defined as having `deploy` `replicas: 0` so they do not start up by default when running a Swarm.
+- Las dependencias de los servicios se definen mediante matrices `depends_on`.
+- Los puertos de los servicios se exponen al sistema que ejecuta los servicios con matrices `ports` (formateadas como `<host_port>:<service_port>`).
+- El `DATABASE_HOST` se define como `db`. Esto significa que tu aplicación accederá a la base de datos en `http://db:5432`. Esto funciona porque Docker va a crear una red que utiliza tus servicios, y el DNS interno de esa red enrutará el nombre `db` al servicio llamado `'db'`.
+- La directiva `CMD` en el Dockerfile se reemplaza en algunos servicios con la matriz `command`. Ten en cuenta que lo que se especifica con `command` se ejecuta contra el `ENTRYPOINT` en el Dockerfile.
+- En el modo Swarm (más sobre esto a continuación), los servicios recibirán 1 instancia de manera predeterminada, pero los servicios `migrate` y `revert` están definidos con `deploy` `replicas: 0`, por lo que no se inician de manera predeterminada cuando se ejecuta un Swarn.
 
-## Building
+## Construyendo
 
-The Docker Compose file tells Docker how to build your app (by using the Dockerfile in the current directory) and what to name the resulting image (`my-dockerized-app:latest`). The latter is actually the combination of a name (`my-dockerized-app`) and a tag (`latest`) where tags are used to version Docker images.
+El archivo Docker Compose le dice a Docker cómo construir tu aplicación (usando el Dockerfile en el directorio actual) y cómo nombrar la imagen resultante (`my-dockerized-app:latest`). Este último es en realidad la combinación de un nombre (`my-dockerized-app`) y una etiqueta (`latest`) donde las etiquetas se usan para versionar las imágenes de Docker.
 
-To build a Docker image for your app, run
+Para construir una imagen de Docker para tu aplicación, ejecuta
+
 ```shell
 docker compose build
 ```
-from the root directory of your app's project (the folder containing `docker-compose.yml`).
 
-You'll see that your app and its dependencies must be built again even if you had previously built them on your development machine. They are being built in the Linux build environment Docker is using so the build artifacts from your development machine are not reusable.
+desde el directorio raíz del proyecto de tu aplicación (la carpeta que contiene `docker-compose.yml`).
 
-When it is done, you will find your app's image when running
+Verás que tu aplicación y sus dependencias deben construirse nuevamente incluso si las habías construido previamente en tu máquina de desarrollo. Se están construyendo en el entorno de construcción Linux que utiliza Docker, por lo que los artefactos de construcción de tu máquina de desarrollo no son reutilizables.
+
+Cuando hayas terminado, encontrarás la imagen de tu aplicación cuando ejecutes
+
 ```shell
 docker image ls
 ```
 
-## Running
+## En Ejecución
 
-Your stack of services can be run directly from the Docker Compose file or you can use an orchestration layer like Swarm Mode or Kubernetes.
+Tu stack de servicios se puede ejecutar directamente desde el archivo Docker Compose o puedes usar una capa de orquestación como el modo Swarm o Kubernetes.
 
 ### Standalone
 
-The simplest way to run your app is to start it as a standalone container. Docker will use the `depends_on` arrays to make sure any dependant services are also started.
+La forma más sencilla de ejecutar tu aplicación es iniciarla como un contenedor independiente (Standalone). Docker utilizará las matrices `depends_on` para asegurarse de que también se inicien los servicios dependientes.
 
-First, execute:
+Primero, ejecute:
+
 ```shell
 docker compose up app
 ```
-and notice that both the `app` and `db` services are started.
 
-Your app is listening on port 8080 and, as defined by the Docker Compose file, it is made accessible on your development machine at **http://localhost:8080**.
+y observa que se inician los servicios `app` y `db`.
 
-This port mapping distinction is very important because you can run any number of services on the same ports if they are all running in their own containers and they each expose different ports to the host machine.
+Tu aplicación está escuchando en el puerto 8080 y, según lo definido por el archivo Docker Compose, se puede acceder a ella en tu máquina de desarrollo en **http://localhost:8080**.
 
-Visit `http://localhost:8080` and you will see `It works!` but visit `http://localhost:8080/todos` and you will get: 
+Esta distinción en el mapeo de puertos es muy importante porque puede ejecutar cualquier cantidad de servicios en los mismos puertos si todos se ejecutan en sus propios contenedores y cada uno expone puertos diferentes a la máquina host.
+
+Visita `http://localhost:8080` y verás `It works!` pero visite `http://localhost:8080/todos` y obtendrás:
+
 ```
 {"error":true,"reason":"Something went wrong."}
 ```
 
-Take a peak at the logs output in the terminal where you ran `docker compose up app` and you will see:
+Echa un vistazo a la salida de registros en la terminal donde ejecutaste `docker compose up app` y verás:
+
 ```
 [ ERROR ] relation "todos" does not exist
 ```
 
-Of course! We need to run migrations on the database. Press `Ctrl+C` to bring your app down. We are going to start the app up again but this time with:
+¡Por supuesto! Necesitamos ejecutar migraciones en la base de datos. Presiona `Ctrl+C` para cerrar tu aplicación. Vamos a iniciar la aplicación nuevamente pero esta vez con:
+
 ```shell
 docker compose up --detach app
 ```
 
-Now your app is going to start up "detached" (in the background). You can verify this by running:
+Ahora tu aplicación se iniciará "desconectada" o "detached" (en segundo plano). Puedes verificar esto ejecutando:
+
 ```shell
 docker container ls
 ```
-where you will see both the database and your app running in containers. You can even check on the logs by running:
+
+donde verás tanto la base de datos como tu aplicación ejecutándose en contenedores. Incluso puedes verificar los registros ejecutando:
+
 ```shell
 docker logs <container_id>
 ```
 
-To run migrations, execute:
+Para ejecutar migraciones, ejecuta:
+
 ```shell
 docker compose run migrate
 ```
 
-After migrations run, you can visit `http://localhost:8080/todos` again and you will get an empty list of todos instead of an error message.
+Después de ejecutar las migraciones, puedes visitar `http://localhost:8080/todos` nuevamente y obtendrás una lista vacía de todos en lugar de un mensaje de error.
 
-#### Log Levels
+#### Niveles de Registro (Log)
 
-Recall above that the `LOG_LEVEL` environment variable in the Docker Compose file will be inherited from the environment where the service is started if available.
+Recuerda que, anteriormente, la variable de entorno `LOG_LEVEL` en el archivo Docker Compose heredará del entorno donde se inició el servicio, si está disponible.
 
-You can bring your services up with
+Puedes activar tus servicios con
+
 ```shell
 LOG_LEVEL=trace docker-compose up app
 ```
-to get `trace` level logging (the most granular). You can use this environment variable to set the logging to [any available level](../basics/logging.md#levels).
 
-#### All Service Logs
+para obtener el registro (el más granular) a nivel de `trace`. Puedes utilizar esta variable de entorno para configurar el registro en [cualquier nivel disponible](../basics/logging.md#levels).
 
-If you explicitly specify your database service when you bring containers up then you will see logs for both your database and your app.
+#### Todos los Registros de Servicio
+
+Si especificas explícitamente tu servicio de base de datos cuando activas los contenedores, verás registros tanto para tu base de datos como para tu aplicación.
+
 ```shell
 docker-compose up app db
 ```
 
-#### Bringing Standalone Containers Down
+#### Desactivar Contenedores Independientes
 
-Now that you've got containers running "detached" from your host shell, you need to tell them to shut down somehow. It's worth knowing that any running container can be asked to shut down with
+Ahora que tienes contenedores ejecutándose "desconectados" de tu host shell, debes decirles que se apaguen de alguna manera. Vale la pena saber que a cualquier contenedor en ejecución se le puede pedir que se apague con
+
 ```shell
 docker container stop <container_id>
 ```
-but the easiest way to bring these particular containers down is
+
+pero la forma más fácil de desactivar estos contenedores en particular es
+
 ```shell
 docker-compose down
 ```
 
-#### Wiping The Database
+#### Limpiando la base de datos
 
-The Docker Compose file defines a `db_data` volume to persist your database between runs. There are a couple of ways to reset your database.
+El archivo Docker Compose define un volumen `db_data` para conservar tu base de datos entre ejecuciones. Hay un par de formas de restablecer tu base de datos.
 
-You can remove the `db_data` volume at the same time as bringing your containers down with
+Puedes eliminar el volumen `db_data` al mismo tiempo que desactivas tus contenedores con
+
 ```shell
 docker-compose down --volumes
 ```
 
-You can see any volumes currently persisting data with `docker volume ls`. Note that the volume name will generally have a prefix of `my-dockerized-app_` or `test_` depending on whether you were running in Swarm Mode or not. 
+Puedes ver los volúmenes que actualmente conservan datos con `docker volume ls`. Ten en cuenta que el nombre del volumen generalmente tendrá un prefijo de `my-dockerized-app_` o `test_` dependiendo de si estaba ejecutando en el modo Swarm o no.
 
-You can remove these volumes one at a time with e.g.
+Por ejemplo, puedes eliminar estos volúmenes de uno en uno
+
 ```shell
 docker volume rm my-dockerized-app_db_data
 ```
 
-You can also clean up all volumes with
+También puedes limpiar todos los volúmenes con
+
 ```shell
 docker volume prune
 ```
 
-Just be careful you don't accidentally prune a volume with data you wanted to keep around!
+¡Ten cuidado de no eliminar accidentalmente un volumen con datos que deseas conservar!
 
-Docker will not let you remove volumes that are currently in use by running or stopped containers. You can get a list of running containers with `docker container ls` and you can see stopped containers as well with `docker container ls -a`.
+Docker no te permitirá eliminar volúmenes que estén en uso actualmente por contenedores en ejecución o detenidos. Puedes obtener una lista de contenedores en ejecución con `docker container ls` y también puedes ver los contenedores detenidos con `docker container ls -a`.
 
-### Swarm Mode
+### Modo Swarm
 
-Swarm Mode is an easy interface to use when you've got a Docker Compose file handy and you want to test how your app scales horizontally. You can read all about Swarm Mode in the pages rooted at the [overview](https://docs.docker.com/engine/swarm/).
+El modo Swarm es una interfaz fácil de usar cuando tienes un archivo Docker Compose a mano y quieres probar cómo tu aplicación escala horizontalmente. Puedes leer todo sobre el modo Swarm en las páginas ubicadas en [descripción general](https://docs.docker.com/engine/swarm/).
 
-The first thing we need is a manager node for our Swarm. Run
+Lo primero que necesitamos es un nodo administrador para nuestro Swarm. Ejecuta
+
 ```shell
 docker swarm init
 ```
 
-Next we will use our Docker Compose file to bring up a stack named `'test'` containing our services
+A continuación usaremos nuestro archivo Docker Compose para abrir un stack llamado `'test'` que contiene nuestros servicios.
+
 ```shell
 docker stack deploy -c docker-compose.yml test
 ```
 
-We can see how our services are doing with
+Podemos ver cómo van nuestros servicios con
+
 ```shell
 docker service ls
 ```
 
-You should expect to see `1/1` replicas for your `app` and `db` services and `0/0` replicas for your `migrate` and `revert` services.
+Deberías esperar ver réplicas `1/1` para tus servicios `app` y `db` y réplicas `0/0` para tus servicios `migrate` y `revert`.
 
-We need to use a different command to run migrations in Swarm mode.
+Necesitamos usar un comando diferente para ejecutar migraciones en el modo Swarm.
+
 ```shell
 docker service scale --detach test_migrate=1
 ```
 
-!!! note
-    We have just asked a short-lived service to scale to 1 replica. It will successfully scale up, run, and then exit. However, that will leave it with `0/1` replicas running. This is no big deal until we want to run migrations again, but we cannot tell it to "scale up to 1 replica" if that is already where it is at. A quirk of this setup is that the next time we want to run migrations within the same Swarm runtime, we need to first scale the service down to `0` and then back up to `1`.
+!!! note "Nota"
+    Acabamos de solicitar a un servicio de corta duración que se escale a 1 réplica. Se escalará, se ejecutará y luego saldrá correctamente. Sin embargo, eso lo dejará con `0/1` réplicas ejecutándose. Esto no es gran problema hasta que queramos ejecutar las migraciones nuevamente, pero no podemos decirle que "escale hasta 1 réplica" si ya es así. Una peculiaridad de esta configuración es que la próxima vez que queramos ejecutar migraciones dentro del mismo tiempo de ejecución de Swarm, primero debemos reducir el servicio a `0` y luego volver a subirlo a `1`.
 
-The payoff for our trouble in the context of this short guide is that now we can scale our app to whatever we want in order to test how well it handles database contention, crashes, and more.
+La recompensa por nuestro problema en el contexto de esta breve guía es que ahora podemos escalar nuestra aplicación a lo que queramos para probar qué tan bien maneja la contención de la base de datos, los fallos y más.
 
-If you want to run 5 instances of your app concurrently, execute
+Si deseas ejecutar 5 instancias de tu aplicación simultáneamente, ejecuta
+
 ```shell
 docker service scale test_app=5
 ```
 
-In addition to watching docker scale your app up, you can see that 5 replicas are indeed running by again checking `docker service ls`.
+Además de ver cómo Docker amplía tu aplicación, puedes ver que se están ejecutando 5 réplicas al verificar nuevamente `docker service ls`.
 
-You can view (and follow) the logs for your app with
+Puedes ver (y seguir) los registros de tu aplicación con
+
 ```shell
 docker service logs -f test_app
 ```
 
-#### Bringing Swarm Services Down
+#### Desactivando los servicios de Swarn
 
-When you want to bring your services down in Swarm Mode, you do so by removing the stack you created earlier.
+Cuando desees desactivar tus servicios en el modo Swarm, hazlo eliminando el stack que creaste anteriormente.
+
 ```shell
 docker stack rm test
 ```
 
-## Production Deploys
+## Despliegues de producción
 
-As noted at the top, this guide will not go into great detail about deploying your dockerized app to production because the topic is large and varies greatly depending on the hosting service (AWS, Azure, etc.), tooling (Terraform, Ansible, etc.), and orchestration (Docker Swarm, Kubernetes, etc.).
+Como se indicó al principio, esta guía no entrará en muchos detalles sobre el despliegue de tu aplicación dockerizada en producción porque el tema es amplio y varía mucho según el servicio de alojamiento (AWS, Azure, etc.), las herramientas (Terraform, Ansible, etc.), y la orquestación (Docker Swarm, Kubernetes, etc.).
 
-However, the techniques you learn to run your dockerized app locally on your development machine are largely transferable to production environments. A server instance set up to run the docker daemon will accept all the same commands.
+Sin embargo, las técnicas que aprendes para ejecutar tu aplicación dockerizada localmente en tu máquina de desarrollo son en gran medida transferibles a entornos de producción. Una instancia de servidor configurada para ejecutar el demonio docker aceptará los mismos comandos.
 
-Copy your project files to your server, SSH into the server, and run a `docker-compose` or `docker stack deploy` command to get things running remotely.
+Copia los archivos de tu proyecto a tu servidor, utiliza SSH en el servidor y ejecuta un comando `docker-compose` o `docker stack deploy` para que todo se ejecute de forma remota.
 
-Alternatively, set your local `DOCKER_HOST` environment variable to point at your server and run the `docker` commands locally on your machine. It is important to note that with this approach, you do not need to copy any of your project files to the server _but_ you do need to host your docker image somewhere your server can pull it from.
+Alternativamente, configura tu variable de entorno local `DOCKER_HOST` para que apunte a tu servidor y ejecute los comandos `docker` localmente en tu máquina. Es importante tener en cuenta que, con este enfoque, no necesitas copiar ninguno de los archivos de tu proyecto al servidor, pero sí debes alojar la imagen docker en algún lugar desde donde el servidor pueda obtenerla.
