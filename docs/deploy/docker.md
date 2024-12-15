@@ -143,6 +143,7 @@ Now your app is going to start up "detached" (in the background). You can verify
 ```shell
 docker container ls
 ```
+
 where you will see both the database and your app running in containers. You can even check on the logs by running:
 
 ```shell
