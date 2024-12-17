@@ -85,14 +85,17 @@ Other things to take note of:
 The Docker Compose file tells Docker how to build your app (by using the Dockerfile in the current directory) and what to name the resulting image (`my-dockerized-app:latest`). The latter is actually the combination of a name (`my-dockerized-app`) and a tag (`latest`) where tags are used to version Docker images.
 
 To build a Docker image for your app, run
+
 ```shell
 docker compose build
 ```
+
 from the root directory of your app's project (the folder containing `docker-compose.yml`).
 
 You'll see that your app and its dependencies must be built again even if you had previously built them on your development machine. They are being built in the Linux build environment Docker is using so the build artifacts from your development machine are not reusable.
 
 When it is done, you will find your app's image when running
+
 ```shell
 docker image ls
 ```
@@ -106,40 +109,49 @@ Your stack of services can be run directly from the Docker Compose file or you c
 The simplest way to run your app is to start it as a standalone container. Docker will use the `depends_on` arrays to make sure any dependant services are also started.
 
 First, execute:
+
 ```shell
 docker compose up app
 ```
+
 and notice that both the `app` and `db` services are started.
 
 Your app is listening on port 8080 and, as defined by the Docker Compose file, it is made accessible on your development machine at **http://localhost:8080**.
 
 This port mapping distinction is very important because you can run any number of services on the same ports if they are all running in their own containers and they each expose different ports to the host machine.
 
-Visit `http://localhost:8080` and you will see `It works!` but visit `http://localhost:8080/todos` and you will get: 
+Visit `http://localhost:8080` and you will see `It works!` but visit `http://localhost:8080/todos` and you will get:
+
 ```
 {"error":true,"reason":"Something went wrong."}
 ```
 
 Take a peak at the logs output in the terminal where you ran `docker compose up app` and you will see:
+
 ```
 [ ERROR ] relation "todos" does not exist
 ```
 
 Of course! We need to run migrations on the database. Press `Ctrl+C` to bring your app down. We are going to start the app up again but this time with:
+
 ```shell
 docker compose up --detach app
 ```
 
 Now your app is going to start up "detached" (in the background). You can verify this by running:
+
 ```shell
 docker container ls
 ```
+
 where you will see both the database and your app running in containers. You can even check on the logs by running:
+
 ```shell
 docker logs <container_id>
 ```
 
 To run migrations, execute:
+
 ```shell
 docker compose run migrate
 ```
@@ -151,14 +163,17 @@ After migrations run, you can visit `http://localhost:8080/todos` again and you 
 Recall above that the `LOG_LEVEL` environment variable in the Docker Compose file will be inherited from the environment where the service is started if available.
 
 You can bring your services up with
+
 ```shell
 LOG_LEVEL=trace docker-compose up app
 ```
+
 to get `trace` level logging (the most granular). You can use this environment variable to set the logging to [any available level](../basics/logging.md#levels).
 
 #### All Service Logs
 
 If you explicitly specify your database service when you bring containers up then you will see logs for both your database and your app.
+
 ```shell
 docker-compose up app db
 ```
@@ -166,10 +181,13 @@ docker-compose up app db
 #### Bringing Standalone Containers Down
 
 Now that you've got containers running "detached" from your host shell, you need to tell them to shut down somehow. It's worth knowing that any running container can be asked to shut down with
+
 ```shell
 docker container stop <container_id>
 ```
+
 but the easiest way to bring these particular containers down is
+
 ```shell
 docker-compose down
 ```
@@ -179,6 +197,7 @@ docker-compose down
 The Docker Compose file defines a `db_data` volume to persist your database between runs. There are a couple of ways to reset your database.
 
 You can remove the `db_data` volume at the same time as bringing your containers down with
+
 ```shell
 docker-compose down --volumes
 ```
@@ -186,11 +205,13 @@ docker-compose down --volumes
 You can see any volumes currently persisting data with `docker volume ls`. Note that the volume name will generally have a prefix of `my-dockerized-app_` or `test_` depending on whether you were running in Swarm Mode or not. 
 
 You can remove these volumes one at a time with e.g.
+
 ```shell
 docker volume rm my-dockerized-app_db_data
 ```
 
 You can also clean up all volumes with
+
 ```shell
 docker volume prune
 ```
@@ -204,16 +225,19 @@ Docker will not let you remove volumes that are currently in use by running or s
 Swarm Mode is an easy interface to use when you've got a Docker Compose file handy and you want to test how your app scales horizontally. You can read all about Swarm Mode in the pages rooted at the [overview](https://docs.docker.com/engine/swarm/).
 
 The first thing we need is a manager node for our Swarm. Run
+
 ```shell
 docker swarm init
 ```
 
 Next we will use our Docker Compose file to bring up a stack named `'test'` containing our services
+
 ```shell
 docker stack deploy -c docker-compose.yml test
 ```
 
 We can see how our services are doing with
+
 ```shell
 docker service ls
 ```
@@ -221,6 +245,7 @@ docker service ls
 You should expect to see `1/1` replicas for your `app` and `db` services and `0/0` replicas for your `migrate` and `revert` services.
 
 We need to use a different command to run migrations in Swarm mode.
+
 ```shell
 docker service scale --detach test_migrate=1
 ```
@@ -231,6 +256,7 @@ docker service scale --detach test_migrate=1
 The payoff for our trouble in the context of this short guide is that now we can scale our app to whatever we want in order to test how well it handles database contention, crashes, and more.
 
 If you want to run 5 instances of your app concurrently, execute
+
 ```shell
 docker service scale test_app=5
 ```
@@ -238,6 +264,7 @@ docker service scale test_app=5
 In addition to watching docker scale your app up, you can see that 5 replicas are indeed running by again checking `docker service ls`.
 
 You can view (and follow) the logs for your app with
+
 ```shell
 docker service logs -f test_app
 ```
@@ -245,6 +272,7 @@ docker service logs -f test_app
 #### Bringing Swarm Services Down
 
 When you want to bring your services down in Swarm Mode, you do so by removing the stack you created earlier.
+
 ```shell
 docker stack rm test
 ```
