@@ -159,7 +159,7 @@ HMAC (Hash-based Message Authentication Code) is a symmetric algorithm that uses
 
 - `HS256`: HMAC with SHA-256
 - `HS384`: HMAC with SHA-384
-- `HS384`: HMAC with SHA-384
+- `HS512`: HMAC with SHA-512
 
 ```swift
 // Add an HS256 key.

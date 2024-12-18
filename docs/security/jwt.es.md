@@ -159,7 +159,7 @@ HMAC (Hash-based Message Authentication Code o código de autenticación de mens
 
 - `HS256`: HMAC con SHA-256
 - `HS384`: HMAC con SHA-384
-- `HS384`: HMAC con SHA-384
+- `HS512`: HMAC con SHA-512
 
 ```swift
 // Agrega una clave HS256.
