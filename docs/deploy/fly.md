@@ -22,7 +22,7 @@ curl -L https://fly.io/install.sh | sh
 ```
 
 ### Other install options
-For more options and details, see [the `flyctl` installation docs](https://fly.io/docs/hands-on/install-flyctl/).
+For more options and details, see [the `flyctl` installation docs](https://fly.io/docs/flyctl/install/).
 
 ## Logging in
 To log in from your terminal, run the following command:
@@ -53,7 +53,7 @@ Choose the template that best suits your needs in the following list. You can ei
 - [Fluent/Postgres + Leaf template](https://github.com/vapor/template-fluent-postgres-leaf)
 
 ### Existing Vapor project
-If you have an existing Vapor project, make sure you have a properly configured `Dockerfile` present at the root of your directory; the [Vapor docs about using Docker](../deploy/docker.md) and [Fly docs about deploying an app via a Dockerfile](https://fly.io/docs/getting-started/dockerfile/) might come in handy.
+If you have an existing Vapor project, make sure you have a properly configured `Dockerfile` present at the root of your directory; the [Vapor docs about using Docker](../deploy/docker.md) and [Fly docs about deploying an app via a Dockerfile](https://fly.io/docs/languages-and-frameworks/dockerfile/) might come in handy.
 
 ## Launch your app on Fly
 Once your Vapor project is ready, you can launch it on Fly.
@@ -95,7 +95,7 @@ If you didn't create a database app when you first launched your app, you can do
 fly pg create
 ```
 
-This command creates a Fly app that will be able to host databases available to your other apps on Fly, see the [dedicated Fly docs](https://fly.io/docs/reference/postgres/) for more details.
+This command creates a Fly app that will be able to host databases available to your other apps on Fly, see the [dedicated Fly docs](https://fly.io/docs/postgres/) for more details.
 
 Once your database app is created, go to your Vapor app's root directory and run:
 ```bash
@@ -154,7 +154,7 @@ Use secrets to set any sensitive values as environment variables.
 !!! warning
     Keep in mind that most shells keep an history of the commands you typed. Be cautious about this when setting secrets this way. Some shells can be configured to not remember commands that are prefixed by a whitespace. See also the [`fly secrets import` command](https://fly.io/docs/flyctl/secrets-import/).
 
-For more information, see the [documentation of `fly secrets`](https://fly.io/docs/reference/secrets/).
+For more information, see the [documentation of `fly secrets`](https://fly.io/docs/apps/secrets/).
 
 ### Environment variables
 You can set other non-sensitive [environment variables in `fly.toml`](https://fly.io/docs/reference/configuration/#the-env-variables-section), for instance:
