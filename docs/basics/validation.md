@@ -221,7 +221,7 @@ Below is a list of the currently supported validators and a brief explanation of
 |`.url`|Contains a valid URL.|
 |`.custom(_:, validationClosure: (value) -> Bool)`|Custom, once-off validation.|
 
-More information on `.custom` validator at [[#Custom Validators]].
+Validators can also be combined to build complex validations using operators. More information on `.custom` validator at [[#Custom Validators]].
 
 |Operator|Position|Description|
 |-|-|-|
