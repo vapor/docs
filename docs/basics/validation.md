@@ -1,6 +1,6 @@
 # Validation
 
-Vapor's Validation API helps you validate incoming request before using the [Content](content.md) API to decode data. 
+Vapor's Validation API helps you validate the body and query parameters of an incoming request before using the [Content](content.md) API to decode data. 
 
 ## Introduction 
 
@@ -219,8 +219,9 @@ Below is a list of the currently supported validators and a brief explanation of
 |`.nil`|Value is `null`.|
 |`.range(_:)`|Value is within supplied `Range`.|
 |`.url`|Contains a valid URL.|
+|`.custom(_:, validationClosure: (value) -> Bool)`|Custom, once-off validation.|
 
-Validators can also be combined to build complex validations using operators. 
+Validators can also be combined to build complex validations using operators. More information on `.custom` validator at [[#Custom Validators]].
 
 |Operator|Position|Description|
 |-|-|-|
@@ -232,7 +233,11 @@ Validators can also be combined to build complex validations using operators.
 
 ## Custom Validators
 
-Creating a custom validator for zip codes allows you to extend the functionality of the validation framework. In this section, we'll walk you through the steps to create a custom validator for validating zip codes.
+There are two ways to create custom validators. 
+
+### Extending Validation API
+
+Extending the Validation API is best suited for cases where you plan on using the custom validator in more than one `Content` object. In this section, we'll walk you through the steps to create a custom validator for validating zip codes. 
 
 First create a new type to represent the `ZipCode` validation results. This struct will be responsible for reporting whether a given string is a valid zip code.
 
@@ -289,4 +294,44 @@ Now that you've defined the custom `zipCode` validator, you can use it to valida
 ```swift
 validations.add("zipCode", as: String.self, is: .zipCode)
 ```
+### `Custom` Validator
 
+The `Custom` validator is best suited for cases where you want to validate a property in only one `Content` object. This implementation has the following two advantages compared to extending the Validation API:
+
+- Simpler to implement custom validation logic.
+- Shorter syntax.
+
+In this section, we'll walk you through the steps to create a custom validator for checking whether an employee is part of our company by looking at the `nameAndSurname` property. 
+
+```swift
+let allCompanyEmployees: [String] = [
+  "Everett Erickson",
+  "Sabrina Manning",
+  "Seth Gates",
+  "Melina Hobbs",
+  "Brendan Wade",
+  "Evie Richardson",
+]
+
+struct Employee: Content {
+  var nameAndSurname: String
+  var email: String
+  var age: Int
+  var role: String
+
+  static func validations(_ validations: inout Validations) {
+    validations.add(
+      "nameAndSurname",
+      as: String.self,
+      is: .custom("Validates whether employee is part of XYZ company by looking at name and surname.") { nameAndSurname in
+          for employee in allCompanyEmployees {
+            if employee == nameAndSurname {
+              return true
+            }
+          }
+          return false
+        }
+    )
+  }
+}
+```
