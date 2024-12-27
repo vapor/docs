@@ -548,7 +548,6 @@ nav:
   - Validation: "basics/validation.md"
   - Async: "basics/async.md"
   - Logging: "basics/logging.md"
-  - Tracing: "basics/tracing.md"
   - Environment: "basics/environment.md"
   - Errors: "basics/errors.md"
 - Fluent:
@@ -579,6 +578,7 @@ nav:
   - Services: "advanced/services.md"
   - Request: "advanced/request.md"
   - APNS: "advanced/apns.md"
+  - Tracing: "advanced/tracing.md"
 - Security:
   - Authentication: "security/authentication.md"
   - Crypto: "security/crypto.md"
