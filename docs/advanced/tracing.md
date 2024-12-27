@@ -4,7 +4,7 @@ Tracing is a powerful tool for monitoring and debugging distributed systems. Vap
 
 Vapor's tracing API is built on top of [swift-distributed-tracing](https://github.com/apple/swift-distributed-tracing), which means it is compatible with all of swift-distributed-tracing's [backend implementations](https://github.com/apple/swift-distributed-tracing/blob/main/README.md#tracing-backends).
 
-If unfamiliar with tracing and spans in Swift, review the [OpenTelemetry Trace documentation](https://opentelemetry.io/docs/concepts/signals/traces/) and [swift-distributed-tracing documentation](https://swiftpackageindex.com/apple/swift-distributed-tracing/main/documentation/tracing).
+If you are unfamiliar with tracing and spans in Swift, review the [OpenTelemetry Trace documentation](https://opentelemetry.io/docs/concepts/signals/traces/) and [swift-distributed-tracing documentation](https://swiftpackageindex.com/apple/swift-distributed-tracing/main/documentation/tracing).
 
 ## TracingMiddleware
 
@@ -13,6 +13,8 @@ To automatically create a fully annotated span for each request, add the `Tracin
 ```swift
 app.middleware.use(TracingMiddleware())
 ```
+
+To ensure that tracing identifiers are passed along correctly, this should be added before any middleware that calls tracing APIs or connects to external services.
 
 ## Adding Spans
 
