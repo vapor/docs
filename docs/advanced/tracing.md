@@ -14,7 +14,7 @@ To automatically create a fully annotated span for each request, add the `Tracin
 app.middleware.use(TracingMiddleware())
 ```
 
-To ensure that tracing identifiers are passed along correctly, this should be added before any middleware that calls tracing APIs or connects to external services.
+To get accurate span measurements and ensure that tracing identifiers are passed along correctly to other services, add this middleware before other middlewares.
 
 ## Adding Spans
 
