@@ -13,7 +13,7 @@
 ![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu.png)
 
 !!! note "注意"  
-	你也可以选择 Swift 支持的其它 Linux 发行版。在撰写本文时， Swift 5.7.3 支持 Ubuntu 18.04、20.04、22.04、CentOS 7, 和 Amazon Linux 2。你可以在 [Swift Releases](https://swift.org/download/#releases) 页面上查看官方支持哪些操作系统。
+	你也可以选择 Swift 支持的其它 Linux 发行版。在撰写本文时。你可以在 [Swift Releases](https://swift.org/download/#releases) 页面上查看官方支持哪些操作系统。
 
 选择完发行版后，选择你喜欢的套餐和数据中心所在区域。然后设置一个 SSH 密钥以在创建服务器后访问它。最后， 点击创建 Droplet 并等待新服务器启动。
 
