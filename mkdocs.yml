@@ -578,6 +578,7 @@ nav:
   - Services: "advanced/services.md"
   - Request: "advanced/request.md"
   - APNS: "advanced/apns.md"
+  - Tracing: "advanced/tracing.md"
 - Security:
   - Authentication: "security/authentication.md"
   - Crypto: "security/crypto.md"
