@@ -136,51 +136,6 @@ struct MyError: DebuggableError {
 
 `DebuggableError` has several other properties like `possibleCauses` and `suggestedFixes` that you can use to improve the debuggability of your errors. Take a look at the protocol itself for more information.
 
-## Stack Traces
-
-Vapor includes support for viewing stack traces for both normal Swift errors and crashes. 
-
-### Swift Backtrace
-
-Vapor uses the [SwiftBacktrace](https://github.com/swift-server/swift-backtrace) library to provide stack traces after a fatal error or assertion on Linux. In order for this to work, your app must include debug symbols during compilation.
-
-```sh
-swift build -c release -Xswiftc -g
-```
-
-### Error Traces
-
-By default, `Abort` will capture the current stack trace when initialized. Your custom error types can achieve this by conforming to `DebuggableError` and storing `StackTrace.capture()`.
-
-```swift
-import Vapor
-
-struct MyError: DebuggableError {
-    var identifier: String
-    var reason: String
-    var stackTrace: StackTrace?
-
-    init(
-        identifier: String,
-        reason: String,
-        stackTrace: StackTrace? = .capture()
-    ) {
-        self.identifier = identifier
-        self.reason = reason
-        self.stackTrace = stackTrace
-    }
-}
-```
-
-When your application's [log level](logging.md#level) is set to `.debug` or lower, error stack traces will be included in log output. 
-
-Stack traces will not be captured when the log level is greater than `.debug`. To override this behavior, set `StackTrace.isCaptureEnabled` manually in `configure`. 
-
-```swift
-// Always capture stack traces, regardless of log level.
-StackTrace.isCaptureEnabled = true
-```
-
 ## Error Middleware
 
 `ErrorMiddleware` is one of the only two middlewares added to your application by default. This middleware converts Swift errors that have been thrown or returned by your route handlers into HTTP responses. Without this middleware, errors thrown will result in the connection being closed without a response. 
