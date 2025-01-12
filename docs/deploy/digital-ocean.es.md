@@ -1,81 +1,81 @@
-# Deploying to DigitalOcean
+# Despliegue en DigitalOcean
 
-This guide will walk you through deploying a simple Hello, world Vapor application to a [Droplet](https://www.digitalocean.com/products/droplets/). To follow this guide, you must have a [DigitalOcean](https://www.digitalocean.com) account with billing configured.
+Esta guía te mostrará cómo desplegar una aplicación simple de Vapor Hello, world en un [Droplet](https://www.digitalocean.com/products/droplets/). Para seguir esta guía, debes tener una cuenta de [DigitalOcean](https://www.digitalocean.com) con la facturación configurada.
 
-## Create Server
+## Crear Servidor
 
-Let's start by installing Swift on a Linux server. Use the create menu to create a new Droplet.
+Comencemos por instalar Swift en un servidor Linux. Usa el menú de creación para crear un nuevo Droplet.
 
-![Create Droplet](../images/digital-ocean-create-droplet.png)
+![Crear Droplet](../images/digital-ocean-create-droplet.png)
 
-Under distributions, select Ubuntu 22.04 LTS. The following guide will use this version as an example.
+En distribuciones, selecciona Ubuntu 22.04 LTS. La siguiente guía utilizará esta versión como ejemplo.
 
-![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu.png)
+![Distribución Ubuntu](../images/digital-ocean-distributions-ubuntu.png)
 
-!!! note 
-	You may select any Linux distribution with a version that Swift supports. You can check which operating systems are officially supported on the [Swift Releases](https://swift.org/download/#releases) page.
+!!! note "Nota"
+	Puedes seleccionar cualquier distribución de Linux con una versión compatible con Swift. Puedes consultar qué sistemas operativos son compatibles oficialmente en la página [Versiones de Swift](https://swift.org/download/#releases).
 
-After selecting the distribution, choose any plan and datacenter region you prefer. Then setup an SSH key to access the server after it is created. Finally, click create Droplet and wait for the new server to spin up.
+Después de seleccionar la distribución, elije el plan y la región del centro de datos que prefieras. Luego, configura una clave SSH para acceder al servidor después de que se cree. Finalmente, haz clic en crear Droplet y espera a que se inicie el nuevo servidor.
 
-Once the new server is ready, hover over the Droplet's IP address and click copy.
+Cuando el nuevo servidor esté listo, pasa el cursor sobre la dirección IP del Droplet y haz clic en copiar.
 
 ![Droplet List](../images/digital-ocean-droplet-list.png)
 
-## Initial Setup
+## Configuración Inicial
 
-Open your terminal and connect to the server as root using SSH.
+Abre tu terminal y conéctate al servidor como root usando SSH.
 
 ```sh
 ssh root@your_server_ip
 ```
 
-DigitalOcean has an in-depth guide for [initial server setup on Ubuntu 22.04](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04). This guide will quickly cover the basics.
+DigitalOcean tiene una guía detallada para la [configuración inicial del servidor en Ubuntu 22.04](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04). Esta guía cubrirá rápidamente los conceptos básicos.
 
-### Configure Firewall
+### Configurar el Firewall
 
-Allow OpenSSH through the firewall and enable it.
+Permitir OpenSSH a través del firewall y habilitarlo.
 
 ```sh
 ufw allow OpenSSH
 ufw enable
 ```
 
-### Add User
+### Añadir Usuario
 
-Create a new user besides `root`. This guide calls the new user `vapor`.
+Crea un nuevo usuario además de `root`. Esta guía llama al nuevo usuario `vapor`.
 
 ```sh
 adduser vapor
 ```
 
-Allow the newly created user to use `sudo`.
+Permite que el usuario recién creado use `sudo`.
 
 ```sh
 usermod -aG sudo vapor
 ```
 
-Copy the root user's authorized SSH keys to the newly created user. This will allow you to SSH in as the new user.
+Copia las claves SSH autorizadas del usuario root al usuario recién creado. Esto te permitirá ingresar por SSH como el nuevo usuario.
 
 ```sh
 rsync --archive --chown=vapor:vapor ~/.ssh /home/vapor
 ```
 
-Finally, exit the current SSH session and login as the newly created user. 
+Finalmente, sal de la sesión SSH actual e inicia sesión como el usuario recién creado.
 
 ```sh
 exit
 ssh vapor@your_server_ip
 ```
 
-## Install Swift
+## Instalar Swift
 
-Now that you've created a new Ubuntu server and logged in as a non-root user you can install Swift. 
+Ahora que has creado un nuevo servidor Ubuntu y has iniciado sesión como usuario no root, puedes instalar Swift.
 
-### Automated installation using Swiftly CLI tool (recommended)
+### Instalación automática con la herramienta Swiftly CLI (recomendada)
 
-Visit the [Swiftly website](https://swiftlang.github.io/swiftly/) for instructions on how to install Swiftly and Swift on Linux. After that, install Swift with the following command:
+Visita el [sitio web de Swiftly](https://swiftlang.github.io/swiftly/) para obtener instrucciones sobre cómo instalar Swiftly y Swift en Linux. Después de eso, instala Swift con el siguiente comando:
 
-#### Basic usage
+#### Uso Básico
 
 ```sh
 $ swiftly install latest
@@ -92,94 +92,93 @@ Swift version 5.9.1 (swift-5.9.1-RELEASE)
 Target: x86_64-unknown-linux-gnu
 ```
 
-## Install Vapor Using the Vapor Toolbox
+## Instalar Vapor con Vapor Toolbox
 
-Now that Swift is installed, let's install Vapor using the Vapor Toolbox. You will need to build the toolbox from source. View the toolbox's [releases](https://github.com/vapor/toolbox/releases) on GitHub to find the latest version. In this example, we are using 18.6.0.
+Ahora que Swift está instalado, instalemos Vapor con Vapor Toolbox. Necesitarás compilar la toolbox desde el código fuente. Consulta las [versiones](https://github.com/vapor/toolbox/releases) de la toolbox en GitHub para encontrar la última versión. En este ejemplo, estamos usando 18.6.0.
 
-### Clone and Build Vapor
+### Clonar y Compilar Vapor
 
-Clone the Vapor Toolbox repository.
+Clona el repositorio de Vapor Toolbox.
 
 ```sh
 git clone https://github.com/vapor/toolbox.git
 ```
 
-Checkout the latest release.
+Consulta la última versión.
 
 ```sh
 cd toolbox
 git checkout 18.6.0
 ```
 
-Build Vapor and move the binary into your path.
+Compila Vapor y mueve el binario a tu ruta.
 
 ```sh
 swift build -c release --disable-sandbox --enable-test-discovery
 sudo mv .build/release/vapor /usr/local/bin
 ```
 
-### Create a Vapor Project
+### Crear un Proyecto Vapor
 
-Use the Toolbox's new project command to initiate a project.
+Utiliza el nuevo comando de proyecto de la toolbox para iniciar un proyecto.
 
 ```sh
 vapor new HelloWorld -n
 ```
 
-!!! tip
-	The `-n` flag gives you a bare bones template by automatically answering no to all questions.
-
+!!! tip "Consejo"
+	El indicador `-n` brinda una plantilla básica al responder automáticamente no a todas las preguntas.
 
 ![Vapor Splash](../images/vapor-splash.png)
 
-Once the command finishes, change into the newly created folder:
+Una vez que finalice el comando, cambia a la carpeta recién creada:
 
 ```sh
 cd HelloWorld
 ``` 
 
-### Open HTTP Port
+### Abrir Puerto HTTP
 
-In order to access Vapor on your server, open an HTTP port.
+Para acceder a Vapor en tu servidor, abre un puerto HTTP.
 
 ```sh
 sudo ufw allow 8080
 ```
 
-### Run
+### Ejecutar
 
-Now that Vapor is setup and we have an open port, let's run it. 
+Ahora que Vapor está configurado y tenemos un puerto abierto, ejecutémoslo.
 
 ```sh
 swift run App serve --hostname 0.0.0.0 --port 8080
 ```
 
-Visit your server's IP via browser or local terminal and you should see "It works!". The IP address is `134.122.126.139` in this example.
+Visita la IP de tu servidor a través del navegador o terminal local y deberías ver "¡Funciona!". La dirección IP es `134.122.126.139` en este ejemplo.
 
 ```
 $ curl http://134.122.126.139:8080
 It works!
 ```
 
-Back on your server, you should see logs for the test request.
+De vuelta a tu servidor, deberías ver los registros de la solicitud de prueba.
 
 ```
 [ NOTICE ] Server starting on http://0.0.0.0:8080
 [ INFO ] GET /
 ```
 
-Use `CTRL+C` to quit the server. It may take a second to shutdown.
+Usa `CTRL+C` para salir del servidor. Puede tomar un segundo apagarlo.
 
-Congratulations on getting your Vapor app running on a DigitalOcean Droplet!
+¡Felicitaciones por hacer que tu aplicación Vapor funcione en un Droplet de DigitalOcean!
 
-## Next Steps
+## Próximos Pasos
 
-The rest of this guide points to additional resources to improve your deployment. 
+El resto de esta guía indica recursos adicionales para mejorar tu despliegue.
 
 ### Supervisor
 
-Supervisor is a process control system that can run and monitor your Vapor executable. With supervisor setup, your app can automatically start when the server boots and be restarted in case it crashes. Learn more about [Supervisor](../deploy/supervisor.md).
+Supervisor es un sistema de control de procesos que puedes ejecutar y monitorear tu ejecutable de Vapor. Con la configuración de Supervisor, tu aplicación puede iniciarse automáticamente cuando se inicia el servidor y reiniciarse en caso de que falle. Obten más información sobre [Supervisor](../deploy/supervisor.md).
 
 ### Nginx
 
-Nginx is an extremely fast, battle tested, and easy-to-configure HTTP server and proxy. While Vapor supports directly serving HTTP requests, proxying behind Nginx can provide increased performance, security, and ease-of-use. Learn more about [Nginx](../deploy/nginx.md).
+Nginx es un servidor y proxy HTTP extremadamente rápido, probado en batalla y fácil de configurar. Si bien Vapor admite el servicio directo de solicitudes HTTP, el proxy detrás de Nginx puede proporcionar un mayor rendimiento, seguridad y facilidad de uso. Obten más información sobre [Nginx](../deploy/nginx.md).
