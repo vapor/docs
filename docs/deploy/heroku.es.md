@@ -1,14 +1,14 @@
-# What is Heroku
+# ¿Qué es Heroku?
 
-Heroku is a popular all in one hosting solution, you can find more at [heroku.com](https://www.heroku.com)
+Heroku es una solución de alojamiento todo en uno muy popular. Puedes encontrar más información en [heroku.com](https://www.heroku.com)
 
-## Signing Up
+## Registrarse
 
-You'll need a heroku account, if you don't have one, please sign up here: [https://signup.heroku.com/](https://signup.heroku.com/)
+Necesitarás una cuenta de Heroku. Si no tienes una, regístrate aquí: [https://signup.heroku.com/](https://signup.heroku.com/)
 
-## Installing CLI
+## Instalar CLI
 
-Make sure that you've installed the heroku cli tool.
+Asegúrate de haber instalado la herramienta CLI de Heroku.
 
 ### HomeBrew
 
@@ -16,35 +16,35 @@ Make sure that you've installed the heroku cli tool.
 brew tap heroku/brew && brew install heroku
 ```
 
-### Other Install Options
+### Otras Opciones de Instalación
 
-See alternative install options here: [https://devcenter.heroku.com/articles/heroku-cli#download-and-install](https://devcenter.heroku.com/articles/heroku-cli#download-and-install).
+Consulta las opciones de instalación alternativas aquí: [https://devcenter.heroku.com/articles/heroku-cli#download-and-install](https://devcenter.heroku.com/articles/heroku-cli#download-and-install).
 
-### Logging in
+### Iniciar sesión
 
-once you've installed the cli, login with the following:
+Una vez que hayas instalado la CLI, inicia sesión con lo siguiente:
 
 ```bash
 heroku login
 ```
 
-verify that the correct email is logged in with:
+Verifica que el correo electrónico correcto esté conectado con:
 
 ```bash
 heroku auth:whoami
 ```
 
-### Create an application
+### Crear una aplicación
 
-Visit dashboard.heroku.com to access your account, and create a new application from the drop down in the upper right hand corner. Heroku will ask a few questions such as region and application name, just follow their prompts.
+Visita dashboard.heroku.com para acceder a tu cuenta, y crea una aplicación nueva desde el menú desplegable en la esquina superior derecha. Heroku te hará algunas preguntas, como la región y el nombre de la aplicación, tan solo sigue las indicaciones.
 
 ### Git
 
-Heroku uses Git to deploy your app, so you’ll need to put your project into a Git repository, if it isn’t already.
+Heroku usa Git para desplegar tu aplicación, por lo que deberás colocar tu proyecto en un repositorio de Git, si aún no lo está.
 
-#### Initialize Git
+#### Inicializar Git
 
-If you need to add Git to your project, enter the following command in Terminal:
+Si necesitas agregar Git a tu proyecto, ingresa el siguiente comando en Terminal:
 
 ```bash
 git init
@@ -52,15 +52,15 @@ git init
 
 #### Master
 
-You should decide for one branch and stick to that for deploying to Heroku, like the **main** or **master** branch. Make sure all changes are checked into this branch before pushing.
+Debes decidirte por una rama y ceñirte a ella para desplegar en Heroku, como la rama **main** o **master**. Asegúrate de que todos los cambios se hayan registrado en esta rama antes de hacer push.
 
-Check your current branch with
+Comprueba tu rama actual con:
 
 ```bash
 git branch
 ```
 
-The asterisk indicates current branch.
+El asterisco indica la rama actual.
 
 ```bash
 * main
@@ -68,136 +68,134 @@ The asterisk indicates current branch.
   other-branches
 ```
 
-!!! note 
-    If you don’t see any output and you’ve just performed `git init`. You’ll need to commit your code first then you’ll see output from the `git branch` command.
+!!! note "Nota"
+    Si no ves ningún resultado y acabas de ejecutar `git init`, primero deberás confirmar tu código y luego verás el resultado del comando `git branch`.
 
-
-If you’re _not_ currently on the right branch, switch there by entering (for **main**):
+Si actualmente no estás en la rama correcta, cambia a ella introduciendo (para **main**):
 
 ```bash
 git checkout main
 ```
 
-#### Commit changes
+#### Confirmar cambios
 
-If this command produces output, then you have uncommitted changes.
+Si este comando produce resultados, entonces tienes cambios sin confirmar.
 
 ```bash
 git status --porcelain
 ```
 
-Commit them with the following
+Confirmalos con lo siguiente
 
 ```bash
 git add .
 git commit -m "a description of the changes I made"
 ```
 
-#### Connect with Heroku
+#### Conectar con Heroku
 
-Connect your app with heroku (replace with your app's name).
+Conecta tu aplicación con heroku (reemplaza con el nombre de tu aplicación).
 
 ```bash
 $ heroku git:remote -a your-apps-name-here
 ```
 
-### Set Buildpack
+### Establecer Buildpack
 
-Set the buildpack to teach heroku how to deal with vapor.
+Establece el buildpack para enseñar a heroku cómo tratar con vapor.
 
 ```bash
 heroku buildpacks:set vapor/vapor
 ```
 
-### Swift version file
+### Archivo de versión de Swift
 
-The buildpack we added looks for a **.swift-version** file to know which version of swift to use. (replace 5.8.1 with whatever version your project requires.)
+El buildpack que agregamos busca un archivo **.swift-version** para saber qué versión de Swift usar. (Reemplace 5.8.1 con la versión que requiera su proyecto).
 
 ```bash
 echo "5.8.1" > .swift-version
 ```
 
-This creates **.swift-version** with `5.8.1` as its contents.
-
+Esto crea **.swift-version** con `5.8.1` como su contenido.
 
 ### Procfile
 
-Heroku uses the **Procfile** to know how to run your app, in our case it needs to look like this:
+Heroku usa el **Procfile** para saber cómo ejecutar tu aplicación, en nuestro caso debe verse así:
 
 ```
 web: App serve --env production --hostname 0.0.0.0 --port $PORT
 ```
 
-we can create this with the following terminal command
+Podemos crear esto con el siguiente comando de terminal
 
 ```bash
 echo "web: App serve --env production" \
   "--hostname 0.0.0.0 --port \$PORT" > Procfile
 ```
 
-### Commit changes
+### Confirmar cambios
 
-We just added these files, but they're not committed. If we push, heroku will not find them.
+Acabamos de agregar estos archivos, pero no están confirmados. Si hacemos push, heroku no los encontrará.
 
-Commit them with the following.
+Confírmarlos con lo siguiente.
 
 ```bash
 git add .
 git commit -m "adding heroku build files"
 ```
 
-### Deploying to Heroku
+### Despliegue en Heroku
 
-You're ready to deploy, run this from the terminal. It may take a while to build, this is normal.
+Estás listo para desplegar, ejecuta esto desde la terminal. Puede que la compilación tarde un tiempo, esto es normal.
 
 ```none
 git push heroku main
 ```
 
-### Scale Up
+### Escalabilidad
 
-Once you've built successfully, you need to add at least one server. Prices start at $5/month for the Eco plan (see [pricing](https://www.heroku.com/pricing#containers)), make sure you have payment configured on Heroku. Then for a single web worker:
+Una vez que hayas construido con éxito, debes agregar al menos un servidor. Los precios comienzan en $5/mes para el plan Eco (consulta [precios](https://www.heroku.com/pricing#containers)), asegúrate de tener configurado el pago en Heroku. Luego, para un solo trabajador web:
 
 ```bash
 heroku ps:scale web=1
 ```
 
-### Continued Deployment
+### Despliegue continuo
 
-Any time you want to update, just get the latest changes into main and push to heroku and it will redeploy
+Cada vez que quieras actualizar, solo tienes que obtener los últimos cambios en main y enviarlos a heroku y se volverá a desplegar.
 
 ## Postgres
 
-### Add PostgreSQL database
+### Agregar base de datos PostgreSQL
 
-Visit your application at dashboard.heroku.com and go to the **Add-ons** section.
+Visita tu aplicación en dashboard.heroku.com y ve a la sección **Add-ons**.
 
-From here enter `postgres` and you'll see an option for `Heroku Postgres`. Select it.
+Desde aquí entra en `postgres` y verás una opción para `Heroku Postgres`. Selecciónala.
 
-Choose the Eco plan for $5/month (see [pricing](https://www.heroku.com/pricing#data-services)), and provision. Heroku will do the rest.
+Elige el plan Eco por $5/mes (consulta [precios](https://www.heroku.com/pricing#data-services)) y realiza la instalación. Heroku hará el resto.
 
-Once you finish, you’ll see the database appears under the **Resources** tab.
+Una vez que termines, verás que la base de datos aparece en la pestaña **Resources**.
 
-### Configure the database
+### Configura la base de datos
 
-We have to now tell our app how to access the database. In our app directory, let's run.
+Ahora tenemos que indicarle a nuestra aplicación cómo acceder a la base de datos. En el directorio de nuestra aplicación, ejecutémosla.
 
 ```bash
 heroku config
 ```
 
-This will make output somewhat like this
+Esto generará una salida similar a esta
 
 ```none
 === today-i-learned-vapor Config Vars
 DATABASE_URL: postgres://cybntsgadydqzm:2d9dc7f6d964f4750da1518ad71hag2ba729cd4527d4a18c70e024b11cfa8f4b@ec2-54-221-192-231.compute-1.amazonaws.com:5432/dfr89mvoo550b4
 ```
 
-**DATABASE_URL** here will represent out postgres database. **NEVER** hard code the static url from this, heroku will rotate it and it will break your application. It is also bad practice. Instead, read the environment variable at runtime.
+Aquí **DATABASE_URL** representará nuestra base de datos postgres. **NUNCA** codifiques de manera estática la URL desde aquí, heroku la rotará y romperá tu aplicación. Además, es una mala práctica. En su lugar, lee la variable de entorno en tiempo de ejecución.
 
-The Heroku Postgres addon [requires](https://devcenter.heroku.com/changelog-items/2035) all connections to be encrypted. The certificates used by the Postgres servers are internal to Heroku, therefore an **unverified** TLS connection must be set up.
+El complemento Heroku Postgres [requiere](https://devcenter.heroku.com/changelog-items/2035) que todas las conexiones sean cifradas. Los certificados que utilizan los servidores Postgres son internos a Heroku, por lo que se debe configurar una conexión TLS **no verificada**.
 
-The following snippet shows how to achieve both:
+El siguiente fragmento muestra cómo lograr ambas cosas:
 
 ```swift
 if let databaseURL = Environment.get("DATABASE_URL") {
@@ -213,25 +211,24 @@ if let databaseURL = Environment.get("DATABASE_URL") {
     // ...
 }
 ```
-
-Don't forget to commit these changes
+No olvide confirmar estos cambios
 
 ```none
 git add .
 git commit -m "configured heroku database"
 ```
 
-### Reverting your database
+### Revertir tu base de datos
 
-You can revert or run other commmands on heroku with the `run` command.
+Puedes revertir o ejecutar otros comandos en heroku con el comando `run`.
 
-To revert your database:
+Para revertir tu base de datos:
 
 ```bash
 heroku run App -- migrate --revert --all --yes --env production
 ```
 
-To migrate
+Para migrar:
 
 ```bash
 heroku run App -- migrate --env production
