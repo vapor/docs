@@ -2,7 +2,7 @@
 
 El rastreo (Tracing) es una herramienta poderosa para monitorear y depurar sistemas distribuidos. La API de rastreo (Tracing) de Vapor permite a los desarrolladores rastrear facilmente los ciclos de vida de las solicitudes, propagar metadatos e integrarse con backends populares como OpenTelemetry.
 
-La API de rastreo (Tracing) de Vapor se basa en [swift-distributed-tracing](https://github.com/apple/swift-distributed-tracing), esto quiere decir que es compatible con todas las [implementaciones de backend ](https://github.com/apple/swift-distributed-tracing/blob/main/README.md#tracing-backends) de swift-distributed-tracing.
+La API de rastreo (Tracing) de Vapor se basa en [swift-distributed-tracing](https://github.com/apple/swift-distributed-tracing), esto quiere decir que es compatible con todas las [implementaciones de backend](https://github.com/apple/swift-distributed-tracing/blob/main/README.md#tracing-backends) de swift-distributed-tracing.
 
 Si no estas familiarizado con tracing y spans en Swift, revise la [documentación de OpenTelemetry Trace](https://opentelemetry.io/docs/concepts/signals/traces/) y la [documentación de swift-distributed-tracing](https://swiftpackageindex.com/apple/swift-distributed-tracing/main/documentation/tracing).
 
@@ -28,11 +28,10 @@ Vapor tiene soporte para propagar automáticamente spans entre middleware y call
 app.traceAutoPropagation = true
 ```
 
-!!! nota
-     Habilitar la auto-propagación puede degradar el rendimiento en APIs de alto rendimiento con necesidades mínimas de rastreo, ya que los metadatos del span de solicitud deben restaurarse para cada manejador de rutas, independientemente de si se crean spans o no.
+!!! note "Nota"
+    Habilitar la auto-propagación puede degradar el rendimiento en APIs de alto rendimiento con necesidades mínimas de rastreo, ya que los metadatos del span de solicitud deben restaurarse para cada manejador de rutas, independientemente de si se crean spans o no.
 
-
-Entonces, los spans pueden crearse en el cierre de la ruta utilizando la sintaxis ordinaria de rastreo distribuido.
+Entonces, los spans pueden crearse en el closure de la ruta utilizando la sintaxis habitual de rastreo distribuido.
 
 ```swift
 app.get("fetchAndProcess") { req in
@@ -57,7 +56,6 @@ app.get("fetchAndProcess") { req in
 ```
 
 Para restaurar los metadatos del span sin crear un span, usa `ServiceContext.withValue`. Esto es valioso si sabes que las bibliotecas asíncronas posteriores emiten sus propios spans de rastreo, y estos deben estar anidados debajo del span de solicitud principal.
-
 
 ```swift
 app.get("fetchAndProcess") { req in
