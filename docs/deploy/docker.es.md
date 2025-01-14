@@ -20,7 +20,7 @@ Deberás configurar tu entorno de desarrollador para ejecutar Docker y obtener u
 
 Deberás instalar Docker para tu entorno de desarrollador. Puedes encontrar información para cualquier plataforma en la sección [Plataformas compatibles](https://docs.docker.com/install/#supported-platforms) de la descripción general de Docker Engine. Si estás en Mac OS, puedes ir directamente a la página de instalación [Docker para Mac](https://docs.docker.com/docker-for-mac/install/).
 
-### Plantilla Generadora
+### Generar una Plantilla
 
 Sugerimos utilizar la plantilla de Vapor como punto de partida. Si ya tienes una aplicación, crea la plantilla como se describe a continuación en una carpeta nueva, como punto de referencia, mientras dockerizas tu aplicación existente -puedes copiar recursos clave de la plantilla a tu aplicación y modificarlos ligeramente como punto de partida-.
 
