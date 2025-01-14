@@ -148,7 +148,7 @@ git commit -m "adding heroku build files"
 
 Estás listo para desplegar, ejecuta esto desde la terminal. Puede que la compilación tarde un tiempo, esto es normal.
 
-```none
+```bash
 git push heroku main
 ```
 
