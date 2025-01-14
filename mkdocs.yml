@@ -364,6 +364,7 @@ plugins:
             Queues: Colas
             Redis: Redis
             Relations: Relaciones
+            Release Notes: Notas de Versiones
             Routing: Routing
             Schema: Esquema
             Security: Seguridad
