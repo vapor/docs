@@ -69,7 +69,7 @@ El asterisco indica la rama actual.
 ```
 
 !!! note "Nota"
-    Si no ves ningún resultado y acabas de ejecutar `git init`, primero deberás confirmar tu código y luego verás el resultado del comando `git branch`.
+    Si no ves ningún resultado y acabas de ejecutar `git init`, primero deberás hacer un commit de tu código y luego verás el resultado del comando `git branch`.
 
 Si actualmente no estás en la rama correcta, cambia a ella introduciendo (para **main**):
 
