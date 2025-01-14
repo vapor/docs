@@ -214,7 +214,7 @@ if let databaseURL = Environment.get("DATABASE_URL") {
 
 No olvides hacer commit de estos cambios.
 
-```none
+```bash
 git add .
 git commit -m "configured heroku database"
 ```
