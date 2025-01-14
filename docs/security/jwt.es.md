@@ -308,7 +308,7 @@ Por otro lado, al verificar, el `kid` se extrae automáticamente del encabezado 
 
 ## Reclamos
 
-El paquete JWT de Vapor incluye varios asistentes para implementar [reclamos JWT](https://tools.ietf.org/html/rfc7519#section-4.1) comunes.
+El paquete JWT de Vapor incluye varios asistentes para implementar [reclamos JWT (claims)](https://tools.ietf.org/html/rfc7519#section-4.1) comunes.
 
 |Reclamo|Tipo|Método de verificación|
 |---|---|---|
