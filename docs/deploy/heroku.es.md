@@ -211,7 +211,8 @@ if let databaseURL = Environment.get("DATABASE_URL") {
     // ...
 }
 ```
-No olvide confirmar estos cambios
+
+No olvides hacer commit de estos cambios.
 
 ```none
 git add .
