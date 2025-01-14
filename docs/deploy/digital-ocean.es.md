@@ -181,4 +181,4 @@ Supervisor es un sistema de control de procesos que puedes ejecutar y monitorear
 
 ### Nginx
 
-Nginx es un servidor y proxy HTTP extremadamente rápido, probado en batalla y fácil de configurar. Si bien Vapor admite el servicio directo de solicitudes HTTP, el proxy detrás de Nginx puede proporcionar un mayor rendimiento, seguridad y facilidad de uso. Obten más información sobre [Nginx](../deploy/nginx.md).
+Nginx es un servidor y proxy HTTP extremadamente rápido, confiable y fácil de configurar. Si bien Vapor admite el servicio directo de solicitudes HTTP, el proxy detrás de Nginx puede proporcionar un mayor rendimiento, seguridad y facilidad de uso. Obten más información sobre [Nginx](../deploy/nginx.md).
