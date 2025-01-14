@@ -127,7 +127,7 @@ vapor new HelloWorld -n
 ```
 
 !!! tip "Consejo"
-	El indicador `-n` brinda una plantilla básica al responder automáticamente no a todas las preguntas.
+	El indicador `-n` brinda una plantilla básica al responder automáticamente "no" a todas las preguntas.
 
 ![Vapor Splash](../images/vapor-splash.png)
 
