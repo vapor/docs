@@ -129,7 +129,6 @@ vapor new HelloWorld -n
 !!! tip
 	The `-n` flag gives you a bare bones template by automatically answering no to all questions.
 
-
 ![Vapor Splash](../images/vapor-splash.png)
 
 Once the command finishes, change into the newly created folder:

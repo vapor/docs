@@ -22,13 +22,13 @@ See alternative install options here: [https://devcenter.heroku.com/articles/her
 
 ### Logging in
 
-once you've installed the cli, login with the following:
+Once you've installed the cli, login with the following:
 
 ```bash
 heroku login
 ```
 
-verify that the correct email is logged in with:
+Verify that the correct email is logged in with:
 
 ```bash
 heroku auth:whoami
@@ -54,7 +54,7 @@ git init
 
 You should decide for one branch and stick to that for deploying to Heroku, like the **main** or **master** branch. Make sure all changes are checked into this branch before pushing.
 
-Check your current branch with
+Check your current branch with:
 
 ```bash
 git branch
@@ -70,7 +70,6 @@ The asterisk indicates current branch.
 
 !!! note 
     If you don’t see any output and you’ve just performed `git init`. You’ll need to commit your code first then you’ll see output from the `git branch` command.
-
 
 If you’re _not_ currently on the right branch, switch there by entering (for **main**):
 
@@ -111,14 +110,13 @@ heroku buildpacks:set vapor/vapor
 
 ### Swift version file
 
-The buildpack we added looks for a **.swift-version** file to know which version of swift to use. (replace 5.8.1 with whatever version your project requires.)
+The buildpack we added looks for a **.swift-version** file to know which version of swift to use. (Replace 5.8.1 with whatever version your project requires.)
 
 ```bash
 echo "5.8.1" > .swift-version
 ```
 
 This creates **.swift-version** with `5.8.1` as its contents.
-
 
 ### Procfile
 
@@ -128,7 +126,7 @@ Heroku uses the **Procfile** to know how to run your app, in our case it needs t
 web: App serve --env production --hostname 0.0.0.0 --port $PORT
 ```
 
-we can create this with the following terminal command
+We can create this with the following terminal command
 
 ```bash
 echo "web: App serve --env production" \
@@ -150,7 +148,7 @@ git commit -m "adding heroku build files"
 
 You're ready to deploy, run this from the terminal. It may take a while to build, this is normal.
 
-```none
+```bash
 git push heroku main
 ```
 
@@ -164,7 +162,7 @@ heroku ps:scale web=1
 
 ### Continued Deployment
 
-Any time you want to update, just get the latest changes into main and push to heroku and it will redeploy
+Any time you want to update, just get the latest changes into main and push to heroku and it will redeploy.
 
 ## Postgres
 
@@ -216,7 +214,7 @@ if let databaseURL = Environment.get("DATABASE_URL") {
 
 Don't forget to commit these changes
 
-```none
+```bash
 git add .
 git commit -m "configured heroku database"
 ```
@@ -231,7 +229,7 @@ To revert your database:
 heroku run App -- migrate --revert --all --yes --env production
 ```
 
-To migrate
+To migrate:
 
 ```bash
 heroku run App -- migrate --env production
