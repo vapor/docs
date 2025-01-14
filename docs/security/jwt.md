@@ -169,7 +169,7 @@ ECDSA (Elliptic Curve Digital Signature Algorithm) is an asymmetric algorithm th
 - `ES384`: ECDSA with a P-384 curve and SHA-384
 - `ES512`: ECDSA with a P-521 curve and SHA-512
 
-All algorithms provide botha public key and a private key, such as `ES256PublicKey` and `ES256PrivateKey`. You can add ECDSA keys using the PEM format:
+All algorithms provide both a public key and a private key, such as `ES256PublicKey` and `ES256PrivateKey`. You can add ECDSA keys using the PEM format:
 
 ```swift
 let ecdsaPublicKey = """
