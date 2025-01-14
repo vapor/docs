@@ -41,7 +41,7 @@ El Dockerfile generado para tu aplicación Vapor tiene dos etapas. La primera et
 
 ### Archivo Docker Compose
 
-Un archivo Docker Compose define la forma en que Docker debe construir múltiples servicios relacionados entre sí. El archivo Docker Compose, en la plantilla de la aplicación Vapor, proporciona la funcionalidad necesaria para desplegar tu aplicación, pero si deseas obtener más información, debes consultar la [referencia completa](https://docs.docker.com/compose/compose-file/ ) que tiene detalles sobre todas las opciones disponibles.
+Un archivo Docker Compose define la forma en que Docker debe construir múltiples servicios relacionados entre sí. El archivo Docker Compose, en la plantilla de la aplicación Vapor, proporciona la funcionalidad necesaria para desplegar tu aplicación, pero si deseas obtener más información, debes consultar la [referencia completa](https://docs.docker.com/compose/compose-file/) que tiene detalles sobre todas las opciones disponibles.
 
 !!! note "Nota"
     Si finalmente planeas usar Kubernetes para organizar tu aplicación, el archivo Docker Compose no es directamente relevante. Sin embargo, los archivos de manifiesto de Kubernetes son conceptualmente similares e incluso existen proyectos destinados a [portar archivos Docker Compose](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/) a manifiestos de Kubernetes.
