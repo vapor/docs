@@ -6,7 +6,7 @@ Las sesiones son ideales para aplicaciones web front-end creadas en Vapor que si
 
 ## Configuración
 
-Para usar sesiones en una ruta, la solicitud debe pasar por `SessionsMiddleware`. La forma más fácil de lograr esto es agregando este middleware globalmente. Se recomienda que lo agregues después de declarar la fábrica de cookies. Esto se debe a que Sessions es una estructura, por lo tanto, es un tipo por valor y no un tipo por referencia. Dado que es un tipo por valor, debes establecer el valor antes de usar `SessionsMiddleware`.
+Para usar sesiones en una ruta, la solicitud debe pasar por `SessionsMiddleware`. La forma más fácil de lograr esto es agregando este middleware globalmente. Se recomienda que lo agregues después de declarar el factory de cookies. Esto se debe a que Sessions es una estructura, por lo tanto, es un tipo por valor y no un tipo por referencia. Dado que es un tipo por valor, debes establecer el valor antes de usar `SessionsMiddleware`.
 
 ```swift
 app.middleware.use(app.sessions.middleware)
