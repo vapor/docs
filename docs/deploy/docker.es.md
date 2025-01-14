@@ -75,7 +75,7 @@ Las variables `DATABASE_HOST`, `DATABASE_NAME`, `DATABASE_USERNAME` y `DATABASE_
 Otras cosas a tener en cuenta:
 
 - Las dependencias de los servicios se definen mediante un arreglo `depends_on`.
-- Los puertos de los servicios se exponen al sistema que ejecuta los servicios con matrices `ports` (formateadas como `<host_port>:<service_port>`).
+- Los puertos de los servicios se exponen al sistema que ejecuta los servicios con el arreglo `ports` (formateadas como `<host_port>:<service_port>`).
 - El `DATABASE_HOST` se define como `db`. Esto significa que tu aplicación accederá a la base de datos en `http://db:5432`. Esto funciona porque Docker va a crear una red que utiliza tus servicios, y el DNS interno de esa red enrutará el nombre `db` al servicio llamado `'db'`.
 - La directiva `CMD` en el Dockerfile se reemplaza en algunos servicios con la matriz `command`. Ten en cuenta que lo que se especifica con `command` se ejecuta contra el `ENTRYPOINT` en el Dockerfile.
 - En el modo Swarm (más sobre esto a continuación), los servicios recibirán 1 instancia de manera predeterminada, pero los servicios `migrate` y `revert` están definidos con `deploy` `replicas: 0`, por lo que no se inician de manera predeterminada cuando se ejecuta un Swarn.
