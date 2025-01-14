@@ -1,6 +1,6 @@
-# Vapor Release Notes
+# Notas de Lanzamiento de Vapor
 
-Because it is hard, if not impossible to keep the documentation up-to-date constantly, here you will find release notes of various different packages linked to the Vapor ecosystem.
+Debido a que es difícil, si no imposible mantener la documentación actualizada constantemente, aquí encontrarás notas de lanzamiento de varios paquetes diferentes vinculados al ecosistema Vapor.
 
 ## vapor
 
