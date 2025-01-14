@@ -22,7 +22,7 @@ Consulta las opciones de instalación alternativas aquí: [https://devcenter.her
 
 ### Iniciar sesión
 
-Una vez que hayas instalado la CLI, inicia sesión con lo siguiente:
+Una vez que hayas instalado la CLI, inicia sesión con el siguiente comando:
 
 ```bash
 heroku login
