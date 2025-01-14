@@ -153,7 +153,7 @@ Ahora que Vapor está configurado y tenemos un puerto abierto, ejecutémoslo.
 swift run App serve --hostname 0.0.0.0 --port 8080
 ```
 
-Visita la IP de tu servidor a través del navegador o terminal local y deberías ver "¡Funciona!". La dirección IP es `134.122.126.139` en este ejemplo.
+Visita la IP de tu servidor a través del navegador o terminal local y deberías ver "It works!". La dirección IP es `134.122.126.139` en este ejemplo.
 
 ```
 $ curl http://134.122.126.139:8080
