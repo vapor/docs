@@ -148,7 +148,7 @@ git commit -m "adding heroku build files"
 
 You're ready to deploy, run this from the terminal. It may take a while to build, this is normal.
 
-```none
+```bash
 git push heroku main
 ```
 
@@ -214,7 +214,7 @@ if let databaseURL = Environment.get("DATABASE_URL") {
 
 Don't forget to commit these changes
 
-```none
+```bash
 git add .
 git commit -m "configured heroku database"
 ```
