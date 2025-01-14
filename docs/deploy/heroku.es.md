@@ -154,7 +154,7 @@ git push heroku main
 
 ### Escalabilidad
 
-Una vez que hayas construido con éxito, debes agregar al menos un servidor. Los precios comienzan en $5/mes para el plan Eco (consulta [precios](https://www.heroku.com/pricing#containers)), asegúrate de tener configurado el pago en Heroku. Luego, para un solo trabajador web:
+Una vez que hayas realizado una build con éxito, debes agregar al menos un servidor. Los precios comienzan en $5/mes para el plan Eco (consulta [precios](https://www.heroku.com/pricing#containers)), asegúrate de tener configurado el pago en Heroku. Luego, para un solo trabajador web (worker):
 
 ```bash
 heroku ps:scale web=1
