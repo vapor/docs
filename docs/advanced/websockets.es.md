@@ -121,7 +121,6 @@ La propiedad `closeCode` se establece cuando el WebSocket se cierra. Esto se pue
 
 ## Ping / Pong
 
-Ping and pong messages are sent automatically by the client and server to keep WebSocket connections alive. Your application can listen for these events using the `onPing` and `onPong` callbacks.
 El cliente y el servidor envían automáticamente mensajes de ping y pong para mantener activas las conexiones WebSocket. Su aplicación puede escuchar estos eventos mediante los callbacks `onPing` y `onPong`.
 
 ```swift
