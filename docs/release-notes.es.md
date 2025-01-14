@@ -1,4 +1,4 @@
-# Notas de Lanzamiento de Vapor
+# Notas de Versiones de Vapor
 
 Debido a que es difícil, si no imposible mantener la documentación actualizada constantemente, aquí encontrarás notas de lanzamiento de varios paquetes diferentes vinculados al ecosistema Vapor.
 
