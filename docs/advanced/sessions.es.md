@@ -67,8 +67,6 @@ Esto configurará las sesiones para usar la base de datos por defecto de la apli
 app.sessions.use(.fluent(.sqlite))
 ```
 
-Finally, add `SessionRecord`'s migration to your database's migrations. This will prepare your database for storing session data in the `_fluent_sessions` schema.
-
 Por último, añade la migración de `SessionRecord` a las migraciones de tu base de datos. Esto preparará tu base de datos para almacenar datos de sesión en el esquema `_fluent_sessions`.
 
 ```swift
