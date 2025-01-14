@@ -1,6 +1,6 @@
 # Despliegue en DigitalOcean
 
-Esta guía te mostrará cómo desplegar una aplicación simple de Vapor Hello, world en un [Droplet](https://www.digitalocean.com/products/droplets/). Para seguir esta guía, debes tener una cuenta de [DigitalOcean](https://www.digitalocean.com) con la facturación configurada.
+Esta guía te mostrará cómo desplegar una aplicación simple "Hola mundo" de Vapor en un [Droplet](https://www.digitalocean.com/products/droplets/). Para seguir esta guía, debes tener una cuenta de [DigitalOcean](https://www.digitalocean.com) con la facturación configurada.
 
 ## Crear Servidor
 
