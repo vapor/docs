@@ -55,6 +55,7 @@ Esto agrega una clave HMAC con SHA-256 como algoritmo de resumen al llavero, o H
 ### Firma
 
 La clave agregada luego se puede usar para firmar JWT. Para hacer esto, primero necesitas _algo_ para firmar, es decir, una "carga útil" (payload).
+
 Esta carga útil es simplemente un objeto JSON que contiene los datos que deseas transmitir. Puedes crear tu carga útil personalizada adaptando tu estructura al protocolo `JWTPayload`:
 
 ```swift
