@@ -79,7 +79,7 @@ git checkout main
 
 #### Commit de cambios
 
-Si este comando produce resultados, entonces tienes cambios sin confirmar.
+Si este comando produce resultados, entonces tienes cambios sin commit.
 
 ```bash
 git status --porcelain
