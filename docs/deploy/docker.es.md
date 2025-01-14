@@ -120,7 +120,7 @@ Tu aplicación está escuchando en el puerto 8080 y, según lo definido por el a
 
 Esta distinción en el mapeo de puertos es muy importante porque puede ejecutar cualquier cantidad de servicios en los mismos puertos si todos se ejecutan en sus propios contenedores y cada uno expone puertos diferentes a la máquina host.
 
-Visita `http://localhost:8080` y verás `It works!` pero visite `http://localhost:8080/todos` y obtendrás:
+Visita `http://localhost:8080` y verás `It works!`, pero visita `http://localhost:8080/todos` y obtendrás:
 
 ```
 {"error":true,"reason":"Something went wrong."}
