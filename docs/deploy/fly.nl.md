@@ -22,7 +22,7 @@ curl -L https://fly.io/install.sh | sh
 ```
 
 ### Andere installatiemogelijkheden
-Voor meer opties en details, zie [de `flyctl` installatie docs](https://fly.io/docs/hands-on/install-flyctl/).
+Voor meer opties en details, zie [de `flyctl` installatie docs](https://fly.io/docs/flyctl/install/).
 
 ## Aanmelden
 Om aan te melden vanuit je terminal, voer je het volgende commando uit:
@@ -54,7 +54,7 @@ Kies in de volgende lijst het sjabloon dat het beste bij uw behoeften past. Je k
 - [Fluent/Postgres + Leaf template](https://github.com/vapor/template-fluent-postgres-leaf)
 
 ### Bestaand Vapor project
-Als je een bestaand Vapor-project hebt, zorg er dan voor dat je een goed geconfigureerde `Dockerfile` in de root van je map hebt staan; de [Vapor docs over het gebruik van Docker](../deploy/docker.md) en [Fly docs over het deployen van een app via een Dockerfile](https://fly.io/docs/getting-started/dockerfile/) kunnen van pas komen.
+Als je een bestaand Vapor-project hebt, zorg er dan voor dat je een goed geconfigureerde `Dockerfile` in de root van je map hebt staan; de [Vapor docs over het gebruik van Docker](../deploy/docker.md) en [Fly docs over het deployen van een app via een Dockerfile](https://fly.io/docs/languages-and-frameworks/dockerfile/) kunnen van pas komen.
 
 ## Start uw app op Fly
 Zodra uw Vapor-project klaar is, kunt u het lanceren op Fly.
@@ -96,7 +96,7 @@ Als u geen database-app hebt gemaakt toen u uw app voor het eerst lanceerde, kun
 fly pg create
 ```
 
-Dit commando creëert een Fly app die databases kan hosten die beschikbaar zijn voor uw andere apps op Fly, zie de [toegewijde Fly documentatie](https://fly.io/docs/reference/postgres/) voor meer details.
+Dit commando creëert een Fly app die databases kan hosten die beschikbaar zijn voor uw andere apps op Fly, zie de [toegewijde Fly documentatie](https://fly.io/docs/postgres/) voor meer details.
 
 Zodra uw database-app is gemaakt, gaat u naar de hoofdmap van uw Vapor-app en voert u dit commando uit:
 ```bash
@@ -155,7 +155,7 @@ Gebruik geheimen om gevoelige waarden in te stellen als omgevingsvariabelen.
 !!! warning "Waarschuwing"
     Onthoud dat de meeste shells een geschiedenis bijhouden van de commando's die je getypt hebt. Wees hier voorzichtig mee als je op deze manier geheimen instelt. Sommige shells kunnen geconfigureerd worden om commando's die voorafgegaan worden door een spatie niet te onthouden. Zie ook het [`fly secrets import` commando](https://fly.io/docs/flyctl/secrets-import/).
 
-Voor meer informatie, bekijk de [documentatie van `fly secrets`](https://fly.io/docs/reference/secrets/).
+Voor meer informatie, bekijk de [documentatie van `fly secrets`](https://fly.io/docs/apps/secrets/).
 
 ### Omgevingsvariabelen
 U kunt andere niet-gevoelige [omgevingsvariabelen instellen in `fly.toml`](https://fly.io/docs/reference/configuration/#the-env-variables-section), bijvoorbeeld:
