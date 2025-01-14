@@ -77,7 +77,7 @@ Si actualmente no estás en la rama correcta, cambia a ella escribiendo (para el
 git checkout main
 ```
 
-#### Confirmar cambios
+#### Commit de cambios
 
 Si este comando produce resultados, entonces tienes cambios sin confirmar.
 
