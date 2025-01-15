@@ -136,51 +136,6 @@ struct MyError: DebuggableError {
 
 `DebuggableError` tiene otras propiedades como `possibleCauses` y `suggestedFixes` que puedes usar para mejorar la depuración de tus errores. Echa un vistazo al protocolo para más información.
 
-## Stack Traces (Trazas de Pila)
-
-Vapor incluye soporte para visualizar stack traces para errores normales y crashes de Swift. 
-
-### Swift Backtrace
-
-Vapor usa la librería de [SwiftBacktrace](https://github.com/swift-server/swift-backtrace) para proporcionar stack traces después de un error crítico (fatal error) o comprobaciones (assertion) en Linux. Para que esto funcione, tu app debe incluir símbolos de depuración (debug symbols) durante la compilación.
-
-```sh
-swift build -c release -Xswiftc -g
-```
-
-### Trazas de Error
-
-Por defecto, `Abort` capturará el stack trace actual al inicializarse. Tus tipos de errores personalizados pueden conseguir esto conformándose con `DebuggableError` y guardando `StackTrace.capture()`.
-
-```swift
-import Vapor
-
-struct MyError: DebuggableError {
-    var identifier: String
-    var reason: String
-    var stackTrace: StackTrace?
-
-    init(
-        identifier: String,
-        reason: String,
-        stackTrace: StackTrace? = .capture()
-    ) {
-        self.identifier = identifier
-        self.reason = reason
-        self.stackTrace = stackTrace
-    }
-}
-```
-
-Cuando el [nivel de registro](logging.es.md#nivel) de tu app se establece a `.debug` o inferior, stack traces de errores se incluirán en los registros. 
-
-Los stack traces no serán capturados cuando el nivel de registro sea mayor que `.debug`. Para sobrescribir este comportamiento, establece `StackTrace.isCaptureEnabled` manualmente en `configure`. 
-
-```swift
-// Siempre captura stack traces, sin importar el nivel de registro.
-StackTrace.isCaptureEnabled = true
-```
-
 ## Middleware de Error
 
 `ErrorMiddleware` es el único middleware añadido a tu aplicación por defecto. Este middleware transforma errores de Swift que hayan sido lanzados o devueltos por tus controladores de rutas en respuestas HTTP. Sin este middleware, los errores lanzados darían lugar al cierre de la conexión sin una respuesta. 
