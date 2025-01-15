@@ -1,6 +1,6 @@
-# Request
+# Solicitud (Request)
 
-The [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) object is passed into every [route handler](../basics/routing.md).
+El objeto [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) (solicitud) se pasa a cada [controlador de ruta](../basics/routing.md).
 
 ```swift
 app.get("hello", ":name") { req -> String in
@@ -9,21 +9,21 @@ app.get("hello", ":name") { req -> String in
 }
 ```
 
-It is the main window into the rest of Vapor's functionality. It contains APIs for the [request body](../basics/content.md), [query parameters](../basics/content.md#query), [logger](../basics/logging.md), [HTTP client](../basics/client.md), [Authenticator](../security/authentication.md), and more. Accessing this functionality through the request keeps computation on the correct event loop and allows it to be mocked for testing. You can even add your own [services](../advanced/services.md) to the `Request` with extensions.
+Es la ventana principal al resto de la funcionalidad de Vapor. Contiene APIs para el [cuerpo de la solicitud](../basics/content.md), [parámetros de consulta](../basics/content.md#query), [logger](../basics/logging.md), [cliente HTTP](../basics/client.md), [Autenticador](../security/authentication.md) y más. Accediendo a esta funcionalidad a través de la solicitud, se mantiene el cálculo en el bucle de eventos correcto y permite simularla para realizar pruebas. Incluso puedes añadir tus propios [servicios](../advanced/services.md) a la `Request` con extensiones.
 
-The full API documentation for `Request` can be found [here](https://api.vapor.codes/vapor/documentation/vapor/request).
+La documentación completa de la API para `Request` se puede encontrar [aquí](https://api.vapor.codes/vapor/documentation/vapor/request).
 
-## Application
+## Aplicación
 
-The `Request.application` property holds a reference to the [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application). This object contains all of the configuration and core functionality for the application. Most of it should only be set in `configure.swift`, before the application fully starts, and many of the lower level APIs won't be needed in most applications. One of the most useful properties is `Application.eventLoopGroup`, which can be used to get an `EventLoop` for processes that need a new one via the `any()` method. It also contains the [`Environment`](../basics/environment.md).
+La propiedad `Request.application` contiene una referencia a la [`Aplicación`](https://api.vapor.codes/vapor/documentation/vapor/application). Este objeto contiene toda la configuración y la funcionalidad central de la aplicación. La mayor parte solo se debe configurar en `configure.swift`, antes de que la aplicación se inicie por completo, y muchas de las APIs de bajo nivel no serán necesarias en la mayoría de las aplicaciones. Una de las propiedades más útiles es `Application.eventLoopGroup`, que se puede utilizar para obtener un `EventLoop` para los procesos que necesitan uno nuevo a través del método `any()`. También contiene el [`Entorno`](../basics/environment.md).
 
 ## Body
 
-If you want direct access to the request body as a `ByteBuffer`, you can use `Request.body.data`. This can be used for streaming data from the request body to a file (though you should use the [`fileio`](../advanced/files.md) property on the request for this instead) or to another HTTP client.
+Si quieres acceder directamente al cuerpo de la solicitud como un `ByteBuffer`, puedes utilizar `Request.body.data`. Esto puede utilizarse para transmitir datos desde el cuerpo de la solicitud a un archivo (aunque para esto deberías utilizar la propiedad [`fileio`](../advanced/files.md) en la solicitud) o a otro cliente HTTP.
 
 ## Cookies
 
-While the most useful application of cookies is via built-in [sessions](../advanced/sessions.md#configuration), you can also access cookies directly via `Request.cookies`.
+Aunque la aplicación más útil de las cookies es a través de las [sesiones](../advanced/sessions.md#configuration) integradas, también puedes acceder a las cookies directamente a través de `Request.cookies`.
 
 ```swift
 app.get("my-cookie") { req -> String in
@@ -37,9 +37,9 @@ app.get("my-cookie") { req -> String in
 }
 ```
 
-## Headers
+## Cabeceras
 
-An `HTTPHeaders` object can be accessed at `Request.headers`. This contains all of the headers sent with the request. It can be used to access the `Content-Type` header, for example.
+Se puede acceder a un objeto `HTTPHeaders` en `Request.headers`. Contiene todas las cabeceras enviadas con la solicitud. Se puede utilizar para acceder a la cabecera `Content-Type`, por ejemplo.
 
 ```swift
 app.get("json") { req -> String in
@@ -49,11 +49,12 @@ app.get("json") { req -> String in
     return "JSON"
 }
 ```
-See further documentation for `HTTPHeaders` [here](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niohttp1/httpheaders). Vapor also adds several extensions to `HTTPHeaders` to make working with the most commonly-used headers easier; a list is available [here](https://api.vapor.codes/vapor/documentation/vapor/niohttp1/httpheaders#instance-properties)
 
-## IP Address
+Consulta más documentación sobre `HTTPHeaders` [aquí](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niohttp1/httpheaders). Vapor también añade varias extensiones a `HTTPHeaders` para facilitar el trabajo con las cabeceras más utilizadas; la lista está disponible [aquí](https://api.vapor.codes/vapor/documentation/vapor/niohttp1/httpheaders#instance-properties)
 
-The `SocketAddress` representing the client can be accessed via `Request.remoteAddress`, which may be useful for logging or rate limiting using the string representation `Request.remoteAddress.ipAddress`. It may not accurately represent the client's IP address if the application is behind a reverse proxy. 
+## Dirección IP
+
+Puedes acceder a la `SocketAddress` que representa al cliente a través de `Request.remoteAddress`, que puede ser útil para el registro o la limitación de velocidad utilizando la representación de la cadena `Request.remoteAddress.ipAddress`. Puede que no represente con exactitud la dirección IP del cliente si la aplicación está detrás de un proxy inverso.
 
 ```swift
 app.get("ip") { req -> String in
@@ -61,6 +62,4 @@ app.get("ip") { req -> String in
 }
 ```
 
-See further documentation for `SocketAddress` [here](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niocore/socketaddress).
-
-
+Consulta más documentación sobre `SocketAddress` [aquí](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niocore/socketaddress).
