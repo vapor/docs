@@ -1,4 +1,4 @@
-# Rastreo
+# Tracing
 
 El rastreo (Tracing) es una herramienta poderosa para monitorear y depurar sistemas distribuidos. La API de rastreo (Tracing) de Vapor permite a los desarrolladores rastrear facilmente los ciclos de vida de las solicitudes, propagar metadatos e integrarse con backends populares como OpenTelemetry.
 
