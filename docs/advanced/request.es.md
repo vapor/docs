@@ -15,7 +15,7 @@ La documentación completa de la API para `Request` se puede encontrar [aquí](h
 
 ## Aplicación
 
-La propiedad `Request.application` contiene una referencia a la [`Aplicación`](https://api.vapor.codes/vapor/documentation/vapor/application). Este objeto contiene toda la configuración y la funcionalidad central de la aplicación. La mayor parte solo se debe configurar en `configure.swift`, antes de que la aplicación se inicie por completo, y muchas de las APIs de bajo nivel no serán necesarias en la mayoría de las aplicaciones. Una de las propiedades más útiles es `Application.eventLoopGroup`, que se puede utilizar para obtener un `EventLoop` para los procesos que necesitan uno nuevo a través del método `any()`. También contiene el [`Entorno`](../basics/environment.md).
+La propiedad `Request.application` contiene una referencia a [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application). Este objeto contiene toda la configuración y la funcionalidad central de la aplicación. La mayor parte solo se debe configurar en `configure.swift`, antes de que la aplicación se inicie por completo, y muchas de las APIs de bajo nivel no serán necesarias en la mayoría de las aplicaciones. Una de las propiedades más útiles es `Application.eventLoopGroup`, que se puede utilizar para obtener un `EventLoop` para los procesos que necesitan uno nuevo a través del método `any()`. También contiene [`Environment`](../basics/environment.md).
 
 ## Body
 
@@ -39,7 +39,7 @@ app.get("my-cookie") { req -> String in
 
 ## Cabeceras
 
-Se puede acceder a un objeto `HTTPHeaders` en `Request.headers`. Contiene todas las cabeceras enviadas con la solicitud. Se puede utilizar para acceder a la cabecera `Content-Type`, por ejemplo.
+Se puede acceder a un objeto `HTTPHeaders` en `Request.headers`. Contiene todas las cabeceras (headers) enviadas con la solicitud. Se puede utilizar para acceder a la cabecera `Content-Type`, por ejemplo.
 
 ```swift
 app.get("json") { req -> String in
@@ -54,7 +54,7 @@ Consulta más documentación sobre `HTTPHeaders` [aquí](https://swiftpackageind
 
 ## Dirección IP
 
-Puedes acceder a la `SocketAddress` que representa al cliente a través de `Request.remoteAddress`, que puede ser útil para el registro o la limitación de velocidad utilizando la representación de la cadena `Request.remoteAddress.ipAddress`. Puede que no represente con exactitud la dirección IP del cliente si la aplicación está detrás de un proxy inverso.
+Puedes acceder a la `SocketAddress` que representa al cliente a través de `Request.remoteAddress`, que puede ser útil para el registro o la limitación de velocidad utilizando la representación de la cadena `Request.remoteAddress.ipAddress`. Puede que no represente con exactitud la dirección IP del cliente si la aplicación está detrás de un reverse proxy.
 
 ```swift
 app.get("ip") { req -> String in
