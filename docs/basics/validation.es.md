@@ -234,7 +234,7 @@ Hay dos formas de crear validadores personalizados.
 
 ### Extendiendo la API Validation
 
-Extender de la API Validation es la mejor opción para los casos en los que planees utilizar el validador personalizado en más de un objeto `Content`. En esta sección, te guiaremos por los pasos para crear un validador personalizado para validar códigos postales.
+Extendiendo la API Validation es la mejor opción para los casos en los que planees utilizar el validador personalizado en más de un objeto `Content`. En esta sección, te guiaremos por los pasos para crear un validador personalizado para validar códigos postales.
 
 Primero, crea un nuevo tipo para representar los resultados de la validación de `ZipCode`. Esta estructura será responsable de informar si una cadena dada es un código postal válido.
 
