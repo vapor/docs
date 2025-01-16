@@ -1,0 +1,287 @@
+name: Update Vapor Release Notes
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+on:
+  schedule:
+#    - cron: '0 0 * * *'     # Daily at Midnight
+#    - cron: '0 0 * * 0'     # Weekly every Sunday at Midnight
+    - cron: '0 0 */14 * 0'  # Every two weeks on Sunday at Midnight
+#    - cron: '0 0 1 * *'     # Every first of the month at Midnight
+  workflow_dispatch:
+
+jobs:
+  fetch-release-notes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - id: vapor_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/vapor
+
+      - id: fluent_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/fluent
+
+      - id: fluent_kit_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/fluent-kit
+
+      - id: leaf_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/leaf
+
+      - id: leaf_kit_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/leaf-kit
+
+      - id: fluent_postgres_driver_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/fluent-postgres-driver
+
+      - id: fluent_mysql_driver_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/fluent-mysql-driver
+
+      - id: fluent_sqlite_driver_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/fluent-sqlite-driver
+
+      - id: fluent_mongo_driver_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/fluent-mongo-driver
+
+      - id: postgres_nio_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/postgres-nio
+
+      - id: mysql_nio_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/mysql-nio
+
+      - id: sqlite_nio_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/sqlite-nio
+
+      - id: postgres_kit_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/postgres-kit
+
+      - id: mysql_kit_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/mysql-kit
+
+      - id: sqlite_kit_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/sqlite-kit
+
+      - id: sql_kit_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/sql-kit
+
+      - id: apns_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/apns
+
+      - id: queues_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/queues
+
+      - id: queues_redis_driver_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/queues-redis-driver
+
+      - id: redis_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/redis
+
+      - id: jwt_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/jwt
+
+      - id: jwt_kit_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/jwt-kit
+
+      - id: websocket_kit_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/websocket-kit
+
+      - id: routing_kit_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/routing-kit
+
+      - id: console_kit_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/console-kit
+
+      - id: async_kit_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/async-kit
+
+      - id: multipart_kit_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/multipart-kit
+
+      - id: toolbox_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/toolbox
+
+      - id: core_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/core
+
+      - id: swift_codecov_action_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/swift-codecov-action
+
+      - id: api_docs_release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: vapor/api-docs
+
+      - name: Generate Release Notes from Template
+        run: |
+          sed \
+            -e "s/{{VAPOR_RELEASE}}/${{ steps.vapor_release.outputs.release }}/g" \
+            -e "s/{{VAPOR_ID}}/${{ steps.vapor_release.outputs.id }}/g" \
+            -e "s/{{VAPOR_DESCRIPTION}}/${{ steps.vapor_release.outputs.description }}/g" \
+            -e "s/{{FLUENT_RELEASE}}/${{ steps.fluent_release.outputs.release }}/g" \
+            -e "s/{{FLUENT_ID}}/${{ steps.fluent_release.outputs.id }}/g" \
+            -e "s/{{FLUENT_DESCRIPTION}}/${{ steps.fluent_release.outputs.description }}/g" \
+            -e "s/{{FLUENT_KIT_RELEASE}}/${{ steps.fluent_kit_release.outputs.release }}/g" \
+            -e "s/{{FLUENT_KIT_ID}}/${{ steps.fluent_kit_release.outputs.id }}/g" \
+            -e "s/{{FLUENT_KIT_DESCRIPTION}}/${{ steps.fluent_kit_release.outputs.description }}/g" \
+            -e "s/{{LEAF_RELEASE}}/${{ steps.leaf_release.outputs.release }}/g" \
+            -e "s/{{LEAF_ID}}/${{ steps.leaf_release.outputs.id }}/g" \
+            -e "s/{{LEAF_DESCRIPTION}}/${{ steps.leaf_release.outputs.description }}/g" \
+            -e "s/{{LEAF_KIT_RELEASE}}/${{ steps.leaf_kit_release.outputs.release }}/g" \
+            -e "s/{{LEAF_KIT_ID}}/${{ steps.leaf_kit_release.outputs.id }}/g" \
+            -e "s/{{LEAF_KIT_DESCRIPTION}}/${{ steps.leaf_kit_release.outputs.description }}/g" \
+            -e "s/{{FLUENT_POSTGRES_DRIVER_RELEASE}}/${{ steps.fluent_postgres_driver_release.outputs.release }}/g" \
+            -e "s/{{FLUENT_POSTGRES_DRIVER_ID}}/${{ steps.fluent_postgres_driver_release.outputs.id }}/g" \
+            -e "s/{{FLUENT_POSTGRES_DRIVER_DESCRIPTION}}/${{ steps.fluent_postgres_driver_release.outputs.description }}/g" \
+            -e "s/{{FLUENT_MYSQL_DRIVER_RELEASE}}/${{ steps.fluent_mysql_driver_release.outputs.release }}/g" \
+            -e "s/{{FLUENT_MYSQL_DRIVER_ID}}/${{ steps.fluent_mysql_driver_release.outputs.id }}/g" \
+            -e "s/{{FLUENT_MYSQL_DRIVER_DESCRIPTION}}/${{ steps.fluent_mysql_driver_release.outputs.description }}/g" \
+            -e "s/{{FLUENT_SQLITE_DRIVER_RELEASE}}/${{ steps.fluent_sqlite_driver_release.outputs.release }}/g" \
+            -e "s/{{FLUENT_SQLITE_DRIVER_ID}}/${{ steps.fluent_sqlite_driver_release.outputs.id }}/g" \
+            -e "s/{{FLUENT_SQLITE_DRIVER_DESCRIPTION}}/${{ steps.fluent_sqlite_driver_release.outputs.description }}/g" \
+            -e "s/{{FLUENT_MONGO_DRIVER_RELEASE}}/${{ steps.fluent_mongo_driver_release.outputs.release }}/g" \
+            -e "s/{{FLUENT_MONGO_DRIVER_ID}}/${{ steps.fluent_mongo_driver_release.outputs.id }}/g" \
+            -e "s/{{FLUENT_MONGO_DRIVER_DESCRIPTION}}/${{ steps.fluent_mongo_driver_release.outputs.description }}/g" \
+            -e "s/{{POSTGRES_NIO_RELEASE}}/${{ steps.postgres_nio_release.outputs.release }}/g" \
+            -e "s/{{POSTGRES_NIO_ID}}/${{ steps.postgres_nio_release.outputs.id }}/g" \
+            -e "s/{{POSTGRES_NIO_DESCRIPTION}}/${{ steps.postgres_nio_release.outputs.description }}/g" \
+            -e "s/{{MYSQL_NIO_RELEASE}}/${{ steps.mysql_nio_release.outputs.release }}/g" \
+            -e "s/{{MYSQL_NIO_ID}}/${{ steps.mysql_nio_release.outputs.id }}/g" \
+            -e "s/{{MYSQL_NIO_DESCRIPTION}}/${{ steps.mysql_nio_release.outputs.description }}/g" \
+            -e "s/{{SQLITE_NIO_RELEASE}}/${{ steps.sqlite_nio_release.outputs.release }}/g" \
+            -e "s/{{SQLITE_NIO_ID}}/${{ steps.sqlite_nio_release.outputs.id }}/g" \
+            -e "s/{{SQLITE_NIO_DESCRIPTION}}/${{ steps.sqlite_nio_release.outputs.description }}/g" \
+            -e "s/{{POSTGRES_KIT_RELEASE}}/${{ steps.postgres_kit_release.outputs.release }}/g" \
+            -e "s/{{POSTGRES_KIT_ID}}/${{ steps.postgres_kit_release.outputs.id }}/g" \
+            -e "s/{{POSTGRES_KIT_DESCRIPTION}}/${{ steps.postgres_kit_release.outputs.description }}/g" \
+            -e "s/{{MYSQL_KIT_RELEASE}}/${{ steps.mysql_kit_release.outputs.release }}/g" \
+            -e "s/{{MYSQL_KIT_ID}}/${{ steps.mysql_kit_release.outputs.id }}/g" \
+            -e "s/{{MYSQL_KIT_DESCRIPTION}}/${{ steps.mysql_kit_release.outputs.description }}/g" \
+            -e "s/{{SQLITE_KIT_RELEASE}}/${{ steps.sqlite_kit_release.outputs.release }}/g" \
+            -e "s/{{SQLITE_KIT_ID}}/${{ steps.sqlite_kit_release.outputs.id }}/g" \
+            -e "s/{{SQLITE_KIT_DESCRIPTION}}/${{ steps.sqlite_kit_release.outputs.description }}/g" \
+            -e "s/{{SQL_KIT_RELEASE}}/${{ steps.sql_kit_release.outputs.release }}/g" \
+            -e "s/{{SQL_KIT_ID}}/${{ steps.sql_kit_release.outputs.id }}/g" \
+            -e "s/{{SQL_KIT_DESCRIPTION}}/${{ steps.sql_kit_release.outputs.description }}/g" \
+            -e "s/{{APNS_RELEASE}}/${{ steps.apns_release.outputs.release }}/g" \
+            -e "s/{{APNS_ID}}/${{ steps.apns_release.outputs.id }}/g" \
+            -e "s/{{APNS_DESCRIPTION}}/${{ steps.apns_release.outputs.description }}/g" \
+            -e "s/{{QUEUES_RELEASE}}/${{ steps.queues_release.outputs.release }}/g" \
+            -e "s/{{QUEUES_ID}}/${{ steps.queues_release.outputs.id }}/g" \
+            -e "s/{{QUEUES_DESCRIPTION}}/${{ steps.queues_release.outputs.description }}/g" \
+            -e "s/{{QUEUES_REDIS_DRIVER_RELEASE}}/${{ steps.queues_redis_driver_release.outputs.release }}/g" \
+            -e "s/{{QUEUES_REDIS_DRIVER_ID}}/${{ steps.queues_redis_driver_release.outputs.id }}/g" \
+            -e "s/{{QUEUES_REDIS_DRIVER_DESCRIPTION}}/${{ steps.queues_redis_driver_release.outputs.description }}/g" \
+            -e "s/{{REDIS_RELEASE}}/${{ steps.redis_release.outputs.release }}/g" \
+            -e "s/{{REDIS_ID}}/${{ steps.redis_release.outputs.id }}/g" \
+            -e "s/{{REDIS_DESCRIPTION}}/${{ steps.redis_release.outputs.description }}/g" \
+            -e "s/{{JWT_RELEASE}}/${{ steps.jwt_release.outputs.release }}/g" \
+            -e "s/{{JWT_ID}}/${{ steps.jwt_release.outputs.id }}/g" \
+            -e "s/{{JWT_DESCRIPTION}}/${{ steps.jwt_release.outputs.description }}/g" \
+            -e "s/{{JWT_KIT_RELEASE}}/${{ steps.jwt_kit_release.outputs.release }}/g" \
+            -e "s/{{JWT_KIT_ID}}/${{ steps.jwt_kit_release.outputs.id }}/g" \
+            -e "s/{{JWT_KIT_DESCRIPTION}}/${{ steps.jwt_kit_release.outputs.description }}/g" \
+            -e "s/{{WEBSOCKET_KIT_RELEASE}}/${{ steps.websocket_kit_release.outputs.release }}/g" \
+            -e "s/{{WEBSOCKET_KIT_ID}}/${{ steps.websocket_kit_release.outputs.id }}/g" \
+            -e "s/{{WEBSOCKET_KIT_DESCRIPTION}}/${{ steps.websocket_kit_release.outputs.description }}/g" \
+            -e "s/{{ROUTING_KIT_RELEASE}}/${{ steps.routing_kit_release.outputs.release }}/g" \
+            -e "s/{{ROUTING_KIT_ID}}/${{ steps.routing_kit_release.outputs.id }}/g" \
+            -e "s/{{ROUTING_KIT_DESCRIPTION}}/${{ steps.routing_kit_release.outputs.description }}/g" \
+            -e "s/{{CONSOLE_KIT_RELEASE}}/${{ steps.console_kit_release.outputs.release }}/g" \
+            -e "s/{{CONSOLE_KIT_ID}}/${{ steps.console_kit_release.outputs.id }}/g" \
+            -e "s/{{CONSOLE_KIT_DESCRIPTION}}/${{ steps.console_kit_release.outputs.description }}/g" \
+            -e "s/{{ASYNC_KIT_RELEASE}}/${{ steps.async_kit_release.outputs.release }}/g" \
+            -e "s/{{ASYNC_KIT_ID}}/${{ steps.async_kit_release.outputs.id }}/g" \
+            -e "s/{{ASYNC_KIT_DESCRIPTION}}/${{ steps.async_kit_release.outputs.description }}/g" \
+            -e "s/{{MULTIPART_KIT_RELEASE}}/${{ steps.multipart_kit_release.outputs.release }}/g" \
+            -e "s/{{MULTIPART_KIT_ID}}/${{ steps.multipart_kit_release.outputs.id }}/g" \
+            -e "s/{{MULTIPART_KIT_DESCRIPTION}}/${{ steps.multipart_kit_release.outputs.description }}/g" \
+            -e "s/{{TOOLBOX_RELEASE}}/${{ steps.toolbox_release.outputs.release }}/g" \
+            -e "s/{{TOOLBOX_ID}}/${{ steps.toolbox_release.outputs.id }}/g" \
+            -e "s/{{TOOLBOX_DESCRIPTION}}/${{ steps.toolbox_release.outputs.description }}/g" \
+            -e "s/{{CORE_RELEASE}}/${{ steps.core_release.outputs.release }}/g" \
+            -e "s/{{CORE_ID}}/${{ steps.core_release.outputs.id }}/g" \
+            -e "s/{{CORE_DESCRIPTION}}/${{ steps.core_release.outputs.description }}/g" \
+            -e "s/{{SWIFT_CODECOV_ACTION_RELEASE}}/${{ steps.swift_codecov_action_release.outputs.release }}/g" \
+            -e "s/{{SWIFT_CODECOV_ACTION_ID}}/${{ steps.swift_codecov_action_release.outputs.id }}/g" \
+            -e "s/{{SWIFT_CODECOV_ACTION_DESCRIPTION}}/${{ steps.swift_codecov_action_release.outputs.description }}/g" \
+            -e "s/{{API_DOCS_RELEASE}}/${{ steps.api_docs_release.outputs.release }}/g" \
+            -e "s/{{API_DOCS_ID}}/${{ steps.api_docs_release.outputs.id }}/g" \
+            -e "s/{{API_DOCS_DESCRIPTION}}/${{ steps.api_docs_release.outputs.description }}/g" \
+            .github/release-notes.template.md > docs/release-notes.md
+
+      - name: Commit and Push Changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add docs/release-notes.md
+          git commit -m 'Update Vapor Release Notes'
+          git push
+
+      - name: Trigger Deploy Workflow
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: deploy-trigger
