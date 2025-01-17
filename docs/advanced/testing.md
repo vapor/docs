@@ -1,8 +1,13 @@
 # Testing
 
+## VaporTesting
+
 Vapor includes a module named `VaporTesting` that provides test helpers built on `Swift Testing`. These testing helpers allow you to send test requests to your Vapor application programmatically or running over an HTTP server.
 
-## Getting Started
+!!! note
+    For newer projects or teams adopting Swift concurrency, `VaporTesting` is highly recommended due to its simplicity and integration with Vapor.
+
+### Getting Started
 
 To use the `VaporTesting` module, ensure it has been added to your package's test target.
 
@@ -49,11 +54,11 @@ To ensure your tests run in a serialized manner (e.g., when testing with a datab
 @Suite("App Tests with DB", .serialized)
 ```
 
-### Running Tests
+#### Running Tests
 
 Use `cmd+u` with the `-Package` scheme selected to run tests in Xcode. Use `swift test --enable-test-discovery` to test via the CLI.
 
-## Testable Application
+### Testable Application
 
 Define a private method function `withApp` to streamline and standardize the setup and teardown for our tests. This method encapsulates the lifecycle management of the `Application` instance, ensuring that the application is properly initialized, configured, and shut down for each test.
 
@@ -76,7 +81,7 @@ private func withApp(_ test: (Application) async throws -> ()) async throws {
 
 Pass the `Application` to your package's `configure(_:)` method to apply your configuration. Then you test the application calling the `test()` method. Any test-only configurations can also be applied.
 
-### Send Request
+#### Send Request
 
 To send a test request to your application, use the `withApp` private method and inside use the `app.testing().test()` method:
 
@@ -108,7 +113,7 @@ try await app.testing().test(.POST, "todos", beforeRequest: { req in
 })
 ```
 
-### Testing Method
+#### Testing Method
 
 Vapor's testing API supports sending test requests programmatically and via a live HTTP server. You can specify which method you would like to use through the `testing` method.
 
@@ -128,7 +133,7 @@ The `running` option supports passing a specific port to use. By default `8080` 
 app.testing(method: .running(port: 8123)).test(...)
 ```
 
-### Database Integration Tests
+#### Database Integration Tests
 
 Configure the database specifically for testing to ensure that your live database is never used during tests.
 
@@ -161,11 +166,13 @@ private func withApp(_ test: (Application) async throws -> ()) async throws {
 }
 ```
 
-## Using XCTest
+## XCTVapor
 
-If you prefer XCTest over the Swift Testing framework, or if a project requires compatibility with a more traditional approach, XCTest is fully supported. Here’s how you can get started:
+Vapor includes a module named `XCTVapor` that provides test helpers built on `XCTest`. These testing helpers allow you to send test requests to your Vapor application programmatically or running over an HTTP server.
 
-First ensure that the `XCTVapor` module has been added to your package's test target.
+### Getting Started
+
+To use the `XCTVapor` module, ensure it has been added to your package's test target.
 
 ```swift
 let package = Package(
@@ -183,7 +190,7 @@ let package = Package(
 )
 ```
 
-Then, add `import XCTVapor` at the top of your test files. Create classes extending `XCTestCase` to write tests cases.
+Then, add `import XCTVapor` at the top of your test files. Create classes extending `XCTestCase` to write test cases.
 
 ```swift
 import XCTVapor
@@ -195,5 +202,66 @@ final class MyTests: XCTestCase {
 }
 ```
 
-!!! note
-    For newer projects or teams adopting Swift concurrency, `VaporTesting` is highly recommended due to its simplicity and integration with Vapor.
+Each function beginning with `test` will run automatically when your app is tested.
+
+#### Running Tests
+
+Use `cmd+u` with the `-Package` scheme selected to run tests in Xcode. Use `swift test --enable-test-discovery` to test via the CLI.
+
+### Testable Application
+
+Initialize an instance of `Application` using the `.testing` environment. You must call `app.shutdown()` before this application deinitializes.  
+The shutdown is necessary to help release the resources that the app has claimed. In particular it is important to release the threads the application requests at startup. If you do not call `shutdown()` on the app after each unit test, you may find your test suite crash with a precondition failure when allocating threads for a new instance of `Application`.
+
+```swift
+let app = Application(.testing)
+defer { app.shutdown() }
+try configure(app)
+```
+
+Pass the `Application` to your package's `configure(_:)` method to apply your configuration. Any test-only configurations can be applied after.
+
+#### Send Request
+
+To send a test request to your application, use the `test` method.
+
+```swift
+try app.test(.GET, "hello") { res in
+    XCTAssertEqual(res.status, .ok)
+    XCTAssertEqual(res.body.string, "Hello, world!")
+}
+```
+
+The first two parameters are the HTTP method and URL to request. The trailing closure accepts the HTTP response which you can verify using `XCTAssert` methods.
+
+For more complex requests, you can supply a `beforeRequest` closure to modify headers or encode content. Vapor's [Content API](../basics/content.md) is available on both the test request and response.
+
+```swift
+try app.test(.POST, "todos", beforeRequest: { req in
+    try req.content.encode(["title": "Test"])
+}, afterResponse: { res in
+    XCTAssertEqual(res.status, .created)
+    let todo = try res.content.decode(Todo.self)
+    XCTAssertEqual(todo.title, "Test")
+})
+```
+
+#### Testable Method
+
+Vapor's testing API supports sending test requests programmatically and via a live HTTP server. You can specify which method you would like to use by using the `testable` method.
+
+```swift
+// Use programmatic testing.
+app.testable(method: .inMemory).test(...)
+
+// Run tests through a live HTTP server.
+app.testable(method: .running).test(...)
+```
+
+The `inMemory` option is used by default.
+
+The `running` option supports passing a specific port to use. By default `8080` is used.
+
+```swift
+.running(port: 8123)
+```
