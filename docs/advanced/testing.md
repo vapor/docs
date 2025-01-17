@@ -22,6 +22,9 @@ let package = Package(
 )
 ```
 
+!!! warning
+    Be sure to use the corresponding testing module, as failing to do so can result in Vapor test failures not being properly reported.
+
 Then, add `import VaporTesting` and `import Testing` at the top of your test files. Create structs with a `@Suite` name to write test cases. 
 
 ```swift
@@ -157,3 +160,40 @@ private func withApp(_ test: (Application) async throws -> ()) async throws {
     try await app.asyncShutdown()
 }
 ```
+
+## Using XCTest
+
+If you prefer XCTest over the Swift Testing framework, or if a project requires compatibility with a more traditional approach, XCTest is fully supported. Here’s how you can get started:
+
+First ensure that the `XCTVapor` module has been added to your package's test target.
+
+```swift
+let package = Package(
+    ...
+    dependencies: [
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0")
+    ],
+    targets: [
+        ...
+        .testTarget(name: "AppTests", dependencies: [
+            .target(name: "App"),
+            .product(name: "XCTVapor", package: "vapor"),
+        ])
+    ]
+)
+```
+
+Then, add `import XCTVapor` at the top of your test files. Create classes extending `XCTestCase` to write tests cases.
+
+```swift
+import XCTVapor
+
+final class MyTests: XCTestCase {
+    func testStub() throws {
+        // Test here.
+    }
+}
+```
+
+!!! note
+    For newer projects or teams adopting Swift concurrency, `VaporTesting` is highly recommended due to its simplicity and integration with Vapor.
