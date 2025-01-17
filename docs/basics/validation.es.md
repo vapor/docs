@@ -1,6 +1,6 @@
 # Validación
 
-La API Validation de Vapor te ayuda a validar peticiones entrantes antes de usar la API [Content](content.md) para decodificar datos. 
+La API Validation de Vapor te ayuda a validar el cuerpo y los parámetros de consulta de una solicitud entrante antes de usar la API [Content](content.md) para decodificar datos.
 
 ## Introducción 
 
@@ -220,7 +220,7 @@ Debajo tienes una lista de los validadores soportados actualmente y una breve ex
 |`.range(_:)`|El valor se encuentra en el `Range` (rango) proporcionado.|
 |`.url`|Contiene una URL válida.|
 
-Los validadores también pueden combinarse mediante operadores para construir validaciones complejas. 
+Los validadores también pueden combinarse mediante operadores para construir validaciones complejas. Más información sobre el validador `.custom` en [[#Validadores Personalizados]].
 
 |Operador|Posición|Descripción|
 |-|-|-|
@@ -230,7 +230,11 @@ Los validadores también pueden combinarse mediante operadores para construir va
 
 ## Validadores Personalizados
 
-Crear un validador personalizado para códigos postales te permite extender la funcionalidad del marco de validación. En esta sección, te guiaremos a través de los pasos para crear un validador personalizado que valide códigos postales.
+Hay dos formas de crear validadores personalizados.
+
+### Extendiendo la API Validation
+
+Extendiendo la API Validation es la mejor opción para los casos en los que planees utilizar el validador personalizado en más de un objeto `Content`. En esta sección, te guiaremos por los pasos para crear un validador personalizado para validar códigos postales.
 
 Primero, crea un nuevo tipo para representar los resultados de la validación de `ZipCode`. Esta estructura será responsable de informar si una cadena dada es un código postal válido.
 
@@ -286,4 +290,46 @@ Ahora que has definido el validador personalizado `zipCode`, puedes usarlo para 
 
 ```swift
 validations.add("zipCode", as: String.self, is: .zipCode)
+```
+
+### Validador `Custom`
+
+El validador `Custom` es el más adecuado para los casos en los que deseas validar una propiedad en un solo objeto `Content`. Esta implementación tiene las siguientes dos ventajas en comparación con la extensión de la API Validation:
+
+- Lógica de validación personalizada más sencilla de implementar.
+- Sintaxis más corta.
+
+En esta sección, te guiaremos a través de los pasos para crear un validador personalizado para verificar si un empleado es parte de nuestra empresa mirando la propiedad `nameAndSurname`.
+
+```swift
+let allCompanyEmployees: [String] = [
+  "Everett Erickson",
+  "Sabrina Manning",
+  "Seth Gates",
+  "Melina Hobbs",
+  "Brendan Wade",
+  "Evie Richardson",
+]
+
+struct Employee: Content {
+  var nameAndSurname: String
+  var email: String
+  var age: Int
+  var role: String
+
+  static func validations(_ validations: inout Validations) {
+    validations.add(
+      "nameAndSurname",
+      as: String.self,
+      is: .custom("Validates whether employee is part of XYZ company by looking at name and surname.") { nameAndSurname in
+          for employee in allCompanyEmployees {
+            if employee == nameAndSurname {
+              return true
+            }
+          }
+          return false
+        }
+    )
+  }
+}
 ```

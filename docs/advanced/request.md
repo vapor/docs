@@ -49,6 +49,7 @@ app.get("json") { req -> String in
     return "JSON"
 }
 ```
+
 See further documentation for `HTTPHeaders` [here](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niohttp1/httpheaders). Vapor also adds several extensions to `HTTPHeaders` to make working with the most commonly-used headers easier; a list is available [here](https://api.vapor.codes/vapor/documentation/vapor/niohttp1/httpheaders#instance-properties)
 
 ## IP Address
@@ -62,5 +63,3 @@ app.get("ip") { req -> String in
 ```
 
 See further documentation for `SocketAddress` [here](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niocore/socketaddress).
-
-

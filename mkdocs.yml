@@ -365,6 +365,7 @@ plugins:
             Redis: Redis
             Relations: Relaciones
             Release Notes: Notas de Versiones
+            Request: Solicitud
             Routing: Routing
             Schema: Esquema
             Security: Seguridad
