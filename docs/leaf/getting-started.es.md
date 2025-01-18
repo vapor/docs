@@ -39,13 +39,23 @@ import Leaf
 app.views.use(.leaf)
 ```
 
-Esto le indica a Vapor que use el `LeafRenderer` cuando llames a `req.view` en tu código.
-
-!!! note "Nota"
-    Leaf tiene un caché interno para renderizar páginas. Cuando el entorno de `Application` está configurado en `.development`, este caché está deshabilitado, de modo que los cambios en las plantillas surten efecto de inmediato. En `.production` y en todos los demás entornos, el caché está habilitado de forma predeterminada; cualquier cambio realizado en las plantillas no surtirá efecto hasta que se reinicie la aplicación.
+Esto le indica a Vapor que uses el `LeafRenderer` cuando llames a `req.view` en tu código.
 
 !!! warning "Advertencia"
     Para que Leaf pueda encontrar las plantillas al ejecutar desde Xcode, debes establecer [el directorio de trabajo personalizado](../getting-started/xcode.md#custom-working-directory) para tu espacio de trabajo en Xcode.
+
+### Caché para Renderizar Páginas
+
+Leaf tiene una caché interna para renderizar páginas. Cuando el entorno de `Application` está configurado como `.development`, esa caché está deshabilitada, de modo que los cambios en las plantillas tienen efecto inmediatamente. En `.production` y todos los demás entornos, la caché está habilitada por defecto. Cualquier cambio realizado en las plantillas no tendrá efecto hasta que se reinicie la aplicación.
+
+Para desactivar la caché de Leaf haz lo siguiente:
+
+```swift
+app.leaf.cache.isEnabled = false
+```
+
+!!! warning "Advertencia"
+    Si bien deshabilitar la caché es útil para la depuración, no se recomienda para entornos de producción dado que puede afectar significativamente al rendimiento debido a la necesidad de recompilar las plantillas en cada solicitud.
 
 ## Estructura de Carpetas
 
