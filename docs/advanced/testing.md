@@ -5,7 +5,7 @@
 Vapor includes a module named `VaporTesting` that provides test helpers built on `Swift Testing`. These testing helpers allow you to send test requests to your Vapor application programmatically or running over an HTTP server.
 
 !!! note
-    For newer projects or teams adopting Swift concurrency, `VaporTesting` is highly recommended due to its simplicity and integration with Vapor.
+    For newer projects or teams adopting Swift concurrency, `Swift Testing` is highly recommended over `XCTest`.
 
 ### Getting Started
 
@@ -53,10 +53,6 @@ To ensure your tests run in a serialized manner (e.g., when testing with a datab
 ```swift
 @Suite("App Tests with DB", .serialized)
 ```
-
-#### Running Tests
-
-Use `cmd+u` with the `-Package` scheme selected to run tests in Xcode. Use `swift test --enable-test-discovery` to test via the CLI.
 
 ### Testable Application
 
@@ -204,13 +200,10 @@ final class MyTests: XCTestCase {
 
 Each function beginning with `test` will run automatically when your app is tested.
 
-#### Running Tests
-
-Use `cmd+u` with the `-Package` scheme selected to run tests in Xcode. Use `swift test --enable-test-discovery` to test via the CLI.
-
 ### Testable Application
 
 Initialize an instance of `Application` using the `.testing` environment. You must call `app.shutdown()` before this application deinitializes.  
+
 The shutdown is necessary to help release the resources that the app has claimed. In particular it is important to release the threads the application requests at startup. If you do not call `shutdown()` on the app after each unit test, you may find your test suite crash with a precondition failure when allocating threads for a new instance of `Application`.
 
 ```swift
