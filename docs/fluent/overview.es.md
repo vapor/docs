@@ -1,6 +1,6 @@
 # Fluent
 
-Fluent es un framework [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) para Swift. Aprovecha el sólido sistema de tipado de Swift para proporcionar una interfaz fácil de usar para el manejo de bases de datos. El uso de Fluent se centra en la creación de tipos de modelo que representan estructuras de datos en la base de datos. Estos modelos se utilizan para realizar operaciones de creación, lectura, actualización y eliminación en lugar de escribir consultas directas a la base de datos.
+Fluent es un framework [ORM](https://es.wikipedia.org/wiki/Mapeo_relacional_de_objetos) para Swift. Aprovecha el sólido sistema de tipado de Swift para proporcionar una interfaz fácil de usar para el manejo de bases de datos. El uso de Fluent se centra en la creación de tipos de modelo que representan estructuras de datos en la base de datos. Estos modelos se utilizan para realizar operaciones de creación, lectura, actualización y eliminación en lugar de escribir consultas directas a la base de datos.
 
 ## Configuración
 
@@ -174,7 +174,7 @@ app.databases.use(.mysql(
 MongoDB es una base de datos popular NoSQL y sin esquemas diseñada para los programadores. El controlador es compatible con todos los proveedores de alojamiento en la nube y con las instalaciones en un hospedaje propio a partir de la versión 3.4 y en adelante.
 
 !!! note "Nota"
-    Este controlador está impulsado por un cliente de MongoDB creado y mantenido por la comunidad llamado [MongoKitten](https://github.com/OpenKitten/MongoKitten). MongoDB mantiene un cliente oficial, [mongo-swift-driver](https://github.com/mongodb/mongo-swift-driver), junto con una integración de Vapor, mongodb-vapor.
+    Este controlador está impulsado por un cliente de MongoDB creado y mantenido por la comunidad llamado [MongoKitten](https://github.com/orlandos-nl/MongoKitten). MongoDB mantiene un cliente oficial, [mongo-swift-driver](https://github.com/mongodb/mongo-swift-driver), junto con una integración de Vapor, mongodb-vapor.
 
 Para usar MongoDB, se deben de agregar las siguientes dependencias al paquete.
 
@@ -188,7 +188,7 @@ Para usar MongoDB, se deben de agregar las siguientes dependencias al paquete.
 
 Una vez que se hayan agregado las dependencias, configurar la base de datos con Fluent utilizando `app.databases.use` en `configure.swift`.
 
-Para conectarse, se debe de usar una cadena de texto el formato de [conexión estándar URI](https://docs.mongodb.com/master/reference/connection-string/index.html) de MongoDB.
+Para conectarse, se debe de usar una cadena de texto el formato de [conexión estándar URI](https://www.mongodb.com/docs/upcoming/reference/connection-string/) de MongoDB.
 
 ```swift
 import Fluent
@@ -249,7 +249,7 @@ var id: UUID?
 
 Este campo debe usar el property wrapper `@ID`. Fluent recomienda usar `UUID` y el campo especial `.id` ya que esto es compatible con todos los controladores de Fluent.
 
-Si se desea utilizar una clave o tipo de ID personalizado, se debe de usar la sobrecarga de [`@ID(custom:)`](model.md#custom-identifier).
+Si se desea utilizar una clave o tipo de ID personalizado, se debe de usar la sobrecarga de [`@ID(custom:)`](model.md#identificador-personalizado).
 
 ### Campos
 
@@ -467,7 +467,7 @@ self.$galaxy.id = galaxyID
 Al anteponer el nombre de la propiedad padre con `$`, se accede al envoltorio de propiedad subyacente. Esto es necesario para acceder al `@Field` interno que almacena el valor real del identificador.
 
 !!! seealso "Ver También"
-    Consultar la propuesta de Evolución de Swift sobre envoltorios de propiedad, para obtener más información: [[SE-0258] Property Wrappers](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md)
+    Consultar la propuesta de Evolución de Swift sobre envoltorios de propiedad, para obtener más información: [[SE-0258] Property Wrappers](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0258-property-wrappers.md)
 
 A continuación, crear una migración para preparar la base de datos para manejar las `Star`.
 
@@ -504,7 +504,7 @@ app.migrations.add(CreateGalaxy())
 app.migrations.add(CreateStar())
 ```
 
-Dado que las migraciones se ejecutan en orden y `CreateStar` hace referencia al esquema "galaxies", el orden es importante. Por último, [ejecuta las migraciones](#migrate) para preparar la base de datos.
+Dado que las migraciones se ejecutan en orden y `CreateStar` hace referencia al esquema "galaxies", el orden es importante. Por último, [ejecuta las migraciones](#migrar) para preparar la base de datos.
 
 Agregar una ruta para crear nuevas estrellas.
 
