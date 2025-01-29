@@ -28,7 +28,7 @@ let package = Package(
 ```
 
 !!! warning "Advertencia"
-    Asegúrate de usar el módulo de prueba correspondiente, de no hacerlo puede provocar que los fallos de las prueba de Vapor no sean informados correctamente.
+    Asegúrate de usar el módulo de testing correspondiente, de no hacerlo puede provocar que los fallos de las prueba de Vapor no sean informados correctamente.
 
 Luego, añade `ìmport VaporTesting` y `ìmport Testing` al principio de tus archivos de prueba. Crea estructuras con el nombre `@Suite` para escribir casos de prueba.
 
