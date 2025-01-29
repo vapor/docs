@@ -56,7 +56,7 @@ Para garantizar que tus pruebas se ejecuten de manera serializada (por ejemplo, 
 
 ### Probando la Aplicación
 
-Define una función de método privado `withApp` para agilizar y estandarizar la configuración y el desmontaje de nuestras pruebas. Este método encapsula la gestión del ciclo de vida de la instancia `Application`, asegurando que la aplicación está correctamente inicializada, configurada y apagada para cada prueba.
+Define una función de método privado `withApp` para agilizar y estandarizar la configuración y el cierre de nuestras pruebas. Este método encapsula la gestión del ciclo de vida de la instancia `Application`, asegurando que la aplicación está correctamente inicializada, configurada y apagada para cada prueba.
 
 En particular, es importante liberar los subprocesos que solicita la aplicación al iniciarse. Si no llamas a `asyncShutdown()` en la aplicación después de cada prueba unitaria, es posible que tu conjunto de pruebas se bloquee con un error de condición previa al asignar subprocesos para una nueva instancia de `Application`.
 
