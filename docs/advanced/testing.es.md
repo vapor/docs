@@ -1,8 +1,172 @@
 # Testing
 
+## VaporTesting
+
+Vapor incluye un módulo llamado `VaporTesting`que proporciona métodos auxiliares de test basados en `Swift Testing`. Estos métodos de pruebas te permiten enviar solicitudes de prueba a tu aplicación Vapor programáticamente o ejecutándose sobre un servidor HTTP.
+
+!!! note "Nota"
+    Para nuevos proyectos o equipos que adopten la concurrencia de Swift, Se recomienda usar `Swift Testing` por encima de `XCTest`.
+
+### Primeros Pasos
+
+Para usar el módulo `VaporTesting`, asegúrate de que ha sido añadido al target de test de tu paquete.
+
+```swift
+let package = Package(
+    ...
+    dependencies: [
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.110.1")
+    ],
+    targets: [
+        ...
+        .testTarget(name: "AppTests", dependencies: [
+            .target(name: "App"),
+            .product(name: "VaporTesting", package: "vapor"),
+        ])
+    ]
+)
+```
+
+!!! warning "Advertencia"
+    Asegúrate de usar el módulo de testing correspondiente, de no hacerlo puede provocar que los fallos de las prueba de Vapor no sean informados correctamente.
+
+Luego, añade `ìmport VaporTesting` e `ìmport Testing` al principio de tus archivos de prueba. Crea estructuras con el nombre `@Suite` para escribir casos de prueba.
+
+```swift
+@testable import App
+import VaporTesting
+import Testing
+
+@Suite("App Tests")
+struct AppTests {
+    @Test("Test Stub")
+    func stub() async throws {
+        // Prueba aquí.
+    }
+}
+```
+
+Cada función marcada con `@Test` se ejecutará automáticamente cuando se pruebe tu aplicación.
+
+Para garantizar que tus pruebas se ejecuten de manera serializada (por ejemplo, al realizar pruebas con una base de datos), incluye la opción `.serialized` en la declaración de la suite de pruebas.
+
+```swift
+@Suite("App Tests with DB", .serialized)
+```
+
+### Probando la Aplicación
+
+Define una función de método privado `withApp` para agilizar y estandarizar la configuración y el cierre de nuestras pruebas. Este método encapsula la gestión del ciclo de vida de la instancia `Application`, asegurando que la aplicación está correctamente inicializada, configurada y apagada para cada prueba.
+
+En particular, es importante liberar los subprocesos que solicita la aplicación al iniciarse. Si no llamas a `asyncShutdown()` en la aplicación después de cada prueba unitaria, es posible que tu conjunto de pruebas se bloquee con un error de condición previa al asignar subprocesos para una nueva instancia de `Application`.
+
+```swift
+private func withApp(_ test: (Application) async throws -> ()) async throws {
+    let app = try await Application.make(.testing)
+    do {
+        try await configure(app)
+        try await test(app)
+    }
+    catch {
+        try await app.asyncShutdown()
+        throw error
+    }
+    try await app.asyncShutdown()
+}
+```
+
+Pasa `Application` al método `configure(_:)` de tu paquete para aplicar tu configuración. Luego, prueba la aplicación llamando al método `test()`. También se puede aplicar cualquier configuración que sólo sea de prueba.
+
+#### Enviar Solicitud
+
+Para enviar una solicitud de prueba a tu aplicación, usa el método privado `withApp` y, dentro, usa el método `app.testing().test()`:
+
+```swift
+@Test("Test Hello World Route")
+func helloWorld() async throws {
+    try await withApp { app in
+        try await app.testing().test(.GET, "hello") { res async in
+            #expect(res.status == .ok)
+            #expect(res.body.string == "Hello, world!")
+        }
+    }
+}
+```
+
+Los dos primeros parámetros son el método HTTP y la URL a solicitar. El closure final acepta la respuesta HTTP que puedes verificar usando la macro `#expect`.
+
+Para solicitudes más complejas, puedes proporcionar un closure `beforeRequest` para modificar los encabezados o codificar el contenido. La [API de contenido](../basics/content.md) de Vapor está disponible tanto en la solicitud de prueba como en la respuesta.
+
+```swift
+let newDTO = TodoDTO(id: nil, title: "test")
+
+try await app.testing().test(.POST, "todos", beforeRequest: { req in
+    try req.content.encode(newDTO)
+}, afterResponse: { res async throws in
+    #expect(res.status == .ok)
+    let models = try await Todo.query(on: app.db).all()
+    #expect(models.map({ $0.toDTO().title }) == [newDTO.title])
+})
+```
+
+#### Método de Prueba
+
+La API de pruebas de Vapor admite el envío de solicitudes de prueba de manera programática y a través de un servidor HTTP activo. Puedes especificar qué método deseas utilizar a través del método `testing`.
+
+```swift
+// Utiliza pruebas programáticas.
+app.testing(method: .inMemory).test(...)
+
+// Ejecuta pruebas a través de un servidor HTTP activo.
+app.testing(method: .running).test(...)
+```
+
+La opción `inMemory` se utiliza de manera predeterminada.
+
+La opción `running` admite pasar un puerto específico a usar. De manera predeterminada, se utiliza `8080`.
+
+```swift
+app.testing(method: .running(port: 8123)).test(...)
+```
+
+#### Pruebas de Integración de Bases de Datos
+
+Configura la base de datos específicamente para realizar pruebas para asegurarse de que tu base de datos activa nunca se utiliza durante las pruebas.
+
+```swift
+app.databases.use(.sqlite(.memory), as: .sqlite)
+```
+
+Luego, puedes mejorar tus pruebas utilizando `autoMigrate()` y `autoRevert()` para gestionar el esquema de la base de datos y el ciclo de vida de los datos durante las pruebas:
+
+Al combinar estos métodos, puedes asegurarte de que cada prueba comienza con un estado de base de datos nuevo y consistente, lo que hace que tus pruebas sean más confiables y reduce la probabilidad de falsos positivos o negativos causados ​​por datos persistentes.
+
+Así es como se ve la función `withApp` con la configuración actualizada:
+
+```swift
+private func withApp(_ test: (Application) async throws -> ()) async throws {
+    let app = try await Application.make(.testing)
+    app.databases.use(.sqlite(.memory), as: .sqlite)
+    do {
+        try await configure(app)
+        try await app.autoMigrate()
+        try await test(app)
+        try await app.autoRevert()   
+    }
+    catch {
+        try? await app.autoRevert()
+        try await app.asyncShutdown()
+        throw error
+    }
+    try await app.asyncShutdown()
+}
+```
+
+## XCTVapor
+
 Vapor incluye un módulo llamado `XCTVapor` que proporciona ayudas de prueba basadas en `XCTest`. Estas ayudas te permiten enviar solicitudes de prueba a tu aplicación Vapor de manera programática o ejecutándose a través de un servidor HTTP.
 
-## Comenzando
+### Primeros Pasos
 
 Para utilizar el módulo `XCTVapor`, asegúrate de tenerlo agregado al target de prueba de tu paquete.
 
@@ -29,18 +193,14 @@ import XCTVapor
 
 final class MyTests: XCTestCase {
     func testStub() throws {
-    	// Prueba aquí.
+        // Prueba aquí.
     }
 }
 ```
 
 Cada función que comience con `test` se ejecutará automáticamente cuando se pruebe tu aplicación.
 
-### Ejecutando Pruebas
-
-Utiliza `cmd+u` con el esquema `-Package` seleccionado para ejecutar pruebas en Xcode. Utiliza `swift test --enable-test-discovery` para realizar pruebas a través de la línea de comando.
-
-## Probando la Aplicación
+### Probando la Aplicación
 
 Inicializa una instancia de `Application` utilizando el entorno `.testing`. Debes llamar a `app.shutdown()` antes de que esta aplicación se desinicialice.
 
@@ -54,7 +214,7 @@ try configure(app)
 
 Pasa `Application` al método `configure(_:)` de tu paquete para aplicar su configuración. Cualquier configuración de "solo prueba" se puede aplicar después.
 
-### Enviar una Petición
+#### Enviar una Petición
 
 Para enviar una solicitud de prueba a tu aplicación, utiliza el método `test`.
 
@@ -79,7 +239,7 @@ try app.test(.POST, "todos", beforeRequest: { req in
 })
 ```
 
-### Probando un Método
+#### Probando un Método
 
 La API de prueba de Vapor admite el envío de solicitudes de prueba de forma programática y a través de un servidor HTTP en vivo. Puedes especificar qué método te gustaría probar utilizando el método `testable`.
 
