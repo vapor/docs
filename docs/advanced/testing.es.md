@@ -95,7 +95,7 @@ func helloWorld() async throws {
 
 Los dos primeros parámetros son el método HTTP y la URL a solicitar. El cierre final acepta la respuesta HTTP que puedes verificar usando la macro `#expect`.
 
-Para solicitudes más complejas, puedes proporcionar un cierre `beforeRequest` para modificar los encabezados o codificar el contenido. La [API de contenido](../basics/content.md) de Vapor está disponible tanto en la solicitud de prueba como en la respuesta.
+Para solicitudes más complejas, puedes proporcionar un closure `beforeRequest` para modificar los encabezados o codificar el contenido. La [API de contenido](../basics/content.md) de Vapor está disponible tanto en la solicitud de prueba como en la respuesta.
 
 ```swift
 let newDTO = TodoDTO(id: nil, title: "test")
