@@ -5,7 +5,7 @@
 Vapor incluye un módulo llamado `VaporTesting`que proporciona métodos auxiliares de test basados en `Swift Testing`. Estos métodos de pruebas te permiten enviar solicitudes de prueba a tu aplicación Vapor programáticamente o ejecutándose sobre un servidor HTTP.
 
 !!! note "Nota"
-    Para nuevos proyectos o equipos que adopten la concurrencia Swift, `Swift Testing` es muy recomebdable por encima de `XCTest`.
+    Para nuevos proyectos o equipos que adopten la concurrencia de Swift, Se recomienda usar `Swift Testing` por encima de `XCTest`.
 
 ### Primeros Pasos
 
