@@ -19,14 +19,14 @@ This package is similar to [Ruby Sidekiq](https://github.com/mperham/sidekiq). I
 - Uses NIO to utilize all available cores and EventLoops for jobs.
 - Allows users to schedule repeating tasks
 
-Queues currently has one officially supported driver which interfaces with the main protocol:
+Queues currently has two officially supported drivers which interface with the main protocol:
 
 - [QueuesRedisDriver](https://github.com/vapor/queues-redis-driver)
+- [QueuesFluentDriver](https://github.com/vapor-community/vapor-queues-fluent-driver)
 
 Queues also has community-based drivers:
 
 - [QueuesMongoDriver](https://github.com/vapor-community/queues-mongo-driver)
-- [QueuesFluentDriver](https://github.com/m-barthelemy/vapor-queues-fluent-driver)
 
 !!! tip
     You should not install the `vapor/queues` package directly unless you are building a new driver. Install one of the driver packages instead. 
