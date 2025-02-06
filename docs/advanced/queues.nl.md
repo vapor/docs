@@ -26,7 +26,7 @@ Queues heeft momenteel één officieel ondersteund stuurprogramma dat een interf
 Queues heeft ook community-based drivers:
 
 - [QueuesMongoDriver](https://github.com/vapor-community/queues-mongo-driver)
-- [QueuesFluentDriver](https://github.com/m-barthelemy/vapor-queues-fluent-driver)
+- [QueuesFluentDriver](https://github.com/vapor-community/vapor-queues-fluent-driver)
 
 !!! tip
     U moet het `vapor/queues` pakket niet direct installeren, tenzij u een nieuw stuurprogramma bouwt. Installeer in plaats daarvan een van de stuurprogrammapakketten. 

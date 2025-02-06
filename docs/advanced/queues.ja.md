@@ -26,7 +26,7 @@ Queues には、メインプロトコルとインターフェースする正式�
 また、コミュニティベースのドライバもあります:
 
 - [QueuesMongoDriver](https://github.com/vapor-community/queues-mongo-driver)
-- [QueuesFluentDriver](https://github.com/m-barthelemy/vapor-queues-fluent-driver)
+- [QueuesFluentDriver](https://github.com/vapor-community/vapor-queues-fluent-driver)
 
 !!! tip
     `vapor/queues` パッケージは、ドライバを新規に構築している場合を除き、直接依存パッケージに追加しないでください。代わりにドライバパッケージのいずれかを追加してください。

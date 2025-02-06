@@ -26,7 +26,7 @@ Vapor Queues ([vapor/queues](https://github.com/vapor/queues)) 是一个纯 Swif
 Queues 也有基于社区的驱动程序：
 
 - [QueuesMongoDriver](https://github.com/vapor-community/queues-mongo-driver)
-- [QueuesFluentDriver](https://github.com/m-barthelemy/vapor-queues-fluent-driver)
+- [QueuesFluentDriver](https://github.com/vapor-community/vapor-queues-fluent-driver)
 
 !!! tip "建议"
     你不应该直接安装 `vapor/queues` 包，除非你正在构建一个新的驱动程序。安装其中一个驱动软件包即可。

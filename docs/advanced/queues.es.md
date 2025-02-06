@@ -26,7 +26,7 @@ Actualmente, Queues tiene oficialmente un controlador compatible que interactúa
 Queues también tiene controladores basados en la comunidad:
 
 - [QueuesMongoDriver](https://github.com/vapor-community/queues-mongo-driver)
-- [QueuesFluentDriver](https://github.com/m-barthelemy/vapor-queues-fluent-driver)
+- [QueuesFluentDriver](https://github.com/vapor-community/vapor-queues-fluent-driver)
 
 !!! tip "Consejo"
     No deberías instalar el paquete `vapor/queues` directamente a menos que estés desarrollando un controlador nuevo. En su lugar, instala uno de los controladores existentes.
