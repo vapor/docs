@@ -552,8 +552,8 @@ import Vapor
 import Fluent
 
 extension UserToken: ModelTokenAuthenticatable {
-    static let valueKey = \UserToken.$value
-    static let userKey = \UserToken.$user
+    static var valueKey: KeyPath<UserToken, Field<String>> { \.$value }
+    static var userKey: KeyPath<UserToken, Parent<User>> { \.$user }
 
     var isValid: Bool {
         true
