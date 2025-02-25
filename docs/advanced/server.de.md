@@ -132,7 +132,7 @@ Der Parameter _tlsConfiguration_ legt fest, ob TLS (SSL) verwendet werden soll. 
 // Enable TLS.
 app.http.server.configuration.tlsConfiguration = .makeServerConfiguration(
     certificateChain: try NIOSSLCertificate.fromPEMFile("/path/to/cert.pem").map { .certificate($0) },
-    privateKey: try NIOSSLPrivateKey(file: "/path/to/key.pem", format: .pem))
+    privateKey: .privateKey(try NIOSSLPrivateKey(file: "/path/to/key.pem", format: .pem))
 )
 ```
 
