@@ -172,7 +172,7 @@ Visit your application at dashboard.heroku.com and go to the **Add-ons** section
 
 From here enter `postgres` and you'll see an option for `Heroku Postgres`. Select it.
 
-Choose the Eco plan for $5/month (see [pricing](https://www.heroku.com/pricing#data-services)), and provision. Heroku will do the rest.
+Choose the Essential 0 plan for $5/month (see [pricing](https://www.heroku.com/pricing#data-services)), and provision. Heroku will do the rest.
 
 Once you finish, you’ll see the database appears under the **Resources** tab.
 
