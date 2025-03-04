@@ -93,7 +93,7 @@ struct TestPayload: JWTPayload {
 Signing the payload is done by calling the `sign` method on the `JWT` module, for example inside of a route handler:
 
 ```swift
-app.post("login") { req async throws -> [String: String]
+app.post("login") { req async throws -> [String: String] in
     let payload = TestPayload(
         subject: "vapor",
         expiration: .init(value: .distantFuture),
