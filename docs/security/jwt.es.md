@@ -94,7 +94,7 @@ struct TestPayload: JWTPayload {
 La firma de la carga útil se realiza llamando al método `sign` en el módulo `JWT`, por ejemplo dentro de un manejador de ruta:
 
 ```swift
-app.post("login") { req async throws -> [String: String]
+app.post("login") { req async throws -> [String: String] in
     let payload = TestPayload(
         subject: "vapor",
         expiration: .init(value: .distantFuture),
