@@ -2,14 +2,15 @@ The docs have been updated in PR ##(number). The translations should be updated 
 
 Languages:
 - [ ] English
-- [ ] Chinese
-- [ ] German
-- [ ] Dutch
-- [ ] Italian
-- [ ] Spanish
-- [ ] Polish
-- [ ] Korean
-- [ ] Japanese
+- [ ] Deutsch (German)
+- [ ] Español (Spanish)
+- [ ] Français (French)
+- [ ] Italiano (Italian)
+- [ ] 日本語 (Japanese)
+- [ ] 한국어 (Korean)
+- [ ] Nederlands (Dutch)
+- [ ] Polski (Polish)
+- [ ] 简体中文 (Simplified Chinese)
 
 Assigned to @vapor/translators - please submit a PR with the relevant updates and check the box once merged.
 Please ensure you tag your PR with the `translation-update` so it doesn't create a new issue!
