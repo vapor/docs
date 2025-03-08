@@ -173,7 +173,7 @@ heroku ps:scale web=1
 
 从这里输入`postgres`，你会看到`Heroku Postgres`的选项。 选择它。
 
-选择每月$5的 Eco 计划（参见[定价](https://www.heroku.com/pricing#data-services)），并进行预配。剩下的交给 Heroku 处理。
+选择每月$5的 Essential 0 计划（参见[定价](https://www.heroku.com/pricing#data-services)），并进行预配。剩下的交给 Heroku 处理。
 
 完成后，你会看到数据库出现在 **Resources** 选项卡下。
 

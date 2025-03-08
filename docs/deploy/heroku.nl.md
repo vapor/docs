@@ -173,7 +173,7 @@ Bezoek uw applicatie op dashboard.heroku.com en ga naar de **Add-ons** sectie.
 
 Voer hier `postgres` in en u zult een optie zien voor `Heroku Postgres`. Selecteer deze.
 
-Kies het Eco plan voor $5/maand (zie [prijzen](https://www.heroku.com/pricing#data-services)), en provision. Heroku zal de rest doen.
+Kies het Essential 0 plan voor $5/maand (zie [prijzen](https://www.heroku.com/pricing#data-services)), en provision. Heroku zal de rest doen.
 
 Zodra je klaar bent, zie je de database verschijnen onder de **Resources** tab.
 

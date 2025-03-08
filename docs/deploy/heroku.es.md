@@ -172,7 +172,7 @@ Visita tu aplicación en dashboard.heroku.com y ve a la sección **Add-ons**.
 
 Desde aquí entra en `postgres` y verás una opción para `Heroku Postgres`. Selecciónala.
 
-Elige el plan Eco por $5/mes (consulta [precios](https://www.heroku.com/pricing#data-services)) y realiza la instalación. Heroku hará el resto.
+Elige el plan Essential 0 por $5/mes (consulta [precios](https://www.heroku.com/pricing#data-services)) y realiza la instalación. Heroku hará el resto.
 
 Una vez que termines, verás que la base de datos aparece en la pestaña **Resources**.
 
