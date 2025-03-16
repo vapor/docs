@@ -91,8 +91,9 @@ Supported field constraints are listed below.
 |FieldConstraint|Description|
 |-|-|
 |`.required`|Disallows `nil` values.|
-|`.references`|Requires that this field's value match a value in the referenced schema. See [foreign key](#foreign-key)|
-|`.identifier`|Denotes the primary key. See [identifier](#identifier)|
+|`.references`|Requires that this field's value match a value in the referenced schema. See [foreign key](#foreign-key).|
+|`.identifier`|Denotes the primary key. See [identifier](#identifier).|
+|`.sql(SQLColumnConstraintAlgorithm)`|Defines any constraint that is not supported (e.g. `default`). See [SQL](#sql).|
 
 ### Identifier
 
