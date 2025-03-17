@@ -11,15 +11,15 @@ try await database.schema("planets")
     .create()
 ```
 
-Para crear un `SchemaBuilder`, usa el método `schema` en "database". Pásale el nombre de la tabla o colección que quieras afectar. Si estás editando el esquema para un modelo, asegúrate de que este nombre coincida con el [`schema`](model.md#schema) del modelo. 
+Para crear un `SchemaBuilder`, usa el método `schema` en "database". Pásale el nombre de la tabla o colección que quieras afectar. Si estás editando el esquema para un modelo, asegúrate de que este nombre coincida con el [`schema`](model.md#schema) del modelo.
 
 ## Acciones
 
-La API de schema soporta crear, actualizar y borrar esquemas. Cada acción soporta un subconjunto de los métodos de la API disponibles. 
+La API de schema soporta crear, actualizar y borrar esquemas. Cada acción soporta un subconjunto de los métodos de la API disponibles.
 
 ### Crear
 
-Llamar a `create()` crea una nueva tabla o colección en la base de datos. Todos los métodos para definir nuevos campos y restricciones (constraints) están soportados. Los métodos para actualizaciones y borrados se ignoran. 
+Llamar a `create()` crea una nueva tabla o colección en la base de datos. Todos los métodos para definir nuevos campos y restricciones (constraints) están soportados. Los métodos para actualizaciones y borrados se ignoran.
 
 ```swift
 // Un ejemplo de creación de esquema.
@@ -29,7 +29,7 @@ try await database.schema("planets")
     .create()
 ```
 
-Si ya existe una tabla o colección con el nombre elegido, se lanzará un error. Para ignorarlo, usa `.ignoreExisting()`. 
+Si ya existe una tabla o colección con el nombre elegido, se lanzará un error. Para ignorarlo, usa `.ignoreExisting()`.
 
 ### Actualizar
 
@@ -54,14 +54,14 @@ database.schema("planets").delete()
 
 ## Campo
 
-Pueden añadirse campos cuando se crea o actualiza un esquema. 
+Pueden añadirse campos cuando se crea o actualiza un esquema.
 
 ```swift
 // Añade un campo nuevo
 .field("name", .string, .required)
 ```
 
-El primer parámetro es el nombre del campo. Este nombre debería coincidir con la clave usada en la propiedad del modelo. El segundo parámetro es el [tipo de dato](#tipos-de-datos) del campo. Por último, puedes añadir cero o más [restricciones](#restricciones-de-campo). 
+El primer parámetro es el nombre del campo. Este nombre debería coincidir con la clave usada en la propiedad del modelo. El segundo parámetro es el [tipo de dato](#tipos-de-datos) del campo. Por último, puedes añadir cero o más [restricciones](#restricciones-de-campo).
 
 ### Tipos de Datos
 
@@ -86,13 +86,14 @@ Debajo hay un listado con los tipos de datos soportados.
 
 ### Restricciones de Campo
 
-Debajo hay un listado con las restricciones de campo (field constraints) soportadas. 
+Debajo hay un listado con las restricciones de campo (field constraints) soportadas.
 
 |FieldConstraint|Descripción|
 |-|-|
 |`.required`|No permite valores `nil`.|
-|`.references`|Requiere que el valor del campo coincida con un valor del esquema referenciado. Ver [clave externa](#clave-externa)|
-|`.identifier`|Denota la clave primaria. Ver [identificador](#identificador)|
+|`.references`|Requiere que el valor del campo coincida con un valor del esquema referenciado. Ver [clave externa](#clave-externa).|
+|`.identifier`|Denota la clave primaria. Ver [identificador](#identificador).|
+|`.sql(SQLColumnConstraintAlgorithm)`|Define cualquier restricción no compatible (p. ej. `default`). Consulta [SQL](#sql) y [SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/documentation/sqlkit/sqlcolumnconstraintalgorithm/).|
 
 ### Identificador
 
@@ -103,18 +104,18 @@ Si tu modelo usa una propiedad `@ID` estándar, puedes usar el helper `id()` par
 .id()
 ```
 
-Para tipos de identificador personalizados, necesitarás especificar el campo manualmente. 
+Para tipos de identificador personalizados, necesitarás especificar el campo manualmente.
 
 ```swift
 // Añade campo para identificador personalizado.
 .field("id", .int, .identifier(auto: true))
 ```
 
-La restricción `identifier` debe usarse en un único campo, y denote la clave primaria. La marca (flag) `auto` determina si la base de datos deberá generar el valor automáticamente o no. 
+La restricción `identifier` debe usarse en un único campo, y denote la clave primaria. La marca (flag) `auto` determina si la base de datos deberá generar el valor automáticamente o no.
 
 ### Actualizar Campo
 
-Puedes actualizar el tipo de dato de un campo usando `updateField`. 
+Puedes actualizar el tipo de dato de un campo usando `updateField`.
 
 ```swift
 // Actualiza el campo al tipo de dato `double`.
@@ -138,7 +139,7 @@ Las restricciones (constraints) pueden añadirse al crear o actualizar un esquem
 
 ### Unique
 
-Una restricción "unique" requiere que no existan valores duplicados en uno o más campos. 
+Una restricción "unique" requiere que no existan valores duplicados en uno o más campos.
 
 ```swift
 // No permite direcciones de email duplicadas.
@@ -152,7 +153,7 @@ Si varios campos son restringidos, la combinación de los valores de cada campo 
 .unique(on: "first_name", "last_name")
 ```
 
-Para borrar una restricción "unique", usa `deleteUnique`. 
+Para borrar una restricción "unique", usa `deleteUnique`.
 
 ```swift
 // Elimina la restricción de email duplicado.
@@ -168,7 +169,7 @@ Fluent generará nombres de restricción únicos por defecto. Sin embargo, puede
 .unique(on: "email", name: "no_duplicate_emails")
 ```
 
-Para borrar una restricción con nombre, debes usar `deleteConstraint(name:)`. 
+Para borrar una restricción con nombre, debes usar `deleteConstraint(name:)`.
 
 ```swift
 // Elimina la restricción de email duplicado.
@@ -177,7 +178,7 @@ Para borrar una restricción con nombre, debes usar `deleteConstraint(name:)`.
 
 ## Clave Externa
 
-Las restricciones de clave externa requieren que el valor de un campo coincida con uno de los valores del campo referenciado. Esto es útil para prevenir el guardado de datos no válidos. Las restricciones de clave externa pueden añadirse como restricciones de campo o de nivel superior. 
+Las restricciones de clave externa requieren que el valor de un campo coincida con uno de los valores del campo referenciado. Esto es útil para prevenir el guardado de datos no válidos. Las restricciones de clave externa pueden añadirse como restricciones de campo o de nivel superior.
 
 Para añadir una restricción de clave externa a un campo, usa `.references`.
 
@@ -195,7 +196,7 @@ Esta misma restricción podría añadirse como una de nivel superior usando `for
 .foreignKey("star_id", references: "stars", "id")
 ```
 
-A diferencia de las restricciones de campo, las de nivel superior pueden añadirse en una actualización del esquema. También pueden [nombrarse](#nombre-de-constraint). 
+A diferencia de las restricciones de campo, las de nivel superior pueden añadirse en una actualización del esquema. También pueden [nombrarse](#nombre-de-constraint).
 
 Las restricciones de clave externa soportan las acciones opcionales `onDelete` y `onUpdate`.
 
@@ -215,7 +216,7 @@ Debajo hay un ejemplo del uso de acciones de clave externa.
 ```
 
 !!! warning "Advertencia"
-    Las acciones de clave externa ocurren únicamente en la base de datos, evitando a Fluent. 
+    Las acciones de clave externa ocurren únicamente en la base de datos, evitando a Fluent.
     Esto significa que cosas como el middleware de modelo o el borrado no permanente (soft-delete) pueden no funcionar correctamente.
 
 ## SQL
@@ -235,7 +236,7 @@ o inclusive un valor por defecto para una marca de tiempo (timestamp):
 
 ## Diccionario
 
-El tipo de dato diccionario es capaz de guardar valores de diccionario anidados. Esto inclute structs conformadas con `Codable` y diccionarios de Swift con un valor `Codable`. 
+El tipo de dato diccionario es capaz de guardar valores de diccionario anidados. Esto inclute structs conformadas con `Codable` y diccionarios de Swift con un valor `Codable`.
 
 !!! note "Nota"
     Los conectores de bases de datos SQL de Fluent guardan diccionarios anidados en columnas JSON.
@@ -262,7 +263,7 @@ Este campo puede guardarse usando el tipo de dato `.dictionary(of:)`.
 .field("pet", .dictionary, .required)
 ```
 
-Como los tipos `Codable` son diccionarios heterogéneos, no especificamos el parámetro `of`. 
+Como los tipos `Codable` son diccionarios heterogéneos, no especificamos el parámetro `of`.
 
 Si los valores del diccionario fueran homogéneos, por ejemplo `[String: Int]`, el parámetro `of` especificaría el tipo del valor.
 
@@ -270,7 +271,7 @@ Si los valores del diccionario fueran homogéneos, por ejemplo `[String: Int]`, 
 .field("numbers", .dictionary(of: .int), .required)
 ```
 
-Las claves de los diccionarios deben ser siempre cadenas (strings). 
+Las claves de los diccionarios deben ser siempre cadenas (strings).
 
 ## Array
 
@@ -289,7 +290,7 @@ Este campo puede guardarse usando el tipo de dato `.array(of:)`.
 .field("tags", .array(of: .string), .required)
 ```
 
-Como el array es homogéneo, especificamos el parámetro `of`. 
+Como el array es homogéneo, especificamos el parámetro `of`.
 
 Los `Array`s de Swift que puedan codificarse siempre tendrán un tipo de valor homogéneo. Los tipos `Codable` personalizados que serializan valores heterogéneos a contenedores sin clave son una excepción y deberían usar el tipo de dato `.array`.
 
