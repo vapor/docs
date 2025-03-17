@@ -11,15 +11,15 @@ try await database.schema("planets")
     .create()
 ```
 
-To create a `SchemaBuilder`, use the `schema` method on database. Pass in the name of the table or collection you want to affect. If you are editing the schema for a model, make sure this name matches the model's [`schema`](model.md#schema). 
+To create a `SchemaBuilder`, use the `schema` method on database. Pass in the name of the table or collection you want to affect. If you are editing the schema for a model, make sure this name matches the model's [`schema`](model.md#schema).
 
 ## Actions
 
-The schema API supports creating, updating, and deleting schemas. Each action supports a subset of the API's available methods. 
+The schema API supports creating, updating, and deleting schemas. Each action supports a subset of the API's available methods.
 
 ### Create
 
-Calling `create()` creates a new table or collection in the database. All methods for defining new fields and constraints are supported. Methods for updates or deletes are ignored. 
+Calling `create()` creates a new table or collection in the database. All methods for defining new fields and constraints are supported. Methods for updates or deletes are ignored.
 
 ```swift
 // An example schema creation.
@@ -29,7 +29,7 @@ try await database.schema("planets")
     .create()
 ```
 
-If a table or collection with the chosen name already exists, an error will be thrown. To ignore this, use `.ignoreExisting()`. 
+If a table or collection with the chosen name already exists, an error will be thrown. To ignore this, use `.ignoreExisting()`.
 
 ### Update
 
@@ -54,14 +54,14 @@ database.schema("planets").delete()
 
 ## Field
 
-Fields can be added when creating or updating a schema. 
+Fields can be added when creating or updating a schema.
 
 ```swift
 // Adds a new field
 .field("name", .string, .required)
 ```
 
-The first parameter is the name of the field. This should match the key used on the associated model property. The second parameter is the field's [data type](#data-type). Finally, zero or more [constraints](#field-constraint) can be added. 
+The first parameter is the name of the field. This should match the key used on the associated model property. The second parameter is the field's [data type](#data-type). Finally, zero or more [constraints](#field-constraint) can be added.
 
 ### Data Type
 
@@ -86,13 +86,14 @@ Supported field data types are listed below.
 
 ### Field Constraint
 
-Supported field constraints are listed below. 
+Supported field constraints are listed below.
 
 |FieldConstraint|Description|
 |-|-|
 |`.required`|Disallows `nil` values.|
-|`.references`|Requires that this field's value match a value in the referenced schema. See [foreign key](#foreign-key)|
-|`.identifier`|Denotes the primary key. See [identifier](#identifier)|
+|`.references`|Requires that this field's value match a value in the referenced schema. See [foreign key](#foreign-key).|
+|`.identifier`|Denotes the primary key. See [identifier](#identifier).|
+|`.sql(SQLColumnConstraintAlgorithm)`|Defines any constraint that is not supported (e.g. `default`). See [SQL](#sql) and [SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/documentation/sqlkit/sqlcolumnconstraintalgorithm/).|
 
 ### Identifier
 
@@ -103,18 +104,18 @@ If your model uses a standard `@ID` property, you can use the `id()` helper to c
 .id()
 ```
 
-For custom identifier types, you will need to specify the field manually. 
+For custom identifier types, you will need to specify the field manually.
 
 ```swift
 // Adds field for custom identifier.
 .field("id", .int, .identifier(auto: true))
 ```
 
-The `identifier` constraint may be used on a single field and denotes the primary key. The `auto` flag determines whether or not the database should generate this value automatically. 
+The `identifier` constraint may be used on a single field and denotes the primary key. The `auto` flag determines whether or not the database should generate this value automatically.
 
 ### Update Field
 
-You can update a field's data type using `updateField`. 
+You can update a field's data type using `updateField`.
 
 ```swift
 // Updates the field to `double` data type.
@@ -138,7 +139,7 @@ Constraints can be added when creating or updating a schema. Unlike [field const
 
 ### Unique
 
-A unique constraint requires that there are no duplicate values in one or more fields. 
+A unique constraint requires that there are no duplicate values in one or more fields.
 
 ```swift
 // Disallow duplicate email addresses.
@@ -152,7 +153,7 @@ If multiple field are constrained, the specific combination of each field's valu
 .unique(on: "first_name", "last_name")
 ```
 
-To delete a unique constraint, use `deleteUnique`. 
+To delete a unique constraint, use `deleteUnique`.
 
 ```swift
 // Removes duplicate email constraint.
@@ -168,7 +169,7 @@ Fluent will generate unique constraint names by default. However, you may want t
 .unique(on: "email", name: "no_duplicate_emails")
 ```
 
-To delete a named constraint, you must use `deleteConstraint(name:)`. 
+To delete a named constraint, you must use `deleteConstraint(name:)`.
 
 ```swift
 // Removes duplicate email constraint.
@@ -177,7 +178,7 @@ To delete a named constraint, you must use `deleteConstraint(name:)`.
 
 ## Foreign Key
 
-Foreign key constraints require that a field's value match ones of the values in the referenced field. This is useful for preventing invalid data from being saved. Foreign key constraints can be added as either a field or top-level constraint. 
+Foreign key constraints require that a field's value match ones of the values in the referenced field. This is useful for preventing invalid data from being saved. Foreign key constraints can be added as either a field or top-level constraint.
 
 To add a foreign key constraint to a field, use `.references`.
 
@@ -195,7 +196,7 @@ This same constraint could be added as a top-level constraint using `foreignKey`
 .foreignKey("star_id", references: "stars", "id")
 ```
 
-Unlike field constraints, top-level constraints can be added in a schema update. They can also be [named](#constraint-name). 
+Unlike field constraints, top-level constraints can be added in a schema update. They can also be [named](#constraint-name).
 
 Foreign key constraints support optional `onDelete` and `onUpdate` actions.
 
@@ -215,7 +216,7 @@ Below is an example using foreign key actions.
 ```
 
 !!! warning
-    Foreign key actions happen solely in the database, bypassing Fluent. 
+    Foreign key actions happen solely in the database, bypassing Fluent.
     This means things like model middleware and soft-delete may not work correctly.
 
 ## SQL
@@ -235,7 +236,7 @@ or even a default value for a timestamp:
 
 ## Dictionary
 
-The dictionary data type is capable of storing nested dictionary values. This includes structs that conform to `Codable` and Swift dictionaries with a `Codable` value. 
+The dictionary data type is capable of storing nested dictionary values. This includes structs that conform to `Codable` and Swift dictionaries with a `Codable` value.
 
 !!! note
     Fluent's SQL database drivers store nested dictionaries in JSON columns.
@@ -262,7 +263,7 @@ This field can be stored using the `.dictionary(of:)` data type.
 .field("pet", .dictionary, .required)
 ```
 
-Since `Codable` types are heterogenous dictionaries, we do not specify the `of` parameter. 
+Since `Codable` types are heterogenous dictionaries, we do not specify the `of` parameter.
 
 If the dictionary values were homogenous, for example `[String: Int]`, the `of` parameter would specify the value type.
 
@@ -270,7 +271,7 @@ If the dictionary values were homogenous, for example `[String: Int]`, the `of` 
 .field("numbers", .dictionary(of: .int), .required)
 ```
 
-Dictionary keys must always be strings. 
+Dictionary keys must always be strings.
 
 ## Array
 
@@ -289,7 +290,7 @@ This field can be stored using the `.array(of:)` data type.
 .field("tags", .array(of: .string), .required)
 ```
 
-Since the array is homogenous, we specify the `of` parameter. 
+Since the array is homogenous, we specify the `of` parameter.
 
 Codable Swift `Array`s will always have a homogenous value type. Custom `Codable` types that serialize heterogenous values to unkeyed containers are the exception and should use the `.array` data type.
 
@@ -391,7 +392,7 @@ struct UserNameMigration: AsyncMigration {
         try await User.query(on: database)
             .set(["first_name": .sql(embed: "name"))
             .run()
-            
+
         try await database.schema("users")
             .deleteField("name")
             .update()
