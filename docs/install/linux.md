@@ -51,9 +51,27 @@ You can also use Swift's official Docker images which come with the compiler pre
 
 ## Install Toolbox
 
-Now that you have Swift installed, let's install the [Vapor Toolbox](https://github.com/vapor/toolbox). This CLI tool is not required to use Vapor, but it includes helpful utilities. 
+Now that you have Swift installed, let's install the [Vapor Toolbox](https://github.com/vapor/toolbox). This CLI tool is not required to use Vapor, but it helps to create new Vapor projects.
 
-On Linux, you will need to build the toolbox from source. View the toolbox's <a href="https://github.com/vapor/toolbox/releases" target="_blank">releases</a> on GitHub to find the latest version.
+### Homebrew
+
+The Toolbox is distributed via Homebrew. If you do not have Homebrew yet, visit <a href="https://brew.sh" target="_blank">brew.sh</a> for install instructions.
+
+```sh
+brew install vapor
+```
+
+Double check to ensure that the installation was successful by printing help.
+
+```sh
+vapor --help
+```
+
+You should see a list of available commands.
+
+### Makefile
+
+If you want, you can also build the Toolbox from source. View the Toolbox's <a href="https://github.com/vapor/toolbox/releases" target="_blank">releases</a> on GitHub to find the latest version.
 
 ```sh
 git clone https://github.com/vapor/toolbox.git
@@ -72,4 +90,4 @@ You should see a list of available commands.
 
 ## Next
 
-After you have installed Swift, create your first app in [Getting Started &rarr; Hello, world](../getting-started/hello-world.md).
+Now that you have installed Swift and Vapor Toolbox, create your first app in [Getting Started &rarr; Hello, world](../getting-started/hello-world.md).
