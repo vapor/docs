@@ -28,9 +28,7 @@ En el editor de esquemas, elige la acción _App_ y la pestaña _Options_. Selecc
 
 Puedes obtener la dirección completa a la raíz de tu proyecto ejecutando `pwd` en una ventana de terminal ubicada en el proyecto.
 
-```fish
-# verificar que estamos en la carpeta del proyecto de vapor
-vapor --version
+```sh
 # obtener la dirección de la carpeta
 pwd
 ```
@@ -38,7 +36,5 @@ pwd
 Deberías obtener una salida similar a la que se muestra a continuación.
 
 ```
-framework: 4.x.x
-toolbox: 18.x.x
 /path/to/project
 ```

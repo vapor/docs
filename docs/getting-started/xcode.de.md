@@ -18,15 +18,11 @@
 
  Für den Fall, dass du den Pfad zu deinem Projekt nicht kennst, kannst du mit Hilfe des Terminal-Befehls 'pwd' den Pfad ganz einfach herausfinden.
 
- ```
- # verify we are in vapor project folder
- vapor --version
+ ```sh
  # get path to this folder
  pwd
  ```
 
  ```
- framework: 4.x.x
- toolbox: 18.x.x
  /path/to/project
  ```

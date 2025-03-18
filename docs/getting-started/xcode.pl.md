@@ -29,8 +29,6 @@ W edytorze schematów wybierz akcję _App_ i zakładkę _Options_. Zaznacz opcj�
 Możesz uzyskać pełną ścieżkę do katalogu głównego projektu, uruchamiając `pwd` z otwartego tam okna terminala.
 
 ```sh
-# Sprawdź, czy jesteśmy w folderze projektu vapor
-vapor --version
 # Uzyskaj ścieżkę do tego folderu
 pwd
 ```
@@ -38,7 +36,5 @@ pwd
 Powinieneś zobaczyć dane wyjściowe podobne do poniższych.
 
 ```
-framework: 4.x.x
-toolbox: 18.x.x
 /path/to/project
 ```

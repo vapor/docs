@@ -28,9 +28,7 @@ Nell'editor dello schema, scegliere l'azione _App_ e la scheda _Options_. Selezi
 
 Si può ottenere il percorso completo alla cartella principale del progetto eseguendo `pwd` da una finestra del terminale aperta lì.
 
-```fish
-# verificare di essere nella cartella del progetto vapor
-vapor --version
+```sh
 # ottenere il percorso di questa cartella
 pwd
 ```
@@ -38,7 +36,5 @@ pwd
 Si dovrebbe vedere un output simile al seguente.
 
 ```
-framework: 4.x.x
-toolbox: 18.x.x
 /percorso/al/progetto
 ```
