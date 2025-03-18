@@ -27,15 +27,36 @@ Vapor 4 requires Swift 5.9 or greater.
 
 ## Install Toolbox
 
-Now that you have Swift installed, let us install the [Vapor Toolbox](https://github.com/vapor/toolbox). This CLI tool is not required to use Vapor but it includes helpful utilities like a new project creator.
+Now that you have Swift installed, let's install the [Vapor Toolbox](https://github.com/vapor/toolbox). This CLI tool is not required to use Vapor, but it helps to create new Vapor projects.
 
-Toolbox is distributed via Homebrew. If you do not have Homebrew yet, visit <a href="https://brew.sh" target="_blank">brew.sh</a> for install instructions.
+### Homebrew
+
+The Toolbox is distributed via Homebrew. If you do not have Homebrew yet, visit <a href="https://brew.sh" target="_blank">brew.sh</a> for install instructions.
 
 ```sh
 brew install vapor
 ```
 
 Double check to ensure that the installation was successful by printing help.
+
+```sh
+vapor --help
+```
+
+You should see a list of available commands.
+
+### Makefile
+
+If you want, you can also build the Toolbox from source. View the Toolbox's <a href="https://github.com/vapor/toolbox/releases" target="_blank">releases</a> on GitHub to find the latest version.
+
+```sh
+git clone https://github.com/vapor/toolbox.git
+cd toolbox
+git checkout <desired version>
+make install
+```
+
+Double check the installation was successful by printing help.
 
 ```sh
 vapor --help
