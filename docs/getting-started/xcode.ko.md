@@ -28,9 +28,7 @@ scheme editor에서 Options탭을 선택한 후 Use custom working directory를 
 
 프로젝트의 루트 폴더의 전체 경로를 얻으려면 해당 위치에서 터미널 창을 열고 `pwd`를 실행하세요.
 
-```fish
-# verify we are in vapor project folder
-vapor --version
+```sh
 # get path to this folder
 pwd
 ```
@@ -38,7 +36,5 @@ pwd
 다음과 유사한 출력이 나타날 것입니다.
 
 ```
-framework: 4.x.x
-toolbox: 18.x.x
 /path/to/project
 ```

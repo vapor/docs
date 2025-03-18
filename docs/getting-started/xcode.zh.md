@@ -28,9 +28,7 @@ Xcode 将默认在 _DerivedData_ 目录运行项目。这与项目的根目录�
 
 你可以在终端中运行 `pwd` 来获取你项目根目录的绝对目录。
 
-```fish
-# 确认我们在 vapor 项目目录
-vapor --version
+```sh
 # 获取当前目录的路径
 pwd
 ```
@@ -38,7 +36,5 @@ pwd
 你应该能看见类似下面的输出。
 
 ```
-framework: 4.x.x
-toolbox: 18.x.x
 /path/to/project
 ```

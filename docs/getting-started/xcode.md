@@ -28,9 +28,7 @@ In the scheme editor, choose the _App_ action and the _Options_ tab. Check _Use 
 
 You can get the full path to your project's root by running `pwd` from a terminal window open there.
 
-```fish
-# verify we are in vapor project folder
-vapor --version
+```sh
 # get path to this folder
 pwd
 ```
@@ -38,7 +36,5 @@ pwd
 You should see output similar to the following.
 
 ```
-framework: 4.x.x
-toolbox: 18.x.x
 /path/to/project
 ```

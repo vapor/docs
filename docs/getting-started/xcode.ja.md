@@ -28,9 +28,7 @@
 
 プロジェクトのルートへのフルパスは、その場所で開いたターミナルウィンドウから `pwd` を実行することで取得できます。
 
-```fish
-# verify we are in vapor project folder
-vapor --version
+```sh
 # get path to this folder
 pwd
 ```
@@ -38,7 +36,5 @@ pwd
 以下のような出力が表示されるはずです。
 
 ```
-framework: 4.x.x
-toolbox: 18.x.x
 /path/to/project
 ```

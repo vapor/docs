@@ -28,9 +28,7 @@ Kies in de schema editor de actie _App_ en het tabblad _Options_. Vink _Use cust
 
 U kunt het volledige pad naar de root van uw project krijgen door `pwd` uit te voeren vanuit een terminal venster dat daar geopend is.
 
-```fish
-# controleer of we in de Vapor project map zijn
-vapor --version
+```sh
 # haal het pad naar deze map op
 pwd
 ```
@@ -38,7 +36,5 @@ pwd
 U zou uitvoer moeten zien zoals hieronder.
 
 ```
-framework: 4.x.x
-toolbox: 18.x.x
 /path/to/project
 ```
