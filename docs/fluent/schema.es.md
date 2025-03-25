@@ -390,7 +390,7 @@ struct UserNameMigration: AsyncMigration {
          // Esto tampoco intenta dividir el nombre en nombre y apellido,
          // ya que eso requiere sintaxis específica de la base de datos.
          try await User.query(on: database)
-             .set(["first_name": .sql(embed: "name"))
+             .set(["first_name": .sql(embed: "name")])
              .run()
 
         try await database.schema("users")
@@ -403,7 +403,7 @@ struct UserNameMigration: AsyncMigration {
             .field("name", .string, .required)
             .update()
         try await User.query(on: database)
-            .set(["name": .sql(embed: "concat(first_name, ' ', last_name)"))
+            .set(["name": .sql(embed: "concat(first_name, ' ', last_name)")])
             .run()
         try await database.schema("users")
             .deleteField("first_name")
