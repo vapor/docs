@@ -4,7 +4,7 @@ Puoi creare tag Leaf personalizzati usando il protocollo [`LeafTag`](https://api
 
 Per mostrare come funziona, diamo un'occhiata alla creazione di un tag personalizzato `#now` che stampa l'attuale marca temporale. Il tag supporterà anche un singolo parametro opzionale per specificare il formato della data.
 
-!!! tip
+!!! tip "Suggerimento"
 	Se il tuo tag personalizzato renderizza HTML dovresti conformare il tuo tag personalizzato a `UnsafeUnescapedLeafTag` così che l'HTML non sia "escaped". Ricorda di controllare o ripulire ogni input dell'utente.
 
 ## `LeafTag`

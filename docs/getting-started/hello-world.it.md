@@ -7,6 +7,9 @@ Se non hai ancora installato Swift o la Toolbox Vapor, segui la guida di install
 - [Installazione &rarr; macOS](../install/macos.md)
 - [Installazione &rarr; Linux](../install/linux.md)
 
+!!! tip "Suggerimento"
+	Il template usato dalla Vapor Toolbox richiede Swift 6.0 o superiore
+
 ## Nuovo Progetto
 
 Il primo passo è creare un nuovo progetto Vapor sul tuo computer. Apri il terminale e utilizza il comando `new` della Toolbox. Questo creerà una nuova cartella nella directory corrente contenente il progetto.
@@ -15,10 +18,13 @@ Il primo passo è creare un nuovo progetto Vapor sul tuo computer. Apri il termi
 vapor new hello -n
 ```
 
-!!! tip
+!!! tip "Suggerimento"
     L'opzione `-n` creerà un progetto con il minimo indispensabile, rispondendo automaticamente no a tutte le domande.
 
-!!! tip
+!!! tip "Suggerimento"
+    Puoi anche ottenere il template più recente da GitHub senza la Vapor Toolbox clonando la [repository del template](https://github.com/vapor/template-bare)
+
+!!! tip "Suggerimento"
     Vapor e il template ora utilizzano `async`/`await` di default.
     Se non puoi aggiornare a macOS 12 e/o hai bisogno di continuare ad utilizzare gli `EventLoopFuture`, 
     utilizza l'opzione `--branch macos10-15`.

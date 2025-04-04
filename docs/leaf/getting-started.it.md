@@ -41,10 +41,10 @@ app.views.use(.leaf)
 
 Questo dice a Vapor di usare `LeafRenderer` quando chiami `req.view` nel tuo codice.
 
-!!! note 
+!!! note "Nota"
     Leaf ha una cache interna per renderizzare le pagine. Quando l'ambiente di `Application` è impostato su `.development` questa cache è disabilitata, così che i cambiamenti ai template abbiano effetto immediatamente. In `.production` e tutti gli altri ambienti la cache è abilitata di default; qualsiasi cambiamento fatto ai template non avrà effetto finché l'applicazione non viene riavviata.
 
-!!! warning 
+!!! warning "Attenzione"
     Per fare in modo che Leaf trovi i template quando gira su Xcode, devi impostare la [directory di lavoro personalizzata](../getting-started/xcode.md#custom-working-directory) per il tuo ambiente di lavoro Xcode.
 ## Struttura della Cartella
 
@@ -73,7 +73,7 @@ Adesso che Leaf è configurato, renderizziamo il tuo primo template. Dentro la c
 Hello, #(name)!
 ```
 
-!!! tip
+!!! tip "Suggerimento"
     Se usi VSCode come editor di testo, raccomandiamo di installare l'estensione Leaf per abilitare l'evidenziazione della sintassi: [Leaf HTML](https://marketplace.visualstudio.com/items?itemName=Francisco.html-leaf).
 
 Quindi, registra una route (di solito fatto in `routes.swift` o un controller) per renderizzare la view.

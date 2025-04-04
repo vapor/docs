@@ -110,7 +110,7 @@ Questo protocollo richiede che implementi il metodo `authenticate(basic:for:)`, 
 
 In questo autenticatore di prova, il nome utente e la password vengono verificati rispetto ai valori codificati. In un autenticatore reale, potresti voler effettuare un controllo su un database o su un'API esterna, per questo motivo il metodo `authenticate` consente di restituire una future.
 
-!!! tip
+!!! tip "Suggerimento"
     Le password non devono mai essere memorizzate in un database in chiaro. Utilizzate sempre gli hash delle password per il confronto.
 
 Se i parametri di autenticazione sono corretti, in questo caso corrispondono ai valori codificati, viene effettuato l'accesso a uno `User` di nome Vapor. Se i parametri di autenticazione non corrispondono, non viene registrato alcun utente, il che significa che l'autenticazione è fallita. 
@@ -173,7 +173,7 @@ Questo protocollo richiede l'implementazione di `authenticate(bearer:for:)` che 
 
 In questo autenticatore di prova, il token viene testato rispetto a un valore codificato. In un vero autenticatore, potresti voler verificare il token confrontandolo con un database o usando misure crittografiche, come si fa con JWT. Ecco perché il metodo `authenticate` consente di restituire una future.
 
-!!! tip
+!!! tip "Suggerimento"
     Quando si implementa la verifica dei token, è importante considerare la scalabilità orizzontale. Se l'applicazione deve gestire molti utenti contemporaneamente, l'autenticazione può essere un potenziale collo di bottiglia. Considera il modo in cui il tuo progetto scalerà su più istanze dell'applicazione in esecuzione contemporaneamente.
 
 Se i parametri di autenticazione sono corretti, e in questo caso corrispondono al valore codificato, viene effettuato l'accesso a un `Utente` di nome Vapor. Se i parametri di autenticazione non corrispondono, non viene registrato alcun utente, il che significa che l'autenticazione è fallita. 
@@ -328,7 +328,7 @@ Non dimenticare di aggiungere la migrazione a `app.migrations`.
 app.migrations.add(User.Migration())
 ```
 
-!!! tip
+!!! tip "Suggerimento"
     Poiché gli indirizzi email non sono sensibili alle maiuscole e alle minuscole, puoi aggiungere un [`Middleware`](../fluent/model.md#lifecycle) che coercizzi l'indirizzo email in minuscolo prima di salvarlo nella base dati. Tieni presente, però, che `ModelAuthenticatable` usa un confronto sensibile alle maiuscole e alle minuscole, quindi se fai questo devi assicurarti che l'input dell'utente sia tutto minuscolo, o con la coercizione delle maiuscole nel client o con un autenticatore personalizzato.
 
 La prima cosa di cui hai bisogno è un endpoint per creare nuovi utenti. Useremo `POST /users`. Crea una struttura [Content](../basics/content.md) che rappresenti i dati che questo endpoint si aspetta.
@@ -749,7 +749,7 @@ Questi middleware svolgono le seguenti funzioni:
 * Il middleware delle sessioni prende il cookie di sessione fornito nella richiesta e lo converte in una sessione.
 * l'autenticatore di sessione prende la sessione e verifica se esiste un utente autenticato per quella sessione. In caso affermativo, il middleware autentica la richiesta. Nella risposta, l'autenticatore di sessione vede se la richiesta ha un utente autenticato e lo salva nella sessione, in modo che sia autenticato nella richiesta successiva.
 
-!!! note
+!!! note "Nota"
     Di default, il cookie di sessione non è impostato su `secure` e/o `httpOnly`. Per ulteriori informazioni su come configurare i cookie, consultare le [API di sessione](../advanced/sessions.md#configuration) di Vapor.
 
 ### Protezione delle Route
