@@ -74,7 +74,7 @@ Hello, #(name)!
 ```
 
 !!! tip
-    もし、コードエディタとして VSCode を使用している場合、シンタックスハイライトを有効にするために、Leaf 拡張機能をインストールすることをお勧めします：[Leaf HTML](https://marketplace.visualstudio.com/items?itemName=Francisco.html-leaf)
+    もし、コードエディタとして VSCode を使用している場合、シンタックスハイライトを有効にするために、Vapor 拡張機能をインストールすることをお勧めします：[Vapor for VS Code](https://marketplace.visualstudio.com/items?itemName=Vapor.vapor-vscode)
 
 次に、View をレンダリングするルートを登録します。(通常は、`routes.swift` やコントローラで行います)
 

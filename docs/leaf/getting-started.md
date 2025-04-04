@@ -85,7 +85,7 @@ Hello, #(name)!
 ```
 
 !!! tip
-    If you're using VSCode as your code editor, we recommend installing the Leaf extension to enable syntax highlighting: [Leaf HTML](https://marketplace.visualstudio.com/items?itemName=Francisco.html-leaf).
+    If you're using VSCode as your code editor, we recommend installing the Vapor extension to enable syntax highlighting: [Vapor for VS Code](https://marketplace.visualstudio.com/items?itemName=Vapor.vapor-vscode).
 
 Then, register a route (usually done in `routes.swift` or a controller) to render the view.
 

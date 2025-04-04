@@ -74,7 +74,7 @@ Hello, #(name)!
 ```
 
 !!! tip
-    Se usi VSCode come editor di testo, raccomandiamo di installare l'estensione Leaf per abilitare l'evidenziazione della sintassi: [Leaf HTML](https://marketplace.visualstudio.com/items?itemName=Francisco.html-leaf).
+    Se usi VSCode come editor di testo, raccomandiamo di installare l'estensione di Vapor per abilitare l'evidenziazione della sintassi: [Vapor for VS Code](https://marketplace.visualstudio.com/items?itemName=Vapor.vapor-vscode).
 
 Quindi, registra una route (di solito fatto in `routes.swift` o un controller) per renderizzare la view.
 

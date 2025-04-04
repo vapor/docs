@@ -46,12 +46,15 @@ Nella parte superiore della finestra, alla destra dei pulsanti Play e Stop, clic
 Dovresti ora veder apparire la Console nella parte inferiore della finestra di Xcode.
 
 ```sh
-[ INFO ] Server starting on http://
+[ INFO ] Server starting on http://127.0.0.1:8080
 ```
 
 ### Linux
 
 Su Linux e altri sistemi operativi (e anche su macOS se non volete utilizzare Xcode) puoi modificare il progetto nel tuo editor preferito, come Vim o VSCode. Per maggiori dettagli su come configurare altri IDE, consulta le [Guide di Swift sul Server](https://github.com/swift-server/guides/blob/main/docs/setup-and-ide-alternatives.md)
+
+!!! tip "Suggerimento"
+    Se usi VSCode come editor di testo, raccomandiamo di installare l'estensione ufficiale di Vapor: [Vapor for VS Code](https://marketplace.visualstudio.com/items?itemName=Vapor.vapor-vscode).
 
 Per compilare ed eseguire il progetto, nel Terminale esegui:
 
