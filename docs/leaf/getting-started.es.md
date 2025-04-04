@@ -85,7 +85,7 @@ Hello, #(name)!
 ```
 
 !!! tip "Consejo"
-    Si estás usando VSCode como tu editor de código, te recomendamos instalar la extensión de Leaf para habilitar el resaltado de sintaxis: [Leaf HTML](https://marketplace.visualstudio.com/items?itemName=Francisco.html-leaf).
+    Si estás usando VSCode como tu editor de código, te recomendamos instalar la extensión de Vapor para habilitar el resaltado de sintaxis: [Vapor for VS Code](https://marketplace.visualstudio.com/items?itemName=Vapor.vapor-vscode).
 
 Luego, registra una ruta (generalmente en `routes.swift` o en un controlador) para renderizar la vista.
 

@@ -75,7 +75,7 @@ Hello, #(name)!
 ```
 
 !!! tip "建议"
-    如果你正在使用 VSCode 作为代码编辑器，我们推荐安装 [Leaf HTML](https://marketplace.visualstudio.com/items?itemName=Francisco.html-leaf) 扩展，以启用语法高亮功能。
+    如果你正在使用 VSCode 作为代码编辑器，我们推荐安装 [Vapor for VS Code](https://marketplace.visualstudio.com/items?itemName=Vapor.vapor-vscode) 扩展，以启用语法高亮功能。
 
 然后，注册一个路由（通常在 `routes.swift` 中或一个控制器中完成注册）来渲染视图。
 
