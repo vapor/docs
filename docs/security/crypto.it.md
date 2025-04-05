@@ -89,5 +89,5 @@ let codes = hotp.generate(counter: 25, range: 2)
 ```
 Nell'esempio qui sopra viene fornito un margine di 2, che significa che le HOTP saranno calcolate con i valori del contatore `23 ... 27`, e tutti questi codici verranno restituiti. 
 
-!!! warning
+!!! warning "Attenzione"
     N.B.: Più grande è il margine di errore usato, maggiore è il tempo e la libertà che ha un attacante per agire, diminuendo la sicurezza dell'algoritmo.

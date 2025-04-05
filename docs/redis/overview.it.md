@@ -4,7 +4,7 @@
 
 Questa libreria è un'integrazione tra Vapor e [**RediStack**](https://github.com/swift-server/RediStack), che è il driver sottostante che comunica con Redis.
 
-!!! note
+!!! note "Nota"
     La maggior parte delle funzionalità di Redis sono fornite da **RediStack**.
     Raccomandiamo fortemente di acquisire familiarità con la sua documentazione.
     
@@ -75,14 +75,14 @@ Questo è l'indice del database che intendi selezionare quando ogni connessione 
 
 Questo ti evita di dover mandare il comando `SELECT` a Redis da te.
 
-!!! warning
+!!! warning "Attenzione"
     La selezione del database non è mantenuta. Stai attento quando mandi il comando `SELECT` da te.
 
 ### Opzioni del Pool di Connessioni
 
 > Documentazione dell'API: [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/pooloptions)
 
-!!! note
+!!! note "Nota"
     Solo le opzioni cambiate più comunemente sono evidenziate qui. Per tutte le altre opzioni, fai riferimento alla documentazione dell'API.
 
 #### minimumConnectionCount
@@ -97,7 +97,7 @@ Questa è conosciuta come connessione "cold start", e ha dell'overhead rispetto 
 
 Quest'opzione determina il comportamento di come il numero massimo di connessioni è mantenuto.
 
-!!! seealso
+!!! seealso "Guarda anche"
     Fai riferimento all'API `RedisConnectionPoolSize` per familiarizzare con le opzioni disponibili.
 
 ## Inviare un Comando

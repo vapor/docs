@@ -278,7 +278,7 @@ Il tag `#unsafeHTML` agisce come un tag di variabile - p.es. `#(variable)`. Per√
 The time is #unsafeHTML(styledTitle)
 ```
 
-!!! note
+!!! note "Nota"
     Dovresti fare attenzione quando usi questo tag per assicurarti che la variabile che gli fornisci non esponga i tuoi utenti a un attacco XSS.
 
 #### `#dumpContext`
