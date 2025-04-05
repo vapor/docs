@@ -57,6 +57,9 @@ La consola debería aparecer en la parte inferior de la ventana de Xcode.
 
 En Linux y otros sistemas operativos (e inclusive en macOS si no quieres usar Xcode) puedes editar el proyecto en el editor que prefieras, por ejemplo Vim o VSCode. Visita [Swift Server Guides](https://github.com/swift-server/guides/blob/main/docs/setup-and-ide-alternatives.md) para detalles actualizados sobre cómo configurar otros IDEs.
 
+!!! tip "Consejo"
+    Si utilizas VSCode como editor de código, recomendamos instalar la extensión oficial de Vapor: [Vapor para VS Code](https://marketplace.visualstudio.com/items?itemName=Vapor.vapor-vscode).
+
 Para construir y ejecutar tu proyecto, ejecuta en el Terminal:
 
 ```sh
