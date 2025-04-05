@@ -75,7 +75,7 @@ Cześć, #(name)!
 ```
 
 !!! tip
-Jeśli korzystasz z VSCode, rekomendowane jest zainstalowanie rozszerzenia do Leaf (Podpowiedzi i podkreślanie składni): [Leaf HTML](https://marketplace.visualstudio.com/items?itemName=Francisco.html-leaf).
+Jeśli korzystasz z VSCode, rekomendowane jest zainstalowanie rozszerzenia do Vapor (Podpowiedzi i podkreślanie składni): [Vapor for VS Code](https://marketplace.visualstudio.com/items?itemName=Vapor.vapor-vscode).
 
 Następnie: Dodaj ścieżkę (przeważnie w `routes.swift` lub w kontrolerze), żeby wyrenderować widok.
 
