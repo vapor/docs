@@ -74,7 +74,6 @@ Ondersteunde velddatatypes staan hieronder vermeld.
 |`.uint{8,16,32,64}`|`UInt{8,16,32,64}`|
 |`.bool`|`Bool`|
 |`.datetime`|`Date` (aanbevolen)|
-|`.time`|`Date` (zonder dag, maand en jaar)|
 |`.date`|`Date` (het tijdstip weglaten)|
 |`.float`|`Float`|
 |`.double`|`Double`|

@@ -74,7 +74,6 @@ Debajo hay un listado con los tipos de datos soportados.
 |`.uint{8,16,32,64}`|`UInt{8,16,32,64}`|
 |`.bool`|`Bool`|
 |`.datetime`|`Date` (recomendado)|
-|`.time`|`Date` (omitiendo día, mes y año)|
 |`.date`|`Date` (omitiendo hora y minutos del día)|
 |`.float`|`Float`|
 |`.double`|`Double`|
