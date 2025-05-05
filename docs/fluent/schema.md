@@ -74,7 +74,6 @@ Supported field data types are listed below.
 |`.uint{8,16,32,64}`|`UInt{8,16,32,64}`|
 |`.bool`|`Bool`|
 |`.datetime`|`Date` (recommended)|
-|`.time`|`Date` (omitting day, month, and year)|
 |`.date`|`Date` (omitting time of day)|
 |`.float`|`Float`|
 |`.double`|`Double`|
