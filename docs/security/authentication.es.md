@@ -105,16 +105,12 @@ struct UserAuthenticator: AsyncBasicAuthenticator {
 }
 ```
 
-If you add this authenticator to your app, and test the route defined above, you should see the name `"Vapor"` returned for a successful login. If the credentials are not correct, you should see a `401 Unauthorized` error.
-
-
-
 Este protocolo requiere que implementes `authenticate(basic:for:)`, que se llamará cuando una solicitud entrante contenga la cabecera `Authorization: Basic...`. Se pasa al método una estructura `BasicAuthorization` que contiene el nombre de usuario y la contraseña.
 
 En este autenticador de prueba, el nombre de usuario y la contraseña se prueban con valores codificados. En un autenticador real, puedes compararlo con una base de datos o una API externa. Es por eso que el método `authenticate` te permite devolver un futuro.
 
 !!! tip "Consejo"
-    Las contraseñas nunca deben almacenarse en una base de datos como texto sin formato. Utiliza siempre un hash de contraseña para comparar.
+    Las contraseñas nunca deben almacenarse en una base de datos como texto plano. Utiliza siempre un hash de contraseña para comparar.
 
 Si los parámetros de autenticación son correctos, en este caso coinciden con los valores codificados, se inicia sesión un `User` llamado Vapor. Si los parámetros de autenticación no coinciden, no se inicia sesión de usuario, lo que significa que la autenticación falló.
 
@@ -756,8 +752,6 @@ Estos middlewares hacen lo siguiente:
     La cookie de sesión no está configurada como `secure` ni `httpOnly` de forma predeterminada. Consulta la [API de Session](../advanced/sessions.md#configuration) de Vapor para obtener más información sobre cómo configurar las cookies.
 
 ### Protegiendo Rutas
-
-When protecting routes for an API, you traditionally return an HTTP response with a status code such as **401 Unauthorized** if the request is not authenticated. However, this isn't a very good user experience for someone using a browser. Vapor provides a `RedirectMiddleware` for any `Authenticatable` type to use in this scenario:
 
 Al proteger rutas en una API, tradicionalmente se devuelve una respuesta HTTP con un código de estado como **401 Unauthorized** si la solicitud no está autenticada. Sin embargo, esta no es una muy buena experiencia de usuario para alguien que usa un navegador. Vapor proporciona un `RedirectMiddleware` para cualquier tipo `Authenticatable` para usar en este escenario:
 
