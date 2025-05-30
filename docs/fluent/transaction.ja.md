@@ -32,7 +32,7 @@ return req.db.transaction { database in
 }.transform(to: HTTPStatus.ok)
 ```
 
-## `async`/`await` {#async-await}
+## `async`/`await`
 
 `async`/`await`を使用する場合、コードを以下のようにリファクタリングできます：
 
