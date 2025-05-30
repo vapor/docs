@@ -8,7 +8,7 @@ Vapor 4を使用するには、Xcode 11.4およびmacOS 10.15以上が必要で�
 
 ドキュメントのインストールセクションで依存関係のインストールについて説明しています。
 
-## Package.swift {#package-swift}
+## Package.swift
 
 Vapor 4へのアップグレードの最初のステップは、パッケージの依存関係を更新することです。以下は更新されたPackage.swiftファイルの例です。更新された[テンプレートPackage.swift](https://github.com/vapor/template/blob/main/Package.swift)も確認できます。
 
@@ -93,7 +93,7 @@ Vaporのパッケージマニフェストは、macOS 10.15以上を明示的に�
 
 将来的にVaporは追加のサポートプラットフォームを追加する可能性があります。あなたのパッケージは、バージョン番号がVaporの最小バージョン要件以上である限り、これらのプラットフォームの任意のサブセットをサポートできます。
 
-### Xcode {#xcode}
+### Xcode
 
 Vapor 4はXcode 11のネイティブSPMサポートを利用しています。これにより、`.xcodeproj`ファイルを生成する必要がなくなりました。Xcodeでプロジェクトのフォルダーを開くと、自動的にSPMが認識され、依存関係が取得されます。
 
@@ -108,7 +108,7 @@ Package.swiftを更新したら、Xcodeを閉じてルートディレクトリ�
 
 更新されたパッケージが正常に解決されると、コンパイラエラーが表示されるはずです--おそらくかなりの数です。心配しないでください！修正方法をお見せします。
 
-## Run {#run}
+## Run
 
 最初に行うべきことは、Runモジュールの`main.swift`ファイルを新しい形式に更新することです。
 
@@ -126,11 +126,11 @@ try app.run()
 
 `main.swift`ファイルの内容はAppモジュールの`app.swift`を置き換えるため、そのファイルは削除できます。
 
-## App {#app}
+## App
 
 基本的なAppモジュール構造の更新方法を見てみましょう。
 
-### configure.swift {#configure-swift}
+### configure.swift
 
 `configure`メソッドは`Application`のインスタンスを受け入れるように変更する必要があります。
 
@@ -162,11 +162,11 @@ public func configure(_ app: Application) throws {
 
 ルーティング、ミドルウェア、Fluentなどの設定に関する構文の変更は以下で説明します。
 
-### boot.swift {#boot-swift}
+### boot.swift
 
 `boot`の内容は、アプリケーションインスタンスを受け入れるようになったため、`configure`メソッドに配置できます。
 
-### routes.swift {#routes-swift}
+### routes.swift
 
 `routes`メソッドは`Application`のインスタンスを受け入れるように変更する必要があります。
 
@@ -312,7 +312,7 @@ app.myNumber = 42
 print(app.myNumber) // 42
 ```
 
-## NIO {#nio}
+## NIO
 
 Vapor 4はSwiftNIOの非同期APIを直接公開するようになり、`map`や`flatMap`のようなメソッドをオーバーロードしたり、`EventLoopFuture`のようなタイプをエイリアスしたりしようとしなくなりました。Vapor 3は、SwiftNIOが存在する前にリリースされた初期ベータバージョンとの下位互換性のためにオーバーロードとエイリアスを提供していました。これらは、他のSwiftNIO互換パッケージとの混乱を減らし、SwiftNIOのベストプラクティスの推奨事項により良く従うために削除されました。
 
@@ -345,7 +345,7 @@ Vapor 4はSwiftNIOの非同期APIを直接公開するようになり、`map`や
 }
 ```
 
-### ByteBuffer {#bytebuffer}
+### ByteBuffer
 
 以前は`Data`を使用していた多くのメソッドとプロパティは、NIOの`ByteBuffer`を使用するようになりました。このタイプは、より強力で高性能なバイトストレージタイプです。APIの詳細については、[SwiftNIOのByteBufferドキュメント](https://swiftpackageindex.com/apple/swift-nio/main/documentation/niocore/bytebuffer)を参照してください。
 
@@ -499,7 +499,7 @@ let corsMiddleware = CORSMiddleware(configuration: ...)
 app.middleware = .init()
 ```
 
-## Fluent {#fluent}
+## Fluent
 
 FluentのAPIはデータベースに依存しなくなりました。`Fluent`だけをインポートできます。
 
