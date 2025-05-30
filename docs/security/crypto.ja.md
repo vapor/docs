@@ -1,6 +1,6 @@
 # 暗号 {#crypto}
 
-Vapor には [SwiftCrypto](https://github.com/apple/swift-crypto/) が含まれており、これは Apple の CryptoKit ライブラリの Linux 互換ポートです。SwiftCrypto がまだサポートしていない [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt) や [TOTP](https://en.wikipedia.org/wiki/Time-based_One-time_Password_algorithm) のような追加の暗号 API も公開されています。
+Vapor には [SwiftCrypto](https://github.com/apple/swift-crypto/) が含まれており、これは Apple の CryptoKit ライブラリの Linux 互換ポートです。SwiftCrypto がまだサポートしていない [Bcrypt](https://ja.wikipedia.org/wiki/Bcrypt) や [TOTP](https://ja.wikipedia.org/wiki/Time-based_One-time_Password) のような追加の暗号 API も公開されています。
 
 ## SwiftCrypto {#swiftcrypto}
 
