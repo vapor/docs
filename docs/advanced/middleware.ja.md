@@ -40,7 +40,7 @@ app.group(MiddlewareC()) {
 Request → A → B → C → Handler → C → B → A → Response
 ```
 
-ミドルウェアは_先頭に追加_することもできます。これは、Vaporが自動的に追加するデフォルトのミドルウェアの_前に_ミドルウェアを追加したい場合に便利です：
+ミドルウェアは先頭に追加することもできます。これは、Vaporが自動的に追加するデフォルトのミドルウェアの前にミドルウェアを追加したい場合に便利です：
 
 ```swift
 app.middleware.use(someMiddleware, at: .beginning)
