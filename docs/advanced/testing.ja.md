@@ -166,7 +166,7 @@ private func withApp(_ test: (Application) async throws -> ()) async throws {
 
 Vaporには`XCTVapor`というモジュールが含まれており、`XCTest`をベースとしたテストヘルパーを提供しています。これらのテストヘルパーを使用すると、Vaporアプリケーションにプログラムでテストリクエストを送信したり、HTTPサーバー経由で実行したりできます。
 
-### はじめに {#getting-started-1}
+### はじめに {#getting-started_1}
 
 `XCTVapor`モジュールを使用するには、パッケージのテストターゲットに追加されていることを確認してください。
 
@@ -200,7 +200,7 @@ final class MyTests: XCTestCase {
 
 `test`で始まる各関数は、アプリがテストされるときに自動的に実行されます。
 
-### テスト可能なアプリケーション {#testable-application-1}
+### テスト可能なアプリケーション {#testable-application_1}
 
 `.testing`環境を使用して`Application`のインスタンスを初期化します。このアプリケーションがdeinitializeされる前に`app.shutdown()`を呼び出す必要があります。
 
@@ -214,7 +214,7 @@ try configure(app)
 
 設定を適用するために、`Application`をパッケージの`configure(_:)`メソッドに渡します。テスト専用の設定は後で適用できます。
 
-#### リクエストの送信 {#send-request-1}
+#### リクエストの送信 {#send-request_1}
 
 アプリケーションにテストリクエストを送信するには、`test`メソッドを使用します。
 
