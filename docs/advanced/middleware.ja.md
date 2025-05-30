@@ -34,7 +34,7 @@ app.group(MiddlewareC()) {
 }
 ```
 
-`GET /hello`へのリクエストは、以下の順序でミドルウェアを訪問します：
+`GET /hello`へのリクエストは、以下の順序でミドルウェアを通過します：
 
 ```
 Request → A → B → C → Handler → C → B → A → Response
