@@ -1,4 +1,4 @@
-# サーバー
+# Server
 
 Vaporには[SwiftNIO](https://github.com/apple/swift-nio)上に構築された高性能で非同期のHTTPサーバーが含まれています。このサーバーはHTTP/1、HTTP/2、および[WebSockets](websockets.md)などのプロトコルアップグレードをサポートしています。サーバーはTLS（SSL）の有効化もサポートしています。
 
