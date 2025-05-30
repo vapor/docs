@@ -4,7 +4,7 @@
 
 Vaporのトレーシング APIは[swift-distributed-tracing](https://github.com/apple/swift-distributed-tracing)の上に構築されているため、swift-distributed-tracingのすべての[バックエンド実装](https://github.com/apple/swift-distributed-tracing/blob/main/README.md#tracing-backends)と互換性があります。
 
-Swiftでのトレーシングとスパンに馴染みがない場合は、[OpenTelemetryトレースドキュメント](https://opentelemetry.io/docs/concepts/signals/traces/)と[swift-distributed-tracingドキュメント](https://swiftpackageindex.com/apple/swift-distributed-tracing/main/documentation/tracing)を確認してください。
+Swiftでのトレーシングとスパンに馴染みがない場合は、[OpenTelemetryトレースドキュメント](https://opentelemetry.io/ja/docs/concepts/signals/traces/)と[swift-distributed-tracingドキュメント](https://swiftpackageindex.com/apple/swift-distributed-tracing/main/documentation/tracing)を確認してください。
 
 ## TracingMiddleware {#tracingmiddleware}
 
