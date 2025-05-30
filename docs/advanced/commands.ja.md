@@ -1,4 +1,4 @@
-# コマンド
+# コマンド {#commands}
 
 VaporのCommand APIを使用すると、カスタムコマンドライン関数を構築し、ターミナルと対話できます。これは、`serve`、`routes`、`migrate`などのVaporのデフォルトコマンドが構築されている基盤です。
 
