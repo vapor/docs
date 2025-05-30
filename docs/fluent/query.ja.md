@@ -301,7 +301,7 @@ let home = try match.joined(HomeTeam.self)
 print(home.name)
 ```
 
-## 更新 {#update}
+## Update
 
 クエリビルダーは、`update`メソッドを使用して一度に複数のモデルを更新することをサポートしています。
 
@@ -315,7 +315,7 @@ Planet.query(on: database)
 
 `update`は`set`、`filter`、`range`メソッドをサポートしています。
 
-## 削除 {#delete}
+## Delete
 
 クエリビルダーは、`delete`メソッドを使用して一度に複数のモデルを削除することをサポートしています。
 
