@@ -1,6 +1,6 @@
 # WebSockets
 
-[WebSockets](https://en.wikipedia.org/wiki/WebSocket)は、クライアントとサーバー間の双方向通信を可能にします。リクエストとレスポンスのパターンを持つHTTPとは異なり、WebSocketのピアは任意の数のメッセージを双方向に送信できます。VaporのWebSocket APIを使用すると、メッセージを非同期に処理するクライアントとサーバーの両方を作成できます。
+[WebSockets](https://ja.wikipedia.org/wiki/WebSocket)は、クライアントとサーバー間の双方向通信を可能にします。リクエストとレスポンスのパターンを持つHTTPとは異なり、WebSocketのピアは任意の数のメッセージを双方向に送信できます。VaporのWebSocket APIを使用すると、メッセージを非同期に処理するクライアントとサーバーの両方を作成できます。
 
 ## サーバー {#server}
 
