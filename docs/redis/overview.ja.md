@@ -138,7 +138,7 @@ print(res)
 // "hello"
 ```
 
-## Pub/Subモード {#pub-sub-mode}
+## Pub/Subモード {#pubsub-mode}
 
 Redisは、接続が特定の「チャンネル」をリッスンし、購読したチャンネルが「メッセージ」（何らかのデータ値）をパブリッシュしたときに特定のクロージャを実行できる[「Pub/Sub」モード](https://redis.io/topics/pubsub)をサポートしています。
 
