@@ -30,7 +30,7 @@ Vaporが`80`または`443`以外のポートにバインドされている場合
 
 チュートリアル：
 
-- [Ubuntu 20.04にNginxをインストールする方法](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04)
+- [Ubuntu 20.04にNginxをインストールする方法](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04-ja)
 - [Ubuntu 18.04にNginxをインストールする方法](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04)
 - [CentOS 8にNginxをインストールする方法](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-8)
 - [Ubuntu 16.04にNginxをインストールする方法](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)
