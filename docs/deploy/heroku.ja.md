@@ -133,7 +133,7 @@ echo "web: App serve --env production" \
   "--hostname 0.0.0.0 --port \$PORT" > Procfile
 ```
 
-### 変更のコミット {#commit-changes-2}
+### 変更のコミット {#commit-changes_1}
 
 これらのファイルを追加しましたが、まだコミットされていません。プッシュしてもHerokuはそれらを見つけられません。
 
