@@ -444,7 +444,7 @@ DTOの構造がモデルの`Codable`準拠と同じであっても、別の型�
 
 `ModelAlias`プロトコルを使用すると、クエリで複数回結合されるモデルを一意に識別できます。詳細については、[Join](query.md#join)を参照してください。
 
-## 保存 {#save}
+## Save
 
 モデルをデータベースに保存するには、`save(on:)`メソッドを使用します。
 
@@ -454,7 +454,7 @@ planet.save(on: database)
 
 このメソッドは、モデルがすでにデータベースに存在するかどうかに応じて、内部的に`create`または`update`を呼び出します。
 
-### 作成 {#create}
+### Create
 
 新しいモデルをデータベースに保存するには、`create`メソッドを呼び出します。
 
@@ -490,7 +490,7 @@ await withThrowingTaskGroup(of: Void.self) { taskGroup in
 }
 ```
 
-### 更新 {#update}
+### Update
 
 データベースから取得したモデルを保存するには、`update`メソッドを呼び出します。
 
@@ -521,7 +521,7 @@ Planet.query(on: database).all()
 
 クエリの詳細については、[クエリ](query.md)セクションを参照してください。
 
-## 検索 {#find}
+## Find
 
 モデルには、識別子でモデルインスタンスを検索するための静的`find(_:on:)`メソッドがあります。
 
