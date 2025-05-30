@@ -108,7 +108,7 @@ Postgresアプリの名前がわからない場合は、`fly pg list`で確認�
 !!! note
     `fly pg create`と`fly pg attach`の違いは、前者がPostgresデータベースをホストできるFlyアプリを割り当てて設定するのに対し、後者は選択したアプリ用の実際のデータベースとユーザーを作成することです。要件に適合する場合、単一のPostgres Flyアプリが様々なアプリで使用される複数のデータベースをホストできます。`fly launch`でFlyにデータベースアプリの作成を依頼すると、`fly pg create`と`fly pg attach`の両方を呼び出すのと同等の処理が行われます。
 
-### VaporアプリをデータベースにAndroidする {#connecting-your-vapor-app-to-the-database}
+### Vaporアプリをデータベースに接続する {#connecting-your-vapor-app-to-the-database}
 アプリがデータベースにアタッチされると、Flyは`DATABASE_URL`環境変数に資格情報を含む接続URLを設定します（機密情報として扱う必要があります）。
 
 最も一般的なVaporプロジェクトの設定では、`configure.swift`でデータベースを設定します。以下は設定例です：
