@@ -133,7 +133,7 @@ server {
 
 ### TLS
 
-証明書が適切に生成されていれば、TLSの追加は比較的簡単です。無料でTLS証明書を生成するには、[Let's Encrypt](https://letsencrypt.org/getting-started/)を確認してください。
+証明書が適切に生成されていれば、TLSの追加は比較的簡単です。無料でTLS証明書を生成するには、[Let's Encrypt](https://letsencrypt.org/ja/getting-started/)を確認してください。
 
 ```sh
 server {
