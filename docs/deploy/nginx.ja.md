@@ -47,7 +47,7 @@ sudo apt-get update
 sudo apt-get install nginx
 ```
 
-#### CentOSとAmazon Linux
+#### CentOSとAmazon Linux {#centos-and-amazon-linux}
 
 ```sh
 sudo yum install nginx
