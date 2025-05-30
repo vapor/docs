@@ -149,4 +149,4 @@ let cors = CORSMiddleware(configuration: corsConfiguration)
 app.middleware.use(cors, at: .beginning)
 ```
 
-スローされたエラーは即座にクライアントに返されるため、`CORSMiddleware`は`ErrorMiddleware`の_前に_リストされている必要があります。そうでない場合、HTTPエラーレスポンスはCORSヘッダーなしで返され、ブラウザで読み取ることができません。
+スローされたエラーは即座にクライアントに返されるため、`CORSMiddleware`は`ErrorMiddleware`の前にリストされている必要があります。そうでない場合、HTTPエラーレスポンスはCORSヘッダーなしで返され、ブラウザで読み取ることができません。
