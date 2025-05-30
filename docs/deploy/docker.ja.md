@@ -18,7 +18,7 @@ Docker を実行するための開発環境をセットアップし、Docker ス
 
 ### Docker のインストール {#install-docker}
 
-開発環境用に Docker をインストールする必要があります。Docker Engine Overview の [Supported Platforms](https://docs.docker.com/install/#supported-platforms) セクションで、任意のプラットフォームの情報を見つけることができます。Mac OS を使用している場合は、[Docker for Mac](https://docs.docker.com/docker-for-mac/install/) のインストールページに直接ジャンプできます。
+開発環境用に Docker をインストールする必要があります。Docker Engine Overview の [Supported Platforms](https://docs.docker.jp/get-docker.html) セクションで、任意のプラットフォームの情報を見つけることができます。Mac OS を使用している場合は、[Docker for Mac](https://docs.docker.jp/desktop/install/mac-install.html) のインストールページに直接ジャンプできます。
 
 ### テンプレートの生成 {#generate-template}
 
@@ -29,19 +29,19 @@ Vapor テンプレートを出発点として使用することをお勧めし�
 
 ## Docker リソース {#docker-resources}
 
-今すぐでも近い将来でも、[Docker Overview](https://docs.docker.com/engine/docker-overview/) に慣れることは価値があります。概要では、このガイドで使用するいくつかの重要な用語が説明されています。
+今すぐでも近い将来でも、[Docker Overview](https://docs.docker.jp/get-started/overview.html) に慣れることは価値があります。概要では、このガイドで使用するいくつかの重要な用語が説明されています。
 
 テンプレート Vapor アプリには、2つの重要な Docker 固有のリソースがあります：**Dockerfile** と **docker-compose** ファイルです。
 
 ### Dockerfile
 
-Dockerfile は、Docker 化されたアプリのイメージをビルドする方法を Docker に指示します。そのイメージには、アプリの実行可能ファイルと、それを実行するために必要なすべての依存関係が含まれています。Dockerfile をカスタマイズする際は、[完全なリファレンス](https://docs.docker.com/engine/reference/builder/)を開いておくことをお勧めします。
+Dockerfile は、Docker 化されたアプリのイメージをビルドする方法を Docker に指示します。そのイメージには、アプリの実行可能ファイルと、それを実行するために必要なすべての依存関係が含まれています。Dockerfile をカスタマイズする際は、[完全なリファレンス](https://docs.docker.jp/engine/reference/builder.html)を開いておくことをお勧めします。
 
 Vapor アプリ用に生成された Dockerfile には2つのステージがあります。最初のステージはアプリをビルドし、結果を含む保持領域を設定します。2番目のステージは、安全なランタイム環境の基本を設定し、保持領域内のすべてを最終イメージ内の配置場所に転送し、デフォルトポート（8080）でプロダクションモードでアプリを実行するデフォルトのエントリポイントとコマンドを設定します。この設定は、イメージを使用するときに上書きできます。
 
 ### Docker Compose ファイル {#docker-compose-file}
 
-Docker Compose ファイルは、Docker が複数のサービスを相互に関連付けてビルドする方法を定義します。Vapor アプリテンプレートの Docker Compose ファイルは、アプリをデプロイするために必要な機能を提供しますが、詳細を学びたい場合は、利用可能なすべてのオプションの詳細が記載されている[完全なリファレンス](https://docs.docker.com/compose/compose-file/)を参照してください。
+Docker Compose ファイルは、Docker が複数のサービスを相互に関連付けてビルドする方法を定義します。Vapor アプリテンプレートの Docker Compose ファイルは、アプリをデプロイするために必要な機能を提供しますが、詳細を学びたい場合は、利用可能なすべてのオプションの詳細が記載されている[完全なリファレンス](https://docs.docker.jp/reference/compose-file/toc.html)を参照してください。
 
 !!! note
     最終的に Kubernetes を使用してアプリをオーケストレーションする予定がある場合、Docker Compose ファイルは直接関係ありません。ただし、Kubernetes マニフェストファイルは概念的に似ており、[Docker Compose ファイルの移植](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/)を目的としたプロジェクトもあります。
