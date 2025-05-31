@@ -68,7 +68,7 @@ let id = try planet.requireID()
 
 ### Exists
 
-`@ID` tiene una propiedad `exists` que representa si el modelo existe o no en la base de datos. Cuando inicializas un modelo, el valor es `false`. Después de guardar un modelo o recuperarlo de la base de datos, the value is `true`. Esta propiedad es mutable.
+`@ID` tiene una propiedad `exists` que representa si el modelo existe o no en la base de datos. Cuando inicializas un modelo, el valor es `false`. Después de guardar un modelo o recuperarlo de la base de datos, el valor `true`. Esta propiedad es mutable.
 
 ```swift
 if planet.$id.exists {
