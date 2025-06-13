@@ -5,11 +5,11 @@ Migraties zijn als een versiebeheersysteem voor uw database. Elke migratie defin
 ```swift
 // Een voorbeeld migratie.
 struct MyMigration: Migration {
-    func prepare(on database: Database) -> EventLoopFuture<Void> {
+    func prepare(on database: any Database) -> EventLoopFuture<Void> {
         // Breng een wijziging aan in de database.
     }
 
-    func revert(on database: Database) -> EventLoopFuture<Void> {
+    func revert(on database: any Database) -> EventLoopFuture<Void> {
     	// Maak de verandering in `prepare` ongedaan, indien mogelijk.
     }
 }
@@ -19,11 +19,11 @@ Als je `async`/`await` gebruikt moet je het `AsyncMigration` protocol implemente
 
 ```swift
 struct MyMigration: AsyncMigration {
-    func prepare(on database: Database) async throws {
+    func prepare(on database: any Database) async throws {
         // Breng een wijziging aan in de database.
     }
 
-    func revert(on database: Database) async throws {
+    func revert(on database: any Database) async throws {
     	// Maak de verandering in `prepare` ongedaan, indien mogelijk.
     }
 }
