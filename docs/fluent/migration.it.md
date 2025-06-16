@@ -5,11 +5,11 @@ Le migrazioni sono come un sistema di controllo versione per il tuo database. Og
 ```swift
 // Un esempio di migrazione.
 struct MyMigration: Migration {
-    func prepare(on database: Database) -> EventLoopFuture<Void> {
+    func prepare(on database: any Database) -> EventLoopFuture<Void> {
         // Fai una modifica al database.
     }
 
-    func revert(on database: Database) -> EventLoopFuture<Void> {
+    func revert(on database: any Database) -> EventLoopFuture<Void> {
     	// Disfai le modifiche fatte in `prepare`, se possibile.
     }
 }
@@ -19,11 +19,11 @@ Se usi `async`/`await` devi implementare il protocollo `AsyncMigration`:
 
 ```swift
 struct MyMigration: AsyncMigration {
-    func prepare(on database: Database) async throws {
+    func prepare(on database: any Database) async throws {
         // Fai una modifica al database.
     }
 
-    func revert(on database: Database) async throws {
+    func revert(on database: any Database) async throws {
     	// Disfai le modifiche fatte in `prepare`, se possibile.
     }
 }
