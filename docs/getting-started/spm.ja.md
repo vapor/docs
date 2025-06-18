@@ -6,7 +6,7 @@ SPM は Cocoapods 、Ruby gems 、 NPM に似ています。SPM は、`swift bui
 
 ## パッケージマニフェスト
 
-SPM がプロジェクトで最初に探す場所は、パッケージマニフェストです。これは常にプロジェクトのルールディレクトリに配置され、`Package.swift` という名前でなければなりません。
+SPM がプロジェクトで最初に探す場所は、パッケージマニフェストです。これは常にプロジェクトのルートディレクトリに配置され、`Package.swift` という名前でなければなりません。
 
 以下は、パッケージマニフェストの例です。
 
@@ -41,7 +41,7 @@ let package = Package(
 
 ### Tools Version
 
-パッケージマニフェストの最初の行は、必要な Swift ツールのバージョンを示しています。これは、パッケージがサポートする Swift のバージョン間で Package description API が変更される場合があるため、この行は Swift がマニフェストをどのように解析するかを知らせるために必要ようです。
+パッケージマニフェストの最初の行は、必要な Swift ツールのバージョンを示しています。これは、パッケージがサポートする Swift の最小バージョンを指定します。Swift のバージョン間で Package description API が変更される場合があるため、この行は Swift がマニフェストをどのように解析するかを知らせるために必要です。
 
 ### Package Name
 
@@ -88,7 +88,7 @@ let package = Package(
 
 ## Xcode
 
-もし、Xocde 11 以降を使用している場合、`Package.swift` ファイルが変更されるたびに、依存関係、ターゲット、プロダクトなどの変更が自動的に行われます。
+もし、Xcode 11 以降を使用している場合、`Package.swift` ファイルが変更されるたびに、依存関係、ターゲット、プロダクトなどの変更が自動的に行われます。
 
 最新の依存関係に更新するには、File &rarr; Swift Packages &rarr; Update To Latest Swift Package Versions を使用します。
 
