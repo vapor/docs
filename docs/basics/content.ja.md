@@ -28,11 +28,10 @@ struct Greeting: Content {
 
 型を `Content` に準拠させると、コンテンツ API を扱うための追加ユーティリティが得られると同時に、`Codable` にも自動的に準拠するようになります。
 
-
 コンテンツの構造ができたら、`req.content` を使ってリクエストからデコードできます。
 
 ```swift
-app.post("greeting") { req in
+app.post("greeting") { req in 
     let greeting = try req.content.decode(Greeting.self)
     print(greeting.hello) // "world"
     return HTTPStatus.ok
@@ -101,7 +100,7 @@ struct Hello: Content {
 期待されるクエリ文字列に合わせた `Content` 構造体が用意できたら、それをデコードできます。
 
 ```swift
-app.get("hello") { req -> String in
+app.get("hello") { req -> String in 
     let hello = try req.query.decode(Hello.self)
     return "Hello, \(hello.name ?? "Anonymous")"
 }
@@ -136,18 +135,18 @@ let name: String? = req.query["name"]
 Vapor は、`Content` タイプに対して `beforeEncode` および `afterDecode` を自動的に呼び出します。デフォルトの実装は何もしませんが、これらのメソッドを使用してカスタムロジックを実行することができます。
 
 ```swift
-// この　Content　がデコードされた後に実行されます。`mutating` は構造体のみに必要で、クラスには必要ありません。
+// この Content がデコードされた後に実行されます。`mutating` は構造体のみに必要で、クラスには必要ありません。
 mutating func afterDecode() throws {
-    // 名前は渡されないことがありますが、渡される場合は空文字列であってはなりません。
+    // 名前は *必ず* 渡される必要があり、空文字列であってはなりません。
     self.name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines)
     if let name = self.name, name.isEmpty {
         throw Abort(.badRequest, reason: "Name must not be empty.")
     }
 }
 
-// この Contents がエンコードされる前に実行されます。`mutating` は構造体のみに必要で、クラスには必要ありません。
+// この Content がエンコードされる前に実行されます。`mutating` は構造体のみに必要で、クラスには必要ありません。
 mutating func beforeEncode() throws {
-    // 名前は渡されないことがありますが、渡される場合は空文字列であってはなりません。
+    // 名前は *必ず* 渡される必要があり、空文字列であってはなりません。
     guard
         let name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines),
         !name.isEmpty
@@ -214,7 +213,7 @@ public protocol ContentDecoder {
 
 ### URL クエリ
 
-Vapor は、URL クエリ文字列のコンテンツを処理することができる coder のための 2 つのプロトコルを指定しています: `URLQueryDecoder` と `URLQueryEncoder`
+Vapor は、URL クエリ文字列のコンテンツを処理することができるコーダーのための 2 つのプロトコルを指定しています: `URLQueryDecoder` と `URLQueryEncoder`
 
 ```swift
 public protocol URLQueryDecoder {
@@ -254,7 +253,7 @@ extension HTML: ResponseEncodable {
 }
 ```
 
-`async`/`await`　を使用している場合は、`AsyncResponseEncodable` を使用できます。
+`async`/`await` を使用している場合は、`AsyncResponseEncodable` を使用できます。
 
 ```swift
 extension HTML: AsyncResponseEncodable {
