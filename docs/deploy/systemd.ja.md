@@ -33,7 +33,6 @@ WantedBy=multi-user.target
 `--env production`フラグは詳細なログ出力を無効にします。
 
 ### 環境変数 {#environment}
-値のクォートは任意ですが、推奨されます。
 
 systemd経由で変数をエクスポートする方法は2つあります。すべての変数が設定された環境ファイルを作成する方法：
 
