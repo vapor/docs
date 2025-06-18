@@ -38,7 +38,7 @@ app.middleware.use(fileMiddleware)
 ## Sources
 
 このフォルダには、プロジェクトのすべての Swift ソースファイルが含まれています。
-トップレベルのフォルダ、`App` は、[SwiftPM](spm.ja.md) のマニフェストで宣言されたパッケージのモジュール反映をしています。
+トップレベルのフォルダ、`App` は、[SwiftPM](spm.ja.md) のマニフェストで宣言されたパッケージのモジュールを反映しています。
 
 ### App
 
