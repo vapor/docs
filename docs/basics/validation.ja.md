@@ -1,12 +1,12 @@
-# バリデーション
+# バリデーション {#validation}
 
 Vapor のバリデーション API は、データをデコードする前に、[コンテンツ](content.ja.md) API を使って入力リクエストの検証を行うのに役立ちます。
 
-## はじめに 
+## はじめに {#introduction} 
 
 Swift の型安全な `Codable` プロトコルを深く統合している Vapor は、動的型付け言語に比べてデータバリデーションについてそれほど心配する必要はありません。しかし、明示的なバリデーションを選択する理由はいくつかあります。
 
-### 人間が読みやすいエラー
+### 人間が読みやすいエラー {#human-readable-errors}
 
 [コンテンツ](content.ja.md) API を使用して構造体をデコードする際には、データが無効である場合にエラーが発生します。しかしながら、これらのエラーメッセージは時として人間が読みやすいものではありません。例えば、次のような文字列ベースの enum を見て下さい。
 
@@ -30,7 +30,7 @@ favoriteColor is not red, blue, or green
 
 さらに、`Codable` は最初のエラーが発生した時点で型のデコードを試みるのをやめます。つまり、リクエストに多くの無効なプロパティがあっても、ユーザーは最初のエラーしか見ることができません。バリデーション API は、一度のリクエストで全てのバリデーション失敗を報告します。
 
-### 特定のバリデーション
+### 特定のバリデーション {#specific-validation}
 
 `Codable` は型のバリデーションをうまく扱いますが、時にはそれ以上のことをしたい事もあります。例えば、文字列の内容を検証したり、整数のサイズを検証したりすることです。バリデーション API には、メールアドレス、文字セット、整数の範囲など、データの検証に役立つバリデータがあります。
 
@@ -60,7 +60,7 @@ app.post("users") { req -> CreateUser in
 }
 ```
 
-### バリデーションの追加
+### バリデーションの追加 {#adding-validations}
 
 最初のステップは、この場合は `CreateUser` である、デコードする型を `Validatable` に準拠させることです。これは拡張を使って行うことができます。
 
@@ -80,7 +80,7 @@ validations.add("email", as: String.self, is: .email)
 
 最初のパラメータは期待される値のキーで、この場合は `"email"` です。これは検証される型のプロパティ名と一致している必要があります。二番目のパラメータ `as` は期待される型で、この場合は `String` です。型は通常、プロパティの型と一致しますが、常にそうとは限りません。最後に、三番目のパラメータ `is` の後に一つまたは複数のバリデータを追加できます。この場合、値がメールアドレスであるかをチェックする単一のバリデータが追加されています。
 
-### リクエストコンテンツのバリデーション
+### リクエストコンテンツのバリデーション {#validating-request-content}
 
 型を `Validatable` に準拠させたら、静的な `validate(content:)` 関数を使ってリクエストコンテンツをバリデーションできます。ルートハンドラの `req.content.decode(CreateUser.self)` の前に次の行を追加してください。
 
@@ -111,7 +111,7 @@ Content-Type: application/json
 email is not a valid email address
 ```
 
-### リクエストクエリのバリデーション
+### リクエストクエリのバリデーション {#validating-request-query}
 
 `Validatable` に準拠している型には、リクエストのクエリ文字列をバリデーションする `validate(query:)` もあります。ルートハンドラに次の行を追加してください。
 
@@ -133,7 +133,7 @@ GET /users?age=4&email=foo&favoriteColor=green&name=Foo&username=foo HTTP/1.1
 email is not a valid email address
 ```
 
-### 整数のバリデーション
+### 整数のバリデーション {#integer-validation}
 
 素晴らしい、次に `age` に対する検証を追加してみましょう。
 
@@ -147,7 +147,7 @@ validations.add("age", as: Int.self, is: .range(13...))
 age is less than minimum of 13, email is not a valid email address
 ```
 
-### 文字列のバリデーション
+### 文字列のバリデーション {#string-validation}
 
 次に、`name` と `username` に対する検証を追加しましょう。
 
@@ -160,7 +160,7 @@ validations.add("username", as: String.self, is: .count(3...) && .alphanumeric)
 
 ユーザーネームの検証では、`&&` を使って2つのバリデーターを組み合わせます。これにより、文字列が少なくとも3文字以上であり、_かつ_ 英数字のみで構成されていることが必要です。
 
-### Enumのバリデーション
+### Enumのバリデーション {#enum-validation}
 
 最後に、提供された `favoriteColor` が有効かどうかをチェックする少し高度な検証を見てみましょう。
 
@@ -186,7 +186,7 @@ validations.add(
 )
 ```
 
-### カスタムエラー
+### カスタムエラー {#custom-errors}
 
 `Validations` や `Validator` にカスタムで人が読めるエラーを追加したい場合があります。そのためには、デフォルトのエラーを上書きする追加の `customFailureDescription` パラメータを提供するだけです。
 
@@ -205,7 +205,7 @@ validations.add(
 )
 ```
 
-## バリデーター
+## バリデーター {#validators}
 
 以下は、現在サポートされているバリデーターと、それらが何をするのかの簡単な説明のリストです。
 
@@ -231,7 +231,11 @@ validations.add(
 |`&&`|中置|2つのバリデーターを組み合わせ、両方を要求する。|
 |`||`|中置|2つのバリデーターを組み合わせ、1つを要求する。|
 
-## カスタムバリデーション
+## カスタムバリデーション {#custom-validators}
+
+カスタムバリデーターを作成する方法は2つあります。
+
+### Extending Validation API {#extending-validation-api}
 
 郵便番号のカスタムバリデーターを作成することで、バリデーションフレームワークの機能を拡張できます。このセクションでは、郵便番号を検証するカスタムバリデーターを作成する手順を説明します。
 
@@ -291,7 +295,7 @@ extension Validator where T == String {
 validations.add("zipCode", as: String.self, is: .zipCode)
 ```
 
-### `Custom` バリデーター
+### `Custom` バリデーター {#custom-validator}
 
 `Custom` バリデーターは、1つの `Content` オブジェクトでのみプロパティを検証したい場合に最適です。この実装には、Validation API を拡張する場合と比較して、次の2つの利点があります：
 
