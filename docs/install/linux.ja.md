@@ -12,7 +12,7 @@ Vapor は、Swift 5.9 またはそれ以上の新しいバージョンがサポ�
 
 ### Swiftly CLI ツールを使用した自動インストール (推奨)
 
-Linux で Swiftly と Swift をインストールする手順については、[Swifty のウェブサイト](https://swiftlang.github.io/swiftly/)をご覧ください。その手順に従った後、次のコマンドで Swift をインストールします。
+Linux で Swiftly と Swift をインストールする手順については、[Swiftly のウェブサイト](https://swiftlang.github.io/swiftly/)をご覧ください。その手順に従った後、次のコマンドで Swift をインストールします。
 
 #### 基本的な使い方
 
@@ -43,7 +43,7 @@ Fedora ユーザーは、以下のコマンドを使用して Swift を簡単に
 sudo dnf install swift-lang
 ```
 
-Fedora 35 を使用している場合、Swift 5.9 またはそれ以降のバージョンを取得するには、EPEL8 を追加する必要があります。
+Fedora 35 を使用している場合、Swift 5.9 またはそれ以降のバージョンを取得するには、EPEL 8 を追加する必要があります。
 
 ## Docker
 
@@ -51,9 +51,27 @@ Swift の公式Docker イメージも使用できます。これにはコンパ�
 
 ## ツールボックスのインストール
 
-Swift をインストールしたら、[Vapor Toolbox](https://github.com/vapor/toolbox) をインストールしましょう。この CLI ツールは、Vapor を使用するために必須ではありませんが、役立つユーティリティが含まれています。
+Swift をインストールしたら、[Vapor Toolbox](https://github.com/vapor/toolbox) をインストールしましょう。この CLI ツールは、Vapor を使用するために必須ではありませんが、新しい Vapor プロジェクトの作成に役立ちます。
 
-Linux 上では、ソースからツールボックスをビルドする必要があります。GitHub のツールボックスの<a href="https://github.com/vapor/toolbox/releases" target="_blank">リリース</a>で最新バージョンを見つけてください。
+### Homebrew
+
+Toolbox は Homebrew 経由で配布されています。まだ Homebrew をお持ちでない場合は、<a href="https://brew.sh" target="_blank">brew.sh</a> でインストール手順をご確認ください。
+
+```sh
+brew install vapor
+```
+
+インストールが成功したかどうかを確認するためにヘルプを表示します。
+
+```sh
+vapor --help
+```
+
+利用可能なコマンドのリストが表示されるはずです。
+
+### Makefile
+
+必要に応じて、ソースから Toolbox をビルドすることもできます。GitHub のツールボックスの<a href="https://github.com/vapor/toolbox/releases" target="_blank">リリース</a>で最新バージョンを見つけてください。
 
 ```sh
 git clone https://github.com/vapor/toolbox.git
@@ -72,4 +90,4 @@ vapor --help
 
 ## 次へ
 
-Swift をインストールしたら、[はじめに &rarr; hello, world](../getting-started/hello-world.md) で初めてのアプリを作成してください。
+Swift と Vapor Toolbox をインストールしたら、[はじめに &rarr; Hello, world](../getting-started/hello-world.md) で初めてのアプリを作成してください。
