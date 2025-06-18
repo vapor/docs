@@ -211,7 +211,7 @@ validations.add(
 
 |Validation|説明|
 |-|-|
-|`.ascii`|ASCⅡ 文字のみを使います。|
+|`.ascii`|ASCII 文字のみを使います。|
 |`.alphanumeric`|英数字のみを含みます。|
 |`.characterSet(_:)`|指定された `CharacterSet` からの文字のみを含みます。|
 |`.count(_:)`|コレクションのカウントが指定された範囲内です。|
@@ -221,6 +221,7 @@ validations.add(
 |`.nil`|値が `null` です。|
 |`.range(_:)`|値が提供された `Range` の内です。|
 |`.url`|有効な URL を含みます。|
+|`.custom(_:)`|カスタム検証ロジック。|
 
 バリデーターはまた、演算子を使用して複雑な検証を組み立てるために組み合わせることができます。
 
@@ -288,4 +289,46 @@ extension Validator where T == String {
 
 ```swift
 validations.add("zipCode", as: String.self, is: .zipCode)
+```
+
+### `Custom` バリデーター
+
+`Custom` バリデーターは、1つの `Content` オブジェクトでのみプロパティを検証したい場合に最適です。この実装には、Validation API を拡張する場合と比較して、次の2つの利点があります：
+
+- カスタム検証ロジックの実装がシンプル
+- より短い構文
+
+このセクションでは、`nameAndSurname` プロパティを見て、従業員が当社の一員であるかどうかをチェックするカスタムバリデーターを作成する手順を説明します。
+
+```swift
+let allCompanyEmployees: [String] = [
+  "Everett Erickson",
+  "Sabrina Manning",
+  "Seth Gates",
+  "Melina Hobbs",
+  "Brendan Wade",
+  "Evie Richardson",
+]
+
+struct Employee: Content {
+  var nameAndSurname: String
+  var email: String
+  var age: Int
+  var role: String
+
+  static func validations(_ validations: inout Validations) {
+    validations.add(
+      "nameAndSurname",
+      as: String.self,
+      is: .custom("名前と姓から従業員がXYZ社の一員であるかを検証します。") { nameAndSurname in
+          for employee in allCompanyEmployees {
+            if employee == nameAndSurname {
+              return true
+            }
+          }
+          return false
+        }
+    )
+  }
+}
 ```
