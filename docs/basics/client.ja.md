@@ -24,7 +24,7 @@ app.get("test") { req in
 let response = try await req.client.get("https://httpbin.org/status/200")
 ```
 
-`get`、`post`、`delete` など、各種 HTTP メソッドに対応したメソッドがあります。クライアントからのレスポンスは将来的に返され、HTTPステータス、ヘッダー、ボディが含まれます。
+`get`、`post`、`delete` など、各種 HTTP メソッドに対応したメソッドがあります。クライアントからのレスポンスはFutureとして返され、HTTPステータス、ヘッダー、ボディが含まれます。
 
 ### コンテンツ
 
@@ -42,23 +42,23 @@ let response = try await req.client.post("https://httpbin.org/status/200") { req
     let auth = BasicAuthorization(username: "something", password: "somethingelse")
     req.headers.basicAuthorization = auth
 }
-//レスポンスを扱う
+// レスポンスを処理する。
 ```
 
-レスポンスボディを `Content` を使ってデコードすることもできます。：
+レスポンスボディを `Content` を使ってデコードすることもできます。
 
 ```swift
 let response = try await req.client.get("https://httpbin.org/json")
 let json = try response.content.decode(MyJSONResponse.self)
 ```
 
-もし、futures を使っている場合は、`flatMapThrowing` を使うことができます。：
+もし、Future を使っている場合は、`flatMapThrowing` を使うことができます。
 
 ```swift
 return req.client.get("https://httpbin.org/json").flatMapThrowing { res in
 	try res.content.decode(MyJSONResponse.self)
 }.flatMap { json in
-	// Use JSON here
+	// ここでJSONを使用
 }
 ```
 
@@ -67,7 +67,7 @@ return req.client.get("https://httpbin.org/json").flatMapThrowing { res in
 アプリケーションを通じて、基本となる HTTP クライアントを設定することができます。
 
 ```swift
-// Disable automatic redirect following.
+// 自動リダイレクトを無効にする。
 app.http.client.configuration.redirectConfiguration = .disallow
 ```
 
