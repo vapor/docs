@@ -1,8 +1,8 @@
-# クライアント
+# クライアント {#client}
 
 Vapor のクライアント API では、外部のリソースに対して HTTP 通信を行うことができます。これは [async-http-client](https://github.com/swift-server/async-http-client) に基づいており、[コンテンツ](content.ja.md) API と統合されています。
 
-## 概要
+## 概要 {#overview}
 
 `Application` やルートハンドラー内の `Request` から、デフォルトクライアントにアクセスできます。
 
@@ -16,7 +16,7 @@ app.get("test") { req in
 
 アプリケーションのクライアントは、設定時に HTTP リクエストを送る際に便利です。ルートハンドラー内で HTTP リクエストを行う場合は、リクエストに紐づくクライアントを使うべきです。
 
-### メソッド
+### メソッド {#methods}
 
 `GET` リクエストを行う際には、目的の URL を `get` メソッドに渡します。
 
@@ -26,7 +26,7 @@ let response = try await req.client.get("https://httpbin.org/status/200")
 
 `get`、`post`、`delete` など、各種 HTTP メソッドに対応したメソッドがあります。クライアントからのレスポンスはFutureとして返され、HTTPステータス、ヘッダー、ボディが含まれます。
 
-### コンテンツ
+### コンテンツ {#content}
 
 Vapor の [コンテンツ](content.ja.md) を使うと、クライアントリクエストやレスポンスのデータを扱うことができます。コンテンツやクエリパラメータをエンコードしたり、ヘッダーを追加するには、`beforeSend` クロージャを使います。
 
@@ -62,7 +62,7 @@ return req.client.get("https://httpbin.org/json").flatMapThrowing { res in
 }
 ```
 
-## 設定
+## 設定 {#configuration}
 
 アプリケーションを通じて、基本となる HTTP クライアントを設定することができます。
 

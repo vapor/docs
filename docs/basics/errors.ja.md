@@ -1,4 +1,4 @@
-# エラー
+# エラー {#errors}
 
 Vapor は Swift の `Error` プロトコルをベースにしたエラー処理を採用しています。ルートハンドラは、エラーを `throw` するか、失敗した `EventLoopFuture` を返すことができます。Swiftの `Error` を throw するか返すと、`500` ステータスのレスポンスが生成され、エラーがログに記録されます。`AbortError` と `DebuggableError` は、それぞれ結果として得られるレスポンスとログを変更するために使用できます。エラーの処理は `ErrorMiddleware` によって行われます。このミドルウェアはデフォルトでアプリケーションに追加されており、必要に応じてカスタムロジックに置き換えることができます。
 
@@ -136,52 +136,8 @@ struct MyError: DebuggableError {
 
 `DebuggableError` には、エラーのデバッグ性を向上させるために使用できる `possibleCauses` や `suggestedFixes` など、他にもいくつかのプロパティがあります。より詳細に知りたい場合は、プロトコル自体をご覧ください。
 
-## スタックトレース
 
-Vaporは、通常のSwiftエラーやクラッシュに対するスタックトレースの表示をサポートしています。
-
-### Swift バックトレース
-
-Vapor は、Linux 上で致命的なエラーやアサーションの後にスタックトレースを提供するために、[SwiftBacktrace](https://github.com/swift-server/swift-backtrace) ライブラリを使用しています。これが機能するためには、アプリはコンパイル中にデバッグシンボルを含める必要があります。
-
-```sh
-swift build -c release -Xswiftc -g
-```
-
-### エラートレース
-
-デフォルトでは、`Abort` は初期化されたときに現在のスタックトレースをキャプチャします。カスタムエラータイプは、`DebuggableError` に準拠し、`StackTrace.capture()` を保存することでこれを実現できます。
-
-```swift
-import Vapor
-
-struct MyError: DebuggableError {
-    var identifier: String
-    var reason: String
-    var stackTrace: StackTrace?
-
-    init(
-        identifier: String,
-        reason: String,
-        stackTrace: StackTrace? = .capture()
-    ) {
-        self.identifier = identifier
-        self.reason = reason
-        self.stackTrace = stackTrace
-    }
-}
-```
-
-アプリケーションの[ログレベル](logging.ja.md#level)が `.debug` 以下に設定されている場合、エラースタックトレースはログ出力に含まれます。
-
-ログレベルが `.debug` より大きい場合、スタックトレースはキャプチャされません。この挙動を変更するには、`configure` 内で `StackTrace.isCaptureEnabled` を手動で設定してください。
-
-```swift
-// Always capture stack traces, regardless of log level.
-StackTrace.isCaptureEnabled = true
-```
-
-## エラーミドルウェア
+## エラーミドルウェア {#error-middleware}
 
 `ErrorMiddleware` は、デフォルトでアプリケーションに追加される唯一のミドルウェアです。このミドルウェアは、ルートハンドラーによって投げられたり返されたりした Swift のエラーを HTTP レスポンスに変換します。このミドルウェアがない場合、投げられたエラーは応答なしに接続が閉じられることになります。
 

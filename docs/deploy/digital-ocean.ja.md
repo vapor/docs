@@ -175,10 +175,10 @@ DigitalOcean DropletでVaporアプリが実行できたことをおめでとう�
 
 このガイドの残りの部分では、デプロイメントを改善するための追加リソースを紹介します。
 
-### Supervisor {#supervisor}
+### Supervisor
 
 Supervisorは、Vapor実行ファイルを実行および監視できるプロセス制御システムです。Supervisorを設定すると、サーバーの起動時にアプリが自動的に開始され、クラッシュした場合に再起動されます。[Supervisor](../deploy/supervisor.md)について詳しく学びましょう。
 
-### Nginx {#nginx}
+### Nginx
 
 Nginxは、極めて高速で、実戦で証明されており、設定が簡単なHTTPサーバーおよびプロキシです。VaporはHTTPリクエストを直接処理することをサポートしていますが、Nginxの背後でプロキシすることで、パフォーマンス、セキュリティ、使いやすさが向上します。[Nginx](../deploy/nginx.md)について詳しく学びましょう。

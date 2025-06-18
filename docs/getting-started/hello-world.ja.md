@@ -10,7 +10,7 @@
 !!! tip
 	Vapor ツールボックスで使用されるテンプレートには Swift 6.0 以降が必要です
 
-## 新規プロジェクト
+## 新規プロジェクト {#new-project}
 
 最初のステップは、コンピュータに新しい Vapor プロジェクトを作成することです。ターミナルを開き、ツールボックスの新規プロジェクトコマンドを使用してください。これにより、現在のディレクトリにプロジェクトを含む新しいフォルダが作成されます。
 
@@ -36,7 +36,7 @@ vapor new hello -n
 cd hello
 ```
 
-## ビルド & 実行
+## ビルド & 実行 {#build-run}
 
 ### Xcode
 
@@ -75,7 +75,7 @@ swift run
 [ INFO ] Server starting on http://127.0.0.1:8080
 ```
 
-## Localhost へのアクセス
+## Localhost へのアクセス {#visit-localhost}
 
 ウェブブラウザを開き、<a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello</a> または <a href="http://127.0.0.1:8080" target="_blank">http://127.0.0.1:8080</a> にアクセスしてください。
 

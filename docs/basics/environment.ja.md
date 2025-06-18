@@ -1,4 +1,4 @@
-# 環境
+# 環境 {#environment}
 
 VaporのEnvironment APIは、アプリの動的な設定を支援します。デフォルトでは、あなたのアプリは`development`環境を使用します。`production`や`staging`のような他の有用な環境を定義し、各ケースでアプリがどのように設定されるかを変更できます。また、プロセスの環境や`.env`（dotenv）ファイルから変数を読み込むことも、ニーズに応じて可能です。
 
@@ -13,7 +13,7 @@ default:
 }
 ```
 
-## 環境の変化
+## 環境の変化 {#changing-environment}
 
 デフォルトでは、アプリは `development` 環境で実行されます。アプリ起動時に `--env`（`-e`）フラグを渡すことで、これを変更できます。
 
@@ -39,7 +39,7 @@ Vapor は以下の環境を含みます。:
 swift run App serve -e prod
 ```
 
-## プロセス変数
+## プロセス変数 {#process-variables}
 
 `Environment` は、プロセスの環境変数にアクセスするためのシンプルな文字列ベースの API を提供します。
 
@@ -64,7 +64,7 @@ swift run App serve
 
 Xcode でアプリを実行する場合は、`App` スキームを編集して環境変数を設定できます。
 
-## .env (dotenv)
+## .env (dotenv) {#env-dotenv}
 
 Dotenv ファイルには、環境に自動的にロードされるキーと値のペアのリストが含まれています。これらのファイルは、手動で設定することなく環境変数を設定するのを容易にします。
 
@@ -107,7 +107,7 @@ vim .env.development
 
 dotenv ファイルの読み込みに問題がある場合は、`--log debug` を使用してデバッグログを有効にすると、より多くの情報が得られます。
 
-## カスタム環境
+## カスタム環境 {#custom-environments}
 
 カスタム環境を定義するには、`Environment`を拡張します。
 

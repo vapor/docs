@@ -193,7 +193,7 @@ let hello = try req.content.decode(Hello.self, using: decoder)
 
 アプリケーションやサードパーティのパッケージは、Vapor がデフォルトでサポートしていないメディアタイプに対応するためにカスタムコーダーを作成することができます。
 
-### Content {#content}
+### Content
 
 Vapor は、HTTP メッセージボディのコンテンツを処理するためのコーダーのために、`ContentDecoder` と `ContentEncoder` の2つのプロトコルを指定しています。
 

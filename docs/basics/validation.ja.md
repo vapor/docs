@@ -235,7 +235,7 @@ validations.add(
 
 カスタムバリデーターを作成する方法は2つあります。
 
-### Extending Validation API {#extending-validation-api}
+### Validation APIの拡張 {#extending-validation-api}
 
 郵便番号のカスタムバリデーターを作成することで、バリデーションフレームワークの機能を拡張できます。このセクションでは、郵便番号を検証するカスタムバリデーターを作成する手順を説明します。
 

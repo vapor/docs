@@ -1,20 +1,20 @@
-# Linux にインストール
+# Linux にインストール {#install-on-linux}
 
 Vapor を使うには、Swift 5.9 以上が必要です。これは Swift Server Workgroup が提供する CLI ツール [Swiftly](https://swiftlang.github.io/swiftly/) を使ってインストールできます（推奨）。または、[Swift.org](https://swift.org/download/) で利用可能なツールチェーンを使用してインストールできます。
 
-## サポートされているディストリビューションとバージョン
+## サポートされているディストリビューションとバージョン {#supported-distributions-and-versions}
 Vapor は、Swift 5.9 またはそれ以上の新しいバージョンがサポートする Linux ディストリビューションと同じバージョンをサポートしています。公式にサポートされているオペレーティングシステムの最新情報については、[公式サポートページ](https://www.swift.org/platform-support/)を参照してください。
 
 
 公式にはサポートされていない Linux ディストリビューションでも、ソースコードをコンパイルすることで、Swift を実行できるかもしれませんが、Vapor は安定性を保証できません。[Swift repo](https://github.com/apple/swift#getting-started) から Swift のコンパイル方法について詳しく学ぶことができます。
 
-## Swift のインストール
+## Swift のインストール {#install-swift}
 
-### Swiftly CLI ツールを使用した自動インストール (推奨)
+### Swiftly CLI ツールを使用した自動インストール (推奨) {#automated-installation-using-swiftly-cli-tool-recommended}
 
 Linux で Swiftly と Swift をインストールする手順については、[Swiftly のウェブサイト](https://swiftlang.github.io/swiftly/)をご覧ください。その手順に従った後、次のコマンドで Swift をインストールします。
 
-#### 基本的な使い方
+#### 基本的な使い方 {#basic-usage}
 
 ```sh
 $ swiftly install latest
@@ -31,7 +31,7 @@ Swift version 5.9.1 (swift-5.9.1-RELEASE)
 Target: x86_64-unknown-linux-gnu
 ```
 
-### ツールチェーンを使用した手動インストール
+### ツールチェーンを使用した手動インストール {#manual-installation-with-the-toolchain}
 
 Linux 上で Swift をインストールする方法については、Swift.org の[ダウンロードの使用](https://swift.org/download/#using-downloads)を参照してください。
 
@@ -49,7 +49,7 @@ Fedora 35 を使用している場合、Swift 5.9 またはそれ以降のバー
 
 Swift の公式Docker イメージも使用できます。これにはコンパイラが事前にインストールされています。[Swift の Docker Hub](https://hub.docker.com/_/swift) で詳しく学ぶことができます。
 
-## ツールボックスのインストール
+## ツールボックスのインストール {#install-toolbox}
 
 Swift をインストールしたら、[Vapor Toolbox](https://github.com/vapor/toolbox) をインストールしましょう。この CLI ツールは、Vapor を使用するために必須ではありませんが、新しい Vapor プロジェクトの作成に役立ちます。
 
@@ -88,6 +88,6 @@ vapor --help
 
 利用可能なコマンドのリストが表示されるはずです。
 
-## 次へ
+## 次へ {#next}
 
 Swift と Vapor Toolbox をインストールしたら、[はじめに &rarr; Hello, world](../getting-started/hello-world.md) で初めてのアプリを作成してください。

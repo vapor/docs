@@ -21,7 +21,7 @@ database.query(Planet.self)
 !!! note
     クエリを含むファイルで`import Fluent`を行う必要があります。これにより、コンパイラがFluentのヘルパー関数を認識できるようになります。
 
-## All {#all}
+## All
 
 `all()`メソッドはモデルの配列を返します。
 
@@ -37,7 +37,7 @@ let planets = try await Planet.query(on: database).all()
 let names = try await Planet.query(on: database).all(\.$name)
 ```
 
-### First {#first}
+### First
 
 `first()`メソッドは、単一のオプショナルなモデルを返します。クエリが複数のモデルを返す場合、最初のものだけが返されます。クエリ結果がない場合は、`nil`が返されます。
 
