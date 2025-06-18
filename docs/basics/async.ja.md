@@ -300,7 +300,23 @@ futureString.whenComplete { result in
 !!! note
     Future には、好きなだけコールバックを追加できます。
 
+### Get
+
+API に並行性ベースの代替手段がない場合は、`try await future.get()` を使用して Future の値を待つことができます。
+
+```swift
+/// 何らかの API から Future 文字列を取得すると仮定します
+let futureString: EventLoopFuture<String> = ...
+
+/// 文字列が準備できるまで待ちます
+let string: String = try await futureString.get()
+print(string) /// String
+```
+    
 ### Wait
+
+!!! warning
+    `wait()` 関数は廃止されました。推奨されるアプローチについては [`Get`](#get) を参照してください。
 
 `.wait()`を使用して、フューチャーが完了するまで同期的に待つことができます。フューチャーが失敗する可能性があるため、この呼び出しは投げられます。
 
