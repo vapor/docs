@@ -29,7 +29,7 @@ let package = Package(
 )
 ```
 
-## 設定
+## 設定 {#configure}
 
 パッケージをプロジェクトに追加したら、Vapor を設定してそれを使用するように構成します。これは通常、[`configure.swift`](../getting-started/folder-structure.md#configureswift) で行います。
 
@@ -41,12 +41,22 @@ app.views.use(.leaf)
 
 これにより、コード内で `req.view` を呼び出すと、Vapor が `LeafRenderer` を使用するように指示します。
 
-!!! note 
-    Leaf には、ページをレンダリングするための内部キャッシュがあります。`Application` の環境が `.development` に設定されている場合、このキャッシュは無効になり、テンプレートへの変更が即座に反映されます。`.production` やその他の環境では、キャッシュがデフォルトで有効になっており、テンプレートに加えた変更はアプリケーションを再起動するまで反映されません。
-
 !!! warning 
-    Xcode から実行する際に Leaf がテンプレートを見つけられるようにするためには、 Xcode ワークスペースの [custom working directory](../getting-started/xcode.md#_1) を設定する必要があります。
-## フォルダ構成
+    Xcode から実行する際に Leaf がテンプレートを見つけられるようにするためには、 Xcode ワークスペースの [custom working directory](../getting-started/xcode.md#custom-working-directory) を設定する必要があります。
+
+### ページレンダリング用のキャッシュ {#cache-for-rendering-pages}
+
+Leaf には、ページをレンダリングするための内部キャッシュがあります。`Application` の環境が `.development` に設定されている場合、このキャッシュは無効になり、テンプレートへの変更が即座に反映されます。`.production` やその他の環境では、キャッシュがデフォルトで有効になっており、テンプレートに加えた変更はアプリケーションを再起動するまで反映されません。
+
+Leaf のキャッシュを無効にするには、以下を実行します：
+
+```swift
+app.leaf.cache.isEnabled = false
+```
+
+!!! warning
+    キャッシュを無効にすることはデバッグには役立ちますが、リクエストごとにテンプレートを再コンパイルする必要があるため、パフォーマンスに大きな影響を与える可能性があるため、本番環境では推奨されません。
+## フォルダ構成 {#folder-structure}
 
 Leaf を設定したら、`.leaf` ファイルを格納するための `Views` フォルダを用意する必要があります。デフォルトでは、Leaf はプロジェクトのルートに対して `./Resources/Views` というフォルダを要求します。
 
@@ -65,7 +75,7 @@ VaporApp
     └── ...
 ```
 
-## Viewのレンダリング
+## Viewのレンダリング {#rendering-a-view}
 
 Leaf が設定できたので、最初のテンプレートをレンダリングしてみましょう。`Resources/Views` フォルダ内に、次の内容で `hello.leaf` という新しいファイルを作成します。
 

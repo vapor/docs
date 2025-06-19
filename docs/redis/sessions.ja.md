@@ -37,7 +37,7 @@ struct CustomRedisSessionsDelegate: RedisSessionsDelegate {
 app.sessions.use(.redis(delegate: CustomRedisSessionsDelegate()))
 ```
 
-## RedisSessionsDelegate {#redissessionsdelegate}
+## RedisSessionsDelegate
 
 > APIドキュメント：[`RedisSessionsDelegate`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate)
 

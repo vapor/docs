@@ -66,7 +66,7 @@ app.http.server.configuration.backlog = 128
 app.http.server.configuration.reuseAddress = false
 ```
 
-### TCP No Delay {#tcp-no-delay}
+### TCP No Delay
 
 `tcpNoDelay`パラメーターを有効にすると、TCPパケットの遅延を最小限に抑えようとします。デフォルトは`true`です。
 
@@ -132,7 +132,7 @@ app.http.server.configuration.supportPipelining = true
 app.http.server.configuration.supportVersions = [.two]
 ```
 
-### TLS {#tls}
+### TLS
 
 `tlsConfiguration`パラメーターは、サーバーでTLS（SSL）が有効かどうかを制御します。デフォルトは`nil`です。
 

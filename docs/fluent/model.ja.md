@@ -344,7 +344,7 @@ User.query(on: database).filter(\.$pet.$name == "Zizek").all()
 |1|Tanner|Zizek|Cat|
 |2|Logan|Runa|Dog|
 
-## Codable {#codable}
+## Codable
 
 モデルはデフォルトで`Codable`に準拠しています。つまり、`Content`プロトコルへの準拠を追加することで、モデルをVaporの[コンテンツAPI](../basics/content.md)で使用できます。
 

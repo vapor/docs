@@ -1,8 +1,8 @@
-# macOS へのインストール
+# macOS へのインストール {#install-on-macos}
 
 Vapor を macOS で使用するには、Swift 5.9 以上が必要です。Swift とそれに関連するすべての依存関係は、Xcode にバンドルされています。
 
-## Xcode のインストール
+## Xcode のインストール {#install-xcode}
 
 Mac App Store から[Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) をインストールします。
 
@@ -26,9 +26,11 @@ Target: arm64-apple-macosx13.0
 
 Vapor 4 は、Swift 5.9 以上が必要です。
 
-## Toolbox のインストール
+## Toolbox のインストール {#install-toolbox}
 
-Swift をインストールしたので、次に [Vapor Toolbox](https://github.com/vapor/toolbox) をインストールしましょう。このCLIツールはVapor を使用するためには必須ではありませんが、新しいプロジェクトクリエイーターのような便利なユーティリティが含まれています。
+Swift をインストールしたので、次に [Vapor Toolbox](https://github.com/vapor/toolbox) をインストールしましょう。この CLI ツールは Vapor を使用するためには必須ではありませんが、新しい Vapor プロジェクトの作成を支援します。
+
+### Homebrew
 
 Toolbox は Homebrew 経由で配布されています。まだ Homebrew をインストールしていない場合は、<a href="https://brew.sh" target="_blank">brew.sh</a> を参照してインストール手順を確認してください。
 
@@ -44,6 +46,25 @@ vapor --help
 
 利用可能なコマンドのリストが表示されるはずです。
 
-## 次へ
+### Makefile
+
+必要に応じて、ソースから Toolbox をビルドすることもできます。GitHub の Toolbox の<a href="https://github.com/vapor/toolbox/releases" target="_blank">リリース</a>で最新バージョンを見つけてください。
+
+```sh
+git clone https://github.com/vapor/toolbox.git
+cd toolbox
+git checkout <desired version>
+make install
+```
+
+インストールが成功したかどうかを確認するために、ヘルプを表示してください。
+
+```sh
+vapor --help
+```
+
+利用可能なコマンドのリストが表示されるはずです。
+
+## 次へ {#next}
 
 Swift と Vapor Toolbox をインストールしたので、 [はじめに &rarr; Hello, world](../getting-started/hello-world.md) で初めてのアプリを作成してください。

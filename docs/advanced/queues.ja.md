@@ -86,7 +86,7 @@ app.queues.add(emailJob)
 新しいキューワーカーを開始するには、`swift run App queues` を実行します。特定の種類のワーカーを実行する場合は、`swift run App queues --queue emails` と指定することもできます。
 
 !!! tip
-    ワーカーは本番環境で実行し続ける必要があります。長時間実行するプロセスを維持する方法については、ホスティングプロバイダーに従ってください。例えば、Heroku では、Procfile に `worker: Run queues` のように "worker" dyno を指定できます。これを設定すると、ダッシュボードのリソースタブや `heroku ps:scale worker=1`（または任意の dyno 数）でワーカーを開始できます。
+    ワーカーは本番環境で実行し続ける必要があります。長時間実行するプロセスを維持する方法については、ホスティングプロバイダーに相談してください。例えば、Heroku では、Procfile に `worker: Run queues` のように "worker" dyno を指定できます。これを設定すると、ダッシュボードのリソースタブや `heroku ps:scale worker=1`（または任意の dyno 数）でワーカーを開始できます。
 
 ### プロセス内でワーカーを実行 {#running-workers-in-process}
 
@@ -103,7 +103,7 @@ try app.queues.startScheduledJobs()
 ```
 
 !!! warning
-    キューワーカーをコマンドラインまたはプロセス内ワーカー経由で起動しない場合、ジョブはディスパッチされません。
+    キューワーカーをコマンドラインまたはプロセス内ワーカー経由で起動しないと、ジョブはディスパッチされません。
 
 ## `Job` プロトコル {#the-job-protocol}
 
@@ -156,7 +156,7 @@ struct EmailJob: AsyncJob {
     `Payload` 型が `Codable` プロトコルを実装していることを確認してください。
 
 !!! tip
-    **Getting Started** の指示に従って、このジョブを設定ファイルに追加することを忘れないでください。
+    **はじめに** の指示に従って、このジョブを設定ファイルに追加することを忘れないでください。
 
 ## ジョブのディスパッチ {#dispatching-jobs}
 
@@ -242,7 +242,7 @@ app.get("email") { req async throws -> String in
 }
 ```
 
-ジョブが `delay` パラメータの前にデキューされた場合、ドライバによってジョブが再キューされます。
+ジョブが遅延パラメータの前にデキューされた場合、ドライバによってジョブが再キューされます。
 
 ### 優先度の指定 {#specify-a-priority}
 
@@ -308,7 +308,7 @@ struct SendEmailCommand: AsyncCommand {
 
 
 
-キューを指定しない場合、ジョブは `default` キューで実行されます。各キュータイプのワーカーを起動する手順については、**Getting Started** の指示に従ってください。
+キューを指定しない場合、ジョブは `default` キューで実行されます。各キュータイプのワーカーを起動する手順については、**はじめに** の指示に従ってください。
 
 ## ジョブのスケジューリング {#scheduling-jobs}
 
@@ -325,7 +325,7 @@ swift run App queues --scheduled
 ```
 
 !!! tip
-    ワーカーは本番環境で実行し続ける必要があります。長時間実行するプロセスを維持する方法については、ホスティングプロバイダーに従ってください。例えば、Heroku では、Procfile に `worker: App queues --scheduled` と指定することで「worker」 dyno を指定できます。
+    ワーカーは本番環境で実行し続ける必要があります。長時間実行するプロセスを維持する方法については、ホスティングプロバイダーに相談してください。例えば、Heroku では、Procfile に `worker: App queues --scheduled` と指定することで「worker」 dyno を指定できます。
 
 ### `ScheduledJob` の作成 {#creating-a-scheduledjob}
 
@@ -447,3 +447,28 @@ app.queues.add(MyEventDelegate())
 
 - [QueuesDatabaseHooks](https://github.com/vapor-community/queues-database-hooks)
 - [QueuesDash](https://github.com/gotranseo/queues-dash)
+
+## テスト {#testing}
+
+同期の問題を避け、決定論的なテストを確保するために、Queues パッケージは `XCTQueue` ライブラリとテスト専用の `AsyncTestQueuesDriver` ドライバーを提供しており、次のように使用できます：
+
+```swift
+final class UserCreationServiceTests: XCTestCase {
+    var app: Application!
+
+    override func setUp() async throws {
+        self.app = try await Application.make(.testing)
+        try await configure(app)
+
+        // テスト用のドライバーをオーバーライド
+        app.queues.use(.asyncTest)
+    }
+
+    override func tearDown() async throws {
+        try await self.app.asyncShutdown()
+        self.app = nil
+    }
+}
+```
+
+詳細については、[Romain Pouclet のブログ記事](https://romain.codes/2024/10/08/using-and-testing-vapor-queues/)を参照してください。

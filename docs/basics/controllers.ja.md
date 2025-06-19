@@ -1,10 +1,10 @@
-# コントローラー
+# コントローラー {#controllers}
 
 コントローラーはコードを整理するのに適した方法です。これらは、リクエストを受けてレスポンスを返すメソッドの集まりです。
 
 コントローラーを置く良い場所は、[Controllers](../getting-started/folder-structure.ja.md#controllers) フォルダーです。
 
-## 概要
+## 概要 {#overview}
 
 例としてコントローラーを見てみましょう。
 

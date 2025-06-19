@@ -6,7 +6,7 @@ Fluent の [model API](model.md) は、リレーションを通じてモデル�
 - [Parent](#parent) / [Children](#children)（1対多）
 - [Siblings](#siblings)（多対多）
 
-## Parent {#parent}
+## Parent
 
 `@Parent` リレーションは、別のモデルの `@ID` プロパティへの参照を保存します。
 
@@ -43,7 +43,7 @@ init(name: String, starID: Star.IDValue) {
 
 [`.references`](schema.md#field-constraint) 制約はオプションであることに注意してください。詳細については [schema](schema.md) を参照してください。
 
-### Optional Parent {#optional-parent}
+### Optional Parent
 
 `@OptionalParent` リレーションは、別のモデルの `@ID` プロパティへのオプショナルな参照を保存します。`@Parent` と同様に動作しますが、リレーションが `nil` になることを許可します。
 
@@ -94,7 +94,7 @@ try await planet.create(on: req.db)
 
 同じことがクライアントにモデルを返す際にも適用されます。クライアントはネストされた構造を処理できる必要があるか、返す前にモデルを DTO に変換する必要があります。DTO の詳細については、[Model ドキュメント](model.md#data-transfer-object) を参照してください。
 
-## Optional Child {#optional-child}
+## Optional Child
 
 `@OptionalChild` プロパティは、2つのモデル間に1対1のリレーションを作成します。ルートモデルには値を保存しません。
 
@@ -135,7 +135,7 @@ try await database.schema(Governor.schema)
     クライアントのスキーマから親 ID フィールドのユニーク制約を省略すると、予測できない結果につながる可能性があります。
     一意性制約がない場合、子テーブルには任意の親に対して複数の子行が含まれる可能性があります。この場合、`@OptionalChild` プロパティは一度に1つの子にしかアクセスできず、どの子が読み込まれるかを制御する方法がありません。任意の親に対して複数の子行を保存する必要がある場合は、代わりに `@Children` を使用してください。
 
-## Children {#children}
+## Children
 
 `@Children` プロパティは、2つのモデル間に1対多のリレーションを作成します。ルートモデルには値を保存しません。
 
@@ -161,7 +161,7 @@ try await sun.$planets.create(earth, on: database)
 
 このリレーションは値を保存しないため、データベーススキーマエントリは必要ありません。
 
-## Siblings {#siblings}
+## Siblings
 
 `@Siblings` プロパティは、2つのモデル間に多対多のリレーションを作成します。これはピボットと呼ばれる第3のモデルを通じて行われます。
 
@@ -281,7 +281,7 @@ try await earth.$tags.detach(inhabited, on: database)
 earth.$tags.isAttached(to: inhabited)
 ```
 
-## Get {#get}
+## Get
 
 `get(on:)` メソッドを使用して、リレーションの値を取得します。
 
@@ -303,7 +303,7 @@ print(planets)
 try await sun.$planets.get(reload: true, on: database)
 ```
 
-## Query {#query}
+## Query
 
 リレーションで `query(on:)` メソッドを使用して、関連モデルのクエリビルダーを作成します。
 
@@ -314,7 +314,7 @@ try await sun.$planets.query(on: database).filter(\.$name =~ "M").all()
 
 詳細については [query](query.md) を参照してください。
 
-## Eager Loading {#eager-loading}
+## Eager Loading
 
 Fluent のクエリビルダーを使用すると、モデルがデータベースから取得されるときにリレーションを事前に読み込むことができます。これは eager loading と呼ばれ、最初に [`get`](#get) を呼び出す必要なく、リレーションに同期的にアクセスできるようになります。
 
@@ -361,7 +361,7 @@ for planet in planets {
 
 `with` メソッドは、2番目のパラメータとしてオプションのクロージャを受け取ります。このクロージャは、選択されたリレーションの eager load ビルダーを受け取ります。eager loading のネストの深さに制限はありません。
 
-## Lazy Eager Loading {#lazy-eager-loading}
+## Lazy Eager Loading
 
 親モデルをすでに取得していて、そのリレーションの1つを読み込みたい場合は、その目的で `get(reload:on:)` メソッドを使用できます。これにより、関連モデルがデータベース（または利用可能な場合はキャッシュ）から取得され、ローカルプロパティとしてアクセスできるようになります。
 

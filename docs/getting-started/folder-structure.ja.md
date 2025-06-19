@@ -1,4 +1,4 @@
-# フォルダ構造
+# フォルダ構造 {#folder-structure}
 
 あなたの初めての Vapor アプリを作成し、ビルドし、実行したので、Vapor のフォルダ構造に慣れるための時間を取りましょう。この構造は、[SPM](spm.ja.md) のフォルダ構造に基づいていますので、以前に SPM を使ったことがあれば、見慣れているはずです。
 
@@ -38,7 +38,7 @@ app.middleware.use(fileMiddleware)
 ## Sources
 
 このフォルダには、プロジェクトのすべての Swift ソースファイルが含まれています。
-トップレベルのフォルダ、`App` は、[SwiftPM](spm.ja.md) のマニフェストで宣言されたパッケージのモジュール反映をしています。
+トップレベルのフォルダ、`App` は、[SwiftPM](spm.ja.md) のマニフェストで宣言されたパッケージのモジュールを反映しています。
 
 ### App
 
@@ -56,15 +56,15 @@ Migrations フォルダは、Fluent を使用している場合、データベ�
 
 Models フォルダは、`Content` 構造体や Fluent の `Model` を保存するのに適しています。
 
-#### configure.swift
+#### configure.swift {#configureswift}
 
 このファイルには、`configure(_:)` 関数が含まれています。このメソッドは、新しく作成された `Application` を設定するために `entrypoint.swift` から呼び出されます。ここで、ルート、データベース、プロバイダなどのサービスの登録をする必要があります。
 
-#### entrypoint.swift
+#### entrypoint.swift {#entrypointswift}
 
 このファイルには、Vapor アプリケーションの設定と実行を行うアプリケーションの `@main` エントリーポイントが含まれています。
 
-#### routes.swift
+#### routes.swift {#routesswift}
 
 このファイルには、`routes(_:)` 関数が含まれています。このメソッドは、`Application` へのルートを登録するために、`configure(_:)` の終わり近くで呼び出されます。
 
@@ -76,6 +76,6 @@ Models フォルダは、`Content` 構造体や Fluent の `Model` を保存す�
 
 このフォルダには、`App` モジュールのコードの単体テストが含まれています。
 
-## Package.swift
+## Package.swift {#packageswift}
 
 最後に、[SPM](spm.ja.md) のパッケージマニフェストがあります。

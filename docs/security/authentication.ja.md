@@ -17,7 +17,7 @@ VaporのAuthentication APIは、[Basic](https://tools.ietf.org/html/rfc7617)お�
 
 認証が成功した場合、オーセンティケータは検証されたユーザーを`req.auth`に追加します。このユーザーは、オーセンティケータによって保護されているルートで`req.auth.get(_:)`を使用してアクセスできます。認証が失敗した場合、ユーザーは`req.auth`に追加されず、アクセスしようとしても失敗します。
 
-## Authenticatable {#authenticatable}
+## Authenticatable
 
 Authentication APIを使用するには、まず`Authenticatable`に準拠するユーザータイプが必要です。これは`struct`、`class`、またはFluentの`Model`でも構いません。以下の例では、`name`という1つのプロパティを持つシンプルな`User`構造体を想定しています。
 
@@ -55,7 +55,7 @@ let protected = app.grouped(UserAuthenticator())
 
 認証の要求は、オーセンティケータの構成を可能にするため、オーセンティケータミドルウェアによって行われません。[構成](#composition)の詳細については以下をお読みください。
 
-## Basic {#basic}
+## Basic
 
 Basic認証は、`Authorization`ヘッダーでユーザー名とパスワードを送信します。ユーザー名とパスワードはコロン（例：`test:secret`）で連結され、base-64エンコードされ、`"Basic "`でプレフィックスされます。次の例のリクエストは、ユーザー名`test`とパスワード`secret`をエンコードしています。
 
@@ -116,7 +116,7 @@ struct UserAuthenticator: AsyncBasicAuthenticator {
 
 このオーセンティケータをアプリに追加し、上記で定義したルートをテストすると、ログインが成功した場合に名前`"Vapor"`が返されるはずです。認証情報が正しくない場合は、`401 Unauthorized`エラーが表示されるはずです。
 
-## Bearer {#bearer}
+## Bearer
 
 Bearer認証は、`Authorization`ヘッダーでトークンを送信します。トークンには`"Bearer "`がプレフィックスされます。次の例のリクエストはトークン`foo`を送信しています。
 
@@ -252,7 +252,7 @@ print(user?.name) // String?
 req.auth.logout(User.self)
 ```
 
-## Fluent {#fluent}
+## Fluent
 
 [Fluent](../fluent/overview.md)は、既存のモデルに追加できる`ModelAuthenticatable`と`ModelTokenAuthenticatable`の2つのプロトコルを定義しています。モデルをこれらのプロトコルに準拠させることで、エンドポイントを保護するためのオーセンティケータを作成できます。
 
@@ -395,7 +395,7 @@ Content-Type: application/json
 }
 ```
 
-#### Model Authenticatable {#model-authenticatable}
+#### Model Authenticatable
 
 これで、ユーザーモデルと新しいユーザーを作成するためのエンドポイントができたので、モデルを`ModelAuthenticatable`に準拠させましょう。これにより、モデルをユーザー名とパスワードを使用して認証できるようになります。
 
@@ -539,7 +539,7 @@ passwordProtected.post("login") { req async throws -> UserToken in
 
 後で使用するので、取得したトークンを保持してください。
 
-#### Model Token Authenticatable {#model-token-authenticatable}
+#### Model Token Authenticatable
 
 `UserToken`を`ModelTokenAuthenticatable`に準拠させます。これにより、トークンが`User`モデルを認証できるようになります。
 
@@ -589,7 +589,7 @@ Vaporの[Session API](../advanced/sessions.md)を使用して、リクエスト�
 
 セッションは、Webブラウザに直接HTMLを提供するVaporで構築されたフロントエンドWebアプリケーションに最適です。APIの場合、リクエスト間でユーザーデータを永続化するために、ステートレスなトークンベースの認証を使用することをお勧めします。
 
-### Session Authenticatable {#session-authenticatable}
+### Session Authenticatable
 
 セッションベースの認証を使用するには、`SessionAuthenticatable`に準拠するタイプが必要です。この例では、シンプルな構造体を使用します。
 
@@ -698,7 +698,7 @@ cookie: vapor_session=123
 
 今回は、`UserSessionAuthenticator`がユーザーを認証し、再びユーザーのメールが返されるはずです。
 
-### Model Session Authenticatable {#model-session-authenticatable}
+### Model Session Authenticatable
 
 Fluentモデルは、`ModelSessionAuthenticatable`に準拠することで`SessionAuthenticator`を生成できます。これは、モデルの一意の識別子をセッション識別子として使用し、セッションからモデルを復元するためのデータベース検索を自動的に実行します。
 
@@ -811,7 +811,7 @@ credentialsProtectedRoute.post("login", use: loginPostHandler)
 
 `CredentialsAuthenticator`は、リクエストボディから`username`と`password`を抽出し、ユーザー名からユーザーを見つけ、パスワードを検証します。パスワードが有効な場合、ミドルウェアはリクエストを認証します。その後、`SessionAuthenticator`が後続のリクエストのためにセッションを認証します。
 
-## JWT {#jwt}
+## JWT
 
 [JWT](jwt.md)は、着信リクエストでJSON Web Tokenを認証するために使用できる`JWTAuthenticator`を提供します。JWTを初めて使用する場合は、[概要](jwt.md)を確認してください。
 

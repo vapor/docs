@@ -1,6 +1,6 @@
 # テスト {#testing}
 
-## VaporTesting {#vaportesting}
+## VaporTesting
 
 Vaporには`VaporTesting`というモジュールが含まれており、`Swift Testing`をベースとしたテストヘルパーを提供しています。これらのテストヘルパーを使用すると、Vaporアプリケーションにプログラムでテストリクエストを送信したり、HTTPサーバー経由で実行したりできます。
 
@@ -162,7 +162,7 @@ private func withApp(_ test: (Application) async throws -> ()) async throws {
 }
 ```
 
-## XCTVapor {#xctvapor}
+## XCTVapor
 
 Vaporには`XCTVapor`というモジュールが含まれており、`XCTest`をベースとしたテストヘルパーを提供しています。これらのテストヘルパーを使用すると、Vaporアプリケーションにプログラムでテストリクエストを送信したり、HTTPサーバー経由で実行したりできます。
 

@@ -6,7 +6,7 @@ Vaporのトレーシング APIは[swift-distributed-tracing](https://github.com/
 
 Swiftでのトレーシングとスパンに馴染みがない場合は、[OpenTelemetryトレースドキュメント](https://opentelemetry.io/ja/docs/concepts/signals/traces/)と[swift-distributed-tracingドキュメント](https://swiftpackageindex.com/apple/swift-distributed-tracing/main/documentation/tracing)を確認してください。
 
-## TracingMiddleware {#tracingmiddleware}
+## TracingMiddleware
 
 各リクエストに対して完全に注釈付きのスパンを自動的に作成するには、アプリケーションに`TracingMiddleware`を追加します。
 
