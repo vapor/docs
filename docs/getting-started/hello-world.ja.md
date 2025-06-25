@@ -7,7 +7,10 @@
 - [Install &rarr; macOS](../install/macos.ja.md)
 - [Install &rarr; Linux](../install/linux.ja.md)
 
-## 新規プロジェクト
+!!! tip
+	Vapor ツールボックスで使用されるテンプレートには Swift 6.0 以降が必要です
+
+## 新規プロジェクト {#new-project}
 
 最初のステップは、コンピュータに新しい Vapor プロジェクトを作成することです。ターミナルを開き、ツールボックスの新規プロジェクトコマンドを使用してください。これにより、現在のディレクトリにプロジェクトを含む新しいフォルダが作成されます。
 
@@ -22,8 +25,7 @@ vapor new hello -n
 		Vapor ツールボックスを使用せずに GitHub [テンプレートリポジトリ](https://github.com/vapor/template-bare)をクローンして最新のテンプレートを取得することもできます。
 
 !!! tip
-	Vapor and the template now uses `async`/`await` by default.
-	Vapor テンプレートは、デフォルトで `async`/`await` を使用します。
+	Vapor とテンプレートは、デフォルトで `async`/`await` を使用します。
 	macOS 12 にアップデートできない、または `EventLoopFuture` を継続して使用する必要がある場合は、
 	`--branch macos10-15` フラグを使います。
 
@@ -34,7 +36,7 @@ vapor new hello -n
 cd hello
 ```
 
-## ビルド & 実行
+## ビルド & 実行 {#build-run}
 
 ### Xcode
 
@@ -58,6 +60,9 @@ Xcode のウィンドウの下部に、コンソールが表示されるはず�
 
 Linux やその他 OS (または　Xcode を使用したくない場合の macOS も含む)では、 Vim や VScode のようなお好きなエディタでプロジェクトを編集できます。他の IDE の設定に関する最新の詳細は、[Swift Server ガイド](https://github.com/swift-server/guides/blob/main/docs/setup-and-ide-alternatives.md)を参照してください。
 
+!!! tip
+    VSCode をコードエディタとして使用している場合は、公式の Vapor 拡張機能をインストールすることをお勧めします: [Vapor for VS Code](https://marketplace.visualstudio.com/items?itemName=Vapor.vapor-vscode)
+
 プロジェクトをビルドして実行するには、ターミナルで以下のコマンドを実行します:
 
 ```sh
@@ -70,7 +75,7 @@ swift run
 [ INFO ] Server starting on http://127.0.0.1:8080
 ```
 
-## Localhost へのアクセス
+## Localhost へのアクセス {#visit-localhost}
 
 ウェブブラウザを開き、<a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello</a> または <a href="http://127.0.0.1:8080" target="_blank">http://127.0.0.1:8080</a> にアクセスしてください。
 

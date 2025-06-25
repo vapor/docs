@@ -44,7 +44,7 @@ VaporはSwiftの行動規範を採用しており、[https://www.swift.org/code-
 
 まず、Vaporまたは作業したいリポジトリをフォークします。これはGitHub UIで行うことができ、GitHubには[これを行う方法に関する優れたドキュメント](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)があります。
 
-その後、通常のコミットとプッシュのプロセスで、フォークで変更を加えることができます。修正を提出する準備ができたら、VaporのリポジトリにPRを作成できます。ここでも、GitHubには[これを行う方法に関する優れたドキュメント](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)があります。
+その後、通常のコミットとプッシュのプロセスで、フォークで変更を加えることができます。修正を提出する準備ができたら、VaporのリポジトリにPRを作成できます。ここでも、GitHubには[これを行う方法に関する優れたドキュメント](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)があります。
 
 ## プルリクエストの提出 {#submitting-a-pull-request}
 

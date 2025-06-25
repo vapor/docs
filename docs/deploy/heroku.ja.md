@@ -10,7 +10,7 @@ Herokuアカウントが必要です。まだお持ちでない場合は、こ�
 
 Heroku CLIツールがインストールされていることを確認してください。
 
-### HomeBrew {#homebrew}
+### HomeBrew
 
 ```bash
 brew tap heroku/brew && brew install heroku
@@ -38,7 +38,7 @@ heroku auth:whoami
 
 dashboard.heroku.comにアクセスしてアカウントにログインし、右上のドロップダウンから新しいアプリケーションを作成します。Herokuはリージョンやアプリケーション名などいくつかの質問をしますので、プロンプトに従ってください。
 
-### Git {#git}
+### Git
 
 HerokuはGitを使用してアプリをデプロイするため、プロジェクトをGitリポジトリに配置する必要があります（まだの場合）。
 
@@ -118,7 +118,7 @@ echo "5.8.1" > .swift-version
 
 これにより、`5.8.1`を内容とする**.swift-version**が作成されます。
 
-### Procfile {#procfile}
+### Procfile
 
 Herokuはアプリの実行方法を知るために**Procfile**を使用します。私たちの場合、次のようになります：
 
@@ -164,7 +164,7 @@ heroku ps:scale web=1
 
 更新したい場合は、最新の変更をmainに取り込んでHerokuにプッシュするだけで、再デプロイされます。
 
-## Postgres {#postgres}
+## Postgres
 
 ### PostgreSQLデータベースの追加 {#add-postgresql-database}
 

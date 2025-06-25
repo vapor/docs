@@ -5,11 +5,11 @@
 ```swift
 // マイグレーションの例
 struct MyMigration: Migration {
-    func prepare(on database: Database) -> EventLoopFuture<Void> {
+    func prepare(on database: any Database) -> EventLoopFuture<Void> {
         // データベースに変更を加える
     }
 
-    func revert(on database: Database) -> EventLoopFuture<Void> {
+    func revert(on database: any Database) -> EventLoopFuture<Void> {
     	// `prepare`で行った変更を取り消す（可能な場合）
     }
 }
@@ -19,11 +19,11 @@ struct MyMigration: Migration {
 
 ```swift
 struct MyMigration: AsyncMigration {
-    func prepare(on database: Database) async throws {
+    func prepare(on database: any Database) async throws {
         // データベースに変更を加える
     }
 
-    func revert(on database: Database) async throws {
+    func revert(on database: any Database) async throws {
     	// `prepare`で行った変更を取り消す（可能な場合）
     }
 }

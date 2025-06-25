@@ -1,4 +1,4 @@
-# 4.0へのアップグレード {#upgrading-to-4.0}
+# 4.0へのアップグレード {#upgrading-to-40}
 
 このガイドでは、既存のVapor 3.xプロジェクトを4.xにアップグレードする方法を説明します。このガイドでは、Vaporの公式パッケージに加え、よく使用されるプロバイダーについても網羅します。不足している内容があれば、[Vaporのチームチャット](https://discord.gg/vapor)で質問するのがおすすめです。IssuesやPull Requestも歓迎です。
 
@@ -8,7 +8,7 @@ Vapor 4を使用するには、Xcode 11.4およびmacOS 10.15以上が必要で�
 
 ドキュメントのインストールセクションで依存関係のインストールについて説明しています。
 
-## Package.swift
+## Package.swift {#packageswift}
 
 Vapor 4へのアップグレードの最初のステップは、パッケージの依存関係を更新することです。以下は更新されたPackage.swiftファイルの例です。更新された[テンプレートPackage.swift](https://github.com/vapor/template/blob/main/Package.swift)も確認できます。
 
@@ -130,7 +130,7 @@ try app.run()
 
 基本的なAppモジュール構造の更新方法を見てみましょう。
 
-### configure.swift
+### configure.swift {#configureswift}
 
 `configure`メソッドは`Application`のインスタンスを受け入れるように変更する必要があります。
 
@@ -162,11 +162,11 @@ public func configure(_ app: Application) throws {
 
 ルーティング、ミドルウェア、Fluentなどの設定に関する構文の変更は以下で説明します。
 
-### boot.swift
+### boot.swift {#bootswift}
 
 `boot`の内容は、アプリケーションインスタンスを受け入れるようになったため、`configure`メソッドに配置できます。
 
-### routes.swift
+### routes.swift {#routesswift}
 
 `routes`メソッドは`Application`のインスタンスを受け入れるように変更する必要があります。
 

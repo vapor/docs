@@ -1,12 +1,12 @@
-# ロギング 
+# ロギング {#logging} 
 
 Vapor のロギング API は [SwiftLog](https://github.com/apple/swift-log) を基に構築されています。これは、Vapor が SwiftLog の[バックエンド実装](https://github.com/apple/swift-log#backends)と互換性があることを示しています。
 
-## ロガー
+## ロガー {#logger}
 
 `Logger` のインスタンスはログメッセージを出力するために使用されます。Vapor はロガーにアクセスするためのいくつかの簡単な方法を提供しています。
 
-### リクエスト
+### リクエスト {#request}
 
 各入力 `Request` には、そのリクエストに固有のログを使用するためのユニークなロガーがあります。
 
@@ -26,7 +26,7 @@ app.get("hello") { req -> String in
 !!! info
     ロガーメタデータは、デバッグログレベルまたはそれ以下でのみ表示されます。
 
-### アプリケーション
+### アプリケーション {#application}
 
 アプリの起動や設定中のログメッセージには、`Application` のロガーを使用します。
 
@@ -35,7 +35,7 @@ app.logger.info("Setting up migrations...")
 app.migrations.use(...)
 ```
 
-### カスタムロガー
+### カスタムロガー {#custom-logger}
 
 `Application` や `Request` にアクセスできない状況では、新しい `Logger` を初期化できます。
 
@@ -46,11 +46,11 @@ logger.info(...)
 
 カスタムロガーは設定されたロギングバックエンドに出力されますが、リクエスト UUID のような重要なメタデータは付加されません。可能な限りリクエストやアプリケーション固有のロガーを使用してください。
 
-## レベル
+## レベル {#level}
 
 SwiftLog はいくつかの異なるログレベルをサポートしています。
 
-|nama|description|
+|name|description|
 |-|-|
 |trace|プログラムの実行を追跡する際に通常のみ役立つ情報を含むメッセージに適しています。|
 |debug|プログラムをデバッグする際に通常のみ役立つ情報を含むメッセージに適しています。|
@@ -64,7 +64,7 @@ SwiftLog はいくつかの異なるログレベルをサポートしていま�
 
 デフォルトでは、Vapor は `info` レベルのログを使用します。`production` 環境で実行する場合は、パフォーマンス向上のためにnoticeが使用されます。
 
-### ログレベルの変更
+### ログレベルの変更 {#changing-log-level}
 
 環境モードに関係なく、ログの量を増減するためにログレベルをオーバーライドできます。
 
@@ -83,7 +83,7 @@ swift run App serve
 
 これらの操作は、Xcodeで `App` スキームを編集することで行うことができます。
 
-## 設定
+## 設定 {#configuration}
 
 SwiftLog は、プロセスごとに一度 `LoggingSystem` をブートストラップすることによって設定されます。Vapor プロジェクトでは、これは通常 `entrypoint.swift` で行われます。
 
@@ -94,7 +94,7 @@ try LoggingSystem.bootstrap(from: &env)
 
 `bootstrap(from:)` は、コマンドライン引数や環境変数に基づいてデフォルトのログハンドラーを設定するために Vapor が提供するヘルパーメソッドです。デフォルトのログハンドラーは、ANSI カラーサポートを備えた端末へのメッセージ出力をサポートしています。
 
-### カスタムハンドラー
+### カスタムハンドラー {#custom-handler}
 
 Vaporのデフォルトのログハンドラーをオーバーライドし、独自のものを登録することができます。
 

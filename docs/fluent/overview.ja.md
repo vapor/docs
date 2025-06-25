@@ -286,7 +286,7 @@ init(id: UUID? = nil, name: String) {
 ```swift
 struct CreateGalaxy: AsyncMigration {
     // Galaxy モデルを格納するためのデータベースの準備
-    func prepare(on database: Database) async throws {
+    func prepare(on database: any Database) async throws {
         try await database.schema("galaxies")
             .id()
             .field("name", .string)
@@ -294,7 +294,7 @@ struct CreateGalaxy: AsyncMigration {
     }
 
     // 必要に応じて、prepare メソッドで行った変更を元に戻します
-    func revert(on database: Database) async throws {
+    func revert(on database: any Database) async throws {
         try await database.schema("galaxies").delete()
     }
 }
@@ -478,7 +478,7 @@ self.$galaxy.id = galaxyID
 ```swift
 struct CreateStar: AsyncMigration {
     // Star モデルを格納するためのデータベースの準備
-    func prepare(on database: Database) async throws {
+    func prepare(on database: any Database) async throws {
         try await database.schema("stars")
             .id()
             .field("name", .string)
@@ -487,7 +487,7 @@ struct CreateStar: AsyncMigration {
     }
 
     // 必要に応じて、prepare メソッドで行った変更を元に戻します
-    func revert(on database: Database) async throws {
+    func revert(on database: any Database) async throws {
         try await database.schema("stars").delete()
     }
 }
