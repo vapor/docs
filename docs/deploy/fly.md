@@ -87,6 +87,16 @@ Once your container is built, Fly starts an instance of it. It will run various 
 
 By default, Fly will roll back to the latest working version of your app if health checks fail for the new version you attempted to deploy.
 
+When delpoying a background worker (with Vapor Queues). Do not change the CMD or ENTRYPOINT in your Dockerfile; leave that as-is so the main web application starts normally. Instead, add a [processes] section in your fly.toml file like this:
+
+```
+[processes]
+  app = ""
+  worker = "queues"
+```
+This tells Fly.io to run the app process with the default Docker entrypoint (your web server), and the worker process to run your job queue using Vapor’s command-line interface (ie, swift run App queues).
+
+
 ## Configuring Postgres
 
 ### Creating a Postgres database on Fly
