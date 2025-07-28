@@ -94,8 +94,8 @@ When deploying a background worker (with Vapor Queues). Do not change the CMD or
   app = ""
   worker = "queues"
 ```
-This tells Fly.io to run the app process with the default Docker entrypoint (your web server), and the worker process to run your job queue using Vapor’s command-line interface (ie, swift run App queues).
 
+This tells Fly.io to run the app process with the default Docker entrypoint (your web server), and the worker process to run your job queue using Vapor’s command-line interface (ie, swift run App queues).
 
 ## Configuring Postgres
 

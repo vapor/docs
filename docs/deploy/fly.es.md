@@ -104,6 +104,16 @@ Una vez que tu contenedor se construye, Fly inicia una instancia de él. Ejecuta
 
 Por defecto, Fly volverá a la última versión funcional de tu aplicación si las comprobaciones de estado fallan para la nueva versión que intentaste desplegar.
 
+Al desplegar un worker en segundo plano (con Vapor Queues), no cambies el CMD ni el ENTRYPOINT en tu Dockerfile; déjalos tal cual para que la aplicación web principal se inicie normalmente. En su lugar, añade una sección [processes] en tu archivo fly.toml como esta:
+
+```
+[processes]
+  app = ""
+  worker = "queues"
+```
+
+Esto indica a Fly.io que ejecute el proceso de la aplicación con el punto de entrada predeterminado de Docker (tu servidor web) y que el proceso del worker ejecute tu cola de tareas utilizando la interfaz de línea de comandos de Vapor (es decir, swift run App queues).
+
 ## Configurando Postgres
 
 ### Creando una base de datos Postgres en Fly
