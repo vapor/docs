@@ -87,7 +87,7 @@ Once your container is built, Fly starts an instance of it. It will run various 
 
 By default, Fly will roll back to the latest working version of your app if health checks fail for the new version you attempted to deploy.
 
-When delpoying a background worker (with Vapor Queues). Do not change the CMD or ENTRYPOINT in your Dockerfile; leave that as-is so the main web application starts normally. Instead, add a [processes] section in your fly.toml file like this:
+When deploying a background worker (with Vapor Queues). Do not change the CMD or ENTRYPOINT in your Dockerfile; leave that as-is so the main web application starts normally. Instead, add a [processes] section in your fly.toml file like this:
 
 ```
 [processes]
