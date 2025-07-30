@@ -124,10 +124,6 @@ app.testing(method: .running(port: 8123)).test(...)
 
 Configure the database specifically for testing to ensure that your live database is never used during tests.
 
-```swift
-app.databases.use(.sqlite(.memory), as: .sqlite)
-```
-
 Then you can enhance your tests by using `autoMigrate()` and `autoRevert()` to manage the database schema and data lifecycle during testing:
 
 By combining these methods, you can ensure that each test starts with a fresh and consistent database state, making your tests more reliable and reducing the likelihood of false positives or negatives caused by lingering data.
@@ -137,7 +133,6 @@ You should create your own helper function `withAppIncludingDB` that includes th
 ```swift
 private func withAppIncludingDB(_ test: (Application) async throws -> ()) async throws {
     let app = try await Application.make(.testing)
-    app.databases.use(.sqlite(.memory), as: .sqlite)
     do {
         try await configure(app)
         try await app.autoMigrate()
