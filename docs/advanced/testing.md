@@ -56,9 +56,9 @@ To ensure your tests run in a serialized manner (e.g., when testing with a datab
 
 ### Testable Application
 
-To provide a streamlined and standardized setup and teardown of tests, `Vapor-Testing` provides the `withApp` helper function. This method encapsulates the lifecycle management of the `Application` instance, ensuring that the application is properly initialized, configured, and shut down for each test.
+To provide a streamlined and standardized setup and teardown of tests, `VaporTesting` offers the `withApp` helper function. This method encapsulates the lifecycle management of the `Application` instance, ensuring that the application is properly initialized, configured, and shut down for each test.
 
-Pass your applications `configure(_:)` method with the `withApp` helper function to make sure all your routes get correctly registered: 
+Pass your application's `configure(_:)` method to the `withApp` helper function to make sure all your routes get correctly registered: 
 
 ```swift
 @Test func someTest() async throws { 
