@@ -135,6 +135,9 @@ private func withAppIncludingDB(_ test: (Application) async throws -> ()) async 
     let app = try await Application.make(.testing)
     do {
         try await configure(app)
+        // make sure you are not connecting to a production database
+        // i.e. for SQLite, you can use something like:
+        // app.databases.use(.sqlite(.memory), as: .sqlite)
         try await app.autoMigrate()
         try await test(app)
         try await app.autoRevert()   
@@ -147,6 +150,10 @@ private func withAppIncludingDB(_ test: (Application) async throws -> ()) async 
     try await app.asyncShutdown()
 }
 ```
+
+!!! warning
+    Make sure you run your tests against the correct database, so you prevent accidentally overwriting data you do not want to lose.
+
 
 And then use this helper in your tests:
 ```swift
