@@ -122,22 +122,30 @@ app.testing(method: .running(port: 8123)).test(...)
 
 #### Database Integration Tests
 
-Configure the database specifically for testing to ensure that your live database is never used during tests.
+Configure the database specifically for testing to ensure that your live database is never used during tests. For example, when you are using SQLite, you could configure your database in the `configure` function as follows:
 
-Then you can enhance your tests by using `autoMigrate()` and `autoRevert()` to manage the database schema and data lifecycle during testing:
+```swift
+public func configure(_ app: Application) async throws {
+    // All other configurations...
 
-By combining these methods, you can ensure that each test starts with a fresh and consistent database state, making your tests more reliable and reducing the likelihood of false positives or negatives caused by lingering data.
+    if app.environment == .testing {
+        app.databases.use(.sqlite(.memory), as: .sqlite)
+    } else {
+        app.databases.use(.sqlite(.file("db.sqlite")), as: .sqlite)
+    }
+}
+```
 
-You should create your own helper function `withAppIncludingDB` that includes the database schema and data lifecycles:
+!!! warning
+    Make sure you run your tests against the correct database, so you prevent accidentally overwriting data you do not want to lose.
+
+Then you can enhance your tests by using `autoMigrate()` and `autoRevert()` to manage the database schema and data lifecycle during testing. To do so, you should create your own helper function `withAppIncludingDB` that includes the database schema and data lifecycles:
 
 ```swift
 private func withAppIncludingDB(_ test: (Application) async throws -> ()) async throws {
     let app = try await Application.make(.testing)
     do {
         try await configure(app)
-        // make sure you are not connecting to a production database
-        // i.e. for SQLite, you can use something like:
-        // app.databases.use(.sqlite(.memory), as: .sqlite)
         try await app.autoMigrate()
         try await test(app)
         try await app.autoRevert()   
@@ -151,10 +159,6 @@ private func withAppIncludingDB(_ test: (Application) async throws -> ()) async 
 }
 ```
 
-!!! warning
-    Make sure you run your tests against the correct database, so you prevent accidentally overwriting data you do not want to lose.
-
-
 And then use this helper in your tests:
 ```swift
 @Test func myDatabaseIntegrationTest() async throws {
@@ -166,6 +170,9 @@ And then use this helper in your tests:
     }
 } 
 ```
+
+By combining these methods, you can ensure that each test starts with a fresh and consistent database state, making your tests more reliable and reducing the likelihood of false positives or negatives caused by lingering data.
+
 
 ## XCTVapor
 
