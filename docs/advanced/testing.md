@@ -122,7 +122,7 @@ app.testing(method: .running(port: 8123)).test(...)
 
 #### Database Integration Tests
 
-Configure the database specifically for testing to ensure that your live database is never used during tests. For example, when you are using SQLite, you could configure your database in the `configure` function as follows:
+Configure the database specifically for testing to ensure that your live database is never used during tests. For example, when you are using SQLite, you could configure your database in the `configure(_:)` function as follows:
 
 ```swift
 public func configure(_ app: Application) async throws {
