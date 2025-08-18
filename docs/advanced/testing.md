@@ -56,26 +56,17 @@ To ensure your tests run in a serialized manner (e.g., when testing with a datab
 
 ### Testable Application
 
-Define a private method function `withApp` to streamline and standardize the setup and teardown for our tests. This method encapsulates the lifecycle management of the `Application` instance, ensuring that the application is properly initialized, configured, and shut down for each test.
+To provide a streamlined and standardized setup and teardown of tests, `VaporTesting` offers the `withApp` helper function. This method encapsulates the lifecycle management of the `Application` instance, ensuring that the application is properly initialized, configured, and shut down for each test.
 
-In particular it is important to release the threads the application requests at startup. If you do not call `asyncShutdown()` on the app after each unit test, you may find your test suite crash with a precondition failure when allocating threads for a new instance of `Application`.
+Pass your application's `configure(_:)` method to the `withApp` helper function to make sure all your routes get correctly registered: 
 
 ```swift
-private func withApp(_ test: (Application) async throws -> ()) async throws {
-    let app = try await Application.make(.testing)
-    do {
-        try await configure(app)
-        try await test(app)
+@Test func someTest() async throws { 
+    try await withApp(configure: configure) { app in
+        // your actual test
     }
-    catch {
-        try await app.asyncShutdown()
-        throw error
-    }
-    try await app.asyncShutdown()
 }
 ```
-
-Pass the `Application` to your package's `configure(_:)` method to apply your configuration. Then you test the application calling the `test()` method. Any test-only configurations can also be applied.
 
 #### Send Request
 
@@ -84,7 +75,7 @@ To send a test request to your application, use the `withApp` private method and
 ```swift
 @Test("Test Hello World Route")
 func helloWorld() async throws {
-    try await withApp { app in
+    try await withApp(configure: configure) { app in
         try await app.testing().test(.GET, "hello") { res async in
             #expect(res.status == .ok)
             #expect(res.body.string == "Hello, world!")
@@ -131,22 +122,28 @@ app.testing(method: .running(port: 8123)).test(...)
 
 #### Database Integration Tests
 
-Configure the database specifically for testing to ensure that your live database is never used during tests.
+Configure the database specifically for testing to ensure that your live database is never used during tests. For example, when you are using SQLite, you could configure your database in the `configure(_:)` function as follows:
 
 ```swift
-app.databases.use(.sqlite(.memory), as: .sqlite)
+public func configure(_ app: Application) async throws {
+    // All other configurations...
+
+    if app.environment == .testing {
+        app.databases.use(.sqlite(.memory), as: .sqlite)
+    } else {
+        app.databases.use(.sqlite(.file("db.sqlite")), as: .sqlite)
+    }
+}
 ```
 
-Then you can enhance your tests by using `autoMigrate()` and `autoRevert()` to manage the database schema and data lifecycle during testing:
+!!! warning
+    Make sure you run your tests against the correct database, so you prevent accidentally overwriting data you do not want to lose.
 
-By combining these methods, you can ensure that each test starts with a fresh and consistent database state, making your tests more reliable and reducing the likelihood of false positives or negatives caused by lingering data.
-
-Here's how the `withApp` function looks with the updated configuration:
+Then you can enhance your tests by using `autoMigrate()` and `autoRevert()` to manage the database schema and data lifecycle during testing. To do so, you should create your own helper function `withAppIncludingDB` that includes the database schema and data lifecycles:
 
 ```swift
-private func withApp(_ test: (Application) async throws -> ()) async throws {
+private func withAppIncludingDB(_ test: (Application) async throws -> ()) async throws {
     let app = try await Application.make(.testing)
-    app.databases.use(.sqlite(.memory), as: .sqlite)
     do {
         try await configure(app)
         try await app.autoMigrate()
@@ -161,6 +158,21 @@ private func withApp(_ test: (Application) async throws -> ()) async throws {
     try await app.asyncShutdown()
 }
 ```
+
+And then use this helper in your tests:
+```swift
+@Test func myDatabaseIntegrationTest() async throws {
+    try await withAppIncludingDB { app in
+        try await app.testing().test(.GET, "hello") { res async in
+            #expect(res.status == .ok)
+            #expect(res.body.string == "Hello, world!")
+        }
+    }
+} 
+```
+
+By combining these methods, you can ensure that each test starts with a fresh and consistent database state, making your tests more reliable and reducing the likelihood of false positives or negatives caused by lingering data.
+
 
 ## XCTVapor
 
