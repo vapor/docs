@@ -56,26 +56,17 @@ Para garantizar que tus pruebas se ejecuten de manera serializada (por ejemplo, 
 
 ### Probando la Aplicación
 
-Define una función de método privado `withApp` para agilizar y estandarizar la configuración y el cierre de nuestras pruebas. Este método encapsula la gestión del ciclo de vida de la instancia `Application`, asegurando que la aplicación está correctamente inicializada, configurada y apagada para cada prueba.
+Para proporcionar una configuración y desmontaje optimizados y estandarizados de las pruebas, `VaporTesting` ofrece la función auxiliar `withApp`. Este método encapsula la gestión del ciclo de vida de la instancia `Application`, asegurando que la aplicación está correctamente inicializada, configurada y apagada para cada prueba.
 
-En particular, es importante liberar los subprocesos que solicita la aplicación al iniciarse. Si no llamas a `asyncShutdown()` en la aplicación después de cada prueba unitaria, es posible que tu conjunto de pruebas se bloquee con un error de condición previa al asignar subprocesos para una nueva instancia de `Application`.
+Pasa el método `configure(_:)` de tu aplicación a la función auxiliar `withApp` para asegurarte de que todas tus rutas se registran correctamente:
 
 ```swift
-private func withApp(_ test: (Application) async throws -> ()) async throws {
-    let app = try await Application.make(.testing)
-    do {
-        try await configure(app)
-        try await test(app)
+@Test func someTest() async throws { 
+    try await withApp(configure: configure) { app in
+        // your actual test
     }
-    catch {
-        try await app.asyncShutdown()
-        throw error
-    }
-    try await app.asyncShutdown()
 }
 ```
-
-Pasa `Application` al método `configure(_:)` de tu paquete para aplicar tu configuración. Luego, prueba la aplicación llamando al método `test()`. También se puede aplicar cualquier configuración que sólo sea de prueba.
 
 #### Enviar Solicitud
 
@@ -84,7 +75,7 @@ Para enviar una solicitud de prueba a tu aplicación, usa el método privado `wi
 ```swift
 @Test("Test Hello World Route")
 func helloWorld() async throws {
-    try await withApp { app in
+    try await withApp(configure: configure) { app in
         try await app.testing().test(.GET, "hello") { res async in
             #expect(res.status == .ok)
             #expect(res.body.string == "Hello, world!")
@@ -131,22 +122,28 @@ app.testing(method: .running(port: 8123)).test(...)
 
 #### Pruebas de Integración de Bases de Datos
 
-Configura la base de datos específicamente para realizar pruebas para asegurarse de que tu base de datos activa nunca se utiliza durante las pruebas.
+Configura la base de datos específicamente para realizar pruebas para asegurarse de que tu base de datos activa nunca se utiliza durante las pruebas. Por ejemplo, cuando utilizas SQLite, puedes configurar tu base de datos en la función `configure(_:)` de la siguiente manera:
 
 ```swift
-app.databases.use(.sqlite(.memory), as: .sqlite)
+public func configure(_ app: Application) async throws {
+    // All other configurations...
+
+    if app.environment == .testing {
+        app.databases.use(.sqlite(.memory), as: .sqlite)
+    } else {
+        app.databases.use(.sqlite(.file("db.sqlite")), as: .sqlite)
+    }
+}
 ```
 
-Luego, puedes mejorar tus pruebas utilizando `autoMigrate()` y `autoRevert()` para gestionar el esquema de la base de datos y el ciclo de vida de los datos durante las pruebas:
+!!! warning "Advertencia"
+    Asegúrate de ejecutar tus pruebas contra la base de datos correcta, para evitar sobrescribir accidentalmente datos que no quieres perder.
 
-Al combinar estos métodos, puedes asegurarte de que cada prueba comienza con un estado de base de datos nuevo y consistente, lo que hace que tus pruebas sean más confiables y reduce la probabilidad de falsos positivos o negativos causados ​​por datos persistentes.
-
-Así es como se ve la función `withApp` con la configuración actualizada:
+Luego, puedes mejorar tus pruebas utilizando `autoMigrate()` y `autoRevert()` para gestionar el esquema de la base de datos y el ciclo de vida de los datos durante las pruebas. Para ello, debes crear tu propia función auxiliar `withAppIncludedDB` que incluya el esquema de la base de datos y los ciclos de vida de los datos:
 
 ```swift
-private func withApp(_ test: (Application) async throws -> ()) async throws {
+private func withAppIncludingDB(_ test: (Application) async throws -> ()) async throws {
     let app = try await Application.make(.testing)
-    app.databases.use(.sqlite(.memory), as: .sqlite)
     do {
         try await configure(app)
         try await app.autoMigrate()
@@ -161,6 +158,21 @@ private func withApp(_ test: (Application) async throws -> ()) async throws {
     try await app.asyncShutdown()
 }
 ```
+
+Y luego usa este ayudante en tus pruebas:
+
+```swift
+@Test func myDatabaseIntegrationTest() async throws {
+    try await withAppIncludingDB { app in
+        try await app.testing().test(.GET, "hello") { res async in
+            #expect(res.status == .ok)
+            #expect(res.body.string == "Hello, world!")
+        }
+    }
+} 
+```
+
+Al combinar estos métodos, puedes garantizar que cada prueba comience con un estado de base de datos nuevo y coherente, lo que hace que tus pruebas sean más confiables y reduce la probabilidad de falsos positivos o negativos causados por datos persistentes.
 
 ## XCTVapor
 
