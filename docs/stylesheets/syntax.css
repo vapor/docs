@@ -126,8 +126,7 @@
   content: attr(data-line-number);
 }
 
-@media (prefers-color-scheme: dark) {
-
+[data-md-color-media="(prefers-color-scheme: dark)"] {
   .md-typeset .hljs {
     color: #8194F7;
   }
