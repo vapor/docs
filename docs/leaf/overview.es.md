@@ -171,14 +171,14 @@ Usando este enfoque, construirías una plantilla hija que completa con su conten
 Por ejemplo, podrías crear una plantilla `child.leaf` de la siguiente manera:
 
 ```leaf
-#extend("master"):
+#extend("main"):
     #export("body"):
         <p>Welcome to Vapor!</p>
     #endexport
 #endextend
 ```
 
-Llamamos `#export` para almacenar algo de HTML y hacerlo disponible para la plantilla que estamos extendiendo actualmente. Luego renderizamos `master.leaf` y usamos los datos exportados cuando sea necesario, junto con cualquier otra variable de contexto pasada desde Swift. Por ejemplo, `master.leaf` podría verse así:
+Llamamos `#export` para almacenar algo de HTML y hacerlo disponible para la plantilla que estamos extendiendo actualmente. Luego renderizamos `main.leaf` y usamos los datos exportados cuando sea necesario, junto con cualquier otra variable de contexto pasada desde Swift. Por ejemplo, `main.leaf` podría verse así:
 
 ```leaf
 <html>

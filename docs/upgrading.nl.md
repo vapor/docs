@@ -10,7 +10,7 @@ De Install sectie van de docs gaat over het installeren van afhankelijkheden.
 
 ## Package.swift
 
-De eerste stap bij het upgraden naar Vapor 4 is het bijwerken van de afhankelijkheden van uw pakket. Hieronder staat een voorbeeld van een bijgewerkt Package.swift bestand. U kunt ook het bijgewerkte [sjabloon Package.swift](https://github.com/vapor/template/blob/master/Package.swift) bekijken.
+De eerste stap bij het upgraden naar Vapor 4 is het bijwerken van de afhankelijkheden van uw pakket. Hieronder staat een voorbeeld van een bijgewerkt Package.swift bestand. U kunt ook het bijgewerkte [sjabloon Package.swift](https://github.com/vapor/template/blob/main/Package.swift) bekijken.
 
 ```diff
 -// swift-tools-version:4.0

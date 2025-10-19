@@ -171,14 +171,14 @@ Leaf の `#extend` タグを使用すると、あるテンプレートの内容�
 例えば、次のような `child.leaf` テンプレートを作成できます：
 
 ```leaf
-#extend("master"):
+#extend("main"):
     #export("body"):
         <p>Welcome to Vapor!</p>
     #endexport
 #endextend
 ```
 
-ここでは、`#export` を使用して HTML を保存し、現在拡張しているテンプレートで利用できるようにしています。その後、`master.leaf` をレンダリングし、Swift から渡された他のコンテキスト変数と共にエクスポートされたデータを使用します。例えば、`master.leaf` は次のようになります：
+ここでは、`#export` を使用して HTML を保存し、現在拡張しているテンプレートで利用できるようにしています。その後、`main.leaf` をレンダリングし、Swift から渡された他のコンテキスト変数と共にエクスポートされたデータを使用します。例えば、`main.leaf` は次のようになります：
 
 ```leaf
 <html>

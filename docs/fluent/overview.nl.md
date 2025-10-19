@@ -177,7 +177,7 @@ Om MongoDB te gebruiken, voeg de volgende afhankelijkheden toe aan je pakket.
 
 Als de afhankelijkheden zijn toegevoegd, configureer dan de database referenties met Fluent met `app.databases.use` in `configure.swift`.
 
-Om verbinding te maken, geeft u een verbindingsstring door in het standaardformaat van MongoDB [connection URI format](https://docs.mongodb.com/master/reference/connection-string/index.html).
+Om verbinding te maken, geeft u een verbindingsstring door in het standaardformaat van MongoDB [connection URI format](https://docs.mongodb.com/docs/manual/reference/connection-string/).
 
 ```swift
 import Fluent
@@ -457,7 +457,7 @@ self.$galaxy.id = galaxyID
  Door de naam van de bovenliggende eigenschap vooraf te laten gaan door `$`, krijgt u toegang tot de onderliggende property-wrapper. Dit is nodig om toegang te krijgen tot het interne `@Field` dat de eigenlijke identifier waarde opslaat.
 
 !!! seealso "Zie ook"
-    Bekijk het Swift Evolution voorstel voor property wrappers voor meer informatie: [SE-0258] Property Wrappers](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md)
+    Bekijk het Swift Evolution voorstel voor property wrappers voor meer informatie: [SE-0258] Property Wrappers](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0258-property-wrappers.md)
 
 Maak vervolgens een migratie om de database voor te bereiden op de verwerking van `Star`.
 

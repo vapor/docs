@@ -50,7 +50,7 @@ Als je Git aan je project moet toevoegen, voer dan het volgende commando in Term
 git init
 ```
 
-#### Master/Main
+#### Main
 
 Je kunt het beste één branch behouden voor deployments naar Heroku, zoals de **main** of **master** branch. Zorg ervoor dat alle wijzigingen in deze branch zijn gecontroleerd voordat je gaat pushen.
 

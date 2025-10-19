@@ -50,7 +50,7 @@ Si necesitas agregar Git a tu proyecto, ingresa el siguiente comando en Terminal
 git init
 ```
 
-#### Master
+#### Main
 
 Debes decidirte por una rama y ceñirte a ella para desplegar en Heroku, como la rama **main** o **master**. Asegúrate de que todos los cambios se hayan registrado en esta rama antes de hacer push.
 

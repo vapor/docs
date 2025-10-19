@@ -171,14 +171,14 @@ Leaf 的 `#extend` 标签可以将一个模板的内容复制到另一个模板�
 例如，你可以创建这样的 `child.leaf` 模板：
 
 ```leaf
-#extend("master"):
+#extend("main"):
     #export("body"):
         <p>Welcome to Vapor!</p>
     #endexport
 #endextend
 ```
 
-我们调用 `#export` 来存储一些HTML，并使其对我们当前正在扩展的模板可用。然后我们渲染 `master.leaf` 视图，并在需要时使用导出的数据以及从 Swift 传入的其他上下文变量。例如，`master.leaf` 代码可能看起来像这样：
+我们调用 `#export` 来存储一些HTML，并使其对我们当前正在扩展的模板可用。然后我们渲染 `main.leaf` 视图，并在需要时使用导出的数据以及从 Swift 传入的其他上下文变量。例如，`main.leaf` 代码可能看起来像这样：
 
 ```leaf
 <html>
