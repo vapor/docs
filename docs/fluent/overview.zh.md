@@ -188,7 +188,7 @@ MongoDB 是一种流行的无模式 NoSQL 数据库，专为程序员设计。�
 
 添加依赖项后，在 `configure.swift` 中使用 `app.databases.use` 配置数据库的凭证。
 
-要进行连接，请传递标准 MongoDB [连接 URI 格式](https://docs.mongodb.com/master/reference/connection-string/index.html)的连接字符串。
+要进行连接，请传递标准 MongoDB [连接 URI 格式](https://docs.mongodb.com/zh-cn/docs/manual/reference/connection-string/)的连接字符串。
 
 
 ```swift
@@ -471,7 +471,7 @@ self.$galaxy.id = galaxyID
 通过为父属性的名称添加前缀 `$`，你可以访问底层属性包装器。这是访问 `@Field` 存储实际标识符值的内部所必需的。
 
 !!! seealso "也可以看看"
-    查看 Swift Evolution 关于属性包装器的提案以获得更多信息:[[SE-0258] Property Wrappers](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md)
+    查看 Swift Evolution 关于属性包装器的提案以获得更多信息:[[SE-0258] Property Wrappers](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0258-property-wrappers.md)
 
 接下来，创建一个迁移以准备数据库来处理 `Star`。
 

@@ -171,14 +171,14 @@ Using this approach, you would construct a child template that fills in its uniq
 For example, you might create a `child.leaf` template like this:
 
 ```leaf
-#extend("master"):
+#extend("main"):
     #export("body"):
         <p>Welcome to Vapor!</p>
     #endexport
 #endextend
 ```
 
-We call `#export` to store some HTML and make it available to the template we're currently extending. We then render `master.leaf` and use the exported data when required along with any other context variables passed in from Swift. For example, `master.leaf` might look like this:
+We call `#export` to store some HTML and make it available to the template we're currently extending. We then render `main.leaf` and use the exported data when required along with any other context variables passed in from Swift. For example, `main.leaf` might look like this:
 
 ```leaf
 <html>

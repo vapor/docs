@@ -50,7 +50,7 @@ If you need to add Git to your project, enter the following command in Terminal:
 git init
 ```
 
-#### Master
+#### Main
 
 You should decide for one branch and stick to that for deploying to Heroku, like the **main** or **master** branch. Make sure all changes are checked into this branch before pushing.
 

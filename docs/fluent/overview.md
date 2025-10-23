@@ -188,7 +188,7 @@ To use MongoDB, add the following dependencies to your package.
 
 Once the dependencies are added, configure the database's credentials with Fluent using `app.databases.use` in `configure.swift`.
 
-To connect, pass a connection string in the standard MongoDB [connection URI format](https://docs.mongodb.com/master/reference/connection-string/index.html).
+To connect, pass a connection string in the standard MongoDB [connection URI format](https://docs.mongodb.com/docs/manual/reference/connection-string/).
 
 ```swift
 import Fluent
@@ -470,7 +470,7 @@ self.$galaxy.id = galaxyID
  By prefixing the parent property's name with `$`, you access the underlying property wrapper. This is required for getting access to the internal `@Field` that stores the actual identifier value.
 
 !!! seealso
-    Check out the Swift Evolution proposal for property wrappers for more information: [[SE-0258] Property Wrappers](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md)
+    Check out the Swift Evolution proposal for property wrappers for more information: [[SE-0258] Property Wrappers](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0258-property-wrappers.md)
 
 Next, create a migration to prepare the database for handling `Star`.
 

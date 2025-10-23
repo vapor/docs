@@ -171,14 +171,14 @@ Usando questo approccio, potresti costruire un template figlio che compila il su
 Per esempio, potresti creare un template `child.leaf` così:
 
 ```leaf
-#extend("master"):
+#extend("main"):
     #export("body"):
         <p>Welcome to Vapor!</p>
     #endexport
 #endextend
 ```
 
-Chiamiamo `#export` per salvare dell'HTML e renderlo disponibile al template che stiamo estendendo al momento. Poi renderizziamo `master.leaf` e usiamo i dati esportati quando richiesto insieme a qualsiasi altra variabile di contesto passata da Swift. Per esempio, `master.leaf` potrebbe essere così:
+Chiamiamo `#export` per salvare dell'HTML e renderlo disponibile al template che stiamo estendendo al momento. Poi renderizziamo `main.leaf` e usiamo i dati esportati quando richiesto insieme a qualsiasi altra variabile di contesto passata da Swift. Per esempio, `main.leaf` potrebbe essere così:
 
 ```leaf
 <html>

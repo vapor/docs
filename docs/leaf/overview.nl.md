@@ -171,14 +171,14 @@ Met deze aanpak maakt u een child template dat zijn unieke inhoud invult, en ver
 Bijvoorbeeld, je zou een `child.leaf` template als volgt kunnen maken:
 
 ```leaf
-#extend("master"):
+#extend("main"):
     #export("body"):
         <p>Welcome to Vapor!</p>
     #endexport
 #endextend
 ```
 
-We roepen `#export` aan om wat HTML op te slaan en beschikbaar te maken voor het template dat we nu aan het uitbreiden zijn. We renderen dan `master.leaf` en gebruiken de geëxporteerde data wanneer nodig, samen met andere context variabelen die zijn doorgegeven door Swift. Bijvoorbeeld, `master.leaf` zou er zo uit kunnen zien:
+We roepen `#export` aan om wat HTML op te slaan en beschikbaar te maken voor het template dat we nu aan het uitbreiden zijn. We renderen dan `main.leaf` en gebruiken de geëxporteerde data wanneer nodig, samen met andere context variabelen die zijn doorgegeven door Swift. Bijvoorbeeld, `main.leaf` zou er zo uit kunnen zien:
 
 ```leaf
 <html>

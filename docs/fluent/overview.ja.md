@@ -188,7 +188,7 @@ MongoDB を使用するには、次の依存関係をパッケージに追加し
 
 依存関係を追加したら、`configure.swift` で `app.databases` を使用してデータベースのクレデンシャル情報を設定します。
 
-接続するには、標準の MongoDB [接続 URI 形式](https://docs.mongodb.com/master/reference/connection-string/index.html) で接続文字列を渡します。
+接続するには、標準の MongoDB [接続 URI 形式](https://docs.mongodb.com/ja-jp/docs/manual/reference/connection-string/) で接続文字列を渡します。
 
 ```swift
 import Fluent
@@ -470,7 +470,7 @@ self.$galaxy.id = galaxyID
 親プロパティ名の前に `$` を付けることで、基になるプロパティラッパーにアクセスします。これは、実際の識別子の値を格納する内部の `@Field` にアクセスするために必要です。
 
 !!! seealso
-    プロパティラッパーに関する詳細については、Swift Evolution の提案 [[SE-0258] Property Wrappers](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md) を参照してください。
+    プロパティラッパーに関する詳細については、Swift Evolution の提案 [[SE-0258] Property Wrappers](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0258-property-wrappers.md) を参照してください。
 
 次に、`Star` を処理するためのデータベースを準備するためにマイグレーションを作成します。
 
