@@ -31,7 +31,7 @@ Redis 可以作为一个存储提供程序，用于缓存[会话数据](../advan
 import Redis
 
 struct CustomRedisSessionsDelegate: RedisSessionsDelegate {
-    // implementation
+    // 实现
 }
 
 app.sessions.use(.redis(delegate: CustomRedisSessionsDelegate()))
