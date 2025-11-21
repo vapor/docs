@@ -474,3 +474,14 @@ final class UserCreationServiceTests: XCTestCase {
 See more details in [Romain Pouclet's blog post](https://romain.codes/2024/10/08/using-and-testing-vapor-queues/).
 
 
+# Troubleshooting
+
+When using [queues-redis-driver](https://github.com/vapor/queues-redis-driver) with a cluster based Redis-compatible server, such as Redis or Valkey on Amazon AWS, you might run into this error message: `CROSSSLOT Keys in request don't hash to the same slot`.
+
+This only happens in cluster mode, because Redis or Valkey can't know for sure on which cluster node to store the job data.
+
+To fix this, add a [hash tag](https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/#keys-hash-tags) to the names of your job data entries by using curly brackets in the names:
+
+```swift
+app.queues.configuration.persistenceKey = "vapor-queues-{queues}"
+```
