@@ -34,11 +34,10 @@ jobs:
           role-to-assume: ${{ vars.OIDC_ROLE_ARN }}
           aws-region: ${{ vars.OIDC_ROLE_REGION }}
       - name: Deploy CloudFormation stack
-        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        uses: aws-actions/aws-cloudformation-github-deploy@v2
         with:
           name: vapor-docs-stack
           template: stack.yml
-          no-fail-on-empty-changeset: '1'
           parameter-overrides: >-
             DomainName=docs.vapor.codes,
             S3BucketName=${{ secrets.DOCS_S3_BUCKET_NAME }},
