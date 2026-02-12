@@ -6,6 +6,8 @@ on:
   push:
     branches:
       - main
+  repository_dispatch:
+    types: [deploy-trigger]
 
 jobs:
   deploy:
