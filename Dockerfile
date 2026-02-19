@@ -11,7 +11,6 @@ WORKDIR /docs
 COPY . .
 
 RUN mkdocs build
-RUN swift fixSearchIndex.swift
 RUN cp googlefc012e5d94cfa05f.html site/googlefc012e5d94cfa05f.html;
 RUN swift setUpRedirects.swift
 
