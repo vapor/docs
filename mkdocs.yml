@@ -536,7 +536,7 @@ plugins:
             Xcode: Xcode
           site_name: Vapor 中文文档
       reconfigure_material: true
-      reconfigure_search: false
+      reconfigure_search: true
 nav:
 - Welcome: "index.md"
 - Install:
