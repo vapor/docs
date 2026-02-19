@@ -24,7 +24,7 @@ jobs:
       - name: Build the website
         run: |
           venv/bin/mkdocs build
-          swift fixSearchIndex.swift
+          #swift fixSearchIndex.swift
           cp googlefc012e5d94cfa05f.html site/googlefc012e5d94cfa05f.html
           swift setUpRedirects.swift
       
