@@ -256,6 +256,16 @@ extension QueueName {
 }
 ```
 
+You can also set a per-queue `workerCount` when creating a `QueueName`:
+
+```swift
+extension QueueName {
+    static let serialEmails = QueueName(string: "serial-emails", workerCount: 1)
+}
+```
+
+Setting `workerCount: 1` makes that queue process jobs consecutively, which is useful when job order matters.
+
 Then, specify the queue type when you retrieve the `jobs` object:
 
 ```swift
@@ -369,7 +379,12 @@ The job in the example above will be run every year on May 23rd at 12:00 PM.
     The Scheduler takes the timezone of your server.
 
 ### Available builder methods
-There are five main methods that can be called on a scheduler, each of which creates its respective builder object that contains more helper methods. You should continue building out a scheduler object until the compiler does not give you a warning about an unused result. See below for all available methods:
+There are two styles of scheduler APIs:
+
+- Calendar-style builders that return builder objects for chaining.
+- Interval-style builders that run jobs every fixed duration.
+
+You should continue building out a calendar-style scheduler chain until the compiler does not give you a warning about an unused result. See below for all available methods:
 
 | Helper Function | Available Modifiers                   | Description                                                                    |
 |-----------------|---------------------------------------|--------------------------------------------------------------------------------|
@@ -381,6 +396,24 @@ There are five main methods that can be called on a scheduler, each of which cre
 |                 | `at(_ hour: Hour12, _ minute: Minute, _ period: HourPeriod)` | The hour, minute, and period to run the job on. Final method of the chain |
 | `hourly()`      | `at(_ minute: Minute)`                 | The minute to run the job at. Final method of the chain.                      |
 | `minutely()`    | `at(_ second: Second)`                 | The second to run the job at. Final method of the chain.                      |
+
+### Interval builder methods (`.every(...)`)
+The scheduler also supports fixed-interval scheduling with `.every(...)` methods:
+
+| Helper Function | Description                                                                    |
+|-----------------|--------------------------------------------------------------------------------|
+| `every(seconds: Int)` | Runs the job every given number of seconds.                              |
+| `every(minutes: Int)` | Runs the job every given number of minutes.                              |
+| `every(hours: Int)`   | Runs the job every given number of hours.                                |
+| `every(days: Int)`    | Runs the job every given number of days.                                 |
+| `every(weeks: Int)`   | Runs the job every given number of weeks.                                |
+
+Example:
+
+```swift
+app.queues.schedule(CleanupJob())
+    .every(hours: 6)
+```
 
 ### Available helpers 
 Queues ships with some helpers enums to make scheduling easier: 
