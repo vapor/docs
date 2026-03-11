@@ -47,7 +47,7 @@ This is where all of your application logic goes.
 
 #### Controllers
 
-Controllers are great way of grouping together application logic. Most controllers have many functions that accept a request and return some sort of response.
+Controllers are a great way of grouping together application logic. Most controllers have many functions that accept a request and return some sort of response.
 
 #### Migrations
 
