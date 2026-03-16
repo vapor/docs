@@ -472,3 +472,15 @@ final class UserCreationServiceTests: XCTestCase {
 ```
 
 Más detalles en [la entrada del blog de Romain Pouclet](https://romain.codes/2024/10/08/using-and-testing-vapor-queues/).
+
+# Diagnóstico y resolución de problemas
+
+Al usar [queues-redis-driver](https://github.com/vapor/queues-redis-driver) con un servidor compatible con Redis basado en clúster, como Redis o Valkey en Amazon AWS, es posible que aparezca este mensaje de error: `CROSSSLOT Keys in request don't hash to the same slot` o `Las claves CROSSSLOT en la solicitud no se asignan al mismo slot`.
+
+Esto solo ocurre en modo clúster, ya que Redis o Valkey no pueden determinar con certeza en qué nodo del clúster almacenar los datos del trabajo.
+
+Para solucionarlo, agrega una [etiqueta hash](https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/#hash-tags) a los nombres de las entradas de datos de tu trabajo usando llaves:
+
+```swift
+app.queues.configuration.persistenceKey = "vapor-queues-{queues}"
+```
