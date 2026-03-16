@@ -480,7 +480,7 @@ When using [queues-redis-driver](https://github.com/vapor/queues-redis-driver) w
 
 This only happens in cluster mode, because Redis or Valkey can't know for sure on which cluster node to store the job data.
 
-To fix this, add a [hash tag](https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/#keys-hash-tags) to the names of your job data entries by using curly brackets in the names:
+To fix this, add a [hash tag](https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/#hash-tags) to the names of your job data entries by using curly brackets in the names:
 
 ```swift
 app.queues.configuration.persistenceKey = "vapor-queues-{queues}"
