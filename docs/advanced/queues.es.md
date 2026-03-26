@@ -112,9 +112,9 @@ Los trabajos se definen utilizando los protocolos `Job` o `AsyncJob`.
 ### Modelando un objeto `Job`:
 
 ```swift
-import Vapor 
-import Foundation 
-import Queues 
+import Vapor
+import Foundation
+import Queues
 
 struct Email: Codable {
     let to: String
@@ -167,7 +167,7 @@ app.get("email") { req -> EventLoopFuture<String> in
     return req
         .queue
         .dispatch(
-            EmailJob.self, 
+            EmailJob.self,
             .init(to: "email@email.com", message: "message")
         ).map { "done" }
 }
@@ -176,7 +176,7 @@ app.get("email") { req -> EventLoopFuture<String> in
 
 app.get("email") { req async throws -> String in
     try await req.queue.dispatch(
-        EmailJob.self, 
+        EmailJob.self,
         .init(to: "email@email.com", message: "message"))
     return "done"
 }
@@ -192,7 +192,7 @@ struct SendEmailCommand: AsyncCommand {
             .queues
             .queue
             .dispatch(
-                EmailJob.self, 
+                EmailJob.self,
                 .init(to: "email@email.com", message: "message")
             )
     }
@@ -208,7 +208,7 @@ app.get("email") { req -> EventLoopFuture<String> in
     return req
         .queue
         .dispatch(
-            EmailJob.self, 
+            EmailJob.self,
             .init(to: "email@email.com", message: "message"),
             maxRetryCount: 3
         ).map { "done" }
@@ -218,7 +218,7 @@ app.get("email") { req -> EventLoopFuture<String> in
 
 app.get("email") { req async throws -> String in
     try await req.queue.dispatch(
-        EmailJob.self, 
+        EmailJob.self,
         .init(to: "email@email.com", message: "message"),
         maxRetryCount: 3)
     return "done"
@@ -233,7 +233,7 @@ Puedes configurar que los trabajos se ejecuten únicamente tras una fecha determ
 app.get("email") { req async throws -> String in
     let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // Un día
     try await req.queue.dispatch(
-        EmailJob.self, 
+        EmailJob.self,
         .init(to: "email@email.com", message: "message"),
         maxRetryCount: 3,
         delayUntil: futureDate)
@@ -263,7 +263,7 @@ app.get("email") { req -> EventLoopFuture<String> in
     return req
         .queues(.emails)
         .dispatch(
-            EmailJob.self, 
+            EmailJob.self,
             .init(to: "email@email.com", message: "message"),
             maxRetryCount: 3,
             delayUntil: futureDate
@@ -277,7 +277,7 @@ app.get("email") { req async throws -> String in
     try await req
         .queues(.emails)
         .dispatch(
-            EmailJob.self, 
+            EmailJob.self,
             .init(to: "email@email.com", message: "message"),
             maxRetryCount: 3,
             delayUntil: futureDate
@@ -296,7 +296,7 @@ struct SendEmailCommand: AsyncCommand {
             .queues
             .queue(.emails)
             .dispatch(
-                EmailJob.self, 
+                EmailJob.self,
                 .init(to: "email@email.com", message: "message"),
                 maxRetryCount: 3,
                 delayUntil: futureDate
@@ -316,7 +316,7 @@ El paquete Queues también permite programar trabajos para que se ejecuten en de
 
 ### Iniciando el planificador de workers
 
-El planificador requiere que se ejecute un proceso worker independiente, similar al worker de colas. Puedes iniciar el worker ejecutando este comando: 
+El planificador requiere que se ejecute un proceso worker independiente, similar al worker de colas. Puedes iniciar el worker ejecutando este comando:
 
 ```sh
 swift run App queues --scheduled
@@ -409,6 +409,7 @@ Para utilizar el enum de ayuda, llama al modificador apropiado en la función de
 ```
 
 ## Delegados de Evento (Event Delegates)
+
 El paquete Queues permite especificar objetos `JobEventDelegate` que recibirán notificaciones cuando el trabajador realice una acción en un trabajo. Esto puede utilizarse con fines de supervisión, información o alerta.
 
 Para empezar, conforma un objeto a `JobEventDelegate` e implementa los métodos necesarios
