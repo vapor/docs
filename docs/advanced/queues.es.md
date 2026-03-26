@@ -383,7 +383,7 @@ Hay cinco métodos principales que pueden ser llamados en un planificador, cada 
 
 ### Ayudas disponibles
 
-Las colas vienen con algunos enums de ayuda para facilitar la planificación: 
+Las colas vienen con algunos enums de ayuda para facilitar la planificación:
 
 | Función auxiliar	| Enum disponibles de ayuda             |
 |-------------------|---------------------------------------|
