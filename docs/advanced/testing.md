@@ -214,13 +214,10 @@ Each function beginning with `test` will run automatically when your app is test
 
 ### Testable Application
 
-Initialize an instance of `Application` using the `.testing` environment. You must call `app.shutdown()` before this application deinitializes.  
-
-The shutdown is necessary to help release the resources that the app has claimed. In particular it is important to release the threads the application requests at startup. If you do not call `shutdown()` on the app after each unit test, you may find your test suite crash with a precondition failure when allocating threads for a new instance of `Application`.
+Initialize an instance of `Application` using the `.testing` environment.
 
 ```swift
 let app = Application(.testing)
-defer { app.shutdown() }
 try configure(app)
 ```
 
