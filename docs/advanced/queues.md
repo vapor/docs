@@ -1,12 +1,12 @@
 # Queues
 
-Vapor Queues ([vapor/queues](https://github.com/vapor/queues)) is a pure Swift queuing system that allows you to offload task responsibility to a side worker. 
+Vapor Queues ([vapor/queues](https://github.com/vapor/queues)) is a pure Swift queuing system that allows you to offload task responsibility to a side worker.
 
 Some of the tasks this package works well for:
 
 - Sending emails outside of the main request thread
-- Performing complex or long-running database operations 
-- Ensuring job integrity and resilience 
+- Performing complex or long-running database operations
+- Ensuring job integrity and resilience
 - Speeding up response time by delaying non-critical processing
 - Scheduling jobs to occur at a specific time
 
@@ -29,7 +29,7 @@ Queues also has community-based drivers:
 - [QueuesFluentDriver](https://github.com/vapor-community/vapor-queues-fluent-driver)
 
 !!! tip
-    You should not install the `vapor/queues` package directly unless you are building a new driver. Install one of the driver packages instead. 
+    You should not install the `vapor/queues` package directly unless you are building a new driver. Install one of the driver packages instead.
 
 ## Getting Started
 
@@ -37,7 +37,7 @@ Let's take a look at how you can get started using Queues.
 
 ### Package
 
-The first step to using Queues is adding one of the drivers as a dependency to your project in your SwiftPM package manifest file. In this example, we'll use the Redis driver. 
+The first step to using Queues is adding one of the drivers as a dependency to your project in your SwiftPM package manifest file. In this example, we'll use the Redis driver.
 
 ```swift
 // swift-tools-version:5.8
@@ -103,7 +103,7 @@ try app.queues.startScheduledJobs()
 ```
 
 !!! warning
-    If you don't start the queue worker either via command line or the in-process worker the jobs will not dispatch. 
+    If you don't start the queue worker either via command line or the in-process worker the jobs will not dispatch.
 
 ## The `Job` Protocol
 
@@ -112,9 +112,9 @@ Jobs are defined by the `Job` or `AsyncJob` protocol.
 ### Modeling a `Job` object:
 
 ```swift
-import Vapor 
-import Foundation 
-import Queues 
+import Vapor
+import Foundation
+import Queues
 
 struct Email: Codable {
     let to: String
@@ -130,7 +130,7 @@ struct EmailJob: Job {
     }
     
     func error(_ context: QueueContext, _ error: Error, _ payload: Email) -> EventLoopFuture<Void> {
-        // If you don't want to handle errors you can simply return a future. You can also omit this function entirely. 
+        // If you don't want to handle errors you can simply return a future. You can also omit this function entirely.
         return context.eventLoop.future()
     }
 }
@@ -147,7 +147,7 @@ struct EmailJob: AsyncJob {
     }
     
     func error(_ context: QueueContext, _ error: Error, _ payload: Email) async throws {
-        // If you don't want to handle errors you can simply return. You can also omit this function entirely. 
+        // If you don't want to handle errors you can simply return. You can also omit this function entirely.
     }
 }
 ```
@@ -156,7 +156,7 @@ struct EmailJob: AsyncJob {
     Make sure your `Payload` type implements the `Codable` protocol.
 
 !!! tip
-    Don't forget to follow the instructions in **Getting Started** to add this job to your configuration file. 
+    Don't forget to follow the instructions in **Getting Started** to add this job to your configuration file.
 
 ## Dispatching Jobs
 
@@ -167,7 +167,7 @@ app.get("email") { req -> EventLoopFuture<String> in
     return req
         .queue
         .dispatch(
-            EmailJob.self, 
+            EmailJob.self,
             .init(to: "email@email.com", message: "message")
         ).map { "done" }
 }
@@ -176,7 +176,7 @@ app.get("email") { req -> EventLoopFuture<String> in
 
 app.get("email") { req async throws -> String in
     try await req.queue.dispatch(
-        EmailJob.self, 
+        EmailJob.self,
         .init(to: "email@email.com", message: "message"))
     return "done"
 }
@@ -192,24 +192,23 @@ struct SendEmailCommand: AsyncCommand {
             .queues
             .queue
             .dispatch(
-                EmailJob.self, 
+                EmailJob.self,
                 .init(to: "email@email.com", message: "message")
             )
     }
 }
 ```
 
-
 ### Setting `maxRetryCount`
 
-Jobs will automatically retry themselves upon error if you specify a `maxRetryCount`. For example: 
+Jobs will automatically retry themselves upon error if you specify a `maxRetryCount`. For example:
 
 ```swift
 app.get("email") { req -> EventLoopFuture<String> in
     return req
         .queue
         .dispatch(
-            EmailJob.self, 
+            EmailJob.self,
             .init(to: "email@email.com", message: "message"),
             maxRetryCount: 3
         ).map { "done" }
@@ -219,7 +218,7 @@ app.get("email") { req -> EventLoopFuture<String> in
 
 app.get("email") { req async throws -> String in
     try await req.queue.dispatch(
-        EmailJob.self, 
+        EmailJob.self,
         .init(to: "email@email.com", message: "message"),
         maxRetryCount: 3)
     return "done"
@@ -234,7 +233,7 @@ Jobs can also be set to only run after a certain `Date` has passed. To specify a
 app.get("email") { req async throws -> String in
     let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // One day
     try await req.queue.dispatch(
-        EmailJob.self, 
+        EmailJob.self,
         .init(to: "email@email.com", message: "message"),
         maxRetryCount: 3,
         delayUntil: futureDate)
@@ -242,11 +241,11 @@ app.get("email") { req async throws -> String in
 }
 ```
 
-If a job is dequeued before its delay parameter, the job will be re-queued by the driver. 
+If a job is dequeued before its delay parameter, the job will be re-queued by the driver.
 
-### Specify a priority 
+### Specify a priority
 
-Jobs can be sorted into different queue types/priorities depending on your needs. For example, you may want to open an `email` queue and a `background-processing` queue to sort jobs. 
+Jobs can be sorted into different queue types/priorities depending on your needs. For example, you may want to open an `email` queue and a `background-processing` queue to sort jobs.
 
 Start by extending `QueueName`:
 
@@ -274,7 +273,7 @@ app.get("email") { req -> EventLoopFuture<String> in
     return req
         .queues(.emails)
         .dispatch(
-            EmailJob.self, 
+            EmailJob.self,
             .init(to: "email@email.com", message: "message"),
             maxRetryCount: 3,
             delayUntil: futureDate
@@ -288,7 +287,7 @@ app.get("email") { req async throws -> String in
     try await req
         .queues(.emails)
         .dispatch(
-            EmailJob.self, 
+            EmailJob.self,
             .init(to: "email@email.com", message: "message"),
             maxRetryCount: 3,
             delayUntil: futureDate
@@ -307,7 +306,7 @@ struct SendEmailCommand: AsyncCommand {
             .queues
             .queue(.emails)
             .dispatch(
-                EmailJob.self, 
+                EmailJob.self,
                 .init(to: "email@email.com", message: "message"),
                 maxRetryCount: 3,
                 delayUntil: futureDate
@@ -316,9 +315,7 @@ struct SendEmailCommand: AsyncCommand {
 }
 ```
 
-
-
-If you do not specify a queue the job will be run on the `default` queue. Make sure to follow the instructions in **Getting Started** to start workers for each queue type. 
+If you do not specify a queue the job will be run on the `default` queue. Make sure to follow the instructions in **Getting Started** to start workers for each queue type.
 
 ## Scheduling Jobs
 
@@ -328,7 +325,8 @@ The Queues package also allows you to schedule jobs to occur at certain points i
     Scheduled jobs only work when set up before the application boots up, such as in `configure.swift`. They will not work in route handlers.
 
 ### Starting the scheduler worker
-The scheduler requires a separate worker process to be running, similar to the queue worker. You can start the worker by running this command: 
+
+The scheduler requires a separate worker process to be running, similar to the queue worker. You can start the worker by running this command:
 
 ```sh
 swift run App queues --scheduled
@@ -363,7 +361,7 @@ struct CleanupJob: AsyncScheduledJob {
 }
 ```
 
-Then, in your configure code, register the scheduled job: 
+Then, in your configure code, register the scheduled job:
 
 ```swift
 app.queues.schedule(CleanupJob())
@@ -379,6 +377,7 @@ The job in the example above will be run every year on May 23rd at 12:00 PM.
     The Scheduler takes the timezone of your server.
 
 ### Available builder methods
+
 There are two styles of scheduler APIs:
 
 - Calendar-style builders that return builder objects for chaining.
@@ -398,6 +397,7 @@ You should continue building out a calendar-style scheduler chain until the comp
 | `minutely()`    | `at(_ second: Second)`                 | The second to run the job at. Final method of the chain.                      |
 
 ### Interval builder methods (`.every(...)`)
+
 The scheduler also supports fixed-interval scheduling with `.every(...)` methods:
 
 | Helper Function | Description                                                                    |
@@ -415,8 +415,9 @@ app.queues.schedule(CleanupJob())
     .every(hours: 6)
 ```
 
-### Available helpers 
-Queues ships with some helpers enums to make scheduling easier: 
+### Available helpers
+
+Queues ships with some helpers enums to make scheduling easier:
 
 | Helper Function | Available Helper Enum                 |
 |-----------------|---------------------------------------|
@@ -428,21 +429,22 @@ Queues ships with some helpers enums to make scheduling easier:
 To use the helper enum, call in to the appropriate modifier on the helper function and pass the value. For example:
 
 ```swift
-// Every year in January 
+// Every year in January
 .yearly().in(.january)
 
-// Every month on the first day 
+// Every month on the first day
 .monthly().on(.first)
 
-// Every week on Sunday 
+// Every week on Sunday
 .weekly().on(.sunday)
 
 // Every day at midnight
 .daily().at(.midnight)
 ```
 
-## Event Delegates 
-The Queues package allows you to specify `JobEventDelegate` objects that will receive notifications when the worker takes action on a job. This can be used for monitoring, surfacing insights, or alerting purposes. 
+## Event Delegates
+
+The Queues package allows you to specify `JobEventDelegate` objects that will receive notifications when the worker takes action on a job. This can be used for monitoring, surfacing insights, or alerting purposes.
 
 To get started, conform an object to `JobEventDelegate` and implement any required methods
 

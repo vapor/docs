@@ -112,9 +112,9 @@ Los trabajos se definen utilizando los protocolos `Job` o `AsyncJob`.
 ### Modelando un objeto `Job`:
 
 ```swift
-import Vapor 
-import Foundation 
-import Queues 
+import Vapor
+import Foundation
+import Queues
 
 struct Email: Codable {
     let to: String
@@ -167,7 +167,7 @@ app.get("email") { req -> EventLoopFuture<String> in
     return req
         .queue
         .dispatch(
-            EmailJob.self, 
+            EmailJob.self,
             .init(to: "email@email.com", message: "message")
         ).map { "done" }
 }
@@ -176,7 +176,7 @@ app.get("email") { req -> EventLoopFuture<String> in
 
 app.get("email") { req async throws -> String in
     try await req.queue.dispatch(
-        EmailJob.self, 
+        EmailJob.self,
         .init(to: "email@email.com", message: "message"))
     return "done"
 }
@@ -192,7 +192,7 @@ struct SendEmailCommand: AsyncCommand {
             .queues
             .queue
             .dispatch(
-                EmailJob.self, 
+                EmailJob.self,
                 .init(to: "email@email.com", message: "message")
             )
     }
@@ -208,7 +208,7 @@ app.get("email") { req -> EventLoopFuture<String> in
     return req
         .queue
         .dispatch(
-            EmailJob.self, 
+            EmailJob.self,
             .init(to: "email@email.com", message: "message"),
             maxRetryCount: 3
         ).map { "done" }
@@ -218,7 +218,7 @@ app.get("email") { req -> EventLoopFuture<String> in
 
 app.get("email") { req async throws -> String in
     try await req.queue.dispatch(
-        EmailJob.self, 
+        EmailJob.self,
         .init(to: "email@email.com", message: "message"),
         maxRetryCount: 3)
     return "done"
@@ -233,7 +233,7 @@ Puedes configurar que los trabajos se ejecuten únicamente tras una fecha determ
 app.get("email") { req async throws -> String in
     let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // Un día
     try await req.queue.dispatch(
-        EmailJob.self, 
+        EmailJob.self,
         .init(to: "email@email.com", message: "message"),
         maxRetryCount: 3,
         delayUntil: futureDate)
@@ -255,6 +255,16 @@ extension QueueName {
 }
 ```
 
+También puedes establecer un `workerCount` para cada cola al crear una `QueueName`:
+
+```swift
+extension QueueName {
+    static let serialEmails = QueueName(string: "serial-emails", workerCount: 1)
+}
+```
+
+Si se establece `workerCount: 1`, la cola procesará los trabajos de forma consecutiva, lo cual resulta útil cuando el orden de los trabajos es importante.
+
 A continuación, especifique el tipo de cola cuando recupere el objeto `jobs`:
 
 ```swift
@@ -263,7 +273,7 @@ app.get("email") { req -> EventLoopFuture<String> in
     return req
         .queues(.emails)
         .dispatch(
-            EmailJob.self, 
+            EmailJob.self,
             .init(to: "email@email.com", message: "message"),
             maxRetryCount: 3,
             delayUntil: futureDate
@@ -277,7 +287,7 @@ app.get("email") { req async throws -> String in
     try await req
         .queues(.emails)
         .dispatch(
-            EmailJob.self, 
+            EmailJob.self,
             .init(to: "email@email.com", message: "message"),
             maxRetryCount: 3,
             delayUntil: futureDate
@@ -296,7 +306,7 @@ struct SendEmailCommand: AsyncCommand {
             .queues
             .queue(.emails)
             .dispatch(
-                EmailJob.self, 
+                EmailJob.self,
                 .init(to: "email@email.com", message: "message"),
                 maxRetryCount: 3,
                 delayUntil: futureDate
@@ -316,7 +326,7 @@ El paquete Queues también permite programar trabajos para que se ejecuten en de
 
 ### Iniciando el planificador de workers
 
-El planificador requiere que se ejecute un proceso worker independiente, similar al worker de colas. Puedes iniciar el worker ejecutando este comando: 
+El planificador requiere que se ejecute un proceso worker independiente, similar al worker de colas. Puedes iniciar el worker ejecutando este comando:
 
 ```sh
 swift run App queues --scheduled
@@ -368,7 +378,12 @@ El trabajo del ejemplo anterior se ejecutará cada año el 23 de mayo a las 12:0
 
 ### Métodos disponibles para el constructor
 
-Hay cinco métodos principales que pueden ser llamados en un planificador, cada uno de los cuales crea su respectivo objeto constructor que contiene más métodos de ayuda. Debes continuar construyendo un objeto planificador hasta que el compilador no dé una advertencia sobre un resultado no utilizado. A continuación se listan todos los métodos disponibles:
+Existen dos estilos de APIs de planificación (scheduler):
+
+- Constructores de estilo calendario, que devuelven objetos builder para encadenar llamadas.
+- Constructores de estilo intervalo, que ejecutan tareas cada cierto tiempo fijo.
+
+Debes seguir construyendo la cadena del scheduler de estilo calendario hasta que el compilador deje de mostrarte una advertencia sobre un resultado sin usar. A continuación puedes ver todos los métodos disponibles:
 
 | Función auxiliar | Modificadores disponibles             | Descripción                                                                      |
 |------------------|---------------------------------------|----------------------------------------------------------------------------------|
@@ -381,9 +396,28 @@ Hay cinco métodos principales que pueden ser llamados en un planificador, cada 
 | `hourly()`       | `at(_ minute: Minute)`                 | Minuto en que se ejecutará el trabajo. Último método.                           |
 | `minutely()`     | `at(_ second: Second)`                 | Segundo en que se ejecutará el trabajo. Último método.                          |
 
+### Métodos del constructor de intervalos (`.every(...)`)
+
+El planificador también admite la planificación a intervalos fijos con los métodos `.every(...)`:
+
+| Función auxiliar | Descripción                                                                   |
+|------------------|-------------------------------------------------------------------------------|
+| `every(seconds: Int)` | Ejecuta la tarea cada cierto número de segundos.                         |
+| `every(minutes: Int)` | Ejecuta la tarea cada cierto número de minutos.                          |
+| `every(hours: Int)`   | Ejecuta la tarea cada cierto número de horas.                            |
+| `every(days: Int)`    | Ejecuta la tarea cada cierto número de días.                             |
+| `every(weeks: Int)`   | Ejecuta la tarea cada cierto número de semanas.                          |
+
+Ejemplo:
+
+```swift
+app.queues.schedule(CleanupJob())
+    .every(hours: 6)
+```
+
 ### Ayudas disponibles
 
-Las colas vienen con algunos enums de ayuda para facilitar la planificación: 
+Las colas vienen con algunos enums de ayuda para facilitar la planificación:
 
 | Función auxiliar	| Enum disponibles de ayuda             |
 |-------------------|---------------------------------------|
@@ -409,6 +443,7 @@ Para utilizar el enum de ayuda, llama al modificador apropiado en la función de
 ```
 
 ## Delegados de Evento (Event Delegates)
+
 El paquete Queues permite especificar objetos `JobEventDelegate` que recibirán notificaciones cuando el trabajador realice una acción en un trabajo. Esto puede utilizarse con fines de supervisión, información o alerta.
 
 Para empezar, conforma un objeto a `JobEventDelegate` e implementa los métodos necesarios
