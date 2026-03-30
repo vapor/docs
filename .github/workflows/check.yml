@@ -1,4 +1,4 @@
-name: Build docs and check cloudformation and dead links
+name: Build docs, check CloudFormation, check for dead links
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -6,6 +6,8 @@ on:
   pull_request:
     branches:
       - main
+permissions:
+  contents: read
 
 jobs:
   check:
@@ -21,13 +23,13 @@ jobs:
     - name: Build documentation
       run: venv/bin/mkdocs build
     - name: Setup cloudformation linter 
-      uses: ScottBrenner/cfn-lint-action@v2
+      uses: ScottBrenner/cfn-lint-action@9636da81fb2e0cef75725d8dda11b0148940b7ae # v2.6.0
     - name: Run cloudformation lint 
       run: cfn-lint -t stack.yml
-    - name: Check dead links 
-      uses: tcort/github-action-markdown-link-check@v1
+    - name: Run dead links check
+      uses: tcort/github-action-markdown-link-check@e7c7a18363c842693fadde5d41a3bd3573a7a225 # v1.1.2
       with:
         folder-path: '.'
-        config-file: 'markdown-link-check-config.yml'
-        use-verbose-mode: 'yes'
-        use-quiet-mode: 'yes'
+        config-file: markdown-link-check-config.yml
+        use-verbose-mode: yes
+        use-quiet-mode: yes
