@@ -6,17 +6,17 @@ on:
   push:
     branches:
       - main
+permissions:
+  contents: read
+  id-token: write
 
 jobs:
   deploy:
     name: Build and deploy
     runs-on: ubuntu-latest
-    permissions: { id-token: write, contents: read }
-    env: { AWS_PAGER: '' }
     steps:
       - name: Checkout repository 
         uses: actions/checkout@v6
-      
       - name: Create virtual environment
         run: python3 -m venv venv
       - name: Install dependencies
@@ -24,17 +24,15 @@ jobs:
       - name: Build the website
         run: |
           venv/bin/mkdocs build
-          #swift fixSearchIndex.swift
           cp googlefc012e5d94cfa05f.html site/googlefc012e5d94cfa05f.html
-          swift setUpRedirects.swift
-      
+          swift setUpRedirects.swift      
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v6
+        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v6.0.0
         with:
           role-to-assume: ${{ vars.OIDC_ROLE_ARN }}
           aws-region: ${{ vars.OIDC_ROLE_REGION }}
       - name: Deploy CloudFormation stack
-        uses: aws-actions/aws-cloudformation-github-deploy@v2
+        uses: aws-actions/aws-cloudformation-github-deploy@c6cd26bb03f19ebe84c84e9cdbedfb307bf44fb4 # v2.0.0
         with:
           name: vapor-docs-stack
           template: stack.yml
