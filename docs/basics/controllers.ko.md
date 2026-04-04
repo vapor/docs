@@ -1,6 +1,6 @@
 # 컨트롤러(Controllers)
 
-컨트롤러는 코드를 그룹화하는데 좋은 방법입니다. 컨트롤러는 요청을 받고 응답을 반환하는 메서드들의 모음입니다.
+컨트롤러는 코드를 그룹화하는데 좋은 방법입니다. 컨트롤러는 요청(request)을 받고 응답(response)을 반환하는 메서드들의 모음입니다.
 
 컨트롤러가 위치하기에 좋은 곳은 [Controllers](../getting-started/folder-structure.md#controllers) 폴더입니다.
 

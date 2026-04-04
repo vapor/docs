@@ -1,6 +1,6 @@
 # 에러(Errors)
 
-Vapor는 에러 핸들링을 위한 Swift’s의 `Error` 프로토콜을 기반으로 구현되었습니다. 라우트 핸들러는 error을 던지거나(`throw`) 실패한 `EventLoopFuture`를 반환할 수 있습니다. Swift Error를 반환 또는 던지는 것은 `500` 상태 코드를 발생시키고, 에러가 로그로 기록됩니다. `AbortError`와 `DebuggableError`는 각각 응답 객체와 로깅을 수정하는 데 사용될 수 있습니다. `ErrorMiddleware` 에러들의 처리를 담당합니다. 이 미들웨어는 기본으로 application에 추가되어있으며, 원한다면 커스텀 로직으로 교체할 수 있습니다.
+Vapor는 에러 핸들링을 위한 Swift’s의 `Error` 프로토콜을 기반으로 구현되었습니다. 라우트 핸들러는 error을 던지거나(`throw`) 실패한 `EventLoopFuture`를 반환할 수 있습니다. Swift Error를 반환 또는 던지는 것은 `500` 상태 코드를 발생시키고, 에러가 로그로 기록됩니다. `AbortError`와 `DebuggableError`는 각각 응답 객체와 로깅을 수정하는 데 사용될 수 있습니다. `ErrorMiddleware` 에러들의 처리를 담당합니다. 이 미들웨어는 기본으로 application에 추가되어있고, 원한다면 커스텀 로직으로 교체할 수 있습니다.
 
 ## 중단(Abort)
 
@@ -14,7 +14,7 @@ throw Abort(.notFound)
 throw Abort(.unauthorized, reason: "Invalid Credentials")
 ```
 
-에러를 던지는 것이 지원되지 않고 반드시 `EventLoopFuture`를 반환해야 하는 과거의 비동기 방식(`flatMap` 클로저처럼)에서는 실패한 future를 반환할 수 있습니다.
+에러를 던지는 것이 지원되지 않고, 반드시 `EventLoopFuture`를 반환해야 하는 과거의 비동기 방식(`flatMap` 클로저처럼)에서는 실패한 future를 반환할 수 있습니다.
 
 ```swift
 guard let user = user else {

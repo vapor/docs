@@ -1,10 +1,10 @@
 # 라우팅(Routing)
 
-라우팅은 유입되는 요청(Incomming Request)에 적합한 요청 핸들러(Request Handler)를 찾는 과정입니다. Vapor 라우팅의 핵심에는 [RoutingKit](https://github.com/vapor/routing-kit)의 고성능, 트라이 노드 라우터가 있습니다.
+라우팅은 유입되는 요청(Incomming Request)에 적합한 요청 핸들러(Request Handler)를 찾는 과정입니다. Vapor 라우팅의 핵심에는 [RoutingKit](https://github.com/vapor/routing-kit)의 고성능, 트라이 노드(trie-node) 라우터가 있습니다.
 
 ## 개요
 
-Vapor에서 라우팅이 어떻게 동작하는지 이해하기 위해서, 먼저 HTTP 요청에 대한 몇 가지 기본 사항을 이해해야 합니다. 다음의 요청 예시를 참고해 주세요.
+Vapor에서 라우팅이 어떻게 동작하는지 이해하기 위해서는 먼저 HTTP 요청에 대한 몇 가지 기본 사항을 이해해야 합니다. 다음의 요청 예시를 참고해 주세요.
 
 ```http
 GET /hello/vapor HTTP/1.1
@@ -20,7 +20,7 @@ http://vapor.codes/hello/vapor
 
 ### HTTP 메서드
 
-요청의 첫 번째 파트는 HTTP 메서드입니다. `GET`은 가장 보편적인 HTTP 메서드입니다. 그러나 여러분은 종종 사용하게 되는 몇 가지의 메서드가 더 있습니다. 이 HTTP 메서드들은 [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) 개념과 관계가 있습니다.The first part of the request is the HTTP method.
+요청의 첫 번째 파트는 HTTP 메서드입니다. 가장 보편적인 HTTP 메서드는 `GET`입니다. 그러나 여러분이 자주 사용하는 몇 개의 메서드가 더 있습니다. 이 HTTP 메서드들은 [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) 개념과 관계가 있습니다.
 
 |Method|CRUD|
 |-|-|
@@ -32,7 +32,7 @@ http://vapor.codes/hello/vapor
 
 ### 요청 경로(Request Path)
 
-HTTP 메서드 바로 뒤에는 요청의 URI가 있습니다. URI는 `/`로 시작하는 경로와 `?` 뒤에 따라오는 선택적인(Optional) 쿼리 스트링으로 구성됩니다. Vapor는 이 HTTP 메서드와 Path를 사용해서 요청을 라우팅합니다.
+HTTP 메서드 바로 뒤에는 요청의 URI가 있습니다. URI는 `/`로 시작하는 경로와 `?` 뒤에 따라오는 선택적인(Optional) 쿼리 스트링으로 구성됩니다. Vapor는 요청을 이 HTTP 메서드와 Path를 사용해서 라우팅합니다.
 
 URI 다음에는 HTTP 버전이 표시됩니다. 그 뒤에는 헤더와 본문(Body)이 올 수 있습니다. `GET` 요청에는 본문(Body)이 없습니다.
 
@@ -54,7 +54,7 @@ app.get("hello", "vapor") { req in
 app.on(.GET, "hello", "vapor") { ... }
 ```
 
-경로가 등록되면, 예시의 HTTP 요청은 다음 HTTP 응답을 반환할 것입니다.
+경로가 등록되면, 예시의 HTTP 요청은 다음 HTTP 응답(response)을 반환할 것입니다.
 
 ```http
 HTTP/1.1 200 OK
@@ -91,7 +91,7 @@ content-type: text/plain; charset=utf-8
 Hello, swift!
 ```
 
-이제 기본적인 것들을 이해했습니다. 각 섹션을 통해서 파라미터, 그룹 등에 대해서 더 많은 것을 알아보세요.
+이제 기본적인 것들을 살펴보았습니다. 각 섹션을 통해서 파라미터, 그룹 등 더 많은 것을 알아보세요.
 
 ## 라우트(Routes)
 
@@ -209,7 +209,7 @@ app.get("hello", ":name") { req -> String in
 ```
 
 !!! tip
-    라우트 경로에 :name이 포함되어 있다면 `req.parameters.get`에는 `nil`이 절대로 반환되지 않을 것입니다. 하지만, 만약 미들웨어나 여러 라우트들에서 공통적으로 사용하는 코드가 있다면, 라우트 파라미터에 접근할 때 `nil`이 반환될 가능성이 있습니다. 이를 고려해서 작업을 해야 합니다.
+    라우트 경로에 :name이 포함되어 있다면 `req.parameters.get`에는 `nil`이 절대로 반환되지 않을 것입니다. 하지만, 만약 미들웨어나 여러 라우트들에서 공통적으로 사용하는 코드가 있다면, 라우트 파라미터에 접근할 때 `nil`이 반환될 가능성이 있습니다. 이를 고려한 작업이 필요합니다.
 
 !!! tip
     예를 들어 `/hello/?name=foo` 같은 URL에서 쿼리 파라미터를 가져오려면, Vapor의 Content API를 사용해야 합니다. URL 쿼리 스트링 안에서 URL 인코딩 데이터를 처리할 수 있습니다. 더 자세한 정보를 위해서 [`Content` reference](content.md)를 살펴보세요.
@@ -262,7 +262,7 @@ app.on(.POST, "listings", body: .collect(maxSize: "1mb")) { req in
 }
 ```
 
-라우트에 `collect` 메서드로 `maxSize`를 전달하면 애플리케이션의 기본값보다 우선되어 적용됩니다. application의 기본값을 사용하려면, `maxSize` 인자를 생략하세요.
+라우트에 `collect` 메서드로 `maxSize`를 전달하면 애플리케이션의 기본값보다 우선되어 적용됩니다. application의 기본값을 사용하려면 `maxSize` 인자를 생략하세요.
 
 파일 업로드 같은 대용량 요청의 경우, 요청 본문을 버퍼에 수집하는 것은 잠재적으로 시스템 메모리에 부담을 줄 수 있습니다. 요청 본문이 수집되는 것을 막기 위해서는 `stream` 전략을 사용하세요.
 
@@ -293,7 +293,7 @@ app.routes.caseInsensitive = true
 print(app.routes.all) // [Route]
 ```
 
-Vapor는 `routes`라는 명령어를 제공합니다. 이 명령어는 모든 사용 가능한 라우트들을 ASCII 형식의 테이블로 출력합니다.
+Vapor는 `routes`라는 명령어를 제공합니다. 이 명령어는 사용 가능한 모든 라우트들을 ASCII 형식의 테이블로 출력합니다.
 
 ```sh
 $ swift run App routes
@@ -312,7 +312,7 @@ $ swift run App routes
 
 ### 메타데이터(Metadata)
 
-모든 라우트 등록 메서드는 생성된 `Route`를 반환합니다. 이를 통해 라우트의 `userInfo` Dictionary에 메타데이터를 추가할 수 있습니다. 설명 추가처럼 기본적으로 사용할 수 있는 몇 가지 메서드들이 있습니다.
+모든 라우트 등록 메서드는 생성된 `Route`를 반환합니다. 이를 통해 라우트의 `userInfo` Dictionary에 메타데이터를 추가할 수 있습니다. 설명을 추가하는 것처럼 기본적으로 사용할 수 있는 몇 가지 메서드들이 있습니다.
 
 ```swift
 app.get("hello", ":name") { req in
@@ -322,7 +322,7 @@ app.get("hello", ":name") { req in
 
 ## 라우트 그룹(Route Groups)
 
-라우트를 그룹화하는 것으로 경로 접두사나 특정 미들웨어가 있는 라우트들의 집합을 생성할 수 있습니다. 그룹화는 빌더와 클로저 기반의 문법을 제공합니다.
+라우트를 그룹화해서 경로 접두사나 특정 미들웨어가 있는 라우트 집합을 생성할 수 있습니다. 그룹화는 빌더와 클로저 기반의 문법을 제공합니다.
 
 모든 그룹화 메서드는 `RouteBuilder`를 반환합니다. `RouteBuilder`는 다른 라우트 빌딩 메서드와 함께 제한 없이 혼합, 매치, 중첩시킬 수 있습니다.
 
@@ -402,7 +402,7 @@ app.group(RateLimitMiddleware(requestsPerMinute: 5)) { rateLimited in
 }
 ```
 
-라우트들의 일부 하위 부분들을 보호하기 위해서 서로 다른 인증 미들웨어를 사용하는 것이 유용합니다.
+서로 다른 인증 미들웨어를 사용해서 라우트들의 일부 하위 부분들을 보호할 수 있습니다.
 
 ```swift
 app.post("login") { ... }
@@ -411,7 +411,7 @@ auth.get("dashboard") { ... }
 auth.get("logout") { ... }
 ```
 
-## Redirections
+## 리다이렉션(Redirections)
 
 리다이렉트는 다양한 시나리오에서 유용합니다. SEO를 위해서 옛날 주소를 새로운 주소로 이동시키거나, 인증이 되지 않은 사용자를 로그인 페이지로 이동시키거나, 새로운 API 버전에서 하위 호환성을 지원하기 위해 사용할 수 있습니다.
 
@@ -429,8 +429,8 @@ req.redirect(to: "/some/new/path", redirectType: .permanent)
 
 `Redirect`의 차이는 다음과 같습니다.
 
-* `.permanent` - **301 Permanent** 리다이렉트를 반환합니다
-* `.normal` - **303 see other** 리다이렉트를 반환합니다. Vapor의 기본값은 303입니다. 클라이언트에게 **GET** 요청으로 리다이렉트를 지시합니다
+* `.permanent` - **301 Permanent** 리다이렉트를 반환합니다.
+* `.normal` - **303 see other** 리다이렉트를 반환합니다. Vapor의 기본값은 303입니다. 클라이언트에게 **GET** 요청으로 리다이렉트를 지시합니다.
 * `.temporary` - **307 Temporary** 리다이렉트를 반환합니다. 클라이언트에게 원래의 HTTP 요청을 유지하도록 합니다.
 
 > 적절한 리다이렉션 상태 코드를 선택하기 위해서는 [전체 리스트](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_redirection)를 참고하세요.
