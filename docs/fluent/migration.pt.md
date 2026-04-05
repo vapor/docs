@@ -1,16 +1,16 @@
-# Migrations
+# Migrações
 
 Migrations são como um sistema de controle de versão para seu banco de dados. Cada migration define uma alteração no banco de dados e como desfazê-la. Ao modificar seu banco de dados através de migrations, você cria uma maneira consistente, testável e compartilhável de evoluir seus bancos de dados ao longo do tempo.
 
 ```swift
-// An example migration.
+// Um exemplo de migration.
 struct MyMigration: Migration {
     func prepare(on database: any Database) -> EventLoopFuture<Void> {
-        // Make a change to the database.
+        // Faz uma alteração no banco de dados.
     }
 
     func revert(on database: any Database) -> EventLoopFuture<Void> {
-    	// Undo the change made in `prepare`, if possible.
+    	// Desfaz a alteração feita em `prepare`, se possível.
     }
 }
 ```
@@ -20,11 +20,11 @@ Se estiver usando `async`/`await`, você deve implementar o protocolo `AsyncMigr
 ```swift
 struct MyMigration: AsyncMigration {
     func prepare(on database: any Database) async throws {
-        // Make a change to the database.
+        // Faz uma alteração no banco de dados.
     }
 
     func revert(on database: any Database) async throws {
-    	// Undo the change made in `prepare`, if possible.
+    	// Desfaz a alteração feita em `prepare`, se possível.
     }
 }
 ```
@@ -85,7 +85,7 @@ Você também pode fazer isso programaticamente.
 ```swift
 try app.autoMigrate().wait()
 
-// or
+// ou
 try await app.autoMigrate()
 ```
 

@@ -5,7 +5,7 @@ O objeto [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) 
 ```swift
 app.get("hello", ":name") { req -> String in
     let name = req.parameters.get("name")!
-    return "Hello, \(name)!"
+    return "Olá, \(name)!"
 }
 ```
 

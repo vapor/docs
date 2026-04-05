@@ -1,4 +1,4 @@
-# Content
+# Conteúdo
 
 A API de conteúdo do Vapor permite que você codifique / decodifique facilmente structs Codable de / para mensagens HTTP. A codificação [JSON](https://tools.ietf.org/html/rfc7159) é usada por padrão com suporte nativo para [URL-Encoded Form](https://en.wikipedia.org/wiki/Percent-encoding#The_application/x-www-form-urlencoded_type) e [Multipart](https://tools.ietf.org/html/rfc2388). A API também é configurável, permitindo que você adicione, modifique ou substitua estratégias de codificação para certos tipos de conteúdo HTTP.
 
@@ -102,7 +102,7 @@ Agora que você tem uma struct `Content` para a query string esperada desta rota
 ```swift
 app.get("hello") { req -> String in
     let hello = try req.query.decode(Hello.self)
-    return "Hello, \(hello.name ?? "Anonymous")"
+    return "Olá, \(hello.name ?? "Anônimo")"
 }
 ```
 
@@ -110,12 +110,12 @@ Esta rota resultaria na seguinte resposta dado o exemplo de requisição acima:
 
 ```http
 HTTP/1.1 200 OK
-content-length: 12
+content-length: 11
 
-Hello, Vapor
+Olá, Vapor
 ```
 
-Se a query string fosse omitida, como na seguinte requisição, o nome "Anonymous" seria usado.
+Se a query string fosse omitida, como na seguinte requisição, o nome "Anônimo" seria usado.
 
 ```http
 GET /hello HTTP/1.1
@@ -135,18 +135,18 @@ let name: String? = req.query["name"]
 O Vapor chamará automaticamente `beforeEncode` e `afterDecode` em um tipo `Content`. Implementações padrão são fornecidas e não fazem nada, mas você pode usar esses métodos para executar lógica personalizada.
 
 ```swift
-// Runs after this Content is decoded. `mutating` is only required for structs, not classes.
+// Executa após este Content ser decodificado. `mutating` é necessário apenas para structs, não para classes.
 mutating func afterDecode() throws {
-    // Name may not be passed in, but if it is, then it can't be an empty string.
+    // O nome pode não ser enviado, mas se for, não pode ser uma string vazia.
     self.name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines)
     if let name = self.name, name.isEmpty {
         throw Abort(.badRequest, reason: "Name must not be empty.")
     }
 }
 
-// Runs before this Content is encoded. `mutating` is only required for structs, not classes.
+// Executa antes deste Content ser codificado. `mutating` é necessário apenas para structs, não para classes.
 mutating func beforeEncode() throws {
-    // Have to *always* pass a name back, and it can't be an empty string.
+    // Deve *sempre* retornar um nome, e não pode ser uma string vazia.
     guard
         let name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines),
         !name.isEmpty
@@ -166,11 +166,11 @@ Os encoders e decoders padrão usados pelas APIs de conteúdo do Vapor podem ser
 `ContentConfiguration.global` permite que você altere os encoders e decoders que o Vapor usa por padrão. Isso é útil para mudar como toda a sua aplicação analisa e serializa dados.
 
 ```swift
-// create a new JSON encoder that uses unix-timestamp dates
+// cria um novo encoder JSON que usa datas em unix-timestamp
 let encoder = JSONEncoder()
 encoder.dateEncodingStrategy = .secondsSince1970
 
-// override the global encoder used for the `.json` media type
+// substitui o encoder global usado para o media type `.json`
 ContentConfiguration.global.use(encoder: encoder, for: .json)
 ```
 
@@ -181,11 +181,11 @@ A mutação de `ContentConfiguration` é geralmente feita em `configure.swift`.
 Chamadas a métodos de codificação e decodificação como `req.content.decode` suportam a passagem de coders personalizados para usos pontuais.
 
 ```swift
-// create a new JSON decoder that uses unix-timestamp dates
+// cria um novo decoder JSON que usa datas em unix-timestamp
 let decoder = JSONDecoder()
 decoder.dateDecodingStrategy = .secondsSince1970
 
-// decodes Hello struct using custom decoder
+// decodifica a struct Hello usando um decoder personalizado
 let hello = try req.content.decode(Hello.self, using: decoder)
 ```
 
@@ -274,7 +274,7 @@ app.get { _ in
   HTML(value: """
   <html>
     <body>
-      <h1>Hello, World!</h1>
+      <h1>Olá, Mundo!</h1>
     </body>
   </html>
   """)

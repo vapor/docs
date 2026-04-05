@@ -115,7 +115,7 @@ Se usar um banco de dados em memória, certifique-se de configurar o Fluent para
 ```swift
 app.migrations.add(CreateTodo())
 try app.autoMigrate().wait()
-// or
+// ou
 try await app.autoMigrate()
 ```
 
@@ -203,21 +203,21 @@ Models representam estruturas de dados fixas no seu banco de dados, como tabelas
 
 ```swift
 final class Galaxy: Model {
-    // Name of the table or collection.
+    // Nome da tabela ou coleção.
     static let schema = "galaxies"
 
-    // Unique identifier for this Galaxy.
+    // Identificador único para esta Galaxy.
     @ID(key: .id)
     var id: UUID?
 
-    // The Galaxy's name.
+    // O nome da Galaxy.
     @Field(key: "name")
     var name: String
 
-    // Creates a new, empty Galaxy.
+    // Cria uma nova Galaxy vazia.
     init() { }
 
-    // Creates a new Galaxy with all properties set.
+    // Cria uma nova Galaxy com todas as propriedades definidas.
     init(id: UUID? = nil, name: String) {
         self.id = id
         self.name = name
@@ -285,7 +285,7 @@ Se seu banco de dados usa schemas pré-definidos, como bancos de dados SQL, voc�
 
 ```swift
 struct CreateGalaxy: AsyncMigration {
-    // Prepares the database for storing Galaxy models.
+    // Prepara o banco de dados para armazenar models Galaxy.
     func prepare(on database: Database) async throws {
         try await database.schema("galaxies")
             .id()
@@ -293,7 +293,7 @@ struct CreateGalaxy: AsyncMigration {
             .create()
     }
 
-    // Optionally reverts the changes made in the prepare method.
+    // Opcionalmente reverte as alterações feitas no método prepare.
     func revert(on database: Database) async throws {
         try await database.schema("galaxies").delete()
     }
@@ -423,25 +423,25 @@ O que são galáxias sem estrelas! Vamos dar uma olhada rápida nos poderosos re
 
 ```swift
 final class Star: Model, Content {
-    // Name of the table or collection.
+    // Nome da tabela ou coleção.
     static let schema = "stars"
 
-    // Unique identifier for this Star.
+    // Identificador único para esta Star.
     @ID(key: .id)
     var id: UUID?
 
-    // The Star's name.
+    // O nome da Star.
     @Field(key: "name")
     var name: String
 
-    // Reference to the Galaxy this Star is in.
+    // Referência à Galaxy em que esta Star está.
     @Parent(key: "galaxy_id")
     var galaxy: Galaxy
 
-    // Creates a new, empty Star.
+    // Cria uma nova Star vazia.
     init() { }
 
-    // Creates a new Star with all properties set.
+    // Cria uma nova Star com todas as propriedades definidas.
     init(id: UUID? = nil, name: String, galaxyID: UUID) {
         self.id = id
         self.name = name
@@ -477,7 +477,7 @@ Em seguida, crie uma migration para preparar o banco de dados para lidar com `St
 
 ```swift
 struct CreateStar: AsyncMigration {
-    // Prepares the database for storing Star models.
+    // Prepara o banco de dados para armazenar models Star.
     func prepare(on database: Database) async throws {
         try await database.schema("stars")
             .id()
@@ -486,7 +486,7 @@ struct CreateStar: AsyncMigration {
             .create()
     }
 
-    // Optionally reverts the changes made in the prepare method.
+    // Opcionalmente reverte as alterações feitas no método prepare.
     func revert(on database: Database) async throws {
         try await database.schema("stars").delete()
     }
@@ -552,7 +552,7 @@ Você deverá ver a estrela recém-criada retornada com um identificador único.
 Agora vamos ver como você pode utilizar o recurso de eager-loading do Fluent para retornar automaticamente as estrelas de uma galáxia na rota `GET /galaxies`. Adicione a seguinte propriedade ao model `Galaxy`.
 
 ```swift
-// All the Stars in this Galaxy.
+// Todas as Stars nesta Galaxy.
 @Children(for: \.$galaxy)
 var stars: [Star]
 ```

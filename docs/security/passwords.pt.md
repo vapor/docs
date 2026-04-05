@@ -64,7 +64,7 @@ Os algoritmos de hashing de senha são projetados para serem lentos e intensivos
 
 ```swift
 req.password.async.hash("vapor").map { digest in
-    // Handle digest.
+    // Tratar digest.
 }
 
 // ou
@@ -76,7 +76,7 @@ A verificação de digests funciona de forma similar:
 
 ```swift
 req.password.async.verify("vapor", created: digest).map { bool in
-    // Handle result.
+    // Tratar resultado.
 }
 
 // ou

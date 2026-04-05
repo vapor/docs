@@ -49,7 +49,7 @@ Você pode exportar variáveis para sua aplicação Vapor com o supervisor. Para
 > Valores contendo caracteres não alfanuméricos devem ser citados (ex: KEY="val:123",KEY2="val,456"). Caso contrário, citar os valores é opcional, mas recomendado.
 
 ```sh
-environment=PORT=8123,ANOTHERVALUE="/something/else"
+environment=PORT=8123,OUTROVALOR="/algum/outro/caminho"
 ```
 
 Variáveis exportadas podem ser usadas no Vapor usando `Environment.get`

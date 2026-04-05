@@ -29,12 +29,12 @@ app.middleware.use(MiddlewareB())
 
 app.group(MiddlewareC()) {
 	$0.get("hello") { req in
-		"Hello, middleware."
+		"Olá, middleware."
 	}
 }
 ```
 
-Uma requisição para `GET /hello` visitará os middleware na seguinte ordem:
+Uma requisição para `GET /hello` passará pelos middleware na seguinte ordem:
 
 ```
 Request → A → B → C → Handler → C → B → A → Response

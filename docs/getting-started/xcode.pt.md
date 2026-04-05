@@ -36,5 +36,5 @@ pwd
 Você deverá ver uma saída similar à seguinte.
 
 ```
-/path/to/project
+/caminho/do/projeto
 ```

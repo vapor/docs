@@ -1,9 +1,9 @@
-# Query
+# Consultas
 
 A API de query do Fluent permite que você crie, leia, atualize e delete models do banco de dados. Ela suporta filtragem de resultados, joins, chunking, agregações e mais.
 
 ```swift
-// An example of Fluent's query API.
+// Um exemplo da API de query do Fluent.
 let planets = try await Planet.query(on: database)
     .filter(\.$type == .gasGiant)
     .sort(\.$name)
@@ -14,7 +14,7 @@ let planets = try await Planet.query(on: database)
 Query builders estão vinculados a um único tipo de model e podem ser criados usando o método estático [`query`](model.md#query). Eles também podem ser criados passando o tipo do model para o método `query` em um objeto database.
 
 ```swift
-// Also creates a query builder.
+// Também cria um query builder.
 database.query(Planet.self)
 ```
 
@@ -26,14 +26,14 @@ database.query(Planet.self)
 O método `all()` retorna um array de models.
 
 ```swift
-// Fetches all planets.
+// Busca todos os planetas.
 let planets = try await Planet.query(on: database).all()
 ```
 
 O método `all` também suporta buscar apenas um único campo do conjunto de resultados.
 
 ```swift
-// Fetches all planet names.
+// Busca todos os nomes dos planetas.
 let names = try await Planet.query(on: database).all(\.$name)
 ```
 
@@ -42,7 +42,7 @@ let names = try await Planet.query(on: database).all(\.$name)
 O método `first()` retorna um único model opcional. Se a query resultar em mais de um model, apenas o primeiro é retornado. Se a query não tiver resultados, `nil` é retornado.
 
 ```swift
-// Fetches the first planet named Earth.
+// Busca o primeiro planeta chamado Earth.
 let earth = try await Planet.query(on: database)
     .filter(\.$name == "Earth")
     .first()
@@ -60,7 +60,7 @@ O método `filter` permite que você restrinja os models incluídos no conjunto 
 O `filter` mais comumente usado aceita uma expressão de operador com um valor.
 
 ```swift
-// An example of field value filtering.
+// Um exemplo de filtragem por valor de campo.
 Planet.query(on: database).filter(\.$type == .gasGiant)
 ```
 
@@ -82,7 +82,7 @@ Abaixo está uma lista de todos os operadores de valor suportados.
 O método `filter` suporta comparar dois campos.
 
 ```swift
-// All users with same first and last name.
+// Todos os usuários com o mesmo primeiro nome e sobrenome.
 User.query(on: database)
     .filter(\.$firstName == \.$lastName)
 ```
@@ -94,7 +94,7 @@ Filtros de campo suportam os mesmos operadores que [filtros de valor](#value-fil
 O método `filter` suporta verificar se o valor de um campo existe em um conjunto de valores fornecido.
 
 ```swift
-// All planets with either gas giant or small rocky type.
+// Todos os planetas do tipo gas giant ou small rocky.
 Planet.query(on: database)
     .filter(\.$type ~~ [.gasGiant, .smallRocky])
 ```
@@ -113,7 +113,7 @@ Abaixo está uma lista de todos os operadores de subset suportados.
 O método `filter` suporta verificar se o valor de um campo string contém uma determinada substring.
 
 ```swift
-// All planets whose name starts with the letter M
+// Todos os planetas cujo nome começa com a letra M
 Planet.query(on: database)
     .filter(\.$name =~ "M")
 ```
@@ -136,7 +136,7 @@ Abaixo está uma lista de todos os operadores de contains suportados.
 Por padrão, todos os filtros adicionados a uma query devem corresponder. O query builder suporta a criação de um grupo de filtros onde apenas um filtro precisa corresponder.
 
 ```swift
-// All planets whose name is either Earth or Mars
+// Todos os planetas cujo nome é Earth ou Mars
 Planet.query(on: database).group(.or) { group in
     group.filter(\.$name == "Earth").filter(\.$name == "Mars")
 }.all()
@@ -149,14 +149,14 @@ O método `group` suporta combinar filtros por lógica `and` ou `or`. Esses grup
 O query builder suporta vários métodos para realizar cálculos em um conjunto de valores como contagem ou média.
 
 ```swift
-// Number of planets in database.
+// Número de planetas no banco de dados.
 Planet.query(on: database).count()
 ```
 
 Todos os métodos de agregação além de `count` requerem que um key path para um campo seja passado.
 
 ```swift
-// Lowest name sorted alphabetically.
+// Menor nome ordenado alfabeticamente.
 Planet.query(on: database).min(\.$name)
 ```
 
@@ -177,9 +177,9 @@ Todos os métodos de agregação exceto `count` retornam o tipo de valor do camp
 O query builder suporta retornar um conjunto de resultados como chunks separados. Isso ajuda você a controlar o uso de memória ao lidar com leituras grandes do banco de dados.
 
 ```swift
-// Fetches all planets in chunks of at most 64 at a time.
+// Busca todos os planetas em chunks de no máximo 64 por vez.
 Planet.query(on: self.database).chunk(max: 64) { planets in
-    // Handle chunk of planets.
+    // Processa o chunk de planetas.
 }
 ```
 
@@ -190,7 +190,7 @@ A closure fornecida será chamada zero ou mais vezes dependendo do número total
 Por padrão, todos os campos de um model serão lidos do banco de dados por uma query. Você pode escolher selecionar apenas um subconjunto dos campos de um model usando o método `field`.
 
 ```swift
-// Select only the planet's id and name field
+// Seleciona apenas os campos id e name do planeta
 Planet.query(on: database)
     .field(\.$id).field(\.$name)
     .all()
@@ -200,10 +200,10 @@ Quaisquer campos do model não selecionados durante uma query estarão em estado
 
 ```swift
 if let name = planet.$name.value {
-    // Name was fetched.
+    // O nome foi buscado.
 } else {
-    // Name was not fetched.
-    // Accessing `planet.name` will fail.
+    // O nome não foi buscado.
+    // Acessar `planet.name` falhará.
 }
 ```
 
@@ -212,7 +212,7 @@ if let name = planet.$name.value {
 O método `unique` do query builder faz com que apenas resultados distintos (sem duplicatas) sejam retornados.
 
 ```swift
-// Returns all unique user first names.
+// Retorna todos os primeiros nomes únicos dos usuários.
 User.query(on: database).unique().all(\.$firstName)
 ```
 
@@ -223,7 +223,7 @@ User.query(on: database).unique().all(\.$firstName)
 Os métodos `range` do query builder permitem que você escolha um subconjunto dos resultados usando ranges do Swift.
 
 ```swift
-// Fetch the first 5 planets.
+// Busca os primeiros 5 planetas.
 Planet.query(on: self.database)
     .range(..<5)
 ```
@@ -231,7 +231,7 @@ Planet.query(on: self.database)
 Valores de range são inteiros sem sinal começando em zero. Saiba mais sobre [ranges do Swift](https://developer.apple.com/documentation/swift/range).
 
 ```swift
-// Skip the first 2 results.
+// Pula os primeiros 2 resultados.
 .range(2...)
 ```
 
@@ -240,7 +240,7 @@ Valores de range são inteiros sem sinal começando em zero. Saiba mais sobre [r
 O método `join` do query builder permite que você inclua os campos de outro model no seu conjunto de resultados. Mais de um model pode ser adicionado via join à sua query.
 
 ```swift
-// Fetches all planets with a star named Sun.
+// Busca todos os planetas com uma estrela chamada Sun.
 Planet.query(on: database)
     .join(Star.self, on: \Planet.$star.$id == \Star.$id)
     .filter(Star.self, \.$name == "Sun")
@@ -252,14 +252,14 @@ O parâmetro `on` aceita uma expressão de igualdade entre dois campos. Um dos c
 A maioria dos métodos do query builder, como `filter` e `sort`, suportam models adicionados via join. Se um método suporta models via join, ele aceitará o tipo do model como primeiro parâmetro.
 
 ```swift
-// Sort by joined field "name" on Star model.
+// Ordena pelo campo "name" do model Star via join.
 .sort(Star.self, \.$name)
 ```
 
 Queries que usam joins ainda retornarão um array do model base. Para acessar o model adicionado via join, use o método `joined`.
 
 ```swift
-// Accessing joined model from query result.
+// Acessando o model via join a partir do resultado da query.
 let planet: Planet = ...
 let star = try planet.joined(Star.self)
 ```
@@ -269,7 +269,7 @@ let star = try planet.joined(Star.self)
 Model aliases permitem que você adicione o mesmo model a uma query múltiplas vezes via join. Para declarar um model alias, crie um ou mais tipos em conformidade com `ModelAlias`.
 
 ```swift
-// Example of model aliases.
+// Exemplo de model aliases.
 final class HomeTeam: ModelAlias {
     static let name = "home_teams"
     let model = Team()
@@ -283,8 +283,8 @@ final class AwayTeam: ModelAlias {
 Esses tipos referenciam o model sendo usado como alias via a propriedade `model`. Uma vez criados, você pode usar model aliases como models normais em um query builder.
 
 ```swift
-// Fetch all matches where the home team's name is Vapor
-// and sort by the away team's name.
+// Busca todas as partidas onde o nome do time da casa é Vapor
+// e ordena pelo nome do time visitante.
 let matches = try await Match.query(on: self.database)
     .join(HomeTeam.self, on: \Match.$homeTeam.$id == \HomeTeam.$id)
     .join(AwayTeam.self, on: \Match.$awayTeam.$id == \AwayTeam.$id)
@@ -296,7 +296,7 @@ let matches = try await Match.query(on: self.database)
 Todos os campos do model são acessíveis através do tipo de model alias via `@dynamicMemberLookup`.
 
 ```swift
-// Access joined model from result.
+// Acessa o model via join a partir do resultado.
 let home = try match.joined(HomeTeam.self)
 print(home.name)
 ```
@@ -306,7 +306,7 @@ print(home.name)
 O query builder suporta atualizar mais de um model por vez usando o método `update`.
 
 ```swift
-// Update all planets named "Pluto"
+// Atualiza todos os planetas chamados "Pluto"
 Planet.query(on: database)
     .set(\.$type, to: .dwarf)
     .filter(\.$name == "Pluto")
@@ -320,7 +320,7 @@ Planet.query(on: database)
 O query builder suporta deletar mais de um model por vez usando o método `delete`.
 
 ```swift
-// Delete all planets named "Vulcan"
+// Deleta todos os planetas chamados "Vulcan"
 Planet.query(on: database)
     .filter(\.$name == "Vulcan")
     .delete()
@@ -333,7 +333,7 @@ Planet.query(on: database)
 A API de query do Fluent suporta paginação automática de resultados usando o método `paginate`.
 
 ```swift
-// Example of request-based pagination.
+// Exemplo de paginação baseada em requisição.
 app.get("planets") { req in
     try await Planet.query(on: req.db).paginate(for: req)
 }
@@ -361,7 +361,7 @@ A requisição acima produziria uma resposta estruturada como a seguinte.
 Números de página começam em `1`. Você também pode fazer uma requisição de página manual.
 
 ```swift
-// Example of manual pagination.
+// Exemplo de paginação manual.
 .paginate(PageRequest(page: 1, per: 2))
 ```
 
@@ -370,13 +370,13 @@ Números de página começam em `1`. Você também pode fazer uma requisição d
 Resultados de query podem ser ordenados por valores de campo usando o método `sort`.
 
 ```swift
-// Fetch planets sorted by name.
+// Busca planetas ordenados por nome.
 Planet.query(on: database).sort(\.$name)
 ```
 
 Ordenações adicionais podem ser adicionadas como fallbacks em caso de empate. Fallbacks serão usados na ordem em que foram adicionados ao query builder.
 
 ```swift
-// Fetch users sorted by name. If two users have the same name, sort them by age.
+// Busca usuários ordenados por nome. Se dois usuários têm o mesmo nome, ordena por idade.
 User.query(on: database).sort(\.$name).sort(\.$age)
 ```

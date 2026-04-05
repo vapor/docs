@@ -39,7 +39,7 @@ A classe `WebSocket` possui métodos para enviar e receber mensagens, bem como o
 Mensagens podem ser enviadas usando o método `send` do WebSocket.
 
 ```swift
-ws.send("Hello, world")
+ws.send("Olá, mundo")
 ```
 
 Passar uma `String` para este método resulta em uma mensagem de texto sendo enviada. Mensagens binárias podem ser enviadas passando um `[UInt8]`.

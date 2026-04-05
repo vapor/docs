@@ -84,8 +84,8 @@ let dt = "70075697aa918ebddd64efb165f5b9cb92ce095f1c4c76d995b384c623a258bb"
 let payload = Payload(acme1: "hey", acme2: 2)
 let alert = APNSAlertNotification(
     alert: .init(
-        title: .raw("Hello"),
-        subtitle: .raw("This is a test from vapor/apns")
+        title: .raw("Olá"),
+        subtitle: .raw("Este é um teste do vapor/apns")
     ),
     expiration: .immediately,
     priority: .immediately,
@@ -119,8 +119,8 @@ O primeiro parâmetro aceita o alert de notificação push e o segundo parâmetr
 ```swift
 let alert = APNSAlertNotification(
     alert: .init(
-        title: .raw("Hello"),
-        subtitle: .raw("This is a test from vapor/apns")
+        title: .raw("Olá"),
+        subtitle: .raw("Este é um teste do vapor/apns")
     ),
     expiration: .immediately,
     priority: .immediately,

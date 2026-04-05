@@ -1,4 +1,4 @@
-# Relations
+# Relações
 
 A [API de model](model.md) do Fluent ajuda você a criar e manter referências entre seus models através de relações. Três tipos de relações são suportados:
 
@@ -12,7 +12,7 @@ A relação `@Parent` armazena uma referência à propriedade `@ID` de outro mod
 
 ```swift
 final class Planet: Model {
-    // Example of a parent relation.
+    // Exemplo de uma relação parent.
     @Parent(key: "star_id")
     var star: Star
 }
@@ -21,7 +21,7 @@ final class Planet: Model {
 `@Parent` contém um `@Field` chamado `id` que é usado para definir e atualizar a relação.
 
 ```swift
-// Set parent relation id
+// Define o id da relação parent
 earth.$star.id = sun.id
 ```
 
@@ -49,7 +49,7 @@ A relação `@OptionalParent` armazena uma referência opcional à propriedade `
 
 ```swift
 final class Planet: Model {
-    // Example of an optional parent relation.
+    // Exemplo de uma relação parent opcional.
     @OptionalParent(key: "star_id")
     var star: Star?
 }
@@ -100,7 +100,7 @@ A propriedade `@OptionalChild` cria uma relação um-para-um entre os dois model
 
 ```swift
 final class Planet: Model {
-    // Example of an optional child relation.
+    // Exemplo de uma relação child opcional.
     @OptionalChild(for: \.$planet)
     var governor: Governor?
 }
@@ -111,7 +111,7 @@ O parâmetro `for` aceita um key path para uma relação `@Parent` ou `@Optional
 Um novo model pode ser adicionado a esta relação usando o método `create`.
 
 ```swift
-// Example of adding a new model to a relation.
+// Exemplo de adição de um novo model a uma relação.
 let jane = Governor(name: "Jane Doe")
 try await mars.$governor.create(jane, on: database)
 ```
@@ -127,7 +127,7 @@ try await database.schema(Governor.schema)
     .id()
     .field("name", .string, .required)
     .field("planet_id", .uuid, .required, .references("planets", "id"))
-    // Example of unique constraint
+    // Exemplo de constraint unique
     .unique(on: "planet_id")
     .create()
 ```
@@ -141,7 +141,7 @@ A propriedade `@Children` cria uma relação um-para-muitos entre dois models. E
 
 ```swift
 final class Star: Model {
-    // Example of a children relation.
+    // Exemplo de uma relação children.
     @Children(for: \.$star)
     var planets: [Planet]
 }
@@ -152,7 +152,7 @@ O parâmetro `for` aceita um key path para uma relação `@Parent` ou `@Optional
 Novos models podem ser adicionados a esta relação usando o método `create`.
 
 ```swift
-// Example of adding a new model to a relation.
+// Exemplo de adição de um novo model a uma relação.
 let earth = Planet(name: "Earth")
 try await sun.$planets.create(earth, on: database)
 ```
@@ -170,7 +170,7 @@ Vamos dar uma olhada em um exemplo de uma relação muitos-para-muitos entre `Pl
 ```swift
 enum PlanetTagStatus: String, Codable { case accepted, pending }
 
-// Example of a pivot model.
+// Exemplo de um model pivot.
 final class PlanetTag: Model {
     static let schema = "planet+tag"
 
@@ -206,7 +206,7 @@ Qualquer model que inclua pelo menos duas relações `@Parent`, uma para cada mo
 Adicionar uma constraint [unique](schema.md#unique) ao model pivot pode ajudar a prevenir entradas redundantes. Veja [schema](schema.md) para mais informações.
 
 ```swift
-// Disallows duplicate relations.
+// Não permite relações duplicadas.
 .unique(on: "planet_id", "tag_id")
 ```
 
@@ -214,7 +214,7 @@ Uma vez que o pivot é criado, use a propriedade `@Siblings` para criar a relaç
 
 ```swift
 final class Planet: Model {
-    // Example of a siblings relation.
+    // Exemplo de uma relação siblings.
     @Siblings(through: PlanetTag.self, from: \.$planet, to: \.$tag)
     public var tags: [Tag]
 }
@@ -230,7 +230,7 @@ A propriedade `@Siblings` inversa no model relacionado completa a relação.
 
 ```swift
 final class Tag: Model {
-    // Example of a siblings relation.
+    // Exemplo de uma relação siblings.
     @Siblings(through: PlanetTag.self, from: \.$tag, to: \.$planet)
     public var planets: [Planet]
 }
@@ -245,14 +245,14 @@ Use o método `attach()` para adicionar um único model ou um array de models à
 ```swift
 let earth: Planet = ...
 let inhabited: Tag = ...
-// Adds the model to the relation.
+// Adiciona o model à relação.
 try await earth.$tags.attach(inhabited, on: database)
-// Populate pivot attributes when establishing the relation.
+// Popula atributos do pivot ao estabelecer a relação.
 try await earth.$tags.attach(inhabited, on: database) { pivot in
     pivot.comments = "This is a life-bearing planet."
     pivot.status = .accepted
 }
-// Add multiple models with attributes to the relation.
+// Adiciona múltiplos models com atributos à relação.
 let volcanic: Tag = ..., oceanic: Tag = ...
 try await earth.$tags.attach([volcanic, oceanic], on: database) { pivot in
     pivot.comments = "This planet has a tag named \(pivot.$tag.name)."
@@ -263,21 +263,21 @@ try await earth.$tags.attach([volcanic, oceanic], on: database) { pivot in
 Ao anexar um único model, você pode usar o parâmetro `method` para escolher se a relação deve ser verificada antes de salvar.
 
 ```swift
-// Only attaches if the relation doesn't already exist.
+// Só anexa se a relação ainda não existir.
 try await earth.$tags.attach(inhabited, method: .ifNotExists, on: database)
 ```
 
 Use o método `detach` para remover um model da relação. Isso deleta o model pivot correspondente.
 
 ```swift
-// Removes the model from the relation.
+// Remove o model da relação.
 try await earth.$tags.detach(inhabited, on: database)
 ```
 
 Você pode verificar se um model está relacionado ou não usando o método `isAttached`.
 
 ```swift
-// Checks if the models are related.
+// Verifica se os models estão relacionados.
 earth.$tags.isAttached(to: inhabited)
 ```
 
@@ -286,12 +286,12 @@ earth.$tags.isAttached(to: inhabited)
 Use o método `get(on:)` para buscar o valor de uma relação.
 
 ```swift
-// Fetches all of the sun's planets.
+// Busca todos os planetas do sol.
 sun.$planets.get(on: database).map { planets in
     print(planets)
 }
 
-// Or
+// Ou
 
 let planets = try await sun.$planets.get(on: database)
 print(planets)
@@ -308,7 +308,7 @@ try await sun.$planets.get(reload: true, on: database)
 Use o método `query(on:)` em uma relação para criar um query builder para os models relacionados.
 
 ```swift
-// Fetch all of the sun's planets that have a naming starting with M.
+// Busca todos os planetas do sol que têm um nome começando com M.
 try await sun.$planets.query(on: database).filter(\.$name =~ "M").all()
 ```
 
@@ -321,21 +321,21 @@ O query builder do Fluent permite que você pré-carregue as relações de um mo
 Para fazer eager load de uma relação, passe um key path para a relação ao método `with` no query builder.
 
 ```swift
-// Example of eager loading.
+// Exemplo de eager loading.
 Planet.query(on: database).with(\.$star).all().map { planets in
     for planet in planets {
-        // `star` is accessible synchronously here
-        // since it has been eager loaded.
+        // `star` é acessível sincronamente aqui
+        // pois foi carregado via eager loading.
         print(planet.star.name)
     }
 }
 
-// Or
+// Ou
 
 let planets = try await Planet.query(on: database).with(\.$star).all()
 for planet in planets {
-    // `star` is accessible synchronously here
-    // since it has been eager loaded.
+    // `star` é acessível sincronamente aqui
+    // pois foi carregado via eager loading.
     print(planet.star.name)
 }
 ```
@@ -354,8 +354,8 @@ let planets = try await Planet.query(on: database).with(\.$star) { star in
     star.with(\.$galaxy)
 }.all()
 for planet in planets {
-    // `star.galaxy` is accessible synchronously here
-    // since it has been eager loaded.
+    // `star.galaxy` é acessível sincronamente aqui
+    // pois foi carregado via eager loading.
     print(planet.star.galaxy.name)
 }
 ```
@@ -371,7 +371,7 @@ planet.$star.get(on: database).map {
     print(planet.star.name)
 }
 
-// Or
+// Ou
 
 try await planet.$star.get(on: database)
 print(planet.star.name)
@@ -388,11 +388,11 @@ Para verificar se uma relação já foi carregada, use a propriedade `value`.
 
 ```swift
 if planet.$star.value != nil {
-    // Relation has been loaded.
+    // A relação foi carregada.
     print(planet.star.name)
 } else {
-    // Relation has not been loaded.
-    // Attempting to access planet.star will fail.
+    // A relação não foi carregada.
+    // Tentar acessar planet.star falhará.
 }
 ```
 

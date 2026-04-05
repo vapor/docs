@@ -3,7 +3,7 @@
 A API de schema do Fluent permite que você crie e atualize o schema do seu banco de dados programaticamente. Ela é frequentemente usada em conjunto com [migrations](migration.md) para preparar o banco de dados para uso com [models](model.md).
 
 ```swift
-// An example of Fluent's schema API
+// Um exemplo da API de schema do Fluent
 try await database.schema("planets")
     .id()
     .field("name", .string, .required)
@@ -17,12 +17,12 @@ Para criar um `SchemaBuilder`, use o método `schema` no database. Passe o nome 
 
 A API de schema suporta criação, atualização e exclusão de schemas. Cada ação suporta um subconjunto dos métodos disponíveis da API.
 
-### Create
+### Criar
 
 Chamar `create()` cria uma nova tabela ou coleção no banco de dados. Todos os métodos para definir novos campos e constraints são suportados. Métodos para atualizações ou exclusões são ignorados.
 
 ```swift
-// An example schema creation.
+// Um exemplo de criação de schema.
 try await database.schema("planets")
     .id()
     .field("name", .string, .required)
@@ -31,24 +31,24 @@ try await database.schema("planets")
 
 Se uma tabela ou coleção com o nome escolhido já existir, um erro será lançado. Para ignorar isso, use `.ignoreExisting()`.
 
-### Update
+### Atualizar
 
 Chamar `update()` atualiza uma tabela ou coleção existente no banco de dados. Todos os métodos para criar, atualizar e deletar campos e constraints são suportados.
 
 ```swift
-// An example schema update.
+// Um exemplo de atualização de schema.
 try await database.schema("planets")
     .unique(on: "name")
     .deleteField("star_id")
     .update()
 ```
 
-### Delete
+### Deletar
 
 Chamar `delete()` deleta uma tabela ou coleção existente do banco de dados. Nenhum método adicional é suportado.
 
 ```swift
-// An example schema deletion.
+// Um exemplo de exclusão de schema.
 database.schema("planets").delete()
 ```
 
@@ -57,7 +57,7 @@ database.schema("planets").delete()
 Campos podem ser adicionados ao criar ou atualizar um schema.
 
 ```swift
-// Adds a new field
+// Adiciona um novo campo
 .field("name", .string, .required)
 ```
 
@@ -99,14 +99,14 @@ Constraints de campo suportadas estão listadas abaixo.
 Se seu model usa uma propriedade `@ID` padrão, você pode usar o helper `id()` para criar seu campo. Isso usa a chave de campo especial `.id` e o tipo de valor `UUID`.
 
 ```swift
-// Adds field for default identifier.
+// Adiciona campo para o identificador padrão.
 .id()
 ```
 
 Para tipos de identificador personalizados, você precisará especificar o campo manualmente.
 
 ```swift
-// Adds field for custom identifier.
+// Adiciona campo para identificador personalizado.
 .field("id", .int, .identifier(auto: true))
 ```
 
@@ -117,7 +117,7 @@ A constraint `identifier` pode ser usada em um único campo e denota a chave pri
 Você pode atualizar o tipo de dado de um campo usando `updateField`.
 
 ```swift
-// Updates the field to `double` data type.
+// Atualiza o campo para o tipo de dado `double`.
 .updateField("age", .double)
 ```
 
@@ -128,7 +128,7 @@ Veja [advanced](advanced.md#sql) para mais informações sobre atualizações av
 Você pode remover um campo de um schema usando `deleteField`.
 
 ```swift
-// Deletes the field "age".
+// Deleta o campo "age".
 .deleteField("age")
 ```
 
@@ -141,21 +141,21 @@ Constraints podem ser adicionadas ao criar ou atualizar um schema. Diferentement
 Uma constraint unique exige que não existam valores duplicados em um ou mais campos.
 
 ```swift
-// Disallow duplicate email addresses.
+// Não permite endereços de email duplicados.
 .unique(on: "email")
 ```
 
 Se múltiplos campos forem restringidos, a combinação específica do valor de cada campo deve ser única.
 
 ```swift
-// Disallow users with the same full name.
+// Não permite usuários com o mesmo nome completo.
 .unique(on: "first_name", "last_name")
 ```
 
 Para deletar uma constraint unique, use `deleteUnique`.
 
 ```swift
-// Removes duplicate email constraint.
+// Remove a constraint de email duplicado.
 .deleteUnique(on: "email")
 ```
 
@@ -164,14 +164,14 @@ Para deletar uma constraint unique, use `deleteUnique`.
 O Fluent gerará nomes de constraints únicos por padrão. No entanto, você pode querer passar um nome de constraint personalizado. Você pode fazer isso usando o parâmetro `name`.
 
 ```swift
-// Disallow duplicate email addresses.
+// Não permite endereços de email duplicados.
 .unique(on: "email", name: "no_duplicate_emails")
 ```
 
 Para deletar uma constraint nomeada, você deve usar `deleteConstraint(name:)`.
 
 ```swift
-// Removes duplicate email constraint.
+// Remove a constraint de email duplicado.
 .deleteConstraint(name: "no_duplicate_emails")
 ```
 
@@ -182,7 +182,7 @@ Constraints de foreign key exigem que o valor de um campo corresponda a um dos v
 Para adicionar uma constraint de foreign key a um campo, use `.references`.
 
 ```swift
-// Example of adding a field foreign key constraint.
+// Exemplo de adição de uma constraint de foreign key em campo.
 .field("star_id", .uuid, .required, .references("stars", "id"))
 ```
 
@@ -191,7 +191,7 @@ A constraint acima exige que todos os valores no campo "star_id" correspondam a 
 Esta mesma constraint pode ser adicionada como constraint de nível superior usando `foreignKey`.
 
 ```swift
-// Example of adding a top-level foreign key constraint.
+// Exemplo de adição de uma constraint de foreign key de nível superior.
 .foreignKey("star_id", references: "stars", "id")
 ```
 
@@ -210,7 +210,7 @@ Constraints de foreign key suportam ações opcionais `onDelete` e `onUpdate`.
 Abaixo está um exemplo usando ações de foreign key.
 
 ```swift
-// Example of adding a top-level foreign key constraint.
+// Exemplo de adição de uma constraint de foreign key de nível superior.
 .foreignKey("star_id", references: "stars", "id", onDelete: .cascade)
 ```
 
@@ -300,7 +300,7 @@ O tipo de dado enum é capaz de armazenar enums Swift baseados em string nativam
 Para definir um enum nativo do banco de dados, use o método `enum` no `Database`. Use `case` para definir cada caso do enum.
 
 ```swift
-// An example of enum creation.
+// Um exemplo de criação de enum.
 database.enum("planet_type")
     .case("smallRocky")
     .case("gasGiant")
@@ -311,14 +311,14 @@ database.enum("planet_type")
 Uma vez que um enum foi criado, você pode usar o método `read()` para gerar um tipo de dado para o campo do seu schema.
 
 ```swift
-// An example of reading an enum and using it to define a new field.
+// Um exemplo de leitura de um enum e uso para definir um novo campo.
 database.enum("planet_type").read().flatMap { planetType in
     database.schema("planets")
         .field("type", planetType, .required)
         .update()
 }
 
-// Or
+// Ou
 
 let planetType = try await database.enum("planet_type").read()
 try await database.schema("planets")
@@ -329,7 +329,7 @@ try await database.schema("planets")
 Para atualizar um enum, chame `update()`. Cases podem ser deletados de enums existentes.
 
 ```swift
-// An example of enum update.
+// Um exemplo de atualização de enum.
 database.enum("planet_type")
     .deleteCase("gasGiant")
     .update()
@@ -338,7 +338,7 @@ database.enum("planet_type")
 Para deletar um enum, chame `delete()`.
 
 ```swift
-// An example of enum deletion.
+// Um exemplo de exclusão de enum.
 database.enum("planet_type").delete()
 ```
 
@@ -385,9 +385,9 @@ struct UserNameMigration: AsyncMigration {
             .field("last_name", .string, .required)
             .update()
 
-        // It is not currently possible to express this update without using custom SQL.
-        // This also doesn't try to deal with splitting the name into first and last,
-        // as that requires database-specific syntax.
+        // Atualmente não é possível expressar esta atualização sem usar SQL personalizado.
+        // Isso também não tenta lidar com a divisão do nome em primeiro e último,
+        // pois isso requer sintaxe específica do banco de dados.
         try await User.query(on: database)
             .set(["first_name": .sql(embed: "name")])
             .run()

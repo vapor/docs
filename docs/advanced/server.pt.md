@@ -139,8 +139,8 @@ O parâmetro `tlsConfiguration` controla se TLS (SSL) está habilitado no servid
 ```swift
 // Habilitar TLS.
 app.http.server.configuration.tlsConfiguration = .makeServerConfiguration(
-    certificateChain: try NIOSSLCertificate.fromPEMFile("/path/to/cert.pem").map { .certificate($0) },
-    privateKey: .privateKey(try NIOSSLPrivateKey(file: "/path/to/key.pem", format: .pem))
+    certificateChain: try NIOSSLCertificate.fromPEMFile("/caminho/do/cert.pem").map { .certificate($0) },
+    privateKey: .privateKey(try NIOSSLPrivateKey(file: "/caminho/da/key.pem", format: .pem))
 )
 ```
 

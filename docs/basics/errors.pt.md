@@ -1,4 +1,4 @@
-# Errors
+# Erros
 
 O Vapor se baseia no protocolo `Error` do Swift para tratamento de erros. Handlers de rota podem tanto lançar (`throw`) um erro quanto retornar um `EventLoopFuture` que falhou. Lançar ou retornar um `Error` do Swift resultará em uma resposta com status `500` e o erro será registrado no log. `AbortError` e `DebuggableError` podem ser usados para alterar a resposta resultante e o logging, respectivamente. O tratamento de erros é feito pelo `ErrorMiddleware`. Este middleware é adicionado à aplicação por padrão e pode ser substituído por lógica personalizada, se desejado.
 
@@ -7,10 +7,10 @@ O Vapor se baseia no protocolo `Error` do Swift para tratamento de erros. Handle
 O Vapor fornece uma struct de erro padrão chamada `Abort`. Esta struct está em conformidade com `AbortError` e `DebuggableError`. Você pode inicializá-la com um status HTTP e uma razão de falha opcional.
 
 ```swift
-// 404 error, default "Not Found" reason used.
+// Erro 404, razão padrão "Not Found" usada.
 throw Abort(.notFound)
 
-// 401 error, custom reason used.
+// Erro 401, razão personalizada usada.
 throw Abort(.unauthorized, reason: "Invalid Credentials")
 ```
 
@@ -30,7 +30,7 @@ User.find(id, on: db)
     .unwrap(or: Abort(.notFound))
     .flatMap
 { user in
-    // Non-optional User supplied to closure.
+    // User não-opcional fornecido à closure.
 }
 ```
 
@@ -61,9 +61,9 @@ extension MyError: AbortError {
     var reason: String {
         switch self {
         case .userNotLoggedIn:
-            return "User is not logged in."
+            return "Usuário não está logado."
         case .invalidEmail(let email):
-            return "Email address is not valid: \(email)."
+            return "Endereço de e-mail não é válido: \(email)."
         }
     }
 
@@ -107,9 +107,9 @@ struct MyError: DebuggableError {
     var reason: String {
         switch self.value {
         case .userNotLoggedIn:
-            return "User is not logged in."
+            return "Usuário não está logado."
         case .invalidEmail(let email):
-            return "Email address is not valid: \(email)."
+            return "Endereço de e-mail não é válido: \(email)."
         }
     }
 
@@ -143,10 +143,10 @@ struct MyError: DebuggableError {
 Para personalizar o tratamento de erros além do que `AbortError` e `DebuggableError` fornecem, você pode substituir o `ErrorMiddleware` pela sua própria lógica de tratamento de erros. Para fazer isso, primeiro remova o middleware de erro padrão inicializando manualmente `app.middleware`. Em seguida, adicione seu próprio middleware de tratamento de erros como o primeiro middleware da sua aplicação.
 
 ```swift
-// Clear all default middleware (then, add back route logging)
+// Remove todos os middlewares padrão (depois, adiciona de volta o logging de rotas)
 app.middleware = .init()
 app.middleware.use(RouteLoggingMiddleware(logLevel: .info))
-// Add custom error handling middleware first.
+// Adiciona o middleware personalizado de tratamento de erros primeiro.
 app.middleware.use(MyErrorMiddleware())
 ```
 

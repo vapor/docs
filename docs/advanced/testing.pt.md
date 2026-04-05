@@ -73,12 +73,12 @@ Passe o método `configure(_:)` da sua aplicação para a função helper `withA
 Para enviar uma requisição de teste para sua aplicação, use o método privado `withApp` e dentro use o método `app.testing().test()`:
 
 ```swift
-@Test("Test Hello World Route")
+@Test("Testar Rota Hello World")
 func helloWorld() async throws {
     try await withApp(configure: configure) { app in
         try await app.testing().test(.GET, "hello") { res async in
             #expect(res.status == .ok)
-            #expect(res.body.string == "Hello, world!")
+            #expect(res.body.string == "Olá, mundo!")
         }
     }
 }
@@ -165,7 +165,7 @@ E então use este helper nos seus testes:
     try await withAppIncludingDB { app in
         try await app.testing().test(.GET, "hello") { res async in
             #expect(res.status == .ok)
-            #expect(res.body.string == "Hello, world!")
+            #expect(res.body.string == "Olá, mundo!")
         }
     }
 }
@@ -233,7 +233,7 @@ Para enviar uma requisição de teste para sua aplicação, use o método `test`
 ```swift
 try app.test(.GET, "hello") { res in
     XCTAssertEqual(res.status, .ok)
-    XCTAssertEqual(res.body.string, "Hello, world!")
+    XCTAssertEqual(res.body.string, "Olá, mundo!")
 }
 ```
 

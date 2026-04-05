@@ -76,7 +76,7 @@ Se preferir, você também pode compilar o Toolbox a partir do código fonte. Ve
 ```sh
 git clone https://github.com/vapor/toolbox.git
 cd toolbox
-git checkout <desired version>
+git checkout <versão desejada>
 make install
 ```
 

@@ -79,7 +79,7 @@ Ex.
 
 ```swift
 return someMethodCallThatReturnsAFuture().flatMap { futureResult in
-    // use futureResult
+    // usa futureResult
 }
 ```
 
@@ -136,16 +136,16 @@ Se você observar as assinaturas dos métodos `map` e `flatMap` em `Optional<T>`
 O método `map` permite que você transforme o valor do future em outro valor. Como o valor do future pode não estar disponível ainda (pode ser o resultado de uma tarefa assíncrona), precisamos fornecer uma closure para aceitar o valor.
 
 ```swift
-/// Assume we get a future string back from some API
+/// Assuma que recebemos uma string futura de alguma API
 let futureString: EventLoopFuture<String> = ...
 
-/// Map the future string to an integer
+/// Mapeia a string futura para um inteiro
 let futureInt = futureString.map { string in
-    print(string) // The actual String
+    print(string) // A String real
     return Int(string) ?? 0
 }
 
-/// We now have a future integer
+/// Agora temos um inteiro futuro
 print(futureInt) // EventLoopFuture<Int>
 ```
 
@@ -157,20 +157,20 @@ O método `flatMapThrowing` permite que você transforme o valor do future em ou
     Como lançar um erro deve criar um novo future internamente, este método é prefixado com `flatMap` mesmo que a closure não aceite um retorno de future.
 
 ```swift
-/// Assume we get a future string back from some API
+/// Assuma que recebemos uma string futura de alguma API
 let futureString: EventLoopFuture<String> = ...
 
-/// Map the future string to an integer
+/// Mapeia a string futura para um inteiro
 let futureInt = futureString.flatMapThrowing { string in
-    print(string) // The actual String
-    // Convert the string to an integer or throw an error
+    print(string) // A String real
+    // Converte a string para um inteiro ou lança um erro
     guard let int = Int(string) else {
         throw Abort(...)
     }
     return int
 }
 
-/// We now have a future integer
+/// Agora temos um inteiro futuro
 print(futureInt) // EventLoopFuture<Int>
 ```
 
@@ -179,18 +179,18 @@ print(futureInt) // EventLoopFuture<Int>
 O método `flatMap` permite que você transforme o valor do future em outro valor de future. Ele recebe o nome "flat" map porque é o que permite evitar a criação de futures aninhados (ex: `EventLoopFuture<EventLoopFuture<T>>`). Em outras palavras, ele ajuda a manter seus generics planos.
 
 ```swift
-/// Assume we get a future string back from some API
+/// Assuma que recebemos uma string futura de alguma API
 let futureString: EventLoopFuture<String> = ...
 
-/// Assume we have created an HTTP client
+/// Assuma que criamos um client HTTP
 let client: Client = ...
 
-/// flatMap the future string to a future response
+/// flatMap da string futura para uma resposta futura
 let futureResponse = futureString.flatMap { string in
     client.get(string) // EventLoopFuture<ClientResponse>
 }
 
-/// We now have a future response
+/// Agora temos uma resposta futura
 print(futureResponse) // EventLoopFuture<ClientResponse>
 ```
 
@@ -200,14 +200,14 @@ print(futureResponse) // EventLoopFuture<ClientResponse>
 Para chamar um método que lança erro dentro de um `flatMap`, use as palavras-chave `do` / `catch` do Swift e crie um [future completado](#makefuture).
 
 ```swift
-/// Assume future string and client from previous example.
+/// Assuma a string futura e o client do exemplo anterior.
 let futureResponse = futureString.flatMap { string in
     let url: URL
     do {
-        // Some synchronous throwing method.
+        // Algum método síncrono que lança erro.
         url = try convertToURL(string)
     } catch {
-        // Use event loop to make pre-completed future.
+        // Usa o event loop para criar um future pré-completado.
         return eventLoop.makeFailedFuture(error)
     }
     return client.get(url) // EventLoopFuture<ClientResponse>
@@ -222,10 +222,10 @@ O método `transform` permite que você modifique o valor de um future, ignorand
     `EventLoopFuture<Void>`, às vezes chamado de sinal, é um future cujo único propósito é notificá-lo sobre a conclusão ou falha de alguma operação assíncrona.
 
 ```swift
-/// Assume we get a void future back from some API
+/// Assuma que recebemos um future void de alguma API
 let userDidSave: EventLoopFuture<Void> = ...
 
-/// Transform the void future to an HTTP status
+/// Transforma o future void em um status HTTP
 let futureStatus = userDidSave.transform(to: HTTPStatus.ok)
 print(futureStatus) // EventLoopFuture<HTTPStatus>
 ```
@@ -239,13 +239,13 @@ A grande vantagem das transformações em futures é que elas podem ser encadead
 Vamos modificar os exemplos acima para ver como podemos aproveitar o encadeamento.
 
 ```swift
-/// Assume we get a future string back from some API
+/// Assuma que recebemos uma string futura de alguma API
 let futureString: EventLoopFuture<String> = ...
 
-/// Assume we have created an HTTP client
+/// Assuma que criamos um client HTTP
 let client: Client = ...
 
-/// Transform the string to a url, then to a response
+/// Transforma a string em uma url, depois em uma resposta
 let futureResponse = futureString.flatMapThrowing { string in
     guard let url = URL(string: string) else {
         throw Abort(.badRequest, reason: "Invalid URL string: \(string)")
@@ -269,10 +269,10 @@ Vamos dar uma olhada em alguns outros métodos para usar `EventLoopFuture<T>`.
 Você pode usar um event loop para criar futures pré-completados com o valor ou um erro.
 
 ```swift
-// Create a pre-succeeded future.
+// Cria um future pré-sucedido.
 let futureString: EventLoopFuture<String> = eventLoop.makeSucceededFuture("hello")
 
-// Create a pre-failed future.
+// Cria um future pré-falhado.
 let futureString: EventLoopFuture<String> = eventLoop.makeFailedFuture(error)
 ```
 
@@ -281,15 +281,15 @@ let futureString: EventLoopFuture<String> = eventLoop.makeFailedFuture(error)
 Você pode usar `whenComplete` para adicionar um callback que será executado quando o future for bem-sucedido ou falhar.
 
 ```swift
-/// Assume we get a future string back from some API
+/// Assuma que recebemos uma string futura de alguma API
 let futureString: EventLoopFuture<String> = ...
 
 futureString.whenComplete { result in
     switch result {
     case .success(let string):
-        print(string) // The actual String
+        print(string) // A String real
     case .failure(let error):
-        print(error) // A Swift Error
+        print(error) // Um Error do Swift
     }
 }
 ```
@@ -302,10 +302,10 @@ futureString.whenComplete { result in
 No caso de não haver uma alternativa baseada em concorrência para uma API, você pode aguardar o valor do future usando `try await future.get()`.
 
 ```swift
-/// Assume we get a future string back from some API
+/// Assuma que recebemos uma string futura de alguma API
 let futureString: EventLoopFuture<String> = ...
 
-/// Wait for the string to be ready
+/// Aguarda a string estar pronta
 let string: String = try await futureString.get()
 print(string) /// String
 ```
@@ -318,10 +318,10 @@ print(string) /// String
 Você pode usar `.wait()` para aguardar sincronamente até que o future seja completado. Como um future pode falhar, esta chamada pode lançar erros.
 
 ```swift
-/// Assume we get a future string back from some API
+/// Assuma que recebemos uma string futura de alguma API
 let futureString: EventLoopFuture<String> = ...
 
-/// Block until the string is ready
+/// Bloqueia até a string estar pronta
 let string = try futureString.wait()
 print(string) /// String
 ```
@@ -340,15 +340,15 @@ Para criar uma promise, você precisará de acesso a um `EventLoop`. Você pode 
 ```swift
 let eventLoop: EventLoop
 
-// Create a new promise for some string.
+// Cria uma nova promise para alguma string.
 let promiseString = eventLoop.makePromise(of: String.self)
 print(promiseString) // EventLoopPromise<String>
 print(promiseString.futureResult) // EventLoopFuture<String>
 
-// Completes the associated future.
+// Completa o future associado.
 promiseString.succeed("Hello")
 
-// Fails the associated future.
+// Falha o future associado.
 promiseString.fail(...)
 ```
 
@@ -394,11 +394,11 @@ Chamar código bloqueante em uma thread de event loop pode impedir que sua aplic
 
 ```swift
 app.get("hello") { req in
-    /// Puts the event loop's thread to sleep.
+    /// Coloca a thread do event loop para dormir.
     sleep(5)
 
-    /// Returns a simple string once the thread re-awakens.
-    return "Hello, world!"
+    /// Retorna uma string simples quando a thread desperta.
+    return "Olá, mundo!"
 }
 ```
 
@@ -408,15 +408,15 @@ Certifique-se de executar qualquer trabalho bloqueante em background. Use promis
 
 ```swift
 app.get("hello") { req -> EventLoopFuture<String> in
-    /// Dispatch some work to happen on a background thread
+    /// Despacha algum trabalho para acontecer em uma thread de background
     return req.application.threadPool.runIfActive(eventLoop: req.eventLoop) {
-        /// Puts the background thread to sleep
-        /// This will not affect any of the event loops
+        /// Coloca a thread de background para dormir
+        /// Isso não afetará nenhum dos event loops
         sleep(5)
 
-        /// When the "blocking work" has completed,
-        /// return the result.
-        return "Hello world!"
+        /// Quando o "trabalho bloqueante" for concluído,
+        /// retorna o resultado.
+        return "Olá, mundo!"
     }
 }
 ```

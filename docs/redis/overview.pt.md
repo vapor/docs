@@ -163,7 +163,7 @@ app.redis.subscribe
     }
   },
   onUnsubscribe: { channel, subscriptionCount in
-    print("unsubscribed from \(channel)")
-    print("subscriptions remaining: \(subscriptionCount)")
+    print("cancelou inscrição de \(channel)")
+    print("inscrições restantes: \(subscriptionCount)")
   }
 ```

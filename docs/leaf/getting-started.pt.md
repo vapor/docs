@@ -81,7 +81,7 @@ VaporApp
 Agora que o Leaf está configurado, vamos renderizar seu primeiro template. Dentro da pasta `Resources/Views`, crie um novo arquivo chamado `hello.leaf` com o seguinte conteúdo:
 
 ```leaf
-Hello, #(name)!
+Olá, #(name)!
 ```
 
 !!! tip "Dica"
@@ -103,4 +103,4 @@ app.get("hello") { req async throws -> View in
 
 Isso usa a propriedade genérica `view` no `Request` em vez de chamar o Leaf diretamente. Isso permite que você troque para um renderizador diferente nos seus testes.
 
-Abra seu navegador e acesse `/hello`. Você deverá ver `Hello, Leaf!`. Parabéns por renderizar sua primeira view com Leaf!
+Abra seu navegador e acesse `/hello`. Você deverá ver `Olá, Leaf!`. Parabéns por renderizar sua primeira view com Leaf!

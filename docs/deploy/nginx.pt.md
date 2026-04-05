@@ -61,7 +61,7 @@ sudo dnf install nginx
 
 ### Verificar Instalação
 
-Verifique se o Nginx foi instalado corretamente visitando o endereço IP do seu servidor em um navegador
+Verifique se o Nginx foi instalado corretamente acessando o endereço IP do seu servidor em um navegador
 
 ```
 http://server_domain_name_or_IP
@@ -120,7 +120,7 @@ O Nginx também pode servir arquivos públicos sem precisar consultar sua aplica
 server {
 	...
 
-	# Serve all public/static files via nginx and then fallback to Vapor for the rest
+	# Serve todos os arquivos públicos/estáticos via nginx e então redireciona para o Vapor o restante
 	location / {
 		try_files $uri @proxy;
 	}

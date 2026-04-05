@@ -73,7 +73,7 @@ Agora que você criou um novo servidor Ubuntu e fez login como usuário não-roo
 
 ### Instalação automatizada usando a ferramenta CLI Swiftly (recomendado)
 
-Visite o [site do Swiftly](https://swiftlang.github.io/swiftly/) para instruções sobre como instalar o Swiftly e o Swift no Linux. Depois disso, instale o Swift com o seguinte comando:
+Acesse o [site do Swiftly](https://swiftlang.github.io/swiftly/) para instruções sobre como instalar o Swiftly e o Swift no Linux. Depois disso, instale o Swift com o seguinte comando:
 
 #### Uso básico
 
@@ -153,11 +153,11 @@ Agora que o Vapor está configurado e temos uma porta aberta, vamos executá-lo.
 swift run App serve --hostname 0.0.0.0 --port 8080
 ```
 
-Visite o IP do seu servidor pelo navegador ou terminal local e você deverá ver "It works!". O endereço IP é `134.122.126.139` neste exemplo.
+Acesse o IP do seu servidor pelo navegador ou terminal local e você deverá ver "Funciona!". O endereço IP é `134.122.126.139` neste exemplo.
 
 ```
 $ curl http://134.122.126.139:8080
-It works!
+Funciona!
 ```
 
 De volta ao seu servidor, você deverá ver logs da requisição de teste.

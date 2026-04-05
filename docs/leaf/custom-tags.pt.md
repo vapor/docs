@@ -59,7 +59,7 @@ app.leaf.tags["now"] = NowTag()
 E é isso! Agora podemos usar nossa tag personalizada no Leaf.
 
 ```leaf
-The time is #now()
+A hora é #now()
 ```
 
 ## Propriedades do Contexto
@@ -88,7 +88,7 @@ struct HelloTag: UnsafeUnescapedLeafTag {
             throw HelloTagError.missingNameParameter
         }
 
-        return LeafData.string("<p>Hello \(name)</p>")
+        return LeafData.string("<p>Olá \(name)</p>")
     }
 }
 ```
@@ -112,7 +112,7 @@ struct HelloTag: UnsafeUnescapedLeafTag {
             throw HelloTagError.nameNotFound
         }
 
-        return LeafData.string("<p>Hello \(name)</p>")
+        return LeafData.string("<p>Olá \(name)</p>")
     }
 }
 ```
@@ -121,7 +121,7 @@ struct HelloTag: UnsafeUnescapedLeafTag {
 #hello()
 ```
 
-_Controller_:
+_Controlador_:
 
 ```swift
 return try await req.view.render("home", ["name": "John"])

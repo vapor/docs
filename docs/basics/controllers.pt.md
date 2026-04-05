@@ -1,4 +1,4 @@
-# Controllers
+# Controladores
 
 Controllers são uma ótima maneira de organizar seu código. Eles são coleções de métodos que aceitam uma requisição e retornam uma resposta.
 

@@ -79,17 +79,17 @@ A `Application` do Vapor permite que você registre lifecycle handlers. Estes pe
 struct Hello: LifecycleHandler {
     // Chamado antes da aplicação inicializar.
     func willBoot(_ app: Application) throws {
-        app.logger.info("Hello!")
+        app.logger.info("Olá!")
     }
 
     // Chamado após a aplicação inicializar.
     func didBoot(_ app: Application) throws {
-        app.logger.info("Server is running")
+        app.logger.info("Servidor está rodando")
     }
 
     // Chamado antes do encerramento da aplicação.
     func shutdown(_ app: Application) {
-        app.logger.info("Goodbye!")
+        app.logger.info("Até logo!")
     }
 }
 

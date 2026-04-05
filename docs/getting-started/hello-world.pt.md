@@ -1,4 +1,4 @@
-# Olá, mundo
+# Olá, Mundo
 
 Este guia vai te levar passo a passo pela criação de um novo projeto Vapor, compilação e execução do servidor.
 
@@ -74,14 +74,14 @@ Isso vai compilar e executar o projeto. A primeira vez que você executar, pode 
 [ INFO ] Server starting on http://127.0.0.1:8080
 ```
 
-## Visitar o Localhost
+## Acessar o Localhost
 
-Abra seu navegador web e visite <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello</a> ou <a href="http://127.0.0.1:8080" target="_blank">http://127.0.0.1:8080</a>
+Abra seu navegador web e acesse <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello</a> ou <a href="http://127.0.0.1:8080" target="_blank">http://127.0.0.1:8080</a>
 
 Você deverá ver a seguinte página.
 
 ```html
-Hello, world!
+Olá, mundo!
 ```
 
 Parabéns por criar, compilar e executar sua primeira aplicação Vapor! 🎉

@@ -120,7 +120,7 @@ Sua aplicação está escutando na porta 8080 e, conforme definido pelo arquivo 
 
 Essa distinção de mapeamento de portas é muito importante porque você pode executar qualquer número de serviços nas mesmas portas se todos estiverem rodando em seus próprios containers e cada um expor portas diferentes para a máquina host.
 
-Visite `http://localhost:8080` e você verá `It works!`, mas visite `http://localhost:8080/todos` e você receberá:
+Acesse `http://localhost:8080` e você verá `Funciona!`, mas acesse `http://localhost:8080/todos` e você receberá:
 
 ```
 {"error":true,"reason":"Something went wrong."}
@@ -156,7 +156,7 @@ Para executar as migrações, execute:
 docker compose run migrate
 ```
 
-Após as migrações, você pode visitar `http://localhost:8080/todos` novamente e receberá uma lista vazia de todos em vez de uma mensagem de erro.
+Após as migrações, você pode acessar `http://localhost:8080/todos` novamente e receberá uma lista vazia de todos em vez de uma mensagem de erro.
 
 #### Níveis de Log
 

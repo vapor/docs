@@ -1,4 +1,4 @@
-# Advanced
+# Avançado
 
 O Fluent se esforça para criar uma API geral e agnóstica de banco de dados para trabalhar com seus dados. Isso torna mais fácil aprender o Fluent independentemente de qual driver de banco de dados você está usando. Criar APIs generalizadas também pode fazer com que trabalhar com seu banco de dados pareça mais natural em Swift.
 
@@ -16,10 +16,10 @@ Qualquer `Database` do Fluent pode ser convertida para um `SQLDatabase`. Isso in
 import FluentSQL
 
 if let sql = req.db as? SQLDatabase {
-    // The underlying database driver is SQL.
+    // O driver de banco de dados subjacente é SQL.
     let planets = try await sql.raw("SELECT * FROM planets").all(decoding: Planet.self)
 } else {
-    // The underlying database driver is _not_ SQL.
+    // O driver de banco de dados subjacente _não_ é SQL.
 }
 ```
 
@@ -33,10 +33,10 @@ Você também pode converter para bancos de dados SQL específicos importando o 
 import FluentPostgresDriver
 
 if let postgres = req.db as? PostgresDatabase {
-    // The underlying database driver is PostgreSQL.
+    // O driver de banco de dados subjacente é PostgreSQL.
     postgres.simpleQuery("SELECT * FROM planets").all()
 } else {
-    // The underlying database is _not_ PostgreSQL.
+    // O banco de dados subjacente _não_ é PostgreSQL.
 }
 ```
 
@@ -59,10 +59,10 @@ import FluentPostgresDriver
 
 let query = Planet.query(on: req.db)
 if req.db is PostgresDatabase {
-    // ILIKE supported.
+    // ILIKE suportado.
     query.filter(\.$name, .custom("ILIKE"), "earth")
 } else {
-    // ILIKE not supported.
+    // ILIKE não suportado.
     query.group(.or) { or in
         or.filter(\.$name == "earth").filter(\.$name == "Earth")
     }
@@ -77,10 +77,10 @@ import FluentSQL
 
 let query = Planet.query(on: req.db)
 if req.db is SQLDatabase {
-    // The underlying database driver is SQL.
+    // O driver de banco de dados subjacente é SQL.
     query.filter(.sql(raw: "LOWER(name) = 'earth'"))
 } else {
-    // The underlying database driver is _not_ SQL.
+    // O driver de banco de dados subjacente _não_ é SQL.
 }
 ```
 
@@ -91,10 +91,10 @@ import FluentSQL
 
 let builder = database.schema("planets").id()
 if database is MySQLDatabase {
-    // The underlying database driver is MySQL.
+    // O driver de banco de dados subjacente é MySQL.
     builder.field("name", .sql(raw: "VARCHAR(64)"), .required)
 } else {
-    // The underlying database driver is _not_ MySQL.
+    // O driver de banco de dados subjacente _não_ é MySQL.
     builder.field("name", .string, .required)
 }
 builder.create()
@@ -109,27 +109,27 @@ Se precisar usar os mesmos models com SQL, não use `ObjectId`. Use `UUID` em ve
 
 ```swift
 final class User: Model {
-    // Name of the table or collection.
+    // Nome da tabela ou coleção.
     static let schema = "users"
 
-    // Unique identifier for this User.
-    // In this case, ObjectId is used
-    // Fluent recommends using UUID by default, however ObjectId is also supported
+    // Identificador único para este User.
+    // Neste caso, ObjectId é usado
+    // O Fluent recomenda usar UUID por padrão, porém ObjectId também é suportado
     @ID(custom: .id)
     var id: ObjectId?
 
-    // The User's email address
+    // O endereço de email do User
     @Field(key: "email")
     var email: String
 
-    // The User's password stores as a BCrypt hash
+    // A senha do User armazenada como hash BCrypt
     @Field(key: "password")
     var passwordHash: String
 
-    // Creates a new, empty User instance, for use by Fluent
+    // Cria uma nova instância vazia de User, para uso pelo Fluent
     init() { }
 
-    // Creates a new User with all properties set.
+    // Cria um novo User com todas as propriedades definidas.
     init(id: ObjectId? = nil, email: String, passwordHash: String, profile: Profile) {
         self.id = id
         self.email = email

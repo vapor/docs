@@ -1,4 +1,4 @@
-# Models
+# Modelos
 
 Models representam dados armazenados em tabelas ou coleções no seu banco de dados. Models possuem um ou mais campos que armazenam valores codable. Todos os models possuem um identificador único. Property wrappers são usados para denotar identificadores, campos e relações.
 
@@ -6,21 +6,21 @@ Abaixo está um exemplo de um model simples com um campo. Note que models não d
 
 ```swift
 final class Planet: Model {
-    // Name of the table or collection.
+    // Nome da tabela ou coleção.
     static let schema = "planets"
 
-    // Unique identifier for this Planet.
+    // Identificador único para este Planet.
     @ID(key: .id)
     var id: UUID?
 
-    // The Planet's name.
+    // O nome do Planet.
     @Field(key: "name")
     var name: String
 
-    // Creates a new, empty Planet.
+    // Cria um novo Planet vazio.
     init() { }
 
-    // Creates a new Planet with all properties set.
+    // Cria um novo Planet com todas as propriedades definidas.
     init(id: UUID? = nil, name: String) {
         self.id = id
         self.name = name
@@ -34,7 +34,7 @@ Todos os models requerem uma propriedade `schema` estática e somente leitura. E
 
 ```swift
 final class Planet: Model {
-    // Name of the table or collection.
+    // Nome da tabela ou coleção.
     static let schema = "planets"
 }
 ```
@@ -50,7 +50,7 @@ Todos os models devem ter uma propriedade `id` definida usando o property wrappe
 
 ```swift
 final class Planet: Model {
-    // Unique identifier for this Planet.
+    // Identificador único para este Planet.
     @ID(key: .id)
     var id: UUID?
 }
@@ -72,7 +72,7 @@ let id = try planet.requireID()
 
 ```swift
 if planet.$id.exists {
-    // This model exists in database.
+    // Este model existe no banco de dados.
 }
 ```
 
@@ -82,7 +82,7 @@ O Fluent suporta chaves e tipos de identificador personalizados usando a sobreca
 
 ```swift
 final class Planet: Model {
-    // Unique identifier for this Planet.
+    // Identificador único para este Planet.
     @ID(custom: "foo")
     var id: Int?
 }
@@ -112,7 +112,7 @@ Models devem ter um método inicializador vazio.
 
 ```swift
 final class Planet: Model {
-    // Creates a new, empty Planet.
+    // Cria um novo Planet vazio.
     init() { }
 }
 ```
@@ -123,7 +123,7 @@ Você pode querer adicionar um inicializador de conveniência ao seu model que a
 
 ```swift
 final class Planet: Model {
-    // Creates a new Planet with all properties set.
+    // Cria um novo Planet com todas as propriedades definidas.
     init(id: UUID? = nil, name: String) {
         self.id = id
         self.name = name
@@ -139,7 +139,7 @@ Models podem ter zero ou mais propriedades `@Field` para armazenar dados.
 
 ```swift
 final class Planet: Model {
-    // The Planet's name.
+    // O nome do Planet.
     @Field(key: "name")
     var name: String
 }
@@ -172,11 +172,11 @@ Models podem ter zero ou mais propriedades de relação referenciando outros mod
 
 ```swift
 final class Planet: Model {
-    // When this Planet was created.
+    // Quando este Planet foi criado.
     @Timestamp(key: "created_at", on: .create)
     var createdAt: Date?
 
-    // When this Planet was last updated.
+    // Quando este Planet foi atualizado pela última vez.
     @Timestamp(key: "updated_at", on: .update)
     var updatedAt: Date?
 }
@@ -197,8 +197,8 @@ O valor de data do `@Timestamp` é opcional e deve ser definido como `nil` ao in
 Por padrão, `@Timestamp` usará uma codificação `datetime` eficiente baseada no seu driver de banco de dados. Você pode personalizar como o timestamp é armazenado no banco de dados usando o parâmetro `format`.
 
 ```swift
-// Stores an ISO 8601 formatted timestamp representing
-// when this model was last updated.
+// Armazena um timestamp formatado em ISO 8601 representando
+// quando este model foi atualizado pela última vez.
 @Timestamp(key: "updated_at", on: .update, format: .iso8601)
 var updatedAt: Date?
 ```
@@ -220,8 +220,8 @@ Formatos de timestamp disponíveis estão listados abaixo.
 Você pode acessar o valor bruto do timestamp diretamente usando a propriedade `timestamp`.
 
 ```swift
-// Manually set the timestamp value on this ISO 8601
-// formatted @Timestamp.
+// Define manualmente o valor do timestamp neste
+// @Timestamp formatado em ISO 8601.
 model.$updatedAt.timestamp = "2020-06-03T16:20:14+00:00"
 ```
 
@@ -231,7 +231,7 @@ Adicionar um `@Timestamp` que usa o trigger `.delete` ao seu model habilitará s
 
 ```swift
 final class Planet: Model {
-    // When this Planet was deleted.
+    // Quando este Planet foi deletado.
     @Timestamp(key: "deleted_at", on: .delete)
     var deletedAt: Date?
 }
@@ -245,23 +245,23 @@ Models soft-deleted ainda existem no banco de dados após a exclusão, mas não 
 Para forçar a remoção de um model soft-deletable do banco de dados, use o parâmetro `force` em `delete`.
 
 ```swift
-// Deletes from the database even if the model
-// is soft deletable.
+// Deleta do banco de dados mesmo se o model
+// for soft deletable.
 model.delete(force: true, on: database)
 ```
 
 Para restaurar um model soft-deleted, use o método `restore`.
 
 ```swift
-// Clears the on delete timestamp allowing this
-// model to be returned in queries.
+// Limpa o timestamp de exclusão permitindo que este
+// model seja retornado em queries.
 model.restore(on: database)
 ```
 
 Para incluir models soft-deleted em uma query, use `withDeleted`.
 
 ```swift
-// Fetches all planets including soft deleted.
+// Busca todos os planetas incluindo os soft deleted.
 Planet.query(on: database).withDeleted().all()
 ```
 
@@ -270,13 +270,13 @@ Planet.query(on: database).withDeleted().all()
 `@Enum` é um tipo especial de `@Field` para armazenar tipos representáveis por string como enums nativos do banco de dados. Enums nativos do banco de dados fornecem uma camada adicional de segurança de tipos ao seu banco de dados e podem ser mais performáticos que enums brutos.
 
 ```swift
-// String representable, Codable enum for animal types.
+// Enum Codable representável por string para tipos de animais.
 enum Animal: String, Codable {
     case dog, cat
 }
 
 final class Pet: Model {
-    // Stores type of animal as a native database enum.
+    // Armazena o tipo de animal como um enum nativo do banco de dados.
     @Enum(key: "type")
     var type: Animal
 }
@@ -299,17 +299,17 @@ Qualquer enum baseado em um tipo `Codable`, como `String` ou `Int`, pode ser arm
 Para usar um `@Group`, primeiro defina a estrutura aninhada que você gostaria de armazenar usando o protocolo `Fields`. Isso é muito similar a `Model` exceto que nenhum identificador ou nome de schema é necessário. Você pode armazenar muitas propriedades aqui que `Model` suporta como `@Field`, `@Enum` ou até outro `@Group`.
 
 ```swift
-// A pet with name and animal type.
+// Um pet com nome e tipo de animal.
 final class Pet: Fields {
-    // The pet's name.
+    // O nome do pet.
     @Field(key: "name")
     var name: String
 
-    // The type of pet.
+    // O tipo de pet.
     @Field(key: "type")
     var type: String
 
-    // Creates a new, empty Pet.
+    // Cria um novo Pet vazio.
     init() { }
 }
 ```
@@ -318,7 +318,7 @@ Após criar a definição de fields, você pode usá-la como valor de uma propri
 
 ```swift
 final class User: Model {
-    // The user's nested pet.
+    // O pet aninhado do usuário.
     @Group(key: "pet")
     var pet: Pet
 }
@@ -352,7 +352,7 @@ Models conformam a `Codable` por padrão. Isso significa que você pode usar seu
 extension Planet: Content { }
 
 app.get("planets") { req async throws in
-    // Return an array of all planets.
+    // Retorna um array de todos os planetas.
     try await Planet.query(on: req.db).all()
 }
 ```
@@ -371,7 +371,7 @@ Para a maioria dos casos você deve usar um DTO, ou data transfer object, em vez
 Assuma o seguinte model `User` nos próximos exemplos.
 
 ```swift
-// Abridged user model for reference.
+// Model de usuário resumido para referência.
 final class User: Model {
     @ID(key: .id)
     var id: UUID?
@@ -387,28 +387,28 @@ final class User: Model {
 Um caso de uso comum para DTOs é na implementação de requisições `PATCH`. Essas requisições incluem apenas valores para campos que devem ser atualizados. Tentar decodificar um `Model` diretamente de tal requisição falharia se qualquer um dos campos obrigatórios estivesse faltando. No exemplo abaixo, você pode ver um DTO sendo usado para decodificar dados da requisição e atualizar um model.
 
 ```swift
-// Structure of PATCH /users/:id request.
+// Estrutura da requisição PATCH /users/:id.
 struct PatchUser: Decodable {
     var firstName: String?
     var lastName: String?
 }
 
 app.patch("users", ":id") { req async throws -> User in
-    // Decode the request data.
+    // Decodifica os dados da requisição.
     let patch = try req.content.decode(PatchUser.self)
-    // Fetch the desired user from the database.
+    // Busca o usuário desejado no banco de dados.
     guard let user = try await User.find(req.parameters.get("id"), on: req.db) else {
         throw Abort(.notFound)
     }
-    // If first name was supplied, update it.
+    // Se o primeiro nome foi fornecido, atualiza.
     if let firstName = patch.firstName {
         user.firstName = firstName
     }
-    // If new last name was supplied, update it.
+    // Se o novo sobrenome foi fornecido, atualiza.
     if let lastName = patch.lastName {
         user.lastName = lastName
     }
-    // Save the user and return it.
+    // Salva o usuário e o retorna.
     try await user.save(on: req.db)
     return user
 }
@@ -417,17 +417,17 @@ app.patch("users", ":id") { req async throws -> User in
 Outro caso de uso comum para DTOs é personalizar o formato das respostas da sua API. O exemplo abaixo mostra como um DTO pode ser usado para adicionar um campo computado a uma resposta.
 
 ```swift
-// Structure of GET /users response.
+// Estrutura da resposta GET /users.
 struct GetUser: Content {
     var id: UUID
     var name: String
 }
 
 app.get("users") { req async throws -> [GetUser] in
-    // Fetch all users from the database.
+    // Busca todos os usuários do banco de dados.
     let users = try await User.query(on: req.db).all()
     return try users.map { user in
-        // Convert each user to GET return type.
+        // Converte cada usuário para o tipo de retorno GET.
         try GetUser(
             id: user.requireID(),
             name: "\(user.firstName) \(user.lastName)"
@@ -466,7 +466,7 @@ planet.create(on: database)
 `create` também está disponível em um array de models. Isso salva todos os models no banco de dados em um único batch / query.
 
 ```swift
-// Example of batch create.
+// Exemplo de criação em batch.
 [earth, mars].create(on: database)
 ```
 
@@ -548,14 +548,14 @@ Model middleware são declarados usando o protocolo `ModelMiddleware` ou `AsyncM
 Usando esses métodos, você pode realizar ações tanto antes quanto depois do evento específico ser completado. Realizar ações após o evento ser completado pode ser feito mapeando o future retornado pelo próximo responder.
 
 ```swift
-// Example middleware that capitalizes names.
+// Exemplo de middleware que capitaliza nomes.
 struct PlanetMiddleware: ModelMiddleware {
     func create(model: Planet, on db: Database, next: AnyModelResponder) -> EventLoopFuture<Void> {
-        // The model can be altered here before it is created.
+        // O model pode ser alterado aqui antes de ser criado.
         model.name = model.name.capitalized()
         return next.create(model, on: db).map {
-            // Once the planet has been created, the code
-            // here will be executed.
+            // Uma vez que o planeta foi criado, o código
+            // aqui será executado.
             print ("Planet \(model.name) was created")
         }
     }
@@ -567,11 +567,11 @@ ou se estiver usando `async`/`await`:
 ```swift
 struct PlanetMiddleware: AsyncModelMiddleware {
     func create(model: Planet, on db: Database, next: AnyAsyncModelResponder) async throws {
-        // The model can be altered here before it is created.
+        // O model pode ser alterado aqui antes de ser criado.
         model.name = model.name.capitalized()
         try await next.create(model, on: db)
-        // Once the planet has been created, the code
-        // here will be executed.
+        // Uma vez que o planeta foi criado, o código
+        // aqui será executado.
         print ("Planet \(model.name) was created")
     }
 }
@@ -580,7 +580,7 @@ struct PlanetMiddleware: AsyncModelMiddleware {
 Uma vez que você criou seu middleware, pode habilitá-lo usando `app.databases.middleware`.
 
 ```swift
-// Example of configuring model middleware.
+// Exemplo de configuração de model middleware.
 app.databases.middleware.use(PlanetMiddleware(), on: .psql)
 ```
 

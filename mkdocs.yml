@@ -497,7 +497,7 @@ plugins:
             Content: Conteúdo
             Contributing: Contribuindo
             Contributing Guide: Guia de Contribuição
-            Controllers: Controllers
+            Controllers: Controladores
             Crypto: Criptografia
             Custom Tags: Tags Personalizadas
             Deploy: Deploy
@@ -507,7 +507,7 @@ plugins:
             Fluent: Fluent
             Folder Structure: Estrutura de Pastas
             Getting Started: Primeiros Passos
-            Hello, world: Olá, mundo
+            Hello, world: Olá, Mundo
             Install: Instalação
             JWT: JWT
             Leaf: Leaf
@@ -524,7 +524,7 @@ plugins:
             Relations: Relações
             Release Notes: Notas de Lançamento
             Request: Requisição
-            Routing: Roteamento
+            Routing: Rotas
             Schema: Schema
             Security: Segurança
             Server: Servidor

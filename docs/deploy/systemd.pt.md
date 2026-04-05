@@ -37,8 +37,8 @@ A flag `--env production` desabilitará o logging detalhado.
 Você pode exportar variáveis de duas formas via systemd. Criando um arquivo de ambiente com todas as variáveis definidas:
 
 ```sh
-EnvironmentFile=/path/to/environment/file1
-EnvironmentFile=/path/to/environment/file2
+EnvironmentFile=/caminho/do/arquivo/de/ambiente1
+EnvironmentFile=/caminho/do/arquivo/de/ambiente2
 ```
 
 
@@ -46,7 +46,7 @@ Ou você pode adicioná-las diretamente ao arquivo de serviço em `[service]`:
 
 ```sh
 Environment="PORT=8123"
-Environment="ANOTHERVALUE=/something/else"
+Environment="OUTROVALOR=/algum/outro/caminho"
 ```
 Variáveis exportadas podem ser usadas no Vapor usando `Environment.get`
 

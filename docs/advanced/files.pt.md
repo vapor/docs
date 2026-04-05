@@ -8,13 +8,13 @@ O método principal para ler um arquivo entrega partes (chunks) a um callback ha
 
 ```swift
 // Lê um arquivo do disco de forma assíncrona.
-let readComplete: EventLoopFuture<Void> = req.fileio.readFile(at: "/path/to/file") { chunk in
+let readComplete: EventLoopFuture<Void> = req.fileio.readFile(at: "/caminho/do/arquivo") { chunk in
     print(chunk) // ByteBuffer
 }
 
 // Ou
 
-try await req.fileio.readFile(at: "/path/to/file") { chunk in
+try await req.fileio.readFile(at: "/caminho/do/arquivo") { chunk in
     print(chunk) // ByteBuffer
 }
 // Leitura completa
@@ -28,13 +28,13 @@ O método `streamFile` converte um arquivo em streaming para uma `Response`. Est
 
 ```swift
 // Faz streaming de um arquivo como resposta HTTP de forma assíncrona.
-req.fileio.streamFile(at: "/path/to/file").map { res in
+req.fileio.streamFile(at: "/caminho/do/arquivo").map { res in
     print(res) // Response
 }
 
 // Ou
 
-let res = req.fileio.streamFile(at: "/path/to/file")
+let res = req.fileio.streamFile(at: "/caminho/do/arquivo")
 print(res)
 
 ```
@@ -47,13 +47,13 @@ O método `collectFile` lê o arquivo especificado em um buffer.
 
 ```swift
 // Lê o arquivo em um buffer.
-req.fileio.collectFile(at: "/path/to/file").map { buffer in
+req.fileio.collectFile(at: "/caminho/do/arquivo").map { buffer in
     print(buffer) // ByteBuffer
 }
 
 // ou
 
-let buffer = req.fileio.collectFile(at: "/path/to/file")
+let buffer = req.fileio.collectFile(at: "/caminho/do/arquivo")
 print(buffer)
 ```
 
@@ -66,7 +66,7 @@ O método `writeFile` suporta escrever um buffer em um arquivo.
 
 ```swift
 // Escreve buffer em um arquivo.
-req.fileio.writeFile(ByteBuffer(string: "Hello, world"), at: "/path/to/file")
+req.fileio.writeFile(ByteBuffer(string: "Olá, mundo"), at: "/caminho/do/arquivo")
 ```
 
 O future retornado sinalizará quando a escrita foi concluída ou quando um erro ocorreu.
@@ -82,16 +82,16 @@ Para casos que a API do Vapor não suporta, você pode usar o tipo `NonBlockingF
 ```swift
 // Thread principal.
 let fileHandle = try await app.fileio.openFile(
-    path: "/path/to/file",
+    path: "/caminho/do/arquivo",
     eventLoop: app.eventLoopGroup.next()
 ).get()
 print(fileHandle)
 
 // Em um route handler.
 let fileHandle = try await req.application.fileio.openFile(
-    path: "/path/to/file",
+    path: "/caminho/do/arquivo",
     eventLoop: req.eventLoop)
 print(fileHandle)
 ```
 
-Para mais informações, visite a [referência de API](https://swiftpackageindex.com/apple/swift-nio/main/documentation/nioposix/nonblockingfileio) do SwiftNIO.
+Para mais informações, consulte a [referência de API](https://swiftpackageindex.com/apple/swift-nio/main/documentation/nioposix/nonblockingfileio) do SwiftNIO.

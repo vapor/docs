@@ -12,15 +12,15 @@ Cada `Request` recebida possui um logger único que você deve usar para quaisqu
 
 ```swift
 app.get("hello") { req -> String in
-    req.logger.info("Hello, logs!")
-    return "Hello, world!"
+    req.logger.info("Olá, logs!")
+    return "Olá, mundo!"
 }
 ```
 
 O logger da requisição inclui um UUID único identificando a requisição recebida para facilitar o rastreamento de logs.
 
 ```
-[ INFO ] Hello, logs! [request-id: C637065A-8CB0-4502-91DC-9B8615C5D315] (App/routes.swift:10)
+[ INFO ] Olá, logs! [request-id: C637065A-8CB0-4502-91DC-9B8615C5D315] (App/routes.swift:10)
 ```
 
 !!! info

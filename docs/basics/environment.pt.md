@@ -1,4 +1,4 @@
-# Environment
+# Ambiente
 
 A API de Environment do Vapor ajuda você a configurar seu app dinamicamente. Por padrão, seu app usará o ambiente `development`. Você pode definir outros ambientes úteis como `production` ou `staging` e alterar como seu app é configurado em cada caso. Você também pode carregar variáveis do ambiente do processo ou de arquivos `.env` (dotenv) conforme suas necessidades.
 

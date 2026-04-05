@@ -9,7 +9,7 @@ Este guia fornecerá uma visão geral da sintaxe do Leaf e das tags disponíveis
 Aqui está um exemplo de uso básico de uma tag Leaf.
 
 ```leaf
-There are #count(users) users.
+Existem #count(users) usuários.
 ```
 
 As tags Leaf são compostas por quatro elementos:
@@ -23,8 +23,8 @@ Pode haver muitos usos diferentes desses quatro elementos dependendo da implemen
 
 ```leaf
 #(variable)
-#extend("template"): I'm added to a base template! #endextend
-#export("title"): Welcome to Vapor #endexport
+#extend("template"): Eu sou adicionado a um template base! #endextend
+#export("title"): Bem-vindo ao Vapor #endexport
 #import("body")
 #count(friends)
 #for(friend in friends): <li>#(friend.name)</li> #endfor
@@ -41,13 +41,13 @@ O Leaf também suporta muitas expressões familiares do Swift.
 
 ```leaf
 #if(1 + 1 == 2):
-    Hello!
+    Olá!
 #endif
 
 #if(index % 2 == 0):
-    This is even index.
+    Este é um índice par.
 #else:
-    This is odd index.
+    Este é um índice ímpar.
 #endif
 ```
 
@@ -60,7 +60,7 @@ struct WelcomeContext: Encodable {
     var title: String
     var numbers: [Int]
 }
-return req.view.render("home", WelcomeContext(title: "Hello!", numbers: [42, 9001]))
+return req.view.render("home", WelcomeContext(title: "Olá!", numbers: [42, 9001]))
 ```
 
 Isso expõe `title` e `numbers` ao nosso template Leaf, que podem então ser usados dentro de tags. Por exemplo:
@@ -82,9 +82,9 @@ O Leaf é capaz de avaliar uma série de condições usando sua tag `#if`. Por e
 
 ```leaf
 #if(title):
-    The title is #(title)
+    O título é #(title)
 #else:
-    No title was provided.
+    Nenhum título foi fornecido.
 #endif
 ```
 
@@ -92,9 +92,9 @@ Você também pode escrever comparações, por exemplo:
 
 ```leaf
 #if(title == "Welcome"):
-    This is a friendly web page.
+    Esta é uma página web amigável.
 #else:
-    No strangers allowed!
+    Estranhos não são permitidos!
 #endif
 ```
 
@@ -102,9 +102,9 @@ Se você quiser usar outra tag como parte da sua condição, deve omitir o `#` d
 
 ```leaf
 #if(count(users) > 0):
-    You have users!
+    Você tem usuários!
 #else:
-    There are no users yet :(
+    Não há usuários ainda :(
 #endif
 ```
 
@@ -112,11 +112,11 @@ Você também pode usar declarações `#elseif`:
 
 ```leaf
 #if(title == "Welcome"):
-    Hello new user!
+    Olá, novo usuário!
 #elseif(title == "Welcome back!"):
-    Hello old user
+    Olá, usuário antigo
 #else:
-    Unexpected page!
+    Página inesperada!
 #endif
 ```
 
@@ -137,7 +137,7 @@ return req.view.render("solarSystem", SolarSystem())
 Poderíamos então iterar sobre eles no Leaf assim:
 
 ```leaf
-Planets:
+Planetas:
 <ul>
 #for(planet in planets):
     <li>#(planet)</li>
@@ -148,7 +148,7 @@ Planets:
 Isso renderizaria uma view assim:
 
 ```
-Planets:
+Planetas:
 - Venus
 - Earth
 - Mars
@@ -173,7 +173,7 @@ Por exemplo, você pode criar um template `child.leaf` assim:
 ```leaf
 #extend("main"):
     #export("body"):
-        <p>Welcome to Vapor!</p>
+        <p>Bem-vindo ao Vapor!</p>
     #endexport
 #endextend
 ```
@@ -189,14 +189,14 @@ Chamamos `#export` para armazenar algum HTML e torná-lo disponível para o temp
 </html>
 ```
 
-Aqui estamos usando `#import` para buscar o conteúdo passado para a tag `#extend`. Quando passamos `["title": "Hi there!"]` pelo Swift, `child.leaf` renderizará da seguinte forma:
+Aqui estamos usando `#import` para buscar o conteúdo passado para a tag `#extend`. Quando passamos `["title": "Olá!"]` pelo Swift, `child.leaf` renderizará da seguinte forma:
 
 ```html
 <html>
     <head>
-        <title>Hi there!</title>
+        <title>Olá!</title>
     </head>
-    <body><p>Welcome to Vapor!</p></body>
+    <body><p>Bem-vindo ao Vapor!</p></body>
 </html>
 ```
 
@@ -207,7 +207,7 @@ Aqui estamos usando `#import` para buscar o conteúdo passado para a tag `#exten
 A tag `#count` retorna o número de itens em um array. Por exemplo:
 
 ```leaf
-Your search matched #count(matches) pages.
+Sua busca encontrou #count(matches) páginas.
 ```
 
 #### `#lowercased`
@@ -240,9 +240,9 @@ A tag `#contains` aceita um array e um valor como seus dois parâmetros, e retor
 
 ```leaf
 #if(contains(planets, "Earth")):
-    Earth is here!
+    A Terra está aqui!
 #else:
-    Earth is not in this array.
+    A Terra não está neste array.
 #endif
 ```
 
@@ -255,19 +255,19 @@ render(..., ["now": Date()])
 ```
 
 ```leaf
-The time is #date(now)
+A hora é #date(now)
 ```
 
 Você pode passar uma string de formato de data personalizado como segundo argumento. Veja o [`DateFormatter`](https://developer.apple.com/documentation/foundation/dateformatter) do Swift para mais informações.
 
 ```leaf
-The date is #date(now, "yyyy-MM-dd")
+A data é #date(now, "yyyy-MM-dd")
 ```
 
 Você também pode passar um ID de fuso horário para o formatador de data como terceiro argumento. Veja [`DateFormatter.timeZone`](https://developer.apple.com/documentation/foundation/dateformatter/1411406-timezone) e [`TimeZone`](https://developer.apple.com/documentation/foundation/timezone) do Swift para mais informações.
 
 ```leaf
-The date is #date(now, "yyyy-MM-dd", "America/New_York")
+A data é #date(now, "yyyy-MM-dd", "America/New_York")
 ```
 
 #### `#unsafeHTML`
@@ -275,7 +275,7 @@ The date is #date(now, "yyyy-MM-dd", "America/New_York")
 A tag `#unsafeHTML` age como uma tag de variável — ex: `#(variable)`. No entanto, ela não escapa nenhum HTML que `variable` possa conter:
 
 ```leaf
-The time is #unsafeHTML(styledTitle)
+A hora é #unsafeHTML(styledTitle)
 ```
 
 !!! note "Nota"
@@ -286,6 +286,6 @@ The time is #unsafeHTML(styledTitle)
 A tag `#dumpContext` renderiza todo o contexto em uma string legível. Use esta tag para depurar o que está sendo fornecido como contexto para a renderização atual.
 
 ```leaf
-Hello, world!
+Olá, mundo!
 #dumpContext
 ```

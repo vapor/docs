@@ -168,8 +168,8 @@ app.get("email") { req -> EventLoopFuture<String> in
         .queue
         .dispatch(
             EmailJob.self,
-            .init(to: "email@email.com", message: "message")
-        ).map { "done" }
+            .init(to: "email@email.com", message: "mensagem")
+        ).map { "feito" }
 }
 
 // ou
@@ -177,8 +177,8 @@ app.get("email") { req -> EventLoopFuture<String> in
 app.get("email") { req async throws -> String in
     try await req.queue.dispatch(
         EmailJob.self,
-        .init(to: "email@email.com", message: "message"))
-    return "done"
+        .init(to: "email@email.com", message: "mensagem"))
+    return "feito"
 }
 ```
 
@@ -193,7 +193,7 @@ struct SendEmailCommand: AsyncCommand {
             .queue
             .dispatch(
                 EmailJob.self,
-                .init(to: "email@email.com", message: "message")
+                .init(to: "email@email.com", message: "mensagem")
             )
     }
 }
@@ -209,9 +209,9 @@ app.get("email") { req -> EventLoopFuture<String> in
         .queue
         .dispatch(
             EmailJob.self,
-            .init(to: "email@email.com", message: "message"),
+            .init(to: "email@email.com", message: "mensagem"),
             maxRetryCount: 3
-        ).map { "done" }
+        ).map { "feito" }
 }
 
 // ou
@@ -219,9 +219,9 @@ app.get("email") { req -> EventLoopFuture<String> in
 app.get("email") { req async throws -> String in
     try await req.queue.dispatch(
         EmailJob.self,
-        .init(to: "email@email.com", message: "message"),
+        .init(to: "email@email.com", message: "mensagem"),
         maxRetryCount: 3)
-    return "done"
+    return "feito"
 }
 ```
 
@@ -234,10 +234,10 @@ app.get("email") { req async throws -> String in
     let futureDate = Date(timeIntervalSinceNow: 60 * 60 * 24) // Um dia
     try await req.queue.dispatch(
         EmailJob.self,
-        .init(to: "email@email.com", message: "message"),
+        .init(to: "email@email.com", message: "mensagem"),
         maxRetryCount: 3,
         delayUntil: futureDate)
-    return "done"
+    return "feito"
 }
 ```
 
@@ -274,10 +274,10 @@ app.get("email") { req -> EventLoopFuture<String> in
         .queues(.emails)
         .dispatch(
             EmailJob.self,
-            .init(to: "email@email.com", message: "message"),
+            .init(to: "email@email.com", message: "mensagem"),
             maxRetryCount: 3,
             delayUntil: futureDate
-        ).map { "done" }
+        ).map { "feito" }
 }
 
 // ou
@@ -288,11 +288,11 @@ app.get("email") { req async throws -> String in
         .queues(.emails)
         .dispatch(
             EmailJob.self,
-            .init(to: "email@email.com", message: "message"),
+            .init(to: "email@email.com", message: "mensagem"),
             maxRetryCount: 3,
             delayUntil: futureDate
         )
-    return "done"
+    return "feito"
 }
 ```
 
@@ -307,7 +307,7 @@ struct SendEmailCommand: AsyncCommand {
             .queue(.emails)
             .dispatch(
                 EmailJob.self,
-                .init(to: "email@email.com", message: "message"),
+                .init(to: "email@email.com", message: "mensagem"),
                 maxRetryCount: 3,
                 delayUntil: futureDate
             )

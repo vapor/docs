@@ -127,11 +127,11 @@ Com a maioria das configurações comuns de projetos Vapor, você configura seu 
 if let databaseURL = Environment.get("DATABASE_URL") {
     try app.databases.use(.postgres(url: databaseURL), as: .psql)
 } else {
-    // Handle missing DATABASE_URL here...
+    // Trate a DATABASE_URL ausente aqui...
     //
-    // Alternatively, you could also set a different config
-    // depending on wether app.environment is set to to
-    // `.development` or `.production`
+    // Alternativamente, você também pode definir uma configuração diferente
+    // dependendo se app.environment está definido como
+    // `.development` ou `.production`
 }
 ```
 

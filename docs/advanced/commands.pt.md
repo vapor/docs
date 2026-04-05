@@ -53,11 +53,11 @@ struct HelloCommand: AsyncCommand {
     struct Signature: CommandSignature { }
 
     var help: String {
-        "Says hello"
+        "Diz olá"
     }
 
     func run(using context: CommandContext, signature: Signature) async throws {
-        context.console.print("Hello, world!")
+        context.console.print("Olá, mundo!")
     }
 }
 ```
@@ -67,8 +67,8 @@ Este exemplo simples de comando não tem argumentos ou opções, então deixe a 
 Você pode acessar o console atual através do contexto fornecido. O Console possui muitos métodos úteis para solicitar entrada do usuário, formatação de saída e mais.
 
 ```swift
-let name = context.console.ask("What is your \("name", color: .blue)?")
-context.console.print("Hello, \(name) 👋")
+let name = context.console.ask("Qual é o seu \("nome", color: .blue)?")
+context.console.print("Olá, \(name) 👋")
 ```
 
 Teste seu comando executando:
@@ -97,7 +97,7 @@ struct Cowsay: AsyncCommand {
     }
 
     var help: String {
-        "Generates ASCII picture of a cow with a message."
+        "Gera uma imagem ASCII de uma vaca com uma mensagem."
     }
 
     func run(using context: CommandContext, signature: Signature) async throws {

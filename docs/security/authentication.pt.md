@@ -366,7 +366,7 @@ app.post("users") { req async throws -> User in
     try User.Create.validate(content: req)
     let create = try req.content.decode(User.Create.self)
     guard create.password == create.confirmPassword else {
-        throw Abort(.badRequest, reason: "Passwords did not match")
+        throw Abort(.badRequest, reason: "As senhas não correspondem")
     }
     let user = try User(
         name: create.name,

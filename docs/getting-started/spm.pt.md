@@ -4,11 +4,11 @@ O [Swift Package Manager](https://swift.org/package-manager/) (SPM) é usado par
 
 O SPM é similar ao Cocoapods, Ruby gems e NPM. Você pode usar o SPM pela linha de comando com comandos como `swift build` e `swift test` ou com IDEs compatíveis. No entanto, diferente de alguns outros gerenciadores de pacotes, não existe um índice central de pacotes para o SPM. O SPM utiliza URLs para repositórios Git e versiona as dependências usando [Git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging).
 
-## Manifesto do Pacote
+## Package Manifest
 
-O primeiro lugar que o SPM procura no seu projeto é o manifesto do pacote. Ele deve estar sempre localizado no diretório raiz do seu projeto e nomeado como `Package.swift`.
+O primeiro lugar que o SPM procura no seu projeto é o package manifest. Ele deve estar sempre localizado no diretório raiz do seu projeto e nomeado como `Package.swift`.
 
-Dê uma olhada neste exemplo de manifesto de pacote.
+Dê uma olhada neste exemplo de package manifest.
 
 ```swift
 // swift-tools-version:5.8
@@ -37,11 +37,11 @@ let package = Package(
 )
 ```
 
-Cada parte do manifesto é explicada nas seções a seguir.
+Cada parte do package manifest é explicada nas seções a seguir.
 
 ### Versão das Ferramentas
 
-A primeira linha de um manifesto de pacote indica a versão das ferramentas Swift necessária. Isso especifica a versão mínima do Swift que o pacote suporta. A API de descrição de pacotes também pode mudar entre versões do Swift, então essa linha garante que o Swift saberá como interpretar seu manifesto.
+A primeira linha de um package manifest indica a versão das ferramentas Swift necessária. Isso especifica a versão mínima do Swift que o pacote suporta. A API de descrição de pacotes também pode mudar entre versões do Swift, então essa linha garante que o Swift saberá como interpretar seu manifest.
 
 ### Nome do Pacote
 
@@ -69,7 +69,7 @@ Abaixo está a estrutura de pastas típica para um pacote SPM.
 .
 ├── Sources
 │   └── App
-│       └── (Source code)
+│       └── (Código fonte)
 ├── Tests
 │   └── AppTests
 └── Package.swift

@@ -1,4 +1,4 @@
-# Validation
+# Validação
 
 A API de Validação do Vapor ajuda você a validar o body e os parâmetros de query de uma requisição recebida antes de usar a API de [Conteúdo](content.md) para decodificar dados.
 
@@ -55,7 +55,7 @@ struct CreateUser: Content {
 
 app.post("users") { req -> CreateUser in
     let user = try req.content.decode(CreateUser.self)
-    // Do something with user.
+    // Faz algo com o usuário.
     return user
 }
 ```
@@ -67,7 +67,7 @@ O primeiro passo é conformar o tipo que você está decodificando, neste caso `
 ```swift
 extension CreateUser: Validatable {
     static func validations(_ validations: inout Validations) {
-        // Validations go here.
+        // As validações vão aqui.
     }
 }
 ```
@@ -243,9 +243,9 @@ Primeiro, crie um novo tipo para representar os resultados da validação de `Zi
 
 ```swift
 extension ValidatorResults {
-    /// Represents the result of a validator that checks if a string is a valid zip code.
+    /// Representa o resultado de um validador que verifica se uma string é um código postal válido.
     public struct ZipCode {
-        /// Indicates whether the input is a valid zip code.
+        /// Indica se a entrada é um código postal válido.
         public let isValidZipCode: Bool
     }
 }
@@ -275,7 +275,7 @@ Por fim, implemente a lógica de validação para códigos postais. Use uma expr
 private let zipCodeRegex: String = "^\\d{5}(?:[-\\s]\\d{4})?$"
 
 extension Validator where T == String {
-    /// Validates whether a `String` is a valid zip code.
+    /// Valida se uma `String` é um código postal válido.
     public static var zipCode: Validator<T> {
         .init { input in
             guard let range = input.range(of: zipCodeRegex, options: [.regularExpression]),
@@ -324,7 +324,7 @@ struct Employee: Content {
     validations.add(
       "nameAndSurname",
       as: String.self,
-      is: .custom("Validates whether employee is part of XYZ company by looking at name and surname.") { nameAndSurname in
+      is: .custom("Valida se o funcionário faz parte da empresa XYZ verificando nome e sobrenome.") { nameAndSurname in
           for employee in allCompanyEmployees {
             if employee == nameAndSurname {
               return true

@@ -1,4 +1,4 @@
-# Client
+# Cliente
 
 A API de client do Vapor permite que você faça chamadas HTTP para recursos externos. Ela é construída sobre o [async-http-client](https://github.com/swift-server/async-http-client) e integra com a API de [conteúdo](content.md).
 
@@ -32,17 +32,17 @@ A API de [conteúdo](content.md) do Vapor está disponível para manipular dados
 
 ```swift
 let response = try await req.client.post("https://httpbin.org/status/200") { req in
-	// Encode query string to the request URL.
+	// Codifica a query string na URL da requisição.
 	try req.query.encode(["q": "test"])
 
-	// Encode JSON to the request body.
+	// Codifica JSON no body da requisição.
     try req.content.encode(["hello": "world"])
 
-    // Add auth header to the request
+    // Adiciona header de auth à requisição
     let auth = BasicAuthorization(username: "something", password: "somethingelse")
     req.headers.basicAuthorization = auth
 }
-// Handle the response.
+// Manipula a resposta.
 ```
 
 Você também pode decodificar o body da resposta usando `Content` de maneira similar:
@@ -58,7 +58,7 @@ Se você estiver usando futures, pode usar `flatMapThrowing`:
 return req.client.get("https://httpbin.org/json").flatMapThrowing { res in
 	try res.content.decode(MyJSONResponse.self)
 }.flatMap { json in
-	// Use JSON here
+	// Use o JSON aqui
 }
 ```
 
@@ -67,7 +67,7 @@ return req.client.get("https://httpbin.org/json").flatMapThrowing { res in
 Você pode configurar o client HTTP subjacente através da aplicação.
 
 ```swift
-// Disable automatic redirect following.
+// Desabilita o redirecionamento automático.
 app.http.client.configuration.redirectConfiguration = .disallow
 ```
 

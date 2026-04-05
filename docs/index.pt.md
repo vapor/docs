@@ -12,12 +12,12 @@ Aqui estão outros ótimos lugares para encontrar informações sobre o Vapor.
 
 | nome               | descrição                                                                 | link                                                              |
 |--------------------|---------------------------------------------------------------------------|-------------------------------------------------------------------|
-| Discord do Vapor   | Converse com milhares de desenvolvedores Vapor.                           | [visitar &rarr;](https://vapor.team)                              |
-| Documentação da API| Documentação gerada automaticamente a partir dos comentários no código.   | [visitar &rarr;](https://api.vapor.codes)                         |
-| Stack Overflow     | Faça e responda perguntas com a tag `vapor`.                              | [visitar &rarr;](https://stackoverflow.com/questions/tagged/vapor)|
-| Fóruns do Swift    | Publique na seção do Vapor nos fóruns do Swift.org.                       | [visitar &rarr;](https://forums.swift.org/c/related-projects/vapor)|
-| Código Fonte       | Aprenda como o Vapor funciona por baixo dos panos.                        | [visitar &rarr;](https://github.com/vapor/vapor)                  |
-| GitHub Issues      | Reporte bugs ou solicite funcionalidades no GitHub.                       | [visitar &rarr;](https://github.com/vapor/vapor/issues)           |
+| Discord do Vapor   | Converse com milhares de desenvolvedores Vapor.                           | [acessar &rarr;](https://vapor.team)                              |
+| Documentação da API| Documentação gerada automaticamente a partir dos comentários no código.   | [acessar &rarr;](https://api.vapor.codes)                         |
+| Stack Overflow     | Faça e responda perguntas com a tag `vapor`.                              | [acessar &rarr;](https://stackoverflow.com/questions/tagged/vapor)|
+| Fóruns do Swift    | Publique na seção do Vapor nos fóruns do Swift.org.                       | [acessar &rarr;](https://forums.swift.org/c/related-projects/vapor)|
+| Código Fonte       | Aprenda como o Vapor funciona por baixo dos panos.                        | [acessar &rarr;](https://github.com/vapor/vapor)                  |
+| GitHub Issues      | Reporte bugs ou solicite funcionalidades no GitHub.                       | [acessar &rarr;](https://github.com/vapor/vapor/issues)           |
 
 ## Documentação Antiga
 

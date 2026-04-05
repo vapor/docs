@@ -36,7 +36,7 @@ heroku auth:whoami
 
 ### Criar uma Aplicação
 
-Visite dashboard.heroku.com para acessar sua conta e crie uma nova aplicação no menu suspenso no canto superior direito. O Heroku fará algumas perguntas como região e nome da aplicação, basta seguir as instruções.
+Acesse dashboard.heroku.com para entrar na sua conta e crie uma nova aplicação no menu suspenso no canto superior direito. O Heroku fará algumas perguntas como região e nome da aplicação, basta seguir as instruções.
 
 ### Git
 
@@ -168,7 +168,7 @@ Sempre que quiser atualizar, basta trazer as últimas alterações para a main e
 
 ### Adicionar banco de dados PostgreSQL
 
-Visite sua aplicação em dashboard.heroku.com e vá para a seção **Add-ons**.
+Acesse sua aplicação em dashboard.heroku.com e vá para a seção **Add-ons**.
 
 A partir daqui, digite `postgres` e você verá uma opção para `Heroku Postgres`. Selecione-a.
 
