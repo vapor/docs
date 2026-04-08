@@ -14,9 +14,8 @@ let readComplete: EventLoopFuture<Void> = req.fileio.readFile(at: "/path/to/file
 
 // Or
 
-try await req.fileio.readFile(at: "/path/to/file") { chunk in
-    print(chunk) // ByteBuffer
-}
+let file = try await request.fileio.readFile(at: path, chunkSize: 16 * 1024) // 32Kb, ~5 chunks
+    
 // Read is complete
 ```
 
