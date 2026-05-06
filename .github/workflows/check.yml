@@ -23,7 +23,7 @@ jobs:
     - name: Build documentation
       run: venv/bin/mkdocs build
     - name: Setup cloudformation linter 
-      uses: ScottBrenner/cfn-lint-action@c5f18dc4be13042d564f3052f4067dc9ceafe355 # v2.7.0
+      uses: ScottBrenner/cfn-lint-action@ed184e91f5085a2932501da8314e899e5e0ef5be # v2.7.1
     - name: Run cloudformation lint 
       run: cfn-lint -t stack.yml
     - name: Run dead links check
