@@ -353,6 +353,7 @@ plugins:
             Content: 컨텐츠
             Contributing: 기여하기
             Contributing Guide: 기여 가이드
+            Controllers: 컨트롤러
             Crypto: 암호화
             Custom Tags: 사용자 정의 태그
             Deploy: 배포
