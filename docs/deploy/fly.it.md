@@ -76,7 +76,7 @@ Nota che se chiedi a Fly di creare un database, dovrai attendere un po' che veng
 Prima di uscire, il comando `fly launch` ti chiederà se desideri fare il deploy della tua app immediatamente. Puoi accettare oppure farlo in seguito usando `fly deploy`.
 
 !!! tip "Suggerimento"
-    Quando la tua directory corrente è nella radice della tua app, lo strumento CLI fly rileva automaticamente la presenza di un file `fly.toml` che consente a Fly di sapere quale app stai prendendo di mira con i tuoi comandi. Se vuoi puntare a un'app specifica indipendentemente dalla tua directory corrente, puoi aggiungere `-a nome-della-tua-app` alla maggior parte dei comandi Fly.
+    Quando la tua directory corrente è nella radice della tua app, lo strumento CLI fly rileva automaticamente la presenza di un file `fly.toml` che consente a Fly di sapere a quale app ti stai rivolgendo con i tuoi comandi. Se vuoi puntare a un'app specifica indipendentemente dalla tua directory corrente, puoi aggiungere `-a nome-della-tua-app` alla maggior parte dei comandi Fly.
 
 ## Deploy
 Esegui il comando `fly deploy` ogni volta che hai bisogno di fare il deploy di nuove modifiche su Fly.

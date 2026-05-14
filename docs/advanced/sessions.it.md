@@ -2,11 +2,11 @@
 
 Le sessioni ti consentono di mantenere i dati di un utente tra più richieste. Le sessioni funzionano creando e restituendo un cookie univoco insieme alla risposta HTTP quando viene inizializzata una nuova sessione. I browser rileveranno automaticamente questo cookie e lo includeranno nelle richieste future. Questo consente a Vapor di ripristinare automaticamente la sessione di un utente specifico nel tuo gestore di richieste.
 
-Le sessioni sono ottime per le applicazioni web front-end create in Vapor che servono HTML direttamente ai browser web. Per le API, raccomandiamo di usare l'[autenticazione basata su token](../security/authentication.it.md) stateless per mantenere i dati utente tra le richieste.
+Le sessioni sono ottime per le applicazioni web front-end create in Vapor che restituiscono HTML direttamente ai browser web. Per le API, raccomandiamo di usare l'[autenticazione basata su token](../security/authentication.it.md) stateless per mantenere i dati utente tra le richieste.
 
 ## Configurazione
 
-Per usare le sessioni in una route, la richiesta deve passare attraverso `SessionsMiddleware`. Il modo più semplice per ottenere questo è aggiungere questo middleware globalmente. Si raccomanda di aggiungerlo dopo aver dichiarato la cookie factory. Questo perché Sessions è una `struct`, quindi è un tipo valore e non un tipo riferimento. Siccome è un tipo valore, devi impostarne il valore prima di usare `SessionsMiddleware`.
+Per usare le sessioni in una route, la richiesta deve passare attraverso `SessionsMiddleware`. Il modo più semplice per ottenere ciò è aggiungere questo middleware globalmente. Si raccomanda di aggiungerlo dopo aver dichiarato la cookie factory. Questo perché Sessions è una `struct`, quindi è un tipo valore e non un tipo riferimento. Siccome è un tipo valore, devi impostarne il valore prima di usare `SessionsMiddleware`.
 
 ```swift
 app.middleware.use(app.sessions.middleware)

@@ -41,7 +41,7 @@ Il Dockerfile generato per la tua app Vapor ha due fasi. La prima fase compila l
 
 ### File Docker Compose
 
-Un file Docker Compose definisce il modo in cui Docker deve costruire più servizi in relazione tra loro. Il file Docker Compose nel template dell'app Vapor fornisce le funzionalità necessarie per fare il deploy della tua app, ma se vuoi saperne di più dovresti consultare il [riferimento completo](https://docs.docker.com/compose/compose-file/) che contiene dettagli su tutte le opzioni disponibili.
+Un file Docker Compose definisce il modo in cui Docker deve costruire più servizi in relazione tra loro. Il file Docker Compose nel template dell'app Vapor fornisce le funzionalità necessarie per fare il deploy della tua app, ma se vuoi saperne di più dovresti consultare la [documentazione completa](https://docs.docker.com/compose/compose-file/) che contiene dettagli su tutte le opzioni disponibili.
 
 !!! note "Nota"
     Se hai intenzione di usare Kubernetes per orchestrare la tua app, il file Docker Compose non è direttamente rilevante. Tuttavia, i file manifest di Kubernetes sono concettualmente simili e ci sono anche progetti che mirano a [convertire i file Docker Compose](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/) in manifest Kubernetes.

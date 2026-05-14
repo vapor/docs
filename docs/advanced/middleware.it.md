@@ -48,7 +48,7 @@ app.middleware.use(someMiddleware, at: .beginning)
 
 ## Creare un Middleware
 
-Vapor include alcuni middleware utili, ma potresti dover crearne di tuoi in base ai requisiti della tua applicazione. Ad esempio, potresti creare un middleware che impedisce a qualsiasi utente non amministratore di accedere a un gruppo di route.
+Vapor include alcuni middleware utili, ma potresti doverne creare di tuoi in base ai requisiti della tua applicazione. Ad esempio, potresti creare un middleware che impedisce a qualsiasi utente non amministratore di accedere a un gruppo di route.
 
 > Ti raccomandiamo di creare una cartella `Middleware` all'interno della directory `Sources/App` per mantenere il codice organizzato
 
@@ -84,7 +84,7 @@ struct EnsureAdminUserMiddleware: AsyncMiddleware {
 }
 ```
 
-Se vuoi modificare la risposta, ad esempio per aggiungere un header personalizzato, puoi usare un middleware anche per questo. I middleware possono attendere che la risposta venga ricevuta dalla catena di risposta e manipolarla:
+Se vuoi modificare la response, ad esempio per aggiungere un header personalizzato, puoi usare un middleware anche per questo. I middleware possono attendere che la response venga ricevuta dalla catena di risposta e manipolarla:
 
 ```swift
 import Vapor
@@ -122,7 +122,7 @@ let file = FileMiddleware(publicDirectory: app.directory.publicDirectory)
 app.middleware.use(file)
 ```
 
-Una volta registrato `FileMiddleware`, un file come `Public/images/logo.png` può essere collegato da un template Leaf come `<img src="/images/logo.png"/>`.
+Una volta registrato `FileMiddleware`, puoi aggiungere a un template Leaf un collegamento a un file come `Public/images/logo.png` con `<img src="/images/logo.png"/>`.
 
 Se il tuo server è contenuto in un progetto Xcode, come un'app iOS, usa invece questo:
 
@@ -149,4 +149,4 @@ let cors = CORSMiddleware(configuration: corsConfiguration)
 app.middleware.use(cors, at: .beginning)
 ```
 
-Poiché gli errori lanciati vengono restituiti immediatamente al client, il `CORSMiddleware` deve essere elencato _prima_ dell'`ErrorMiddleware`. Altrimenti, la risposta di errore HTTP verrà restituita senza gli header CORS e non potrà essere letta dal browser.
+Poiché gli errori lanciati vengono restituiti immediatamente al client, il `CORSMiddleware` deve essere inserito _prima_ dell'`ErrorMiddleware`. Altrimenti, la risposta di errore HTTP verrà restituita senza gli header CORS e non potrà essere letta dal browser.

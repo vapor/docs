@@ -86,7 +86,7 @@ app.queues.add(emailJob)
 Per avviare un nuovo worker di coda, esegui `swift run App queues`. Puoi anche specificare un tipo specifico di worker da eseguire: `swift run App queues --queue emails`.
 
 !!! tip "Suggerimento"
-    I worker dovrebbero rimanere in esecuzione in produzione. Consulta il tuo provider di hosting per scoprire come mantenere in vita i processi a lungo termine. Heroku, ad esempio, ti consente di specificare dyno "worker" in questo modo nel tuo Procfile: `worker: Run queues`. Con questo in atto, puoi avviare worker dalla scheda Dashboard/Resources, o con `heroku ps:scale worker=1` (o qualsiasi numero di dyno preferito).
+    I worker dovrebbero rimanere in esecuzione in produzione. Consulta il tuo provider di hosting per scoprire come mantenere in vita i processi a lungo termine. Heroku, ad esempio, ti consente di specificare dyno "worker" in questo modo nel tuo Procfile: `worker: Run queues`. Fatto questo, puoi avviare worker dalla scheda Dashboard/Resources, o con `heroku ps:scale worker=1` (o qualsiasi numero di dyno preferito).
 
 ### Eseguire Worker in-process
 
@@ -125,7 +125,7 @@ struct EmailJob: Job {
     typealias Payload = Email
 
     func dequeue(_ context: QueueContext, _ payload: Email) -> EventLoopFuture<Void> {
-        // Qui è dove invieresti l'email
+        // Qui è dove dovresti inviare l'email
         return context.eventLoop.future()
     }
 
@@ -143,11 +143,11 @@ struct EmailJob: AsyncJob {
     typealias Payload = Email
 
     func dequeue(_ context: QueueContext, _ payload: Email) async throws {
-        // Qui è dove invieresti l'email
+        // Qui è dove dovresti inviare l'email
     }
 
     func error(_ context: QueueContext, _ error: Error, _ payload: Email) async throws {
-        // Se non vuoi gestire gli errori puoi semplicemente tornare. Puoi anche omettere completamente questa funzione.
+        // Se non vuoi gestire gli errori puoi semplicemente uscire dalla funzione. Puoi anche omettere completamente questa funzione.
     }
 }
 ```
@@ -160,7 +160,7 @@ struct EmailJob: AsyncJob {
 
 ## Inviare Job
 
-Per inviare un job di coda, hai bisogno di un'istanza di `Application` o `Request`. Molto probabilmente invierai job all'interno di un gestore di route:
+Per inviare un job alla coda, hai bisogno di un'istanza di `Application` o `Request`. Molto probabilmente invierai job all'interno di un gestore di route:
 
 ```swift
 app.get("email") { req -> EventLoopFuture<String> in
@@ -201,7 +201,7 @@ struct SendEmailCommand: AsyncCommand {
 
 ### Impostare `maxRetryCount`
 
-I job si ritenteranno automaticamente in caso di errore se specifichi un `maxRetryCount`. Ad esempio:
+L'esecuzione dei job verrà ritentata automaticamente in caso di errore se specifichi un `maxRetryCount`. Ad esempio:
 
 ```swift
 app.get("email") { req -> EventLoopFuture<String> in

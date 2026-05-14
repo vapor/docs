@@ -40,7 +40,7 @@ stderr_logfile=/var/log/supervisor/%(program_name)s-stderr.log
 
 Come specificato nel file di configurazione, il progetto `Hello` si trova nella cartella home dell'utente `vapor`. Assicurati che `directory` punti alla directory radice del tuo progetto, dove si trova il file `Package.swift`.
 
-Il flag `--env production` disabiliterà il logging verboso.
+Il flag `--env production` disabiliterà il logging prolisso.
 
 ### Variabili d'Ambiente
 

@@ -1,6 +1,6 @@
 # Servizi
 
-`Application` e `Request` di Vapor sono progettati per essere estesi dalla tua applicazione e da package di terze parti. Le nuove funzionalità aggiunte a questi tipi vengono spesso chiamate servizi.
+`Application` e `Request` di Vapor sono progettati per essere estesi dalla tua applicazione e da pacchetti di terze parti. Le nuove funzionalità aggiunte a questi tipi vengono spesso chiamate servizi.
 
 ## Sola Lettura
 

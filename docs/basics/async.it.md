@@ -390,7 +390,7 @@ futureString.hop(to: otherEventLoop)
 
 ## Blocking
 
-Chiamare codice bloccante su un thread dell'event loop può impedire alla tua applicazione di rispondere alle richieste in arrivo in modo tempestivo. Un esempio di chiamata bloccante sarebbe qualcosa come `libc.sleep(_:)`.
+Chiamare codice bloccante su un thread dell'event loop può impedire alla tua applicazione di rispondere alle richieste in arrivo in modo tempestivo. Un esempio di chiamata bloccante sarebbe `libc.sleep(_:)`.
 
 ```swift
 app.get("hello") { req in
@@ -436,7 +436,7 @@ Tutti i package di Vapor sono costruiti su SwiftNIO e usano I/O non bloccante. C
 
 La maggior parte del tempo durante una richiesta viene trascorso ad attendere risorse esterne come query al database e richieste di rete da caricare. Poiché Vapor e SwiftNIO sono non bloccanti, questo tempo morto può essere usato per rispondere ad altre richieste in arrivo. Tuttavia, alcune route nella tua applicazione potrebbero dover eseguire lavoro pesante legato alla CPU come risultato di una richiesta.
 
-Mentre un event loop sta elaborando lavoro legato alla CPU, non sarà in grado di rispondere ad altre richieste in arrivo. Questo è normalmente accettabile poiché le CPU sono veloci e la maggior parte del lavoro CPU che le applicazioni web eseguono è leggero. Ma questo può diventare un problema se le route con lavoro CPU a lunga esecuzione impediscono alle richieste verso route più veloci di essere risposte rapidamente.
+Mentre un event loop sta elaborando lavoro legato alla CPU, non sarà in grado di rispondere ad altre richieste in arrivo. Questo di norma è accettabile poiché le CPU sono veloci e la maggior parte del lavoro CPU che le applicazioni web eseguono è leggero. Ma questo può diventare un problema se le route con lavoro CPU a lunga esecuzione impediscono alle richieste verso route più veloci di essere risposte rapidamente.
 
 Identificare il lavoro CPU a lunga esecuzione nella tua app e spostarlo su thread in background può aiutare a migliorare l'affidabilità e la reattività del tuo servizio. La differenza tra lavoro I/O bound e CPU bound non è sempre chiara, e alla fine spetta a te determinare dove vuoi tracciare il confine.
 

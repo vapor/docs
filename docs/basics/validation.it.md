@@ -4,11 +4,11 @@ L'API Validation di Vapor ti aiuta a validare il body e i parametri della query 
 
 ## Introduzione
 
-La profonda integrazione di Vapor con il protocollo `Codable` type-safe di Swift significa che non hai bisogno di preoccuparti tanto della validazione dei dati rispetto ai linguaggi tipizzati dinamicamente. Tuttavia, ci sono ancora alcuni motivi per cui potresti voler optare per una validazione esplicita usando l'API Validation.
+La profonda integrazione di Vapor con il protocollo type-safe `Codable` di Swift significa che non hai bisogno di preoccuparti tanto della validazione dei dati rispetto ai linguaggi tipizzati dinamicamente. Tuttavia, ci sono ancora alcuni motivi per cui potresti voler optare per una validazione esplicita usando l'API Validation.
 
 ### Errori Leggibili dagli Utenti
 
-La decodifica di struct usando l'API [Content](content.it.md) produrrà errori se uno qualsiasi dei dati non è valido. Tuttavia, questi messaggi di errore a volte possono mancare di leggibilità per l'utente. Per esempio, considera il seguente enum backed da stringhe:
+La decodifica di struct usando l'API [Content](content.it.md) produrrà errori se uno qualsiasi dei dati non è valido. Tuttavia, questi messaggi di errore a volte possono risultare poco comprensibili per l'utente. Per esempio, considera il seguente enum basato su stringhe:
 
 ```swift
 enum Color: String, Codable {
@@ -32,7 +32,7 @@ Inoltre, `Codable` smetterà di tentare di decodificare un tipo non appena viene
 
 ### Validazione Specifica
 
-`Codable` gestisce bene la validazione dei tipi, ma a volte vuoi qualcosa in più. Per esempio, validare il contenuto di una stringa o validare la dimensione di un intero. L'API Validation ha validatori per aiutare a validare dati come email, set di caratteri, intervalli di interi e altro.
+`Codable` gestisce bene la validazione dei tipi, ma a volte potresti avere bisogno di qualcosa in più. Per esempio, validare il contenuto di una stringa o validare la dimensione di un intero. L'API Validation ha validatori per aiutare a validare dati come email, set di caratteri, intervalli di interi e altro.
 
 ## Validatable
 

@@ -1,6 +1,6 @@
 # Content
 
-L'API content di Vapor ti permette di codificare e decodificare facilmente struct `Codable` da e verso messaggi HTTP. La codifica [JSON](https://tools.ietf.org/html/rfc7159) è usata per impostazione predefinita con supporto integrato per [URL-Encoded Form](https://en.wikipedia.org/wiki/Percent-encoding#The_application/x-www-form-urlencoded_type) e [Multipart](https://tools.ietf.org/html/rfc2388). L'API è anche configurabile, permettendoti di aggiungere, modificare o sostituire le strategie di codifica per determinati tipi di contenuto HTTP.
+L'API content di Vapor ti permette di codificare e decodificare facilmente struct `Codable` in e da messaggi HTTP. La codifica [JSON](https://tools.ietf.org/html/rfc7159) è usata per impostazione predefinita con supporto integrato per [URL-Encoded Form](https://en.wikipedia.org/wiki/Percent-encoding#The_application/x-www-form-urlencoded_type) e [Multipart](https://tools.ietf.org/html/rfc2388). L'API è anche configurabile, permettendoti di aggiungere, modificare o sostituire le strategie di codifica per determinati tipi di contenuto HTTP.
 
 ## Panoramica
 

@@ -28,7 +28,7 @@ Puoi eseguire comandi in Xcode aggiungendo argomenti allo schema `App`. Per farl
 
 ## Comandi Personalizzati
 
-Puoi creare i tuoi comandi creando tipi che si conformano a `AsyncCommand`.
+Puoi creare i tuoi comandi creando tipi conformi a `AsyncCommand`.
 
 ```swift
 import Vapor
@@ -79,7 +79,7 @@ swift run App hello
 
 ### Cowsay
 
-Dai un'occhiata a questa ricreazione del famoso comando [`cowsay`](https://en.wikipedia.org/wiki/Cowsay) per un esempio di utilizzo di `@Argument` e `@Option`.
+Dai un'occhiata a questa reimplementazione del famoso comando [`cowsay`](https://en.wikipedia.org/wiki/Cowsay) per un esempio di utilizzo di `@Argument` e `@Option`.
 
 ```swift
 import Vapor

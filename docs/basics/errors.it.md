@@ -14,7 +14,7 @@ throw Abort(.notFound)
 throw Abort(.unauthorized, reason: "Invalid Credentials")
 ```
 
-In situazioni asincrone precedenti dove il lancio di eccezioni non è supportato e devi restituire un `EventLoopFuture`, come in una closure `flatMap`, puoi restituire una future fallita.
+Nei vecchi contesti asincroni dove il lancio di eccezioni non è supportato e devi restituire un `EventLoopFuture`, come in una closure `flatMap`, puoi restituire una future fallita.
 
 ```swift
 guard let user = user else {
@@ -44,7 +44,7 @@ guard let user = try await User.find(id, on: db) {
 
 ## Abort Error
 
-Per impostazione predefinita, qualsiasi `Error` Swift lanciato o restituito da una closure di route risulterà in una risposta `500 Internal Server Error`. Quando compilato in modalità debug, `ErrorMiddleware` includerà una descrizione dell'errore. Questa viene rimossa per ragioni di sicurezza quando il progetto viene compilato in modalità release.
+Per impostazione predefinita, qualsiasi `Error` di Swift lanciato o restituito da una closure di route risulterà in una risposta `500 Internal Server Error`. Quando compilato in modalità debug, `ErrorMiddleware` includerà una descrizione dell'errore. Questa viene rimossa per ragioni di sicurezza quando il progetto viene compilato in modalità release.
 
 Per configurare lo stato HTTP della risposta risultante o il motivo per un particolare errore, conformalo a `AbortError`.
 

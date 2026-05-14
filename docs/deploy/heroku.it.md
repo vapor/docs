@@ -28,7 +28,7 @@ Una volta installata la CLI, effettua l'accesso con il seguente comando:
 heroku login
 ```
 
-Verifica che l'email corretta abbia effettuato l'accesso con:
+Verifica di aver effettuato l'accesso con l'email corretta con:
 
 ```bash
 heroku auth:whoami

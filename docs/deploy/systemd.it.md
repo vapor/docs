@@ -34,7 +34,7 @@ Il flag `--env production` disabiliterà il logging verboso.
 
 ### Variabili d'Ambiente
 
-Puoi esportare variabili in due modi tramite systemd. O creando un file di ambiente con tutte le variabili al suo interno:
+Puoi esportare variabili in due modi tramite systemd. Puoi creare un file di ambiente con tutte le variabili al suo interno:
 
 ```sh
 EnvironmentFile=/path/to/environment/file1
