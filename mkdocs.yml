@@ -485,6 +485,65 @@ plugins:
           site_name: Dokumentacja Vapor
         - build: true
           default: false
+          locale: pt
+          name: Português Brasileiro
+          nav_translations:
+            APNS: APNS
+            Advanced: Avançado
+            Async: Async
+            Authentication: Autenticação
+            Basics: Fundamentos
+            Client: Cliente
+            Commands: Comandos
+            Content: Conteúdo
+            Contributing: Contribuindo
+            Contributing Guide: Guia de Contribuição
+            Controllers: Controladores
+            Crypto: Criptografia
+            Custom Tags: Tags Personalizadas
+            Deploy: Deploy
+            Environment: Ambiente
+            Errors: Erros
+            Files: Arquivos
+            Fluent: Fluent
+            Folder Structure: Estrutura de Pastas
+            Getting Started: Primeiros Passos
+            Hello, world: Olá, Mundo
+            Install: Instalação
+            JWT: JWT
+            Leaf: Leaf
+            Legacy Docs: Documentação Legada
+            Logging: Logging
+            Middleware: Middleware
+            Migrations: Migrações
+            Model: Modelo
+            Overview: Visão Geral
+            Passwords: Senhas
+            Query: Consultas
+            Queues: Filas
+            Redis: Redis
+            Relations: Relações
+            Release Notes: Notas de Lançamento
+            Request: Requisição
+            Routing: Rotas
+            Schema: Schema
+            Security: Segurança
+            Server: Servidor
+            Services: Serviços
+            Sessions: Sessões
+            SwiftPM: SwiftPM
+            Testing: Testes
+            Tracing: Rastreamento
+            Transactions: Transações
+            Upgrading: Atualizando
+            Validation: Validação
+            Version (4.0): Versão (4.0)
+            WebSockets: WebSockets
+            Welcome: Bem-vindo
+            Xcode: Xcode
+          site_name: Documentação do Vapor
+        - build: true
+          default: false
           locale: zh
           name: 简体中文
           nav_translations:
