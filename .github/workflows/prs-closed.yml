@@ -1,0 +1,32 @@
+name: PR - Closed
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+
+permissions:
+  id-token: write
+  deployments: write
+  contents: read
+
+jobs:
+  delete-s3:
+    name: Delete S3 preview
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.head.repo.full_name == 'vapor/docs' && github.actor != 'dependabot[bot]' }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@acca2b1b2070338fb9fd1ca27ecee81d687e58e5 # v6.1.2
+        with:
+          role-to-assume: ${{ vars.OIDC_ROLE_ARN }}
+          aws-region: ${{ vars.OIDC_ROLE_REGION }}
+      - name: Delete preview bucket
+        uses: brokenhandsio/s3-website-pr-action@v2
+        with:
+          bucket-prefix: "vapor-docs-pulls"
+          bucket-region: "us-east-1"
