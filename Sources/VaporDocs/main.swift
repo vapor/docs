@@ -6,11 +6,10 @@ import Kiln
 // (`index.de.md`, …). Run with `swift run VaporDocs`; output goes to `site/`.
 
 let languages: [Language] = [
-    Language(locale: "en", name: "English", isDefault: true),
+    Language(.english, isDefault: true),
 
     Language(
-        locale: "de",
-        name: "Deutsch",
+        .german,
         siteName: "Vapor Dokumentation",
         description: "Vapors Dokumentation (Web-Framework für Swift).",
         navTranslations: [
@@ -42,12 +41,26 @@ let languages: [Language] = [
             "Transactions": "Transaktionen",
             "Validation": "Validierung",
             "Welcome": "Begrüßung",
-        ]
+        ],
+        localisation: .init(
+            searchPlaceholder: "Suchen",
+            searchNoResults: "Keine Ergebnisse gefunden",
+            tableOfContentsTitle: "Auf dieser Seite",
+            previousPage: "Zurück",
+            nextPage: "Weiter",
+            editPage: "Diese Seite bearbeiten",
+            fallbackTitle: "Übersetzung nicht verfügbar",
+            fallbackMessage: "Diese Seite wurde noch nicht übersetzt, daher wird die Standardsprache angezeigt.",
+            notFoundTitle: "Seite nicht gefunden",
+            notFoundMessage: "Die gesuchte Seite wurde möglicherweise verschoben, umbenannt oder existiert nicht.",
+            notFoundLink: "Zurück zur Startseite",
+            toggleNavigation: "Navigation umschalten",
+            toggleColourScheme: "Farbschema umschalten"
+        )
     ),
 
     Language(
-        locale: "es",
-        name: "Español",
+        .spanish,
         siteName: "Documentación de Vapor",
         description: "Documentación de Vapor (framework web para Swift).",
         navTranslations: [
@@ -103,12 +116,26 @@ let languages: [Language] = [
             "WebSockets": "WebSockets",
             "Welcome": "Bienvenido",
             "Xcode": "Xcode",
-        ]
+        ],
+        localisation: .init(
+            searchPlaceholder: "Buscar",
+            searchNoResults: "No se encontraron resultados",
+            tableOfContentsTitle: "En esta página",
+            previousPage: "Anterior",
+            nextPage: "Siguiente",
+            editPage: "Editar esta página",
+            fallbackTitle: "Traducción no disponible",
+            fallbackMessage: "Esta página aún no se ha traducido, por lo que se muestra el idioma predeterminado.",
+            notFoundTitle: "Página no encontrada",
+            notFoundMessage: "Es posible que la página que buscas se haya movido, cambiado de nombre o que nunca haya existido.",
+            notFoundLink: "Volver a la página de inicio",
+            toggleNavigation: "Alternar la navegación",
+            toggleColourScheme: "Alternar el esquema de color"
+        )
     ),
 
     Language(
-        locale: "fr",
-        name: "Français",
+        .french,
         siteName: "Documentation de Vapor",
         description: "Documentation de Vapor (framework web pour Swift).",
         navTranslations: [
@@ -150,12 +177,26 @@ let languages: [Language] = [
             "Validation": "Validation",
             "Version (4.0)": "Version (4.0)",
             "Welcome": "Bienvenue",
-        ]
+        ],
+        localisation: .init(
+            searchPlaceholder: "Rechercher",
+            searchNoResults: "Aucun résultat trouvé",
+            tableOfContentsTitle: "Sur cette page",
+            previousPage: "Précédent",
+            nextPage: "Suivant",
+            editPage: "Modifier cette page",
+            fallbackTitle: "Traduction indisponible",
+            fallbackMessage: "Cette page n'a pas encore été traduite, la langue par défaut est donc affichée.",
+            notFoundTitle: "Page introuvable",
+            notFoundMessage: "La page que vous recherchez a peut-être été déplacée, renommée ou n'a jamais existé.",
+            notFoundLink: "Retour à la page d'accueil",
+            toggleNavigation: "Afficher/masquer la navigation",
+            toggleColourScheme: "Changer de thème de couleur"
+        )
     ),
 
     Language(
-        locale: "it",
-        name: "Italiano",
+        .italian,
         siteName: "Documentazione di Vapor",
         description: "Documentazione di Vapor (framework web per Swift).",
         navTranslations: [
@@ -210,12 +251,26 @@ let languages: [Language] = [
             "WebSockets": "WebSockets",
             "Welcome": "Benvenuto",
             "Xcode": "Xcode",
-        ]
+        ],
+        localisation: .init(
+            searchPlaceholder: "Cerca",
+            searchNoResults: "Nessun risultato trovato",
+            tableOfContentsTitle: "In questa pagina",
+            previousPage: "Precedente",
+            nextPage: "Successivo",
+            editPage: "Modifica questa pagina",
+            fallbackTitle: "Traduzione non disponibile",
+            fallbackMessage: "Questa pagina non è ancora stata tradotta, pertanto viene mostrata la lingua predefinita.",
+            notFoundTitle: "Pagina non trovata",
+            notFoundMessage: "La pagina che stai cercando potrebbe essere stata spostata, rinominata o non essere mai esistita.",
+            notFoundLink: "Torna alla home page",
+            toggleNavigation: "Attiva/disattiva la navigazione",
+            toggleColourScheme: "Cambia combinazione di colori"
+        )
     ),
 
     Language(
-        locale: "ja",
-        name: "日本語",
+        .japanese,
         siteName: "Vapor ドキュメント",
         description: "Vaporのドキュメント（Swift用Webフレームワーク）。",
         navTranslations: [
@@ -258,12 +313,26 @@ let languages: [Language] = [
             "Upgrading": "アップグレード",
             "Validation": "バリデーション",
             "Welcome": "ようこそ",
-        ]
+        ],
+        localisation: .init(
+            searchPlaceholder: "検索",
+            searchNoResults: "結果が見つかりません",
+            tableOfContentsTitle: "このページの内容",
+            previousPage: "前へ",
+            nextPage: "次へ",
+            editPage: "このページを編集",
+            fallbackTitle: "翻訳がありません",
+            fallbackMessage: "このページはまだ翻訳されていないため、デフォルトの言語で表示されています。",
+            notFoundTitle: "ページが見つかりません",
+            notFoundMessage: "お探しのページは移動または名称変更されたか、存在しない可能性があります。",
+            notFoundLink: "ホームページに戻る",
+            toggleNavigation: "ナビゲーションの切り替え",
+            toggleColourScheme: "配色の切り替え"
+        )
     ),
 
     Language(
-        locale: "ko",
-        name: "한국어",
+        .korean,
         siteName: "Vapor 문서",
         description: "Vapor 문서 (Swift용 웹 프레임워크).",
         navTranslations: [
@@ -307,12 +376,26 @@ let languages: [Language] = [
             "Version (4.0)": "버전 (4.0)",
             "WebSockets": "웹소켓",
             "Welcome": "환영합니다",
-        ]
+        ],
+        localisation: .init(
+            searchPlaceholder: "검색",
+            searchNoResults: "결과를 찾을 수 없습니다",
+            tableOfContentsTitle: "이 페이지에서",
+            previousPage: "이전",
+            nextPage: "다음",
+            editPage: "이 페이지 편집",
+            fallbackTitle: "번역 없음",
+            fallbackMessage: "이 페이지는 아직 번역되지 않아 기본 언어로 표시됩니다.",
+            notFoundTitle: "페이지를 찾을 수 없습니다",
+            notFoundMessage: "찾고 있는 페이지가 이동되었거나 이름이 변경되었거나 존재하지 않을 수 있습니다.",
+            notFoundLink: "홈페이지로 돌아가기",
+            toggleNavigation: "내비게이션 전환",
+            toggleColourScheme: "색 구성표 전환"
+        )
     ),
 
     Language(
-        locale: "nl",
-        name: "Nederlands",
+        .dutch,
         siteName: "Vapor Documentatie",
         description: "Vapor documentatie (webframework voor Swift).",
         navTranslations: [
@@ -352,12 +435,26 @@ let languages: [Language] = [
             "Validation": "Validatie",
             "Version (4.0)": "Versie (4.0)",
             "Welcome": "Welkom",
-        ]
+        ],
+        localisation: .init(
+            searchPlaceholder: "Zoeken",
+            searchNoResults: "Geen resultaten gevonden",
+            tableOfContentsTitle: "Op deze pagina",
+            previousPage: "Vorige",
+            nextPage: "Volgende",
+            editPage: "Deze pagina bewerken",
+            fallbackTitle: "Vertaling niet beschikbaar",
+            fallbackMessage: "Deze pagina is nog niet vertaald, daarom wordt de standaardtaal weergegeven.",
+            notFoundTitle: "Pagina niet gevonden",
+            notFoundMessage: "De pagina die je zoekt is mogelijk verplaatst, hernoemd of heeft nooit bestaan.",
+            notFoundLink: "Terug naar de startpagina",
+            toggleNavigation: "Navigatie schakelen",
+            toggleColourScheme: "Kleurenschema schakelen"
+        )
     ),
 
     Language(
-        locale: "pl",
-        name: "Polski",
+        .polish,
         siteName: "Dokumentacja Vapor",
         description: "Dokumentacja Vapor (framework webowy dla Swift).",
         navTranslations: [
@@ -411,12 +508,26 @@ let languages: [Language] = [
             "WebSockets": "WebSockety",
             "Welcome": "Witaj",
             "Xcode": "Xcode",
-        ]
+        ],
+        localisation: .init(
+            searchPlaceholder: "Szukaj",
+            searchNoResults: "Nie znaleziono wyników",
+            tableOfContentsTitle: "Na tej stronie",
+            previousPage: "Poprzednia",
+            nextPage: "Następna",
+            editPage: "Edytuj tę stronę",
+            fallbackTitle: "Tłumaczenie niedostępne",
+            fallbackMessage: "Ta strona nie została jeszcze przetłumaczona, dlatego wyświetlany jest język domyślny.",
+            notFoundTitle: "Nie znaleziono strony",
+            notFoundMessage: "Strona, której szukasz, mogła zostać przeniesiona, zmieniona lub nigdy nie istniała.",
+            notFoundLink: "Powrót do strony głównej",
+            toggleNavigation: "Przełącz nawigację",
+            toggleColourScheme: "Przełącz schemat kolorów"
+        )
     ),
 
     Language(
-        locale: "zh",
-        name: "简体中文",
+        .chinese,
         siteName: "Vapor 中文文档",
         description: "Vapor 文档（Swift Web 框架）。",
         navTranslations: [
@@ -467,7 +578,22 @@ let languages: [Language] = [
             "WebSockets": "即时通讯",
             "Welcome": "序言",
             "Xcode": "Xcode",
-        ]
+        ],
+        localisation: .init(
+            searchPlaceholder: "搜索",
+            searchNoResults: "未找到结果",
+            tableOfContentsTitle: "本页内容",
+            previousPage: "上一页",
+            nextPage: "下一页",
+            editPage: "编辑此页",
+            fallbackTitle: "暂无翻译",
+            fallbackMessage: "此页面尚未翻译，因此显示默认语言。",
+            notFoundTitle: "未找到页面",
+            notFoundMessage: "您要查找的页面可能已被移动、重命名或从未存在。",
+            notFoundLink: "返回首页",
+            toggleNavigation: "切换导航",
+            toggleColourScheme: "切换配色方案"
+        )
     ),
 ]
 
