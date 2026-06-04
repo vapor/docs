@@ -2,7 +2,7 @@
 site_name: Vapor Docs
 site_url: https://docs.vapor.codes/
 site_author: Vapor Community
-site_description: Vapors documentation (web framework for Swift).
+site_description: Vapor's documentation (web framework for Swift).
 
 # Repository
 repo_name: Vapor GitHub
@@ -135,6 +135,7 @@ plugins:
             Validation: Validierung
             Welcome: Begrüßung
           site_name: Vapor Dokumentation
+          site_description: Vapors Dokumentation (Web-Framework für Swift).
         - build: true
           default: false
           locale: es
@@ -193,6 +194,7 @@ plugins:
             Welcome: Bienvenido
             Xcode: Xcode
           site_name: Documentación de Vapor
+          site_description: Documentación de Vapor (framework web para Swift).
         - build: true
           default: false
           locale: fr
@@ -237,6 +239,7 @@ plugins:
             Version (4.0): Version (4.0)
             Welcome: Bienvenue
           site_name: Documentation de Vapor
+          site_description: Documentation de Vapor (framework web pour Swift).
         - build: true
           default: false
           locale: it
@@ -294,6 +297,7 @@ plugins:
             Welcome: Benvenuto
             Xcode: Xcode
           site_name: Documentazione di Vapor
+          site_description: Documentazione di Vapor (framework web per Swift).
         - build: true
           default: false
           locale: ja
@@ -339,6 +343,7 @@ plugins:
             Validation: バリデーション
             Welcome: ようこそ
           site_name: Vapor ドキュメント
+          site_description: Vaporのドキュメント（Swift用Webフレームワーク）。
         - build: true
           default: false
           locale: ko
@@ -385,6 +390,7 @@ plugins:
             WebSockets: 웹소켓
             Welcome: 환영합니다
           site_name: Vapor 문서
+          site_description: Vapor 문서 (Swift용 웹 프레임워크).
         - build: true
           default: false
           locale: nl
@@ -427,6 +433,7 @@ plugins:
             Version (4.0): Versie (4.0)
             Welcome: Welkom
           site_name: Vapor Documentatie
+          site_description: Vapor documentatie (webframework voor Swift).
         - build: true
           default: false
           locale: pl
@@ -483,6 +490,7 @@ plugins:
             Welcome: Witaj
             Xcode: Xcode
           site_name: Dokumentacja Vapor
+          site_description: Dokumentacja Vapor (framework webowy dla Swift).
         - build: true
           default: false
           locale: zh
@@ -536,6 +544,7 @@ plugins:
             Welcome: 序言
             Xcode: Xcode
           site_name: Vapor 中文文档
+          site_description: Vapor 文档（Swift Web 框架）。
       reconfigure_material: true
       reconfigure_search: true
 nav:
