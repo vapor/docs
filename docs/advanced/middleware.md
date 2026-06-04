@@ -132,6 +132,33 @@ let file = try FileMiddleware(bundle: .main, publicDirectory: "Public")
 
 Also make sure to use Folder References instead of Groups in Xcode to maintain folder structure in resources after building the application.
 
+
+The following code from `/Sources/App/routes.swift` can be used with a `favicon.ico` put in `Public/`. The icon of your choosing should be visible on your tab in a browser if you visit the server root resource.
+
+```swift
+import Vapor
+
+func routes(_ app: Application) throws {
+    app.get { req async in
+        Response(
+            status: .ok,
+            headers: ["Content-Type": "text/html"],
+            body:
+                """
+                <html>
+                    <head>
+                        <link rel="shortcut icon" href="/favicon.ico">
+                    </head>
+                    <body>
+                        It works!
+                    </body>
+                </html>
+                """
+        )
+    }
+}
+```
+
 ## CORS Middleware
 
 Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. REST APIs built in Vapor will require a CORS policy in order to safely return requests to modern web browsers.
