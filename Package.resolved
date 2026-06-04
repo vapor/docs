@@ -7,7 +7,7 @@
       "location" : "https://github.com/brokenhandsio/kiln.git",
       "state" : {
         "branch" : "main",
-        "revision" : "9c5bb948dfe9a678777edc016d7305ecbfb0da6c"
+        "revision" : "5c964d5a63f494972bcaddc84d86cfbdff4dd72d"
       }
     },
     {
@@ -34,7 +34,7 @@
       "location" : "https://github.com/swiftlang/swift-cmark.git",
       "state" : {
         "branch" : "gfm",
-        "revision" : "924936d0427cb25a61169739a7660230bffa6ea6"
+        "revision" : "e165aa4653ec7c826748f3a18842979dc6673349"
       }
     },
     {
