@@ -221,9 +221,7 @@ try app.jwt.signers.use(.rs256(key: .public(pem: rsaPublicKey)))
 
 ### ECDSA
 
-ECDSA 是一种更现代的算法，类似于 RSA。对于给定的密钥长度，它被认为比 RSA[^1] 更安全。然而，在做出决定之前，你应该自己研究一下。
-
-[^1]: https://www.ssl.com/article/comparing-ecdsa-vs-rsa/
+ECDSA 是一种更现代的算法，类似于 RSA。对于给定的密钥长度，它被认为比 RSA（[比较](https://www.ssl.com/article/comparing-ecdsa-vs-rsa/)）更安全。然而，在做出决定之前，你应该自己研究一下。
 
 与 RSA 一样，你可以使用 PEM 文件加载 ECDSA 密钥：
 

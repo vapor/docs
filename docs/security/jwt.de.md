@@ -241,8 +241,7 @@ try app.jwt.keys.addPSS(key: key, digestAlgorithm: .sha256)
 
 ### ECDSA
 
-ECDSA ist ein modernerer Algorithmus, der mit RSA vergleichbar ist. Er gilt bei einer bestimmten Schlüssellänge als sicherer als RSA[^1]. Sie sollten jedoch eigene Nachforschungen anstellen, bevor Sie sich entscheiden.
-[^1]: https://www.ssl.com/article/comparing-ecdsa-vs-rsa/
+ECDSA ist ein modernerer Algorithmus, der mit RSA vergleichbar ist. Er gilt bei einer bestimmten Schlüssellänge als sicherer als RSA ([Vergleich](https://www.ssl.com/article/comparing-ecdsa-vs-rsa/)). Sie sollten jedoch eigene Nachforschungen anstellen, bevor Sie sich entscheiden.
 
 Wie bei RSA kannst du ECDSA-Schlüssel über PEM-Dateien laden:
 
