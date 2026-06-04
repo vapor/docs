@@ -281,6 +281,37 @@ The time is #unsafeHTML(styledTitle)
 !!! note "Nota"
     Debes tener cuidado al usar esta etiqueta para asegurarte de que la variable proporcionada no exponga a sus usuarios a un ataque XSS.
 
+#### `#comment`
+
+La etiqueta `#comment` te permite añadir anotaciones a tus plantillas que no aparecerán en la salida renderizada. La etiqueta acepta un parámetro de cadena que se ignora completamente durante el renderizado.
+
+```leaf
+#comment("This is a single-line comment")
+<h1>#(title)</h1>
+```
+
+Para comentarios más largos, puedes usar la sintaxis de cadena multi-línea:
+
+```leaf
+#comment("""
+This template renders the home page.
+It expects a "title" and "body" variable.
+""")
+<h1>#(title)</h1>
+```
+
+#### `#isEmpty`
+
+La etiqueta `#isEmpty` devuelve `true` si una propiedad de cadena pasada a la plantilla está vacía. Normalmente se usa dentro de una condición `#if`:
+
+```leaf
+#if(isEmpty(title)):
+    No title was provided.
+#else:
+    The title is #(title)
+#endif
+```
+
 #### `#dumpContext`
 
 La etiqueta `#dumpContext` renderiza todo el contexto a una cadena legible por humanos. Usa esta etiqueta para depurar lo que se está proporcionando como contexto para el renderizado actual.
