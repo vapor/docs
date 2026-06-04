@@ -7,10 +7,11 @@ let package = Package(
         .macOS(.v13)
     ],
     dependencies: [
-        // Local path dependency during the Kiln migration. Switch to the
-        // published package once Kiln is released:
-        //   .package(url: "https://github.com/brokenhandsio/kiln.git", from: "1.0.0")
-        .package(path: "../../BH/kiln"),
+        // Kiln is fetched from GitHub (used by CI, Docker and deployment).
+        // For local development against a checkout of Kiln, comment this out
+        // and use the path dependency below instead.
+        .package(url: "https://github.com/brokenhandsio/kiln.git", branch: "main"),
+        // .package(path: "../../BH/kiln"),
     ],
     targets: [
         .executableTarget(

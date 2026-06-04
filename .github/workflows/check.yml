@@ -16,12 +16,8 @@ jobs:
     steps:
     - name: Checkout repository 
       uses: actions/checkout@v6
-    - name: Create virtual environment
-      run: python3 -m venv venv
-    - name: Install dependencies
-      run: venv/bin/pip install -r requirements.txt
     - name: Build documentation
-      run: venv/bin/mkdocs build
+      run: docker run --rm -v "$PWD":/docs -w /docs swift:6.2 swift run VaporDocs
     - name: Setup cloudformation linter 
       uses: ScottBrenner/cfn-lint-action@ed184e91f5085a2932501da8314e899e5e0ef5be # v2.7.1
     - name: Run cloudformation lint 
