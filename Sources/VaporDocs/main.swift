@@ -606,7 +606,7 @@ let site = KilnSite(
     repository: .init(
         name: "Vapor GitHub",
         url: "https://github.com/vapor/vapor",
-        editURI: "https://github.com/vapor/documentation/edit/main/docs/"
+        editURI: "https://github.com/vapor/docs/edit/main/docs/"
     ),
     copyright: "Vapor Documentation © 2023 by Vapor is licensed under CC BY-NC-SA 4.0",
     theme: .default(
