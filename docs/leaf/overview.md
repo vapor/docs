@@ -281,6 +281,37 @@ The time is #unsafeHTML(styledTitle)
 !!! note
     You should be careful when using this tag to ensure that the variable you provide it does not expose your users to an XSS attack.
 
+#### `#comment`
+
+The `#comment` tag allows you to add annotations to your templates that won't appear in the rendered output. The tag accepts a string parameter that is completely ignored during rendering.
+
+```leaf
+#comment("This is a single-line comment")
+<h1>#(title)</h1>
+```
+
+For longer comments, you can use multi-line string syntax:
+
+```leaf
+#comment("""
+This template renders the home page.
+It expects a "title" and "body" variable.
+""")
+<h1>#(title)</h1>
+```
+
+#### `#isEmpty`
+
+The `#isEmpty` tag returns true if a string property passed to the template is empty. It is typically used inside an `#if` condition:
+
+```leaf
+#if(isEmpty(title)):
+    No title was provided.
+#else:
+    The title is #(title)
+#endif
+```
+
 #### `#dumpContext`
 
 The `#dumpContext` tag renders the whole context to a human readable string. Use this tag to debug what is being
