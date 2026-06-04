@@ -1,4 +1,3 @@
-import Foundation
 import Kiln
 
 // Vapor's documentation site, ported from MkDocs (`mkdocs.yml`) to Kiln.
@@ -622,6 +621,7 @@ let site = KilnSite(
         .init(icon: .twitter, link: "https://twitter.com/codevapor"),
         .init(icon: .mastodon, link: "https://hachyderm.io/@codevapor"),
     ],
+    carbonAds: .init(serve: "CK7DT2QW", placement: "vaporcodes"),
     extraCSS: ["stylesheets/fonts.css"],
     languages: languages,
     navigation: {
@@ -709,13 +709,5 @@ let site = KilnSite(
 let outputDirectory = "site"
 print("Building Vapor docs into ./\(outputDirectory) …")
 try await Kiln.build(site, contentDirectory: "docs", outputDirectory: outputDirectory)
-
-// Google site verification file (previously copied into `site/` by the Dockerfile).
-let verification = "googlefc012e5d94cfa05f.html"
-if FileManager.default.fileExists(atPath: verification) {
-    let destination = URL(fileURLWithPath: outputDirectory).appendingPathComponent(verification)
-    try? FileManager.default.removeItem(at: destination)
-    try FileManager.default.copyItem(at: URL(fileURLWithPath: verification), to: destination)
-}
 
 print("Done.")
