@@ -1,13 +1,13 @@
 {
-  "originHash" : "15a654e058a005e2e4e61abcd2d8b2187a1be924ba7e5fc73285cfb0dfcadaed",
+  "originHash" : "e8e3a527f8e3eb7dff0832e34c4145013eb92b07486d775a3b71abc2bd70e22b",
   "pins" : [
     {
       "identity" : "kiln",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/brokenhandsio/kiln.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "df7aa7bc776b288b44011a6cc63af997c48eee10"
+        "revision" : "b6d7f1f2f86676084c87dc0dc50b90360bd19747",
+        "version" : "0.1.1"
       }
     },
     {
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swiftlang/swift-cmark.git",
       "state" : {
-        "branch" : "gfm",
-        "revision" : "8bab380ed057325dd5ed496fd97fd60f554d8656"
+        "revision" : "924936d0427cb25a61169739a7660230bffa6ea6",
+        "version" : "0.8.0"
       }
     },
     {
@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-markdown.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "9b43984b12577548051064599c0b426d95ec4ef8"
+        "revision" : "3c6f9523da3a1ec2fd829673e472d95b8097a3b8",
+        "version" : "0.8.0"
       }
     },
     {
