@@ -61,7 +61,7 @@ database.schema("planets").delete()
 .field("name", .string, .required)
 ```
 
-第一个参数是字段的名称。这应该与关联模型属性上使用的键匹配。第二个参数是字段的[数据类型](#data-type)。最后，可以添加零个或多个[约束](#field-constraint)。
+第一个参数是字段的名称。这应该与关联模型属性上使用的键匹配。第二个参数是字段的[数据类型](#数据类型data-type)。最后，可以添加零个或多个[约束](#字段约束field-constraint)。
 
 ### 数据类型(Data Type)
 
@@ -79,9 +79,9 @@ database.schema("planets").delete()
 |`.double`|`Double`|
 |`.data`|`Data`|
 |`.uuid`|`UUID`|
-|`.dictionary`|See [dictionary](#dictionary)|
-|`.array`|See [array](#array)|
-|`.enum`|See [enum](#enum)|
+|`.dictionary`|See [dictionary](#字典dictionary)|
+|`.array`|See [array](#数组array)|
+|`.enum`|See [enum](#枚举enum)|
 
 ### 字段约束(Field Constraint)
 
@@ -90,8 +90,8 @@ database.schema("planets").delete()
 |字段约束|描述|
 |-|-|
 |`.required`|不允许 `nil` 值。|
-|`.references`|要求此字段的值与引用的模式中的值匹配。参见[外键](#foreign-key)。|
-|`.identifier`|表示主键。参见[标识符](#identifier)|
+|`.references`|要求此字段的值与引用的模式中的值匹配。参见[外键](#外键foreign-key)。|
+|`.identifier`|表示主键。参见[标识符](#标识符identifier)|
 
 ### 标识符(Identifier)
 
@@ -134,7 +134,7 @@ database.schema("planets").delete()
 
 ## 约束
 
-可以在创建或更新模式时添加约束。与[字段约束](#field-constraint)不同，顶级约束可以影响多个字段。
+可以在创建或更新模式时添加约束。与[字段约束](#字段约束field-constraint)不同，顶级约束可以影响多个字段。
  
 ### 唯一(Unique)
 
@@ -195,7 +195,7 @@ database.schema("planets").delete()
 .foreignKey("star_id", references: "stars", "id")
 ```
 
-与字段约束不同，可以在模式更新中添加顶级约束。它们也可以被[命名](#constraint-name)。
+与字段约束不同，可以在模式更新中添加顶级约束。它们也可以被[命名](#约束名constraint-name)。
 
 外键约束支持可选 `onDelete` 和 `onUpdate` 操作。
 

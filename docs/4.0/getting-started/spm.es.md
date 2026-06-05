@@ -61,7 +61,7 @@ de los módulos recién agregados.
 ### Targets
 
 Los targets son todos los módulos, ejecutables y tests que tu paquete contiene. La mayoría de aplicaciones Vapor tendrán dos targets, aunque puedes añadir tantos como quieras para organizar tu código. Cada target declara los módulos de los que depende. Debes añadir los nombres de los módulos aquí para poder importarlos en tu código. Un target puede depender de otros targets en tu proyecto o de cualquiera de los módulos expuestos por los paquetes que hayas agregado en
-el array de [main dependencies](#dependencies).
+el array de [main dependencies](#dependencias).
 
 ## Estructura de Carpetas
 

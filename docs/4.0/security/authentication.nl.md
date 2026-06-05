@@ -53,7 +53,7 @@ let protected = app.grouped(UserAuthenticator())
     .grouped(User.guardMiddleware())
 ```
 
-Het vereisen van authenticatie wordt niet gedaan door de authenticator middleware om samenstelling van authenticators mogelijk te maken. Lees hieronder meer over [composition](#composition).
+Het vereisen van authenticatie wordt niet gedaan door de authenticator middleware om samenstelling van authenticators mogelijk te maken. Lees hieronder meer over [composition](#compositie).
 
 ## Basic
 

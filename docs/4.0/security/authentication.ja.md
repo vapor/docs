@@ -53,7 +53,7 @@ let protected = app.grouped(UserAuthenticator())
     .grouped(User.guardMiddleware())
 ```
 
-認証の要求は、オーセンティケータの構成を可能にするため、オーセンティケータミドルウェアによって行われません。[構成](#composition)の詳細については以下をお読みください。
+認証の要求は、オーセンティケータの構成を可能にするため、オーセンティケータミドルウェアによって行われません。[構成](#構成-composition)の詳細については以下をお読みください。
 
 ## Basic
 
@@ -880,7 +880,7 @@ app.post("login") { req async throws -> ClientTokenResponse in
 let secure = app.grouped(SessionToken.authenticator(), SessionToken.guardMiddleware())
 ```
 
-オプションの[ガードミドルウェア](#guard-middleware)を追加すると、認証が成功したことが必要になります。
+オプションの[ガードミドルウェア](#ガードミドルウェア-guard-middleware)を追加すると、認証が成功したことが必要になります。
 
 保護されたルート内では、`req.auth`を使用して認証されたJWTペイロードにアクセスできます。
 

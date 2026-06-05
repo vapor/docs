@@ -236,7 +236,7 @@ El primer requisito del protocolo `Model` es la cadena estática `schema`.
 static let schema = "galaxies"
 ```
 
-Esta propiedad le indica a Fluent a qué tabla o colección corresponde el modelo. Esto puede ser una tabla que ya existe en la base de datos o una que creará con una [migración](#migrations). El esquema suele ser `snake_case` y en plural.
+Esta propiedad le indica a Fluent a qué tabla o colección corresponde el modelo. Esto puede ser una tabla que ya existe en la base de datos o una que creará con una [migración](#migraciones). El esquema suele ser `snake_case` y en plural.
 
 ### Identificador
 

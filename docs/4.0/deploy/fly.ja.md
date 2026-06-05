@@ -34,7 +34,7 @@ fly auth login
 Flyにデプロイする前に、Flyがアプリをビルドするために必要なDockerfileが適切に設定されたVaporプロジェクトがあることを確認する必要があります。ほとんどの場合、デフォルトのVaporテンプレートにはすでにDockerfileが含まれているため、これは非常に簡単です。
 
 ### 新しいVaporプロジェクト {#new-vapor-project}
-新しいプロジェクトを作成する最も簡単な方法は、テンプレートから始めることです。GitHubテンプレートまたはVaporツールボックスを使用して作成できます。データベースが必要な場合は、PostgresでFluentを使用することをお勧めします。Flyでは、アプリが接続できるPostgresデータベースを簡単に作成できます（下記の[専用セクション](#configuring-postgres)を参照）。
+新しいプロジェクトを作成する最も簡単な方法は、テンプレートから始めることです。GitHubテンプレートまたはVaporツールボックスを使用して作成できます。データベースが必要な場合は、PostgresでFluentを使用することをお勧めします。Flyでは、アプリが接続できるPostgresデータベースを簡単に作成できます（下記の[専用セクション](#postgresの設定-configuring-postgres)を参照）。
 
 #### Vaporツールボックスを使用 {#using-the-vapor-toolbox}
 まず、Vaporツールボックスがインストールされていることを確認してください（[macOS](../install/macos.md#install-toolbox)または[Linux](../install/linux.md#install-toolbox)のインストール手順を参照）。
@@ -67,7 +67,7 @@ fly launch
 
 - **名前：** 名前を入力するか、空白のままにして自動生成された名前を取得できます。
 - **リージョン：** デフォルトは最も近いリージョンです。これを使用するか、リストの他のリージョンを選択できます。これは後で簡単に変更できます。
-- **データベース：** アプリで使用するデータベースをFlyに作成するよう依頼できます。希望する場合は、後で`fly pg create`と`fly pg attach`コマンドを使用して同じことができます（詳細については[Postgresの設定セクション](#configuring-postgres)を参照）。
+- **データベース：** アプリで使用するデータベースをFlyに作成するよう依頼できます。希望する場合は、後で`fly pg create`と`fly pg attach`コマンドを使用して同じことができます（詳細については[Postgresの設定セクション](#postgresの設定-configuring-postgres)を参照）。
 
 `fly launch`コマンドは自動的に`fly.toml`ファイルを作成します。これには、プライベート/パブリックポートマッピング、ヘルスチェックパラメータなどの設定が含まれています。`vapor new`を使用してゼロから新しいプロジェクトを作成した場合、デフォルトの`fly.toml`ファイルは変更不要です。既存のプロジェクトがある場合も、`fly.toml`は変更なしまたは軽微な変更のみで問題ない可能性があります。詳細については[`fly.toml`ドキュメント](https://fly.io/docs/reference/configuration/)をご覧ください。
 

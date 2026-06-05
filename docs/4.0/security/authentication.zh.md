@@ -53,7 +53,7 @@ let protected = app.grouped(UserAuthenticator())
     .grouped(User.guardMiddleware())
 ```
 
-身份认证中间件不需要进行身份验证，从而不需要组合身份认证器。在下面阅读更多关于 [composition](#composition) 的内容。
+身份认证中间件不需要进行身份验证，从而不需要组合身份认证器。在下面阅读更多关于 [composition](#组合composition) 的内容。
 
 ## Basic
 
@@ -882,7 +882,7 @@ app.post("login") { req -> ClientTokenResponse in
 let secure = app.grouped(SessionToken.authenticator(), SessionToken.guardMiddleware())
 ```
 
-添加可选的 [guard 中间件](#guard-middleware)需要授权成功。
+添加可选的 [guard 中间件](#守卫中间件guard-middleware)需要授权成功。
 
 在受保护的路由中，你可以使用 `req.auth` 方法访问经过身份验证的 JWT payload。
 

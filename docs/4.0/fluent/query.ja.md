@@ -87,7 +87,7 @@ User.query(on: database)
     .filter(\.$firstName == \.$lastName)
 ```
 
-フィールドフィルターは[値フィルター](#value-filter)と同じ演算子をサポートしています。
+フィールドフィルターは[値フィルター](#値フィルター-value-filter)と同じ演算子をサポートしています。
 
 ### サブセットフィルター {#subset-filter}
 
@@ -216,7 +216,7 @@ if let name = planet.$name.value {
 User.query(on: database).unique().all(\.$firstName)
 ```
 
-`unique`は、`all`で単一のフィールドを取得する場合に特に便利です。ただし、[`field`](#field)メソッドを使用して複数のフィールドを選択することもできます。モデル識別子は常に一意であるため、`unique`を使用する場合は選択を避けるべきです。
+`unique`は、`all`で単一のフィールドを取得する場合に特に便利です。ただし、[`field`](#フィールド-field)メソッドを使用して複数のフィールドを選択することもできます。モデル識別子は常に一意であるため、`unique`を使用する場合は選択を避けるべきです。
 
 ## 範囲 {#range}
 

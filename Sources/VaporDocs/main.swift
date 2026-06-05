@@ -697,7 +697,7 @@ let site = KilnSite(
         url: "https://github.com/vapor/vapor",
         editURI: "https://github.com/vapor/docs/edit/main/docs/4.0/"
     ),
-    copyright: "Vapor Documentation © 2023 by Vapor is licensed under CC BY-NC-SA 4.0",
+    copyright: "Vapor Documentation © 2026 by Vapor is licensed under CC BY-NC-SA 4.0",
     theme: .default(
         palette: .autoLightDark(primary: .black, accent: .blue),
         logo: "assets/logo.png",

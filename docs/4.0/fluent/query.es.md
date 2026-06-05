@@ -216,7 +216,7 @@ El método de constructor de consultas `unique` causa la devolución de valores 
 User.query(on: database).unique().all(\.$firstName)
 ```
 
-`unique` es especialmente útil al recuperar un sólo campo con `all`. Sin embargo, también puedes seleccionar múltiples campos usando el método [`field`](#field). Como los identificadores del modelo son siempre únicos,deberías evitar seleccionarlos al usar `unique`. 
+`unique` es especialmente útil al recuperar un sólo campo con `all`. Sin embargo, también puedes seleccionar múltiples campos usando el método [`field`](#campos). Como los identificadores del modelo son siempre únicos,deberías evitar seleccionarlos al usar `unique`. 
 
 ## Rangos
 

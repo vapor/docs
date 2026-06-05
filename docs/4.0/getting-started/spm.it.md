@@ -56,12 +56,12 @@ L'array `platforms` specifica quali piattaforme il pacchetto supporta. Specifica
 
 Le dipendenze sono altri pacchetti SPM da cui il pacchetto dipende. Tutte le applicazioni Vapor si basano sul pacchetto Vapor, ma se ne possono aggiungere senza limiti.
 
-Nell'esempio precedente, si può notare che il pacchetto dipende da [vapor/vapor](https://github.com/vapor/vapor), versione 4.76.0 o successive. Nel momento in cui si aggiunge una dipendenza al pacchetto, bisogna segnalare quali [target](#targets) dipendono dai moduli appena inseriti.
+Nell'esempio precedente, si può notare che il pacchetto dipende da [vapor/vapor](https://github.com/vapor/vapor), versione 4.76.0 o successive. Nel momento in cui si aggiunge una dipendenza al pacchetto, bisogna segnalare quali [target](#target) dipendono dai moduli appena inseriti.
 
 ### Target
 
 I target sono i moduli che compongono il tuo pacchetto. I target possono essere eseguibili, librerie o test. Solitamente un progetto Vapor ha due target, tuttavia se ne possono aggiungere in modo da organizzare il codice.
-Ogni target dichiara i moduli da cui dipende. Per poter importare ed usare i vari moduli nel codice bisogna dichiarare qui i loro nomi. Un target può dipendere da altri target nello stesso pacchetto o da qualsiasi modulo presente nei pacchetti aggiunto all'array delle [dipendenze principali](#dependencies).
+Ogni target dichiara i moduli da cui dipende. Per poter importare ed usare i vari moduli nel codice bisogna dichiarare qui i loro nomi. Un target può dipendere da altri target nello stesso pacchetto o da qualsiasi modulo presente nei pacchetti aggiunto all'array delle [dipendenze principali](#dipendenze).
 
 ## Struttura della Cartella
 

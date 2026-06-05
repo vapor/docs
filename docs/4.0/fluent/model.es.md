@@ -150,7 +150,7 @@ Los campos requieren que la clave de la base de datos sea definida explícitamen
 !!! tip "Consejo"
     Fluent recomienda usar `snake_case` para claves de bases de datos y `camelCase` para nombres de propiedades. 
 
-Los valores de los campos pueden ser de cualquier tipo conformado a `Codable`. Guardar estructuras y colecciones (arrays) anidados en `@Field` está soportado, pero las operaciones de filtrado son limitadas. Ve a [`@Group`](#group) para una alternativa.
+Los valores de los campos pueden ser de cualquier tipo conformado a `Codable`. Guardar estructuras y colecciones (arrays) anidados en `@Field` está soportado, pero las operaciones de filtrado son limitadas. Ve a [`@Group`](#grupo) para una alternativa.
 
 Para campos que contengan un valor opcional, usa `@OptionalField`. 
 
@@ -471,7 +471,7 @@ planet.create(on: database)
 ```
 
 !!! warning "Advertencia"
-    Los modelos que usen [`@ID(custom:)`](#custom-identifier) con el generador `.database` (normalmente `Int`s de incremento automático) no tendrán sus identificadores recién creados después del batch create. Para situaciones en las que necesites acceder a los identificadores llama a `create` en cada modelo.
+    Los modelos que usen [`@ID(custom:)`](#identificador-personalizado) con el generador `.database` (normalmente `Int`s de incremento automático) no tendrán sus identificadores recién creados después del batch create. Para situaciones en las que necesites acceder a los identificadores llama a `create` en cada modelo.
 
 Para crear una colección de modelos individualmente usa `map` + `flatten`.
 

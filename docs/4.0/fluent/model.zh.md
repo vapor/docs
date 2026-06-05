@@ -150,7 +150,7 @@ final class Planet: Model {
 !!! tip "建议" 
     Fluent 建议使用 `蛇形命名法` 命名数据库键和 `驼峰命名法` 命名属性名称。
 
-字段值可以是任何遵循 `Codable` 协议类型。`@Field` 支持存储嵌套结构和数组，但过滤操作受到限制。请参阅 [@Group](#group) 替代方案。
+字段值可以是任何遵循 `Codable` 协议类型。`@Field` 支持存储嵌套结构和数组，但过滤操作受到限制。请参阅 [@Group](#组group) 替代方案。
 
 对于包含可选值的字段，请使用 `@OptionalField`。
 
@@ -188,7 +188,7 @@ final class Planet: Model {
 |-|-|
 |`.create`|在将新模型实例保存到数据库时设置。|
 |`.update`|将现有模型实例保存到数据库时设置。|
-|`.delete`|从数据库中删除模型时设置。请参阅[软删除](#soft-delete)。|
+|`.delete`|从数据库中删除模型时设置。请参阅[软删除](#软删除soft-delete)。|
 
 `@Timestamp` 的日期值是可选的，初始化新模型时应该设置为 `nil`。
 
@@ -467,7 +467,7 @@ planet.create(on: database)
 ```
 
 !!! warning "警告"
-    模型使用 [`@ID(custom:)`](#custom-identifier) 和 `.database` 生成器(通常是自动递增的 `Int` 型)时在批处理创建后将无法访问其新创建的标识符。对于需要访问标识符的情况，在每个模型上调用 `create` 方法。
+    模型使用 [`@ID(custom:)`](#自定义标识符custom-identifier) 和 `.database` 生成器(通常是自动递增的 `Int` 型)时在批处理创建后将无法访问其新创建的标识符。对于需要访问标识符的情况，在每个模型上调用 `create` 方法。
 
 要单独创建模型数组，请使用 `map` + `flatten`。
 

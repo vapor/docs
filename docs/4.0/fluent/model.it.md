@@ -435,7 +435,7 @@ app.get("users") { req async throws -> [GetUser] in
 }
 ```
 
-Un altro caso d'uso comune è quando si lavora con le relazioni, come le relazioni parent o children. Vedi la [documentazione di Parent](relations.it.md##encoding-and-decoding-of-parents) per un esempio di come usare un DTO per rendere più facile decodificare un modello con una relazione `@Parent`.
+Un altro caso d'uso comune è quando si lavora con le relazioni, come le relazioni parent o children. Vedi la [documentazione di Parent](relations.it.md#codifica-e-decodifica-dei-parent) per un esempio di come usare un DTO per rendere più facile decodificare un modello con una relazione `@Parent`.
 
 Anche se la struttura del DTO è identica alla conformità `Codable` del modello, averlo come tipo separato può aiutare a mantenere in ordine i grandi progetti. Se hai mai bisogno di apportare una modifica alle proprietà dei tuoi modelli, non devi preoccuparti di rompere l'API pubblica della tua app. Potresti anche considerare di mettere i tuoi DTO in un pacchetto separato che può essere condiviso con i consumatori della tua API e aggiungere la conformità `Content` nella tua app Vapor.
 

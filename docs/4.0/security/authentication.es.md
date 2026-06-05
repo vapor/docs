@@ -881,7 +881,7 @@ Al ajustar el payload a `Authenticatable` y `JWTPayload`, puedes generar un aute
 let secure = app.grouped(SessionToken.authenticator(), SessionToken.guardMiddleware())
 ```
 
-Agregar el [guard middleware](#guard-middleware) opcional requerirá que la autorización se haya realizado correctamente.
+Agregar el [guard middleware](#middleware-de-guard) opcional requerirá que la autorización se haya realizado correctamente.
 
 Dentro de las rutas protegidas, puedes acceder al payload JWT autenticado usando `req.auth`.
 
