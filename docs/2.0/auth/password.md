@@ -53,7 +53,7 @@ extension User: PasswordAuthenticatable {
     }
 
     /// Optional password verifier to use when
-    /// comparing plaintext passwords from the 
+    /// comparing plaintext passwords from the
     /// Authorization header to hashed passwords
     /// in the database.
     static var passwordVerifier: PasswordVerifier? {
@@ -84,7 +84,7 @@ All routes added to the `authed` route group will be protected by the password m
 
 !!! seealso
 	If you only want to globally require the password middleware, checkout the
-	[Middleware Config](../http/middleware.md/#config) section in the HTTP docs.
+	[Middleware Config](../http/middleware.md/#configuration) section in the HTTP docs.
 
 ### Route
 
@@ -106,11 +106,11 @@ Now we can make a request to our Vapor app.
 
 ```http
 GET /me HTTP/1.1
-Authorization: Basic dmFwb3I6Zm9v 
+Authorization: Basic dmFwb3I6Zm9v
 ```
 
 !!! note
-	`dmFwb3I6Zm9v` is "vapor:foo" base64 encoded where "vapor" is the username and 
+	`dmFwb3I6Zm9v` is "vapor:foo" base64 encoded where "vapor" is the username and
 	"foo" is the password. This is the format of Basic authorization headers.
 
 And we should get a response like.

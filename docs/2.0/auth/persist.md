@@ -1,7 +1,7 @@
 # Persisting Auth
 
 Persisting authentication means that a user does not need to provide their credentials with every request.
-This is useful for web apps where a user should only have to log in once. 
+This is useful for web apps where a user should only have to log in once.
 
 !!! note
 	For APIs, it's recommended that the user send a token with every request.
@@ -56,14 +56,14 @@ let sessionsMiddleware = SessionsMiddleware(memory)
 
 #### Persist
 
-Now let's create the `PersistMiddleware`. This will take care of persisting our user once they've 
-been authenticated. 
+Now let's create the `PersistMiddleware`. This will take care of persisting our user once they've
+been authenticated.
 
 ```swift
 let persistMiddleware = PersistMiddleware(User.self)
 ```
 
-Since our user conforms to `SessionPersistable` (and thus `Persistable`), we can pass it 
+Since our user conforms to `SessionPersistable` (and thus `Persistable`), we can pass it
 into this middleware's init.
 
 #### Authentication
@@ -96,7 +96,7 @@ let authed = drop.grouped([sessionsMiddleware, persistMiddleware, passwordMiddle
 
 !!! seealso
 	If you only want to globally require the password middleware, checkout the
-	[Middleware Config](../http/middleware.md/#config) section in the HTTP docs.
+	[Middleware Config](../http/middleware.md/#configuration) section in the HTTP docs.
 
 
 ### Route
@@ -116,11 +116,11 @@ Now we can make a request to our Vapor app.
 
 ```http
 GET /me HTTP/1.1
-Authorization: Basic dmFwb3I6Zm9v 
+Authorization: Basic dmFwb3I6Zm9v
 ```
 
 !!! note
-	`dmFwb3I6Zm9v` is "vapor:foo" base64 encoded where "vapor" is the username and 
+	`dmFwb3I6Zm9v` is "vapor:foo" base64 encoded where "vapor" is the username and
 	"foo" is the password. This is the format of Basic authorization headers.
 
 And we should get a response like.
@@ -133,7 +133,7 @@ Set-Cookie: vapor-session=...
 Vapor
 ```
 
-Notice the `vapor-session` in the response. This can be used in subsequent requests instead of 
+Notice the `vapor-session` in the response. This can be used in subsequent requests instead of
 the username and password.
 
 

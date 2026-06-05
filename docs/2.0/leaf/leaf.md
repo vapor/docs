@@ -176,7 +176,7 @@ if let leaf = drop.view as? LeafRenderer {
 }
 ```
 
-And use it just like we did [above](#index).
+And use it just like we did [above](#index-indexarray-_-index-string).
 
 > Note: Use of non-alphanumeric characters in Tag Names is **strongly discouraged** and may be disallowed in future versions of Leaf.
 

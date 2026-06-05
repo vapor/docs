@@ -9,7 +9,7 @@ Most of your interaction with services will happen through a container. A contai
 - [Services](#services): A collection of registered services.
 - [Config](#config): Declared preferences for certain services over others.
 - [Environment](#environment): The application's current environment type (testing, production, etc)
-- [Worker](async.md#event-loop): The event loop associated with this container.
+- [Worker](async.md#worker): The event loop associated with this container.
 
 The most common containers you will interact with in Vapor are:
 
@@ -56,7 +56,7 @@ let sqlite = SQLiteDatabase(storage: .memory)
 services.register(sqlite)
 ```
 
-After you register a service, it will be available for creation by a `Container`. 
+After you register a service, it will be available for creation by a `Container`.
 
 ```swift
 let db = app.make(SQLiteDatabase.self)
@@ -112,18 +112,18 @@ services.register(sqlite)
 
 !!! info
     Use the static method `Environment.get(_:)` to fetch string values from the process environment.
-    
+
 You can also dynamically register services based on environment using the factory `.register(_:)` method.
 
 ```swift
 services.register { container -> BCryptConfig in
   let cost: Int
-  
+
   switch container.environment {
   case .production: cost = 12
   default: cost = 4
   }
-  
+
   return BCryptConfig(cost: cost)
 }
 ```

@@ -1,8 +1,10 @@
 import Kiln
 
 // Legacy Vapor documentation versions, imported from github.com/vapor/docs-legacy.
-// Each is English-only and lives under docs/<id>/. Navigation was generated from
-// the original MkDocs (3.0/2.0) and Couscous (1.5) menus.
+// Each is English-only and lives under docs/<id>/. Navigation is generated from
+// the original menus (MkDocs for 3.0/2.0, Couscous for 1.5), with every remaining
+// content page appended so nothing is missing.
+
 
 let v3_0 = DocVersion(
     id: "3.0",
@@ -161,6 +163,7 @@ let v3_0 = DocVersion(
         Page("3.0", "version/3_0.md")
         Page("Upgrading", "version/upgrading.md")
         Page("Support", "version/support.md")
+        Page("Redirecting...", "version/4_0.md")
     }
 }
 
@@ -289,6 +292,15 @@ let v2_0 = DocVersion(
         Page("2.0", "version/2_0.md")
         Page("3.0", "version/3_0.md")
         Page("Support", "version/support.md")
+        Page("Redirecting...", "version/4_0.md")
+    }
+    Section("Testing") {
+        Page("Basic Testing", "testing/basic.md")
+        Page("Using Multiple Modules For Testing", "testing/modules.md")
+    }
+    Section("WebSockets") {
+        Page("Custom WebSockets", "websockets/custom.md")
+        Page("Droplet WebSockets", "websockets/droplet.md")
     }
 }
 
@@ -334,6 +346,7 @@ let v1_5 = DocVersion(
         Page("Model", "fluent/model.md")
         Page("Query", "fluent/query.md")
         Page("Relation", "fluent/relation.md")
+        Page("Fixtures", "fluent/fixtures.md")
     }
     Section("Auth") {
         Page("User", "auth/user.md")
@@ -349,6 +362,7 @@ let v1_5 = DocVersion(
         Page("Client", "http/client.md")
         Page("Server", "http/server.md")
         Page("CORS", "http/cors.md")
+        Page("Request", "http/request.md")
     }
     Section("WebSockets") {
         Page("Droplet", "websockets/droplet.md")
@@ -358,5 +372,13 @@ let v1_5 = DocVersion(
         Page("1.5", "switch/1_5.md")
         Page("2.0", "switch/2_0.md")
         Page("3.0", "switch/3_0.md")
+    }
+    Section("Deploy") {
+        Page("Deploying with Nginx", "deploy/nginx.md")
+        Page("Supervisor", "deploy/supervisor.md")
+    }
+    Section("Testing") {
+        Page("Basic Testing", "testing/basic.md")
+        Page("Using Multiple Modules For Testing", "testing/modules.md")
     }
 }

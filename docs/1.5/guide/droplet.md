@@ -32,7 +32,7 @@ if drop.environment == .production {
 }
 ```
 
-The environment affects [Config](config.md) and [Logging](log.md). The environment is `development` by default. To change it, pass the `--env=` flag as an argument.
+The environment affects [Config](config.md) and Logging. The environment is `development` by default. To change it, pass the `--env=` flag as an argument.
 
 ```sh
 vapor run serve --env=production
@@ -60,7 +60,7 @@ vapor run serve --workdir="/var/www/my-project"
 
 The `Droplet`'s properties can be changed programmatically or through configuration.
 
-### Programmatic 
+### Programmatic
 
 Properties on the `Droplet` can be changed after it is initialized.
 
