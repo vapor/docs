@@ -1,0 +1,106 @@
+<!--
+  Vapor shared site navigation. Mirrors VaporDesign's `SiteNavigation`
+  (currentSite == .docs) so it matches vapor.codes / blog.vapor.codes, then adds
+  the docs-only version and language selectors as Bootstrap dropdowns inside the
+  navbar collapse — they sit inline in the bar on large screens and fold into the
+  toggler menu on small screens. Styled by design.vapor.codes/main.css.
+
+  Note: the #theme-switch and #documentation-dropdown-link ids are required by the
+  shared main.js (toggleDarkMode.js / styleHelpers.js attach listeners to them).
+-->
+<nav class="navbar navbar-expand-lg" id="vapor-navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand ms-3" href="/">
+            <span id="vapor-logo" class="d-inline-block align-text-top" aria-label="Vapor Logo"><span class="visually-hidden">Vapor</span></span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span id="vapor-navbar-toggler-icon" class="vapor-icon icon-menu-04"><span class="visually-hidden">Toggle Navigation</span></span>
+        </button>
+
+        <div class="collapse navbar-collapse me-lg-3" id="navbarSupportedContent">
+            #if(site.searchEnabled):
+            <div class="kiln-navbar-search me-lg-auto my-2 my-lg-0">
+                #extend("partials/search")
+            </div>
+            #endif
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="https://www.vapor.codes/" target="_blank">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://store.vapor.codes" target="_blank">Store</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://www.vapor.codes/showcase" target="_blank">Showcase</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-no-outline d-flex active" id="documentation-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-current="page">
+                        Documentation
+                        <span class="vapor-icon icon-chevron-down ms-auto ms-sm-1" id="documentation-navbar-chevron"></span>
+                    </a>
+                    <ul class="dropdown-menu animate slideIn" id="framework-dropdown-menu">
+                        <li class="m-lg-2">
+                            <a class="dropdown-item" href="/">
+                                <div class="nav-dropdown-container d-flex">
+                                    <span class="vapor-icon icon-server-04"></span>
+                                    <div class="ms-3">
+                                        <div class="nav-dropdown-container-title">Framework Docs</div>
+                                        <div class="nav-dropdown-container-caption d-none d-lg-block">Learn how to use Vapor</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="m-lg-2">
+                            <a class="dropdown-item" href="https://api.vapor.codes" target="_blank">
+                                <div class="nav-dropdown-container d-flex">
+                                    <span class="vapor-icon icon-dataflow-03" aria-hidden="true"></span>
+                                    <div class="ms-3">
+                                        <div class="nav-dropdown-container-title">API Docs</div>
+                                        <div class="nav-dropdown-container-caption d-none d-lg-block">Reference documentation for Vapor</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="https://www.vapor.codes/team" target="_blank">Team</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://blog.vapor.codes" target="_blank">Blog</a></li>
+
+                #if(count(versions) > 1):
+                <li class="nav-item dropdown kiln-version-nav">
+                    <a class="nav-link dropdown-no-outline d-flex" id="version-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Select documentation version">
+                        <span>#(currentVersion.name)</span>
+                        <span class="vapor-icon icon-chevron-down ms-auto ms-sm-1"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end animate slideIn">
+                        #for(ver in versions):
+                        <li><a class="dropdown-item#if(ver.isCurrent): active#endif" href="#(ver.url)">#(ver.name)#if(ver.isPrerelease): <span class="kiln-badge">pre-release</span>#endif</a></li>
+                        #endfor
+                    </ul>
+                </li>
+                #endif
+
+                #if(count(languages) > 1):
+                <li class="nav-item dropdown kiln-language-nav">
+                    <a class="nav-link dropdown-no-outline d-flex" id="language-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Select language">
+                        <span>#(language.name)</span>
+                        <span class="vapor-icon icon-chevron-down ms-auto ms-sm-1"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end animate slideIn">
+                        #for(alt in languages):
+                        <li><a class="dropdown-item#if(alt.isCurrent): active#endif" href="#(alt.url)">#(alt.name)</a></li>
+                        #endfor
+                    </ul>
+                </li>
+                #endif
+
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/vapor" rel="me" target="_blank">
+                        <span class="vapor-icon icon-github-fill" aria-label="GitHub"><span class="visually-hidden">GitHub</span></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="theme-switch" href="#" aria-label="Toggle dark mode">
+                        <span class="vapor-icon" id="theme-switch-icon"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

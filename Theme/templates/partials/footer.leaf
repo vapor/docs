@@ -1,0 +1,51 @@
+<!--
+  Vapor shared site footer. Mirrors VaporDesign's `SiteFooter` component
+  (currentSite == .docs) so it is visually identical to vapor.codes and
+  blog.vapor.codes. Styled by the shared stylesheet at design.vapor.codes/main.css.
+-->
+<footer class="mt-5">
+    <div class="container mt-5">
+        <div class="row">
+            <div id="footer-callout" class="col-md">
+                <span class="d-inline-block align-text-top" id="vapor-logo-footer" aria-label="Vapor Logo"></span>
+                <div class="w-lg-50 mt-4">Vapor provides a safe, performant and easy to use foundation to build HTTP servers, backends and APIs in Swift</div>
+            </div>
+            <div class="mt-4 mt-lg-0 col-md">
+                <div class="row">
+                    <div id="footer-community-links" class="col-6 ps-lg-5">
+                        <h6 class="ps-lg-5">Community</h6>
+                        <ul class="ps-lg-5">
+                            <li><a class="nav-link" href="https://www.vapor.codes/team" rel="noopener" target="_blank">Team</a></li>
+                            <li><a class="nav-link" href="https://vapor.team" rel="noopener" target="_blank">Join our Discord</a></li>
+                            <li><a class="nav-link" href="https://store.vapor.codes" rel="noopener" target="_blank">Store</a></li>
+                            <li><a class="nav-link" href="https://www.vapor.codes/showcase" rel="noopener" target="_blank">Showcase</a></li>
+                            <li><a class="nav-link" href="https://www.vapor.codes/supporters" rel="noopener" target="_blank">Supporters</a></li>
+                        </ul>
+                    </div>
+                    <div id="footer-resources-links" class="col-6">
+                        <h6>Resources</h6>
+                        <ul>
+                            <li><a class="nav-link" href="https://blog.vapor.codes" rel="noopener" target="_blank">Blog</a></li>
+                            <li><a href="/">Framework Docs</a></li>
+                            <li><a class="nav-link" href="https://api.vapor.codes" rel="noopener" target="_blank">API Docs</a></li>
+                            <li><a class="nav-link" href="https://design.vapor.codes/VaporPressKit.zip" download>Press Kit</a></li>
+                            <li><a class="nav-link" href="https://vapor.team" rel="noopener" target="_blank">Help</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div id="footer-bottom">
+            <div id="footer-copyright" class="my-auto">&copy; QuTheory, LLC 2026</div>
+            <div id="footer-social-links" class="ms-auto">
+                <ul class="d-flex">
+                    <li class="me-4"><a href="https://twitter.com/codevapor" rel="me" target="_blank"><span class="vapor-icon icon-twitter-fill" aria-label="Twitter"><span class="visually-hidden">Twitter</span></span></a></li>
+                    <li class="me-4"><a href="https://hachyderm.io/@codevapor" rel="me" target="_blank"><span class="vapor-icon icon-mastodon-fill" aria-label="Mastodon"><span class="visually-hidden">Mastodon</span></span></a></li>
+                    <li class="me-4"><a href="https://bsky.app/profile/vapor.codes" rel="me" target="_blank"><span class="vapor-icon icon-bsky-fill" aria-label="Bluesky"><span class="visually-hidden">Bluesky</span></span></a></li>
+                    <li><a href="https://github.com/vapor" rel="me" target="_blank"><span class="vapor-icon icon-github-fill" aria-label="GitHub"><span class="visually-hidden">GitHub</span></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

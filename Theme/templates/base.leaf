@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="#(language.locale)">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>#if(page.isHome):#(site.name)#else:#(page.title) · #(site.name)#endif</title>
+    <link rel="canonical" href="#(page.canonicalURL)">
+    #if(markdownURL):<link rel="alternate" type="text/markdown" href="#(markdownURL)">#endif
+    #if(page.description):<meta name="description" content="#(page.description)">#endif
+    #if(site.author):<meta name="author" content="#(site.author)">#endif
+    <meta name="theme-color" content="#ffffff">
+    <meta name="generator" content="Kiln">
+    #if(noindex):<meta name="robots" content="noindex">#endif
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="#if(page.isHome):website#else:article#endif">
+    <meta property="og:title" content="#if(page.isHome):#(site.name)#else:#(page.title)#endif">
+    #if(page.description):<meta property="og:description" content="#(page.description)">#endif
+    <meta property="og:url" content="#(page.canonicalURL)">
+    <meta property="og:site_name" content="#(site.name)">
+    <meta property="og:locale" content="#(language.locale)">
+    #if(page.imageURL):<meta property="og:image" content="#(page.imageURL)">#endif
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="#if(page.imageURL):summary_large_image#else:summary#endif">
+    #if(site.twitterSite):<meta name="twitter:site" content="#(site.twitterSite)">#endif
+    <meta name="twitter:title" content="#if(page.isHome):#(site.name)#else:#(page.title)#endif">
+    #if(page.description):<meta name="twitter:description" content="#(page.description)">#endif
+    #if(page.imageURL):<meta name="twitter:image" content="#(page.imageURL)">#endif
+
+    <!-- Shared Vapor favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://design.vapor.codes/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://design.vapor.codes/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://design.vapor.codes/favicons/favicon-16x16.png">
+    <link rel="manifest" href="https://design.vapor.codes/favicons/site.webmanifest">
+
+    #for(alt in languages):<link rel="alternate" hreflang="#(alt.locale)" href="#(alt.url)">
+    #endfor
+
+    <!-- Shared Vapor design system (header/footer chrome, brand, fonts, icons) -->
+    <link rel="stylesheet" href="https://design.vapor.codes/main.css">
+    <!-- Docs-specific layout layer (sidebar, content, table of contents, search) -->
+    <link rel="stylesheet" href="/_kiln/css/theme.css">
+    #for(href in site.extraCSS):<link rel="stylesheet" href="/#(href)">
+    #endfor
+
+    <script>
+        // Apply the saved colour scheme before first paint to avoid a flash.
+        // Matches the shared toggleDarkMode.js: a `.dark` class on <html>,
+        // persisted under the "theme" key.
+        (function () {
+            try {
+                var t = localStorage.getItem("theme");
+                if (!t) {
+                    t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+                }
+                if (t === "dark") {
+                    document.documentElement.classList.add("dark");
+                    var m = document.querySelector('meta[name="theme-color"]');
+                    if (m) m.setAttribute("content", "#141416");
+                }
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body>
+    #extend("partials/header")
+
+    <div class="kiln-doc-backdrop" id="kiln-doc-backdrop"></div>
+
+    <div class="kiln-layout">
+        <button class="kiln-sidebar-toggle" id="kiln-sidebar-toggle" aria-label="#(strings.toggleNavigation)" aria-expanded="false" aria-controls="kiln-sidebar">
+            <span class="vapor-icon icon-menu-04" aria-hidden="true"></span>
+            <span>Menu</span>
+        </button>
+
+        <aside class="kiln-sidebar" id="kiln-sidebar">
+            <nav class="kiln-nav" aria-label="Documentation navigation">
+                #extend("partials/nav-tree", nav)
+            </nav>
+        </aside>
+
+        <main class="kiln-main">
+            #if(isVersioned):#if(!isLatest):
+            #if(currentVersion.isPrerelease):
+            <div class="admonition note kiln-version-notice">
+                <p>#(strings.preReleaseMessage) <a href="#(latestURL)">#(strings.preReleaseLink)</a></p>
+            </div>
+            #else:
+            <div class="admonition warning kiln-version-notice">
+                <p>#(strings.oldVersionMessage) <a href="#(latestURL)">#(strings.oldVersionLink)</a></p>
+            </div>
+            #endif
+            #endif#endif
+
+            #if(page.isFallback):
+            <div class="admonition kiln-fallback">
+                <p class="admonition-title">#(strings.fallbackTitle)</p>
+                <p>#(strings.fallbackMessage)</p>
+            </div>
+            #endif
+
+            #import("content")
+
+            <nav class="kiln-page-nav" aria-label="Page navigation">
+                #if(nav.previous):<a class="kiln-prev" href="#(nav.previous.url)"><span class="kiln-page-nav-label">#(strings.previousPage)</span><span class="kiln-page-nav-title">#(nav.previous.title)</span></a>#endif
+                #if(nav.next):<a class="kiln-next" href="#(nav.next.url)"><span class="kiln-page-nav-label">#(strings.nextPage)</span><span class="kiln-page-nav-title">#(nav.next.title)</span></a>#endif
+            </nav>
+
+            #if(page.editURL):<a class="kiln-edit-link" href="#(page.editURL)">#(strings.editPage)</a>#endif
+        </main>
+
+        <aside class="kiln-toc">
+            #if(page.hasTOC):
+            <div class="kiln-toc-inner">
+                <p class="kiln-toc-title">#(strings.tableOfContentsTitle)</p>
+                #extend("partials/toc")
+            </div>
+            #endif
+            #if(site.carbonAds):
+            <div class="kiln-carbon" id="kiln-carbon" data-serve="#(site.carbonAds.serve)" data-placement="#(site.carbonAds.placement)"></div>
+            #endif
+        </aside>
+    </div>
+
+    #extend("partials/footer")
+
+    <script>window.kilnSearchIndex = "#(searchIndexURL)"; window.kilnVersionBase = "#(versionBasePath)";</script>
+    <!-- Shared chrome JS: Bootstrap, dark-mode toggle, syntax highlighting -->
+    <script src="https://design.vapor.codes/main.js"></script>
+    #if(site.searchEnabled):<script src="/_kiln/js/search.js"></script>#endif
+    <script src="/_kiln/js/docs.js"></script>
+    #for(src in site.extraJS):<script src="/#(src)"></script>
+    #endfor
+</body>
+</html>
