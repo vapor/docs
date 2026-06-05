@@ -1,15 +1,6 @@
 {
-  "originHash" : "c1f111724b0fb2d138154b60de5fdaca68b70f9a8835e54faa87eb58e0746805",
+  "originHash" : "3237db62d53109795e72cd9c9080db53b6fdcb2e99eee26d59b14603432662e5",
   "pins" : [
-    {
-      "identity" : "kiln",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/brokenhandsio/kiln.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "e60f74f1432e3e7147dd75b7ed1926eb604e3ac4"
-      }
-    },
     {
       "identity" : "leaf-kit",
       "kind" : "remoteSourceControl",
@@ -17,6 +8,15 @@
       "state" : {
         "revision" : "6044b844caa858a0c5f2505ac166f5a057c990dc",
         "version" : "1.14.2"
+      }
+    },
+    {
+      "identity" : "swift-argument-parser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-argument-parser.git",
+      "state" : {
+        "revision" : "6a52f3251125d74daf04fcbd5e6f08a75d074382",
+        "version" : "1.8.2"
       }
     },
     {

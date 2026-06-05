@@ -596,35 +596,15 @@ let languages: [Language] = [
     ),
 ]
 
-let site = KilnSite(
-    name: "Vapor Docs",
-    url: "https://docs.vapor.codes/",
-    author: "Vapor Community",
-    description: "Vapor's documentation (web framework for Swift).",
-    image: "assets/social-card.png",
-    twitterSite: "@codevapor",
-    repository: .init(
-        name: "Vapor GitHub",
-        url: "https://github.com/vapor/vapor",
-        editURI: "https://github.com/vapor/docs/edit/main/docs/"
-    ),
-    copyright: "Vapor Documentation © 2023 by Vapor is licensed under CC BY-NC-SA 4.0",
-    theme: .default(
-        palette: .autoLightDark(primary: .black, accent: .blue),
-        logo: "assets/logo.png",
-        favicon: "assets/favicon.png",
-        fonts: Fonts(text: "Roboto", code: "Roboto Mono")
-    ),
-    social: [
-        .init(icon: .github, link: "https://github.com/vapor"),
-        .init(icon: .discord, link: "https://discord.gg/vapor"),
-        .init(icon: .twitter, link: "https://twitter.com/codevapor"),
-        .init(icon: .mastodon, link: "https://hachyderm.io/@codevapor"),
-    ],
-    carbonAds: .init(serve: "CK7DT2QW", placement: "vaporcodes"),
-    extraCSS: ["stylesheets/fonts.css"],
-    languages: languages,
-    navigation: {
+// The current documentation (Vapor 4.0). This is the default version, served at
+// the site root with unchanged URLs; its content lives under docs/4.0/.
+let v4_0 = DocVersion(
+    id: "4.0",
+    name: "4.0 (latest)",
+    isDefault: true,
+    contentDirectory: "4.0",
+    languages: languages
+) {
         Page("Welcome", "index.md")
         Section("Install") {
             Page("macOS", "install/macos.md")
@@ -703,7 +683,37 @@ let site = KilnSite(
             Page("Upgrading", "upgrading.md")
         }
         Page("Release Notes", "release-notes.md")
-    }
+}
+
+let site = KilnSite(
+    name: "Vapor Docs",
+    url: "https://docs.vapor.codes/",
+    author: "Vapor Community",
+    description: "Vapor's documentation (web framework for Swift).",
+    image: "assets/social-card.png",
+    twitterSite: "@codevapor",
+    repository: .init(
+        name: "Vapor GitHub",
+        url: "https://github.com/vapor/vapor",
+        editURI: "https://github.com/vapor/docs/edit/main/docs/4.0/"
+    ),
+    copyright: "Vapor Documentation © 2023 by Vapor is licensed under CC BY-NC-SA 4.0",
+    theme: .default(
+        palette: .autoLightDark(primary: .black, accent: .blue),
+        logo: "assets/logo.png",
+        favicon: "assets/favicon.png",
+        fonts: Fonts(text: "Roboto", code: "Roboto Mono")
+    ),
+    social: [
+        .init(icon: .github, link: "https://github.com/vapor"),
+        .init(icon: .discord, link: "https://discord.gg/vapor"),
+        .init(icon: .twitter, link: "https://twitter.com/codevapor"),
+        .init(icon: .mastodon, link: "https://hachyderm.io/@codevapor"),
+    ],
+    carbonAds: .init(serve: "CK7DT2QW", placement: "vaporcodes"),
+    extraCSS: ["stylesheets/fonts.css"],
+    // Newest first: current stable, then the imported legacy versions.
+    versions: [v4_0, v3_0, v2_0, v1_5]
 )
 
 let outputDirectory = "site"
