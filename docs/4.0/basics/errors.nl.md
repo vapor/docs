@@ -172,7 +172,7 @@ struct MyError: DebuggableError {
 }
 ```
 
-Wanneer het [log level](logging.md#level) van uw applicatie is ingesteld op `.debug` of lager, zullen stack traces van fouten worden opgenomen in de log output. 
+Wanneer het [log level](logging.md#niveaus) van uw applicatie is ingesteld op `.debug` of lager, zullen stack traces van fouten worden opgenomen in de log output. 
 
 Stack traces worden niet opgevangen als het log level groter is dan `.debug`. Om dit gedrag op te heffen, stel `StackTrace.isCaptureEnabled` handmatig in `configure` in. 
 

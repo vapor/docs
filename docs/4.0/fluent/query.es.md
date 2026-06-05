@@ -11,7 +11,7 @@ let planets = try await Planet.query(on: database)
     .all()
 ```
 
-Los constructores de consultas (query builders) están ligados a un único tipo de modelo y pueden crearse con el método estático [`query`](model.md#query). También pueden crearse pasando el tipo del modelo al método `query` en un objeto de base de datos (database).
+Los constructores de consultas (query builders) están ligados a un único tipo de modelo y pueden crearse con el método estático [`query`](model.md#consultar). También pueden crearse pasando el tipo del modelo al método `query` en un objeto de base de datos (database).
 
 ```swift
 // También crea un constructor de consultas.

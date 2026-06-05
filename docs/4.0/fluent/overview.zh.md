@@ -250,7 +250,7 @@ var id: UUID?
 
 该字段必须使用 `@ID` 属性包装器。Fluent 建议使用 `UUID` 和 特殊 `.id` 字段键，因为它兼容 Fluent 的所有驱动程序。
 
-如果要使用自定义 ID 键或类型， 请使用 [`@ID(custom:)`](model.zh.md#custom-identifier) 重载。
+如果要使用自定义 ID 键或类型， 请使用 [`@ID(custom:)`](model.zh.md#自定义标识符custom-identifier) 重载。
 
 ### Fields
 

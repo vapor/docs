@@ -749,7 +749,7 @@ Deze middlewares doen het volgende:
 * de sessie-authenticator neemt de sessie en kijkt of er een geauthenticeerde gebruiker voor die sessie is. Zo ja, dan authenticeert de middleware het verzoek. In het antwoord kijkt de sessie-authenticator of het verzoek een geauthenticeerde gebruiker heeft en slaat die op in de sessie, zodat hij bij het volgende verzoek geauthenticeerd is.
 
 !!! opmerking
-    De sessie cookie is niet standaard ingesteld op `secure` en `httpOnly`. Raadpleeg Vapor's [Session API](../advanced/sessions.md#configuration) voor meer informatie over het configureren van cookies.
+    De sessie cookie is niet standaard ingesteld op `secure` en `httpOnly`. Raadpleeg Vapor's [Session API](../advanced/sessions.md#configuratie) voor meer informatie over het configureren van cookies.
 
 ### Routes Beschermen
 

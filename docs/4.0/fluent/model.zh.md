@@ -284,7 +284,7 @@ final class Pet: Model {
 
 使用 `@OptionalEnum`，存储可选枚举。
 
-数据库必须准备好通过迁移处理枚举。请参阅[枚举](schema.zh.md#enum)了解更多信息。
+数据库必须准备好通过迁移处理枚举。请参阅[枚举](schema.zh.md#枚举enum)了解更多信息。
 
 ### 原始枚举
 

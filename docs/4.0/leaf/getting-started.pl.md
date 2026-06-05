@@ -45,7 +45,7 @@ Powyższy kod ustawia `Leaf` jako domyślny język szablonów. Podczas wywołani
 Leaf zawiera wewnętrzny system cachowania dla wyrenderowanych stron. `Cache` jest wyłączony dla aplikacji w trybie `developerskim` - to powoduje, że zmiany w szablonach są widoczne natychmiast. W środowisku `produkcyjnym` i innych `Cache` jest włączony automatycznie - jakiekolwiek zmiany będą widoczne dopiero po restarcie aplikacji.
 
 !!! Uwaga
-Aby umożliwić Leaf znalezienie szablonów kiedy projekt jest otwarty za pomocą Xcode, należy ustawić [custom working directory](../getting-started/xcode.md#custom-working-directory) dla Xcode workspace.
+Aby umożliwić Leaf znalezienie szablonów kiedy projekt jest otwarty za pomocą Xcode, należy ustawić [custom working directory](../getting-started/xcode.md#niestandardowy-katalog-roboczy) dla Xcode workspace.
 
 ## Struktura folderów
 

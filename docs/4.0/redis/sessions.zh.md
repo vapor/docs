@@ -1,6 +1,6 @@
 # Redis & 会话
 
-Redis 可以作为一个存储提供程序，用于缓存[会话数据](../advanced/sessions.md#session-data)，例如用户凭据。
+Redis 可以作为一个存储提供程序，用于缓存[会话数据](../advanced/sessions.md#会话数据)，例如用户凭据。
 
 如果 [`RedisSessionsDelegate`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate) 未提供自定义委托，则将使用默认值。
 

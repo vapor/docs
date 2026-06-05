@@ -24,7 +24,7 @@ U moet Docker installeren voor uw ontwikkelaarsomgeving. U vindt informatie voor
 
 Wij stellen voor om het Vapor sjabloon te gebruiken als startpunt. Als u al een app heeft, bouw dan het sjabloon zoals hieronder beschreven in een nieuwe map als referentiepunt terwijl u uw bestaande app dockerized -- u kunt de belangrijkste bronnen van het sjabloon kopiëren naar uw app en ze een beetje tweaken als een startpunt.
 
-1. Installeer of bouw de Vapor Toolbox ([macOS](../install/macos.md#install-toolbox), [Linux](../install/linux.md#install-toolbox)).
+1. Installeer of bouw de Vapor Toolbox ([macOS](../install/macos.md#installeer-de-toolbox), [Linux](../install/linux.md#installeer-de-toolbox)).
 2. Maak een nieuwe Vapor App met `vapor new my-dockerized-app` en loop door de prompts om relevante functies in of uit te schakelen. Uw antwoorden op deze prompts zullen invloed hebben op hoe de Docker resource bestanden worden gegenereerd.
 
 ## Docker Resources
@@ -157,7 +157,7 @@ U kunt uw diensten starten met
 ```shell
 LOG_LEVEL=trace docker-compose up app
 ```
-om `trace` niveau logging te krijgen (het meest granulaire). Je kunt deze omgevingsvariabele gebruiken om de logging in te stellen op [elk beschikbaar niveau](../basics/logging.md#levels).
+om `trace` niveau logging te krijgen (het meest granulaire). Je kunt deze omgevingsvariabele gebruiken om de logging in te stellen op [elk beschikbaar niveau](../basics/logging.md#niveaus).
 
 #### Alle Service Logs
 

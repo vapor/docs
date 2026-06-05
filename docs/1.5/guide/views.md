@@ -22,7 +22,7 @@ drop.get("html") { request in
 
 ## Templating
 
-Templated documents like [Leaf](./leaf.html), Mustache, or Stencil can take a `Context`.
+Templated documents like [Leaf](./leaf.md), Mustache, or Stencil can take a `Context`.
 
 ```swift
 drop.get("template") { request in

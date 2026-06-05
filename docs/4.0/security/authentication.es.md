@@ -328,7 +328,7 @@ app.migrations.add(User.Migration())
 ``` 
 
 !!! tip "Consejo"
-    Debido a que las direcciones de correo electrónico no distinguen entre mayúsculas y minúsculas, es posible que desees agregar un [`Middleware`](../fluent/model.md#lifecycle) que obligue a poner la dirección de correo electrónico en minúsculas antes de guardarla en la base de datos. Sin embargo, ten en cuenta que `ModelAuthenticatable` utiliza una comparación que distingue entre mayúsculas y minúsculas, por lo que si haces esto querrás asegurarte de que la entrada del usuario esté en minúsculas, ya sea con coerción entre mayúsculas y minúsculas en el cliente o con un autenticador personalizado.
+    Debido a que las direcciones de correo electrónico no distinguen entre mayúsculas y minúsculas, es posible que desees agregar un [`Middleware`](../fluent/model.md#ciclo-de-vida) que obligue a poner la dirección de correo electrónico en minúsculas antes de guardarla en la base de datos. Sin embargo, ten en cuenta que `ModelAuthenticatable` utiliza una comparación que distingue entre mayúsculas y minúsculas, por lo que si haces esto querrás asegurarte de que la entrada del usuario esté en minúsculas, ya sea con coerción entre mayúsculas y minúsculas en el cliente o con un autenticador personalizado.
 
 Lo primero que necesitarás es un endpoint para crear nuevos usuarios. Usemos `POST /usuarios`. Crea una estructura [Content](../basics/content.md) que represente los datos que espera este endpoint.
 
@@ -469,7 +469,7 @@ final class UserToken: Model, Content {
 }
 ```
 
-Este modelo debe tener un campo `value` para almacenar la cadena única del token. También debe tener una [relación-padre](../fluent/overview.md#parent) con el modelo de usuario. Puedes agregar propiedades adicionales a este token como mejor te parezca, como una fecha de vencimiento.
+Este modelo debe tener un campo `value` para almacenar la cadena única del token. También debe tener una [relación-padre](../fluent/overview.md#padre) con el modelo de usuario. Puedes agregar propiedades adicionales a este token como mejor te parezca, como una fecha de vencimiento.
 
 A continuación, crea una migración para este modelo.
 
@@ -749,7 +749,7 @@ Estos middlewares hacen lo siguiente:
 * el autenticador de sesión toma la sesión y ve si hay un usuario autenticado para esa sesión. Si es así, el middleware autentica la solicitud. En la respuesta, el autenticador de sesión ve si la solicitud tiene un usuario autenticado y lo guarda en la sesión para que se autentique en la siguiente llamada.
 
 !!! note "Nota"
-    La cookie de sesión no está configurada como `secure` ni `httpOnly` de forma predeterminada. Consulta la [API de Session](../advanced/sessions.md#configuration) de Vapor para obtener más información sobre cómo configurar las cookies.
+    La cookie de sesión no está configurada como `secure` ni `httpOnly` de forma predeterminada. Consulta la [API de Session](../advanced/sessions.md#configuración) de Vapor para obtener más información sobre cómo configurar las cookies.
 
 ### Protegiendo Rutas
 

@@ -116,7 +116,7 @@ Next time you boot your Droplet, you should see:
 Database prepared
 ```
 
-You are now ready to [start using Fluent](../fluent/getting-started) with your MySQL database.
+You are now ready to [start using Fluent](../fluent/getting-started.md) with your MySQL database.
 
 
 

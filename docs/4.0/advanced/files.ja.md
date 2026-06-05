@@ -73,7 +73,7 @@ req.fileio.writeFile(ByteBuffer(string: "Hello, world"), at: "/path/to/file")
 
 ## ミドルウェア {#middleware}
 
-プロジェクトの_Public_フォルダから自動的にファイルを提供する方法の詳細については、[ミドルウェア &rarr; FileMiddleware](middleware.md#file-middleware)を参照してください。
+プロジェクトの_Public_フォルダから自動的にファイルを提供する方法の詳細については、[ミドルウェア &rarr; FileMiddleware](middleware.md#ファイルミドルウェア-file-middleware)を参照してください。
 
 ## 高度な使い方 {#advanced}
 

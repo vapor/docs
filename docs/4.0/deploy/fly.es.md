@@ -47,7 +47,7 @@ La forma más fácil de crear un nuevo proyecto es comenzar con una plantilla. P
 
 #### Usando la Vapor toolbox
 
-Primero, asegúrate de haber instalado la Vapor toolbox (consulta las instrucciones para instalarla en [macOS](../install/macos.md#install-toolbox) o [Linux](../install/linux.md#install-toolbox)).
+Primero, asegúrate de haber instalado la Vapor toolbox (consulta las instrucciones para instalarla en [macOS](../install/macos.md#instalar-toolbox) o [Linux](../install/linux.md#instalar-toolbox)).
 
 Crea tu nueva aplicación con el siguiente comando, reemplazando `app-name` por el nombre que desees:
 

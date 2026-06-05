@@ -39,7 +39,7 @@ import JWT
 app.jwt.signers.use(.hs256(key: "secret"))
 ```
 
-`HS256` 签名者需要一个密钥来初始化。与其他签名者不同，这个单一密钥用于签名 _和_ 验证令牌。在下面了解[算法](#algorithms)的更多信息。
+`HS256` 签名者需要一个密钥来初始化。与其他签名者不同，这个单一密钥用于签名 _和_ 验证令牌。在下面了解[算法](#算法algorithms)的更多信息。
 
 ### Payload
 
@@ -51,7 +51,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ2YXBvciIsImV4cCI6NjQwOTIyMTEyMDA
 
 你可以访问 [jwt.io](https://jwt.io) 网站并将该令牌粘贴到调试器中来检查该令牌的内容。将 “Verify Signature” 部分中的密钥设置为 `secret`。
 
-我们需要创建一个符合 `JWTPayload` 的结构来表示 JWT 的结构。我们将使用 JWT 包含的 [声明](#claims) 来处理常见的字段，如 `sub`和 `exp`。
+我们需要创建一个符合 `JWTPayload` 的结构来表示 JWT 的结构。我们将使用 JWT 包含的 [声明](#声明claims) 来处理常见的字段，如 `sub`和 `exp`。
 
 ```swift
 // JWT payload 结构。
@@ -343,7 +343,7 @@ try app.jwt.signers.use(jwks: jwks)
 
 现在可以将 JWT 从 Apple 传递给 `verify` 方法。JWT 报头中的密钥标识符 (`kid`) 会自动选择正确的密钥进行验证。
 
-在撰写本文时，JWK 只支持 RSA 密钥。此外，JWT 发行商可能会轮换他们的 JWK，这意味着你偶尔需要重新下载。有关自动执行此操作的 API，请参阅下面的 Vapor 支持的 JWT [供应商](#vendors)列表。
+在撰写本文时，JWK 只支持 RSA 密钥。此外，JWT 发行商可能会轮换他们的 JWK，这意味着你偶尔需要重新下载。有关自动执行此操作的 API，请参阅下面的 Vapor 支持的 JWT [供应商](#发行商vendors)列表。
 
 ## 发行商(Vendors)
 

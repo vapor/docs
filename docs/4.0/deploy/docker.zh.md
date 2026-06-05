@@ -24,7 +24,7 @@
 
 我们建议使用 Vapor 模板作为起点。如果你已经有了一个应用程序，请在对现有应用程序进行 docker 化时将如下所述的模板构建到一个新文件夹中作为参考点 —— 你可以将关键资源从模板复制到你的应用程序，并以此为起点对它们进行轻微的调整。
 
-1. 安装或构建 Vapor 工具箱（[macOS](../install/macos.zh.md#install-toolbox)、[Linux](../install/linux.zh.md#install-toolbox)）。
+1. 安装或构建 Vapor 工具箱（[macOS](../install/macos.zh.md#安装工具箱install-toolbox)、[Linux](../install/linux.zh.md#安装工具箱install-toolbox)）。
 2. 终端运行 `vapor new my-dockerized-app` 命令来创建一个新的 Vapor 应用程序并按照提示启用或禁用相关功能。你对这些提示的回答将影响 Docker 资源文件的生成方式。
 
 ## Docker 资源
@@ -170,7 +170,7 @@ docker compose run migrate
 LOG_LEVEL=trace docker-compose up app
 ```
 
-获取 `trace` 级别日志记录（最精细的）。你可以使用此环境变量将日志记录设置为[任何可用级别](../basics/logging.zh.md#level)。
+获取 `trace` 级别日志记录（最精细的）。你可以使用此环境变量将日志记录设置为[任何可用级别](../basics/logging.zh.md#日志级别level)。
 
 #### 所有服务日志
 

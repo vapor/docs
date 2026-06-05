@@ -9,7 +9,7 @@ app.get("hello", ":name") { req -> String in
 }
 ```
 
-これは、Vaporの他の機能への主要な窓口です。[リクエストボディ](../basics/content.md)、[クエリパラメータ](../basics/content.md#query)、[ロガー](../basics/logging.md)、[HTTPクライアント](../basics/client.md)、[Authenticator](../security/authentication.md)などのAPIが含まれています。リクエストを通じてこれらの機能にアクセスすることで、計算を適切なイベントループ上に保ち、テスト用にモック化することができます。拡張機能を使用して、独自の[サービス](../advanced/services.md)を`Request`に追加することもできます。
+これは、Vaporの他の機能への主要な窓口です。[リクエストボディ](../basics/content.md)、[クエリパラメータ](../basics/content.md#クエリ-query)、[ロガー](../basics/logging.md)、[HTTPクライアント](../basics/client.md)、[Authenticator](../security/authentication.md)などのAPIが含まれています。リクエストを通じてこれらの機能にアクセスすることで、計算を適切なイベントループ上に保ち、テスト用にモック化することができます。拡張機能を使用して、独自の[サービス](../advanced/services.md)を`Request`に追加することもできます。
 
 `Request`の完全なAPIドキュメントは[こちら](https://api.vapor.codes/vapor/documentation/vapor/request)で確認できます。
 
@@ -23,7 +23,7 @@ app.get("hello", ":name") { req -> String in
 
 ## クッキー {#cookies}
 
-クッキーの最も便利な用途は組み込みの[セッション](../advanced/sessions.md#configuration)を経由することですが、`Request.cookies`を介してクッキーに直接アクセスすることもできます。
+クッキーの最も便利な用途は組み込みの[セッション](../advanced/sessions.md#設定-configuration)を経由することですが、`Request.cookies`を介してクッキーに直接アクセスすることもできます。
 
 ```swift
 app.get("my-cookie") { req -> String in

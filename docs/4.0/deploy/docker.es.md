@@ -24,7 +24,7 @@ Deberás instalar Docker para tu entorno de desarrollador. Puedes encontrar info
 
 Sugerimos utilizar la plantilla de Vapor como punto de partida. Si ya tienes una aplicación, crea la plantilla como se describe a continuación en una carpeta nueva, como punto de referencia, mientras dockerizas tu aplicación existente -puedes copiar recursos clave de la plantilla a tu aplicación y modificarlos ligeramente como punto de partida-.
 
-1. Instala o crea Vapor Toolbox ([macOS](../install/macos.md#install-toolbox), [Linux](../install/linux.md#install-toolbox)).
+1. Instala o crea Vapor Toolbox ([macOS](../install/macos.md#instalar-toolbox), [Linux](../install/linux.md#instalar-toolbox)).
 2. Crea una nueva aplicación Vapor con `vapor new my-dockerized-app` y sigue las indicaciones para habilitar o deshabilitar funciones relevantes. Tus respuestas a estas preguntas afectarán la forma en que se generan los archivos de recursos de Docker.
 
 ## Recursos de Docker
@@ -168,7 +168,7 @@ Puedes activar tus servicios con
 LOG_LEVEL=trace docker-compose up app
 ```
 
-para obtener el registro (el más granular) a nivel de `trace`. Puedes utilizar esta variable de entorno para configurar el registro en [cualquier nivel disponible](../basics/logging.md#levels).
+para obtener el registro (el más granular) a nivel de `trace`. Puedes utilizar esta variable de entorno para configurar el registro en [cualquier nivel disponible](../basics/logging.md#nivel).
 
 #### Todos los Registros de Servicio
 

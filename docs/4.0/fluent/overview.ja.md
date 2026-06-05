@@ -249,7 +249,7 @@ var id: UUID?
 
 このフィールドは、`@ID` プロパティラッパーを使用する必要があります。Fluent は、すべてのドライバーと互換性があるため、`UUID` と特別な `.id` フィールドキーを使用することをお勧めします。
 
-キー名や型をカスタムしたい場合は、[`@ID(custom:)`](model.md#custom-identifier) オーバーロードを使用します。
+キー名や型をカスタムしたい場合は、[`@ID(custom:)`](model.md#カスタム識別子-custom-identifier) オーバーロードを使用します。
 
 ### Fields
 

@@ -24,7 +24,7 @@ Docker を実行するための開発環境をセットアップし、Docker ス
 
 Vapor テンプレートを出発点として使用することをお勧めします。既にアプリがある場合は、既存のアプリを Docker 化する際の参照ポイントとして、以下で説明するようにテンプレートを新しいフォルダにビルドしてください。テンプレートから主要なリソースをアプリにコピーし、出発点として少し調整できます。
 
-1. Vapor Toolbox をインストールまたはビルドします（[macOS](../install/macos.md#install-toolbox)、[Linux](../install/linux.md#install-toolbox)）。
+1. Vapor Toolbox をインストールまたはビルドします（[macOS](../install/macos.md#toolbox-のインストール-install-toolbox)、[Linux](../install/linux.md#ツールボックスのインストール-install-toolbox)）。
 2. `vapor new my-dockerized-app` で新しい Vapor アプリを作成し、プロンプトに従って関連する機能を有効または無効にします。これらのプロンプトへの回答は、Docker リソースファイルの生成方法に影響します。
 
 ## Docker リソース {#docker-resources}
@@ -166,7 +166,7 @@ docker compose run migrate
 LOG_LEVEL=trace docker-compose up app
 ```
 
-`trace` レベルのロギング（最も詳細）を取得します。この環境変数を使用して、ロギングを[利用可能な任意のレベル](../basics/logging.md#levels)に設定できます。
+`trace` レベルのロギング（最も詳細）を取得します。この環境変数を使用して、ロギングを[利用可能な任意のレベル](../basics/logging.md#レベル-level)に設定できます。
 
 #### すべてのサービスログ {#all-service-logs}
 

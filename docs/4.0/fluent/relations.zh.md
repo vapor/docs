@@ -35,13 +35,13 @@ init(name: String, starID: Star.IDValue) {
 }
 ```
 
-`key` 参数定义了用于存储父标识符的字段键。假设 `Star` 有一个 `UUID` 标识符，这个 `@Parent` 关系与下面的[字段定义](schema.zh.md#field)兼容。
+`key` 参数定义了用于存储父标识符的字段键。假设 `Star` 有一个 `UUID` 标识符，这个 `@Parent` 关系与下面的[字段定义](schema.zh.md#字段field)兼容。
 
 ```swift
 .field("star_id", .uuid, .required, .references("star", "id"))
 ```
 
-请注意，[`.references`](schema.zh.md#field-constraint)约束是可选的。了解更多信息，请参见[模式](schema.zh.md)章节。
+请注意，[`.references`](schema.zh.md#字段约束field-constraint)约束是可选的。了解更多信息，请参见[模式](schema.zh.md)章节。
 
 ### Optional Parent
 
@@ -162,7 +162,7 @@ final class PlanetTag: Model {
 
 任何包含至少两个 `@Parent` 关系的模型，每个关系对应两个要关联的模型，可以作为一个枢纽（pivot）。该模型可以包含其他属性，例如其 ID，甚至可以包含其他 `@Parent` 关系。
 
-向 pivot 模型添加 [unique](schema.zh.md#unique) 约束有助于防止冗余条目。请参阅[模式](schema.zh.md)了解更多信息。
+向 pivot 模型添加 [unique](schema.zh.md#唯一unique) 约束有助于防止冗余条目。请参阅[模式](schema.zh.md)了解更多信息。
 
 ```swift
 // 不允许重复的关系。

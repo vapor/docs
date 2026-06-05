@@ -37,7 +37,7 @@ Alvorens te deployen naar Fly, moet u ervoor zorgen dat u een Vapor-project heef
 De eenvoudigste manier om een nieuw project te maken is te beginnen met een sjabloon. U kunt er een maken met behulp van GitHub-sjablonen of de Vapor-toolbox. Als u een database nodig hebt, is het aanbevolen om Fluent met Postgres te gebruiken; Fly maakt het eenvoudig om een Postgres-database aan te maken om uw apps mee te verbinden (zie de [specifieke sectie](#configuratie-postgres) hieronder).
 
 #### De Vapor toolbox gebruiken
-Zorg er eerst voor dat je de Vapor toolbox hebt geïnstalleerd (zie de instructies voor [macOS](../install/macos.md#install-toolbox) of [Linux](../install/linux.md#install-toolbox)).
+Zorg er eerst voor dat je de Vapor toolbox hebt geïnstalleerd (zie de instructies voor [macOS](../install/macos.md#installeer-de-toolbox) of [Linux](../install/linux.md#installeer-de-toolbox)).
 Maak uw nieuwe app aan met het volgende commando, waarbij u `app-name` vervangt door de gewenste app-naam:
 
 ```bash

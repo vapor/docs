@@ -11,7 +11,7 @@ try await database.schema("planets")
     .create()
 ```
 
-要创建 `SchemaBuilder`，请使用数据库上的 `schema` 方法。传入要改变的表或集合的名称。如果你正在编辑模型的模式，请确保此名称与模型的 [`schema`](model.zh.md#schema) 相匹配。
+要创建 `SchemaBuilder`，请使用数据库上的 `schema` 方法。传入要改变的表或集合的名称。如果你正在编辑模型的模式，请确保此名称与模型的 [`schema`](model.zh.md#模式schema) 相匹配。
 
 ## 操作 
 
@@ -396,7 +396,7 @@ struct UserNameMigration: AsyncMigration {
 
 ## 设置模型空间
 
-要定义[模型空间](model.zh.md#database-space)，请在创建表时将空间传递给 `schema(_：space：)`。例如。
+要定义[模型空间](model.zh.md#数据库空间database-space)，请在创建表时将空间传递给 `schema(_：space：)`。例如。
 
 ```swift
 try await db.schema("planets", space: "mirror_universe")

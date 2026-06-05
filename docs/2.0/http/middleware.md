@@ -154,7 +154,7 @@ authed.get("secure") { req in
 }
 ```
 
-Anything added to the `authed` group must pass through `AuthMiddleware`. Because of this, we can assume all traffic to `/secure` has been authorized. Learn more in [Routing](../routing/group).
+Anything added to the `authed` group must pass through `AuthMiddleware`. Because of this, we can assume all traffic to `/secure` has been authorized. Learn more in [Routing](../routing/group.md).
 
 ## Configuration
 

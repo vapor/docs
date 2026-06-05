@@ -37,7 +37,7 @@ fly auth login
 创建新项目的最简单方式是使用模板。你可以使用 GitHub 模板或 Vapor 工具箱创建模板。如果你需要一个数据库，推荐使用 Fluent 和 Postgres；Fly 可以轻松创建一个 Postgres 数据库，以便连接你的应用程序（请参阅下面的[具体章节](#postgres)）。
 
 #### 使用 Vapor 工具箱
-首先，确保你已安装了 Vapor 工具箱（请参见 [macOS](../install/macos.zh.md#install-toolbox) 或 [Linux](../install/linux.zh.md#install-toolbox) 的安装说明）。使用以下命令创建新应用程序，替换 `app-name` 为所需的应用程序名称：
+首先，确保你已安装了 Vapor 工具箱（请参见 [macOS](../install/macos.zh.md#安装工具箱install-toolbox) 或 [Linux](../install/linux.zh.md#安装工具箱install-toolbox) 的安装说明）。使用以下命令创建新应用程序，替换 `app-name` 为所需的应用程序名称：
 ```bash
 vapor new app-name
 ```

@@ -35,13 +35,13 @@ init(name: String, starID: Star.IDValue) {
 }
 ```
 
-El parámetro `key` define la clave del campo en el que se guarda el identificador del parent. Asumiendo que `Star` tiene un identificador `UUID`, esta relación `@Parent` es compatible con la siguiente [definición de campo](schema.md#field).
+El parámetro `key` define la clave del campo en el que se guarda el identificador del parent. Asumiendo que `Star` tiene un identificador `UUID`, esta relación `@Parent` es compatible con la siguiente [definición de campo](schema.md#campo).
 
 ```swift
 .field("star_id", .uuid, .required, .references("star", "id"))
 ```
 
-Cabe destacar que la restricción (constraint) [`.references`](schema.md#field-constraint) es opcional. Ver [schema](schema.md) para más información.
+Cabe destacar que la restricción (constraint) [`.references`](schema.md#restricciones-de-campo) es opcional. Ver [schema](schema.md) para más información.
 
 ### Optional Parent
 

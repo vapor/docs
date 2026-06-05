@@ -35,13 +35,13 @@ init(name: String, starID: Star.IDValue) {
 }
 ```
 
-`key` パラメータは、親の識別子を保存するために使用するフィールドキーを定義します。`Star` が `UUID` 識別子を持つと仮定すると、この `@Parent` リレーションは以下の [field definition](schema.md#field) と互換性があります。
+`key` パラメータは、親の識別子を保存するために使用するフィールドキーを定義します。`Star` が `UUID` 識別子を持つと仮定すると、この `@Parent` リレーションは以下の [field definition](schema.md#フィールド-field) と互換性があります。
 
 ```swift
 .field("star_id", .uuid, .required, .references("star", "id"))
 ```
 
-[`.references`](schema.md#field-constraint) 制約はオプションであることに注意してください。詳細については [schema](schema.md) を参照してください。
+[`.references`](schema.md#フィールド制約-field-constraint) 制約はオプションであることに注意してください。詳細については [schema](schema.md) を参照してください。
 
 ### Optional Parent
 
@@ -92,7 +92,7 @@ let planet = Planet(id: planetData.id, name: planetData.name, starID: planetData
 try await planet.create(on: req.db)
 ```
 
-同じことがクライアントにモデルを返す際にも適用されます。クライアントはネストされた構造を処理できる必要があるか、返す前にモデルを DTO に変換する必要があります。DTO の詳細については、[Model ドキュメント](model.md#data-transfer-object) を参照してください。
+同じことがクライアントにモデルを返す際にも適用されます。クライアントはネストされた構造を処理できる必要があるか、返す前にモデルを DTO に変換する必要があります。DTO の詳細については、[Model ドキュメント](model.md#データ転送オブジェクト-data-transfer-object) を参照してください。
 
 ## Optional Child
 
@@ -203,7 +203,7 @@ final class PlanetTag: Model {
 
 関連付けされる各モデルに対して少なくとも2つの `@Parent` リレーションを含むモデルは、ピボットとして使用できます。モデルは ID などの追加のプロパティを含むことができ、他の `@Parent` リレーションを含むこともできます。
 
-ピボットモデルに [unique](schema.md#unique) 制約を追加すると、重複エントリを防ぐのに役立ちます。詳細については [schema](schema.md) を参照してください。
+ピボットモデルに [unique](schema.md#ユニーク-unique) 制約を追加すると、重複エントリを防ぐのに役立ちます。詳細については [schema](schema.md) を参照してください。
 
 ```swift
 // 重複リレーションを禁止

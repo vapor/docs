@@ -37,7 +37,7 @@ Prima di fare il deploy su Fly, devi assicurarti di avere un progetto Vapor con 
 Il modo più semplice per creare un nuovo progetto è partire da un template. Puoi crearne uno usando i template GitHub o il Vapor toolbox. Se hai bisogno di un database, è consigliato usare Fluent con Postgres; Fly semplifica la creazione di un database Postgres a cui collegare le tue app (consulta la [sezione dedicata](#configurare-postgres) qui sotto).
 
 #### Usando il Vapor toolbox
-Prima di tutto, assicurati di aver installato il Vapor toolbox (consulta le istruzioni per [macOS](../install/macos.it.md#install-toolbox) o [Linux](../install/linux.it.md#install-toolbox)).
+Prima di tutto, assicurati di aver installato il Vapor toolbox (consulta le istruzioni per [macOS](../install/macos.it.md#installare-la-toolbox) o [Linux](../install/linux.it.md#installare-la-toolbox)).
 Crea la tua nuova app con il seguente comando, sostituendo `app-name` con il nome che desideri:
 ```bash
 vapor new app-name

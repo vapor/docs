@@ -11,7 +11,7 @@ try await database.schema("planets")
     .create()
 ```
 
-`SchemaBuilder`を作成するには、データベースで`schema`メソッドを使用します。影響を与えたいテーブルまたはコレクションの名前を渡します。モデルのスキーマを編集する場合は、この名前がモデルの[`schema`](model.md#schema)と一致することを確認してください。
+`SchemaBuilder`を作成するには、データベースで`schema`メソッドを使用します。影響を与えたいテーブルまたはコレクションの名前を渡します。モデルのスキーマを編集する場合は、この名前がモデルの[`schema`](model.md#スキーマ-schema)と一致することを確認してください。
 
 ## アクション {#actions}
 
@@ -121,7 +121,7 @@ database.schema("planets").delete()
 .updateField("age", .double)
 ```
 
-高度なスキーマ更新の詳細については、[advanced](advanced.md#sql)を参照してください。
+高度なスキーマ更新の詳細については、[advanced](advanced.md#sql-sql)を参照してください。
 
 ### フィールドの削除 {#delete-field}
 
@@ -416,7 +416,7 @@ struct UserNameMigration: AsyncMigration {
 
 ## モデルスペースの設定 {#setting-model-space}
 
-[モデルのスペース](model.md#database-space)を定義するには、テーブルを作成するときに`schema(_:space:)`にスペースを渡します。例：
+[モデルのスペース](model.md#データベース空間-database-space)を定義するには、テーブルを作成するときに`schema(_:space:)`にスペースを渡します。例：
 
 ```swift
 try await db.schema("planets", space: "mirror_universe")

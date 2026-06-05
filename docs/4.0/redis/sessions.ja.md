@@ -1,6 +1,6 @@
 # Redis & セッション {#redis-sessions}
 
-Redisは[セッションデータ](../advanced/sessions.md#session-data)（ユーザー認証情報など）をキャッシュするためのストレージプロバイダーとして機能します。
+Redisは[セッションデータ](../advanced/sessions.md#セッションデータ-session-data)（ユーザー認証情報など）をキャッシュするためのストレージプロバイダーとして機能します。
 
 カスタムの[`RedisSessionsDelegate`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate)が提供されない場合、デフォルトのものが使用されます。
 

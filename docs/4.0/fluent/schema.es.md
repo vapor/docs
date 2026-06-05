@@ -11,7 +11,7 @@ try await database.schema("planets")
     .create()
 ```
 
-Para crear un `SchemaBuilder`, usa el método `schema` en "database". Pásale el nombre de la tabla o colección que quieras afectar. Si estás editando el esquema para un modelo, asegúrate de que este nombre coincida con el [`schema`](model.md#schema) del modelo.
+Para crear un `SchemaBuilder`, usa el método `schema` en "database". Pásale el nombre de la tabla o colección que quieras afectar. Si estás editando el esquema para un modelo, asegúrate de que este nombre coincida con el [`schema`](model.md#esquema) del modelo.
 
 ## Acciones
 
@@ -416,7 +416,7 @@ Cabe destacar que para que esta migración funcione, necesitamos poder referenci
 
 ## Configurando el Espacio del Modelo
 
-Para definir el [espacio para un modelo](model.md#database-space), pasa el espacio al `schema(_:space:)` cuando vayas a crear la tabla. Por ejemplo:
+Para definir el [espacio para un modelo](model.md#espacio-de-bbdd), pasa el espacio al `schema(_:space:)` cuando vayas a crear la tabla. Por ejemplo:
 
 ```swift
 try await db.schema("planets", space: "mirror_universe")

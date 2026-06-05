@@ -1,6 +1,6 @@
 # Redis & Sessioni
 
-Redis può fungere da provider di archiviazione per il caching dei [dati di sessione](../advanced/sessions.md#session-data) come le credenziali degli utenti.
+Redis può fungere da provider di archiviazione per il caching dei [dati di sessione](../advanced/sessions.md#dati-di-sessione) come le credenziali degli utenti.
 
 Se non viene fornito un [`RedisSessionsDelegate`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate) personalizzato, sarà utilizzato quello di default.
 

@@ -442,7 +442,7 @@ Incluso si la estructura del DTO es idéntica a la conformidad `Codable` del mod
 
 ## Alias
 
-El protocolo `ModelAlias` te permite identificar de manera unívoca un modelo unido varias veces en una consulta. Para más información, consulta [uniones](query.md#join). 
+El protocolo `ModelAlias` te permite identificar de manera unívoca un modelo unido varias veces en una consulta. Para más información, consulta [uniones](query.md#uniones). 
 
 ## Guardar
 

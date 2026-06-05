@@ -9,7 +9,7 @@ app.get("hello", ":name") { req -> String in
 }
 ```
 
-它是进入 Vapor 的主要窗口。包含了用于 [请求体](../basics/content.md)，[查询参数](../basics/content.md#query)，[日志记录器](../basics/logging.md)，[HTTP 客户端](../basics/client.md)，[认证器](../security/authentication.md), 等的 API。 通过请求访问这些功能可以将计算保持在正确的事件循环中，并允许在测试中进行模拟。你甚至可以通过扩展将自己的[服务](../advanced/services.md)添加到 `Request` 中。
+它是进入 Vapor 的主要窗口。包含了用于 [请求体](../basics/content.md)，[查询参数](../basics/content.md#查询query)，[日志记录器](../basics/logging.md)，[HTTP 客户端](../basics/client.md)，[认证器](../security/authentication.md), 等的 API。 通过请求访问这些功能可以将计算保持在正确的事件循环中，并允许在测试中进行模拟。你甚至可以通过扩展将自己的[服务](../advanced/services.md)添加到 `Request` 中。
 
 完整的 `Request` API 文档可以在[这里](https://api.vapor.codes/vapor/documentation/vapor/request)找到。
 
@@ -23,7 +23,7 @@ app.get("hello", ":name") { req -> String in
 
 ## Cookies
 
-虽然最常见的 cookie 应用是通过内置的[会话](../advanced/sessions.md#configuration)进行的，但你也可以通过 `Request.cookies` 直接访问 cookie。
+虽然最常见的 cookie 应用是通过内置的[会话](../advanced/sessions.md#配置configuration)进行的，但你也可以通过 `Request.cookies` 直接访问 cookie。
 
 ```swift
 app.get("my-cookie") { req -> String in

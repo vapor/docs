@@ -1,6 +1,6 @@
 # Redis & Sessies
 
-Redis kan fungeren als een opslagprovider voor het cachen van [sessie-gegevens](../advanced/sessions.md#session-data) zoals gebruikersgegevens.
+Redis kan fungeren als een opslagprovider voor het cachen van [sessie-gegevens](../advanced/sessions.md#sessiegegevens) zoals gebruikersgegevens.
 
 Als er geen aangepaste [`RedisSessionsDelegate`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate) is opgegeven, zal er een standaard worden gebruikt.
 

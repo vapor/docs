@@ -7,7 +7,7 @@ let package = Package(
         .macOS(.v13)
     ],
     dependencies: [
-        .package(path: "../../BH/kiln"),
+        .package(url: "https://github.com/brokenhandsio/kiln.git", branch: "main"),
     ],
     targets: [
         .executableTarget(

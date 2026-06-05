@@ -329,7 +329,7 @@ app.migrations.add(User.Migration())
 ```
 
 !!! tip "Suggerimento"
-    Poiché gli indirizzi email non sono sensibili alle maiuscole e alle minuscole, puoi aggiungere un [`Middleware`](../fluent/model.md#lifecycle) che coercizzi l'indirizzo email in minuscolo prima di salvarlo nella base dati. Tieni presente, però, che `ModelAuthenticatable` usa un confronto sensibile alle maiuscole e alle minuscole, quindi se fai questo devi assicurarti che l'input dell'utente sia tutto minuscolo, o con la coercizione delle maiuscole nel client o con un autenticatore personalizzato.
+    Poiché gli indirizzi email non sono sensibili alle maiuscole e alle minuscole, puoi aggiungere un [`Middleware`](../fluent/model.md#ciclo-di-vita) che coercizzi l'indirizzo email in minuscolo prima di salvarlo nella base dati. Tieni presente, però, che `ModelAuthenticatable` usa un confronto sensibile alle maiuscole e alle minuscole, quindi se fai questo devi assicurarti che l'input dell'utente sia tutto minuscolo, o con la coercizione delle maiuscole nel client o con un autenticatore personalizzato.
 
 La prima cosa di cui hai bisogno è un endpoint per creare nuovi utenti. Useremo `POST /users`. Crea una struttura [Content](../basics/content.md) che rappresenti i dati che questo endpoint si aspetta.
 
@@ -750,7 +750,7 @@ Questi middleware svolgono le seguenti funzioni:
 * l'autenticatore di sessione prende la sessione e verifica se esiste un utente autenticato per quella sessione. In caso affermativo, il middleware autentica la richiesta. Nella risposta, l'autenticatore di sessione vede se la richiesta ha un utente autenticato e lo salva nella sessione, in modo che sia autenticato nella richiesta successiva.
 
 !!! note "Nota"
-    Di default, il cookie di sessione non è impostato su `secure` e/o `httpOnly`. Per ulteriori informazioni su come configurare i cookie, consultare le [API di sessione](../advanced/sessions.md#configuration) di Vapor.
+    Di default, il cookie di sessione non è impostato su `secure` e/o `httpOnly`. Per ulteriori informazioni su come configurare i cookie, consultare le [API di sessione](../advanced/sessions.md#configurazione) di Vapor.
 
 ### Protezione delle Route
 
@@ -882,7 +882,7 @@ Conformando il payload a `Authenticatable` e `JWTPayload`, puoi generare un aute
 let secure = app.grouped(SessionToken.authenticator(), SessionToken.guardMiddleware())
 ```
 
-L'aggiunta dell'opzionale [middleware di guardia](#guard-middleware) richiede che l'autorizzazione sia riuscita.
+L'aggiunta dell'opzionale [middleware di guardia](#middleware-di-guardia) richiede che l'autorizzazione sia riuscita.
 
 All'interno delle route protette, si può accedere al payload JWT autenticato usando `req.auth`.
 

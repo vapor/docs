@@ -11,7 +11,7 @@ let query = try Post.makeQuery()
 ```
 
 You can also create queries from an instance. This is especially useful if you need to use a special
-database connection (like for [transactions](database.md#Transactions)) to save or update a model.
+database connection (like for [transactions](database.md#transactions)) to save or update a model.
 
 ```swift
 guard let post = try Post.find(42) else { ... }

@@ -1,6 +1,6 @@
 # Redis y Sesiones
 
-Redis puede actuar como un proveedor de almacenamiento para el caché de [datos de sesión](../advanced/sessions.md#session-data) como las credenciales del usuario.
+Redis puede actuar como un proveedor de almacenamiento para el caché de [datos de sesión](../advanced/sessions.md#datos-de-sesión) como las credenciales del usuario.
 
 Si no se proporciona un [`RedisSessionsDelegate`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate) personalizado, se usará uno predeterminado.
 
