@@ -61,7 +61,7 @@ Velden kunnen worden toegevoegd bij het maken of bijwerken van een schema.
 .field("name", .string, .required)
 ```
 
-De eerste parameter is de naam van het veld. Deze moet overeenkomen met de sleutel die gebruikt wordt op de bijbehorende model-eigenschap. De tweede parameter is het [data type](#datatype) van het veld. Tenslotte kunnen nul of meer [constraints](#field-constraint) worden toegevoegd.  
+De eerste parameter is de naam van het veld. Deze moet overeenkomen met de sleutel die gebruikt wordt op de bijbehorende model-eigenschap. De tweede parameter is het [data type](#data-type) van het veld. Tenslotte kunnen nul of meer [constraints](#field-constraint) worden toegevoegd.  
 
 ### Data Type
 

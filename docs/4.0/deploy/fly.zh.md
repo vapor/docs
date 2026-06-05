@@ -66,7 +66,7 @@ fly launch
 
 - **Name:** 你可以输入一个名称，或保留空白以获取自动生成的名称。
 - **Region:** 默认情况下，为用户当前所在区域。你可以选择使用它或列表中的任何其他区域。后期可以更改。
-- **Database:** 你可以要求 Fly 创建一个数据库与应用程序一起使用。如果你愿意，你始终可以使用 `fly pg create` 和 `fly pg attach` 命令进行相同的操作（详细信息，请参阅[配置 Postgres 部分](#postgres)。
+- **Database:** 你可以要求 Fly 创建一个数据库与应用程序一起使用。如果你愿意，你始终可以使用 `fly pg create` 和 `fly pg attach` 命令进行相同的操作（详细信息，请参阅[配置 Postgres 部分](#配置-postgres)。
 
 `fly launch` 命令会自动创建一个 `fly.toml` 文件。它包含私有/公共端口映射、健康检查参数等设置。如果你刚刚使用 `vapor new` 从头开始创建了一个新项目，则默认的 `fly.toml` 文件不需要更改。如果你有一个现有的项目，则 `fly.toml` 可能只需要进行轻微的更改。你可以在 [fly.toml 文档](https://fly.io/docs/reference/configuration/)中找到更多信息。
 

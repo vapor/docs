@@ -52,7 +52,7 @@ let protected = app.grouped(UserAuthenticator())
     .grouped(User.guardMiddleware())
 ```
 
-Die Authentifizierung wird nicht von der Authentifikator-Middleware durchgeführt, um die Komposition von Authentifikatoren zu ermöglichen. Lies unten mehr über [composition](#composition) weiter.
+Die Authentifizierung wird nicht von der Authentifikator-Middleware durchgeführt, um die Komposition von Authentifikatoren zu ermöglichen. Lies unten mehr über [composition](#kombinierung) weiter.
 
 ## Basis
 

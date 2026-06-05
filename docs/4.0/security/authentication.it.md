@@ -13,7 +13,7 @@ L'autenticazione viene implementata creando un `Authenticator` che contiene la l
 |`RequestAuthenticator`/`AsyncRequestAuthenticator`|Autenticatore di base in grado di creare middleware.|
 |[`BasicAuthenticator`/`AsyncBasicAuthenticator`](#basic)|Autenticatore che verifica l'header Basic.|
 |[`BearerAuthenticator`/`AsyncBearerAuthenticator`](#bearer)|Autenticatore che verifica l'header Bearer.|
-|[`CredentialsAuthenticator`/`AsyncCredentialsAuthenticator`](#credentials)|Autenticatore che verifica le credenziali decodificate dal contenuto della richiesta.|
+|`CredentialsAuthenticator`/`AsyncCredentialsAuthenticator`|Autenticatore che verifica le credenziali decodificate dal contenuto della richiesta.|
 
 Se l'autenticazione ha successo, l'autenticatore aggiunge l'utente verificato a `req.auth`. Si può quindi accedere a questo utente usando `req.auth.get(_:)` nelle route protette dall'autenticatore. Se l'autenticazione fallisce, l'utente non viene aggiunto a `req.auth` e qualsiasi tentativo di accesso fallirà.
 
@@ -54,7 +54,7 @@ let protected = app.grouped(UserAuthenticator())
     .grouped(User.guardMiddleware())
 ```
 
-La richiesta di autenticazione non viene effettuata dal middleware dell'autenticatore per consentire la composizione degli autenticatori. Per saperne di più sulla [composizione](#composition) leggi più sotto.
+La richiesta di autenticazione non viene effettuata dal middleware dell'autenticatore per consentire la composizione degli autenticatori. Per saperne di più sulla [composizione](#composizione) leggi più sotto.
 
 ## Basic
 

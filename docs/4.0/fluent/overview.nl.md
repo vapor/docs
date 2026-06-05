@@ -225,7 +225,7 @@ De eerste vereiste van het `Model` protocol is de statische string `schema`.
 static let schema = "galaxies"
 ```
 
-Deze eigenschap vertelt Fluent met welke tabel of collectie het model correspondeert. Dit kan een tabel zijn die al bestaat in de database of een tabel die u gaat aanmaken met een [migratie](#migrations). Het schema is meestal `snake_case` en meervoud.
+Deze eigenschap vertelt Fluent met welke tabel of collectie het model correspondeert. Dit kan een tabel zijn die al bestaat in de database of een tabel die u gaat aanmaken met een [migratie](#migraties). Het schema is meestal `snake_case` en meervoud.
 
 ### Identifier
 
@@ -494,7 +494,7 @@ app.migrations.add(CreateGalaxy())
 app.migrations.add(CreateStar())
 ```
 
-Omdat migraties in volgorde worden uitgevoerd, en `CreateStar` verwijst naar het schema van de melkwegstelsels, is volgorde belangrijk. Tenslotte, [voer de migraties uit](#migrate) om de database voor te bereiden.
+Omdat migraties in volgorde worden uitgevoerd, en `CreateStar` verwijst naar het schema van de melkwegstelsels, is volgorde belangrijk. Tenslotte, [voer de migraties uit](#migreren) om de database voor te bereiden.
 
 Voeg een route toe voor het maken van nieuwe sterren.
 

@@ -8,7 +8,7 @@ Als er geen aangepaste [`RedisSessionsDelegate`](https://api.vapor.codes/redis/d
 
 ### SessionID Creatie
 
-Tenzij je de [`makeNewID()`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/makenewid()-3hyne) methode implementeert in [je eigen `RedisSessionsDelegate`](#RedisSessionsDelegate), zullen alle [`SessionID`](https://api.vapor.codes/vapor/documentation/vapor/sessionid) waarden aangemaakt worden door het volgende te doen:
+Tenzij je de [`makeNewID()`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/makenewid()-3hyne) methode implementeert in [je eigen `RedisSessionsDelegate`](#redissessionsdelegate), zullen alle [`SessionID`](https://api.vapor.codes/vapor/documentation/vapor/sessionid) waarden aangemaakt worden door het volgende te doen:
 
 1. Genereer 32 bytes van willekeurige tekens
 2. base64 codeer de waarde

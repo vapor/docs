@@ -119,7 +119,7 @@ app.on(.OPTIONS, "foo", "bar", "baz") { req in
 
 Die Endpunktmethoden akzeptieren eine Vielzahl von Argumenten. Es gibt vier Arten davon
 
-- [Konstanten](#constant)
+- [Konstanten](#konstante)
 - [Parameter](#parameter)
 - [Sternchen](#sternchen)
 - [Doppelsternchen](#doppelsternchen)

@@ -2,7 +2,7 @@
 
 Fluent's [model API](model.md) helpt u bij het maken en onderhouden van verwijzingen tussen uw modellen door middel van relaties. Drie typen relaties worden ondersteund:
 
-- [Parent](#parent) / [Child](#optional-child) (Eén-op-één)
+- [Parent](#parent) / [Child](#optionele-child) (Eén-op-één)
 - [Parent](#parent) / [Children](#children) (Eén-op-veel)
 - [Siblings](#siblings) (Veel-op-veel)
 

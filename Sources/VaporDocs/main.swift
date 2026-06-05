@@ -718,6 +718,8 @@ let site = KilnSite(
 
 let outputDirectory = "site"
 print("Building Vapor docs into ./\(outputDirectory) …")
-try await Kiln.build(site, contentDirectory: "docs", outputDirectory: outputDirectory)
+// `.error` fails the build (non-zero exit) on any broken internal link, so CI
+// catches them.
+try await Kiln.build(site, contentDirectory: "docs", outputDirectory: outputDirectory, linkChecking: .error)
 
 print("Done.")

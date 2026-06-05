@@ -40,7 +40,7 @@ import JWT
 app.jwt.signers.use(.hs256(key: "secret"))
 ```
 
-De `HS256` ondertekenaar heeft een sleutel nodig om te initialiseren. In tegenstelling tot andere ondertekenaars, wordt deze sleutel gebruikt voor zowel het ondertekenen _als_ het verifiëren van tokens. Hieronder vindt u meer informatie over de beschikbare [algoritmen](#algoritmen).
+De `HS256` ondertekenaar heeft een sleutel nodig om te initialiseren. In tegenstelling tot andere ondertekenaars, wordt deze sleutel gebruikt voor zowel het ondertekenen _als_ het verifiëren van tokens. Hieronder vindt u meer informatie over de beschikbare [algoritmen](#algoritmes).
 
 ### Payload
 
