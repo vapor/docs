@@ -1,5 +1,5 @@
 # Build the static site with Kiln, then serve it with nginx.
-FROM swift:6.2 AS build
+FROM swift:6.3 AS build
 WORKDIR /docs
 COPY . .
 # Generates ./site (and copies the Google verification file into it).
