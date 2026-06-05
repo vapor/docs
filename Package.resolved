@@ -1,6 +1,15 @@
 {
-  "originHash" : "3237db62d53109795e72cd9c9080db53b6fdcb2e99eee26d59b14603432662e5",
+  "originHash" : "ff764e04a814dee77aa1ddf13c67e0d13346467137fb54699e477d3bbf7ca297",
   "pins" : [
+    {
+      "identity" : "kiln",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/brokenhandsio/kiln.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "f2d1e95cd8ffb92b4372f3573d333894c9b54e42"
+      }
+    },
     {
       "identity" : "leaf-kit",
       "kind" : "remoteSourceControl",
@@ -34,7 +43,7 @@
       "location" : "https://github.com/swiftlang/swift-cmark.git",
       "state" : {
         "branch" : "gfm",
-        "revision" : "e165aa4653ec7c826748f3a18842979dc6673349"
+        "revision" : "8bab380ed057325dd5ed496fd97fd60f554d8656"
       }
     },
     {
