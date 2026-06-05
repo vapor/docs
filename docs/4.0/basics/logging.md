@@ -24,7 +24,7 @@ The request logger includes a unique UUID identifying the incoming request to ma
 ```
 
 !!! info
-	Logger metadata will only be shown in debug log level or lower.
+    Logger metadata will only be shown in debug log level or lower.
 
 ### Application
 

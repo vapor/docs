@@ -16,15 +16,15 @@ vapor new hello -n
 ```
 
 !!! tip
-	Flaga `-n` tworzy projekt z użyciem minimalistycznego szablonu, po przez odpowiadanie na wszystkie pytania nie.
+    Flaga `-n` tworzy projekt z użyciem minimalistycznego szablonu, po przez odpowiadanie na wszystkie pytania nie.
 
 !!! tip
-	Można również pobrać najnowszy szablon z GitHub bez Vapor Toolbox, klonując [repozytorium z szablonami](https://github.com/vapor/template-bare).
+    Można również pobrać najnowszy szablon z GitHub bez Vapor Toolbox, klonując [repozytorium z szablonami](https://github.com/vapor/template-bare).
 
 !!! tip
-	Vapor i szablon używają teraz domyślnie `async`/`await`.
-	Jeśli nie możesz zaktualizować systemu do macOS 12 i/lub chcesz nadal używać `EventLoopFuture`,
-	użyj flagi `--branch macos10-15`.
+    Vapor i szablon używają teraz domyślnie `async`/`await`.
+    Jeśli nie możesz zaktualizować systemu do macOS 12 i/lub chcesz nadal używać `EventLoopFuture`,
+    użyj flagi `--branch macos10-15`.
 
 Po tym jak działanie komendy zakończy się, wejdź do nowo stworzonego folderu przy użyciu:
 

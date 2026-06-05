@@ -96,7 +96,7 @@ Endpunkte können der Anwendung über die Instanz _Application_ und den Methoden
 // [controllers.swift]
 
 app.get("foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -104,14 +104,14 @@ Die Methode kann auch mit einem Rückgabewert versehen werden. Der Rückgabewert
 
 ```swift
 app.get("foo") { req -> String in
-	return "bar"
+    return "bar"
 }
 ```
 
 ```swift
 // responds to OPTIONS /foo/bar/baz
 app.on(.OPTIONS, "foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -131,7 +131,7 @@ Bei der Konstante handelt es sich um eine statische Angabe. Somit werden von der
 ```swift
 // responds to GET /foo/bar/baz
 app.get("foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -144,7 +144,7 @@ Beim Parameter handelt sich um eine variable Angabe. Somit werden jegliche Angab
 // responds to GET /foo/qux/baz
 // ...
 app.get("foo", ":bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -173,10 +173,10 @@ app.get("hello", ":name") { req -> String in
 // responds to GET /number/1337
 // ...
 app.get("number", ":x") { req -> String in 
-	guard let int = req.parameters.get("x", as: Int.self) else {
-		throw Abort(.badRequest)
-	}
-	return "\(int) is a great number"
+    guard let int = req.parameters.get("x", as: Int.self) else {
+        throw Abort(.badRequest)
+    }
+    return "\(int) is a great number"
 }
 ```
 
@@ -189,7 +189,7 @@ Für eine beliebige Angabe in einem Pfadabschnitt kann ein einfacher Asterisk an
 // responds to GET /foo/qux/baz
 // ...
 app.get("foo", "*", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -288,7 +288,7 @@ Alle Endpunktmethoden liefern ein Objekt von Typ *Route* zurück. Damit können 
 
 ```swift
 app.get("hello", ":name") { req in
-	...
+    ...
 }.description("says hello")
 ```
 

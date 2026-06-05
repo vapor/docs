@@ -206,7 +206,7 @@ import XCTVapor
 
 final class MyTests: XCTestCase {
     func testStub() throws {
-    	// Esegui il test qui.
+        // Esegui il test qui.
     }
 }
 ```

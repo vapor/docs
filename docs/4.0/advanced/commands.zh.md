@@ -34,7 +34,7 @@ swift run App serve --help
 import Vapor
 
 struct HelloCommand: AsyncCommand {
-	...
+    ...
 }
 ```
 

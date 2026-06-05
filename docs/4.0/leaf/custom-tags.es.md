@@ -5,7 +5,7 @@ Puedes crear etiquetas personalizadas de Leaf utilizando el protocolo [`LeafTag`
 Para demostrarlo, vamos a crear una etiqueta personalizada `#now` que muestra la marca de tiempo actual. La etiqueta también soportará un único parámetro opcional para especificar el formato de fecha.
 
 !!! tip "Consejo"
-	Si tu etiqueta personalizada muestra HTML, deberías hacer que tu etiqueta personalizada cumpla con `UnsafeUnescapedLeafTag` para que el HTML no se escape. Recuerda verificar o sanear cualquier entrada del usuario.
+    Si tu etiqueta personalizada muestra HTML, deberías hacer que tu etiqueta personalizada cumpla con `UnsafeUnescapedLeafTag` para que el HTML no se escape. Recuerda verificar o sanear cualquier entrada del usuario.
 
 ## `LeafTag`
 
@@ -40,7 +40,7 @@ struct NowTag: LeafTag {
             formatter.dateFormat = string
         default:
             throw NowTagError.tooManyParameters
-	    }
+        }
     
         let dateAsString = formatter.string(from: Date())
         return LeafData.string(dateAsString)

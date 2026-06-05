@@ -34,7 +34,7 @@ Puedes crear tus propios comandos creando tipos que conformen a `AsyncCommand`.
 import Vapor
 
 struct HelloCommand: AsyncCommand {
-	...
+    ...
 }
 ```
 

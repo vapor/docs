@@ -189,16 +189,16 @@ You might want to add custom human-readable errors to your `Validations` or `Val
 
 ```swift
 validations.add(
-	"name",
-	as: String.self,
-	is: !.empty,
-	customFailureDescription: "Provided name is empty!"
+    "name",
+    as: String.self,
+    is: !.empty,
+    customFailureDescription: "Provided name is empty!"
 )
 validations.add(
-	"username",
-	as: String.self,
-	is: .count(3...) && .alphanumeric,
-	customFailureDescription: "Provided username is invalid!"
+    "username",
+    as: String.self,
+    is: .count(3...) && .alphanumeric,
+    customFailureDescription: "Provided username is invalid!"
 )
 ```
 

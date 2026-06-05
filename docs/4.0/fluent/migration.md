@@ -10,7 +10,7 @@ struct MyMigration: Migration {
     }
 
     func revert(on database: any Database) -> EventLoopFuture<Void> {
-    	// Undo the change made in `prepare`, if possible.
+        // Undo the change made in `prepare`, if possible.
     }
 }
 ```
@@ -24,7 +24,7 @@ struct MyMigration: AsyncMigration {
     }
 
     func revert(on database: any Database) async throws {
-    	// Undo the change made in `prepare`, if possible.
+        // Undo the change made in `prepare`, if possible.
     }
 }
 ```

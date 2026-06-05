@@ -25,7 +25,7 @@ De verzoeklogger bevat een unieke UUID die het inkomende verzoek identificeert o
 ```
 
 !!! info
-	Logger metadata zal alleen getoond worden in debug log level of lager.
+    Logger metadata zal alleen getoond worden in debug log level of lager.
 
 ### Applicatie
 

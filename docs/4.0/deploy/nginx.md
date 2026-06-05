@@ -118,16 +118,16 @@ Nginx can also serve public files without asking your Vapor app. This can improv
 
 ```sh
 server {
-	...
+    ...
 
-	# Serve all public/static files via nginx and then fallback to Vapor for the rest
-	location / {
-		try_files $uri @proxy;
-	}
+    # Serve all public/static files via nginx and then fallback to Vapor for the rest
+    location / {
+        try_files $uri @proxy;
+    }
 
-	location @proxy {
-		...
-	}
+    location @proxy {
+        ...
+    }
 }
 ```
 

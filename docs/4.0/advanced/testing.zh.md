@@ -29,7 +29,7 @@ import XCTVapor
 
 final class MyTests: XCTestCase {
     func testStub() throws {
-    	// 在这里测试。
+        // 在这里测试。
     }
 }
 ```
@@ -70,7 +70,7 @@ try app.test(.GET, "hello") { res in
 
 ```swift
 try app.test(.POST, "todos", beforeRequest: { req in
-	try req.content.encode(["title": "Test"])
+    try req.content.encode(["title": "Test"])
 }, afterResponse: { res in
     XCTAssertEqual(res.status, .created)
     let todo = try res.content.decode(Todo.self)

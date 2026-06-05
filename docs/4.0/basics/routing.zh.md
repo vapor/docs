@@ -112,7 +112,7 @@ Hello, swift!
 ```swift
 // 响应到 GET /foo/bar/baz
 app.get("foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -122,7 +122,7 @@ app.get("foo", "bar", "baz") { req in
 
 ```swift
 app.get("foo") { req -> String in
-	return "bar"
+    return "bar"
 }
 ```
 
@@ -139,7 +139,7 @@ app.get("foo") { req -> String in
 ```swift
 // 响应到 OPTIONS /foo/bar/baz
 app.on(.OPTIONS, "foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -160,7 +160,7 @@ app.on(.OPTIONS, "foo", "bar", "baz") { req in
 ```swift
 // 响应到 GET /foo/bar/baz
 app.get("foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -173,7 +173,7 @@ app.get("foo", "bar", "baz") { req in
 // 响应到 GET /foo/qux/baz
 // ...
 app.get("foo", ":bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -186,7 +186,7 @@ app.get("foo", ":bar", "baz") { req in
 // 响应到 GET /foo/qux/baz
 // ...
 app.get("foo", "*", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -232,10 +232,10 @@ app.get("hello", ":name") { req -> String in
 // 响应到 GET /number/1337
 // ...
 app.get("number", ":x") { req -> String in 
-	guard let int = req.parameters.get("x", as: Int.self) else {
-		throw Abort(.badRequest)
-	}
-	return "\(int) is a great number"
+    guard let int = req.parameters.get("x", as: Int.self) else {
+        throw Abort(.badRequest)
+    }
+    return "\(int) is a great number"
 }
 ```
 
@@ -324,7 +324,7 @@ $ swift run App routes
 
 ```swift
 app.get("hello", ":name") { req in
-	...
+    ...
 }.description("says hello")
 ```
 

@@ -182,12 +182,12 @@ swift run App serve
 
 Es können folgende Parameter mitangegeben werden:
 
-| Name          	| Befehl         | Beschreibung                         		| Beispiel 			| 
+| Name              | Befehl         | Beschreibung                                 | Beispiel             | 
 |-----------------------|----------------|------------------------------------------------------|-------------------------------| 
-| hostname           	| -H             | Überschreibt den vordefinierten Hostname		| swift run App serve -H dev.local	|
-| port           	| -p             | Überschreibt den vordefinierten Port			| swift run App serve -p 1337	|
-| bind           	| -b             | Überschreibt den vordefinierten Hostnamen und Port	| swift run App serve -b 0.0.0.0:80	|
-| help           	| --help         | Hilfe						| swift run App serve --help	|
+| hostname               | -H             | Überschreibt den vordefinierten Hostname        | swift run App serve -H dev.local    |
+| port               | -p             | Überschreibt den vordefinierten Port            | swift run App serve -p 1337    |
+| bind               | -b             | Überschreibt den vordefinierten Hostnamen und Port    | swift run App serve -b 0.0.0.0:80    |
+| help               | --help         | Hilfe                        | swift run App serve --help    |
 
 ## Hinweis
 
@@ -201,11 +201,11 @@ app.servers.use(.http)
 import Vapor
 
 final class MyServer: Server {
-	...
+    ...
 }
 
 app.servers.use { app in
-	MyServer()
+    MyServer()
 }
 ```
 
@@ -216,7 +216,7 @@ extension Application.Servers.Provider {
     static var myServer: Self {
         .init {
             $0.servers.use { app in
-            	MyServer()
+                MyServer()
             }
         }
     }

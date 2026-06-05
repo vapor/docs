@@ -42,9 +42,9 @@ import Vapor
 
 let pass = try Bcrypt.verify("test", created: digest)
 if pass {
-	// パスワードとダイジェストが一致します。
+    // パスワードとダイジェストが一致します。
 } else {
-	// パスワードが間違っています。
+    // パスワードが間違っています。
 }
 ```
 

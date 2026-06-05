@@ -13,7 +13,7 @@ En distribuciones, selecciona Ubuntu 22.04 LTS. La siguiente guía utilizará es
 ![Distribución Ubuntu](../images/digital-ocean-distributions-ubuntu.png)
 
 !!! note "Nota"
-	Puedes seleccionar cualquier distribución de Linux con una versión compatible con Swift. Puedes consultar qué sistemas operativos son compatibles oficialmente en la página [Versiones de Swift](https://swift.org/download/#releases).
+    Puedes seleccionar cualquier distribución de Linux con una versión compatible con Swift. Puedes consultar qué sistemas operativos son compatibles oficialmente en la página [Versiones de Swift](https://swift.org/download/#releases).
 
 Después de seleccionar la distribución, elije el plan y la región del centro de datos que prefieras. Luego, configura una clave SSH para acceder al servidor después de que se cree. Finalmente, haz clic en crear Droplet y espera a que se inicie el nuevo servidor.
 
@@ -127,7 +127,7 @@ vapor new HelloWorld -n
 ```
 
 !!! tip "Consejo"
-	El indicador `-n` brinda una plantilla básica al responder automáticamente "no" a todas las preguntas.
+    El indicador `-n` brinda una plantilla básica al responder automáticamente "no" a todas las preguntas.
 
 ![Vapor Splash](../images/vapor-splash.png)
 

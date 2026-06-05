@@ -243,7 +243,7 @@ Para solicitudes más complejas, puedes proporcionar un closure llamado `beforeR
 
 ```swift
 try app.test(.POST, "todos", beforeRequest: { req in
-	try req.content.encode(["title": "Test"])
+    try req.content.encode(["title": "Test"])
 }, afterResponse: { res in
     XCTAssertEqual(res.status, .created)
     let todo = try res.content.decode(Todo.self)

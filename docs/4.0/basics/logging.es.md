@@ -24,7 +24,7 @@ El logger de la petición incluye un UUID único que identifica la petición ent
 ```
 
 !!! info "Información"
-	Los metadatos del logger solo se mostrarán en el nivel de registro de depuración (debug) o inferiores.
+    Los metadatos del logger solo se mostrarán en el nivel de registro de depuración (debug) o inferiores.
 
 ### Aplicación
 

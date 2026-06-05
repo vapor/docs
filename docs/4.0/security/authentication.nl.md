@@ -174,7 +174,7 @@ Dit protocol vereist dat je `authenticate(bearer:for:)` implementeert, dat aange
 In deze test-authenticator wordt het token getest tegen een hard gecodeerde waarde. In een echte authenticator, zou je het token kunnen verifiëren door het te vergelijken met een database of door gebruik te maken van cryptografische maatregelen, zoals wordt gedaan met JWT. Dit is waarom de `authenticate` methode je toestaat om een future terug te sturen. 
 
 !!! tip
-	Bij het implementeren van tokenverificatie is het belangrijk om rekening te houden met horizontale schaalbaarheid. Als uw applicatie veel gebruikers tegelijk moet verwerken, kan verificatie een potentieel knelpunt zijn. Bedenk hoe uw ontwerp zal schalen over meerdere instanties van uw applicatie die tegelijkertijd draaien.
+    Bij het implementeren van tokenverificatie is het belangrijk om rekening te houden met horizontale schaalbaarheid. Als uw applicatie veel gebruikers tegelijk moet verwerken, kan verificatie een potentieel knelpunt zijn. Bedenk hoe uw ontwerp zal schalen over meerdere instanties van uw applicatie die tegelijkertijd draaien.
 
 Als de authenticatie parameters correct zijn, in dit geval overeenkomend met de hard gecodeerde waarde, wordt een `Gebruiker` genaamd Vapor ingelogd. Als de authenticatie parameters niet overeenkomen, wordt er geen gebruiker ingelogd, wat betekent dat de authenticatie is mislukt. 
 

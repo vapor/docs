@@ -10,7 +10,7 @@ Puedes acceder al cliente por defecto mediante `Application`, o en un controlado
 app.client // Cliente
 
 app.get("test") { req in
-	req.client // Cliente
+    req.client // Cliente
 }
 ```
 
@@ -32,10 +32,10 @@ La API [content](content.md) de Vapor está disponible para el manejo de datos e
 
 ```swift
 let response = try await req.client.post("https://httpbin.org/status/200") { req in
-	// Codifica la cadena de consulta (query) a la petición URL.
-	try req.query.encode(["q": "test"])
+    // Codifica la cadena de consulta (query) a la petición URL.
+    try req.query.encode(["q": "test"])
 
-	// Codifica un JSON en el cuerpo de la petición.
+    // Codifica un JSON en el cuerpo de la petición.
     try req.content.encode(["hello": "world"])
     
     // Añade una cabecera de autenticación a la petición.
@@ -56,9 +56,9 @@ Si estás utilizando futuros, puedes usar `flatMapThrowing`:
 
 ```swift
 return req.client.get("https://httpbin.org/json").flatMapThrowing { res in
-	try res.content.decode(MyJSONResponse.self)
+    try res.content.decode(MyJSONResponse.self)
 }.flatMap { json in
-	// Usa JSON aquí
+    // Usa JSON aquí
 }
 ```
 

@@ -8,7 +8,7 @@ Se non hai ancora installato Swift o la Toolbox Vapor, segui la guida di install
 - [Installazione &rarr; Linux](../install/linux.md)
 
 !!! tip "Suggerimento"
-	Il template usato dalla Vapor Toolbox richiede Swift 6.0 o superiore
+    Il template usato dalla Vapor Toolbox richiede Swift 6.0 o superiore
 
 ## Nuovo Progetto
 

@@ -39,7 +39,7 @@ app.http.server.configuration.port = 1337
 ```
 
 !!! info
-	`sudo` may be required for binding to ports less than `1024`. Ports greater than `65535` are not supported. 
+    `sudo` may be required for binding to ports less than `1024`. Ports greater than `65535` are not supported. 
 
 
 The server configuration's port can be overridden by passing the `--port` (`-p`) flag to the `serve` command or by passing the `port` parameter to `app.server.start(...)`. 
@@ -209,11 +209,11 @@ Vapor's default HTTP server can be replaced by any type conforming to `Server`.
 import Vapor
 
 final class MyServer: Server {
-	...
+    ...
 }
 
 app.servers.use { app in
-	MyServer()
+    MyServer()
 }
 ```
 
@@ -224,7 +224,7 @@ extension Application.Servers.Provider {
     static var myServer: Self {
         .init {
             $0.servers.use { app in
-            	MyServer()
+                MyServer()
             }
         }
     }

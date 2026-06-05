@@ -8,7 +8,7 @@
 - [Install &rarr; Linux](../install/linux.ja.md)
 
 !!! tip
-	Vapor ツールボックスで使用されるテンプレートには Swift 6.0 以降が必要です
+    Vapor ツールボックスで使用されるテンプレートには Swift 6.0 以降が必要です
 
 ## 新規プロジェクト {#new-project}
 
@@ -19,15 +19,15 @@ vapor new hello -n
 ```
 
 !!! tip
-	`-n` フラグは、すべての質問に自動的に「いいえ」と答えることで、ベアボーンのテンプレートを提供します。
+    `-n` フラグは、すべての質問に自動的に「いいえ」と答えることで、ベアボーンのテンプレートを提供します。
 
 !!! tip
-		Vapor ツールボックスを使用せずに GitHub [テンプレートリポジトリ](https://github.com/vapor/template-bare)をクローンして最新のテンプレートを取得することもできます。
+        Vapor ツールボックスを使用せずに GitHub [テンプレートリポジトリ](https://github.com/vapor/template-bare)をクローンして最新のテンプレートを取得することもできます。
 
 !!! tip
-	Vapor とテンプレートは、デフォルトで `async`/`await` を使用します。
-	macOS 12 にアップデートできない、または `EventLoopFuture` を継続して使用する必要がある場合は、
-	`--branch macos10-15` フラグを使います。
+    Vapor とテンプレートは、デフォルトで `async`/`await` を使用します。
+    macOS 12 にアップデートできない、または `EventLoopFuture` を継続して使用する必要がある場合は、
+    `--branch macos10-15` フラグを使います。
 
 コマンドが完了したら、新しく作成されたフォルダに移動します。
 

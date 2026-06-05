@@ -5,7 +5,7 @@
 これを実際に試してみるために、現在のタイムスタンプを表示するカスタムタグ `#now` を作成してみましょう。このタグは、日付形式を指定するためのオプションのパラメータもサポートします。
 
 !!! tip
-	もしカスタムタグが HTML をレンダリングする場合は、HTML がエスケープされないように、`UnsafeUnescapedLeafTag` に準拠させる必要があります。ユーザー入力のチェックやサニタイズを忘れないようにしましょう。
+    もしカスタムタグが HTML をレンダリングする場合は、HTML がエスケープされないように、`UnsafeUnescapedLeafTag` に準拠させる必要があります。ユーザー入力のチェックやサニタイズを忘れないようにしましょう。
 
 ## `LeafTag`
 
@@ -40,7 +40,7 @@ struct NowTag: LeafTag {
             formatter.dateFormat = string
         default:
             throw NowTagError.tooManyParameters
-	    }
+        }
     
         let dateAsString = formatter.string(from: Date())
         return LeafData.string(dateAsString)

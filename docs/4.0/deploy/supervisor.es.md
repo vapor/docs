@@ -69,4 +69,4 @@ supervisorctl start hello
 ```
 
 !!! note "Nota"
-	El comando `add` puede haber iniciado ya tu aplicación.
+    El comando `add` puede haber iniciado ya tu aplicación.

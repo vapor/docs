@@ -104,7 +104,7 @@ Las rutas se pueden registrar directamente en tu `Application` utilizando varios
 ```swift
 // responde a GET /foo/bar/baz
 app.get("foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -114,7 +114,7 @@ Puedes especificar el tipo de retorno de una ruta usando `-> T` antes de `in`. E
 
 ```swift
 app.get("foo") { req -> String in
-	return "bar"
+    return "bar"
 }
 ```
 
@@ -131,7 +131,7 @@ Además de los métodos auxiliares de HTTP, existe una función `on` que acepta 
 ```swift
 // responde a OPTIONS /foo/bar/baz
 app.on(.OPTIONS, "foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -151,7 +151,7 @@ Este es un componente de ruta estático. Solo permitirá peticiones con una cade
 ```swift
 // responde a GET /foo/bar/baz
 app.get("foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -164,7 +164,7 @@ Este es un componente de ruta dinámico. Se permitirá cualquier cadena en esta 
 // responde a GET /foo/qux/baz
 // ...
 app.get("foo", ":bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -177,7 +177,7 @@ Este es muy similar a parámetro, excepto que el valor se descarta. Este compone
 // responde a GET /foo/qux/baz
 // ...
 app.get("foo", "*", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -221,10 +221,10 @@ app.get("hello", ":name") { req -> String in
 // responde a GET /number/1337
 // ...
 app.get("number", ":x") { req -> String in 
-	guard let int = req.parameters.get("x", as: Int.self) else {
-		throw Abort(.badRequest)
-	}
-	return "\(int) is a great number"
+    guard let int = req.parameters.get("x", as: Int.self) else {
+        throw Abort(.badRequest)
+    }
+    return "\(int) is a great number"
 }
 ```
 
@@ -316,7 +316,7 @@ Todos los registro de métodos de rutas retornan la ruta creada (`Route`). Esto 
 
 ```swift
 app.get("hello", ":name") { req in
-	...
+    ...
 }.description("says hello")
 ```
 

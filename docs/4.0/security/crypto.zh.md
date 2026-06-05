@@ -42,9 +42,9 @@ import Vapor
 
 let pass = try Bcrypt.verify("test", created: digest)
 if pass {
-	// 密码和摘要匹配。
+    // 密码和摘要匹配。
 } else {
-	// 错误密码。
+    // 错误密码。
 }
 ```
 
@@ -95,4 +95,4 @@ let codes = hotp.generate(counter: 25, range: 2)
 上面的示例允许边距为2，这意味着 HOTP 将计算计数器值为`23...27`，所有这些代码都会被返回。
 
 !!! warning "警告"
-	注意：使用的误差范围越大，攻击者采取行动的时间和自由度就越多，从而降低了算法的安全性。
+    注意：使用的误差范围越大，攻击者采取行动的时间和自由度就越多，从而降低了算法的安全性。

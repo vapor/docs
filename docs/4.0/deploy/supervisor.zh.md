@@ -69,4 +69,4 @@ supervisorctl start hello
 ```
 
 !!! note "注意" 
-	`add` 命令可能已经启动了你的应用程序。
+    `add` 命令可能已经启动了你的应用程序。

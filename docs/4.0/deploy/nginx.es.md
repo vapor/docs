@@ -118,16 +118,16 @@ Nginx también puede servir ficheros públicos sin preguntar a tu aplicación de
 
 ```sh
 server {
-	...
+    ...
 
-	# Sirve todos los ficheros públicos/estáticos via nginx y recurre a Vapor para el resto
-	location / {
-		try_files $uri @proxy;
-	}
+    # Sirve todos los ficheros públicos/estáticos via nginx y recurre a Vapor para el resto
+    location / {
+        try_files $uri @proxy;
+    }
 
-	location @proxy {
-		...
-	}
+    location @proxy {
+        ...
+    }
 }
 ```
 

@@ -40,7 +40,7 @@ struct NowTag: LeafTag {
             formatter.dateFormat = string
         default:
             throw NowTagError.tooManyParameters
-	    }
+        }
     
         let dateAsString = formatter.string(from: Date())
         return LeafData.string(dateAsString)

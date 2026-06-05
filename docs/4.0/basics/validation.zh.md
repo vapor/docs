@@ -192,16 +192,16 @@ validations.add(
 
 ```swift
 validations.add(
-	"name",
-	as: String.self,
-	is: !.empty,
-	customFailureDescription: "Provided name is empty!"
+    "name",
+    as: String.self,
+    is: !.empty,
+    customFailureDescription: "Provided name is empty!"
 )
 validations.add(
-	"username",
-	as: String.self,
-	is: .count(3...) && .alphanumeric,
-	customFailureDescription: "Provided username is invalid!"
+    "username",
+    as: String.self,
+    is: .count(3...) && .alphanumeric,
+    customFailureDescription: "Provided username is invalid!"
 )
 ```
 

@@ -118,16 +118,16 @@ Nginx può anche servire file pubblici senza coinvolgere la tua app Vapor. Quest
 
 ```sh
 server {
-	...
+    ...
 
-	# Serve tutti i file pubblici/statici tramite nginx e poi ricade su Vapor per il resto
-	location / {
-		try_files $uri @proxy;
-	}
+    # Serve tutti i file pubblici/statici tramite nginx e poi ricade su Vapor per il resto
+    location / {
+        try_files $uri @proxy;
+    }
 
-	location @proxy {
-		...
-	}
+    location @proxy {
+        ...
+    }
 }
 ```
 

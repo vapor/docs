@@ -39,7 +39,7 @@ Standaard zal Vapor `vapor_session` gebruiken als cookie naam.
 Sessie stuurprogramma's zijn verantwoordelijk voor het opslaan en ophalen van sessie gegevens op basis van een identifier. U kunt aangepaste stuurprogramma's maken door te voldoen aan het `SessionDriver` protocol.
 
 !!! warning "Waarschuwing"
-	Het sessie stuurprogramma moet worden geconfigureerd _voordat_ u `app.sessions.middleware` toevoegt aan uw applicatie.
+    Het sessie stuurprogramma moet worden geconfigureerd _voordat_ u `app.sessions.middleware` toevoegt aan uw applicatie.
 
 ### In-Memory
 

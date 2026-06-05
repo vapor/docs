@@ -41,7 +41,7 @@ import Testing
 struct AppTests {
     @Test("Test Stub")
     func stub() async throws {
-    	// ここでテストします。
+        // ここでテストします。
     }
 }
 ```

@@ -104,7 +104,7 @@ Routes can be registered directly to your `Application` using various HTTP metho
 ```swift
 // responds to GET /foo/bar/baz
 app.get("foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -114,7 +114,7 @@ You can specify the return type of a route using `-> T` before `in`. This can be
 
 ```swift
 app.get("foo") { req -> String in
-	return "bar"
+    return "bar"
 }
 ```
 
@@ -131,7 +131,7 @@ In addition to the HTTP method helpers, there is an `on` function that accepts H
 ```swift
 // responds to OPTIONS /foo/bar/baz
 app.on(.OPTIONS, "foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -151,7 +151,7 @@ This is a static route component. Only requests with an exactly matching string 
 ```swift
 // responds to GET /foo/bar/baz
 app.get("foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -164,7 +164,7 @@ This is a dynamic route component. Any string at this position will be allowed. 
 // responds to GET /foo/qux/baz
 // ...
 app.get("foo", ":bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -177,7 +177,7 @@ This is very similar to parameter except the value is discarded. This path compo
 // responds to GET /foo/qux/baz
 // ...
 app.get("foo", "*", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -221,10 +221,10 @@ app.get("hello", ":name") { req -> String in
 // responds to GET /number/1337
 // ...
 app.get("number", ":x") { req -> String in 
-	guard let int = req.parameters.get("x", as: Int.self) else {
-		throw Abort(.badRequest)
-	}
-	return "\(int) is a great number"
+    guard let int = req.parameters.get("x", as: Int.self) else {
+        throw Abort(.badRequest)
+    }
+    return "\(int) is a great number"
 }
 ```
 
@@ -315,7 +315,7 @@ All route registration methods return the created `Route`. This allows you to ad
 
 ```swift
 app.get("hello", ":name") { req in
-	...
+    ...
 }.description("says hello")
 ```
 

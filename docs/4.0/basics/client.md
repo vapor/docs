@@ -10,7 +10,7 @@ You can get access to the default client via `Application` or in a route handler
 app.client // Client
 
 app.get("test") { req in
-	req.client // Client
+    req.client // Client
 }
 ```
 
@@ -32,10 +32,10 @@ Vapor's [content](content.md) API is available for handling data in client reque
 
 ```swift
 let response = try await req.client.post("https://httpbin.org/status/200") { req in
-	// Encode query string to the request URL.
-	try req.query.encode(["q": "test"])
+    // Encode query string to the request URL.
+    try req.query.encode(["q": "test"])
 
-	// Encode JSON to the request body.
+    // Encode JSON to the request body.
     try req.content.encode(["hello": "world"])
     
     // Add auth header to the request
@@ -56,9 +56,9 @@ If you're using futures you can use `flatMapThrowing`:
 
 ```swift
 return req.client.get("https://httpbin.org/json").flatMapThrowing { res in
-	try res.content.decode(MyJSONResponse.self)
+    try res.content.decode(MyJSONResponse.self)
 }.flatMap { json in
-	// Use JSON here
+    // Use JSON here
 }
 ```
 

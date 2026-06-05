@@ -42,9 +42,9 @@ import Vapor
 
 let pass = try Bcrypt.verify("test", created: digest)
 if pass {
-	// Wachtwoord en digest komen overeen.
+    // Wachtwoord en digest komen overeen.
 } else {
-	// Verkeerd wachtwoord.
+    // Verkeerd wachtwoord.
 }
 ```
 

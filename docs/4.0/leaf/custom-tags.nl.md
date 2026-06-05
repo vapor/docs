@@ -5,7 +5,7 @@ U kunt aangepaste Leaf tags maken met het [`LeafTag`](https://api.vapor.codes/le
 Om dit te demonstreren, laten we eens kijken naar het maken van een aangepaste tag `#now` die de huidige tijdstempel afdrukt. De tag ondersteunt ook een enkele, optionele parameter voor het specificeren van het datumformaat.
 
 !!! tip
-	Als je aangepaste tag HTML rendert, moet je je tag conformeren aan `UnsafeUnescapedLeafTag` zodat de HTML niet ge-escaped wordt. Vergeet niet om alle gebruikersinvoer te controleren of te zuiveren.
+    Als je aangepaste tag HTML rendert, moet je je tag conformeren aan `UnsafeUnescapedLeafTag` zodat de HTML niet ge-escaped wordt. Vergeet niet om alle gebruikersinvoer te controleren of te zuiveren.
 
 ## `LeafTag`
 
@@ -40,7 +40,7 @@ struct NowTag: LeafTag {
             formatter.dateFormat = string
         default:
             throw NowTagError.tooManyParameters
-	    }
+        }
     
         let dateAsString = formatter.string(from: Date())
         return LeafData.string(dateAsString)

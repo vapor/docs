@@ -10,7 +10,7 @@ Je kunt toegang krijgen tot de standaard client via `Application` of in een rout
 app.client // Client
 
 app.get("test") { req in
-	req.client // Client
+    req.client // Client
 }
 ```
 
@@ -32,10 +32,10 @@ Vapor's [content](./content.md) API is beschikbaar voor het verwerken van gegeve
 
 ```swift
 let response = try await req.client.post("https://httpbin.org/status/200") { req in
-	// Encodeer de querystring naar de URL van het verzoek.
-	try req.query.encode(["q": "test"])
+    // Encodeer de querystring naar de URL van het verzoek.
+    try req.query.encode(["q": "test"])
 
-	// Encodeer JSON naar de request body.
+    // Encodeer JSON naar de request body.
     try req.content.encode(["hello": "world"])
     
     // Voeg de auth header toe aan het verzoek.
@@ -56,9 +56,9 @@ Als je futures gebruikt, kun je `flatMapThrowing` gebruiken:
 
 ```swift
 return req.client.get("https://httpbin.org/json").flatMapThrowing { res in
-	try res.content.decode(MyJSONResponse.self)
+    try res.content.decode(MyJSONResponse.self)
 }.flatMap { json in
-	// Gebruik JSON hier
+    // Gebruik JSON hier
 }
 ```
 

@@ -213,7 +213,7 @@ var updatedAt: Date?
 
 |格式化|描述|类型|
 |-|-|-|
-|`.default`|对特定数据库使用有效 `datetime` 的编码。	|Date|
+|`.default`|对特定数据库使用有效 `datetime` 的编码。    |Date|
 |`.iso8601`|[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) 字符串。支持 `withMilliseconds` 参数。|String|
 |`.unix`|从 Unix 纪元开始的秒数，包括分数。|Double|
 

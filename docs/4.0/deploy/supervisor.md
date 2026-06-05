@@ -69,4 +69,4 @@ supervisorctl start hello
 ```
 
 !!! note
-	The `add` command may have already started your app.
+    The `add` command may have already started your app.

@@ -118,16 +118,16 @@ Nginx kan ook publieke bestanden serveren zonder uw Vapor app te vragen. Dit kan
 
 ```sh
 server {
-	...
+    ...
 
-	# Serveer alle publieke/statische bestanden via nginx en val dan terug op Vapor voor de rest
-	location / {
-		try_files $uri @proxy;
-	}
+    # Serveer alle publieke/statische bestanden via nginx en val dan terug op Vapor voor de rest
+    location / {
+        try_files $uri @proxy;
+    }
 
-	location @proxy {
-		...
-	}
+    location @proxy {
+        ...
+    }
 }
 ```
 

@@ -419,7 +419,7 @@ app.queues.schedule(CleanupJob())
 
 Las colas vienen con algunos enums de ayuda para facilitar la planificación:
 
-| Función auxiliar	| Enum disponibles de ayuda             |
+| Función auxiliar    | Enum disponibles de ayuda             |
 |-------------------|---------------------------------------|
 | `yearly()`        | `.january`, `.february`, `.march`, ...|
 | `monthly()`       | `.first`, `.last`, `.exact(1)`        |

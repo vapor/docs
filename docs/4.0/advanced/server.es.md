@@ -208,11 +208,11 @@ El servidor HTTP predeterminado de Vapor se puede reemplazar por cualquier tipo 
 import Vapor
 
 final class MyServer: Server {
-	...
+    ...
 }
 
 app.servers.use { app in
-	MyServer()
+    MyServer()
 }
 ```
 
@@ -223,7 +223,7 @@ extension Application.Servers.Provider {
     static var myServer: Self {
         .init {
             $0.servers.use { app in
-            	MyServer()
+                MyServer()
             }
         }
     }

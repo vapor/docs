@@ -62,7 +62,7 @@ struct TodosController: RouteCollection {
 }
 ```
 
-`Controller` 的方法接受 `Request` 参数，并返回 `ResponseEncodable` 对象。该方法可以是异步或者同步。	
+`Controller` 的方法接受 `Request` 参数，并返回 `ResponseEncodable` 对象。该方法可以是异步或者同步。    
 
 最后，你需要在 `routes.swift` 中注册 Controller：
 

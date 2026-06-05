@@ -39,7 +39,7 @@ app.http.server.configuration.port = 1337
 ```
 
 !!! info
-	`sudo` kan nodig zijn voor het binden aan poorten kleiner dan `1024`. Poorten groter dan `65535` worden niet ondersteund. 
+    `sudo` kan nodig zijn voor het binden aan poorten kleiner dan `1024`. Poorten groter dan `65535` worden niet ondersteund. 
 
 
 De poort van de server configuratie kan overschreven worden door de `--port` (`-p`) vlag mee te geven aan het `serve` commando of door de `port` parameter mee te geven aan `app.server.start(...)`. 
@@ -209,11 +209,11 @@ Vapor's standaard HTTP server kan worden vervangen door elk type dat voldoet aan
 import Vapor
 
 final class MyServer: Server {
-	...
+    ...
 }
 
 app.servers.use { app in
-	MyServer()
+    MyServer()
 }
 ```
 
@@ -224,7 +224,7 @@ extension Application.Servers.Provider {
     static var myServer: Self {
         .init {
             $0.servers.use { app in
-            	MyServer()
+                MyServer()
             }
         }
     }

@@ -15,7 +15,7 @@ Middleware kann auch zu individuellen Routen hinzugefügt werden, in dem Route-G
 ```swift
 let group = app.grouped(MyMiddleware())
 group.get("foo") { req in
-	// This request has passed through MyMiddleware.
+    // This request has passed through MyMiddleware.
 }
 ```
 
@@ -28,9 +28,9 @@ app.middleware.use(MiddlewareA())
 app.middleware.use(MiddlewareB())
 
 app.group(MiddlewareC()) {
-	$0.get("hello") { req in
-		"Hello, middleware."
-	}
+    $0.get("hello") { req in
+        "Hello, middleware."
+    }
 }
 ```
 

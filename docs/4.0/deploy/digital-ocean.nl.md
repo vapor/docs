@@ -13,7 +13,7 @@ Onder distributies, selecteer Ubuntu 22.04 LTS. De volgende gids zal deze versie
 ![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu.png)
 
 !!! note  "Opmerking"
-	U kunt elke Linux distributie kiezen met een versie die Swift ondersteunt. Op het moment van schrijven ondersteunt Swift 5.7.3 Ubuntu 18.04, 20.04, 22.04, CentOS 7, en Amazon Linux 2. U kunt controleren welke besturingssystemen officieel worden ondersteund op de [Swift Releases](https://swift.org/download/#releases) pagina.
+    U kunt elke Linux distributie kiezen met een versie die Swift ondersteunt. Op het moment van schrijven ondersteunt Swift 5.7.3 Ubuntu 18.04, 20.04, 22.04, CentOS 7, en Amazon Linux 2. U kunt controleren welke besturingssystemen officieel worden ondersteund op de [Swift Releases](https://swift.org/download/#releases) pagina.
 
 Na het selecteren van de distributie, kies een plan en datacenter regio van uw voorkeur. Stel dan een SSH sleutel in om toegang te krijgen tot de server nadat deze is aangemaakt. Klik tenslotte op Droplet aanmaken en wacht tot de nieuwe server is opgestart.
 
@@ -78,8 +78,8 @@ Installeer de vereiste afhankelijkheden van Swift.
 ```sh
 sudo apt-get update
 sudo apt-get install binutils git gnupg2 libc6-dev libcurl4-openssl-dev 
- 	\ libedit2 libgcc-9-dev libpython3.8 libsqlite3-0 libstdc++-9-dev 
- 	\ libxml2-dev libz3-dev pkg-config tzdata unzip zlib1g-dev
+     \ libedit2 libgcc-9-dev libpython3.8 libsqlite3-0 libstdc++-9-dev 
+     \ libxml2-dev libz3-dev pkg-config tzdata unzip zlib1g-dev
 ```
 
 ### Swift Toolchain Downloaden
@@ -96,7 +96,7 @@ tar xzf swift-5.7.3-RELEASE-ubuntu22.04.tar.gz
 ```
 
 !!! note "Opmerking"
-	Swift's [Downloads gebruiken](https://swift.org/download/#using-downloads) gids bevat informatie over hoe downloads te verifiëren met PGP-handtekeningen.
+    Swift's [Downloads gebruiken](https://swift.org/download/#using-downloads) gids bevat informatie over hoe downloads te verifiëren met PGP-handtekeningen.
 
 ### Installeer Swift Toolchain
 
@@ -153,7 +153,7 @@ vapor new HelloWorld -n
 ```
 
 !!! tip
-	De `-n` vlag geeft je een barebones sjabloon door automatisch nee te antwoorden op alle vragen
+    De `-n` vlag geeft je een barebones sjabloon door automatisch nee te antwoorden op alle vragen
 
 ![Vapor Splash](../images/vapor-splash.png)
 

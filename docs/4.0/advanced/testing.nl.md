@@ -29,7 +29,7 @@ import XCTVapor
 
 final class MyTests: XCTestCase {
     func testStub() throws {
-    	// Test hier.
+        // Test hier.
     }
 }
 ```
@@ -70,7 +70,7 @@ Voor meer complexe verzoeken, kunt u een `beforeRequest` closure toevoegen om he
 
 ```swift
 try app.test(.POST, "todos", beforeRequest: { req in
-	try req.content.encode(["title": "Test"])
+    try req.content.encode(["title": "Test"])
 }, afterResponse: { res in
     XCTAssertEqual(res.status, .created)
     let todo = try res.content.decode(Todo.self)

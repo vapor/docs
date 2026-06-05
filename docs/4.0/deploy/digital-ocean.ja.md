@@ -13,7 +13,7 @@
 ![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu.png)
 
 !!! note 
-	Swiftがサポートするバージョンの任意のLinuxディストリビューションを選択できます。公式にサポートされているオペレーティングシステムは[Swift Releases](https://swift.org/download/#releases)ページで確認できます。
+    Swiftがサポートするバージョンの任意のLinuxディストリビューションを選択できます。公式にサポートされているオペレーティングシステムは[Swift Releases](https://swift.org/download/#releases)ページで確認できます。
 
 ディストリビューションを選択した後、お好みのプランとデータセンターのリージョンを選択します。次に、作成後にサーバーにアクセスするためのSSHキーを設定します。最後に、Dropletを作成をクリックして、新しいサーバーが起動するのを待ちます。
 
@@ -127,7 +127,7 @@ vapor new HelloWorld -n
 ```
 
 !!! tip
-	`-n`フラグは、すべての質問に自動的にnoと答えることで、最小限のテンプレートを提供します。
+    `-n`フラグは、すべての質問に自動的にnoと答えることで、最小限のテンプレートを提供します。
 
 ![Vapor Splash](../images/vapor-splash.png)
 

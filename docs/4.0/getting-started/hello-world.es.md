@@ -16,15 +16,15 @@ vapor new hello -n
 ```
 
 !!! tip "Consejo"
-	La marca `-n` te da una plantilla básica contestando negativamente a todas las preguntas de manera automática.
+    La marca `-n` te da una plantilla básica contestando negativamente a todas las preguntas de manera automática.
 
 !!! tip "Consejo"
     También puedes obtener la plantilla más reciente desde GitHub sin usar Vapor Toolbox clonando [template respository](https://github.com/vapor/template-bare)
 
 !!! tip "Consejo"
-	Vapor y la plantilla ahora usan `async`/`await` por defecto.
-	Si no puedes actualizar a macOS 12 y/o necesitas seguir usando los `EventLoopFuture`, 
-	usa la marca `--branch macos10-15`.
+    Vapor y la plantilla ahora usan `async`/`await` por defecto.
+    Si no puedes actualizar a macOS 12 y/o necesitas seguir usando los `EventLoopFuture`, 
+    usa la marca `--branch macos10-15`.
 
 Cuando el comando haya terminado, cambia a la nueva carpeta recién creada:
 

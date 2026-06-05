@@ -15,7 +15,7 @@ app.middleware.use(MyMiddleware())
 ```swift
 let group = app.grouped(MyMiddleware())
 group.get("foo") { req in
-	// このリクエストはMyMiddlewareを通過しています。
+    // このリクエストはMyMiddlewareを通過しています。
 }
 ```
 
@@ -28,9 +28,9 @@ app.middleware.use(MiddlewareA())
 app.middleware.use(MiddlewareB())
 
 app.group(MiddlewareC()) {
-	$0.get("hello") { req in
-		"Hello, middleware."
-	}
+    $0.get("hello") { req in
+        "Hello, middleware."
+    }
 }
 ```
 

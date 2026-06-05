@@ -10,7 +10,7 @@ Vapor의 클라이언트는 외부 리소스에 HTTP 요청을 보낼 수 있습
 app.client // Client
 
 app.get("test") { req in
-	req.client // Client
+    req.client // Client
 }
 ```
 
@@ -32,10 +32,10 @@ let response = try await req.client.get("https://httpbin.org/status/200")
 
 ```swift
 let response = try await req.client.post("https://httpbin.org/status/200") { req in
-	// Encode query string to the request URL.
-	try req.query.encode(["q": "test"])
+    // Encode query string to the request URL.
+    try req.query.encode(["q": "test"])
 
-	// Encode JSON to the request body.
+    // Encode JSON to the request body.
     try req.content.encode(["hello": "world"])
     
     // Add auth header to the request
@@ -56,9 +56,9 @@ let json = try response.content.decode(MyJSONResponse.self)
 
 ```swift
 return req.client.get("https://httpbin.org/json").flatMapThrowing { res in
-	try res.content.decode(MyJSONResponse.self)
+    try res.content.decode(MyJSONResponse.self)
 }.flatMap { json in
-	// Use JSON here
+    // Use JSON here
 }
 ```
 

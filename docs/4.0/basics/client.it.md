@@ -10,7 +10,7 @@ Puoi accedere al client di default attraverso `Application` o in un handler di r
 app.client // Client
 
 app.get("test") { req in
-	req.client // Client
+    req.client // Client
 }
 ```
 
@@ -32,10 +32,10 @@ L'API [content](content.md) di Vapor è disponibile per gestire i dati nelle ric
 
 ```swift
 let response = try await req.client.post("https://httpbin.org/status/200") { req in
-	// Codifica la stringa di query all'URL della richiesta.
-	try req.query.encode(["q": "test"])
+    // Codifica la stringa di query all'URL della richiesta.
+    try req.query.encode(["q": "test"])
 
-	// Codifica il JSON per il corpo della richiesta.
+    // Codifica il JSON per il corpo della richiesta.
     try req.content.encode(["hello": "world"])
     
     // Aggiungi l'header di autenticazione alla richiesta
@@ -56,9 +56,9 @@ Se usi i future puoi usare `flatMapThrowing`:
 
 ```swift
 return req.client.get("https://httpbin.org/json").flatMapThrowing { res in
-	try res.content.decode(MyJSONResponse.self)
+    try res.content.decode(MyJSONResponse.self)
 }.flatMap { json in
-	// Usa il JSON qui
+    // Usa il JSON qui
 }
 ```
 

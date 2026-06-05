@@ -24,7 +24,7 @@ Il logger della richiesta include un UUID univoco che identifica la richiesta in
 ```
 
 !!! info "Informazione"
-	I metadati del logger verranno mostrati solo a livello di log debug o inferiore.
+    I metadati del logger verranno mostrati solo a livello di log debug o inferiore.
 
 ### Application
 

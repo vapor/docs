@@ -15,7 +15,7 @@ También puedes añadir middleware a rutas individuales utilizando grupos de rut
 ```swift
 let group = app.grouped(MyMiddleware())
 group.get("foo") { req in
-	// Esta solicitud ha pasado por MyMiddleware
+    // Esta solicitud ha pasado por MyMiddleware
 }
 ```
 
@@ -28,9 +28,9 @@ app.middleware.use(MiddlewareA())
 app.middleware.use(MiddlewareB())
 
 app.group(MiddlewareC()) {
-	$0.get("hello") { req in
-		"Hello, middleware."
-	}
+    $0.get("hello") { req in
+        "Hello, middleware."
+    }
 }
 ```
 

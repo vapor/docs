@@ -39,7 +39,7 @@ app.middleware.use(app.sessions.middleware)
 セッションドライバーは、識別子によってセッションデータの保存と取得を担当します。`SessionDriver`プロトコルに準拠することで、カスタムドライバーを作成できます。
 
 !!! warning
-	セッションドライバーは、`app.sessions.middleware`をアプリケーションに追加する_前に_設定する必要があります。
+    セッションドライバーは、`app.sessions.middleware`をアプリケーションに追加する_前に_設定する必要があります。
 
 ### インメモリ {#in-memory}
 

@@ -39,7 +39,7 @@ Per impostazione predefinita, Vapor userà `vapor_session` come nome del cookie.
 I driver di sessione sono responsabili della memorizzazione e del recupero dei dati di sessione tramite identificatore. Puoi creare driver personalizzati conformandoti al protocollo `SessionDriver`.
 
 !!! warning "Attenzione"
-	Il driver di sessione dovrebbe essere configurato _prima_ di aggiungere `app.sessions.middleware` alla tua applicazione.
+    Il driver di sessione dovrebbe essere configurato _prima_ di aggiungere `app.sessions.middleware` alla tua applicazione.
 
 ### In-Memory
 

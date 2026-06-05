@@ -16,7 +16,7 @@ vapor new hello -n
 ```
 
 !!! tip
-	De `-n` vlag geeft je een kaal sjabloon door automatisch nee te antwoorden op alle vragen.
+    De `-n` vlag geeft je een kaal sjabloon door automatisch nee te antwoorden op alle vragen.
 
 !!! tip
     Je kan ook de laatste template van Github halen zonder de Vapor Toolbox te installeren door de [template repository](https://github.com/vapor/template-bare) te clonen.

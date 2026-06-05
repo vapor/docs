@@ -104,7 +104,7 @@ Hello, swift!
 ```swift
 // responds to GET /foo/bar/baz
 app.get("foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -114,7 +114,7 @@ app.get("foo", "bar", "baz") { req in
 
 ```swift
 app.get("foo") { req -> String in
-	return "bar"
+    return "bar"
 }
 ```
 
@@ -131,7 +131,7 @@ HTTP 메서드 헬퍼 이외에 `on` 함수도 있습니다. on 함수는 HTTP �
 ```swift
 // responds to OPTIONS /foo/bar/baz
 app.on(.OPTIONS, "foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -151,7 +151,7 @@ app.on(.OPTIONS, "foo", "bar", "baz") { req in
 ```swift
 // responds to GET /foo/bar/baz
 app.get("foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -164,7 +164,7 @@ app.get("foo", "bar", "baz") { req in
 // responds to GET /foo/qux/baz
 // ...
 app.get("foo", ":bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -177,7 +177,7 @@ Anything 컴포넌트는 파라미터 컴포넌트와 비슷합니다. 하지만
 // responds to GET /foo/qux/baz
 // ...
 app.get("foo", "*", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -221,10 +221,10 @@ app.get("hello", ":name") { req -> String in
 // responds to GET /number/1337
 // ...
 app.get("number", ":x") { req -> String in 
-	guard let int = req.parameters.get("x", as: Int.self) else {
-		throw Abort(.badRequest)
-	}
-	return "\(int) is a great number"
+    guard let int = req.parameters.get("x", as: Int.self) else {
+        throw Abort(.badRequest)
+    }
+    return "\(int) is a great number"
 }
 ```
 
@@ -316,7 +316,7 @@ $ swift run App routes
 
 ```swift
 app.get("hello", ":name") { req in
-	...
+    ...
 }.description("says hello")
 ```
 

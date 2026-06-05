@@ -13,7 +13,7 @@
 ![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu.png)
 
 !!! note "注意"  
-	你也可以选择 Swift 支持的其它 Linux 发行版。在撰写本文时。你可以在 [Swift Releases](https://swift.org/download/#releases) 页面上查看官方支持哪些操作系统。
+    你也可以选择 Swift 支持的其它 Linux 发行版。在撰写本文时。你可以在 [Swift Releases](https://swift.org/download/#releases) 页面上查看官方支持哪些操作系统。
 
 选择完发行版后，选择你喜欢的套餐和数据中心所在区域。然后设置一个 SSH 密钥以在创建服务器后访问它。最后， 点击创建 Droplet 并等待新服务器启动。
 
@@ -127,7 +127,7 @@ vapor new HelloWorld -n
 ```
 
 !!! tip "建议" 
-	`-n` 标志表示自动回答所有问题为 no，并提供一个基础的模板。
+    `-n` 标志表示自动回答所有问题为 no，并提供一个基础的模板。
 
 
 ![Vapor Splash](../images/vapor-splash.png)

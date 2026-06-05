@@ -104,7 +104,7 @@ Le route possono essere registrate direttamente sulla tua `Application` usando v
 ```swift
 // risponde a GET /foo/bar/baz
 app.get("foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -114,7 +114,7 @@ Puoi specificare il tipo di ritorno di una route usando `-> T` prima di `in`. Qu
 
 ```swift
 app.get("foo") { req -> String in
-	return "bar"
+    return "bar"
 }
 ```
 
@@ -131,7 +131,7 @@ Oltre agli helper per i metodi HTTP, c'è una funzione `on` che accetta il metod
 ```swift
 // risponde a OPTIONS /foo/bar/baz
 app.on(.OPTIONS, "foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -151,7 +151,7 @@ Questo è un componente di route statico. Solo le richieste con una stringa esat
 ```swift
 // risponde a GET /foo/bar/baz
 app.get("foo", "bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -164,7 +164,7 @@ Questo è un componente di route dinamico. Qualsiasi stringa in questa posizione
 // risponde a GET /foo/qux/baz
 // ...
 app.get("foo", ":bar", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -177,7 +177,7 @@ Questo è molto simile al parametro tranne che il valore viene scartato. Questo 
 // risponde a GET /foo/qux/baz
 // ...
 app.get("foo", "*", "baz") { req in
-	...
+    ...
 }
 ```
 
@@ -221,10 +221,10 @@ app.get("hello", ":name") { req -> String in
 // risponde a GET /number/1337
 // ...
 app.get("number", ":x") { req -> String in
-	guard let int = req.parameters.get("x", as: Int.self) else {
-		throw Abort(.badRequest)
-	}
-	return "\(int) is a great number"
+    guard let int = req.parameters.get("x", as: Int.self) else {
+        throw Abort(.badRequest)
+    }
+    return "\(int) is a great number"
 }
 ```
 
@@ -316,7 +316,7 @@ Tutti i metodi di registrazione delle route restituiscono la `Route` creata. Que
 
 ```swift
 app.get("hello", ":name") { req in
-	...
+    ...
 }.description("says hello")
 ```
 
