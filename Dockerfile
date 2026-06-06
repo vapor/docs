@@ -1,20 +1,10 @@
-FROM swift:5.10
-
-RUN apt-get update && apt-get install -y python3-pip
-
-COPY requirements.txt .
-
-RUN pip3 install -r requirements.txt
-
+# Build the static site with Kiln, then serve it with nginx.
+FROM swift:6.3 AS build
 WORKDIR /docs
-
 COPY . .
+# Generates ./site (and copies the Google verification file into it).
+RUN swift run VaporDocs
 
-RUN mkdocs build
-RUN cp googlefc012e5d94cfa05f.html site/googlefc012e5d94cfa05f.html;
-RUN swift setUpRedirects.swift
-
-EXPOSE 8000
-
-CMD [ "mkdocs","serve","-a","0.0.0.0:8000"]
-
+FROM nginx:1.27-alpine
+COPY --from=build /docs/site /usr/share/nginx/html
+EXPOSE 80

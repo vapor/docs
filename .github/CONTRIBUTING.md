@@ -14,24 +14,19 @@ Install `couscous` through Composer and run `couscous preview`
 
 ### 2.0+
 
-Install Homebrew.
-
-See [Homebrew](https://brew.sh)
-
-Install Python 3.
+The docs are generated with [Kiln](https://github.com/brokenhandsio/kiln), so
+you'll need a Swift 6.2+ toolchain. Build the site with:
 
 ```sh
-brew install python3
+swift run VaporDocs
 ```
 
-Install MkDocs and MkDocs Material theme.
+This writes the generated site to `site/`. Preview it with any static file
+server, e.g.:
 
 ```sh
-pip3 install mkdocs
-pip3 install mkdocs-material
+python3 -m http.server --directory site
 ```
-
-Run with `mkdocs serve`
 
 ## Testing
 
