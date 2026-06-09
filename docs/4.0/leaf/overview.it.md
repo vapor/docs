@@ -283,7 +283,7 @@ The time is #unsafeHTML(styledTitle)
 
 #### `#comment`
 
-Il tag `#comment` permette di aggiungere annotazioni che non saranno renderizzati nell'output del template. Il tag accetta un parametro stringa che durante il rendering viene completamente ignorato.
+Il tag `#comment` permette di aggiungere annotazioni che non saranno renderizzate nell'output del template. Il tag accetta un parametro stringa che durante il rendering viene completamente ignorato.
 
 ```leaf
 #comment("This is a single-line comment")
