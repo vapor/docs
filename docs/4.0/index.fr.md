@@ -23,10 +23,6 @@ Ici vous avez quelques autres bons endroits où trouver des informations sur Vap
 | Source Code    | Apprendre comment Vapor fonctionne sous le capot.                 | [visiter &rarr;](https://github.com/vapor/vapor)                    |
 | GitHub Issues  | Signaler des bugs ou demander des fonctionnalitées sur GitHub.   | [visiter &rarr;](https://github.com/vapor/vapor/issues)             |
 
-## Ancienne Documentation
-
-Documentation pour les versions dépréciées de Vapor qui sont maintenant en fin-de-vie peuvent être trouvées sur [https://legacy.docs.vapor.codes/](https://legacy.docs.vapor.codes/).
-
 ## Auteurs
 
 La Vapor Core Team, et les centaines de membres de la communauté de Vapor.

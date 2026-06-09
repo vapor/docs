@@ -23,10 +23,6 @@ Vapor 安装完成后，请查看 [开始 → 你好，世界](getting-started/h
 | Source Code    | 了解 Vapor 的工作原理。              | [访问 →](https://github.com/vapor/vapor)                  |
 | GitHub Issues  | 在 GitHub 上报告错误或提交功能。      | [访问 →](https://github.com/vapor/vapor/issues)           |
 
-## 旧版文档
-
-旧版文档已废弃，如有需要可在此查看：[https://legacy.docs.vapor.codes/](https://legacy.docs.vapor.codes/)。
-
 ## 作者
 
 Vapor 核心团队以及 Vapor 社区的数百名成员。

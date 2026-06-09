@@ -22,10 +22,6 @@ Tutaj znajdziesz inne świetne źródła informacji o Vapor.
 | Kod źródłowy    | Naucz się jak Vapor działa pod maską. | [zobacz &rarr;](https://github.com/vapor/vapor)                    |
 | GitHub Issues  | Zgłaszaj błędy oraz prośby na GitHub. | [zobacz &rarr;](https://github.com/vapor/vapor/issues)             |
 
-## Stara dokumentacja
-
-Dokumentacja dla wcześniejszych wersji Vapor, które osiągnęły swój koniec życia można znaleźć na [https://legacy.docs.vapor.codes/](https://legacy.docs.vapor.codes/).
-
 ## Autorzy
 
 The Vapor Core Team, oraz setki członków społeczności wokoło Vapor.

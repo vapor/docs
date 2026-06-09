@@ -24,10 +24,6 @@ Hier zijn een paar andere geweldige plaatsen om meer informatie te vinden over V
 | GitHub Issues  | Meld fouten of verzoek functies aan op GitHub.       | [visit &rarr;](https://github.com/vapor/vapor/issues)               |
 
 
-## Oude documentatie
-
-Documentatie voor verouderde versies van Vapor die nu op hun levenseinde zitten kunnen gevonden worden op [https://legacy.docs.vapor.codes/](https://legacy.docs.vapor.codes/).
-
 ## Auteurs
 
 Het Vapor Core Team, en de honderden leden van de Vapor gemeenschap.
