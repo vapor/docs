@@ -23,10 +23,6 @@ Vapor를 설치한 후에는, [시작하기 → Hello, world](getting-started/he
 | 소스 코드        | Vapor 내부 작동 방식을 배워보세요.                      | [visit &rarr;](https://github.com/vapor/vapor)                    |
 | 깃허브 이슈       | GitHub에서 버그를 보고하거나 기능을 요청하세요.            | [visit &rarr;](https://github.com/vapor/vapor/issues)             |
 
-## 이전 버전 문서
-
-더 이상 지원되지 않는 Vapor의 이전 버전에 대한 문서는 [https://legacy.docs.vapor.codes/](https://legacy.docs.vapor.codes/)에서 확인할 수 있습니다.
-
 ## 작성자
 
 Vapor Core 팀 및 Vapor 커뮤니티의 수백 명의 구성원들이 기여하였습니다.

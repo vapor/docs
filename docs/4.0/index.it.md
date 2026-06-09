@@ -23,6 +23,3 @@ Ecco alcuni altri ottimi posti dove trovare informazioni su Vapor.
 | Codice Sorgente    | Scopri come funziona Vapor sotto il cofano.            | [visita &rarr;](https://github.com/vapor/vapor)                    |
 | Issues di GitHub  | Segnala bug o richiedi funzionalità su GitHub.       | [visita &rarr;](https://github.com/vapor/vapor/issues)             |
 
-## Documentazione Obsoleta
-
-La documentazione per le versioni deprecate di Vapor che non sono più manutenute è su [https://legacy.docs.vapor.codes/](https://legacy.docs.vapor.codes/).

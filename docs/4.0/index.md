@@ -30,10 +30,6 @@ Here are some other great places to find information about Vapor.
 | Source Code    | Learn how Vapor works under the hood.            | [visit &rarr;](https://github.com/vapor/vapor)                    |
 | GitHub Issues  | Report bugs or request features on GitHub.       | [visit &rarr;](https://github.com/vapor/vapor/issues)             |
 
-## Old Documentation
-
-Documentation for deprecated versions of Vapor that are now end-of-life can be found at [https://legacy.docs.vapor.codes/](https://legacy.docs.vapor.codes/).
-
 ## Authors
 
 The Vapor Core Team, and the hundreds of members of the Vapor community.

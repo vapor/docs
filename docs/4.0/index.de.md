@@ -23,10 +23,6 @@ Mehr Informationen zum Web-Framework findest du unter anderem hier:
 | Source Code    | Der ganze Quellcode von Vapor auf Github.                    | [visit &rarr;](https://github.com/vapor/vapor)                   |
 | GitHub Issues  | Melde Fehler oder reiche deine Ideen auf Github ein.         | [visit &rarr;](https://github.com/vapor/vapor/issues)            |
 
-## Altversionen
-
-Die Dokumentationen zu älteren Versionen von Vapor findest du unter [https://legacy.docs.vapor.codes/](https://legacy.docs.vapor.codes/).
-
 ## Authoren
 
 Das Vapor-Kernteam und viele weitere Mitglieder der Vapor-Community.
