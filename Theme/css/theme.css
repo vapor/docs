@@ -269,6 +269,9 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 .kiln-article { max-width: 48rem; }
 .kiln-article > :first-child { margin-top: 0; }
 
+/* Home hero logo isn't part of the dark design — hide it in dark mode. */
+html.dark .kiln-home-hero { display: none; }
+
 .kiln-article h1,
 .kiln-article h2,
 .kiln-article h3,
@@ -289,13 +292,25 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 .kiln-article a { color: var(--vp-link); text-decoration: none; }
 .kiln-article a:hover { color: var(--vp-link-hover); text-decoration: underline; }
 
+/* Heading anchor: render a link icon (via mask, so it inherits colour) instead
+ * of the literal "#". The "#" text is pushed out of the box and clipped. */
 .kiln-article .headerlink {
+    display: inline-block;
+    width: 0.8em;
+    height: 0.8em;
     margin-left: 0.4rem;
+    vertical-align: middle;
     opacity: 0;
-    color: var(--vp-grey-400);
     text-decoration: none;
-    transition: opacity 0.15s ease;
+    text-indent: 110%;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: var(--vp-grey-400);
+    -webkit-mask: url("/assets/heading-link.svg") center / contain no-repeat;
+    mask: url("/assets/heading-link.svg") center / contain no-repeat;
+    transition: opacity 0.15s ease, background-color 0.15s ease;
 }
+.kiln-article .headerlink:hover { background-color: var(--vp-link); }
 .kiln-article h1:hover .headerlink,
 .kiln-article h2:hover .headerlink,
 .kiln-article h3:hover .headerlink,
@@ -304,7 +319,8 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 .kiln-article ul, .kiln-article ol { padding-left: 1.4rem; margin: 0 0 1.1rem; }
 .kiln-article li { margin: 0.3rem 0; }
 
-.kiln-article code {
+/* Inline code only (not fenced blocks). */
+.kiln-article :not(pre) > code {
     font-family: "Roboto Mono", ui-monospace, monospace;
     font-size: 0.86em;
     background: var(--vp-code-bg);
@@ -312,15 +328,26 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     border-radius: 6px;
     padding: 0.1em 0.35em;
 }
+
+/* Fenced code blocks: defer to the shared `.hljs` box so they match
+ * blog.vapor.codes. The <pre> is just a transparent scroll wrapper; the
+ * `.hljs` class on the <code> provides the background/border/radius. We only
+ * add comfortable vertical padding (the shared rule sets none) and drop the
+ * line-number gutter separator. The previous `.kiln-article pre` box fought
+ * the `.hljs` box and produced a double border in dark mode. */
 .kiln-article pre {
-    background: var(--vp-code-bg);
-    border: 1px solid var(--vp-border);
-    border-radius: 12px;
-    padding: 1rem 1.1rem;
-    overflow-x: auto;
     margin: 0 0 1.3rem;
+    padding: 0;
+    background: none;
+    border: 0;
+    overflow-x: auto;
 }
-.kiln-article pre code { background: none; border: 0; padding: 0; font-size: 0.875rem; }
+.kiln-article pre code {
+    display: block;
+    padding: 0.95rem 1.1rem;
+    font-size: 0.875rem;
+}
+.kiln-article td.hljs-ln-numbers { border-right: 0; }
 
 .kiln-article blockquote {
     margin: 0 0 1.3rem;
