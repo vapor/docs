@@ -60,6 +60,14 @@ body {
     flex-direction: column;
 }
 
+/* The shared CSS sets `html,body{overflow-x:hidden}`, which forces overflow-y to
+ * `auto` and makes BODY a scroll container — so `position: sticky` (the TOC)
+ * sticks to the body (which never scrolls) instead of the page, and never
+ * engages. `clip` on body stops horizontal scroll without a scroll container, so
+ * sticky falls through to the documentElement scroller. (Leave html's overflow
+ * alone — clipping the root element disables page scrolling.) */
+body { overflow-x: clip; }
+
 /* ---------------------------------------------------------------- Layout -- */
 /* Fixed full-height left rail (logo + nav) with the content shell offset to its
  * right. The shell holds the slim top bar, the article + TOC grid, and footer. */
@@ -400,17 +408,16 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 .kiln-toc-sublist { padding-left: 0.8rem; }
 .kiln-toc-entry a {
     display: block;
-    padding: 0.32rem 0;
+    padding: 0.4rem 0;
     color: var(--vp-text-muted);
     text-decoration: none;
-    border-left: 2px solid transparent;
-    padding-left: 0.8rem;
-    margin-left: -0.8rem;
     font-size: 0.95rem;
-    line-height: 1.45;
+    font-weight: 400;
+    line-height: 1.5;
 }
 .kiln-toc-entry a:hover { color: var(--vp-link-hover); }
-.kiln-toc-entry a.kiln-toc-active { color: var(--vp-blue-300); border-left-color: var(--vp-blue-300); font-weight: 600; }
+/* Current section: brighter (heading) colour, normal weight — no bar, no bold. */
+.kiln-toc-entry a.kiln-toc-active { color: var(--vp-heading); }
 .kiln-carbon { margin-top: 1.5rem; }
 
 /* --------------------------------------------------------------- Search -- */
