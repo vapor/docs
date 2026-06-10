@@ -2,6 +2,14 @@
 title: Vapor 문서에 오신 걸 환영합니다!
 description: Vapor는 Swift를 사용하여 백엔드, 웹 앱 API 및 HTTP 서버를 작성할 수 있는 웹 프레임워크입니다.
 ---
+
+<div style="text-align: center;">
+    <img src="/assets/vapor-logo.png" alt="Vapor logo" width="160" class="kiln-home-hero">
+
+# Vapor 문서
+
+</div>
+
 Vapor 문서에 오신 걸 환영합니다! Vapor는 Swift를 사용하여 백엔드, 웹 앱 API 및 HTTP 서버를 작성할 수 있는 웹 프레임워크입니다. Vapor은 현대적이고 강력하며 안전한 언어인 Swift로 작성되어 기존의 서버 언어에 비해 여러 가지 이점을 제공합니다.
 
 ## 시작하기
@@ -22,10 +30,6 @@ Vapor를 설치한 후에는, [시작하기 → Hello, world](getting-started/he
 | Swift 포럼      | Swift.org 포럼의 Vapor 섹션에 게시하세요.              | [visit &rarr;](https://forums.swift.org/c/related-projects/vapor) |
 | 소스 코드        | Vapor 내부 작동 방식을 배워보세요.                      | [visit &rarr;](https://github.com/vapor/vapor)                    |
 | 깃허브 이슈       | GitHub에서 버그를 보고하거나 기능을 요청하세요.            | [visit &rarr;](https://github.com/vapor/vapor/issues)             |
-
-## 이전 버전 문서
-
-더 이상 지원되지 않는 Vapor의 이전 버전에 대한 문서는 [https://legacy.docs.vapor.codes/](https://legacy.docs.vapor.codes/)에서 확인할 수 있습니다.
 
 ## 작성자
 

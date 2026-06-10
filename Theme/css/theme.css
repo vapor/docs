@@ -1,0 +1,854 @@
+/*
+ * Vapor documentation — docs-specific layout layer.
+ *
+ * Loaded AFTER the shared design system (design.vapor.codes/main.css), which
+ * provides the brand (Genera Grotesk, colours, icons) plus the header/footer
+ * chrome. This file only styles what's unique to the docs: the sidebar nav,
+ * the article content, the on-this-page table of contents, and search.
+ *
+ * Brand tokens mirror design/src/scss/vapor/vapor.scss. Dark mode keys off the
+ * shared `.dark` class on <html>.
+ */
+
+:root {
+    --vp-blue-300: #40c4ff;
+    --vp-blue-400: #1e92cc;
+    --vp-pink-300: #df3efb;
+    --vp-grey-900: #141416;
+    --vp-grey-800: #373953;
+    --vp-grey-700: #666880;
+    --vp-grey-600: #8385a3;
+    --vp-grey-500: #9fa1bf;
+    --vp-grey-400: #c1c2d6;
+    --vp-grey-300: #dfe0eb;
+    --vp-grey-200: #f0f0f7;
+    --vp-grey-100: #fafafd;
+    --vp-off-black: #1c1c1f;
+
+    --vp-content-bg: #ffffff;
+    --vp-surface: var(--vp-grey-100);
+    --vp-border: var(--vp-grey-300);
+    --vp-text: var(--vp-grey-800);
+    --vp-text-muted: var(--vp-grey-600);
+    --vp-heading: var(--vp-grey-900);
+    --vp-link: var(--vp-blue-400);
+    --vp-link-hover: var(--vp-blue-300);
+    --vp-code-bg: var(--vp-grey-100);
+
+    --vp-sidebar-width: 17rem;
+    --vp-toc-width: 15rem;
+    --vp-sticky-top: 1.5rem;
+}
+
+html.dark {
+    --vp-content-bg: var(--vp-grey-900);
+    --vp-surface: var(--vp-off-black);
+    --vp-border: var(--vp-grey-800);
+    --vp-text: var(--vp-grey-400);
+    --vp-text-muted: var(--vp-grey-600);
+    --vp-heading: #ffffff;
+    --vp-link: var(--vp-blue-300);
+    --vp-link-hover: #ffffff;
+    --vp-code-bg: #15151a;
+}
+
+body {
+    background: var(--vp-content-bg);
+    color: var(--vp-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* The shared CSS sets `html,body{overflow-x:hidden}`. `hidden` forces overflow-y
+ * to `auto`, turning html/body into scroll containers — that breaks both
+ * `position: sticky` (the TOC + sidebar) and window scrolling. We undo it
+ * without re-introducing a horizontal scrollbar: keep `html` overflow visible so
+ * the viewport stays the scroller, and `clip` on `body` bars horizontal overflow
+ * without creating a scroll container. */
+html { overflow-x: visible; }
+body { overflow-x: clip; }
+
+/* Solid content background — drop the design system's decorative hero gradient
+ * (a 500px image at the top of <body>). Light already wins via the `body` rule
+ * above; dark needs to beat the more specific `.dark body` rule. */
+html.dark body { background-image: none; }
+
+/* ---------------------------------------------------------------- Layout -- */
+/* The left rail (logo + nav) and the content shell sit side by side in
+ * `.kiln-top`; the footer is a sibling below it. The rail's inner wrapper is
+ * sticky, so the nav stays in view while scrolling but releases above the footer
+ * — rather than a fixed sidebar that the footer would overlap at the bottom. */
+.kiln-top {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: stretch;
+    min-width: 0;
+}
+
+.kiln-shell {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.kiln-layout {
+    flex: 1 0 auto;
+    width: 100%;
+    max-width: 78rem;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--vp-toc-width);
+    gap: 3rem;
+    align-items: start;
+}
+
+/* ------------------------------------------------------------- Sidebar rail -- */
+/* The outer rail stretches to the full content height (continuous background +
+ * border); the inner wrapper is sticky and capped at the viewport height. */
+.kiln-sidebar {
+    flex: 0 0 var(--vp-sidebar-width);
+    background: var(--vp-content-bg);
+    border-right: 1px solid var(--vp-border);
+}
+.kiln-sidebar-inner {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.kiln-sidebar-brand {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.3rem 1.4rem 1.1rem;
+    text-decoration: none;
+}
+.kiln-sidebar-brand:hover { text-decoration: none; }
+.kiln-sidebar-logo { width: 44px; height: 44px; display: block; }
+.kiln-sidebar-brand-text {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--vp-heading);
+    letter-spacing: -0.01em;
+}
+
+.kiln-nav {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0.25rem 1rem 2rem;
+}
+
+.kiln-nav-list { list-style: none; margin: 0; padding: 0; }
+.kiln-nav-item { margin: 0.05rem 0; }
+
+.kiln-nav-link {
+    display: block;
+    padding: 0.34rem 0.7rem;
+    border-radius: 8px;
+    color: var(--vp-text-muted);
+    text-decoration: none;
+    font-size: 0.97rem;
+    line-height: 1.45;
+}
+.kiln-nav-link:hover { color: var(--vp-link-hover); }
+/* Active page: highlight the left edge only — text keeps the normal colour. */
+.kiln-nav-link.kiln-current {
+    border-left: 2px solid var(--vp-blue-300);
+    border-radius: 0;
+}
+
+/* Items nested inside a section get a vertical guide line; the current one
+ * highlights it blue (matches the designer's sidebar). */
+.kiln-nav-section .kiln-nav-list { margin-left: 0.7rem; }
+.kiln-nav-section .kiln-nav-list .kiln-nav-link {
+    border-radius: 0;
+    border-left: 2px solid var(--vp-border);
+    margin-left: 0;
+}
+.kiln-nav-section .kiln-nav-list .kiln-nav-link:hover { border-left-color: var(--vp-grey-600); }
+.kiln-nav-section .kiln-nav-list .kiln-nav-link.kiln-current { border-left-color: var(--vp-blue-300); }
+
+.kiln-nav-section { margin: 0.1rem 0; }
+.kiln-nav-summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 0.45rem 0.7rem 0.3rem;
+    color: var(--vp-heading);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-top: 0.55rem;
+}
+.kiln-nav-summary::-webkit-details-marker { display: none; }
+.kiln-nav-summary:hover { color: var(--vp-link); }
+.kiln-nav-external::after { content: " ↗"; opacity: 0.5; font-size: 0.8em; }
+
+/* Slim top bar sits inside the shell, above the content. */
+/* The shared navbar sets `backdrop-filter: blur()`, which makes it the containing
+ * block for position:fixed descendants (trapping the mobile nav-menu panel inside
+ * the bar). The docs navbar isn't sticky, so the blur is moot — drop it. */
+#vapor-navbar { border-bottom: 1px solid var(--vp-border); backdrop-filter: none; -webkit-backdrop-filter: none; }
+
+/* Bootstrap draws a blue focus-ring box-shadow on .nav-link:focus-visible, which
+ * lingers around a dropdown toggle while its menu is open. The toggles already
+ * opt out of focus chrome via .dropdown-no-outline (which only cleared outline),
+ * so drop the box-shadow too. Marketing links keep their focus ring. */
+#vapor-navbar .dropdown-no-outline:focus,
+#vapor-navbar .dropdown-no-outline:focus-visible {
+    outline: 0;
+    box-shadow: none;
+}
+.kiln-lang-icon { display: inline-flex; align-items: center; }
+.kiln-lang-icon svg { width: 16px; height: auto; display: block; }
+
+/* Labels + the language/theme name only appear in the mobile nav-menu panel. */
+.kiln-nav-label, .kiln-lang-name, .kiln-theme-name { display: none; }
+
+/* Theme toggle is an icon-only control (no chevron). The icon mirrors the active
+ * choice (sun / moon / monitor) and is injected by docs.js. */
+.kiln-theme-toggle-icon { display: inline-flex; align-items: center; }
+.kiln-theme-toggle-icon svg { width: 18px; height: 18px; display: block; }
+.kiln-theme-opt-icon { display: inline-flex; align-items: center; margin-right: 0.6rem; }
+.kiln-theme-opt-icon svg { width: 17px; height: 17px; display: block; }
+/* The theme toggle is icon-only on desktop; its chevron only shows in the mobile
+ * panel (where the version/language pickers also have one). */
+.kiln-theme-chevron { display: none; }
+
+/* Version + language menus reuse the framework dropdown's card styling
+ * (rounded, soft shadow, bordered) so all three navbar dropdowns match.
+ * They already share the `animate slideIn` classes for the open animation. */
+.kiln-version-nav .dropdown-menu,
+.kiln-language-nav .dropdown-menu,
+.kiln-mobile-docpicker .dropdown-menu,
+.kiln-theme-nav .dropdown-menu {
+    margin-top: 0.5rem;
+    padding: 0.4rem;
+    min-width: 9rem;
+    border: 1px solid var(--vp-grey-200);
+    border-radius: 16px;
+    box-shadow:
+        0 12px 16px -4px rgba(16, 24, 40, 0.08),
+        0 4px 6px -2px rgba(16, 24, 40, 0.03);
+}
+.kiln-version-nav .dropdown-item,
+.kiln-language-nav .dropdown-item,
+.kiln-mobile-docpicker .dropdown-item,
+.kiln-theme-nav .dropdown-item {
+    padding: 0.5rem 0.8rem;
+    border-radius: 12px;
+}
+
+/* Match the framework dropdown's chevron (size + rotate-on-open) for the version
+ * and language toggles. The framework chevron is sized/animated via its
+ * #documentation-navbar-chevron id (toggled by the shared main.js); these can't
+ * share that, so we match the size here and drive the flip off aria-expanded. */
+.kiln-version-nav .icon-chevron-down,
+.kiln-language-nav .icon-chevron-down,
+.kiln-mobile-docpicker .icon-chevron-down,
+.kiln-theme-nav .icon-chevron-down {
+    width: 15px;
+    height: 15px;
+    margin-top: 4px;
+    transition: transform 0.35s;
+}
+.kiln-version-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
+.kiln-language-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
+.kiln-mobile-docpicker .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
+.kiln-theme-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down {
+    transform: rotate(180deg);
+}
+
+/* Mobile-only visible navbar: logo + "Framework Docs" pill (shown below lg). The
+ * pill is pushed to the right (next to the hamburger), logo stays left. */
+.kiln-navbar-logo { padding: 0; margin: 0; }
+.kiln-navbar-logo img { display: block; }
+.kiln-mobile-docpicker { margin-left: auto; margin-right: 0.75rem; }
+.kiln-mobile-docpicker .nav-link {
+    border: 1px solid var(--vp-border);
+    border-radius: 999px;
+    padding: 0.4rem 0.6rem 0.4rem 1rem;
+    color: var(--vp-text);
+}
+
+/* Hover highlight (as on www.vapor.codes) for every navbar dropdown item. */
+.dropdown-item:hover { background: var(--vp-grey-100); border-radius: 12px; }
+
+/* Current selection: just the brand link colour, no filled background — Bootstrap
+ * otherwise paints a solid blue box (var(--vp-link) adapts to light/dark). */
+.dropdown-item.active,
+.dropdown-item:active {
+    color: var(--vp-link);
+    background: transparent;
+}
+
+/* Dark mode: the shared navbar dropdowns are light-first, so re-skin them. */
+html.dark #framework-dropdown-menu,
+html.dark .kiln-version-nav .dropdown-menu,
+html.dark .kiln-language-nav .dropdown-menu,
+html.dark .kiln-mobile-docpicker .dropdown-menu,
+html.dark .kiln-theme-nav .dropdown-menu {
+    background: var(--vp-off-black);
+    border-color: var(--vp-border);
+}
+html.dark .nav-dropdown-container-title { color: #fff; }
+html.dark .nav-dropdown-container-caption { color: var(--vp-text-muted); }
+html.dark .dropdown-item { color: var(--vp-text); }
+/* Current selection stays the link colour — needs the html.dark prefix to beat
+ * `html.dark .dropdown-item` above. */
+html.dark .dropdown-item.active { color: var(--vp-link); }
+/* A visible lift over the dark menu bg — the previous value matched the bg. */
+html.dark .dropdown-item:hover { background: rgba(55, 57, 83, 0.35); }
+html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
+
+/* --------------------------------------------------------------- Content -- */
+.kiln-main {
+    min-width: 0;
+    padding: 2rem 0 3rem;
+}
+
+/* Search relocated from the navbar into the top of the content body. */
+.kiln-body-search { margin: 0 0 2.25rem; }
+.kiln-body-search .kiln-search {
+    width: 100%;
+    height: 3.1rem;
+    border-radius: 14px;
+    padding: 0 1.1rem;
+}
+.kiln-body-search .kiln-search-input { font-size: 1rem; }
+.kiln-body-search .kiln-search-icon { width: 20px; height: 20px; }
+
+.kiln-article { max-width: 48rem; }
+.kiln-article > :first-child { margin-top: 0; }
+
+.kiln-article h1,
+.kiln-article h2,
+.kiln-article h3,
+.kiln-article h4 {
+    color: var(--vp-heading);
+    line-height: 1.25;
+    scroll-margin-top: 1.5rem;
+}
+.kiln-article h1 { font-size: 2.25rem; margin: 0 0 1.25rem; font-weight: 700; }
+.kiln-article h2 { font-size: 1.6rem; margin: 2rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--vp-border); font-weight: 600; }
+.kiln-article h3 { font-size: 1.25rem; margin: 2rem 0 0.75rem; font-weight: 600; }
+.kiln-article h4 { font-size: 1.05rem; margin: 1.5rem 0 0.5rem; font-weight: 600; }
+
+.kiln-article p,
+.kiln-article li { font-size: 1rem; line-height: 1.7; }
+.kiln-article p { margin: 0 0 1.1rem; }
+
+.kiln-article a { color: var(--vp-link); text-decoration: none; }
+.kiln-article a:hover { color: var(--vp-link-hover); text-decoration: underline; }
+
+/* Heading anchor: render a link icon (via mask, so it inherits colour) instead
+ * of the literal "#". The "#" text is pushed out of the box and clipped. */
+.kiln-article .headerlink {
+    display: inline-block;
+    width: 0.8em;
+    height: 0.8em;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+    opacity: 0;
+    text-decoration: none;
+    text-indent: 110%;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: var(--vp-grey-400);
+    -webkit-mask: url("/assets/heading-link.svg") center / contain no-repeat;
+    mask: url("/assets/heading-link.svg") center / contain no-repeat;
+    transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+.kiln-article .headerlink:hover { background-color: var(--vp-link); }
+.kiln-article h1:hover .headerlink,
+.kiln-article h2:hover .headerlink,
+.kiln-article h3:hover .headerlink,
+.kiln-article h4:hover .headerlink { opacity: 1; }
+
+/* The centred home-page hero title has no need for an anchor link, and its
+ * invisible (but layout-occupying) `#` would shift the text off-centre. */
+.kiln-home-hero ~ h1 .headerlink { display: none; }
+
+.kiln-article ul, .kiln-article ol { padding-left: 1.4rem; margin: 0 0 1.1rem; }
+.kiln-article li { margin: 0.3rem 0; }
+
+/* Inline code only (not fenced blocks). */
+.kiln-article :not(pre) > code {
+    font-family: "Roboto Mono", ui-monospace, monospace;
+    font-size: 0.86em;
+    background: var(--vp-code-bg);
+    border: 1px solid var(--vp-border);
+    border-radius: 6px;
+    padding: 0.1em 0.35em;
+}
+
+/* Fenced code blocks: defer to the shared `.hljs` box so they match
+ * blog.vapor.codes. The <pre> is just a transparent scroll wrapper; the
+ * `.hljs` class on the <code> provides the background/border/radius. We only
+ * add comfortable vertical padding (the shared rule sets none) and drop the
+ * line-number gutter separator. The previous `.kiln-article pre` box fought
+ * the `.hljs` box and produced a double border in dark mode. */
+.kiln-article pre {
+    margin: 0 0 1.3rem;
+    padding: 0;
+    background: none;
+    border: 0;
+    overflow-x: auto;
+}
+.kiln-article pre code {
+    display: block;
+    padding: 0.95rem 1.1rem;
+    font-size: 0.875rem;
+}
+/* The line-number table (highlight.js `.hljs-ln`) is styled by the shared CSS —
+ * a single divider between the numbers and the code. It must NOT pick up the
+ * content-table grid borders below (see `table:not(.hljs-ln)`). */
+
+.kiln-article blockquote {
+    margin: 0 0 1.3rem;
+    padding: 0.2rem 1.1rem;
+    border-left: 3px solid var(--vp-blue-300);
+    color: var(--vp-text-muted);
+}
+
+.kiln-article table:not(.hljs-ln) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 1.3rem;
+    font-size: 0.94rem;
+}
+.kiln-article table:not(.hljs-ln) th,
+.kiln-article table:not(.hljs-ln) td {
+    border: 1px solid var(--vp-border);
+    padding: 0.55rem 0.8rem;
+    text-align: left;
+}
+.kiln-article table:not(.hljs-ln) th { background: var(--vp-surface); font-weight: 600; }
+
+.kiln-article img { max-width: 100%; height: auto; }
+
+/* Admonitions (notes/warnings + version notices/fallback) */
+.admonition {
+    border: 1px solid var(--vp-border);
+    border-left: 4px solid var(--vp-blue-300);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    margin: 0 0 1.3rem;
+    background: var(--vp-surface);
+}
+.admonition > :last-child { margin-bottom: 0; }
+.admonition.warning { border-left-color: #e0a225; }
+.admonition.note { border-left-color: var(--vp-blue-300); }
+.admonition-title { font-weight: 700; margin: 0 0 0.4rem; color: var(--vp-heading); }
+.kiln-version-notice, .kiln-fallback { margin-bottom: 1.5rem; }
+
+/* Prev/next + edit link */
+.kiln-page-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--vp-border);
+}
+.kiln-page-nav a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.8rem 1.1rem;
+    border: 1px solid var(--vp-border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--vp-heading);
+    max-width: 48%;
+}
+.kiln-page-nav a:hover { border-color: var(--vp-blue-300); }
+.kiln-next { text-align: right; margin-left: auto; }
+.kiln-page-nav-label { font-size: 0.78rem; color: var(--vp-text-muted); }
+.kiln-page-nav-title { font-weight: 600; }
+.kiln-edit-link { display: inline-block; margin-top: 1.5rem; font-size: 0.9rem; color: var(--vp-link); text-decoration: none; }
+.kiln-edit-link:hover { text-decoration: underline; }
+
+/* ---------------------------------------------------- On-this-page (TOC) -- */
+.kiln-toc {
+    position: sticky;
+    top: var(--vp-sticky-top);
+    align-self: start;
+    max-height: calc(100vh - var(--vp-sticky-top) - 1rem);
+    overflow-y: auto;
+    padding: 2rem 0;
+    font-size: 0.88rem;
+}
+.kiln-toc-title {
+    font-weight: 600;
+    text-transform: none;
+    font-size: 1rem;
+    letter-spacing: 0;
+    color: var(--vp-heading);
+    margin: 0 0 0.75rem;
+}
+.kiln-toc-list, .kiln-toc-sublist { list-style: none; margin: 0; padding: 0; }
+.kiln-toc-sublist { padding-left: 0.8rem; }
+.kiln-toc-entry a {
+    display: block;
+    padding: 0.4rem 0;
+    color: var(--vp-text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.kiln-toc-entry a:hover { color: var(--vp-link-hover); }
+/* Current section: brighter (heading) colour, normal weight — no bar, no bold. */
+.kiln-toc-entry a.kiln-toc-active { color: var(--vp-heading); }
+.kiln-carbon { margin-top: 1.5rem; }
+
+/* --------------------------------------------------------------- Search -- */
+.kiln-navbar-search { position: relative; flex: 0 1 22rem; min-width: 0; }
+.kiln-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--vp-surface);
+    border: 1px solid var(--vp-border);
+    border-radius: 999px;
+    padding: 0 0.85rem;
+    height: 2.5rem;
+}
+.kiln-search-icon { color: var(--vp-text-muted); flex: none; }
+.kiln-search-input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: none;
+    outline: none;
+    padding: 0 0.6rem;
+    font: inherit;
+    font-size: 0.92rem;
+    color: var(--vp-text);
+}
+.kiln-search-results {
+    position: absolute;
+    top: calc(100% + 0.4rem);
+    left: 0;
+    right: 0;
+    background: var(--vp-content-bg);
+    border: 1px solid var(--vp-border);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    max-height: 70vh;
+    overflow-y: auto;
+    z-index: 9998;
+    padding: 0.4rem;
+}
+.kiln-search-empty { padding: 0.7rem 0.85rem; color: var(--vp-text-muted); font-size: 0.92rem; }
+.kiln-search-results a { display: block; padding: 0.5rem 0.7rem; border-radius: 8px; color: var(--vp-text); text-decoration: none; }
+.kiln-search-results a:hover, .kiln-search-results a.kiln-search-active { background: var(--vp-surface); color: var(--vp-link-hover); }
+.kiln-search-result-title { font-weight: 600; }
+.kiln-search-result-context { font-size: 0.85rem; color: var(--vp-text-muted); }
+
+/* Prerelease badge in the version dropdown */
+.kiln-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    background: var(--vp-pink-300);
+    color: #fff;
+    border-radius: 6px;
+    padding: 0.05rem 0.4rem;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+}
+
+/* ----------------------------------------------- Mobile sidebar + toggle -- */
+/* The mobile breadcrumb row (section › page) that opens the drawer — see the
+ * media query for the full styling; hidden on desktop. */
+.kiln-sidebar-toggle { display: none; }
+
+/* Drawer close (X) — only shown inside the mobile drawer (see media query). */
+.kiln-sidebar-close { display: none; }
+
+.kiln-doc-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s;
+    z-index: 1040;
+}
+.kiln-doc-backdrop.kiln-open { opacity: 1; visibility: visible; }
+
+/* ------------------------------------------------ Mobile nav menu (right) -- */
+/* #kiln-navmenu is inline on desktop and a right-side off-canvas panel below lg,
+ * mirroring the left sidebar drawer. */
+@media (min-width: 992px) {
+    .kiln-navmenu {
+        display: flex;
+        flex-grow: 1;
+        flex-basis: auto;
+        align-items: center;
+    }
+    .kiln-navmenu-close { display: none; }
+}
+@media (max-width: 991.98px) {
+    .kiln-navmenu {
+        position: fixed;
+        top: 0.75rem;
+        right: 0;
+        bottom: 0;
+        width: 20rem;
+        max-width: 86vw;
+        border-radius: 24px 0 0 24px;
+        background: var(--vp-content-bg);
+        transform: translateX(100%);
+        /* Hidden when closed so its drop-shadow doesn't bleed onto the page from
+         * off-screen. visibility holds through the slide-out, then snaps hidden. */
+        visibility: hidden;
+        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.28s;
+        box-shadow: -24px 0 60px rgba(0, 0, 0, 0.4);
+        z-index: 10001;
+        overflow-y: auto;
+        padding: 3.5rem 1.5rem 2rem;
+    }
+    .kiln-navmenu.kiln-navmenu-open { transform: translateX(0); visibility: visible; }
+    .kiln-navmenu-close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0.75rem;
+        right: 0.9rem;
+        width: 2.25rem;
+        height: 2.25rem;
+        padding: 0;
+        background: none;
+        border: 0;
+        cursor: pointer;
+    }
+    .kiln-navmenu-close .vapor-icon { width: 24px; height: 24px; background-color: var(--vp-heading); }
+
+    /* Vertical list, larger text, mockup order. */
+    .kiln-navmenu .navbar-nav { flex-direction: column; align-items: stretch; }
+    .kiln-navmenu .nav-item { width: 100%; }
+    .kiln-navmenu .nav-link { font-size: 1.25rem; padding: 0.55rem 0; }
+
+    .kiln-navmenu .kiln-doc-nav { order: 1; }
+    .kiln-navmenu .nav-item:not(.kiln-language-nav):not(.kiln-version-nav):not(.kiln-doc-nav):not(.kiln-theme-nav):not(.kiln-github-nav) { order: 2; }
+    .kiln-navmenu .kiln-language-nav { order: 4; }
+    .kiln-navmenu .kiln-version-nav { order: 5; }
+    .kiln-navmenu .kiln-theme-nav { order: 6; }
+    .kiln-navmenu .kiln-github-nav { order: 7; margin-top: 1.5rem; }
+    .kiln-navmenu .kiln-github-nav .nav-link { display: flex; justify-content: center; }
+    /* The theme picker shows its chevron in the panel (matching version/language). */
+    .kiln-navmenu .kiln-theme-chevron { display: inline-block; }
+
+    /* Divider above the settings rows. */
+    .kiln-navmenu .kiln-language-nav {
+        margin-top: 1.25rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--vp-border);
+    }
+
+    /* Settings rows: label (left) + control (right). */
+    .kiln-navmenu .kiln-nav-label { display: inline; color: var(--vp-text-muted); font-size: 1.1rem; }
+    .kiln-navmenu .kiln-lang-name,
+    .kiln-navmenu .kiln-theme-name { display: inline; }
+    .kiln-navmenu .kiln-language-nav,
+    .kiln-navmenu .kiln-version-nav,
+    .kiln-navmenu .kiln-theme-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    /* Picker pills for language + version. */
+    .kiln-navmenu .kiln-language-nav .nav-link,
+    .kiln-navmenu .kiln-version-nav .nav-link,
+    .kiln-navmenu .kiln-theme-nav .nav-link {
+        gap: 0.4rem;
+        font-size: 1rem;
+        border: 1px solid var(--vp-border);
+        border-radius: 999px;
+        padding: 0.45rem 0.9rem;
+    }
+    /* The Documentation dropdown expands inline (static), full-width below its
+     * row — it's a short list and reads as part of the menu. */
+    .kiln-navmenu #framework-dropdown-menu {
+        position: static !important;
+        transform: none !important;
+        width: 100%;
+    }
+    /* The language / version / theme pickers instead float on top of the panel,
+     * like the desktop dropdowns. Bootstrap forces navbar dropdowns to
+     * position:static (inline) below lg, so we override to absolute and place
+     * the menu just below its row, right-aligned under the pill. The panel is a
+     * scroll container that would clip it, so while one is open docs.js flips
+     * the panel to overflow:visible; the menu caps its own height and scrolls. */
+    .kiln-navmenu.kiln-navmenu-overflow { overflow: visible; }
+    .kiln-navmenu .kiln-language-nav,
+    .kiln-navmenu .kiln-version-nav,
+    .kiln-navmenu .kiln-theme-nav { position: relative; }
+    .kiln-navmenu .kiln-language-nav .dropdown-menu,
+    .kiln-navmenu .kiln-version-nav .dropdown-menu,
+    .kiln-navmenu .kiln-theme-nav .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: auto;
+        margin-top: 0.4rem;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+    /* Breathing room between the picker rows so the pills/dropdowns don't touch. */
+    .kiln-navmenu .kiln-version-nav,
+    .kiln-navmenu .kiln-theme-nav { margin-top: 1rem; }
+
+    /* Framework Docs is the current docs — highlight it in the panel. */
+    .kiln-navmenu .kiln-doc-nav .nav-link { color: var(--vp-link); }
+
+    /* The Documentation dropdown expands full-width inline (not a floating card):
+     * strip the shared card chrome and use simple top/bottom rules as dividers,
+     * matching the mockup. */
+    .kiln-navmenu #framework-dropdown-menu {
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        background: none;
+        padding: 0.35rem 0;
+        margin: 0.65rem 0 0.4rem;
+        border-top: 1px solid var(--vp-border);
+        border-bottom: 1px solid var(--vp-border);
+        max-height: none;
+    }
+    .kiln-navmenu #framework-dropdown-menu .m-lg-2 { margin: 0 !important; }
+    .kiln-navmenu #framework-dropdown-menu .dropdown-item { padding: 0.7rem 0; border-radius: 0; }
+    .kiln-navmenu #framework-dropdown-menu .dropdown-item:hover { background: none; }
+    .kiln-navmenu #framework-dropdown-menu .nav-dropdown-container { align-items: center; }
+    .kiln-navmenu #framework-dropdown-menu .nav-dropdown-container-title { font-size: 1.1rem; }
+}
+
+/* ----------------------------------------------------------------- Footer -- */
+/* The footer is a body-level child (outside the sidebar + content shell), so it
+ * spans the full page width. Raise it above the fixed sidebar (z 1030) with an
+ * opaque background so the sidebar tucks behind it at the bottom of the page. */
+body > footer {
+    position: relative;
+    z-index: 1031;
+    background: var(--vp-content-bg);
+    border-top: 1px solid var(--vp-border);
+}
+.kiln-footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+}
+.kiln-footer-brand:hover { text-decoration: none; }
+.kiln-footer-brand img { width: 48px; height: 48px; display: block; }
+.kiln-footer-brand span {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--vp-heading);
+}
+
+/* ============================================================ Responsive == */
+@media (max-width: 1100px) {
+    .kiln-layout { grid-template-columns: minmax(0, 1fr); }
+    .kiln-toc { display: none; }
+}
+
+@media (max-width: 800px) {
+    .kiln-layout { padding: 0 1.1rem; gap: 0; }
+
+    /* Breadcrumb row (› section › page) — the whole row opens the drawer. */
+    .kiln-sidebar-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        width: 100%;
+        margin: 0 0 0.75rem;
+        padding: 0.75rem 0;
+        background: none;
+        border: 0;
+        border-bottom: 1px solid var(--vp-border);
+        font: inherit;
+        font-size: 0.92rem;
+        text-align: left;
+        cursor: pointer;
+        min-width: 0;
+    }
+    .kiln-crumb-dots { display: inline-flex; flex: none; color: var(--vp-text); }
+    .kiln-crumb-dots svg { width: 28px; height: 28px; display: block; }
+    .kiln-crumb-sep {
+        flex: none;
+        width: 13px;
+        height: 13px;
+        background-color: var(--vp-text-muted);
+    }
+    .kiln-crumb-section { flex: none; color: var(--vp-text-muted); white-space: nowrap; }
+    .kiln-crumb-page {
+        flex: 1 1 auto;
+        min-width: 0;
+        color: var(--vp-link);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Off-canvas drawer: sits atop the navbar (z 9999), with a top margin and a
+     * rounded right edge, sliding in from the left. */
+    .kiln-sidebar {
+        position: fixed;
+        top: 0.75rem;
+        left: 0;
+        bottom: 0;
+        width: 20rem;
+        max-width: 86vw;
+        border-radius: 0 24px 24px 0;
+        transform: translateX(-100%);
+        /* Hidden when closed so its drop-shadow doesn't bleed onto the page. */
+        visibility: hidden;
+        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.28s;
+        box-shadow: 24px 0 60px rgba(0, 0, 0, 0.4);
+        z-index: 10001;
+        overflow: hidden;
+    }
+    .kiln-sidebar.kiln-open { transform: translateX(0); visibility: visible; }
+    .kiln-sidebar-inner {
+        position: static;
+        max-height: none;
+        height: 100%;
+        padding-top: 3.25rem;
+    }
+    /* The mockup shows the X + nav, not the brand. */
+    .kiln-sidebar-brand { display: none; }
+    .kiln-sidebar-close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0.75rem;
+        right: 0.9rem;
+        width: 2.25rem;
+        height: 2.25rem;
+        padding: 0;
+        background: none;
+        border: 0;
+        cursor: pointer;
+        z-index: 1;
+    }
+    .kiln-sidebar-close .vapor-icon {
+        width: 24px;
+        height: 24px;
+        background-color: var(--vp-heading);
+    }
+    .kiln-main { padding-top: 0; }
+}

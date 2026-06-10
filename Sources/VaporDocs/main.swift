@@ -5,7 +5,14 @@ import Kiln
 // (`index.de.md`, …). Run with `swift run VaporDocs`; output goes to `site/`.
 
 let languages: [Language] = [
-    Language(.english, isDefault: true),
+    Language(
+        .english,
+        isDefault: true,
+        localisation: .init(
+            searchPlaceholder: "Quick search",
+            tableOfContentsTitle: "Table of contents"
+        )
+    ),
 
     Language(
         .german,
@@ -87,7 +94,6 @@ let languages: [Language] = [
             "Install": "Instalación",
             "JWT": "JWT",
             "Leaf": "Leaf",
-            "Legacy Docs": "Documentación Legacy",
             "Logging": "Logging",
             "Middleware": "Middleware",
             "Migrations": "Migraciones",
@@ -156,7 +162,6 @@ let languages: [Language] = [
             "Getting Started": "Commencer",
             "Hello, world": "Bonjour, monde",
             "Install": "Installer",
-            "Legacy Docs": "Documents hérité",
             "Migrations": "Migrations",
             "Overview": "Aperçu",
             "Passwords": "Mots de passe",
@@ -223,7 +228,6 @@ let languages: [Language] = [
             "Install": "Installazione",
             "JWT": "JWT",
             "Leaf": "Leaf",
-            "Legacy Docs": "Documentazione Obsoleta",
             "Logging": "Logging",
             "Middleware": "Middleware",
             "Migrations": "Migrazioni",
@@ -292,7 +296,6 @@ let languages: [Language] = [
             "Folder Structure": "フォルダ構造",
             "Getting Started": "はじめに",
             "Install": "インストール",
-            "Legacy Docs": "レガシードキュメント",
             "Logging": "ロギング",
             "Migrations": "マイグレーション",
             "Model": "モデル",
@@ -354,7 +357,6 @@ let languages: [Language] = [
             "Folder Structure": "폴더 구조",
             "Getting Started": "시작하기",
             "Install": "설치",
-            "Legacy Docs": "이전 문서",
             "Logging": "로깅",
             "Migrations": "마이그레이션",
             "Model": "모델",
@@ -415,7 +417,6 @@ let languages: [Language] = [
             "Getting Started": "Aan De Slag",
             "Hello, world": "Hallo, wereld",
             "Install": "Installeren",
-            "Legacy Docs": "Oude Documentatie",
             "Logging": "Loggen",
             "Migrations": "Migraties",
             "Overview": "Overzicht",
@@ -480,7 +481,6 @@ let languages: [Language] = [
             "Install": "Instalacja",
             "JWT": "JWT",
             "Leaf": "Leaf",
-            "Legacy Docs": "Przestażała dokumentacja",
             "Logging": "Logowanie",
             "Middleware": "Middleware",
             "Migrations": "Migracje",
@@ -679,7 +679,6 @@ let v4_0 = DocVersion(
             Page("Contributing Guide", "contributing/contributing.md")
         }
         Section("Version (4.0)") {
-            Page("Legacy Docs", "version/legacy-docs.md")
             Page("Upgrading", "upgrading.md")
         }
         Page("Release Notes", "release-notes.md")
@@ -698,7 +697,10 @@ let site = KilnSite(
         editURI: "https://github.com/vapor/docs/edit/main/docs/4.0/"
     ),
     copyright: "Vapor Documentation © 2026 by Vapor is licensed under CC BY-NC-SA 4.0",
-    theme: .default(
+    // Custom theme: a thin docs-specific layer over the shared Vapor design
+    // system (design.vapor.codes). Templates live in ./Theme; see that dir.
+    theme: .custom(
+        directory: "Theme",
         palette: .autoLightDark(primary: .black, accent: .blue),
         logo: "assets/logo.png",
         favicon: "assets/favicon.png",
