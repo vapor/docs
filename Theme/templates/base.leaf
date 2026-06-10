@@ -69,7 +69,7 @@
 
     <aside class="kiln-sidebar" id="kiln-sidebar">
         <a class="kiln-sidebar-brand" href="/" aria-label="#(site.name) home">
-            <img class="kiln-sidebar-logo" src="/assets/vapor-logo.png" alt="" width="32" height="32">
+            <img class="kiln-sidebar-logo" src="/assets/vapor-logo.png" alt="" width="44" height="44">
             <span class="kiln-sidebar-brand-text">Vapor Docs</span>
         </a>
         <nav class="kiln-nav" aria-label="Documentation navigation">

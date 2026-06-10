@@ -102,13 +102,14 @@ body {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    padding: 1.4rem 1.4rem 1.1rem;
+    padding: 1.3rem 1.4rem 1.1rem;
     text-decoration: none;
 }
-.kiln-sidebar-logo { width: 32px; height: 32px; display: block; }
+.kiln-sidebar-brand:hover { text-decoration: none; }
+.kiln-sidebar-logo { width: 44px; height: 44px; display: block; }
 .kiln-sidebar-brand-text {
     font-size: 1.3rem;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--vp-heading);
     letter-spacing: -0.01em;
 }
@@ -162,11 +163,67 @@ body {
 
 /* Slim top bar sits inside the shell, above the content. */
 #vapor-navbar { border-bottom: 1px solid var(--vp-border); }
+
+/* Bootstrap draws a blue focus-ring box-shadow on .nav-link:focus-visible, which
+ * lingers around a dropdown toggle while its menu is open. The toggles already
+ * opt out of focus chrome via .dropdown-no-outline (which only cleared outline),
+ * so drop the box-shadow too. Marketing links keep their focus ring. */
+#vapor-navbar .dropdown-no-outline:focus,
+#vapor-navbar .dropdown-no-outline:focus-visible {
+    outline: 0;
+    box-shadow: none;
+}
 .kiln-lang-icon { display: inline-flex; align-items: center; }
 .kiln-lang-icon svg { width: 16px; height: auto; display: block; }
 
-/* The shared navbar dropdowns are built light-first; give them dark-mode
- * treatment so the Documentation / version / language menus stay legible. */
+/* Version + language menus reuse the framework dropdown's card styling
+ * (rounded, soft shadow, bordered) so all three navbar dropdowns match.
+ * They already share the `animate slideIn` classes for the open animation. */
+.kiln-version-nav .dropdown-menu,
+.kiln-language-nav .dropdown-menu {
+    margin-top: 0.5rem;
+    padding: 0.4rem;
+    min-width: 9rem;
+    border: 1px solid var(--vp-grey-200);
+    border-radius: 16px;
+    box-shadow:
+        0 12px 16px -4px rgba(16, 24, 40, 0.08),
+        0 4px 6px -2px rgba(16, 24, 40, 0.03);
+}
+.kiln-version-nav .dropdown-item,
+.kiln-language-nav .dropdown-item {
+    padding: 0.5rem 0.8rem;
+    border-radius: 12px;
+}
+
+/* Match the framework dropdown's chevron (size + rotate-on-open) for the version
+ * and language toggles. The framework chevron is sized/animated via its
+ * #documentation-navbar-chevron id (toggled by the shared main.js); these can't
+ * share that, so we match the size here and drive the flip off aria-expanded. */
+.kiln-version-nav .icon-chevron-down,
+.kiln-language-nav .icon-chevron-down {
+    width: 15px;
+    height: 15px;
+    margin-top: 4px;
+    transition: transform 0.35s;
+}
+.kiln-version-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
+.kiln-language-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down {
+    transform: rotate(180deg);
+}
+
+/* Hover highlight (as on www.vapor.codes) for every navbar dropdown item. */
+.dropdown-item:hover { background: var(--vp-grey-100); border-radius: 12px; }
+
+/* Current selection: just the brand link colour, no filled background — Bootstrap
+ * otherwise paints a solid blue box (var(--vp-link) adapts to light/dark). */
+.dropdown-item.active,
+.dropdown-item:active {
+    color: var(--vp-link);
+    background: transparent;
+}
+
+/* Dark mode: the shared navbar dropdowns are light-first, so re-skin them. */
 html.dark #framework-dropdown-menu,
 html.dark .kiln-version-nav .dropdown-menu,
 html.dark .kiln-language-nav .dropdown-menu {
@@ -176,9 +233,9 @@ html.dark .kiln-language-nav .dropdown-menu {
 html.dark .nav-dropdown-container-title { color: #fff; }
 html.dark .nav-dropdown-container-caption { color: var(--vp-text-muted); }
 html.dark .dropdown-item { color: var(--vp-text); }
-html.dark .dropdown-item:hover { background: var(--vp-surface); }
+/* A visible lift over the dark menu bg — the previous value matched the bg. */
+html.dark .dropdown-item:hover { background: rgba(55, 57, 83, 0.35); }
 html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
-html.dark .dropdown-item.active { color: var(--vp-blue-300); background: transparent; }
 
 /* --------------------------------------------------------------- Content -- */
 .kiln-main {
