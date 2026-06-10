@@ -371,6 +371,10 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 .kiln-article h3:hover .headerlink,
 .kiln-article h4:hover .headerlink { opacity: 1; }
 
+/* The centred home-page hero title has no need for an anchor link, and its
+ * invisible (but layout-occupying) `#` would shift the text off-centre. */
+.kiln-home-hero ~ h1 .headerlink { display: none; }
+
 .kiln-article ul, .kiln-article ol { padding-left: 1.4rem; margin: 0 0 1.1rem; }
 .kiln-article li { margin: 0.3rem 0; }
 
@@ -781,8 +785,8 @@ body > footer {
         cursor: pointer;
         min-width: 0;
     }
-    .kiln-crumb-dots { display: inline-flex; flex: none; color: var(--vp-text-muted); }
-    .kiln-crumb-dots svg { width: 20px; height: 20px; display: block; }
+    .kiln-crumb-dots { display: inline-flex; flex: none; color: var(--vp-text); }
+    .kiln-crumb-dots svg { width: 28px; height: 28px; display: block; }
     .kiln-crumb-sep {
         flex: none;
         width: 13px;
