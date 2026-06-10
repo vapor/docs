@@ -28,11 +28,14 @@
             </ul>
         </div>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" id="kiln-navmenu-toggle" aria-controls="kiln-navmenu" aria-expanded="false" aria-label="Toggle navigation">
             <span id="vapor-navbar-toggler-icon" class="vapor-icon icon-menu-04"><span class="visually-hidden">Toggle Navigation</span></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="kiln-navmenu" id="kiln-navmenu">
+            <button class="kiln-navmenu-close" id="kiln-navmenu-close" type="button" aria-label="Close menu">
+                <span class="vapor-icon icon-x-close" aria-hidden="true"></span>
+            </button>
             <ul class="navbar-nav w-100 mb-2 mb-lg-0 align-items-lg-center">
 
                 <!-- Left cluster: docs pickers -->

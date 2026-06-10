@@ -7,37 +7,61 @@
 (function () {
     "use strict";
 
-    // --- Mobile sidebar drawer ------------------------------------------
+    // --- Mobile drawers: left sidebar + right nav menu ------------------
     var sidebar = document.getElementById("kiln-sidebar");
-    var toggle = document.getElementById("kiln-sidebar-toggle");
+    var sidebarToggle = document.getElementById("kiln-sidebar-toggle");
+    var sidebarClose = document.getElementById("kiln-sidebar-close");
+    var navmenu = document.getElementById("kiln-navmenu");
+    var navmenuToggle = document.getElementById("kiln-navmenu-toggle");
+    var navmenuClose = document.getElementById("kiln-navmenu-close");
     var backdrop = document.getElementById("kiln-doc-backdrop");
 
-    function openSidebar() {
-        if (!sidebar) return;
-        sidebar.classList.add("kiln-open");
-        if (backdrop) backdrop.classList.add("kiln-open");
-        if (toggle) toggle.setAttribute("aria-expanded", "true");
+    function syncBackdrop() {
+        var open = (sidebar && sidebar.classList.contains("kiln-open")) ||
+            (navmenu && navmenu.classList.contains("kiln-navmenu-open"));
+        if (backdrop) backdrop.classList.toggle("kiln-open", open);
     }
     function closeSidebar() {
         if (!sidebar) return;
         sidebar.classList.remove("kiln-open");
-        if (backdrop) backdrop.classList.remove("kiln-open");
-        if (toggle) toggle.setAttribute("aria-expanded", "false");
+        if (sidebarToggle) sidebarToggle.setAttribute("aria-expanded", "false");
+        syncBackdrop();
     }
+    function closeNavmenu() {
+        if (!navmenu) return;
+        navmenu.classList.remove("kiln-navmenu-open");
+        if (navmenuToggle) navmenuToggle.setAttribute("aria-expanded", "false");
+        syncBackdrop();
+    }
+    function openSidebar() {
+        if (!sidebar) return;
+        closeNavmenu();
+        sidebar.classList.add("kiln-open");
+        if (sidebarToggle) sidebarToggle.setAttribute("aria-expanded", "true");
+        syncBackdrop();
+    }
+    function openNavmenu() {
+        if (!navmenu) return;
+        closeSidebar();
+        navmenu.classList.add("kiln-navmenu-open");
+        if (navmenuToggle) navmenuToggle.setAttribute("aria-expanded", "true");
+        syncBackdrop();
+    }
+    function closeAll() { closeSidebar(); closeNavmenu(); }
 
-    if (toggle) {
-        toggle.addEventListener("click", function () {
-            if (sidebar && sidebar.classList.contains("kiln-open")) closeSidebar();
-            else openSidebar();
-        });
-    }
-    var sidebarClose = document.getElementById("kiln-sidebar-close");
-    if (sidebarClose) sidebarClose.addEventListener("click", closeSidebar);
-    if (backdrop) backdrop.addEventListener("click", closeSidebar);
-    document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") closeSidebar();
+    if (sidebarToggle) sidebarToggle.addEventListener("click", function () {
+        if (sidebar && sidebar.classList.contains("kiln-open")) closeSidebar(); else openSidebar();
     });
-    // Close the drawer after following an in-page nav link on mobile.
+    if (sidebarClose) sidebarClose.addEventListener("click", closeSidebar);
+    if (navmenuToggle) navmenuToggle.addEventListener("click", function () {
+        if (navmenu && navmenu.classList.contains("kiln-navmenu-open")) closeNavmenu(); else openNavmenu();
+    });
+    if (navmenuClose) navmenuClose.addEventListener("click", closeNavmenu);
+    if (backdrop) backdrop.addEventListener("click", closeAll);
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeAll();
+    });
+    // Close the sidebar drawer after following an in-page nav link on mobile.
     if (sidebar) {
         sidebar.addEventListener("click", function (e) {
             var link = e.target.closest("a.kiln-nav-link");
