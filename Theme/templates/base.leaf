@@ -29,11 +29,11 @@
     #if(page.description):<meta name="twitter:description" content="#(page.description)">#endif
     #if(page.imageURL):<meta name="twitter:image" content="#(page.imageURL)">#endif
 
-    <!-- Shared Vapor favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://design.vapor.codes/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://design.vapor.codes/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://design.vapor.codes/favicons/favicon-16x16.png">
-    <link rel="manifest" href="https://design.vapor.codes/favicons/site.webmanifest">
+    <!-- Vapor Docs favicons (new mark) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/site.webmanifest">
 
     #for(alt in languages):<link rel="alternate" hreflang="#(alt.locale)" href="#(alt.url)">
     #endfor
@@ -134,9 +134,9 @@
             #endif
         </aside>
         </div>
-
-        #extend("partials/footer")
     </div>
+
+    #extend("partials/footer")
 
     <script>window.kilnSearchIndex = "#(searchIndexURL)"; window.kilnVersionBase = "#(versionBasePath)";</script>
     <!-- Shared chrome JS: Bootstrap, dark-mode toggle, syntax highlighting -->
