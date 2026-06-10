@@ -208,12 +208,16 @@ html.dark body { background-image: none; }
 .kiln-lang-icon { display: inline-flex; align-items: center; }
 .kiln-lang-icon svg { width: 16px; height: auto; display: block; }
 
+/* Labels + the language name only appear in the mobile nav-menu panel. */
+.kiln-nav-label, .kiln-lang-name { display: none; }
+
 /* Version + language menus reuse the framework dropdown's card styling
  * (rounded, soft shadow, bordered) so all three navbar dropdowns match.
  * They already share the `animate slideIn` classes for the open animation. */
 .kiln-version-nav .dropdown-menu,
 .kiln-language-nav .dropdown-menu,
-.kiln-mobile-docpicker .dropdown-menu {
+.kiln-mobile-docpicker .dropdown-menu,
+.kiln-theme-nav .dropdown-menu {
     margin-top: 0.5rem;
     padding: 0.4rem;
     min-width: 9rem;
@@ -225,7 +229,8 @@ html.dark body { background-image: none; }
 }
 .kiln-version-nav .dropdown-item,
 .kiln-language-nav .dropdown-item,
-.kiln-mobile-docpicker .dropdown-item {
+.kiln-mobile-docpicker .dropdown-item,
+.kiln-theme-nav .dropdown-item {
     padding: 0.5rem 0.8rem;
     border-radius: 12px;
 }
@@ -236,7 +241,8 @@ html.dark body { background-image: none; }
  * share that, so we match the size here and drive the flip off aria-expanded. */
 .kiln-version-nav .icon-chevron-down,
 .kiln-language-nav .icon-chevron-down,
-.kiln-mobile-docpicker .icon-chevron-down {
+.kiln-mobile-docpicker .icon-chevron-down,
+.kiln-theme-nav .icon-chevron-down {
     width: 15px;
     height: 15px;
     margin-top: 4px;
@@ -244,7 +250,8 @@ html.dark body { background-image: none; }
 }
 .kiln-version-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
 .kiln-language-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
-.kiln-mobile-docpicker .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down {
+.kiln-mobile-docpicker .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
+.kiln-theme-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down {
     transform: rotate(180deg);
 }
 
@@ -275,7 +282,8 @@ html.dark body { background-image: none; }
 html.dark #framework-dropdown-menu,
 html.dark .kiln-version-nav .dropdown-menu,
 html.dark .kiln-language-nav .dropdown-menu,
-html.dark .kiln-mobile-docpicker .dropdown-menu {
+html.dark .kiln-mobile-docpicker .dropdown-menu,
+html.dark .kiln-theme-nav .dropdown-menu {
     background: var(--vp-off-black);
     border-color: var(--vp-border);
 }
@@ -610,6 +618,62 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
         cursor: pointer;
     }
     .kiln-navmenu-close .vapor-icon { width: 24px; height: 24px; background-color: var(--vp-heading); }
+
+    /* Vertical list, larger text, mockup order. */
+    .kiln-navmenu .navbar-nav { flex-direction: column; align-items: stretch; }
+    .kiln-navmenu .nav-item { width: 100%; }
+    .kiln-navmenu .nav-link { font-size: 1.25rem; padding: 0.55rem 0; }
+
+    .kiln-navmenu .kiln-doc-nav { order: 1; }
+    .kiln-navmenu .nav-item:not(.kiln-language-nav):not(.kiln-version-nav):not(.kiln-doc-nav):not(.kiln-theme-nav):not(.kiln-github-nav) { order: 2; }
+    .kiln-navmenu .kiln-language-nav { order: 4; }
+    .kiln-navmenu .kiln-version-nav { order: 5; }
+    .kiln-navmenu .kiln-theme-nav { order: 6; }
+    .kiln-navmenu .kiln-github-nav { order: 7; margin-top: 1.5rem; }
+
+    /* Divider above the settings rows. */
+    .kiln-navmenu .kiln-language-nav {
+        margin-top: 1.25rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--vp-border);
+    }
+
+    /* Settings rows: label (left) + control (right). */
+    .kiln-navmenu .kiln-nav-label { display: inline; color: var(--vp-text-muted); font-size: 1.1rem; }
+    .kiln-navmenu .kiln-lang-name { display: inline; }
+    .kiln-navmenu .kiln-language-nav,
+    .kiln-navmenu .kiln-version-nav,
+    .kiln-navmenu .kiln-theme-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    /* Picker pills for language + version. */
+    .kiln-navmenu .kiln-language-nav .nav-link,
+    .kiln-navmenu .kiln-version-nav .nav-link,
+    .kiln-navmenu .kiln-theme-nav .nav-link {
+        gap: 0.4rem;
+        font-size: 1rem;
+        border: 1px solid var(--vp-border);
+        border-radius: 999px;
+        padding: 0.45rem 0.9rem;
+    }
+    /* In-panel dropdowns expand inline (static) below their row instead of
+     * overflowing the panel; the panel scrolls if the content grows. */
+    .kiln-navmenu .dropdown-menu {
+        position: static !important;
+        transform: none !important;
+        width: 100%;
+        margin-top: 0.5rem;
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+    .kiln-navmenu .kiln-language-nav,
+    .kiln-navmenu .kiln-version-nav,
+    .kiln-navmenu .kiln-theme-nav { flex-wrap: wrap; }
+
+    /* Framework Docs is the current docs — highlight it in the panel. */
+    .kiln-navmenu .kiln-doc-nav .nav-link { color: var(--vp-link); }
 }
 
 /* ----------------------------------------------------------------- Footer -- */

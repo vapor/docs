@@ -69,6 +69,43 @@
         });
     }
 
+    // --- Theme picker: light / dark / system ----------------------------
+    // Replaces the shared light/dark toggle. "system" follows the OS and is
+    // stored by removing the key (matching the head inline-script default).
+    (function () {
+        var KEY = "theme";
+        var mq = window.matchMedia("(prefers-color-scheme: dark)");
+        function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+        function current() { return stored() || "system"; }
+        function apply(pref) {
+            var dark = pref === "dark" || ((pref === "system" || !pref) && mq.matches);
+            document.documentElement.classList.toggle("dark", dark);
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute("content", dark ? "#141416" : "#ffffff");
+        }
+        function refreshLabels() {
+            var c = current();
+            var label = c.charAt(0).toUpperCase() + c.slice(1);
+            document.querySelectorAll(".kiln-theme-current").forEach(function (el) { el.textContent = label; });
+            document.querySelectorAll(".kiln-theme-nav .dropdown-item[data-theme]").forEach(function (a) {
+                a.classList.toggle("active", a.getAttribute("data-theme") === c);
+            });
+        }
+        function setTheme(pref) {
+            try {
+                if (pref === "system") localStorage.removeItem(KEY);
+                else localStorage.setItem(KEY, pref);
+            } catch (e) {}
+            apply(pref);
+            refreshLabels();
+        }
+        document.querySelectorAll(".kiln-theme-nav .dropdown-item[data-theme]").forEach(function (a) {
+            a.addEventListener("click", function (e) { e.preventDefault(); setTheme(a.getAttribute("data-theme")); });
+        });
+        mq.addEventListener("change", function () { if (current() === "system") apply("system"); });
+        refreshLabels();
+    })();
+
     // --- Search: shortcuts + empty-state prompt -------------------------
     // `/` or ⌘K / Ctrl+K focuses the body search; Esc blurs it. When the field
     // is focused but empty (e.g. opened via the shortcut) we show a dropdown
