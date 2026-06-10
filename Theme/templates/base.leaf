@@ -65,23 +65,34 @@
     </script>
 </head>
 <body>
-    #extend("partials/header")
-
     <div class="kiln-doc-backdrop" id="kiln-doc-backdrop"></div>
 
-    <div class="kiln-layout">
+    <aside class="kiln-sidebar" id="kiln-sidebar">
+        <a class="kiln-sidebar-brand" href="/" aria-label="#(site.name) home">
+            <img class="kiln-sidebar-logo" src="/assets/vapor-logo.png" alt="" width="32" height="32">
+            <span class="kiln-sidebar-brand-text">Vapor Docs</span>
+        </a>
+        <nav class="kiln-nav" aria-label="Documentation navigation">
+            #extend("partials/nav-tree", nav)
+        </nav>
+    </aside>
+
+    <div class="kiln-shell">
+        #extend("partials/header")
+
+        <div class="kiln-layout">
         <button class="kiln-sidebar-toggle" id="kiln-sidebar-toggle" aria-label="#(strings.toggleNavigation)" aria-expanded="false" aria-controls="kiln-sidebar">
             <span class="vapor-icon icon-menu-04" aria-hidden="true"></span>
             <span>Menu</span>
         </button>
 
-        <aside class="kiln-sidebar" id="kiln-sidebar">
-            <nav class="kiln-nav" aria-label="Documentation navigation">
-                #extend("partials/nav-tree", nav)
-            </nav>
-        </aside>
-
         <main class="kiln-main">
+            #if(site.searchEnabled):
+            <div class="kiln-body-search">
+                #extend("partials/search")
+            </div>
+            #endif
+
             #if(isVersioned):#if(!isLatest):
             #if(currentVersion.isPrerelease):
             <div class="admonition note kiln-version-notice">
@@ -122,9 +133,10 @@
             <div class="kiln-carbon" id="kiln-carbon" data-serve="#(site.carbonAds.serve)" data-placement="#(site.carbonAds.placement)"></div>
             #endif
         </aside>
-    </div>
+        </div>
 
-    #extend("partials/footer")
+        #extend("partials/footer")
+    </div>
 
     <script>window.kilnSearchIndex = "#(searchIndexURL)"; window.kilnVersionBase = "#(versionBasePath)";</script>
     <!-- Shared chrome JS: Bootstrap, dark-mode toggle, syntax highlighting -->
