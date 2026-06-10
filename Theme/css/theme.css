@@ -69,14 +69,22 @@ body {
 body { overflow-x: clip; }
 
 /* ---------------------------------------------------------------- Layout -- */
-/* Fixed full-height left rail (logo + nav) with the content shell offset to its
- * right. The shell holds the slim top bar, the article + TOC grid, and footer. */
-.kiln-shell {
+/* The left rail (logo + nav) and the content shell sit side by side in
+ * `.kiln-top`; the footer is a sibling below it. The rail's inner wrapper is
+ * sticky, so the nav stays in view while scrolling but releases above the footer
+ * — rather than a fixed sidebar that the footer would overlap at the bottom. */
+.kiln-top {
     flex: 1 0 auto;
     display: flex;
-    flex-direction: column;
+    align-items: stretch;
     min-width: 0;
-    margin-left: var(--vp-sidebar-width);
+}
+
+.kiln-shell {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .kiln-layout {
@@ -92,17 +100,19 @@ body { overflow-x: clip; }
 }
 
 /* ------------------------------------------------------------- Sidebar rail -- */
+/* The outer rail stretches to the full content height (continuous background +
+ * border); the inner wrapper is sticky and capped at the viewport height. */
 .kiln-sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: var(--vp-sidebar-width);
-    display: flex;
-    flex-direction: column;
+    flex: 0 0 var(--vp-sidebar-width);
     background: var(--vp-content-bg);
     border-right: 1px solid var(--vp-border);
-    z-index: 1030;
+}
+.kiln-sidebar-inner {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .kiln-sidebar-brand {
@@ -124,6 +134,7 @@ body { overflow-x: clip; }
 
 .kiln-nav {
     flex: 1 1 auto;
+    min-height: 0;
     overflow-y: auto;
     overscroll-behavior: contain;
     padding: 0.25rem 1rem 2rem;
@@ -268,9 +279,6 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 
 .kiln-article { max-width: 48rem; }
 .kiln-article > :first-child { margin-top: 0; }
-
-/* Home hero logo isn't part of the dark design — hide it in dark mode. */
-html.dark .kiln-home-hero { display: none; }
 
 .kiln-article h1,
 .kiln-article h2,
@@ -561,10 +569,13 @@ body > footer {
 }
 
 @media (max-width: 800px) {
-    .kiln-shell { margin-left: 0; }
     .kiln-layout { padding: 0 1.1rem; }
     .kiln-sidebar-toggle { display: inline-flex; margin: 1rem 0 0; }
     .kiln-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
         width: 19rem;
         max-width: 85vw;
         transform: translateX(-100%);
@@ -573,5 +584,6 @@ body > footer {
         z-index: 1050;
     }
     .kiln-sidebar.kiln-open { transform: translateX(0); }
+    .kiln-sidebar-inner { position: static; max-height: none; height: 100%; }
     .kiln-main { padding-top: 1rem; }
 }
