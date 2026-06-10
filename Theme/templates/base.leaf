@@ -67,7 +67,9 @@
 <body>
     <div class="kiln-doc-backdrop" id="kiln-doc-backdrop"></div>
 
+    <div class="kiln-top">
     <aside class="kiln-sidebar" id="kiln-sidebar">
+        <div class="kiln-sidebar-inner">
         <a class="kiln-sidebar-brand" href="/" aria-label="#(site.name) home">
             <img class="kiln-sidebar-logo" src="/assets/vapor-logo.png" alt="" width="44" height="44">
             <span class="kiln-sidebar-brand-text">Vapor Docs</span>
@@ -75,6 +77,7 @@
         <nav class="kiln-nav" aria-label="Documentation navigation">
             #extend("partials/nav-tree", nav)
         </nav>
+        </div>
     </aside>
 
     <div class="kiln-shell">
@@ -134,6 +137,7 @@
             #endif
         </aside>
         </div>
+    </div>
     </div>
 
     #extend("partials/footer")
