@@ -86,10 +86,18 @@
         function refreshLabels() {
             var c = current();
             var label = c.charAt(0).toUpperCase() + c.slice(1);
-            document.querySelectorAll(".kiln-theme-current").forEach(function (el) { el.textContent = label; });
+            document.querySelectorAll(".kiln-theme-name").forEach(function (el) { el.textContent = label; });
             document.querySelectorAll(".kiln-theme-nav .dropdown-item[data-theme]").forEach(function (a) {
                 a.classList.toggle("active", a.getAttribute("data-theme") === c);
             });
+            // Mirror the active option's icon onto the toggle so it reflects the
+            // current choice (sun / moon / monitor) at a glance.
+            var opt = document.querySelector('.kiln-theme-nav .dropdown-item[data-theme="' + c + '"] .kiln-theme-opt-icon');
+            if (opt) {
+                document.querySelectorAll(".kiln-theme-toggle-icon").forEach(function (el) {
+                    el.innerHTML = opt.innerHTML;
+                });
+            }
         }
         function setTheme(pref) {
             try {

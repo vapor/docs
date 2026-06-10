@@ -208,8 +208,15 @@ html.dark body { background-image: none; }
 .kiln-lang-icon { display: inline-flex; align-items: center; }
 .kiln-lang-icon svg { width: 16px; height: auto; display: block; }
 
-/* Labels + the language name only appear in the mobile nav-menu panel. */
-.kiln-nav-label, .kiln-lang-name { display: none; }
+/* Labels + the language/theme name only appear in the mobile nav-menu panel. */
+.kiln-nav-label, .kiln-lang-name, .kiln-theme-name { display: none; }
+
+/* Theme toggle is an icon-only control (no chevron). The icon mirrors the active
+ * choice (sun / moon / monitor) and is injected by docs.js. */
+.kiln-theme-toggle-icon { display: inline-flex; align-items: center; }
+.kiln-theme-toggle-icon svg { width: 18px; height: 18px; display: block; }
+.kiln-theme-opt-icon { display: inline-flex; align-items: center; margin-right: 0.6rem; }
+.kiln-theme-opt-icon svg { width: 17px; height: 17px; display: block; }
 
 /* Version + language menus reuse the framework dropdown's card styling
  * (rounded, soft shadow, bordered) so all three navbar dropdowns match.
@@ -640,7 +647,8 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 
     /* Settings rows: label (left) + control (right). */
     .kiln-navmenu .kiln-nav-label { display: inline; color: var(--vp-text-muted); font-size: 1.1rem; }
-    .kiln-navmenu .kiln-lang-name { display: inline; }
+    .kiln-navmenu .kiln-lang-name,
+    .kiln-navmenu .kiln-theme-name { display: inline; }
     .kiln-navmenu .kiln-language-nav,
     .kiln-navmenu .kiln-version-nav,
     .kiln-navmenu .kiln-theme-nav {
@@ -671,9 +679,32 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     .kiln-navmenu .kiln-language-nav,
     .kiln-navmenu .kiln-version-nav,
     .kiln-navmenu .kiln-theme-nav { flex-wrap: wrap; }
+    /* Breathing room between the picker rows so the pills/dropdowns don't touch. */
+    .kiln-navmenu .kiln-version-nav,
+    .kiln-navmenu .kiln-theme-nav { margin-top: 1rem; }
 
     /* Framework Docs is the current docs — highlight it in the panel. */
     .kiln-navmenu .kiln-doc-nav .nav-link { color: var(--vp-link); }
+
+    /* The Documentation dropdown expands full-width inline (not a floating card):
+     * strip the shared card chrome and use simple top/bottom rules as dividers,
+     * matching the mockup. */
+    .kiln-navmenu #framework-dropdown-menu {
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        background: none;
+        padding: 0.35rem 0;
+        margin: 0.65rem 0 0.4rem;
+        border-top: 1px solid var(--vp-border);
+        border-bottom: 1px solid var(--vp-border);
+        max-height: none;
+    }
+    .kiln-navmenu #framework-dropdown-menu .m-lg-2 { margin: 0 !important; }
+    .kiln-navmenu #framework-dropdown-menu .dropdown-item { padding: 0.7rem 0; border-radius: 0; }
+    .kiln-navmenu #framework-dropdown-menu .dropdown-item:hover { background: none; }
+    .kiln-navmenu #framework-dropdown-menu .nav-dropdown-container { align-items: center; }
+    .kiln-navmenu #framework-dropdown-menu .nav-dropdown-container-title { font-size: 1.1rem; }
 }
 
 /* ----------------------------------------------------------------- Footer -- */
