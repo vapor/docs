@@ -60,13 +60,19 @@ body {
     flex-direction: column;
 }
 
-/* The shared CSS sets `html,body{overflow-x:hidden}`, which forces overflow-y to
- * `auto` and makes BODY a scroll container — so `position: sticky` (the TOC)
- * sticks to the body (which never scrolls) instead of the page, and never
- * engages. `clip` on body stops horizontal scroll without a scroll container, so
- * sticky falls through to the documentElement scroller. (Leave html's overflow
- * alone — clipping the root element disables page scrolling.) */
+/* The shared CSS sets `html,body{overflow-x:hidden}`. `hidden` forces overflow-y
+ * to `auto`, turning html/body into scroll containers — that breaks both
+ * `position: sticky` (the TOC + sidebar) and window scrolling. We undo it
+ * without re-introducing a horizontal scrollbar: keep `html` overflow visible so
+ * the viewport stays the scroller, and `clip` on `body` bars horizontal overflow
+ * without creating a scroll container. */
+html { overflow-x: visible; }
 body { overflow-x: clip; }
+
+/* Solid content background — drop the design system's decorative hero gradient
+ * (a 500px image at the top of <body>). Light already wins via the `body` rule
+ * above; dark needs to beat the more specific `.dark body` rule. */
+html.dark body { background-image: none; }
 
 /* ---------------------------------------------------------------- Layout -- */
 /* The left rail (logo + nav) and the content shell sit side by side in
