@@ -728,6 +728,11 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
         border-bottom: 1px solid var(--vp-border);
         max-height: none;
     }
+    /* The shared `html.dark #framework-dropdown-menu` (off-black floating card for
+     * the desktop dropdown) out-specifies the rule above, leaving an inset dark
+     * block in the panel. Re-flatten it so the Documentation section reads as part
+     * of the panel — just dividers — matching the mockup. */
+    html.dark .kiln-navmenu #framework-dropdown-menu { background: none; }
     .kiln-navmenu #framework-dropdown-menu .m-lg-2 { margin: 0 !important; }
     .kiln-navmenu #framework-dropdown-menu .dropdown-item { padding: 0.7rem 0; border-radius: 0; }
     .kiln-navmenu #framework-dropdown-menu .dropdown-item:hover { background: none; }
