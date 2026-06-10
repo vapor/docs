@@ -538,14 +538,20 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     cursor: pointer;
 }
 .kiln-sidebar-toggle .vapor-icon { width: 18px; height: 18px; }
+
+/* Drawer close (X) — only shown inside the mobile drawer (see media query). */
+.kiln-sidebar-close { display: none; }
+
 .kiln-doc-backdrop {
-    display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.45);
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s;
     z-index: 1040;
 }
-.kiln-doc-backdrop.kiln-open { display: block; }
+.kiln-doc-backdrop.kiln-open { opacity: 1; visibility: visible; }
 
 /* ----------------------------------------------------------------- Footer -- */
 /* The footer is a body-level child (outside the sidebar + content shell), so it
@@ -580,19 +586,51 @@ body > footer {
 @media (max-width: 800px) {
     .kiln-layout { padding: 0 1.1rem; }
     .kiln-sidebar-toggle { display: inline-flex; margin: 1rem 0 0; }
+
+    /* Off-canvas drawer: sits atop the navbar (z 9999), with a top margin and a
+     * rounded right edge, sliding in from the left. */
     .kiln-sidebar {
         position: fixed;
-        top: 0;
+        top: 0.75rem;
         left: 0;
         bottom: 0;
-        width: 19rem;
-        max-width: 85vw;
+        width: 20rem;
+        max-width: 86vw;
+        border-radius: 0 24px 24px 0;
         transform: translateX(-100%);
-        transition: transform 0.2s ease;
-        box-shadow: 20px 0 40px rgba(0, 0, 0, 0.12);
-        z-index: 1050;
+        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 24px 0 60px rgba(0, 0, 0, 0.4);
+        z-index: 10001;
+        overflow: hidden;
     }
     .kiln-sidebar.kiln-open { transform: translateX(0); }
-    .kiln-sidebar-inner { position: static; max-height: none; height: 100%; }
+    .kiln-sidebar-inner {
+        position: static;
+        max-height: none;
+        height: 100%;
+        padding-top: 3.25rem;
+    }
+    /* The mockup shows the X + nav, not the brand. */
+    .kiln-sidebar-brand { display: none; }
+    .kiln-sidebar-close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0.75rem;
+        right: 0.9rem;
+        width: 2.25rem;
+        height: 2.25rem;
+        padding: 0;
+        background: none;
+        border: 0;
+        cursor: pointer;
+        z-index: 1;
+    }
+    .kiln-sidebar-close .vapor-icon {
+        width: 24px;
+        height: 24px;
+        background-color: var(--vp-heading);
+    }
     .kiln-main { padding-top: 1rem; }
 }

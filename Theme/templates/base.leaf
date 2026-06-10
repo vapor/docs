@@ -70,6 +70,9 @@
     <div class="kiln-top">
     <aside class="kiln-sidebar" id="kiln-sidebar">
         <div class="kiln-sidebar-inner">
+        <button class="kiln-sidebar-close" id="kiln-sidebar-close" type="button" aria-label="#(strings.toggleNavigation)">
+            <span class="vapor-icon icon-x-close" aria-hidden="true"></span>
+        </button>
         <a class="kiln-sidebar-brand" href="/" aria-label="#(site.name) home">
             <img class="kiln-sidebar-logo" src="/assets/vapor-logo.png" alt="" width="44" height="44">
             <span class="kiln-sidebar-brand-text">Vapor Docs</span>

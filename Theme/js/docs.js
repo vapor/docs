@@ -31,6 +31,8 @@
             else openSidebar();
         });
     }
+    var sidebarClose = document.getElementById("kiln-sidebar-close");
+    if (sidebarClose) sidebarClose.addEventListener("click", closeSidebar);
     if (backdrop) backdrop.addEventListener("click", closeSidebar);
     document.addEventListener("keydown", function (e) {
         if (e.key === "Escape") closeSidebar();
