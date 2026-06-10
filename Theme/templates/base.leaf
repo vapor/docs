@@ -87,9 +87,11 @@
         #extend("partials/header")
 
         <div class="kiln-layout">
-        <button class="kiln-sidebar-toggle" id="kiln-sidebar-toggle" aria-label="#(strings.toggleNavigation)" aria-expanded="false" aria-controls="kiln-sidebar">
-            <span class="vapor-icon icon-menu-04" aria-hidden="true"></span>
-            <span>Menu</span>
+        <button class="kiln-sidebar-toggle" id="kiln-sidebar-toggle" type="button" aria-label="#(strings.toggleNavigation)" aria-expanded="false" aria-controls="kiln-sidebar">
+            <span class="kiln-crumb-dots" aria-hidden="true"><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="3.5" cy="10" r="1.7"/><circle cx="10" cy="10" r="1.7"/><circle cx="16.5" cy="10" r="1.7"/></svg></span>
+            #for(item in nav.items):#if(item.kind == "section"):#if(item.isActive):<span class="vapor-icon icon-chevron-right kiln-crumb-sep" aria-hidden="true"></span><span class="kiln-crumb-section">#(item.title)</span>#endif#endif#endfor
+            <span class="vapor-icon icon-chevron-right kiln-crumb-sep" aria-hidden="true"></span>
+            <span class="kiln-crumb-page">#(page.title)</span>
         </button>
 
         <main class="kiln-main">

@@ -524,20 +524,9 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 }
 
 /* ----------------------------------------------- Mobile sidebar + toggle -- */
-.kiln-sidebar-toggle {
-    display: none;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--vp-surface);
-    border: 1px solid var(--vp-border);
-    color: var(--vp-heading);
-    border-radius: 10px;
-    padding: 0.55rem 0.9rem;
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
-}
-.kiln-sidebar-toggle .vapor-icon { width: 18px; height: 18px; }
+/* The mobile breadcrumb row (section › page) that opens the drawer — see the
+ * media query for the full styling; hidden on desktop. */
+.kiln-sidebar-toggle { display: none; }
 
 /* Drawer close (X) — only shown inside the mobile drawer (see media query). */
 .kiln-sidebar-close { display: none; }
@@ -584,8 +573,42 @@ body > footer {
 }
 
 @media (max-width: 800px) {
-    .kiln-layout { padding: 0 1.1rem; }
-    .kiln-sidebar-toggle { display: inline-flex; margin: 1rem 0 0; }
+    .kiln-layout { padding: 0 1.1rem; gap: 0; }
+
+    /* Breadcrumb row (› section › page) — the whole row opens the drawer. */
+    .kiln-sidebar-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        width: 100%;
+        margin: 0 0 0.75rem;
+        padding: 0.75rem 0;
+        background: none;
+        border: 0;
+        border-bottom: 1px solid var(--vp-border);
+        font: inherit;
+        font-size: 0.92rem;
+        text-align: left;
+        cursor: pointer;
+        min-width: 0;
+    }
+    .kiln-crumb-dots { display: inline-flex; flex: none; color: var(--vp-text-muted); }
+    .kiln-crumb-dots svg { width: 20px; height: 20px; display: block; }
+    .kiln-crumb-sep {
+        flex: none;
+        width: 13px;
+        height: 13px;
+        background-color: var(--vp-text-muted);
+    }
+    .kiln-crumb-section { flex: none; color: var(--vp-text-muted); white-space: nowrap; }
+    .kiln-crumb-page {
+        flex: 1 1 auto;
+        min-width: 0;
+        color: var(--vp-link);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
     /* Off-canvas drawer: sits atop the navbar (z 9999), with a top margin and a
      * rounded right edge, sliding in from the left. */
@@ -632,5 +655,5 @@ body > footer {
         height: 24px;
         background-color: var(--vp-heading);
     }
-    .kiln-main { padding-top: 1rem; }
+    .kiln-main { padding-top: 0; }
 }
