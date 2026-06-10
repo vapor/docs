@@ -134,7 +134,11 @@ body {
     line-height: 1.45;
 }
 .kiln-nav-link:hover { color: var(--vp-link-hover); }
-.kiln-nav-link.kiln-current { color: var(--vp-blue-300); font-weight: 600; }
+/* Active page: highlight the left edge only — text keeps the normal colour. */
+.kiln-nav-link.kiln-current {
+    border-left: 2px solid var(--vp-blue-300);
+    border-radius: 0;
+}
 
 /* Items nested inside a section get a vertical guide line; the current one
  * highlights it blue (matches the designer's sidebar). */
@@ -153,7 +157,7 @@ body {
     list-style: none;
     padding: 0.45rem 0.7rem 0.3rem;
     color: var(--vp-heading);
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1rem;
     margin-top: 0.55rem;
 }
