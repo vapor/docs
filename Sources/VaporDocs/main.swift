@@ -8,7 +8,10 @@ let languages: [Language] = [
     Language(
         .english,
         isDefault: true,
-        localisation: .init(searchPlaceholder: "Quick search")
+        localisation: .init(
+            searchPlaceholder: "Quick search",
+            tableOfContentsTitle: "Table of contents"
+        )
     ),
 
     Language(
