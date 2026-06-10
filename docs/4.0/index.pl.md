@@ -2,6 +2,14 @@
 title: Witaj w dokumentacji Vapor!
 description: Vapor jest frameworkiem do tworzenia aplikacji internetowych z wykorzystaniem języka Swift.
 ---
+
+<div style="text-align: center;">
+    <img src="/assets/vapor-logo.png" alt="Vapor logo" width="160" class="kiln-home-hero">
+
+# Dokumentacja Vapor
+
+</div>
+
 Witaj w dokumentacji Vapor! Vapor jest frameworkiem do tworzenia aplikacji internetowych z wykorzystaniem języka Swift. Pozwala na pisanie serwisów backendowych, API internetowych i serwerów HTTP w Swifcie.
 
 ## Jak zacząć

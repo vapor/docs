@@ -2,6 +2,14 @@
 title: Vapor ドキュメントへようこそ！
 description: Vapor は Swift の Web フレームワークで、Swift でバックエンド、ウェブアプリの API、HTTP サーバーを書くことができます。
 ---
+
+<div style="text-align: center;">
+    <img src="/assets/vapor-logo.png" alt="Vapor logo" width="160" class="kiln-home-hero">
+
+# Vapor ドキュメント
+
+</div>
+
 Vapor ドキュメントへようこそ！ Vapor は Swift の Web フレームワークで、Swift でバックエンド、ウェブアプリの API、HTTP サーバーを書くことができます。 Vapor は Swift で書いており、それは伝統的なサーバー言語よりも多くの利点を提供するモダンで強力で安全な言語です。
 
 ## はじめに {#getting-started}

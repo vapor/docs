@@ -187,7 +187,7 @@ html.dark body { background-image: none; }
     margin-top: 0.55rem;
 }
 .kiln-nav-summary::-webkit-details-marker { display: none; }
-.kiln-nav-summary:hover { color: var(--vp-link-hover); }
+.kiln-nav-summary:hover { color: var(--vp-link); }
 .kiln-nav-external::after { content: " ↗"; opacity: 0.5; font-size: 0.8em; }
 
 /* Slim top bar sits inside the shell, above the content. */
@@ -336,7 +336,7 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     scroll-margin-top: 1.5rem;
 }
 .kiln-article h1 { font-size: 2.25rem; margin: 0 0 1.25rem; font-weight: 700; }
-.kiln-article h2 { font-size: 1.6rem; margin: 2.5rem 0 1rem; padding-top: 0.4rem; border-top: 1px solid var(--vp-border); font-weight: 600; }
+.kiln-article h2 { font-size: 1.6rem; margin: 2rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--vp-border); font-weight: 600; }
 .kiln-article h3 { font-size: 1.25rem; margin: 2rem 0 0.75rem; font-weight: 600; }
 .kiln-article h4 { font-size: 1.05rem; margin: 1.5rem 0 0.5rem; font-weight: 600; }
 
@@ -451,7 +451,7 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     gap: 1rem;
     margin-top: 3rem;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--vp-border);
+    border-top: 2px solid var(--vp-border);
 }
 .kiln-page-nav a {
     display: flex;

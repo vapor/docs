@@ -2,7 +2,13 @@
 title: Willkommen zur Dokumentation von Vapor!
 description: Vapor ist ein Web-Framework für Swift, mit das du Webseiten, ganze Webserver oder APIs schreiben kannst.
 ---
-# Willkommen
+
+<div style="text-align: center;">
+    <img src="/assets/vapor-logo.png" alt="Vapor logo" width="160" class="kiln-home-hero">
+
+# Vapor Dokumentation
+
+</div>
 
 Willkommen zur Dokumentation von Vapor! Vapor ist ein Web-Framework für Swift, mit das du Webseiten, ganze Webserver oder APIs schreiben kannst. Vapor selbst ist in Swift geschrieben, welche eine moderne, leistungsstarke und sichere Sprache ist und die gegenüber anderen Serversprachen eine Vielzahl von Vorteilen bietet.
 
