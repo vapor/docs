@@ -61,70 +61,141 @@ body {
 }
 
 /* ---------------------------------------------------------------- Layout -- */
+/* Fixed full-height left rail (logo + nav) with the content shell offset to its
+ * right. The shell holds the slim top bar, the article + TOC grid, and footer. */
+.kiln-shell {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    margin-left: var(--vp-sidebar-width);
+}
+
 .kiln-layout {
     flex: 1 0 auto;
     width: 100%;
-    max-width: 90rem;
+    max-width: 78rem;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 2.5rem;
     display: grid;
-    grid-template-columns: var(--vp-sidebar-width) minmax(0, 1fr) var(--vp-toc-width);
-    gap: 2.5rem;
+    grid-template-columns: minmax(0, 1fr) var(--vp-toc-width);
+    gap: 3rem;
     align-items: start;
 }
 
-/* ------------------------------------------------------------- Sidebar nav -- */
+/* ------------------------------------------------------------- Sidebar rail -- */
 .kiln-sidebar {
-    position: sticky;
-    top: var(--vp-sticky-top);
-    align-self: start;
-    max-height: calc(100vh - var(--vp-sticky-top) - 1rem);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--vp-sidebar-width);
+    display: flex;
+    flex-direction: column;
+    background: var(--vp-content-bg);
+    border-right: 1px solid var(--vp-border);
+    z-index: 1030;
+}
+
+.kiln-sidebar-brand {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.4rem 1.4rem 1.1rem;
+    text-decoration: none;
+}
+.kiln-sidebar-logo { width: 32px; height: 32px; display: block; }
+.kiln-sidebar-brand-text {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--vp-heading);
+    letter-spacing: -0.01em;
+}
+
+.kiln-nav {
+    flex: 1 1 auto;
     overflow-y: auto;
-    padding: 1.5rem 0.5rem 2rem 0;
     overscroll-behavior: contain;
+    padding: 0.25rem 1rem 2rem;
 }
 
 .kiln-nav-list { list-style: none; margin: 0; padding: 0; }
-.kiln-nav-list .kiln-nav-list { margin-left: 0.6rem; }
 .kiln-nav-item { margin: 0.05rem 0; }
 
 .kiln-nav-link {
     display: block;
-    padding: 0.32rem 0.6rem;
+    padding: 0.34rem 0.7rem;
     border-radius: 8px;
     color: var(--vp-text-muted);
     text-decoration: none;
-    font-size: 0.92rem;
-    line-height: 1.4;
+    font-size: 0.97rem;
+    line-height: 1.45;
 }
-.kiln-nav-link:hover { color: var(--vp-link-hover); background: var(--vp-surface); }
-.kiln-nav-link.kiln-current {
-    color: var(--vp-blue-300);
-    background: color-mix(in srgb, var(--vp-blue-300) 12%, transparent);
-    font-weight: 600;
-}
+.kiln-nav-link:hover { color: var(--vp-link-hover); }
+.kiln-nav-link.kiln-current { color: var(--vp-blue-300); font-weight: 600; }
 
-.kiln-nav-section { margin: 0.15rem 0; }
+/* Items nested inside a section get a vertical guide line; the current one
+ * highlights it blue (matches the designer's sidebar). */
+.kiln-nav-section .kiln-nav-list { margin-left: 0.7rem; }
+.kiln-nav-section .kiln-nav-list .kiln-nav-link {
+    border-radius: 0;
+    border-left: 2px solid var(--vp-border);
+    margin-left: 0;
+}
+.kiln-nav-section .kiln-nav-list .kiln-nav-link:hover { border-left-color: var(--vp-grey-600); }
+.kiln-nav-section .kiln-nav-list .kiln-nav-link.kiln-current { border-left-color: var(--vp-blue-300); }
+
+.kiln-nav-section { margin: 0.1rem 0; }
 .kiln-nav-summary {
     cursor: pointer;
     list-style: none;
-    padding: 0.36rem 0.6rem;
-    border-radius: 8px;
+    padding: 0.45rem 0.7rem 0.3rem;
     color: var(--vp-heading);
     font-weight: 600;
-    font-size: 0.84rem;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
+    font-size: 1rem;
+    margin-top: 0.55rem;
 }
 .kiln-nav-summary::-webkit-details-marker { display: none; }
 .kiln-nav-summary:hover { color: var(--vp-link-hover); }
 .kiln-nav-external::after { content: " ↗"; opacity: 0.5; font-size: 0.8em; }
+
+/* Slim top bar sits inside the shell, above the content. */
+#vapor-navbar { border-bottom: 1px solid var(--vp-border); }
+.kiln-lang-icon { display: inline-flex; align-items: center; }
+.kiln-lang-icon svg { width: 16px; height: auto; display: block; }
+
+/* The shared navbar dropdowns are built light-first; give them dark-mode
+ * treatment so the Documentation / version / language menus stay legible. */
+html.dark #framework-dropdown-menu,
+html.dark .kiln-version-nav .dropdown-menu,
+html.dark .kiln-language-nav .dropdown-menu {
+    background: var(--vp-off-black);
+    border-color: var(--vp-border);
+}
+html.dark .nav-dropdown-container-title { color: #fff; }
+html.dark .nav-dropdown-container-caption { color: var(--vp-text-muted); }
+html.dark .dropdown-item { color: var(--vp-text); }
+html.dark .dropdown-item:hover { background: var(--vp-surface); }
+html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
+html.dark .dropdown-item.active { color: var(--vp-blue-300); background: transparent; }
 
 /* --------------------------------------------------------------- Content -- */
 .kiln-main {
     min-width: 0;
     padding: 2rem 0 3rem;
 }
+
+/* Search relocated from the navbar into the top of the content body. */
+.kiln-body-search { margin: 0 0 2.25rem; }
+.kiln-body-search .kiln-search {
+    width: 100%;
+    height: 3.1rem;
+    border-radius: 14px;
+    padding: 0 1.1rem;
+}
+.kiln-body-search .kiln-search-input { font-size: 1rem; }
+.kiln-body-search .kiln-search-icon { width: 20px; height: 20px; }
 
 .kiln-article { max-width: 48rem; }
 .kiln-article > :first-child { margin-top: 0; }
@@ -257,23 +328,25 @@ body {
     font-size: 0.88rem;
 }
 .kiln-toc-title {
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.74rem;
-    letter-spacing: 0.05em;
-    color: var(--vp-text-muted);
-    margin: 0 0 0.6rem;
+    font-weight: 600;
+    text-transform: none;
+    font-size: 1rem;
+    letter-spacing: 0;
+    color: var(--vp-heading);
+    margin: 0 0 0.75rem;
 }
 .kiln-toc-list, .kiln-toc-sublist { list-style: none; margin: 0; padding: 0; }
 .kiln-toc-sublist { padding-left: 0.8rem; }
 .kiln-toc-entry a {
     display: block;
-    padding: 0.22rem 0;
+    padding: 0.32rem 0;
     color: var(--vp-text-muted);
     text-decoration: none;
     border-left: 2px solid transparent;
-    padding-left: 0.7rem;
-    margin-left: -0.7rem;
+    padding-left: 0.8rem;
+    margin-left: -0.8rem;
+    font-size: 0.95rem;
+    line-height: 1.45;
 }
 .kiln-toc-entry a:hover { color: var(--vp-link-hover); }
 .kiln-toc-entry a.kiln-toc-active { color: var(--vp-blue-300); border-left-color: var(--vp-blue-300); font-weight: 600; }
@@ -363,32 +436,22 @@ body {
 
 /* ============================================================ Responsive == */
 @media (max-width: 1100px) {
-    .kiln-layout { grid-template-columns: var(--vp-sidebar-width) minmax(0, 1fr); }
+    .kiln-layout { grid-template-columns: minmax(0, 1fr); }
     .kiln-toc { display: none; }
 }
 
 @media (max-width: 800px) {
-    .kiln-layout {
-        grid-template-columns: minmax(0, 1fr);
-        padding: 0 1.1rem;
-    }
+    .kiln-shell { margin-left: 0; }
+    .kiln-layout { padding: 0 1.1rem; }
     .kiln-sidebar-toggle { display: inline-flex; margin: 1rem 0 0; }
     .kiln-sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
         width: 19rem;
         max-width: 85vw;
-        max-height: none;
-        background: var(--vp-content-bg);
-        border-right: 1px solid var(--vp-border);
-        padding: 1.5rem 1rem;
         transform: translateX(-100%);
         transition: transform 0.2s ease;
+        box-shadow: 20px 0 40px rgba(0, 0, 0, 0.12);
         z-index: 1050;
     }
     .kiln-sidebar.kiln-open { transform: translateX(0); }
     .kiln-main { padding-top: 1rem; }
-    .kiln-navbar-search { flex: 1 1 auto; width: 100%; }
 }

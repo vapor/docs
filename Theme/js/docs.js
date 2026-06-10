@@ -43,6 +43,27 @@
         });
     }
 
+    // --- Search shortcuts -----------------------------------------------
+    // `/` or ⌘K / Ctrl+K focuses the body search; Esc blurs it.
+    var searchInput = document.getElementById("kiln-search-input");
+    if (searchInput) {
+        searchInput.setAttribute("placeholder", "Quick search");
+        document.addEventListener("keydown", function (e) {
+            var typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName) ||
+                document.activeElement.isContentEditable;
+            if ((e.key === "k" || e.key === "K") && (e.metaKey || e.ctrlKey)) {
+                e.preventDefault();
+                searchInput.focus();
+                searchInput.select();
+            } else if (e.key === "/" && !typing) {
+                e.preventDefault();
+                searchInput.focus();
+            } else if (e.key === "Escape" && document.activeElement === searchInput) {
+                searchInput.blur();
+            }
+        });
+    }
+
     // --- On-this-page scroll-spy ----------------------------------------
     var tocLinks = Array.prototype.slice.call(
         document.querySelectorAll(".kiln-toc a[href^='#']")
