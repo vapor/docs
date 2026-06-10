@@ -209,7 +209,8 @@ html.dark body { background-image: none; }
  * (rounded, soft shadow, bordered) so all three navbar dropdowns match.
  * They already share the `animate slideIn` classes for the open animation. */
 .kiln-version-nav .dropdown-menu,
-.kiln-language-nav .dropdown-menu {
+.kiln-language-nav .dropdown-menu,
+.kiln-mobile-docpicker .dropdown-menu {
     margin-top: 0.5rem;
     padding: 0.4rem;
     min-width: 9rem;
@@ -220,7 +221,8 @@ html.dark body { background-image: none; }
         0 4px 6px -2px rgba(16, 24, 40, 0.03);
 }
 .kiln-version-nav .dropdown-item,
-.kiln-language-nav .dropdown-item {
+.kiln-language-nav .dropdown-item,
+.kiln-mobile-docpicker .dropdown-item {
     padding: 0.5rem 0.8rem;
     border-radius: 12px;
 }
@@ -230,15 +232,29 @@ html.dark body { background-image: none; }
  * #documentation-navbar-chevron id (toggled by the shared main.js); these can't
  * share that, so we match the size here and drive the flip off aria-expanded. */
 .kiln-version-nav .icon-chevron-down,
-.kiln-language-nav .icon-chevron-down {
+.kiln-language-nav .icon-chevron-down,
+.kiln-mobile-docpicker .icon-chevron-down {
     width: 15px;
     height: 15px;
     margin-top: 4px;
     transition: transform 0.35s;
 }
 .kiln-version-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
-.kiln-language-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down {
+.kiln-language-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
+.kiln-mobile-docpicker .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down {
     transform: rotate(180deg);
+}
+
+/* Mobile-only visible navbar: logo + "Framework Docs" pill (shown below lg). The
+ * pill is pushed to the right (next to the hamburger), logo stays left. */
+.kiln-navbar-logo { padding: 0; margin: 0; }
+.kiln-navbar-logo img { display: block; }
+.kiln-mobile-docpicker { margin-left: auto; margin-right: 0.75rem; }
+.kiln-mobile-docpicker .nav-link {
+    border: 1px solid var(--vp-border);
+    border-radius: 999px;
+    padding: 0.4rem 0.6rem 0.4rem 1rem;
+    color: var(--vp-text);
 }
 
 /* Hover highlight (as on www.vapor.codes) for every navbar dropdown item. */
@@ -255,13 +271,17 @@ html.dark body { background-image: none; }
 /* Dark mode: the shared navbar dropdowns are light-first, so re-skin them. */
 html.dark #framework-dropdown-menu,
 html.dark .kiln-version-nav .dropdown-menu,
-html.dark .kiln-language-nav .dropdown-menu {
+html.dark .kiln-language-nav .dropdown-menu,
+html.dark .kiln-mobile-docpicker .dropdown-menu {
     background: var(--vp-off-black);
     border-color: var(--vp-border);
 }
 html.dark .nav-dropdown-container-title { color: #fff; }
 html.dark .nav-dropdown-container-caption { color: var(--vp-text-muted); }
 html.dark .dropdown-item { color: var(--vp-text); }
+/* Current selection stays the link colour — needs the html.dark prefix to beat
+ * `html.dark .dropdown-item` above. */
+html.dark .dropdown-item.active { color: var(--vp-link); }
 /* A visible lift over the dark menu bg — the previous value matched the bg. */
 html.dark .dropdown-item:hover { background: rgba(55, 57, 83, 0.35); }
 html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }

@@ -12,6 +12,22 @@
 -->
 <nav class="navbar navbar-expand-lg" id="vapor-navbar">
     <div class="container-fluid">
+        <!-- Mobile-only visible bar: logo + docs picker. On desktop the logo lives
+             in the sidebar rail and the Documentation dropdown sits in the nav. -->
+        <a class="navbar-brand kiln-navbar-logo d-lg-none" href="/" aria-label="#(site.name) home">
+            <img src="/assets/vapor-logo.png" alt="" width="36" height="36">
+        </a>
+        <div class="dropdown kiln-mobile-docpicker d-lg-none">
+            <a class="nav-link dropdown-no-outline d-flex align-items-center" id="mobile-doc-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span>Framework Docs</span>
+                <span class="vapor-icon icon-chevron-down ms-1"></span>
+            </a>
+            <ul class="dropdown-menu animate slideIn">
+                <li><a class="dropdown-item" href="https://api.vapor.codes" rel="noopener" target="_blank">API Docs</a></li>
+                <li><a class="dropdown-item active" href="/">Framework Docs</a></li>
+            </ul>
+        </div>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span id="vapor-navbar-toggler-icon" class="vapor-icon icon-menu-04"><span class="visually-hidden">Toggle Navigation</span></span>
         </button>
@@ -50,8 +66,8 @@
                 #endif
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-no-outline d-flex align-items-center active" id="documentation-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-current="page">
-                        Documentation
+                    <a class="nav-link dropdown-no-outline d-flex align-items-center" id="documentation-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Framework Docs
                         <span class="vapor-icon icon-chevron-down ms-1" id="documentation-navbar-chevron"></span>
                     </a>
                     <ul class="dropdown-menu animate slideIn" id="framework-dropdown-menu">
