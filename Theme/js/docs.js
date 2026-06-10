@@ -186,6 +186,25 @@
     var searchInput = document.getElementById("kiln-search-input");
     var searchResults = document.getElementById("kiln-search-results");
     if (searchInput) {
+        // Discoverability: on desktop (precise pointer + room) append the
+        // keyboard shortcut to the placeholder, with the platform-correct
+        // modifier (⌘ on Apple, Ctrl elsewhere). The base text stays localised
+        // (set by Kiln); the key combo itself is universal. Hidden on touch /
+        // small screens, where there's no keyboard to hint at.
+        var basePlaceholder = searchInput.getAttribute("placeholder") || "";
+        var platform = (navigator.userAgentData && navigator.userAgentData.platform) ||
+            navigator.platform || navigator.userAgent || "";
+        var shortcutHint = /mac|iphone|ipad|ipod/i.test(platform) ? "⌘K" : "Ctrl+K";
+        var desktopQuery = window.matchMedia("(min-width: 800px) and (pointer: fine)");
+        function syncSearchPlaceholder() {
+            searchInput.setAttribute(
+                "placeholder",
+                desktopQuery.matches ? basePlaceholder + " (" + shortcutHint + ")" : basePlaceholder
+            );
+        }
+        syncSearchPlaceholder();
+        desktopQuery.addEventListener("change", syncSearchPlaceholder);
+
         // "Enter your search…", localised by <html lang>. Kiln's Localisation
         // struct has no field for this, so these strings live here.
         var ENTER_SEARCH = {
