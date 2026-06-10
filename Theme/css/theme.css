@@ -361,7 +361,9 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     padding: 0.95rem 1.1rem;
     font-size: 0.875rem;
 }
-.kiln-article td.hljs-ln-numbers { border-right: 0; }
+/* The line-number table (highlight.js `.hljs-ln`) is styled by the shared CSS —
+ * a single divider between the numbers and the code. It must NOT pick up the
+ * content-table grid borders below (see `table:not(.hljs-ln)`). */
 
 .kiln-article blockquote {
     margin: 0 0 1.3rem;
@@ -370,18 +372,19 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     color: var(--vp-text-muted);
 }
 
-.kiln-article table {
+.kiln-article table:not(.hljs-ln) {
     width: 100%;
     border-collapse: collapse;
     margin: 0 0 1.3rem;
     font-size: 0.94rem;
 }
-.kiln-article th, .kiln-article td {
+.kiln-article table:not(.hljs-ln) th,
+.kiln-article table:not(.hljs-ln) td {
     border: 1px solid var(--vp-border);
     padding: 0.55rem 0.8rem;
     text-align: left;
 }
-.kiln-article th { background: var(--vp-surface); font-weight: 600; }
+.kiln-article table:not(.hljs-ln) th { background: var(--vp-surface); font-weight: 600; }
 
 .kiln-article img { max-width: 100%; height: auto; }
 
