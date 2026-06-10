@@ -496,6 +496,30 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 }
 .kiln-doc-backdrop.kiln-open { display: block; }
 
+/* ----------------------------------------------------------------- Footer -- */
+/* The footer is a body-level child (outside the sidebar + content shell), so it
+ * spans the full page width. Raise it above the fixed sidebar (z 1030) with an
+ * opaque background so the sidebar tucks behind it at the bottom of the page. */
+body > footer {
+    position: relative;
+    z-index: 1031;
+    background: var(--vp-content-bg);
+    border-top: 1px solid var(--vp-border);
+}
+.kiln-footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+}
+.kiln-footer-brand:hover { text-decoration: none; }
+.kiln-footer-brand img { width: 48px; height: 48px; display: block; }
+.kiln-footer-brand span {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--vp-heading);
+}
+
 /* ============================================================ Responsive == */
 @media (max-width: 1100px) {
     .kiln-layout { grid-template-columns: minmax(0, 1fr); }

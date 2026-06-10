@@ -7,7 +7,10 @@
     <div class="container mt-5">
         <div class="row">
             <div id="footer-callout" class="col-md">
-                <span class="d-inline-block align-text-top" id="vapor-logo-footer" aria-label="Vapor Logo"></span>
+                <a class="kiln-footer-brand" href="/" aria-label="#(site.name) home">
+                    <img src="/assets/vapor-logo.png" alt="" width="48" height="48">
+                    <span>Vapor Docs</span>
+                </a>
                 <div class="w-lg-50 mt-4">Vapor provides a safe, performant and easy to use foundation to build HTTP servers, backends and APIs in Swift</div>
             </div>
             <div class="mt-4 mt-lg-0 col-md">
