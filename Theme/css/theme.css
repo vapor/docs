@@ -217,6 +217,9 @@ html.dark body { background-image: none; }
 .kiln-theme-toggle-icon svg { width: 18px; height: 18px; display: block; }
 .kiln-theme-opt-icon { display: inline-flex; align-items: center; margin-right: 0.6rem; }
 .kiln-theme-opt-icon svg { width: 17px; height: 17px; display: block; }
+/* The theme toggle is icon-only on desktop; its chevron only shows in the mobile
+ * panel (where the version/language pickers also have one). */
+.kiln-theme-chevron { display: none; }
 
 /* Version + language menus reuse the framework dropdown's card styling
  * (rounded, soft shadow, bordered) so all three navbar dropdowns match.
@@ -603,13 +606,16 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
         border-radius: 24px 0 0 24px;
         background: var(--vp-content-bg);
         transform: translateX(100%);
-        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Hidden when closed so its drop-shadow doesn't bleed onto the page from
+         * off-screen. visibility holds through the slide-out, then snaps hidden. */
+        visibility: hidden;
+        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.28s;
         box-shadow: -24px 0 60px rgba(0, 0, 0, 0.4);
         z-index: 10001;
         overflow-y: auto;
         padding: 3.5rem 1.5rem 2rem;
     }
-    .kiln-navmenu.kiln-navmenu-open { transform: translateX(0); }
+    .kiln-navmenu.kiln-navmenu-open { transform: translateX(0); visibility: visible; }
     .kiln-navmenu-close {
         display: inline-flex;
         align-items: center;
@@ -637,6 +643,9 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     .kiln-navmenu .kiln-version-nav { order: 5; }
     .kiln-navmenu .kiln-theme-nav { order: 6; }
     .kiln-navmenu .kiln-github-nav { order: 7; margin-top: 1.5rem; }
+    .kiln-navmenu .kiln-github-nav .nav-link { display: flex; justify-content: center; }
+    /* The theme picker shows its chevron in the panel (matching version/language). */
+    .kiln-navmenu .kiln-theme-chevron { display: inline-block; }
 
     /* Divider above the settings rows. */
     .kiln-navmenu .kiln-language-nav {
@@ -666,19 +675,34 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
         border-radius: 999px;
         padding: 0.45rem 0.9rem;
     }
-    /* In-panel dropdowns expand inline (static) below their row instead of
-     * overflowing the panel; the panel scrolls if the content grows. */
-    .kiln-navmenu .dropdown-menu {
+    /* The Documentation dropdown expands inline (static), full-width below its
+     * row — it's a short list and reads as part of the menu. */
+    .kiln-navmenu #framework-dropdown-menu {
         position: static !important;
         transform: none !important;
         width: 100%;
-        margin-top: 0.5rem;
-        max-height: 60vh;
-        overflow-y: auto;
     }
+    /* The language / version / theme pickers instead float on top of the panel,
+     * like the desktop dropdowns. Bootstrap forces navbar dropdowns to
+     * position:static (inline) below lg, so we override to absolute and place
+     * the menu just below its row, right-aligned under the pill. The panel is a
+     * scroll container that would clip it, so while one is open docs.js flips
+     * the panel to overflow:visible; the menu caps its own height and scrolls. */
+    .kiln-navmenu.kiln-navmenu-overflow { overflow: visible; }
     .kiln-navmenu .kiln-language-nav,
     .kiln-navmenu .kiln-version-nav,
-    .kiln-navmenu .kiln-theme-nav { flex-wrap: wrap; }
+    .kiln-navmenu .kiln-theme-nav { position: relative; }
+    .kiln-navmenu .kiln-language-nav .dropdown-menu,
+    .kiln-navmenu .kiln-version-nav .dropdown-menu,
+    .kiln-navmenu .kiln-theme-nav .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: auto;
+        margin-top: 0.4rem;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
     /* Breathing room between the picker rows so the pills/dropdowns don't touch. */
     .kiln-navmenu .kiln-version-nav,
     .kiln-navmenu .kiln-theme-nav { margin-top: 1rem; }
@@ -786,12 +810,14 @@ body > footer {
         max-width: 86vw;
         border-radius: 0 24px 24px 0;
         transform: translateX(-100%);
-        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Hidden when closed so its drop-shadow doesn't bleed onto the page. */
+        visibility: hidden;
+        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.28s;
         box-shadow: 24px 0 60px rgba(0, 0, 0, 0.4);
         z-index: 10001;
         overflow: hidden;
     }
-    .kiln-sidebar.kiln-open { transform: translateX(0); }
+    .kiln-sidebar.kiln-open { transform: translateX(0); visibility: visible; }
     .kiln-sidebar-inner {
         position: static;
         max-height: none;

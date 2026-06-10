@@ -118,6 +118,7 @@
                     <a class="nav-link dropdown-no-outline d-flex align-items-center" id="theme-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Select theme">
                         <span class="kiln-theme-toggle-icon" aria-hidden="true"></span>
                         <span class="kiln-theme-name">System</span>
+                        <span class="vapor-icon icon-chevron-down ms-1 kiln-theme-chevron" aria-hidden="true"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end animate slideIn">
                         <li><a class="dropdown-item d-flex align-items-center" href="#" data-theme="light"><span class="kiln-theme-opt-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>Light</a></li>

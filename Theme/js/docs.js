@@ -29,10 +29,73 @@
     }
     function closeNavmenu() {
         if (!navmenu) return;
-        navmenu.classList.remove("kiln-navmenu-open");
+        // Collapse any open picker dropdown so it doesn't float over the page as
+        // the panel slides away. Removing `.show` keeps Bootstrap in sync (its
+        // toggle reads the menu's class), so the next click still opens it.
+        navmenu.querySelectorAll(".dropdown-menu.show").forEach(function (m) {
+            m.classList.remove("show");
+        });
+        navmenu.querySelectorAll('[data-bs-toggle="dropdown"][aria-expanded="true"]').forEach(function (t) {
+            t.setAttribute("aria-expanded", "false");
+        });
+        navmenu.classList.remove("kiln-navmenu-overflow", "kiln-navmenu-open");
         if (navmenuToggle) navmenuToggle.setAttribute("aria-expanded", "false");
         syncBackdrop();
     }
+
+    // The language/version/theme pickers float over the mobile panel. Bootstrap
+    // doesn't run Popper for navbar dropdowns, so we do two small things here:
+    //  1) flip the panel to overflow:visible while one is open (else its scroll
+    //     container clips the floating menu);
+    //  2) cap the menu's height to the room below its pill — or flip it upward
+    //     when the pill sits low — so a long list (10 languages) never runs off
+    //     screen. On desktop these dropdowns use Bootstrap's own positioning, so
+    //     we only touch them in the panel and clear the inline styles on close.
+    var PANEL_PICKER = /^(language|version|theme)-dropdown-link$/;
+    function inMobilePanel() { return window.matchMedia("(max-width: 991.98px)").matches; }
+
+    function syncPanelOverflow() {
+        if (!navmenu) return;
+        var open = !!navmenu.querySelector(
+            ".kiln-language-nav .dropdown-menu.show," +
+            ".kiln-version-nav .dropdown-menu.show," +
+            ".kiln-theme-nav .dropdown-menu.show"
+        );
+        navmenu.classList.toggle("kiln-navmenu-overflow", open && inMobilePanel());
+    }
+    function positionPanelPicker(toggle) {
+        var menu = toggle.parentElement.querySelector(".dropdown-menu");
+        if (!menu) return;
+        var pill = toggle.getBoundingClientRect();
+        var pad = 12;
+        // Flip upward only when the pill sits low and there's more room above.
+        var up = (window.innerHeight - pill.bottom) < 240 && pill.top > (window.innerHeight - pill.bottom);
+        menu.style.top = up ? "auto" : "100%";
+        menu.style.bottom = up ? "100%" : "auto";
+        menu.style.marginTop = up ? "0" : "0.4rem";
+        menu.style.marginBottom = up ? "0.4rem" : "0";
+        // Measure where it actually lands, then cap to the viewport so a long
+        // list scrolls internally instead of running off-screen.
+        menu.style.maxHeight = "none";
+        var r = menu.getBoundingClientRect();
+        var avail = up ? (r.bottom - pad) : (window.innerHeight - r.top - pad);
+        menu.style.maxHeight = Math.max(160, avail) + "px";
+    }
+    function clearPanelPicker(toggle) {
+        var menu = toggle.parentElement.querySelector(".dropdown-menu");
+        if (!menu) return;
+        ["top", "bottom", "marginTop", "marginBottom", "maxHeight"].forEach(function (p) {
+            menu.style[p] = "";
+        });
+    }
+    document.addEventListener("shown.bs.dropdown", function (e) {
+        syncPanelOverflow();
+        if (e.target && PANEL_PICKER.test(e.target.id) && inMobilePanel()) positionPanelPicker(e.target);
+    });
+    document.addEventListener("hidden.bs.dropdown", function (e) {
+        syncPanelOverflow();
+        if (e.target && PANEL_PICKER.test(e.target.id)) clearPanelPicker(e.target);
+    });
     function openSidebar() {
         if (!sidebar) return;
         closeNavmenu();
