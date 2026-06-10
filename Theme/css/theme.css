@@ -390,6 +390,7 @@ html.dark .dropdown-item.active { color: var(--vp-blue-300); background: transpa
     z-index: 9998;
     padding: 0.4rem;
 }
+.kiln-search-empty { padding: 0.7rem 0.85rem; color: var(--vp-text-muted); font-size: 0.92rem; }
 .kiln-search-results a { display: block; padding: 0.5rem 0.7rem; border-radius: 8px; color: var(--vp-text); text-decoration: none; }
 .kiln-search-results a:hover, .kiln-search-results a.kiln-search-active { background: var(--vp-surface); color: var(--vp-link-hover); }
 .kiln-search-result-title { font-weight: 600; }

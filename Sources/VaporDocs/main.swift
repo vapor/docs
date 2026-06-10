@@ -5,7 +5,11 @@ import Kiln
 // (`index.de.md`, …). Run with `swift run VaporDocs`; output goes to `site/`.
 
 let languages: [Language] = [
-    Language(.english, isDefault: true),
+    Language(
+        .english,
+        isDefault: true,
+        localisation: .init(searchPlaceholder: "Quick search")
+    ),
 
     Language(
         .german,

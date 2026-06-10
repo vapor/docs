@@ -43,11 +43,48 @@
         });
     }
 
-    // --- Search shortcuts -----------------------------------------------
-    // `/` or ⌘K / Ctrl+K focuses the body search; Esc blurs it.
+    // --- Search: shortcuts + empty-state prompt -------------------------
+    // `/` or ⌘K / Ctrl+K focuses the body search; Esc blurs it. When the field
+    // is focused but empty (e.g. opened via the shortcut) we show a dropdown
+    // prompt so it's obvious search is ready. Kiln's search.js owns the results
+    // once you type; docs.js loads after it, so our `input` handler re-shows the
+    // prompt after Kiln hides the (now empty) results.
     var searchInput = document.getElementById("kiln-search-input");
+    var searchResults = document.getElementById("kiln-search-results");
     if (searchInput) {
-        searchInput.setAttribute("placeholder", "Quick search");
+        // "Enter your search…", localised by <html lang>. Kiln's Localisation
+        // struct has no field for this, so these strings live here.
+        var ENTER_SEARCH = {
+            en: "Enter your search…",
+            de: "Suchbegriff eingeben…",
+            es: "Introduce tu búsqueda…",
+            fr: "Saisissez votre recherche…",
+            it: "Inserisci la tua ricerca…",
+            ja: "検索キーワードを入力…",
+            ko: "검색어를 입력하세요…",
+            nl: "Voer je zoekopdracht in…",
+            pl: "Wpisz wyszukiwane hasło…",
+            zh: "输入搜索内容…"
+        };
+        function enterSearchText() {
+            var lang = (document.documentElement.lang || "en").slice(0, 2).toLowerCase();
+            return ENTER_SEARCH[lang] || ENTER_SEARCH.en;
+        }
+        function showSearchPrompt() {
+            if (!searchResults || searchInput.value.trim()) return;
+            var box = document.createElement("div");
+            box.className = "kiln-search-empty kiln-search-prompt";
+            box.textContent = enterSearchText();
+            searchResults.innerHTML = "";
+            searchResults.appendChild(box);
+            searchResults.hidden = false;
+        }
+        searchInput.addEventListener("focus", showSearchPrompt);
+        // Kiln hides the results when the query goes empty; re-show our prompt.
+        searchInput.addEventListener("input", function () {
+            if (!searchInput.value.trim()) showSearchPrompt();
+        });
+
         document.addEventListener("keydown", function (e) {
             var typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName) ||
                 document.activeElement.isContentEditable;
@@ -55,9 +92,11 @@
                 e.preventDefault();
                 searchInput.focus();
                 searchInput.select();
+                showSearchPrompt();
             } else if (e.key === "/" && !typing) {
                 e.preventDefault();
                 searchInput.focus();
+                showSearchPrompt();
             } else if (e.key === "Escape" && document.activeElement === searchInput) {
                 searchInput.blur();
             }
