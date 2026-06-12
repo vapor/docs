@@ -4,8 +4,4 @@ services:
     image: vapor/docs
     container_name: vapor-docs
     ports:
-    - "8000:8000"
-    volumes:
-    - type: bind
-      source: ./
-      target: /docs
+    - "8000:80"

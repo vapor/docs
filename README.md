@@ -26,46 +26,34 @@ If you want to add information to the docs or have found any mistakes you wish t
 
 Localised docs are incredibly useful for allowing people to learn Vapor in their native language. If you wish to contribute to the Vapor documentation by translating, follow the steps below.
 
-You'll need Python3 to build the docs. You can download this from the [Python Website](https://www.python.org/download/releases/3.0/) or install via Homebrew. Once installed, run `pip install -r requirements.txt` in the root directory of this repository. This will install all the needed dependencies in order to be able to build the documentation.  
+The docs are generated with [Kiln](https://github.com/brokenhandsio/kiln), a documentation site generator written in Swift, so you'll need a Swift 6.2+ toolchain (no Python required). Build the site by running `swift run VaporDocs` in the root of the repository; the generated site is written to the `site/` directory.
 
-Following the installation of the dependencies, check if your language you want to translate to is already included in the `mkdocs.yml` file. If it is not, then you can add it like this:
-```yaml
-languages:
-  # Structure
-  <language iso code>:
-    name: <The name of the language>
-    site_name: <The translated site name>
-    build: true # Whether the documentation gets build or not. You can disable this if you don't want to build your language or want to temporarily disable other languages
-
-  # Example
-  nl:
-    name: Nederlands
-    site_name: Vapor Documentatie
-    build: true
-```
-> NOTE: The language code you have to add must conform to the ISO 639-1 Standard. More information can be found [here](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
-
-If there are navigation components that have to be translated, then you can add them under `nav_translations` in the mkdocs file. This is done by specifying a keyword defined in the `nav:` section of the `mkdocs.yml` file and then adding the translation. An example can be found below of how to add those:
-```yaml
-nav_translations:
-  # Structure
-  <language code>:
-    <keyword>: <translation>
-
-  # Example
-  nl:
-    Welcome: Welkom
-    Install: Installeren
+The site is configured in Swift in `Sources/VaporDocs/main.swift`. Check whether the language you want to translate to is already in the `languages` array. If not, add it:
+```swift
+Language(
+    .dutch,                       // a built-in LanguageCode, or .custom(code: "xx", name: "…")
+    siteName: "Vapor Documentatie",
+    description: "Vapor documentatie (webframework voor Swift).",
+    navTranslations: [
+        "Welcome": "Welkom",
+        "Install": "Installeren",
+    ],
+    localisation: .init(
+        searchPlaceholder: "Zoeken"
+        // … other UI strings; any left unset fall back to English
+    )
+)
 ```
 
-Copy the markdown file you would like to translate and name it `<original name file>.<language code>.md`. 
-For example:
+Navigation titles are translated via `navTranslations`, keyed by the English title used in the `navigation` tree. The theme's own UI strings (search box, "previous"/"next", error page, …) are translated via `localisation`.
+
+Copy the markdown file you would like to translate and name it `<original file name>.<language code>.md`. For example:
 ```
-- index.md <- the original english documentation
-- index.nl.md <- the dutch translation of the english documentation file
+- index.md     <- the original English documentation
+- index.nl.md  <- the Dutch translation
 ```
 
-You can check it out by running `mkdocs serve` in the terminal. Once you are satisfied with your translations, feel free to create a PR. Don't forget to turn the `build` flag to true for all languages!
+You can preview your changes by running `swift run VaporDocs` and serving the output, e.g. `python3 -m http.server --directory site`. Once you are satisfied with your translations, feel free to create a PR.
 
 > NOTE: If a file isn't translated, it will just default to the default language file. So you don't have to translate everything all at once.
 

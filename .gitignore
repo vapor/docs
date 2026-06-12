@@ -2,3 +2,6 @@
 .DS_Store
 /site
 
+.build
+.vscode/
+.claude/

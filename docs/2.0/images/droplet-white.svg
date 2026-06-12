@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg 
+    width="50px" 
+    height="50px" 
+    viewBox="0 0 50 50" 
+    version="1.1" 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+    <title>Vapor</title>
+    <desc>The Vapor droplet logo in white.</desc>
+    <g id="droplet" fill="#FFFFFF">
+        <path 
+            d="M17.6186417,50 C17.6186417,50 35.2941176,27.6875238 35.2941176,17.8366268 C35.2941176,7.98572985 27.3932603,0 17.6470588,0 C7.90085736,0 0,7.98572985 0,17.8366268 C0,27.6875238 17.6186417,50 17.6186417,50 Z"
+            transform="translate(17.647059, 25.000000) scale(1, -1) translate(-17.647059, -25.000000)"
+        ></path>
+    </g>
+</svg>
