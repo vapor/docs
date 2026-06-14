@@ -29,7 +29,7 @@ let site = KilnSite(
     ],
     carbonAds: .init(serve: "CK7DT2QW", placement: "vaporcodes"),
     extraCSS: ["stylesheets/fonts.css"],
-    versions: [v4_0, v3_0, v2_0, v1_5]
+    versions: [v5_0, v4_0, v3_0, v2_0, v1_5]
 )
 
 let outputDirectory = "site"
