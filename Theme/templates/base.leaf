@@ -30,9 +30,13 @@
     #if(page.imageURL):<meta name="twitter:image" content="#(page.imageURL)">#endif
 
     <!-- Vapor Docs favicons (new mark) -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="Vapor Docs">
     <link rel="manifest" href="/assets/site.webmanifest">
 
     #for(alt in languages):<link rel="alternate" hreflang="#(alt.locale)" href="#(alt.url)">
