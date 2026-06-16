@@ -188,6 +188,18 @@ html.dark body { background-image: none; }
 }
 .kiln-nav-summary::-webkit-details-marker { display: none; }
 .kiln-nav-summary:hover { color: var(--vp-link); }
+
+/* Subtle reveal when a sidebar section is expanded. The class is added by
+ * docs.js on the `toggle` event, so it only runs on user interaction — not for
+ * the active section that renders open on page load. */
+.kiln-nav-revealing { animation: kiln-nav-reveal 0.2s ease-out; }
+@keyframes kiln-nav-reveal {
+    from { opacity: 0; transform: translateY(-0.25rem); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .kiln-nav-revealing { animation: none; }
+}
 .kiln-nav-external::after { content: " ↗"; opacity: 0.5; font-size: 0.8em; }
 
 /* Slim top bar sits inside the shell, above the content. */
