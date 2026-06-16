@@ -375,6 +375,14 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
  * invisible (but layout-occupying) `#` would shift the text off-centre. */
 .kiln-home-hero ~ h1 .headerlink { display: none; }
 
+/* Content utilities — let docs markup avoid inline style="" attributes, so the
+ * Content-Security-Policy needs no style-src 'unsafe-inline'. */
+.kiln-center { text-align: center; }
+/* Override the `.kiln-article img { height: auto }` default (which the old
+ * inline style="height:40px" used to win against by being inline). */
+.kiln-article img.kiln-inline-badge { height: 40px; width: auto; }
+.kiln-inline-badge--spaced { margin-left: 10px; }
+
 .kiln-article ul, .kiln-article ol { padding-left: 1.4rem; margin: 0 0 1.1rem; }
 .kiln-article li { margin: 0.3rem 0; }
 

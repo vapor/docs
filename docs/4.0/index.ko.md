@@ -3,7 +3,7 @@ title: Vapor 문서에 오신 걸 환영합니다!
 description: Vapor는 Swift를 사용하여 백엔드, 웹 앱 API 및 HTTP 서버를 작성할 수 있는 웹 프레임워크입니다.
 ---
 
-<div style="text-align: center;">
+<div class="kiln-center">
     <img src="/assets/vapor-logo.png" alt="Vapor logo" width="160" class="kiln-home-hero">
 
 # Vapor 문서
