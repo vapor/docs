@@ -85,7 +85,7 @@ Resources:
               Value: 'Vapor Docs'
               Override: true
             - Header: Content-Security-Policy-Report-Only
-              Value: default-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; script-src 'self' https://design.vapor.codes https://cdn.carbonads.com https://srv.carbonads.net; style-src 'self' https://design.vapor.codes; img-src 'self' data: https:; font-src 'self' https://design.vapor.codes; connect-src 'self' https://srv.carbonads.net
+              Value: "default-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; script-src 'self' https://design.vapor.codes https://cdn.carbonads.com https://srv.carbonads.net; style-src 'self' https://design.vapor.codes; img-src 'self' data: https:; font-src 'self' https://design.vapor.codes; connect-src 'self' https://srv.carbonads.net"
               Override: false
         SecurityHeadersConfig:
           #ContentSecurityPolicy:
