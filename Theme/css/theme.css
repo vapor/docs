@@ -540,7 +540,50 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 .kiln-toc-entry a:hover { color: var(--vp-link-hover); }
 /* Current section: brighter (heading) colour, normal weight — no bar, no bold. */
 .kiln-toc-entry a.kiln-toc-active { color: var(--vp-heading); }
-.kiln-carbon { margin-top: 1.5rem; }
+/* ---- Carbon ads: render the injected #carbonads as a sponsor card that fits
+ *      the TOC rail. Carbon ships no styling of its own, so we lay out its
+ *      markup (.carbon-img / .carbon-text / .carbon-poweredby) here. ---- */
+.kiln-carbon { margin-top: 1.75rem; }
+
+#carbonads {
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--vp-border);
+    border-radius: 12px;
+    background: var(--vp-surface);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    transition: border-color 0.2s;
+}
+#carbonads:hover { border-color: var(--vp-grey-400); }
+#carbonads a { color: var(--vp-text); text-decoration: none; }
+#carbonads > span,
+#carbonads .carbon-wrap { display: flex; flex-direction: column; }
+
+.carbon-img { display: block; line-height: 0; }
+.carbon-img img {
+    /* !important overrides Carbon's inline width/height + max-width attributes. */
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    border-bottom: 1px solid var(--vp-border);
+}
+.carbon-text {
+    display: block;
+    padding: 0.7rem 0.8rem 0.55rem;
+    color: var(--vp-text);
+}
+.carbon-text:hover { color: var(--vp-link-hover); }
+.carbon-poweredby {
+    display: block;
+    padding: 0 0.8rem 0.7rem;
+    color: var(--vp-text-muted);
+    font-size: 0.64rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
 
 /* --------------------------------------------------------------- Search -- */
 .kiln-navbar-search { position: relative; flex: 0 1 22rem; min-width: 0; }
