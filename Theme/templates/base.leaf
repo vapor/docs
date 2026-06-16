@@ -49,26 +49,11 @@
     #for(href in site.extraCSS):<link rel="stylesheet" href="/#(href)">
     #endfor
 
-    <script>
-        // Apply the saved colour scheme before first paint to avoid a flash.
-        // Matches the shared toggleDarkMode.js: a `.dark` class on <html>,
-        // persisted under the "theme" key.
-        (function () {
-            try {
-                var t = localStorage.getItem("theme");
-                if (!t || t === "system") {
-                    t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-                }
-                if (t === "dark") {
-                    document.documentElement.classList.add("dark");
-                    var m = document.querySelector('meta[name="theme-color"]');
-                    if (m) m.setAttribute("content", "#141416");
-                }
-            } catch (e) {}
-        })();
-    </script>
+    <!-- Pre-paint colour scheme. External (not inline) so the CSP needs no
+         'unsafe-inline' for scripts; still synchronous, so it runs before paint. -->
+    <script src="/_kiln/js/theme-init.js"></script>
 </head>
-<body>
+<body data-search-index="#(searchIndexURL)" data-version-base="#(versionBasePath)">
     <div class="kiln-doc-backdrop" id="kiln-doc-backdrop"></div>
 
     <div class="kiln-top">
@@ -151,7 +136,10 @@
 
     #extend("partials/footer")
 
-    <script>window.kilnSearchIndex = "#(searchIndexURL)"; window.kilnVersionBase = "#(versionBasePath)";</script>
+    <!-- Search/version globals, read from the <body> data- attributes above.
+         External (not inline) so the CSP needs no 'unsafe-inline' for scripts;
+         must run before search.js, which reads window.kilnSearchIndex. -->
+    <script src="/_kiln/js/search-init.js"></script>
     <!-- Shared chrome JS: Bootstrap, dark-mode toggle, syntax highlighting -->
     <script src="https://design.vapor.codes/main.js"></script>
     #if(site.searchEnabled):<script src="/_kiln/js/search.js"></script>#endif
