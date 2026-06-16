@@ -378,9 +378,19 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 /* Content utilities — let docs markup avoid inline style="" attributes, so the
  * Content-Security-Policy needs no style-src 'unsafe-inline'. */
 .kiln-center { text-align: center; }
-/* Override the `.kiln-article img { height: auto }` default (which the old
- * inline style="height:40px" used to win against by being inline). */
-.kiln-article img.kiln-inline-badge { height: 40px; width: auto; }
+/* Legacy donation badges (2.0 home). Override the `.kiln-article img
+ * { height: auto }` default (which the old inline style="height:40px" used to
+ * win against by being inline), and give them a light chip so the badge
+ * artwork's dark text stays legible on the dark theme. */
+.kiln-article img.kiln-inline-badge {
+    box-sizing: content-box;
+    height: 40px;
+    width: auto;
+    padding: 5px 9px;
+    background: #fff;
+    border-radius: 8px;
+    vertical-align: middle;
+}
 .kiln-inline-badge--spaced { margin-left: 10px; }
 
 .kiln-article ul, .kiln-article ol { padding-left: 1.4rem; margin: 0 0 1.1rem; }
