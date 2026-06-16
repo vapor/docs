@@ -188,6 +188,18 @@ html.dark body { background-image: none; }
 }
 .kiln-nav-summary::-webkit-details-marker { display: none; }
 .kiln-nav-summary:hover { color: var(--vp-link); }
+
+/* Subtle reveal when a sidebar section is expanded. The class is added by
+ * docs.js on the `toggle` event, so it only runs on user interaction — not for
+ * the active section that renders open on page load. */
+.kiln-nav-revealing { animation: kiln-nav-reveal 0.2s ease-out; }
+@keyframes kiln-nav-reveal {
+    from { opacity: 0; transform: translateY(-0.25rem); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .kiln-nav-revealing { animation: none; }
+}
 .kiln-nav-external::after { content: " ↗"; opacity: 0.5; font-size: 0.8em; }
 
 /* Slim top bar sits inside the shell, above the content. */
@@ -245,12 +257,14 @@ html.dark body { background-image: none; }
     border-radius: 12px;
 }
 
-/* Match the framework dropdown's chevron (size + rotate-on-open) for the version
- * and language toggles. The framework chevron is sized/animated via its
- * #documentation-navbar-chevron id (toggled by the shared main.js); these can't
- * share that, so we match the size here and drive the flip off aria-expanded. */
+/* Chevron flip-on-open for every docs picker, driven off aria-expanded (which
+ * Bootstrap sets on the toggle). The framework dropdown's chevron has its own
+ * id-based rule in the shared main.css, but that only flips on a `data-shown`
+ * attribute the shared main.js never sets here — so we flip it off aria-expanded
+ * alongside the others, which works in the desktop nav and the mobile menu. */
 .kiln-version-nav .icon-chevron-down,
 .kiln-language-nav .icon-chevron-down,
+.kiln-doc-nav .icon-chevron-down,
 .kiln-mobile-docpicker .icon-chevron-down,
 .kiln-theme-nav .icon-chevron-down {
     width: 15px;
@@ -260,6 +274,7 @@ html.dark body { background-image: none; }
 }
 .kiln-version-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
 .kiln-language-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
+.kiln-doc-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
 .kiln-mobile-docpicker .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
 .kiln-theme-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down {
     transform: rotate(180deg);
@@ -374,6 +389,24 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 /* The centred home-page hero title has no need for an anchor link, and its
  * invisible (but layout-occupying) `#` would shift the text off-centre. */
 .kiln-home-hero ~ h1 .headerlink { display: none; }
+
+/* Content utilities — let docs markup avoid inline style="" attributes, so the
+ * Content-Security-Policy needs no style-src 'unsafe-inline'. */
+.kiln-center { text-align: center; }
+/* Legacy donation badges (2.0 home). Override the `.kiln-article img
+ * { height: auto }` default (which the old inline style="height:40px" used to
+ * win against by being inline), and give them a light chip so the badge
+ * artwork's dark text stays legible on the dark theme. */
+.kiln-article img.kiln-inline-badge {
+    box-sizing: content-box;
+    height: 40px;
+    width: auto;
+    padding: 5px 9px;
+    background: #fff;
+    border-radius: 8px;
+    vertical-align: middle;
+}
+.kiln-inline-badge--spaced { margin-left: 10px; }
 
 .kiln-article ul, .kiln-article ol { padding-left: 1.4rem; margin: 0 0 1.1rem; }
 .kiln-article li { margin: 0.3rem 0; }

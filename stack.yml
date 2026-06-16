@@ -2,8 +2,8 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: 'The documentation for Vapor'
 Parameters:
   DomainName:
-    Type: String 
-    Description: The domain name for the site 
+    Type: String
+    Description: The domain name for the site
     AllowedPattern: (?!-)[a-zA-Z0-9-.]{1,63}(?<!-)
     ConstraintDescription: Must be a valid DNS zone name.
   AcmCertificateArn:
@@ -12,7 +12,7 @@ Parameters:
     AllowedPattern: "arn:aws:acm:.*"
   S3BucketName:
     Type: String
-    Description: Name for the bucket 
+    Description: Name for the bucket
 Resources:
   S3BucketForWebsiteContent:
     Type: AWS::S3::Bucket
@@ -28,16 +28,16 @@ Resources:
               KeyPrefixEquals: /
             RedirectRule:
               HostName: !Ref 'DomainName'
-          - RoutingRuleCondition: 
+          - RoutingRuleCondition:
               KeyPrefixEquals: "4.0/"
-            RedirectRule: 
+            RedirectRule:
               HostName: !Ref 'DomainName'
               HttpRedirectCode: 301
               Protocol: "https"
               ReplaceKeyPrefixWith: ""
   WebsiteCloudfront:
     Type: AWS::CloudFront::Distribution
-    Properties: 
+    Properties:
       DistributionConfig:
         Comment: Cloudfront Distribution pointing to S3 bucket
         Origins:
@@ -45,7 +45,7 @@ Resources:
           Id: S3Origin
           CustomOriginConfig:
             OriginProtocolPolicy: 'http-only'
-        Enabled: true 
+        Enabled: true
         HttpVersion: 'http2'
         Aliases:
         - !Ref 'DomainName'
@@ -55,13 +55,13 @@ Resources:
             ResponsePagePath: /404.html
         DefaultCacheBehavior:
           AllowedMethods:
-          - GET 
-          - HEAD 
+          - GET
+          - HEAD
           - OPTIONS
-          Compress: true 
+          Compress: true
           TargetOriginId: S3Origin
           ForwardedValues:
-            QueryString: false 
+            QueryString: false
             Cookies:
               Forward: none
           ViewerProtocolPolicy: redirect-to-https
@@ -85,11 +85,11 @@ Resources:
               Value: 'Vapor Docs'
               Override: true
             - Header: Content-Security-Policy-Report-Only
-              Value: default-src 'none'; script-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; connect-src 'self'
+              Value: "default-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; script-src 'self' https://design.vapor.codes https://cdn.carbonads.com https://srv.carbonads.net; style-src 'self' https://design.vapor.codes; img-src 'self' data: https:; font-src 'self' https://design.vapor.codes; connect-src 'self' https://srv.carbonads.net"
               Override: false
         SecurityHeadersConfig:
           #ContentSecurityPolicy:
-          #    ContentSecurityPolicy: default-src 'none'; script-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; connect-src 'self'
+          #    ContentSecurityPolicy: default-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; script-src 'self' https://design.vapor.codes https://cdn.carbonads.com https://srv.carbonads.net; style-src 'self' https://design.vapor.codes; img-src 'self' data: https:; font-src 'self' https://design.vapor.codes; connect-src 'self' https://srv.carbonads.net
           #    Override: false
           ContentTypeOptions:
             Override: false

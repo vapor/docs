@@ -132,6 +132,21 @@
         });
     }
 
+    // --- Sidebar: animate a section's contents in when expanded ----------
+    // Native <details> can't transition its own height, and the `toggle` event
+    // fires only on user interaction (not for sections rendered open on load),
+    // so we restart a short reveal animation on the freshly-opened list.
+    document.querySelectorAll("details.kiln-nav-section").forEach(function (section) {
+        section.addEventListener("toggle", function () {
+            if (!section.open) return;
+            var list = section.querySelector(":scope > .kiln-nav-list");
+            if (!list) return;
+            list.classList.remove("kiln-nav-revealing");
+            void list.offsetWidth; // reflow so the animation restarts
+            list.classList.add("kiln-nav-revealing");
+        });
+    });
+
     // --- Theme picker: light / dark / system ----------------------------
     // Replaces the shared light/dark toggle. "system" follows the OS and is
     // stored by removing the key (matching the head inline-script default).

@@ -30,9 +30,13 @@
     #if(page.imageURL):<meta name="twitter:image" content="#(page.imageURL)">#endif
 
     <!-- Vapor Docs favicons (new mark) -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="Vapor Docs">
     <link rel="manifest" href="/assets/site.webmanifest">
 
     #for(alt in languages):<link rel="alternate" hreflang="#(alt.locale)" href="#(alt.url)">
@@ -45,26 +49,11 @@
     #for(href in site.extraCSS):<link rel="stylesheet" href="/#(href)">
     #endfor
 
-    <script>
-        // Apply the saved colour scheme before first paint to avoid a flash.
-        // Matches the shared toggleDarkMode.js: a `.dark` class on <html>,
-        // persisted under the "theme" key.
-        (function () {
-            try {
-                var t = localStorage.getItem("theme");
-                if (!t || t === "system") {
-                    t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-                }
-                if (t === "dark") {
-                    document.documentElement.classList.add("dark");
-                    var m = document.querySelector('meta[name="theme-color"]');
-                    if (m) m.setAttribute("content", "#141416");
-                }
-            } catch (e) {}
-        })();
-    </script>
+    <!-- Pre-paint colour scheme. External (not inline) so the CSP needs no
+         'unsafe-inline' for scripts; still synchronous, so it runs before paint. -->
+    <script src="/_kiln/js/theme-init.js"></script>
 </head>
-<body>
+<body data-search-index="#(searchIndexURL)" data-version-base="#(versionBasePath)">
     <div class="kiln-doc-backdrop" id="kiln-doc-backdrop"></div>
 
     <div class="kiln-top">
@@ -147,7 +136,10 @@
 
     #extend("partials/footer")
 
-    <script>window.kilnSearchIndex = "#(searchIndexURL)"; window.kilnVersionBase = "#(versionBasePath)";</script>
+    <!-- Search/version globals, read from the <body> data- attributes above.
+         External (not inline) so the CSP needs no 'unsafe-inline' for scripts;
+         must run before search.js, which reads window.kilnSearchIndex. -->
+    <script src="/_kiln/js/search-init.js"></script>
     <!-- Shared chrome JS: Bootstrap, dark-mode toggle, syntax highlighting -->
     <script src="https://design.vapor.codes/main.js"></script>
     #if(site.searchEnabled):<script src="/_kiln/js/search.js"></script>#endif

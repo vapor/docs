@@ -3,7 +3,7 @@ title: Benvenuto nella documentazione di Vapor!
 description: Vapor è un framework web per Swift. Permette di creare backend, applicazioni web, API e server HTTP in Swift.
 ---
 
-<div style="text-align: center;">
+<div class="kiln-center">
     <img src="/assets/vapor-logo.png" alt="Vapor logo" width="160" class="kiln-home-hero">
 
 # Documentazione di Vapor

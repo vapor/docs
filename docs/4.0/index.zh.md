@@ -3,7 +3,7 @@ title: 欢迎使用 Vapor！
 description: Vapor 是基于 Swift 编程语言而开发的最流行的 Web 网络框架。
 ---
 
-<div style="text-align: center;">
+<div class="kiln-center">
     <img src="/assets/vapor-logo.png" alt="Vapor logo" width="160" class="kiln-home-hero">
 
 # Vapor 文档

@@ -3,7 +3,7 @@ title: Willkommen zur Dokumentation von Vapor!
 description: Vapor ist ein Web-Framework für Swift, mit das du Webseiten, ganze Webserver oder APIs schreiben kannst.
 ---
 
-<div style="text-align: center;">
+<div class="kiln-center">
     <img src="/assets/vapor-logo.png" alt="Vapor logo" width="160" class="kiln-home-hero">
 
 # Vapor Dokumentation
