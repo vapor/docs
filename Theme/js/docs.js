@@ -305,4 +305,18 @@
 
         headings.forEach(function (h) { observer.observe(h); });
     }
+
+    // --- Carbon ads (desktop only, where the TOC sidebar is visible) -----
+    // This custom theme doesn't load Kiln's bundled theme.js, so the carbon
+    // loader it normally provides is reproduced here. CSP allows cdn.carbonads.com.
+    var carbon = document.getElementById("kiln-carbon");
+    if (carbon && carbon.dataset.serve && window.innerWidth > 1200) {
+        var ad = document.createElement("script");
+        ad.async = true;
+        ad.type = "text/javascript";
+        ad.id = "_carbonads_js";
+        ad.src = "//cdn.carbonads.com/carbon.js?serve=" + encodeURIComponent(carbon.dataset.serve) +
+            "&placement=" + encodeURIComponent(carbon.dataset.placement);
+        carbon.appendChild(ad);
+    }
 })();
