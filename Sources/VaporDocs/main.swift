@@ -373,7 +373,7 @@ let languages: [Language] = [
             notFoundLink: "Torna alla home page",
             toggleNavigation: "Attiva/disattiva la navigazione",
             toggleColourScheme: "Cambia combinazione di colori",
-            store: "Negozio",
+            store: "Shop",
             showcase: "Vetrina",
             help: "Aiuto",
             resources: "Risorse",
