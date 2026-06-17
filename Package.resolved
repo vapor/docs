@@ -1,15 +1,6 @@
 {
-  "originHash" : "dcd4f6eebb01012848167c8e4daa6ddddac63b614d94c8b7ea199daf15f295a8",
+  "originHash" : "c65f74550dab266b0f72e14ec4631e53072128c41d14e33b3f9e5015578965b8",
   "pins" : [
-    {
-      "identity" : "kiln",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/brokenhandsio/kiln.git",
-      "state" : {
-        "revision" : "3f557bf31b07431f9efc2045bb4489044a2ef22b",
-        "version" : "1.0.0"
-      }
-    },
     {
       "identity" : "leaf-kit",
       "kind" : "remoteSourceControl",
@@ -78,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-system.git",
       "state" : {
-        "revision" : "669763cfd5806a67e21972d7e5e2d6b80b1ea985",
-        "version" : "1.6.5"
+        "revision" : "7502b711c92a17741fa625d722b0ccbd595d8ed1",
+        "version" : "1.7.2"
       }
     },
     {

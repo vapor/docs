@@ -8,6 +8,23 @@ let languages: [Language] = [
     Language(
         .english,
         isDefault: true,
+        // Docs-specific strings (not part of Kiln's built-in chrome) looked up
+        // in the navbar/footer templates via `#t("key")`. English is the
+        // default language, so these double as the fallback for any key a
+        // translation below hasn't provided yet.
+        customStrings: [
+            "tagline": "Vapor provides a safe, performant and easy to use foundation to build HTTP servers, backends and APIs in Swift",
+            "joinDiscord": "Join our Discord",
+            "supporters": "Supporters",
+            "frameworkDocs": "Framework Docs",
+            "apiDocs": "API Docs",
+            "frameworkDocsCaption": "Learn how to use Vapor",
+            "apiDocsCaption": "Reference documentation for Vapor",
+            "selectLanguage": "Select language",
+            "selectVersion": "Select documentation version",
+            "selectTheme": "Select theme",
+            "closeMenu": "Close menu",
+        ],
         localisation: .init(
             searchPlaceholder: "Quick search",
             tableOfContentsTitle: "Table of contents"
@@ -48,6 +65,19 @@ let languages: [Language] = [
             "Validation": "Validierung",
             "Welcome": "Begrüßung",
         ],
+        customStrings: [
+            "tagline": "Vapor bietet eine sichere, performante und einfach zu nutzende Grundlage, um HTTP-Server, Backends und APIs in Swift zu erstellen",
+            "joinDiscord": "Tritt unserem Discord bei",
+            "supporters": "Unterstützer",
+            "frameworkDocs": "Framework-Doku",
+            "apiDocs": "API-Doku",
+            "frameworkDocsCaption": "Lerne, wie du Vapor verwendest",
+            "apiDocsCaption": "Referenzdokumentation für Vapor",
+            "selectLanguage": "Sprache auswählen",
+            "selectVersion": "Dokumentationsversion auswählen",
+            "selectTheme": "Design auswählen",
+            "closeMenu": "Menü schließen",
+        ],
         localisation: .init(
             searchPlaceholder: "Suchen",
             searchNoResults: "Keine Ergebnisse gefunden",
@@ -61,7 +91,13 @@ let languages: [Language] = [
             notFoundMessage: "Die gesuchte Seite wurde möglicherweise verschoben, umbenannt oder existiert nicht.",
             notFoundLink: "Zurück zur Startseite",
             toggleNavigation: "Navigation umschalten",
-            toggleColourScheme: "Farbschema umschalten"
+            toggleColourScheme: "Farbschema umschalten",
+            help: "Hilfe",
+            resources: "Ressourcen",
+            language: "Sprache",
+            theme: "Design",
+            lightTheme: "Hell",
+            darkTheme: "Dunkel"
         )
     ),
 
@@ -122,6 +158,19 @@ let languages: [Language] = [
             "Welcome": "Bienvenido",
             "Xcode": "Xcode",
         ],
+        customStrings: [
+            "tagline": "Vapor ofrece una base segura, eficiente y fácil de usar para crear servidores HTTP, backends y APIs en Swift",
+            "joinDiscord": "Únete a nuestro Discord",
+            "supporters": "Colaboradores",
+            "frameworkDocs": "Documentación del framework",
+            "apiDocs": "Documentación de la API",
+            "frameworkDocsCaption": "Aprende a usar Vapor",
+            "apiDocsCaption": "Documentación de referencia de Vapor",
+            "selectLanguage": "Seleccionar idioma",
+            "selectVersion": "Seleccionar versión de la documentación",
+            "selectTheme": "Seleccionar tema",
+            "closeMenu": "Cerrar el menú",
+        ],
         localisation: .init(
             searchPlaceholder: "Buscar",
             searchNoResults: "No se encontraron resultados",
@@ -135,7 +184,21 @@ let languages: [Language] = [
             notFoundMessage: "Es posible que la página que buscas se haya movido, cambiado de nombre o que nunca haya existido.",
             notFoundLink: "Volver a la página de inicio",
             toggleNavigation: "Alternar la navegación",
-            toggleColourScheme: "Alternar el esquema de color"
+            toggleColourScheme: "Alternar el esquema de color",
+            home: "Inicio",
+            store: "Tienda",
+            showcase: "Proyectos",
+            team: "Equipo",
+            help: "Ayuda",
+            pressKit: "Kit de prensa",
+            community: "Comunidad",
+            resources: "Recursos",
+            language: "Idioma",
+            version: "Versión",
+            theme: "Tema",
+            lightTheme: "Claro",
+            darkTheme: "Oscuro",
+            systemTheme: "Sistema"
         )
     ),
 
@@ -182,6 +245,19 @@ let languages: [Language] = [
             "Version (4.0)": "Version (4.0)",
             "Welcome": "Bienvenue",
         ],
+        customStrings: [
+            "tagline": "Vapor fournit une base sûre, performante et facile à utiliser pour créer des serveurs HTTP, des backends et des API en Swift",
+            "joinDiscord": "Rejoignez notre Discord",
+            "supporters": "Soutiens",
+            "frameworkDocs": "Documentation du framework",
+            "apiDocs": "Documentation de l'API",
+            "frameworkDocsCaption": "Apprenez à utiliser Vapor",
+            "apiDocsCaption": "Documentation de référence de Vapor",
+            "selectLanguage": "Sélectionner la langue",
+            "selectVersion": "Sélectionner la version de la documentation",
+            "selectTheme": "Sélectionner le thème",
+            "closeMenu": "Fermer le menu",
+        ],
         localisation: .init(
             searchPlaceholder: "Rechercher",
             searchNoResults: "Aucun résultat trouvé",
@@ -195,7 +271,20 @@ let languages: [Language] = [
             notFoundMessage: "La page que vous recherchez a peut-être été déplacée, renommée ou n'a jamais existé.",
             notFoundLink: "Retour à la page d'accueil",
             toggleNavigation: "Afficher/masquer la navigation",
-            toggleColourScheme: "Changer de thème de couleur"
+            toggleColourScheme: "Changer de thème de couleur",
+            home: "Accueil",
+            store: "Boutique",
+            showcase: "Vitrine",
+            team: "Équipe",
+            help: "Aide",
+            pressKit: "Kit de presse",
+            community: "Communauté",
+            resources: "Ressources",
+            language: "Langue",
+            theme: "Thème",
+            lightTheme: "Clair",
+            darkTheme: "Sombre",
+            systemTheme: "Système"
         )
     ),
 
@@ -255,6 +344,19 @@ let languages: [Language] = [
             "Welcome": "Benvenuto",
             "Xcode": "Xcode",
         ],
+        customStrings: [
+            "tagline": "Vapor offre una base sicura, performante e facile da usare per creare server HTTP, backend e API in Swift",
+            "joinDiscord": "Unisciti al nostro Discord",
+            "supporters": "Sostenitori",
+            "frameworkDocs": "Documentazione del Framework",
+            "apiDocs": "Documentazione API",
+            "frameworkDocsCaption": "Impara a usare Vapor",
+            "apiDocsCaption": "Documentazione di riferimento per Vapor",
+            "selectLanguage": "Seleziona la lingua",
+            "selectVersion": "Seleziona la versione della documentazione",
+            "selectTheme": "Seleziona il tema",
+            "closeMenu": "Chiudi il menu",
+        ],
         localisation: .init(
             searchPlaceholder: "Cerca",
             searchNoResults: "Nessun risultato trovato",
@@ -268,7 +370,15 @@ let languages: [Language] = [
             notFoundMessage: "La pagina che stai cercando potrebbe essere stata spostata, rinominata o non essere mai esistita.",
             notFoundLink: "Torna alla home page",
             toggleNavigation: "Attiva/disattiva la navigazione",
-            toggleColourScheme: "Cambia combinazione di colori"
+            toggleColourScheme: "Cambia combinazione di colori",
+            help: "Aiuto",
+            resources: "Risorse",
+            language: "Lingua",
+            version: "Versione",
+            theme: "Tema",
+            lightTheme: "Chiaro",
+            darkTheme: "Scuro",
+            systemTheme: "Sistema"
         )
     ),
 
@@ -316,6 +426,19 @@ let languages: [Language] = [
             "Validation": "バリデーション",
             "Welcome": "ようこそ",
         ],
+        customStrings: [
+            "tagline": "Vaporは、SwiftでHTTPサーバー、バックエンド、APIを構築するための、安全で高性能、かつ使いやすい基盤を提供します",
+            "joinDiscord": "Discordに参加",
+            "supporters": "サポーター",
+            "frameworkDocs": "フレームワークドキュメント",
+            "apiDocs": "APIドキュメント",
+            "frameworkDocsCaption": "Vaporの使い方を学ぶ",
+            "apiDocsCaption": "Vaporのリファレンスドキュメント",
+            "selectLanguage": "言語を選択",
+            "selectVersion": "ドキュメントのバージョンを選択",
+            "selectTheme": "テーマを選択",
+            "closeMenu": "メニューを閉じる",
+        ],
         localisation: .init(
             searchPlaceholder: "検索",
             searchNoResults: "結果が見つかりません",
@@ -329,7 +452,22 @@ let languages: [Language] = [
             notFoundMessage: "お探しのページは移動または名称変更されたか、存在しない可能性があります。",
             notFoundLink: "ホームページに戻る",
             toggleNavigation: "ナビゲーションの切り替え",
-            toggleColourScheme: "配色の切り替え"
+            toggleColourScheme: "配色の切り替え",
+            home: "ホーム",
+            store: "ストア",
+            blog: "ブログ",
+            showcase: "ショーケース",
+            team: "チーム",
+            help: "ヘルプ",
+            pressKit: "プレスキット",
+            community: "コミュニティ",
+            resources: "リソース",
+            language: "言語",
+            version: "バージョン",
+            theme: "テーマ",
+            lightTheme: "ライト",
+            darkTheme: "ダーク",
+            systemTheme: "システム"
         )
     ),
 
@@ -378,6 +516,19 @@ let languages: [Language] = [
             "WebSockets": "웹소켓",
             "Welcome": "환영합니다",
         ],
+        customStrings: [
+            "tagline": "Vapor는 Swift로 HTTP 서버, 백엔드, API를 구축하기 위한 안전하고 빠르며 사용하기 쉬운 기반을 제공합니다",
+            "joinDiscord": "Discord 참여하기",
+            "supporters": "후원자",
+            "frameworkDocs": "프레임워크 문서",
+            "apiDocs": "API 문서",
+            "frameworkDocsCaption": "Vapor 사용법 알아보기",
+            "apiDocsCaption": "Vapor 레퍼런스 문서",
+            "selectLanguage": "언어 선택",
+            "selectVersion": "문서 버전 선택",
+            "selectTheme": "테마 선택",
+            "closeMenu": "메뉴 닫기",
+        ],
         localisation: .init(
             searchPlaceholder: "검색",
             searchNoResults: "결과를 찾을 수 없습니다",
@@ -391,7 +542,22 @@ let languages: [Language] = [
             notFoundMessage: "찾고 있는 페이지가 이동되었거나 이름이 변경되었거나 존재하지 않을 수 있습니다.",
             notFoundLink: "홈페이지로 돌아가기",
             toggleNavigation: "내비게이션 전환",
-            toggleColourScheme: "색 구성표 전환"
+            toggleColourScheme: "색 구성표 전환",
+            home: "홈",
+            store: "스토어",
+            blog: "블로그",
+            showcase: "쇼케이스",
+            team: "팀",
+            help: "도움말",
+            pressKit: "프레스 킷",
+            community: "커뮤니티",
+            resources: "리소스",
+            language: "언어",
+            version: "버전",
+            theme: "테마",
+            lightTheme: "라이트",
+            darkTheme: "다크",
+            systemTheme: "시스템"
         )
     ),
 
@@ -436,6 +602,19 @@ let languages: [Language] = [
             "Version (4.0)": "Versie (4.0)",
             "Welcome": "Welkom",
         ],
+        customStrings: [
+            "tagline": "Vapor biedt een veilige, performante en gebruiksvriendelijke basis om HTTP-servers, backends en API's in Swift te bouwen",
+            "joinDiscord": "Word lid van onze Discord",
+            "supporters": "Ondersteuners",
+            "frameworkDocs": "Framework-documentatie",
+            "apiDocs": "API-documentatie",
+            "frameworkDocsCaption": "Leer hoe je Vapor gebruikt",
+            "apiDocsCaption": "Referentiedocumentatie voor Vapor",
+            "selectLanguage": "Selecteer taal",
+            "selectVersion": "Selecteer documentatieversie",
+            "selectTheme": "Selecteer thema",
+            "closeMenu": "Menu sluiten",
+        ],
         localisation: .init(
             searchPlaceholder: "Zoeken",
             searchNoResults: "Geen resultaten gevonden",
@@ -449,7 +628,14 @@ let languages: [Language] = [
             notFoundMessage: "De pagina die je zoekt is mogelijk verplaatst, hernoemd of heeft nooit bestaan.",
             notFoundLink: "Terug naar de startpagina",
             toggleNavigation: "Navigatie schakelen",
-            toggleColourScheme: "Kleurenschema schakelen"
+            toggleColourScheme: "Kleurenschema schakelen",
+            resources: "Bronnen",
+            language: "Taal",
+            version: "Versie",
+            theme: "Thema",
+            lightTheme: "Licht",
+            darkTheme: "Donker",
+            systemTheme: "Systeem"
         )
     ),
 
@@ -508,6 +694,19 @@ let languages: [Language] = [
             "Welcome": "Witaj",
             "Xcode": "Xcode",
         ],
+        customStrings: [
+            "tagline": "Vapor zapewnia bezpieczną, wydajną i łatwą w użyciu podstawę do budowania serwerów HTTP, backendów i API w Swift",
+            "joinDiscord": "Dołącz do naszego Discorda",
+            "supporters": "Wspierający",
+            "frameworkDocs": "Dokumentacja frameworka",
+            "apiDocs": "Dokumentacja API",
+            "frameworkDocsCaption": "Naucz się korzystać z Vapor",
+            "apiDocsCaption": "Dokumentacja referencyjna Vapor",
+            "selectLanguage": "Wybierz język",
+            "selectVersion": "Wybierz wersję dokumentacji",
+            "selectTheme": "Wybierz motyw",
+            "closeMenu": "Zamknij menu",
+        ],
         localisation: .init(
             searchPlaceholder: "Szukaj",
             searchNoResults: "Nie znaleziono wyników",
@@ -521,7 +720,21 @@ let languages: [Language] = [
             notFoundMessage: "Strona, której szukasz, mogła zostać przeniesiona, zmieniona lub nigdy nie istniała.",
             notFoundLink: "Powrót do strony głównej",
             toggleNavigation: "Przełącz nawigację",
-            toggleColourScheme: "Przełącz schemat kolorów"
+            toggleColourScheme: "Przełącz schemat kolorów",
+            home: "Strona główna",
+            store: "Sklep",
+            showcase: "Realizacje",
+            team: "Zespół",
+            help: "Pomoc",
+            pressKit: "Materiały prasowe",
+            community: "Społeczność",
+            resources: "Zasoby",
+            language: "Język",
+            version: "Wersja",
+            theme: "Motyw",
+            lightTheme: "Jasny",
+            darkTheme: "Ciemny",
+            systemTheme: "Systemowy"
         )
     ),
 
@@ -578,6 +791,19 @@ let languages: [Language] = [
             "Welcome": "序言",
             "Xcode": "Xcode",
         ],
+        customStrings: [
+            "tagline": "Vapor 提供安全、高性能且易于使用的基础框架，助您用 Swift 构建 HTTP 服务器、后端和 API",
+            "joinDiscord": "加入我们的 Discord",
+            "supporters": "赞助者",
+            "frameworkDocs": "框架文档",
+            "apiDocs": "API 文档",
+            "frameworkDocsCaption": "学习如何使用 Vapor",
+            "apiDocsCaption": "Vapor 参考文档",
+            "selectLanguage": "选择语言",
+            "selectVersion": "选择文档版本",
+            "selectTheme": "选择主题",
+            "closeMenu": "关闭菜单",
+        ],
         localisation: .init(
             searchPlaceholder: "搜索",
             searchNoResults: "未找到结果",
@@ -591,7 +817,22 @@ let languages: [Language] = [
             notFoundMessage: "您要查找的页面可能已被移动、重命名或从未存在。",
             notFoundLink: "返回首页",
             toggleNavigation: "切换导航",
-            toggleColourScheme: "切换配色方案"
+            toggleColourScheme: "切换配色方案",
+            home: "首页",
+            store: "商店",
+            blog: "博客",
+            showcase: "案例展示",
+            team: "团队",
+            help: "帮助",
+            pressKit: "媒体资源",
+            community: "社区",
+            resources: "资源",
+            language: "语言",
+            version: "版本",
+            theme: "主题",
+            lightTheme: "浅色",
+            darkTheme: "深色",
+            systemTheme: "跟随系统"
         )
     ),
 ]
