@@ -7,10 +7,7 @@ let package = Package(
         .macOS(.v13)
     ],
     dependencies: [
-        // TODO: revert to the released package once the navbar/footer
-        // localisation changes (customStrings + #t tag) ship in a Kiln release.
-        // .package(url: "https://github.com/brokenhandsio/kiln.git", from: "1.0.0"),
-        .package(path: "../../BH/kiln"),
+        .package(url: "https://github.com/brokenhandsio/kiln.git", from: "1.1.0"),
     ],
     targets: [
         .executableTarget(
