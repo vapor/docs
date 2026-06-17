@@ -1,6 +1,6 @@
 ---
 title: Bienvenue sur la documentation de Vapor !
-description: Vapor est un framework web pour Swift, qui vous autorise à développer des backends, des web apps API et des serveurs HTTP en Swift.
+description: Vapor est un framework Swift pour le web, qui vous permet de développer des backends, des API et des serveurs HTTP en Swift.
 ---
 
 <div class="kiln-center">
@@ -10,27 +10,28 @@ description: Vapor est un framework web pour Swift, qui vous autorise à dévelo
 
 </div>
 
-Bienvenue sur la documentation de Vapor ! Vapor est un framework web pour Swift, qui vous autorise à développer des backends, des web apps API et des serveurs HTTP en Swift, qui est un langage moderne, puissant et sécurisé qui donne de nombreux bénéfices au-dessus le plus de langages de serveurs traditionnels.
+Bienvenue sur la documentation de Vapor ! Vapor est un framework Swift pour le web, qui vous permet de développer des backends, des API et des serveurs HTTP en Swift.<br/>
+Swift est un langage moderne, puissant et sécurisé qui offre de nombreux avantages par rapport à nombre de langages serveurs traditionnels.
 
 ## Commencer
 
-Si c'est la première fois que vous utiliser Vapor, naviguer vers [Installer → macOS](install/macos.md) pour installer Swift et Vapor.
+Si c'est la première fois que vous utilisez Vapor, naviguez vers [Installation → macOS](install/macos.md) ou [Installation → Linux](../install/linux.md) pour installer Swift et Vapor.
 
-Une fois que Vapor à été installé, regargez [Commencer → Bonjour, monde](getting-started/hello-world.md) pour créer votre première app Vapor !
+Une fois que Vapor est installé, lisez [Commencer → Hello, world](getting-started/hello-world.md) pour créer votre première application Vapor !
 
 ## Autres sources
 
-Ici vous avez quelques autres bons endroits où trouver des informations sur Vapor.
+Vous pourrez trouver ici plus de ressources utiles concernant Vapor.
 
 | name           | description                                                       | link                                                             |
 | -------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Vapor Discord  | Chatter avec des milliers de developpeurs Vapor.                  | [visiter &rarr;](https://vapor.team)                                |
-| API docs       | Documentation auto-générée à partir des commentaires de code. | [visiter &rarr;](https://api.vapor.codes)                           |
-| Stack Overflow | Demander et réponder à des question avec le tag `vapor`.      | [visiter &rarr;](https://stackoverflow.com/questions/tagged/vapor)  |
-| Swift Forums   | Poster dans la section de Vapor sur les forums de Swift.org.      | [visiter &rarr;](https://forums.swift.org/c/related-projects/vapor) |
-| Source Code    | Apprendre comment Vapor fonctionne sous le capot.                 | [visiter &rarr;](https://github.com/vapor/vapor)                    |
-| GitHub Issues  | Signaler des bugs ou demander des fonctionnalitées sur GitHub.   | [visiter &rarr;](https://github.com/vapor/vapor/issues)             |
+| Discord Vapor  | Chattez avec des milliers de developpeurs Vapor.                  | [visiter →](https://vapor.team)                                |
+| API docs       | Documentation auto-générée à partir des commentaires du code. | [visiter →](https://api.vapor.codes)                           |
+| Stack Overflow | Demander et répondre à des questions avec le tag `vapor`.      | [visiter →](https://stackoverflow.com/questions/tagged/vapor)  |
+| Forums Swift  | Poster dans la section de Vapor sur les forums de Swift.org.      | [visiter →](https://forums.swift.org/c/related-projects/vapor) |
+| Code Source    | Apprendre comment Vapor fonctionne sous le capot.                 | [visiter →](https://github.com/vapor/vapor)                    |
+| Tickets GitHub  | Signaler des bugs ou demander des fonctionnalités sur GitHub.   | [visiter →](https://github.com/vapor/vapor/issues)             |
 
 ## Auteurs
 
-La Vapor Core Team, et les centaines de membres de la communauté de Vapor.
+La Core Team Vapor, et les centaines de membres de la communauté Vapor.
