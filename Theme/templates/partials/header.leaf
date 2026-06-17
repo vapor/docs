@@ -19,12 +19,12 @@
         </a>
         <div class="dropdown kiln-mobile-docpicker d-lg-none">
             <a class="nav-link dropdown-no-outline d-flex align-items-center" id="mobile-doc-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <span>#t("frameworkDocs")</span>
+                <span>#localise("frameworkDocs")</span>
                 <span class="vapor-icon icon-chevron-down ms-1"></span>
             </a>
             <ul class="dropdown-menu animate slideIn">
-                <li><a class="dropdown-item" href="https://api.vapor.codes" rel="noopener" target="_blank">#t("apiDocs")</a></li>
-                <li><a class="dropdown-item active" href="/">#t("frameworkDocs")</a></li>
+                <li><a class="dropdown-item" href="https://api.vapor.codes" rel="noopener" target="_blank">#localise("apiDocs")</a></li>
+                <li><a class="dropdown-item active" href="/">#localise("frameworkDocs")</a></li>
             </ul>
         </div>
 
@@ -33,7 +33,7 @@
         </button>
 
         <div class="kiln-navmenu" id="kiln-navmenu">
-            <button class="kiln-navmenu-close" id="kiln-navmenu-close" type="button" aria-label='#t("closeMenu")'>
+            <button class="kiln-navmenu-close" id="kiln-navmenu-close" type="button" aria-label='#localise("closeMenu")'>
                 <span class="vapor-icon icon-x-close" aria-hidden="true"></span>
             </button>
             <ul class="navbar-nav w-100 mb-2 mb-lg-0 align-items-lg-center">
@@ -42,7 +42,7 @@
                 #if(count(languages) > 1):
                 <li class="nav-item dropdown kiln-language-nav">
                     <span class="kiln-nav-label" aria-hidden="true">#(strings.language)</span>
-                    <a class="nav-link dropdown-no-outline d-flex align-items-center" id="language-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label='#t("selectLanguage")'>
+                    <a class="nav-link dropdown-no-outline d-flex align-items-center" id="language-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label='#localise("selectLanguage")'>
                         <span class="kiln-lang-icon" aria-hidden="true"><svg width="14" height="17" viewBox="0 0 14 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.00022 0C7.55251 0 8.00022 0.447715 8.00022 1V2H13.0002C13.5525 2 14.0002 2.44772 14.0002 3C14.0002 3.55228 13.5525 4 13.0002 4H11.3285C10.8162 6.42693 9.87524 8.66709 8.565 10.6367C8.85032 10.8123 9.13389 10.9638 9.41004 11.0878C9.91381 11.3142 10.1387 11.906 9.91239 12.4098C9.68606 12.9136 9.09418 13.1385 8.59041 12.9122C8.17766 12.7267 7.76596 12.501 7.3636 12.244C5.75657 14.1638 3.75762 15.7464 1.44525 16.8955C0.950675 17.1413 0.350491 16.9396 0.104707 16.445C-0.141078 15.9505 0.0606094 15.3503 0.555188 15.1045C2.59445 14.0911 4.35501 12.7039 5.77505 11.0255C4.63612 9.99443 3.63971 8.71614 3.07907 7.38919C2.86412 6.88045 3.10229 6.29379 3.61103 6.07884C4.11977 5.8639 4.70643 6.10207 4.92138 6.61081C5.32645 7.56955 6.07354 8.56589 6.97625 9.41298C8.03044 7.79868 8.81343 5.9769 9.27935 4H1.00022C0.447936 4 0.000220961 3.55228 0.000220961 3C0.000220961 2.44772 0.447936 2 1.00022 2H6.00022V1C6.00022 0.447715 6.44794 0 7.00022 0Z" fill="currentColor"/></svg></span>
                         <span class="kiln-lang-name">#(language.name)</span>
                         <span class="vapor-icon icon-chevron-down ms-1"></span>
@@ -58,7 +58,7 @@
                 #if(count(versions) > 1):
                 <li class="nav-item dropdown kiln-version-nav">
                     <span class="kiln-nav-label" aria-hidden="true">#(strings.version)</span>
-                    <a class="nav-link dropdown-no-outline d-flex align-items-center" id="version-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label='#t("selectVersion")'>
+                    <a class="nav-link dropdown-no-outline d-flex align-items-center" id="version-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label='#localise("selectVersion")'>
                         <span>#(currentVersion.name)</span>
                         <span class="vapor-icon icon-chevron-down ms-1"></span>
                     </a>
@@ -72,7 +72,7 @@
 
                 <li class="nav-item dropdown kiln-doc-nav">
                     <a class="nav-link dropdown-no-outline d-flex align-items-center" id="documentation-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        #t("frameworkDocs")
+                        #localise("frameworkDocs")
                         <span class="vapor-icon icon-chevron-down ms-1" id="documentation-navbar-chevron"></span>
                     </a>
                     <ul class="dropdown-menu animate slideIn" id="framework-dropdown-menu">
@@ -81,8 +81,8 @@
                                 <div class="nav-dropdown-container d-flex">
                                     <span class="vapor-icon icon-server-04"></span>
                                     <div class="ms-3">
-                                        <div class="nav-dropdown-container-title">#t("frameworkDocs")</div>
-                                        <div class="nav-dropdown-container-caption d-none d-lg-block">#t("frameworkDocsCaption")</div>
+                                        <div class="nav-dropdown-container-title">#localise("frameworkDocs")</div>
+                                        <div class="nav-dropdown-container-caption d-none d-lg-block">#localise("frameworkDocsCaption")</div>
                                     </div>
                                 </div>
                             </a>
@@ -92,8 +92,8 @@
                                 <div class="nav-dropdown-container d-flex">
                                     <span class="vapor-icon icon-dataflow-03" aria-hidden="true"></span>
                                     <div class="ms-3">
-                                        <div class="nav-dropdown-container-title">#t("apiDocs")</div>
-                                        <div class="nav-dropdown-container-caption d-none d-lg-block">#t("apiDocsCaption")</div>
+                                        <div class="nav-dropdown-container-title">#localise("apiDocs")</div>
+                                        <div class="nav-dropdown-container-caption d-none d-lg-block">#localise("apiDocsCaption")</div>
                                     </div>
                                 </div>
                             </a>
@@ -115,7 +115,7 @@
                 </li>
                 <li class="nav-item dropdown kiln-theme-nav">
                     <span class="kiln-nav-label" aria-hidden="true">#(strings.theme)</span>
-                    <a class="nav-link dropdown-no-outline d-flex align-items-center" id="theme-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label='#t("selectTheme")'>
+                    <a class="nav-link dropdown-no-outline d-flex align-items-center" id="theme-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label='#localise("selectTheme")'>
                         <span class="kiln-theme-toggle-icon" aria-hidden="true"></span>
                         <span class="kiln-theme-name">#(strings.systemTheme)</span>
                         <span class="vapor-icon icon-chevron-down ms-1 kiln-theme-chevron" aria-hidden="true"></span>
