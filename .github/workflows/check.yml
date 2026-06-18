@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository 
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
     - name: Build documentation
       run: docker run --rm -v "$PWD":/docs -w /docs swift:6.3 swift run VaporDocs
     - name: Setup cloudformation linter 
