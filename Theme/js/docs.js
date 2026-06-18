@@ -43,59 +43,23 @@
         syncBackdrop();
     }
 
-    // The language/version/theme pickers float over the mobile panel. Bootstrap
-    // doesn't run Popper for navbar dropdowns, so we do two small things here:
-    //  1) flip the panel to overflow:visible while one is open (else its scroll
-    //     container clips the floating menu);
-    //  2) cap the menu's height to the room below its pill — or flip it upward
-    //     when the pill sits low — so a long list (10 languages) never runs off
-    //     screen. On desktop these dropdowns use Bootstrap's own positioning, so
-    //     we only touch them in the panel and clear the inline styles on close.
-    var PANEL_PICKER = /^(language|version|theme)-dropdown-link$/;
+    // The language/version/theme picker dropdowns float over the mobile panel
+    // (positioned + height-capped by CSS — shared design CSS for language/theme,
+    // local CSS for the version picker). Bootstrap doesn't run Popper for navbar
+    // dropdowns and the panel is a scroll container, so flip it to overflow:visible
+    // while one is open, else it clips the floating menu.
     function inMobilePanel() { return window.matchMedia("(max-width: 991.98px)").matches; }
-
     function syncPanelOverflow() {
         if (!navmenu) return;
         var open = !!navmenu.querySelector(
-            ".kiln-language-nav .dropdown-menu.show," +
+            ".language-picker .dropdown-menu.show," +
             ".kiln-version-nav .dropdown-menu.show," +
-            ".kiln-theme-nav .dropdown-menu.show"
+            ".theme-picker .dropdown-menu.show"
         );
         navmenu.classList.toggle("kiln-navmenu-overflow", open && inMobilePanel());
     }
-    function positionPanelPicker(toggle) {
-        var menu = toggle.parentElement.querySelector(".dropdown-menu");
-        if (!menu) return;
-        var pill = toggle.getBoundingClientRect();
-        var pad = 12;
-        // Flip upward only when the pill sits low and there's more room above.
-        var up = (window.innerHeight - pill.bottom) < 240 && pill.top > (window.innerHeight - pill.bottom);
-        menu.style.top = up ? "auto" : "100%";
-        menu.style.bottom = up ? "100%" : "auto";
-        menu.style.marginTop = up ? "0" : "0.4rem";
-        menu.style.marginBottom = up ? "0.4rem" : "0";
-        // Measure where it actually lands, then cap to the viewport so a long
-        // list scrolls internally instead of running off-screen.
-        menu.style.maxHeight = "none";
-        var r = menu.getBoundingClientRect();
-        var avail = up ? (r.bottom - pad) : (window.innerHeight - r.top - pad);
-        menu.style.maxHeight = Math.max(160, avail) + "px";
-    }
-    function clearPanelPicker(toggle) {
-        var menu = toggle.parentElement.querySelector(".dropdown-menu");
-        if (!menu) return;
-        ["top", "bottom", "marginTop", "marginBottom", "maxHeight"].forEach(function (p) {
-            menu.style[p] = "";
-        });
-    }
-    document.addEventListener("shown.bs.dropdown", function (e) {
-        syncPanelOverflow();
-        if (e.target && PANEL_PICKER.test(e.target.id) && inMobilePanel()) positionPanelPicker(e.target);
-    });
-    document.addEventListener("hidden.bs.dropdown", function (e) {
-        syncPanelOverflow();
-        if (e.target && PANEL_PICKER.test(e.target.id)) clearPanelPicker(e.target);
-    });
+    document.addEventListener("shown.bs.dropdown", syncPanelOverflow);
+    document.addEventListener("hidden.bs.dropdown", syncPanelOverflow);
     function openSidebar() {
         if (!sidebar) return;
         closeNavmenu();
@@ -147,50 +111,10 @@
         });
     });
 
-    // --- Theme picker: light / dark / system ----------------------------
-    // Replaces the shared light/dark toggle. "system" follows the OS and is
-    // stored by removing the key (matching the head inline-script default).
-    (function () {
-        var KEY = "theme";
-        var mq = window.matchMedia("(prefers-color-scheme: dark)");
-        function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
-        function current() { return stored() || "system"; }
-        function apply(pref) {
-            var dark = pref === "dark" || ((pref === "system" || !pref) && mq.matches);
-            document.documentElement.classList.toggle("dark", dark);
-            var meta = document.querySelector('meta[name="theme-color"]');
-            if (meta) meta.setAttribute("content", dark ? "#141416" : "#ffffff");
-        }
-        function refreshLabels() {
-            var c = current();
-            var label = c.charAt(0).toUpperCase() + c.slice(1);
-            document.querySelectorAll(".kiln-theme-name").forEach(function (el) { el.textContent = label; });
-            document.querySelectorAll(".kiln-theme-nav .dropdown-item[data-theme]").forEach(function (a) {
-                a.classList.toggle("active", a.getAttribute("data-theme") === c);
-            });
-            // Mirror the active option's icon onto the toggle so it reflects the
-            // current choice (sun / moon / monitor) at a glance.
-            var opt = document.querySelector('.kiln-theme-nav .dropdown-item[data-theme="' + c + '"] .kiln-theme-opt-icon');
-            if (opt) {
-                document.querySelectorAll(".kiln-theme-toggle-icon").forEach(function (el) {
-                    el.innerHTML = opt.innerHTML;
-                });
-            }
-        }
-        function setTheme(pref) {
-            try {
-                if (pref === "system") localStorage.removeItem(KEY);
-                else localStorage.setItem(KEY, pref);
-            } catch (e) {}
-            apply(pref);
-            refreshLabels();
-        }
-        document.querySelectorAll(".kiln-theme-nav .dropdown-item[data-theme]").forEach(function (a) {
-            a.addEventListener("click", function (e) { e.preventDefault(); setTheme(a.getAttribute("data-theme")); });
-        });
-        mq.addEventListener("change", function () { if (current() === "system") apply("system"); });
-        refreshLabels();
-    })();
+    // The theme picker (light / dark / system) now uses the shared `.theme-picker`
+    // markup, so the shared themePicker.js (loaded via design.vapor.codes/main.js)
+    // drives it. theme-init.js still applies the saved theme pre-paint. (Same
+    // localStorage "theme" key + `.dark` class, so the two stay in sync.)
 
     // --- Search: shortcuts + empty-state prompt -------------------------
     // `/` or ⌘K / Ctrl+K focuses the body search; Esc blurs it. When the field

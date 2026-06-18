@@ -217,29 +217,16 @@ html.dark body { background-image: none; }
     outline: 0;
     box-shadow: none;
 }
-.kiln-lang-icon { display: inline-flex; align-items: center; }
-.kiln-lang-icon svg { width: 16px; height: auto; display: block; }
-
-/* Labels + the language/theme name only appear in the mobile nav-menu panel. */
-.kiln-nav-label, .kiln-lang-name, .kiln-theme-name { display: none; }
-
-/* Theme toggle is an icon-only control (no chevron). The icon mirrors the active
- * choice (sun / moon / monitor) and is injected by docs.js. */
-.kiln-theme-toggle-icon { display: inline-flex; align-items: center; }
-.kiln-theme-toggle-icon svg { width: 18px; height: 18px; display: block; }
-.kiln-theme-opt-icon { display: inline-flex; align-items: center; margin-right: 0.6rem; }
-.kiln-theme-opt-icon svg { width: 17px; height: 17px; display: block; }
-/* The theme toggle is icon-only on desktop; its chevron only shows in the mobile
- * panel (where the version/language pickers also have one). */
-.kiln-theme-chevron { display: none; }
+/* The "Version" label only appears in the mobile nav-menu panel. (The language +
+ * theme pickers now use the shared design styles — .language-picker/.theme-picker
+ * — so their icon/name/chevron rules live in design.vapor.codes/main.css.) */
+.kiln-nav-label { display: none; }
 
 /* Version + language menus reuse the framework dropdown's card styling
  * (rounded, soft shadow, bordered) so all three navbar dropdowns match.
  * They already share the `animate slideIn` classes for the open animation. */
 .kiln-version-nav .dropdown-menu,
-.kiln-language-nav .dropdown-menu,
-.kiln-mobile-docpicker .dropdown-menu,
-.kiln-theme-nav .dropdown-menu {
+.kiln-mobile-docpicker .dropdown-menu {
     margin-top: 0.5rem;
     padding: 0.4rem;
     min-width: 9rem;
@@ -250,9 +237,7 @@ html.dark body { background-image: none; }
         0 4px 6px -2px rgba(16, 24, 40, 0.03);
 }
 .kiln-version-nav .dropdown-item,
-.kiln-language-nav .dropdown-item,
-.kiln-mobile-docpicker .dropdown-item,
-.kiln-theme-nav .dropdown-item {
+.kiln-mobile-docpicker .dropdown-item {
     padding: 0.5rem 0.8rem;
     border-radius: 12px;
 }
@@ -263,20 +248,16 @@ html.dark body { background-image: none; }
  * attribute the shared main.js never sets here — so we flip it off aria-expanded
  * alongside the others, which works in the desktop nav and the mobile menu. */
 .kiln-version-nav .icon-chevron-down,
-.kiln-language-nav .icon-chevron-down,
 .kiln-doc-nav .icon-chevron-down,
-.kiln-mobile-docpicker .icon-chevron-down,
-.kiln-theme-nav .icon-chevron-down {
+.kiln-mobile-docpicker .icon-chevron-down {
     width: 15px;
     height: 15px;
     margin-top: 4px;
     transition: transform 0.35s;
 }
 .kiln-version-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
-.kiln-language-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
 .kiln-doc-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
-.kiln-mobile-docpicker .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down,
-.kiln-theme-nav .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down {
+.kiln-mobile-docpicker .dropdown-no-outline[aria-expanded="true"] .icon-chevron-down {
     transform: rotate(180deg);
 }
 
@@ -306,9 +287,7 @@ html.dark body { background-image: none; }
 /* Dark mode: the shared navbar dropdowns are light-first, so re-skin them. */
 html.dark #framework-dropdown-menu,
 html.dark .kiln-version-nav .dropdown-menu,
-html.dark .kiln-language-nav .dropdown-menu,
-html.dark .kiln-mobile-docpicker .dropdown-menu,
-html.dark .kiln-theme-nav .dropdown-menu {
+html.dark .kiln-mobile-docpicker .dropdown-menu {
     background: var(--vp-off-black);
     border-color: var(--vp-border);
 }
@@ -718,37 +697,21 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     .kiln-navmenu .nav-link { font-size: 1.25rem; padding: 0.55rem 0; }
 
     .kiln-navmenu .kiln-doc-nav { order: 1; }
-    .kiln-navmenu .nav-item:not(.kiln-language-nav):not(.kiln-version-nav):not(.kiln-doc-nav):not(.kiln-theme-nav):not(.kiln-github-nav) { order: 2; }
-    .kiln-navmenu .kiln-language-nav { order: 4; }
+    .kiln-navmenu .nav-item:not(.language-picker):not(.kiln-version-nav):not(.kiln-doc-nav):not(.theme-picker):not(.kiln-github-nav) { order: 2; }
+    .kiln-navmenu .language-picker { order: 4; }
     .kiln-navmenu .kiln-version-nav { order: 5; }
-    .kiln-navmenu .kiln-theme-nav { order: 6; }
+    .kiln-navmenu .theme-picker { order: 6; }
     .kiln-navmenu .kiln-github-nav { order: 7; margin-top: 1.5rem; }
     .kiln-navmenu .kiln-github-nav .nav-link { display: flex; justify-content: center; }
-    /* The theme picker shows its chevron in the panel (matching version/language). */
-    .kiln-navmenu .kiln-theme-chevron { display: inline-block; }
-
-    /* Divider above the settings rows. */
-    .kiln-navmenu .kiln-language-nav {
-        margin-top: 1.25rem;
-        padding-top: 1.25rem;
-        border-top: 1px solid var(--vp-border);
-    }
-
-    /* Settings rows: label (left) + control (right). */
+    /* Settings rows: the "Version" label (left) + its pill (right). The language
+     * and theme rows get this same treatment from the shared design CSS. */
     .kiln-navmenu .kiln-nav-label { display: inline; color: var(--vp-text-muted); font-size: 1.1rem; }
-    .kiln-navmenu .kiln-lang-name,
-    .kiln-navmenu .kiln-theme-name { display: inline; }
-    .kiln-navmenu .kiln-language-nav,
-    .kiln-navmenu .kiln-version-nav,
-    .kiln-navmenu .kiln-theme-nav {
+    .kiln-navmenu .kiln-version-nav {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
-    /* Picker pills for language + version. */
-    .kiln-navmenu .kiln-language-nav .nav-link,
-    .kiln-navmenu .kiln-version-nav .nav-link,
-    .kiln-navmenu .kiln-theme-nav .nav-link {
+    .kiln-navmenu .kiln-version-nav .nav-link {
         gap: 0.4rem;
         font-size: 1rem;
         border: 1px solid var(--vp-border);
@@ -769,12 +732,8 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
      * scroll container that would clip it, so while one is open docs.js flips
      * the panel to overflow:visible; the menu caps its own height and scrolls. */
     .kiln-navmenu.kiln-navmenu-overflow { overflow: visible; }
-    .kiln-navmenu .kiln-language-nav,
-    .kiln-navmenu .kiln-version-nav,
-    .kiln-navmenu .kiln-theme-nav { position: relative; }
-    .kiln-navmenu .kiln-language-nav .dropdown-menu,
-    .kiln-navmenu .kiln-version-nav .dropdown-menu,
-    .kiln-navmenu .kiln-theme-nav .dropdown-menu {
+    .kiln-navmenu .kiln-version-nav { position: relative; }
+    .kiln-navmenu .kiln-version-nav .dropdown-menu {
         position: absolute;
         top: 100%;
         right: 0;
@@ -783,9 +742,8 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
         max-height: 70vh;
         overflow-y: auto;
     }
-    /* Breathing room between the picker rows so the pills/dropdowns don't touch. */
-    .kiln-navmenu .kiln-version-nav,
-    .kiln-navmenu .kiln-theme-nav { margin-top: 1rem; }
+    /* Breathing room above the version row (it sits between language and theme). */
+    .kiln-navmenu .kiln-version-nav { margin-top: 1rem; }
 
     /* Framework Docs is the current docs — highlight it in the panel. */
     .kiln-navmenu .kiln-doc-nav .nav-link { color: var(--vp-link); }
