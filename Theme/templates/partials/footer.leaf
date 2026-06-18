@@ -9,30 +9,30 @@
             <div id="footer-callout" class="col-md">
                 <a class="kiln-footer-brand" href="/" aria-label="#(site.name) home">
                     <img src="/assets/vapor-logo.png" alt="" width="48" height="48">
-                    <span>Vapor Docs</span>
+                    <span>#(site.name)</span>
                 </a>
-                <div class="w-lg-50 mt-4">Vapor provides a safe, performant and easy to use foundation to build HTTP servers, backends and APIs in Swift</div>
+                <div class="w-lg-50 mt-4">#localise("tagline")</div>
             </div>
             <div class="mt-4 mt-lg-0 col-md">
                 <div class="row">
                     <div id="footer-community-links" class="col-6 ps-lg-5">
-                        <h6 class="ps-lg-5">Community</h6>
+                        <h6 class="ps-lg-5">#(strings.community)</h6>
                         <ul class="ps-lg-5">
-                            <li><a class="nav-link" href="https://www.vapor.codes/team" rel="noopener" target="_blank">Team</a></li>
-                            <li><a class="nav-link" href="https://vapor.team" rel="noopener" target="_blank">Join our Discord</a></li>
-                            <li><a class="nav-link" href="https://store.vapor.codes" rel="noopener" target="_blank">Store</a></li>
-                            <li><a class="nav-link" href="https://www.vapor.codes/showcase" rel="noopener" target="_blank">Showcase</a></li>
-                            <li><a class="nav-link" href="https://www.vapor.codes/supporters" rel="noopener" target="_blank">Supporters</a></li>
+                            <li><a class="nav-link" href="https://www.vapor.codes/team" rel="noopener" target="_blank">#(strings.team)</a></li>
+                            <li><a class="nav-link" href="https://vapor.team" rel="noopener" target="_blank">#localise("joinDiscord")</a></li>
+                            <li><a class="nav-link" href="https://store.vapor.codes" rel="noopener" target="_blank">#(strings.store)</a></li>
+                            <li><a class="nav-link" href="https://www.vapor.codes/showcase" rel="noopener" target="_blank">#(strings.showcase)</a></li>
+                            <li><a class="nav-link" href="https://www.vapor.codes/supporters" rel="noopener" target="_blank">#localise("supporters")</a></li>
                         </ul>
                     </div>
                     <div id="footer-resources-links" class="col-6">
-                        <h6>Resources</h6>
+                        <h6>#(strings.resources)</h6>
                         <ul>
-                            <li><a class="nav-link" href="https://blog.vapor.codes" rel="noopener" target="_blank">Blog</a></li>
-                            <li><a href="/">Framework Docs</a></li>
-                            <li><a class="nav-link" href="https://api.vapor.codes" rel="noopener" target="_blank">API Docs</a></li>
-                            <li><a class="nav-link" href="https://design.vapor.codes/VaporPressKit.zip" download>Press Kit</a></li>
-                            <li><a class="nav-link" href="https://vapor.team" rel="noopener" target="_blank">Help</a></li>
+                            <li><a class="nav-link" href="https://blog.vapor.codes" rel="noopener" target="_blank">#(strings.blog)</a></li>
+                            <li><a href="/">#localise("frameworkDocs")</a></li>
+                            <li><a class="nav-link" href="https://api.vapor.codes" rel="noopener" target="_blank">#localise("apiDocs")</a></li>
+                            <li><a class="nav-link" href="https://design.vapor.codes/VaporPressKit.zip" download>#(strings.pressKit)</a></li>
+                            <li><a class="nav-link" href="https://vapor.team" rel="noopener" target="_blank">#(strings.help)</a></li>
                         </ul>
                     </div>
                 </div>
