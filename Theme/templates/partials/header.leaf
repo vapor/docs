@@ -57,7 +57,7 @@
 
                 #if(count(versions) > 1):
                 <li class="nav-item dropdown kiln-version-nav">
-                    <span class="kiln-nav-label" aria-hidden="true">#(strings.version)</span>
+                    <span class="vapor-nav-label" aria-hidden="true">#(strings.version)</span>
                     <a class="nav-link dropdown-no-outline d-flex align-items-center" id="version-dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label='#localise("selectVersion")'>
                         <span>#(currentVersion.name)</span>
                         <span class="vapor-icon icon-chevron-down ms-1"></span>

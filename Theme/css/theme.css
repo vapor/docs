@@ -217,11 +217,6 @@ html.dark body { background-image: none; }
     outline: 0;
     box-shadow: none;
 }
-/* The "Version" label only appears in the mobile nav-menu panel. (The language +
- * theme pickers now use the shared design styles — .language-picker/.theme-picker
- * — so their icon/name/chevron rules live in design.vapor.codes/main.css.) */
-.kiln-nav-label { display: none; }
-
 /* Version + language menus reuse the framework dropdown's card styling
  * (rounded, soft shadow, bordered) so all three navbar dropdowns match.
  * They already share the `animate slideIn` classes for the open animation. */
@@ -703,9 +698,9 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     .kiln-navmenu .theme-picker { order: 6; }
     .kiln-navmenu .kiln-github-nav { order: 7; margin-top: 1.5rem; }
     .kiln-navmenu .kiln-github-nav .nav-link { display: flex; justify-content: center; }
-    /* Settings rows: the "Version" label (left) + its pill (right). The language
-     * and theme rows get this same treatment from the shared design CSS. */
-    .kiln-navmenu .kiln-nav-label { display: inline; color: var(--vp-text-muted); font-size: 1.1rem; }
+    /* Version row: "Version" label (left) + its pill (right). The label uses the
+     * shared .vapor-nav-label now, so its colour/size come from the design CSS —
+     * matching the language + theme rows. */
     .kiln-navmenu .kiln-version-nav {
         display: flex;
         align-items: center;
