@@ -19,7 +19,7 @@
     #if(page.description):<meta property="og:description" content="#(page.description)">#endif
     <meta property="og:url" content="#(page.canonicalURL)">
     <meta property="og:site_name" content="#(site.name)">
-    <meta property="og:locale" content="#(language.locale)">
+    <meta property="og:locale" content="#if(language.ogLocale):#(language.ogLocale)#else:#(language.locale)#endif">
     #if(page.imageURL):<meta property="og:image" content="#(page.imageURL)">#endif
 
     <!-- Twitter -->
