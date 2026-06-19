@@ -40,7 +40,8 @@
     <link rel="manifest" href="/assets/site.webmanifest">
 
     #for(alt in languages):<link rel="alternate" hreflang="#(alt.locale)" href="#(alt.url)">
-    #endfor
+    #if(alt.isDefault):<link rel="alternate" hreflang="x-default" href="#(alt.url)">
+    #endif#endfor
 
     <!-- Shared Vapor design system (header/footer chrome, brand, fonts, icons) -->
     <link rel="stylesheet" href="https://design.vapor.codes/main.css">
