@@ -61,6 +61,7 @@
     #if(page.structuredData):<script type="application/ld+json">#unsafeHTML(page.structuredData)</script>#endif
 </head>
 <body data-search-index="#(searchIndexURL)" data-version-base="#(versionBasePath)">
+    <a class="kiln-skip-link" href="#kiln-main">#localise("skipToContent")</a>
     <div class="kiln-doc-backdrop" id="kiln-doc-backdrop"></div>
 
     <div class="kiln-top">
@@ -80,7 +81,7 @@
     </aside>
 
     <div class="kiln-shell">
-        #extend("partials/header")
+        <header>#extend("partials/header")</header>
 
         <div class="kiln-layout">
         <button class="kiln-sidebar-toggle" id="kiln-sidebar-toggle" type="button" aria-label="#(strings.toggleNavigation)" aria-expanded="false" aria-controls="kiln-sidebar">
@@ -90,7 +91,7 @@
             <span class="kiln-crumb-page">#(page.title)</span>
         </button>
 
-        <main class="kiln-main">
+        <main class="kiln-main" id="kiln-main" tabindex="-1">
             #if(site.searchEnabled):
             <div class="kiln-body-search">
                 #extend("partials/search")

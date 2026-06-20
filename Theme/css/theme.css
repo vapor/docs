@@ -886,3 +886,30 @@ body > footer {
     }
     .kiln-main { padding-top: 0; }
 }
+
+/* Skip-to-content link: off-screen until it receives keyboard focus, then pinned
+   to the top-left so keyboard/AT users can bypass the nav. */
+.kiln-skip-link {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 10000;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    background: var(--vp-off-black);
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    transform: translateY(-150%);
+    transition: transform 0.18s ease;
+}
+
+.kiln-skip-link:focus {
+    transform: translateY(0);
+    outline: 2px solid var(--vp-blue-400);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .kiln-skip-link { transition: none; }
+}

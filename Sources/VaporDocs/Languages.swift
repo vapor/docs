@@ -20,6 +20,7 @@ let languages: [Language] = [
             "selectVersion": "Select documentation version",
             "selectTheme": "Select theme",
             "closeMenu": "Close menu",
+            "skipToContent": "Skip to content",
         ],
         localisation: .init(
             searchPlaceholder: "Quick search",
@@ -73,6 +74,7 @@ let languages: [Language] = [
             "selectVersion": "Dokumentationsversion auswählen",
             "selectTheme": "Design auswählen",
             "closeMenu": "Menü schließen",
+            "skipToContent": "Zum Inhalt springen",
         ],
         localisation: .init(
             searchPlaceholder: "Suchen",
@@ -168,6 +170,7 @@ let languages: [Language] = [
             "selectVersion": "Seleccionar versión de la documentación",
             "selectTheme": "Seleccionar tema",
             "closeMenu": "Cerrar el menú",
+            "skipToContent": "Saltar al contenido",
         ],
         localisation: .init(
             searchPlaceholder: "Buscar",
@@ -255,6 +258,7 @@ let languages: [Language] = [
             "selectVersion": "Sélectionner la version de la documentation",
             "selectTheme": "Sélectionner le thème",
             "closeMenu": "Fermer le menu",
+            "skipToContent": "Passer au contenu",
         ],
         localisation: .init(
             searchPlaceholder: "Rechercher",
@@ -354,6 +358,7 @@ let languages: [Language] = [
             "selectVersion": "Seleziona la versione della documentazione",
             "selectTheme": "Seleziona il tema",
             "closeMenu": "Chiudi il menu",
+            "skipToContent": "Vai al contenuto",
         ],
         localisation: .init(
             searchPlaceholder: "Cerca",
@@ -438,6 +443,7 @@ let languages: [Language] = [
             "selectVersion": "ドキュメントのバージョンを選択",
             "selectTheme": "テーマを選択",
             "closeMenu": "メニューを閉じる",
+            "skipToContent": "コンテンツにスキップ",
         ],
         localisation: .init(
             searchPlaceholder: "検索",
@@ -528,6 +534,7 @@ let languages: [Language] = [
             "selectVersion": "문서 버전 선택",
             "selectTheme": "테마 선택",
             "closeMenu": "메뉴 닫기",
+            "skipToContent": "본문으로 건너뛰기",
         ],
         localisation: .init(
             searchPlaceholder: "검색",
@@ -614,6 +621,7 @@ let languages: [Language] = [
             "selectVersion": "Selecteer documentatieversie",
             "selectTheme": "Selecteer thema",
             "closeMenu": "Menu sluiten",
+            "skipToContent": "Naar de inhoud",
         ],
         localisation: .init(
             searchPlaceholder: "Zoeken",
@@ -708,6 +716,7 @@ let languages: [Language] = [
             "selectVersion": "Wybierz wersję dokumentacji",
             "selectTheme": "Wybierz motyw",
             "closeMenu": "Zamknij menu",
+            "skipToContent": "Przejdź do treści",
         ],
         localisation: .init(
             searchPlaceholder: "Szukaj",
@@ -805,6 +814,7 @@ let languages: [Language] = [
             "selectVersion": "选择文档版本",
             "selectTheme": "选择主题",
             "closeMenu": "关闭菜单",
+            "skipToContent": "跳到内容",
         ],
         localisation: .init(
             searchPlaceholder: "搜索",
