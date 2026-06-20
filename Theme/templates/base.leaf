@@ -39,8 +39,8 @@
     <meta name="apple-mobile-web-app-title" content="Vapor Docs">
     <link rel="manifest" href="/assets/site.webmanifest">
 
-    #for(alt in languages):<link rel="alternate" hreflang="#(alt.locale)" href="#(alt.url)">
-    #if(alt.isDefault):<link rel="alternate" hreflang="x-default" href="#(alt.url)">
+    #for(alt in languages):<link rel="alternate" hreflang="#(alt.locale)" href="#if(alt.absoluteURL):#(alt.absoluteURL)#else:#(alt.url)#endif">
+    #if(alt.isDefault):<link rel="alternate" hreflang="x-default" href="#if(alt.absoluteURL):#(alt.absoluteURL)#else:#(alt.url)#endif">
     #endif#endfor
 
     <!-- Shared Vapor design system (header/footer chrome, brand, fonts, icons) -->
@@ -53,6 +53,7 @@
     <!-- Pre-paint colour scheme. External (not inline) so the CSP needs no
          'unsafe-inline' for scripts; still synchronous, so it runs before paint. -->
     <script src="/_kiln/js/theme-init.js"></script>
+    #if(page.structuredData):<script type="application/ld+json">#unsafeHTML(page.structuredData)</script>#endif
 </head>
 <body data-search-index="#(searchIndexURL)" data-version-base="#(versionBasePath)">
     <div class="kiln-doc-backdrop" id="kiln-doc-backdrop"></div>
