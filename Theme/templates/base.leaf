@@ -19,6 +19,8 @@
     <meta property="og:url" content="#(page.canonicalURL)">
     <meta property="og:site_name" content="#(site.name)">
     <meta property="og:locale" content="#if(language.ogLocale):#(language.ogLocale)#else:#(language.locale)#endif">
+    #for(alt in languages):#if(!alt.isCurrent):#if(alt.ogLocale):<meta property="og:locale:alternate" content="#(alt.ogLocale)">
+    #endif#endif#endfor
     #if(page.imageURL):<meta property="og:image" content="#(page.imageURL)">#endif
 
     <!-- Twitter -->
