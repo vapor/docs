@@ -2,6 +2,9 @@
 <html lang="#(language.locale)">
 <head>
     <meta charset="utf-8">
+    <!-- Warm the connection to the design system origin (render-blocking CSS + fonts). -->
+    <link rel="preconnect" href="https://design.vapor.codes">
+    <link rel="preconnect" href="https://design.vapor.codes" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <title>#if(page.isHome):#(site.name)#else:#(page.title) · #(site.name)#endif</title>
@@ -25,7 +28,8 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="#if(page.imageURL):summary_large_image#else:summary#endif">
-    #if(site.twitterSite):<meta name="twitter:site" content="#(site.twitterSite)">#endif
+    #if(site.twitterSite):<meta name="twitter:site" content="#(site.twitterSite)">
+    <meta name="twitter:creator" content="#(site.twitterSite)">#endif
     <meta name="twitter:title" content="#if(page.isHome):#(site.name)#else:#(page.title)#endif">
     #if(page.description):<meta name="twitter:description" content="#(page.description)">#endif
     #if(page.imageURL):<meta name="twitter:image" content="#(page.imageURL)">#endif
