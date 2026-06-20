@@ -14,10 +14,10 @@ If this is your first time using Vapor, head to the [Getting Started](getting-st
 Our small team works hard to make Vapor awesome (and free). Support the framework by starring Vapor on GitHub or donating $1 monthly--it helps us a lot. Thanks!
 
 <a href="https://github.com/vapor/vapor" target="_blank">
-	<img src="https://cloud.githubusercontent.com/assets/1342803/26243875/5490d02c-3c85-11e7-9667-d56eb97c2cf9.png" class="kiln-inline-badge">
+	<img src="https://cloud.githubusercontent.com/assets/1342803/26243875/5490d02c-3c85-11e7-9667-d56eb97c2cf9.png" class="kiln-inline-badge" alt="Star Vapor on GitHub">
 </a>
 <a href="https://opencollective.com/vapor" target="_blank">
-	<img src="https://cloud.githubusercontent.com/assets/1342803/26243876/54913ce2-3c85-11e7-9848-121adbe92198.png" class="kiln-inline-badge kiln-inline-badge--spaced">
+	<img src="https://cloud.githubusercontent.com/assets/1342803/26243876/54913ce2-3c85-11e7-9848-121adbe92198.png" class="kiln-inline-badge kiln-inline-badge--spaced" alt="Donate to Vapor on Open Collective">
 </a>
 
 

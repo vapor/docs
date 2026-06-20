@@ -6,7 +6,7 @@ Vapor by default provides a middleware for implementing proper support for Cross
 
 To learn more about middlewares, please visit the Middleware section of the documentation [here](https://vapor.github.io/documentation/guide/middleware.html).
 
-![](https://upload.wikimedia.org/wikipedia/commons/c/ca/Flowchart_showing_Simple_and_Preflight_XHR.svg)
+![Flowchart of a simple CORS request versus a preflighted request](https://upload.wikimedia.org/wikipedia/commons/c/ca/Flowchart_showing_Simple_and_Preflight_XHR.svg)
 *Image Author: [Wikipedia](https://commons.wikimedia.org/wiki/File:Flowchart_showing_Simple_and_Preflight_XHR.svg)*
 
 ## Basic
