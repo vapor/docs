@@ -9,7 +9,6 @@
     #if(markdownURL):<link rel="alternate" type="text/markdown" href="#(markdownURL)">#endif
     #if(page.description):<meta name="description" content="#(page.description)">#endif
     #if(site.author):<meta name="author" content="#(site.author)">#endif
-    <meta name="theme-color" content="#ffffff">
     <meta name="generator" content="Kiln">
     #if(noindex):<meta name="robots" content="noindex">#endif
 
@@ -29,13 +28,15 @@
     #if(page.description):<meta name="twitter:description" content="#(page.description)">#endif
     #if(page.imageURL):<meta name="twitter:image" content="#(page.imageURL)">#endif
 
-    <!-- Vapor Docs favicons (new mark) -->
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
-    <link rel="shortcut icon" href="/assets/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-    <meta name="apple-mobile-web-app-title" content="Vapor Docs">
-    <link rel="manifest" href="/assets/site.webmanifest">
+    <!-- Shared Vapor favicons (design system) — same set the main site uses -->
+    <link rel="icon" href="https://design.vapor.codes/favicons/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://design.vapor.codes/favicons/apple-touch-icon.png">
+    <link rel="icon" sizes="96x96" href="https://design.vapor.codes/favicons/favicon-96x96.png" type="image/png">
+    <link rel="manifest" href="https://design.vapor.codes/favicons/site.webmanifest">
+    <link rel="shortcut icon" href="https://design.vapor.codes/favicons/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="#(site.name)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
 
     #for(alt in languages):<link rel="alternate" hreflang="#(alt.locale)" href="#if(alt.absoluteURL):#(alt.absoluteURL)#else:#(alt.url)#endif">
     #if(alt.isDefault):<link rel="alternate" hreflang="x-default" href="#if(alt.absoluteURL):#(alt.absoluteURL)#else:#(alt.url)#endif">
