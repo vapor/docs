@@ -20,7 +20,9 @@ let languages: [Language] = [
             "selectVersion": "Select documentation version",
             "selectTheme": "Select theme",
             "closeMenu": "Close menu",
+            "skipToContent": "Skip to content",
         ],
+        image: "assets/og/en-2x.png",
         localisation: .init(
             searchPlaceholder: "Quick search",
             tableOfContentsTitle: "Table of contents"
@@ -73,7 +75,9 @@ let languages: [Language] = [
             "selectVersion": "Dokumentationsversion auswählen",
             "selectTheme": "Design auswählen",
             "closeMenu": "Menü schließen",
+            "skipToContent": "Zum Inhalt springen",
         ],
+        image: "assets/og/de-2x.png",
         localisation: .init(
             searchPlaceholder: "Suchen",
             searchNoResults: "Keine Ergebnisse gefunden",
@@ -168,7 +172,9 @@ let languages: [Language] = [
             "selectVersion": "Seleccionar versión de la documentación",
             "selectTheme": "Seleccionar tema",
             "closeMenu": "Cerrar el menú",
+            "skipToContent": "Saltar al contenido",
         ],
+        image: "assets/og/es-2x.png",
         localisation: .init(
             searchPlaceholder: "Buscar",
             searchNoResults: "No se encontraron resultados",
@@ -255,7 +261,9 @@ let languages: [Language] = [
             "selectVersion": "Sélectionner la version de la documentation",
             "selectTheme": "Sélectionner le thème",
             "closeMenu": "Fermer le menu",
+            "skipToContent": "Passer au contenu",
         ],
+        image: "assets/og/fr-2x.png",
         localisation: .init(
             searchPlaceholder: "Rechercher",
             searchNoResults: "Aucun résultat trouvé",
@@ -354,7 +362,9 @@ let languages: [Language] = [
             "selectVersion": "Seleziona la versione della documentazione",
             "selectTheme": "Seleziona il tema",
             "closeMenu": "Chiudi il menu",
+            "skipToContent": "Vai al contenuto",
         ],
+        image: "assets/og/it-2x.png",
         localisation: .init(
             searchPlaceholder: "Cerca",
             searchNoResults: "Nessun risultato trovato",
@@ -438,7 +448,9 @@ let languages: [Language] = [
             "selectVersion": "ドキュメントのバージョンを選択",
             "selectTheme": "テーマを選択",
             "closeMenu": "メニューを閉じる",
+            "skipToContent": "コンテンツにスキップ",
         ],
+        image: "assets/og/ja-2x.png",
         localisation: .init(
             searchPlaceholder: "検索",
             searchNoResults: "結果が見つかりません",
@@ -528,7 +540,9 @@ let languages: [Language] = [
             "selectVersion": "문서 버전 선택",
             "selectTheme": "테마 선택",
             "closeMenu": "메뉴 닫기",
+            "skipToContent": "본문으로 건너뛰기",
         ],
+        image: "assets/og/ko-2x.png",
         localisation: .init(
             searchPlaceholder: "검색",
             searchNoResults: "결과를 찾을 수 없습니다",
@@ -614,7 +628,9 @@ let languages: [Language] = [
             "selectVersion": "Selecteer documentatieversie",
             "selectTheme": "Selecteer thema",
             "closeMenu": "Menu sluiten",
+            "skipToContent": "Naar de inhoud",
         ],
+        image: "assets/og/nl-2x.png",
         localisation: .init(
             searchPlaceholder: "Zoeken",
             searchNoResults: "Geen resultaten gevonden",
@@ -708,7 +724,9 @@ let languages: [Language] = [
             "selectVersion": "Wybierz wersję dokumentacji",
             "selectTheme": "Wybierz motyw",
             "closeMenu": "Zamknij menu",
+            "skipToContent": "Przejdź do treści",
         ],
+        image: "assets/og/pl-2x.png",
         localisation: .init(
             searchPlaceholder: "Szukaj",
             searchNoResults: "Nie znaleziono wyników",
@@ -805,7 +823,9 @@ let languages: [Language] = [
             "selectVersion": "选择文档版本",
             "selectTheme": "选择主题",
             "closeMenu": "关闭菜单",
+            "skipToContent": "跳到内容",
         ],
+        image: "assets/og/zh-Hans-2x.png",
         localisation: .init(
             searchPlaceholder: "搜索",
             searchNoResults: "未找到结果",
