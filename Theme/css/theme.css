@@ -29,10 +29,10 @@
     --vp-surface: var(--vp-grey-100);
     --vp-border: var(--vp-grey-300);
     --vp-text: var(--vp-grey-800);
-    --vp-text-muted: var(--vp-grey-600);
+    --vp-text-muted: var(--vp-grey-700); /* grey-600 was 3.6:1 on white → grey-700 = 5.3:1 (TOC, breadcrumb) */
     --vp-heading: var(--vp-grey-900);
-    --vp-link: var(--vp-blue-400);
-    --vp-link-hover: var(--vp-blue-300);
+    --vp-link: #15749f; /* blue-400 (#1e92cc) was 3.48:1 on white → 5.0:1, same azure hue */
+    --vp-link-hover: #0f6595; /* darker azure for hover (blue-300 #40c4ff was 1.9:1) */
     --vp-code-bg: var(--vp-grey-100);
 
     --vp-sidebar-width: 17rem;
