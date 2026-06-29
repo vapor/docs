@@ -238,7 +238,7 @@ final class Tag: Model {
 
 ### Siblings Attach
 
-The `@Siblings` property has methods adding and removing models from the relation. 
+The `@Siblings` property has methods for adding and removing models from the relation. 
 
 Use the `attach()` method to add a single model or an array of models to the relation. Pivot models are created and saved automatically as needed. A callback closure may be specified to populate additional properties of each pivot created:
 

@@ -35,7 +35,7 @@ Une fois la commande terminée, placez-vous dans le dossier nouvellement créé 
 cd hello
 ```
 
-## Build & Run
+## Compiler et exécuter
 
 ### Xcode
 
@@ -74,7 +74,7 @@ Lors de la première exécution de cette commande, cela prendra un certain temps
 [ INFO ] Server starting on http://127.0.0.1:8080
 ```
 
-## Se rendre sur Localhost
+## Voir le site
 
 Ouvrez votre navigateur web, et rendez-vous sur <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello</a> ou <a href="http://127.0.0.1:8080" target="_blank">http://127.0.0.1:8080</a>
 

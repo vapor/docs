@@ -1,4 +1,4 @@
-# Environnement, configuration et variables
+# Environnement et variables
 
 L'API environnement de Vapor vous aide à configurer votre application dynamiquement. Par défaut, votre application utilise l'environnement `development`. Vous pouvez définir d'autres environnements utiles comme `production` ou `staging` et modifier la façon dont votre application sera configurée dans chacun de ces cas. Vous pouvez aussi charger des variables depuis l'environnement du processus, ou depuis un fichier `.env` (dotenv) en fonction de vos besoins.
 
