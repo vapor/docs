@@ -1,4 +1,5 @@
 import Kiln
+import VaporDesignTheme
 
 let site = KilnSite(
     name: "Vapor Docs",
@@ -17,6 +18,10 @@ let site = KilnSite(
     // system (design.vapor.codes). Templates live in ./Theme; see that dir.
     theme: .custom(
         directory: "Theme",
+        // The docs-specific sidebar/TOC layer sits on top of the shared Vapor
+        // design system (footer + <head> come from the design package as a theme
+        // layer; the docs Theme/ still overrides them — e.g. its own header).
+        sharedLayers: [VaporDesignTheme.directory],
         palette: .autoLightDark(primary: .black, accent: .blue),
         logo: "assets/logo.png",
         favicon: "assets/favicon.png",
@@ -29,7 +34,10 @@ let site = KilnSite(
         .init(icon: .mastodon, link: "https://hachyderm.io/@codevapor"),
     ],
     carbonAds: .init(serve: "CK7DT2QW", placement: "vaporcodes"),
-    extraCSS: ["stylesheets/fonts.css"],
+    // The shared <head> emits main.css (CDN) then loops extraCSS. The docs layout
+    // layer (/_kiln/css/theme.css) must come before the site's own fonts.css, so
+    // it leads this list — reproducing the old inline order (main → theme → fonts).
+    extraCSS: ["_kiln/css/theme.css", "stylesheets/fonts.css"],
     // Newest first: current stable, then the imported legacy versions.
     versions: [v4_0, v3_0, v2_0, v1_5]
 )

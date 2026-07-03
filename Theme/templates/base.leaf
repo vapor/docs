@@ -1,64 +1,7 @@
 <!DOCTYPE html>
 <html lang="#(language.locale)">
 <head>
-    <meta charset="utf-8">
-    <!-- Warm the connection to the design system origin (render-blocking CSS + fonts). -->
-    <link rel="preconnect" href="https://design.vapor.codes">
-    <link rel="preconnect" href="https://design.vapor.codes" crossorigin>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="light dark">
-    <title>#if(page.isHome):#(site.name)#else:#(page.title) · #(site.name)#endif</title>
-    <link rel="canonical" href="#(page.canonicalURL)">
-    #if(markdownURL):<link rel="alternate" type="text/markdown" href="#(markdownURL)">#endif
-    #if(page.description):<meta name="description" content="#(page.description)">#endif
-    #if(site.author):<meta name="author" content="#(site.author)">#endif
-    <meta name="generator" content="Kiln">
-    #if(noindex):<meta name="robots" content="noindex">#endif
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="#if(page.isHome):website#else:article#endif">
-    <meta property="og:title" content="#if(page.isHome):#(site.name)#else:#(page.title)#endif">
-    #if(page.description):<meta property="og:description" content="#(page.description)">#endif
-    <meta property="og:url" content="#(page.canonicalURL)">
-    <meta property="og:site_name" content="#(site.name)">
-    <meta property="og:locale" content="#if(language.ogLocale):#(language.ogLocale)#else:#(language.locale)#endif">
-    #for(alt in languages):#if(!alt.isCurrent):#if(alt.ogLocale):<meta property="og:locale:alternate" content="#(alt.ogLocale)">
-    #endif#endif#endfor
-    #if(page.imageURL):<meta property="og:image" content="#(page.imageURL)">#endif
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="#if(page.imageURL):summary_large_image#else:summary#endif">
-    #if(site.twitterSite):<meta name="twitter:site" content="#(site.twitterSite)">
-    <meta name="twitter:creator" content="#(site.twitterSite)">#endif
-    <meta name="twitter:title" content="#if(page.isHome):#(site.name)#else:#(page.title)#endif">
-    #if(page.description):<meta name="twitter:description" content="#(page.description)">#endif
-    #if(page.imageURL):<meta name="twitter:image" content="#(page.imageURL)">#endif
-
-    <!-- Shared Vapor favicons (design system) — same set the main site uses -->
-    <link rel="icon" href="https://design.vapor.codes/favicons/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://design.vapor.codes/favicons/apple-touch-icon.png">
-    <link rel="icon" sizes="96x96" href="https://design.vapor.codes/favicons/favicon-96x96.png" type="image/png">
-    <link rel="manifest" href="https://design.vapor.codes/favicons/site.webmanifest">
-    <link rel="shortcut icon" href="https://design.vapor.codes/favicons/favicon.ico">
-    <meta name="apple-mobile-web-app-title" content="#(site.name)">
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
-
-    #for(alt in languages):<link rel="alternate" hreflang="#(alt.locale)" href="#if(alt.absoluteURL):#(alt.absoluteURL)#else:#(alt.url)#endif">
-    #if(alt.isDefault):<link rel="alternate" hreflang="x-default" href="#if(alt.absoluteURL):#(alt.absoluteURL)#else:#(alt.url)#endif">
-    #endif#endfor
-
-    <!-- Shared Vapor design system (header/footer chrome, brand, fonts, icons) -->
-    <link rel="stylesheet" href="https://design.vapor.codes/main.css">
-    <!-- Docs-specific layout layer (sidebar, content, table of contents, search) -->
-    <link rel="stylesheet" href="/_kiln/css/theme.css">
-    #for(href in site.extraCSS):<link rel="stylesheet" href="/#(href)">
-    #endfor
-
-    <!-- Pre-paint colour scheme. External (not inline) so the CSP needs no
-         'unsafe-inline' for scripts; still synchronous, so it runs before paint. -->
-    <script src="/_kiln/js/theme-init.js"></script>
-    #if(page.structuredData):<script type="application/ld+json">#unsafeHTML(page.structuredData)</script>#endif
+    #extend("partials/head")
 </head>
 <body data-search-index="#(searchIndexURL)" data-version-base="#(versionBasePath)">
     <a class="kiln-skip-link" href="#kiln-main">#localise("skipToContent")</a>
