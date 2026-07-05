@@ -156,7 +156,8 @@
             ko: "검색어를 입력하세요…",
             nl: "Voer je zoekopdracht in…",
             pl: "Wpisz wyszukiwane hasło…",
-            zh: "输入搜索内容…"
+            zh: "输入搜索内容…",
+            ar: "أدخل بحثك…"
         };
         function enterSearchText() {
             var lang = (document.documentElement.lang || "en").slice(0, 2).toLowerCase();

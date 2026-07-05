@@ -111,7 +111,7 @@ html.dark body { background-image: none; }
 .kiln-sidebar {
     flex: 0 0 var(--vp-sidebar-width);
     background: var(--vp-content-bg);
-    border-right: 1px solid var(--vp-border);
+    border-inline-end: 1px solid var(--vp-border);
 }
 .kiln-sidebar-inner {
     position: sticky;
@@ -161,20 +161,20 @@ html.dark body { background-image: none; }
 .kiln-nav-link:hover { color: var(--vp-link-hover); }
 /* Active page: highlight the left edge only — text keeps the normal colour. */
 .kiln-nav-link.kiln-current {
-    border-left: 2px solid var(--vp-blue-300);
+    border-inline-start: 2px solid var(--vp-blue-300);
     border-radius: 0;
 }
 
 /* Items nested inside a section get a vertical guide line; the current one
  * highlights it blue (matches the designer's sidebar). */
-.kiln-nav-section .kiln-nav-list { margin-left: 0.7rem; }
+.kiln-nav-section .kiln-nav-list { margin-inline-start: 0.7rem; }
 .kiln-nav-section .kiln-nav-list .kiln-nav-link {
     border-radius: 0;
-    border-left: 2px solid var(--vp-border);
-    margin-left: 0;
+    border-inline-start: 2px solid var(--vp-border);
+    margin-inline-start: 0;
 }
-.kiln-nav-section .kiln-nav-list .kiln-nav-link:hover { border-left-color: var(--vp-grey-600); }
-.kiln-nav-section .kiln-nav-list .kiln-nav-link.kiln-current { border-left-color: var(--vp-blue-300); }
+.kiln-nav-section .kiln-nav-list .kiln-nav-link:hover { border-inline-start-color: var(--vp-grey-600); }
+.kiln-nav-section .kiln-nav-list .kiln-nav-link.kiln-current { border-inline-start-color: var(--vp-blue-300); }
 
 .kiln-nav-section { margin: 0.1rem 0; }
 .kiln-nav-summary {
@@ -260,7 +260,7 @@ html.dark body { background-image: none; }
  * pill is pushed to the right (next to the hamburger), logo stays left. */
 .kiln-navbar-logo { padding: 0; margin: 0; }
 .kiln-navbar-logo img { display: block; }
-.kiln-mobile-docpicker { margin-left: auto; margin-right: 0.75rem; }
+.kiln-mobile-docpicker { margin-inline-start: auto; margin-inline-end: 0.75rem; }
 .kiln-mobile-docpicker .nav-link {
     border: 1px solid var(--vp-border);
     border-radius: 999px;
@@ -342,7 +342,7 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     display: inline-block;
     width: 0.8em;
     height: 0.8em;
-    margin-left: 0.4rem;
+    margin-inline-start: 0.4rem;
     vertical-align: middle;
     opacity: 0;
     text-decoration: none;
@@ -380,9 +380,9 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     border-radius: 8px;
     vertical-align: middle;
 }
-.kiln-inline-badge--spaced { margin-left: 10px; }
+.kiln-inline-badge--spaced { margin-inline-start: 10px; }
 
-.kiln-article ul, .kiln-article ol { padding-left: 1.4rem; margin: 0 0 1.1rem; }
+.kiln-article ul, .kiln-article ol { padding-inline-start: 1.4rem; margin: 0 0 1.1rem; }
 .kiln-article li { margin: 0.3rem 0; }
 
 /* Inline code only (not fenced blocks). */
@@ -420,7 +420,7 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 .kiln-article blockquote {
     margin: 0 0 1.3rem;
     padding: 0.2rem 1.1rem;
-    border-left: 3px solid var(--vp-blue-300);
+    border-inline-start: 3px solid var(--vp-blue-300);
     color: var(--vp-text-muted);
 }
 
@@ -434,7 +434,7 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 .kiln-article table:not(.hljs-ln) td {
     border: 1px solid var(--vp-border);
     padding: 0.55rem 0.8rem;
-    text-align: left;
+    text-align: start;
 }
 .kiln-article table:not(.hljs-ln) th { background: var(--vp-surface); font-weight: 600; }
 
@@ -443,15 +443,15 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 /* Admonitions (notes/warnings + version notices/fallback) */
 .admonition {
     border: 1px solid var(--vp-border);
-    border-left: 4px solid var(--vp-blue-300);
+    border-inline-start: 4px solid var(--vp-blue-300);
     border-radius: 10px;
     padding: 0.9rem 1.1rem;
     margin: 0 0 1.3rem;
     background: var(--vp-surface);
 }
 .admonition > :last-child { margin-bottom: 0; }
-.admonition.warning { border-left-color: #e0a225; }
-.admonition.note { border-left-color: var(--vp-blue-300); }
+.admonition.warning { border-inline-start-color: #e0a225; }
+.admonition.note { border-inline-start-color: var(--vp-blue-300); }
 .admonition-title { font-weight: 700; margin: 0 0 0.4rem; color: var(--vp-heading); }
 .kiln-version-notice, .kiln-fallback { margin-bottom: 1.5rem; }
 
@@ -476,7 +476,7 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     max-width: 48%;
 }
 .kiln-page-nav a:hover { border-color: var(--vp-blue-300); }
-.kiln-next { text-align: right; margin-left: auto; }
+.kiln-next { text-align: end; margin-inline-start: auto; }
 .kiln-page-nav-label { font-size: 0.78rem; color: var(--vp-text-muted); }
 .kiln-page-nav-title { font-weight: 600; }
 .kiln-edit-link { display: inline-block; margin-top: 1.5rem; font-size: 0.9rem; color: var(--vp-link); text-decoration: none; }
@@ -501,7 +501,7 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     margin: 0 0 0.75rem;
 }
 .kiln-toc-list, .kiln-toc-sublist { list-style: none; margin: 0; padding: 0; }
-.kiln-toc-sublist { padding-left: 0.8rem; }
+.kiln-toc-sublist { padding-inline-start: 0.8rem; }
 .kiln-toc-entry a {
     display: block;
     padding: 0.4rem 0;
@@ -586,8 +586,7 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
 .kiln-search-results {
     position: absolute;
     top: calc(100% + 0.4rem);
-    left: 0;
-    right: 0;
+    inset-inline: 0;
     background: var(--vp-content-bg);
     border: 1px solid var(--vp-border);
     border-radius: 12px;
@@ -614,7 +613,7 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     color: #fff;
     border-radius: 6px;
     padding: 0.05rem 0.4rem;
-    margin-left: 0.4rem;
+    margin-inline-start: 0.4rem;
     vertical-align: middle;
 }
 
@@ -653,12 +652,16 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     .kiln-navmenu {
         position: fixed;
         top: 0.75rem;
-        right: 0;
+        inset-inline-end: 0;
         bottom: 0;
         width: 20rem;
         max-width: 86vw;
-        border-radius: 24px 0 0 24px;
+        /* Round the content-facing (inline-start) edge; logical corners mirror. */
+        border-start-start-radius: 24px;
+        border-end-start-radius: 24px;
         background: var(--vp-content-bg);
+        /* Hidden off the inline-end edge. translateX/box-shadow aren't logical,
+         * so their RTL direction is flipped below. */
         transform: translateX(100%);
         /* Hidden when closed so its drop-shadow doesn't bleed onto the page from
          * off-screen. visibility holds through the slide-out, then snaps hidden. */
@@ -670,13 +673,15 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
         padding: 3.5rem 1.5rem 2rem;
     }
     .kiln-navmenu.kiln-navmenu-open { transform: translateX(0); visibility: visible; }
+    [dir="rtl"] .kiln-navmenu { transform: translateX(-100%); box-shadow: 24px 0 60px rgba(0, 0, 0, 0.4); }
+    [dir="rtl"] .kiln-navmenu.kiln-navmenu-open { transform: translateX(0); }
     .kiln-navmenu-close {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         position: absolute;
         top: 0.75rem;
-        right: 0.9rem;
+        inset-inline-end: 0.9rem;
         width: 2.25rem;
         height: 2.25rem;
         padding: 0;
@@ -731,8 +736,8 @@ html.dark .dropdown-item:hover .nav-dropdown-container-title { color: #fff; }
     .kiln-navmenu .kiln-version-nav .dropdown-menu {
         position: absolute;
         top: 100%;
-        right: 0;
-        left: auto;
+        inset-inline-end: 0;
+        inset-inline-start: auto;
         margin-top: 0.4rem;
         max-height: 70vh;
         overflow-y: auto;
@@ -815,7 +820,7 @@ body > footer {
         border-bottom: 1px solid var(--vp-border);
         font: inherit;
         font-size: 0.92rem;
-        text-align: left;
+        text-align: start;
         cursor: pointer;
         min-width: 0;
     }
@@ -842,11 +847,15 @@ body > footer {
     .kiln-sidebar {
         position: fixed;
         top: 0.75rem;
-        left: 0;
+        inset-inline-start: 0;
         bottom: 0;
         width: 20rem;
         max-width: 86vw;
-        border-radius: 0 24px 24px 0;
+        /* Round the content-facing (inline-end) edge; logical corners mirror. */
+        border-start-end-radius: 24px;
+        border-end-end-radius: 24px;
+        /* Hidden off the inline-start edge. translateX/box-shadow aren't logical,
+         * so their RTL direction is flipped below. */
         transform: translateX(-100%);
         /* Hidden when closed so its drop-shadow doesn't bleed onto the page. */
         visibility: hidden;
@@ -856,6 +865,8 @@ body > footer {
         overflow: hidden;
     }
     .kiln-sidebar.kiln-open { transform: translateX(0); visibility: visible; }
+    [dir="rtl"] .kiln-sidebar { transform: translateX(100%); box-shadow: -24px 0 60px rgba(0, 0, 0, 0.4); }
+    [dir="rtl"] .kiln-sidebar.kiln-open { transform: translateX(0); }
     .kiln-sidebar-inner {
         position: static;
         max-height: none;
@@ -870,7 +881,7 @@ body > footer {
         justify-content: center;
         position: absolute;
         top: 0.75rem;
-        right: 0.9rem;
+        inset-inline-end: 0.9rem;
         width: 2.25rem;
         height: 2.25rem;
         padding: 0;

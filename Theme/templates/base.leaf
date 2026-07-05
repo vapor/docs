@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="#(language.locale)">
+<html lang="#(language.locale)" dir="#(language.direction)">
 <head>
     #extend("partials/head")
 </head>
@@ -60,7 +60,13 @@
             </div>
             #endif
 
+            #if(page.isFallback):
+            <div class="kiln-fallback-content" lang="#(site.defaultLocale)" dir="#(site.defaultDir)">
+                #import("content")
+            </div>
+            #else:
             #import("content")
+            #endif
 
             <nav class="kiln-page-nav" aria-label="Page navigation">
                 #if(nav.previous):<a class="kiln-prev" href="#(nav.previous.url)"><span class="kiln-page-nav-label">#(strings.previousPage)</span><span class="kiln-page-nav-title">#(nav.previous.title)</span></a>#endif
