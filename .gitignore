@@ -3,5 +3,6 @@
 /site
 
 .build
+/Packages
 .vscode/
 .claude/
