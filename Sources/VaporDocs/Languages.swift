@@ -263,6 +263,7 @@ let languages: [Language] = [
             "Routing": "Le routage",
             "Schema": "Schéma",
             "Security": "Securité",
+            "Server": "Serveur",
             "Services": "Services",
             "Sessions": "Sessions",
             "Testing": "Tests",
