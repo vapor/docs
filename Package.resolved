@@ -1,5 +1,5 @@
 {
-  "originHash" : "45fec9191f1e2e33830717522b5fba420b6714aa3e30dc2f713c3857ab092608",
+  "originHash" : "0f4ac216866035f4fdd9028a234b7101b5f404b51694b42c3fbff254212e813b",
   "pins" : [
     {
       "identity" : "design",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/vapor/design.git",
       "state" : {
         "branch" : "main",
-        "revision" : "564255854f4ec4b2149263bc7898812fda48e2dc"
+        "revision" : "06be1cdb85d858cac0de2678247cdaad3b9cf8f1"
       }
     },
     {
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/brokenhandsio/kiln.git",
       "state" : {
-        "revision" : "7f45d35a31947122d7a597622b342efe12a3a5cf",
-        "version" : "1.4.1"
+        "revision" : "a20693b0a1246e1febaa3ef5f9bdac990f0261f5",
+        "version" : "1.5.0"
       }
     },
     {
