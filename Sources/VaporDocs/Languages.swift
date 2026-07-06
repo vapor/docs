@@ -265,7 +265,7 @@ let languages: [Language] = [
             "Security": "Securité",
             "Services": "Services",
             "Sessions": "Sessions",
-            "Testing": "Test",
+            "Testing": "Tests",
             "Transactions": "Transactions",
             "Upgrading": "Mettre à jour",
             "Validation": "La validation de données",
