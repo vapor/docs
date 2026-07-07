@@ -31,10 +31,10 @@ let site = KilnSite(
         .init(icon: .mastodon, link: "https://hachyderm.io/@codevapor"),
     ],
     carbonAds: .init(serve: "CK7DT2QW", placement: "vaporcodes"),
-    // The shared <head> emits main.css (CDN) then loops extraCSS. The docs layout
-    // layer (/_kiln/css/theme.css) must come before the site's own fonts.css, so
-    // it leads this list — reproducing the old inline order (main → theme → fonts).
-    extraCSS: ["_kiln/css/theme.css", "stylesheets/fonts.css"],
+    // The docs layout CSS now ships from the CDN (design.vapor.codes/docs.css),
+    // emitted right after main.css by the shared <head>, so only the site's own
+    // fonts remain here.
+    extraCSS: ["stylesheets/fonts.css"],
     // Newest first: current stable, then the imported legacy versions.
     versions: [v4_0, v3_0, v2_0, v1_5]
 )
