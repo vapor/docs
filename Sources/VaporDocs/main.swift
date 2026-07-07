@@ -14,13 +14,10 @@ let site = KilnSite(
         editURI: "https://github.com/vapor/docs/edit/main/docs/4.0/"
     ),
     copyright: "Vapor Documentation © 2026 by Vapor is licensed under CC BY-NC-SA 4.0",
-    // Custom theme: a thin docs-specific layer over the shared Vapor design
-    // system (design.vapor.codes). Templates live in ./Theme; see that dir.
-    theme: .custom(
-        directory: "Theme",
-        // The docs-specific sidebar/TOC layer sits on top of the shared Vapor
-        // design system (footer + <head> come from the design package as a theme
-        // layer; the docs Theme/ still overrides them — e.g. its own header).
+    // The entire docs layout (base.leaf, header, theme.css, docs.js) now lives in
+    // the shared VaporDesignTheme package, so there's no local Theme/ override —
+    // just the bundled Kiln default plus the shared design layer.
+    theme: .default(
         sharedLayers: [VaporDesignTheme.directory],
         palette: .autoLightDark(primary: .black, accent: .blue),
         logo: "assets/logo.png",
