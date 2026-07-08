@@ -43,6 +43,6 @@ let outputDirectory = "site"
 print("Building Vapor docs into ./\(outputDirectory) …")
 // `.error` fails the build (non-zero exit) on any broken internal link, so CI
 // catches them.
-try await Kiln.build(site, contentDirectory: "docs", outputDirectory: outputDirectory, linkChecking: .error)
+try await Kiln.build(site, contentDirectory: "docs", outputDirectory: outputDirectory, linkChecking: .error, leafTags: VaporDesignTheme.leafTags)
 
 print("Done.")
