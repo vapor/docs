@@ -4,17 +4,11 @@ let languages: [Language] = [
     Language(
         .english,
         isDefault: true,
-        // Docs-specific strings (not part of Kiln's built-in chrome) looked up
-        // in the navbar/footer templates via `#t("key")`. English is the
-        // default language, so these double as the fallback for any key a
-        // translation below hasn't provided yet.
         customStrings: [
-            // Shared design-partial config. Same across all languages, so defined
-            // only in English (the default); every locale falls back to these.
-            "siteId": "docs",                // shared footer link-target branching
-            "head.defaultOgType": "article", // og:type for non-home doc pages
-            "head.homeSuffix": "",           // appended to site.name on the home page
-            "head.titleSeparator": " · ",    // between page title and site.name
+            "siteId": "docs",
+            "head.defaultOgType": "article",
+            "head.homeSuffix": "",
+            "head.titleSeparator": " · ",
             "tagline": "Vapor provides a safe, performant and easy to use foundation to build HTTP servers, backends and APIs in Swift",
             "footer.tagline": "Vapor provides a safe, performant and easy to use foundation to build HTTP servers, backends and APIs in Swift",
             "joinDiscord": "Join our Discord",

@@ -14,9 +14,6 @@ let site = KilnSite(
         editURI: "https://github.com/vapor/docs/edit/main/docs/4.0/"
     ),
     copyright: "Vapor Documentation © 2026 by Vapor is licensed under CC BY-NC-SA 4.0",
-    // The entire docs layout (base.leaf, header, theme.css, docs.js) now lives in
-    // the shared VaporDesignTheme package, so there's no local Theme/ override —
-    // just the bundled Kiln default plus the shared design layer.
     theme: .default(
         sharedLayers: [VaporDesignTheme.directory],
         palette: .autoLightDark(primary: .black, accent: .blue),
@@ -31,18 +28,12 @@ let site = KilnSite(
         .init(icon: .mastodon, link: "https://hachyderm.io/@codevapor"),
     ],
     carbonAds: .init(serve: "CK7DT2QW", placement: "vaporcodes"),
-    // The docs layout CSS now ships from the CDN (design.vapor.codes/docs.css),
-    // emitted right after main.css by the shared <head>, so only the site's own
-    // fonts remain here.
     extraCSS: ["stylesheets/fonts.css"],
-    // Newest first: current stable, then the imported legacy versions.
     versions: [v4_0, v3_0, v2_0, v1_5]
 )
 
 let outputDirectory = "site"
 print("Building Vapor docs into ./\(outputDirectory) …")
-// `.error` fails the build (non-zero exit) on any broken internal link, so CI
-// catches them.
 try await Kiln.build(site, contentDirectory: "docs", outputDirectory: outputDirectory, linkChecking: .error, leafTags: VaporDesignTheme.leafTags)
 
 print("Done.")

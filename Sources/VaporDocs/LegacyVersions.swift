@@ -1,11 +1,5 @@
 import Kiln
 
-// Legacy Vapor documentation versions, imported from github.com/vapor/docs-legacy.
-// Each is English-only and lives under docs/<id>/. Navigation is generated from
-// the original menus (MkDocs for 3.0/2.0, Couscous for 1.5), with every remaining
-// content page appended so nothing is missing.
-
-
 let v3_0 = DocVersion(
     id: "3.0",
     name: "3.0",
