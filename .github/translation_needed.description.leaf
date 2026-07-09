@@ -1,5 +1,9 @@
 The docs have been updated in PR ##(number). The translations should be updated if required.
 
+<!--
+  Maintainers: when adding a new language to Sources/VaporDocs/Languages.swift,
+  add it to this checklist too so future doc changes flag it for translation.
+-->
 Languages:
 - [ ] English
 - [ ] Deutsch (German)
@@ -11,6 +15,7 @@ Languages:
 - [ ] Nederlands (Dutch)
 - [ ] Polski (Polish)
 - [ ] 简体中文 (Simplified Chinese)
+- [ ] العربية (Arabic)
 
 Assigned to @vapor/translators - please submit a PR with the relevant updates and check the box once merged.
 Please ensure you tag your PR with the `translation-update` so it doesn't create a new issue!
