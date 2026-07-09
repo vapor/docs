@@ -41,7 +41,7 @@ There are three separate layers, and a full change usually touches all three:
 
 3. **UI chrome** — search box, prev/next, footer, language/theme pickers, error
    pages. Translated per language in `Languages.swift` through `customStrings`
-   (docs-specific navbar/footer strings, `#t("key")` in templates) and
+   (docs-specific navbar/footer strings, `#localise("key")` in templates) and
    `localisation:` (Kiln's built-in strings). Anything unset falls back to English.
 
 Plus two things outside the generator:

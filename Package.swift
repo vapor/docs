@@ -8,9 +8,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/brokenhandsio/kiln.git", from: "1.8.2"),
-        // TEMPORARY local override for the shared-theme migration; revert to the
-        // github/main dependency once the design package is published.
-        .package(path: "../design"),
+        .package(url: "https://github.com/vapor/design.git", from: "1.0.0-rc.1"),
     ],
     targets: [
         .executableTarget(
