@@ -21,12 +21,12 @@ jobs:
 
     steps:
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@254c19bd240aabef8777f48595e9d2d7b972184b # v6.2.1
+        uses: aws-actions/configure-aws-credentials@517a711dbcd0e402f90c77e7e2f81e849156e31d # v6.2.2
         with:
           role-to-assume: ${{ vars.OIDC_ROLE_ARN }}
           aws-region: ${{ vars.OIDC_ROLE_REGION }}
       - name: Delete preview bucket
-        uses: brokenhandsio/s3-website-pr-action@9461e5d13f1c56290b8a006546dd5e845ef2c671 # v3.0.1
+        uses: brokenhandsio/s3-website-pr-action@6ebd9b622b4bb33358228571a50e05d375cbd4de # v3.1.0
         with:
           bucket-prefix: "vapor-docs-pulls"
           bucket-region: "us-east-1"
