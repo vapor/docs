@@ -55,13 +55,13 @@ Tablica `platforms` określa, które platformy obsługuje ten pakiet. Określaj�
 
 Zależności (z ang. dependencies) to inne pakiety SPM, na których opiera się pakiet. Wszystkie aplikacje Vapor opierają się na pakiecie Vapor, ale można dodać dowolną liczbę innych zależności.
 
-W powyższym przykładzie widać, że pakiet [vapor/vapor](https://github.com/vapor/vapor) w wersji 4.76.0 lub nowszej jest zależny od tego pakietu. Po dodaniu zależności do pakietu, musisz następnie zasygnalizować, które [cele](#targets) zależą od
+W powyższym przykładzie widać, że pakiet [vapor/vapor](https://github.com/vapor/vapor) w wersji 4.76.0 lub nowszej jest zależny od tego pakietu. Po dodaniu zależności do pakietu, musisz następnie zasygnalizować, które [cele](#cele) zależą od
 nowo dostępnych modułów.
 
 ### Cele
 
 Cele (z ang. targets) to wszystkie moduły, pliki wykonywalne i testy, które zawiera pakiet. Większość aplikacji Vapor będzie miała dwa obiekty docelowe, chociaż możesz dodać tyle, ile chcesz, aby uporządkować swój kod. Każdy cel deklaruje, od których modułów zależy. Musisz dodać nazwy modułów w tym miejscu, aby zaimportować je w swoim kodzie. Cel może zależeć od innych celów w projekcie lub dowolnych modułów udostępnionych przez pakiety dodane do
-tablicy [głównych zależności](#dependencies).
+tablicy [głównych zależności](#zależności).
 
 ## Struktura folderów
 

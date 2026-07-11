@@ -47,7 +47,7 @@ import JWT
 await app.jwt.keys.add(hmac: "secret", digestAlgorithm: .sha256)
 ```
 
-Dit voegt een HMAC-sleutel met SHA-256 als digest-algoritme toe aan de sleutelbos, oftewel HS256 in JWA-notatie. Bekijk de [algoritmen](#algorithms) sectie hieronder voor meer informatie over de beschikbare algoritmen.
+Dit voegt een HMAC-sleutel met SHA-256 als digest-algoritme toe aan de sleutelbos, oftewel HS256 in JWA-notatie. Bekijk de [algoritmen](#algoritmen) sectie hieronder voor meer informatie over de beschikbare algoritmen.
 
 !!! note 
     Zorg ervoor dat u `"secret"` vervangt door een echte geheime sleutel. Deze sleutel moet veilig bewaard worden, idealiter in een configuratiebestand of omgevingsvariabele.

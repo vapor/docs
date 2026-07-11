@@ -35,13 +35,13 @@ init(name: String, starID: Star.IDValue) {
 }
 ```
 
-Parametr `key` określa klucz pola używany do przechowywania identyfikatora rodzica. Zakładając, że `Star` ma identyfikator typu `UUID`, ta relacja `@Parent` jest kompatybilna z następującą [definicją pola](schema.md#field).
+Parametr `key` określa klucz pola używany do przechowywania identyfikatora rodzica. Zakładając, że `Star` ma identyfikator typu `UUID`, ta relacja `@Parent` jest kompatybilna z następującą [definicją pola](schema.md#pole).
 
 ```swift
 .field("star_id", .uuid, .required, .references("star", "id"))
 ```
 
-Zwróć uwagę, że ograniczenie [`.references`](schema.md#field-constraint) jest opcjonalne. Zobacz [schemat](schema.md), aby uzyskać więcej informacji.
+Zwróć uwagę, że ograniczenie [`.references`](schema.md#ograniczenie-pola) jest opcjonalne. Zobacz [schemat](schema.md), aby uzyskać więcej informacji.
 
 ### Optional Parent
 
@@ -203,7 +203,7 @@ final class PlanetTag: Model {
 
 Każdy model, który zawiera co najmniej dwie relacje `@Parent`, po jednej dla każdego modelu, który ma zostać powiązany, może zostać użyty jako pivot. Model może zawierać dodatkowe właściwości, takie jak jego ID, a nawet inne relacje `@Parent`.
 
-Dodanie ograniczenia [unique](schema.md#unique) do modelu pivota może pomóc zapobiec powielaniu wpisów. Zobacz [schemat](schema.md), aby uzyskać więcej informacji.
+Dodanie ograniczenia [unique](schema.md#unikalność) do modelu pivota może pomóc zapobiec powielaniu wpisów. Zobacz [schemat](schema.md), aby uzyskać więcej informacji.
 
 ```swift
 // Zapobiega duplikowaniu relacji.

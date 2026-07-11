@@ -42,7 +42,7 @@ app.views.use(.leaf)
 当你调用 `req.view` 时，就是在告诉 Vapor 需要使用 `LeafRenderer` 渲染页面。
 
 !!! warning 
-    从 Xcode 运行项目时为了 Leaf 能够找到模板，你必须为你的 Xcode 工作区设置[自定义工作目录](../getting-started/xcode.md#custom-working-directory)。
+    从 Xcode 运行项目时为了 Leaf 能够找到模板，你必须为你的 Xcode 工作区设置[自定义工作目录](../getting-started/xcode.md#自定义工作目录working-directory)。
 
 ### 渲染页面的缓存
 

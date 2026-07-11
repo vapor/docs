@@ -92,7 +92,7 @@ let planet = Planet(id: planetData.id, name: planetData.name, starID: planetData
 try await planet.create(on: req.db)
 ```
 
-将模型返回给客户端时同样适用。你的客户端要么需要能够处理嵌套结构，要么你需要在返回之前将模型转换为 DTO。有关 DTO 的更多信息，请参阅[模型文档](model.zh.md#data-transfer-object)
+将模型返回给客户端时同样适用。你的客户端要么需要能够处理嵌套结构，要么你需要在返回之前将模型转换为 DTO。有关 DTO 的更多信息，请参阅[模型文档](model.zh.md#数据传输对象)
 
 ## Optional Child
 

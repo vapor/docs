@@ -1,6 +1,6 @@
 # Redis & 세션
 
-Redis는 사용자 자격 증명과 같은 [세션 데이터](../advanced/sessions.md#session-data)를 캐싱하기 위한 저장소 제공자 역할을 할 수 있습니다.
+Redis는 사용자 자격 증명과 같은 [세션 데이터](../advanced/sessions.md#세션-데이터)를 캐싱하기 위한 저장소 제공자 역할을 할 수 있습니다.
 
 사용자 정의 [`RedisSessionsDelegate`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate)가 제공되지 않으면, 기본 델리게이트가 사용됩니다.
 

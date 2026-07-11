@@ -35,13 +35,13 @@ init(name: String, starID: Star.IDValue) {
 }
 ```
 
-`key` 매개변수는 부모의 식별자를 저장하는 데 사용할 필드 키를 정의합니다. `Star`가 `UUID` 식별자를 가지고 있다고 가정하면, 이 `@Parent` 관계는 다음 [필드 정의](schema.md#field)와 호환됩니다.
+`key` 매개변수는 부모의 식별자를 저장하는 데 사용할 필드 키를 정의합니다. `Star`가 `UUID` 식별자를 가지고 있다고 가정하면, 이 `@Parent` 관계는 다음 [필드 정의](schema.md#필드)와 호환됩니다.
 
 ```swift
 .field("star_id", .uuid, .required, .references("star", "id"))
 ```
 
-[`.references`](schema.md#field-constraint) 제약 조건은 선택 사항이라는 점에 유의하세요. 자세한 내용은 [스키마](schema.md)를 참고하세요.
+[`.references`](schema.md#필드-제약-조건) 제약 조건은 선택 사항이라는 점에 유의하세요. 자세한 내용은 [스키마](schema.md)를 참고하세요.
 
 ### Optional Parent
 
@@ -92,7 +92,7 @@ let planet = Planet(id: planetData.id, name: planetData.name, starID: planetData
 try await planet.create(on: req.db)
 ```
 
-모델을 클라이언트에 반환할 때도 마찬가지입니다. 클라이언트가 중첩된 구조를 처리할 수 있어야 하거나, 반환하기 전에 모델을 DTO로 변환해야 합니다. DTO에 대한 자세한 내용은 [모델 문서](model.md#data-transfer-object)를 참고하세요.
+모델을 클라이언트에 반환할 때도 마찬가지입니다. 클라이언트가 중첩된 구조를 처리할 수 있어야 하거나, 반환하기 전에 모델을 DTO로 변환해야 합니다. DTO에 대한 자세한 내용은 [모델 문서](model.md#데이터-전송-객체)를 참고하세요.
 
 ## Optional Child
 
@@ -203,7 +203,7 @@ final class PlanetTag: Model {
 
 관계를 맺을 각 모델에 대해 하나씩, 최소 두 개의 `@Parent` 관계를 포함하는 모델이라면 어떤 모델이든 피벗으로 사용할 수 있습니다. 이 모델은 ID와 같은 추가 프로퍼티를 포함할 수 있으며, 심지어 다른 `@Parent` 관계를 포함할 수도 있습니다.
 
-피벗 모델에 [유니크](schema.md#unique) 제약 조건을 추가하면 중복된 항목을 방지하는 데 도움이 됩니다. 자세한 내용은 [스키마](schema.md)를 참고하세요.
+피벗 모델에 [유니크](schema.md#유니크) 제약 조건을 추가하면 중복된 항목을 방지하는 데 도움이 됩니다. 자세한 내용은 [스키마](schema.md)를 참고하세요.
 
 ```swift
 // Disallows duplicate relations.

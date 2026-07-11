@@ -35,7 +35,7 @@ init(name: String, starID: Star.IDValue) {
 }
 ```
 
-Der Parameter `key` legt den Feld-Schlüssel fest, der zum Speichern der Kennung des Parents verwendet wird. Angenommen, `Star` hat eine `UUID`-Kennung, dann ist diese `@Parent`-Beziehung mit folgender [Felddefinition](schema.md#field) kompatibel.
+Der Parameter `key` legt den Feld-Schlüssel fest, der zum Speichern der Kennung des Parents verwendet wird. Angenommen, `Star` hat eine `UUID`-Kennung, dann ist diese `@Parent`-Beziehung mit folgender [Felddefinition](schema.md#feld) kompatibel.
 
 ```swift
 .field("star_id", .uuid, .required, .references("star", "id"))

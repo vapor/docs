@@ -150,7 +150,7 @@ Bei Feldern muss der Datenbankschlüssel explizit definiert werden. Dieser muss 
 !!! tip
     Fluent empfiehlt, für Datenbankschlüssel `snake_case` und für Eigenschaftsnamen `camelCase` zu verwenden.
 
-Feldwerte können jeden Typ haben, der `Codable` entspricht. Das Speichern verschachtelter Strukturen und Arrays in `@Field` wird unterstützt, aber Filteroperationen sind eingeschränkt. Eine Alternative findest du unter [`@Group`](#group).
+Feldwerte können jeden Typ haben, der `Codable` entspricht. Das Speichern verschachtelter Strukturen und Arrays in `@Field` wird unterstützt, aber Filteroperationen sind eingeschränkt. Eine Alternative findest du unter [`@Group`](#gruppe).
 
 Verwende für Felder mit einem optionalen Wert `@OptionalField`.
 
@@ -436,7 +436,7 @@ app.get("users") { req async throws -> [GetUser] in
 }
 ```
 
-Ein weiterer häufiger Anwendungsfall ist der Umgang mit Beziehungen, wie Parent- oder Children-Beziehungen. Ein Beispiel dafür, wie du ein DTO verwenden kannst, um ein Model mit einer `@Parent`-Beziehung einfach zu dekodieren, findest du in der [Parent-Dokumentation](relations.md#encoding-and-decoding-of-parents).
+Ein weiterer häufiger Anwendungsfall ist der Umgang mit Beziehungen, wie Parent- oder Children-Beziehungen. Ein Beispiel dafür, wie du ein DTO verwenden kannst, um ein Model mit einer `@Parent`-Beziehung einfach zu dekodieren, findest du in der [Parent-Dokumentation](relations.md#enkodierung-und-dekodierung-von-parents).
 
 Selbst wenn die Struktur des DTOs identisch mit der `Codable`-Konformität des Models ist, kann es helfen, große Projekte übersichtlich zu halten, wenn es als separater Typ vorliegt. Wenn du jemals eine Änderung an den Eigenschaften deiner Models vornehmen musst, brauchst du dir keine Sorgen zu machen, die öffentliche API deiner App zu brechen. Du könntest außerdem in Erwägung ziehen, deine DTOs in ein separates Package zu packen, das mit Konsumenten deiner API geteilt werden kann, und `Content`-Konformität in deiner Vapor-App hinzuzufügen.
 

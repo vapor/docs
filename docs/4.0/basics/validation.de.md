@@ -221,7 +221,7 @@ Im Folgenden findest du eine Liste der aktuell unterstützten Validatoren mit ei
 |`.url`|Enthält eine gültige URL.|
 |`.custom(_:, validationClosure: (value) -> Bool)`|Benutzerdefinierte, einmalige Validierung.|
 
-Validatoren können außerdem mit Operatoren kombiniert werden, um komplexere Validierungen zu erstellen. Weitere Informationen zum `.custom`-Validator findest du unter [Benutzerdefinierte Validatoren](#custom-validators).
+Validatoren können außerdem mit Operatoren kombiniert werden, um komplexere Validierungen zu erstellen. Weitere Informationen zum `.custom`-Validator findest du unter [Benutzerdefinierte Validatoren](#benutzerdefinierte-validatoren).
 
 |Operator|Position|Beschreibung|
 |-|-|-|

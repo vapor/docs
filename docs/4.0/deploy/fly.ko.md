@@ -34,10 +34,10 @@ fly auth login
 Fly에 배포하기 전에, 적절히 설정된 Dockerfile을 가진 Vapor 프로젝트가 있는지 확인해야 합니다. Fly는 앱을 빌드하는 데 이를 필요로 하기 때문입니다. 기본 Vapor 템플릿에는 이미 Dockerfile이 포함되어 있으므로, 대부분의 경우 매우 쉽게 진행할 수 있습니다.
 
 ### 새로운 Vapor 프로젝트
-새 프로젝트를 만드는 가장 쉬운 방법은 템플릿으로 시작하는 것입니다. GitHub 템플릿이나 Vapor 툴박스를 사용해서 만들 수 있습니다. 데이터베이스가 필요하다면, Fluent와 Postgres를 사용하는 것을 권장합니다. Fly는 앱과 연결할 Postgres 데이터베이스를 쉽게 만들 수 있게 해줍니다 (아래의 [전용 섹션](#configuring-postgres)을 참고하세요).
+새 프로젝트를 만드는 가장 쉬운 방법은 템플릿으로 시작하는 것입니다. GitHub 템플릿이나 Vapor 툴박스를 사용해서 만들 수 있습니다. 데이터베이스가 필요하다면, Fluent와 Postgres를 사용하는 것을 권장합니다. Fly는 앱과 연결할 Postgres 데이터베이스를 쉽게 만들 수 있게 해줍니다 (아래의 [전용 섹션](#postgres-설정하기)을 참고하세요).
 
 #### Vapor 툴박스 사용하기
-먼저, Vapor 툴박스가 설치되어 있는지 확인하세요 ([macOS](../install/macos.md#install-toolbox) 또는 [Linux](../install/linux.md#install-toolbox)의 설치 지침을 참고하세요).
+먼저, Vapor 툴박스가 설치되어 있는지 확인하세요 ([macOS](../install/macos.md#toolbox-설치하기) 또는 [Linux](../install/linux.md#toolbox-설치하기)의 설치 지침을 참고하세요).
 다음 명령어로 원하는 앱 이름을 `app-name` 대신 입력해서 새 앱을 만드세요.
 ```bash
 vapor new app-name
@@ -67,7 +67,7 @@ fly launch
 
 - **이름:** 이름을 입력하거나, 비워두면 자동으로 생성된 이름을 받을 수 있습니다.
 - **지역:** 기본값은 사용자와 가장 가까운 지역입니다. 이를 사용하거나 목록에 있는 다른 지역을 선택할 수 있습니다. 나중에 쉽게 변경할 수 있습니다.
-- **데이터베이스:** Fly에게 앱과 함께 사용할 데이터베이스를 만들어 달라고 요청할 수 있습니다. 원한다면 나중에 `fly pg create`와 `fly pg attach` 명령어로 동일한 작업을 할 수도 있습니다 (자세한 내용은 [Postgres 설정하기 섹션](#configuring-postgres)을 참고하세요).
+- **데이터베이스:** Fly에게 앱과 함께 사용할 데이터베이스를 만들어 달라고 요청할 수 있습니다. 원한다면 나중에 `fly pg create`와 `fly pg attach` 명령어로 동일한 작업을 할 수도 있습니다 (자세한 내용은 [Postgres 설정하기 섹션](#postgres-설정하기)을 참고하세요).
 
 `fly launch` 명령어는 자동으로 `fly.toml` 파일을 생성합니다. 이 파일에는 private/public 포트 매핑, 헬스 체크 매개변수 등 다양한 설정이 포함됩니다. `vapor new`로 새 프로젝트를 처음부터 만들었다면, 기본 `fly.toml` 파일은 변경할 필요가 없습니다. 기존 프로젝트가 있다면, `fly.toml`도 변경이 없거나 약간의 수정만으로 괜찮을 가능성이 높습니다. 더 많은 정보는 [`fly.toml` 문서](https://fly.io/docs/reference/configuration/)에서 확인할 수 있습니다.
 

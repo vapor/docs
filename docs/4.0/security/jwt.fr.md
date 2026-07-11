@@ -47,7 +47,7 @@ import JWT
 await app.jwt.keys.add(hmac: "secret", digestAlgorithm: .sha256)
 ```
 
-Ceci ajoute une clé HMAC avec SHA-256 comme algorithme de hachage au trousseau, soit HS256 en notation JWA. Consultez la section [algorithmes](#algorithms) ci-dessous pour plus d'informations sur les algorithmes disponibles.
+Ceci ajoute une clé HMAC avec SHA-256 comme algorithme de hachage au trousseau, soit HS256 en notation JWA. Consultez la section [algorithmes](#algorithmes) ci-dessous pour plus d'informations sur les algorithmes disponibles.
 
 !!! note 
     Assurez-vous de remplacer `"secret"` par une véritable clé secrète. Cette clé devrait être conservée de manière sécurisée, idéalement dans un fichier de configuration ou une variable d'environnement.

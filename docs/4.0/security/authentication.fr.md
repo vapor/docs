@@ -330,7 +330,7 @@ app.migrations.add(User.Migration())
 ``` 
 
 !!! tip
-     Étant donné que les adresses email ne sont pas sensibles à la casse, vous pourriez vouloir ajouter un [`Middleware`](../fluent/model.md#lifecycle) qui convertit l'adresse email en minuscules avant de l'enregistrer dans la base de données. Sachez, cependant, que `ModelAuthenticatable` utilise une comparaison sensible à la casse, donc si vous faites cela, vous voudrez vous assurer que la saisie de l'utilisateur est entièrement en minuscules, soit avec une conversion de casse côté client, soit avec un authentificateur personnalisé.
+     Étant donné que les adresses email ne sont pas sensibles à la casse, vous pourriez vouloir ajouter un [`Middleware`](../fluent/model.md#cycle-de-vie) qui convertit l'adresse email en minuscules avant de l'enregistrer dans la base de données. Sachez, cependant, que `ModelAuthenticatable` utilise une comparaison sensible à la casse, donc si vous faites cela, vous voudrez vous assurer que la saisie de l'utilisateur est entièrement en minuscules, soit avec une conversion de casse côté client, soit avec un authentificateur personnalisé.
 
 La première chose dont vous aurez besoin est un point d'accès pour créer de nouveaux utilisateurs. Utilisons `POST /users`. Créez une struct [Content](../basics/content.md) représentant les données attendues par ce point d'accès.
 

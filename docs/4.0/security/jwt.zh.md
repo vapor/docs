@@ -47,7 +47,7 @@ import JWT
 await app.jwt.keys.add(hmac: "secret", digestAlgorithm: .sha256)
 ```
 
-这会向密钥链添加一个以 SHA-256 作为摘要算法的 HMAC 密钥，在 JWA 表示法中即为 HS256。有关可用算法的更多信息，请查看下方的[算法](#algorithms)部分。
+这会向密钥链添加一个以 SHA-256 作为摘要算法的 HMAC 密钥，在 JWA 表示法中即为 HS256。有关可用算法的更多信息，请查看下方的[算法](#算法algorithms)部分。
 
 !!! note 
     请务必将 `"secret"` 替换为实际的密钥。该密钥应妥善保管，最好放在配置文件或环境变量中。

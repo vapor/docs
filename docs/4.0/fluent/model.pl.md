@@ -188,7 +188,7 @@ final class Planet: Model {
 |-|-|
 |`.create`|Set when a new model instance is saved to the database.|
 |`.update`|Set when an existing model instance is saved to the database.|
-|`.delete`|Set when a model is deleted from the database. See [soft delete](#soft-delete).|
+|`.delete`|Set when a model is deleted from the database. See [soft delete](#miękkie-usuwanie-soft-delete).|
 
 Wartość daty `@Timestamp` jest opcjonalna i powinna być ustawiona na `nil` podczas inicjalizacji nowego modelu.
 
@@ -436,13 +436,13 @@ app.get("users") { req async throws -> [GetUser] in
 }
 ```
 
-Innym częstym zastosowaniem jest obsługa relacji, takich jak relacje typu parent lub children. Zobacz [dokumentację Parent](relations.md#encoding-and-decoding-of-parents), aby zobaczyć przykład użycia DTO w celu ułatwienia dekodowania modelu z relacją `@Parent`.
+Innym częstym zastosowaniem jest obsługa relacji, takich jak relacje typu parent lub children. Zobacz [dokumentację Parent](relations.md#kodowanie-i-dekodowanie-rodziców), aby zobaczyć przykład użycia DTO w celu ułatwienia dekodowania modelu z relacją `@Parent`.
 
 Nawet jeśli struktura DTO jest identyczna ze zgodnością modelu z `Codable`, posiadanie jej jako osobnego typu może pomóc utrzymać porządek w dużych projektach. Jeśli kiedykolwiek będziesz musiał wprowadzić zmianę we właściwościach swoich modeli, nie musisz martwić się o naruszenie publicznego API twojej aplikacji. Możesz również rozważyć umieszczenie swoich DTO w osobnym pakiecie, który może być współdzielony z konsumentami twojego API, dodając zgodność z `Content` w twojej aplikacji Vapor.
 
 ## Alias
 
-Protokół `ModelAlias` pozwala na jednoznaczną identyfikację modelu, który jest łączony (joined) wielokrotnie w zapytaniu. Aby uzyskać więcej informacji, zobacz [joins](query.md#join).
+Protokół `ModelAlias` pozwala na jednoznaczną identyfikację modelu, który jest łączony (joined) wielokrotnie w zapytaniu. Aby uzyskać więcej informacji, zobacz [joins](query.md#złączenie-join).
 
 ## Save
 
@@ -471,7 +471,7 @@ planet.create(on: database)
 ```
 
 !!! warning
-    Modele używające [`@ID(custom:)`](#custom-identifier) z generatorem `.database` (zazwyczaj automatycznie zwiększane `Int`) nie będą miały dostępu do swoich nowo utworzonych identyfikatorów po zbiorczym utworzeniu (batch create). W sytuacjach, gdy potrzebujesz uzyskać dostęp do identyfikatorów, wywołaj `create` na każdym modelu osobno.
+    Modele używające [`@ID(custom:)`](#niestandardowy-identyfikator) z generatorem `.database` (zazwyczaj automatycznie zwiększane `Int`) nie będą miały dostępu do swoich nowo utworzonych identyfikatorów po zbiorczym utworzeniu (batch create). W sytuacjach, gdy potrzebujesz uzyskać dostęp do identyfikatorów, wywołaj `create` na każdym modelu osobno.
 
 Aby utworzyć tablicę modeli osobno, użyj `map` + `flatten`.
 

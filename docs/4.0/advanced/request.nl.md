@@ -23,7 +23,7 @@ Als je directe toegang wilt tot de request body als een `ByteBuffer`, kun je `Re
 
 ## Cookies
 
-Hoewel de meest bruikbare toepassing van cookies via de ingebouwde [sessies](../advanced/sessions.md#configuration) is, kun je ook rechtstreeks toegang krijgen tot cookies via `Request.cookies`.
+Hoewel de meest bruikbare toepassing van cookies via de ingebouwde [sessies](../advanced/sessions.md#configuratie) is, kun je ook rechtstreeks toegang krijgen tot cookies via `Request.cookies`.
 
 ```swift
 app.get("my-cookie") { req -> String in

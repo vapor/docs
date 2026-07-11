@@ -236,7 +236,7 @@ Die erste Anforderung des `Model`-Protokolls ist die statische Zeichenkette `sch
 static let schema = "galaxies"
 ```
 
-Diese Eigenschaft teilt Fluent mit, welcher Tabelle oder Collection das Model entspricht. Dies kann eine Tabelle sein, die bereits in der Datenbank existiert, oder eine, die du mit einer [Migration](#migrations) erstellen wirst. Das Schema ist üblicherweise `snake_case` und im Plural.
+Diese Eigenschaft teilt Fluent mit, welcher Tabelle oder Collection das Model entspricht. Dies kann eine Tabelle sein, die bereits in der Datenbank existiert, oder eine, die du mit einer [Migration](#migrationen) erstellen wirst. Das Schema ist üblicherweise `snake_case` und im Plural.
 
 ### Identifier
 
@@ -508,7 +508,7 @@ app.migrations.add(CreateGalaxy())
 app.migrations.add(CreateStar())
 ```
 
-Da Migrationen der Reihe nach ausgeführt werden und `CreateStar` auf das galaxies-Schema verweist, ist die Reihenfolge wichtig. Führe abschließend [die Migrationen aus](#migrate), um die Datenbank vorzubereiten.
+Da Migrationen der Reihe nach ausgeführt werden und `CreateStar` auf das galaxies-Schema verweist, ist die Reihenfolge wichtig. Führe abschließend [die Migrationen aus](#migrieren), um die Datenbank vorzubereiten.
 
 Füge eine Route zum Erstellen neuer Sterne hinzu.
 

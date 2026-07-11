@@ -221,7 +221,7 @@ Debajo tienes una lista de los validadores soportados actualmente y una breve ex
 |`.url`|Contiene una URL válida.|
 |`.custom(_:, validationClosure: (value) -> Bool)`|Validación personalizada, de un solo uso.|
 
-Los validadores también pueden combinarse mediante operadores para construir validaciones complejas. Más información sobre el validador `.custom` en [Validadores Personalizados](#custom-validators).
+Los validadores también pueden combinarse mediante operadores para construir validaciones complejas. Más información sobre el validador `.custom` en [Validadores Personalizados](#validadores-personalizados).
 
 |Operador|Posición|Descripción|
 |-|-|-|

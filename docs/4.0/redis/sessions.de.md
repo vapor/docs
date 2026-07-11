@@ -1,6 +1,6 @@
 # Redis & Sessions
 
-Redis kann als Speicheranbieter zum Cachen von [Session-Daten](../advanced/sessions.md#session-data) wie Nutzeranmeldedaten fungieren.
+Redis kann als Speicheranbieter zum Cachen von [Session-Daten](../advanced/sessions.md#session-daten) wie Nutzeranmeldedaten fungieren.
 
 Wenn kein benutzerdefinierter [`RedisSessionsDelegate`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate) bereitgestellt wird, wird ein Standard verwendet.
 

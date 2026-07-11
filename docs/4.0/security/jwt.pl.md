@@ -47,7 +47,7 @@ import JWT
 await app.jwt.keys.add(hmac: "secret", digestAlgorithm: .sha256)
 ```
 
-Dodaje to klucz HMAC z SHA-256 jako algorytmem skrótu do zbioru kluczy, czyli HS256 w notacji JWA. Zajrzyj do sekcji [algorytmy](#algorithms) poniżej, aby uzyskać więcej informacji o dostępnych algorytmach.
+Dodaje to klucz HMAC z SHA-256 jako algorytmem skrótu do zbioru kluczy, czyli HS256 w notacji JWA. Zajrzyj do sekcji [algorytmy](#algorytmy) poniżej, aby uzyskać więcej informacji o dostępnych algorytmach.
 
 !!! note 
     Pamiętaj, aby zastąpić `"secret"` rzeczywistym kluczem sekretnym. Ten klucz powinien być przechowywany w bezpieczny sposób, najlepiej w pliku konfiguracyjnym lub zmiennej środowiskowej.

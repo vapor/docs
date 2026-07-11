@@ -31,7 +31,7 @@ let package = Package(
 
 ## 設定 {#configure}
 
-パッケージをプロジェクトに追加したら、Vapor を設定してそれを使用するように構成します。これは通常、[`configure.swift`](../getting-started/folder-structure.md#configureswift) で行います。
+パッケージをプロジェクトに追加したら、Vapor を設定してそれを使用するように構成します。これは通常、[`configure.swift`](../getting-started/folder-structure.md#configureswift-configureswift) で行います。
 
 ```swift
 import Leaf
@@ -42,7 +42,7 @@ app.views.use(.leaf)
 これにより、コード内で `req.view` を呼び出すと、Vapor が `LeafRenderer` を使用するように指示します。
 
 !!! warning 
-    Xcode から実行する際に Leaf がテンプレートを見つけられるようにするためには、 Xcode ワークスペースの [custom working directory](../getting-started/xcode.md#custom-working-directory) を設定する必要があります。
+    Xcode から実行する際に Leaf がテンプレートを見つけられるようにするためには、 Xcode ワークスペースの [custom working directory](../getting-started/xcode.md#カスタムワーキングディレクトリ-custom-working-directory) を設定する必要があります。
 
 ### ページレンダリング用のキャッシュ {#cache-for-rendering-pages}
 

@@ -9,7 +9,7 @@ app.get("hello", ":name") { req -> String in
 }
 ```
 
-이는 Vapor의 나머지 기능들로 향하는 주된 창구입니다. [요청 본문](../basics/content.md), [쿼리 매개변수](../basics/content.md#query), [로거](../basics/logging.md), [HTTP 클라이언트](../basics/client.md), [Authenticator](../security/authentication.md) 등에 대한 API를 포함하고 있습니다. request를 통해 이러한 기능에 접근하면 계산이 올바른 이벤트 루프에서 유지되며, 테스트를 위해 mocking하는 것도 가능해집니다. 익스텐션을 사용해 여러분만의 [서비스](../advanced/services.md)를 `Request`에 추가할 수도 있습니다.
+이는 Vapor의 나머지 기능들로 향하는 주된 창구입니다. [요청 본문](../basics/content.md), [쿼리 매개변수](../basics/content.md#쿼리query), [로거](../basics/logging.md), [HTTP 클라이언트](../basics/client.md), [Authenticator](../security/authentication.md) 등에 대한 API를 포함하고 있습니다. request를 통해 이러한 기능에 접근하면 계산이 올바른 이벤트 루프에서 유지되며, 테스트를 위해 mocking하는 것도 가능해집니다. 익스텐션을 사용해 여러분만의 [서비스](../advanced/services.md)를 `Request`에 추가할 수도 있습니다.
 
 `Request`에 대한 전체 API 문서는 [여기](https://api.vapor.codes/vapor/documentation/vapor/request)에서 확인할 수 있습니다.
 
@@ -23,7 +23,7 @@ app.get("hello", ":name") { req -> String in
 
 ## Cookies
 
-쿠키를 가장 유용하게 활용하는 방법은 내장된 [세션](../advanced/sessions.md#configuration) 기능을 통하는 것이지만, `Request.cookies`를 통해 쿠키에 직접 접근할 수도 있습니다.
+쿠키를 가장 유용하게 활용하는 방법은 내장된 [세션](../advanced/sessions.md#설정) 기능을 통하는 것이지만, `Request.cookies`를 통해 쿠키에 직접 접근할 수도 있습니다.
 
 ```swift
 app.get("my-cookie") { req -> String in

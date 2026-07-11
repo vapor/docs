@@ -73,7 +73,7 @@ req.fileio.writeFile(ByteBuffer(string: "Hello, world"), at: "/path/to/file")
 
 ## 미들웨어(Middleware)
 
-프로젝트의 _Public_ 폴더에 있는 파일을 자동으로 제공하는 것에 대한 더 많은 정보는 [미들웨어 &rarr; FileMiddleware](middleware.md#file-middleware)를 참고하세요.
+프로젝트의 _Public_ 폴더에 있는 파일을 자동으로 제공하는 것에 대한 더 많은 정보는 [미들웨어 &rarr; FileMiddleware](middleware.md#파일-미들웨어)를 참고하세요.
 
 ## 심화(Advanced)
 

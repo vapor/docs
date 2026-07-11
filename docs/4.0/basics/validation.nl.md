@@ -221,7 +221,7 @@ Hieronder staat een lijst van de momenteel ondersteunde validaties en een korte 
 |`.url`|Bevat een geldige URL.|
 |`.custom(_:, validationClosure: (value) -> Bool)`|Aangepaste, eenmalige validatie.|
 
-Validators kunnen ook gecombineerd worden om complexe validaties te bouwen met behulp van operatoren. Meer informatie over de `.custom` validator vindt u bij [Aangepaste Validators](#custom-validators).
+Validators kunnen ook gecombineerd worden om complexe validaties te bouwen met behulp van operatoren. Meer informatie over de `.custom` validator vindt u bij [Aangepaste Validators](#aangepaste-validators).
 
 |Operator|Positie|Beschrijving|
 |-|-|-|

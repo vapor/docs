@@ -749,7 +749,7 @@ app.middleware.use(User.sessionAuthenticator())
 * 会话身份认证器获取会话，并查看该会话是否有经过身份验证的用户。如果是，中间件对请求进行身份验证。在响应中，会话身份认证器查看请求是否具有经过身份验证的用户，并将其保存在会话中，以便在下一个请求中对其进行身份验证。
 
 !!! note "注意"
-    默认情况下会话 cookie 不会设置为 `secure` 和 `httpOnly`。查看 [Session API](../advanced/sessions.zh.md#配置configuration) 获取更多关于配置 cookie 的信息。
+    默认情况下会话 cookie 不会设置为 `secure` 和 `httpOnly`。查看 [Session API](../advanced/sessions.zh.md#配置) 获取更多关于配置 cookie 的信息。
 
 
 ### 保护路由

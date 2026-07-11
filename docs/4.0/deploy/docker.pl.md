@@ -24,7 +24,7 @@ Musisz zainstalować Dockera dla swojego środowiska deweloperskiego. Informacje
 
 Sugerujemy użycie szablonu Vapor jako punktu wyjścia. Jeśli masz już aplikację, zbuduj szablon w sposób opisany poniżej w nowym folderze jako punkt odniesienia podczas dockeryzacji istniejącej aplikacji -- możesz skopiować kluczowe zasoby z szablonu do swojej aplikacji i nieco je dostosować jako punkt startowy.
 
-1. Zainstaluj lub zbuduj Vapor Toolbox ([macOS](../install/macos.md#install-toolbox), [Linux](../install/linux.md#install-toolbox)).
+1. Zainstaluj lub zbuduj Vapor Toolbox ([macOS](../install/macos.md#zainstaluj-toolbox), [Linux](../install/linux.md#zainstaluj-toolbox)).
 2. Utwórz nową aplikację Vapor za pomocą `vapor new my-dockerized-app` i przejdź przez pytania, aby włączyć lub wyłączyć odpowiednie funkcje. Twoje odpowiedzi na te pytania wpłyną na sposób generowania plików zasobów Dockera.
 
 ## Zasoby Dockera

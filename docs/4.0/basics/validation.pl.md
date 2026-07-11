@@ -221,7 +221,7 @@ Poniżej znajduje się lista aktualnie wspieranych walidatorów wraz z krótkim 
 |`.url`|Zawiera prawidłowy URL.|
 |`.custom(_:, validationClosure: (value) -> Bool)`|Niestandardowa, jednorazowa walidacja.|
 
-Walidatory mogą być również łączone w celu budowania złożonych walidacji za pomocą operatorów. Więcej informacji o walidatorze `.custom` znajdziesz w sekcji [Niestandardowe walidatory](#custom-validators).
+Walidatory mogą być również łączone w celu budowania złożonych walidacji za pomocą operatorów. Więcej informacji o walidatorze `.custom` znajdziesz w sekcji [Niestandardowe walidatory](#niestandardowe-walidatory).
 
 |Operator|Pozycja|Opis|
 |-|-|-|

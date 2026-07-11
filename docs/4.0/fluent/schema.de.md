@@ -416,7 +416,7 @@ Beachte, dass wir für diese Migration sowohl das entfernte Feld `name` als auch
 
 ## Setting Model Space
 
-Um den [Space für ein Model](model.md#database-space) zu definieren, übergib den Space beim Erstellen der Tabelle an `schema(_:space:)`. Z. B.
+Um den [Space für ein Model](model.md#datenbank-space) zu definieren, übergib den Space beim Erstellen der Tabelle an `schema(_:space:)`. Z. B.
 
 ```swift
 try await db.schema("planets", space: "mirror_universe")

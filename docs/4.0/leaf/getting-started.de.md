@@ -42,7 +42,7 @@ app.views.use(.leaf)
 Dies weist Vapor an, den `LeafRenderer` zu verwenden, wenn du in deinem Code `req.view` aufrufst.
 
 !!! warning 
-    Damit Leaf die Templates finden kann, wenn du aus Xcode heraus arbeitest, musst du das [benutzerdefinierte Arbeitsverzeichnis](../getting-started/xcode.md#custom-working-directory) für dein Xcode-Workspace festlegen.
+    Damit Leaf die Templates finden kann, wenn du aus Xcode heraus arbeitest, musst du das [benutzerdefinierte Arbeitsverzeichnis](../getting-started/xcode.md#eigenes-arbeitsverzeichnis) für dein Xcode-Workspace festlegen.
 
 ### Cache für das Rendern von Seiten
 

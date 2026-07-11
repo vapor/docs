@@ -61,7 +61,7 @@ Pola można dodawać podczas tworzenia lub aktualizacji schematu.
 .field("name", .string, .required)
 ```
 
-Pierwszy parametr to nazwa pola. Powinna ona odpowiadać kluczowi używanemu we właściwości powiązanego modelu. Drugi parametr to [typ danych](#data-type) pola. Na koniec można dodać zero lub więcej [ograniczeń](#field-constraint).
+Pierwszy parametr to nazwa pola. Powinna ona odpowiadać kluczowi używanemu we właściwości powiązanego modelu. Drugi parametr to [typ danych](#typ-danych) pola. Na koniec można dodać zero lub więcej [ograniczeń](#ograniczenie-pola).
 
 ### Typ danych
 
@@ -90,8 +90,8 @@ Poniżej wymieniono obsługiwane ograniczenia pól.
 |FieldConstraint|Opis|
 |-|-|
 |`.required`|Zabrania wartości `nil`.|
-|`.references`|Wymaga, aby wartość tego pola pasowała do wartości w schemacie, do którego się odwołuje. Zobacz [klucz obcy](#foreign-key).|
-|`.identifier`|Oznacza klucz główny. Zobacz [identyfikator](#identifier).|
+|`.references`|Wymaga, aby wartość tego pola pasowała do wartości w schemacie, do którego się odwołuje. Zobacz [klucz obcy](#klucz-obcy).|
+|`.identifier`|Oznacza klucz główny. Zobacz [identyfikator](#identyfikator).|
 |`.sql(SQLColumnConstraintAlgorithm)`|Definiuje dowolne ograniczenie, które nie jest obsługiwane (np. `default`). Zobacz [SQL](#sql) oraz [SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/documentation/sqlkit/sqlcolumnconstraintalgorithm/).|
 
 ### Identyfikator
@@ -134,7 +134,7 @@ Możesz usunąć pole ze schematu za pomocą `deleteField`.
 
 ## Ograniczenie
 
-Ograniczenia można dodawać podczas tworzenia lub aktualizacji schematu. W przeciwieństwie do [ograniczeń pól](#field-constraint), ograniczenia najwyższego poziomu mogą dotyczyć wielu pól.
+Ograniczenia można dodawać podczas tworzenia lub aktualizacji schematu. W przeciwieństwie do [ograniczeń pól](#ograniczenie-pola), ograniczenia najwyższego poziomu mogą dotyczyć wielu pól.
 
 ### Unikalność
 
@@ -195,7 +195,7 @@ To samo ograniczenie można dodać jako ograniczenie najwyższego poziomu za pom
 .foreignKey("star_id", references: "stars", "id")
 ```
 
-W przeciwieństwie do ograniczeń pól, ograniczenia najwyższego poziomu mogą zostać dodane podczas aktualizacji schematu. Mogą też mieć [nazwę](#constraint-name).
+W przeciwieństwie do ograniczeń pól, ograniczenia najwyższego poziomu mogą zostać dodane podczas aktualizacji schematu. Mogą też mieć [nazwę](#nazwa-ograniczenia).
 
 Ograniczenia klucza obcego obsługują opcjonalne akcje `onDelete` i `onUpdate`.
 

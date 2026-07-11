@@ -87,7 +87,7 @@ User.query(on: database)
     .filter(\.$firstName == \.$lastName)
 ```
 
-Filtry pól wspierają te same operatory co [filtry wartości](#value-filter).
+Filtry pól wspierają te same operatory co [filtry wartości](#filtr-wartości).
 
 ### Filtr podzbioru
 
@@ -216,7 +216,7 @@ Metoda `unique` budowniczego zapytań powoduje, że zwracane są tylko unikalne 
 User.query(on: database).unique().all(\.$firstName)
 ```
 
-`unique` jest szczególnie przydatne przy pobieraniu pojedynczego pola za pomocą `all`. Możesz jednak również wybrać wiele pól za pomocą metody [`field`](#field). Ponieważ identyfikatory modeli są zawsze unikalne, powinieneś unikać ich wybierania podczas używania `unique`.
+`unique` jest szczególnie przydatne przy pobieraniu pojedynczego pola za pomocą `all`. Możesz jednak również wybrać wiele pól za pomocą metody [`field`](#pole). Ponieważ identyfikatory modeli są zawsze unikalne, powinieneś unikać ich wybierania podczas używania `unique`.
 
 ## Zakres
 

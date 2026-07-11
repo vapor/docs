@@ -24,7 +24,7 @@ Docker를 실행할 수 있도록 개발 환경을 설정하고, Docker 스택�
 
 시작점으로 Vapor 템플릿을 사용하는 것을 권장합니다. 이미 앱이 있다면, 아래에 설명된 대로 템플릿을 새 폴더에 빌드하여 기존 앱을 도커라이즈할 때 참고할 자료로 삼으세요. 템플릿에서 핵심 리소스를 복사하여 앱에 붙여넣고 약간 조정하면 좋은 출발점이 됩니다.
 
-1. Vapor Toolbox를 설치하거나 빌드합니다 ([macOS](../install/macos.md#install-toolbox), [Linux](../install/linux.md#install-toolbox)).
+1. Vapor Toolbox를 설치하거나 빌드합니다 ([macOS](../install/macos.md#toolbox-설치하기), [Linux](../install/linux.md#toolbox-설치하기)).
 2. `vapor new my-dockerized-app` 명령어로 새 Vapor 앱을 생성하고, 프롬프트를 따라가며 필요한 기능을 활성화하거나 비활성화합니다. 이 프롬프트에 대한 답변에 따라 Docker 리소스 파일이 생성되는 방식이 달라집니다.
 
 ## Docker 리소스
@@ -168,7 +168,7 @@ docker compose run migrate
 LOG_LEVEL=trace docker-compose up app
 ```
 
-가장 세밀한 수준인 `trace` 레벨 로깅을 얻을 수 있습니다. 이 환경 변수를 사용하여 로깅을 [사용 가능한 모든 레벨](../basics/logging.md#level)로 설정할 수 있습니다.
+가장 세밀한 수준인 `trace` 레벨 로깅을 얻을 수 있습니다. 이 환경 변수를 사용하여 로깅을 [사용 가능한 모든 레벨](../basics/logging.md#레벨level)로 설정할 수 있습니다.
 
 #### 전체 서비스 로그
 

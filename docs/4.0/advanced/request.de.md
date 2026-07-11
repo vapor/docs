@@ -9,7 +9,7 @@ app.get("hello", ":name") { req -> String in
 }
 ```
 
-Es ist das Hauptfenster zum Rest der Funktionalität von Vapor. Es enthält APIs für den [Request-Body](../basics/content.md), [Query-Parameter](../basics/content.md#query), den [Logger](../basics/logging.md), den [HTTP-Client](../basics/client.md), den [Authenticator](../security/authentication.md) und mehr. Der Zugriff auf diese Funktionalität über den Request sorgt dafür, dass die Berechnung auf dem richtigen Event-Loop bleibt, und ermöglicht es, sie für Tests zu mocken. Du kannst dem `Request` sogar über Extensions eigene [Services](../advanced/services.md) hinzufügen.
+Es ist das Hauptfenster zum Rest der Funktionalität von Vapor. Es enthält APIs für den [Request-Body](../basics/content.md), [Query-Parameter](../basics/content.md#binden-der-zeichenfolge), den [Logger](../basics/logging.md), den [HTTP-Client](../basics/client.md), den [Authenticator](../security/authentication.md) und mehr. Der Zugriff auf diese Funktionalität über den Request sorgt dafür, dass die Berechnung auf dem richtigen Event-Loop bleibt, und ermöglicht es, sie für Tests zu mocken. Du kannst dem `Request` sogar über Extensions eigene [Services](../advanced/services.md) hinzufügen.
 
 Die vollständige API-Dokumentation für `Request` findest du [hier](https://api.vapor.codes/vapor/documentation/vapor/request).
 
@@ -23,7 +23,7 @@ Wenn du direkten Zugriff auf den Request-Body als `ByteBuffer` möchtest, kannst
 
 ## Cookies
 
-Auch wenn die nützlichste Anwendung von Cookies über die eingebauten [Sessions](../advanced/sessions.md#configuration) erfolgt, kannst du auch direkt über `Request.cookies` auf Cookies zugreifen.
+Auch wenn die nützlichste Anwendung von Cookies über die eingebauten [Sessions](../advanced/sessions.md#konfiguration) erfolgt, kannst du auch direkt über `Request.cookies` auf Cookies zugreifen.
 
 ```swift
 app.get("my-cookie") { req -> String in

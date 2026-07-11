@@ -1,6 +1,6 @@
 # Redis i sesje
 
-Redis może pełnić rolę dostawcy przechowywania danych do buforowania [danych sesji](../advanced/sessions.md#session-data), takich jak dane uwierzytelniające użytkownika.
+Redis może pełnić rolę dostawcy przechowywania danych do buforowania [danych sesji](../advanced/sessions.md#dane-sesji), takich jak dane uwierzytelniające użytkownika.
 
 Jeśli niestandardowy [`RedisSessionsDelegate`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate) nie zostanie dostarczony, zostanie użyty domyślny.
 

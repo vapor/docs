@@ -236,7 +236,7 @@ Pierwszym wymaganiem protokołu `Model` jest statyczny ciąg znaków `schema`.
 static let schema = "galaxies"
 ```
 
-Ta właściwość mówi Fluent, do której tabeli lub kolekcji odpowiada dany model. Może to być tabela, która już istnieje w bazie danych, lub taka, którą stworzysz za pomocą [migracji](#migrations). Schemat jest zazwyczaj w formacie `snake_case` i w liczbie mnogiej.
+Ta właściwość mówi Fluent, do której tabeli lub kolekcji odpowiada dany model. Może to być tabela, która już istnieje w bazie danych, lub taka, którą stworzysz za pomocą [migracji](#migracje). Schemat jest zazwyczaj w formacie `snake_case` i w liczbie mnogiej.
 
 ### Identyfikator
 
@@ -249,7 +249,7 @@ var id: UUID?
 
 To pole musi używać property wrappera `@ID`. Fluent zaleca używanie `UUID` oraz specjalnego klucza pola `.id`, ponieważ jest to kompatybilne ze wszystkimi sterownikami Fluent.
 
-Jeśli chcesz użyć niestandardowego klucza ID lub typu, użyj przeciążenia [`@ID(custom:)`](model.md#custom-identifier).
+Jeśli chcesz użyć niestandardowego klucza ID lub typu, użyj przeciążenia [`@ID(custom:)`](model.md#niestandardowy-identyfikator).
 
 ### Pola
 
@@ -508,7 +508,7 @@ app.migrations.add(CreateGalaxy())
 app.migrations.add(CreateStar())
 ```
 
-Ponieważ migracje uruchamiane są w kolejności, a `CreateStar` odnosi się do schematu galaxies, kolejność jest istotna. Na koniec, [uruchom migracje](#migrate), aby przygotować bazę danych.
+Ponieważ migracje uruchamiane są w kolejności, a `CreateStar` odnosi się do schematu galaxies, kolejność jest istotna. Na koniec, [uruchom migracje](#migrowanie), aby przygotować bazę danych.
 
 Dodaj trasę do tworzenia nowych gwiazd.
 

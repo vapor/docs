@@ -360,7 +360,7 @@ app.get("planets") { req async throws in
 `Codable`로/에서 직렬화할 때, 모델 프로퍼티는 키 대신 변수 이름을 사용합니다. 관계는 중첩된 구조로 직렬화되며, eager loading된 데이터가 있다면 함께 포함됩니다.
 
 !!! info
-    거의 모든 경우에 API 응답과 요청 본문에는 모델 대신 DTO를 사용하는 것을 권장합니다. 더 자세한 정보는 [데이터 전송 객체](#data-transfer-object)를 참고하세요.
+    거의 모든 경우에 API 응답과 요청 본문에는 모델 대신 DTO를 사용하는 것을 권장합니다. 더 자세한 정보는 [데이터 전송 객체](#데이터-전송-객체)를 참고하세요.
 
 ### 데이터 전송 객체
 
@@ -436,7 +436,7 @@ app.get("users") { req async throws -> [GetUser] in
 }
 ```
 
-또 다른 흔한 사용 사례는 부모 관계(parent relation)나 자식 관계(children relation)와 같은 관계를 다룰 때입니다. `@Parent` 관계를 가진 모델을 디코딩하기 쉽게 만들기 위해 DTO를 사용하는 방법의 예시는 [Parent 문서](relations.md#encoding-and-decoding-of-parents)를 참고하세요.
+또 다른 흔한 사용 사례는 부모 관계(parent relation)나 자식 관계(children relation)와 같은 관계를 다룰 때입니다. `@Parent` 관계를 가진 모델을 디코딩하기 쉽게 만들기 위해 DTO를 사용하는 방법의 예시는 [Parent 문서](relations.md#parent-인코딩과-디코딩)를 참고하세요.
 
 DTO의 구조가 모델의 `Codable` 준수성과 동일하더라도, 이를 별도의 타입으로 만드는 것은 대규모 프로젝트를 깔끔하게 유지하는 데 도움이 될 수 있습니다. 모델의 프로퍼티를 변경해야 할 때, 앱의 공개 API가 손상될 걱정을 할 필요가 없습니다. 또한 DTO를 별도의 패키지에 두어 API 사용자와 공유하고, Vapor 앱에서 `Content` 준수성을 추가하는 것도 고려해 볼 수 있습니다.
 
@@ -471,7 +471,7 @@ planet.create(on: database)
 ```
 
 !!! warning
-    `.database` 생성기(보통 자동 증가하는 `Int`)와 함께 [`@ID(custom:)`](#custom-identifier)를 사용하는 모델은 배치 생성 후 새로 생성된 식별자에 접근할 수 없습니다. 식별자에 접근해야 하는 상황이라면, 각 모델에서 개별적으로 `create`를 호출하세요.
+    `.database` 생성기(보통 자동 증가하는 `Int`)와 함께 [`@ID(custom:)`](#커스텀-식별자)를 사용하는 모델은 배치 생성 후 새로 생성된 식별자에 접근할 수 없습니다. 식별자에 접근해야 하는 상황이라면, 각 모델에서 개별적으로 `create`를 호출하세요.
 
 모델의 배열을 개별적으로 생성하려면, `map` + `flatten`을 사용하세요.
 

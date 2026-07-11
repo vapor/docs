@@ -9,7 +9,7 @@ app.get("hello", ":name") { req -> String in
 }
 ```
 
-C'est la principale fenêtre ouvrant sur le reste des fonctionnalités de Vapor. Il contient des API pour le [corps de la requête](../basics/content.md), les [paramètres de requête](../basics/content.md#query), le [logger](../basics/logging.md), le [client HTTP](../basics/client.md), l'[Authenticator](../security/authentication.md), et plus encore. Accéder à ces fonctionnalités via la requête permet de garder le calcul sur la bonne boucle d'événements (event loop) et de le simuler (mock) pour les tests. Vous pouvez même ajouter vos propres [services](../advanced/services.md) à `Request` grâce à des extensions.
+C'est la principale fenêtre ouvrant sur le reste des fonctionnalités de Vapor. Il contient des API pour le [corps de la requête](../basics/content.md), les [paramètres de requête](../basics/content.md#querystring), le [logger](../basics/logging.md), le [client HTTP](../basics/client.md), l'[Authenticator](../security/authentication.md), et plus encore. Accéder à ces fonctionnalités via la requête permet de garder le calcul sur la bonne boucle d'événements (event loop) et de le simuler (mock) pour les tests. Vous pouvez même ajouter vos propres [services](../advanced/services.md) à `Request` grâce à des extensions.
 
 La documentation complète de l'API pour `Request` se trouve [ici](https://api.vapor.codes/vapor/documentation/vapor/request).
 

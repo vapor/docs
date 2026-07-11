@@ -11,7 +11,7 @@ try await database.schema("planets")
     .create()
 ```
 
-`SchemaBuilder`를 생성하려면 database의 `schema` 메서드를 사용하세요. 영향을 주고자 하는 테이블 또는 컬렉션의 이름을 전달합니다. 모델의 스키마를 편집하는 경우, 이 이름이 모델의 [`schema`](model.md#schema)와 일치하는지 확인하세요.
+`SchemaBuilder`를 생성하려면 database의 `schema` 메서드를 사용하세요. 영향을 주고자 하는 테이블 또는 컬렉션의 이름을 전달합니다. 모델의 스키마를 편집하는 경우, 이 이름이 모델의 [`schema`](model.md#스키마)와 일치하는지 확인하세요.
 
 ## 액션
 
@@ -61,7 +61,7 @@ database.schema("planets").delete()
 .field("name", .string, .required)
 ```
 
-첫 번째 매개변수는 필드의 이름입니다. 이는 연관된 모델 프로퍼티에서 사용하는 키와 일치해야 합니다. 두 번째 매개변수는 필드의 [데이터 타입](#data-type)입니다. 마지막으로, 0개 이상의 [제약 조건](#field-constraint)을 추가할 수 있습니다.
+첫 번째 매개변수는 필드의 이름입니다. 이는 연관된 모델 프로퍼티에서 사용하는 키와 일치해야 합니다. 두 번째 매개변수는 필드의 [데이터 타입](#데이터-타입)입니다. 마지막으로, 0개 이상의 [제약 조건](#필드-제약-조건)을 추가할 수 있습니다.
 
 ### 데이터 타입
 
@@ -90,7 +90,7 @@ database.schema("planets").delete()
 |FieldConstraint|설명|
 |-|-|
 |`.required`|`nil` 값을 허용하지 않습니다.|
-|`.references`|이 필드의 값이 참조된 스키마에 있는 값과 일치해야 합니다. [foreign key](#foreign-key)를 참고하세요.|
+|`.references`|이 필드의 값이 참조된 스키마에 있는 값과 일치해야 합니다. [foreign key](#외래-키)를 참고하세요.|
 |`.identifier`|기본 키를 나타냅니다. [identifier](#identifier)를 참고하세요.|
 |`.sql(SQLColumnConstraintAlgorithm)`|지원되지 않는 제약 조건을 정의합니다 (예: `default`). [SQL](#sql)과 [SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/documentation/sqlkit/sqlcolumnconstraintalgorithm/)을 참고하세요.|
 
@@ -134,7 +134,7 @@ database.schema("planets").delete()
 
 ## 제약 조건
 
-스키마를 생성하거나 업데이트할 때 제약 조건을 추가할 수 있습니다. [필드 제약 조건](#field-constraint)과 달리, 최상위 수준의 제약 조건은 여러 필드에 영향을 줄 수 있습니다.
+스키마를 생성하거나 업데이트할 때 제약 조건을 추가할 수 있습니다. [필드 제약 조건](#필드-제약-조건)과 달리, 최상위 수준의 제약 조건은 여러 필드에 영향을 줄 수 있습니다.
 
 ### 유니크
 
@@ -195,7 +195,7 @@ Fluent는 기본적으로 유일한 제약 조건 이름을 생성합니다. 하
 .foreignKey("star_id", references: "stars", "id")
 ```
 
-필드 제약 조건과 달리, 최상위 수준의 제약 조건은 스키마 업데이트에서 추가할 수 있습니다. 또한 [이름을 지정](#constraint-name)할 수도 있습니다.
+필드 제약 조건과 달리, 최상위 수준의 제약 조건은 스키마 업데이트에서 추가할 수 있습니다. 또한 [이름을 지정](#제약-조건-이름)할 수도 있습니다.
 
 외래 키 제약 조건은 선택적으로 `onDelete`와 `onUpdate` 액션을 지원합니다.
 

@@ -73,7 +73,7 @@ Le futur retourné signalera quand l'écriture sera terminée ou qu'une erreur s
 
 ## Middleware
 
-Pour plus d'informations sur la mise à disposition automatique des fichiers du dossier _Public_ de votre projet, consultez [Middleware &rarr; FileMiddleware](middleware.md#file-middleware).
+Pour plus d'informations sur la mise à disposition automatique des fichiers du dossier _Public_ de votre projet, consultez [Middleware &rarr; FileMiddleware](middleware.md#middleware-de-fichiers).
 
 ## Avancé
 

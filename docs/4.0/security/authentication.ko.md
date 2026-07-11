@@ -53,7 +53,7 @@ let protected = app.grouped(UserAuthenticator())
     .grouped(User.guardMiddleware())
 ```
 
-Authenticator를 조합(compose)할 수 있도록, 인증을 요구하는 작업은 Authenticator 미들웨어에서 수행하지 않습니다. 아래의 [조합(composition)](#composition) 항목에서 더 자세히 알아보세요.
+Authenticator를 조합(compose)할 수 있도록, 인증을 요구하는 작업은 Authenticator 미들웨어에서 수행하지 않습니다. 아래의 [조합(composition)](#조합composition) 항목에서 더 자세히 알아보세요.
 
 ## Basic
 
@@ -751,7 +751,7 @@ app.middleware.use(User.sessionAuthenticator())
 * 세션 Authenticator는 세션을 가져와 해당 세션에 인증된 사용자가 있는지 확인합니다. 있다면, 미들웨어는 요청을 인증합니다. 응답에서는, 세션 Authenticator가 요청에 인증된 사용자가 있는지 확인하고, 다음 요청에서도 인증되도록 그 사용자를 세션에 저장합니다.
 
 !!! note
-    세션 쿠키는 기본적으로 `secure`와 `httpOnly`로 설정되지 않습니다. 쿠키를 구성하는 방법에 대한 더 자세한 정보는 Vapor의 [세션 API](../advanced/sessions.md#configuration)를 확인하세요.
+    세션 쿠키는 기본적으로 `secure`와 `httpOnly`로 설정되지 않습니다. 쿠키를 구성하는 방법에 대한 더 자세한 정보는 Vapor의 [세션 API](../advanced/sessions.md#설정)를 확인하세요.
 
 ### 라우트 보호하기
 
@@ -882,7 +882,7 @@ app.post("login") { req async throws -> ClientTokenResponse in
 let secure = app.grouped(SessionToken.authenticator(), SessionToken.guardMiddleware())
 ```
 
-선택적인 [guard 미들웨어](#guard-middleware)를 추가하면 인가(authorization)가 성공했음을 요구하게 됩니다.
+선택적인 [guard 미들웨어](#guard-미들웨어)를 추가하면 인가(authorization)가 성공했음을 요구하게 됩니다.
 
 보호된 라우트 내부에서는, `req.auth`를 사용하여 인증된 JWT 페이로드에 접근할 수 있습니다.
 

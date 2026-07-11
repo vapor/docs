@@ -23,7 +23,7 @@ Jeśli chcesz mieć bezpośredni dostęp do ciała żądania jako `ByteBuffer`, 
 
 ## Cookies
 
-Chociaż najbardziej przydatnym zastosowaniem cookies są wbudowane [sesje](../advanced/sessions.md#configuration), możesz również uzyskać bezpośredni dostęp do cookies poprzez `Request.cookies`.
+Chociaż najbardziej przydatnym zastosowaniem cookies są wbudowane [sesje](../advanced/sessions.md#konfiguracja), możesz również uzyskać bezpośredni dostęp do cookies poprzez `Request.cookies`.
 
 ```swift
 app.get("my-cookie") { req -> String in

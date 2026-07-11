@@ -758,7 +758,7 @@ Diese Middlewares tun Folgendes:
 * der Sitzungsauthentifikator nimmt die Sitzung und prüft, ob es einen authentifizierten Benutzer für diese Sitzung gibt. Wenn ja, authentifiziert die Middleware die Anfrage. In der Antwort sieht der Sitzungsauthentifikator, ob die Anfrage einen authentifizierten Benutzer hat, und speichert ihn in der Sitzung, damit er bei der nächsten Anfrage authentifiziert ist.
 
 !!! note
-    Das Sitzungs-Cookie wird standardmäßig nicht auf `secure` und `httpOnly` gesetzt. Weitere Informationen zur Konfiguration von Cookies findest du in Vapors [Session API](../advanced/sessions.md#configuration).
+    Das Sitzungs-Cookie wird standardmäßig nicht auf `secure` und `httpOnly` gesetzt. Weitere Informationen zur Konfiguration von Cookies findest du in Vapors [Session API](../advanced/sessions.md#konfiguration).
 
 ### Anwendungsendpunkte schützen
 

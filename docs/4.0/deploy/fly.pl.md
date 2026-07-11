@@ -34,10 +34,10 @@ fly auth login
 Przed wdrożeniem na Fly musisz upewnić się, że masz projekt Vapor z odpowiednio skonfigurowanym Dockerfile, ponieważ jest on wymagany przez Fly do zbudowania Twojej aplikacji. W większości przypadków powinno to być bardzo proste, ponieważ domyślne szablony Vapor już go zawierają.
 
 ### Nowy projekt Vapor
-Najłatwiejszym sposobem utworzenia nowego projektu jest rozpoczęcie od szablonu. Możesz go utworzyć za pomocą szablonów GitHub lub Vapor toolbox. Jeśli potrzebujesz bazy danych, zaleca się użycie Fluent z Postgres; Fly ułatwia utworzenie bazy danych Postgres, do której możesz podłączyć swoje aplikacje (zobacz [dedykowaną sekcję](#configuring-postgres) poniżej).
+Najłatwiejszym sposobem utworzenia nowego projektu jest rozpoczęcie od szablonu. Możesz go utworzyć za pomocą szablonów GitHub lub Vapor toolbox. Jeśli potrzebujesz bazy danych, zaleca się użycie Fluent z Postgres; Fly ułatwia utworzenie bazy danych Postgres, do której możesz podłączyć swoje aplikacje (zobacz [dedykowaną sekcję](#konfiguracja-postgres) poniżej).
 
 #### Za pomocą Vapor toolbox
-Najpierw upewnij się, że masz zainstalowany Vapor toolbox (zobacz instrukcje instalacji dla [macOS](../install/macos.md#install-toolbox) lub [Linux](../install/linux.md#install-toolbox)).
+Najpierw upewnij się, że masz zainstalowany Vapor toolbox (zobacz instrukcje instalacji dla [macOS](../install/macos.md#zainstaluj-toolbox) lub [Linux](../install/linux.md#zainstaluj-toolbox)).
 Utwórz swoją nową aplikację za pomocą następującego polecenia, zastępując `app-name` nazwą aplikacji, jaką chcesz nadać:
 ```bash
 vapor new app-name
@@ -67,7 +67,7 @@ To uruchomi interaktywny monit do konfiguracji ustawień Twojej aplikacji Fly:
 
 - **Nazwa:** możesz wpisać jedną lub pozostawić puste pole, aby otrzymać automatycznie wygenerowaną nazwę.
 - **Region:** domyślnie jest to ten, który jest najbliżej Ciebie. Możesz go użyć lub wybrać dowolny inny z listy. Można to łatwo zmienić później.
-- **Baza danych:** możesz poprosić Fly o utworzenie bazy danych do użycia z Twoją aplikacją. Jeśli wolisz, zawsze możesz zrobić to samo później za pomocą poleceń `fly pg create` i `fly pg attach` (zobacz sekcję [Konfiguracja Postgres](#configuring-postgres), aby dowiedzieć się więcej).
+- **Baza danych:** możesz poprosić Fly o utworzenie bazy danych do użycia z Twoją aplikacją. Jeśli wolisz, zawsze możesz zrobić to samo później za pomocą poleceń `fly pg create` i `fly pg attach` (zobacz sekcję [Konfiguracja Postgres](#konfiguracja-postgres), aby dowiedzieć się więcej).
 
 Polecenie `fly launch` automatycznie tworzy plik `fly.toml`. Zawiera on ustawienia takie jak mapowania portów prywatnych/publicznych, parametry kontroli stanu (health checks) i wiele innych. Jeśli właśnie utworzyłeś nowy projekt od podstaw za pomocą `vapor new`, domyślny plik `fly.toml` nie wymaga żadnych zmian. Jeśli masz istniejący projekt, jest szansa, że `fly.toml` również będzie dobry bez zmian lub z niewielkimi zmianami. Więcej informacji znajdziesz w [dokumentacji `fly.toml`](https://fly.io/docs/reference/configuration/).
 

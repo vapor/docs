@@ -752,7 +752,7 @@ Te middleware wykonują następujące czynności:
 * authenticator sesji pobiera sesję i sprawdza, czy istnieje uwierzytelniony użytkownik dla tej sesji. Jeśli tak, middleware uwierzytelnia żądanie. W odpowiedzi authenticator sesji sprawdza, czy żądanie ma uwierzytelnionego użytkownika i zapisuje go w sesji, aby był uwierzytelniony w następnym żądaniu.
 
 !!! note
-    Ciasteczko sesji domyślnie nie jest ustawione jako `secure` i `httpOnly`. Sprawdź [API Session](../advanced/sessions.md#configuration) Vapora, aby dowiedzieć się więcej o konfigurowaniu ciasteczek.
+    Ciasteczko sesji domyślnie nie jest ustawione jako `secure` i `httpOnly`. Sprawdź [API Session](../advanced/sessions.md#konfiguracja) Vapora, aby dowiedzieć się więcej o konfigurowaniu ciasteczek.
 
 ### Ochrona tras
 

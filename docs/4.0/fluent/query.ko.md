@@ -49,7 +49,7 @@ let earth = try await Planet.query(on: database)
 ```
 
 !!! tip
-    `EventLoopFuture`를 사용한다면, [`unwrap(or:)`](../basics/errors.md#abort)와 이 메서드를 함께 사용해서 논옵셔널 모델을 반환하거나 에러를 던질 수 있습니다.
+    `EventLoopFuture`를 사용한다면, [`unwrap(or:)`](../basics/errors.md#중단abort)와 이 메서드를 함께 사용해서 논옵셔널 모델을 반환하거나 에러를 던질 수 있습니다.
 
 ## Filter
 
@@ -87,7 +87,7 @@ User.query(on: database)
     .filter(\.$firstName == \.$lastName)
 ```
 
-필드 필터는 [값 필터](#value-filter)와 동일한 연산자를 지원합니다.
+필드 필터는 [값 필터](#값-필터value-filter)와 동일한 연산자를 지원합니다.
 
 ### 서브셋 필터(Subset Filter)
 
