@@ -86,6 +86,16 @@ Fly 会读取你的目录中的 `Dockerfile` 和 `fly.toml` 文件来确定如�
 
 默认情况下，如果新版本健康检查失败，Fly 会回滚到最新的可用版本。
 
+部署后台工作进程（使用 Vapor Queues）时，不要更改 Dockerfile 中的 CMD 或 ENTRYPOINT；保持原样，以便主 web 应用程序正常启动。相反，在 fly.toml 文件中添加一个 [processes] 部分，如下所示：
+
+```
+[processes]
+  app = ""
+  worker = "queues"
+```
+
+这告诉 Fly.io 使用默认的 Docker 入口点（你的 web 服务器）运行 app 进程，并使用 Vapor 的命令行接口（即 swift run App queues）运行 worker 进程来处理你的任务队列。
+
 ## 配置 Postgres
 
 ### 在 Fly 上创建一个 Postgres 数据库
@@ -140,8 +150,7 @@ Fly 将在具有访问 Fly 内部网络、密钥和环境变量的临时实例�
 如果你的发布命令失败，部署将无法继续。
 
 ### 其他数据库
-虽然 Fly 使创建 Postgres 数据库应用程序变得容易，但也可以托管其他类型的数据库（例如，请参阅 Fly 文档中的 [”使用 MySQL 数据库“](https://fly.io/docs/app-guides/mysql-on-fly/)）。
-
+虽然 Fly 使创建 Postgres 数据库应用程序变得容易，但也可以托管其他类型的数据库（例如，请参阅 Fly 文档中的 [“使用 MySQL 数据库”](https://fly.io/docs/app-guides/mysql-on-fly/)）。
 
 ## 密钥和环境变量
 ### 密钥
@@ -164,7 +173,7 @@ Fly 将在具有访问 Fly 内部网络、密钥和环境变量的临时实例�
   SMS_LOG_LEVEL = "error"
 ```
 
-## SSH连接
+## SSH 连接
 你可以使用以下方式连接到应用实例：
 ```bash
 fly ssh console -s

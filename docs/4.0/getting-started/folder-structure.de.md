@@ -19,9 +19,11 @@ Lass uns einen Blick auf die Ordnerstruktur von Vapor werfen. Die Ordnerstruktur
 └── Package.swift
 ```
 
+Die folgenden Abschnitte erläutern jeden Teil der Ordnerstruktur genauer.
+
 ## Public
 
-Der Ordner _Public_ beinhaltet Dateien, die sozusagen mitveröffentlicht werden. Das können Dateien für die Seitendarstellung sein, wie z. B. Bilder, CSS/JS-Dateien sein. Damit Vapor während der Ausführung auf den Ordner zugreifen kann muss eine _FileMiddleware_ in der Datei `configure.swift` mitangegeben werden.
+Der Ordner _Public_ beinhaltet Dateien, die sozusagen mitveröffentlicht werden. Das können Dateien für die Seitendarstellung sein, wie z. B. Bilder, CSS/JS-Dateien sein. Ein Aufruf von `localhost:8080/favicon.ico` prüft beispielsweise, ob `Public/favicon.ico` existiert, und liefert diese Datei zurück. Damit Vapor während der Ausführung auf den Ordner zugreifen kann muss eine _FileMiddleware_ in der Datei `configure.swift` mitangegeben werden.
 
 ```swift
 // Serves files from `Public/` directory
@@ -37,7 +39,7 @@ Im Ordner _Sources_ befinden sich die eigentlichen Anwendungsdateien deines Proj
 
 ### App
 
-Der Ordner _App_ beinhaltet die Anwendungslogik und stellt zudem, wie in der [Paketbeschreibung](../getting-started/spm.md) angegeben, das Modul des Paketes dar.
+Der Ordner _App_ beinhaltet die Anwendungslogik und stellt zudem, wie in der [Paketbeschreibung](spm.md) angegeben, das Modul des Paketes dar.
 
 #### Controllers
 
@@ -45,11 +47,11 @@ Der Ordner _Controllers_ beinhaltet die Definitionen der Endpunkte der Anwendung
 
 #### Migrations
 
-Der Ordner _Migrations_ beinhaltet die Definitionen zu Tabellen der Datebank.
+Der Ordner _Migrations_ beinhaltet die Definitionen zu Tabellen der Datenbank.
 
 #### Models
 
-Der Ordner _Models_ beinhaltet die Klassendefinitionen für die Entitäten.
+Der Ordner _Models_ ist ein guter Ort, um deine `Content`-Structs oder Fluent `Model`s zu speichern.
 
 #### configure.swift
 
@@ -65,12 +67,12 @@ Die Datei _routes.swift_ beinhaltet die Methode `routes(_:)`. Sie wird am Ende v
 
 ## Tests
 
-Für jedes Paketmodul kann ein entsprechender Ordner unter _Tests_ angelegt werden.
+Für jedes nicht-ausführbare Modul in deinem Ordner _Sources_ kann ein entsprechender Ordner unter _Tests_ angelegt werden. Dieser enthält Code, der auf dem `XCTest`-Modul aufbaut, um dein Paket zu testen. Tests können über die Kommandozeile mit `swift test` oder in Xcode mit ⌘+U ausgeführt werden.
 
 ### AppTests
 
-Der Ornder _AppTests_ beinhaltet alle möglichen Tests für Komponenten der Anwendung.
+Der Ordner _AppTests_ beinhaltet alle möglichen Tests für Komponenten der Anwendung.
 
 ## Package.swift
 
-Die Datei _Package.swift_ ist die Paketbeschreibung.
+Die Datei _Package.swift_ ist die [Paketbeschreibung](spm.md) des SPM.

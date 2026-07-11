@@ -13,7 +13,7 @@ Onder distributies, selecteer Ubuntu 22.04 LTS. De volgende gids zal deze versie
 ![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu.png)
 
 !!! note  "Opmerking"
-    U kunt elke Linux distributie kiezen met een versie die Swift ondersteunt. Op het moment van schrijven ondersteunt Swift 5.7.3 Ubuntu 18.04, 20.04, 22.04, CentOS 7, en Amazon Linux 2. U kunt controleren welke besturingssystemen officieel worden ondersteund op de [Swift Releases](https://swift.org/download/#releases) pagina.
+    U kunt elke Linux distributie kiezen met een versie die Swift ondersteunt. U kunt controleren welke besturingssystemen officieel worden ondersteund op de [Swift Releases](https://swift.org/download/#releases) pagina.
 
 Na het selecteren van de distributie, kies een plan en datacenter regio van uw voorkeur. Stel dan een SSH sleutel in om toegang te krijgen tot de server nadat deze is aangemaakt. Klik tenslotte op Droplet aanmaken en wacht tot de nieuwe server is opgestart.
 
@@ -71,52 +71,25 @@ ssh vapor@your_server_ip
 
 Nu dat je een nieuwe Ubuntu server hebt aangemaakt en ingelogd bent als een niet-root gebruiker kan je Swift installeren. 
 
-### Swift Afhankelijkheden
+### Geautomatiseerde installatie met de Swiftly CLI-tool (aanbevolen)
 
-Installeer de vereiste afhankelijkheden van Swift.
+Bezoek de [Swiftly website](https://swiftlang.github.io/swiftly/) voor instructies over het installeren van Swiftly en Swift op Linux. Installeer daarna Swift met het volgende commando:
 
-```sh
-sudo apt-get update
-sudo apt-get install binutils git gnupg2 libc6-dev libcurl4-openssl-dev 
-     \ libedit2 libgcc-9-dev libpython3.8 libsqlite3-0 libstdc++-9-dev 
-     \ libxml2-dev libz3-dev pkg-config tzdata unzip zlib1g-dev
-```
-
-### Swift Toolchain Downloaden
-
-Deze handleiding installeert Swift 5.7.3. Bezoek de [Swift Releases](https://swift.org/download/#releases) pagina voor een link naar de laatste release. Kopieer de download link voor Ubuntu 22.04.
-
-![Download Swift](../images/swift-download-ubuntu-copy-link.png)
-
-Download en decomprimeer de Swift toolchain.
+#### Basisgebruik
 
 ```sh
-wget https://download.swift.org/swift-5.7.3-release/ubuntu2204/swift-5.7.3-RELEASE/swift-5.7.3-RELEASE-ubuntu22.04.tar.gz
-tar xzf swift-5.7.3-RELEASE-ubuntu22.04.tar.gz
-```
+$ swiftly install latest
 
-!!! note "Opmerking"
-    Swift's [Downloads gebruiken](https://swift.org/download/#using-downloads) gids bevat informatie over hoe downloads te verifiëren met PGP-handtekeningen.
+Fetching the latest stable Swift release...
+Installing Swift 5.9.1
+Downloaded 488.5 MiB of 488.5 MiB
+Extracting toolchain...
+Swift 5.9.1 installed successfully!
 
-### Installeer Swift Toolchain
+$ swift --version
 
-Zet Swift ergens waar het makkelijk toegankelijk is. Deze gids zal `/swift` gebruiken met elke compiler versie in een submap. 
-
-```sh
-sudo mkdir /swift
-sudo mv swift-5.7.3-RELEASE-ubuntu22.04 /swift/5.7.3
-```
-
-Voeg Swift toe aan `/usr/bin` zodat het kan worden uitgevoerd door `vapor` en `root`.
-
-```sh
-sudo ln -s /swift/5.7.3/usr/bin/swift /usr/bin/swift
-```
-
-Controleer of Swift correct is geïnstalleerd.
-
-```sh
-swift --version
+Swift version 5.9.1 (swift-5.9.1-RELEASE)
+Target: x86_64-unknown-linux-gnu
 ```
 
 ## Installeer Vapor met de Vapor Toolbox
@@ -182,7 +155,7 @@ swift run App serve --hostname 0.0.0.0 --port 8080
 Bezoek de IP van uw server via een browser of lokale terminal en u zou moeten zien "It works!". Het IP address in dit voorbeeld is `134.122.126.139`.
 
 ```
-$ curl http://157.245.244.228
+$ curl http://134.122.126.139:8080
 It works!
 ```
 

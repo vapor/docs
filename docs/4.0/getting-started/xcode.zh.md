@@ -14,7 +14,7 @@ Xcode 将默认在 _DerivedData_ 目录运行项目。这与项目的根目录�
 
 要解决这个问题，你可以在 Xcode scheme 中为你的项目设置一个自定义的工作目录。
 
-首先，编辑项目的 scheme。
+首先，点击播放和停止按钮旁边的 scheme 选择器，编辑项目的 scheme。
 
 ![Xcode Scheme Area](../images/xcode-scheme-area.png)
 

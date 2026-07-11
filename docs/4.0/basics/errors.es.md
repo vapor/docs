@@ -143,8 +143,9 @@ struct MyError: DebuggableError {
 Para personalizar el manejo de errores más allá de lo que `AbortError` y `DebuggableError` ofrecen, puedes reemplazar `ErrorMiddleware` con tu propia lógica de manejo de errores. Para hacerlo, elimina primero el middleware por defecto estableciendo una configuración vacía en `app.middleware`. Luego, añade tu propio middleware de manejo de errores como el primer middleware de tu aplicación.
 
 ```swift
-// Elimina todos los middleware existentes.
+// Elimina todos los middleware por defecto (luego, añade de nuevo el registro de rutas)
 app.middleware = .init()
+app.middleware.use(RouteLoggingMiddleware(logLevel: .info))
 // Añade middleware de manejo de errores personalizado primero.
 app.middleware.use(MyErrorMiddleware())
 ```

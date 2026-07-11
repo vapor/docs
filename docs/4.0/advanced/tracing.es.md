@@ -1,24 +1,24 @@
 # Tracing
 
-El rastreo (Tracing) es una herramienta poderosa para monitorear y depurar sistemas distribuidos. La API de rastreo (Tracing) de Vapor permite a los desarrolladores rastrear facilmente los ciclos de vida de las solicitudes, propagar metadatos e integrarse con backends populares como OpenTelemetry.
+El rastreo (Tracing) es una herramienta poderosa para monitorear y depurar sistemas distribuidos. La API de rastreo (Tracing) de Vapor permite a los desarrolladores rastrear fácilmente los ciclos de vida de las solicitudes, propagar metadatos e integrarse con backends populares como OpenTelemetry.
 
 La API de rastreo (Tracing) de Vapor se basa en [swift-distributed-tracing](https://github.com/apple/swift-distributed-tracing), esto quiere decir que es compatible con todas las [implementaciones de backend](https://github.com/apple/swift-distributed-tracing/blob/main/README.md#tracing-backends) de swift-distributed-tracing.
 
-Si no estas familiarizado con tracing y spans en Swift, revise la [documentación de OpenTelemetry Trace](https://opentelemetry.io/docs/concepts/signals/traces/) y la [documentación de swift-distributed-tracing](https://swiftpackageindex.com/apple/swift-distributed-tracing/main/documentation/tracing).
+Si no estás familiarizado con tracing y spans en Swift, revise la [documentación de OpenTelemetry Trace](https://opentelemetry.io/docs/concepts/signals/traces/) y la [documentación de swift-distributed-tracing](https://swiftpackageindex.com/apple/swift-distributed-tracing/main/documentation/tracing).
 
 ## TracingMiddleware
 
-Para crear automaticamente un span completamente anotado para cada solicitud, agrega el `TracingMiddleware` a tu aplicación.
+Para crear automáticamente un span completamente anotado para cada solicitud, agrega el `TracingMiddleware` a tu aplicación.
 
 ```swift
 app.middleware.use(TracingMiddleware())
 ```
 
-Para obtener mediciones precisas de los spans y asegurarte de que los identificadores de rastreo se pasen correctamente a otros sercvicios, añade este middleware antes que otros middlewares.
+Para obtener mediciones precisas de los spans y asegurarte de que los identificadores de rastreo se pasen correctamente a otros servicios, añade este middleware antes que otros middlewares.
 
 ## Añadiendo Spans
 
-Cuando se añaden spans a los manejadores de rutas, es ideal que estén asociados con el span de solicitud de nivel superior. Esto se conoce como 'propagación de spans' y se puede manejar de dos maneras diferentes: automática o manual
+Cuando se añaden spans a los manejadores de rutas, es ideal que estén asociados con el span de solicitud de nivel superior. Esto se conoce como "propagación de spans" y se puede manejar de dos maneras diferentes: automática o manual.
 
 ### Propagación Automática
 
@@ -42,7 +42,7 @@ app.get("fetchAndProcess") { req in
 }
 ```
 
-### Propagación Manual 
+### Propagación Manual
 
 Para evitar las implicaciones de rendimiento de la propagación automática, puedes restaurar manualmente los metadatos del span donde sea necesario. `TracingMiddleware` establece automáticamente una propiedad `Request.serviceContext` que puede usarse directamente en el parámetro `context` de `withSpan`.
 
@@ -66,7 +66,7 @@ app.get("fetchAndProcess") { req in
 }
 ```
 
-## Consideraciones de NIO 
+## Consideraciones de NIO
 
 Debido a que `swift-distributed-tracing` usa [`propiedades TaskLocal`](https://developer.apple.com/documentation/swift/tasklocal) para propagar, debes restaurar manualmente el contexto cada vez que cruces los límites de `NIO EventLoopFuture` para asegurar que los spans estén vinculados correctamente. **Esto es necesario independientemente de si la propagación automática está habilitada**.
 

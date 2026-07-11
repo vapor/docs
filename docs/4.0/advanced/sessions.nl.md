@@ -2,7 +2,7 @@
 
 Sessies maken het mogelijk om de gegevens van een gebruiker te bewaren tussen meerdere verzoeken. Sessies werken door een unieke cookie aan te maken en terug te sturen samen met het HTTP-antwoord wanneer een nieuwe sessie wordt geïnitialiseerd. Browsers zullen deze cookie automatisch detecteren en in toekomstige verzoeken opnemen. Hierdoor kan Vapor automatisch de sessie van een specifieke gebruiker herstellen in uw request handler. 
 
-Sessies zijn geweldig voor front-end webapplicaties gebouwd in Vapor die HTML direct aan webbrowsers serveren. Voor API's raden we aan om stateless, [token-based authentication] (../security/authentication.md) te gebruiken om gebruikersgegevens tussen verzoeken te bewaren.
+Sessies zijn geweldig voor front-end webapplicaties gebouwd in Vapor die HTML direct aan webbrowsers serveren. Voor API's raden we aan om stateless, [token-based authentication](../security/authentication.md) te gebruiken om gebruikersgegevens tussen verzoeken te bewaren.
 
 ## Configuratie
 

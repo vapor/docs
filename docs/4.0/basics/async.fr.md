@@ -218,7 +218,7 @@ let futureResponse = futureString.flatMap { string in
 
 La méthode `transform` vous permet de modifier la valeur d'un futur, ignorant complètement sa valeur existante. C'est particulièrement pratique pour convertir des résultats `EventLoopFuture<Void>` où la valeur réelle du futur n'a aucune importance.
 
-!!! Note
+!!! tip
     `EventLoopFuture<Void>`, parfois appelé signal, est un futur dont le seul but est de vous notifier de la complétion ou de l'échec d'une opération asynchrone.
 
 ```swift
@@ -312,7 +312,7 @@ print(string) /// String
     
 ### Wait
 
-!!! Avertissement
+!!! warning
     La fonction `wait()` est obsolète, voir [`Get`](#get) pour l'approche recommandée.
 
 Vous pouvez utiliser `.wait()` pour attendre de façon synchrone que le futur soit accompli. Puique le futur peut échouer, cet appel peut lever une erreur.
@@ -328,7 +328,7 @@ print(string) /// String
 
 `wait()` peut uniquement être utilisé sur un processus de fond ou sur le processus principal, i.e., dans `configure.swift`. Il _ne peut pas_ être utilisé sur un processus EventLoop, i.e., dans une Closure de route.
 
-!!! Avertissement
+!!! warning
     Tenter d'appeler `wait()` depuis un processus EventLoop résultera en échec d'assertion.
     
 ## Promesse
@@ -371,7 +371,7 @@ Dans les Closures de routes, vous avez accès à l'EventLoop courant à travers 
 req.eventLoop.makePromise(of: ...)
 ```
 
-!!! Avertissement
+!!! warning
     Vapor s'attend à ce que les Closures de routes restent sur `req.eventLoop`. Si vous passez sur un autre processus, vous devez vous assurer que les accès à `Request` et à la future réponse finale se passent tous sur l'EventLoop de la requête. 
 
 En dehors des Closures de routes, vous pouvez accéder à l'un des EventLoops disponible via l'objet `Application`. 
@@ -427,7 +427,7 @@ Tous les appels bloquants ne seront pas aussi évidents que `sleep(_:)`. Si vous
 
 Un bloquage en lien avec les entrées/sorties implique d'attendre une ressource lente, telle que le réseau ou disque dur, dont l'échelle de performances est incomparablement plus faible à celle du processeur. Bloquer le processeur pendant que vous attendez ces ressources est un gaspillage du temps de calcul disponible. 
 
-!!! Danger
+!!! danger
     N'exécutez jamais d'appel à des ressources liées aux entrées/sorties directement sur un EventLoop.
 
 Tous les packages Vapor sont conçus sur SwiftNIO et utilisent des entrées/sorties non bloquantes. Il existe cependant de nombreux packages Swift et librairies C qui utilisent des entrées/sorties bloquantes. Les probabilités sont assez élevées pour qu'une fonction soit bloquante si elle utilise le disque ou le réseau avec une API synchrone (sans callback ou futur).

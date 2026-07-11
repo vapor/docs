@@ -18,7 +18,7 @@ Una propiedad importante de este proxy intermediario es que puede alterar e incl
 El puerto por defecto para recibir peticiones HTTP es el puerto `80` (y `443` para HTTPS). Cuando enlazas un servidor de Vapor al puerto `80`, recibirá y responderá directamente a las peticiones HTTP que lleguen a tu servidor. Cuando añades un proxy como Nginx, enlazas Vapor a un puerto interno, como el puerto `8080`. 
 
 !!! note "Nota"
-    Puertos mayores que no necesitan `sudo` para enlazarse.
+    Los puertos mayores que 1024 no necesitan `sudo` para enlazarse.
 
 Cuando Vapor está enlazado a otro puerto además de `80` o `443`, no será accesible para el Internet externo. Entonces enlazas Nginx al puerto `80` y lo configuras para que enrute las peticiones a tu servidor de Vapor enlazado en el puerto `8080` (o el que hayas elegido).
 

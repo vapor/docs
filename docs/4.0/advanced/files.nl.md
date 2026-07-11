@@ -12,7 +12,7 @@ let readComplete: EventLoopFuture<Void> = req.fileio.readFile(at: "/path/to/file
     print(chunk) // ByteBuffer
 }
 
-// Or
+// Of
 
 try await req.fileio.readFile(at: "/path/to/file") { chunk in
     print(chunk) // ByteBuffer
@@ -29,7 +29,7 @@ De `streamFile` methode verpakt de stream in een `Response`. Deze methode stelt 
 ```swift
 // Streamt asynchroon bestand als HTTP antwoord.
 req.fileio.streamFile(at: "/path/to/file").map { res in
-    print(res) // Antwoord
+    print(res) // Response
 }
 
 // Of

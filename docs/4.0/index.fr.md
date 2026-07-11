@@ -15,7 +15,7 @@ Swift est un langage moderne, puissant et sécurisé qui offre de nombreux avant
 
 ## Commencer
 
-Si c'est la première fois que vous utilisez Vapor, naviguez vers [Installation → macOS](install/macos.md) ou [Installation → Linux](../install/linux.md) pour installer Swift et Vapor.
+Si c'est la première fois que vous utilisez Vapor, naviguez vers [Installation → macOS](install/macos.md) pour installer Swift et Vapor.
 
 Une fois que Vapor est installé, lisez [Premiers pas → Hello, world](getting-started/hello-world.md) pour créer votre première application Vapor !
 

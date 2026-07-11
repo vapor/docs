@@ -30,7 +30,7 @@ let package = Package(
 !!! warning "Advertencia"
     Asegúrate de usar el módulo de testing correspondiente, de no hacerlo puede provocar que los fallos de las prueba de Vapor no sean informados correctamente.
 
-Luego, añade `ìmport VaporTesting` e `ìmport Testing` al principio de tus archivos de prueba. Crea estructuras con el nombre `@Suite` para escribir casos de prueba.
+Luego, añade `import VaporTesting` e `import Testing` al principio de tus archivos de prueba. Crea estructuras con el nombre `@Suite` para escribir casos de prueba.
 
 ```swift
 @testable import App
@@ -139,7 +139,7 @@ public func configure(_ app: Application) async throws {
 !!! warning "Advertencia"
     Asegúrate de ejecutar tus pruebas contra la base de datos correcta, para evitar sobrescribir accidentalmente datos que no quieres perder.
 
-Luego, puedes mejorar tus pruebas utilizando `autoMigrate()` y `autoRevert()` para gestionar el esquema de la base de datos y el ciclo de vida de los datos durante las pruebas. Para ello, debes crear tu propia función auxiliar `withAppIncludedDB` que incluya el esquema de la base de datos y los ciclos de vida de los datos:
+Luego, puedes mejorar tus pruebas utilizando `autoMigrate()` y `autoRevert()` para gestionar el esquema de la base de datos y el ciclo de vida de los datos durante las pruebas. Para ello, debes crear tu propia función auxiliar `withAppIncludingDB` que incluya el esquema de la base de datos y los ciclos de vida de los datos:
 
 ```swift
 private func withAppIncludingDB(_ test: (Application) async throws -> ()) async throws {

@@ -56,26 +56,17 @@ struct AppTests {
 
 ### テスト可能なアプリケーション {#testable-application}
 
-テストのセットアップとティアダウンを効率化し標準化するために、プライベートメソッド関数`withApp`を定義します。このメソッドは`Application`インスタンスのライフサイクル管理をカプセル化し、各テストでアプリケーションが適切に初期化、設定、シャットダウンされることを保証します。
+テストのセットアップとティアダウンを効率化し標準化するために、`VaporTesting`は`withApp`ヘルパー関数を提供しています。このメソッドは`Application`インスタンスのライフサイクル管理をカプセル化し、各テストでアプリケーションが適切に初期化、設定、シャットダウンされることを保証します。
 
-特に、起動時にアプリケーションが要求するスレッドを解放することが重要です。各単体テスト後にアプリで`asyncShutdown()`を呼び出さない場合、`Application`の新しいインスタンスのスレッドを割り当てる際に、precondition失敗でテストスイートがクラッシュする可能性があります。
+すべてのルートが正しく登録されるようにするため、アプリケーションの`configure(_:)`メソッドを`withApp`ヘルパー関数に渡します：
 
 ```swift
-private func withApp(_ test: (Application) async throws -> ()) async throws {
-    let app = try await Application.make(.testing)
-    do {
-        try await configure(app)
-        try await test(app)
+@Test func someTest() async throws { 
+    try await withApp(configure: configure) { app in
+        // ここに実際のテストを記述します。
     }
-    catch {
-        try await app.asyncShutdown()
-        throw error
-    }
-    try await app.asyncShutdown()
 }
 ```
-
-設定を適用するために、`Application`をパッケージの`configure(_:)`メソッドに渡します。その後、`test()`メソッドを呼び出してアプリケーションをテストします。テスト専用の設定も適用できます。
 
 #### リクエストの送信 {#send-request}
 
@@ -84,7 +75,7 @@ private func withApp(_ test: (Application) async throws -> ()) async throws {
 ```swift
 @Test("Test Hello World Route")
 func helloWorld() async throws {
-    try await withApp { app in
+    try await withApp(configure: configure) { app in
         try await app.testing().test(.GET, "hello") { res async in
             #expect(res.status == .ok)
             #expect(res.body.string == "Hello, world!")
@@ -131,22 +122,28 @@ app.testing(method: .running(port: 8123)).test(...)
 
 #### データベース統合テスト {#database-integration-tests}
 
-テスト中にライブデータベースが使用されないように、テスト専用にデータベースを設定します。
+テスト中にライブデータベースが使用されないように、テスト専用にデータベースを設定します。例えば、SQLiteを使用している場合、`configure(_:)`関数内でデータベースを次のように設定できます：
 
 ```swift
-app.databases.use(.sqlite(.memory), as: .sqlite)
+public func configure(_ app: Application) async throws {
+    // 他のすべての設定...
+
+    if app.environment == .testing {
+        app.databases.use(.sqlite(.memory), as: .sqlite)
+    } else {
+        app.databases.use(.sqlite(.file("db.sqlite")), as: .sqlite)
+    }
+}
 ```
 
-その後、`autoMigrate()`と`autoRevert()`を使用してテスト中のデータベーススキーマとデータライフサイクルを管理することで、テストを強化できます：
+!!! warning
+    誤って失いたくないデータを上書きしてしまわないよう、正しいデータベースに対してテストを実行するようにしてください。
 
-これらのメソッドを組み合わせることで、各テストが新しく一貫したデータベース状態で開始されることを保証し、テストをより信頼性の高いものにし、残存データによる偽陽性や偽陰性の可能性を減らすことができます。
-
-更新された設定を含む`withApp`関数は次のようになります：
+その後、`autoMigrate()`と`autoRevert()`を使用してテスト中のデータベーススキーマとデータライフサイクルを管理することで、テストを強化できます。そのためには、データベーススキーマとデータライフサイクルを含む独自のヘルパー関数`withAppIncludingDB`を作成します：
 
 ```swift
-private func withApp(_ test: (Application) async throws -> ()) async throws {
+private func withAppIncludingDB(_ test: (Application) async throws -> ()) async throws {
     let app = try await Application.make(.testing)
-    app.databases.use(.sqlite(.memory), as: .sqlite)
     do {
         try await configure(app)
         try await app.autoMigrate()
@@ -161,6 +158,20 @@ private func withApp(_ test: (Application) async throws -> ()) async throws {
     try await app.asyncShutdown()
 }
 ```
+
+そして、このヘルパーをテストで使用します：
+```swift
+@Test func myDatabaseIntegrationTest() async throws {
+    try await withAppIncludingDB { app in
+        try await app.testing().test(.GET, "hello") { res async in
+            #expect(res.status == .ok)
+            #expect(res.body.string == "Hello, world!")
+        }
+    }
+} 
+```
+
+これらのメソッドを組み合わせることで、各テストが新しく一貫したデータベース状態で開始されることを保証し、テストをより信頼性の高いものにし、残存データによる偽陽性や偽陰性の可能性を減らすことができます。
 
 ## XCTVapor
 

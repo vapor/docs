@@ -39,7 +39,7 @@ app.get("my-cookie") { req -> String in
 
 ## Headers
 
-Tramite `Request.headers` si può accedere ad un oggetto `HTTPHeaders`: esso contiene tutti gli header che sono state inviate inviati con la richiesta. Può, per esempio, essere utilizzato per accedere all'intestazione `Content-Type`.
+Tramite `Request.headers` si può accedere ad un oggetto `HTTPHeaders`: esso contiene tutti gli header che sono stati inviati con la richiesta. Può, per esempio, essere utilizzato per accedere all'intestazione `Content-Type`.
 
 ```swift
 app.get("json") { req -> String in

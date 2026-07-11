@@ -23,7 +23,7 @@ app.get("hello", ":name") { req -> String in
 
 ## Cookies
 
-虽然最常见的 cookie 应用是通过内置的[会话](../advanced/sessions.md#配置configuration)进行的，但你也可以通过 `Request.cookies` 直接访问 cookie。
+虽然最常见的 cookie 应用是通过内置的[会话](../advanced/sessions.md#配置)进行的，但你也可以通过 `Request.cookies` 直接访问 cookie。
 
 ```swift
 app.get("my-cookie") { req -> String in
@@ -63,7 +63,4 @@ app.get("ip") { req -> String in
 ```
 
 了解更多 `SocketAddress` 文档，请参阅[此处](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niocore/socketaddress)。
-
-
-
 

@@ -63,7 +63,7 @@ SwiftLog ondersteunt verschillende logging niveaus.
 
 Wanneer een `critical` bericht is gelogd, is de logging backend vrij om zwaardere operaties uit te voeren om systeem status vast te leggen (zoals het vastleggen van stack traces) om debugging te vergemakkelijken.
 
-Standaard zal Vapor `info` niveau logging gebruiken. Wanneer de `productie` omgeving wordt gebruikt, zal `notice` worden gebruikt om de performance te verbeteren. 
+Standaard zal Vapor `info` niveau logging gebruiken. Wanneer de `production` omgeving wordt gebruikt, zal `notice` worden gebruikt om de performance te verbeteren. 
 
 ### Log Niveau Veranderen
 

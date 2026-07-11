@@ -1,4 +1,4 @@
-# Docker Deploys
+# Docker Implementaties
 
 Docker gebruiken om uw Vapor app te implementeren heeft verschillende voordelen: 
 
@@ -27,7 +27,7 @@ Wij stellen voor om het Vapor sjabloon te gebruiken als startpunt. Als u al een 
 1. Installeer of bouw de Vapor Toolbox ([macOS](../install/macos.md#installeer-de-toolbox), [Linux](../install/linux.md#installeer-de-toolbox)).
 2. Maak een nieuwe Vapor App met `vapor new my-dockerized-app` en loop door de prompts om relevante functies in of uit te schakelen. Uw antwoorden op deze prompts zullen invloed hebben op hoe de Docker resource bestanden worden gegenereerd.
 
-## Docker Resources
+## Docker Bronnen
 
 Het is de moeite waard, nu of in de nabije toekomst, om uzelf vertrouwd te maken met het [Docker Overzicht](https://docs.docker.com/engine/docker-overview/). Het overzicht zal enkele belangrijke terminologie uitleggen die in deze gids gebruikt wordt. 
 
@@ -39,7 +39,7 @@ Een Dockerfile vertelt Docker hoe het een image moet bouwen van je dockerized ap
 
 Het Dockerfile dat gegenereerd wordt voor uw Vapor app heeft twee stadia. Het eerste stadium bouwt uw app en zet een wachtruimte op die het resultaat bevat. De tweede stap zet de basis van een veilige runtime omgeving op, verplaatst alles in de holding area naar waar het zal leven in de uiteindelijke image, en stelt een standaard entrypoint en commando in dat uw app in productie modus zal draaien op de standaard poort (8080). Deze configuratie kan worden opgeheven wanneer het image wordt gebruikt.
 
-### Docker Compose File
+### Docker Compose Bestand
 
 Een Docker Compose bestand definieert de manier waarop Docker meerdere services moet uitbouwen in relatie tot elkaar. Het Docker Compose bestand in het Vapor App sjabloon biedt de nodige functionaliteit om uw app te implementeren, maar als u meer wilt weten kunt u het beste de [volledige referentie](https://docs.docker.com/compose/compose-file/) raadplegen die details bevat over alle beschikbare opties.
 
@@ -118,7 +118,7 @@ Uw app luistert op poort 8080 en wordt, zoals gedefinieerd door het Docker Compo
 
 Dit onderscheid in poorttoewijzing is heel belangrijk omdat je een willekeurig aantal diensten op dezelfde poorten kunt draaien als ze allemaal in hun eigen containers draaien en ze elk verschillende poorten naar de host machine blootleggen.
 
-Bezoek `http://localhost:8080` en je ziet `It works! ` Maar bezoek `http://localhost:8080/todos` en je krijgt: 
+Bezoek `http://localhost:8080` en je ziet `It works!` maar bezoek `http://localhost:8080/todos` en je krijgt: 
 ```
 {"error":true,"reason":"Something went wrong."}
 ```
@@ -149,7 +149,7 @@ docker compose run migrate
 
 Nadat de migraties zijn uitgevoerd, kunt u `http://localhost:8080/todos` opnieuw bezoeken en krijgt u een lege lijst met todo's in plaats van een foutmelding.
 
-#### Log Levels
+#### Log Niveaus
 
 Herinner hierboven dat de `LOG_LEVEL` omgevingsvariabele in het Docker Compose bestand zal worden geërfd van de omgeving waar de service is gestart, indien beschikbaar.
 
@@ -252,7 +252,7 @@ Als u uw diensten in Zwermmodus naar beneden wilt halen, doet u dat door de eerd
 docker stack rm test
 ```
 
-## Production Deploys
+## Productie-implementaties
 
 Zoals bovenaan vermeld, zal deze gids niet in detail gaan over het uitrollen van je docker app naar productie omdat het onderwerp groot is en sterk varieert afhankelijk van de hosting service (AWS, Azure, enz.), tooling (Terraform, Ansible, enz.), en orkestratie (Docker Swarm, Kubernetes, enz.).
 

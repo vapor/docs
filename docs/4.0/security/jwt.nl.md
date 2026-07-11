@@ -1,115 +1,141 @@
 # JWT
 
+JSON Web Token (JWT) is een open standaard ([RFC 7519](https://tools.ietf.org/html/rfc7519)) die een compacte en op zichzelf staande manier definieert voor het veilig verzenden van informatie tussen partijen als een JSON-object. Deze informatie kan worden geverifieerd en vertrouwd omdat ze digitaal ondertekend is.
 
-JSON Web Token (JWT) is een open standaard ([RFC 7519](https://tools.ietf.org/html/rfc7519)) die een compacte en op zichzelf staande manier definieert voor het veilig verzenden van informatie tussen partijen als een JSON-object. Deze informatie kan worden geverifieerd en vertrouwd omdat ze digitaal ondertekend is. JWT's kunnen worden ondertekend met een geheim (met het HMAC-algoritme) of een openbaar/particulier sleutelpaar met RSA of ECDSA.
+JWT's zijn bijzonder nuttig in webapplicaties, waar ze vaak worden gebruikt voor stateless authenticatie/autorisatie en het uitwisselen van informatie. U kunt meer lezen over de theorie achter JWT's in de hierboven gelinkte spec of op [jwt.io](https://jwt.io/introduction).
+
+Vapor biedt eersteklas ondersteuning voor JWT's via de `JWT` module. Deze module is gebouwd bovenop de `JWTKit` bibliotheek, een Swift-implementatie van de JWT-standaard gebaseerd op [SwiftCrypto](https://github.com/apple/swift-crypto). JWTKit biedt ondertekenaars en verifiers voor verschillende algoritmen, waaronder HMAC, ECDSA, EdDSA en RSA.
 
 ## Getting Started
 
-De eerste stap om JWT te gebruiken is het toevoegen van de afhankelijkheid aan uw [Package.swift](../getting-started/spm.md#package-manifest).
+De eerste stap om JWT's in uw Vapor applicatie te gebruiken, is het toevoegen van de `JWT` dependency aan het `Package.swift` bestand van uw project: 
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.10
 import PackageDescription
 
 let package = Package(
     name: "my-app",
     dependencies: [
-         // Andere afhankelijkheden...
+        // Other dependencies...
         .package(url: "https://github.com/vapor/jwt.git", from: "5.0.0"),
     ],
     targets: [
         .target(name: "App", dependencies: [
-            // Andere afhankelijkheden...
+            // Other dependencies...
             .product(name: "JWT", package: "jwt")
         ]),
-        // Andere targets...
+        // Other targets...
     ]
 )
 ```
 
-Als u het manifest direct in Xcode bewerkt, zal het automatisch de wijzigingen oppikken en de nieuwe afhankelijkheid ophalen wanneer het bestand wordt opgeslagen. Anders, voer `swift package resolve` uit om de nieuwe dependency op te halen.
-
 ### Configuratie
 
-De JWT module voegt een nieuwe property `jwt` toe aan `Application` die wordt gebruikt voor configuratie. Om JWTs te ondertekenen of verifiëren, moet je een ondertekenaar toevoegen. Het eenvoudigste onderteken algoritme is `HS256` of HMAC met SHA-256. 
+Nadat u de dependency hebt toegevoegd, kunt u de `JWT` module in uw applicatie gaan gebruiken. De JWT module voegt een nieuwe `jwt` property toe aan `Application` die gebruikt wordt voor configuratie, waarvan de interne werking geleverd wordt door de [JWTKit](https://github.com/vapor/jwt-kit) bibliotheek.
+
+#### Sleutelverzameling
+
+Het `jwt` object heeft een `keys` property, een instantie van JWTKit's `JWTKeyCollection`. Deze collectie wordt gebruikt om de sleutels op te slaan en te beheren die gebruikt worden om JWT's te ondertekenen en te verifiëren. De `JWTKeyCollection` is een `actor`, wat betekent dat alle bewerkingen op de collectie geserialiseerd en thread-safe zijn.
+
+Om JWT's te ondertekenen of te verifiëren, moet u een sleutel aan de collectie toevoegen. Dit gebeurt meestal in uw `configure.swift` bestand:
 
 ```swift
 import JWT
 
-// Voeg HMAC toe met SHA-256 ondertekenaar.
-app.jwt.signers.use(.hs256(key: "secret"))
+// Add HMAC with SHA-256 signer.
+await app.jwt.keys.add(hmac: "secret", digestAlgorithm: .sha256)
 ```
 
-De `HS256` ondertekenaar heeft een sleutel nodig om te initialiseren. In tegenstelling tot andere ondertekenaars, wordt deze sleutel gebruikt voor zowel het ondertekenen _als_ het verifiëren van tokens. Hieronder vindt u meer informatie over de beschikbare [algoritmen](#algoritmes).
+Dit voegt een HMAC-sleutel met SHA-256 als digest-algoritme toe aan de sleutelbos, oftewel HS256 in JWA-notatie. Bekijk de [algoritmen](#algoritmen) sectie hieronder voor meer informatie over de beschikbare algoritmen.
 
-### Payload
+!!! note 
+    Zorg ervoor dat u `"secret"` vervangt door een echte geheime sleutel. Deze sleutel moet veilig bewaard worden, idealiter in een configuratiebestand of omgevingsvariabele.
 
-Laten we proberen het volgende voorbeeld JWT te verifiëren.
+### Ondertekenen
 
-```swift
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ2YXBvciIsImV4cCI6NjQwOTIyMTEyMDAsImFkbWluIjp0cnVlfQ.lS5lpwfRNSZDvpGQk6x5JI1g40gkYCOWqbc3J_ghowo
-```
-
-U kunt de inhoud van dit token inspecteren door [jwt.io](https://jwt.io) te bezoeken en het token in de debugger te plakken. Zet de sleutel in de "Verify Signature" sectie op `secret`. 
-
-We moeten een struct maken die voldoet aan `JWTPayload` die de structuur van de JWT weergeeft. We zullen JWT's meegeleverde [claims](#claims) gebruiken om veel voorkomende velden zoals `sub` en `exp` te behandelen. 
+De toegevoegde sleutel kan vervolgens gebruikt worden om JWT's te ondertekenen. Om dit te doen, hebt u eerst _iets_ nodig om te ondertekenen, namelijk een 'payload'. 
+Deze payload is simpelweg een JSON-object dat de gegevens bevat die u wilt verzenden. U kunt uw eigen payload maken door uw structuur te laten voldoen aan het `JWTPayload` protocol:
 
 ```swift
-// JWT payload structuur.
+// JWT payload structure.
 struct TestPayload: JWTPayload {
-    // Zet de langere Swift-eigenschapnamen om in de
-    // verkorte sleutels die gebruikt worden in de JWT payload.
+    // Maps the longer Swift property names to the
+    // shortened keys used in the JWT payload.
     enum CodingKeys: String, CodingKey {
         case subject = "sub"
         case expiration = "exp"
         case isAdmin = "admin"
     }
 
-    // De "sub" (onderwerp) claim identificeert de principal die het
-    // onderwerp van de JWT is.
+    // The "sub" (subject) claim identifies the principal that is the
+    // subject of the JWT.
     var subject: SubjectClaim
 
-    // De "exp" (vervaltijd) claim identificeert de vervaltijd op
-    // of waarna de JWT NIET voor verwerking MOET worden geaccepteerd.
+    // The "exp" (expiration time) claim identifies the expiration time on
+    // or after which the JWT MUST NOT be accepted for processing.
     var expiration: ExpirationClaim
 
-    // Aangepaste gegevens.
-    // Indien waar, de gebruiker is een admin.
+    // Custom data.
+    // If true, the user is an admin.
     var isAdmin: Bool
 
-    // Voer eventuele extra verificatielogica uit
-    // handtekening verificatie hier.
-    // Omdat we een ExpirationClaim hebben, zullen we
-    // zijn verificatiemethode aanroepen.
-    func verify(using signer: JWTSigner) throws {
+    // Run any additional verification logic beyond
+    // signature verification here.
+    // Since we have an ExpirationClaim, we will
+    // call its verify method.
+    func verify(using algorithm: some JWTAlgorithm) async throws {
         try self.expiration.verifyNotExpired()
     }
 }
 ```
 
-### Verifiëren
-
-Nu we een `JWTPayload` hebben, kunnen we de bovenstaande JWT aan een request koppelen en `req.jwt` gebruiken om het op te halen en te verifiëren. Voeg de volgende route toe aan je project. 
+Het ondertekenen van de payload gebeurt door de `sign` methode van de `JWT` module aan te roepen, bijvoorbeeld binnen een route handler:
 
 ```swift
-// Haal en verifieer JWT van inkomend verzoek.
-app.get("me") { req -> HTTPStatus in
-    let payload = try req.jwt.verify(as: TestPayload.self)
+app.post("login") { req async throws -> [String: String] in
+    let payload = TestPayload(
+        subject: "vapor",
+        expiration: .init(value: .distantFuture),
+        isAdmin: true
+    )
+    return try await ["token": req.jwt.sign(payload)]
+}
+```
+
+Wanneer een request naar dit endpoint wordt gestuurd, retourneert het de ondertekende JWT als een `String` in de response body, en als alles volgens plan verliep, ziet u zoiets als dit:
+
+```json
+{
+   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ2YXBvciIsImV4cCI6NjQwOTIyMTEyMDAsImFkbWluIjp0cnVlfQ.lS5lpwfRNSZDvpGQk6x5JI1g40gkYCOWqbc3J_ghowo"
+}
+```
+
+U kunt dit token decoderen en verifiëren met behulp van de [`jwt.io` debugger](https://jwt.io/#debugger). De debugger toont de payload (dit zou de gegevens moeten zijn die u eerder opgegeven hebt) en de header van de JWT, en u kunt de handtekening verifiëren met de geheime sleutel die u gebruikt hebt om de JWT te ondertekenen.
+
+### Verifiëren
+
+Wanneer er juist een token _naar_ uw applicatie gestuurd wordt, kunt u de authenticiteit van het token verifiëren door de `verify` methode van de `JWT` module aan te roepen:
+
+```swift
+// Fetch and verify JWT from incoming request.
+app.get("me") { req async throws -> HTTPStatus in
+    let payload = try await req.jwt.verify(as: TestPayload.self)
     print(payload)
     return .ok
 }
 ```
 
-De `req.jwt.verify` helper controleert de `Authorization` header voor een bearer token. Als er een bestaat, zal het de JWT parsen en de handtekening en claims verifiëren. Als een van deze stappen mislukt, zal een _401 Unauthorized_ foutmelding worden gegeven.
+De `req.jwt.verify` helper controleert de `Authorization` header op een bearer token. Als er een bestaat, zal het de JWT parsen en de handtekening en claims verifiëren. Als een van deze stappen mislukt, wordt een 401 Unauthorized fout gegenereerd.
 
-Test de route door het volgende HTTP verzoek te versturen. 
+Test de route door het volgende HTTP verzoek te versturen:
 
 ```http
 GET /me HTTP/1.1
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ2YXBvciIsImV4cCI6NjQwOTIyMTEyMDAsImFkbWluIjp0cnVlfQ.lS5lpwfRNSZDvpGQk6x5JI1g40gkYCOWqbc3J_ghowo
 ```
 
-Als alles gelukt is, wordt een _200 OK_ antwoord teruggestuurd en wordt de payload afgedrukt:
+Als alles gelukt is, wordt een `200 OK` response teruggestuurd en wordt de payload afgedrukt:
 
 ```swift
 TestPayload(
@@ -119,80 +145,100 @@ TestPayload(
 )
 ```
 
-### Ondertekenen
+De volledige authenticatieflow is te vinden op [Authenticatie &rarr; JWT](authentication.md#jwt).
 
-Dit pakket kan ook JWTs _genereren_, ook bekend als ondertekenen. Om dit te demonstreren, laten we de `TestPayload` uit de vorige sectie gebruiken. Voeg de volgende route toe aan je project.
+## Algoritmen
 
-```swift
-// Genereer en stuur een nieuwe JWT terug.
-app.post("login") { req -> [String: String] in
-    // Maak een nieuwe instantie van onze JWTPayload
-    let payload = TestPayload(
-        subject: "vapor",
-        expiration: .init(value: .distantFuture),
-        isAdmin: true
-    )
-    // Geef de ondertekende JWT terug
-    return try [
-        "token": req.jwt.sign(payload)
-    ]
-}
-```
+JWT's kunnen worden ondertekend met verschillende algoritmen. 
 
-De `req.jwt.sign` helper zal de standaard geconfigureerde signer gebruiken om de `JWTPayload` te serialiseren en te ondertekenen. De ge-encodeerde JWT wordt geretourneerd als een `String`. 
-
-Test de route door het volgende HTTP verzoek te versturen. 
-
-```http
-POST /login HTTP/1.1
-```
-
-U zou het nieuw gegenereerde token moeten zien terugkomen in een _200 OK_ antwoord.
-
-```json
-{
-   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ2YXBvciIsImV4cCI6NjQwOTIyMTEyMDAsImFkbWluIjp0cnVlfQ.lS5lpwfRNSZDvpGQk6x5JI1g40gkYCOWqbc3J_ghowo"
-}
-```
-
-## Authenticatie
-
-Ga voor meer informatie over het gebruik van JWT met de authenticatie-API van Vapor naar [Authenticatie &rarr; JWT](authentication.md#jwt).
-
-## Algoritmes
-
-Vapor's JWT API ondersteunt het verifiëren en ondertekenen van tokens met de volgende algoritmen.
+Om een sleutel aan de sleutelbos toe te voegen, is voor elk van de volgende algoritmen een overload van de `add` methode beschikbaar:
 
 ### HMAC
 
-HMAC is het eenvoudigste JWT-signaleringsalgoritme. Het gebruikt een enkele sleutel die zowel tokens kan ondertekenen als verifiëren. De sleutel kan elke lengte hebben.
+HMAC (Hash-based Message Authentication Code) is een symmetrisch algoritme dat een geheime sleutel gebruikt om de JWT te ondertekenen en te verifiëren. Vapor ondersteunt de volgende HMAC-algoritmen:
 
-- `hs256`: HMAC met SHA-256
-- `hs384`: HMAC met SHA-384
-- `hs512`: HMAC met SHA-512
+- `HS256`: HMAC met SHA-256
+- `HS384`: HMAC met SHA-384
+- `HS512`: HMAC met SHA-512
 
 ```swift
-// Voeg HMAC toe met SHA-256 signer.
-app.jwt.signers.use(.hs256(key: "secret"))
+// Add an HS256 key.
+await app.jwt.keys.add(hmac: "secret", digestAlgorithm: .sha256)
+```
+
+### ECDSA
+
+ECDSA (Elliptic Curve Digital Signature Algorithm) is een asymmetrisch algoritme dat een publiek/privé sleutelpaar gebruikt om de JWT te ondertekenen en te verifiëren. Het berust op de wiskunde rondom elliptische krommen. Vapor ondersteunt de volgende ECDSA-algoritmen:
+
+- `ES256`: ECDSA met een P-256 curve en SHA-256
+- `ES384`: ECDSA met een P-384 curve en SHA-384
+- `ES512`: ECDSA met een P-521 curve en SHA-512
+
+Alle algoritmen bieden zowel een publieke als een privésleutel, zoals `ES256PublicKey` en `ES256PrivateKey`. U kunt ECDSA-sleutels toevoegen met behulp van het PEM-formaat:
+
+```swift
+let ecdsaPublicKey = """
+-----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE2adMrdG7aUfZH57aeKFFM01dPnkx
+C18ScRb4Z6poMBgJtYlVtd9ly63URv57ZW0Ncs1LiZB7WATb3svu+1c7HQ==
+-----END PUBLIC KEY-----
+"""
+
+// Initialize an ECDSA key with public PEM.
+let key = try ES256PublicKey(pem: ecdsaPublicKey)
+```
+
+of genereer willekeurige (handig voor testen): 
+
+```swift
+let key = ES256PrivateKey()
+```
+
+Om de sleutel aan de sleutelbos toe te voegen:
+
+```swift
+await app.jwt.keys.add(ecdsa: key)
+```
+
+### EdDSA
+
+EdDSA (Edwards-curve Digital Signature Algorithm) is een asymmetrisch algoritme dat een publiek/privé sleutelpaar gebruikt om de JWT te ondertekenen en te verifiëren. Het lijkt op ECDSA doordat beide berusten op het DSA-algoritme, maar EdDSA is gebaseerd op de Edwards-curve, een andere familie van elliptische krommen, en heeft daardoor een licht betere performance. Het is echter ook nieuwer en dus minder breed ondersteund. Vapor ondersteunt alleen het `EdDSA` algoritme, dat de `Ed25519` curve gebruikt.
+
+U kunt een EdDSA-sleutel maken met behulp van zijn (base64-gecodeerde `String`) coördinaat, dus `x` als het een publieke sleutel is en `d` als het een privésleutel is:
+
+```swift
+let publicKey = try EdDSA.PublicKey(x: "0ZcEvMCSYqSwR8XIkxOoaYjRQSAO8frTMSCpNbUl4lE", curve: .ed25519)
+
+let privateKey = try EdDSA.PrivateKey(d: "d1H3/dcg0V3XyAuZW2TE5Z3rhY20M+4YAfYu/HUQd8w=", curve: .ed25519)
+```
+
+U kunt ook willekeurige genereren:
+
+```swift
+let key = EdDSA.PrivateKey(curve: .ed25519)
+```
+
+Om de sleutel aan de sleutelbos toe te voegen:
+
+```swift
+await app.jwt.keys.add(eddsa: key)
 ```
 
 ### RSA
 
-RSA is het meest gebruikte JWT-signaleringsalgoritme. Het ondersteunt verschillende publieke en private sleutels. Dit betekent dat een publieke sleutel kan worden verspreid om te verifiëren of JWT's authentiek zijn, terwijl de private sleutel die ze genereert, geheim wordt gehouden.
+RSA (Rivest-Shamir-Adleman) is een asymmetrisch algoritme dat een publiek/privé sleutelpaar gebruikt om de JWT te ondertekenen en te verifiëren. 
 
-Om een RSA signer te maken, moet eerst een `RSAKey` geïnitialiseerd worden. Dit kan gedaan worden door de componenten in te voeren.
+!!! warning
+    Zoals u zult zien, zijn RSA-sleutels afgeschermd achter een `Insecure` namespace om nieuwe gebruikers te ontmoedigen deze te gebruiken. Dit komt doordat RSA als minder veilig wordt beschouwd dan ECDSA en EdDSA, en enkel om compatibiliteitsredenen gebruikt zou moeten worden.
+    Gebruik indien mogelijk een van de andere algoritmen.
 
-```swift
-// Initialiseer een RSA sleutel met componenten.
-let key = RSAKey(
-    modulus: "...",
-    exponent: "...",
-    // Alleen opgenomen in private sleutels.
-    privateExponent: "..."
-)
-```
+Vapor ondersteunt de volgende RSA-algoritmen:
 
-U kunt er ook voor kiezen een PEM-bestand in te laden:
+- `RS256`: RSA met SHA-256
+- `RS384`: RSA met SHA-384
+- `RS512`: RSA met SHA-512
+
+U kunt een RSA-sleutel maken met het PEM-formaat:
 
 ```swift
 let rsaPublicKey = """
@@ -204,105 +250,65 @@ aX4rbSL49Z3dAQn8vQIDAQAB
 -----END PUBLIC KEY-----
 """
 
-// Initialiseer een RSA sleutel met publieke pem.
-let key = RSAKey.public(pem: rsaPublicKey)
+// Initialize an RSA key with public pem.
+let key = try Insecure.RSA.PublicKey(pem: rsaPublicKey)
 ```
 
-Gebruik `.private` voor het laden van private RSA PEM sleutels. Deze beginnen met:
-
-```
------BEGIN RSA PRIVATE KEY-----
-```
-
-Zodra u de RSAKey hebt, kunt u die gebruiken om een RSA-signer aan te maken.
-
-- `rs256`: RSA met SHA-256
-- `rs384`: RSA met SHA-384
-- `rs512`: RSA met SHA-512
+of met behulp van de componenten:
 
 ```swift
-// RSA toevoegen met SHA-256 ondertekenaar.
-try app.jwt.signers.use(.rs256(key: .public(pem: rsaPublicKey)))
+// Initialize an RSA private key with components.
+let key = try Insecure.RSA.PrivateKey(
+    modulus: modulus, 
+    exponent: publicExponent, 
+    privateExponent: privateExponent
+)
 ```
 
-### ECDSA
+!!! warning
+    Het package ondersteunt geen RSA-sleutels kleiner dan 2048 bits.
 
-ECDSA is een moderner algoritme dat lijkt op RSA. Het wordt geacht veiliger te zijn voor een gegeven sleutellengte dan RSA ([vergelijking](https://www.ssl.com/article/comparing-ecdsa-vs-rsa/)). U moet echter uw eigen onderzoek doen voordat u een beslissing neemt.
-
-Net als RSA kunt u ECDSA-sleutels inladen met PEM-bestanden: 
+Vervolgens kunt u de sleutel toevoegen aan de sleutelverzameling:
 
 ```swift
-let ecdsaPublicKey = """
------BEGIN PUBLIC KEY-----
-MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE2adMrdG7aUfZH57aeKFFM01dPnkx
-C18ScRb4Z6poMBgJtYlVtd9ly63URv57ZW0Ncs1LiZB7WATb3svu+1c7HQ==
------END PUBLIC KEY-----
-"""
-
-// Initialiseer een ECDSA sleutel met publieke PEM.
-let key = ECDSAKey.public(pem: ecdsaPublicKey)
+await app.jwt.keys.add(rsa: key, digestAlgorithm: .sha256)
 ```
 
-Gebruik `.private` voor het laden van private ECDSA PEM sleutels. Deze beginnen met:
+### PSS
 
-```
------BEGIN PRIVATE KEY-----
-```
+Naast het RSA-PKCS1v1.5 algoritme ondersteunt Vapor ook het RSA-PSS algoritme. PSS (Probabilistic Signature Scheme) is een veiliger padding-schema voor RSA-handtekeningen. Het wordt aangeraden om waar mogelijk PSS te gebruiken in plaats van PKCS1v1.5.
 
-U kunt ook willekeurige ECDSA genereren met de `generate()` methode. Dit is handig voor testen.
+Het algoritme verschilt alleen in de ondertekeningsfase, wat betekent dat de sleutels dezelfde zijn als bij RSA, maar u moet wel het padding-schema opgeven wanneer u ze aan de sleutelverzameling toevoegt:
 
 ```swift
-let key = try ECDSAKey.generate()
+await app.jwt.keys.add(pss: key, digestAlgorithm: .sha256)
 ```
 
-Als u de ECDSAKey heeft, kunt u die gebruiken om een ECDSA-signer aan te maken.
+## Sleutelidentificator (kid)
 
-- `es256`: ECDSA met SHA-256
-- `es384`: ECDSA met SHA-384
-- `es512`: ECDSA met SHA-512
+Bij het toevoegen van een sleutel aan de sleutelverzameling kunt u ook een sleutelidentificator (kid) opgeven. Dit is een unieke identificator voor de sleutel die gebruikt kan worden om de sleutel in de collectie op te zoeken. 
 
 ```swift
-// ECDSA toevoegen met SHA-256 ondertekenaar.
-try app.jwt.signers.use(.es256(key: .public(pem: ecdsaPublicKey)))
+// Add HMAC with SHA-256 key named "a".
+await app.jwt.keys.add(hmac: "foo", digestAlgorithm: .sha256, kid: "a")
 ```
 
-### Key Identifier (kid)
+Als u geen `kid` opgeeft, wordt de sleutel toegewezen als de standaardsleutel.
 
-Als je meerdere algoritmes gebruikt, kun je sleutel-identifiers (`kid`s) gebruiken om ze te onderscheiden. Wanneer je een algoritme configureert, geef je de `kid` parameter door. 
+!!! note
+    De standaardsleutel wordt overschreven als u een andere sleutel toevoegt zonder `kid`.
+
+Bij het ondertekenen van een JWT kunt u opgeven welke `kid` gebruikt moet worden:
 
 ```swift
-// Voeg HMAC toe met SHA-256 ondertekenaar genaamd "a".
-app.jwt.signers.use(.hs256(key: "foo"), kid: "a")
-// Voeg HMAC toe met SHA-256 ondertekenaar genaamd "b".
-app.jwt.signers.use(.hs256(key: "bar"), kid: "b")
+let token = try await req.jwt.sign(payload, kid: "a")
 ```
 
-Bij het ondertekenen van JWTs, geef de `kid` parameter door voor de gewenste ondertekenaar.
-
-```swift
-// Onderteken met ondertekenaar "a"
-req.jwt.sign(payload, kid: "a")
-```
-
-Hierdoor wordt de naam van de ondertekenaar automatisch opgenomen in het `"kid"` veld van de JWT header. Bij het verifiëren van de JWT, zal dit veld gebruikt worden om de juiste ondertekenaar op te zoeken. 
-
-```swift
-// Verifieer met de ondertekenaar gespecificeerd door de "kid" header.
-// Als er geen "kid" header aanwezig is, zal de standaard ondertekenaar gebruikt worden.
-let payload = try req.jwt.verify(as: TestPayload.self)
-```
-
-Omdat [JWKs](#jwk) al `kid` waarden bevatten, hoeft u deze niet te specificeren tijdens de configuratie.
-
-```swift
-// JWK's bevatten al het "kid" veld.
-let jwk: JWK = ...
-app.jwt.signers.use(jwk: jwk)
-```
+Bij het verifiëren daarentegen wordt de `kid` automatisch uit de JWT header gehaald en gebruikt om de sleutel in de collectie op te zoeken. Er is ook een `iteratingKeys` parameter op de verify methode waarmee u kunt opgeven of over alle sleutels in de collectie geïtereerd moet worden als de `kid` niet gevonden wordt.
 
 ## Claims
 
-Het JWT-pakket van Vapor bevat verschillende helpers voor de implementatie van veelvoorkomende [JWT-claims](https://tools.ietf.org/html/rfc7519#section-4.1). 
+Vapor's JWT package bevat verschillende helpers voor het implementeren van veelvoorkomende [JWT claims](https://tools.ietf.org/html/rfc7519#section-4.1). 
 
 |Claim|Type|Verifieer Methode|
 |---|---|---|
@@ -315,40 +321,55 @@ Het JWT-pakket van Vapor bevat verschillende helpers voor de implementatie van v
 |`nbf`|`NotBeforeClaim`|`verifyNotBefore(currentDate:)`|
 |`sub`|`SubjectClaim`|n/a|
 
-Alle claims moeten geverifieerd worden in de `JWTPayload.verify` methode. Als de claim een speciale `verifieer` methode heeft, kun je die gebruiken. Anders kun je met `value` de waarde van de claim opvragen en controleren of deze geldig is.
+Alle claims moeten geverifieerd worden in de `JWTPayload.verify` methode. Als de claim een speciale verifieermethode heeft, kunt u die gebruiken. Anders kunt u de waarde van de claim opvragen met `value` en controleren of deze geldig is.
 
 ## JWK
 
-Een JSON Web Key (JWK) is een JavaScript Object Notation (JSON) datastructuur die een cryptografische sleutel voorstelt ([RFC7517](https://tools.ietf.org/html/rfc7517)). Deze worden gewoonlijk gebruikt om cliënten sleutels te verstrekken voor het verifiëren van JWT's.
+Een JSON Web Key (JWK) is een JSON datastructuur die een cryptografische sleutel voorstelt ([RFC7517](https://datatracker.ietf.org/doc/html/rfc7517)). Deze worden gewoonlijk gebruikt om clients sleutels te verstrekken voor het verifiëren van JWT's.
 
-Bijvoorbeeld, Apple host zijn _Sign in with Apple_ JWKS op de volgende URL.
+Apple host bijvoorbeeld hun Sign in with Apple JWKS op de volgende URL.
 
 ```http
 GET https://appleid.apple.com/auth/keys
 ```
 
-U kunt deze JSON Web Key Set (JWKS) toevoegen aan uw `JWTSigners`. 
+Vapor biedt hulpprogramma's om JWK's aan de sleutelverzameling toe te voegen:
 
 ```swift
-import JWT
-import Vapor
+let privateKey = """
+{
+    "kty": "RSA",
+    "d": "\(rsaPrivateExponent)",
+    "e": "AQAB",
+    "use": "sig",
+    "kid": "1234",
+    "alg": "RS256",
+    "n": "\(rsaModulus)"
+}
+"""
 
-// Download de JWKS.
-// Dit kan asynchroon gedaan worden indien nodig.
-let jwksData = try Data(
-    contentsOf: URL(string: "https://appleid.apple.com/auth/keys")!
-)
-
-// Decodeer de gedownloade JSON.
-let jwks = try JSONDecoder().decode(JWKS.self, from: jwksData)
-
-// Creëer ondertekenaars en voeg JWKS toe.
-try app.jwt.signers.use(jwks: jwks)
+let jwk = try JWK(json: privateKey)
+try await app.jwt.keys.use(jwk: jwk)
 ```
 
-U kunt nu JWTs van Apple doorgeven aan de `verify` methode. De key identifier (`kid`) in de JWT header zal worden gebruikt om automatisch de juiste key te selecteren voor verificatie.
+Dit voegt de JWK toe aan de sleutelverzameling, en u kunt deze gebruiken om JWT's te ondertekenen en te verifiëren zoals met elke andere sleutel.
 
-Op het moment van schrijven ondersteunt JWK alleen RSA-sleutels. Bovendien kunnen JWT-emittenten hun JWKS roteren, wat betekent dat u deze af en toe opnieuw moet downloaden. Zie Vapor's ondersteunde JWT [Vendors](#vendors) lijst hieronder voor API's die dit automatisch doen.
+### JWKs
+
+Als u meerdere JWK's hebt, kunt u deze net zo goed toevoegen:
+
+```swift
+let json = """
+{
+    "keys": [
+        {"kty": "RSA", "alg": "RS256", "kid": "a", "n": "\(rsaModulus)", "e": "AQAB"},
+        {"kty": "RSA", "alg": "RS512", "kid": "b", "n": "\(rsaModulus)", "e": "AQAB"},
+    ]
+}
+"""
+
+try await app.jwt.keys.use(jwksJSON: json)
+```
 
 ## Vendors
 
@@ -356,26 +377,17 @@ Vapor biedt API's voor het verwerken van JWT's van de populaire uitgevers hieron
 
 ### Apple
 
-Configureer eerst uw Apple applicatie-id.
+Configureer eerst uw Apple applicatie-identificator.
 
 ```swift
-// Configureer Apple app identificatie.
+// Configure Apple app identifier.
 app.jwt.apple.applicationIdentifier = "..."
 ```
 
-Gebruik dan de `req.jwt.apple` helper om een Apple JWT op te halen en te verifiëren. 
+Gebruik vervolgens de `req.jwt.apple` helper om een Apple JWT op te halen en te verifiëren. 
 
 ```swift
-// Haal en verifieer Apple JWT van de autorisatie header.
-app.get("apple") { req -> EventLoopFuture<HTTPStatus> in
-    req.jwt.apple.verify().map { token in
-        print(token) // AppleIdentityToken
-        return .ok
-    }
-}
-
-// Of
-
+// Fetch and verify Apple JWT from Authorization header.
 app.get("apple") { req async throws -> HTTPStatus in
     let token = try await req.jwt.apple.verify()
     print(token) // AppleIdentityToken
@@ -385,27 +397,18 @@ app.get("apple") { req async throws -> HTTPStatus in
 
 ### Google
 
-Configureer eerst uw Google applicatie-id en G Suite domeinnaam.
+Configureer eerst uw Google applicatie-identificator en G Suite domeinnaam.
 
 ```swift
-// Configureer Google app identifier en domeinnaam.
+// Configure Google app identifier and domain name.
 app.jwt.google.applicationIdentifier = "..."
 app.jwt.google.gSuiteDomainName = "..."
 ```
 
-Gebruik dan de `req.jwt.google` helper om een Google JWT op te halen en te verifiëren. 
+Gebruik vervolgens de `req.jwt.google` helper om een Google JWT op te halen en te verifiëren. 
 
 ```swift
-// Haal en verifieer Google JWT uit de autorisatie header.
-app.get("google") { req -> EventLoopFuture<HTTPStatus> in
-    req.jwt.google.verify().map { token in
-        print(token) // GoogleIdentityToken
-        return .ok
-    }
-}
-
-// of
-
+// Fetch and verify Google JWT from Authorization header.
 app.get("google") { req async throws -> HTTPStatus in
     let token = try await req.jwt.google.verify()
     print(token) // GoogleIdentityToken
@@ -415,26 +418,17 @@ app.get("google") { req async throws -> HTTPStatus in
 
 ### Microsoft
 
-Configureer eerst uw Microsoft applicatie-id.
+Configureer eerst uw Microsoft applicatie-identificator.
 
 ```swift
-// Configureer Microsoft app identifier.
+// Configure Microsoft app identifier.
 app.jwt.microsoft.applicationIdentifier = "..."
 ```
 
-Gebruik dan de `req.jwt.microsoft` helper om een Microsoft JWT op te halen en te verifiëren. 
+Gebruik vervolgens de `req.jwt.microsoft` helper om een Microsoft JWT op te halen en te verifiëren. 
 
 ```swift
-// Haal en verifieer Microsoft JWT van de autorisatie header.
-app.get("microsoft") { req -> EventLoopFuture<HTTPStatus> in
-    req.jwt.microsoft.verify().map { token in
-        print(token) // MicrosoftIdentityToken
-        return .ok
-    }
-}
-
-// Of
-
+// Fetch and verify Microsoft JWT from Authorization header.
 app.get("microsoft") { req async throws -> HTTPStatus in
     let token = try await req.jwt.microsoft.verify()
     print(token) // MicrosoftIdentityToken

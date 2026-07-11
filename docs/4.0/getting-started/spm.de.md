@@ -1,10 +1,14 @@
 # Swift Package Manager
 
-Über den [Swift Package Manager](https://www.swift.org/package-manager/) können verschiedene Pakete in einem Projekt zusammengefasst und eingebunden werden. Damit ist der Manager ähnlich zu anderen Lösungen, wie CocoaPods, Ruby gems oder NPM. Ein offizielles, zentrales Paketeregister gibt es allerdings nicht, daher greift der Manager stattdessen über Git auf die jeweiligen Pakete zu. 
+Der [Swift Package Manager](https://swift.org/package-manager/) (SPM) wird verwendet, um den Quellcode deines Projekts und dessen Abhängigkeiten zu erstellen. Da Vapor stark auf SPM setzt, ist es sinnvoll, die Grundlagen seiner Funktionsweise zu verstehen.
 
-### Paketbeschreibung
+SPM ist vergleichbar mit CocoaPods, Ruby Gems und NPM. Du kannst SPM über die Kommandozeile mit Befehlen wie `swift build` und `swift test` oder mit kompatiblen IDEs verwenden. Im Gegensatz zu einigen anderen Paketmanagern gibt es bei SPM jedoch kein zentrales Paketregister. Stattdessen nutzt SPM URLs zu Git-Repositories und versioniert Abhängigkeiten mithilfe von [Git-Tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging).
 
-Das Herzstück des Paketmanagers ist die Paketbeschreibung. Sie befindet sich im Hauptverzeichnis eines Paketes. Die Beschreibung beinhaltet unter anderem Angaben zu Swift-Tools, den Paketnamen, dem Paketinhalt und die Abhängigkeiten.
+## Paketbeschreibung
+
+Der erste Ort, an dem SPM in deinem Projekt nachsieht, ist die Paketbeschreibung. Diese sollte sich immer im Hauptverzeichnis deines Projekts befinden und `Package.swift` heißen.
+
+Wirf einen Blick auf dieses Beispiel einer Paketbeschreibung.
 
 ```swift
 // swift-tools-version:5.8
@@ -33,29 +37,33 @@ let package = Package(
 )
 ```
 
-#### - Swift-Tools
+Jeder Teil der Paketbeschreibung wird in den folgenden Abschnitten erklärt.
 
-Die erste Zeile in der Beschreibung deklariert die für das Paket notwendige Mindestversion von Swift. Je nach Versionsstand können sich zudem die Paketbeschreibungen unterscheiden!
+### Swift-Tools
 
-#### - Name
+Die allererste Zeile einer Paketbeschreibung gibt die erforderliche Swift-Tools-Version an. Diese legt die minimale Swift-Version fest, die das Paket unterstützt. Auch die Package-Description-API kann sich zwischen Swift-Versionen ändern, daher stellt diese Zeile sicher, dass Swift weiß, wie es deine Paketbeschreibung parsen soll.
 
-Der Parameter _Name_ legt den Paketnamen fest.
+### Name
 
-#### - Platforms
+Das erste Argument von `Package` ist der Name des Pakets. Wenn das Paket öffentlich ist, solltest du das letzte Segment der URL des Git-Repositories als Namen verwenden.
 
-Der Parameter _Platforms_ beschreibt für welche Systeme letzten Endes das Paket sein soll. Wenn z.B. als Plattform `.macOS(.v12)` angegeben ist, wird macOS 12 (oder aktueller) erwartet.
+### Platforms
 
-#### - Dependencies
+Das `platforms`-Array gibt an, welche Plattformen dieses Paket unterstützt. Durch die Angabe von `.macOS(.v12)` benötigt dieses Paket macOS 12 oder neuer. Wenn Xcode dieses Projekt lädt, setzt es automatisch die minimale Bereitstellungsversion auf macOS 12, damit du alle verfügbaren APIs nutzen kannst.
 
-Dependencies sind Paketverweise, auf die das Paket aufbaut und daher für die Ausführung zwingend benötigt werden. Deshalb auch Abhängigkeiten genannt. Im Falle von Vapor, verweisen alle Vapor-Pakete auf die aktuelle Vapor-Version. Neben dem Vapor-Paketverweis, können weitere Verweise hinzugefügt werden.
+### Dependencies
 
-#### - Targets
+Dependencies sind andere SPM-Pakete, auf die dein Paket angewiesen ist. Alle Vapor-Anwendungen sind auf das Vapor-Paket angewiesen, du kannst aber beliebig viele weitere Abhängigkeiten hinzufügen.
 
-Targets sind Module, Dateien oder Tests. Vapor-Anwendungen beinhalten bis zu zwei Targets.
+Im obigen Beispiel siehst du, dass [vapor/vapor](https://github.com/vapor/vapor) in Version 4.76.0 oder neuer eine Abhängigkeit dieses Pakets ist. Wenn du eine Abhängigkeit zu deinem Paket hinzufügst, musst du anschließend angeben, welche [Targets](#targets) von den neu verfügbaren Modulen abhängen.
 
-### Ordnerstruktur
+### Targets
 
-Die Ordnerstruktur eines Paketes sieht wie folgt aus:
+Targets sind alle Module, ausführbaren Dateien und Tests, die dein Paket enthält. Die meisten Vapor-Apps haben zwei Targets, du kannst aber beliebig viele hinzufügen, um deinen Code zu organisieren. Jedes Target gibt an, von welchen Modulen es abhängt. Du musst hier Modulnamen hinzufügen, um sie in deinem Code importieren zu können. Ein Target kann von anderen Targets in deinem Projekt abhängen oder von Modulen, die von Paketen bereitgestellt werden, die du dem [Dependencies-Array](#dependencies) hinzugefügt hast.
+
+## Ordnerstruktur
+
+Unten siehst du die typische Ordnerstruktur eines SPM-Pakets.
 
 ```
 .
@@ -67,12 +75,19 @@ Die Ordnerstruktur eines Paketes sieht wie folgt aus:
 └── Package.swift
 ```
 
-### Resolved-Datei
+Jedes `.target` oder `.executableTarget` entspricht einem Ordner im `Sources`-Ordner.
+Jedes `.testTarget` entspricht einem Ordner im `Tests`-Ordner.
 
-Bei der ersten Ausführung des Paketes wird automatisch im Hauptverzeichnis eine Datei _Package.resolved_ erstellt. Die Datei listet die angegeben Abhängigkeiten inklusive Versionsstand auf. Hier ist zu beachten, dass das Paket sich erstmal an den Vorgaben in der Resolved-Datei hält, selbst wenn es bereits einen neuen Versionsstand einer Abhängigkeit gibt.
+## Package.resolved
 
-Die Resolved-Datei kann über die Menüpunkte *File* → *Swift Packages* → *Update To Latest Swift Package Versions* aktualisiert werden.
+Beim ersten Erstellen deines Projekts legt SPM eine `Package.resolved`-Datei an, die die Version jeder Abhängigkeit speichert. Beim nächsten Erstellen deines Projekts werden dieselben Versionen verwendet, selbst wenn neuere Versionen verfügbar sind.
 
-### Xcode
+Um deine Abhängigkeiten zu aktualisieren, führe `swift package update` aus.
 
-Veränderungen an der Paketbeschreibung werden in Xcode mit Speichern sofort umgesetzt.
+## Xcode
+
+Wenn du Xcode 11 oder höher verwendest, werden Änderungen an Abhängigkeiten, Targets, Produkten usw. automatisch übernommen, sobald die Datei `Package.swift` geändert wird.
+
+Wenn du auf die neuesten Abhängigkeiten aktualisieren möchtest, verwende Datei &rarr; Swift Packages &rarr; Update To Latest Swift Package Versions.
+
+Du solltest außerdem die Datei `.swiftpm` zu deiner `.gitignore` hinzufügen. Dort speichert Xcode deine Xcode-Projektkonfiguration.

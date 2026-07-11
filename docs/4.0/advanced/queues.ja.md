@@ -256,6 +256,16 @@ extension QueueName {
 }
 ```
 
+`QueueName` を作成する際に、キューごとの `workerCount` を設定することもできます:
+
+```swift
+extension QueueName {
+    static let serialEmails = QueueName(string: "serial-emails", workerCount: 1)
+}
+```
+
+`workerCount: 1` を設定すると、そのキューはジョブを順番に処理するようになり、ジョブの順序が重要な場合に便利です。
+
 次に、`jobs` オブジェクトを取得する際にキュータイプを指定します:
 
 ```swift
@@ -369,7 +379,13 @@ app.queues.schedule(CleanupJob())
     スケジューラはサーバーのタイムゾーンを考慮します。
 
 ### 利用可能なビルダーメソッド {#available-builder-methods}
-スケジューラには 5 つの主なメソッドがあり、それぞれがさらにヘルパーメソッドを含むビルダーオブジェクトを作成します。コンパイラが未使用の結果に関する警告を出さなくなるまで、スケジューラオブジェクトを構築し続けます。利用可能なすべてのメソッドは以下のとおりです:
+
+スケジューラの API には 2 つのスタイルがあります:
+
+- チェーンのためにビルダーオブジェクトを返すカレンダースタイルのビルダー。
+- 一定の間隔でジョブを実行するインターバルスタイルのビルダー。
+
+コンパイラが未使用の結果に関する警告を出さなくなるまで、カレンダースタイルのスケジューラチェーンを構築し続けてください。利用可能なすべてのメソッドは以下のとおりです:
 
 | ヘルパー関数       | 利用可能な修飾子                                                     | 説明                                        |
 |--------------|--------------------------------------------------------------|-------------------------------------------|
@@ -381,6 +397,25 @@ app.queues.schedule(CleanupJob())
 |              | `at(_ hour: Hour12, _ minute: Minute, _ period: HourPeriod)` | 実行する時間、分、時間帯。チェーンの最終メソッド。                 |
 | `hourly()`   | `at(_ minute: Minute)`                                       | 実行する分。チェーンの最終メソッド。                        |
 | `minutely()` | `at(_ second: Second)`                                       | 実行する秒。チェーンの最終メソッド。                        |
+
+### インターバルビルダーメソッド（`.every(...)`） {#interval-builder-methods-every}
+
+スケジューラは `.every(...)` メソッドを使用した固定間隔でのスケジューリングにも対応しています:
+
+| ヘルパー関数            | 説明                       |
+|-------------------|--------------------------|
+| `every(seconds: Int)` | 指定した秒数ごとにジョブを実行します。 |
+| `every(minutes: Int)` | 指定した分数ごとにジョブを実行します。 |
+| `every(hours: Int)`   | 指定した時間数ごとにジョブを実行します。 |
+| `every(days: Int)`    | 指定した日数ごとにジョブを実行します。 |
+| `every(weeks: Int)`   | 指定した週数ごとにジョブを実行します。 |
+
+例:
+
+```swift
+app.queues.schedule(CleanupJob())
+    .every(hours: 6)
+```
 
 ### 利用可能なヘルパー {#available-helpers}
 Queues には、スケジューリングを容易にするためのいくつかのヘルパー enum が付属しています:
@@ -472,3 +507,15 @@ final class UserCreationServiceTests: XCTestCase {
 ```
 
 詳細については、[Romain Pouclet のブログ記事](https://romain.codes/2024/10/08/using-and-testing-vapor-queues/)を参照してください。
+
+# トラブルシューティング {#troubleshooting}
+
+Amazon AWS 上の Redis や Valkey のような、クラスタベースの Redis 互換サーバーで [queues-redis-driver](https://github.com/vapor/queues-redis-driver) を使用する場合、次のエラーメッセージが発生することがあります: `CROSSSLOT Keys in request don't hash to the same slot`。
+
+これはクラスタモードでのみ発生します。Redis や Valkey が、ジョブデータをどのクラスタノードに保存すればよいかを確実に判断できないためです。
+
+これを修正するには、ジョブデータエントリの名前に波括弧を使用して [ハッシュタグ](https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/#hash-tags) を追加します:
+
+```swift
+app.queues.configuration.persistenceKey = "vapor-queues-{queues}"
+```

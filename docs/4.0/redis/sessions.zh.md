@@ -8,7 +8,7 @@ Redis 可以作为一个存储提供程序，用于缓存[会话数据](../advan
 
 ### 创建 SessionID 
 
-除非在你自己的 [`RedisSessionsDelegate`](#redissessionsdelegate) 中实现 [`makeNewID()`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/makenewid()-3hyne) 方法，否则所有的 ['SessionID`](https://api.vapor.codes/vapor/documentation/vapor/sessionid) 值将通过以下操作创建:
+除非在你自己的 [`RedisSessionsDelegate`](#redissessionsdelegate) 中实现 [`makeNewID()`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/makenewid()-3hyne) 方法，否则所有的 [`SessionID`](https://api.vapor.codes/vapor/documentation/vapor/sessionid) 值将通过以下操作创建：
 
 1. 生成32字节的随机字符
 1. base64 编码该值
@@ -43,7 +43,7 @@ app.sessions.use(.redis(delegate: CustomRedisSessionsDelegate()))
 
 遵循该协议的对象可以用来改变 `SessionData` 在 Redis 中的存储方式。
 
-符合协议的类型只需要实现两个方法：[`redis(_:store:with:)`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/redis(_:store:with:)) 和 [`redis(_:fetchDataFor:)`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/redis(_:fetchdatafor:))
+符合协议的类型只需要实现两个方法：[`redis(_:store:with:)`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/redis(_:store:with:)) 和 [`redis(_:fetchDataFor:)`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/redis(_:fetchdatafor:))。
 
 这两者都是必需的，因为你自定义写入会话数据到 Redis 的方式本质上是与如何从 Redis 读取它有内在联系。
 

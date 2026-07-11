@@ -136,61 +136,17 @@ struct MyError: DebuggableError {
 
 `DebuggableError` 协议有几个其他属性，如 `possibleCauses` 和 `suggestedFixes` 你可以使用它们来提高错误的可调试性。查看协议本身以获取更多信息。
 
-## 堆栈跟踪
-
-Vapor 支持查看正常 Swift 错误和崩溃的堆栈跟踪。
-
-### Swift 回溯
-
-在 Linux 上，当出现致命错误或断言时，Vapor 使用 [SwiftBacktrace](https://github.com/swift-server/swift-backtrace) 库提供堆栈跟踪。为了让它正常工作，你的应用程序必须在编译过程中包含调试符号。
-
-```sh
-swift build -c release -Xswiftc -g
-```
-
-### 错误跟踪
-
-默认情况下，`Abort` 将在初始化时捕获当前堆栈跟踪。你的自定义错误类型可以通过遵循 `DebuggableError` 协议并存储 `StackTrace.capture()` 来实现。
-
-```swift
-import Vapor
-
-struct MyError: DebuggableError {
-    var identifier: String
-    var reason: String
-    var stackTrace: StackTrace?
-
-    init(
-        identifier: String,
-        reason: String,
-        stackTrace: StackTrace? = .capture()
-    ) {
-        self.identifier = identifier
-        self.reason = reason
-        self.stackTrace = stackTrace
-    }
-}
-```
-
-当你的应用程序的[日志级别](logging.zh.md#日志级别level)设置为 `.debug` 或更低时，错误堆栈跟踪将包含在日志输出中。
-
-当日志级别大于 `.debug` 时，不会捕获堆栈跟踪。要覆盖此行为，请在 `StackTrace.isCaptureEnabled` 中手动设置 `configure`。
-
-```swift
-// 无论日志级别如何，始终捕获堆栈跟踪。
-StackTrace.isCaptureEnabled = true
-```
-
 ## 错误中间件
 
-`ErrorMiddleware` 是默认添加到应用程序的唯一中间件。该中间件将路由处理抛出或返回的 Swift 错误转换为 HTTP 响应。如果没有这个中间件，抛出的错误将导致连接被关闭而没有响应。
+`ErrorMiddleware` 是默认添加到应用程序的仅有的两个中间件之一。该中间件将路由处理抛出或返回的 Swift 错误转换为 HTTP 响应。如果没有这个中间件，抛出的错误将导致连接被关闭而没有响应。
 
 要定制 `AbortError` 和 `DebuggableError` 所提供的错误处理之外的错误处理，你可以用自己的错误处理逻辑替换 `ErrorMiddleware` 中间件。要做到这一点，首先通过设置 `app.middleware` 为空删除默认的错误中间件。然后，将你自己的错误处理中间件作为第一个中间件添加到应用程序中。
 
 ```swift
-// 移除已存在的中间件。
+// Clear all default middleware (then, add back route logging)
 app.middleware = .init()
-// 首先添加自定义错误中间件。
+app.middleware.use(RouteLoggingMiddleware(logLevel: .info))
+// Add custom error handling middleware first.
 app.middleware.use(MyErrorMiddleware())
 ```
 

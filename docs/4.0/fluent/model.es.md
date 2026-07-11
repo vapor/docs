@@ -68,7 +68,7 @@ let id = try planet.requireID()
 
 ### Exists
 
-`@ID` tiene una propiedad `exists` que representa si el modelo existe o no en la base de datos. Cuando inicializas un modelo, el valor es `false`. Después de guardar un modelo o recuperarlo de la base de datos, el valor `true`. Esta propiedad es mutable.
+`@ID` tiene una propiedad `exists` que representa si el modelo existe o no en la base de datos. Cuando inicializas un modelo, el valor es `false`. Después de guardar un modelo o recuperarlo de la base de datos, el valor es `true`. Esta propiedad es mutable.
 
 ```swift
 if planet.$id.exists {
@@ -288,7 +288,7 @@ Para guardar una enumeración opcional, usa `@OptionalEnum`.
 
 La base de datos debe prepararse para manejar enumeraciones via una migración. Ver [enum](schema.md#enum) para más información.
 
-### Raw Enums
+### Enums en Bruto
 
 Cualquier enumeración respaldada por una tipo de dato `Codable`, como `String` o `Int`, puede guardarse en `@Field`. Se guardará en la base de datos como el dato en bruto.
 

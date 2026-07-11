@@ -194,7 +194,7 @@ app.get("foo", "**") { req in
 }
 ```
 
-### Parameters
+### 파라미터(Parameters)
 
 (접두사 `:`와 함께) 파라미터 경로 컴포넌트를 사용할 때, 해당 위치의 URI 값이 `req.parameters`에 저장됩니다. 경로 컴포넌트의 이름을 사용해서 값에 접근할 수 있습니다.
 
@@ -285,7 +285,7 @@ app.routes.caseInsensitive = true
 
 원래의 요청은 변경되지 않습니다. 라우트 핸들러는 수정되지 않은 요청 경로 컴포넌트를 수신할 것입니다.
 
-### Viewing Routes
+### 라우트 확인하기(Viewing Routes)
 
 `app.routes`를 사용하거나 `Routes` 서비스를 생성해서 Application의 라우트에 접근할 수 있습니다.
 

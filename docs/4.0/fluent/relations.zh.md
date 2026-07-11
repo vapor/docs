@@ -61,6 +61,39 @@ final class Planet: Model {
 .field("star_id", .uuid, .references("star", "id"))
 ```
 
+### Encoding and Decoding of Parents
+
+使用 `@Parent` 关系时需要注意的一件事是发送和接收它们的方式。例如，在 JSON 中，`Planet` 模型的 `@Parent` 可能如下所示：
+
+```json
+{
+    "id": "A616B398-A963-4EC7-9D1D-B1AA8A6F1107",
+    "star": {
+        "id": "A1B2C3D4-1234-5678-90AB-CDEF12345678"
+    }
+}
+```
+
+请注意，`star` 属性是一个对象，而不是你可能期望的 ID。当将模型作为 HTTP 请求体发送时，需要与此匹配才能正常解码。因此，我们强烈建议在通过网络发送模型时使用 DTO 来表示该模型。例如：
+
+```swift
+struct PlanetDTO: Content {
+    var id: UUID?
+    var name: String
+    var star: Star.IDValue
+}
+```
+
+然后你可以解码该 DTO 并将其转换为模型：
+
+```swift
+let planetData = try req.content.decode(PlanetDTO.self)
+let planet = Planet(id: planetData.id, name: planetData.name, starID: planetData.star)
+try await planet.create(on: req.db)
+```
+
+将模型返回给客户端时同样适用。你的客户端要么需要能够处理嵌套结构，要么你需要在返回之前将模型转换为 DTO。有关 DTO 的更多信息，请参阅[模型文档](model.zh.md#数据传输对象)
+
 ## Optional Child
 
 `@OptionalChild` 属性在两个模型之间创建了一对一的关系。它不在根模型上存储任何值。
@@ -150,12 +183,20 @@ final class PlanetTag: Model {
     @Parent(key: "tag_id")
     var tag: Tag
 
+    @OptionalField(key: "comments")
+    var comments: String?
+
+    @OptionalEnum(key: "status")
+    var status: PlanetTagStatus?
+
     init() { }
 
     init(id: UUID? = nil, planet: Planet, tag: Tag, comments: String?, status: PlanetTagStatus?) throws {
         self.id = id
         self.$planet.id = try planet.requireID()
         self.$tag.id = try tag.requireID()
+        self.comments = comments
+        self.status = status
     }
 }
 ```
@@ -336,11 +377,13 @@ try await planet.$star.get(on: database)
 print(planet.star.name)
 ```
 
-使用`realod: `参数可以确保取回的数据并非来自缓存。
+如果你想确保取回的数据并非来自缓存，请使用 `reload:` 参数。
+
 ```swift
 try await planet.$star.get(reload: true, on: database)
 print(planet.star.name)
 ```
+
 要检查是否已加载关系，请使用 `value` 属性。
 
 ```swift

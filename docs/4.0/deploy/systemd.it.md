@@ -33,6 +33,7 @@ Come specificato nel file di configurazione, il progetto `Hello` si trova nella 
 Il flag `--env production` disabiliterà il logging verboso.
 
 ### Variabili d'Ambiente
+In caso contrario, racchiudere i valori tra virgolette è opzionale ma consigliato.
 
 Puoi esportare variabili in due modi tramite systemd. Puoi creare un file di ambiente con tutte le variabili al suo interno:
 

@@ -121,7 +121,7 @@ try app.autoMigrate().wait()
 try await app.autoMigrate()
 ```
 
-!!! Info
+!!! tip
     La configuration SQLite active automatiquement les contraintes sur les clés étrangères pour chaque connexion établie, mais ne modifie pas les configurations de clés étrangères dans la base de données elle-même. Si vous effacez des lignes directement dans la base de données, vous pourriez enfreindre des contraintes ou triggers.
 
 #### MySQL
@@ -168,14 +168,14 @@ app.databases.use(.mysql(
 ), as: .mysql)
 ```
 
-!!! Attention
+!!! warning
     Ne désactivez pas la vérification de certificat en production. Vous devriez fournir un certificat à `TLSConfiguration` afin qu'il puisse effectuer les vérifications nécessaires. 
 
 #### MongoDB
 
 MongoDB est une base de données NoSQL populaire conçue pour les développeurs. Le driver est compatible avec tous les hébergeurs cloud et installations auto-hébergées à partir de la version 3.4.
 
-!!! Note
+!!! note
     Ce driver s'appuie sur un client MongoDB créé et maintenu par la communauté, [MongoKitten](https://github.com/OpenKitten/MongoKitten). MongoDB maintient un client officiel, [mongo-swift-driver](https://github.com/mongodb/mongo-swift-driver), ainsi qu'une intégration Vapor, [mongodb-vapor](https://github.com/mongodb/mongodb-vapor).
 
 Pour utiliser MongoDB, ajoutez ces dépendance à votre package.
@@ -229,7 +229,7 @@ final class Galaxy: Model {
 
 Pour créer un nouveau modèle, créez une nouvelle classe qui se conforme à `Model`.
 
-!!! Conseil
+!!! tip
     Il est recommandé d'utiliser `final` pour vos classes de modèles, afin d'augmenter les performances et faciliter la conformité aux exigences du protocole.
 
 La première exigence du protocole `Model` est la chaîne statique `schema`.
@@ -378,7 +378,7 @@ app.post("galaxies") { req -> EventLoopFuture<Galaxy> in
 }
 ```
 
-!!! Référence utile
+!!! seealso
     Voir [Décoder et encoder du contenu &rarr; Vue d'ensemble](../basics/content.md) pour plus d'informations sur le décodage des corps de requêtes.
 
 Une fois que vous avez une instance de votre modèle, appeler `create(on:)` l'enregistrera dans la base de données. Cela retourne un `EventLoopFuture<Void>` qui signale la fin de l'enregistrement. Une fois enregistré, retournez-le avec `map`.
@@ -469,7 +469,7 @@ self.$galaxy.id = galaxyID
 
 En mettant le préfixe `$` sur la propriété référençant le parent, vous avez accès à l'objet PropertyWrapper associé. Cette syntaxe est nécessaire pour accéder à l'objet `@Field` interne qui stoque la valeur réelle de l'identifiant.
 
-!!! A voir également
+!!! seealso
     Cette proposition sur l'évolution du langage Swift concernant les PropertyWrappers les explique plus en détail : [[SE-0258] Property Wrappers](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0258-property-wrappers.md)
 
 Ensuite, créez une migration pour préparer la base de données à accueillir vos objets `Star`.

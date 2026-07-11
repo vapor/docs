@@ -1,6 +1,6 @@
 # Logging
 
-L'API di logging di Vapor è costruita utilizzando [SwiftLog](https://github.com/apple/swift-log). Ciò significa che Vapor è compatibile con tutte le [implementazioni backend](https://github.com/apple/swift-log?tab=readme-ov-file#available-log-handler-backends) supportate da SwiftLog.
+L'API di logging di Vapor è costruita utilizzando [SwiftLog](https://github.com/apple/swift-log). Ciò significa che Vapor è compatibile con tutte le [implementazioni backend](https://github.com/apple/swift-log#backends) supportate da SwiftLog.
 
 ## Logger
 

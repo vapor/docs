@@ -1,6 +1,6 @@
 # 环境
 
-Vapor 的环境 API 帮助你动态配置你的应用程序。默认情况下，你的应用程序将使用 `development` 环境。你可以定义其他有用的环境，如 `production` 或 `staging`，并在每种情况下改变你的应用是如何配置的。你还可以从进程的环境或 `.Env` (dotenv) 文件读取配置取决于你的需要。
+Vapor 的环境 API 帮助你动态配置你的应用程序。默认情况下，你的应用程序将使用 `development` 环境。你可以定义其他有用的环境，如 `production` 或 `staging`，并在每种情况下改变你的应用是如何配置的。你还可以根据需要从进程的环境或 `.env` (dotenv) 文件中加载变量。
 
 要访问当前环境，请使用 `app.environment`。你可以在 `configure(_:)` 中通过这个属性来执行不同的配置逻辑。
 
@@ -32,7 +32,7 @@ Vapor 包含下列环境：
 !!! info "信息"
     `production` 环境默认为 `notice` 级别的日志记录，除非另有说明。所有其他环境默认为 `info`。
 
-你可以将全名或短名传递给`--env` (`-e`) 标志。
+你可以将全名或短名传递给 `--env` (`-e`) 标志。
 
 ```swift
 swift run App serve -e prod
@@ -85,15 +85,15 @@ print(foo) // String?
 !!! info "信息"
     在 `.env` 文件中指定的变量不会覆盖进程环境中已经存在的变量。
 
-除了 `.env`，Vapor 还将尝试为当前环境加载一个 `.env.environment` 文件。例如，在 `development` 环境中，Vapor 将加载 `.env.development`。特定环境文件中的任何值都将优先于 `.env` 文件内的值。
+除了 `.env`，Vapor 还将尝试为当前环境加载一个 dotenv 文件。例如，在 `development` 环境中，Vapor 将加载 `.env.development`。特定环境文件中的任何值都将优先于 `.env` 文件内的值。
 
-一个典型的模式是项目包含一个 `.env` 文件作为带有默认值的模板。在 `.gitignore` 中使用以下模式忽略特定的环境文件
+一个典型的模式是项目包含一个 `.env` 文件作为带有默认值的模板。在 `.gitignore` 中使用以下模式忽略特定的环境文件：
 
 ```gitignore
 .env.*
 ```
 
-当项目被 cloned 到新计算机时，已经带有正确的值的 `.env` 模板可以被复制。
+当项目被克隆到新计算机时，可以复制作为模板的 `.env` 文件，并填入正确的值。
 
 ```sh
 cp .env .env.development
@@ -117,7 +117,7 @@ extension Environment {
 }
 ```
 
-应用程序的环境通常使用 `entrypoint.swift` 中的 `environment .detect()` 来设置。
+应用程序的环境通常使用 `entrypoint.swift` 中的 `Environment.detect()` 来设置。
 
 ```swift
 @main

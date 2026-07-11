@@ -297,8 +297,24 @@ futureString.whenComplete { result in
 
 !!! note
     U kunt zoveel callbacks aan een future toevoegen als u wilt.
+
+### Get
+
+Als er geen concurrency-gebaseerd alternatief is voor een API, kunt u wachten op de waarde van de future met `try await future.get()`.
+
+```swift
+/// Veronderstel dat we een toekomstige string terugkrijgen van een API
+let futureString: EventLoopFuture<String> = ...
+
+/// Wacht tot de string klaar is
+let string: String = try await futureString.get()
+print(string) /// String
+```
     
 ### Wait
+
+!!! warning
+    De functie `wait()` is verouderd, zie [`Get`](#get) voor de aanbevolen aanpak.
 
 Je kunt `.wait()` gebruiken om synchroon te wachten tot de future voltooid is. Omdat een future kan mislukken, werpt deze aanroep fouten.
 

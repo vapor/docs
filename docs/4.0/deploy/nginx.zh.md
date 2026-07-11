@@ -27,35 +27,50 @@ HTTP 反向代理是什么意思？简而言之，反向代理服务器就是外
 
 ## 安装 Nginx
 
-首先是安装 Nginx。网络上有着大量资源和文档来描述如何安装 Nginx，因此在这里不再赘述。不论你使用哪个平台、操作系统、或服务供应商，你都能找到相应的文档或教程。
+首先是安装 Nginx。Nginx 的一大优点就是围绕它有着大量的社区资源和文档，因此在这里不再赘述如何安装 Nginx，因为几乎可以肯定针对你所使用的特定平台、操作系统和服务供应商都能找到相应的教程。
 
 教程:
 
-- [如何在 Ubuntu 14.04 LTS 上安装 Nginx?](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-14-04-lts) (英文)
-- [如何在 Ubuntu 16.04 上安装 Nginx?](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04) (英文)
-- [如何在 Heroku 上部署 Nginx?](https://blog.codeship.com/how-to-deploy-nginx-on-heroku/) (英文)
-- [如何在 Ubuntu 14.04 上用 Docker 容器运行 Nginx?](https://www.digitalocean.com/community/tutorials/how-to-run-nginx-in-a-docker-container-on-ubuntu-14-04) (英文)
+- [如何在 Ubuntu 20.04 上安装 Nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04)
+- [如何在 Ubuntu 18.04 上安装 Nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04)
+- [如何在 CentOS 8 上安装 Nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-8)
+- [如何在 Ubuntu 16.04 上安装 Nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)
+- [如何在 Heroku 上部署 Nginx](https://blog.codeship.com/how-to-deploy-nginx-on-heroku/)
 
+### 包管理器
 
-### APT
+Nginx 可以通过 Linux 上的包管理器安装。
 
-可以通过 APT 工具安装 Nginx
+#### Ubuntu
 
 ```sh
 sudo apt-get update
 sudo apt-get install nginx
 ```
 
-你可以在浏览器中访问你的服务器的 IP 地址，来检查你的 Nginx 是否被正确安装.
-
+#### CentOS 和 Amazon Linux
 
 ```sh
+sudo yum install nginx
+```
+
+#### Fedora
+
+```sh
+sudo dnf install nginx
+```
+
+### 验证安装
+
+在浏览器中访问你的服务器 IP 地址，检查 Nginx 是否安装成功
+
+```
 http://server_domain_name_or_IP
 ```
 
-### Service
+### 服务
 
-如何停止/启动/重启 Nginx 服务 (service)
+服务可以被启动或停止。
 
 ```sh
 sudo service nginx stop

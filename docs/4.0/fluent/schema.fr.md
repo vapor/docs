@@ -215,7 +215,7 @@ Voici un exemple d'usage d'action sur une clé étrangère :
 ```
 
 !!! Avertissement
-    Les actions de clé étrangèrent se passent entièrement en base de données, sans passer par Fluent.
+    Les actions de clé étrangère se passent entièrement en base de données, sans passer par Fluent.
     Cela implique que des choses comme le ModelMiddleware ou la suppression douce pourraient ne pas fonctionner correctement.
 
 ## SQL

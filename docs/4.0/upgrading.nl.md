@@ -24,10 +24,10 @@ De eerste stap bij het upgraden naar Vapor 4 is het bijwerken van de afhankelijk
 +    ],
      dependencies: [
 -        .package(url: "https://github.com/vapor/fluent-postgresql.git", from: "1.0.0"),
-+        .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0-rc"),
-+        .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0-rc"),
++        .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0"),
++        .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0"),
 -        .package(url: "https://github.com/vapor/jwt.git", from: "3.0.0"),
-+        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0-rc"),
++        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0"),
 -        .package(url: "https://github.com/vapor/vapor.git", from: "3.0.0"),
 +        .package(url: "https://github.com/vapor/vapor.git", from: "4.3.0"),
      ],
@@ -60,13 +60,11 @@ Van alle pakketten die opgewaardeerd zijn voor Vapor 4 zal het hoofdversienummer
 
 ### Oude Pakketten
 
-Sommige pakketten zijn misschien nog niet geüpgraded. Als u er tegenkomt, dien dan een probleem in om de auteur te laten weten. 
-
 Sommige Vapor 3 pakketten zijn afgeschreven, zoals:
 
 - `vapor/auth`: Nu opgenomen in Vapor.
 - `vapor/core`: Opgenomen in verschillende modules. 
-- `vapor/crypto`: Vervangen door SwiftCrypto.
+- `vapor/crypto`: Vervangen door SwiftCrypto (Nu opgenomen in Vapor).
 - `vapor/multipart`: Nu opgenomen in Vapor.
 - `vapor/url-encoded-form`: Nu opgenomen in Vapor.
 - `vapor-community/vapor-ext`: Nu opgenomen in Vapor.
@@ -79,8 +77,8 @@ Sommige Vapor 3 pakketten zijn afgeschreven, zoals:
 
 ```diff
 - .package(url: "https://github.com/vapor/fluent-postgresql.git", from: "1.0.0"),
-+ .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0-rc"),
-+ .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0-rc"),
++ .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0"),
++ .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0"),
 ```
 
 ### Platvormen

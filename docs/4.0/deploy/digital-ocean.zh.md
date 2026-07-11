@@ -13,7 +13,7 @@
 ![Ubuntu Distro](../images/digital-ocean-distributions-ubuntu.png)
 
 !!! note "注意"  
-    你也可以选择 Swift 支持的其它 Linux 发行版。在撰写本文时。你可以在 [Swift Releases](https://swift.org/download/#releases) 页面上查看官方支持哪些操作系统。
+    你也可以选择 Swift 支持的其它 Linux 发行版。你可以在 [Swift Releases](https://swift.org/download/#releases) 页面上查看官方支持哪些操作系统。
 
 选择完发行版后，选择你喜欢的套餐和数据中心所在区域。然后设置一个 SSH 密钥以在创建服务器后访问它。最后， 点击创建 Droplet 并等待新服务器启动。
 
@@ -94,7 +94,7 @@ Target: x86_64-unknown-linux-gnu
 
 ## 使用 Vapor 工具箱安装 Vapor
 
-现在已经安装了 Swift，让我们 Vapor工具箱来安装 Vapor。你需要通过源码在构建工具箱。在 GitHub 上查看工具箱的[发布](https://github.com/vapor/toolbox/releases)版本，以查找最新版本。在本例中，我们使用 18.6.0 版本。
+现在已经安装了 Swift，让我们使用 Vapor 工具箱来安装 Vapor。你需要通过源码在构建工具箱。在 GitHub 上查看工具箱的[发布](https://github.com/vapor/toolbox/releases)版本，以查找最新版本。在本例中，我们使用 18.6.0 版本。
 
 ### 克隆并构建 Vapor
 
@@ -164,7 +164,7 @@ It works!
 回到服务器上，你应该会看到测试请求的日志。
 
 ```
-[ NOTICE ] Server starting on http://157.245.244.228:80
+[ NOTICE ] Server starting on http://0.0.0.0:8080
 [ INFO ] GET /
 ```
 

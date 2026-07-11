@@ -88,6 +88,16 @@ Zodra uw container is gebouwd, start Fly een instantie ervan. Het zal verschille
 
 Standaard zal Fly teruggaan naar de laatste werkende versie van uw app als de health checks falen voor de nieuwe versie die u probeerde te implementeren.
 
+Bij het deployen van een achtergrondwerker (met Vapor Queues). Wijzig de CMD of ENTRYPOINT in je Dockerfile niet; laat deze ongewijzigd zodat de hoofdwebapplicatie normaal opstart. Voeg in plaats daarvan een [processes] sectie toe aan je fly.toml bestand, zoals hier:
+
+```
+[processes]
+  app = ""
+  worker = "queues"
+```
+
+Dit vertelt Fly.io om het app proces uit te voeren met het standaard Docker entrypoint (uw webserver), en het worker proces om uw wachtrij uit te voeren met Vapor's command-line interface (d.w.z. `swift run App queues`).
+
 ## Configuratie Postgres
 
 ### Een Postgres database aanmaken op Fly

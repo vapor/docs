@@ -53,9 +53,27 @@ sudo dnf install swift-lang
 
 ## 安装工具箱(Install Toolbox)
 
-现在你已经安装了 Swift，让我们安装 [Vapor Toolbox](https://github.com/vapor/toolbox)。使用 Vapor 不是必须要使用此 CLI 工具，但它包含有用的实用程序。
+现在你已经安装了 Swift，让我们安装 [Vapor Toolbox](https://github.com/vapor/toolbox)。使用 Vapor 不是必须要使用此 CLI 工具，但它有助于创建新的 Vapor 项目。
 
-在 Linux 系统上，你需要通过源码来编译 toolbox，在 Github 上查看 toolbox 的 <a href="https://github.com/vapor/toolbox/releases" target="_blank">releases</a> 来获取最新版本。
+### Homebrew
+
+Toolbox 通过 Homebrew 分发。如果你还没有安装 Homebrew，请访问 <a href="https://brew.sh" target="_blank">brew.sh</a> 查看安装说明。
+
+```sh
+brew install vapor
+```
+
+通过打印信息来再次确认是否已经安装成功。
+
+```sh
+vapor --help
+```
+
+你应该能看见可用命令的列表。
+
+### Makefile
+
+如果你愿意，也可以从源码构建 Toolbox。在 GitHub 上查看 Toolbox 的 <a href="https://github.com/vapor/toolbox/releases" target="_blank">releases</a> 来获取最新版本。
 
 ```sh
 git clone https://github.com/vapor/toolbox.git

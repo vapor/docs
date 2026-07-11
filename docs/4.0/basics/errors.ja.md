@@ -144,8 +144,9 @@ struct MyError: DebuggableError {
 `AbortError` と `DebuggableError` が提供するものを超えてエラー処理をカスタマイズするには、`ErrorMiddleware` を独自のエラー処理ロジックで置き換えることができます。これを行うには、まず `app.middleware` を空の設定に設定して、デフォルトのエラーミドルウェアを削除します。その後、独自のエラー処理ミドルウェアをアプリケーションに最初のミドルウェアとして追加します。
 
 ```swift
-// Remove all existing middleware.
+// Clear all default middleware (then, add back route logging)
 app.middleware = .init()
+app.middleware.use(RouteLoggingMiddleware(logLevel: .info))
 // Add custom error handling middleware first.
 app.middleware.use(MyErrorMiddleware())
 ```

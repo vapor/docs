@@ -559,7 +559,7 @@ extension UserToken: ModelTokenAuthenticatable {
 
 El primer requisito del protocolo especifica qué campo almacena el valor único del token. Este es el valor que se enviará en la cabecera de autenticación Bearer. El segundo requisito especifica la relación principal con el modelo `User`. Así es como Fluent buscará al usuario autenticado.
 
-El requisito final es un booleano `isValid`. Si esto es `false`, el token se eliminará de la base de datos y el usuario no será autenticado. Para simplificar, haremos que los tokens sean eternal codificando esto como `true`.
+El requisito final es un booleano `isValid`. Si esto es `false`, el token se eliminará de la base de datos y el usuario no será autenticado. Para simplificar, haremos que los tokens sean eternos codificando esto como `true`.
 
 Ahora que el token se ajusta a `ModelTokenAuthenticatable`, puedes crear un autenticador para proteger rutas.
 

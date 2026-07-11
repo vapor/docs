@@ -55,7 +55,7 @@ De `platforms` array specificeert welke platformen dit pakket ondersteunt. Door 
 
 Afhankelijkheden zijn andere SPM pakketten waar uw pakket afhankelijk van is. Alle Vapor applicaties vertrouwen op het Vapor pakket, maar u kunt zoveel andere afhankelijkheden toevoegen als u wilt.
 
-In het bovenstaande voorbeeld kunt u zien dat [vapor/vapor](https://github.com/vapor/vapor) versie 4.0.0 of later een dependency is van dit pakket. Wanneer u een afhankelijkheid aan uw pakket toevoegt, moet u vervolgens aangeven welke [targets](#targets) afhankelijk zijn van
+In het bovenstaande voorbeeld kunt u zien dat [vapor/vapor](https://github.com/vapor/vapor) versie 4.76.0 of later een dependency is van dit pakket. Wanneer u een afhankelijkheid aan uw pakket toevoegt, moet u vervolgens aangeven welke [targets](#targets) afhankelijk zijn van
 de nieuw beschikbare modules.
 
 ### Targets

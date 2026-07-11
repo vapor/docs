@@ -92,7 +92,7 @@ let planet = Planet(id: planetData.id, name: planetData.name, starID: planetData
 try await planet.create(on: req.db)
 ```
 
-Lo mismo aplica al devolver el modelo a los clientes. Tus clientes deben poder manejar la estructura anidada o necesitas convertir el modelo en un DTO antes de devolverlo. Para más información sobre los DTOs, consulta la [documentación del modelo](model.es.md#data-transfer-object).
+Lo mismo aplica al devolver el modelo a los clientes. Tus clientes deben poder manejar la estructura anidada o necesitas convertir el modelo en un DTO antes de devolverlo. Para más información sobre los DTOs, consulta la [documentación del modelo](model.md#data-transfer-object).
 
 ## Optional Child
 

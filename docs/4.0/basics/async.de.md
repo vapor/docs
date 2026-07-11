@@ -39,13 +39,13 @@ Hebe die Mindestversion für den Parameter Platforms auf macOS 12 an.
     ],
 ```
 
-Finally update the `Run` target to mark it as an executable target:
+Aktualisiere abschließend das `Run`-Target, um es als ausführbares Target zu kennzeichnen:
 
 ```swift
 .executableTarget(name: "Run", dependencies: [.target(name: "App")]),
 ```
 
-!!!info if you are deploying on Linux make sure you update the version of Swift there as well, e.g. on Heroku or in your Dockerfile. For example your Dockerfile would change to:
+Hinweis: Wenn du auf Linux deployst, stelle sicher, dass du dort ebenfalls die Swift-Version aktualisierst, z. B. auf Heroku oder in deinem Dockerfile. Zum Beispiel würde sich dein Dockerfile wie folgt ändern:
 
 ```diff
 -FROM swift:5.2-focal as build
@@ -57,10 +57,9 @@ Finally update the `Run` target to mark it as an executable target:
 
 Nun kannst du mit den eigentlichen Anpassungen beginnen. 
 
-Grundsätzlich kann man sagen, jede Funktion, die ein Object von Typ _EventLoopFuture_ zurückgibt, sollte mit dem Schlüsselwort _async_ versehen werden.
+Grundsätzlich kann man sagen, jede Funktion, die ein Objekt vom Typ _EventLoopFuture_ zurückgibt, ist nun `async`. Zum Beispiel:
 
 ```swift
-/// EventLoopFuture
 routes.get("firstUser") { req -> EventLoopFuture<String> in
     User.query(on: req.db).first().unwrap(or: Abort(.notFound)).flatMap { user in
         user.lastAccessed = Date()
@@ -69,8 +68,11 @@ routes.get("firstUser") { req -> EventLoopFuture<String> in
         }
     }
 }
+```
 
-/// Async/Await
+Wird zu:
+
+```swift
 routes.get("firstUser") { req async throws -> String in
     guard let user = try await User.query(on: req.db).first() else {
         throw Abort(.notFound)
@@ -83,7 +85,9 @@ routes.get("firstUser") { req async throws -> String in
 
 ### Alt und Neu
 
-Solltest du in Vapor auf Stellen treffen, die noch kein ... kannst du die Methode _get_ verwenden, um den Wert zu wandeln.
+Solltest du auf APIs treffen, die noch keine `async`/`await`-Version anbieten, kannst du `.get()` auf einer Funktion aufrufen, die ein `EventLoopFuture` zurückgibt, um es umzuwandeln.
+
+Z. B.
 
 ```swift
 return someMethodCallThatReturnsAFuture().flatMap { futureResult in
@@ -91,19 +95,19 @@ return someMethodCallThatReturnsAFuture().flatMap { futureResult in
 }
 ```
 
-Can become
+Kann werden zu
 
 ```swift
 let futureResult = try await someMethodThatReturnsAFuture().get()
 ```
 
-If you need to go the other way around you can convert
+Wenn du den umgekehrten Weg gehen musst, kannst du
 
 ```swift
 let myString = try await someAsyncFunctionThatGetsAString()
 ```
 
-to
+umwandeln zu
 
 ```swift
 let promise = request.eventLoop.makePromise(of: String.self)
@@ -113,20 +117,20 @@ promise.completeWithTask {
 let futureString: EventLoopFuture<String> = promise.futureResult
 ```
 
-## EventLoopFuture
+## `EventLoopFuture`s
 
 Wie du vielleicht schon an der ein oder anderen Stelle gesehen hast, erwarten oder liefern manche Methoden in Vapor einen Object von Typ _EventLoopFuture_. 
 
 Beim ersten Mal kann das Thema verständlichlerweise verwirrent sein, weshalb wir hier nochmal auf das Thema _Futures_ eingehen möchten.
 
-_Promises_ and _futures_ are related, but distinct, types. 
+Promises und Futures sind verwandte, aber unterschiedliche Typen. Mit _Promises_ werden _Futures_ erstellt. Die meiste Zeit wirst du mit _Futures_ arbeiten, die von Vapors APIs zurückgegeben werden, und musst dich nicht darum kümmern, selbst _Promises_ zu erstellen.
 
-Mit _Promises_ werden _Futures_ erstellt. Futures are an alternative to callback-based asynchronous APIs. Futures can be chained and transformed in ways that simple closures cannot. Die meiste Zeit wirst du mit _Futures_ arbeiten, und weniger mit _Promises_
+|Art              |Beschreibung                                                     |Zugriff           |
+|-----------------|------------------------------------------------------------------|------------------|
+|`EventLoopFuture`|Referenz auf einen Wert, der eventuell noch nicht verfügbar ist.   |nur lesend        |
+|`EventLoopPromise`|Ein Versprechen, einen Wert zu einem späteren Zeitpunkt asynchron bereitzustellen.|lesend/schreibend|
 
-|Art              |Beschreibung                                       |Zugriff   |
-|-----------------|---------------------------------------------------|----------|
-|EventLoopFuture  |Reference to a value that may not be available yet.|read-only |
-|EventLoopPromise |A promise to provide some value asynchronously.    |read/write|
+Futures sind eine Alternative zu callback-basierten asynchronen APIs. Futures können verkettet und transformiert werden, auf eine Weise, wie es mit einfachen Closures nicht möglich ist.
 
 ## Wandler
 
@@ -134,10 +138,12 @@ Ebenso wie _Optionals_ oder _Arrays_ in Swift, können _Futures_ gemapped oder g
 
 |Wandler                              |Argument                   |Beschreibung                                         |
 |-------------------------------------|---------------------------|-----------------------------------------------------|
-|[`map`](#map)                        |`(T) -> U`                 |Maps a future value to a different value.            |
-|[`flatMapThrowing`](#flatmapthrowing)|`(T) throws -> U`          |Maps a future value to a different value or an error.|
-|[`flatMap`](#flatmap)                |`(T) -> EventLoopFuture<U>`|Maps a future value to different _future_ value.     |
-|[`transform`](#transform)            |`U`                        |Maps a future to an already available value.         |
+|[`map`](#map)                        |`(T) -> U`                 |Wandelt einen zukünftigen Wert in einen anderen Wert um.|
+|[`flatMapThrowing`](#flatmapthrowing)|`(T) throws -> U`          |Wandelt einen zukünftigen Wert in einen anderen Wert um oder wirft einen Fehler.|
+|[`flatMap`](#flatmap)                |`(T) -> EventLoopFuture<U>`|Wandelt einen zukünftigen Wert in einen anderen zukünftigen Wert um.|
+|[`transform`](#transform)            |`U`                        |Wandelt ein Future in einen bereits verfügbaren Wert um.|
+
+Wenn du dir die Methodensignaturen von `map` und `flatMap` bei `Optional<T>` und `Array<T>` ansiehst, wirst du feststellen, dass sie den auf `EventLoopFuture<T>` verfügbaren Methoden sehr ähnlich sind.
 
 ### map
 
@@ -162,7 +168,7 @@ print(futureInt) // EventLoopFuture<Int>
 Die Methode _flatMapThrowing_ wandelt den zukünftigen Wert in einen anderen Wert um oder gibt einen Fehler aus.
 
 !!! info
-    Because throwing an error must create a new future internally, this method is prefixed `flatMap` even though the closure does not accept a future return.
+    Da das Werfen eines Fehlers intern ein neues Future erzeugen muss, ist die Methode mit `flatMap` präfixiert, obwohl der Closure keinen Future-Rückgabewert akzeptiert.
 
 ```swift
 /// Assume we get a future string back from some API
@@ -184,7 +190,7 @@ print(futureInt) // EventLoopFuture<Int>
 
 ### flatMap
 
-Die Methode _flatMap_ wandelt den Wert um und behält dabei den Status _future_. It gets the name "flat" map because it is what allows you to avoid creating nested futures (e.g., `EventLoopFuture<EventLoopFuture<T>>`). In other words, it helps you keep your generics flat.
+Die Methode _flatMap_ wandelt den Wert um und behält dabei den Status _future_. Sie wird "flat" map genannt, weil sie es dir ermöglicht, verschachtelte Futures zu vermeiden (z. B. `EventLoopFuture<EventLoopFuture<T>>`). Mit anderen Worten: Sie hilft dir dabei, deine Generics flach zu halten.
 
 ```swift
 /// Assume we get a future string back from some API
@@ -203,9 +209,9 @@ print(futureResponse) // EventLoopFuture<ClientResponse>
 ```
 
 !!! info
-    If we instead used `map` in the above example, we would have ended up with: `EventLoopFuture<EventLoopFuture<ClientResponse>>`.
+    Hätten wir stattdessen im obigen Beispiel `map` verwendet, wären wir bei `EventLoopFuture<EventLoopFuture<ClientResponse>>` gelandet.
 
-To call a throwing method inside of a `flatMap`, use Swift's `do` / `catch` keywords and create a [completed future](#makefuture).
+Um eine werfende (throwing) Methode innerhalb eines `flatMap` aufzurufen, verwende Swifts `do`/`catch`-Schlüsselwörter und erstelle ein [abgeschlossenes Future](#makefuture).
 
 ```swift
 /// Assume future string and client from previous example.
@@ -227,7 +233,7 @@ let futureResponse = futureString.flatMap { string in
 Die Methode _transform_ ändert den zukünftigen Wert ohne Beachtung des bestehenden Wertes. Das ist ziemlich nütztlich, wenn man das Ergebnis von _EventLoopFuture<Void>_ wandeln möchte.
 
 !!! tip
-    `EventLoopFuture<Void>`, sometimes called a signal, is a future whose sole purpose is to notify you of completion or failure of some async operation.
+    `EventLoopFuture<Void>`, manchmal auch als Signal bezeichnet, ist ein Future, dessen einziger Zweck es ist, dich über den Abschluss oder das Fehlschlagen einer asynchronen Operation zu informieren.
 
 ```swift
 /// Assume we get a void future back from some API
@@ -243,6 +249,8 @@ Trotz, dass wir der Methode im Beispiel, einen Wert mitgegeben haben, wird die A
 ### Verkettung
 
 Das Gute an den Wandlern ist, dass man sie aneinanderreihen kann, wodurch sich weitere Wandlungen und Teilaufgaben leichter schreiben lassen.
+
+Lass uns die Beispiele von oben abändern, um zu sehen, wie wir von der Verkettung profitieren können.
 
 ```swift
 /// Assume we get a future string back from some API
@@ -264,15 +272,15 @@ let futureResponse = futureString.flatMapThrowing { string in
 print(futureResponse) // EventLoopFuture<ClientResponse>
 ```
 
-After the initial call to map, there is a temporary `EventLoopFuture<URL>` created. This future is then immediately flat-mapped to a `EventLoopFuture<Response>`
+Nach dem anfänglichen Aufruf von `map` wird ein temporäres `EventLoopFuture<URL>` erzeugt. Dieses Future wird dann sofort zu einem `EventLoopFuture<Response>` flat-gemappt.
     
 ## Future
 
-Let's take a look at some other methods for using `EventLoopFuture<T>`.
+Werfen wir einen Blick auf einige weitere Methoden für die Verwendung von `EventLoopFuture<T>`.
 
 ### makeFuture
 
-You can use an event loop to create pre-completed future with either the value or an error.
+Du kannst eine Ereignisschleife verwenden, um ein bereits abgeschlossenes Future zu erstellen, das entweder einen Wert oder einen Fehler enthält.
 
 ```swift
 // Create a pre-succeeded future.
@@ -284,8 +292,7 @@ let futureString: EventLoopFuture<String> = eventLoop.makeFailedFuture(error)
 
 ### whenComplete
 
-
-You can use `whenComplete` to add a callback that will be executed when the future succeeds or fails.
+Du kannst `whenComplete` verwenden, um einen Callback hinzuzufügen, der ausgeführt wird, wenn das Future erfolgreich abgeschlossen wird oder fehlschlägt.
 
 ```swift
 /// Assume we get a future string back from some API
@@ -302,13 +309,27 @@ futureString.whenComplete { result in
 ```
 
 !!! note
-    You can add as many callbacks to a future as you want.
+    Du kannst einem Future so viele Callbacks hinzufügen, wie du möchtest.
+
+### Get
+
+Falls es für eine API (noch) keine Alternative auf Basis von Concurrency gibt, kannst du mit `try await future.get()` auf den Wert des Future warten.
+
+```swift
+/// Assume we get a future string back from some API
+let futureString: EventLoopFuture<String> = ...
+
+/// Wait for the string to be ready
+let string: String = try await futureString.get()
+print(string) /// String
+```
     
 ### Wait
 
-Die Methode _wait_ kann dazu verwendet werden, auf den zukünftigen Wert zu warten. Dadurch, dass die Ausführung fehlschlagen kann, wirft die Methode den Fehler. Die Methode kann auf einem Thread im Hintergrund oder auf dem Hauptthread verwendet werden, allerdings nicht auf einem Thread einer Ereignisschleife. Das würde zu seinem Fehler führen.
+!!! warning
+    Die Funktion `wait()` ist veraltet, siehe [`Get`](#get) für den empfohlenen Ansatz.
 
-You can use `.wait()` to synchronously wait for the future to be completed. Since a future may fail, this call is throwing.
+Du kannst `.wait()` verwenden, um synchron auf den Abschluss des Future zu warten. Da ein Future fehlschlagen kann, ist dieser Aufruf werfend (throwing).
 
 ```swift
 /// Assume we get a future string back from some API
@@ -316,13 +337,17 @@ let futureString: EventLoopFuture<String> = ...
 
 /// Block until the string is ready
 let string = try futureString.wait()
-
 print(string) /// String
 ```
 
-## Vesprechen
+`wait()` kann nur auf einem Hintergrund-Thread oder dem Haupt-Thread verwendet werden, d. h. in `configure.swift`. Es kann _nicht_ auf einem Ereignisschleifen-Thread verwendet werden, d. h. in Route-Closures.
 
-Manchmal kann es vorkommen, dass du ein _Vesprechen_ erstellen musst. Zum Erstellen, benötigst du eine Ereignisschleife. Abhängig von der Platzierung kannst du über die Instanzen _Application_ oder _Request_ auf ein solche Schleife zugreifen.
+!!! warning
+    Der Versuch, `wait()` auf einem Ereignisschleifen-Thread aufzurufen, führt zu einem Assertion-Fehler.
+    
+## Versprechen
+
+Manchmal kann es vorkommen, dass du ein _Versprechen_ erstellen musst. Zum Erstellen, benötigst du eine Ereignisschleife. Abhängig von der Platzierung kannst du über die Instanzen _Application_ oder _Request_ auf ein solche Schleife zugreifen.
 
 Beispiel:
 
@@ -331,9 +356,7 @@ let eventLoop: EventLoop
 
 // Create a new promise for some string.
 let promiseString = eventLoop.makePromise(of: String.self)
-
 print(promiseString) // EventLoopPromise<String>
-
 print(promiseString.futureResult) // EventLoopFuture<String>
 
 // Completes the associated future.
@@ -344,26 +367,28 @@ promiseString.fail(...)
 ```
 
 !!! info
-    A promise can only be completed once. Any subsequent completions will be ignored.
+    Ein Versprechen kann nur einmal abgeschlossen werden. Alle nachfolgenden Abschlüsse werden ignoriert.
 
 Versprechen können mit dem Status _succeed_ oder _fail_ abschließen und ist der Grund, warum für die Erstellung, eine Ereignisschleife benötigt wird. Damit das Ergebnis nach Abschluss durch die Schleife ausgeführt werden kann.
 
 ## Event Loop
 
-Mit dem Starten deiner Anwendung wird für jeden Prozessorkern einen Ereignisschleife erstellt. Jede Ereignisschleife hat genau einen Thread. Die Ereignisschleifen in Vapor sind ähnlich zu den Ereignisschleifen in Node.js, außer das Vapor durch Swift`s Multi-Threading mehrere Schleifen gleichzeitig verarbeiten kann.
+Mit dem Starten deiner Anwendung wird für jeden Prozessorkern eine Ereignisschleife erstellt. Jede Ereignisschleife hat genau einen Thread. Die Ereignisschleifen in Vapor sind ähnlich zu den Ereignisschleifen in Node.js, außer das Vapor durch Swift`s Multi-Threading mehrere Schleifen gleichzeitig verarbeiten kann.
 
 Jede Verbindung zum Server wird einer Ereignisschleife zugewiesen. Ab dem Zeitpunkt läuft die Kommunikation zwischen Server und Client immer über die selbe Schleife.
 
-Die Ereignischleife ist für die Überwachung des Zustands verantwortlich. Sollte einen Anfrage vom Client darauf warten gelesen zu werden, macht sich die Schleife bemerkbar, wodurch anschließend die Daten gelesen werden. Once the entire request is read, any futures waiting for that request's data will be completed.  
+Die Ereignischleife ist für die Überwachung des Zustands verantwortlich. Sollte einen Anfrage vom Client darauf warten gelesen zu werden, macht sich die Schleife bemerkbar, wodurch anschließend die Daten gelesen werden. Sobald die gesamte Anfrage gelesen wurde, werden alle Futures abgeschlossen, die auf die Daten dieser Anfrage gewartet haben.
+
+In Route-Closures kannst du über `Request` auf die aktuelle Ereignisschleife zugreifen.
 
 ```swift
 req.eventLoop.makePromise(of: ...)
 ```
 
 !!! warning
-    Vapor expects that route closures will stay on `req.eventLoop`. If you hop threads, you must ensure access to `Request` and the final response future all happen on the request's event loop. 
+    Vapor erwartet, dass Route-Closures auf `req.eventLoop` bleiben. Falls du zwischen Threads wechselst, musst du sicherstellen, dass der Zugriff auf `Request` und das abschließende Response-Future alle auf der Ereignisschleife der Anfrage stattfinden.
 
-Outside of route closures, you can get one of the available event loops via `Application`. 
+Außerhalb von Route-Closures kannst du über `Application` eine der verfügbaren Ereignisschleifen bekommen.
 
 ```swift
 app.eventLoopGroup.next().makePromise(of: ...)
@@ -393,11 +418,9 @@ app.get("hello") { req in
 }
 ```
 
-Die Methode `sleep(_:)` blockiert den aktuellen Thread für zu angegebenen Sekunden. Durch die Verwendung auf einer Ereignisschleife, kann die Schleife nicht
+Die Methode `sleep(_:)` blockiert den aktuellen Thread für die angegebene Anzahl an Sekunden. Wenn du solche blockierende Arbeit direkt auf einer Ereignisschleife ausführst, kann die Ereignisschleife für die Dauer dieser Arbeit nicht auf andere ihr zugewiesene Clients reagieren. Mit anderen Worten: Wenn du `sleep(5)` auf einer Ereignisschleife aufrufst, werden alle anderen mit dieser Ereignisschleife verbundenen Clients (möglicherweise Hunderte oder Tausende) um mindestens 5 Sekunden verzögert.
 
-`sleep(_:)` is a command that blocks the current thread for the number of seconds supplied. If you do blocking work like this directly on an event loop, the event loop will be unable to respond to any other clients assigned to it for the duration of the blocking work. In other words, if you do `sleep(5)` on an event loop, all of the other clients connected to that event loop (possibly hundreds or thousands) will be delayed for at least 5 seconds. 
-
-Make sure to run any blocking work in the background. Use promises to notify the event loop when this work is done in a non-blocking way.
+Achte darauf, blockierende Arbeit im Hintergrund auszuführen. Verwende Versprechen, um die Ereignisschleife auf nicht-blockierende Weise zu benachrichtigen, sobald diese Arbeit abgeschlossen ist.
 
 ```swift
 app.get("hello") { req -> EventLoopFuture<String> in
@@ -414,18 +437,16 @@ app.get("hello") { req -> EventLoopFuture<String> in
 }
 ```
 
-Not all blocking calls will be as obvious as `sleep(_:)`. If you are suspicious that a call you are using may be blocking, research the method itself or ask someone. The sections below go over how methods can block in more detail.
+Nicht alle blockierenden Aufrufe sind so offensichtlich wie `sleep(_:)`. Wenn du vermutest, dass ein von dir verwendeter Aufruf blockierend sein könnte, informiere dich über die Methode oder frage jemanden. Die folgenden Abschnitte gehen genauer darauf ein, wie Methoden blockieren können.
 
 ### I/O Bound
 
-Blockieren von I/O Bound bedeutet warten auf einer
-
-I/O bound blocking means waiting on a slow resource like a network or hard disk which can be orders of magnitude slower than the CPU. Blocking the CPU while you wait for these resources results in wasted time. 
+I/O-bound Blocking bedeutet, dass auf eine langsame Ressource wie ein Netzwerk oder eine Festplatte gewartet wird, die um Größenordnungen langsamer sein kann als die CPU. Die CPU zu blockieren, während auf diese Ressourcen gewartet wird, führt zu verschwendeter Zeit.
 
 !!! danger
-    Never make blocking I/O bound calls directly on an event loop.
+    Führe niemals blockierende I/O-bound Aufrufe direkt auf einer Ereignisschleife aus.
 
-All of Vapor's packages are built on SwiftNIO and use non-blocking I/O. However, there are many Swift packages and C libraries in the wild that use blocking I/O. Chances are if a function is doing disk or network IO and uses a synchronous API (no callbacks or futures) it is blocking.
+Alle Pakete von Vapor bauen auf SwiftNIO auf und verwenden nicht-blockierendes I/O. Es gibt jedoch viele Swift-Pakete und C-Bibliotheken, die blockierendes I/O verwenden. Die Wahrscheinlichkeit ist hoch, dass eine Funktion blockierend ist, wenn sie Festplatten- oder Netzwerk-I/O durchführt und dabei eine synchrone API (ohne Callbacks oder Futures) verwendet.
     
 ### CPU Bound
 
@@ -440,6 +461,6 @@ Wenn eine Ereignisschleife eben ein solche leistungsintensive Arbeit verrichtet,
 Normalerweise ist das kein Problem, da heutzutage Prozessoren schnell sind und Webanwendungen weniger prozessorlastige Arbeiten verrichten.
 Aber es kann zu einem Problem werden, wenn eine Anfrage, andere Anfragen blockiert.
 
-Das Auffinden leistungsintensiver Anfragen und Verlagern auf einem Thread im Hintergrund kann die Zuverlässigkeit und Reaktionsfähigkeit deiner Anwendungen verbessern. CPU bound work is more of a gray area than I/O bound work, and it is ultimately up to you to determine where you want to draw the line. 
+Das Auffinden leistungsintensiver Anfragen und Verlagern auf einem Thread im Hintergrund kann die Zuverlässigkeit und Reaktionsfähigkeit deiner Anwendungen verbessern. CPU-bound Arbeit ist eher ein Graubereich im Vergleich zu I/O-bound Arbeit, und es liegt letztlich an dir zu entscheiden, wo du die Grenze ziehen möchtest.
 
-Ein gängiges Beispiel für eine leistungsintensive Anfrage is das Bcrypt-Hashing während einer Benutzeranmeldung. Bcrypt ist aus Sicherheitsgründen absichtlich sehr langsam und leistungsintensiv. Durch das Verlagern des Hashings auf einem Thread im Hintergrund kann der Prozessor, während der Berechnung, mit der Ereignisschleife weiter fortfahren.
+Ein gängiges Beispiel für eine leistungsintensive Anfrage ist das Bcrypt-Hashing während einer Benutzeranmeldung. Bcrypt ist aus Sicherheitsgründen absichtlich sehr langsam und leistungsintensiv. Das könnte die rechenintensivste Arbeit sein, die eine einfache Webanwendung tatsächlich ausführt. Durch das Verlagern des Hashings auf einen Hintergrund-Thread kann der Prozessor während der Berechnung mit der Arbeit der Ereignisschleife fortfahren, was zu einer höheren Nebenläufigkeit führt.

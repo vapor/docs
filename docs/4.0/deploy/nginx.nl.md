@@ -34,7 +34,7 @@ Tutorials:
 - [Hoe Nginx te installeren op Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04)
 - [Hoe Nginx te installeren op CentOS 8](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-8)
 - [Hoe Nginx te installeren op Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)
-- [Hoe Nginx te installeren op on Heroku](https://blog.codeship.com/how-to-deploy-nginx-on-heroku/)
+- [Hoe Nginx te deployen op Heroku](https://blog.codeship.com/how-to-deploy-nginx-on-heroku/)
 
 ### Pakketbeheerders
 
@@ -47,7 +47,7 @@ sudo apt-get update
 sudo apt-get install nginx
 ```
 
-#### CentOS and Amazon Linux
+#### CentOS en Amazon Linux
 
 ```sh
 sudo yum install nginx

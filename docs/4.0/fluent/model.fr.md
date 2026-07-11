@@ -508,7 +508,7 @@ Pour mettre à jour un tableau de modèles, utilisez `map` + `flatten`.
 [earth, mars].map { $0.update(on: database) }
     .flatten(on: database.eventLoop)
 
-// TODO
+// TOOD
 ```
 
 ## Query

@@ -24,9 +24,9 @@ Vapor 安装完成后，请查看 [开始 → 你好，世界](getting-started/h
 
 | 名称          | 描述                                      | 链接                                          |
 |----------------|--------------------------------------------------|-----------------------------------------------------------------|
-| Vapor Discord  | 与数千名 Vapor 开发人员交流。         | [访问 →](http://vapor.team)                               |
-| API docs       | 通过代码注释自动生成的文档。 | [访问 &rarr;](http://api.vapor.codes)                          |
-| Stack Overflow | 使用 `Vapor` 标签提问和回答相关问题。  | [访问 →](http://stackoverflow.com/questions/tagged/vapor) |
+| Vapor Discord  | 与数千名 Vapor 开发人员交流。         | [访问 →](https://vapor.team)                               |
+| API docs       | 通过代码注释自动生成的文档。 | [访问 &rarr;](https://api.vapor.codes)                          |
+| Stack Overflow | 使用 `vapor` 标签提问和回答相关问题。  | [访问 →](https://stackoverflow.com/questions/tagged/vapor) |
 | Swift Forums  |在 Swift.org 论坛的 Vapor 专题发布。   | [访问 →](https://forums.swift.org/c/related-projects/vapor)           |
 | Source Code    | 了解 Vapor 的工作原理。              | [访问 →](https://github.com/vapor/vapor)                  |
 | GitHub Issues  | 在 GitHub 上报告错误或提交功能。      | [访问 →](https://github.com/vapor/vapor/issues)           |

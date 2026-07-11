@@ -1,6 +1,6 @@
 ---
 title: Witaj w dokumentacji Vapor!
-description: Vapor jest frameworkiem do tworzenia aplikacji internetowych z wykorzystaniem języka Swift.
+description: Vapor jest frameworkiem do tworzenia aplikacji internetowych z wykorzystaniem języka Swift, pozwalającym pisać serwisy backendowe, API internetowe oraz serwery HTTP w Swifcie.
 ---
 
 <div class="kiln-center">
@@ -14,7 +14,8 @@ Witaj w dokumentacji Vapor! Vapor jest frameworkiem do tworzenia aplikacji inter
 
 ## Jak zacząć
 
-Jeśli to jest twój pierwszy raz z Vapor, kieruj się do [Instalacja → macOS](install/macos.md) aby,  zainstalować Swift i Vapor.
+Jeśli to jest twój pierwszy raz z Vapor, kieruj się do [Instalacja → macOS](install/macos.md) aby zainstalować Swift i Vapor.
+
 Kiedy już zainstalujesz Vapor, sprawdź [Jak zacząć → Witaj, świecie](getting-started/hello-world.md) aby stworzyć twoja pierwsza aplikacje z użyciem Vapor!
 
 ## Inne źródła
@@ -32,4 +33,4 @@ Tutaj znajdziesz inne świetne źródła informacji o Vapor.
 
 ## Autorzy
 
-The Vapor Core Team, oraz setki członków społeczności wokoło Vapor.
+Główny zespół Vapor, oraz setki członków społeczności wokoło Vapor.

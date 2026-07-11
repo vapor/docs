@@ -255,6 +255,16 @@ extension QueueName {
 }
 ```
 
+U kunt ook een `workerCount` per wachtrij instellen bij het aanmaken van een `QueueName`:
+
+```swift
+extension QueueName {
+    static let serialEmails = QueueName(string: "serial-emails", workerCount: 1)
+}
+```
+
+Door `workerCount: 1` in te stellen verwerkt die wachtrij taken na elkaar, wat nuttig is wanneer de volgorde van taken belangrijk is.
+
 Dan, specificeer het wachtrij type wanneer je het `jobs` object ophaalt:
 
 ```swift
@@ -366,7 +376,13 @@ De opdracht in het bovenstaande voorbeeld wordt elk jaar uitgevoerd op 23 mei om
     De Scheduler neemt de tijdzone van uw server.
 
 ### Beschikbare bouwmethodes
-Er zijn vijf hoofdmethoden die aangeroepen kunnen worden op een scheduler, die elk hun eigen builder object maken dat meer helper methoden bevat. U moet doorgaan met het bouwen van een scheduler-object totdat de compiler u geen waarschuwing geeft over een ongebruikt resultaat. Zie hieronder voor alle beschikbare methoden:
+
+Er zijn twee stijlen van scheduler-API's:
+
+- Kalenderstijl bouwers die builder objecten teruggeven om te kunnen chainen.
+- Intervalstijl bouwers die taken op elke vaste tijdsduur uitvoeren.
+
+U moet doorgaan met het bouwen van een kalenderstijl scheduler-keten totdat de compiler u geen waarschuwing geeft over een ongebruikt resultaat. Zie hieronder voor alle beschikbare methoden:
 
 | Helper Functie  | Beschikbare Modifiers                 | Beschrijving                                                                    |
 |-----------------|---------------------------------------|--------------------------------------------------------------------------------|
@@ -378,6 +394,25 @@ Er zijn vijf hoofdmethoden die aangeroepen kunnen worden op een scheduler, die e
 |                 | `at(_ hour: Hour12, _ minute: Minute, _ period: HourPeriod)` | Het uur, de minuten en de periode om de job uit te voeren. Eindmethode van de keten |
 | `hourly()`      | `at(_ minute: Minute)`                 | De minuut om de opdracht uit te voeren. De laatste methode van de ketting.                      |
 | `minutely()`    | `at(_ second: Second)`                 | De seconde om de opdracht uit te voeren. De laatste methode van de ketting.                      |
+
+### Interval bouwmethodes (`.every(...)`)
+
+De scheduler ondersteunt ook planning met vaste tussenpozen via `.every(...)` methodes:
+
+| Helper Functie | Beschrijving                                                                    |
+|-----------------|--------------------------------------------------------------------------------|
+| `every(seconds: Int)` | Voert de taak elk opgegeven aantal seconden uit.                              |
+| `every(minutes: Int)` | Voert de taak elk opgegeven aantal minuten uit.                              |
+| `every(hours: Int)`   | Voert de taak elk opgegeven aantal uren uit.                                |
+| `every(days: Int)`    | Voert de taak elk opgegeven aantal dagen uit.                                 |
+| `every(weeks: Int)`   | Voert de taak elk opgegeven aantal weken uit.                                |
+
+Voorbeeld:
+
+```swift
+app.queues.schedule(CleanupJob())
+    .every(hours: 6)
+```
 
 ### Beschikbare helpers 
 Wachtrijen worden geleverd met enkele helpers enums om het plannen te vergemakkelijken: 
@@ -444,3 +479,40 @@ Er zijn een aantal pakketten van derden die de delegate-functionaliteit gebruike
 
 - [QueuesDatabaseHooks](https://github.com/vapor-community/queues-database-hooks)
 - [QueuesDash](https://github.com/gotranseo/queues-dash)
+
+## Testen
+
+Om synchronisatieproblemen te vermijden en deterministisch testen te garanderen, biedt het Queues pakket een `XCTQueue` bibliotheek en een `AsyncTestQueuesDriver` stuurprogramma speciaal voor testen, die u als volgt kunt gebruiken:
+
+```swift
+final class UserCreationServiceTests: XCTestCase {
+    var app: Application!
+
+    override func setUp() async throws {
+        self.app = try await Application.make(.testing)
+        try await configure(app)
+
+        // Overschrijf het stuurprogramma dat wordt gebruikt voor testen
+        app.queues.use(.asyncTest)
+    }
+
+    override func tearDown() async throws {
+        try await self.app.asyncShutdown()
+        self.app = nil
+    }
+}
+```
+
+Zie meer details in [Romain Pouclet's blogpost](https://romain.codes/2024/10/08/using-and-testing-vapor-queues/).
+
+# Probleemoplossing
+
+Bij gebruik van [queues-redis-driver](https://github.com/vapor/queues-redis-driver) met een cluster-gebaseerde Redis-compatibele server, zoals Redis of Valkey op Amazon AWS, kunt u deze foutmelding tegenkomen: `CROSSSLOT Keys in request don't hash to the same slot`.
+
+Dit gebeurt alleen in cluster-modus, omdat Redis of Valkey niet met zekerheid kan weten op welk clusterknooppunt de taakgegevens moeten worden opgeslagen.
+
+Om dit op te lossen, voeg een [hash tag](https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/#hash-tags) toe aan de namen van uw taakgegeven-items door accolades te gebruiken in de namen:
+
+```swift
+app.queues.configuration.persistenceKey = "vapor-queues-{queues}"
+```

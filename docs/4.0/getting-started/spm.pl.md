@@ -39,35 +39,35 @@ let package = Package(
 
 Każda część manifestu jest wyjaśniona w poniższych sekcjach.
 
-### Tools Version
+### Wersja narzędzi
 
 Pierwszy wiersz manifestu pakietu wskazuje wymaganą wersję narzędzi Swift. Określa ona minimalną wersję języka Swift obsługiwaną przez pakiet. Interfejs API opisu pakietu może również zmieniać się między wersjami Swift, więc ten wiersz zapewnia, że Swift będzie wiedział, jak przeanalizować manifest.
 
-### Package Name
+### Nazwa pakietu
 
 Pierwszym argumentem do `Package` jest nazwa pakietu. Jeśli pakiet jest publiczny, jako nazwy należy użyć ostatniego segmentu adresu URL repozytorium Git.
 
-### Platforms
+### Platformy
 
 Tablica `platforms` określa, które platformy obsługuje ten pakiet. Określając `.macOS(.v12)` pakiet wymaga systemu macOS 12 lub nowszego. Gdy Xcode załaduje ten projekt, automatycznie ustawi minimalną wersję wdrożenia na macOS 12, aby można było korzystać ze wszystkich dostępnych interfejsów API.
 
-### Dependencies
+### Zależności
 
 Zależności (z ang. dependencies) to inne pakiety SPM, na których opiera się pakiet. Wszystkie aplikacje Vapor opierają się na pakiecie Vapor, ale można dodać dowolną liczbę innych zależności.
 
-W powyższym przykładzie widać, że pakiet [vapor/vapor](https://github.com/vapor/vapor) w wersji 4.76.0 lub nowszej jest zależny od tego pakietu. Po dodaniu zależności do pakietu, musisz następnie zasygnalizować, które [targets](#targets) zależą od
+W powyższym przykładzie widać, że pakiet [vapor/vapor](https://github.com/vapor/vapor) w wersji 4.76.0 lub nowszej jest zależny od tego pakietu. Po dodaniu zależności do pakietu, musisz następnie zasygnalizować, które [cele](#cele) zależą od
 nowo dostępnych modułów.
 
-### Targets
+### Cele
 
 Cele (z ang. targets) to wszystkie moduły, pliki wykonywalne i testy, które zawiera pakiet. Większość aplikacji Vapor będzie miała dwa obiekty docelowe, chociaż możesz dodać tyle, ile chcesz, aby uporządkować swój kod. Każdy cel deklaruje, od których modułów zależy. Musisz dodać nazwy modułów w tym miejscu, aby zaimportować je w swoim kodzie. Cel może zależeć od innych celów w projekcie lub dowolnych modułów udostępnionych przez pakiety dodane do
-tablicy [głównych zależności](#dependencies).
+tablicy [głównych zależności](#zależności).
 
-## Folder Structure
+## Struktura folderów
 
 Poniżej znajduje się typowa struktura folderów dla pakietu SPM.
 
-```fish
+```
 .
 ├── Sources
 │   └── App

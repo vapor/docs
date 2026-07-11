@@ -92,6 +92,7 @@ Ondersteunde veldbeperkingen staan hieronder vermeld.
 |`.required`|Staat `nil` waarden niet toe.|
 |`.references`|Vereist dat de waarde van dit veld overeenkomt met een waarde in het schema waarnaar wordt verwezen. Zie [foreign key](#foreign-key)|
 |`.identifier`|Duidt de primaire sleutel aan. Zie [identifier](#identifier)|
+|`.sql(SQLColumnConstraintAlgorithm)`|Definieert elke constraint die niet ondersteund wordt (bijv. `default`). Zie [SQL](#sql) en [SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/documentation/sqlkit/sqlcolumnconstraintalgorithm/).|
 
 ### Identifier
 
@@ -216,6 +217,21 @@ Hieronder staat een voorbeeld waarbij foreign key acties worden gebruikt.
 !!! warning "Waarschuwing"
     Vreemde sleutel acties gebeuren alleen in de database, buiten Fluent om. 
     Dit betekent dat zaken als model middleware en soft-delete mogelijk niet correct werken.
+
+## SQL
+
+De `.sql` parameter stelt je in staat om willekeurige SQL aan je schema toe te voegen. Dit is nuttig voor het toevoegen van specifieke constraints of datatypes.
+Een veelvoorkomend gebruiksscenario is het definiëren van een standaardwaarde voor een veld:
+
+```swift
+.field("active", .bool, .required, .sql(.default(true)))
+```
+
+of zelfs een standaardwaarde voor een tijdstempel:
+
+```swift
+.field("created_at", .datetime, .required, .sql(.default(SQLFunction("now"))))
+```
 
 ## Dictionary
 
@@ -365,19 +381,38 @@ Wij kunnen de nodige aanpassingen in het databaseschema aanbrengen met de volgen
 struct UserNameMigration: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("users")
+            .field("first_name", .string, .required)
+            .field("last_name", .string, .required)
+            .update()
+
+        // Het is momenteel niet mogelijk om deze update uit te drukken zonder aangepaste SQL te gebruiken.
+        // Dit probeert ook niet om de naam op te splitsen in voor- en achternaam,
+        // aangezien dat database-specifieke syntax vereist.
+        try await User.query(on: database)
+            .set(["first_name": .sql(embed: "name")])
+            .run()
+
+        try await database.schema("users")
             .deleteField("name")
-            .field("first_name", .string)
-            .field("last_name", .string)
             .update()
     }
 
     func revert(on database: Database) async throws {
-        try await database.schema("users").delete()
+        try await database.schema("users")
+            .field("name", .string, .required)
+            .update()
+        try await User.query(on: database)
+            .set(["name": .sql(embed: "concat(first_name, ' ', last_name)")])
+            .run()
+        try await database.schema("users")
+            .deleteField("first_name")
+            .deleteField("last_name")
+            .update()
     }
 }
 ```
 
-Merk op dat om deze migratie te laten werken, we tegelijkertijd moeten kunnen verwijzen naar zowel het verwijderde `naam` veld als de nieuwe `voornaam` en `achternaam` velden. Verder moet de originele `UserMigration` geldig blijven. Dit zou niet mogelijk zijn met sleutelpaden.
+Merk op dat om deze migratie te laten werken, we tegelijkertijd moeten kunnen verwijzen naar zowel het verwijderde `name` veld als de nieuwe `firstName` en `lastName` velden. Verder moet de originele `UserMigration` geldig blijven. Dit zou niet mogelijk zijn met sleutelpaden.
 
 ## Instellen Model Space
 

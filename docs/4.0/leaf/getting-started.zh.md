@@ -7,7 +7,7 @@ Leaf 是一种强大的模板语言，其语法受 Swift 启发。你可以使�
 使用 Leaf 的第一步是将其作为依赖项添加到你项目的 SPM 清单文件中。
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
@@ -17,7 +17,7 @@ let package = Package(
     ],
     dependencies: [
         /// Any other dependencies ...
-        .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0"),
+        .package(url: "https://github.com/vapor/leaf.git", from: "4.4.0"),
     ],
     targets: [
         .target(name: "App", dependencies: [
@@ -41,11 +41,21 @@ app.views.use(.leaf)
 
 当你调用 `req.view` 时，就是在告诉 Vapor 需要使用 `LeafRenderer` 渲染页面。
 
-!!! note "注意"  
-    Leaf 有一个用于渲染页面的内部缓存。当 `Application` 的运行环境设置为 `.development` 时，此缓存被禁用，因此对模板的更改会立即生效。在 `.production` 环境和所有的其它环境中，默认启用缓存；应用重启之前，对模板所做的任何更改都不会生效。
-
-!!! warning "警告" 
+!!! warning 
     从 Xcode 运行项目时为了 Leaf 能够找到模板，你必须为你的 Xcode 工作区设置[自定义工作目录](../getting-started/xcode.md#自定义工作目录working-directory)。
+
+### 渲染页面的缓存
+
+Leaf 有一个用于渲染页面的内部缓存。当 `Application` 的运行环境设置为 `.development` 时，此缓存被禁用，因此对模板的更改会立即生效。在 `.production` 环境和所有的其它环境中，默认启用缓存；应用重启之前，对模板所做的任何更改都不会生效。
+
+要禁用 Leaf 的缓存，请执行以下操作：
+
+```swift
+app.leaf.cache.isEnabled = false
+```
+
+!!! warning
+    虽然禁用缓存有助于调试，但不建议在生产环境中这样做，因为每次请求都需要重新编译模板，这会显著影响性能。
 
 ## 目录结构
 

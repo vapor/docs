@@ -57,7 +57,7 @@ Het vereisen van authenticatie wordt niet gedaan door de authenticator middlewar
 
 ## Basic
 
-Basis authenticatie stuurt een gebruikersnaam en wachtwoord in de `Authorization` header. De gebruikersnaam en het wachtwoord worden samengevoegd met een dubbele punt (bijv. `test:secret`), base-64 gecodeerd, en voorafgegaan door `"Basic"`. Het volgende voorbeeld request codeert de gebruikersnaam `test` met wachtwoord `secret`.
+Basis authenticatie stuurt een gebruikersnaam en wachtwoord in de `Authorization` header. De gebruikersnaam en het wachtwoord worden samengevoegd met een dubbele punt (bijv. `test:secret`), base-64 gecodeerd, en voorafgegaan door `"Basic "`. Het volgende voorbeeld request codeert de gebruikersnaam `test` met wachtwoord `secret`.
 
 ```http
 GET /me HTTP/1.1
@@ -119,7 +119,7 @@ Als je deze authenticator aan je app toevoegt, en de route die hierboven is gede
 
 ## Bearer
 
-Bearer authenticatie stuurt een token in de `Authorization` header. Het token wordt voorafgegaan door `"Bearer"`. Het volgende voorbeeld request stuurt het token `foo`.
+Bearer authenticatie stuurt een token in de `Authorization` header. Het token wordt voorafgegaan door `"Bearer "`. Het volgende voorbeeld request stuurt het token `foo`.
 
 ```http
 GET /me HTTP/1.1
@@ -329,6 +329,9 @@ Vergeet niet om de migratie toe te voegen aan `app.migrations`.
 app.migrations.add(User.Migration())
 ``` 
 
+!!! tip
+     Omdat e-mailadressen niet hoofdlettergevoelig zijn, wil je misschien een [`Middleware`](../fluent/model.md#lifecycle) toevoegen die het e-mailadres omzet naar kleine letters voordat het in de database wordt opgeslagen. Houd er echter rekening mee dat `ModelAuthenticatable` een hoofdlettergevoelige vergelijking gebruikt, dus als je dit doet, wil je ervoor zorgen dat de invoer van de gebruiker volledig in kleine letters is, hetzij door case coercion in de client, hetzij met een aangepaste authenticator.
+
 Het eerste wat je nodig hebt is een endpoint om nieuwe gebruikers aan te maken. Laten we `POST /users` gebruiken. Maak een [Content](../basics/content.md) struct aan die de gegevens weergeeft die dit endpoint verwacht.
 
 ```swift
@@ -412,7 +415,7 @@ extension User: ModelAuthenticatable {
 }
 ```
 
-Deze uitbreiding voegt `ModelAuthenticatable` conformiteit toe aan `User`. De eerste twee eigenschappen specificeren welke velden gebruikt moeten worden om respectievelijk de gebruikersnaam en de wachtwoord hash op te slaan. De `Notatie` creëert een sleutelpad naar de velden die Fluent kan gebruiken om ze te benaderen.
+Deze uitbreiding voegt `ModelAuthenticatable` conformiteit toe aan `User`. De eerste twee eigenschappen specificeren welke velden gebruikt moeten worden om respectievelijk de gebruikersnaam en de wachtwoord hash op te slaan. De `\`-notatie creëert een sleutelpad naar de velden die Fluent kan gebruiken om ze te benaderen.
 
 De laatste vereiste is een methode om plaintext wachtwoorden te verifiëren die in de Basic authenticatie header worden meegezonden. Aangezien we Bcrypt gebruiken om het wachtwoord te hashen tijdens het aanmelden, zullen we Bcrypt gebruiken om te verifiëren of het geleverde wachtwoord overeenkomt met de opgeslagen wachtwoord hash.
 
@@ -730,7 +733,7 @@ Websites vormen een speciaal geval voor authenticatie omdat het gebruik van een 
 * de eerste aanmelding via een formulier
 * volgende oproepen geauthentiseerd met een sessie cookie
 
-Vapor and Fluent biedt verschillende hulpmiddelen om dit vlekkeloos te laten verlopen.
+Vapor en Fluent bieden verschillende hulpmiddelen om dit vlekkeloos te laten verlopen.
 
 ### Sessie Authenticatie
 
@@ -748,7 +751,7 @@ Deze middlewares doen het volgende:
 * de sessies middleware neemt de sessie cookie uit het verzoek en converteert het in een sessie
 * de sessie-authenticator neemt de sessie en kijkt of er een geauthenticeerde gebruiker voor die sessie is. Zo ja, dan authenticeert de middleware het verzoek. In het antwoord kijkt de sessie-authenticator of het verzoek een geauthenticeerde gebruiker heeft en slaat die op in de sessie, zodat hij bij het volgende verzoek geauthenticeerd is.
 
-!!! opmerking
+!!! note
     De sessie cookie is niet standaard ingesteld op `secure` en `httpOnly`. Raadpleeg Vapor's [Session API](../advanced/sessions.md#configuratie) voor meer informatie over het configureren van cookies.
 
 ### Routes Beschermen
@@ -838,7 +841,7 @@ struct SessionToken: Content, Authenticatable, JWTPayload {
         self.expiration = ExpirationClaim(value: Date().addingTimeInterval(expirationTime))
     }
 
-    func verify(using signer: JWTSigner) throws {
+    func verify(using algorithm: some JWTAlgorithm) throws {
         try expiration.verifyNotExpired()
     }
 }
@@ -856,20 +859,20 @@ Met behulp van ons model voor de JWT token en respons, kunnen we een wachtwoord 
 
 ```swift
 let passwordProtected = app.grouped(User.authenticator(), User.guardMiddleware())
-passwordProtected.post("login") { req -> ClientTokenResponse in
+passwordProtected.post("login") { req async throws -> ClientTokenResponse in
     let user = try req.auth.require(User.self)
     let payload = try SessionToken(with: user)
-    return ClientTokenResponse(token: try req.jwt.sign(payload))
+    return ClientTokenResponse(token: try await req.jwt.sign(payload))
 }
 ```
 
 Als alternatief, als u geen authenticator wilt gebruiken, kunt u iets hebben dat er als volgt uitziet.
 ```swift
-app.post("login") { req -> ClientTokenResponse in
+app.post("login") { req async throws -> ClientTokenResponse in
     // Valideer verstrekte inloggegevens voor gebruiker
     // Verkrijg gebruikersId voor opgegeven gebruiker
     let payload = try SessionToken(userId: userId)
-    return ClientTokenResponse(token: try req.jwt.sign(payload))
+    return ClientTokenResponse(token: try await req.jwt.sign(payload))
 }
 ```
 

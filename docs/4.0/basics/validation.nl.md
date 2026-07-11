@@ -1,6 +1,6 @@
 # Validatie 
 
-Vapor's Validatie API helpt u inkomende verzoeken te valideren voordat u de [Content](content.md) API gebruikt om gegevens te decoderen. 
+Vapor's Validatie API helpt u de body en query parameters van een inkomend verzoek te valideren voordat u de [Content](content.md) API gebruikt om gegevens te decoderen. 
 
 ## Introductie 
 
@@ -8,7 +8,7 @@ Vapor's diepe integratie van Swift's type-veilige `Codable` protocol betekent da
 
 ### Menselijk leesbare fouten
 
-Het decoderen van structs met behulp van de Content API zal fouten opleveren als een van de gegevens niet geldig is. Echter, deze foutmeldingen kunnen soms onleesbaar zijn voor mensen. Neem bijvoorbeeld de volgende string-backed enum:
+Het decoderen van structs met behulp van de [Content](content.md) API zal fouten opleveren als een van de gegevens niet geldig is. Echter, deze foutmeldingen kunnen soms onleesbaar zijn voor mensen. Neem bijvoorbeeld de volgende string-backed enum:
 
 ```swift
 enum Color: String, Codable {
@@ -214,17 +214,125 @@ Hieronder staat een lijst van de momenteel ondersteunde validaties en een korte 
 |`.characterSet(_:)`|Bevat enkel karakters uit de opgegeven `CharacterSet`.|
 |`.count(_:)`|De telling van de collectie is binnen de opgegeven grenzen.|
 |`.email`|Bevat een geldig email.|
-| .internationalEmail |Bevat een geldig email met unicode karakters.|
 |`.empty`|De verzameling is leeg.|
 |`.in(_:)`|Waarde zit in de opgegeven `Collection`.|
 |`.nil`|Waarde is `null`.|
 |`.range(_:)`|Waarde is binnen de opgegeven `Range`.|
 |`.url`|Bevat een geldige URL.|
+|`.custom(_:, validationClosure: (value) -> Bool)`|Aangepaste, eenmalige validatie.|
 
-Validators kunnen ook gecombineerd worden om complexe validaties te bouwen met behulp van operatoren.
+Validators kunnen ook gecombineerd worden om complexe validaties te bouwen met behulp van operatoren. Meer informatie over de `.custom` validator vindt u bij [Aangepaste Validators](#aangepaste-validators).
 
 |Operator|Positie|Beschrijving|
 |-|-|-|
 |`!`|voorvoegsel|Voert een validator in, die het tegenovergestelde vereist.|
 |`&&`|tussenvoegsel|Combineert twee validators, vereist beide.|
-|`||`|tussenvoegsel|Combineert twee validators, vereist één.|
+|`\|\|`|tussenvoegsel|Combineert twee validators, vereist één.|
+
+
+
+## Aangepaste Validators
+
+Er zijn twee manieren om aangepaste validators te maken.
+
+### Uitbreiden van de Validatie API
+
+Het uitbreiden van de Validatie API is het meest geschikt voor gevallen waarin u van plan bent de aangepaste validator in meer dan één `Content` object te gebruiken. In dit deel doorlopen we de stappen om een aangepaste validator te maken voor het valideren van postcodes.
+
+Maak eerst een nieuw type aan om de validatieresultaten van `ZipCode` weer te geven. Deze struct is verantwoordelijk voor het rapporteren of een gegeven string een geldige postcode is.
+
+```swift
+extension ValidatorResults {
+    /// Represents the result of a validator that checks if a string is a valid zip code.
+    public struct ZipCode {
+        /// Indicates whether the input is a valid zip code.
+        public let isValidZipCode: Bool
+    }
+}
+```
+
+Vervolgens conformeert u het nieuwe type aan `ValidatorResult`, dat het gedrag definieert dat van een aangepaste validator wordt verwacht.
+
+```swift
+extension ValidatorResults.ZipCode: ValidatorResult {
+    public var isFailure: Bool {
+        !self.isValidZipCode
+    }
+    
+    public var successDescription: String? {
+        "is a valid zip code"
+    }
+    
+    public var failureDescription: String? {
+        "is not a valid zip code"
+    }
+}
+```
+
+Tot slot implementeert u de validatielogica voor postcodes. Gebruik een reguliere expressie om te controleren of de invoerstring overeenkomt met het formaat van een Amerikaanse postcode.
+
+```swift
+private let zipCodeRegex: String = "^\\d{5}(?:[-\\s]\\d{4})?$"
+
+extension Validator where T == String {
+    /// Validates whether a `String` is a valid zip code.
+    public static var zipCode: Validator<T> {
+        .init { input in
+            guard let range = input.range(of: zipCodeRegex, options: [.regularExpression]),
+                  range.lowerBound == input.startIndex && range.upperBound == input.endIndex
+            else {
+                return ValidatorResults.ZipCode(isValidZipCode: false)
+            }
+            return ValidatorResults.ZipCode(isValidZipCode: true)
+        }
+    }
+}
+```
+
+Nu u de aangepaste `zipCode` validator hebt gedefinieerd, kunt u deze gebruiken om postcodes in uw applicatie te valideren. Voeg simpelweg de volgende regel toe aan uw validatiecode:
+
+```swift
+validations.add("zipCode", as: String.self, is: .zipCode)
+```
+
+### `Custom` Validator
+
+De `Custom` validator is het meest geschikt voor gevallen waarin u een eigenschap wilt valideren in slechts één `Content` object. Deze implementatie heeft de volgende twee voordelen in vergelijking met het uitbreiden van de Validatie API:
+
+- Eenvoudiger om aangepaste validatielogica te implementeren.
+- Kortere syntax.
+
+In dit deel doorlopen we de stappen om een aangepaste validator te maken die controleert of een medewerker deel uitmaakt van ons bedrijf door te kijken naar de `nameAndSurname` eigenschap.
+
+```swift
+let allCompanyEmployees: [String] = [
+  "Everett Erickson",
+  "Sabrina Manning",
+  "Seth Gates",
+  "Melina Hobbs",
+  "Brendan Wade",
+  "Evie Richardson",
+]
+
+struct Employee: Content {
+  var nameAndSurname: String
+  var email: String
+  var age: Int
+  var role: String
+
+  static func validations(_ validations: inout Validations) {
+    validations.add(
+      "nameAndSurname",
+      as: String.self,
+      is: .custom("Validates whether employee is part of XYZ company by looking at name and surname.") { nameAndSurname in
+          for employee in allCompanyEmployees {
+            if employee == nameAndSurname {
+              return true
+            }
+          }
+          return false
+        }
+    )
+  }
+}
+```

@@ -34,8 +34,8 @@ Cada aplicación de Vapor en tu servidor debería tener su propio fichero de con
 command=/home/vapor/hello/.build/release/App serve --env production
 directory=/home/vapor/hello/
 user=vapor
-stdout_logfile=/var/log/supervisor/%(program_name)-stdout.log
-stderr_logfile=/var/log/supervisor/%(program_name)-stderr.log
+stdout_logfile=/var/log/supervisor/%(program_name)s-stdout.log
+stderr_logfile=/var/log/supervisor/%(program_name)s-stderr.log
 ```
 
 Tal y como hemos especificado en nuestro fichero de configuración, el proyecto `Hello` se encuentra en la carpeta "home" del usuario `vapor`. Asegúrate de que `directory` apunta al directorio raíz de tu proyecto, donde está el fichero `Package.swift`.

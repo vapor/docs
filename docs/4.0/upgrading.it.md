@@ -310,7 +310,7 @@ print(app.myNumber) // 42
 
 ## NIO
 
-Vapor 4 utilizza le API asincrone di SwiftNIO direttamente senza fare l'overload di metodi come `map` e `flatMap` o tipi alias come `EventLoopFuture`. Vapor 3 forniva overload ed alias per retrocompatiblità con versioni di Vapor che non usavano SwiftNIO.
+Vapor 4 utilizza le API asincrone di SwiftNIO direttamente senza fare l'overload di metodi come `map` e `flatMap` o tipi alias come `EventLoopFuture`. Vapor 3 forniva overload ed alias per retrocompatiblità con versioni di Vapor che non usavano SwiftNIO. Questi sono stati rimossi per ridurre la confusione con altri pacchetti compatibili con SwiftNIO e per seguire meglio le best practice consigliate da SwiftNIO.
 
 ### Cambi di nome 
 
@@ -419,7 +419,7 @@ Ora le route sono registrate direttamente su Application.
 
 ```swift
 app.get("hello") { req in
-    return "Hello, world!"
+    return "Hello, world"
 }
 ```
 
@@ -527,7 +527,7 @@ var age: Int?
 L'ID di un modello dev'essere definito utilizzando `@ID`.
 
 ```diff
-+ @ID(key: "id")
++ @ID(key: .id)
 var id: UUID?
 ```
 
@@ -537,7 +537,16 @@ Tutti i modelli devono avere il nome della loro tabella definito staticamente.
 
 ```diff
 final class Planet: Model {
-+     static let schema = "Planet"
++   static let schema = "Planet"    
+}
+```
+
+Tutti i modelli devono ora avere un initializer vuoto. Dal momento che tutte le proprietà usano property wrapper, questo può essere vuoto.
+
+```diff
+final class Planet: Model {
++   init() { }
+}
 ```
 
 I metodi `save`, `update` e `create` non ritornano più l'istanza del modello.
@@ -662,6 +671,8 @@ La definizione dei campi è tipata tramite stringhe e usa il seguente pattern:
 ```swift
 field(<name>, <type>, <constraints>)
 ```
+
+Guarda l'esempio qui sotto.
 
 ```diff
 - builder.field(for: \.name)

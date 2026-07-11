@@ -57,7 +57,7 @@ let protected = app.grouped(UserAuthenticator())
 
 ## Basic
 
-Basic 身份认证在 `Authorization` 头中发送用户名和密码。用户名和密码使用冒号连接（例如 `test：ici`），采用 base-64 编码，并以 `"Basic "` 为前缀。下面的请求示例对用户名 `test`，密码为 `secur` 进行编码。
+Basic 身份认证在 `Authorization` 头中发送用户名和密码。用户名和密码使用冒号连接（例如 `test:secret`），采用 base-64 编码，并以 `"Basic "` 为前缀。下面的请求示例对用户名 `test`，密码为 `secret` 进行编码。
 
 ```http
 GET /me HTTP/1.1
@@ -435,7 +435,7 @@ POST /login HTTP/1.1
 Authorization: Basic dGVzdEB2YXBvci5jb2RlczpzZWNyZXQ0Mg==
 ```
 
-该请求通过 Basic 认证头传递用户名 `test@volor.codes` 和密码 `ici42`。你应该会看到返回了之前创建的用户。
+该请求通过 Basic 认证头传递用户名 `test@vapor.codes` 和密码 `secret42`。你应该会看到返回了之前创建的用户。
 
 虽然理论上可以使用基本身份验证来保护所有端点，但建议使用单独的令牌。这可以最大限度地减少你必须通过 Internet 发送用户敏感密码的频率。它还使身份验证速度更快，因为在登录期间只需要执行密码散列。
 
@@ -711,7 +711,7 @@ final class User: Model { ... }
 extension User: ModelSessionAuthenticatable { }
 ```
 
-你可以将 `ModelSessionAuthatable` 作为空一致性添加到任何已有的模型中。添加后，将有一个新的静态方法可用于为该模型创建 `SessionAuthenticator`。
+你可以将 `ModelSessionAuthenticatable` 作为空一致性添加到任何已有的模型中。添加后，将有一个新的静态方法可用于为该模型创建 `SessionAuthenticator`。
 
 ```swift
 User.sessionAuthenticator()
@@ -749,7 +749,7 @@ app.middleware.use(User.sessionAuthenticator())
 * 会话身份认证器获取会话，并查看该会话是否有经过身份验证的用户。如果是，中间件对请求进行身份验证。在响应中，会话身份认证器查看请求是否具有经过身份验证的用户，并将其保存在会话中，以便在下一个请求中对其进行身份验证。
 
 !!! note "注意"
-    默认情况下会话 cookie 不会设置为 `secure` 和 `httpOnly`。查看 [Session API](../advanced/sessions.zh.md#配置configuration) 获取更多关于配置 cookie 的信息。
+    默认情况下会话 cookie 不会设置为 `secure` 和 `httpOnly`。查看 [Session API](../advanced/sessions.zh.md#配置) 获取更多关于配置 cookie 的信息。
 
 
 ### 保护路由
@@ -839,7 +839,7 @@ struct SessionToken: Content, Authenticatable, JWTPayload {
         self.expiration = ExpirationClaim(value: Date().addingTimeInterval(expirationTime))
     }
 
-    func verify(using signer: JWTSigner) throws {
+    func verify(using algorithm: some JWTAlgorithm) throws {
         try expiration.verifyNotExpired()
     }
 }
@@ -857,25 +857,25 @@ struct ClientTokenResponse: Content {
 
 ```swift
 let passwordProtected = app.grouped(User.authenticator(), User.guardMiddleware())
-passwordProtected.post("login") { req -> ClientTokenResponse in
+passwordProtected.post("login") { req async throws -> ClientTokenResponse in
     let user = try req.auth.require(User.self)
     let payload = try SessionToken(with: user)
-    return ClientTokenResponse(token: try req.jwt.sign(payload))
+    return ClientTokenResponse(token: try await req.jwt.sign(payload))
 }
 ```
 
 或者，如果你不想使用身份认证器，则可以使用如下所示的内容。
 
 ```swift
-app.post("login") { req -> ClientTokenResponse in
+app.post("login") { req async throws -> ClientTokenResponse in
     // 验证为用户提供的凭据
     // 获取提供的用户的 userId
     let payload = try SessionToken(userId: userId)
-    return ClientTokenResponse(token: try req.jwt.sign(payload))
+    return ClientTokenResponse(token: try await req.jwt.sign(payload))
 }
 ```
 
-通过使 payload 遵循 `Authenticatable` 协议和 `JWTPayload` 协议，你可以使用 `authator()` 方法生成一个路由认证器。将其添加到路由组，以便在调用你的路由之前自动获取和验证 JWT。
+通过使 payload 遵循 `Authenticatable` 协议和 `JWTPayload` 协议，你可以使用 `authenticator()` 方法生成一个路由认证器。将其添加到路由组，以便在调用你的路由之前自动获取和验证 JWT。
 
 ```swift
 // 创建需要 SessionToken JWT 的路由组。

@@ -188,7 +188,7 @@ MongoDB 是一种流行的无模式 NoSQL 数据库，专为程序员设计。�
 
 添加依赖项后，在 `configure.swift` 中使用 `app.databases.use` 配置数据库的凭证。
 
-要进行连接，请传递标准 MongoDB [连接 URI 格式](https://docs.mongodb.com/zh-cn/docs/manual/reference/connection-string/)的连接字符串。
+要进行连接，请传递标准 MongoDB [连接 URI 格式](https://docs.mongodb.com/docs/manual/reference/connection-string/)的连接字符串。
 
 
 ```swift
@@ -305,7 +305,7 @@ struct CreateGalaxy: AsyncMigration {
 
 ### Schema
 
-在此方法中，`database.schema(_:)` 用来创建一个新的 `schembuilder`。然后，在调用 `create()` 创建模式之前，将一个或多个 `字段` 添加到构建器中。
+在此方法中，`database.schema(_:)` 用来创建一个新的 `SchemaBuilder`。然后，在调用 `create()` 创建模式之前，将一个或多个 `field` 添加到构建器中。
 
 添加到构建器的每个字段都有一个名称、类型和可选约束。
 

@@ -61,11 +61,9 @@ struct TodosController: RouteCollection {
 }
 ```
 
-En se conformant au protocole RouteCollection, le contrôleur doit implémenter la méthode boot(routes:) pour enregistrer les routes qu'il expose.
+Les méthodes d'un contrôleur doivent toujours accepter une `Request` et retourner quelque chose qui se conforme à `ResponseEncodable`. Cette méthode peut être asynchrone ou synchrone.
 
-Toutes ses autres méthodes prennent ensuite un objet `Request` et retourne quelque-chose qui se conforme à `ResponseEncodable`. Ces méthodes peuvent être synchrones comme asynchrones.
-
-Vous devez enfin enregistrer votre contrôleur dans le fichier `routes.swift`:
+Vous devez enfin enregistrer le contrôleur dans `routes.swift` :
 
 ```swift
 try app.register(collection: TodosController())

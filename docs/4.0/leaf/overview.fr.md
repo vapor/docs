@@ -207,7 +207,7 @@ Nous utilisons ici `#import` pour récupérer le contenu passé à la balise `#e
 La balise `#count` retourne le nombre d'éléments d'un tableau. Par exemple :
 
 ```leaf
-Votre recherche à trouvé #count(results) résultats.
+Votre recherche a trouvé #count(matches) résultats.
 ```
 
 #### `#lowercased`
@@ -272,18 +272,18 @@ Date du jour : #date(now, "yyyy-MM-dd", "America/New_York")
 
 #### `#unsafeHTML`
 
-La balise `#unsafeHTML` fonctionne comme une balide de variable - `#(variable)`. Sa différence réside dans le fait qu'elle n'échappera aucun code HTML que `variable` pourrait contenir :
+La balise `#unsafeHTML` fonctionne comme une balise de variable - `#(variable)`. Sa différence réside dans le fait qu'elle n'échappera aucun code HTML que `variable` pourrait contenir :
 
 ```leaf
 Date du jour : #unsafeHTML(styledTitle)
 ```
 
-!!! Note
+!!! note
     Vous devriez rester prudent en utilisant cette balise et vous assurer que la variable que vous lui passez n'expose pas vos utilisateurs à des attaques XSS.
 
 #### `#comment`
 
-La balise `#comment` vous permet d'ajouter des commentaires à vos templates, qui ne feront pas parti du résultat généré. Cette balise accepte une chaîne en paramètre, qui sere complètement ignorée lors du rendu.
+La balise `#comment` vous permet d'ajouter des commentaires à vos templates, qui ne feront pas partie du résultat généré. Cette balise accepte une chaîne en paramètre, qui sera complètement ignorée lors du rendu.
 
 ```leaf
 #comment("Voici un commentaire sur une seule ligne.")

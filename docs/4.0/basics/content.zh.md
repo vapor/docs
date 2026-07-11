@@ -134,10 +134,9 @@ let name: String? = req.query["name"]
 
 ## 钩子
 
-Vapor 会自动调用 `Content` 类型的 `beforeDecode` 和 `afterDecode`。提供了默认的实现，但你可以使用这些方法来自定义逻辑实现：
+Vapor 会自动调用 `Content` 类型的 `beforeEncode` 和 `afterDecode`。提供了默认的实现，但你可以使用这些方法来自定义逻辑实现：
 
 ```swift
-// 在此内容被解码后运行。
 // 此内容解码后运行。只有 Struct 才需要 'mutating'，而 Class 则不需要。
 mutating func afterDecode() throws {
     // 名称可能没有传入，但如果传入了，那就不能是空字符串。

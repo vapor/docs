@@ -24,41 +24,45 @@ struct TodosController: RouteCollection {
         }
     }
 
-    func index(req: Request) async throws -> String {
-        // ...
+    func index(req: Request) async throws -> [Todo] {
+        try await Todo.query(on: req.db).all()
     }
 
-    func create(req: Request) throws -> EventLoopFuture<String> {
-        // ...
+    func create(req: Request) async throws -> Todo {
+        let todo = try req.content.decode(Todo.self)
+        try await todo.save(on: req.db)
+        return todo
     }
 
-    func show(req: Request) throws -> String {
-        guard let id = req.parameters.get("id") else {
-            throw Abort(.internalServerError)
+    func show(req: Request) async throws -> Todo {
+        guard let todo = try await Todo.find(req.parameters.get("id"), on: req.db) else {
+            throw Abort(.notFound)
         }
-        // ...
+        return todo
     }
 
-    func update(req: Request) throws -> String {
-        guard let id = req.parameters.get("id") else {
-            throw Abort(.internalServerError)
+    func update(req: Request) async throws -> Todo {
+        guard let todo = try await Todo.find(req.parameters.get("id"), on: req.db) else {
+            throw Abort(.notFound)
         }
-        // ...
+        let updatedTodo = try req.content.decode(Todo.self)
+        todo.title = updatedTodo.title
+        try await todo.save(on: req.db)
+        return todo
     }
 
-    func delete(req: Request) throws -> String {
-        guard let id = req.parameters.get("id") else {
-            throw Abort(.internalServerError)
+    func delete(req: Request) async throws -> HTTPStatus {
+        guard let todo = try await Todo.find(req.parameters.get("id"), on: req.db) else {
+            throw Abort(.notFound)
         }
-        // ...
+        try await todo.delete(on: req.db)
+        return .ok
     }
 }
 ```
 
-Controller methodes moeten altijd een `Request` accepteren en iets `ResponseEncodable` teruggeven. Deze methode kan asynchroon of synchroon zijn (of een `EventLoopFuture` teruggeven).
+Controller methodes moeten altijd een `Request` accepteren en iets `ResponseEncodable` teruggeven. Deze methode kan asynchroon of synchroon zijn.
 
-!!! opmerking
-    [EventLoopFuture](async.md) waarvan de verwachting `ResponseEncodable` is (d.w.z. `EventLoopFuture<String>`) is ook `ResponseEncodable`.
 
 Tenslotte moet je de controller registreren in `routes.swift`:
 

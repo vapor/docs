@@ -433,4 +433,4 @@ req.redirect(to: "/some/new/path", redirectType: .permanent)
 * `.normal` - **303 see other** リダイレクトを返します。これは Vapor のデフォルトで、クライアントにリダイレクトを **GET** リクエストでフォローするように指示します。
 * `.temporary` - **307 Temporary** リダイレクトを返します。これにより、クライアントはリクエストで使用された HTTP メソッドを保持するよう指示されます。
 
-> 適切なリダイレクションステータスコードを選択するには、[the full list](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_redirection) をチェックして下さい。
+> 適切なリダイレクションステータスコードを選択するには、[全リスト](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_redirection) をチェックして下さい。

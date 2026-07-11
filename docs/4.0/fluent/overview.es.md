@@ -43,7 +43,7 @@ Fluent actualmente tiene cuatro controladores oficialmente compatibles. Si se de
 
 #### PostgreSQL
 
-PostgreSQL es una base de datos de código abierto que cumple con los estándares SQL. Es fácilmente configurable en la mayoría de los proveedores de alojamiento en la nube. Este es el controlador de base de datos  **recommendado** para Fluent.
+PostgreSQL es una base de datos de código abierto que cumple con los estándares SQL. Es fácilmente configurable en la mayoría de los proveedores de alojamiento en la nube. Este es el controlador de base de datos **recomendado** para Fluent.
 
 Para usar PostgreSQL, agregar las siguientes dependencias al paquete.
 
@@ -75,7 +75,7 @@ app.databases.use(
 )
 ```
 
-También se pueden expecificar las credenciales mediante una cadena de texto que defina la conexión a la base de datos.
+También se pueden especificar las credenciales mediante una cadena de texto que defina la conexión a la base de datos.
 
 ```swift
 try app.databases.use(.postgres(url: "<connection string>"), as: .psql)
@@ -145,7 +145,7 @@ import FluentMySQLDriver
 app.databases.use(.mysql(hostname: "localhost", username: "vapor", password: "vapor", database: "vapor"), as: .mysql)
 ```
 
-También se pueden expecificar las credenciales mediante una cadena de texto que defina la conexión a la base de datos.
+También se pueden especificar las credenciales mediante una cadena de texto que defina la conexión a la base de datos.
 
 ```swift
 try app.databases.use(.mysql(url: "<connection string>"), as: .mysql)
@@ -174,7 +174,7 @@ app.databases.use(.mysql(
 MongoDB es una base de datos popular NoSQL y sin esquemas diseñada para los programadores. El controlador es compatible con todos los proveedores de alojamiento en la nube y con las instalaciones en un hospedaje propio a partir de la versión 3.4 y en adelante.
 
 !!! note "Nota"
-    Este controlador está impulsado por un cliente de MongoDB creado y mantenido por la comunidad llamado [MongoKitten](https://github.com/orlandos-nl/MongoKitten). MongoDB mantiene un cliente oficial, [mongo-swift-driver](https://github.com/mongodb/mongo-swift-driver), junto con una integración de Vapor, mongodb-vapor.
+    Este controlador está impulsado por un cliente de MongoDB creado y mantenido por la comunidad llamado [MongoKitten](https://github.com/OpenKitten/MongoKitten). MongoDB mantiene un cliente oficial, [mongo-swift-driver](https://github.com/mongodb/mongo-swift-driver), junto con una integración de Vapor, [mongodb-vapor](https://github.com/mongodb/mongodb-vapor).
 
 Para usar MongoDB, se deben de agregar las siguientes dependencias al paquete.
 
@@ -188,7 +188,7 @@ Para usar MongoDB, se deben de agregar las siguientes dependencias al paquete.
 
 Una vez que se hayan agregado las dependencias, configurar la base de datos con Fluent utilizando `app.databases.use` en `configure.swift`.
 
-Para conectarse, se debe de usar una cadena de texto el formato de [conexión estándar URI](https://www.mongodb.com/docs/upcoming/reference/connection-string/) de MongoDB.
+Para conectarse, se debe de usar una cadena de texto el formato de [conexión estándar URI](https://docs.mongodb.com/docs/manual/reference/connection-string/) de MongoDB.
 
 ```swift
 import Fluent
@@ -391,7 +391,7 @@ app.post("galaxies") { req async throws -> Galaxy in
 
 En este caso, la operación async no tiene valor de retorno. La instancia se devolverá una vez que se complete el guardado.
 
-Compilar, ejecutar el proyecto y envíar la siguiente solicitud.
+Compilar, ejecutar el proyecto y enviar la siguiente solicitud.
 
 ```http
 POST /galaxies HTTP/1.1
@@ -565,7 +565,7 @@ app.get("galaxies") { req in
 }
 ```
 
-Se pasa un `key-path` `@Children` a `with` para indicarle a Fluent que cargue automáticamente esta relación en todos los modelos resultantes. Compilar y ejecutar la aplicación y envíar otra solicitud a `GET /galaxies`. Ahora se debería de ver que las estrellas se incluyen automáticamente en la respuesta.
+Se pasa un `key-path` `@Children` a `with` para indicarle a Fluent que cargue automáticamente esta relación en todos los modelos resultantes. Compilar y ejecutar la aplicación y enviar otra solicitud a `GET /galaxies`. Ahora se debería de ver que las estrellas se incluyen automáticamente en la respuesta.
 
 ```json
 [
@@ -597,6 +597,6 @@ app.logger.logLevel = .debug
 
 Esto le indica a la aplicación que el nivel de registro es **depuración**. Para que los cambios se apliquen, requiere que se compile y se vuelva a ejecutar la aplicación. Las declaraciones SQL generadas por Fluent se registrarán en la consola.
 
-## Siguentes pasos
+## Siguientes pasos
 
 Felicitaciones por crear los primeros modelos, migraciones y realizar operaciones básicas de creación y lectura. Para obtener información más detallada sobre todas estas características, consultar las secciones correspondientes en la guía de Fluent.

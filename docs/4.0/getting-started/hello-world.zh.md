@@ -8,6 +8,9 @@
 - [安装 → macOS](../install/macos.md)
 - [安装 → Linux](../install/linux.md)
 
+!!! tip "建议"
+    Vapor Toolbox 使用的模板需要 Swift 6.0 或更高版本
+
 ## 创建
 
 首先，在电脑上创建 Vapor 项目。打开终端并使用以下 Toolbox 的命令行，这将会在当前目录创建一个包含 Vapor 项目的文件夹。
@@ -55,6 +58,9 @@ Xcode 将自动开始下载 Swift 包管理器依赖，在第一次打开一个�
 ### Linux
 
 在 Linux 和其他操作系统上（甚至在 macOS 上如果你不想使用 Xcode），你可以在你喜欢的编辑器中编辑项目，比如 Vim 或 VSCode 。关于设置其他 IDE 的最新细节，请参阅 [Swift Server Guides](https://github.com/swift-server/guides/blob/main/docs/setup-and-ide-alternatives.md)。
+
+!!! tip "建议"
+    如果你使用 VSCode 作为代码编辑器，我们推荐安装官方的 Vapor 扩展：[Vapor for VS Code](https://marketplace.visualstudio.com/items?itemName=Vapor.vapor-vscode)。
 
 在终端运行以下命令来编译和运行你的项目。
 

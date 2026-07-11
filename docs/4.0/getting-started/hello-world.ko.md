@@ -7,6 +7,9 @@
 - [Install &rarr; macOS](../install/macos.ko.md)
 - [Install &rarr; Linux](../install/linux.ko.md)
 
+!!! tip
+    Vapor Toolbox에서 사용하는 템플릿은 Swift 6.0 이상이 필요합니다.
+
 ## 새 프로젝트 생성하기
 
 첫 번째 단계는 컴퓨터에 새로운 Vapor 프로젝트를 만드는 것입니다. 터미널을 열고 Toolbox의 새 프로젝트 명령을 사용하세요. 이렇게 하면 현재 디렉토리에 새 폴더가 생성되며 프로젝트가 포함됩니다.
@@ -15,13 +18,13 @@
 vapor new hello -n
 ```
 
-!!! 팁
+!!! tip
     `-n` 플래그를 사용하면 모든 질문에 자동으로 "no"로 대답하여 기본 템플릿을 얻을 수 있습니다.
 
-!!! 팁
+!!! tip
     Vapor Toolbox 없이도 [템플릿 저장소](https://github.com/vapor/template-bare)를 클론하여 GitHub에서 최신 템플릿을 사용할 수 있습니다.
 
-!!! 팁
+!!! tip
     Vapor와 템플릿은 이제 기본적으로 `async`/`await`을 사용합니다. macOS 12로 업데이트할 수 없거나 EventLoopFuture를 계속 사용해야 하는 경우 `--branch macos10-15` 플래그를 사용하세요.
   
 명령이 완료되면 새로 생성된 폴더로 이동하세요.
@@ -54,6 +57,9 @@ Xcode 창 하단에 콘솔이 아래처럼 보일 것입니다.
 ### Linux
 
 Linux 및 다른 운영 체제(또는 macOS에서 Xcode를 사용하지 않을 경우)에서는 Vim이나 VSCode와 같은 즐겨찾는 편집기에서 프로젝트를 편집할 수 있습니다. 다른 IDE를 설정하는 방법에 대한 최신 정보는 [Swift Server Guides](https://github.com/swift-server/guides/blob/main/docs/setup-and-ide-alternatives.md)를 참조하세요.
+
+!!! tip
+    VSCode를 코드 에디터로 사용하고 있다면, 공식 Vapor 확장 프로그램인 [Vapor for VS Code](https://marketplace.visualstudio.com/items?itemName=Vapor.vapor-vscode)를 설치하는 것을 권장합니다.
 
 프로젝트를 빌드하고 실행하려면 터미널에서 다음 명령을 실행합니다.
 

@@ -68,7 +68,7 @@ Ces expressions à opérateur acceptent un key-path vers un champ de l'entité �
 
 Voici la liste des opérateurs supportés : 
 
-|Operator|Description|
+|Opérateur|Description|
 |-|-|
 |`==`|Égal à.|
 |`!=`|Différent de.|
@@ -264,7 +264,7 @@ let planet: Planet = ...
 let star = try planet.joined(Star.self)
 ```
 
-### Model Alias
+### Alias de modèle
 
 Les alias de modèles vous permettent de faire une jointure sur le même modèle plusieurs fois dans une requête. Pour déclarer un alias de modèle, créez un ou plusieurs types conformes à `ModelAlias`. 
 

@@ -61,6 +61,39 @@ De velddefinitie is gelijk aan die van `@Parent`, behalve dat de `.required` res
 .field("star_id", .uuid, .references("star", "id"))
 ```
 
+### Encoding and Decoding of Parents
+
+Eén ding om op te letten bij het werken met `@Parent` relaties is de manier waarop u ze verzendt en ontvangt. Bijvoorbeeld, in JSON zou een `@Parent` voor een `Planet` model er zo uit kunnen zien:
+
+```json
+{
+    "id": "A616B398-A963-4EC7-9D1D-B1AA8A6F1107",
+    "star": {
+        "id": "A1B2C3D4-1234-5678-90AB-CDEF12345678"
+    }
+}
+```
+
+Let op hoe de `star` eigenschap een object is in plaats van de ID die u misschien zou verwachten. Bij het versturen van het model als HTTP body, moet dit hiermee overeenkomen wil decoding werken. Om deze reden raden we sterk aan om een DTO te gebruiken om het model te representeren bij het versturen ervan over het netwerk. Bijvoorbeeld:
+
+```swift
+struct PlanetDTO: Content {
+    var id: UUID?
+    var name: String
+    var star: Star.IDValue
+}
+```
+
+Vervolgens kunt u de DTO decoderen en converteren naar een model:
+
+```swift
+let planetData = try req.content.decode(PlanetDTO.self)
+let planet = Planet(id: planetData.id, name: planetData.name, starID: planetData.star)
+try await planet.create(on: req.db)
+```
+
+Hetzelfde geldt wanneer u het model teruggeeft aan clients. Uw clients moeten ofwel in staat zijn om de geneste structuur te verwerken, ofwel moet u het model converteren naar een DTO voordat u het teruggeeft. Voor meer informatie over DTOs, zie de [Model documentatie](model.md#data-transfer-object)
+
 ## Optionele Child
 
 De `@OptionalChild` eigenschap creëert een één-op-één relatie tussen de twee modellen. Het slaat geen waarden op in het root model. 
@@ -283,7 +316,7 @@ Zie [query](query.md) voor meer informatie.
 
 ## Eager Loading
 
-Fluent's query bouwer maakt het mogelijk om de relaties van een model vooraf te laden wanneer het wordt opgehaald uit de database. Dit wordt eager loading genoemd en stelt u in staat om synchroon relaties te benaderen zonder dat u eerst [`load`](#lazy-eager-loading) of [`get`](#get) hoeft aan te roepen. 
+Fluent's query bouwer maakt het mogelijk om de relaties van een model vooraf te laden wanneer het wordt opgehaald uit de database. Dit wordt eager loading genoemd en stelt u in staat om synchroon relaties te benaderen zonder dat u eerst [`get`](#get) hoeft aan te roepen. 
 
 Om een relatie eager te laden, geef je een sleutelpad naar de relatie door aan de `with` methode op query builder. 
 
@@ -331,16 +364,23 @@ De `with` methode accepteert een optionele closure als tweede parameter. Deze cl
 
 ## Lazy Eager Loading
 
-In het geval dat u het bovenliggende model al heeft opgehaald en u wilt een van zijn relaties laden, dan kunt u de `load(on:)` methode voor dat doel gebruiken. Hiermee wordt het gerelateerde model opgehaald uit de database en kan het worden benaderd als een lokale eigenschap.
+In het geval dat u het bovenliggende model al heeft opgehaald en u wilt een van zijn relaties laden, dan kunt u de `get(reload:on:)` methode voor dat doel gebruiken. Hiermee wordt het gerelateerde model opgehaald uit de database (of cache, indien beschikbaar) en kan het worden benaderd als een lokale eigenschap.
 
 ```swift
-planet.$star.load(on: database).map {
+planet.$star.get(on: database).map {
     print(planet.star.name)
 }
 
 // Of
 
-try await planet.$star.load(on: database)
+try await planet.$star.get(on: database)
+print(planet.star.name)
+```
+
+In het geval dat u wilt garanderen dat de gegevens die u ontvangt niet uit de cache komen, gebruik dan de `reload:` parameter.
+
+```swift
+try await planet.$star.get(reload: true, on: database)
 print(planet.star.name)
 ```
 

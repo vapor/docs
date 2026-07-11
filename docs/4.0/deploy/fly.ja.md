@@ -87,6 +87,16 @@ Flyはディレクトリの`Dockerfile`と`fly.toml`ファイルを読み取り�
 
 デフォルトでは、デプロイしようとした新しいバージョンのヘルスチェックが失敗した場合、Flyはアプリの最新の動作バージョンにロールバックします。
 
+バックグラウンドワーカー（Vapor Queuesを使用）をデプロイする場合。Dockerfileの`CMD`または`ENTRYPOINT`は変更しないでください。メインのWebアプリケーションが正常に起動するよう、そのままにしておきます。代わりに、`fly.toml`ファイルに次のような`[processes]`セクションを追加します：
+
+```
+[processes]
+  app = ""
+  worker = "queues"
+```
+
+これにより、Fly.ioはappプロセスをデフォルトのDockerエントリポイント（Webサーバー）で実行し、workerプロセスはVaporのコマンドラインインターフェース（つまり`swift run App queues`）を使用してジョブキューを実行するようになります。
+
 ## Postgresの設定 {#configuring-postgres}
 
 ### FlyでPostgresデータベースを作成する {#creating-a-postgres-database-on-fly}

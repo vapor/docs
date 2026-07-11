@@ -2,7 +2,7 @@
 
 Routing is het proces van het vinden van de juiste request handler voor een inkomend verzoek. De kern van Vapor's routering is een krachtige, trie-node router van [RoutingKit](https://github.com/vapor/routing-kit).
 
-## Overview 
+## Overzicht
 
 Om te begrijpen hoe routing werkt in Vapor, moet je eerst een paar basisbegrippen over HTTP verzoeken begrijpen. Kijk eens naar het volgende voorbeeld verzoek.
 
@@ -18,7 +18,7 @@ Dit is een eenvoudig `GET` HTTP verzoek naar de URL `/hello/vapor`. Dit is het s
 http://vapor.codes/hello/vapor
 ```
 
-### HTTP Method
+### HTTP Methode
 
 Het eerste deel van het verzoek is de HTTP methode. `GET` is de meest voorkomende HTTP methode, maar er zijn er meerdere die je vaak zult gebruiken. Deze HTTP methodes worden vaak geassocieerd met [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) semantiek.
 
@@ -30,7 +30,7 @@ Het eerste deel van het verzoek is de HTTP methode. `GET` is de meest voorkomend
 |`PATCH`|Updaten|
 |`DELETE`|Verwijderen|
 
-### Request Path
+### Verzoekpad
 
 Direct na de HTTP methode staat de URI van het verzoek. Deze bestaat uit een pad dat begint met `/` en een optionele query string na `?`. De HTTP methode en het pad zijn wat Vapor gebruikt om verzoeken te routeren.
 
@@ -97,7 +97,7 @@ Nu dat je de basis begrijpt, bekijk dan elke sectie om meer te leren over parame
 
 Een route specificeert een request handler voor een gegeven HTTP methode en URI pad. Het kan ook extra metadata opslaan.
 
-### Methods
+### Methodes
 
 Routes kunnen direct worden geregistreerd in uw `Application` met behulp van verschillende HTTP methode helpers. 
 
@@ -135,7 +135,7 @@ app.on(.OPTIONS, "foo", "bar", "baz") { req in
 }
 ```
 
-### Path Component
+### Padcomponent
 
 Elke route registratie methode accepteert een variadische lijst van `PathComponent`. Dit type is uit te drukken door string literal en heeft vier gevallen:
 
@@ -144,7 +144,7 @@ Elke route registratie methode accepteert een variadische lijst van `PathCompone
 - Alles (`*`)
 - CatchAll (`**`)
 
-#### Constant
+#### Constante
 
 Dit is een statische routecomponent. Alleen verzoeken met een exact overeenkomende string op deze positie worden toegestaan.
 

@@ -4,7 +4,7 @@ Vapor is een community-gedreven project en bijdragen van community-leden vormen 
 
 Elke bijdrage die u levert is nuttig! Zelfs kleine dingen zoals het verbeteren van typefouten maken een groot verschil voor mensen die Vapor gebruiken.
 
-## Code of Conduct
+## Gedragscode
 
 Vapor heeft de Gedragscode van Swift aangenomen die te vinden is op [https://www.swift.org/code-of-conduct/](https://www.swift.org/code-of-conduct/). Van alle bijdragers wordt verwacht dat zij zich aan de gedragscode houden.
 
@@ -12,11 +12,11 @@ Vapor heeft de Gedragscode van Swift aangenomen die te vinden is op [https://www
 
 Uitzoeken waar je aan gaat werken kan een groot obstakel zijn als je aan de slag wilt in open source! Meestal zijn de beste dingen om aan te werken problemen die je vindt of functies die je wilt. Vapor heeft echter een aantal handige dingen om u te helpen bijdragen.
 
-### Security Issues
+### Beveiligingsproblemen
 
 Als je een beveiligingsprobleem ontdekt en dit wilt rapporteren of helpen oplossen, dien dan **geen** issue aan te maken of een pull request aan te maken. We hebben een apart proces voor beveiligingsproblemen om er zeker van te zijn dat we geen kwetsbaarheid blootstellen totdat er een oplossing beschikbaar is. Email security@vapor.codes of [zie hier](https://github.com/vapor/.github/blob/main/SECURITY.md) voor meer details.
 
-### Kleine Issues
+### Kleine problemen
 
 Als je een klein probleem, bug of typfout vindt, voel je dan vrij om je gang te gaan en een pull request aan te maken om het op te lossen. Als het een open issue op een van de repos oplost, dan kun je het linken in de pull request in de zijbalk zodat de issue automatisch gesloten wordt wanneer de pull request samengevoegd wordt.
 

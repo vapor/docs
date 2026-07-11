@@ -125,10 +125,10 @@ Futures 是基于回调的异步 API 的替代方案。Futures 可以以简单�
 
 |方法|参数|描述|
 |-|-|-|
-|[`map`](#map)|`(T) -> U`|Maps a future value to a different value.|
-|[`flatMapThrowing`](#flatmapthrowing)|`(T) throws -> U`|Maps a future value to a different value or an error.|
-|[`flatMap`](#flatmap)|`(T) -> EventLoopFuture<U>`|Maps a future value to different _future_ value.|
-|[`transform`](#transform)|`U`|Maps a future to an already available value.|
+|[`map`](#map)|`(T) -> U`|将一个 future 值映射为另一个值。|
+|[`flatMapThrowing`](#flatmapthrowing)|`(T) throws -> U`|将一个 future 值映射为另一个值或一个错误。|
+|[`flatMap`](#flatmap)|`(T) -> EventLoopFuture<U>`|将一个 future 值映射为另一个不同的 _future_ 值。|
+|[`transform`](#transform)|`U`|将一个 future 映射为一个已经可用的值。|
 
 如果你看一下 `map` 和 `flatMap` 在 `Optional<T>` 和 `Array<T>` 中的方法签名。你会看到他们和在 `EventLoopFuture<T>` 中的方法非常相似。
 
@@ -297,8 +297,24 @@ futureString.whenComplete { result in
 
 !!! note "注意"
     你可以向 future 添加任意数量的回调。
+
+### Get
+
+如果某个 API 没有基于并发的替代方案，你可以使用 `try await future.get()` 来等待 future 的值。
+
+```swift
+/// 假设我们从某个 API 返回一个 future 字符串
+let futureString: EventLoopFuture<String> = ...
+
+/// 等待字符串准备好
+let string: String = try await futureString.get()
+print(string) /// String
+```
     
 ### Wait
+
+!!! warning "警告"
+    `wait()` 函数已经过时，请参阅 [`Get`](#get) 了解推荐的方法。
 
 你可以使用 `.wait()` 来同步等待 future 完成。由于 future 可能会失败，这个调用是可抛出错误的。
 

@@ -235,7 +235,7 @@ Un altro approccio prevede l'implementazione di `ResponseEncodable` sui tuoi tip
 
 ```swift
 struct HTML {
-    let value: String
+  let value: String
 }
 ```
 
@@ -243,13 +243,13 @@ La sua implementazione di `ResponseEncodable` sarebbe così:
 
 ```swift
 extension HTML: ResponseEncodable {
-    public func encodeResponse(for request: Request) -> EventLoopFuture<Response> {
-        var headers = HTTPHeaders()
-        headers.add(name: .contentType, value: "text/html")
-        return request.eventLoop.makeSucceededFuture(.init(
-            status: .ok, headers: headers, body: .init(string: value)
-        ))
-    }
+  public func encodeResponse(for request: Request) -> EventLoopFuture<Response> {
+    var headers = HTTPHeaders()
+    headers.add(name: .contentType, value: "text/html")
+    return request.eventLoop.makeSucceededFuture(.init(
+      status: .ok, headers: headers, body: .init(string: value)
+    ))
+  }
 }
 ```
 
@@ -257,11 +257,11 @@ Se stai usando `async`/`await` puoi usare `AsyncResponseEncodable`:
 
 ```swift
 extension HTML: AsyncResponseEncodable {
-    public func encodeResponse(for request: Request) async throws -> Response {
-        var headers = HTTPHeaders()
-        headers.add(name: .contentType, value: "text/html")
-        return .init(status: .ok, headers: headers, body: .init(string: value))
-    }
+  public func encodeResponse(for request: Request) async throws -> Response {
+    var headers = HTTPHeaders()
+    headers.add(name: .contentType, value: "text/html")
+    return .init(status: .ok, headers: headers, body: .init(string: value))
+  }
 }
 ```
 
@@ -271,12 +271,12 @@ Puoi poi usare `HTML` come tipo di risposta nelle tue route:
 
 ```swift
 app.get { _ in
-    HTML(value: """
-    <html>
-        <body>
-        <h1>Hello, World!</h1>
-        </body>
-    </html>
-    """)
+  HTML(value: """
+  <html>
+    <body>
+      <h1>Hello, World!</h1>
+    </body>
+  </html>
+  """)
 }
 ```

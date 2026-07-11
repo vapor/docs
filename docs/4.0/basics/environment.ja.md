@@ -30,7 +30,7 @@ Vapor は以下の環境を含みます。:
 |testing|test|ユニットテスト用|
 
 !!! info
-    `production` 環境は、特に指定されていない場合、デフォルトで `notice` レベルのログになります。他の環境はデフォルトでinfoです。
+    `production` 環境は、特に指定されていない場合、デフォルトで `notice` レベルのログになります。他の環境はデフォルトで `info` です。
 
 
 `--env`（`-e`）フラグには、フルネームか略称のどちらかを渡すことができます。
@@ -127,12 +127,10 @@ enum Entrypoint {
     static func main() async throws {
         var env = try Environment.detect()
         try LoggingSystem.bootstrap(from: &env)
-
+        
         let app = Application(env)
-        defer { 
-            app.shutdown() 
-        }
-
+        defer { app.shutdown() }
+        
         try await configure(app)
         try await app.runFromAsyncMainEntrypoint()
     }

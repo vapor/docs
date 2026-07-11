@@ -1,11 +1,14 @@
 # Witaj, świecie
 
-Then poradnik przeprowadzi cię krok po kroku przez tworzenie nowego projektu z użyciem Vapor, budowania go oraz uruchomienie serwera.
+Ten poradnik przeprowadzi cię krok po kroku przez tworzenie nowego projektu z użyciem Vapor, budowania go oraz uruchomienie serwera.
 
 Jeśli jeszcze nie masz zainstalowanego Swifta czy Vapor Toolbox, to sprawdź sekcje poniżej.
 
 - [Instalacja &rarr; macOS](../install/macos.md)
 - [Instalacja &rarr; Linux](../install/linux.md)
+
+!!! tip
+    Szablon używany przez Vapor Toolbox wymaga Swift w wersji 6.0 lub nowszej
 
 ## Nowy projekt
 
@@ -36,7 +39,7 @@ cd hello
 
 ### Xcode
 
-Najpierw, otwórz projekt w XCode.
+Najpierw, otwórz projekt w Xcode.
 
 ```sh
 open Package.swift
@@ -78,4 +81,4 @@ Powinieneś widzieć następująca stronę.
 Hello, world!
 ```
 
-Gratulujemy stworzenia, zbudowania i uruchomienia twojej pierwszej aplikacji z użyciem Vapora! 🎉🎉
+Gratulujemy stworzenia, zbudowania i uruchomienia twojej pierwszej aplikacji z użyciem Vapora! 🎉

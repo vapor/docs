@@ -281,6 +281,37 @@ The time is #unsafeHTML(styledTitle)
 !!! note
     このタグを使用する際は、提供する変数がユーザーを XSS 攻撃に晒さないように注意する必要があります。
 
+#### `#comment`
+
+`#comment` タグを使用すると、レンダリングされた出力には表示されない注釈をテンプレートに追加できます。このタグは文字列パラメータを受け取りますが、レンダリング時には完全に無視されます。
+
+```leaf
+#comment("This is a single-line comment")
+<h1>#(title)</h1>
+```
+
+より長いコメントには、複数行文字列構文を使用できます：
+
+```leaf
+#comment("""
+This template renders the home page.
+It expects a "title" and "body" variable.
+""")
+<h1>#(title)</h1>
+```
+
+#### `#isEmpty`
+
+`#isEmpty` タグは、テンプレートに渡された文字列プロパティが空の場合に true を返します。通常、`#if` 条件の中で使用されます：
+
+```leaf
+#if(isEmpty(title)):
+    No title was provided.
+#else:
+    The title is #(title)
+#endif
+```
+
 #### `#dumpContext`
 
 `#dumpContext` タグは、コンテキスト全体を人間が読める形式でレンダリングします。このタグを使用して、現在のレンダリングに提供されているコンテキストをデバッグします。

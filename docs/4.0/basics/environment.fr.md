@@ -100,7 +100,7 @@ cp .env .env.development
 vim .env.development
 ```
 
-!!! Avertissement
+!!! warning
     Les fichiers dotenv contenant des informations sensibles telles que des mots de passe ne devraient pas être versionnés.
 
 Si vous rencontrez des difficultés pour charger les fichiers .env, essayez d'activer les logs de débug avec `--log debug` pour obtenir plus d'informations. 
@@ -135,7 +135,7 @@ enum Entrypoint {
 }
 ```
 
-La méthode `detect` les arguments de la ligne de commande du processus et analyse le drapeau `--env` automatiquement. Vous pouvez modifier ce comportement en initialisant une struct `Environment` personnalisée.
+La méthode `detect` utilise les arguments de la ligne de commande du processus et analyse le drapeau `--env` automatiquement. Vous pouvez modifier ce comportement en initialisant une struct `Environment` personnalisée.
 
 ```swift
 let env = Environment(name: "testing", arguments: ["vapor"])

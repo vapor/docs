@@ -147,11 +147,8 @@ let corsConfiguration = CORSMiddleware.Configuration(
     allowedHeaders: [.accept, .authorization, .contentType, .origin, .xRequestedWith, .userAgent, .accessControlAllowOrigin]
 )
 let cors = CORSMiddleware(configuration: corsConfiguration)
-let error = ErrorMiddleware.default(environment: app.environment)
-// 清除现有的 middleware。
-app.middleware = .init()
-app.middleware.use(cors)
-app.middleware.use(error)
+// cors middleware 应该在默认的 error middleware 之前，使用 `at: .beginning`
+app.middleware.use(cors, at: .beginning)
 ```
 
 由于抛出的错误会立即返回给客户端，因此必须在 `ErrorMiddleware` 之前注册 `CORSMiddleware`。否则，将返回不带 CORS 标头的 HTTP 错误响应，且浏览器无法读取该错误响应。

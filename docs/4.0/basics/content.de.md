@@ -42,6 +42,26 @@ Die Methode *decode(_:)* benutzt die entsprechende Angabe in der Serveranfrage u
 
 Sollte kein passender Kodierer gefunden werden oder die Anfrage keine Angaben zum Inhalt besitzen, wird der Fehler 415 (415 Unsupported Media Type) zurückgeliefert.
 
+Das bedeutet, dass diese Route automatisch auch alle anderen unterstützten Content-Typen akzeptiert, wie zum Beispiel URL-Encoded Form:
+
+```http
+POST /greeting HTTP/1.1
+content-type: application/x-www-form-urlencoded
+content-length: 11
+
+hello=world
+```
+
+Im Falle von Datei-Uploads muss die entsprechende Eigenschaft vom Typ `Data` sein:
+
+```swift
+struct Profile: Content {
+    var name: String
+    var email: String
+    var image: Data
+}
+```
+
 ### Unterstützte Medien
 
 Folgende Medien werden von Vapor standardmäßig unterstützt:
@@ -54,7 +74,7 @@ Folgende Medien werden von Vapor standardmäßig unterstützt:
 |Plaintext       |text/plain                       |`.plainText`     |
 |HTML            |text/html                        |`.html`          |
 
-_Codable_ unterstützt leider nicht alle Medien. 
+_Codable_ unterstützt leider nicht alle Medien vollständig. So unterstützt JSON zum Beispiel keine Fragmente auf oberster Ebene und Plaintext unterstützt keine verschachtelten Daten.
 
 ## Binden der Zeichenfolge
 
@@ -65,7 +85,7 @@ content-length: 0
 
 Ähnlich wie beim Binden des Inhalts müssen wir für das Binden der Zeichenfolge eine Struktur anlegen und es mit dem Protokoll *Content* versehen. 
 
-Zusätzlich müssen wir die Eigenschaft *name* als optional deklarieren, da Parameter in einer Zeichenfolge immer optional sind.
+Zusätzlich müssen wir die Eigenschaft *name* als optional deklarieren, da Parameter in einer Zeichenfolge immer optional sind. Soll ein Parameter zwingend erforderlich sein, sollte stattdessen ein Routenparameter verwendet werden.
 
 ```swift
 struct Hello: Content {
@@ -80,13 +100,26 @@ app.get("hello") { req -> String in
 }
 ```
 
+Diese Route würde bei der obigen Beispielanfrage zu folgender Antwort führen:
+
+```http
+HTTP/1.1 200 OK
+content-length: 12
+
+Hello, Vapor
+```
+
+Wird die Zeichenfolge weggelassen, wie in der folgenden Anfrage, wird stattdessen der Name "Anonymous" verwendet:
+
+```http
+GET /hello HTTP/1.1
+content-length: 0
+```
+
 Zudem können wir auch Einzelwerte aus der Zeichenabfolge abrufen:
 
 ```swift
-app.get("hello") { req -> String in 
-    let name: String? = req.query["name"]
-    ...
-}
+let name: String? = req.query["name"]
 ```
 
 ## Hooks
@@ -96,9 +129,18 @@ Vapor ruft automatisch jeweils die beiden Methoden _beforeEncode_ und _afterDeco
 Die Methoden sind standardmäßig funktionslos, können aber im Bedarfsfall überschrieben werden.
 
 ```swift
+// Runs after this Content is decoded. `mutating` is only required for structs, not classes.
+mutating func afterDecode() throws {
+    // Name may not be passed in, but if it is, then it can't be an empty string.
+    self.name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines)
+    if let name = self.name, name.isEmpty {
+        throw Abort(.badRequest, reason: "Name must not be empty.")
+    }
+}
+
 // Runs before this Content is encoded. `mutating` is only required for structs, not classes.
 mutating func beforeEncode() throws {
-
+    // Have to *always* pass a name back, and it can't be an empty string.
     guard 
         let name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines), 
         !name.isEmpty 
@@ -106,15 +148,6 @@ mutating func beforeEncode() throws {
         throw Abort(.badRequest, reason: "Name must not be empty.")
     }
     self.name = name
-}
-
-// Runs after this Content is decoded. `mutating` is only required for structs, not classes.
-mutating func afterDecode() throws {
-
-    self.name = self.name?.trimmingCharacters(in: .whitespacesAndNewlines)
-    if let name = self.name, name.isEmpty {
-        throw Abort(.badRequest, reason: "Name must not be empty.")
-    }
 }
 ```
 
@@ -124,7 +157,7 @@ Vapor's Standardkodierer kann global oder situationsabhängig überschrieben wer
 
 ### Global
 
-Für eine globale Verwendung eines eigenen Kodierer müssen wir ihn der _ContentConfiguration.global_ mitgeben.
+Für eine globale Verwendung eines eigenen Kodierer müssen wir ihn der _ContentConfiguration.global_ mitgeben. Das ist nützlich, wenn wir ändern möchten, wie die gesamte Anwendung Daten verarbeitet und serialisiert.
 
 ```swift
 // create a new JSON encoder that uses unix-timestamp dates
@@ -134,6 +167,8 @@ encoder.dateEncodingStrategy = .secondsSince1970
 // override the global encoder used for the `.json` media type
 ContentConfiguration.global.use(encoder: encoder, for: .json)
 ```
+
+Das Anpassen der `ContentConfiguration` erfolgt üblicherweise in `configure.swift`.
 
 ### Situationsabhängig
 
@@ -184,9 +219,11 @@ public protocol URLQueryEncoder {
 }
 ```
 
-### `ResponseEncodable`
+Indem wir einen eigenen Kodierer mit diesen beiden Protokollen versehen, kann er über die Methoden `use(urlEncoder:)` und `use(urlDecoder:)` bei der `ContentConfiguration` für das Verarbeiten von URL-Zeichenfolgen registriert werden.
 
-Another approach involves implementing `ResponseEncodable` on your types. Consider this trivial `HTML` wrapper type:
+### Benutzerdefinierte `ResponseEncodable`
+
+Ein weiterer Ansatz besteht darin, `ResponseEncodable` für die eigenen Typen zu implementieren. Betrachten wir dazu diesen einfachen `HTML`-Wrapper-Typ:
 
 ```swift
 struct HTML {
@@ -194,7 +231,7 @@ struct HTML {
 }
 ```
 
-Then its `ResponseEncodable` implementation would look like this:
+Die entsprechende `ResponseEncodable`-Implementierung würde dann so aussehen:
 
 ```swift
 extension HTML: ResponseEncodable {
@@ -208,7 +245,7 @@ extension HTML: ResponseEncodable {
 }
 ```
 
-If you're using `async`/`await` you can use `AsyncResponseEncodable`:
+Wenn wir `async`/`await` verwenden, können wir stattdessen `AsyncResponseEncodable` nutzen:
 
 ```swift
 extension HTML: AsyncResponseEncodable {
@@ -220,9 +257,9 @@ extension HTML: AsyncResponseEncodable {
 }
 ```
 
-Note that this allows customizing the `Content-Type` header. See [`HTTPHeaders` reference](https://api.vapor.codes/vapor/documentation/vapor/response/headers) for more details.
+Beachte, dass dies auch das Anpassen des `Content-Type`-Headers erlaubt. Weitere Details finden sich in der [`HTTPHeaders`-Referenz](https://api.vapor.codes/vapor/documentation/vapor/response/headers).
 
-You can then use `HTML` as a response type in your routes:
+Anschließend können wir `HTML` als Antworttyp in unseren Routen verwenden:
 
 ```swift
 app.get { _ in

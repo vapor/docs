@@ -7,7 +7,7 @@ Leaf es un potente lenguaje de plantillas con una sintaxis inspirada en Swift. P
 El primer paso para usar Leaf es agregarlo como una dependencia en tu proyecto en tu archivo de manifiesto del paquete SPM.
 
 ```swift
-// swift-tools-version:5.9
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(

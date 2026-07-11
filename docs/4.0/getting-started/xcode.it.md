@@ -29,12 +29,12 @@ Nell'editor dello schema, scegliere l'azione _App_ e la scheda _Options_. Selezi
 Si può ottenere il percorso completo alla cartella principale del progetto eseguendo `pwd` da una finestra del terminale aperta lì.
 
 ```sh
-# ottenere il percorso di questa cartella
+# get path to this folder
 pwd
 ```
 
 Si dovrebbe vedere un output simile al seguente.
 
 ```
-/percorso/al/progetto
+/path/to/project
 ```

@@ -177,7 +177,7 @@ El resto de esta guía indica recursos adicionales para mejorar tu despliegue.
 
 ### Supervisor
 
-Supervisor es un sistema de control de procesos que puedes ejecutar y monitorear tu ejecutable de Vapor. Con la configuración de Supervisor, tu aplicación puede iniciarse automáticamente cuando se inicia el servidor y reiniciarse en caso de que falle. Obten más información sobre [Supervisor](../deploy/supervisor.md).
+Supervisor es un sistema de control de procesos que puede ejecutar y monitorear tu ejecutable de Vapor. Con la configuración de Supervisor, tu aplicación puede iniciarse automáticamente cuando se inicia el servidor y reiniciarse en caso de que falle. Obten más información sobre [Supervisor](../deploy/supervisor.md).
 
 ### Nginx
 

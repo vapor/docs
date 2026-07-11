@@ -62,7 +62,7 @@ Questo file contiene la funzione `configure(_:)`. Questo metodo viene chiamato d
 
 #### entrypoint.swift
 
-Questo file contiene la funzione `main(_:)`. Questo metodo viene chiamato dal sistema operativo per avviare l'applicazione. In genere non è necessario modificarlo.
+Questo file contiene il punto di ingresso `@main` dell'applicazione, che imposta, configura ed esegue la tua applicazione Vapor.
 
 #### routes.swift
 

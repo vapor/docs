@@ -38,7 +38,7 @@ Poi, aggiungi `import VaporTesting` e `import Testing` all'inizio dei tuoi file 
 import VaporTesting
 import Testing
 
-@Suite("Test App")
+@Suite("App Tests")
 struct AppTests {
     @Test("Test Stub")
     func stub() async throws {
@@ -52,7 +52,7 @@ Ogni funzione contrassegnata con `@Test` verrà eseguita automaticamente quando 
 Per assicurarti che i test vengano eseguiti in modo serializzato (ad esempio, quando testi con un database), includi l'opzione `.serialized` nella dichiarazione della suite di test:
 
 ```swift
-@Suite("Test App con DB", .serialized)
+@Suite("App Tests with DB", .serialized)
 ```
 
 ### Applicazione Testabile
@@ -113,7 +113,7 @@ app.testing(method: .inMemory).test(...)
 app.testing(method: .running).test(...)
 ```
 
-Di default è usata l'opzione `inMemory.`
+Di default è usata l'opzione `inMemory`.
 
 L'opzione `running` supporta come parametro una porta specifica da utilizzare. Di default viene usata la porta `8080`.
 
@@ -213,7 +213,7 @@ final class MyTests: XCTestCase {
 
 Ogni funzione che inizia con `test` verrà eseguita automaticamente quando la tua app viene testata.
 
-### Application Testabile
+### Applicazione Testabile
 
 Inizializza un'istanza di `Application` usando l'ambiente `.testing`. Devi chiamare `app.shutdown()` prima che questa applicazione venga deinizializzata.  
 Lo shutdown è necessario per rilasciare le risorse reclamate dall'app, in particolare i thread richiesti all'avvio. Se non chiami `shutdown()` sull'app dopo ogni test, potresti vedere la tua suite di test crashare con un errore di precondizione quando vengono allocati thread per una nuova istanza di `Application`.
@@ -251,7 +251,7 @@ try app.test(.POST, "todos", beforeRequest: { req in
 })
 ```
 
-#### Metodo Testable
+#### Metodo Testabile
 
 L'API di testing di Vapor supporta l'invio di richieste di test programmaticamente e attraverso un server HTTP attivo. Puoi specificare quale metodo vorresti usare utilizzando il metodo `testable`.
 
