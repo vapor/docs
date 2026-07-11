@@ -4,9 +4,9 @@
 
 ## 安装 Xcode
 
-从 [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) 安装 Xcode 或更高版本。
+从 Mac App Store 安装 [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)。
 
-![Xcode](https://user-images.githubusercontent.com/1342803/66688324-2396bc80-ec54-11e9-8b96-bd8b29d0ce7c.jpg)
+![Mac App Store 中的 Xcode](../images/xcode-mac-app-store.png)
 
 下载 Xcode 之后，必须将其打开以完成安装。可能还需要耐心等待一会儿。
 
@@ -27,7 +27,9 @@ Vapor 4 需要 Swift 5.9 或更高版本。
 
 ## 安装工具箱(Install Toolbox)
 
-现在你已经安装了 Swift，让我们安装 [Vapor Toolbox](https://github.com/vapor/toolbox)。 使用 Vapor 不需要此 CLI 工具，但是它包含一些实用的程序，例如新项目创建。
+现在你已经安装了 Swift，让我们安装 [Vapor Toolbox](https://github.com/vapor/toolbox)。使用 Vapor 不需要此 CLI 工具，但它有助于创建新的 Vapor 项目。
+
+### Homebrew
 
 Toolbox 通过 Homebrew 分发。如果你还没有安装 Homebrew，请访问 <a href="https://brew.sh" target="_blank">brew.sh</a> 查看安装说明。
 
@@ -41,7 +43,26 @@ brew install vapor
 vapor --help
 ```
 
-你应该可以看到 Vapor 包含的可用命令列表。
+你应该可以看到可用命令列表。
+
+### Makefile
+
+如果你愿意，也可以从源代码构建 Toolbox。在 GitHub 上查看 Toolbox 的 <a href="https://github.com/vapor/toolbox/releases" target="_blank">releases</a> 以找到最新版本。
+
+```sh
+git clone https://github.com/vapor/toolbox.git
+cd toolbox
+git checkout <desired version>
+make install
+```
+
+通过输出帮助内容以确保安装成功。
+
+```sh
+vapor --help
+```
+
+你应该可以看到可用命令列表。
 
 ## 下一步
 

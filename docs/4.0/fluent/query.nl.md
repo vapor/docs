@@ -49,7 +49,7 @@ let earth = try await Planet.query(on: database)
 ```
 
 !!! tip
-    Bij gebruik van `EventLoopFuture`s, kan deze methode gecombineerd worden met [`unwrap(of:)`](../basics/errors.md#abort) om een niet-optioneel model te retourneren of een foutmelding te geven. 
+    Bij gebruik van `EventLoopFuture`s, kan deze methode gecombineerd worden met [`unwrap(or:)`](../basics/errors.md#abort) om een niet-optioneel model te retourneren of een foutmelding te geven. 
 
 ## Filter
 
@@ -142,7 +142,7 @@ Planet.query(on: database).group(.or) { group in
 }.all()
 ```
 
-De `group` methode ondersteunt het combineren van filters door `and` of `or` logica. Deze groepen kunnen oneindig genest worden. Top-level filters kunnen worden gezien als in een `en` groep.
+De `group` methode ondersteunt het combineren van filters door `and` of `or` logica. Deze groepen kunnen oneindig genest worden. Top-level filters kunnen worden gezien als in een `and` groep.
 
 ## Aggregate
 
@@ -228,7 +228,7 @@ Planet.query(on: self.database)
     .range(..<5)
 ```
 
-Bereikwaarden zijn niet-ondertekende gehele getallen beginnend bij nul. Meer informatie over
+Bereikwaarden zijn niet-ondertekende gehele getallen beginnend bij nul. Meer informatie over [Swift ranges](https://developer.apple.com/documentation/swift/range).
 
 ```swift
 // Sla de eerste 2 resultaten over.
@@ -247,7 +247,7 @@ Planet.query(on: database)
     .all()
 ```
 
-De `op` parameter accepteert een gelijkheidsexpressie tussen twee velden. Een van de velden moet al bestaan in de huidige resultatenset. Het andere veld moet bestaan in het model dat wordt samengevoegd. Deze velden moeten hetzelfde waardetype hebben.
+De `on` parameter accepteert een gelijkheidsexpressie tussen twee velden. Een van de velden moet al bestaan in de huidige resultatenset. Het andere veld moet bestaan in het model dat wordt samengevoegd. Deze velden moeten hetzelfde waardetype hebben.
 
 De meeste query builder methodes, zoals `filter` en `sort`, ondersteunen samengevoegde modellen. Als een methode gegroepeerde modellen ondersteunt, zal deze het gegroepeerde model type accepteren als de eerste parameter. 
 

@@ -104,7 +104,6 @@ De `generatedBy` parameter ondersteunt deze gevallen:
 |`.random`|`@ID` waardetype moet voldoen aan `RandomGeneratable`.|
 |`.database`|Database wordt verwacht een waarde te genereren bij het opslaan.|
 
-If the `generatedBy` parameter is omitted, Fluent will attempt to infer an appropriate case based on the `@ID` value type. For example, `Int` will default to `.database` generation unless otherwise specified.
 Indien de `generatedBy` parameter is weggelaten, zal Fluent proberen een geschikt geval af te leiden op basis van het `@ID` waardetype. Bijvoorbeeld, `Int` zal standaard `.database` generatie gebruiken tenzij anders gespecificeerd.
 
 ## Initializer
@@ -360,12 +359,14 @@ app.get("planets") { req async throws in
 
 Bij het serialiseren naar / van `Codable`, zullen model eigenschappen hun variabele namen gebruiken in plaats van sleutels. Relaties zullen serialiseren als geneste structuren en alle eager geladen data zal worden meegenomen. 
 
+!!! info
+    We raden aan dat u in bijna alle gevallen een DTO gebruikt in plaats van een model voor uw API-antwoorden en request bodies. Zie [Data Transfer Object](#data-transfer-object) voor meer informatie.
+
 ### Data Transfer Object
 
-De standaard `Codable` conformiteit van het model kan eenvoudig gebruik en prototyping eenvoudiger maken. Het is echter niet geschikt voor elk gebruik. Voor bepaalde situaties zult u een data transfer object (DTO) moeten gebruiken. 
+De standaard `Codable` conformiteit van het model kan eenvoudig gebruik en prototyping eenvoudiger maken. Het stelt echter de onderliggende databasegegevens bloot aan de API. Dit is meestal niet wenselijk, zowel vanuit veiligheidsoogpunt - het retourneren van gevoelige velden zoals het wachtwoord-hash van een gebruiker is geen goed idee - als vanuit gebruiksvriendelijkheid. Het maakt het moeilijk om het databaseschema te wijzigen zonder de API te breken, gegevens in een ander formaat te accepteren of te retourneren, of velden aan de API toe te voegen of te verwijderen.
 
-!!! tip
-    Een DTO is een afzonderlijk `Codable` type dat de datastructuur voorstelt die je wilt coderen of decoderen. 
+In de meeste gevallen zou u een DTO, oftewel data transfer object, moeten gebruiken in plaats van een model (dit staat ook bekend als een domain transfer object). Een DTO is een apart `Codable` type dat de datastructuur voorstelt die u wilt coderen of decoderen. Deze ontkoppelen uw API van uw databaseschema en stellen u in staat om wijzigingen aan uw modellen aan te brengen zonder de publieke API van uw app te breken, verschillende versies te hebben en uw API prettiger te maken voor uw clients.
 
 Ga uit van het volgende `User` model in de komende voorbeelden.
 
@@ -435,9 +436,9 @@ app.get("users") { req async throws -> [GetUser] in
 }
 ```
 
-Zelfs als de structuur van de DTO identiek is aan de `Codable` conformiteit van het model, kan het hebben als een apart type helpen om grote projecten netjes te houden. Als u ooit een wijziging moet aanbrengen in de eigenschappen van uw modellen, hoeft u zich geen zorgen te maken over het verbreken van de publieke API van uw app. U kunt ook overwegen om uw DTOs in een apart pakket te stoppen dat gedeeld kan worden met gebruikers van uw API. 
+Een andere veel voorkomende use case is bij het werken met relaties, zoals parent-relaties of children-relaties. Zie [de Parent documentatie](relations.md#encoding-and-decoding-of-parents) voor een voorbeeld van hoe je een DTO kunt gebruiken om het decoderen van een model met een `@Parent` relatie eenvoudig te maken.
 
-Om deze redenen bevelen wij het gebruik van DTO's ten zeerste aan, waar mogelijk, vooral voor grote projecten.
+Zelfs als de structuur van de DTO identiek is aan de `Codable` conformiteit van het model, kan het hebben als een apart type helpen om grote projecten netjes te houden. Als u ooit een wijziging moet aanbrengen in de eigenschappen van uw modellen, hoeft u zich geen zorgen te maken over het verbreken van de publieke API van uw app. U kunt ook overwegen om uw DTOs in een apart pakket te stoppen dat gedeeld kan worden met gebruikers van uw API en `Content` conformiteit toe te voegen in uw Vapor app.
 
 ## Alias
 
@@ -507,7 +508,7 @@ Om een array van modellen bij te werken, gebruik `map` + `flatten`.
 [earth, mars].map { $0.update(on: database) }
     .flatten(on: database.eventLoop)
 
-// TODO
+// TOOD
 ```
 
 ## Query
@@ -518,7 +519,7 @@ Modellen stellen een statische methode `query(on:)` beschikbaar die een query bu
 Planet.query(on: database).all()
 ```
 
-Leer meer over query's in de [query](./query.md) sectie.
+Leer meer over query's in de [query](query.md) sectie.
 
 ## Find
 

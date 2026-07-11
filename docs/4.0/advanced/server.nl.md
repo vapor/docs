@@ -135,7 +135,7 @@ app.http.server.configuration.supportVersions = [.two]
 
 ### TLS
 
-De `tlsConfiguration` parameter regelt of TLS (SSL) is ingeschakeld op de server. De standaardinstelling is `nihil`. 
+De `tlsConfiguration` parameter regelt of TLS (SSL) is ingeschakeld op de server. De standaardinstelling is `nil`. 
 
 ```swift
 // Schakel TLS in.

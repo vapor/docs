@@ -27,9 +27,11 @@ Vapor 4 vereist Swift 5.9 of hoger.
 
 ## Installeer de Toolbox
 
-Nu dat Swift geïnstalleerd is, laten we de [Vapor Toolbox](https://github.com/vapor/toolbox) installeren. Deze CLI tool is niet noodzakelijk om Vapor te gebruiken, maar het bevat wel handige hulpprogramma's zoals een nieuwe project creator.
+Nu dat Swift geïnstalleerd is, laten we de [Vapor Toolbox](https://github.com/vapor/toolbox) installeren. Deze CLI tool is niet noodzakelijk om Vapor te gebruiken, maar het helpt bij het aanmaken van nieuwe Vapor projecten.
 
-De Toolbox wordt gedistribueerd via Homebrew. Als je Homebrew nog niet hebt geinstalleerd, bezoek dan <a href="https://brew.sh" target="_blank">brew.sh</a> voor installeer instructies. 
+### Homebrew
+
+De Toolbox wordt gedistribueerd via Homebrew. Als je Homebrew nog niet hebt geïnstalleerd, bezoek dan <a href="https://brew.sh" target="_blank">brew.sh</a> voor installatie-instructies.
 
 ```sh
 brew install vapor
@@ -43,6 +45,25 @@ vapor --help
 
 Je zou een lijst met beschikbare commando's moeten zien.
 
-## Next
+### Makefile
 
-Nadat je Swift hebt geïnstalleerd, maak je eerste applicatie in [Aan De Slag &rarr; Hallo, wereld](../getting-started/hello-world.md).
+Als je wil, kan je de Toolbox ook vanaf de bron bouwen. Bekijk de <a href="https://github.com/vapor/toolbox/releases" target="_blank">releases</a> van de Toolbox op GitHub om de nieuwste versie te vinden.
+
+```sh
+git clone https://github.com/vapor/toolbox.git
+cd toolbox
+git checkout <desired version>
+make install
+```
+
+Controleer nogmaals of de installatie is gelukt door het help commando te gebruiken.
+
+```sh
+vapor --help
+```
+
+Je zou een lijst met beschikbare commando's moeten zien.
+
+## Volgende stap
+
+Nu dat je Swift en de Vapor Toolbox hebt geïnstalleerd, maak je eerste applicatie in [Aan De Slag &rarr; Hallo, wereld](../getting-started/hello-world.md).

@@ -1,42 +1,77 @@
 # Installation unter Linux
 
-Die Mindestvorraussetzung für Vapor ist Swift 5.9 oder höher. Daher läuft das Framework auch auf allen Linux-Distributionen, die ebenfalls Swift 5.9 oder höher unterstützen. Unter [Swift.org](https://swift.org/download/) kannst du Swift für Linux-Distributionen herunterladen und installieren.
+Um Vapor zu nutzen, benötigst du Swift 5.9 oder höher. Dies kannst du mit dem CLI-Tool [Swiftly](https://swiftlang.github.io/swiftly/) installieren, das von der Swift Server Workgroup bereitgestellt wird (empfohlen), oder mit den Toolchains, die auf [Swift.org](https://swift.org/download/) verfügbar sind.
 
-Hier findest du eine Übersicht der untersützten Linux-Distribution:
+## Unterstützte Distributionen und Versionen
 
-|Distribution                                                                       |Version        |Swift Version|
-|-----------------------------------------------------------------------------------|---------------|-------------|
-|Ubuntu.                                                                            |20.04          |>= 5.9.      |
-|Fedora.                                                                            |>= 30          |>= 5.9       |
-|CentOS.                                                                            |8.             |>= 5.9.      |
-|Amazon Linux                                                                       |2.             |>= 5.9.      |
-|_Die Angaben können abweichen. Für offizielle Daten siehe [Swift Releases](https://swift.org/download/#releases)_|
+Vapor unterstützt dieselben Versionen von Linux-Distributionen, die auch von Swift 5.9 oder neueren Versionen unterstützt werden. Auf der [offiziellen Support-Seite](https://www.swift.org/platform-support/) findest du aktuelle Informationen darüber, welche Betriebssysteme offiziell unterstützt werden.
 
-Es kann gut möglich sein, dass Swift auch auf Distributionen läuft, die nicht offiziell gelistet werden, allerdings können wir das nicht garantieren. Mehr Informationen dazu, findest du unter [Swift - Github](https://github.com/apple/swift#getting-started).
+Nicht offiziell unterstützte Linux-Distributionen können Swift möglicherweise auch durch das Kompilieren des Quellcodes ausführen, allerdings kann Vapor in diesem Fall die Stabilität nicht garantieren. Mehr über das Kompilieren von Swift erfährst du im [Swift-Repo](https://github.com/apple/swift#getting-started).
 
-## Swift-Installation
+## Swift installieren
 
-Auf der Seite [Swift.org Using Downloads](https://swift.org/download/#using-downloads) findest du eine Anleitung, wie du Swift unter Linux installierst.
+### Automatisierte Installation mit dem Swiftly CLI-Tool (empfohlen)
 
-### - Fedora
+Auf der [Swiftly-Website](https://swiftlang.github.io/swiftly/) findest du Anleitungen zur Installation von Swiftly und Swift unter Linux. Installiere Swift anschließend mit folgendem Befehl:
 
-Fedora-Nutzer können folgenden Befehl ausführen
+#### Grundlegende Verwendung
+
+```sh
+$ swiftly install latest
+
+Fetching the latest stable Swift release...
+Installing Swift 5.9.1
+Downloaded 488.5 MiB of 488.5 MiB
+Extracting toolchain...
+Swift 5.9.1 installed successfully!
+
+$ swift --version
+
+Swift version 5.9.1 (swift-5.9.1-RELEASE)
+Target: x86_64-unknown-linux-gnu
+```
+
+### Manuelle Installation mit der Toolchain
+
+Auf Swift.org findest du im Leitfaden [Using Downloads](https://swift.org/download/#using-downloads) Anleitungen zur Installation von Swift unter Linux.
+
+### Fedora
+
+Fedora-Nutzer können Swift ganz einfach mit folgendem Befehl installieren:
 
 ```sh
 sudo dnf install swift-lang
 ```
 
-Solltest du jedoch Fedora 30 verwenden, benötigst du EPEL 8 um Swift 5.9 zum Laufen zu bringen.
+Wenn du Fedora 35 verwendest, musst du EPEL 8 hinzufügen, um Swift 5.9 oder neuere Versionen zu erhalten.
 
-### - Docker
+## Docker
 
-Du kannst ebenso das offizielle Docker-Image benutzen. Mehr Informationen dazu findest du unter [Swift's Docker Hub](https://hub.docker.com/_/swift).
+Du kannst auch die offiziellen Docker-Images von Swift verwenden, die bereits mit vorinstalliertem Compiler ausgeliefert werden. Mehr dazu erfährst du auf [Swifts Docker Hub](https://hub.docker.com/_/swift).
 
-## Toolbox-Installation
+## Toolbox installieren
 
-Neben Swift kannst du auch die Vapor-Toolbox installieren. Die Toolbox ist zwar für Vapor nicht zwingend notwendig, aber beinhaltet Befehle, die dich bei der Arbeit mit Vapor unterstützen.
+Nachdem du nun Swift installiert hast, installiere die [Vapor Toolbox](https://github.com/vapor/toolbox). Dieses CLI-Tool ist nicht erforderlich, um Vapor zu benutzen, hilft dir aber dabei, neue Vapor-Projekte zu erstellen.
 
-Unter Linux muss die Toolbox erst von [Github Toolbox](https://github.com/vapor/toolbox/releases) geladen und anschließend installiert werden.
+### Homebrew
+
+Die Toolbox wird über Homebrew verteilt. Falls du Homebrew noch nicht installiert hast, findest du unter <a href="https://brew.sh" target="_blank">brew.sh</a> eine Installationsanleitung.
+
+```sh
+brew install vapor
+```
+
+Überprüfe, ob die Installation erfolgreich war, indem du dir die Hilfe ausgeben lässt.
+
+```sh
+vapor --help
+```
+
+Es sollte dir eine Liste der verfügbaren Befehle angezeigt werden.
+
+### Makefile
+
+Falls du möchtest, kannst du die Toolbox auch aus dem Quellcode selbst bauen. Auf GitHub findest du unter <a href="https://github.com/vapor/toolbox/releases" target="_blank">releases</a> die neueste Version der Toolbox.
 
 ```sh
 git clone https://github.com/vapor/toolbox.git
@@ -45,12 +80,14 @@ git checkout <desired version>
 make install
 ```
 
-Im Anschluss kannst du die Installation überprüfen, indem du den Befehl 
+Überprüfe, ob die Installation erfolgreich war, indem du dir die Hilfe ausgeben lässt.
 
 ```sh
 vapor --help
 ```
 
-ausführst. Dir sollten nun mehrere Befehl der Toolbox angezeigt werden.
+Es sollte dir eine Liste der verfügbaren Befehle angezeigt werden.
 
-Nach der Swift-Installation kannst du mit der Erstellung deiner ersten Vapor-Anwendung beginnen. Folge dazu den Anweisungen im Abschnitt [Erste Schritte &rarr; Hello, world](../getting-started/hello-world.md).
+## Nächste Schritte
+
+Nachdem du nun Swift und die Vapor Toolbox installiert hast, erstelle deine erste App unter [Erste Schritte &rarr; Hello, world](../getting-started/hello-world.md).

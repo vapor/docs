@@ -61,7 +61,18 @@ Als de afhankelijkheden zijn toegevoegd, configureer dan de database referenties
 import Fluent
 import FluentPostgresDriver
 
-app.databases.use(.postgres(hostname: "localhost", username: "vapor", password: "vapor", database: "vapor"), as: .psql)
+app.databases.use(
+    .postgres(
+        configuration: .init(
+            hostname: "localhost",
+            username: "vapor",
+            password: "vapor",
+            database: "vapor",
+            tls: .disable
+        )
+    ),
+    as: .psql
+)
 ```
 
 Je kunt ook de credentials uit een database connection string halen.
@@ -446,7 +457,7 @@ Het nieuwe `Star` model lijkt veel op `Galaxy` behalve dat er een nieuw veldtype
 var galaxy: Galaxy
 ```
 
-De parent eigenschap is een veld dat de identifier van een ander model opslaat. Het model dat de verwijzing bevat wordt het "child" genoemd en het model waarnaar verwezen wordt wordt de "parent" genoemd. Dit type relatie is ook bekend als " één-op-veel". De `key` parameter aan de eigenschap specificeert de veldnaam die moet worden gebruikt om de sleutel van de ouder op te slaan in de database.
+De parent eigenschap is een veld dat de identifier van een ander model opslaat. Het model dat de verwijzing bevat wordt het "child" genoemd en het model waarnaar verwezen wordt wordt de "parent" genoemd. Dit type relatie is ook bekend als "één-op-veel". De `key` parameter aan de eigenschap specificeert de veldnaam die moet worden gebruikt om de sleutel van de ouder op te slaan in de database.
 
 In de init-methode wordt de parent identifier ingesteld met `$galaxy`.
 
@@ -457,7 +468,7 @@ self.$galaxy.id = galaxyID
  Door de naam van de bovenliggende eigenschap vooraf te laten gaan door `$`, krijgt u toegang tot de onderliggende property-wrapper. Dit is nodig om toegang te krijgen tot het interne `@Field` dat de eigenlijke identifier waarde opslaat.
 
 !!! seealso "Zie ook"
-    Bekijk het Swift Evolution voorstel voor property wrappers voor meer informatie: [SE-0258] Property Wrappers](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0258-property-wrappers.md)
+    Bekijk het Swift Evolution voorstel voor property wrappers voor meer informatie: [[SE-0258] Property Wrappers](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0258-property-wrappers.md)
 
 Maak vervolgens een migratie om de database voor te bereiden op de verwerking van `Star`.
 
@@ -574,6 +585,18 @@ Een sleutel-pad naar de `@Children` relatie wordt doorgegeven aan `with` om Flue
     }
 ]
 ```
+
+## Query Logging
+
+De Fluent drivers loggen de gegenereerde SQL op het debug log level. Sommige drivers, zoals FluentPostgreSQL, staan toe dat dit wordt geconfigureerd wanneer u de database configureert.
+
+Om het log level in te stellen, voeg in **configure.swift** (of waar u uw applicatie opzet) het volgende toe:
+
+```swift
+app.logger.logLevel = .debug
+```
+
+Dit stelt het log level in op debug. Wanneer u de volgende keer uw app bouwt en uitvoert, worden de door Fluent gegenereerde SQL-instructies gelogd naar de console.
 
 ## Volgende stappen
 

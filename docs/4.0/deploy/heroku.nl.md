@@ -100,7 +100,7 @@ Verbind uw app met heroku (vervang door de naam van uw app).
 $ heroku git:remote -a your-apps-name-here
 ```
 
-### Set Buildpack
+### Buildpack Instellen
 
 Stel het buildpack in om heroku te leren hoe om te gaan met vapor.
 
@@ -116,15 +116,14 @@ Het buildpack dat we hebben toegevoegd zoekt naar een **.swift-version** bestand
 echo "5.8.1" > .swift-version
 ```
 
-Dit creëert **.swift-version** met `5.2.1` als inhoud.
-
+Dit creëert **.swift-version** met `5.8.1` als inhoud.
 
 ### Procfile
 
 Heroku gebruikt het **Procfile** om te weten hoe uw app moet draaien, in ons geval moet het er als volgt uitzien:
 
 ```
-web: Run serve --env production --hostname 0.0.0.0 --port $PORT
+web: App serve --env production --hostname 0.0.0.0 --port $PORT
 ```
 
 we kunnen dit maken met het volgende terminal commando
@@ -149,11 +148,11 @@ git commit -m "adding heroku build files"
 
 Je bent klaar om uit te rollen, voer dit uit vanaf de terminal. Het kan een tijdje duren om te bouwen, dit is normaal.
 
-```none
+```bash
 git push heroku main
 ```
 
-### Scale Up
+### Opschalen
 
 Als je eenmaal succesvol hebt gebouwd, moet je ten minste één server toevoegen. Prijzen starten vanaf $5/maand voor het Eco plan (zie [prijzen](https://www.heroku.com/pricing#containers)). Zorg ervoor dat jouw betaalgegevens geconfigureerd zijn op Heroku. Dan, voor een enkele web worker:
 
@@ -161,7 +160,7 @@ Als je eenmaal succesvol hebt gebouwd, moet je ten minste één server toevoegen
 heroku ps:scale web=1
 ```
 
-### Continued Deployment
+### Doorlopende Deployment
 
 Elke keer dat je wil updaten, zet je gewoon de laatste veranderingen in main en push je naar heroku en het zal opnieuw deployen
 
@@ -215,7 +214,7 @@ if let databaseURL = Environment.get("DATABASE_URL") {
 
 Vergeet niet om deze wijzigingen vast te leggen
 
-```none
+```bash
 git add .
 git commit -m "configured heroku database"
 ```

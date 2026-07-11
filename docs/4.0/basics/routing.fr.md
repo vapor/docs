@@ -210,10 +210,10 @@ app.get("hello", ":name") { req -> String in
 }
 ```
 
-!!! Note
+!!! tip
     Ici, nous pouvons être sûrs que `req.parameters.get` ne retournera jamais `nil` car le chemin de notre route comporte la valeur `:name`. Cependant, si vous tentez d'accéder aux paramètres de routes depuis un middleware ou dans du code déclenché par différentes routes, vous devrez gérer le cas éventuel où la valeur retournée sera `nil`.
 
-!!! Note
+!!! tip
     Si vous souhaitez récupérer des paramètres de la QueryString, i.e. `/hello/?name=foo` vous devrez utiliser les API Content de Vapor pour gérer les données qui sont url-encodées. Voir la [rubrique `Content`](content.md) pour plus d'information.
 
 `req.parameters.get` supporte aussi le cast automatique vers les types compatibles avec le protocole `LosslessStringConvertible` :
@@ -242,7 +242,7 @@ app.get("hello", "**") { req -> String in
 }
 ```
 
-### Body Streaming
+### Diffusion du corps de la requête
 
 Lorsque vous déclarez une route avec la méthode `on`, vous pouvez définir comment le corps de la requête doit être géré. Par défaut, les corps de requêtes sont mis en mémoire avant d'invoquer votre gestionnaire de requête. C'est utile, car cela permet de décoder le contenu des requêtes de façon synchrone, même si votre application lit les requêtes entrantes de façon asynchrone. 
 

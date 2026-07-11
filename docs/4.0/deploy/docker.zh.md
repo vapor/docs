@@ -78,12 +78,11 @@ x-shared_environment: &shared_environment
 - 服务端口通过 `ports`数组（格式为 `<host_port>:<service_port>`）暴露给运行服务的系统。
 - `DATABASE_HOST` 定义为 `db`。这意味着你的应用程序将访问 `http://db:5432` 中的数据库。这是可行的，因为 Docker 将启动你的服务正在使用的网络，该网络上的内部 DNS 会将名称 `db` 路由到名为 `'db'` 的服务。
 - 在一些服务中，Dockerfile 中的 `CMD` 指令会被 `command` 数组覆盖。注意，`command` 指定的内容是针对 Dockerfile 中的 `ENTRYPOINT` 运行的。
-
 - 在集群模式下（更多内容见下文），默认情况下会为服务提供1个实例，但 `migrate` 和 `revert` 服务被定义为具有 `deploy` `replicas: 0` 因此它们在运行集群时不会默认启动。
 
 ## 构建
 
-Docker Compose 文件告诉 Docker 如何构建你的应用程序（使用当前目录中的 Dockerfile)，以及如何命名生成的镜像（`my-dockeralized-app：latest`）。后者实际上是名称（`my-dockeralized-app`）和标签（`latest`）的组合，其中标签用于对 Docker 镜像进行版本控制。
+Docker Compose 文件告诉 Docker 如何构建你的应用程序（使用当前目录中的 Dockerfile)，以及如何命名生成的镜像（`my-dockerized-app:latest`）。后者实际上是名称（`my-dockerized-app`）和标签（`latest`）的组合，其中标签用于对 Docker 镜像进行版本控制。
 
 要为你的应用程序构建 Docker 镜像，请运行
 
@@ -107,7 +106,7 @@ docker image ls
 
 ### 独立
 
-运行应用程序的最简单方法是将其作为独立容器启动。Docker 将使用 `Dependents_on` 数组来确保所有依赖服务也已启动。
+运行应用程序的最简单方法是将其作为独立容器启动。Docker 将使用 `depends_on` 数组来确保所有依赖服务也已启动。
 
 首先，执行：
 
@@ -116,7 +115,6 @@ docker compose up app
 ```
 
 并注意 `app` 和 `db` 服务都已启动。
-
 
 你的应用程序正在监听8080端口，并且，正如 Docker Compose 文件所定义的那样，可以在你的开发机上访问 **http://localhost:8080**。
 
@@ -204,7 +202,7 @@ Docker Compose 文件定义了一个 `db_data` 卷以在运行期间持久保存
 docker-compose down --volumes
 ```
 
-你可以通过 `docker volume ls` 命令查看当前持久化数据的任何卷。请注意，卷名通常会有前缀 `my-dockeralized-app_` 或 `test_`，这取决于你是否在集群模式下运行。
+你可以通过 `docker volume ls` 命令查看当前持久化数据的任何卷。请注意，卷名通常会有前缀 `my-dockerized-app_` 或 `test_`，这取决于你是否在集群模式下运行。
 
 你可以一次删除这些卷，例如
 
@@ -220,7 +218,7 @@ docker volume prune
 
 请注意，不要不小心修剪了包含你想要保留的数据的卷！
 
-Docker 不允许你通过运行或停止的容器删除当前正在使用的卷。使用 `docker tainer ls` 命令可以获取运行中的容器列表，使用 `docker tainer ls-a` 命令也可以看到停止的容器列表。
+Docker 不允许你通过运行或停止的容器删除当前正在使用的卷。使用 `docker container ls` 命令可以获取运行中的容器列表，使用 `docker container ls -a` 命令也可以看到停止的容器列表。
 
 ### 集群模式
 
@@ -244,7 +242,7 @@ docker stack deploy -c docker-compose.yml test
 docker service ls
 ```
 
-你应该会看到 `app` 和 `db` 服务的`1/1`副本，以及 `Migrate` 和 `revert` 服务的`0/0`副本。
+你应该会看到 `app` 和 `db` 服务的`1/1`副本，以及 `migrate` 和 `revert` 服务的`0/0`副本。
 
 我们需要使用不同的命令在集群模式下运行迁移。
 
@@ -288,6 +286,4 @@ docker stack rm test
 将你的项目文件复制到你的服务器上，通过 SSH 连接到服务器，然后运行 `docker-compose` 或 `docker stack deploy` 命令来远程运行。
 
 或者，将本地的 `DOCKER_HOST` 环境变量设置为指向你的服务器，并在你的计算机上本地运行 `docker` 命令。重要的是要注意，使用这种方法，你不需要将任何项目文件复制到服务器上，_但是_ 你需要将你的 docker 镜像托管的位置能够让你的服务器可以拉取。
-
-
 

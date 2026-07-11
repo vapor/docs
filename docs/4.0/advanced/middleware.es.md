@@ -1,6 +1,6 @@
 # Middleware
 
-Middleware es una cadena lógica entre el cliente y el controlador de ruta de Vapor. Le permite realizar operaciones en solicitudes entrantes antes de que lleguen al controlador de ruta y en respuestas antes de que lleguen al cliente. 
+Middleware es una cadena lógica entre el cliente y el controlador de ruta de Vapor. Te permite realizar operaciones en solicitudes entrantes antes de que lleguen al controlador de ruta y en respuestas antes de que lleguen al cliente.
 
 ## Configuración
 
@@ -40,7 +40,7 @@ Una solicitud `GET /hello` visitará el middleware en el siguiente orden:
 Solicitud → A → B → C → Controlador → C → B → A → Respuesta
 ```
 
-Middleware también puede ser _antepuesto_, lo cual es útil cuando desea agregar un middleware antes de que el middleware predeterminado se agregue automáticamente:
+Middleware también puede ser _antepuesto_, lo cual es útil cuando deseas agregar un middleware antes de que el middleware predeterminado se agregue automáticamente:
 
 ```swift
 app.middleware.use(someMiddleware, at: .beginning)
@@ -50,11 +50,11 @@ app.middleware.use(someMiddleware, at: .beginning)
 
 Vapor viene con algunos middlewares útiles, pero es posible que necesites crear el tuyo propio debido a los requisitos de tu aplicación. Por ejemplo, podrías crear un middleware que impida que cualquier usuario que no sea administrador acceda a un grupo de rutas.
 
-> Recomendamos crear una carpeta llamada `Middleware` dentro del directorio `Sources/App` para mantener tu codigo organizado
+> Recomendamos crear una carpeta llamada `Middleware` dentro del directorio `Sources/App` para mantener tu código organizado
 
 Middleware son tipos que se ajustan al protocolo `Middleware` o `AsyncMiddleware` de Vapor. Se insertan en la cadena de respuesta y pueden acceder y manipular una solicitud antes de que llegue a un controlador de ruta y modificar una respuesta antes de que se devuelva.
 
-Usando el ejemplo mencionado anteriormente, cree un middleware para bloquear acceso al usuario si no es administrador:
+Usando el ejemplo mencionado anteriormente, crea un middleware para bloquear acceso al usuario si no es administrador:
 
 ```swift
 import Vapor
@@ -69,7 +69,7 @@ struct EnsureAdminUserMiddleware: Middleware {
 }
 ```
 
-O si estas usando `async`/`await` puedes escribir:
+O si estás usando `async`/`await` puedes escribir:
 
 ```swift
 import Vapor
@@ -84,7 +84,7 @@ struct EnsureAdminUserMiddleware: AsyncMiddleware {
 }
 ```
 
-Si deseas modificar la respuesta, por ejemplo, para añadir un cabecero personalizado, puedes usar un middleware para esto también. Middlewares pueden esperar hasta que la respuesta sea recibida por parte de la cadena de respuesta y manipular la respuesta:
+Si deseas modificar la respuesta, por ejemplo, para añadir un encabezado personalizado, puedes usar un middleware para esto también. Middlewares pueden esperar hasta que la respuesta sea recibida por parte de la cadena de respuesta y manipular la respuesta:
 
 ```swift
 import Vapor
@@ -99,7 +99,7 @@ struct AddVersionHeaderMiddleware: Middleware {
 }
 ```
 
-O si estas usando `async`/`await` puedes escribir:
+O si estás usando `async`/`await` puedes escribir:
 
 ```swift
 import Vapor
@@ -115,7 +115,7 @@ struct AddVersionHeaderMiddleware: AsyncMiddleware {
 
 ## File Middleware
 
-`FileMiddleware` permite servir activos desde la carpeta pública de su proyecto al cliente. Puede incluir archivos estáticos como hojas de estilo o imágenes de mapa de bits.
+`FileMiddleware` permite servir activos desde la carpeta pública de tu proyecto al cliente. Puedes incluir archivos estáticos como hojas de estilo o imágenes de mapa de bits.
 
 ```swift
 let file = FileMiddleware(publicDirectory: app.directory.publicDirectory)
@@ -124,13 +124,13 @@ app.middleware.use(file)
 
 Una vez que `FileMiddleware` esté registrado, un archivo como `Public/images/logo.png` se puede vincular desde una plantilla Leaf como `<img src="/images/logo.png"/>`.
 
-Si tu servidor está almacenado en un projecto Xcode, como una applicación de iOS, use esto en su lugar:
+Si tu servidor está almacenado en un proyecto Xcode, como una aplicación de iOS, usa esto en su lugar:
 
 ```swift
 let file = try FileMiddleware(bundle: .main, publicDirectory: "Public")
 ```
 
-Tambien asegúrese de usar referencias de carpetas en lugar de grupos en Xcode para mantener la estructura de carpetas en los recursos despues de crear la applicación.
+También asegúrate de usar referencias de carpetas en lugar de grupos en Xcode para mantener la estructura de carpetas en los recursos después de crear la aplicación.
 
 ## CORS Middleware
 

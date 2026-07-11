@@ -1,28 +1,40 @@
 # Xcode
 
- Dieser Abschnitt geht auf Tipps und Tricks zur Verwendung von Vapor in Xcode ein. Solltest du eine andere Entwicklungsumgebung verwenden, kannst du natürlich den Abschnitt überspringen.
+Dieser Abschnitt geht auf Tipps und Tricks zur Verwendung von Xcode ein. Solltest du eine andere Entwicklungsumgebung verwenden, kannst du den Abschnitt überspringen.
 
- ## Arbeitsverzeichnis
+## Eigenes Arbeitsverzeichnis
 
- Xcode greift standardmäßig auf den _Derived Data_-Ordner zu. Der Ordner ist fälschlicherweise jedoch nicht das Arbeitsverzeichnis deines Projektes, weshalb Vapor beispielweise den _Public_-Ordner oder die Datei mit Umgebungsvariablen nicht vorfinden kann. Xcode gibt daraufhin eine Fehlermeldung aus:
+Standardmäßig führt Xcode dein Projekt aus dem Ordner _DerivedData_ aus. Dieser Ordner ist nicht identisch mit dem Stammverzeichnis deines Projekts (in dem sich deine Datei _Package.swift_ befindet). Das bedeutet, dass Vapor Dateien und Ordner wie _.env_ oder _Public_ nicht finden kann.
 
- ```
- [ WARNING ] No custom working directory set for this scheme, using /path/to/DerivedData/project-abcdef/Build/
- ```
+Du erkennst dieses Problem daran, dass beim Ausführen deiner App die folgende Warnung angezeigt wird.
 
- Um das Problem zu lösen, musst du den Pfad zu deinem Projekt in Schemen-Editor hinterlegen. Rufe über die den Menüpunkte _Products > Scheme > Edit Scheme..._  den Editor auf und wähle das Schema _App_ aus.
- 
- Klicke in der rechten Fensterhälfte auf den Reiter _Options_ und gebe unter dem Punkt _Working Directory_ den Pfad zu deinem Projekt mit an.
+```fish
+[ WARNING ] No custom working directory set for this scheme, using /path/to/DerivedData/project-abcdef/Build/
+```
 
- ![Xcode Scheme Options](../images/xcode-scheme-options.png)
+Um das zu beheben, lege im Xcode-Schema deines Projekts ein benutzerdefiniertes Arbeitsverzeichnis fest.
 
- Für den Fall, dass du den Pfad zu deinem Projekt nicht kennst, kannst du mit Hilfe des Terminal-Befehls 'pwd' den Pfad ganz einfach herausfinden.
+Bearbeite zunächst das Schema deines Projekts, indem du auf die Schema-Auswahl neben den Play- und Stopp-Schaltflächen klickst.
 
- ```sh
- # get path to this folder
- pwd
- ```
+![Xcode Scheme Area](../images/xcode-scheme-area.png)
 
- ```
- /path/to/project
- ```
+Wähle im Dropdown-Menü _Edit Scheme..._ aus.
+
+![Xcode Scheme Menu](../images/xcode-scheme-menu.png)
+
+Wähle im Schema-Editor die Aktion _App_ und den Tab _Options_ aus. Aktiviere _Use custom working directory_ und gib den Pfad zum Stammverzeichnis deines Projekts an.
+
+![Xcode Scheme Options](../images/xcode-scheme-options.png)
+
+Den vollständigen Pfad zum Stammverzeichnis deines Projekts erhältst du, indem du `pwd` in einem Terminal-Fenster ausführst, das dort geöffnet ist.
+
+```sh
+# get path to this folder
+pwd
+```
+
+Du solltest eine Ausgabe ähnlich der folgenden sehen.
+
+```
+/path/to/project
+```

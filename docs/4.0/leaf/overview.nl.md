@@ -12,7 +12,7 @@ Hier is een voorbeeld van een basisgebruik van een Leaf tag.
 There are #count(users) users.
 ```
 
-Leaf tags bestaan uit vier elementen::
+Leaf tags bestaan uit vier elementen:
 
 - Token `#`: Dit geeft de leaf parser het signaal om te beginnen zoeken naar een tag.
 - Naam `count`: die de tag identificeert.
@@ -53,7 +53,7 @@ Leaf ondersteunt ook veel uitdrukkingen die je kent van Swift.
 
 ## Context
 
-In het voorbeeld uit [Getting Started](./getting-started.md), hebben we een `[String: String]` woordenboek gebruikt om gegevens door te geven aan Leaf. Je kunt echter alles doorgeven dat voldoet aan `Encodable`. Het is zelfs beter om `Encodable` structs te gebruiken, omdat `[String: Any]` niet ondersteund wordt. Dit betekent dat je *geen* array kunt doorgeven, en het in plaats daarvan moet verpakken in een struct:
+In het voorbeeld uit [Getting Started](getting-started.md), hebben we een `[String: String]` woordenboek gebruikt om gegevens door te geven aan Leaf. Je kunt echter alles doorgeven dat voldoet aan `Encodable`. Het is zelfs beter om `Encodable` structs te gebruiken, omdat `[String: Any]` niet ondersteund wordt. Dit betekent dat je *geen* array kunt doorgeven, en het in plaats daarvan moet verpakken in een struct:
 
 ```swift
 struct WelcomeContext: Encodable {
@@ -212,7 +212,7 @@ Your search matched #count(matches) pages.
 
 #### `#lowercased`
 
-De `#lowercased` tag maakt alle letters in een string lowercased.
+De `#lowercased` tag maakt alle letters in een string kleine letters.
 
 ```leaf
 #lowercased(name)
@@ -248,7 +248,7 @@ De `#contains` tag accepteert een array en een waarde als zijn twee parameters, 
 
 #### `#date`
 
-Het `#date` label formatteert datums in een leesbare string. Standaard gebruikt het de ISO8601 opmaak.
+De `#date` tag formatteert datums in een leesbare string. Standaard gebruikt het de ISO8601 opmaak.
 
 ```swift
 render(..., ["now": Date()])
@@ -264,9 +264,15 @@ Je kunt een aangepaste datum formatter string doorgeven als tweede argument. Zie
 The date is #date(now, "yyyy-MM-dd")
 ```
 
+Je kunt ook een tijdzone-ID doorgeven als derde argument voor de datumformatter. Zie Swift's [`DateFormatter.timeZone`](https://developer.apple.com/documentation/foundation/dateformatter/1411406-timezone) en [`TimeZone`](https://developer.apple.com/documentation/foundation/timezone) voor meer informatie.
+
+```leaf
+The date is #date(now, "yyyy-MM-dd", "America/New_York")
+```
+
 #### `#unsafeHTML`
 
-De `#unsafeHTML` tag werkt als een variabele tag - b.v. `#(variabele)`. Het ontsnapt echter niet aan de HTML die `variabele` kan bevatten:
+De `#unsafeHTML` tag werkt als een variabele tag - b.v. `#(variable)`. Het ontsnapt echter niet aan de HTML die `variable` kan bevatten:
 
 ```leaf
 The time is #unsafeHTML(styledTitle)
@@ -275,10 +281,40 @@ The time is #unsafeHTML(styledTitle)
 !!! note "Opmerking"
     Je moet voorzichtig zijn met het gebruik van deze tag om er zeker van te zijn dat de variabele die je meegeeft je gebruikers niet blootstelt aan een XSS-aanval.
 
+#### `#comment`
+
+De `#comment` tag stelt je in staat om annotaties aan je templates toe te voegen die niet verschijnen in de gerenderde output. De tag accepteert een string parameter die volledig genegeerd wordt tijdens het renderen.
+
+```leaf
+#comment("This is a single-line comment")
+<h1>#(title)</h1>
+```
+
+Voor langere commentaren kun je de multi-line string syntax gebruiken:
+
+```leaf
+#comment("""
+This template renders the home page.
+It expects a "title" and "body" variable.
+""")
+<h1>#(title)</h1>
+```
+
+#### `#isEmpty`
+
+De `#isEmpty` tag geeft true terug als een string property die aan de template is doorgegeven leeg is. Het wordt meestal gebruikt binnen een `#if` conditie:
+
+```leaf
+#if(isEmpty(title)):
+    No title was provided.
+#else:
+    The title is #(title)
+#endif
+```
+
 #### `#dumpContext`
 
-De `#dumpContext` tag geeft de hele context weer in een door mensen leesbare string. Gebruik deze tag om te debuggen wat er wordt
-wordt geleverd als context voor de huidige rendering.
+De `#dumpContext` tag geeft de hele context weer in een door mensen leesbare string. Gebruik deze tag om te debuggen wat er wordt geleverd als context voor de huidige rendering.
 
 ```leaf
 Hello, world!

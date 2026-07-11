@@ -50,7 +50,6 @@ logger.info(...)
 ## 日志级别(Level)
 
 `SwiftLog` 支持多种日志级别。
-<!-- ~~SwiftLog supports several different logging levels.~~ -->
 
 |名称|说明|
 |-|-|

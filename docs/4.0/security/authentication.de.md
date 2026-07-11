@@ -30,6 +30,8 @@ struct User: Authenticatable {
 }
 ```
 
+Jedes der folgenden Beispiele verwendet eine Instanz eines von uns erstellten Authenticators. In diesen Beispielen haben wir ihn `UserAuthenticator` genannt.
+
 ### Anwendungsendpunkt
 
 Anwendungsendpunkte können mit den eingangs erwähnten Authenticator versehen werden um sie entsprechend zu schützen.
@@ -108,6 +110,15 @@ struct UserAuthenticator: AsyncBasicAuthenticator {
 
 Das Protokoll verlangt, dass wir die Methode _authenticate(basic:for:)_ anlegen. Die Methode wird bei einer Anfrage mit Basis-Header aufgerufen. Eine Struktur mit Benutzername und Passwort wird somit an die Methode übergeben.
 
+In diesem Test-Authentifikator werden Benutzername und Passwort gegen fest codierte Werte geprüft. In einem echten Authentifikator würdest du wahrscheinlich gegen eine Datenbank oder eine externe API prüfen. Aus diesem Grund kann die Methode `authenticate` ein Future zurückgeben.
+
+!!! tip
+    Passwörter sollten niemals im Klartext in einer Datenbank gespeichert werden. Verwende zum Vergleich immer Passwort-Hashes.
+
+Wenn die Authentifizierungsparameter korrekt sind, in diesem Fall übereinstimmend mit den fest codierten Werten, wird ein `User` namens Vapor angemeldet. Stimmen die Authentifizierungsparameter nicht überein, wird kein Benutzer angemeldet, was bedeutet, dass die Authentifizierung fehlgeschlagen ist.
+
+Wenn du diesen Authentifikator zu deiner App hinzufügst und die oben definierte Route testest, solltest du bei einer erfolgreichen Anmeldung den Namen `"Vapor"` zurückbekommen. Sind die Anmeldedaten nicht korrekt, solltest du einen Fehler `401 Unauthorized` erhalten.
+
 ## Bearer
 
 Die Bearerauthentifizierung sendet einen Token an den Server. Der Token wird mit dem Prefix `Bearer` versehen.
@@ -143,6 +154,8 @@ struct UserAuthenticator: BearerAuthenticator {
 }
 ```
 
+Wenn du `async`/`await` verwendest, kannst du stattdessen `AsyncBearerAuthenticator` benutzen:
+
 ```swift
 import Vapor
 
@@ -162,11 +175,22 @@ struct UserAuthenticator: AsyncBearerAuthenticator {
 
 Das Protokoll verlangt, dass wir die Methode _authenticate(bearer:for:)_ anlegen. Die Methode wird bei einer Anfrage mit Bearer-Header aufgerufen. Das Objekt wird an die Methode übergeben.
 
+In diesem Test-Authentifikator wird der Token gegen einen fest codierten Wert geprüft. In einem echten Authentifikator würdest du den Token wahrscheinlich verifizieren, indem du ihn gegen eine Datenbank prüfst oder kryptografische Verfahren verwendest, wie es beispielsweise bei JWT der Fall ist. Aus diesem Grund kann die Methode `authenticate` ein Future zurückgeben.
+
+!!! tip
+    Bei der Implementierung der Token-Verifizierung solltest du die horizontale Skalierbarkeit berücksichtigen. Wenn deine Anwendung viele Benutzer gleichzeitig bedienen muss, kann die Authentifizierung zu einem potenziellen Engpass werden. Überlege dir, wie dein Design skalieren soll, wenn mehrere Instanzen deiner Anwendung gleichzeitig laufen.
+
+Wenn die Authentifizierungsparameter korrekt sind, in diesem Fall übereinstimmend mit dem fest codierten Wert, wird ein `User` namens Vapor angemeldet. Stimmen die Authentifizierungsparameter nicht überein, wird kein Benutzer angemeldet, was bedeutet, dass die Authentifizierung fehlgeschlagen ist.
+
+Wenn du diesen Authentifikator zu deiner App hinzufügst und die oben definierte Route testest, solltest du bei einer erfolgreichen Anmeldung den Namen `"Vapor"` zurückbekommen. Sind die Anmeldedaten nicht korrekt, solltest du einen Fehler `401 Unauthorized` erhalten.
+
 ## Kombinierung
 
-Authentikatoren können für eine höhrere Sicherheit miteinander kombiniert werden.
+Mehrere Authentifikatoren können miteinander kombiniert werden, um komplexere Endpunkt-Authentifizierungen zu erstellen. Da eine Authentifikator-Middleware eine Anfrage bei fehlgeschlagener Authentifizierung nicht ablehnt, können mehrere dieser Middlewares hintereinander geschaltet werden. Authentifikatoren können auf zwei grundlegende Arten kombiniert werden.
 
 ### Kombinieren von Methoden
+
+Die erste Möglichkeit der Authentifizierungs-Kombination besteht darin, mehr als einen Authentifikator für denselben Benutzertyp hintereinanderzuschalten. Betrachte das folgende Beispiel:
 
 ```swift
 app.grouped(UserPasswordAuthenticator())
@@ -187,7 +211,7 @@ Die Kombination aus den beiden oben genannten Authentifikatoren ermöglicht den 
 
 ### Kombinieren von Benutzern
 
-The second method of authentication composition is chaining authenticators for different user types. Take the following example:
+Die zweite Möglichkeit der Authentifizierungs-Kombination besteht darin, Authentifikatoren für unterschiedliche Benutzertypen hintereinanderzuschalten. Betrachte das folgende Beispiel:
 
 ```swift
 app.grouped(AdminAuthenticator())
@@ -239,7 +263,7 @@ req.auth.logout(User.self)
 
 [Fluent](../fluent/overview.md) bietet uns hierzu bereits Protokolle an, die wir auf unseren Models anwenden können.
 
-_ModelTokenAuthenicatable_ ist für die Authentifizierung mit einem Bearer-Token. _ModelAuthenticatable_ ist für die Authentifizierung mittels Anmeldeinformationen und wird in den meisten Fällen nur auf einen einzigen Endpunkt angewendet, um eben einen solchen Bearer-Token zu erstellen.
+_ModelTokenAuthenticatable_ ist für die Authentifizierung mit einem Bearer-Token. _ModelAuthenticatable_ ist für die Authentifizierung mittels Anmeldeinformationen und wird in den meisten Fällen nur auf einen einzigen Endpunkt angewendet, um eben einen solchen Bearer-Token zu erstellen.
 
 In dieser Anleitung wird davon ausgegangen, dass du mit Fluent vertraut bist und deine App erfolgreich für die Verwendung einer Datenbank konfiguriert hast. Wenn du neu in Fluent bist, beginne mit der [Übersicht](../fluent/overview.md).
 
@@ -277,7 +301,7 @@ final class User: Model, Content {
 }
 ```
 
-Das Model. Das Feld _Email_ sollte einzigartig sein, um Redundanzen zu vermeiden. Somit würde die Migration für das obere Beispiel so aussehen.
+Das Model muss in der Lage sein, einen Benutzernamen – in diesem Fall eine E-Mail-Adresse – sowie einen Passwort-Hash zu speichern. Außerdem legen wir `email` als eindeutiges Feld fest, um doppelte Benutzer zu vermeiden. Die entsprechende Migration für dieses Beispiel-Model sieht wie folgt aus.
 
 ```swift
 import Fluent
@@ -310,7 +334,10 @@ Anschließend müssen wir der Anwendung noch die Migration mitgeben.
 app.migrations.add(User.Migration())
 ``` 
 
-Als Nächstes legen für die Benutzererstellung einen Endpunkt und eine Struktur an.
+!!! tip
+     Da E-Mail-Adressen nicht zwischen Groß- und Kleinschreibung unterscheiden, solltest du eventuell eine [`Middleware`](../fluent/model.md#lifecycle) hinzufügen, die die E-Mail-Adresse vor dem Speichern in der Datenbank in Kleinbuchstaben umwandelt. Beachte jedoch, dass `ModelAuthenticatable` einen Vergleich verwendet, der zwischen Groß- und Kleinschreibung unterscheidet. Wenn du das also tust, solltest du sicherstellen, dass die Eingabe des Benutzers vollständig klein geschrieben ist, entweder durch eine entsprechende Umwandlung im Client oder mit einem eigenen Authentifikator.
+
+Als Nächstes legen wir für die Benutzererstellung einen Endpunkt und eine Struktur an.
 
 ```swift
 import Vapor
@@ -408,14 +435,12 @@ passwordProtected.post("login") { req -> User in
 
 Dank des Protokolls _ModelAuthenticatable_ können wir die statische Methode _athenticator(:)_ verwenden, um einen Authenticator zu erstellen.
 
-Test that this route works by sending the following request.
+Teste, ob diese Route funktioniert, indem du die folgende Anfrage sendest.
 
 ```http
 POST /login HTTP/1.1
 Authorization: Basic dGVzdEB2YXBvci5jb2RlczpzZWNyZXQ0Mg==
 ```
-
-Die Anfragen übergibt als Benutzernamen _test@vapor.codes_ und als Passwort _secret42_: 
 
 Diese Anfrage übergibt den Benutzernamen `test@vapor.codes` und das Passwort `secret42` über den Basic Authentication Header. Du solltest den zuvor erstellten Benutzer zurückbekommen.
 
@@ -451,7 +476,7 @@ final class UserToken: Model, Content {
 }
 ```
 
-Für den eindeutigen Tokenwert müssen wir im Model ein Feld mit der Bezeichnung _value_ anlegen. Um eine Verbindung zum Benutzer herzustellen, müssen wir zusätzlich ein Parent-Relation anlegen.
+Für den eindeutigen Tokenwert müssen wir im Model ein Feld mit der Bezeichnung _value_ anlegen. Um eine Verbindung zum Benutzer herzustellen, müssen wir zusätzlich ein Parent-Relation anlegen. Du kannst diesem Token nach Belieben weitere Eigenschaften hinzufügen, etwa ein Ablaufdatum.
 
 Anschließend können wir uns der Migration widmen.
 
@@ -478,7 +503,7 @@ extension UserToken {
 }
 ```
 
-In der Migration geben wir an, dass der Wert für das Feld _value_ eindeutig sein soll und das ein Fremdschlüssel mit Verweis auf die Tabelle _Users_ anlegegt werden soll.
+In der Migration geben wir an, dass der Wert für das Feld _value_ eindeutig sein soll und dass ein Fremdschlüssel mit Verweis auf die Tabelle _Users_ angelegt werden soll.
 
 Nun müssen wir der Anwendung die Migration mitgeben.
 
@@ -729,11 +754,11 @@ app.middleware.use(User.sessionAuthenticator())
 
 Diese Middlewares tun Folgendes:
 
-* Die Sitzung-Middleware wandelt den übermittelten Sitzungs-Cookie in eine Sitzung um.
-* Der Authentikator gleicht die erstelle Sitzung mit den aktiven Sitzung ab. Sollte das der Fall sein, authentifiziert es die Anfrage. Die Identität wird in der Sitzung abgelegt, sodass 
+* Die Sitzungs-Middleware nimmt das Sitzungs-Cookie aus der Anfrage und wandelt es in eine Sitzung um.
+* der Sitzungsauthentifikator nimmt die Sitzung und prüft, ob es einen authentifizierten Benutzer für diese Sitzung gibt. Wenn ja, authentifiziert die Middleware die Anfrage. In der Antwort sieht der Sitzungsauthentifikator, ob die Anfrage einen authentifizierten Benutzer hat, und speichert ihn in der Sitzung, damit er bei der nächsten Anfrage authentifiziert ist.
 
-* Die Sitzung-Middleware nimmt das Session-Cookie aus der Anfrage und wandelt es in eine Session um.
-* der Sitzungs Authenticator nimmt die Session und prüft, ob es einen authentifizierten Benutzer für diese Session gibt. Wenn ja, authentifiziert die Middleware die Anfrage. In der Antwort sieht der Session Authenticator, ob die Anfrage einen authentifizierten Benutzer hat und speichert ihn in der Session, damit er bei der nächsten Anfrage authentifiziert ist.
+!!! note
+    Das Sitzungs-Cookie wird standardmäßig nicht auf `secure` und `httpOnly` gesetzt. Weitere Informationen zur Konfiguration von Cookies findest du in Vapors [Session API](../advanced/sessions.md#configuration).
 
 ### Anwendungsendpunkte schützen
 
@@ -757,8 +782,10 @@ Dies funktioniert ähnlich wie die `GuardMiddleware`. Alle Anfragen an Routen, d
 Achte darauf, einen Session Authenticator vor der `RedirectMiddleware` einzubinden, um sicherzustellen, dass der authentifizierte Benutzer geladen wird, bevor er die `RedirectMiddleware` durchläuft.
 
 ```swift
-let protectedRoutes = app.grouped([User.SessionAuthenticator(), redirecteMiddleware])
+let protectedRoutes = app.grouped([User.sessionAuthenticator(), redirectMiddleware])
 ```
+
+### Anmeldung per Formular
 
 Um einen Benutzer und bestehende Sitzungen zu authentifizieren, muss sich zuerst ein Benutzer anmelden. Vapor stellt uns für die Anmeldungsabwicklung das Protokoll _ModelCredentialsAuthenticatable_ zur Verfügung, mit das wir unser Objekt _User_ versehen. 
 
@@ -821,7 +848,7 @@ struct SessionToken: Content, Authenticatable, JWTPayload {
         self.expiration = ExpirationClaim(value: Date().addingTimeInterval(expirationTime))
     }
 
-    func verify(using signer: JWTSigner) throws {
+    func verify(using algorithm: some JWTAlgorithm) throws {
         try expiration.verifyNotExpired()
     }
 }
@@ -839,21 +866,21 @@ Mit unserem Modell für das JWT-Token und die Antwort können wir eine passwortg
 
 ```swift
 let passwordProtected = app.grouped(User.authenticator(), User.guardMiddleware())
-passwordProtected.post("login") { req -> ClientTokenResponse in
+passwordProtected.post("login") { req async throws -> ClientTokenResponse in
     let user = try req.auth.require(User.self)
     let payload = try SessionToken(with: user)
-    return ClientTokenResponse(token: try req.jwt.sign(payload))
+    return ClientTokenResponse(token: try await req.jwt.sign(payload))
 }
 ```
 
 Wenn du keinen Authentifikator verwenden willst, kannst du auch etwas haben, das wie folgt aussieht.
 
 ```swift
-app.post("login") { req -> ClientTokenResponse in
+app.post("login") { req async throws -> ClientTokenResponse in
     // Überprüfe die angegebenen Anmeldeinformationen für den Benutzer
     // UserId für den angegebenen Benutzer abrufen
     let payload = try SessionToken(userId: userId)
-    return ClientTokenResponse(token: try req.jwt.sign(payload))
+    return ClientTokenResponse(token: try await req.jwt.sign(payload))
 }
 ```
 

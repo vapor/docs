@@ -34,7 +34,7 @@ import FluentPostgresDriver
 
 if let postgres = req.db as? PostgresDatabase {
     // 基礎となるデータベースドライバーはPostgreSQLです。
-    let planets = try await postgres.simpleQuery("SELECT * FROM planets").all()
+    postgres.simpleQuery("SELECT * FROM planets").all()
 } else {
     // 基礎となるデータベースはPostgreSQLではありません。
 }

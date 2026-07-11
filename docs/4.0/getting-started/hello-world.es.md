@@ -7,6 +7,9 @@ Si todavía no has instalado Swift o Vapor Toolbox, echa un vistazo a la secció
 - [Instalación &rarr; macOS](../install/macos.md)
 - [Instalación &rarr; Linux](../install/linux.md)
 
+!!! tip "Consejo"
+    La plantilla utilizada por Vapor Toolbox requiere Swift 6.0 o posterior
+
 ## Nuevo Proyecto
 
 El primer paso es crear un nuevo proyecto de Vapor en tu computadora. Abre el terminal y usa el comando de nuevo proyecto de Toolbox. Esto generará una nueva carpeta con el proyecto en el directorio actual.
@@ -74,7 +77,7 @@ Eso compilará y ejecutará tu proyecto. La primera vez que lo ejecutes necesita
 
 ## Visitar Localhost
 
-Abre tu navegador web y dirígete <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello</a> or <a href="http://127.0.0.1:8080" target="_blank">http://127.0.0.1:8080</a>
+Abre tu navegador web y dirígete a <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello</a> o <a href="http://127.0.0.1:8080" target="_blank">http://127.0.0.1:8080</a>
 
 Deberías ver la página a continuación.
 

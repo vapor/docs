@@ -313,7 +313,7 @@ El paquete JWT de Vapor incluye varios asistentes para implementar [reclamos JWT
 
 |Reclamo|Tipo|Método de verificación|
 |---|---|---|
-|`aud`|`AudienceClaim`|`verifyIntendedAudience(incluye:)`|
+|`aud`|`AudienceClaim`|`verifyIntendedAudience(includes:)`|
 |`exp`|`ExpirationClaim`|`verifyNotExpired(currentDate:)`|
 |`jti`|`IDClaim`|n/a|
 |`iat`|`IssuedAtClaim`|n/a|
@@ -322,7 +322,7 @@ El paquete JWT de Vapor incluye varios asistentes para implementar [reclamos JWT
 |`nbf`|`NotBeforeClaim`|`verifyNotBefore(currentDate:)`|
 |`sub`|`SubjectClaim`|n/a|
 
-Todos los reclamos deben verificarse con el método `JWTPayload.verify`. Si el reclamo tiene un método de verificación especial, puedes usarlo. De lo contrario, acceda al valor del reclamo usando `valor` y verifica que sea válido.
+Todos los reclamos deben verificarse con el método `JWTPayload.verify`. Si el reclamo tiene un método de verificación especial, puedes usarlo. De lo contrario, acceda al valor del reclamo usando `value` y verifica que sea válido.
 
 ## JWK
 
@@ -355,7 +355,7 @@ try await app.jwt.keys.use(jwk: jwk)
 
 Esto agregará el JWK a la colección de claves y podrás usarlo para firmar y verificar JWT como lo harías con cualquier otra clave.
 
-### JWK
+### JWKs
 
 Si tienes varios JWK, también puedes agregarlos:
 

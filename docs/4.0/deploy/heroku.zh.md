@@ -36,7 +36,7 @@ heroku auth:whoami
 
 ### 创建一个应用
 
-通过访问 heroku.com 来访问你的帐户，然后从右上角的下拉菜单中创建一个新应用程序。Heroku 会问一些问题，例如区域和应用程序名称，只需按照提示操作即可。
+通过访问 dashboard.heroku.com 来访问你的帐户，然后从右上角的下拉菜单中创建一个新应用程序。Heroku 会问一些问题，例如区域和应用程序名称，只需按照提示操作即可。
 
 ### Git
 
@@ -68,8 +68,8 @@ git branch
   other-branches
 ```
 
-> **提示**：如果你没有看到任何输出并且你刚刚执行了 `git init`。 你需要先提交（commit）你的代码，然后你会看到 `git branch` 命令的输出。
-
+!!! note "注意"
+    如果你没有看到任何输出并且你刚刚执行了 `git init`。 你需要先提交（commit）你的代码，然后你会看到 `git branch` 命令的输出。
 
 如果你当前 _不在_ 正确的分支上，请输入以下命令来切换（针对 **main** 分支来说）：
 
@@ -149,7 +149,7 @@ git commit -m "adding heroku build files"
 
 你已准备好开始部署，从终端运行以下命令。 构建过程可能会需要一些时间，不必担心。
 
-```none
+```bash
 git push heroku main
 ```
 
@@ -192,9 +192,11 @@ heroku config
 DATABASE_URL: postgres://cybntsgadydqzm:2d9dc7f6d964f4750da1518ad71hag2ba729cd4527d4a18c70e024b11cfa8f4b@ec2-54-221-192-231.compute-1.amazonaws.com:5432/dfr89mvoo550b4
 ```
 
-**DATABASE_URL** 这里将代表 postgres 数据库。 请**从不** 硬编码静态 url，heroku 会变更这个 url，并破坏你的应用程序。
+**DATABASE_URL** 这里将代表 postgres 数据库。 请**从不** 硬编码静态 url，heroku 会变更这个 url，并破坏你的应用程序。这也是一个不好的做法。相反，请在运行时读取环境变量。
 
-以下是一个示例数据库配置
+Heroku Postgres 插件[要求](https://devcenter.heroku.com/changelog-items/2035)所有连接都必须加密。Postgres 服务器使用的证书是 Heroku 内部的，因此必须建立一个**未经验证**的 TLS 连接。
+
+以下代码片段展示了如何同时实现这两点：
 
 ```swift
 if let databaseURL = Environment.get("DATABASE_URL") {
@@ -211,11 +213,9 @@ if let databaseURL = Environment.get("DATABASE_URL") {
 }
 ```
 
-如果你使用 Heroku Postgres 的标准计划，则需要开始未验证的 TLS。
-
 不要忘记提交这些更改
 
-```none
+```bash
 git add .
 git commit -m "configured heroku database"
 ```
@@ -226,7 +226,7 @@ git commit -m "configured heroku database"
 要重置你的数据库请运行：
 
 ```bash
-heroku run App -- revert --all --yes --env production
+heroku run App -- migrate --revert --all --yes --env production
 ```
 
 如要迁移请运行以下命令：

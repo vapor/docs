@@ -57,7 +57,7 @@ let port = Environment.get("PORT")
 
 ## Inicio
 
-Ahora ya puedes cargar, habilitar, iniciar y apagar tu aplicación ejecutando lo siguiente como raíz.
+Ahora ya puedes cargar, habilitar, iniciar, detener y reiniciar tu aplicación ejecutando lo siguiente como root.
 
 ```sh
 systemctl daemon-reload

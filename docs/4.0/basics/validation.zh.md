@@ -17,7 +17,7 @@ enum Color: String, Codable {
 }
 ```
 
-如果用户尝试将字符串 `”purple”` 传递给 `“Color”` 类型的属性，则将收到类似于以下内容的错误：
+如果用户尝试将字符串 `"purple"` 传递给 `Color` 类型的属性，则将收到类似于以下内容的错误：
 
 ```
 Cannot initialize Color from invalid String value purple for key favoriteColor
@@ -39,7 +39,7 @@ favoriteColor is not red, blue, or green
 
 为了验证请求，你需要生成一个 `Validations` 集合。最常见的做法是使现有类型继承 **Validatable**。
 
-让我们看一下如何向这个简单的 `POST/users` 请求添加验证。本指南假定你已经熟悉 [Content](content.md) API。
+让我们看一下如何向这个简单的 `POST /users` 请求添加验证。本指南假定你已经熟悉 [Content](content.zh.md) API。
 
 
 ```swift
@@ -74,7 +74,7 @@ extension CreateUser: Validatable {
 }
 ```
 
-验证 `CreateUser` 后，将调用静态方法 `validations（_ :)`。你要执行的所有验证都应添加到 **Validations** 集合中。让我们添加一个简单的验证，以验证用户的电子邮件是否有效。
+验证 `CreateUser` 后，将调用静态方法 `validations(_:)`。你要执行的所有验证都应添加到 **Validations** 集合中。让我们添加一个简单的验证，以验证用户的电子邮件是否有效。
 
 ```swift
 validations.add("email", as: String.self, is: .email)
@@ -169,14 +169,14 @@ validations.add("username", as: String.self, is: .count(3...) && .alphanumeric)
 ```swift
 validations.add(
     "favoriteColor", as: String.self,
-    is: .in("red", "blue","green"),
+    is: .in("red", "blue", "green"),
     required: false
 )
 ```
 
 由于无法从无效值中解码 `Color`，因此此验证将 `String` 用作基本类型。它使用 `.in` 验证器来验证该值是有效的选项：红色、蓝色或绿色。由于该值是可选的，因此将 `required` 设置为 false 表示如果请求数据中缺少此字段，则验证不会失败。
 
-请注意，如果缺少此字段，则收藏夹颜色验证将通过，但如果提供 `null`，则不会通过。 如果要支持 `null`，请将验证类型更改为 `String?`，并使用 `.nil ||`。
+请注意，如果缺少此字段，则收藏夹颜色验证将通过，但如果提供 `null`，则不会通过。 如果要支持 `null`，请将验证类型更改为 `String?`，并使用 `.nil ||`（读作 “is nil or ...”）这一便利写法。
 
 ```swift
 validations.add(
@@ -221,18 +221,23 @@ validations.add(
 |`.nil`|值为`null`|
 |`.range(_:)`|值在提供的范围内|
 |`.url`|包含有效的URL|
+|`.custom(_:, validationClosure: (value) -> Bool)`|自定义的一次性验证。|
 
-验证器也可以使用运算符组合起来以构建复杂的验证：
+验证器也可以使用运算符组合起来以构建复杂的验证。有关 `.custom` 验证器的更多信息，请参阅 [自定义验证器](#custom-validators)。
 
 |操作符|位置|描述|
 |:--|:--|:--|
 |`!`|前面|反转验证器，要求相反|
 |`&&`|中间|组合两个验证器，需要同时满足|
-|`||`|中间|组合两个验证器，至少满足一个|
+|`\|\|`|中间|组合两个验证器，至少满足一个|
 
 ## 自定义验证器
 
-创建一个自定义的验证器用于验证邮政编码，允许你通过扩展验证器框架的功能来实现。本节中，我们将引导你完成创建用于验证邮政编码的自定义验证器的步骤。
+创建自定义验证器有两种方式。
+
+### 扩展 Validation API
+
+当你打算在多个 `Content` 对象中使用自定义验证器时，扩展 Validation API 是最合适的方式。本节中，我们将引导你完成创建用于验证邮政编码的自定义验证器的步骤。
 
 首先，创建一个新类型用于表示 `ZipCode` 的验证结果。这个结构体负责报告给定的字符串是否是有效的邮政编码。
 
@@ -292,5 +297,47 @@ extension Validator where T == String {
 
 ```swift
 validations.add("zipCode", as: String.self, is: .zipCode)
+```
+
+### `Custom` 验证器
+
+当你只想在一个 `Content` 对象中验证某个属性时，`Custom` 验证器是最合适的方式。与扩展 Validation API 相比，此实现具有以下两个优点：
+
+- 实现自定义验证逻辑更简单。
+- 语法更简洁。
+
+本节中，我们将引导你完成创建自定义验证器的步骤，该验证器通过检查 `nameAndSurname` 属性来验证某位员工是否属于我们公司。
+
+```swift
+let allCompanyEmployees: [String] = [
+  "Everett Erickson",
+  "Sabrina Manning",
+  "Seth Gates",
+  "Melina Hobbs",
+  "Brendan Wade",
+  "Evie Richardson",
+]
+
+struct Employee: Content {
+  var nameAndSurname: String
+  var email: String
+  var age: Int
+  var role: String
+
+  static func validations(_ validations: inout Validations) {
+    validations.add(
+      "nameAndSurname",
+      as: String.self,
+      is: .custom("Validates whether employee is part of XYZ company by looking at name and surname.") { nameAndSurname in
+          for employee in allCompanyEmployees {
+            if employee == nameAndSurname {
+              return true
+            }
+          }
+          return false
+        }
+    )
+  }
+}
 ```
 

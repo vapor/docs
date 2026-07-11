@@ -351,7 +351,7 @@ I modelli si conformano a `Codable` per impostazione predefinita. Questo signifi
 extension Planet: Content { }
 
 app.get("planets") { req async throws in
-    // Recupera tutti i pianeti dal database e li restituisce come JSON.
+    // Restituisce un array di tutti i pianeti.
     try await Planet.query(on: req.db).all()
 }
 ```

@@ -13,6 +13,7 @@ let readComplete: EventLoopFuture<Void> = req.fileio.readFile(at: "/path/to/file
 }
 
 // O
+
 try await req.fileio.readFile(at: "/path/to/file") { chunk in
     print(chunk) // ByteBuffer
 }
@@ -32,8 +33,10 @@ req.fileio.streamFile(at: "/path/to/file").map { res in
 }
 
 // O
+
 let res = req.fileio.streamFile(at: "/path/to/file")
 print(res)
+
 ```
 
 El resultado puede ser devuelto directamente por su controlador de ruta. 
@@ -54,7 +57,7 @@ print(buffer)
 ```
 
 !!! warning "Advertencia"
-    Este método requiere que el archivo entero esté en la memoria desde el inicio. Utilice una lectura por fragmentos (chunked) o flujo contínuo (streaming) para limitar el uso de memoria.
+    Este método requiere que el archivo entero esté en la memoria desde el inicio. Utilice una lectura por fragmentos (chunked) o flujo continuo (streaming) para limitar el uso de memoria.
 
 ## Escritura
 
@@ -69,11 +72,11 @@ El futuro devuelto indicará cuándo se ha completado la escritura o si se ha pr
 
 ## Middleware
 
-Para más información acerca de cómo enviar archivos automáticamente desde la carpeta _Public_ de su projecto, visite [Middleware &rarr; FileMiddleware](middleware.md#file-middleware).
+Para más información acerca de cómo enviar archivos automáticamente desde la carpeta _Public_ de su proyecto, visite [Middleware &rarr; FileMiddleware](middleware.md#file-middleware).
 
 ## Avanzado
 
-En casos donde la API de vapor no de asistencia, puede utilizar directamente el tipo `NonBlockingFileIO` de NIO.
+En casos donde la API de Vapor no dé asistencia, puede utilizar directamente el tipo `NonBlockingFileIO` de NIO.
 
 ```swift
 // Hilo principal
@@ -89,4 +92,5 @@ let fileHandle = try await req.application.fileio.openFile(
     eventLoop: req.eventLoop)
 print(fileHandle)
 ```
+
 Para más información, visite la [API reference](https://swiftpackageindex.com/apple/swift-nio/main/documentation/nioposix/nonblockingfileio) de SwiftNIO.

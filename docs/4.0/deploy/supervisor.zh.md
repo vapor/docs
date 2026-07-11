@@ -13,7 +13,7 @@ sudo apt-get update
 sudo apt-get install supervisor
 ```
 
-### CentOS and Amazon Linux
+### CentOS 和 Amazon Linux
 
 ```sh
 sudo yum install supervisor
@@ -46,7 +46,7 @@ stderr_logfile=/var/log/supervisor/%(program_name)s-stderr.log
 
 你可以使用 supervisor 将变量导出到你的 Vapor 应用程序。要导出多个环境值，请将它们全部放在一行上。根据 [Supervisor 文档](http://supervisord.org/configuration.html#program-x-section-values):
 
-> 包含非字母数字字符的值应该用引号括起来(e.g. KEY="val:123",KEY2="val,456")。否则，引用值是可选的，但是推荐使用。
+> 包含非字母数字字符的值应该用引号括起来(例如 KEY="val:123",KEY2="val,456")。否则，引用值是可选的，但是推荐使用。
 
 ```sh
 environment=PORT=8123,ANOTHERVALUE="/something/else"

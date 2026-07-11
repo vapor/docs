@@ -219,14 +219,15 @@ Debajo tienes una lista de los validadores soportados actualmente y una breve ex
 |`.nil`|El valor es `null` (nulo).|
 |`.range(_:)`|El valor se encuentra en el `Range` (rango) proporcionado.|
 |`.url`|Contiene una URL válida.|
+|`.custom(_:, validationClosure: (value) -> Bool)`|Validación personalizada, de un solo uso.|
 
-Los validadores también pueden combinarse mediante operadores para construir validaciones complejas. Más información sobre el validador `.custom` en [[#Validadores Personalizados]].
+Los validadores también pueden combinarse mediante operadores para construir validaciones complejas. Más información sobre el validador `.custom` en [Validadores Personalizados](#custom-validators).
 
 |Operador|Posición|Descripción|
 |-|-|-|
 |`!`|prefijo|Invierte un validador, requiriendo lo opuesto.|
 |`&&`|infijo|Combina dos validadores, requiere ambos.|
-|`||`|infijo|Combina dos validadores, requiere al menos uno.|
+|`\|\|`|infijo|Combina dos validadores, requiere al menos uno.|
 
 ## Validadores Personalizados
 

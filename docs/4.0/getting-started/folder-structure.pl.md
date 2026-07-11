@@ -23,7 +23,7 @@ Sekcja poniżej wyjaśnia każdą część struktury folderów w detalach.
 
 ## Public
 
-Then folder zawiera wszystkie publiczne pliki, które będą serwowane przez aplikacje jeśli `FileMiddleware` jest włączony. To zazwyczaj są obrazy, arkusze stylów i skrypty przeglądarki. Dla przykładu, zapytanie do `localhost:8080/favicon.ico` będzie sprawdzać czy `Public/favicon.ico` istnieje i zwracać je. 
+Ten folder zawiera wszystkie publiczne pliki, które będą serwowane przez aplikacje jeśli `FileMiddleware` jest włączony. To zazwyczaj są obrazy, arkusze stylów i skrypty przeglądarki. Dla przykładu, zapytanie do `localhost:8080/favicon.ico` będzie sprawdzać czy `Public/favicon.ico` istnieje i zwracać je. 
 
 Musisz aktywować `FileMiddleware` w pliku `configure.swift` twojego projektu, zanim Vapor będzie potrafił serwować pliki publiczne.
 

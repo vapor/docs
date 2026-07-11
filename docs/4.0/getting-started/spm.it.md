@@ -20,8 +20,7 @@ let package = Package(
        .macOS(.v12)
     ],
     dependencies: [
-        .package(url: "https://github.com/vapor/vapor.git",
-        from: "4.76.0"),
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.76.0"),
     ],
     targets: [
         .executableTarget(
@@ -86,7 +85,7 @@ La prima volta che il progetto viene compilato, SPM creerà il file `Package.res
 
 Per aggiornare le dipendenze basta eseguire `swift package update` e SPM aggiornerà automaticamente il file `Package.resolved` con le versioni più recenti.
 
-# Xcode
+## Xcode
 
 Usando Xcode qualsiasi cambiamento a dipendenze, target, prodotti, ecc. sarà automatico non appena si salva il file `Package.swift`.
 

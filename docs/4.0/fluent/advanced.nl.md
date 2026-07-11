@@ -50,7 +50,7 @@ Op het moment van schrijven worden de volgende SQL drivers ondersteund.
 
 Bezoek de README van de bibliotheek voor meer informatie over de database-specifieke API's.
 
-### SQL Custom
+### SQL Aangepast
 
 Bijna alle query en schema types van Fluent ondersteunen een `.custom` case. Hiermee kunt u databasefuncties gebruiken die Fluent nog niet ondersteunt. 
 
@@ -166,7 +166,7 @@ Something.query(on: db).filter("document.key", .equal, 5).first()
 
 Door een reguliere expressie door te geven met de `.custom()` case, kan U de MongoDB raadplegen. [MongoDB](https://www.mongodb.com/docs/manual/reference/operator/query/regex/) accepteert reguliere expressies die compatibel zijn met Perl. 
 
-Zo kan U bijvoorbeeld zoeken naar hoofdletterongevoelige tekens onder het veld `naam`:
+Zo kan U bijvoorbeeld zoeken naar hoofdletterongevoelige tekens onder het veld `name`:
 
 ```swift
 import FluentMongoDriver
@@ -174,12 +174,13 @@ import FluentMongoDriver
 var queryDocument = Document()
 queryDocument["name"]["$regex"] = "e"
 queryDocument["name"]["$options"] = "i"
+
 let planets = try Planet.query(on: req.db).filter(.custom(queryDocument)).all()
 ```
 
 Dit geeft planeten terug die 'e' en 'E' bevatten. U kunt ook elke andere complexe RegEx maken die door MongoDB wordt geaccepteerd.
 
-### Raw Access
+### Ruwe Toegang
 
 Om toegang te krijgen tot de ruwe `MongoDatabase` instantie, cast je de database instantie naar `MongoDatabaseRepresentable` als zodanig:
 

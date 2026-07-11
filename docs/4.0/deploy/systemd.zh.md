@@ -4,7 +4,7 @@ Systemd 是大多数 Linux 发行版中默认的系统和服务管理器。它�
 
 ## 配置
 
-服务器上的每个 Vapor 应用程序都应该有自己的服务文件。对于 `Hello` 示例项目，配置文件位于 `/etc/systemd/system/hello.service`. 该文件如下所示：
+服务器上的每个 Vapor 应用程序都应该有自己的服务文件。对于 `Hello` 示例项目，配置文件位于 `/etc/systemd/system/hello.service`。该文件如下所示：
 
 ```sh
 [Unit]
@@ -34,7 +34,7 @@ WantedBy=multi-user.target
 
 ### 环境
 
-此外，以下部分是可选配置，但建议使用。
+否则，引用值是可选的，但是推荐使用。
 
 你可以通过 systemd 以下面其中一种方式导出变量，或通过创建一个包含所有环境变量的文件：
 
@@ -50,7 +50,7 @@ Environment="PORT=8123"
 Environment="ANOTHERVALUE=/something/else"
 ```
 
-在 Vapor 中可以用使用 `Environment.get` 导出变量。
+在 Vapor 中可以使用 `Environment.get` 来获取导出的变量。
 
 ```swift
 let port = Environment.get("PORT")
@@ -58,7 +58,7 @@ let port = Environment.get("PORT")
 
 ## 启动
 
-你现在可以通过 `root` 身份运行以下命令来加载、启用、启动、停止和重启你的应用程序了。
+你现在可以通过 root 身份运行以下命令来加载、启用、启动、停止和重启你的应用程序了。
 
 ```sh
 systemctl daemon-reload

@@ -80,12 +80,12 @@ ws.onBinary { ws, binary in
 }
 ```
 
-Il primo argomento del blocco di callback è il WebSocket stesso. Questo permette l'accesso al WebSocket all'interno del callback senza creazione di riferimenti circolari.
+Il primo argomento del blocco di callback è il WebSocket stesso. Questo permette l'accesso al WebSocket all'interno del callback senza creazione di riferimenti circolari. Usa questo riferimento per compiere un'azione sul WebSocket dopo aver ricevuto i dati. Ad esempio, per inviare una risposta:
 
 ```swift
-// Stampa il messagio ricevuto
+// Restituisce in echo i messaggi ricevuti.
 ws.onText { ws, text in
-    print(text)
+    ws.send(text)
 }
 ```
 

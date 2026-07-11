@@ -37,9 +37,9 @@ return req.db.transaction { database in
 Se usi `async`/`await` puoi ristrutturare il codice come segue:
 
 ```swift
-try await req.db.transaction { database in
-    try await sun.save(on: database)
-    try await sirius.save(on: database)
+try await req.db.transaction { transaction in
+    try await sun.save(on: transaction)
+    try await sirius.save(on: transaction)
 }
 return .ok
 ```

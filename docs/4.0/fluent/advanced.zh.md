@@ -145,7 +145,7 @@ final class User: Model {
 
 在 SQL 环境中，为两个实体之间的关系创建连接表是很常见的。然而，在 MongoDB 中，可以使用数组来存储相关的标识符。由于 MongoDB 的设计，使用嵌套数据结构设计模型更加高效和实用。
 
-### Flexible Data
+### 灵活数据
 
 您可以在 MongoDB 中添加灵活的数据，但此代码在 SQL 环境中不起作用。要创建分组的任意数据存储，你可以使用 `Document`。
 

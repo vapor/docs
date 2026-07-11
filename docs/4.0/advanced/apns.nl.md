@@ -1,6 +1,6 @@
 # APNS
 
-Vapor's Apple Push Notification Service (APNS) API maakt het eenvoudig om te authenticeren en push-notificaties te verzenden naar Apple-apparaten. Het is gebouwd op de top van [APNSwift](https://github.com/kylebrowning/APNSwift).
+Vapor's Apple Push Notification Service (APNS) API maakt het eenvoudig om te authenticeren en push-notificaties te verzenden naar Apple-apparaten. Het is gebouwd op [APNSwift](https://github.com/swift-server-community/APNSwift).
 
 ## Aan De Slag
 
@@ -11,7 +11,7 @@ Laten we eens kijken hoe u aan de slag kunt met APNS.
 De eerste stap om APNS te gebruiken is het toevoegen van het pakket aan uw dependencies.
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
@@ -114,7 +114,7 @@ De eerste parameter accepteert de push notificatie melding en de tweede paramete
 
 ## Alert
 
-`APNSAlertNotification` is de eigenlijke metadata van de te verzenden push notification alert. Meer details over de specifieke kenmerken van elke eigenschap worden [hier](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html) gegeven. Ze volgen een één-op-één naamgeving schema zoals vermeld in Apple's documentatie
+`APNSAlertNotification` is de eigenlijke metadata van de te verzenden push notification alert. Meer details over de specifieke kenmerken van elke eigenschap worden [hier](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html) gegeven. Ze volgen een één-op-één naamgeving schema zoals vermeld in Apple's documentatie.
 
 ```swift
 let alert = APNSAlertNotification(
@@ -129,7 +129,7 @@ let alert = APNSAlertNotification(
 )
 ```
 
-Dit type kan direct worden doorgegeven aan de `send` methode en het zal automatisch worden verpakt in een `APNSwiftPayload`.
+Dit type kan direct worden doorgegeven aan de `send` methode.
 
 ### Aangepaste Notification Data
 
@@ -143,6 +143,6 @@ struct Payload: Codable {
 }
 ```
 
-## More Information
+## Meer Informatie
 
 Voor meer informatie over beschikbare methodes, zie [APNSwift's README](https://github.com/swift-server-community/APNSwift).

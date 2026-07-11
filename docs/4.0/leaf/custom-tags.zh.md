@@ -100,7 +100,7 @@ struct HelloTag: UnsafeUnescapedLeafTag {
 
 #### 使用 Data
 
-我们可以通过使用 data 属性中的 ”name“ 键来访问 name 值。
+我们可以通过使用 data 属性中的 “name” 键来访问 name 值。
 
 ```swift
 enum HelloTagError: Error {

@@ -60,7 +60,7 @@ app.apns.containers.use(
 ```
 
 I segnaposto dell'esempio devono essere sostituiti con le credenziali.
-Questo esempio utilizza [l'autenticazione JWT](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/) con la chiave `.p8`, ottenibile dal portale per sviluppatori di Apple. Per l'autenticazione [TLS](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/), si può utilizzare il metodo di autenticazione `.tls`:
+Questo esempio utilizza [l'autenticazione basata su JWT](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns) con la chiave `.p8`, ottenibile dal portale per sviluppatori di Apple. Per [l'autenticazione basata su TLS](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns) con un certificato, si può utilizzare il metodo di autenticazione `.tls`:
 
 ```swift
 authenticationMethod: .tls(
@@ -78,7 +78,7 @@ Una volta configurato APNS, è possibile inviare notifiche push tramite il metod
 // Payload Codable personalizzato
 struct Payload: Codable {
     let acme1: String
-    let acme2: String
+    let acme2: Int
 }
 // Creazione di un Alert per la notifica push
 let dt = "70075697aa918ebddd64efb165f5b9cb92ce095f1c4c76d995b384c623a258bb"
@@ -93,7 +93,7 @@ let alert = APNSAlertNotification(
     topic: "<#my topic#>",
     payload: payload
 )
-// Send the notification
+// Invia la notifica
 try! await req.apns.client.sendAlertNotification(
     alert, 
     deviceToken: dt, 
@@ -137,9 +137,10 @@ Questo tipo può essere passato come parametro al metodo `send`.
 Apple consente di inviare dati personalizzati in ogni notifica. Per renderlo semplice in APNS basta che i dati da inviare conformino a `Codable`:
 
 ```swift
+// Payload Codable personalizzato
 struct Payload: Codable {
     let acme1: String
-    let acme2: String
+    let acme2: Int
 }
 ```
 

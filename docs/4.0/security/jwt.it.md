@@ -161,7 +161,7 @@ HMAC (Hash-based Message Authentication Code) è un algoritmo simmetrico che usa
 - `HS512`: HMAC con SHA-512
 
 ```swift
-// Aggiunta di una chiave HMAC con SHA-256.\
+// Aggiunta di una chiave HMAC con SHA-256.
 await app.jwt.keys.add(hmac: "secret", digestAlgorithm: .sha256)
 ```
 

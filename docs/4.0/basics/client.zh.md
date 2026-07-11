@@ -32,7 +32,7 @@ HTTP 的常用方法（例如 `get`, `post`, `delete`）都有便捷的调用方
 
 ### Content
 
-Vapor 的 [Content](content.md) API 可用于处理客户请求和响应中的数据，如果要在请求体中添加参数或编码，请在 `beforeSend` 闭包中进行。
+Vapor 的 [Content](content.zh.md) API 可用于处理客户请求和响应中的数据，如果要在请求体中添加参数或编码，请在 `beforeSend` 闭包中进行。
 
 ```swift
 let response = try await req.client.post("https://httpbin.org/status/200") { req in
@@ -55,13 +55,13 @@ let response = try await req.client.get("https://httpbin.org/json")
 let json = try response.content.decode(MyJSONResponse.self)
 ```
 
-如果要解码响应的数据，请在 `flatMapThrowing` 回调中处理。
+如果你正在使用 future，可以使用 `flatMapThrowing`：
 
 ```swift
-req.client.get("https://httpbin.org/json").flatMapThrowing { res in
+return req.client.get("https://httpbin.org/json").flatMapThrowing { res in
     try res.content.decode(MyJSONResponse.self)
-}.map { json in
-    // 处理返回的JSON信息
+}.flatMap { json in
+    // 在此处使用 JSON
 }
 ```
 

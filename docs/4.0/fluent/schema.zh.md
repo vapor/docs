@@ -73,8 +73,8 @@ database.schema("planets").delete()
 |`.int{8,16,32,64}`|`Int{8,16,32,64}`|
 |`.uint{8,16,32,64}`|`UInt{8,16,32,64}`|
 |`.bool`|`Bool`|
-|`.datetime`|`Date` (recommended)|
-|`.date`|`Date` (omitting time of day)|
+|`.datetime`|`Date`（推荐）|
+|`.date`|`Date`（不含时间部分）|
 |`.float`|`Float`|
 |`.double`|`Double`|
 |`.data`|`Data`|
@@ -92,6 +92,7 @@ database.schema("planets").delete()
 |`.required`|不允许 `nil` 值。|
 |`.references`|要求此字段的值与引用的模式中的值匹配。参见[外键](#外键foreign-key)。|
 |`.identifier`|表示主键。参见[标识符](#标识符identifier)|
+|`.sql(SQLColumnConstraintAlgorithm)`|定义任何不受支持的约束(例如 `default`)。参见 [SQL](#sql) 和 [SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/documentation/sqlkit/sqlcolumnconstraintalgorithm/)。|
 
 ### 标识符(Identifier)
 
@@ -380,14 +381,33 @@ struct UserMigration: AsyncMigration {
 struct UserNameMigration: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("users")
+            .field("first_name", .string, .required)
+            .field("last_name", .string, .required)
+            .update()
+
+        // 目前无法在不使用自定义 SQL 的情况下表达此更新。
+        // 这里也没有处理将姓名拆分为名和姓的问题，
+        // 因为这需要特定于数据库的语法。
+        try await User.query(on: database)
+            .set(["first_name": .sql(embed: "name")])
+            .run()
+
+        try await database.schema("users")
             .deleteField("name")
-            .field("first_name", .string)
-            .field("last_name", .string)
             .update()
     }
 
     func revert(on database: Database) async throws {
-        try await database.schema("users").delete()
+        try await database.schema("users")
+            .field("name", .string, .required)
+            .update()
+        try await User.query(on: database)
+            .set(["name": .sql(embed: "concat(first_name, ' ', last_name)")])
+            .run()
+        try await database.schema("users")
+            .deleteField("first_name")
+            .deleteField("last_name")
+            .update()
     }
 }
 ```

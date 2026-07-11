@@ -83,7 +83,7 @@ ws.onText { ws, text in
 }
 ```
 
-## Closing
+## Schließen
 
 Um den WebSocket zu schließen, rufe die Methode `close` auf.
 
@@ -91,7 +91,7 @@ Um den WebSocket zu schließen, rufe die Methode `close` auf.
 ws.close()
 ```
 
-Diese Methode gibt einen Future zurück, der abgeschlossen wird, wenn der WebSocket geschlossen wurde. Wie bei `send`, können Sie dieser Methode auch ein Promise übergeben.
+Diese Methode gibt einen Future zurück, der abgeschlossen wird, wenn der WebSocket geschlossen wurde. Wie bei `send`, kannst du dieser Methode auch ein Promise übergeben.
 
 ```swift
 ws.close(promise: nil)
@@ -113,7 +113,7 @@ ws.onClose.whenComplete { result in
 Die Property `closeCode` wird festgelegt, wenn der WebSocket geschlossen wird. Dies kann verwendet werden, um festzustellen, warum der Peer die Verbindung geschlossen hat.
 ## Ping / Pong
 
-Ping- und Pong-Nachrichten werden automatisch vom Client und Server gesendet, um die Verbindung aufrechtzuerhalten. Unsere Anwendung kann mithilfe der Rückruf-Funktionen `onPing` und `onPong` auf diese Ereignisse reagieren.
+Ping- und Pong-Nachrichten werden automatisch vom Client und Server gesendet, um die Verbindung aufrechtzuerhalten. Deine Anwendung kann mithilfe der Rückruf-Funktionen `onPing` und `onPong` auf diese Ereignisse reagieren.
 
 ```swift
 ws.onPing { ws in 

@@ -27,7 +27,9 @@ Vapor 4는 Swift 5.9 이상을 필요로 합니다.
 
 ## Toolbox 설치하기
 
-Swift 설치가 완료된 후, [Vapor Toolbox](https://github.com/vapor/toolbox)를 설치해 봅니다. 이 CLI 도구는 Vapor를 사용하는 데 필요하지는 않지만, 새 프로젝트를 생성하는 등 유용한 유틸리티를 포함하고 있습니다.
+Swift 설치가 완료된 후, [Vapor Toolbox](https://github.com/vapor/toolbox)를 설치해 봅니다. 이 CLI 도구는 Vapor를 사용하는 데 필요하지는 않지만, 새 프로젝트를 생성하는 데 도움이 됩니다.
+
+### Homebrew
 
 Toolbox는 Homebrew를 통해 배포됩니다. Homebrew를 아직 설치하지 않았다면, <a href="https://brew.sh" target="_blank">brew.sh</a>에서 설치를 합니다.
 
@@ -36,6 +38,25 @@ brew install vapor
 ```
 
 Toolbox 설치가 성공적으로 이루어졌는지 확인하기 위해 도움말을 출력해보세요.
+
+```sh
+vapor --help
+```
+
+사용 가능한 명령어 목록이 표시되어야 합니다.
+
+### Makefile
+
+원한다면, 소스로부터 Toolbox를 직접 빌드할 수도 있습니다. GitHub에서 Toolbox의 <a href="https://github.com/vapor/toolbox/releases" target="_blank">releases</a>를 확인하여 최신 버전을 찾으세요.
+
+```sh
+git clone https://github.com/vapor/toolbox.git
+cd toolbox
+git checkout <desired version>
+make install
+```
+
+설치가 성공적으로 이루어졌는지 확인하기 위해 도움말을 출력해보세요.
 
 ```sh
 vapor --help

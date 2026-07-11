@@ -1,10 +1,14 @@
 # Controller
 
-Mit Controller können wir unseren Code sinnvoll aufteilen und in unserem Projekt für Ordnung sorgen. Ein Controller kann eine oder mehrere Methoden beinhalten, die Serveranfragen entgegennehmen, verarbeiten und ein entsprechendes Ergebnis zurückliefern. Das folgende Beispiel zeigt einen möglichen Aufbau eines solchen Controllers:
+Mit Controller können wir unseren Code sinnvoll aufteilen und in unserem Projekt für Ordnung sorgen. Ein Controller kann eine oder mehrere Methoden beinhalten, die Serveranfragen entgegennehmen, verarbeiten und ein entsprechendes Ergebnis zurückliefern.
+
+Ein guter Ort, um deine Controller abzulegen, ist der Ordner [Controllers](../getting-started/folder-structure.md#controllers).
+
+## Übersicht
+
+Schauen wir uns ein Beispiel für einen Controller an.
 
 ```swift
-// [TodosController.swift]
-
 import Vapor
 
 struct TodosController: RouteCollection {
@@ -62,7 +66,5 @@ Die erwähnten Methoden sollten immer ein Objekt vom Typ _Request_ annehmen und 
 Zum Schluss müssen wir der Anwendung unseren Controller bekannt machen. Hierzu wird der Controller mit Hilfe der Methode _register(:_)_ an das Objekt _app_ übergeben.
 
 ```swift
-// [routes.swift]
-
 try app.register(collection: TodosController())
 ```

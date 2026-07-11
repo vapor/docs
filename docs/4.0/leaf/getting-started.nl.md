@@ -7,7 +7,7 @@ Leaf is een krachtige templating taal met een op Swift geïnspireerde syntax. U 
 De eerste stap om Leaf te gebruiken is het toevoegen als een afhankelijkheid aan uw project in uw SPM pakket manifest bestand.
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
@@ -17,7 +17,7 @@ let package = Package(
     ],
     dependencies: [
         /// Eventuele andere afhankelijkheden ...
-        .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0"),
+        .package(url: "https://github.com/vapor/leaf.git", from: "4.4.0"),
     ],
     targets: [
         .target(name: "App", dependencies: [
@@ -41,11 +41,21 @@ app.views.use(.leaf)
 
 Dit vertelt Vapor om de `LeafRenderer` te gebruiken wanneer u `req.view` aanroept in uw code.
 
-!!! note "Opmerking"
-    Leaf heeft een interne cache voor het renderen van pagina's. Wanneer de omgeving van de `Application` is ingesteld op `.development`, is deze cache uitgeschakeld, zodat wijzigingen in sjablonen direct worden doorgevoerd. In `.production` en alle andere omgevingen is de cache standaard ingeschakeld; wijzigingen in sjablonen worden pas van kracht als de applicatie opnieuw wordt opgestart.
+!!! warning
+    Om ervoor te zorgen dat Leaf de sjablonen kan vinden wanneer het vanuit Xcode werkt, moet u de [custom working directory](../getting-started/xcode.md#custom-working-directory) instellen voor uw Xcode werkruimte.
 
-!!! warning "Waarschuwing"
-    Om ervoor te zorgen dat Leaf de sjablonen kan vinden wanneer het vanuit Xcode werkt, moet u de [custom-working-directory](../getting-started/xcode.md#custom-working-directory) instellen voor uw Xcode werkruimte.
+### Cache voor het Renderen van Pagina's
+
+Leaf heeft een interne cache voor het renderen van pagina's. Wanneer de omgeving van de `Application` is ingesteld op `.development`, is deze cache uitgeschakeld, zodat wijzigingen in sjablonen direct worden doorgevoerd. In `.production` en alle andere omgevingen is de cache standaard ingeschakeld. Wijzigingen in sjablonen worden pas van kracht als de applicatie opnieuw wordt opgestart.
+
+Om de cache van Leaf uit te schakelen, doet u het volgende:
+
+```swift
+app.leaf.cache.isEnabled = false
+```
+
+!!! warning
+    Hoewel het uitschakelen van de cache handig is voor debugging, wordt dit niet aanbevolen voor productieomgevingen, omdat het de prestaties aanzienlijk kan beïnvloeden doordat sjablonen bij elke request opnieuw gecompileerd moeten worden.
 
 ## Folder Structuur
 

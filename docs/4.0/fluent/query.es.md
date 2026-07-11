@@ -122,7 +122,7 @@ Estos operadores solo están disponibles en campos con valores de cadena.
 
 Debajo hay una lista con todos los operadores "contiene" soportados. 
 
-|Operator|Description|
+|Operador|Descripción|
 |-|-|
 |`~~`|Contiene subcadena.|
 |`!~`|No contiene subcadena.|

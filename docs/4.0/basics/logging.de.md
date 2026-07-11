@@ -1,14 +1,14 @@
 # Protokollierung 
 
-Mit der Protokollierung können Statusinformationen und Systemereignisse in Vapor festgehalten und ausgegeben werden. Die Protokollierung in Vapor baut auf Apple's [SwiftLog](https://github.com/apple/swift-log) auf.
+Vapors Protokollierungs-API baut auf [SwiftLog](https://github.com/apple/swift-log) auf. Das bedeutet, dass Vapor mit allen [Backend-Implementierungen](https://github.com/apple/swift-log#backends) von SwiftLog kompatibel ist.
 
 ## Logger
 
-Die _Logger_ Instanz gibt die Protokollinformationen aus. Wir haben verschiedene Möglichkeiten auf die Instanz zuzugreifen.
+Instanzen von `Logger` werden verwendet, um Protokollmeldungen auszugeben. Vapor bietet mehrere einfache Möglichkeiten, um Zugriff auf einen Logger zu erhalten.
 
-**Zugriff über die Anfrage**
+### Request
 
-Jede eingehende Anfrage besitzt eine unabhängige _Logger_ Instanz, die für die jeweilige Anfrage verwendet werden kann.
+Jede eingehende `Request` besitzt einen eigenen Logger, den du für alle Protokolle verwenden solltest, die sich auf diese Anfrage beziehen.
 
 ```swift
 app.get("hello") { req -> String in
@@ -17,73 +17,86 @@ app.get("hello") { req -> String in
 }
 ```
 
+Der Request-Logger enthält eine eindeutige UUID, die die eingehende Anfrage kennzeichnet, um das Nachverfolgen von Protokollen zu erleichtern.
+
 ```
 [ INFO ] Hello, logs! [request-id: C637065A-8CB0-4502-91DC-9B8615C5D315] (App/routes.swift:10)
 ```
 
-**Zugriff über die Anwendung**
+!!! info
+    Logger-Metadaten werden nur bei der Protokollstufe `debug` oder niedriger angezeigt.
 
-Für Informationen während des Startens oder der Einrichtung können wir die Instanz _Application_ nutzen.
+### Application
+
+Für Protokollmeldungen während des App-Starts und der Konfiguration verwendest du den Logger von `Application`.
 
 ```swift
 app.logger.info("Setting up migrations...")
 app.migrations.use(...)
 ```
 
-### Benutzerdefinierte Protokollierung
+### Benutzerdefinierter Logger
 
-Falls wir nicht auf Beides zurückgreifen können, können wir eine eigene Instanz erstellen.
+Wenn du keinen Zugriff auf `Application` oder `Request` hast, kannst du einen neuen `Logger` initialisieren.
 
 ```swift
 let logger = Logger(label: "dev.logger.my")
 logger.info(...)
 ```
 
-## Protokollstufen
+Benutzerdefinierte Logger geben zwar weiterhin auf deinem konfigurierten Protokollierungs-Backend aus, verfügen jedoch nicht über wichtige Metadaten wie die Request-UUID. Verwende nach Möglichkeit stets die Request- oder Application-spezifischen Logger. 
 
-Protokollstufen steuern den Informationsumfang. Vapor protokolliert standardmäßig auf der Stufe _info_. Mit Wechseln in die Produktionsumgebung verwendet Vapor zur Verbesserung der Performance die Stufe _notice_. Es gibt noch weitere Protokollstufen:
+## Protokollstufe
 
-|Stufen|Beschreibung|
-|-----------|---------------------------------------------------------------------------------------------------------------|
-|trace|Geeignet für Informationen, die zur Ablaufverfolgung nüztlich sein können.|
-|debug|Geeignet für Informationen, die fürs Debuggen nützlich sein können.|
-|info|Geeignet für allgemeinen Informationen.|
-|notice|Geeignet für unerwartete Ereignisse, die jedoch zu keinem Anwendungsausfall führen.|
-|warning|Geeignet für unerwartete Ereignisse, die allerdings schwerwiegender sind als in _notice_.|
-|error|Geeigent für Fehlerzustände.|
-|critical|Geeignet für kritische Fehlerzustände, die ein sofortiges Handeln erfordern.|
+SwiftLog unterstützt mehrere unterschiedliche Protokollstufen.
 
-### Festlegen einer Protokollstufe
+|name|description|
+|-|-|
+|trace|Geeignet für Meldungen, die normalerweise nur beim Nachverfolgen der Programmausführung nützlich sind.|
+|debug|Geeignet für Meldungen, die normalerweise nur beim Debuggen eines Programms nützlich sind.|
+|info|Geeignet für informative Meldungen.|
+|notice|Geeignet für Zustände, die keine Fehlerzustände sind, aber möglicherweise eine besondere Behandlung erfordern.|
+|warning|Geeignet für Meldungen, die keine Fehlerzustände sind, aber schwerwiegender als `notice`.|
+|error|Geeignet für Fehlerzustände.|
+|critical|Geeignet für kritische Fehlerzustände, die üblicherweise sofortiges Handeln erfordern.|
 
-Unhabhängig von der Umgebung können wir Protokollstufen mit Hilfe des Parameters _--log_ oder der Umgebungsvariable _LOG_LEVEL_ festlegen.
+Wenn eine `critical`-Meldung protokolliert wird, steht es dem Protokollierungs-Backend frei, aufwendigere Operationen durchzuführen, um den Systemzustand zu erfassen (etwa das Erfassen von Stack-Traces), um das Debuggen zu erleichtern.
+
+Standardmäßig verwendet Vapor die Protokollstufe `info`. Wird die Umgebung `production` verwendet, kommt zur Verbesserung der Performance die Stufe `notice` zum Einsatz. 
+
+### Ändern der Protokollstufe
+
+Unabhängig vom Umgebungsmodus kannst du die Protokollstufe überschreiben, um die Menge der erzeugten Protokolle zu erhöhen oder zu verringern. 
+
+Die erste Methode besteht darin, beim Start deiner Anwendung das optionale Flag `--log` zu übergeben.
 
 ```sh
 swift run App serve --log debug
 ```
 
-oder 
+Die zweite Methode besteht darin, die Umgebungsvariable `LOG_LEVEL` zu setzen.
 
 ```sh
 export LOG_LEVEL=debug
 swift run App serve
 ```
 
-Beides kann über das Schema _App_ in Xcode eingestellt werden. Im Abschnitt [Xcode](../getting-started/xcode.md) erklären wir dir, wie du ein Schema bearbeitest.
+Beides kann in Xcode über das Schema `App` eingestellt werden.
 
-## Einrichtung
+## Konfiguration
 
-_SwiftLog_ wird von Vapor mit Hilfe der Methode _bootstrap(_:) basierend auf dem Kommandozeilenargument oder der Umgebungsvariable einmal pro Prozess eingerichtet. 
+SwiftLog konfigurierst du, indem du `LoggingSystem` einmal pro Prozess bootstrappst. Vapor-Projekte tun dies üblicherweise in `entrypoint.swift`.
 
 ```swift
-import Vapor
-
 var env = try Environment.detect()
 try LoggingSystem.bootstrap(from: &env)
 ```
 
-### Protokollierungsanbieter
+`bootstrap(from:)` ist eine von Vapor bereitgestellte Hilfsmethode, die den Standard-Log-Handler basierend auf Kommandozeilenargumenten und Umgebungsvariablen konfiguriert. Der Standard-Log-Handler unterstützt die Ausgabe von Meldungen im Terminal mit ANSI-Farbunterstützung. 
 
-Der Standardanbieter kann, wenn gewünscht, überschrieben werden. Dank der Verwendung von _SwiftLog_ kann jeder kompatible [Protokollierungsanbieter](https://github.com/apple/swift-log#backends) verwendet werden. Allerdings ist das Ändern der Protokollierstufe per Kommandozeilenargument oder Umgebungsvariable nur mit dem Standardanbieter möglich.
+### Benutzerdefinierter Handler
+
+Du kannst Vapors Standard-Log-Handler überschreiben und deinen eigenen registrieren.
 
 ```swift
 import Logging
@@ -92,3 +105,5 @@ LoggingSystem.bootstrap { label in
     StreamLogHandler.standardOutput(label: label)
 }
 ```
+
+Alle von SwiftLog unterstützten Backends funktionieren mit Vapor. Das Ändern der Protokollstufe über Kommandozeilenargumente und Umgebungsvariablen ist jedoch nur mit Vapors Standard-Log-Handler kompatibel.

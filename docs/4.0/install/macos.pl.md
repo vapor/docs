@@ -29,7 +29,9 @@ Vapor 4 wymaga wersji Swifta 5.9 lub wyższej.
 
 Teraz gdy masz już zainstalowanego Swifta, zainstalujmy [Vapor Toolbox](https://github.com/vapor/toolbox). Jest to narzędzie CLI (z ang. Command Line Interface), które nie jest potrzebne by używać Vapora, natomiast jest wyposażone w przydatne usprawnienia takie jak kreator nowego projektu.
 
-Toolbox jest wydawany przy pomocy Homebrew. Jeśli jeszcze nie masz Homebrew, to zajrzyj na [brew.sh](https://brew.sh) po instrukcje jak zainstalować.
+### Homebrew
+
+Toolbox jest wydawany przy pomocy Homebrew. Jeśli jeszcze nie masz Homebrew, to zajrzyj na <a href="https://brew.sh" target="_blank">brew.sh</a> po instrukcje jak zainstalować.
 
 ```sh
 brew install vapor
@@ -43,6 +45,25 @@ vapor --help
 
 Powinna być widoczna lista dostępnych komend.
 
+### Makefile
+
+Jeśli chcesz, możesz również zbudować Toolbox ze źródeł. Zobacz <a href="https://github.com/vapor/toolbox/releases" target="_blank">wydania</a> Toolbox na GitHubie, aby znaleźć najnowszą wersję.
+
+```sh
+git clone https://github.com/vapor/toolbox.git
+cd toolbox
+git checkout <desired version>
+make install
+```
+
+Sprawdź dwa razy czy instalacja przeszła poprawnie po przez wyświetlenie pomocy.
+
+```sh
+vapor --help
+```
+
+Powinna być widoczna lista dostępnych komend.
+
 ## Następnie
 
-Kiedy już udało Ci się zainstalować Swifta, stwórz swoja pierwszą aplikacje w sekcji [Pierwsze kroki &rarr; Witaj, świecie](../getting-started/hello-world.md).
+Kiedy już udało Ci się zainstalować Swifta i Vapor Toolbox, stwórz swoja pierwszą aplikacje w sekcji [Pierwsze kroki &rarr; Witaj, świecie](../getting-started/hello-world.md).

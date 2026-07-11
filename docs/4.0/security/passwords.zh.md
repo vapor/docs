@@ -38,7 +38,7 @@ default: break
 }
 ```
 
-## Hashing
+## 哈希
 
 使用 `Request` 对象上的 `password` 辅助函数对密码进行哈希。
 

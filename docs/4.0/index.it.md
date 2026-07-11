@@ -24,10 +24,14 @@ Ecco alcuni altri ottimi posti dove trovare informazioni su Vapor.
 
 | nome           | descrizione                                      | link                                                              |
 |----------------|--------------------------------------------------|-------------------------------------------------------------------|
-| Discord Vapor  | Chiacchiera con migliaia di sviluppatori Vapor.         | [visita &rarr;](https://vapor.team)                                |
-| Documentazione API       | Documentazione auto-generata dai commenti nel codice. | [visita &rarr;](https://api.vapor.codes)                           |
-| Stack Overflow | Poni e rispondi a domande con il tag `vapor`.   | [visita &rarr;](https://stackoverflow.com/questions/tagged/vapor)  |
+| Discord Vapor  | Chiacchiera con migliaia di sviluppatori Vapor.  | [visita &rarr;](https://vapor.team)                                |
+| Documentazione API | Documentazione auto-generata dai commenti nel codice. | [visita &rarr;](https://api.vapor.codes)                           |
+| Stack Overflow | Poni e rispondi a domande con il tag `vapor`.    | [visita &rarr;](https://stackoverflow.com/questions/tagged/vapor)  |
 | Swift Forums   | Pubblica nella sezione Vapor dei forum di Swift.org. | [visita &rarr;](https://forums.swift.org/c/related-projects/vapor) |
-| Codice Sorgente    | Scopri come funziona Vapor sotto il cofano.            | [visita &rarr;](https://github.com/vapor/vapor)                    |
-| Issues di GitHub  | Segnala bug o richiedi funzionalità su GitHub.       | [visita &rarr;](https://github.com/vapor/vapor/issues)             |
+| Codice Sorgente | Scopri come funziona Vapor sotto il cofano.      | [visita &rarr;](https://github.com/vapor/vapor)                    |
+| Issues di GitHub | Segnala bug o richiedi funzionalità su GitHub.  | [visita &rarr;](https://github.com/vapor/vapor/issues)             |
+
+## Autori
+
+Il Vapor Core Team, e le centinaia di membri della community di Vapor.
 

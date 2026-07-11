@@ -21,7 +21,7 @@ import PackageDescription
 // ...
 ```
 
-次に、プラットフォームバージョンをmacOS 12 に設定します。：
+次に、プラットフォームバージョンをmacOS 12に設定します：
 
 ```swift
     platforms: [
@@ -29,7 +29,7 @@ import PackageDescription
     ],
 ```
 
-最後に、`Run` ターゲットを実行可能ターゲットとしてマークを更新します。：
+最後に、`Run` ターゲットを実行可能ターゲットとしてマークするために更新します：
 
 ```swift
 .executableTarget(name: "Run", dependencies: [.target(name: "App")]),
@@ -45,7 +45,7 @@ Note: Linuxにデプロイする場合は、そちらのSwiftバージョンも�
 +FROM swift:5.5-focal-slim
 ```
 
-これで既存のコードを移行することができます。一般的には、EventLoopFutureを返す関数は今やasyncになっています。例えば：
+これで既存のコードを移行することができます。一般的には、`EventLoopFuture`を返す関数は今や`async`になっています。例えば：
 
 ```swift
 routes.get("firstUser") { req -> EventLoopFuture<String> in
@@ -58,7 +58,7 @@ routes.get("firstUser") { req -> EventLoopFuture<String> in
 }
 ```
 
-それが以下のようになります。:
+それは以下のようになります：
 
 ```swift
 routes.get("firstUser") { req async throws -> String in
@@ -108,7 +108,7 @@ let futureString: EventLoopFuture<String> = promise.futureResult
 
 に変換できます。
 
-## `EventLoopFuture` {#eventloopfutures}
+## `EventLoopFuture`s {#eventloopfutures}
 
 Vapor のいくつかの API が一般的な `EventLoopFuture` タイプを期待したり返したりすることに気づいたかもしれません。もしこれが futures について初めて聞いたのであれば、最初は少し混乱するかもしれません。しかし心配しないでください、このガイドは彼らの強力な API を利用する方法をお見せします。
 

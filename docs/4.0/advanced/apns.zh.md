@@ -75,7 +75,7 @@ authenticationMethod: .tls(
 
 ### 发送通知
 
-配置 APNS 后，你可以使用 `apns.client.sendAlertNotification` 方法在 `Application` 或 `Request` 中发送通知。
+配置 APNS 后，你可以使用 `Application` 或 `Request` 上的 `apns.send` 方法发送推送通知。
 
 ```swift
 // 自定义遵循 `Codable` 协议的 Payload
@@ -137,16 +137,16 @@ let alert = APNSAlertNotification(
 
 ### 自定义通知数据
 
-Apple 为工程师提供了为每个通知添加定制有效载荷数据的能力。为了方便操作，我们有了 `APNSwiftNotification`。
-Apple 为工程师提供了向每个通知添加自定义 Payload 的能力，为了方便使用，对于 `send` api，我们接受所有遵循 `Codable` 协议的 Payload。
+Apple 为工程师提供了向每个通知添加自定义 Payload 数据的能力。为了方便使用，我们在所有 `send` api 的 payload 参数上都接受遵循 `Codable` 协议的类型。
 
 ```swift
 // 自定义遵循 `Codable` 协议的 Payload
- struct Payload: Codable {
-     let acme1: String
-     let acme2: Int
+struct Payload: Codable {
+    let acme1: String
+    let acme2: Int
+}
 ```
 
 ## 更多信息
 
-了解更多可用方法的信息，请参阅 [APNSwift](https://github.com/swift-server-community/APNSwift)。
+了解更多可用方法的信息，请参阅 [APNSwift's README](https://github.com/swift-server-community/APNSwift)。

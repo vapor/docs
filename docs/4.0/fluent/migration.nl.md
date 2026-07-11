@@ -44,7 +44,7 @@ import Vapor
 app.migrations.add(MyMigration())
 ```
 
-U kunt een migratie naar een specifieke database toevoegen met de `naar` parameter, anders wordt de standaard database gebruikt.
+U kunt een migratie naar een specifieke database toevoegen met de `to` parameter, anders wordt de standaard database gebruikt.
 
 ```swift
 app.migrations.add(MyMigration(), to: .myDatabase)
@@ -60,7 +60,7 @@ Om uw database te migreren, voert u het `migrate` commando uit.
 swift run App migrate
 ```
 
-Je kunt ook dit [commando via Xcode] uitvoeren(../advanced/commands.md#xcode). Het migrate commando controleert de database om te zien of er nieuwe migraties zijn geregistreerd sinds de laatste keer dat het commando werd uitgevoerd. Als er nieuwe migraties zijn, vraagt het om een bevestiging voordat het wordt uitgevoerd.
+Je kunt dit [commando ook via Xcode](../advanced/commands.md#xcode) uitvoeren. Het migrate commando controleert de database om te zien of er nieuwe migraties zijn geregistreerd sinds de laatste keer dat het commando werd uitgevoerd. Als er nieuwe migraties zijn, vraagt het om een bevestiging voordat het wordt uitgevoerd.
 
 ### Ongedaan Maken
 

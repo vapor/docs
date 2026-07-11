@@ -119,7 +119,7 @@ Se aggiungi questo autenticatore alla tua applicazione e testi la route definita
 
 ## Bearer
 
-L'autenticazione Bearer invia un token nell'intestazione `Authorization`. Il token è preceduto dalla stringa `"Bearer"`. La seguente richiesta di esempio invia un token di accesso `secret`.
+L'autenticazione Bearer invia un token nell'intestazione `Authorization`. Il token è preceduto dalla stringa `"Bearer"`. La seguente richiesta di esempio invia il token `foo`.
 
 ```http
 GET /me HTTP/1.1
@@ -176,7 +176,7 @@ In questo autenticatore di prova, il token viene testato rispetto a un valore co
 !!! tip "Suggerimento"
     Quando si implementa la verifica dei token, è importante considerare la scalabilità orizzontale. Se l'applicazione deve gestire molti utenti contemporaneamente, l'autenticazione può essere un potenziale collo di bottiglia. Considera il modo in cui il tuo progetto scalerà su più istanze dell'applicazione in esecuzione contemporaneamente.
 
-Se i parametri di autenticazione sono corretti, e in questo caso corrispondono al valore codificato, viene effettuato l'accesso a un `Utente` di nome Vapor. Se i parametri di autenticazione non corrispondono, non viene registrato alcun utente, il che significa che l'autenticazione è fallita. 
+Se i parametri di autenticazione sono corretti, e in questo caso corrispondono al valore codificato, viene effettuato l'accesso a un `User` di nome Vapor. Se i parametri di autenticazione non corrispondono, non viene registrato alcun utente, il che significa che l'autenticazione è fallita. 
 
 Se aggiungi questo autenticatore alla tua applicazione e testi la route definita sopra, dovresti vedere il nome `"Vapor"` restituito per un login riuscito. Se le credenziali non sono corrette, dovresti vedere un errore `401 Unauthorized`.
 
@@ -839,7 +839,7 @@ struct SessionToken: Content, Authenticatable, JWTPayload {
         self.expiration = ExpirationClaim(value: Date().addingTimeInterval(expirationTime))
     }
 
-    func verify(using signer: JWTSigner) throws {
+    func verify(using algorithm: some JWTAlgorithm) throws {
         try expiration.verifyNotExpired()
     }
 }
@@ -857,21 +857,21 @@ Utilizzando il nostro modello per il token JWT e la risposta, possiamo usare una
 
 ```swift
 let passwordProtected = app.grouped(User.authenticator(), User.guardMiddleware())
-passwordProtected.post("login") { req -> ClientTokenResponse in
+passwordProtected.post("login") { req async throws -> ClientTokenResponse in
     let user = try req.auth.require(User.self)
     let payload = try SessionToken(with: user)
-    return ClientTokenResponse(token: try req.jwt.sign(payload))
+    return ClientTokenResponse(token: try await req.jwt.sign(payload))
 }
 ```
 
 In alternativa, se non vuoi usare un autenticatore, puoi avere qualcosa di simile a questo:
 
 ```swift
-app.post("login") { req -> ClientTokenResponse in
+app.post("login") { req async throws -> ClientTokenResponse in
     // Valida le credenziali dell'utente
     // Ottieni lo userId dell'utente
     let payload = try SessionToken(userId: userId)
-    return ClientTokenResponse(token: try req.jwt.sign(payload))
+    return ClientTokenResponse(token: try await req.jwt.sign(payload))
 }
 ```
 

@@ -38,8 +38,8 @@ app.middleware.use(fileMiddleware)
 ## Sources
 
 Deze map bevat alle Swift bronbestanden voor je project. 
-De mappen op het hoogste niveau, `App` en `Run`, geven de modules van uw pakket weer, 
-zoals aangegeven in het [SPM](spm.md) manifest.
+De map op het hoogste niveau, `App`, geeft de module van uw pakket weer, 
+zoals aangegeven in het [SwiftPM](spm.md) manifest.
 
 ### App
 

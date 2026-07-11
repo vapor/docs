@@ -23,7 +23,7 @@ guard let user = user else {
 return user.save()
 ```
 
-Vapor bevat een helper-extensie voor het unwrappen van futures met optionele waarden: `unwrap(of:)`. 
+Vapor bevat een helper-extensie voor het unwrappen van futures met optionele waarden: `unwrap(or:)`. 
 
 ```swift
 User.find(id, on: db)
@@ -136,61 +136,17 @@ struct MyError: DebuggableError {
 
 `DebuggableError` heeft verschillende andere eigenschappen zoals `possibleCauses` en `suggestedFixes` die je kunt gebruiken om de debuggability van je fouten te verbeteren. Kijk in het protocol zelf voor meer informatie.
 
-## Stack Traces
-
-Vapor bevat ondersteuning voor het bekijken van stack traces voor zowel normale Swift fouten als crashes. 
-
-### Swift Backtrace
-
-Vapor gebruikt de [SwiftBacktrace](https://github.com/swift-server/swift-backtrace) library om stack traces te leveren na een fatale fout of assertion op Linux. Om dit te laten werken, moet uw app debug symbolen bevatten tijdens het compileren.
-
-```sh
-swift build -c release -Xswiftc -g
-```
-
-### Error Traces
-
-Standaard zal `Abort` de huidige stack trace vastleggen bij initialisatie. Uw aangepaste fout types kunnen dit bereiken door te voldoen aan `DebuggableError` en `StackTrace.capture()` op te slaan.
-
-```swift
-import Vapor
-
-struct MyError: DebuggableError {
-    var identifier: String
-    var reason: String
-    var stackTrace: StackTrace?
-
-    init(
-        identifier: String,
-        reason: String,
-        stackTrace: StackTrace? = .capture()
-    ) {
-        self.identifier = identifier
-        self.reason = reason
-        self.stackTrace = stackTrace
-    }
-}
-```
-
-Wanneer het [log level](logging.md#niveaus) van uw applicatie is ingesteld op `.debug` of lager, zullen stack traces van fouten worden opgenomen in de log output. 
-
-Stack traces worden niet opgevangen als het log level groter is dan `.debug`. Om dit gedrag op te heffen, stel `StackTrace.isCaptureEnabled` handmatig in `configure` in. 
-
-```swift
-// Leg altijd stack traces vast, ongeacht het log niveau.
-StackTrace.isCaptureEnabled = true
-```
-
 ## Error Middleware
 
-`ErrorMiddleware` is de enige middleware die standaard aan je applicatie wordt toegevoegd. Deze middleware converteert Swift fouten die zijn gegooid of geretourneerd door uw route handlers naar HTTP responses. Zonder deze middleware, zullen gegooide fouten resulteren in het sluiten van de verbinding zonder een reactie. 
+`ErrorMiddleware` is een van de slechts twee middlewares die standaard aan je applicatie worden toegevoegd. Deze middleware converteert Swift fouten die zijn gegooid of geretourneerd door uw route handlers naar HTTP responses. Zonder deze middleware, zullen gegooide fouten resulteren in het sluiten van de verbinding zonder een reactie. 
 
 Om de foutafhandeling verder aan te passen dan `AbortError` en `DebuggableError` bieden, kunt u `ErrorMiddleware` vervangen door uw eigen logica voor foutafhandeling. Om dit te doen, verwijdert u eerst de standaard error middleware door `app.middleware` op een lege configuratie te zetten. Voeg vervolgens uw eigen error afhandeling middleware toe als de eerste middleware aan uw applicatie.
 
 ```swift
-// Verwijder alle bestaande middleware.
+// Clear all default middleware (then, add back route logging)
 app.middleware = .init()
-// Voeg eerst aangepaste foutafhandeling middleware toe.
+app.middleware.use(RouteLoggingMiddleware(logLevel: .info))
+// Add custom error handling middleware first.
 app.middleware.use(MyErrorMiddleware())
 ```
 

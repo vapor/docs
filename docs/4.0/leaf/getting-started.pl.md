@@ -7,7 +7,7 @@ Leaf to wszechstronny język szablonów ze składnią inspirowaną językiem pro
 Pierwszym krokiem do użycia Leaf jest dodanie go jako zależności w projekcie, w pliku manifest managera SPM.
 
 ```swift
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 import PackageDescription
 
 let package = Package(
@@ -17,7 +17,7 @@ let package = Package(
     ],
     dependencies: [
         /// Inne zależności ...
-        .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0"),
+        .package(url: "https://github.com/vapor/leaf.git", from: "4.4.0"),
     ],
     targets: [
         .target(name: "App", dependencies: [
@@ -41,11 +41,21 @@ app.views.use(.leaf)
 
 Powyższy kod ustawia `Leaf` jako domyślny język szablonów. Podczas wywołania `req.view`, w kodzie zostanie użyty `LeafRenderer`.
 
-!!! Warto wiedzieć
-Leaf zawiera wewnętrzny system cachowania dla wyrenderowanych stron. `Cache` jest wyłączony dla aplikacji w trybie `developerskim` - to powoduje, że zmiany w szablonach są widoczne natychmiast. W środowisku `produkcyjnym` i innych `Cache` jest włączony automatycznie - jakiekolwiek zmiany będą widoczne dopiero po restarcie aplikacji.
+!!! warning
+    Aby umożliwić Leaf znalezienie szablonów kiedy projekt jest otwarty za pomocą Xcode, należy ustawić [custom working directory](../getting-started/xcode.md#niestandardowy-katalog-roboczy) dla Xcode workspace.
 
-!!! Uwaga
-Aby umożliwić Leaf znalezienie szablonów kiedy projekt jest otwarty za pomocą Xcode, należy ustawić [custom working directory](../getting-started/xcode.md#niestandardowy-katalog-roboczy) dla Xcode workspace.
+### Cache dla renderowanych stron
+
+Leaf zawiera wewnętrzny system cachowania dla wyrenderowanych stron. Kiedy środowisko `Application` jest ustawione na `.development`, ten cache jest wyłączony - to powoduje, że zmiany w szablonach są widoczne natychmiast. W środowisku `.production` i innych, cache jest domyślnie włączony - jakiekolwiek zmiany w szablonach nie będą widoczne, dopóki aplikacja nie zostanie zrestartowana.
+
+Aby wyłączyć cache Leaf, zrób następująco:
+
+```swift
+app.leaf.cache.isEnabled = false
+```
+
+!!! warning
+    Wyłączenie cache jest pomocne podczas debugowania, ale nie jest zalecane w środowisku produkcyjnym, ponieważ może znacząco wpłynąć na wydajność - szablony musiałyby być kompilowane ponownie przy każdym żądaniu.
 
 ## Struktura folderów
 
@@ -75,7 +85,7 @@ Cześć, #(name)!
 ```
 
 !!! tip
-Jeśli korzystasz z VSCode, rekomendowane jest zainstalowanie rozszerzenia do Vapor (Podpowiedzi i podkreślanie składni): [Vapor for VS Code](https://marketplace.visualstudio.com/items?itemName=Vapor.vapor-vscode).
+    Jeśli korzystasz z VSCode, rekomendowane jest zainstalowanie rozszerzenia do Vapor (Podpowiedzi i podkreślanie składni): [Vapor for VS Code](https://marketplace.visualstudio.com/items?itemName=Vapor.vapor-vscode).
 
 Następnie: Dodaj ścieżkę (przeważnie w `routes.swift` lub w kontrolerze), żeby wyrenderować widok.
 

@@ -7,6 +7,9 @@ Als je nog niet Swift hebt geïnstalleerd of de Vapor Toolbox, bekijk de install
 - [Installeren &rarr; macOS](../install/macos.md)
 - [Installeren &rarr; Linux](../install/linux.md)
 
+!!! tip
+    Het sjabloon dat door de Vapor Toolbox wordt gebruikt vereist Swift 6.0 of hoger
+
 ## Nieuw Project
 
 De eerste stap bestaat uit een nieuw Vapor project te maken op je computer. Open je terminal en gebruik het nieuw project commando van de Toolbox. Dit zal een nieuwe map aanmaken in je huidige directory met daarin het project.
@@ -53,6 +56,9 @@ Je zou de Console moeten zien verschijnen aan de onderkant van het Xcode venster
 ### Linux
 
 Op Linux en andere besturingssystemen (en zelfs op macOS als je Xcode niet wilt gebruiken) kun je het project bewerken in je favoriete editor naar keuze, zoals Vim of VSCode. Zie de [Swift Server Guides](https://github.com/swift-server/guides/blob/main/docs/setup-and-ide-alternatives.md) voor actuele details over het instellen van andere IDE's.
+
+!!! tip
+    Als je VSCode gebruikt als je code-editor, raden we aan om de officiële Vapor-extensie te installeren: [Vapor for VS Code](https://marketplace.visualstudio.com/items?itemName=Vapor.vapor-vscode).
 
 Om je project te bouwen en uit te voeren, voer je in Terminal uit:
 

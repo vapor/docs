@@ -1,6 +1,6 @@
 # Routing
 
-Beim Routing geht es um das Verteilen der eingehenden Serveranfragen, an die richtigen Anwendungsendpunkte. Endpunkte sind Einheiten zur Verarbeitung der Anfragen. Sie werden im Controller definiert und beim Starten der Anwendung registriert.
+Beim Routing geht es um das Verteilen der eingehenden Serveranfragen, an die richtigen Anwendungsendpunkte. Endpunkte sind Einheiten zur Verarbeitung der Anfragen. Sie werden im Controller definiert und beim Starten der Anwendung registriert. Im Kern von Vapors Routing steckt ein hochperformanter, trie-basierter Router aus [RoutingKit](https://github.com/vapor/routing-kit).
 
 ## Grundlagen
 
@@ -34,6 +34,8 @@ Ganz am Anfang der Serveranfrage steht die Anfragemethode. Wie im Beispiel, ist 
 
 Auf die Methode folgt der Zielpfad der Anfrage. Die Zielpfad besteht aus einem Pfad und einer optionalen Zeichenabfolge `?`. Vapor benutzt beides um die Anfrage an den richtigen Endpunkt weiterzuleiten. 
 
+Nach der URI folgt die HTTP-Version, gefolgt von keinem, einem oder mehreren Headern und schließlich einem Body. Da es sich um eine `GET`-Anfrage handelt, hat sie keinen Body.
+
 ### Endpunktmethoden
 
 Vapor stellt alle Anfragemethoden als Methoden über die Application-Instanz zur Verfügung. Die Methoden akzeptieren einen oder mehrere Pfadangaben vom Typ _String_, die nachfolgend mit einem '/' getrennt zu einem Pfad zusammengestellt werden.
@@ -48,6 +50,8 @@ app.get("hello", "vapor") { req in
 /// Die .on()-Variante ist ebenfalls möglich.
 app.on(.GET, "hello", "vapor") { ... }
 ```
+
+Nachdem dieser Endpunkt registriert ist, führt die obige Beispielanfrage zu folgender Antwort:
 
 ```http
 HTTP/1.1 200 OK
@@ -88,6 +92,8 @@ Nachdem wir uns die Einführung angesehen haben, können wir uns den nachfolgend
 
 ## Endpunktdefinition
 
+Ein Endpunkt legt einen Request-Handler für eine bestimmte HTTP-Methode und einen URI-Pfad fest. Er kann zudem zusätzliche Metadaten speichern.
+
 ### Methoden
 
 Endpunkte können der Anwendung über die Instanz _Application_ und den Methoden bekannt gemacht werden.
@@ -107,6 +113,16 @@ app.get("foo") { req -> String in
     return "bar"
 }
 ```
+
+Dies sind die unterstützten Endpunkt-Hilfsmethoden:
+
+- `get`
+- `post`
+- `patch`
+- `put`
+- `delete`
+
+Neben den HTTP-Methoden-Hilfsmethoden gibt es die Funktion `on`, die die HTTP-Methode als Eingabeparameter entgegennimmt.
 
 ```swift
 // responds to OPTIONS /foo/bar/baz
@@ -161,12 +177,12 @@ app.get("hello", ":name") { req -> String in
 ```
 
 !!! tip
-    We can be sure that `req.parameters.get` will never return `nil` here since our route path includes `:name`. However, if you are accessing route parameters in middleware or in code triggered by multiple routes, you will want to handle the possibility of `nil`.
+    Wir können sicher sein, dass `req.parameters.get` hier niemals `nil` zurückgibt, da unser Endpunktpfad `:name` enthält. Wenn wir jedoch in einer Middleware oder in Code, der von mehreren Endpunkten ausgelöst wird, auf Parameter zugreifen, sollten wir die Möglichkeit von `nil` berücksichtigen.
 
 !!! tip
-    If you want to retrieve URL query params, e.g. `/hello/?name=foo` you need to use Vapor's Content APIs to handle URL encoded data in the URL's query string. See [`Content` reference](content.md) for more details.
+    Wenn wir URL-Query-Parameter abrufen möchten, z. B. `/hello/?name=foo`, müssen wir Vapors Content-APIs verwenden, um URL-kodierte Daten in der Query-Zeichenfolge der URL zu verarbeiten. Weitere Informationen finden sich in der [`Content`-Referenz](content.md).
 
-`req.parameters.get` also supports casting the parameter to `LosslessStringConvertible` types automatically. 
+`req.parameters.get` unterstützt außerdem automatisch die Umwandlung des Parameters in Typen, die `LosslessStringConvertible` entsprechen.
 
 ```swift
 // responds to GET /number/42
@@ -257,6 +273,8 @@ Grundsätzlich muss bei Endpunkten die Groß- und Kleinschreibung beachten werde
 app.routes.caseInsensitive = true
 ```
 
+Die ursprüngliche Anfrage bleibt dabei unverändert; die Endpunkt-Handler erhalten die Pfadkomponenten der Anfrage unverändert.
+
 ### Ansicht
 
 Über die Eigenschaft *all* kann auf die Endpunkte zugegriffen werden.
@@ -265,7 +283,7 @@ app.routes.caseInsensitive = true
 print(app.routes.all) // [Route]
 ```
 
-Vapor also ships with a `routes` command that prints all available routes in an ASCII formatted table. 
+Vapor bringt außerdem den Befehl `routes` mit, der alle verfügbaren Endpunkte in einer ASCII-formatierten Tabelle ausgibt.
 
 ```sh
 $ swift run App routes
@@ -294,7 +312,13 @@ app.get("hello", ":name") { req in
 
 ## Endpunktgruppen
 
-Endpunkte können zu Gruppen zusammengefasst werden. Der Name der Gruppe wird als Pfadabschnitt den enhaltenen Endpunkten vorangestellt.
+Endpunkte können zu Gruppen mit einem gemeinsamen Pfadpräfix oder einer bestimmten Middleware zusammengefasst werden. Die Gruppierung unterstützt sowohl eine Builder- als auch eine Closure-basierte Syntax.
+
+Alle Gruppierungsmethoden liefern einen `RouteBuilder` zurück, sodass sich Gruppen beliebig mit anderen Endpunkt-Methoden mischen, kombinieren und verschachteln lassen.
+
+### Pfadpräfix
+
+Mit einem Pfadpräfix lassen sich einer Gruppe von Endpunkten ein oder mehrere Pfadabschnitte voranstellen.
 
 ```swift
 let users = app.grouped("users")
@@ -312,6 +336,8 @@ users.get(":id") { req in
     ...
 }
 ```
+
+Jede Pfadangabe, die sich auch an Methoden wie `get` oder `post` übergeben lässt, kann ebenso an `grouped` übergeben werden. Alternativ gibt es auch eine Closure-basierte Syntax.
 
 ```swift
 app.group("users") { users in
@@ -368,6 +394,8 @@ app.group(RateLimitMiddleware(requestsPerMinute: 5)) { rateLimited in
 }
 ```
 
+Dies ist besonders nützlich, um Teilmengen unserer Endpunkte mit unterschiedlichen Authentifizierungs-Middlewares zu schützen.
+
 ```swift
 app.post("login") { ... }
 let auth = app.grouped(AuthMiddleware())
@@ -377,20 +405,24 @@ auth.get("logout") { ... }
 
 ## Weiterleitung
 
-Für eine Weiterleitung kann es verschiedenste Gründe geben. Mit der Methode *redirect(_:)* über die Instanz *Request* können wir die Anfrage weiterleiten.
+Weiterleitungen sind in vielen Fällen nützlich, etwa um alte Adressen aus SEO-Gründen auf neue umzuleiten, einen nicht authentifizierten Benutzer zur Login-Seite weiterzuleiten oder die Abwärtskompatibilität mit einer neuen Version der eigenen API zu wahren.
+
+Um eine Anfrage weiterzuleiten, verwenden wir:
 
 ```swift
 req.redirect(to: "/some/new/path")
+```
 
-/// redirect a page permanently
+Wir können auch die Art der Weiterleitung angeben, zum Beispiel um eine Seite dauerhaft weiterzuleiten (damit die SEO korrekt aktualisiert wird):
+
+```swift
 req.redirect(to: "/some/new/path", redirectType: .permanent)
 ```
 
-Es gibt verschiedene Arten von Weiterleitungen:
+Folgende `Redirect`-Arten stehen zur Verfügung:
 
-|Art      |Statuscode |Beschreibung                                                                                                                           |
-|---------|---|---------------------------------------------------------------------------------------------------------------------------------------|
-|permanent|301| Liefert einen Statuscode 301 zurück.  |
-|normal   |303| This is the default by Vapor and tells the client to follow the redirect with a **GET** request. |
-|temporary|307| This tells the client to preserve the HTTP method used in the request.|
-|To choose the proper redirection status code check out [the full list](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_redirection)|
+* `.permanent` - liefert eine **301 Permanent**-Weiterleitung
+* `.normal` - liefert eine **303 see other**-Weiterleitung. Dies ist die Standardeinstellung von Vapor und weist den Client an, der Weiterleitung mit einer **GET**-Anfrage zu folgen.
+* `.temporary` - liefert eine **307 Temporary**-Weiterleitung. Dies weist den Client an, die in der Anfrage verwendete HTTP-Methode beizubehalten.
+
+> Informationen zur Wahl des passenden Weiterleitungsstatuscodes gibt es in [der vollständigen Liste](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_redirection)

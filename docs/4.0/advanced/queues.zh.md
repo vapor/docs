@@ -256,6 +256,16 @@ extension QueueName {
 }
 ```
 
+你还可以在创建 `QueueName` 时设置一个 per-queue 的 `workerCount`：
+
+```swift
+extension QueueName {
+    static let serialEmails = QueueName(string: "serial-emails", workerCount: 1)
+}
+```
+
+设置 `workerCount: 1` 会使该队列连续处理 job，这在 job 顺序很重要时很有用。
+
 然后，在检索 `jobs` 对象时指定队列类型：
 
 ```swift
@@ -369,7 +379,12 @@ app.queues.schedule(CleanupJob())
 
 ### 可用的构建器方法
 
-在调度程序上可以调用五个主要方法，每个方法都会创建其各自的包含更多辅助方法的构建器对象。你应该继续构建一个调度器对象，直到编译器没有向你发出有关未使用结果的警告。有关所有可用方法，请参见下文：
+调度器 API 有两种风格：
+
+- 日历风格的构建器，返回可供链式调用的构建器对象。
+- 间隔风格的构建器，按固定的时间间隔运行 job。
+
+你应该继续构建日历风格的调度器链，直到编译器没有向你发出有关未使用结果的警告。有关所有可用方法，请参见下文：
 
 | 辅助函数 | 可用修饰符                   | 描述                                                                    |
 |-----------------|---------------------------------------|--------------------------------------------------------------------------------|
@@ -381,6 +396,25 @@ app.queues.schedule(CleanupJob())
 |                 | `at(_ hour: Hour12, _ minute: Minute, _ period: HourPeriod)` |运行 job 的小时、分钟和时间段。链中的最终方法。|
 | `hourly()`      | `at(_ minute: Minute)`                 |运行 job 的分钟。链中的最终方法。|
 | `minutely()`    | `at(_ second: Second)`                 | 运行 job 的秒数。链中的最终方法。 |
+
+### 间隔构建器方法（`.every(...)`）
+
+调度器还支持使用 `.every(...)` 方法进行固定间隔的调度：
+
+| 辅助函数 | 描述                                                                    |
+|-----------------|--------------------------------------------------------------------------------|
+| `every(seconds: Int)` | 每隔给定的秒数运行一次 job。                              |
+| `every(minutes: Int)` | 每隔给定的分钟数运行一次 job。                              |
+| `every(hours: Int)`   | 每隔给定的小时数运行一次 job。                                |
+| `every(days: Int)`    | 每隔给定的天数运行一次 job。                                 |
+| `every(weeks: Int)`   | 每隔给定的周数运行一次 job。                                |
+
+示例：
+
+```swift
+app.queues.schedule(CleanupJob())
+    .every(hours: 6)
+```
 
 ### 可用辅助函数
 
@@ -449,3 +483,40 @@ app.queues.add(MyEventDelegate())
 
 - [QueuesDatabaseHooks](https://github.com/vapor-community/queues-database-hooks)
 - [QueuesDash](https://github.com/gotranseo/queues-dash)
+
+## 测试
+
+为了避免同步问题并确保测试的确定性，Queues 包提供了一个 `XCTQueue` 库和一个专用于测试的 `AsyncTestQueuesDriver` 驱动，你可以按如下方式使用它：
+
+```swift
+final class UserCreationServiceTests: XCTestCase {
+    var app: Application!
+
+    override func setUp() async throws {
+        self.app = try await Application.make(.testing)
+        try await configure(app)
+
+        // 覆盖用于测试的驱动
+        app.queues.use(.asyncTest)
+    }
+
+    override func tearDown() async throws {
+        try await self.app.asyncShutdown()
+        self.app = nil
+    }
+}
+```
+
+更多详情请参见 [Romain Pouclet 的博客文章](https://romain.codes/2024/10/08/using-and-testing-vapor-queues/)。
+
+# 故障排查
+
+当使用 [queues-redis-driver](https://github.com/vapor/queues-redis-driver) 搭配基于集群的 Redis 兼容服务器（例如 Amazon AWS 上的 Redis 或 Valkey）时，你可能会遇到这样的错误消息：`CROSSSLOT Keys in request don't hash to the same slot`。
+
+这只会在集群模式下发生，因为 Redis 或 Valkey 无法确定应该在哪个集群节点上存储 job 数据。
+
+要解决这个问题，可以通过在名称中使用花括号，为你的 job 数据条目名称添加一个 [hash tag](https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/#hash-tags)：
+
+```swift
+app.queues.configuration.persistenceKey = "vapor-queues-{queues}"
+```

@@ -110,7 +110,7 @@ Para tipos de identificador personalizados, necesitarás especificar el campo ma
 .field("id", .int, .identifier(auto: true))
 ```
 
-La restricción `identifier` debe usarse en un único campo, y denote la clave primaria. La marca (flag) `auto` determina si la base de datos deberá generar el valor automáticamente o no.
+La restricción `identifier` debe usarse en un único campo, y denota la clave primaria. La marca (flag) `auto` determina si la base de datos deberá generar el valor automáticamente o no.
 
 ### Actualizar Campo
 

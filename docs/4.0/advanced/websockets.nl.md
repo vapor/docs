@@ -58,11 +58,10 @@ promise.futureResult.whenComplete { result in
 }
 ```
 
-Als u `async`/`await` gebruikt kunt u "wachten" op het resultaat
+Als u `async`/`await` gebruikt kunt u `await` gebruiken om te wachten tot de asynchrone bewerking is voltooid
 
 ```swift
-// TODO Check this actually works
-let result = try await ws.send(...)
+try await ws.send(...)
 ```
 
 ### Ontvangen

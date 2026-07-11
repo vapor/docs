@@ -140,7 +140,7 @@ print(res)
 
 ## Pub/Sub Mode
 
-Redis ondersteunt de mogelijkheid om een ["Pub/Sub" modus](https://redis.io/topics/pubsub) in te schakelen waarbij een verbinding kan luisteren naar specifieke "kanalen" en specifieke afsluitingen kan uitvoeren wanneer de geabonneerde kanalen een "bericht" publiceren (een of andere gegevenswaarde).
+Redis ondersteunt de mogelijkheid om een ["Pub/Sub" modus](https://redis.io/topics/pubsub) in te schakelen waarbij een verbinding kan luisteren naar specifieke "kanalen" en specifieke closures kan uitvoeren wanneer de geabonneerde kanalen een "bericht" publiceren (een of andere gegevenswaarde).
 
 Er is een bepaalde levenscyclus voor een abonnement:
 

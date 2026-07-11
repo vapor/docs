@@ -220,7 +220,7 @@ Di seguito è riportato un elenco dei validatori attualmente supportati e una br
 |`.url`|Contiene un URL valido.|
 |`.custom(_:, validationClosure: (value) -> Bool)`|Validazione personalizzata una tantum.|
 
-I validatori possono anche essere combinati per costruire validazioni complesse usando gli operatori. Ulteriori informazioni sul validatore `.custom` in [[#Validatori Personalizzati]].
+I validatori possono anche essere combinati per costruire validazioni complesse usando gli operatori. Ulteriori informazioni sul validatore `.custom` in [Validatori Personalizzati](#validatori-personalizzati).
 
 |Operatore|Posizione|Descrizione|
 |-|-|-|
@@ -266,10 +266,10 @@ extension ValidatorResults.ZipCode: ValidatorResult {
 }
 ```
 
-Infine, implementa la logica di validazione per i codici postali. Usa un'espressione regolare per verificare se la stringa di input corrisponde al formato di un codice postale italiano.
+Infine, implementa la logica di validazione per i codici postali. Usa un'espressione regolare per verificare se la stringa di input corrisponde al formato di uno zip code statunitense.
 
 ```swift
-private let zipCodeRegex: String = "^[0-9]{5}$"
+private let zipCodeRegex: String = "^\\d{5}(?:[-\\s]\\d{4})?$"
 
 extension Validator where T == String {
     /// Valida se una `String` è un codice postale valido.

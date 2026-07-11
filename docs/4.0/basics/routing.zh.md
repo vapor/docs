@@ -24,7 +24,7 @@ http://vapor.codes/hello/vapor
 请求的第一部分是 HTTP 方法。其中 `GET` 是最常见的 HTTP 方法，以下这些是经常会使用几种方法，这些 HTTP 方法通常与 [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) 语义相关联。
 
 
-|Method|CURD|
+|Method|CRUD|
 |:--|:--|
 |`GET`|Read|
 |`POST`|Create|
@@ -101,7 +101,7 @@ Hello, swift!
 
 现在你已经了解了基础知识，请查看每个部分以了解有关参数，分组等的更多信息。
 
-## 路径
+## 路由
 
 路由为给定的 HTTP 方法和 URI 路径指定请求处理程序(request handler)。它还可以存储其他元数据。
 
@@ -294,7 +294,7 @@ app.routes.caseInsensitive = true
 
 ### 查看路由
 
-你可以通过 making `Routes` 服务或使用 `app.routes` 来访问应用程序的路由。
+你可以通过创建 `Routes` 服务或使用 `app.routes` 来访问应用程序的路由。
 
 ```swift
 print(app.routes.all) // [Route]
@@ -317,7 +317,7 @@ $ swift run App routes
 +--------+----------------+
 ```
 
-### Metadata
+### 元数据
 
 所有路线注册方法都会返回创建的 `Route`。 这使你可以将元数据添加到路由的 `userInfo` 字典中。有一些默认方法可用，例如添加描述。
 
@@ -441,4 +441,4 @@ req.redirect(to: "/some/new/path", redirectType: .permanent)
 * `.normal` - 返回一个 **303 see other** 重定向。这是 Vapor 的默认行为，来告诉客户端去使用一个 **GET** 请求来重定向。
 * `.temporary` - 返回一个 **307 Temporary** 重定向. 这告诉客户端保留请求中使用的 HTTP 方法。
 
-> 要选择正确的重定向状态码，请参考 [the full list](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_redirection)
+> 要选择正确的重定向状态码，请参考[完整列表](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_redirection)

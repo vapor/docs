@@ -228,7 +228,7 @@ Your search matched #count(matches) pages.
 
 #### `#capitalized`
 
-`#capitalized` 标签将字符串中每个单词的首字母大写，其他字母小写。了解 [String.capitalized](https://developer.apple.com/documentation/foundation/nsstring/1416784-capitalized) 更多信息，请参阅。
+`#capitalized` 标签将字符串中每个单词的首字母大写，其他字母小写。了解 [`String.capitalized`](https://developer.apple.com/documentation/foundation/nsstring/1416784-capitalized) 更多信息，请参阅。
 
 
 ```leaf
@@ -265,6 +265,12 @@ The time is #date(now)
 The date is #date(now, "yyyy-MM-dd")
 ```
 
+你还可以传递一个时区 ID 作为日期格式化程序的第三个参数。了解更多信息，请参阅 Swift 的 [`DateFormatter.timeZone`](https://developer.apple.com/documentation/foundation/dateformatter/1411406-timezone) 和 [`TimeZone`](https://developer.apple.com/documentation/foundation/timezone)。
+
+```leaf
+The date is #date(now, "yyyy-MM-dd", "America/New_York")
+```
+
 #### `#unsafeHTML`
 
 `#unsafeHTML` 标签就像一个变量标签 - 例如 `#(variable)`。但是，它不会转义任何 `variable` 可能包含的 HTML 标签：
@@ -275,6 +281,37 @@ The time is #unsafeHTML(styledTitle)
 
 !!! note "注意"  
     使用此标签时应小心，确保你提供的变量不会使你的用户受到 XSS 攻击。
+
+#### `#comment`
+
+`#comment` 标签允许你在模板中添加注释，这些注释不会出现在渲染后的输出中。该标签接受一个字符串参数，该参数在渲染过程中会被完全忽略。
+
+```leaf
+#comment("This is a single-line comment")
+<h1>#(title)</h1>
+```
+
+对于较长的注释，你可以使用多行字符串语法：
+
+```leaf
+#comment("""
+This template renders the home page.
+It expects a "title" and "body" variable.
+""")
+<h1>#(title)</h1>
+```
+
+#### `#isEmpty`
+
+`#isEmpty` 标签在传递给模板的字符串属性为空时返回 true。它通常在 `#if` 条件中使用：
+
+```leaf
+#if(isEmpty(title)):
+    No title was provided.
+#else:
+    The title is #(title)
+#endif
+```
 
 #### `#dumpContext`
 
