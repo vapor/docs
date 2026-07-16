@@ -267,6 +267,7 @@ let languages: [Language] = [
             "Services": "Services",
             "Sessions": "Sessions",
             "Testing": "Tests",
+            "Tracing": "Traçage",
             "Transactions": "Transactions",
             "Upgrading": "Mettre à jour",
             "Validation": "La validation de données",
