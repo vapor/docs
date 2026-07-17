@@ -92,7 +92,7 @@ Voici la liste de contraintes de champs supportées :
 |`.required`|Ne permet pas de valeurs à `nil`.|
 |`.references`|Nécessite que la valeur de ce champ corresponde à une valeur du schéma référencé. Voir [clé étrangère](#clé-étrangère).|
 |`.identifier`|Indique la clé primaire. Voir [identifiant](#identifiant).|
-|`.sql(SQLColumnConstraintAlgorithm)`|Définit toute contrainte qui ne soit pas encore supportée par Fluent (comme `default`). Voir [SQL](#sql) et [SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/documentation/sqlkit/sqlcolumnconstraintalgorithm/).|
+|`.sql(SQLColumnConstraintAlgorithm)`|Définit toute contrainte qui ne soit pas encore supportée par Fluent (comme `default`). Voir [SQL](#sql) et [SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/sqlcolumnconstraintalgorithm/).|
 
 ### Identifiant
 

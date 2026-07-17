@@ -61,7 +61,7 @@ app.leaf.cache.isEnabled = false
 
 بمجرد تهيئة Leaf، ستحتاج إلى التأكد من امتلاكك مجلد `Views` لتخزين ملفات `.leaf` الخاصة بك فيه. افتراضيًا، يتوقع Leaf أن يكون مجلد views في `./Resources/Views` نسبةً إلى جذر مشروعك.
 
-من المرجح أيضًا أنك سترغب في تفعيل [`FileMiddleware`](https://api.vapor.codes/vapor/documentation/vapor/filemiddleware) في Vapor لتقديم الملفات من مجلد `/Public` إذا كنت تخطط لتقديم ملفات Javascript وCSS على سبيل المثال.
+من المرجح أيضًا أنك سترغب في تفعيل [`FileMiddleware`](https://api.vapor.codes/vapor/filemiddleware) في Vapor لتقديم الملفات من مجلد `/Public` إذا كنت تخطط لتقديم ملفات Javascript وCSS على سبيل المثال.
 
 ```
 VaporApp

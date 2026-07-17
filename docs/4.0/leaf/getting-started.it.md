@@ -50,7 +50,7 @@ Questo dice a Vapor di usare `LeafRenderer` quando chiami `req.view` nel tuo cod
 
 Non appena hai configurato Leaf, devi assicurarti di avere una cartella `Views` dove salvare i tuoi file `.leaf`. Di default, Leaf si aspetta che la cartella delle view sia `./Resources/Views`, relativamente alla radice del tuo progetto.
 
-Probabilmente vorrai abilitare anche il [`FileMiddleware`](https://api.vapor.codes/vapor/documentation/vapor/filemiddleware) di Vapor per servire file dalla tua cartella `/Public` se hai in mente di servire file Javascript e CSS per esempio.
+Probabilmente vorrai abilitare anche il [`FileMiddleware`](https://api.vapor.codes/vapor/filemiddleware) di Vapor per servire file dalla tua cartella `/Public` se hai in mente di servire file Javascript e CSS per esempio.
 
 ```
 VaporApp

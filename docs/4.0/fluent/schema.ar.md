@@ -92,7 +92,7 @@ database.schema("planets").delete()
 |`.required`|يمنع القيم `nil`.|
 |`.references`|يتطلّب أن تطابق قيمة هذا الحقل قيمة في المخطط المُشار إليه. راجع [المفتاح الخارجي](#المفتاح-الخارجي).|
 |`.identifier`|يشير إلى المفتاح الأساسي. راجع [المُعرّف](#المُعرّف).|
-|`.sql(SQLColumnConstraintAlgorithm)`|يُعرّف أي قيد غير مدعوم (مثل `default`). راجع [SQL](#sql) و[SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/documentation/sqlkit/sqlcolumnconstraintalgorithm/).|
+|`.sql(SQLColumnConstraintAlgorithm)`|يُعرّف أي قيد غير مدعوم (مثل `default`). راجع [SQL](#sql) و[SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/sqlcolumnconstraintalgorithm/).|
 
 ### المُعرّف
 

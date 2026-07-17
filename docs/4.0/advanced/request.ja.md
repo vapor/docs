@@ -1,6 +1,6 @@
 # リクエスト {#request}
 
-[`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) オブジェクトは、すべての[ルートハンドラ](../basics/routing.md)に渡されます。
+[`Request`](https://api.vapor.codes/vapor/request) オブジェクトは、すべての[ルートハンドラ](../basics/routing.md)に渡されます。
 
 ```swift
 app.get("hello", ":name") { req -> String in
@@ -11,11 +11,11 @@ app.get("hello", ":name") { req -> String in
 
 これは、Vaporの他の機能への主要な窓口です。[リクエストボディ](../basics/content.md)、[クエリパラメータ](../basics/content.md#クエリ-query)、[ロガー](../basics/logging.md)、[HTTPクライアント](../basics/client.md)、[Authenticator](../security/authentication.md)などのAPIが含まれています。リクエストを通じてこれらの機能にアクセスすることで、計算を適切なイベントループ上に保ち、テスト用にモック化することができます。拡張機能を使用して、独自の[サービス](../advanced/services.md)を`Request`に追加することもできます。
 
-`Request`の完全なAPIドキュメントは[こちら](https://api.vapor.codes/vapor/documentation/vapor/request)で確認できます。
+`Request`の完全なAPIドキュメントは[こちら](https://api.vapor.codes/vapor/request)で確認できます。
 
 ## アプリケーション {#application}
 
-`Request.application`プロパティは、[`Application`](https://api.vapor.codes/vapor/documentation/vapor/application)への参照を保持しています。このオブジェクトには、アプリケーションのすべての設定とコア機能が含まれています。そのほとんどは、アプリケーションが完全に起動する前の`configure.swift`でのみ設定されるべきであり、低レベルAPIの多くはほとんどのアプリケーションでは必要ありません。最も便利なプロパティの1つは`Application.eventLoopGroup`で、新しい`EventLoop`が必要なプロセスのために`any()`メソッドを介して`EventLoop`を取得するために使用できます。また、[`Environment`](../basics/environment.md)も含まれています。
+`Request.application`プロパティは、[`Application`](https://api.vapor.codes/vapor/application)への参照を保持しています。このオブジェクトには、アプリケーションのすべての設定とコア機能が含まれています。そのほとんどは、アプリケーションが完全に起動する前の`configure.swift`でのみ設定されるべきであり、低レベルAPIの多くはほとんどのアプリケーションでは必要ありません。最も便利なプロパティの1つは`Application.eventLoopGroup`で、新しい`EventLoop`が必要なプロセスのために`any()`メソッドを介して`EventLoop`を取得するために使用できます。また、[`Environment`](../basics/environment.md)も含まれています。
 
 ## ボディ {#body}
 
@@ -50,7 +50,7 @@ app.get("json") { req -> String in
 }
 ```
 
-`HTTPHeaders`の詳細なドキュメントは[こちら](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niohttp1/httpheaders)を参照してください。Vaporは、最もよく使用されるヘッダーの操作を簡単にするために、`HTTPHeaders`にいくつかの拡張機能も追加しています。リストは[こちら](https://api.vapor.codes/vapor/documentation/vapor/niohttp1/httpheaders#instance-properties)で確認できます。
+`HTTPHeaders`の詳細なドキュメントは[こちら](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niohttp1/httpheaders)を参照してください。Vaporは、最もよく使用されるヘッダーの操作を簡単にするために、`HTTPHeaders`にいくつかの拡張機能も追加しています。リストは[こちら](https://api.vapor.codes/vapor/niohttp1/httpheaders#instance-properties)で確認できます。
 
 ## IPアドレス {#ip-address}
 

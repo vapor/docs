@@ -2,13 +2,13 @@
 
 Redisは[セッションデータ](../advanced/sessions.md#セッションデータ-session-data)（ユーザー認証情報など）をキャッシュするためのストレージプロバイダーとして機能します。
 
-カスタムの[`RedisSessionsDelegate`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate)が提供されない場合、デフォルトのものが使用されます。
+カスタムの[`RedisSessionsDelegate`](https://api.vapor.codes/redis/redissessionsdelegate)が提供されない場合、デフォルトのものが使用されます。
 
 ## デフォルトの動作 {#default-behavior}
 
 ### SessionIDの作成 {#sessionid-creation}
 
-[独自の`RedisSessionsDelegate`](#redissessionsdelegate)で[`makeNewID()`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/makenewid()-3hyne)メソッドを実装しない限り、すべての[`SessionID`](https://api.vapor.codes/vapor/documentation/vapor/sessionid)値は以下の手順で作成されます：
+[独自の`RedisSessionsDelegate`](#redissessionsdelegate)で[`makeNewID()`](https://api.vapor.codes/redis/redissessionsdelegate/makenewid()-3hyne)メソッドを実装しない限り、すべての[`SessionID`](https://api.vapor.codes/vapor/sessionid)値は以下の手順で作成されます：
 
 1. 32バイトのランダムな文字を生成
 1. その値をbase64エンコード
@@ -17,9 +17,9 @@ Redisは[セッションデータ](../advanced/sessions.md#セッションデー
 
 ### SessionDataの保存 {#sessiondata-storage}
 
-`RedisSessionsDelegate`のデフォルト実装は、[`SessionData`](https://api.vapor.codes/vapor/documentation/vapor/sessiondata)を`Codable`を使用してシンプルなJSON文字列値として保存します。
+`RedisSessionsDelegate`のデフォルト実装は、[`SessionData`](https://api.vapor.codes/vapor/sessiondata)を`Codable`を使用してシンプルなJSON文字列値として保存します。
 
-独自の`RedisSessionsDelegate`で[`makeRedisKey(for:)`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/makerediskey(for:)-5nfge)メソッドを実装しない限り、`SessionData`は`SessionID`に`vrs-`（**V**apor **R**edis **S**essions）というプレフィックスを付けたキーでRedisに保存されます。
+独自の`RedisSessionsDelegate`で[`makeRedisKey(for:)`](https://api.vapor.codes/redis/redissessionsdelegate/makerediskey(for:)-5nfge)メソッドを実装しない限り、`SessionData`は`SessionID`に`vrs-`（**V**apor **R**edis **S**essions）というプレフィックスを付けたキーでRedisに保存されます。
 
 例：`vrs-Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
 
@@ -39,11 +39,11 @@ app.sessions.use(.redis(delegate: CustomRedisSessionsDelegate()))
 
 ## RedisSessionsDelegate
 
-> APIドキュメント：[`RedisSessionsDelegate`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate)
+> APIドキュメント：[`RedisSessionsDelegate`](https://api.vapor.codes/redis/redissessionsdelegate)
 
 このプロトコルに準拠するオブジェクトを使用して、`SessionData`がRedisに保存される方法を変更できます。
 
-プロトコルに準拠する型が実装する必要があるメソッドは2つのみです：[`redis(_:store:with:)`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/redis(_:store:with:))と[`redis(_:fetchDataFor:)`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/redis(_:fetchdatafor:))。
+プロトコルに準拠する型が実装する必要があるメソッドは2つのみです：[`redis(_:store:with:)`](https://api.vapor.codes/redis/redissessionsdelegate/redis(_:store:with:))と[`redis(_:fetchDataFor:)`](https://api.vapor.codes/redis/redissessionsdelegate/redis(_:fetchdatafor:))。
 
 セッションデータをRedisに書き込む方法のカスタマイズは、Redisからデータを読み取る方法と本質的に関連しているため、両方とも必須です。
 

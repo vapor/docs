@@ -92,7 +92,7 @@ Supported field constraints are listed below.
 |`.required`|Disallows `nil` values.|
 |`.references`|Requires that this field's value match a value in the referenced schema. See [foreign key](#foreign-key).|
 |`.identifier`|Denotes the primary key. See [identifier](#identifier).|
-|`.sql(SQLColumnConstraintAlgorithm)`|Defines any constraint that is not supported (e.g. `default`). See [SQL](#sql) and [SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/documentation/sqlkit/sqlcolumnconstraintalgorithm/).|
+|`.sql(SQLColumnConstraintAlgorithm)`|Defines any constraint that is not supported (e.g. `default`). See [SQL](#sql) and [SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/sqlcolumnconstraintalgorithm/).|
 
 ### Identifier
 

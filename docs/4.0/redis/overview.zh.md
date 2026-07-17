@@ -44,7 +44,7 @@ app.redis.configuration = try RedisConfiguration(hostname: "localhost")
 
 ### Redis 配置
 
-> API 文档：[`RedisConfiguration`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration)
+> API 文档：[`RedisConfiguration`](https://api.vapor.codes/redis/redisconfiguration)
 
 #### 服务器地址
 
@@ -60,8 +60,8 @@ let serverAddresses: [SocketAddress] = [
 
 对于单个 Redis 端点，使用便利构造器初始化更容易，因为它将为你创建 `SocketAddress`：
 
-- [`.init(url:pool)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (带 `String` 或 [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
-- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
+- [`.init(url:pool)`](https://api.vapor.codes/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (带 `String` 或 [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
+- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
 
 #### 密码
 
@@ -80,7 +80,7 @@ let serverAddresses: [SocketAddress] = [
 
 ### 连接池选项
 
-> API 文档：[`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/pooloptions)
+> API 文档：[`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/redisconfiguration/pooloptions)
 
 !!! note "注意" 
     这里只突出显示最常更改的选项。对于所有选项，请参考 API 文档。
@@ -102,7 +102,7 @@ let serverAddresses: [SocketAddress] = [
 
 ## 发送命令
 
-你可以使用  [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) 或 [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) 实例上的 `.redis` 属性发送命令，这使得你可以访问 [`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisclient)。
+你可以使用  [`Application`](https://api.vapor.codes/vapor/application) 或 [`Request`](https://api.vapor.codes/vapor/request) 实例上的 `.redis` 属性发送命令，这使得你可以访问 [`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisclient)。
 
 对于各别的 [Redis 命令](https://redis.io/commands)，`RedisClient` 都有其对应的扩展。
 

@@ -44,7 +44,7 @@ app.redis.configuration = try RedisConfiguration(hostname: "localhost")
 
 ### Redis Configuratie
 
-> API Documentatie: [`RedisConfiguration`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration)
+> API Documentatie: [`RedisConfiguration`](https://api.vapor.codes/redis/redisconfiguration)
 
 #### serverAddresses
 
@@ -60,8 +60,8 @@ let serverAddresses: [SocketAddress] = [
 
 Voor een enkel Redis endpoint, kan het makkelijker zijn om met de convenience initializers te werken, omdat die het `SocketAddress` voor je aanmaken:
 
-- [`.init(url:pool)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (met `String` of [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
-- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
+- [`.init(url:pool)`](https://api.vapor.codes/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (met `String` of [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
+- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
 
 #### wachtwoord
 
@@ -80,7 +80,7 @@ Dit bespaart u het `SELECT` commando zelf naar Redis te moeten sturen.
 
 ### Connection Pool Opties
 
-> API Documentatie: [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/pooloptions)
+> API Documentatie: [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/redisconfiguration/pooloptions)
 
 !!! note
     Alleen de opties die het meest worden gewijzigd worden hier uitgelicht. Voor alle opties, raadpleeg de API documentatie.
@@ -102,7 +102,7 @@ Deze optie bepaalt het gedrag van hoe het maximum aantal verbindingen wordt bijg
 
 ## Een commando versturen
 
-Je kunt commando's sturen met de `.redis` eigenschap op elke [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) of [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) instantie, die je toegang geeft tot een [`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisclient).
+Je kunt commando's sturen met de `.redis` eigenschap op elke [`Application`](https://api.vapor.codes/vapor/application) of [`Request`](https://api.vapor.codes/vapor/request) instantie, die je toegang geeft tot een [`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisclient).
 
 Elke `RedisClient` heeft verschillende extensies voor alle verschillende [Redis commando's](https://redis.io/commands).
 

@@ -60,7 +60,7 @@ app.leaf.cache.isEnabled = false
 
 Leaf を設定したら、`.leaf` ファイルを格納するための `Views` フォルダを用意する必要があります。デフォルトでは、Leaf はプロジェクトのルートに対して `./Resources/Views` というフォルダを要求します。
 
-JavaScript や CSS ファイルを提供する予定がある場合は、Vapor の [`FileMiddleware`](https://api.vapor.codes/vapor/documentation/vapor/filemiddleware) を有効にして、 `/Public` フォルダからファイルを提供できるようにすることも可能です。
+JavaScript や CSS ファイルを提供する予定がある場合は、Vapor の [`FileMiddleware`](https://api.vapor.codes/vapor/filemiddleware) を有効にして、 `/Public` フォルダからファイルを提供できるようにすることも可能です。
 
 ```
 VaporApp

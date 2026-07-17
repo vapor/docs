@@ -92,7 +92,7 @@ Debajo hay un listado con las restricciones de campo (field constraints) soporta
 |`.required`|No permite valores `nil`.|
 |`.references`|Requiere que el valor del campo coincida con un valor del esquema referenciado. Ver [clave externa](#clave-externa).|
 |`.identifier`|Denota la clave primaria. Ver [identificador](#identificador).|
-|`.sql(SQLColumnConstraintAlgorithm)`|Define cualquier restricción no compatible (p. ej. `default`). Consulta [SQL](#sql) y [SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/documentation/sqlkit/sqlcolumnconstraintalgorithm/).|
+|`.sql(SQLColumnConstraintAlgorithm)`|Define cualquier restricción no compatible (p. ej. `default`). Consulta [SQL](#sql) y [SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/sqlcolumnconstraintalgorithm/).|
 
 ### Identificador
 

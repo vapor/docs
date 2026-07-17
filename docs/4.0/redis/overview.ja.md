@@ -44,7 +44,7 @@ app.redis.configuration = try RedisConfiguration(hostname: "localhost")
 
 ### Redis設定 {#redis-configuration}
 
-> APIドキュメント：[`RedisConfiguration`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration)
+> APIドキュメント：[`RedisConfiguration`](https://api.vapor.codes/redis/redisconfiguration)
 
 #### serverAddresses
 
@@ -60,8 +60,8 @@ let serverAddresses: [SocketAddress] = [
 
 単一のRedisエンドポイントの場合、`SocketAddress`の作成を処理してくれるため、便利なイニシャライザを使用する方が簡単です：
 
-- [`.init(url:pool)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (`String`または[`Foundation.URL`](https://developer.apple.com/documentation/foundation/url)を使用)
-- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
+- [`.init(url:pool)`](https://api.vapor.codes/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (`String`または[`Foundation.URL`](https://developer.apple.com/documentation/foundation/url)を使用)
+- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
 
 #### password
 
@@ -80,7 +80,7 @@ Redisインスタンスがパスワードで保護されている場合は、`pa
 
 ### 接続プールオプション {#connection-pool-options}
 
-> APIドキュメント：[`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/pooloptions)
+> APIドキュメント：[`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/redisconfiguration/pooloptions)
 
 !!! note
     ここでは最も一般的に変更されるオプションのみを強調しています。すべてのオプションについては、APIドキュメントを参照してください。
@@ -102,7 +102,7 @@ Redisインスタンスがパスワードで保護されている場合は、`pa
 
 ## コマンドの送信 {#sending-a-command}
 
-[`Application`](https://api.vapor.codes/vapor/documentation/vapor/application)または[`Request`](https://api.vapor.codes/vapor/documentation/vapor/request)インスタンスの`.redis`プロパティを使用してコマンドを送信できます。これにより、[`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisclient)にアクセスできます。
+[`Application`](https://api.vapor.codes/vapor/application)または[`Request`](https://api.vapor.codes/vapor/request)インスタンスの`.redis`プロパティを使用してコマンドを送信できます。これにより、[`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisclient)にアクセスできます。
 
 すべての`RedisClient`には、さまざまな[Redisコマンド](https://redis.io/commands)用の拡張機能があります。
 

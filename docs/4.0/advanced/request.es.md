@@ -1,6 +1,6 @@
 # Solicitud (Request)
 
-El objeto [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) (solicitud) se pasa a cada [controlador de ruta](../basics/routing.md).
+El objeto [`Request`](https://api.vapor.codes/vapor/request) (solicitud) se pasa a cada [controlador de ruta](../basics/routing.md).
 
 ```swift
 app.get("hello", ":name") { req -> String in
@@ -11,11 +11,11 @@ app.get("hello", ":name") { req -> String in
 
 Es la ventana principal al resto de la funcionalidad de Vapor. Contiene APIs para el [cuerpo de la solicitud](../basics/content.md), [parámetros de consulta](../basics/content.md#consultas-query), [logger](../basics/logging.md), [cliente HTTP](../basics/client.md), [Autenticador](../security/authentication.md) y más. Accediendo a esta funcionalidad a través de la solicitud, se mantiene el cálculo en el bucle de eventos correcto y permite simularla para realizar pruebas. Incluso puedes añadir tus propios [servicios](../advanced/services.md) a la `Request` con extensiones.
 
-La documentación completa de la API para `Request` se puede encontrar [aquí](https://api.vapor.codes/vapor/documentation/vapor/request).
+La documentación completa de la API para `Request` se puede encontrar [aquí](https://api.vapor.codes/vapor/request).
 
 ## Aplicación
 
-La propiedad `Request.application` contiene una referencia a [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application). Este objeto contiene toda la configuración y la funcionalidad central de la aplicación. La mayor parte solo se debe configurar en `configure.swift`, antes de que la aplicación se inicie por completo, y muchas de las APIs de bajo nivel no serán necesarias en la mayoría de las aplicaciones. Una de las propiedades más útiles es `Application.eventLoopGroup`, que se puede utilizar para obtener un `EventLoop` para los procesos que necesitan uno nuevo a través del método `any()`. También contiene [`Environment`](../basics/environment.md).
+La propiedad `Request.application` contiene una referencia a [`Application`](https://api.vapor.codes/vapor/application). Este objeto contiene toda la configuración y la funcionalidad central de la aplicación. La mayor parte solo se debe configurar en `configure.swift`, antes de que la aplicación se inicie por completo, y muchas de las APIs de bajo nivel no serán necesarias en la mayoría de las aplicaciones. Una de las propiedades más útiles es `Application.eventLoopGroup`, que se puede utilizar para obtener un `EventLoop` para los procesos que necesitan uno nuevo a través del método `any()`. También contiene [`Environment`](../basics/environment.md).
 
 ## Body
 
@@ -50,7 +50,7 @@ app.get("json") { req -> String in
 }
 ```
 
-Consulta más documentación sobre `HTTPHeaders` [aquí](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niohttp1/httpheaders). Vapor también añade varias extensiones a `HTTPHeaders` para facilitar el trabajo con las cabeceras más utilizadas; la lista está disponible [aquí](https://api.vapor.codes/vapor/documentation/vapor/niohttp1/httpheaders#instance-properties)
+Consulta más documentación sobre `HTTPHeaders` [aquí](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niohttp1/httpheaders). Vapor también añade varias extensiones a `HTTPHeaders` para facilitar el trabajo con las cabeceras más utilizadas; la lista está disponible [aquí](https://api.vapor.codes/vapor/niohttp1/httpheaders#instance-properties)
 
 ## Dirección IP
 

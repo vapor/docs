@@ -2,13 +2,13 @@
 
 Redis può fungere da provider di archiviazione per il caching dei [dati di sessione](../advanced/sessions.md#dati-di-sessione) come le credenziali degli utenti.
 
-Se non viene fornito un [`RedisSessionsDelegate`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate) personalizzato, sarà utilizzato quello di default.
+Se non viene fornito un [`RedisSessionsDelegate`](https://api.vapor.codes/redis/redissessionsdelegate) personalizzato, sarà utilizzato quello di default.
 
 ## Comportamento di Default
 
 ### Creazione di SessionID
 
-A meno che non implementi il metodo [`makeNewID()`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/makenewid()-3hyne) nel [tuo `RedisSessionsDelegate` personale](#redissessionsdelegate), tutti i valori [`SessionID`](https://api.vapor.codes/vapor/documentation/vapor/sessionid) saranno creati facendo quanto segue:
+A meno che non implementi il metodo [`makeNewID()`](https://api.vapor.codes/redis/redissessionsdelegate/makenewid()-3hyne) nel [tuo `RedisSessionsDelegate` personale](#redissessionsdelegate), tutti i valori [`SessionID`](https://api.vapor.codes/vapor/sessionid) saranno creati facendo quanto segue:
 
 1. Generare 32 byte di caratteri casuali
 1. Codificare il valore in base64
@@ -17,9 +17,9 @@ Per esempio: `Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
 
 ### Archiviazione di SessionData
 
-L'implementazione di default di `RedisSessionsDelegate` salverà [`SessionData`](https://api.vapor.codes/vapor/documentation/vapor/sessiondata) come una semplice stringa JSON usando `Codable`.
+L'implementazione di default di `RedisSessionsDelegate` salverà [`SessionData`](https://api.vapor.codes/vapor/sessiondata) come una semplice stringa JSON usando `Codable`.
 
-A meno che non implementi il metodo [`makeRedisKey(for:)`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/makerediskey(for:)-5nfge) nel tuo `RedisSessionsDelegate` personale, `SessionData` sarà salvato in Redis con una chiave che precede il `SessionID` con `vrs-` (**V**apor **R**edis **S**essions)
+A meno che non implementi il metodo [`makeRedisKey(for:)`](https://api.vapor.codes/redis/redissessionsdelegate/makerediskey(for:)-5nfge) nel tuo `RedisSessionsDelegate` personale, `SessionData` sarà salvato in Redis con una chiave che precede il `SessionID` con `vrs-` (**V**apor **R**edis **S**essions)
 
 Per esempio: `vrs-Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
 
@@ -39,11 +39,11 @@ app.sessions.use(.redis(delegate: CustomRedisSessionsDelegate()))
 
 ## RedisSessionsDelegate
 
-> Documentazione dell'API: [`RedisSessionsDelegate`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate)
+> Documentazione dell'API: [`RedisSessionsDelegate`](https://api.vapor.codes/redis/redissessionsdelegate)
 
 Un oggetto che è conforme a questo protocollo può essere usato per cambiare come `SessionData` è salvato in Redis.
 
-Viene richiesto di implementare solo due metodi a un tipo conforme al protocollo: [`redis(_:store:with:)`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/redis(_:store:with:)) e [`redis(_:fetchDataFor:)`](https://api.vapor.codes/redis/documentation/redis/redissessionsdelegate/redis(_:fetchdatafor:)).
+Viene richiesto di implementare solo due metodi a un tipo conforme al protocollo: [`redis(_:store:with:)`](https://api.vapor.codes/redis/redissessionsdelegate/redis(_:store:with:)) e [`redis(_:fetchDataFor:)`](https://api.vapor.codes/redis/redissessionsdelegate/redis(_:fetchdatafor:)).
 
 Entrambi sono necessari, in quanto il modo in cui tu personalizzi la scrittura dei dati di sessione su Redis è intrinsecamente legato a come deve essere letto da Redis.
 

@@ -265,7 +265,7 @@ extension HTML: AsyncResponseEncodable {
 }
 ```
 
-Nota che questo permette di personalizzare l'header `Content-Type`. Consulta il [riferimento `HTTPHeaders`](https://api.vapor.codes/vapor/documentation/vapor/response/headers) per maggiori dettagli.
+Nota che questo permette di personalizzare l'header `Content-Type`. Consulta il [riferimento `HTTPHeaders`](https://api.vapor.codes/vapor/response/headers) per maggiori dettagli.
 
 Puoi poi usare `HTML` come tipo di risposta nelle tue route:
 

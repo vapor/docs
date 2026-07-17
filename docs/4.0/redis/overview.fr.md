@@ -44,7 +44,7 @@ app.redis.configuration = try RedisConfiguration(hostname: "localhost")
 
 ### Configuration de Redis
 
-> Documentation de l'API : [`RedisConfiguration`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration)
+> Documentation de l'API : [`RedisConfiguration`](https://api.vapor.codes/redis/redisconfiguration)
 
 #### serverAddresses
 
@@ -60,8 +60,8 @@ let serverAddresses: [SocketAddress] = [
 
 Pour un endpoint Redis unique, il peut être plus facile d'utiliser ces méthodes d'initialisation alternatives, qui créeront pour vous l'objet `SocketAddress` :
 
-- [`.init(url:pool)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (attend `String` ou [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
-- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
+- [`.init(url:pool)`](https://api.vapor.codes/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (attend `String` ou [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
+- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
 
 #### Mot de passe
 
@@ -80,7 +80,7 @@ Cela vous évite d'envoyer vous-même la commande `SELECT` à Redis.
 
 ### Options du pool de connexions
 
-> Documentation de l'API : [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/pooloptions)
+> Documentation de l'API : [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/redisconfiguration/pooloptions)
 
 !!! Note
     Seules les options qui sont le plus fréquemment modifiées sont présentées ici. Pour voir toutes les options, veuillez vous référer à la documentation de l'API.
@@ -102,7 +102,7 @@ Cette option définit le comportement à adopter concernant le maintien du nombr
 
 ## Envoyer une commande
 
-Vous pouvez envoyer des commandes grâce à la propriété `.redis` exposée par les instances des objets [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) ou [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request), qui vous donne accès à une instance [`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisclient).
+Vous pouvez envoyer des commandes grâce à la propriété `.redis` exposée par les instances des objets [`Application`](https://api.vapor.codes/vapor/application) ou [`Request`](https://api.vapor.codes/vapor/request), qui vous donne accès à une instance [`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisclient).
 
 Chaque `RedisClient` possède différentes extensions pour les différentes [commandes Redis](https://redis.io/commands) correspondantes.
 

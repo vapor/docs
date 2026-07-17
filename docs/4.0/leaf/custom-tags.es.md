@@ -1,6 +1,6 @@
 # Etiquetas Personalizadas
 
-Puedes crear etiquetas personalizadas de Leaf utilizando el protocolo [`LeafTag`](https://api.vapor.codes/leafkit/documentation/leafkit/leaftag).
+Puedes crear etiquetas personalizadas de Leaf utilizando el protocolo [`LeafTag`](https://api.vapor.codes/leafkit/leaftag).
 
 Para demostrarlo, vamos a crear una etiqueta personalizada `#now` que muestra la marca de tiempo actual. La etiqueta también soportará un único parámetro opcional para especificar el formato de fecha.
 

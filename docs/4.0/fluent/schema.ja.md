@@ -92,7 +92,7 @@ database.schema("planets").delete()
 |`.required`|`nil`値を許可しません。|
 |`.references`|このフィールドの値が参照されているスキーマの値と一致することを要求します。[外部キー](#外部キー-foreign-key)を参照。|
 |`.identifier`|主キーを示します。[識別子](#識別子-identifier)を参照。|
-|`.sql(SQLColumnConstraintAlgorithm)`|サポートされていない制約（例：`default`）を定義します。[SQL](#sql)と[SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/documentation/sqlkit/sqlcolumnconstraintalgorithm/)を参照。|
+|`.sql(SQLColumnConstraintAlgorithm)`|サポートされていない制約（例：`default`）を定義します。[SQL](#sql)と[SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/sqlcolumnconstraintalgorithm/)を参照。|
 
 ### 識別子 {#identifier}
 

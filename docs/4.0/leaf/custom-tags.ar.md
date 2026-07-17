@@ -1,6 +1,6 @@
 # الأوسمة المخصصة
 
-يمكنك إنشاء أوسمة Leaf مخصصة باستخدام بروتوكول [`LeafTag`](https://api.vapor.codes/leafkit/documentation/leafkit/leaftag).
+يمكنك إنشاء أوسمة Leaf مخصصة باستخدام بروتوكول [`LeafTag`](https://api.vapor.codes/leafkit/leaftag).
 
 لتوضيح ذلك، لنلقِ نظرة على إنشاء وسم مخصص `#now` يطبع الطابع الزمني الحالي. سيدعم الوسم أيضًا معاملًا واحدًا اختياريًا لتحديد تنسيق التاريخ.
 

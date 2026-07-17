@@ -44,7 +44,7 @@ app.redis.configuration = try RedisConfiguration(hostname: "localhost")
 
 ### تهيئة Redis
 
-> توثيق واجهة برمجة التطبيقات: [`RedisConfiguration`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration)
+> توثيق واجهة برمجة التطبيقات: [`RedisConfiguration`](https://api.vapor.codes/redis/redisconfiguration)
 
 #### serverAddresses
 
@@ -60,8 +60,8 @@ let serverAddresses: [SocketAddress] = [
 
 بالنسبة لنقطة نهاية واحدة لـ Redis، قد يكون من الأسهل العمل مع المُهيّئات الميسّرة، إذ ستتولّى إنشاء `SocketAddress` نيابةً عنك:
 
-- [`.init(url:pool)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (مع `String` أو [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
-- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
+- [`.init(url:pool)`](https://api.vapor.codes/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (مع `String` أو [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
+- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
 
 #### password
 
@@ -80,7 +80,7 @@ let serverAddresses: [SocketAddress] = [
 
 ### خيارات تجمّع الاتصالات
 
-> توثيق واجهة برمجة التطبيقات: [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/pooloptions)
+> توثيق واجهة برمجة التطبيقات: [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/redisconfiguration/pooloptions)
 
 !!! note "ملاحظة"
     تُبرز هنا الخيارات الأكثر تغييرًا شيوعًا فقط. للاطلاع على جميع الخيارات، راجع توثيق واجهة برمجة التطبيقات.
@@ -102,7 +102,7 @@ let serverAddresses: [SocketAddress] = [
 
 ## إرسال أمر
 
-يمكنك إرسال الأوامر باستخدام خاصية `.redis` على أي نسخة من [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) أو [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request)، مما سيتيح لك الوصول إلى [`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisclient).
+يمكنك إرسال الأوامر باستخدام خاصية `.redis` على أي نسخة من [`Application`](https://api.vapor.codes/vapor/application) أو [`Request`](https://api.vapor.codes/vapor/request)، مما سيتيح لك الوصول إلى [`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisclient).
 
 يمتلك أي `RedisClient` عدة امتدادات لجميع [أوامر Redis](https://redis.io/commands) المتنوعة.
 

@@ -1,6 +1,6 @@
 # Request
 
-[`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) 对象被传递到每一个[路由处理程序](../basics/routing.md)中.
+[`Request`](https://api.vapor.codes/vapor/request) 对象被传递到每一个[路由处理程序](../basics/routing.md)中.
 
 ```swift
 app.get("hello", ":name") { req -> String in
@@ -11,11 +11,11 @@ app.get("hello", ":name") { req -> String in
 
 它是进入 Vapor 的主要窗口。包含了用于 [请求体](../basics/content.md)，[查询参数](../basics/content.md#查询query)，[日志记录器](../basics/logging.md)，[HTTP 客户端](../basics/client.md)，[认证器](../security/authentication.md), 等的 API。 通过请求访问这些功能可以将计算保持在正确的事件循环中，并允许在测试中进行模拟。你甚至可以通过扩展将自己的[服务](../advanced/services.md)添加到 `Request` 中。
 
-完整的 `Request` API 文档可以在[这里](https://api.vapor.codes/vapor/documentation/vapor/request)找到。
+完整的 `Request` API 文档可以在[这里](https://api.vapor.codes/vapor/request)找到。
 
 ## Application
 
-`Request.application` 属性持有对 [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) 的引用。 这个对象包含了应用程序的所有配置和核心功能。大部分配置应该只在 `configure.swift` 中设置，在应用程序完全启动之前进行，许多较低级别的 API 在大多数应用程序中都不会被使用。其中最有用的属性之一 `Application.eventLoopGroup`，它可以通过 `any()` 方法用于需要新的 `EventLoop` 的进程中获取。它还包含了 [`Environment`](../basics/environment.md)。
+`Request.application` 属性持有对 [`Application`](https://api.vapor.codes/vapor/application) 的引用。 这个对象包含了应用程序的所有配置和核心功能。大部分配置应该只在 `configure.swift` 中设置，在应用程序完全启动之前进行，许多较低级别的 API 在大多数应用程序中都不会被使用。其中最有用的属性之一 `Application.eventLoopGroup`，它可以通过 `any()` 方法用于需要新的 `EventLoop` 的进程中获取。它还包含了 [`Environment`](../basics/environment.md)。
 
 ## Body
 
@@ -50,7 +50,7 @@ app.get("json") { req -> String in
 }
 ```
 
-进一步了解 `HTTPHeaders` 的文档，请参阅[此处](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niohttp1/httpheaders)。Vapor 还为 `HTTPHeaders` 添加了几个扩展，以便更轻松地处理最常用的标头；你可以在[此处](https://api.vapor.codes/vapor/documentation/vapor/niohttp1/httpheaders#instance-properties)找到扩展列表。
+进一步了解 `HTTPHeaders` 的文档，请参阅[此处](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niohttp1/httpheaders)。Vapor 还为 `HTTPHeaders` 添加了几个扩展，以便更轻松地处理最常用的标头；你可以在[此处](https://api.vapor.codes/vapor/niohttp1/httpheaders#instance-properties)找到扩展列表。
 
 ## IP Address
 

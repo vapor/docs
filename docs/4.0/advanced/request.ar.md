@@ -1,6 +1,6 @@
 # Request
 
-يُمرَّر الكائن [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) إلى كل [معالج مسار](../basics/routing.md).
+يُمرَّر الكائن [`Request`](https://api.vapor.codes/vapor/request) إلى كل [معالج مسار](../basics/routing.md).
 
 ```swift
 app.get("hello", ":name") { req -> String in
@@ -11,11 +11,11 @@ app.get("hello", ":name") { req -> String in
 
 إنه النافذة الرئيسية إلى بقية وظائف Vapor. يحتوي على واجهات لـ [جسم الطلب](../basics/content.md)، و[مُعامِلات الاستعلام (query parameters)](../basics/content.md#الاستعلام-query)، و[المُسجِّل (logger)](../basics/logging.md)، و[عميل HTTP](../basics/client.md)، و[المُصادِق (Authenticator)](../security/authentication.md)، والمزيد. يُبقي الوصول إلى هذه الوظائف عبر الطلب العمليات الحسابية على حلقة الأحداث (event loop) الصحيحة، ويتيح محاكاتها (mock) للاختبار. يمكنك حتى إضافة [خدماتك](../advanced/services.md) الخاصة إلى `Request` عبر الامتدادات (extensions).
 
-يمكن العثور على وثائق الواجهة الكاملة لـ `Request` [هنا](https://api.vapor.codes/vapor/documentation/vapor/request).
+يمكن العثور على وثائق الواجهة الكاملة لـ `Request` [هنا](https://api.vapor.codes/vapor/request).
 
 ## Application
 
-تحمل الخاصية `Request.application` مرجعًا إلى [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application). يحتوي هذا الكائن على كل الإعدادات والوظائف الأساسية للتطبيق. ينبغي ضبط معظمها فقط في `configure.swift`، قبل بدء التطبيق بالكامل، ولن تُحتاج العديد من الواجهات منخفضة المستوى في معظم التطبيقات. من أكثر الخصائص فائدة `Application.eventLoopGroup`، التي يمكن استخدامها للحصول على `EventLoop` للعمليات التي تحتاج إلى واحدة جديدة عبر الطريقة `any()`. كما يحتوي على [`Environment`](../basics/environment.md).
+تحمل الخاصية `Request.application` مرجعًا إلى [`Application`](https://api.vapor.codes/vapor/application). يحتوي هذا الكائن على كل الإعدادات والوظائف الأساسية للتطبيق. ينبغي ضبط معظمها فقط في `configure.swift`، قبل بدء التطبيق بالكامل، ولن تُحتاج العديد من الواجهات منخفضة المستوى في معظم التطبيقات. من أكثر الخصائص فائدة `Application.eventLoopGroup`، التي يمكن استخدامها للحصول على `EventLoop` للعمليات التي تحتاج إلى واحدة جديدة عبر الطريقة `any()`. كما يحتوي على [`Environment`](../basics/environment.md).
 
 ## Body
 
@@ -50,7 +50,7 @@ app.get("json") { req -> String in
 }
 ```
 
-راجع مزيدًا من الوثائق حول `HTTPHeaders` [هنا](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niohttp1/httpheaders). يضيف Vapor أيضًا عدة امتدادات إلى `HTTPHeaders` لتسهيل التعامل مع الترويسات الأكثر شيوعًا؛ تتوفّر قائمة [هنا](https://api.vapor.codes/vapor/documentation/vapor/niohttp1/httpheaders#instance-properties)
+راجع مزيدًا من الوثائق حول `HTTPHeaders` [هنا](https://swiftpackageindex.com/apple/swift-nio/2.56.0/documentation/niohttp1/httpheaders). يضيف Vapor أيضًا عدة امتدادات إلى `HTTPHeaders` لتسهيل التعامل مع الترويسات الأكثر شيوعًا؛ تتوفّر قائمة [هنا](https://api.vapor.codes/vapor/niohttp1/httpheaders#instance-properties)
 
 ## عنوان IP
 

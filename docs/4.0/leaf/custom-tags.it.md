@@ -1,6 +1,6 @@
 # Tag Personalizzati
 
-Puoi creare tag Leaf personalizzati usando il protocollo [`LeafTag`](https://api.vapor.codes/leafkit/documentation/leafkit/leaftag). 
+Puoi creare tag Leaf personalizzati usando il protocollo [`LeafTag`](https://api.vapor.codes/leafkit/leaftag). 
 
 Per mostrare come funziona, diamo un'occhiata alla creazione di un tag personalizzato `#now` che stampa l'attuale marca temporale. Il tag supporterà anche un singolo parametro opzionale per specificare il formato della data.
 

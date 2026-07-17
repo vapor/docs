@@ -265,7 +265,7 @@ extension HTML: AsyncResponseEncodable {
 }
 ```
 
-これにより、`Content-Type` ヘッダーをカスタマイズできることに注意して下さい。詳細は [`HTTPHeaders` リファレンス](https://api.vapor.codes/vapor/documentation/vapor/response/headers) を参照して下さい。
+これにより、`Content-Type` ヘッダーをカスタマイズできることに注意して下さい。詳細は [`HTTPHeaders` リファレンス](https://api.vapor.codes/vapor/response/headers) を参照して下さい。
 
 その後、ルート内でレスポンスタイプとして `HTML` を使用できます。
 

@@ -61,7 +61,7 @@ app.leaf.cache.isEnabled = false
 
 Una vez que hayas configurado Leaf, deberás asegurarte de tener una carpeta `Views` para almacenar tus archivos `.leaf`. Por defecto, Leaf espera que la carpeta de vistas esté en `./Resources/Views` relativo a la raíz de tu proyecto.
 
-También es probable que quieras habilitar el [`FileMiddleware`](https://api.vapor.codes/vapor/documentation/vapor/filemiddleware) de Vapor para servir archivos desde tu carpeta `/Public` si planeas servir archivos Javascript y CSS, por ejemplo.
+También es probable que quieras habilitar el [`FileMiddleware`](https://api.vapor.codes/vapor/filemiddleware) de Vapor para servir archivos desde tu carpeta `/Public` si planeas servir archivos Javascript y CSS, por ejemplo.
 
 ```
 VaporApp

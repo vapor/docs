@@ -44,7 +44,7 @@ app.redis.configuration = try RedisConfiguration(hostname: "localhost")
 
 ### Redis Configuration
 
-> API Documentation: [`RedisConfiguration`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration)
+> API Documentation: [`RedisConfiguration`](https://api.vapor.codes/redis/redisconfiguration)
 
 #### serverAddresses
 
@@ -60,8 +60,8 @@ let serverAddresses: [SocketAddress] = [
 
 For a single Redis endpoint, it can be easier to work with the convenience initializers, as it will handle creating the `SocketAddress` for you:
 
-- [`.init(url:pool)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (with `String` or [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
-- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
+- [`.init(url:pool)`](https://api.vapor.codes/redis/redisconfiguration/init(url:tlsconfiguration:pool:)-o9lf) (with `String` or [`Foundation.URL`](https://developer.apple.com/documentation/foundation/url))
+- [`.init(hostname:port:password:database:pool:)`](https://api.vapor.codes/redis/redisconfiguration/init(hostname:port:password:tlsconfiguration:database:pool:))
 
 #### password
 
@@ -80,7 +80,7 @@ This saves you from having to send the `SELECT` command to Redis yourself.
 
 ### Connection Pool Options
 
-> API Documentation: [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/documentation/redis/redisconfiguration/pooloptions)
+> API Documentation: [`RedisConfiguration.PoolOptions`](https://api.vapor.codes/redis/redisconfiguration/pooloptions)
 
 !!! note
     Only the most commonly changed options are highlighted here. For all of the options, refer to the API documentation.
@@ -102,7 +102,7 @@ This option determines the behavior of how the maximum connection count is maint
 
 ## Sending a Command
 
-You can send commands using the `.redis` property on any [`Application`](https://api.vapor.codes/vapor/documentation/vapor/application) or [`Request`](https://api.vapor.codes/vapor/documentation/vapor/request) instance, which will give you access to a [`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisclient).
+You can send commands using the `.redis` property on any [`Application`](https://api.vapor.codes/vapor/application) or [`Request`](https://api.vapor.codes/vapor/request) instance, which will give you access to a [`RedisClient`](https://swiftpackageindex.com/swift-server/RediStack/main/documentation/redistack/redisclient).
 
 Any `RedisClient` has several extensions for all of the various [Redis commands](https://redis.io/commands).
 

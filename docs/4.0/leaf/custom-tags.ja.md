@@ -1,6 +1,6 @@
 # カスタムタグ {#custom-tags}
 
-[`LeafTag`](https://api.vapor.codes/leafkit/documentation/leafkit/leaftag) プロトコルを使用して、カスタム Leaf タグを作成することができます。
+[`LeafTag`](https://api.vapor.codes/leafkit/leaftag) プロトコルを使用して、カスタム Leaf タグを作成することができます。
 
 これを実際に試してみるために、現在のタイムスタンプを表示するカスタムタグ `#now` を作成してみましょう。このタグは、日付形式を指定するためのオプションのパラメータもサポートします。
 

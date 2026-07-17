@@ -61,7 +61,7 @@ app.leaf.cache.isEnabled = false
 
 Une fois que vous avez configuré Leaf, vous devrez créer un dossier `Views` pour y stoquer vos fichiers `.leaf`. Par défaut, Leaf s'attend à trouver ce répertoire sous `./Resources/Views` en partant de la racine de votre projet.
 
-Vous voudrez également activer le [`FileMiddleware`](https://api.vapor.codes/vapor/documentation/vapor/filemiddleware) de Vapor pour servir les fichiers de votre dossier `/Public` si vous comptez servir des fichiers Javascript ou CSS par exemple.
+Vous voudrez également activer le [`FileMiddleware`](https://api.vapor.codes/vapor/filemiddleware) de Vapor pour servir les fichiers de votre dossier `/Public` si vous comptez servir des fichiers Javascript ou CSS par exemple.
 
 ```
 VaporApp

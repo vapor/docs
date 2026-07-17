@@ -1,6 +1,6 @@
 # Balises personnalisées
 
-Vous pouvez créer vos balises Leaf personnalisées grâce au protocole [`LeafTag`](https://api.vapor.codes/leafkit/documentation/leafkit/leaftag). 
+Vous pouvez créer vos balises Leaf personnalisées grâce au protocole [`LeafTag`](https://api.vapor.codes/leafkit/leaftag). 
 
 Pour démontrer comment faire, voyons comment créer une balise `#now` qui afficherait le timestamp actuel. La balise acceptera un unique paramètre optionnel pour indiquer le format de date.
 

@@ -92,7 +92,7 @@ I vincoli di campo supportati sono elencati di seguito.
 |`.required`|Non consente valori `nil`.|
 |`.references`|Richiede che il valore di questo campo corrisponda a un valore nello schema referenziato. Vedi [chiave esterna](#chiave-esterna).|
 |`.identifier`|Denota la chiave primaria. Vedi [identifier](#identifier).|
-|`.sql(SQLColumnConstraintAlgorithm)`|Definisce qualsiasi vincolo non supportato (ad es. `default`). Vedi [SQL](#sql) e [SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/documentation/sqlkit/sqlcolumnconstraintalgorithm/).|
+|`.sql(SQLColumnConstraintAlgorithm)`|Definisce qualsiasi vincolo non supportato (ad es. `default`). Vedi [SQL](#sql) e [SQLColumnConstraintAlgorithm](https://api.vapor.codes/sqlkit/sqlcolumnconstraintalgorithm/).|
 
 ### Identifier
 
