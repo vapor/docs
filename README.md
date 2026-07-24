@@ -17,6 +17,37 @@ e.g.
 http://127.0.0.1:8000
 ```
 
+# Start with SPM
+* Prerequisites for this setup, you must have swift and kiln cli installed on the system
+
+1. For installing kiln cli go to
+```
+https://github.com/brokenhandsio/kiln#the-kiln-cli
+```
+2. Now, clone the repo and move to the folder where you cloned the repo
+```
+cd /path/to/folder/
+```
+3. then build the pacakge with SPM
+```
+swift run VaporDocs
+```
+4. This will generate a site folder, now go inside the site folder
+```
+cd ./site/
+```
+5. then run it with kiln
+```
+kiln serve
+```
+6. finally open from the browser on the port 8000 
+e.g.  
+```
+http://127.0.0.1:8000
+```
+
+
+
 ## Contributing
 
 If you want to add information to the docs or have found any mistakes you wish to fix, feel free to create a PR  for the change.
