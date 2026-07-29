@@ -177,7 +177,7 @@ Om MongoDB te gebruiken, voeg de volgende afhankelijkheden toe aan je pakket.
 
 Als de afhankelijkheden zijn toegevoegd, configureer dan de database referenties met Fluent met `app.databases.use` in `configure.swift`.
 
-Om verbinding te maken, geeft u een verbindingsstring door in het standaardformaat van MongoDB [connection URI format](https://docs.mongodb.com/docs/manual/reference/connection-string/).
+Om verbinding te maken, geeft u een verbindingsstring door in het standaardformaat van MongoDB [connection URI format](https://www.mongodb.com/docs/manual/reference/connection-string/).
 
 ```swift
 import Fluent

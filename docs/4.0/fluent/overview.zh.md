@@ -188,7 +188,7 @@ MongoDB 是一种流行的无模式 NoSQL 数据库，专为程序员设计。�
 
 添加依赖项后，在 `configure.swift` 中使用 `app.databases.use` 配置数据库的凭证。
 
-要进行连接，请传递标准 MongoDB [连接 URI 格式](https://docs.mongodb.com/zh-cn/docs/manual/reference/connection-string/)的连接字符串。
+要进行连接，请传递标准 MongoDB [连接 URI 格式](https://www.mongodb.com/zh-cn/docs/manual/reference/connection-string/)的连接字符串。
 
 
 ```swift
