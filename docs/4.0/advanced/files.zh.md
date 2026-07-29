@@ -14,7 +14,8 @@ let readComplete: EventLoopFuture<Void> = req.fileio.readFile(at: "/path/to/file
 
 // 或者
 
-try await req.fileio.readFile(at: "/path/to/file") { chunk in
+let file = try await req.fileio.readFile(at: "/path/to/file")
+for try await chunk in file {
     print(chunk) // ByteBuffer
 }
 // 读取完成

@@ -8,3 +8,4 @@
 .claude/*
 !.claude/skills/
 
+.swiftpm/
