@@ -1,11 +1,21 @@
 {
-  "httpHeaders": {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-  },
+  "httpHeaders": [
+    {
+      "urls": ["https://", "http://"],
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+      }
+    }
+  ],
+  "retryOn429": true,
   "retryCount": 3,
-  "retryOn": [403, 429, 500, 502, 503, 504],
   "ignorePatterns": [
-    { "pattern": ".*(localhost|127.0.0.1).*" }
+    { "pattern": ".*(localhost|127.0.0.1).*" },
+    { "comment": "Root-relative paths are resolved by the site, not the filesystem", "pattern": "^/" },
+    { "comment": "Blocks the checker's requests with a 403", "pattern": "^https?://swiftpackageindex\\.com" },
+    { "comment": "Blocks the checker's requests with a 403", "pattern": "^https?://(www\\.)?stackoverflow\\.com" },
+    { "comment": "markdown-link-check mis-slugifies Arabic headings carrying tashkeel", "pattern": "^#.*(%D9%8[BCDEF]|%D9%9[0-2])" },
+    { "comment": "As above, for un-encoded anchors", "pattern": "^#.*[ً-ْ]" }
   ],
   "aliveStatusCodes": [200, 206, 301, 302, 429]
 }

@@ -8,7 +8,7 @@ Redisは[セッションデータ](../advanced/sessions.md#セッションデー
 
 ### SessionIDの作成 {#sessionid-creation}
 
-[独自の`RedisSessionsDelegate`](#redissessionsdelegate)で[`makeNewID()`](https://api.vapor.codes/redis/redissessionsdelegate/makenewid()-3hyne)メソッドを実装しない限り、すべての[`SessionID`](https://api.vapor.codes/vapor/sessionid)値は以下の手順で作成されます：
+[独自の`RedisSessionsDelegate`](#redissessionsdelegate)で[`makeNewID()`](https://api.vapor.codes/redis/redissessionsdelegate/makenewid())メソッドを実装しない限り、すべての[`SessionID`](https://api.vapor.codes/vapor/sessionid)値は以下の手順で作成されます：
 
 1. 32バイトのランダムな文字を生成
 1. その値をbase64エンコード
@@ -19,7 +19,7 @@ Redisは[セッションデータ](../advanced/sessions.md#セッションデー
 
 `RedisSessionsDelegate`のデフォルト実装は、[`SessionData`](https://api.vapor.codes/vapor/sessiondata)を`Codable`を使用してシンプルなJSON文字列値として保存します。
 
-独自の`RedisSessionsDelegate`で[`makeRedisKey(for:)`](https://api.vapor.codes/redis/redissessionsdelegate/makerediskey(for:)-5nfge)メソッドを実装しない限り、`SessionData`は`SessionID`に`vrs-`（**V**apor **R**edis **S**essions）というプレフィックスを付けたキーでRedisに保存されます。
+独自の`RedisSessionsDelegate`で[`makeRedisKey(for:)`](https://api.vapor.codes/redis/redissessionsdelegate/makerediskey(for:))メソッドを実装しない限り、`SessionData`は`SessionID`に`vrs-`（**V**apor **R**edis **S**essions）というプレフィックスを付けたキーでRedisに保存されます。
 
 例：`vrs-Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
 

@@ -8,7 +8,7 @@ Als er geen aangepaste [`RedisSessionsDelegate`](https://api.vapor.codes/redis/r
 
 ### SessionID Creatie
 
-Tenzij je de [`makeNewID()`](https://api.vapor.codes/redis/redissessionsdelegate/makenewid()-3hyne) methode implementeert in [je eigen `RedisSessionsDelegate`](#redissessionsdelegate), zullen alle [`SessionID`](https://api.vapor.codes/vapor/sessionid) waarden aangemaakt worden door het volgende te doen:
+Tenzij je de [`makeNewID()`](https://api.vapor.codes/redis/redissessionsdelegate/makenewid()) methode implementeert in [je eigen `RedisSessionsDelegate`](#redissessionsdelegate), zullen alle [`SessionID`](https://api.vapor.codes/vapor/sessionid) waarden aangemaakt worden door het volgende te doen:
 
 1. Genereer 32 bytes van willekeurige tekens
 2. base64 codeer de waarde
@@ -19,7 +19,7 @@ Bijvoorbeeld: `Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
 
 De standaard implementatie van `RedisSessionsDelegate` slaat [`SessionData`](https://api.vapor.codes/vapor/sessiondata) op als een eenvoudige JSON string waarde met behulp van `Codable`.
 
-Tenzij u de [`makeRedisKey(for:)`](https://api.vapor.codes/redis/redissessionsdelegate/makerediskey(for:)-5nfge) methode implementeert in uw eigen `RedisSessionsDelegate`, zal `SessionData` worden opgeslagen in Redis met een sleutel die de `SessionID` voorvoegt met `vrs-` (**V**apor **R**edis **S**essions)
+Tenzij u de [`makeRedisKey(for:)`](https://api.vapor.codes/redis/redissessionsdelegate/makerediskey(for:)) methode implementeert in uw eigen `RedisSessionsDelegate`, zal `SessionData` worden opgeslagen in Redis met een sleutel die de `SessionID` voorvoegt met `vrs-` (**V**apor **R**edis **S**essions)
 
 Bijvoorbeeld: `vrs-Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
 

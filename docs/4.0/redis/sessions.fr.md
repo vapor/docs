@@ -8,7 +8,7 @@ Si une instance personnalisée de [`RedisSessionsDelegate`](https://api.vapor.co
 
 ### Création de SessionID
 
-À moins que vous n'implémentiez la méthode [`makeNewID()`](https://api.vapor.codes/redis/redissessionsdelegate/makenewid()-3hyne) dans [votre propre `RedisSessionsDelegate`](#redissessionsdelegate), toutes les valeurs [`SessionID`](https://api.vapor.codes/vapor/sessionid) seront créées comme ceci :
+À moins que vous n'implémentiez la méthode [`makeNewID()`](https://api.vapor.codes/redis/redissessionsdelegate/makenewid()) dans [votre propre `RedisSessionsDelegate`](#redissessionsdelegate), toutes les valeurs [`SessionID`](https://api.vapor.codes/vapor/sessionid) seront créées comme ceci :
 
 1. Génération de caractères aléatoires sur 32 octets
 1. Encodage en base64 de la valeur obtenue
@@ -19,7 +19,7 @@ Par exemple : `Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
 
 L'implémentation par défaut de `RedisSessionsDelegate` stoquera les instances de [`SessionData`](https://api.vapor.codes/vapor/sessiondata) comme simple chaîne JSON en utilisant `Codable`.
 
-À moins que vous n'implémentiez la méthode [`makeRedisKey(for:)`](https://api.vapor.codes/redis/redissessionsdelegate/makerediskey(for:)-5nfge) dans votre propre `RedisSessionsDelegate`, les données `SessionData` seront stoquées dans Redis avec une clé composée du préfixe `vrs-` (**V**apor **R**edis **S**essions) et de la valeur de `SessionID`.
+À moins que vous n'implémentiez la méthode [`makeRedisKey(for:)`](https://api.vapor.codes/redis/redissessionsdelegate/makerediskey(for:)) dans votre propre `RedisSessionsDelegate`, les données `SessionData` seront stoquées dans Redis avec une clé composée du préfixe `vrs-` (**V**apor **R**edis **S**essions) et de la valeur de `SessionID`.
 
 Par exemple : `vrs-Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
 
