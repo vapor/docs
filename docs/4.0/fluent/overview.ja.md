@@ -188,7 +188,7 @@ MongoDB を使用するには、次の依存関係をパッケージに追加し
 
 依存関係を追加したら、`configure.swift` で `app.databases` を使用してデータベースのクレデンシャル情報を設定します。
 
-接続するには、標準の MongoDB [接続 URI 形式](https://docs.mongodb.com/ja-jp/docs/manual/reference/connection-string/) で接続文字列を渡します。
+接続するには、標準の MongoDB [接続 URI 形式](https://www.mongodb.com/ja-jp/docs/manual/reference/connection-string/) で接続文字列を渡します。
 
 ```swift
 import Fluent

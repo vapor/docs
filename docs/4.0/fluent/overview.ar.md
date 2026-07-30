@@ -188,7 +188,7 @@ app.databases.use(.mysql(
 
 بمجرد إضافة التبعيات، اضبط بيانات اعتماد قاعدة البيانات مع Fluent باستخدام `app.databases.use` في `configure.swift`.
 
-للاتصال، مرّر سلسلة اتصال بتنسيق [connection URI](https://docs.mongodb.com/docs/manual/reference/connection-string/) القياسي لـ MongoDB.
+للاتصال، مرّر سلسلة اتصال بتنسيق [connection URI](https://www.mongodb.com/docs/manual/reference/connection-string/) القياسي لـ MongoDB.
 
 ```swift
 import Fluent

@@ -190,7 +190,7 @@ Pour utiliser MongoDB, ajoutez ces dépendance à votre package.
 
 Ensuite, configurez la connection via Fluent avec `app.databases.use` dans `configure.swift`.
 
-Utilisez le format chaîne de connexion standard de MongoDB [documenté ici](https://docs.mongodb.com/docs/manual/reference/connection-string/).
+Utilisez le format chaîne de connexion standard de MongoDB [documenté ici](https://www.mongodb.com/docs/manual/reference/connection-string/).
 
 ```swift
 import Fluent
