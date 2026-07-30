@@ -1,6 +1,6 @@
 # Redis et les sessions
 
-Redis peut agir en tant que stoquage pour mettre en cache les [données de session](../advanced/sessions.md#session-data) comme les identifiants utilisateurs.
+Redis peut agir en tant que stoquage pour mettre en cache les [données de session](../advanced/sessions.md#données-de-session) comme les identifiants utilisateurs.
 
 Si une instance personnalisée de [`RedisSessionsDelegate`](https://api.vapor.codes/redis/redissessionsdelegate) n'est pas fournie, une instance par défaut sera utilisée.
 
