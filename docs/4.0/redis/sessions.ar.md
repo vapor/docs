@@ -8,7 +8,7 @@
 
 ### إنشاء SessionID
 
-ما لم تُنفّذ الدالة [`makeNewID()`](https://api.vapor.codes/redis/redissessionsdelegate/makenewid()-3hyne) في [`RedisSessionsDelegate` الخاص بك](#redissessionsdelegate)، فستُنشأ جميع قيم [`SessionID`](https://api.vapor.codes/vapor/sessionid) بالقيام بما يلي:
+ما لم تُنفّذ الدالة [`makeNewID()`](https://api.vapor.codes/redis/redissessionsdelegate/makenewid()) في [`RedisSessionsDelegate` الخاص بك](#redissessionsdelegate)، فستُنشأ جميع قيم [`SessionID`](https://api.vapor.codes/vapor/sessionid) بالقيام بما يلي:
 
 1. توليد 32 بايت من الأحرف العشوائية
 1. ترميز القيمة بترميز base64
@@ -19,7 +19,7 @@
 
 سيخزّن التنفيذ الافتراضي لـ `RedisSessionsDelegate` بيانات [`SessionData`](https://api.vapor.codes/vapor/sessiondata) كقيمة نصية JSON بسيطة باستخدام `Codable`.
 
-ما لم تُنفّذ الدالة [`makeRedisKey(for:)`](https://api.vapor.codes/redis/redissessionsdelegate/makerediskey(for:)-5nfge) في `RedisSessionsDelegate` الخاص بك، فستُخزَّن `SessionData` في Redis بمفتاح يسبق `SessionID` بالبادئة `vrs-` (**V**apor **R**edis **S**essions)
+ما لم تُنفّذ الدالة [`makeRedisKey(for:)`](https://api.vapor.codes/redis/redissessionsdelegate/makerediskey(for:)) في `RedisSessionsDelegate` الخاص بك، فستُخزَّن `SessionData` في Redis بمفتاح يسبق `SessionID` بالبادئة `vrs-` (**V**apor **R**edis **S**essions)
 
 على سبيل المثال: `vrs-Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
 
