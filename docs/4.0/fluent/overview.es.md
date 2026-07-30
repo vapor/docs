@@ -188,7 +188,7 @@ Para usar MongoDB, se deben de agregar las siguientes dependencias al paquete.
 
 Una vez que se hayan agregado las dependencias, configurar la base de datos con Fluent utilizando `app.databases.use` en `configure.swift`.
 
-Para conectarse, se debe de usar una cadena de texto el formato de [conexión estándar URI](https://www.mongodb.com/docs/upcoming/reference/connection-string/) de MongoDB.
+Para conectarse, pasa una cadena de conexión en el formato de [conexión estándar URI](https://www.mongodb.com/docs/manual/reference/connection-string/) de MongoDB.
 
 ```swift
 import Fluent
