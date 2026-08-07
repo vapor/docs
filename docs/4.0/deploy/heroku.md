@@ -191,7 +191,7 @@ This will make output somewhat like this
 DATABASE_URL: postgres://cybntsgadydqzm:2d9dc7f6d964f4750da1518ad71hag2ba729cd4527d4a18c70e024b11cfa8f4b@ec2-54-221-192-231.compute-1.amazonaws.com:5432/dfr89mvoo550b4
 ```
 
-**DATABASE_URL** here will represent out postgres database. **NEVER** hard code the static url from this, heroku will rotate it and it will break your application. It is also bad practice. Instead, read the environment variable at runtime.
+**DATABASE_URL** here will represent our postgres database. **NEVER** hard code the static url from this, heroku will rotate it and it will break your application. It is also bad practice. Instead, read the environment variable at runtime.
 
 The Heroku Postgres addon [requires](https://devcenter.heroku.com/changelog-items/2035) all connections to be encrypted. The certificates used by the Postgres servers are internal to Heroku, therefore an **unverified** TLS connection must be set up.
 
@@ -219,18 +219,18 @@ git add .
 git commit -m "configured heroku database"
 ```
 
-### Reverting your database
+### Migrations
 
-You can revert or run other commmands on heroku with the `run` command.
-
-To revert your database:
-
-```bash
-heroku run App -- migrate --revert --all --yes --env production
-```
+You can run commmands on Heroku with the `run` command.
 
 To migrate:
 
 ```bash
 heroku run App -- migrate --env production
+```
+
+To revert your database:
+
+```bash
+heroku run App -- migrate --revert --all --yes --env production
 ```
