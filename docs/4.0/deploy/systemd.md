@@ -33,7 +33,6 @@ As specified in our configuration file the `Hello` project is located in the hom
 The `--env production` flag will disable verbose logging.
 
 ### Environment
-Otherwise, quoting the values is optional but recommended.
 
 You can export variables in two ways via systemd. Either by creating an environment file with all the variables set in it:
 
