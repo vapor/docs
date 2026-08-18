@@ -59,7 +59,7 @@ app.apns.containers.use(
 )
 ```
 
-プレースホルダーを認証情報で置き換えてください。上記の例は、Appleの開発者ポータルから取得した`.p8`キーを使用した[JWTベースの認証](https://developer.apple.com/documentation/usernotifications/setting-up-a-remote-notification-serverestablishing_a_token-based_connection_to_apns)を示しています。証明書を使用した[TLSベースの認証](https://developer.apple.com/documentation/usernotifications/setting-up-a-remote-notification-serverestablishing_a_certificate-based_connection_to_apns)の場合は、`.tls`認証方法を使用してください：
+プレースホルダーを認証情報で置き換えてください。上記の例は、Appleの開発者ポータルから取得した`.p8`キーを使用した[JWTベースの認証](https://developer.apple.com/documentation/usernotifications/establishing-a-token-based-connection-to-apns)を示しています。証明書を使用した[TLSベースの認証](https://developer.apple.com/documentation/usernotifications/establishing-a-certificate-based-connection-to-apns)の場合は、`.tls`認証方法を使用してください：
 
 ```swift
 authenticationMethod: .tls(

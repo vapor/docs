@@ -59,7 +59,7 @@ app.apns.containers.use(
 )
 ```
 
-Fill in the placeholders with your credentials. The above example shows [JWT-based auth](https://developer.apple.com/documentation/usernotifications/setting-up-a-remote-notification-serverestablishing_a_token-based_connection_to_apns) using the `.p8` key you get from Apple's developer portal. For [TLS-based auth](https://developer.apple.com/documentation/usernotifications/setting-up-a-remote-notification-serverestablishing_a_certificate-based_connection_to_apns) with a certificate, use the `.tls` authentication method: 
+Fill in the placeholders with your credentials. The above example shows [JWT-based auth](https://developer.apple.com/documentation/usernotifications/establishing-a-token-based-connection-to-apns) using the `.p8` key you get from Apple's developer portal. For [TLS-based auth](https://developer.apple.com/documentation/usernotifications/establishing-a-certificate-based-connection-to-apns) with a certificate, use the `.tls` authentication method: 
 
 ```swift
 authenticationMethod: .tls(
