@@ -21,7 +21,7 @@ jobs:
     - name: Build documentation
       run: docker run --rm -v "$PWD":/docs -w /docs swift:6.3 swift run VaporDocs
     - name: Setup cloudformation linter 
-      uses: ScottBrenner/cfn-lint-action@ed184e91f5085a2932501da8314e899e5e0ef5be # v2.7.1
+      uses: ScottBrenner/cfn-lint-action@8affffc34dddd6937bbc37f60901f71657e20fab # v2.8.0
     - name: Run cloudformation lint 
       run: cfn-lint -t stack.yml
     # Only the current docs are checked. 1.5, 2.0 and 3.0 are archived and full
