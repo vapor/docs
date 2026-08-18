@@ -59,7 +59,7 @@ app.apns.containers.use(
 )
 ```
 
-املأ العناصر النائبة (placeholders) ببيانات اعتمادك. يُظهر المثال أعلاه [المصادقة القائمة على JWT](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns) باستخدام مفتاح `.p8` الذي تحصل عليه من بوابة مطوّري Apple. أما [المصادقة القائمة على TLS](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns) باستخدام شهادة، فاستخدم طريقة المصادقة `.tls`:
+املأ العناصر النائبة (placeholders) ببيانات اعتمادك. يُظهر المثال أعلاه [المصادقة القائمة على JWT](https://developer.apple.com/documentation/usernotifications/establishing-a-token-based-connection-to-apns) باستخدام مفتاح `.p8` الذي تحصل عليه من بوابة مطوّري Apple. أما [المصادقة القائمة على TLS](https://developer.apple.com/documentation/usernotifications/establishing-a-certificate-based-connection-to-apns) باستخدام شهادة، فاستخدم طريقة المصادقة `.tls`:
 
 ```swift
 authenticationMethod: .tls(

@@ -61,9 +61,9 @@ app.apns.containers.use(
 
 在占位符中填写你的凭证。
 
-上面的示例显示了[基于 JWT 的认证](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns)方式，使用从 Apple 开发者官网获得的 `.p8` 密钥。
+上面的示例显示了[基于 JWT 的认证](https://developer.apple.com/documentation/usernotifications/establishing-a-token-based-connection-to-apns)方式，使用从 Apple 开发者官网获得的 `.p8` 密钥。
 
-对于[基于 TLS 的认证](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns)，请使用 `.tls` 身份验证方法：
+对于[基于 TLS 的认证](https://developer.apple.com/documentation/usernotifications/establishing-a-certificate-based-connection-to-apns)，请使用 `.tls` 身份验证方法：
 
 ```swift
 authenticationMethod: .tls(

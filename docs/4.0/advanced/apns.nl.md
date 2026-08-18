@@ -59,7 +59,7 @@ app.apns.containers.use(
 )
 ```
 
-Vul de plaatsaanduidingen in met uw referenties. Het bovenstaande voorbeeld toont [JWT-gebaseerde auth](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns) met behulp van de `.p8` sleutel die je krijgt van Apple's ontwikkelaarsportaal. Voor [TLS-gebaseerde auth](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns) met een certificaat, gebruik de `.tls` authenticatie methode:
+Vul de plaatsaanduidingen in met uw referenties. Het bovenstaande voorbeeld toont [JWT-gebaseerde auth](https://developer.apple.com/documentation/usernotifications/establishing-a-token-based-connection-to-apns) met behulp van de `.p8` sleutel die je krijgt van Apple's ontwikkelaarsportaal. Voor [TLS-gebaseerde auth](https://developer.apple.com/documentation/usernotifications/establishing-a-certificate-based-connection-to-apns) met een certificaat, gebruik de `.tls` authenticatie methode:
 
 ```swift
 authenticationMethod: .tls(
