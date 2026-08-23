@@ -154,6 +154,26 @@ Planets:
 - Mars
 ```
 
+Inside the scope of the `#for` tag the implicit variable `index` is definded and can be accessed with `#(index)`. Naming the variable explicitly is also possible like this:
+
+```leaf
+Planets:
+<ul>
+#for(index, planet in planets):
+    <li>#(index + 1) #(planet)</li>
+#endfor
+</ul>
+```
+
+This would result in:
+
+```
+Planets:
+- 1 Venus
+- 2 Earth
+- 3 Mars
+```
+
 ### Extending templates
 
 Leaf’s `#extend` tag allows you to copy the contents of one template into another. When using this, you should always omit the template file's .leaf extension.
