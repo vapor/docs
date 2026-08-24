@@ -154,6 +154,26 @@ Planets:
 - Mars
 ```
 
+Leaf also offers an index-entry option for iteration which allows you to access the index in the loop:
+
+```leaf
+Planets:
+<ul>
+#for(index, planet in planets):
+    <li>#(index + 1) #(planet)</li>
+#endfor
+</ul>
+```
+
+This would result in:
+
+```
+Planets:
+- 1 Venus
+- 2 Earth
+- 3 Mars
+```
+
 ### Extending templates
 
 Leaf’s `#extend` tag allows you to copy the contents of one template into another. When using this, you should always omit the template file's .leaf extension.
