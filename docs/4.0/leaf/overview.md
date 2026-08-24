@@ -154,7 +154,7 @@ Planets:
 - Mars
 ```
 
-Inside the scope of the `#for` tag the implicit variable `index` is definded and can be accessed with `#(index)`. Naming the variable explicitly is also possible like this:
+Leaf also offers an index-entry option for iteration which allows you to access the index in the loop:
 
 ```leaf
 Planets:
