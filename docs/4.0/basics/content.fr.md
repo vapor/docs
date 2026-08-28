@@ -1,10 +1,10 @@
 # Décoder/encoder du contenu
 
-L'API de contenu de Vapor vous permet aisément d'encoder et décoder des structs se conformant au protocole Codable depuis ou vers des messages HTTP. L'encodage [JSON](https://tools.ietf.org/html/rfc7159) est utilisé par défaut, proposant un support prêt à l'emploi des [formulaires URL-Encodés](https://en.wikipedia.org/wiki/Percent-encoding#The_application/x-www-form-urlencoded_type) ainsi que de [Multipart](https://tools.ietf.org/html/rfc2388). Cette API est également configurable, vous permettant d'ajouter, modifier, ou remplacer les stratégies d'encodage pour des types de contenu HTML spécifiques.
+L'API de contenu de Vapor vous permet aisément d'encoder et décoder des structs se conformant au protocole `Codable` depuis ou vers des messages HTTP. L'encodage [JSON](https://tools.ietf.org/html/rfc7159) est utilisé par défaut, proposant un support prêt à l'emploi des [formulaires URL-Encodés](https://en.wikipedia.org/wiki/Percent-encoding#The_application/x-www-form-urlencoded_type) ainsi que de [Multipart](https://tools.ietf.org/html/rfc2388). Cette API est également configurable, vous permettant d'ajouter, modifier, ou remplacer les stratégies d'encodage pour des types de contenu HTML spécifiques.
 
 ## Vue d'ensemble
 
-Pour comprendre le fonctionnement de l'API contenu de Vapor, il faut d'abord comprendre quelques bases concernant les messages HTTP. Observez la requête d'exemple suivante.
+Pour comprendre le fonctionnement de l'API contenu de Vapor, vous aurez besoin de quelques notions concernant les messages HTTP. Observez la requête d'exemple suivante :
 
 ```http
 POST /greeting HTTP/1.1
@@ -18,7 +18,7 @@ Cette requête indique qu'elle contient des données encodées au format JSON gr
 
 ### Struct de contenu
 
-La première étape pour décoder ce message HTTP est de créer un type conforme à Codable qui correspond à la structure de données attendue. 
+La première étape pour décoder ce message HTTP est de créer un type conforme à `Codable` qui correspond à la structure de données attendue. 
 
 ```swift
 struct Greeting: Content {
@@ -40,7 +40,7 @@ app.post("greeting") { req in
 
 La méthode decode se base sur le type de contenu indiqué dans les entêtes de la requête pour trouver un décodeur approprié au format reçu. Si aucun décodeur ne correspond, ou que la requête n'indique pas d'entête content-type, une erreur `415` sera levée.
 
-Cela signifie que notre route acceptera automatiquement tous les autres types de contenus supportés, comme par exemple un formulaire url-encodé :
+Cela signifie que notre route acceptera automatiquement tous les autres types de contenu supportés, comme par exemple un formulaire url-encodé :
 
 ```http
 POST /greeting HTTP/1.1
@@ -95,7 +95,7 @@ struct Hello: Content {
 }
 ```
 
-Notez ici que `name` est un `String` optionnel puisque de par leur nature, les QueryString elles-mêmes sont facultatives. Si vous souhaitez rendre un paramètre obligatoire, utilisez plutôt un paramètre de route.
+Notez ici que `name` est un `String` optionnel puisque, de par leur nature, les QueryString elles-mêmes sont facultatives. Si vous souhaitez rendre un paramètre obligatoire, utilisez plutôt un paramètre de route.
 
 Maintenant que nous avons notre struct conforme à `Content` pour la QueryString attendue pour cette route, vous pouvez la décoder.
 
@@ -213,7 +213,7 @@ Se conformer à ces protocoles permettra à vos codeurs personnalisés de s'enre
 
 ### QueryString
 
-Vapor définit deux protocoles pour les codeurs qui doivent traiter du contenu provenant de QueryString : `URLQueryDecoder` et `URLQueryEncoder`.
+Vapor définit deux protocoles pour les codeurs qui doivent traiter du contenu provenant de la QueryString : `URLQueryDecoder` et `URLQueryEncoder`.
 
 ```swift
 public protocol URLQueryDecoder {
