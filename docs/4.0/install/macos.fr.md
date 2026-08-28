@@ -47,12 +47,12 @@ Vous devriez voir la liste des commandes disponibles.
 
 ### Makefile
 
-Si vous le souhaitez, vous pouvez également compiler la Toolbox à partir des sources. Voir les <a href="https://github.com/vapor/toolbox/releases" target="_blank">livraisons</a> de la Toolbox sur GitHub pour trouver la dernière version.
+Si vous le souhaitez, vous pouvez également compiler la Toolbox à partir des sources. Voir les <a href="https://github.com/vapor/toolbox/releases" target="_blank">versions</a> de la Toolbox sur GitHub pour trouver la dernière en date.
 
 ```sh
 git clone https://github.com/vapor/toolbox.git
 cd toolbox
-git checkout <desired version>
+git checkout <version choisie>
 make install
 ```
 
