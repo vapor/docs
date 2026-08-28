@@ -2,7 +2,7 @@
 
 Les contrôleurs sont un bon moyen d'organiser votre code. Ils sont composés d'un ensemble de méthodes qui acceptent une requête et retournent une réponse.
 
-Le dossier [Controllers](../getting-started/folder-structure.md#controllers) est un bon endroit pour mettre vos contrôleurs.
+Le dossier [Controllers](../getting-started/folder-structure.md#controllers) est un bon endroit pour ranger vos contrôleurs.
 
 ## Vue d'ensemble
 
@@ -63,7 +63,7 @@ struct TodosController: RouteCollection {
 
 En se conformant au protocole RouteCollection, le contrôleur doit implémenter la méthode boot(routes:) pour enregistrer les routes qu'il expose.
 
-Toutes ses autres méthodes prennent ensuite un objet `Request` et retourne quelque-chose qui se conforme à `ResponseEncodable`. Ces méthodes peuvent être synchrones comme asynchrones.
+Toutes ses autres méthodes prennent ensuite un objet `Request` et retournent quelque-chose qui se conforme à `ResponseEncodable`. Ces méthodes peuvent être synchrones comme asynchrones.
 
 Vous devez enfin enregistrer votre contrôleur dans le fichier `routes.swift`:
 
