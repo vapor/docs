@@ -1,14 +1,14 @@
 # Swift Package Manager
 
-Le [Swift Package Manager](https://swift.org/package-manager/) (SPM) est utilisé pour compiler le code source et les dépendances de votre projet. Puisque Vapor s'appuie grandement sur SPM, c'est une bonne idée de comprendre les bases de son fonctionnement.
+Le [Swift Package Manager](https://swift.org/package-manager/) (SPM) est utilisé pour compiler le code source et les dépendances de votre projet. Puisque Vapor s'appuie grandement sur SPM, il vous sera utile de comprendre les bases de son fonctionnement.
 
-SPM est semblable à Cocoapods, Ruby gems, et NPM. Vous pouvez utiliser SPM depuis les lignes de commandes avec des commandes telles que `swift build` et `swift test` ou via des IDE compatibles. Cependant, contrairement à d'autres gestionnaires de dépendances, il n'existe pas d'index central de recensement des packets pour SPM. Au lieu de ça, SPM tire parti des URLs de dépots Git et gère les dépendances de versions en utilisant les [tags Git](https://git-scm.com/book/en/v2/Git-Basics-Tagging). 
+SPM est semblable à CocoaPods, Ruby gems, et NPM. Vous pouvez utiliser SPM depuis les lignes de commandes avec des commandes telles que `swift build` et `swift test` ou via des IDE compatibles. Cependant, contrairement à d'autres gestionnaires de dépendances, il n'existe pas d'index central de recensement des packets pour SPM. Au lieu de ça, SPM tire parti des URLs de dépots Git et gère les dépendances de versions en utilisant les [tags Git](https://git-scm.com/book/en/v2/Git-Basics-Tagging). 
 
 ## Manifeste du package
 
 Le premier endroit qui intéresse SPM dans votre projet est le manifeste SPM. Il devrait toujours se situer dans le dossier racine de votre projet et être nommé `Package.swift`.
 
-Regardez cet exemple de fichier manifeste.
+Regardez cet exemple de fichier manifeste :
 
 ```swift
 // swift-tools-version:5.8
@@ -63,7 +63,7 @@ Les Targets sont tous les modules, exécutables, et tests que contient votre pac
 
 ## Structure des dossiers
 
-Ci-dessous est une représentation typique de la structure de fichiers d'un package SPM.
+Voici une représentation typique de la structure de fichiers d'un package SPM :
 
 ```
 .
@@ -80,13 +80,13 @@ Chaque `.testTarget` correspond à un dossier contenu dans le dossier `Tests`.
 
 ## Package.resolved
 
-La première fois que vous compilez votre projet, SPM créera un fichier `Package.resolved` qui stoquera les versions de chaque dépendance utilisée. Lors des compilations suivantes, ces mêmes versions seront réutilisées même si des plus récentes sont disponibles depuis. 
+La première fois que vous compilez votre projet, SPM créera un fichier `Package.resolved` qui stoquera les versions de chaque dépendance utilisée. Lors des compilations suivantes, ces mêmes versions seront réutilisées même si des plus récentes ont été publiées depuis. 
 
 Pour mettre à jour vos dépendances, lancez la commande `swift package update`.
 
 ## Xcode
 
-Si vous utilisez Xcode 11 ou ultérieur, les changements de dépendances, de Targets, de Products, etc se produiront automatiquement dès lors que le fichier `Package.swift` sera modifié. 
+Si vous utilisez Xcode 11 ou ultérieur, les mises à jour de dépendances, de Targets, de Products, etc. se produiront automatiquement dès lors que le fichier `Package.swift` sera modifié. 
 
 Si vous souhaitez mettre à jour vos dépendances vers les versions les plus récentes, utilisez File → Swift Packages → Update To Latest Swift Package Versions.
 

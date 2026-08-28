@@ -8,7 +8,7 @@ Si vous n'avez pas encore installé Swift ou la Toolbox Vapor, veuillez suivre l
 - [Installation → Linux](../install/linux.md)
 
 !!! Note
-    Le modèle utilisé par la Toolbox Vapor nécessite Swift 6.0 ou supérieur.
+    Le modèle de projet utilisé par la Toolbox Vapor nécessite Swift 6.0 ou supérieur.
 
 ## Nouveau projet
 
@@ -39,17 +39,17 @@ cd hello
 
 ### Xcode
 
-Tout d'abord, ouvrez le projet dans Xcode:
+Tout d'abord, ouvrez le projet dans Xcode :
 
 ```sh
 open Package.swift
 ```
 
-Il commencera automatiquement à télécharger les dépendances de Swift Package Manager. Cela peut prendre un certain temps lors de la première ouverture de votre projet. Lorsque la résolution des dépendances est faite, Xcode remplira les différents plans de compilation disponibles.
+Il commencera automatiquement à télécharger les dépendances de Swift Package Manager. Cela peut prendre un certain temps lors de la première ouverture de votre projet. Lorsque la résolution des dépendances est faite, Xcode initialisera les différents plans de compilation disponibles.
 
 Tout en haut de la fenêtre, à droite des boutons Start et Stop, cliquez sur le nom de votre projet pour sélectionner son plan de compilation, et choisissez une cible de lancement appropriée — le plus probablement, "Mon Mac". Cliquez sur le bouton Start pour lancer la compilation et l'exécution de votre projet.
 
-Vous devriez vous la Console s'afficher en bas de la fenêtre Xcode.
+Vous devriez voir la Console s'afficher en bas de la fenêtre Xcode.
 
 ```sh
 [ INFO ] Server starting on http://127.0.0.1:8080
