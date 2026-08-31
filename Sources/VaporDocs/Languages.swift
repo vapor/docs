@@ -242,7 +242,7 @@ let languages: [Language] = [
             "Custom Tags": "Balises personnalisées",
             "Errors": "Gestion des erreurs",
             "Deploy": "Déploiement",
-            "Environment": "Environnement et variables",
+            "Environment": "Variables d'environnement",
             "Files": "Fichiers",
             "Fluent": "BDD : Fluent ORM",
             "Folder Structure": "Structure des dossiers",

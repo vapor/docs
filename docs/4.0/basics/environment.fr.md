@@ -1,4 +1,4 @@
-# Environnement et variables
+# Variables d'environnement
 
 L'API environnement de Vapor vous aide à configurer votre application dynamiquement. Par défaut, votre application utilise l'environnement `development`. Vous pouvez définir d'autres environnements utiles comme `production` ou `staging` et modifier la façon dont votre application sera configurée dans chacun de ces cas. Vous pouvez aussi charger des variables depuis l'environnement du processus, ou depuis un fichier `.env` (dotenv) en fonction de vos besoins.
 
@@ -15,7 +15,7 @@ default:
 
 ## Changer l'environnement
 
-Par défaut, votre application de lance avec l'environnement `development`. Vous pouvez changer cela en passant le drapeau `--env` (`-e`) au démarrage de votre application.
+Par défaut, votre application se lance avec l'environnement `development`. Vous pouvez changer cela en passant le drapeau `--env` (`-e`) au démarrage de votre application.
 
 ```swift
 swift run App serve --env production
@@ -23,13 +23,13 @@ swift run App serve --env production
 
 Vapor définit les environnements suivants :
 
-|nom|nom court|description|
-|-|-|-|
-|production|prod|Application déployée pour vos utilisateurs.|
-|development|dev|Pour du développement local.|
-|testing|test|Pour les tests unitaires.|
+| Nom         | Nom court | Description                                 |
+|-------------|-----------|---------------------------------------------|
+| production  | prod      | Application déployée pour vos utilisateurs. |
+| development | dev       | Pour du développement local.                |
+| testing     | test      | Pour les tests unitaires.                   |
 
-!!! info
+!!! info "Info"
     L'environnement `production` définira le niveau d'émission des logs sur `notice` s'il n'y a pas de contre-indication. Tous les autres environnements utilisent le niveau `info`. 
 
 Vous pouvez choisir entre le drapeau complet et sa version courte `--env` (`-e`).
@@ -82,7 +82,7 @@ let foo = Environment.get("FOO")
 print(foo) // String?
 ```
 
-!!! info
+!!! info "Info"
     Les variables définies dans le fichier `.env` ne remplaceront pas les variables déjà présentes dans l'environnement du processus. 
 
 En plus du fichier `.env`, Vapor essaiera de charger un fichier dotenv spécifique à l'environnement actuel. Par exemple, en environnement `development`, Vapor chargera aussi `.env.development`. Toute valeur de ce fichier spécifique sera prioritaire sur celle du fichier `.env` général.
@@ -100,7 +100,7 @@ cp .env .env.development
 vim .env.development
 ```
 
-!!! Avertissement
+!!! warning "Avertissement"
     Les fichiers dotenv contenant des informations sensibles telles que des mots de passe ne devraient pas être versionnés.
 
 Si vous rencontrez des difficultés pour charger les fichiers .env, essayez d'activer les logs de débug avec `--log debug` pour obtenir plus d'informations. 
@@ -135,10 +135,10 @@ enum Entrypoint {
 }
 ```
 
-La méthode `detect` les arguments de la ligne de commande du processus et analyse le drapeau `--env` automatiquement. Vous pouvez modifier ce comportement en initialisant une struct `Environment` personnalisée.
+La méthode `detect` récupère les arguments de la ligne de commande du processus et analyse le drapeau `--env` automatiquement. Vous pouvez modifier ce comportement en initialisant une struct `Environment` personnalisée.
 
 ```swift
 let env = Environment(name: "testing", arguments: ["vapor"])
 ```
 
-Le tableau passé à arguments doit contenir au moins un argument représentant le nom de l'exécutable. D'autres arguments peuvent être fournis ensuite pour simuler les arguments passés en ligne de commande. C'est particulièrement pratique pour faire des tests.
+Le tableau passé à `arguments` doit contenir au moins un argument représentant le nom de l'exécutable. D'autres arguments peuvent être fournis ensuite pour simuler les arguments passés en ligne de commande. C'est particulièrement pratique pour faire des tests.
