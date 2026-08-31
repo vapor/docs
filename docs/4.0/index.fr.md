@@ -23,14 +23,14 @@ Une fois que Vapor est installé, lisez [Premiers pas → Hello, world](getting-
 
 Vous pourrez trouver ici plus de ressources utiles concernant Vapor.
 
-| name           | description                                                       | link                                                             |
-| -------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Discord Vapor  | Chattez avec des milliers de developpeurs Vapor.                  | [visiter →](https://vapor.team)                                |
-| API docs       | Documentation auto-générée à partir des commentaires du code. | [visiter →](https://api.vapor.codes)                           |
-| Stack Overflow | Demander et répondre à des questions avec le tag `vapor`.      | [visiter →](https://stackoverflow.com/questions/tagged/vapor)  |
-| Forums Swift  | Poster dans la section de Vapor sur les forums de Swift.org.      | [visiter →](https://forums.swift.org/c/related-projects/vapor) |
-| Code Source    | Apprendre comment Vapor fonctionne sous le capot.                 | [visiter →](https://github.com/vapor/vapor)                    |
-| Tickets GitHub  | Signaler des bugs ou demander des fonctionnalités sur GitHub.   | [visiter →](https://github.com/vapor/vapor/issues)             |
+| Nom            | Description                                                   | Lien                                                           |
+|----------------|---------------------------------------------------------------|----------------------------------------------------------------|
+| Discord Vapor  | Chattez avec des milliers de developpeurs Vapor.              | [J'y vais →](https://vapor.team)                                |
+| API docs       | Documentation auto-générée à partir des commentaires du code. | [J'y vais →](https://api.vapor.codes)                           |
+| Stack Overflow | Demander et répondre à des questions avec le tag `vapor`.     | [J'y vais →](https://stackoverflow.com/questions/tagged/vapor)  |
+| Forums Swift   | Poster dans la section de Vapor sur les forums de Swift.org.  | [J'y vais →](https://forums.swift.org/c/related-projects/vapor) |
+| Code Source    | Apprendre comment Vapor fonctionne sous le capot.             | [J'y vais →](https://github.com/vapor/vapor)                    |
+| Tickets GitHub | Signaler des bugs ou demander des fonctionnalités sur GitHub. | [J'y vais →](https://github.com/vapor/vapor/issues)             |
 
 ## Auteurs
 

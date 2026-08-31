@@ -1,6 +1,6 @@
-# Décoder/encoder du contenu
+# Encodage/Décodage
 
-L'API de contenu de Vapor vous permet aisément d'encoder et décoder des structs se conformant au protocole `Codable` depuis ou vers des messages HTTP. L'encodage [JSON](https://tools.ietf.org/html/rfc7159) est utilisé par défaut, proposant un support prêt à l'emploi des [formulaires URL-Encodés](https://en.wikipedia.org/wiki/Percent-encoding#The_application/x-www-form-urlencoded_type) ainsi que de [Multipart](https://tools.ietf.org/html/rfc2388). Cette API est également configurable, vous permettant d'ajouter, modifier, ou remplacer les stratégies d'encodage pour des types de contenu HTML spécifiques.
+L'API de contenu de Vapor vous permet d'encoder et décoder facilement les messages HTTP entrants ou sortants grâce à des structs se conformant au protocole `Codable`. L'encodage [JSON](https://tools.ietf.org/html/rfc7159) est utilisé par défaut, proposant un support prêt à l'emploi des [formulaires URL-Encodés](https://en.wikipedia.org/wiki/Percent-encoding#The_application/x-www-form-urlencoded_type) ainsi que de [Multipart](https://tools.ietf.org/html/rfc2388). Cette API est également configurable, vous permettant d'ajouter, modifier, ou remplacer les stratégies d'encodage pour des types de contenu HTML spécifiques.
 
 ## Vue d'ensemble
 
@@ -64,13 +64,13 @@ struct Profile: Content {
 
 Vous trouverez ci-dessous les types de média que l'API contenu supporte par défaut.
 
-|nom|valeur d'entête|type de média|
-|-|-|-|
-|JSON|application/json|`.json`|
-|Multipart|multipart/form-data|`.formData`|
-|URL-Encoded Form|application/x-www-form-urlencoded|`.urlEncodedForm`|
-|Plaintext|text/plain|`.plainText`|
-|HTML|text/html|`.html`|
+| Nom              | Valeur d'entête                   | Type de média    |
+|------------------|-----------------------------------|------------------|
+| JSON             | application/json                  |`.json`           |
+| Multipart        | multipart/form-data               |`.formData`       |
+| URL-Encoded Form | application/x-www-form-urlencoded |`.urlEncodedForm` |
+| Plaintext        | text/plain                        |`.plainText`      |
+| HTML             | text/html                         |`.html`           |
 
 Tous les types de média ne supportent pas systématiquement toutes les fonctionnalités de `Codable`. Par exemple, JSON n'offre pas de support pour les fragments à la racine (le JSON doit être un objet ou un tableau, pas une chaîne par exemple) et Plaintext ne propose pas de support pour les données imbriquées.
 

@@ -1,4 +1,4 @@
-# Le routage
+# Routage
 
 Le routage consiste à trouver le bon contrôleur pour gérer une requête entrante. Le coeur du routage de Vapor est géré par un routeur hautes performances à algorithme trie, fourni par [RoutingKit](https://github.com/vapor/routing-kit).
 
@@ -210,10 +210,10 @@ app.get("hello", ":name") { req -> String in
 }
 ```
 
-!!! Note
+!!! note "Note"
     Ici, nous pouvons être sûrs que `req.parameters.get` ne retournera jamais `nil` car le chemin de notre route comporte la valeur `:name`. Cependant, si vous tentez d'accéder aux paramètres de routes depuis un middleware ou dans du code déclenché par différentes routes, vous devrez gérer le cas éventuel où la valeur retournée sera `nil`.
 
-!!! Note
+!!! note "Note"
     Si vous souhaitez récupérer des paramètres de la QueryString, i.e. `/hello/?name=foo` vous devrez utiliser les API Content de Vapor pour gérer les données qui sont url-encodées. Voir la [rubrique `Content`](content.md) pour plus d'informations.
 
 `req.parameters.get` supporte aussi le cast automatique vers les types compatibles avec le protocole `LosslessStringConvertible` :

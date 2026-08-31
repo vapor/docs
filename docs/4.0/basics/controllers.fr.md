@@ -1,6 +1,6 @@
-# Les contrôleurs
+# Contrôleurs
 
-Les contrôleurs sont un bon moyen d'organiser votre code. Ils sont composés d'un ensemble de méthodes qui acceptent une requête et retournent une réponse.
+Les contrôleurs vous aident à organiser votre code. Ils sont composés de méthodes qui acceptent une requête et retournent une réponse.
 
 Le dossier [Controllers](../getting-started/folder-structure.md#controllers) est un bon endroit pour ranger vos contrôleurs.
 
