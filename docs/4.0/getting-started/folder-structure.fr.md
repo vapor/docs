@@ -37,7 +37,7 @@ app.middleware.use(fileMiddleware)
 
 ## Sources
 
-Ce dossier contient tous les fichiers source Swift de votre projet. 
+Ce dossier contient tous les fichiers sources Swift de votre projet. 
 Le dossier racine, `App`, représente le module de votre package, 
 tel que déclaré dans le manifeste de [Swift Package Manager](spm.md).
 
@@ -51,7 +51,7 @@ Les Contrôleurs sont un bon moyen de regrouper la logique de votre application.
 
 #### Migrations
 
-Le dossier Migrations contiendra vos migrations de base de données si vous utilisez Fluent.
+Le dossier Migrations contiendra vos migrations de base de données si vous utilisez Fluent (notre ORM).
 
 #### Models
 
@@ -59,7 +59,7 @@ Le dossier Models est le bon endroit pour ranger vos structs `Content` ou vos `M
 
 #### configure.swift
 
-Ce fichier contient la fonction `configure(_:)`. Cette méthode est appelée par `entrypoint.swift` pour configurer l'`Application` nouvellement instanciée. Ces ici que vous devriez enregistrer des services comme les routes, bases de données, fournisseurs, et autres. 
+Ce fichier contient la fonction `configure(_:)`. Cette méthode est appelée par `entrypoint.swift` pour configurer l'`Application` nouvellement instanciée. C'est ici que vous devriez enregistrer des services comme les routes, bases de données, fournisseurs, et autres. 
 
 #### entrypoint.swift
 
@@ -71,7 +71,7 @@ Ce fichier contient la fonction `routes(_:)`. Cette méthode est appelée vers l
 
 ## Tests
 
-Chaque module non-exécutable de votre dossier `Sources` peut avoir un dossier correspondant dans `Tests`. Cela contient du code basé sur le module `XCTest` pour tester votre package. Les tests peuvent être exécutés avec la commande `swift test` dans un terminal, ou en pressant ⌘+U dans Xcode. 
+Chaque module non-exécutable de votre dossier `Sources` peut avoir un dossier correspondant dans `Tests`. Ils contiennent du code basé sur le module `XCTest` pour tester votre package. Les tests peuvent être exécutés avec la commande `swift test` dans un terminal, ou en pressant ⌘+U dans Xcode. 
 
 ### AppTests
 

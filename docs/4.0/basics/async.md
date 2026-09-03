@@ -153,7 +153,7 @@ print(futureInt) // EventLoopFuture<Int>
 
 The `flatMapThrowing` method allows you to transform the future's value to another value _or_ throw an error. 
 
-!!! info
+!!! info "Info"
     Because throwing an error must create a new future internally, this method is prefixed `flatMap` even though the closure does not accept a future return.
 
 ```swift
@@ -194,7 +194,7 @@ let futureResponse = futureString.flatMap { string in
 print(futureResponse) // EventLoopFuture<ClientResponse>
 ```
 
-!!! info
+!!! info "Info"
     If we instead used `map` in the above example, we would have ended up with: `EventLoopFuture<EventLoopFuture<ClientResponse>>`.
 
 To call a throwing method inside of a `flatMap`, use Swift's `do` / `catch` keywords and create a [completed future](#makefuture).
@@ -218,7 +218,7 @@ let futureResponse = futureString.flatMap { string in
 
 The `transform` method allows you to modify a future's value, ignoring the existing value. This is especially useful for transforming the results of `EventLoopFuture<Void>` where the actual value of the future is not important.
 
-!!! tip
+!!! tip "Tip"
     `EventLoopFuture<Void>`, sometimes called a signal, is a future whose sole purpose is to notify you of completion or failure of some async operation.
 
 ```swift
@@ -278,7 +278,6 @@ let futureString: EventLoopFuture<String> = eventLoop.makeFailedFuture(error)
 
 ### whenComplete
 
-
 You can use `whenComplete` to add a callback that will be executed when the future succeeds or fails.
 
 ```swift
@@ -295,7 +294,7 @@ futureString.whenComplete { result in
 }
 ```
 
-!!! note
+!!! note "Note"
     You can add as many callbacks to a future as you want.
 
 ### Get
@@ -313,7 +312,7 @@ print(string) /// String
     
 ### Wait
 
-!!! warning
+!!! warning "Warning"
     The `wait()` function is obsolete, see [`Get`](#get) for the recommended approach.
 
 You can use `.wait()` to synchronously wait for the future to be completed. Since a future may fail, this call is throwing.
@@ -329,7 +328,7 @@ print(string) /// String
 
 `wait()` can only be used on a background thread or the main thread, i.e., in `configure.swift`. It can _not_ be used on an event loop thread, i.e., in route closures.
 
-!!! warning
+!!! warning "Warning"
     Attempting to call `wait()` on an event loop thread will cause an assertion failure.
     
 ## Promise
@@ -353,7 +352,7 @@ promiseString.succeed("Hello")
 promiseString.fail(...)
 ```
 
-!!! info
+!!! info "Info"
     A promise can only be completed once. Any subsequent completions will be ignored.
 
 Promises can be completed (`succeed` / `fail`) from any thread. This is why promises require an event loop to be initialized. Promises ensure that the completion action gets returned to its event loop for execution.
@@ -372,7 +371,7 @@ In route closures, you can access the current event loop via `Request`.
 req.eventLoop.makePromise(of: ...)
 ```
 
-!!! warning
+!!! warning "Warning"
     Vapor expects that route closures will stay on `req.eventLoop`. If you hop threads, you must ensure access to `Request` and the final response future all happen on the request's event loop. 
 
 Outside of route closures, you can get one of the available event loops via `Application`. 
@@ -428,7 +427,7 @@ Not all blocking calls will be as obvious as `sleep(_:)`. If you are suspicious 
 
 I/O bound blocking means waiting on a slow resource like a network or hard disk which can be orders of magnitude slower than the CPU. Blocking the CPU while you wait for these resources results in wasted time. 
 
-!!! danger
+!!! danger "Danger"
     Never make blocking I/O bound calls directly on an event loop.
 
 All of Vapor's packages are built on SwiftNIO and use non-blocking I/O. However, there are many Swift packages and C libraries in the wild that use blocking I/O. Chances are if a function is doing disk or network IO and uses a synchronous API (no callbacks or futures) it is blocking.
