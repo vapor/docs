@@ -1,10 +1,10 @@
 # Gestion des erreurs
 
-Vapor se base sur le protocole `Error` de Swift pour sa gestion des erreurs. Les gestionnaires de routes peuvent soit utiliser `throw` pour lever une erreur, ou retourner un `EventLoopFuture` en échec. Lever ou retourner une `Error` de Swift renverra une réponse avec le statut HTTP `500` et l'erreur sera logguée. `AbortError` et `DebuggableError` peuvent être utilisées pour modifier la réponse et le log résultants. La gestion des erreurs est faite par l'objet `ErrorMiddleware`. Ce middleware est ajouté à l'application par défaut, et vous pouvez le remplacer par votre logique personnalisée si vous le souhaitez. 
+Vapor se base sur le protocole `Error` de Swift pour sa gestion des erreurs. Les contrôleurs peuvent soit utiliser `throw` pour lever une erreur, ou retourner un `EventLoopFuture` en échec. Lever ou retourner un objet `Error` de Swift renverra une réponse avec le statut HTTP `500` et l'erreur sera logguée. `AbortError` et `DebuggableError` peuvent être utilisées pour modifier la réponse et le log qui en résultent. La gestion des erreurs est faite par l'objet `ErrorMiddleware`. Ce middleware est ajouté à l'application par défaut, mais vous pouvez le remplacer par votre logique personnalisée si vous le souhaitez. 
 
 ## Abort
 
-Vapor fournit une structure d'erreur par défaut nommée `Abort`. Cette structure se conforme à `AbortError` et `DebuggableError`. Vous pouvez l'initialiser avec un statut HTTP et raison d'échec facultative.
+Vapor fournit une structure d'erreur par défaut nommée `Abort`. Cette structure se conforme à `AbortError` et `DebuggableError`. Vous pouvez l'initialiser avec un statut HTTP et une raison d'échec facultative.
 
 ```swift
 // Erreur 404, le message par défaut ("Not Found") est utilisé.
@@ -30,11 +30,11 @@ User.find(id, on: db)
     .unwrap(or: Abort(.notFound))
     .flatMap 
 { user in
-    // Objet User non-optionnel passé à la Closure.
+    // Un objet de type User non-optionnel est passé à la Closure.
 }
 ```
 
-Si `User.find` retourne `nil`, le futur sera compromis avec l'erreur fournie. Autrement, `flatMap` se verra attribuer une valeur non-optionnelle. Si vous utilisez `async`/`await`, vous pouvez gérer les optionnels normalement :
+Si `User.find` retourne `nil`, le futur sera compromis avec l'erreur fournie. Autrement, `flatMap` se verra attribuer une valeur non-optionnelle. Si vous utilisez `async`/`await`, vous pouvez gérer les optionnels comme d'habitude :
 
 ```swift
 guard let user = try await User.find(id, on: db) {
@@ -42,10 +42,9 @@ guard let user = try await User.find(id, on: db) {
 }
 ```
 
-
 ## Abort Error
 
-Par défaut, toute `Error` Swift levée ou retournée par une Closure de route déclenchera une réponse `500 Internal Server Error`. Si compilé en mode debug, `ErrorMiddleware` comportera une description de l'erreur. Cette donnée est supprimée pour des raisons de sécurité lorsque le projet est compilé en mode release. 
+Par défaut, toute `Error` Swift levée ou retournée par un contrôleur déclenchera une réponse `500 Internal Server Error`. Si compilé en mode debug, `ErrorMiddleware` comportera une description de l'erreur. Cette donnée est supprimée pour des raisons de sécurité lorsque le projet est compilé en mode release. 
 
 Pour configurer le statut HTTP de réponse ou la raison d'une erreur en particulier, conformez-la au protocole `AbortError`. 
 
@@ -61,9 +60,9 @@ extension MyError: AbortError {
     var reason: String {
         switch self {
         case .userNotLoggedIn:
-            return "User is not logged in."
+            return "Utilisateur non connecté."
         case .invalidEmail(let email):
-            return "Email address is not valid: \(email)."
+            return "Adresse e-mail invalide : \(email)."
         }
     }
 
@@ -80,11 +79,11 @@ extension MyError: AbortError {
 
 ## Debuggable Error
 
-`ErrorMiddleware` utilise la méthode `Logger.report(error:)` pour logger les erreurs levées par vos routes. Cette méthode vérifie la conformance à des protocoles comme `CustomStringConvertible` et `LocalizedError` pour logger des messages intelligibles.
+`ErrorMiddleware` utilise la méthode `Logger.report(error:)` pour logger les erreurs levées par vos routes. Cette méthode vérifie la conformité à des protocoles comme `CustomStringConvertible` et `LocalizedError` pour logger des messages intelligibles.
 
-Pour personnaliser les logs d'erreurs, vous pouvez conformer vos erreurs à `DebuggableError`. Ce protocole comporte un certain nombre de propriétés utiles comme un identifiant unique, la source de l'erreur, ainsi que la stack trace. La plupart de ces propriétés sont optionnelles, ce qui facilite l'adoption de cette mise en conformité au protocole. 
+Pour personnaliser les logs d'erreurs, vous pouvez conformer vos erreurs à `DebuggableError`. Ce protocole comporte un certain nombre de propriétés utiles comme un identifiant unique, la source de l'erreur, ainsi que la stack-trace. La plupart de ces propriétés sont optionnelles, ce qui facilite l'adoption de cette mise en conformité au protocole. 
 
-Pour se conformer au mieux à `DebuggableError`, votre erreur devrait être une struct pour lui permettre de stoquer les informations de source et la stack trace si nécessaire. Vous trouverez ci-dessous un exemple de l'enum `MyError` sus-mentionnée, mise à jour pour utiliser une `struct` et capturer l'information de la source d'erreur.
+Pour se conformer au mieux à `DebuggableError`, votre erreur devrait être une struct pour lui permettre de stoquer les informations de source et la stack-trace si nécessaire. Vous trouverez ci-dessous un exemple de l'enum `MyError` sus-mentionnée, mise à jour pour utiliser une `struct` et capturer l'information de la source d'erreur.
 
 ```swift
 import Vapor
@@ -107,9 +106,9 @@ struct MyError: DebuggableError {
     var reason: String {
         switch self.value {
         case .userNotLoggedIn:
-            return "User is not logged in."
+            return "Utilisateur non connecté."
         case .invalidEmail(let email):
-            return "Email address is not valid: \(email)."
+            return "Adresse e-mail invalide : \(email)."
         }
     }
 
@@ -134,13 +133,13 @@ struct MyError: DebuggableError {
 }
 ```
 
-`DebuggableError` comporte plusieurs autres propriétés comme `possibleCauses` et `suggestedFixes` que vous pouvez utiliser pour améliorer le débogage de vos erreurs. Observez la déclaration du protocole lui-même pour obtenir plus d'informations.
+`DebuggableError` comporte plusieurs autres propriétés comme `possibleCauses` et `suggestedFixes` que vous pouvez utiliser pour améliorer le débogage de vos erreurs. Référez-vous à la déclaration du protocole pour obtenir plus d'informations.
 
 ## Error Middleware
 
 `ErrorMiddleware` est l'un des deux middlewares qui sont ajoutés à votre application par défaut. Ce middleware convertit les erreurs Swift levées ou retournées dans vos routes en réponses HTTP. Sans ce middleware, les erreurs levées causeraient la fermeture de la connexion, et aucune réponse ne serait retournée. 
 
-Pour personnaliser la gestion des erreurs au-delà de ce que `AbortError` et `DebuggableError` permettent, vous pouvez remplacer `ErrorMiddleware` par votre propre logique personnalisée. Pour ce faire, commencez par enlever l'ErrorMiddleware par défaut en initialisant manuellement `app.middleware`. Puis, ajoutez votre propre middleware de gestion d'erreurs comme premier middleware sur votre application.
+Pour personnaliser la gestion des erreurs au-delà de ce que `AbortError` et `DebuggableError` permettent, vous pouvez remplacer `ErrorMiddleware` par votre propre logique personnalisée. Pour ce faire, commencez par enlever l'`ErrorMiddleware` par défaut en initialisant manuellement `app.middleware`. Puis, ajoutez votre propre middleware de gestion d'erreurs comme premier middleware sur votre application.
 
 ```swift
 // Enlève tous les middlewares définis par défaut (puis ré-ajoute le log des routes)

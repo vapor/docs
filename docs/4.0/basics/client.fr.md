@@ -4,7 +4,7 @@ L'API Client de Vapor vous permet de faire des appels HTTP vers des ressources e
 
 ## Vue d'ensemble
 
-Vous avez accès au client par défaut via l'objet `Application`, ou depuis un gestionnaire de requête via l'objet `Request`.
+Vous avez accès au client par défaut via l'objet `Application`, ou dans un contrôleur via l'objet `Request` qu'il reçoit.
 
 ```swift
 app.client // Client
@@ -14,7 +14,7 @@ app.get("test") { req in
 }
 ```
 
-Le client proposé sur l'objet Application sert surtout pour faire des requêtes lors de la configuration (au démarrage de votre application). Si vous souhaitez faire des requêtes HTTP depuis un gestionnaire de requête, utilisez systématiquement le client de l'objet Request.
+Le client proposé sur l'objet `Application` sert surtout pour faire des requêtes lors de la configuration (au démarrage de votre application). Si vous souhaitez faire des requêtes HTTP depuis un contrôleur, utilisez systématiquement le client de l'objet `Request`.
 
 ### Méthodes
 
@@ -39,7 +39,7 @@ let response = try await req.client.post("https://httpbin.org/status/200") { req
     try req.content.encode(["hello": "world"])
     
     // Ajout de l'entête d'authentification/autorisation.
-    let auth = BasicAuthorization(username: "something", password: "somethingelse")
+    let auth = BasicAuthorization(username: "une-valeur", password: "une-autre-valeur")
     req.headers.basicAuthorization = auth
 }
 // Gestion de la réponse.
@@ -52,7 +52,7 @@ let response = try await req.client.get("https://httpbin.org/json")
 let json = try response.content.decode(MyJSONResponse.self)
 ```
 
-Si vous utilisez les types futures, vous pouvez utiliser `flatMapThrowing`:
+Si vous utilisez les types futures, vous pouvez utiliser `flatMapThrowing` :
 
 ```swift
 return req.client.get("https://httpbin.org/json").flatMapThrowing { res in
@@ -64,7 +64,7 @@ return req.client.get("https://httpbin.org/json").flatMapThrowing { res in
 
 ## Configuration
 
-Vous pouvez configurer le client HTTP sous-jacent via l'objet Application.
+Vous pouvez configurer le client HTTP sous-jacent via l'objet `Application`.
 
 ```swift
 // Désactive le suivi automatique des redirections.
@@ -72,5 +72,3 @@ app.http.client.configuration.redirectConfiguration = .disallow
 ```
 
 Veuillez noter que la configuration du client par défaut doit être faite _avant_ sa première utilisation.
-
-

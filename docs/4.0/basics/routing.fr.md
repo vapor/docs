@@ -1,10 +1,10 @@
-# Le routage
+# Routage
 
 Le routage consiste à trouver le bon contrôleur pour gérer une requête entrante. Le coeur du routage de Vapor est géré par un routeur hautes performances à algorithme trie, fourni par [RoutingKit](https://github.com/vapor/routing-kit).
 
 ## Vue d'ensemble 
 
-Pour comprendre le fonctionnement du routage dans Vapor, vous devriez d'abord comprendre quelques bases des requêtes HTTP. Observez les quelques exemples de requêtes suivants.
+Pour comprendre le fonctionnement du routage dans Vapor, vous aurez besoin de quelques notions sur les requêtes HTTP. Observez les quelques exemples de requêtes suivants.
 
 ```http
 GET /hello/vapor HTTP/1.1
@@ -22,19 +22,19 @@ http://vapor.codes/hello/vapor
 
 La première partie d'une requête est la méthode HTTP. `GET` est la méthode HTTP la plus courante, mais vous serez également amené à en utiliser quelques autres. Ces méthodes HTTP sont souvent associées aux  sémantiques [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete).
 
-|Méthode HTTP|Correspondance CRUD|
-|-|-|
-|`GET`|Read|
-|`POST`|Create|
-|`PUT`|Replace|
-|`PATCH`|Update|
-|`DELETE`|Delete|
+| Méthode HTTP | Correspondance CRUD |
+|--------------|---------------------|
+| `GET`.       | Lecture             |
+| `POST`       | Création            |
+| `PUT`        | Remplacement        |
+| `PATCH`      | Mise à jour         |
+| `DELETE`     | Suppression         |
 
 ### Chemin de la requête
 
-Se situant juste après la méthode HTTP se trouve l'URI de la requête. Il consiste en un chemin qui commence par un `/` et facultativement complétée par une QueryString commençant par un `?`. La méthode HTTP et le chemin de la requête sont les deux éléments utilisés par Vapor pour router les requêtes entrantes.
+Se situant juste après la méthode HTTP se trouve l'URI de la requête. Il consiste en un chemin qui commence par le caractère `/` et facultativement complétée par une QueryString commençant par le caractère `?`. La méthode HTTP et le chemin de la requête sont les deux éléments utilisés par Vapor pour router les requêtes entrantes.
 
-A la suite de l'URI se trouve la version HTTP, suivie de 0 ou n entêtes, et enfin le corps de la requête. Dans ce cas précis, concernant une requête `GET`, aucun corps de requête n'est présent. 
+À la suite de l'URI se trouve la version HTTP, suivie de 0 ou n entêtes, et enfin le corps de la requête. Dans ce cas précis, concernant une requête `GET`, aucun corps de requête n'est présent. 
 
 ### Méthodes du router
 
@@ -42,11 +42,11 @@ Voyons comment Vapor pourrait traiter la requête définie précédemment.
 
 ```swift
 app.get("hello", "vapor") { req in 
-    return "Hello, vapor!"
+    return "Hello, vapor !"
 }
 ```
 
-Toutes les méthodes HTTP courantes sont exposées en tant que méthodes de l'objet `Application`. Elles acceptent une ou plusieurs chaînes de caractères, qui représentent le chemin de la requête séparé par des `/`. 
+Toutes les méthodes HTTP courantes sont exposées en tant que méthodes de l'objet `Application`. Elles acceptent une ou plusieurs chaînes de caractères, qui représentent le chemin de la requête séparé par le caractère `/`. 
 
 Notez que vous pouvez également utiliser la syntaxe alternative `on` suivie de la méthode HTTP à utiliser :
 
@@ -75,7 +75,7 @@ app.get("hello", ":name") { req -> String in
 }
 ```
 
-En utilisant un composant de chemin prefixé du caractère `:`, nous indiquons au routeur qu'il s'agit d'un composant dynamique. Tout chaîne de caractère située à cet endroit précis sera donc mis en correspondance avec cette route. Nous pourrons alors utiliser `req.parameters` pour accéder à la valeur de la chaîne d'entrée.
+En utilisant un composant de chemin prefixé du caractère `:`, nous indiquons au routeur qu'il s'agit d'un composant dynamique. Toute chaîne de caractère située à cet endroit précis sera donc mis en correspondance avec cette route. Nous pourrons alors utiliser `req.parameters` pour accéder à la valeur de la chaîne d'entrée.
 
 Si vous soumettez à nouveau la requête d'exemple, vous obtiendrez toujours une réponse disant hello à vapor. Cependant, vous pouvez désormais indiquer n'importe quel nom après `/hello/` et constater qu'il sera retourné dans la réponse.
 
@@ -97,7 +97,7 @@ Maintenant que les bases sont couvertes, consultez les sections détaillées pou
 
 ## Routes
 
-Un objet Route spécifie quel gestionnaire de requête (ou contrôleur) sera associé à une méthode HTTP et un chemin URI donnés. Il peut également contenir des méta-données supplémentaires.
+Un objet Route spécifie quel contrôleur sera associé à une méthode HTTP et un chemin URI donnés. Il peut également contenir des méta-données supplémentaires.
 
 ### Méthodes
 
@@ -110,7 +110,7 @@ app.get("foo", "bar", "baz") { req in
 }
 ```
 
-Les gestionnaires de requêtes associés aux routes peuvent retourner n'importe quelle donnée, tant qu'elle implémente le protocole `ResponseEncodable`. Cela inclue `Content`, des  Closures `async`, et tout `EventLoopFuture` dont la valeur future implémente `ResponseEncodable`.
+Les contrôleurs associés aux routes peuvent retourner n'importe quelle donnée, tant qu'elle implémente le protocole `ResponseEncodable`. Cela inclue `Content`, des  Closures `async`, et tout `EventLoopFuture` dont la valeur future implémente `ResponseEncodable`.
 
 Vous pouvez déclarer le type de retour d'une route avec `-> T` avant le `in`. Cela pourra vous servir dans les cas où le compilateur ne peut pas déterminer le type de retour.
 
@@ -141,12 +141,12 @@ app.on(.OPTIONS, "foo", "bar", "baz") { req in
 
 Chaque méthode de déclaration de route accepte en paramètre une liste variadique de type `PathComponent`. Ce type s'exprime en chaîne de caractères littérale et peut couvrir quatre cas :
 
-- Constant (`foo`)
-- Parameter (`:foo`)
-- Anything (`*`)
-- Catchall (`**`)
+- Une constante (`foo`)
+- Un paramètre (`:foo`)
+- N'importe quelle chaîne à l'emplacement (`*`)
+- N'importe quelles chaînes depuis cet emplacement (`**`)
 
-#### Constant
+#### Constante
 
 Il s'agit d'un composant fixe de la route. Seules les requêtes ayant une correspondance exacte avec ce composant à cette position pourront être routées. 
 
@@ -157,9 +157,9 @@ app.get("foo", "bar", "baz") { req in
 }
 ```
 
-#### Parameter
+#### Paramètre
 
-Il s'agit d'un composant dynamique de la route. Toute chaîne à cet endroit sera autorisée. Un composant de chemin paramétrable est défini par le préfixe deux-points `:`. La chaîne qui suit ce `:` servira de nom de paramètre. Vous pourrez ensuite utiliser ce nom pour récupérer la valeur du paramètre renseigné par la requête.
+Il s'agit d'un composant dynamique de la route. Toute chaîne à cet endroit sera autorisée. Un composant de chemin paramétrable est défini par le préfixe deux-points `:`. La chaîne qui suit ce caractère `:` servira de nom de paramètre. Vous pourrez ensuite utiliser ce nom pour récupérer la valeur du paramètre renseigné par la requête.
 
 ```swift
 // Répond à GET /foo/bar/baz
@@ -170,9 +170,9 @@ app.get("foo", ":bar", "baz") { req in
 }
 ```
 
-#### Anything
+#### N'importe quelle chaîne à l'emplacement
 
-Similaire au composant dynamique Parameter, la différence est ici que la valeur reçue n'est pas conservée. Ce composant est simplement déclaré par un astérisque `*`. 
+Similaire au composant dynamique de type paramètre, la différence est ici que la valeur reçue n'est pas conservée. Ce composant est simplement déclaré par un astérisque `*`. 
 
 ```swift
 // Répond à GET /foo/bar/baz
@@ -183,7 +183,7 @@ app.get("foo", "*", "baz") { req in
 }
 ```
 
-#### Catchall
+#### N'importe quelles chaînes depuis cet emplacement
 
 Ce composant de route dynamique pourra créer une correspondance avec un composant de chemin, ou plus. Il est simplement déclaré par un double astérisque `**`. Toute chaîne présente à partir de cette position (dont les suivantes) seront mise en correspondance avec la requête reçue. 
 
@@ -198,7 +198,7 @@ app.get("foo", "**") { req in
 
 ### Lire les paramètres dynamiques
 
-Lorsque vous utilisez un composant de chemin de type Parameter (préfixé par deux-points `:`), la valeur de l'URI à cette position sera stoquée dans `req.parameters`. Vous pouvez utiliser le nom que vous avez défini pour ce composant du chemin afin d'accéder à la valeur. 
+Lorsque vous utilisez un composant de chemin de type paramètre (préfixé par deux-points `:`), la valeur de l'URI à cette position sera stoquée dans `req.parameters`. Vous pouvez utiliser le nom que vous avez défini pour ce composant du chemin afin d'accéder à sa valeur associée.
 
 ```swift
 // Répond à GET /hello/foo
@@ -210,11 +210,11 @@ app.get("hello", ":name") { req -> String in
 }
 ```
 
-!!! Note
+!!! note "Note"
     Ici, nous pouvons être sûrs que `req.parameters.get` ne retournera jamais `nil` car le chemin de notre route comporte la valeur `:name`. Cependant, si vous tentez d'accéder aux paramètres de routes depuis un middleware ou dans du code déclenché par différentes routes, vous devrez gérer le cas éventuel où la valeur retournée sera `nil`.
 
-!!! Note
-    Si vous souhaitez récupérer des paramètres de la QueryString, i.e. `/hello/?name=foo` vous devrez utiliser les API Content de Vapor pour gérer les données qui sont url-encodées. Voir la [rubrique `Content`](content.md) pour plus d'information.
+!!! note "Note"
+    Si vous souhaitez récupérer des paramètres de la QueryString, i.e. `/hello/?name=foo` vous devrez utiliser les API Content de Vapor pour gérer les données qui sont url-encodées. Voir la [rubrique `Content`](content.md) pour plus d'informations.
 
 `req.parameters.get` supporte aussi le cast automatique vers les types compatibles avec le protocole `LosslessStringConvertible` :
 
@@ -226,11 +226,11 @@ app.get("number", ":x") { req -> String in
     guard let int = req.parameters.get("x", as: Int.self) else {
         throw Abort(.badRequest)
     }
-    return "\(int) is a great number"
+    return "\(int) est un super nombre"
 }
 ```
 
-Les valeurs des URI qui ont été routées avec un Catchall (`**`) seront stoquées dans `req.parameters` en tant que `[String]`. Vous pouvez accéder à ces composants par `req.parameters.getCatchall`. 
+Les valeurs des URI qui ont été routées avec l'attrape-tout (`**`) seront stoquées dans `req.parameters` en tant que `[String]`. Vous pouvez accéder à ces composants par `req.parameters.getCatchall`. 
 
 ```swift
 // Répond à GET /hello/foo
@@ -242,7 +242,7 @@ app.get("hello", "**") { req -> String in
 }
 ```
 
-### Body Streaming
+### Lecture du corps de la requête
 
 Lorsque vous déclarez une route avec la méthode `on`, vous pouvez définir comment le corps de la requête doit être géré. Par défaut, les corps de requêtes sont mis en mémoire avant d'invoquer votre gestionnaire de requête. C'est utile, car cela permet de décoder le contenu des requêtes de façon synchrone, même si votre application lit les requêtes entrantes de façon asynchrone. 
 
@@ -265,9 +265,9 @@ app.on(.POST, "listings", body: .collect(maxSize: "1mb")) { req in
 }
 ```
 
-Si vous spécifiez la valeur de l'argument `maxSize` à `collect`, cette valeur sera choisie pour cette route, peu importe la valeur que vous aurez définie au niveau global de l'application. Si vous souhaitez utiliser la valeur par défaut définie sur l'application, omettez simplement l'argument`maxSize`. 
+Si vous spécifiez la valeur de l'argument `maxSize` de la méthode `collect`, cette valeur sera choisie pour cette route, peu importe la valeur que vous aurez définie au niveau global de l'application. Si vous souhaitez utiliser la valeur par défaut définie sur l'application, omettez simplement l'argument `maxSize`. 
 
-Pour des requêtes imposantes, tels que des mises en ligne de fichiers, récupérer le corps de la requête dans un buffer peut mettre à mal la mémoire disponible de votre système. Pour éviter la mise en mémoire du corps de la requête, utilisez la stratégie `stream`.
+Pour des requêtes imposantes, telles que des mises en ligne de fichiers, récupérer le corps de la requête dans un buffer peut mettre à mal la mémoire disponible de votre système. Pour éviter la mise en mémoire du corps de la requête, utilisez la stratégie `stream`.
 
 ```swift
 // Le corps de requête ne sera pas mis en mémoire.
@@ -280,12 +280,12 @@ Lorsque le corps de la requête est mis en flux, `req.body.data` vaudra `nil`. V
 
 ### Routage insensible à la casse
 
-Le comportement par défaut du routage est à la fois sensible à la casse et la préservant. Les composants de chemin de type `Constant` peuvent aussi être gérés de façon à les rendre insensibles à la casse (toujours en la préservant) pour les besoins du routage; pour activer ce comportement, ajoutez cette configuration avant le démarrage de votre application :
+Le comportement par défaut du routage est à la fois sensible à la casse et la préserve. Les composants de chemin de type `Constante` peuvent aussi être gérés de façon à les rendre insensibles à la casse (toujours en la préservant) pour les besoins du routage; pour activer ce comportement, ajoutez cette configuration avant le démarrage de votre application :
+
 ```swift
 app.routes.caseInsensitive = true
 ```
-Aucun changement n'est appliqué à la requête entrante; les gestionnaires de requêtes recevront les composants du chemin inaltérés.
-
+Aucun changement n'est appliqué à la requête entrante; les contrôleurs recevront les composants du chemin inaltérés.
 
 ### Lister les Routes
 
@@ -319,7 +319,7 @@ Toutes les méthodes d'enregistrement de route retournent l'objet `Route` instan
 ```swift
 app.get("hello", ":name") { req in
     ...
-}.description("says hello")
+}.description("dit bonjour")
 ```
 
 ## Groupes de routes
@@ -349,7 +349,7 @@ users.get(":id") { req in
 }
 ```
 
-Chaque composant de chemin que vous pouvez passer aux méthodes telles que `get` ou `post` peut aussi être passé à  `grouped`. Il existe également une syntaxe alternative, basé sur les Closures.
+Chaque composant de chemin que vous pouvez passer aux méthodes telles que `get` ou `post` peut aussi être passé à `grouped`. Il existe également une syntaxe alternative, basé sur les Closures :
 
 ```swift
 app.group("users") { users in
@@ -420,16 +420,16 @@ Les redirections sont utiles dans différents scénarios, comme faire suivre de 
 Pour rediriger une requête, utilisez :
 
 ```swift
-req.redirect(to: "/some/new/path")
+req.redirect(to: "/un/nouveau/chemin")
 ```
 
 Vous pouvez également personnaliser le type de redirection, comme une redirection permanente par exemple (pour que votre SEO soit mis à jour correctement) :
 
 ```swift
-req.redirect(to: "/some/new/path", redirectType: .permanent)
+req.redirect(to: "/un/nouveau/chemin", redirectType: .permanent)
 ```
 
-Les différents types proposés par `Redirect` sont:
+Les différents types proposés par `Redirect` sont :
 
 * `.permanent` - retourne **301 Permanent**
 * `.normal` - retourne **303 see other**. C'est le comportement par défaut de Vapor, qui indique au client de suivre la redirection avec une requête **GET**.

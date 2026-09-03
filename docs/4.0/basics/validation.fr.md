@@ -4,28 +4,28 @@ L'API Validation de Vapor vous aide à valider les données du corps ou de la Qu
 
 ## Introduction 
 
-La forte intégration du protocole `Codable` de Swift et sa sécurité de typage dans Vapor signifie que vous n'avez pas autant à vous soucier de la validation des données en comparaison à d'autres langages au typage dynamique. Cependant, il reste quelques raisons pour lesquelles vous souhaiterez probablement passer à une validation explicite par l'API Validation.
+La forte intégration du protocole `Codable` de Swift et sa sécurité de typage dans Vapor signifie que vous n'avez pas autant à vous soucier de la validation des données que pour d'autres langages au typage dynamique. Cependant, il reste quelques raisons pour lesquelles vous souhaiterez probablement passer à une validation explicite par l'API Validation.
 
 ### Erreurs lisibles pour les humains
 
-Le décodage de structs par l'API [Contenu](content.md) produira des erreurs si une quelconque donnée est invalide. Néanmoins, ces messages d'erreur ont quelquefois des problèmes de clarté. Par exemple, si vous prenez cette enum :
+Le décodage de structs par l'API [Contenu](content.md) produira des erreurs si une quelconque donnée est invalide. Toutefois, ces messages d'erreur ont quelquefois des problèmes de clarté. Par exemple, si vous prenez cette enum :
 
 ```swift
 enum Color: String, Codable {
-    case red, blue, green
+    case rouge, bleu, vert
 }
 ```
 
-Si un utilisateur essaie d'attribuer la valeur `"purple"` à une propriété typée avec `Color`, il verra une error du style :
+Si un utilisateur essaie d'attribuer la valeur `"violet"` à une propriété typée avec `Color`, il verra une erreur du style :
 
 ```
-Cannot initialize Color from invalid String value purple for key favoriteColor
+Cannot initialize Color from invalid String value violet for key couleur
 ```
 
 Bien que ce message soit techniquement correct et qu'il ait réussi à protéger notre API d'une valeur invalide, il pourrait mieux indiquer à l'utilisateur quelle erreur il a commise, et quelles possibilités lui sont offertes. En utilisant l'API Validation, vous pouvez générer des erreurs comme celle-ci :
 
 ```
-favoriteColor is not red, blue, or green
+Le champ couleur n'est ni rouge, ni bleu, ni vert.
 ```
 
 De plus, `Codable` arrêtera sa tentative de décodage dès la première erreur rencontrée. Cela signifie que si plusieurs valeurs sont invalides dans la requête, l'utilisateur ne verra que la première erreur. L'API Validation rapportera tout les échecs rencontrés sur une même requête.
@@ -112,7 +112,7 @@ email is not a valid email address
 
 ### Valider la QueryString d'une requête
 
-Les types en conformité avec `Validatable` ont également une fonction `validate(query:)` que l'on peut utiliser pour valider la QueryString. Ajoutez les lignes suivantes dans votre gestionnaire de requête :
+Les types en conformité avec `Validatable` ont également une fonction `validate(query:)` que l'on peut utiliser pour valider la QueryString. Ajoutez les lignes suivantes dans votre contrôleur :
 
 ```swift
 try CreateUser.validate(query: req)
@@ -206,28 +206,27 @@ validations.add(
 
 Vous trouverez ci-dessous la liste des valideurs actuellement fournis et une brève explication de ce qu'ils font.
 
-|Validation|Description|
-|-|-|
-|`.ascii`|Ne doit contenir que des caractères ASCII.|
-|`.alphanumeric`|Ne doit contenir que des caractères alphanumériques.|
-|`.characterSet(_:)`|Ne doit contenir que des caractères du `CharacterSet` fourni.|
-|`.count(_:)`|La Collection ne doit pas avoir plus d'éléments que défini.|
-|`.email`|Doit être un email valide.|
-|`.empty`|Doit être vide.|
-|`.in(_:)`|Doit correspondre à une valeur définie dans la `Collection` fournie.|
-|`.nil`|Doit être `null`.|
-|`.range(_:)`|La valeur doit se situer dans la portée définie par `Range`.|
-|`.url`|Doit être un URL valide.|
-|`.custom(_:, validationClosure: (value) -> Bool)`|Validation personnalisée, pour un cas particulier.|
+| Validation                                        | Description                                                          |
+|---------------------------------------------------|----------------------------------------------------------------------|
+| `.ascii`                                          | Ne doit contenir que des caractères ASCII.                           |
+| `.alphanumeric`                                   | Ne doit contenir que des caractères alphanumériques.                 |
+| `.characterSet(_:)`                               | Ne doit contenir que des caractères du `CharacterSet` fourni.        |
+| `.count(_:)`                                      | La Collection ne doit pas avoir plus d'éléments que défini.          |
+| `.email`                                          | Doit être un email valide.                                           |
+| `.empty`                                          | Doit être vide.                                                      |
+| `.in(_:)`                                         | Doit correspondre à une valeur définie dans la `Collection` fournie. |
+| `.nil`                                            | Doit être `null`.                                                    |
+| `.range(_:)`                                      | La valeur doit se situer dans la portée définie par `Range`.         |
+| `.url`                                            | Doit être un URL valide.                                             |
+| `.custom(_:, validationClosure: (value) -> Bool)` | Validation personnalisée, pour un cas particulier.                   |
 
 Les valideurs peuvent aussi être combinés grâce à des opérateurs pour construire des règles plus complexes. Plus d'informations sur la règle `.custom` dans la section [Valideurs personnalisés](#valideurs-personnalisés) qui suit.
 
-|Opérateur|Position|Description|
-|-|-|-|
-|`!`|préfixe|Inverse un valideur, nécessitant le contraire de la règle définie.|
-|`&&`|insert|Combine deux valideurs, nécessite que les deux règles soient respectées.|
-|`\|\|`|insert|Combine deux valideurs, nécessite qu'au moins une des règles soit respectée.|
-
+| Opérateur | Position   | Description                                                                  |
+|-----------|------------|------------------------------------------------------------------------------|
+| `!`       | préfixe    | Inverse un valideur, nécessitant le contraire de la règle définie.           |
+| `&&`      | entre deux | Combine deux valideurs, nécessite que les deux règles soient respectées.     |
+| `\|\|`.   | entre deux | Combine deux valideurs, nécessite qu'au moins une des règles soit respectée. |
 
 ## Valideurs personnalisés
 
