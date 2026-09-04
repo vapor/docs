@@ -147,7 +147,7 @@ Planets:
 
 Esto renderizaría una vista que se vería así:
 
-```
+```text
 Planets:
 - Venus
 - Earth

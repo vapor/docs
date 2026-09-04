@@ -147,7 +147,7 @@ Planètes :
 
 Ce qui génèrerait une vue similaire à celle-ci :
 
-```
+```text
 Planètes :
 - Vénus
 - Terre
@@ -167,7 +167,7 @@ Planètes :
 
 Ce qui donnerait ceci :
 
-```
+```text
 Planètes :
 - 1 Vénus
 - 2 Terre
