@@ -147,7 +147,7 @@ Planets:
 
 これにより、次のようなビューがレンダリングされます：
 
-```
+```text
 Planets:
 - Venus
 - Earth

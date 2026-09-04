@@ -147,7 +147,7 @@ Planets:
 
 سيؤدي هذا إلى تصيير عرض يبدو كالتالي:
 
-```
+```text
 Planets:
 - Venus
 - Earth

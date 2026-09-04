@@ -147,7 +147,7 @@ Planets:
 
 This would render a view that looks like:
 
-```
+```text
 Planets:
 - Venus
 - Earth
@@ -167,7 +167,7 @@ Planets:
 
 This would result in:
 
-```
+```text
 Planets:
 - 1 Venus
 - 2 Earth
