@@ -137,7 +137,7 @@ return req.view.render("solarSystem", SolarSystem())
 Nous pourrions ensuite boucler dessus avec Leaf comme ceci :
 
 ```leaf
-Planètes:
+Planètes :
 <ul>
 #for(planet in planets):
     <li>#(planet)</li>
@@ -147,11 +147,31 @@ Planètes:
 
 Ce qui génèrerait une vue similaire à celle-ci :
 
-```
-Planètes:
+```text
+Planètes :
 - Vénus
 - Terre
 - Mars
+```
+
+Leaf expose également une entrée d'indexation pour les itérations, ce qui vous donne accès à l'index courant à l'intérieur de la boucle :
+
+```leaf
+Planètes :
+<ul>
+#for(index, planet in planets):
+    <li>#(index + 1) #(planet)</li>
+#endfor
+</ul>
+```
+
+Ce qui donnerait ceci :
+
+```text
+Planètes :
+- 1 Vénus
+- 2 Terre
+- 3 Mars
 ```
 
 ### Étendre des templates

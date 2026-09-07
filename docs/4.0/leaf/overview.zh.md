@@ -147,7 +147,7 @@ Planets:
 
 这将呈现如下视图：
 
-```
+```text
 Planets:
 - Venus
 - Earth
