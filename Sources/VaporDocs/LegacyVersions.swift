@@ -4,7 +4,7 @@ let v3_0 = DocVersion(
     id: "3.0",
     name: "3.0",
     contentDirectory: "3.0",
-    languages: [.init(.english, isDefault: true)]
+    languages: [english]
 ) {
     Page("Overview", "index.md")
     Section("Install") {
@@ -165,7 +165,7 @@ let v2_0 = DocVersion(
     id: "2.0",
     name: "2.0",
     contentDirectory: "2.0",
-    languages: [.init(.english, isDefault: true)]
+    languages: [english]
 ) {
     Page("Overview", "index.md")
     Section("Getting started") {
@@ -302,7 +302,7 @@ let v1_5 = DocVersion(
     id: "1.5",
     name: "1.5",
     contentDirectory: "1.5",
-    languages: [.init(.english, isDefault: true)]
+    languages: [english]
 ) {
     Page("Overview", "index.md")
     Section("Getting Started") {

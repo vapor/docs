@@ -1,39 +1,42 @@
 import Kiln
 
+/// The English language definition, shared by every documentation version.
+let english = Language(
+    .english,
+    isDefault: true,
+    customStrings: [
+        "siteId": "docs",
+        "head.defaultOgType": "article",
+        "head.homeSuffix": "",
+        "head.titleSeparator": " · ",
+        "tagline": "Vapor provides a safe, performant and easy to use foundation to build HTTP servers, backends and APIs in Swift",
+        "footer.tagline": "Vapor provides a safe, performant and easy to use foundation to build HTTP servers, backends and APIs in Swift",
+        "joinDiscord": "Join our Discord",
+        "footer.joinDiscord": "Join our Discord",
+        "supporters": "Supporters",
+        "footer.supporters": "Supporters",
+        "frameworkDocs": "Framework Docs",
+        "footer.frameworkDocs": "Framework Docs",
+        "apiDocs": "API Docs",
+        "footer.apiDocs": "API Docs",
+        "frameworkDocsCaption": "Learn how to use Vapor",
+        "apiDocsCaption": "Reference documentation for Vapor",
+        "selectLanguage": "Select language",
+        "selectVersion": "Select documentation version",
+        "selectTheme": "Select theme",
+        "closeMenu": "Close menu",
+        "skipToContent": "Skip to content",
+    ],
+    image: "assets/og/en-2x.png",
+    localisation: .init(
+        searchPlaceholder: "Quick search",
+        searchPrompt: "Enter your search…",
+        tableOfContentsTitle: "Table of contents"
+    )
+)
+
 let languages: [Language] = [
-    Language(
-        .english,
-        isDefault: true,
-        customStrings: [
-            "siteId": "docs",
-            "head.defaultOgType": "article",
-            "head.homeSuffix": "",
-            "head.titleSeparator": " · ",
-            "tagline": "Vapor provides a safe, performant and easy to use foundation to build HTTP servers, backends and APIs in Swift",
-            "footer.tagline": "Vapor provides a safe, performant and easy to use foundation to build HTTP servers, backends and APIs in Swift",
-            "joinDiscord": "Join our Discord",
-            "footer.joinDiscord": "Join our Discord",
-            "supporters": "Supporters",
-            "footer.supporters": "Supporters",
-            "frameworkDocs": "Framework Docs",
-            "footer.frameworkDocs": "Framework Docs",
-            "apiDocs": "API Docs",
-            "footer.apiDocs": "API Docs",
-            "frameworkDocsCaption": "Learn how to use Vapor",
-            "apiDocsCaption": "Reference documentation for Vapor",
-            "selectLanguage": "Select language",
-            "selectVersion": "Select documentation version",
-            "selectTheme": "Select theme",
-            "closeMenu": "Close menu",
-            "skipToContent": "Skip to content",
-        ],
-        image: "assets/og/en-2x.png",
-        localisation: .init(
-            searchPlaceholder: "Quick search",
-            searchPrompt: "Enter your search…",
-            tableOfContentsTitle: "Table of contents"
-        )
-    ),
+    english,
 
     Language(
         .german,
