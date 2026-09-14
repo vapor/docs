@@ -7,9 +7,12 @@ let english = Language(
     customStrings: [
         "siteId": "docs",
         // Announcement banner (shared partials/announce.leaf). announceMessage
-        // shows the banner; clear it to hide. No pill / link for this notice.
-        "announceId": "vapor-week-2026",
-        "announceMessage": "Vapor Week is coming 14th September!",
+        // shows the banner; clear it to hide. Bump announceId when the copy
+        // changes so visitors who dismissed the old notice see the new one.
+        "announceId": "ten-years-of-vapor",
+        "announceMessage": "It's Vapor Week! Celebrating 10 Years of Vapor",
+        "announceLink": "https://blog.vapor.codes/posts/ten-years-of-vapor/",
+        "announceLinkText": "Read more",
         "head.defaultOgType": "article",
         "head.homeSuffix": "",
         "head.titleSeparator": " · ",
