@@ -110,6 +110,9 @@ You can also configure SQLite to store the database ephemerally in memory.
 app.databases.use(.sqlite(.memory), as: .sqlite)
 ```
 
+!!! danger "Data loss"
+    Using an in-memory storage gives high performances but can result in data loss. Make sure you only use this configuration for cases where data can safely be discarded, such as automated testing.
+
 If you use an in-memory database, make sure to set Fluent to migrate automatically using `--auto-migrate` or run `app.autoMigrate()` after adding migrations.
 
 ```swift
@@ -118,9 +121,6 @@ try app.autoMigrate().wait()
 // or
 try await app.autoMigrate()
 ```
-
-!!! tip
-    The SQLite configuration automatically enables foreign key constraints on all created connections, but does not alter foreign key configurations in the database itself. Deleting records in a database directly, might violate foreign key constraints and triggers.
 
 #### MySQL
 
