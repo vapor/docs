@@ -7,8 +7,8 @@ let package = Package(
         .macOS(.v13)
     ],
     dependencies: [
-        .package(url: "https://github.com/brokenhandsio/kiln.git", from: "1.8.2"),
-        .package(url: "https://github.com/vapor/design.git", from: "1.0.0-rc.1"),
+        .package(url: "https://github.com/brokenhandsio/kiln.git", from: "1.10.0"),
+        .package(url: "https://github.com/vapor/design.git", from: "1.1.1"),
     ],
     targets: [
         .executableTarget(
