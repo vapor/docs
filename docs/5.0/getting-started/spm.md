@@ -22,7 +22,7 @@ import PackageDescription
 let package = Package(
     name: "my-app",
     platforms: [
-        .macOS("26.2")
+        .macOS(.v27)
     ],
     dependencies: [
         .package(
@@ -76,8 +76,8 @@ If the package is public, you should use the last segment of the Git repo's URL 
 ### Platforms
 
 The `platforms` array specifies which platforms this package supports.
-By specifying `.macOS("26.2")` this package requires macOS 26.2 or later.
-When Xcode loads this project, it will automatically set the minimum deployment version to macOS 26.2 so that you can use all available APIs.
+By specifying `.macOS(.v27)` this package requires macOS 27 or later.
+When Xcode loads this project, it will automatically set the minimum deployment version to macOS 27 so that you can use all available APIs.
 
 ### Dependencies
 
