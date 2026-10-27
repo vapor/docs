@@ -11,9 +11,14 @@ description: Vapor is a web framework for Swift, allowing you to write backends,
 
 Welcome to the Vapor Documentation! Vapor is a web framework for Swift, allowing you to write backends, web apps APIs and HTTP servers in Swift. Vapor is written in Swift, which is a modern, powerful and safe language providing a number of benefits over the more traditional server languages.
 
+!!! note
+    Vapor 5 is under active development, with more docs coming soon.
+
 ## Getting Started
 
-Vapor 5 is under active development, with more docs coming soon.
+If this is your first time using Vapor, head to [Install → macOS](install/macos.md) or [Install → Linux](install/linux.md) to install Swift and Vapor.
+
+Once you have Vapor installed, check out [Getting Started → Hello, world](getting-started/hello-world.md) to create your first Vapor app!
 
 ## Other Sources
 
