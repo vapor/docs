@@ -18,8 +18,6 @@ It is backed by the Linux Foundation, ensuring it will remain open source foreve
 
 The first step to using `vapor-community/valkey` is adding it and **valkey-swift** as dependencies to your project in your Swift package manifest.
 
-> This example is for an existing package. For help on starting a new project, see the main [Getting Started](../getting-started/hello-world.md) guide.
-
 ```swift
 dependencies: [
     // ...
