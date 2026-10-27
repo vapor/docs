@@ -1,19 +1,19 @@
 # Swift Package Manager
 
-The [Swift Package Manager](https://docs.swift.org/latest/documentation/packagemanagerdocs) (SPM) is used for building your project's source code and dependencies.
-Since Vapor relies heavily on SPM, it's a good idea to understand the basics of how it works.
+The [Swift Package Manager](https://docs.swift.org/latest/documentation/packagemanagerdocs) (SwiftPM) is used for building your project's source code and dependencies.
+Since Vapor relies heavily on SwiftPM, it's a good idea to understand the basics of how it works.
 
-SPM is similar to Cocoapods, Ruby gems, and NPM.
-You can use SPM from the command line with commands like `swift build` and `swift test` or with compatible IDEs.
-However, unlike some other package managers, there is no central package index for SPM packages.
-SPM instead leverages URLs to Git repositories and versions dependencies using [Git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging). 
+SwiftPM is similar to Cocoapods, Ruby gems, and NPM.
+You can use SwiftPM from the command line with commands like `swift build` and `swift test` or with compatible IDEs.
+However, unlike some other package managers, there is no central package index for SwiftPM packages.
+SwiftPM instead leverages URLs to Git repositories and versions dependencies using [Git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging). 
 
 ## Package Manifest
 
-The first place SPM looks in your project is the package manifest.
+The first place SwiftPM looks in your project is the package manifest.
 This should always be located in the root directory of your project and named `Package.swift`.
 
-Take a look at this example Package manifest.
+Take a look at this example SwiftPM package manifest.
 
 ```swift
 // swift-tools-version: 6.4
@@ -81,7 +81,7 @@ When Xcode loads this project, it will automatically set the minimum deployment 
 
 ### Dependencies
 
-Dependencies are other SPM packages that your package relies on.
+Dependencies are other SwiftPM packages that your package relies on.
 All Vapor applications rely on the Vapor package, but you can add as many other dependencies as you want.
 
 In the above example, you can see [vapor/vapor](https://github.com/vapor/vapor) version 5.0.0-beta.4 or later is a dependency of this package.
@@ -107,7 +107,7 @@ A target can depend on other targets in your project or any modules exposed by p
 
 ## Folder Structure
 
-Below is the typical folder structure for an SPM package.
+Below is the typical folder structure for a SwiftPM package.
 
 ```
 .
@@ -124,7 +124,7 @@ Each `.testTarget` corresponds to a folder in the `Tests` folder.
 
 ## Package.resolved
 
-The first time you build your project, SPM will create a `Package.resolved` file that stores the version of each dependency.
+The first time you build your project, SwiftPM will create a `Package.resolved` file that stores the version of each dependency.
 The next time you build your project, these same versions will be used even if newer versions are available. 
 
 To update your dependencies, run `swift package update`.

@@ -14,7 +14,7 @@ let v5_0 = DocVersion(
     }
     Section("Getting Started") {
         Page("Hello, world", "getting-started/hello-world.md")
-        Page("SwiftPM", "getting-started/spm.md")
+        Page("SwiftPM", "getting-started/swiftpm.md")
         Page("Xcode", "getting-started/xcode.md")
     }
     Section("Contributing") {
