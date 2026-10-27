@@ -25,7 +25,7 @@ However, Vapor has some handy things to help you contribute.
 ### Security Issues
 
 If you discover a security issue and want to report it or help fix it please **do not** raise an issue or create a pull request.
-We have a separate process for security issues to ensure we don't expose vulnerability until a fix is available.
+We have a separate process for security issues, using [GitHub Security Advisories](https://github.com/vapor/vapor/security/advisories/new) to ensure we don't expose vulnerability until a fix is available.
 Email [security@vapor.codes](mailto:security@vapor.codes) or [see here](https://github.com/vapor/.github/blob/main/SECURITY.md) for more details.
 
 ### Small issues
