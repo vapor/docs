@@ -1,12 +1,48 @@
-# Redis & Sessions
+# Sessions with Valkey/Redis
 
-Redis can act as a storage provider for caching [session data](../advanced/sessions.md#session-data) such as user credentials.
+Valkey and Redis can act as storage providers for caching [session data](../advanced/sessions.md#session-data) such as user credentials.
+
+## Valkey & Sessions
+
+Use the `Application`'s Valkey client for Vapor sessions.
+The `Application.valkey` property must be set to use this.
+See the [`VaporValkey` guide](valkey.md) for more information on configuring and using Valkey with Vapor.
+
+Here's a quick example:
+
+```swift
+import Valkey
+import Vapor
+import VaporValkey
+
+let app = Application.make(.detect)
+
+app.valkey = ValkeyClient(
+    .hostname("localhost"),
+    eventLoopGroup: app.eventLoopGroup,
+    logger: app.logger
+)
+
+app.sessions.use(.valkey())
+app.middleware.use(app.sessions.middleware)
+
+app.get("set", ":name") { req in
+    req.session.data["name"] = req.parameters.get("name")
+    return .ok
+}
+
+app.get("hello") { req in
+    req.session.data["name"] ?? "world"
+}
+```
+
+## Redis & Sessions
 
 If a custom [`RedisSessionsDelegate`](https://api.vapor.codes/redis/redissessionsdelegate) isn't provided, a default will be used.
 
-## Default Behavior
+### Default Behavior
 
-### SessionID Creation
+#### SessionID Creation
 
 Unless you implement the [`makeNewID()`](https://api.vapor.codes/redis/redissessionsdelegate/makenewid()) method in [your own `RedisSessionsDelegate`](#redissessionsdelegate), all [`SessionID`](https://api.vapor.codes/vapor/sessionid) values will be created by doing the following:
 
@@ -15,7 +51,7 @@ Unless you implement the [`makeNewID()`](https://api.vapor.codes/redis/redissess
 
 For example: `Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
 
-### SessionData Storage
+#### SessionData Storage
 
 The default implementation of `RedisSessionsDelegate` will store [`SessionData`](https://api.vapor.codes/vapor/sessiondata) as a simple JSON string value using `Codable`.
 
@@ -23,7 +59,7 @@ Unless you implement the [`makeRedisKey(for:)`](https://api.vapor.codes/redis/re
 
 For example: `vrs-Hbxozx8rTj+XXGWAzOhh1npZFXaGLpTWpWCaXuo44xQ=`
 
-## Registering A Custom Delegate
+### Registering A Custom Delegate
 
 To customize how the data is read from and written to Redis, register your own `RedisSessionsDelegate` object as follows:
 
@@ -37,7 +73,7 @@ struct CustomRedisSessionsDelegate: RedisSessionsDelegate {
 app.sessions.use(.redis(delegate: CustomRedisSessionsDelegate()))
 ```
 
-## RedisSessionsDelegate
+### RedisSessionsDelegate
 
 > API Documentation: [`RedisSessionsDelegate`](https://api.vapor.codes/redis/redissessionsdelegate)
 
@@ -47,7 +83,7 @@ Only two methods are required to be implemented by a type conforming to the prot
 
 Both are required, as the way you customize writing the session data to Redis is intrinsically linked to how it is to be read from Redis.
 
-### RedisSessionsDelegate Hash Example
+#### RedisSessionsDelegate Hash Example
 
 For example, if you wanted to store the session data as a [**Hash** in Redis](https://redis.io/topics/data-types-intro#redis-hashes), you would implement something like the following:
 

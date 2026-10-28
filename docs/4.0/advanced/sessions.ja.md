@@ -77,7 +77,7 @@ app.migrations.add(SessionRecord.migration)
 
 ### Redis
 
-Redisは、設定されたRedisインスタンスにセッションデータを保存するサポートを提供します。このセクションでは、[Redisを設定](../redis/overview.md)し、Redisインスタンスにコマンドを送信できることを前提としています。
+Redisは、設定されたRedisインスタンスにセッションデータを保存するサポートを提供します。このセクションでは、[Redisを設定](../valkey/redis.md)し、Redisインスタンスにコマンドを送信できることを前提としています。
 
 セッションにRedisを使用するには、アプリケーションを設定するときに選択します：
 
@@ -90,7 +90,7 @@ app.sessions.use(.redis)
 これにより、デフォルトの動作でRedisセッションドライバーを使用するようにセッションが設定されます。
 
 !!! seealso
-    RedisとSessionsの詳細については、[Redis &rarr; Sessions](../redis/sessions.md)を参照してください。
+    RedisとSessionsの詳細については、[Redis &rarr; Sessions](../valkey/sessions.md)を参照してください。
 
 ## セッションデータ {#session-data}
 

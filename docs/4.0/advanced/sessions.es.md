@@ -77,7 +77,7 @@ Asegúrate de ejecutar las migraciones de tu aplicación después de añadir la 
 
 ### Redis
 
-Redis proporciona soporte para almacenar datos de sesión en tu instancia Redis configurada. Esta sección supone que has [configurado Redis](../redis/overview.md) y puedes enviar comandos a la instancia Redis.
+Redis proporciona soporte para almacenar datos de sesión en tu instancia Redis configurada. Esta sección supone que has [configurado Redis](../valkey/redis.md) y puedes enviar comandos a la instancia Redis.
 
 Para usar Redis para sesiones, selecciónalo al configurar tu aplicación:
 
@@ -90,7 +90,7 @@ app.sessions.use(.redis)
 Esto configurará las sesiones para usar el controlador de sesiones Redis con el comportamiento por defecto.
 
 !!! seealso "Ver también"
-    Consulte [Redis &rarr; Sessions](../redis/sessions.md) para obtener información más detallada sobre Redis y Sessions.
+    Consulte [Redis &rarr; Sessions](../valkey/sessions.md) para obtener información más detallada sobre Redis y Sessions.
     
 ## Datos de Sesión
 

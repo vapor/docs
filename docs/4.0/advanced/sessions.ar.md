@@ -77,7 +77,7 @@ app.migrations.add(SessionRecord.migration)
 
 ### Redis
 
-يوفر Redis دعمًا لتخزين بيانات الجلسة في نسخة Redis التي أعددتها. يفترض هذا القسم أنك قد [أعددت Redis](../redis/overview.md) ويمكنك إرسال أوامر إلى نسخة Redis.
+يوفر Redis دعمًا لتخزين بيانات الجلسة في نسخة Redis التي أعددتها. يفترض هذا القسم أنك قد [أعددت Redis](../valkey/redis.md) ويمكنك إرسال أوامر إلى نسخة Redis.
 
 لاستخدام Redis للجلسات، اخترها عند إعداد تطبيقك:
 
@@ -90,7 +90,7 @@ app.sessions.use(.redis)
 سيؤدي هذا إلى ضبط الجلسات لاستخدام مُشغِّل جلسات Redis بالسلوك الافتراضي.
 
 !!! seealso "انظر أيضًا"
-    راجع [Redis &rarr; Sessions](../redis/sessions.md) لمزيد من المعلومات التفصيلية حول Redis والجلسات.
+    راجع [Redis &rarr; Sessions](../valkey/sessions.md) لمزيد من المعلومات التفصيلية حول Redis والجلسات.
 
 ## بيانات الجلسة
 

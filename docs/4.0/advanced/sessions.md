@@ -77,7 +77,7 @@ Make sure to run your application's migrations after adding the new migration. S
 
 ### Redis
 
-Redis provides support for storing session data in your configured Redis instance. This section assumes you have [configured Redis](../redis/overview.md) and can send commands to the Redis instance.
+Redis provides support for storing session data in your configured Redis instance. This section assumes you have [configured Redis](../valkey/redis.md) and can send commands to the Redis instance.
 
 To use Redis for Sessions, select it when configuring your application:
 
@@ -90,7 +90,7 @@ app.sessions.use(.redis)
 This will configure sessions to use the Redis sessions driver with the default behavior.
 
 !!! seealso
-    Refer to [Redis &rarr; Sessions](../redis/sessions.md) for more detailed information about Redis and Sessions.
+    Refer to [Redis &rarr; Sessions](../valkey/sessions.md) for more detailed information about Redis and Sessions.
 
 ## Session Data
 

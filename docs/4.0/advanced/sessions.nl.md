@@ -77,7 +77,7 @@ Zorg ervoor dat u de migraties van uw applicatie uitvoert na het toevoegen van d
 
 ### Redis
 
-Redis biedt ondersteuning voor het opslaan van sessiegegevens in uw geconfigureerde Redis-instantie. Deze sectie gaat er van uit dat u [Redis geconfigureerd hebt](../redis/overview.md) en commando's kunt sturen naar de Redis instantie.
+Redis biedt ondersteuning voor het opslaan van sessiegegevens in uw geconfigureerde Redis-instantie. Deze sectie gaat er van uit dat u [Redis geconfigureerd hebt](../valkey/redis.md) en commando's kunt sturen naar de Redis instantie.
 
 Om Redis voor Sessies te gebruiken, selecteert u het bij het configureren van uw toepassing:
 
@@ -90,7 +90,7 @@ app.sessions.use(.redis)
 Dit zal sessies configureren om de Redis sessies driver te gebruiken met het standaard gedrag.
 
 !!! seealso "Zie ook"
-    Raadpleeg [Redis &rarr; Sessions](../redis/sessions.md) voor meer gedetailleerde informatie over Redis en Sessions.
+    Raadpleeg [Redis &rarr; Sessions](../valkey/sessions.md) voor meer gedetailleerde informatie over Redis en Sessions.
 
 ## Sessiegegevens
 
