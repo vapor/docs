@@ -45,9 +45,9 @@ let v4_0 = DocVersion(
             Page("Custom Tags", "leaf/custom-tags.md")
         }
         Section("Valkey & Redis") {
-            Page("Valkey", "redis/valkey.md")
-            Page("Redis", "redis/overview.md")
-            Page("Sessions", "redis/sessions.md")
+            Page("Valkey", "valkey/valkey.md")
+            Page("Redis", "valkey/redis.md")
+            Page("Sessions", "valkey/sessions.md")
         }
         Section("Advanced") {
             Page("Middleware", "advanced/middleware.md")

@@ -77,7 +77,7 @@ Assurez-vous d'exécuter les migrations de votre application après avoir ajout�
 
 ### Redis
 
-Redis permet le stoquage des données de session dans votre instance Redis configurée. Cette section suppose que vous avez [configuré Redis](../redis/overview.md) et que vous pouvez envoyer des commandes à l'instance Redis.
+Redis permet le stoquage des données de session dans votre instance Redis configurée. Cette section suppose que vous avez [configuré Redis](../valkey/redis.md) et que vous pouvez envoyer des commandes à l'instance Redis.
 
 Pour utiliser Redis pour les sessions, indiquez-le dans la configuration de votre application :
 
@@ -90,7 +90,7 @@ app.sessions.use(.redis)
 Ceci configurera les sessions pour qu'elles utilisent le pilote de sessions Redis avec son comportement par défaut.
 
 !!! A lire également
-    Voir [Redis &rarr; Sessions](../redis/sessions.md) pour des informations plus détaillées sur Redis et les sessions.
+    Voir [Redis &rarr; Sessions](../valkey/sessions.md) pour des informations plus détaillées sur Redis et les sessions.
 
 ## Données de session
 

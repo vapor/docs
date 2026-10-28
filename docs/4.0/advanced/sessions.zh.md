@@ -77,7 +77,7 @@ app.migrations.add(SessionRecord.migration)
 
 ### Redis
 
-Redis 支持在你配置的 Redis 实例中存储会话数据。本部分假设你[已配置 Redis](../redis/overview.zh.md)，并且可以向 Redis 实例发送命令。
+Redis 支持在你配置的 Redis 实例中存储会话数据。本部分假设你[已配置 Redis](../valkey/redis.zh.md)，并且可以向 Redis 实例发送命令。
 
 要使用 Redis 处理会话，请在配置应用程序时选择它：
 
@@ -90,7 +90,7 @@ app.sessions.use(.redis)
 这将配置会话以使用具有默认行为的 Redis 会话驱动程序。
 
 !!! seealso "也可以看看"
-    了解有关 Redis 和 Sessions 的更多信息，请参阅[Redis → Sessions](../redis/sessions.zh.md)。
+    了解有关 Redis 和 Sessions 的更多信息，请参阅[Redis → Sessions](../valkey/sessions.zh.md)。
 
 ## 会话数据
 

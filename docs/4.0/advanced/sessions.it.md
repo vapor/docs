@@ -77,7 +77,7 @@ Assicurati di eseguire le migration della tua applicazione dopo aver aggiunto la
 
 ### Redis
 
-Redis fornisce supporto per memorizzare i dati di sessione nell'istanza Redis configurata. Questa sezione presuppone che tu abbia [configurato Redis](../redis/overview.it.md) e possa inviare comandi all'istanza Redis.
+Redis fornisce supporto per memorizzare i dati di sessione nell'istanza Redis configurata. Questa sezione presuppone che tu abbia [configurato Redis](../valkey/redis.it.md) e possa inviare comandi all'istanza Redis.
 
 Per usare Redis per le sessioni, selezionalo durante la configurazione della tua applicazione:
 
@@ -90,7 +90,7 @@ app.sessions.use(.redis)
 Questo configurerà le sessioni per usare il driver di sessione Redis con il comportamento predefinito.
 
 !!! seealso "Vedi anche"
-    Fai riferimento a [Redis &rarr; Sessions](../redis/sessions.it.md) per informazioni più dettagliate su Redis e le sessioni.
+    Fai riferimento a [Redis &rarr; Sessions](../valkey/sessions.it.md) per informazioni più dettagliate su Redis e le sessioni.
 
 ## Dati di Sessione
 
