@@ -3,10 +3,10 @@
 [Valkey](https://valkey.io) is a fork of Redis v7.2.4 with additional features and improvements.
 It is backed by the Linux Foundation, ensuring it will remain open source forever.
 
-[`vapor-community/valkey`](https://github.com/vapor-community/valkey) is an integration between Vapor and [**valkey-swift**](https://github.com/valkey-io/valkey-swift), which is the underlying driver that communicates with both Valkey and Redis (up to v7.2.4).
+[`VaporValkey`](https://github.com/vapor/valkey) is an integration between Vapor and [**valkey-swift**](https://github.com/valkey-io/valkey-swift), which is the underlying driver that communicates with both Valkey and Redis (up to v7.2.4).
 
 !!! tip
-    If you have a Redis database, up to version 7.2.4, you can connect to it using the same `vapor-community/valkey` integration.
+    If you have a Redis database, up to version 7.2.4, you can connect to it using the same `VaporValkey` integration.
 
 !!! note
     All of the capabilities of Valkey and Redis are provided by **valkey-swift**.
@@ -16,12 +16,12 @@ It is backed by the Linux Foundation, ensuring it will remain open source foreve
 
 ## Package
 
-The first step to using `vapor-community/valkey` is adding it and **valkey-swift** as dependencies to your project in your Swift package manifest.
+The first step to using `VaporValkey` is adding it and **valkey-swift** as dependencies to your project in your Swift package manifest.
 
 ```swift
 dependencies: [
     // ...
-    .package(url: "https://github.com/vapor-community/valkey.git", from: "1.2.0"),
+    .package(url: "https://github.com/vapor/valkey.git", from: "1.2.0"),
     .package(url: "https://github.com/valkey-io/valkey-swift.git", from: "1.0.0"),
 ],
 targets: [

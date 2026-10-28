@@ -6,7 +6,7 @@ Valkey and Redis can act as storage providers for caching [session data](../adva
 
 Use the `Application`'s Valkey client for Vapor sessions.
 The `Application.valkey` property must be set to use this.
-See the [`vapor-community/valkey` guide](valkey.md) for more information on configuring and using Valkey with Vapor.
+See the [`VaporValkey` guide](valkey.md) for more information on configuring and using Valkey with Vapor.
 
 Here's a quick example:
 
