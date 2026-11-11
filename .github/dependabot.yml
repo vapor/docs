@@ -16,3 +16,11 @@ updates:
       dependencies:
         patterns:
           - "*"
+  - package-ecosystem: "swift"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    groups:
+      swift-dependencies:
+        patterns:
+          - "*"
