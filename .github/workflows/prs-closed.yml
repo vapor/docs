@@ -26,7 +26,7 @@ jobs:
           role-to-assume: ${{ vars.OIDC_ROLE_ARN }}
           aws-region: ${{ vars.OIDC_ROLE_REGION }}
       - name: Delete preview bucket
-        uses: brokenhandsio/s3-website-pr-action@6ebd9b622b4bb33358228571a50e05d375cbd4de # v3.1.0
+        uses: brokenhandsio/s3-website-pr-action@904a6412af330dc591004ca782ec9122c4380f6f # v3.1.1
         with:
           bucket-prefix: "vapor-docs-pulls"
           bucket-region: "us-east-1"
